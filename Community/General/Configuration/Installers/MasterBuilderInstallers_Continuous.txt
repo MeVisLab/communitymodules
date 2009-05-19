@@ -1,0 +1,9 @@
+# Syntax of this file: see MasterBuilderInstallers_Nightly.txt
+
+
+# What -------------------------------- When ---------------- Who ----- Where
+
+# The YourInstaller installer (this comment is used as title for the html installer pages)
+# YourInstaller/YourInstaller.mlinstall always                whoever   *
+
+

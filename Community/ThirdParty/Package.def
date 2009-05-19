@@ -1,0 +1,9 @@
+
+Package {
+  packageGroup = "Community"
+  packageName  = "ThirdParty"
+
+  owner = "MeVisLab Community"
+  description = ""
+}
+

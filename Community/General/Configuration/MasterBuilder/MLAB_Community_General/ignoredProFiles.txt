@@ -1,0 +1,20 @@
+# Add the pro files that should be ignored here.
+# (please insert alphabetically!)
+
+# Ignoring may be system dependent. To do this, you must add a list of comma
+# seperated system names behind the ignored pro files. Supported system names are:
+# 
+# linux
+# mac
+# unix
+# windows
+# windows_vc8
+# windows_vc8-64
+
+# Example of an ignored profile:
+# Sources/ML/MLExampleProject/MLExampleProject.pro
+
+# Example of an ignored directory (including subdirs):
+# Sources/ML/MLExampleProject/*
+
+
