@@ -1,0 +1,83 @@
+Interface {
+  Inputs  {}
+  Outputs {}
+  Parameters {  
+    Field hostname { type = string value = "" }
+    Field hostkey { type = string value = "" }
+    Field username { type = string value = "" }
+    Field password { type = string value = "" }  
+    
+    Field patientPath { type = string value = "" }
+    Field sources { type = string value = "" }
+    Field target { type = string value = "" }
+    Field preCommand { type = string value = "" }
+    Field postCommand { type = string value = "" }
+    
+    Field upload { type = trigger }
+    Field download { type = trigger }
+    Field clean { type = trigger }
+    
+    Field transferring { type = bool value = No }
+    Field finished { type = trigger }
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+Commands {
+  source = $(LOCAL)/WinSCP.py
+  FieldListener upload { command = upload }
+  FieldListener download { command = download }
+  FieldListener clean { command = clean }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+Window "WinSCP" {  
+  style = Panel.default
+  
+  Category {
+    expandX = YES
+    expandY = YES  
+    w = 400 mw = 400 pw = 400
+    
+    Field = hostname
+    Field = hostkey
+    Field = username
+    Field = password
+    
+    Separator { direction = Horizontal }
+    
+    TextView sources {
+      expandX = Yes
+      expandY = Yes
+      autoApply = Yes
+    }
+    
+    Field target { browseButton = Yes browseMode = directory }
+        
+    Separator { direction = Horizontal }
+    
+    Field = preCommand
+    Field = postCommand
+    
+    Separator { direction = Horizontal }
+    
+    Horizontal {
+      expandX = Yes
+      expandY = No
+      dependsOn = "* sources && target *"
+      
+      CheckBox transferring { edit = No }
+      
+      Empty { expandX = Yes }
+      
+      Button = download
+      Button = upload
+    }
+    
+  }
+  
+}
+
+/////////////////////////////////////////////////////////////////////////////////

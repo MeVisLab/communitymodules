@@ -1,0 +1,9 @@
+
+//---------------------------------------------------------------------
+// MacroModule WinSCP
+//----------------------------------------------------------------------------------
+MacroModule WinSCP {
+  externalDefinition = "$(LOCAL)/WinSCP.script"
+  author = "Bart De Dobbelaer"
+  scriptOnly = Yes
+} // MacroModule WinSCP
