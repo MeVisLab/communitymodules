@@ -1,0 +1,38 @@
+
+//----------------------------------------------------------------------------------
+// MLModule CSODistance
+//----------------------------------------------------------------------------------
+MLModule CSODistance {
+  DLL = "MLCSOCommunityModules"
+  author   = "Bart De Dobbelaer"
+  status   = "stable"
+  comment  = "Calculates the minimum distance between two CSOs."
+  keywords = "Distance CSO"
+
+  exampleNetwork = "$(LOCAL)/CSODistance/CSODistanceExample.mlab"
+  documentation  = "$(LOCAL)/CSODistance/CSODistance.html"
+  
+  Window {
+    Category {
+      Field minimumDistance { edit = NO minLength = 10 }
+      Separator { direction = Horizontal }
+      Field minimumDistancePoint1 { minLength = 10 }
+      Field minimumDistancePoint2 { minLength = 10 }
+      
+      Separator { direction = Horizontal }
+
+      CheckBox = listenToRepaintNotifications
+      CheckBox = listenToFinishingNotifications
+      CheckBox = listenToSelectionChangedNotifications
+      
+      Separator { direction = Horizontal }
+      
+      Horizontal { 
+        alignX = Right
+        CheckBox = autoApply
+        Button = apply
+      }
+    }
+  }
+  
+}// MLModule CSODistance

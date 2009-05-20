@@ -1,0 +1,573 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module CSOFreehandProcessor {
+  internal  {
+    frame = "533 285 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "478 393 330 296"
+        sizeHint = "330 296"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOFreehandProcessor
+    addCSOToGroupWithLabel = ""
+    id = 0
+    pathPointLineStyle = LineStyleSolid
+    pathPointLineWidth = 1
+    pathPointColor = "1 1 0"
+    pathPointAlpha = 1
+    markerMode = MarkerModeNone
+    markerSize = 2
+    markerColor = "0 1 0"
+    markerAlpha = 1
+    voxelWriteMode = VoxelWriteModeModule
+    voxelWriteValue = 1024
+    creationMode = CreationModeClosedFreehand
+    interpolationMode = InterpolationModeSplineApproximation
+    seedPlacementPolicy = PlaceSeedPointWhileDragging
+    finishingMode = FinishOnRelease
+    minNumSeedPoints = 0
+    minSeedPointDistance = 8
+    shouldCloseOnFinish = TRUE
+    useFinishingDistance = TRUE
+    finishingDistance = 24
+    numInterpolationSteps = 1
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "465 125 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "393 373 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0aVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module View2D {
+  internal  {
+    frame = "413 37 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1374 232 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
+  }
+  internalFields = ""
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "353 197 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "770 188 435 801"
+        sizeHint = "435 801"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = FALSE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 1
+    snapToVoxel = FALSE
+    snapToSlice = FALSE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files (x86)/MeVisLab2.0aVC8-64/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = TRUE
+    iconIdx = 0
+    selectingOn = FALSE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_VECTOR
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_LIKE_MARKER
+    textMode = TEXT_LENGTH
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_NO_ARROWS
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_VECTOR
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = TRUE
+    instanceName = SoView2DMarkerEditor
+    listString = ""
+    numItems = 1
+    index = -1
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = -1
+    name = ""
+    newName = ""
+    actionClass = Insert
+    actionIndex = 0
+    actionId = 1
+    currentIndex = 0
+    overflowMode = RemoveFirst
+    maxSize = 1
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module StylePalette {
+  internal  {
+    frame = "321 285 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "479 443 631 488"
+        sizeHint = "631 488"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StylePalette
+    color1 = "0.333333333333333 0.666666666666667 1"
+    color2 = "1 0 0"
+    color3 = "0 0 1"
+    color4 = "0 1 0"
+    color5 = "1 0.5 0"
+    color6 = "1 0 1"
+    color7 = "0 1 1"
+    color8 = "0.5 1 0.5"
+    color9 = "1 0 0.5"
+    color10 = "0.5 1 0"
+    color11 = "0.5 0 1"
+    color12 = "0 1 0.5"
+    lineStyle1 = Solid
+    lineStyle2 = Solid
+    lineStyle3 = Solid
+    lineStyle4 = Solid
+    lineStyle5 = Solid
+    lineStyle6 = Solid
+    lineStyle7 = Solid
+    lineStyle8 = Solid
+    lineStyle9 = Solid
+    lineStyle10 = Solid
+    lineStyle11 = Solid
+    lineStyle12 = Solid
+    lineWidth1 = 1
+    lineWidth2 = 1
+    lineWidth3 = 1
+    lineWidth4 = 1
+    lineWidth5 = 1
+    lineWidth6 = 1
+    lineWidth7 = 1
+    lineWidth8 = 1
+    lineWidth9 = 1
+    lineWidth10 = 1
+    lineWidth11 = 1
+    lineWidth12 = 1
+    markerType1 = Square
+    markerType2 = None
+    markerType3 = None
+    markerType4 = None
+    markerType5 = None
+    markerType6 = None
+    markerType7 = None
+    markerType8 = None
+    markerType9 = None
+    markerType10 = None
+    markerType11 = None
+    markerType12 = None
+    markerSize1 = 2
+    markerSize2 = 4
+    markerSize3 = 4
+    markerSize4 = 4
+    markerSize5 = 4
+    markerSize6 = 4
+    markerSize7 = 4
+    markerSize8 = 4
+    markerSize9 = 4
+    markerSize10 = 4
+    markerSize11 = 4
+    markerSize12 = 4
+    antiAlias1 = FALSE
+    antiAlias2 = FALSE
+    antiAlias3 = FALSE
+    antiAlias4 = FALSE
+    antiAlias5 = FALSE
+    antiAlias6 = FALSE
+    antiAlias7 = FALSE
+    antiAlias8 = FALSE
+    antiAlias9 = FALSE
+    antiAlias10 = FALSE
+    antiAlias11 = FALSE
+    antiAlias12 = FALSE
+    name1 = ""
+    name2 = ""
+    name3 = ""
+    name4 = ""
+    name5 = ""
+    name6 = ""
+    name7 = ""
+    name8 = ""
+    name9 = ""
+    name10 = ""
+    name11 = ""
+    name12 = ""
+    currentStyle = 0
+    currentColor = "1 1 1"
+    currentLineStyle = None
+    currentLineWidth = 1
+    currentMarkerType = None
+    currentMarkerSize = 4
+    currentAntiAlias = FALSE
+    currentName = ""
+    reservedEntries = 0
+  }
+}
+module SoView2DCSOEditor {
+  internal  {
+    frame = "525 197 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "678 396 491 455"
+        sizeHint = "491 455"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DCSOEditor
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 24
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    shouldListenToRepaintEvents = TRUE
+    shouldListenToSelectionChangedEvents = TRUE
+    shouldListenToFinishedEvents = TRUE
+    generalInteractionMode = INTERACTION_MODE_EDIT
+    generalInteractionModeToggleKey = TOGGLE_MODE_ALT
+    useAntiAliasing = TRUE
+    useInterpolationTargetColor = TRUE
+    interpolationTargetColor = "1 0 0"
+    showBoundingBox = FALSE
+    boundingBoxAlpha = 0.5
+    boundingBoxColor = "1 1 1"
+    showOnlyParallelCSOs = FALSE
+    showParallelDotProductLimitRadian = 0.9998999834
+    shouldLevelCSO = FALSE
+    useStylePalette = TRUE
+    stylePaletteUseIndexAs = USE_INDEX_FOR_GROUP
+    labelShowMode = LABEL_SHOW_NONE
+    labelAlignmentMode = LABEL_ALIGN_CENTER
+    labelUnitScale = LABEL_UNIT_SCALE_MM
+    showLabelUnits = TRUE
+    labelFontSize = 12
+    labelUseTextShadow = TRUE
+    labelMarginX = 2
+    labelMarginY = 2
+    ghostMode = GHOST_NONE
+    ghostUnitMode = GHOST_UNIT_SLICE
+    ghostStyleAlpha = TRUE
+    ghostStyleStipple = TRUE
+    ghostStyleLineWidth = FALSE
+    ghostStyleBrighten = FALSE
+    ghostDepth = 5
+    generalLabelColor = "1 1 1"
+    generalLabelAlpha = 1
+    labelColorMode = COLOR_GENERAL
+    useTesselation = FALSE
+    tesselationColorMode = COLOR_AS_CSO
+    tesselationColor = "0.8999999761581421 0.5 0.8999999761581421"
+    tesselationAlpha = 0.200000003
+    tesselationWindingRule = WR_NONZERO
+    selectGroupsParsProToto = TRUE
+    highlightSelectedGroups = FALSE
+    enableMouseOverHighlighting = TRUE
+    mouseOverColorMode = HIGHLIGHT_COLOR_MODE_FIXED
+    mouseOverColorBrightenValue = 0.8000000119
+    mouseOverColorColor = "1 1 1"
+    mouseOverLineWidthMode = HIGHLIGHT_LINE_WIDEN
+    mouseOverLineWidthWidenValue = 0
+    mouseOverLineWidthLineWidth = 1
+    useIconFile = FALSE
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files (x86)/MeVisLab2.0aVC8-64/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    cutCopyKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    copyKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    pasteKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    undoKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    redoKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    deleteSeedPointKeyModifier = EDIT_OP_KEY_MOD_NONE
+    deleteCSOKeyModifier = EDIT_OP_KEY_MOD_SHIFT
+    multiSelectionKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    enableMultiSelection = TRUE
+    cutCopyKey = EDIT_OP_KEY_X
+    copyKey = EDIT_OP_KEY_C
+    pasteKey = EDIT_OP_KEY_V
+    undoKey = EDIT_OP_KEY_Z
+    redoKey = EDIT_OP_KEY_Y
+    deleteSeedPointKey = EDIT_OP_KEY_DELETE
+    deleteCSOKey = EDIT_OP_KEY_DELETE
+    nextInteractionStatus = INTERACTIVE_MODE_START_CSO
+    forceStartNewCSOKeyModifier = EDIT_OP_KEY_MOD_NONE
+    forceStartNewCSOKey = EDIT_OP_KEY_F
+  }
+}
+module CSOManager {
+  internal  {
+    frame = "529 373 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "412 604 696 457"
+        sizeHint = "696 457"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "669 367 504 440"
+        sizeHint = "401 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOManager
+    workDirectlyOnInputCSOList = FALSE
+    selectLastCreatedGroup = TRUE
+    selectionColoringMode = SelectionColorModeFixed
+    selectionLineWidthMode = SelectionLineWidthWiden
+    selectionBrightenColor = 0.200000003
+    selectionFixedColor = "1 1 0.600000023841858"
+    selectionWidenLineWidth = 1
+    selectionFixedLineWidth = 2
+    csoDefaultLabel = ""
+    csoDefaultDescription = ""
+    csoDefaultShowState = TRUE
+    csoDefaultVoxelizeState = TRUE
+    csoDefaultEditableState = TRUE
+    groupSingleDeleteGroupCSOHandling = RemoveIfInNoGroup
+    groupDefaultLabel = ""
+    groupDefaultDescription = ""
+    groupDefaultLineStyle = LineStyleSolid
+    groupDefaultColor = "1 1 1"
+    groupDefaultAlpha = 1
+    groupDefaultLineWidth = 1
+    groupDefaultShowState = TRUE
+    groupDefaultVoxelizeState = TRUE
+    groupDefaultEditableState = TRUE
+    groupDefaultTimePointIndex = 0
+    groupDefaultUseVisuals = FALSE
+    groupDefaultUseShowState = FALSE
+    groupDefaultUseVoxelizeState = FALSE
+    groupDefaultUseEditableState = FALSE
+    groupDefaultUseTimePointIndex = FALSE
+    groupDefaultUseVoxelWrite = FALSE
+    groupDefaultVoxelWriteMode = VoxelWriteModeModule
+    groupDefaultVoxelWriteValue = 1024
+    groupDefaultUseMarkerSettings = FALSE
+    groupDefaultMarkerMode = MarkerModeRect
+    groupDefaultMarkerColor = "0 1 0"
+    groupDefaultMarkerAlpha = 1
+    groupDefaultMarkerSize = 3
+    groupDefaultNumMaximumCSOs = 0
+    groupDefaultOverflowHandling = RemoveFirst
+    groupDefaultRemoveFromGroupHandling = RemoveAlways
+    listSingleRemoveEmptyGroupHandling = RemoveAlways
+    listDefaultRemoveEmptyGroupHandling = RemoveAlways
+    numUndos = 14
+    numRedos = 0
+    undoStackLimit = 16
+    useSelectionCSONotification = FALSE
+    useSelectionGroupNotification = FALSE
+    useFinishedCSONotification = FALSE
+    useFinishedGroupNotification = FALSE
+    useCSOMovedNotification = FALSE
+    useRepaintNotification = FALSE
+    useInteractionInitNotification = FALSE
+    useStartNewCSONotification = FALSE
+    enableSelectionNotification = TRUE
+    enableFinishedNotification = TRUE
+    enableCSOMovedNotification = TRUE
+    enableRepaintNotification = TRUE
+    csoTreeView = ""
+    groupTreeView = ""
+    numCSOs = 2
+    numGroups = 0
+    numSelectedCSOs = 0
+    numSelectedGroups = 0
+    selectedCSOsGroupIds = ""
+    csoTabSelected = FALSE
+    groupTabSelected = FALSE
+    selectionTabSelected = FALSE
+    notificationTabSelected = FALSE
+    defaultTabSelected = TRUE
+    csoCommonTabSelected = TRUE
+    csoVisualsTabSelected = FALSE
+    groupCommonTabSelected = FALSE
+    groupVisualsTabSelected = FALSE
+    groupMiscTabSelected = FALSE
+    notificationControlTabSelected = FALSE
+    notificationOutputCSOTabSelected = FALSE
+    notificationOutputGroupTabSelected = TRUE
+    defaultCSOCommonTabSelected = TRUE
+    defaultGroupCommonTabSelected = FALSE
+    defaultGroupVisualsTabSelected = FALSE
+    defaultGroupMiscTabSelected = FALSE
+  }
+}
+module CSODistance {
+  internal  {
+    frame = "429 285 104 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = CSODistance
+    minimumDistance = 11.910326
+    minimumDistancePoint1 = "38.87467956542969 40.0477409362793 0.5"
+    minimumDistancePoint2 = "30.77237892150879 31.3179874420166 0.5"
+    autoApply = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionChangedNotifications = FALSE
+  }
+}
+connections  {
+  SoGroup.children = "SoView2DMarkerEditor.self SoView2DCSOEditor.self"
+  View2D.inImage = LocalImage.outImage
+  View2D.inInvPostLUT = SoGroup.self
+  SoView2DMarkerEditor.stylePalette = StylePalette.outStylePalette
+  SoView2DMarkerEditor.inXMarkerList = CSODistance.outputXMarkerList
+  SoView2DCSOEditor.inCSOList = CSOManager.outCSOList
+  SoView2DCSOEditor.inProcessor = CSOFreehandProcessor.outProcessorData
+  CSODistance.inCSOList = CSOManager.outCSOList
+}
+networkModel = ""
