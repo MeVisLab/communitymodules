@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+
+  
+  <meta name="Description" content="Template for an ILAB module">
+
+  
+  <title>Barcode</title>
+<!--===============================================================--><!-- Barcode                                                       --><!--===============================================================-->
+</head>
+
+
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;
+<a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp;
+<a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#KnownBugs">Known Bugs</a>
+<hr width="100%"></center>
+
+<h2>
+Barcode</h2>
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+<blockquote>
+This module generates a barcode (type 39).<img src="barcode.jpg" title="Barcode" alt="Barcode" style="width: 300px; height: 68px;">
+  
+  
+  <p>Code 39 (sometimes called Code 3 from 9) is a discrete barcode.
+This means that a fixed pattern of bars represents a single character.
+Each character is made up of 9 bars - 3 of which are wider than the
+others. In this context a bar can be the printed black bar or the white
+space between the bars. A single character therefore consists of 5
+black bars and 4 white bars.
+  </p>
+
+</blockquote>
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+<blockquote>
+The ratio of the bar widths can range from 2:1 to 3:1. To read a
+barcode reliably the decoder must be able to differentiate between the
+wide and narrow bars. In practice it is better to use barcodes close to
+the 3:1 ratio which allows nearly a 50% barwidth error to occur before
+ambiguity occurs.
+  
+  <p>The space between each barcode character is called interval. Its
+width is undefined but is usually equivalent to a narrow white bar. </p>
+
+  
+  <p>The Code 39 barcode symbology supports 43 characters plus an
+additional character used as a delimiter or start/stop character. The
+start/stop character always occurs as the first and last character in a
+complete barcode and is represented in the human readable text by the <code><font size="+2"><b>*</b></font></code> character. The start/stop character
+is
+added automatically to the text. </p>
+
+  
+  <p>The 43 character set includes the following: </p>
+
+  
+  <p><font size="+1"><code><b>1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ - .
+$
+/ + % SPACE</b></code></font> </p>
+
+Small characters are converted automatically.
+</blockquote>
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+<blockquote>
+The module has no input.
+</blockquote>
+
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+
+<blockquote>
+The module has one output.
+</blockquote>
+
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+
+<blockquote>
+  
+  <h4><b>Main</b></h4>
+
+  
+  <ul>
+
+    <li><span style="font-weight: bold;">Text</span>: The text to be
+coded.</li>
+
+    <li><span style="font-weight: bold;">Background</span>: Pixel value
+for the background.</li>
+
+    <li><span style="font-weight: bold;">Foreground: </span>Pixel
+value for the foreground..</li>
+
+    <li><span style="font-weight: bold;">Auto/Apply:</span>&nbsp; Apply
+changes.If <span style="font-weight: bold;">Auto </span>is <span style="font-style: italic;">On </span>the changes will be applied
+automatically.</li>
+
+  
+  </ul>
+
+  
+  <h4>Geometry</h4>
+
+</blockquote>
+
+<blockquote>
+  
+  <ul>
+
+    <li><span style="font-weight: bold;">Start/End Margin</span>: Size
+(pixel) of space at the beginning and
+the end of the barcode. </li>
+
+    <li><span style="font-weight: bold;">Bar Width</span>: Size (pixel)
+of one narrow bar.</li>
+
+    <li><span style="font-weight: bold;">Ratio</span>: Ratio between
+large and small bars (2.0, 2.5, 3.0)</li>
+
+    <li><span style="font-weight: bold;">Interval Width:</span> Size
+(pixel) of the intercharacter gap</li>
+
+    <li><span style="font-weight: bold;">Size Y</span>: Height (pixel)
+of the barcode - width is calculated by the module</li>
+
+  
+  </ul>
+
+  
+  <h3>
+  </h3>
+
+  
+  <h3>
+  <a name="EventInteract"></a>Events &amp; Interaction</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="Example"></a>Example</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="KnownBugs"></a>Known Bugs</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module View2D {
+  internal  {
+    frame = "764 260 73 50"
+    windows  {
+      window _default {
+        geometry = "105 188 749 195"
+        sizeHint = "200 202"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationCol = "0.900000 0.900000 0.900000"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.900000 0.900000 0.900000"
+    baseColor = "1.000000 1.000000 1.000000"
+    margin = "2.000000 2.000000"
+  }
+  internalFields = ""
+}
+module Barcode {
+  internal  {
+    frame = "763 344 76 50"
+    windows  {
+      window _default {
+        geometry = "175 437 219 310"
+        sizeHint = "219 310"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = Barcode
+    margin = 200
+    barWidth = 8
+    ratio = 2
+    interval = 8
+    background = 4095
+    foreground = 0
+    height = 300
+    text = "my barcode"
+    autoApply = TRUE
+  }
+}
+connections  {
+  View2D.inImage = Barcode.output0
+}
