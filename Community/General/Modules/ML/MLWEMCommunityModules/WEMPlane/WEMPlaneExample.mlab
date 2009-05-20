@@ -1,0 +1,627 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module WEMClip {
+  internal  {
+    frame = "229 125 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "805 337 391 392"
+        sizeHint = "391 391"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMClip
+    isProcessing = FALSE
+    elapsedTime = 0.01499999966
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = "Center node"
+    modifyAttributes = FALSE
+    plane = "-0.5459719300270081 0.6074272990226746 0.5770153999328613 0.3806907534599304"
+    generateEdges = TRUE
+    whichOutput = Outer
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "217 13 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "938 412 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = TRUE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = TRUE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = TRUE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 0
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "357 13 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "484 333 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = TRUE
+    parameterOverwriteMode = OVERWRITE_MODE_NONE
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 2
+  }
+}
+module WEMPlane {
+  internal  {
+    frame = "361 125 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "848 485 345 391"
+        sizeHint = "345 391"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "513 429 512 355"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMPlane
+    isProcessing = FALSE
+    elapsedTime = 0.01600000076
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.3333333333333333 0.6666666666666666 1"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 0.5999999046
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = "Center node"
+    modifyAttributes = FALSE
+    plane = "-0.5459719300270081 0.6074272990226746 0.5770153999328613 0.3806907534599304"
+    generateEdges = TRUE
+    selectedTab = 1
+    outputTabSelected = FALSE
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "61 301 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "726 461 482 308"
+        sizeHint = "482 308"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "2@"
+    selectedWEMs = ""
+    informationFieldsValid = TRUE
+    numNodes = 512
+    numEdges = 1024
+    numFaces = 512
+    uniqueId = 2
+    patchType = Quads
+    hasEdges = TRUE
+    surfaceArea = 22.75637817
+    surfaceVolume = 5.782694817
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBox = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    center = "1.5 1.5 0.5"
+    minimum = "0.03125 0.03125 0.01999999955296516"
+    maximum = "2.96875 2.96875 0.9800000190734863"
+    size = "2.9375 2.9375 0.9600000195205212"
+    radius = 2.131866217
+    mainAxisCenter = "1.49999988079071 1.5 0.5"
+    xMainAxis = "0.9999828338623047 -0.005859073251485825 1.712310515600279e-09"
+    yMainAxis = "0.005859073251485825 0.9999828338623047 6.466501778490397e-10"
+    zMainAxis = "-1.716069841783963e-09 -6.366065452567682e-10 1"
+    xExt = 2.946238041
+    yExt = 2.946238041
+    zExt = 0.9600000381
+    primitiveValueLists = "LUT,Edge Length,Face Area,Face Quality,Node Curvature,Node Valence"
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    minPrimitiveValueList = 3.402823466385289e+38
+    maxPrimitiveValueList = -3.402823466385289e+38
+    meanPrimitiveValueList = 0
+    primitiveValueListUnits = ""
+    edgeLengthUnits = mm
+    faceAreaUnits = mm2
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module SoPlaneDragger {
+  internal  {
+    frame = "61 125 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "226 533 414 216"
+        sizeHint = "414 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoPlaneDragger
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    isActive = FALSE
+    rotation = "-0.01329486165195704 0.8325244188308716 0.5538288950920105 1.853697061538696"
+    translation = "1.500000238418579 1.50000011920929 0.5000001192092896"
+    scaleFactor = "1.065933704376221 1.065932989120483 1.065933108329773"
+    plane = "-0.5459719300270081 0.6074272990226746 0.5770153999328613 0.3806907534599304"
+    drawPlane = TRUE
+  }
+}
+module SoCalculator {
+  internal  {
+    frame = "61 189 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "350 311 364 633"
+        sizeHint = "364 633"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCalculator
+    a = 2.131866217
+    b = 0
+    c = 0
+    d = 0
+    e = 0
+    f = 0
+    g = 0
+    h = 0
+    va = "1 1 1"
+    vb = "0 0 0"
+    vc = "0 0 0"
+    vd = "0 0 0"
+    ve = "0 0 0"
+    vf = "0 0 0"
+    vg = "0 0 0"
+    vh = "0 0 0"
+    oa = 0
+    ob = 0
+    oc = 0
+    od = 0
+    ova = "1.065933108329773 1.065933108329773 1.065933108329773"
+    ovb = "0 0 0"
+    ovc = "0 0 0"
+    ovd = "0 0 0"
+    expression = "ova = a * va * 0.5;"
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "213 365 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "885 579 350 413"
+        sizeHint = "350 413"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "540 416 200 165"
+        sizeHint = "200 165"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalWEMLoad
+    name = $(DemoDataPath)/boxtoruscc2.off
+    trueName = "C:/Program Files (x86)/MeVisLab2.0aVC8-64/Packages/MeVisLab/Resources/DemoData/boxtoruscc2.off"
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    boundingBoxMode = "Axis Aligned"
+    isProcessing = FALSE
+    elapsedTime = 0
+    selectedTab = 0
+  }
+  internalFields = ""
+}
+module SoBackground {
+  internal  {
+    frame = "-31 13 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "158 233 129 134"
+        sizeHint = "129 134"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "69 -115 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "580 491 120 18"
+        sizeHint = "120 18"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "404 289 472 421"
+        sizeHint = "472 421"
+        wasOpen = no
+        wasActive = no
+      }
+      window _viewer {
+        geometry = "99 202 475 584"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7853980064
+    position = "0.9317476153373718 5.456305980682373 3.828481197357178"
+    orientation = "0.08711797744035721 -0.4131466746330261 -0.9064878821372986 3.11151385307312"
+    nearDistance = 2.426873922
+    farDistance = 7.960800648
+    focalDistance = 5.348383904
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+connections  {
+  WEMClip.inWEM = LocalWEMLoad.outWEM
+  WEMClip.plane = SoPlaneDragger.plane
+  SoWEMRenderer.inWEM = WEMClip.outWEM
+  SoWEMRenderer1.inWEM = WEMPlane.outWEM
+  WEMPlane.inWEM = LocalWEMLoad.outWEM
+  WEMPlane.plane = SoPlaneDragger.plane
+  WEMInfo.inWEM = LocalWEMLoad.outWEM
+  SoPlaneDragger.translation = WEMInfo.center
+  SoPlaneDragger.scaleFactor = SoCalculator.ova
+  SoCalculator.a = WEMInfo.radius
+  SoExaminerViewer.children = "SoBackground.self SoPlaneDragger.self SoWEMRenderer.self SoWEMRenderer1.self"
+}
+networkModel = ""

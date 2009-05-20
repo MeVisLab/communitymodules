@@ -1,0 +1,49 @@
+
+//----------------------------------------------------------------------------------
+// MLModule WEMPlane
+//----------------------------------------------------------------------------------
+MLModule WEMPlane {
+  DLL = "MLWEMCommunityModules"
+  author = "Bart De Dobbelaer"
+  status = "work-in-progress"
+  genre    = WEMProcessing
+  comment  = "Draw WEM plane intersected by WEM bounding box"
+  keywords = "WEM plane"
+
+  seeAlso = "WEMClip"
+
+  exampleNetwork = "$(LOCAL)/WEMPlane/WEMPlaneExample.mlab"
+  documentation  = "$(LOCAL)/WEMPlane/WEMPlane.html"
+
+  #include $(LOCAL)/includes/WEMProcessorInterface.txt
+
+  Window {
+
+    Category {
+
+      #include $(LOCAL)/includes/WEMGeneratorButtonBar.txt
+
+      Box "" {
+
+        TabView {
+          mode = Invisible
+          name = "parametersTab"
+
+          TabViewItem "Output" {
+
+            Field = plane
+            
+            Separator { direction = Horizontal }
+            
+            Checkbox = generateEdges
+
+            #include $(LOCAL)/includes/WEMGeneratorOutputItems.txt
+          }
+          #include $(LOCAL)/includes/WEMGeneratorTabViewItems.txt
+        }
+      }
+      #include $(LOCAL)/includes/WEMGeneratorFooter.txt
+    }
+    Execute = updateTabs
+  }
+} // MLModule WEMPlane

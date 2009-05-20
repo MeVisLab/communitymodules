@@ -1,0 +1,23 @@
+
+  Interface {
+    Parameters {      
+      Field selectedTab       { type = int  value = 0    }
+      Field outputTabSelected { type = bool value = true }
+    }
+  }
+  
+  Description {
+    Field faceAlphaValue     { min = 0 max = 1 }
+    Field faceShininessValue { min = 0 max = 1 }
+    Field lineWidth          { min = 1         }
+    Field pointSize          { min = 1         }
+    Field progress           { persistent = NO }
+    Field useInputWEMToCreateOutputWEM { persistent = NO }
+  }
+  
+  Commands { 
+    FieldListener isProcessing { 
+      command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" 
+    }
+    source = $(LOCAL)/updateTabs.py
+  }

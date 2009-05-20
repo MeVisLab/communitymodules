@@ -1,0 +1,25 @@
+
+      Horizontal {
+        alignX = Left
+        expandX = YES
+        expandY = NO
+        
+        ButtonBar selectedTab {
+          show = toolbuttons
+          
+          items {
+            item 0 {
+              title = "Output"
+            }
+            item 1 {
+              title = "Visuals"
+            }
+            item 2 {
+              title = "Advanced"
+            }
+          }
+        }        
+        
+        FieldListener selectedTab { command = updateTabs }
+      }
+    

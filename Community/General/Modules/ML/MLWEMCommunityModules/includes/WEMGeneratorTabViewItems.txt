@@ -1,0 +1,80 @@
+
+        
+        TabViewItem "Visuals" {   
+          Field colorMode { title = "Color Mode:" }
+
+          Separator { direction = horizontal }
+          
+          Horizontal {
+            CheckBox drawFaces       { title = "Draw Faces" }
+              Field faceDiffuseColor { title = "Diffuse Color:" }
+          }
+          
+          Horizontal {            
+              CheckBox useFaceAmbientColor { title = "Use "  }
+              Field faceAmbientColor       { title = "Ambient Color:" }
+          }
+          
+          Horizontal {            
+              CheckBox useFaceSpecularColor { title = "Use" }
+              Field faceSpecularColor       { title = "Specular Color:"  }
+          }          
+                  
+          Separator { direction = horizontal }
+                  
+          Horizontal {
+            CheckBox drawEdges { title = "Draw edges" }
+            Field    edgeColor { title = "Edge Color:" }
+          }      
+          Horizontal {
+            CheckBox drawNodes { title = "Draw nodes" }
+            Field    nodeColor { title = "Node Color:" }
+          }
+
+          Separator { direction = horizontal }
+          
+          Horizontal {
+            CheckBox drawBoundingBoxes { title = "Draw bounding boxes" }
+            Field boundingBoxColor     { title = " Color:" }
+          }
+          
+          Separator { direction = horizontal }
+                
+          Horizontal {
+            CheckBox drawFaceNormals { title = "Draw face normals" }
+            Field faceNormalsColor   { title = "Color:" }
+          }
+          
+          Horizontal {
+            CheckBox drawNodeNormals { title = "Draw node normals" }
+            Field nodeNormalsColor   { title = "Color:" }
+          }
+    
+
+        }
+        
+        TabViewItem "More ..." {
+          
+          Field faceNormalsScale { title = "Face Normal Scale:" step = 0.1 }
+          Field nodeNormalsScale { title = "Node Normal Scale:" step = 0.1 }
+                    
+          Separator { direction = horizontal }
+          
+          Field faceAlphaValue     { title = "Face Alpha: "    step = 0.1 }
+          Field faceShininessValue { title = "Face Shininess:" step = 0.1 }
+          
+          Separator { direction = horizontal }
+          
+          Field lineWidth { title = "Line Width: " step = 1 }  
+          Field pointSize { title = "Point Size: " step = 1 }
+          
+          Separator { direction = horizontal }
+          
+          CheckBox useEdgeColoringMode { title = "Use coloring mode for edges" }
+          
+          Separator { direction = horizontal }
+          
+          Field nodeRenderingMode { title = "Node Rendering Mode:" }
+          Field boundingBoxMode   { title = "Bounding Box Mode:"   }
+        
+        }
