@@ -1,0 +1,798 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoBackground {
+  internal  {
+    frame = "761 141 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "797 69 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "927 290 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7853981853
+    position = "124.0476531982422 -161.4994964599609 -7.551799774169922"
+    orientation = "0.8603866696357727 -0.3531938791275024 0.3674083054065704 2.068268299102783"
+    nearDistance = 162.5423431
+    farDistance = 326.7019348
+    focalDistance = 244.540329
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "269 437 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "294 589 557 158"
+        sizeHint = "235 158"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = int16
+    fileDimension = 3
+    info = "loading finished."
+    unresolvedFileName = C:/CAT08Data/training/dataset01/image01.mhd
+  }
+}
+module LoadCAT08Data {
+  internal  {
+    frame = "461 437 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1058 268 300 27"
+        sizeHint = "300 27"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadCAT08Data
+    fileName = C:/CAT08Data/training/dataset01/image01.mhd
+  }
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "169 333 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "922 198 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    selectionTolerance = 6
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 3
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0rcVC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 1
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor
+    listString = ""
+    numItems = 4
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    actionClass = Insert
+    actionIndex = 3
+    actionId = 4
+    currentIndex = 3
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "99.9455 128.787 39.4"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "341 333 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "626 197 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "0 0.6666669845581055 1"
+    selectionTolerance = 6
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 3
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0rcVC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor2
+    listString = ""
+    numItems = 4
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    actionClass = Insert
+    actionIndex = 3
+    actionId = 4
+    currentIndex = 3
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "50.1738 58.7432 77.2189"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "517 333 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "626 197 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "0.3333329856395721 1 0"
+    selectionTolerance = 6
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 3
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0rcVC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor3
+    listString = ""
+    numItems = 4
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    actionClass = Insert
+    actionIndex = 3
+    actionId = 4
+    currentIndex = 3
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "61.3221 70.5911 86.75879999999999"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "701 333 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "626 197 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 0"
+    selectionTolerance = 6
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 3
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0rcVC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor4
+    listString = ""
+    numItems = 4
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    actionClass = Insert
+    actionIndex = 3
+    actionId = 4
+    currentIndex = 3
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "110.032 123.933 34.8108"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "493 213 184 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module View2D {
+  internal  {
+    frame = "509 85 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "802 201 519 525"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 251
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 1182.000122
+    lutWidth = 2437
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 100.4000015258789"
+  }
+  internalFields = ""
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "877 333 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "765 197 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "0.3333329856395721 1 1"
+    selectionTolerance = 5
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 1
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0rcVC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = TRUE
+    iconIdx = 1
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor5
+    listString = ""
+    numItems = 20400
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    actionClass = Insert
+    actionIndex = 20399
+    actionId = 20400
+    currentIndex = 20399
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "61.3221 70.5911 86.75879999999999"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoVascularSystem {
+  internal  {
+    frame = "813 221 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "651 316 369 461"
+        sizeHint = "369 461"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVascularSystem
+    whichChild = -3
+    autoApply = TRUE
+    status = "Graph is valid"
+    complexity = 0.6000000238
+    pointSize = 1
+    lineWidth = 1
+    textureScaleX = 0.5
+    textureScaleY = 0.5
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    recursionDepth = -1
+    showLines = FALSE
+    labelMode = GENERAL_LABEL
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    radiusMode = MIN_DIST
+    displayMode = DISPLAY_SURFACE
+    radiusScale = 1
+    radiusFixedSize = 1
+    visible = TRUE
+    texture = FALSE
+    numSmoothingPasses = 3
+    overallSmoothness = 0.6999999881
+    smoothIndependently = FALSE
+    radiusSmoothness = 0.6999999881
+    skeletonSmoothness = 0.6999999881
+    endCapScaling = 1
+    useGeneralColor = TRUE
+    generalColor = "1 0 0"
+    useAlternativeTransparency = TRUE
+    alternativeTransparencyColor = "0 0 0"
+    selectedCoordinate = "0 0 0"
+    snapMode = SNAP_TO_SKELETON
+    enableSelection = TRUE
+    nearestCoordinate = "0 0 0"
+    selectedEdgeId = 0
+    selectedNodeId = 0
+    nearestRadius = 0
+    nearestLabel = 0
+    nearestColor = "1 1 1"
+    useSkeletonColors = FALSE
+  }
+}
+connections  {
+  SoExaminerViewer.children = "SoBackground.self SoVascularSystem.self"
+  LoadCAT08Data.fileName = itkImageFileReader.unresolvedFileName
+  SoView2DMarkerEditor.inXMarkerList = LoadCAT08Data.outputA
+  SoView2DMarkerEditor2.inXMarkerList = LoadCAT08Data.outputB
+  SoView2DMarkerEditor3.inXMarkerList = LoadCAT08Data.outputS
+  SoView2DMarkerEditor4.inXMarkerList = LoadCAT08Data.outputE
+  SoGroup.children = "SoView2DMarkerEditor.self SoView2DMarkerEditor2.self SoView2DMarkerEditor3.self SoView2DMarkerEditor4.self SoView2DMarkerEditor5.self"
+  View2D.inImage = itkImageFileReader.output0
+  View2D.inInvPreLUT = SoGroup.self
+  SoView2DMarkerEditor5.inXMarkerList = LoadCAT08Data.outputCenterLine
+  SoVascularSystem.inputGraph = LoadCAT08Data.outputGraph
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 28
+        objectName = ""
+        parentUniqueId = 0
+        frame = "154 69 200 200"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "Select the .mhd file of the CAT08 data set in the itkImageFileReader. The image data will be imported by the itk module and the associated points and centerlines will be loaded by the LoadCAT08Data module."
+        titleText = Help
+        isCollapsed = False
+      }
+    }
+  }
+}
