@@ -1,0 +1,71 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoRenderArea {
+  internal  {
+    frame = "213 149 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoRenderArea1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = off
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "345 149 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = off
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+connections  {
+  SoRenderArea1.children = ""
+  SoRenderArea.children = ""
+}
+networkModel = ""

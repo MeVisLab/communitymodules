@@ -1,0 +1,124 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "189 149 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "1335 134 894 705"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _default {
+        geometry = "189 327 515 356"
+        sizeHint = "515 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "46.822 -46.5983 333.164"
+    orientation = "0.985915 -0.119091 -0.117422 0.207919"
+    nearDistance = 266.2879944
+    farDistance = 348.7479858
+    focalDistance = 354.9689941
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "345 149 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = off
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+connections  {
+  SoExaminerViewer.children = ""
+  SoRenderArea.children = ""
+}
+networkModel = ""

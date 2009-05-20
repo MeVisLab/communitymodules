@@ -1,0 +1,64 @@
+Interface  {
+  Inputs {
+    Field child0 { internalName = SoExaminerViewer.child }
+    Field child1 { internalName = SoRenderArea.child }
+  }
+  Outputs {}
+  Parameters {
+    Field automaticViewAll { internalName = SoExaminerViewer.automaticViewAll }
+    Field viewAll { internalName = SoExaminerViewer.viewAll }   
+    
+    Field position { type = enum items { item = TopLeft item = BottomRight } value = TopLeft }
+    Field margin { type = int value = 2 }
+  }
+}
+
+Description {
+  Field child0 { comment = "SoExaminerViewer" }
+  Field child1 { comment = "SoRenderArea" }
+}
+
+Commands {
+  source = $(LOCAL)/CombinedOrthoView3D.py
+}
+
+Window {  
+  Vertical {  
+    name = mainFrame
+    expandX = Yes
+    expandY = Yes 
+
+    FreeFloat {
+      name = freeFloatFrame
+
+      Vertical {
+        name = soRenderAreaFrame
+        expandX = Yes
+        expandY = Yes
+        Viewer SoRenderArea.self {
+          expandX = Yes
+          expandY = Yes
+          viewing = Yes
+        }
+      }
+
+      Vertical {
+        expandX = yes
+        expandY = yes
+        name = soExaminerViewerFrame
+        Viewer SoExaminerViewer.self { 
+          expandX = Yes
+          expandY = Yes
+          viewing = Yes
+        }
+      }
+    }      
+  }
+  
+  EventFilter {
+    filter  = Resize
+    control = mainFrame
+    command = mainFrameResizeEventSlot
+  }  
+}
+

@@ -1,0 +1,21 @@
+
+//----------------------------------------------------------------------------------
+// MacroModule CombinedOrthoView3D
+//----------------------------------------------------------------------------------
+MacroModule CombinedOrthoView3D {
+  author         = "Bart De Dobbelaer"
+  status         = "work-in-progress"
+  externalDefinition = "$(LOCAL)/CombinedOrthoView3D.script"
+
+} // MacroModule CombinedOrthoView3D
+
+//----------------------------------------------------------------------------------
+// MacroModule CombinedOrthoView2D
+//----------------------------------------------------------------------------------
+MacroModule CombinedOrthoView2D {
+  author         = "Bart De Dobbelaer"
+  status         = "work-in-progress"
+  externalDefinition = "$(LOCAL)/CombinedOrthoView2D.script"
+
+} // MacroModule CombinedOrthoView2D
+
