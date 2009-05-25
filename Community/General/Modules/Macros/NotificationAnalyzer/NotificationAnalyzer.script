@@ -1,0 +1,136 @@
+
+Interface {
+  
+  Parameters {
+    Field startAnalysis { type = trigger }  
+    Field deactivateAnalysis {type = trigger }
+    Field logToConsole { type = bool value = false }
+    Field analyzeParameterFieldsAlso { type = bool value = false }
+    Field applyInFieldFilter { type = trigger}
+    Field collectedFieldsFilter { type = enum
+      values = "All, Output, Parameter"
+      value = "Output"
+    }    
+    Field autoUpdateListview {type = bool value = true}
+    Field updateListview {type = trigger }
+    Field analyseMacrosRecursively {type = bool value = true}
+  }
+}
+
+Commands {
+  source = $(LOCAL)/NotificationAnalyzer.py
+
+  FieldListener startAnalysis {
+    command = "*py: startAnalysis() *"
+  }
+
+  FieldListener updateListview {
+    command = updateListview
+  }
+  finalizeCommand = resetVariables
+}
+
+Window {
+  expandX = YES 
+  expandY = YES
+  //wakeupCommand = collectAllFields
+  shouldCloseCommand = resetVariables
+  
+  Horizontal {
+    expandX = YES 
+    expandY = YES  
+    /*Box "Field Definition" {
+      expandX = YES 
+      expandY = YES
+        Vertical {
+          expandX = YES 
+          expandY = YES
+          Horizontal {
+            Button applyInFieldFilter {
+              title = "Update"
+              command = updateListenedFields
+            }
+            Field collectedFieldsFilter {
+              title = "Filter"
+            }
+          }
+          ListView {
+            expandX = YES 
+            expandY = YES
+            name = inFieldlist
+            values = "Fieldname"
+            rowSeparator = "@"
+            columnSeparator = ","
+            resizeMode = last
+            sortByColumn = 0
+            layout = "tl,r,c"
+            selectionMode = Multi
+
+            selectionChangedCommand = selectionChanged
+            currentChangedCommand = currentChanged
+            returnPressedCommand = returnPressed
+            doubleClickedCommand = doubleClicked
+            itemCollapsedCommand = itemCollapsed
+            itemExpandedCommand  = itemExpanded
+            itemRenamedCommand = itemRenamed
+            clickedCommand = clicked
+            mouseButtonClickedCommand = mouseButtonClicked
+            checkListItemChangedCommand = checkListItemChanged
+          }            
+        
+        }
+
+    }*/
+    Box "Analysis" {
+      expandX = YES 
+      expandY = YES
+      Vertical {
+        expandX = YES 
+        expandY = YES
+        Horizontal {
+          Button = startAnalysis { title = "(Re-)Start Analysis" }          
+          Button = deactivateAnalysis { title = "Deactivate" command = resetVariables}
+          Empty {expandX = yes}
+        }
+        Horizontal {
+          CheckBox autoUpdateListview { title = "Auto-Update Results"}          
+          Button = updateListview {title = "Update Results"}
+          
+        }
+
+
+        ListView {
+          expandX = YES 
+          expandY = YES
+          name = outputlist
+          values = "Fieldname,#Notifications,sequenceNumber,TimeConsumed,AverageTime"
+          rowSeparator = "@"
+          columnSeparator = ","
+          resizeMode = last
+          sortByColumn = 2
+          layout = "tl,r,c"
+          selectionMode = Multi
+
+          /*selectionChangedCommand = selectionChanged
+          currentChangedCommand = currentChanged
+          returnPressedCommand = returnPressed
+          doubleClickedCommand = doubleClicked
+          itemCollapsedCommand = itemCollapsed
+          itemExpandedCommand  = itemExpanded
+          itemRenamedCommand = itemRenamed
+          clickedCommand = clicked
+          mouseButtonClickedCommand = mouseButtonClicked
+          checkListItemChangedCommand = checkListItemChanged*/
+        }        
+        CheckBox = logToConsole
+        CheckBox = analyzeParameterFieldsAlso
+        CheckBox analyseMacrosRecursively { title = "Allow Recursive Analysis of Macro Modules"}
+        
+      }  
+    }
+  
+  }
+  
+
+  Execute = setControlPtr    
+}

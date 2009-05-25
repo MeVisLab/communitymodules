@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright 2001-2006, MeVis gGmbH
+// ALL RIGHTS RESERVED
+//
+// THE CONTENT OF THIS WORK CONTAINS CONFIDENTIAL AND PROPRIETARY
+// INFORMATION OF MEVIS GGMBH. ANY DUPLICATION, MODIFICATION,
+// DISTRIBUTION, OR DISCLOSURE IN ANY FORM, IN WHOLE, OR IN PART, IS STRICTLY
+// PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF MEVIS GGMBH
+//
+//----------------------------------------------------------------------------------
+//! Analyze number of field notifications within a network
+/*!
+// \file    NotificationAnalyzer.def
+// \author  Lars Bornemann
+// \date    2008-02-20
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule NotificationAnalyzer {
+  genre = "Fields"
+  author = "Lars Bornemann"
+  status = "test"
+  comment = "Listen to all connected fields and count notifications for each"
+  keywords = "performance field notification debug"  
+  scriptOnly = yes
+  externalDefinition = "$(LOCAL)/NotificationAnalyzer.script"
+  exampleNetwork = "$(LOCAL)/networks/NotficationAnalyzerExample.mlab"
+} // MacroModule StringListEntrytoString 
+
