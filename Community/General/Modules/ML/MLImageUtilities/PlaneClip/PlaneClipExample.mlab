@@ -1,0 +1,137 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module PlaneClip {
+  internal  {
+    frame = "357 333 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "501 607 273 87"
+        sizeHint = "267 66"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PlaneClip
+    plane = "0.01285729557275772 -0.6880507469177246 0.7255487442016602 4.676845073699951"
+    autoApply = TRUE
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "397 197 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "145 254 400 431"
+        sizeHint = "400 431"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D
+    inventorInputOn = TRUE
+    layout = LAYOUT_CUBE_EQUAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    greyWidth = 4095
+    greyCenter = 2047.5
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_SHORT
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = FALSE
+    annoCoords = Voxel
+    showCurrentPos = FALSE
+    worldPosition = "15.5 33.57106018066406 38.8630485534668"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "361 453 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0aVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module SoView2DPlane {
+  internal  {
+    frame = "485 333 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "60 543 392 450"
+        sizeHint = "392 450"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DPlane
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 0.9215689897537231 0.05490199849009514"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    plane = "0.01285729557275772 -0.6880507469177246 0.7255487442016602 4.676845073699951"
+    maskValidAndHit = FALSE
+    blendMin = 0.1000000015
+    blendMax = 1
+    normalOn = FALSE
+    externalRotationAxisOn = FALSE
+    externalRotationAxis = "0 0 0"
+    normalSize = 10
+    normalOffset = 0
+    rotationDifference = "0.9963759779930115 0 0.08505269885063171 0
+0 1 0 0
+-0.08505269885063171 0 0.9963759779930115 0
+0 0 0 1"
+    translationLineFraction = 0.5
+    interactionMode = BOTH
+  }
+}
+connections  {
+  PlaneClip.input0 = LocalImage.outImage
+  PlaneClip.plane = SoView2DPlane.plane
+  OrthoView2D.image = PlaneClip.output0
+  OrthoView2D.inInvPreLUT = SoView2DPlane.self
+}
+networkModel = ""

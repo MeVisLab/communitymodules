@@ -1,0 +1,81 @@
+network  {
+  watchlist = ""
+}
+module View2D {
+  internal  {
+    frame = "-131 -195 72 56"
+    windows  {
+      window _default {
+        geometry = "222 285 251 251"
+        sizeHint = "200 202"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationCol = "0.900000 0.900000 0.900000"
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.900000 0.900000 0.900000"
+    baseColor = "1.000000 1.000000 1.000000"
+  }   //<mdl> fields 
+
+}   //<mdl> module View2D
+module LocalImage {
+  internal  {
+    frame = "-143 77 96 56"
+    windows  {
+      window _default {
+        geometry = "396 403 487 185"
+        sizeHint = "487 185"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = /usr/local/MeVis/data/demodata/Bone.tiff
+  }
+}   //<mdl> module LocalImage
+module MIP {
+  internal  {
+    frame = "-123 -59 56 56"
+    windows  {
+      window _default {
+        geometry = "729 375 207 154"
+        sizeHint = "207 154"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = MIP
+    direction = Y
+    autoUpdate = TRUE
+  }
+}   //<mdl> module MIP
+connections  {
+  View2D.inImage = MIP.output0
+  MIP.input0 = LocalImage.outImage
+}

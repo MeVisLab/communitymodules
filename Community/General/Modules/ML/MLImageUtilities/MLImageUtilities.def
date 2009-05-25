@@ -1,0 +1,75 @@
+
+//----------------------------------------------------------------------------------
+// MLModule MIP
+//----------------------------------------------------------------------------------
+MLModule MIP {
+  DLL = "MLImageUtilities"
+  author = "Bart De Dobbelaer"
+  status = "stable"
+  comment = "Project image with Maximum Intensity Projection"
+  keywords = "mip xray"
+  seeAlso = "MIPMacro Reformat Resample3D OrthoSwapFlip"
+  exampleNetwork = "$(LOCAL)/MIP/MIPExample.mlab"
+  
+  Window {
+    Category {
+      Field = direction
+      Separator { direction = Horizontal }
+      Horizontal {
+        CheckBox = autoUpdate
+        Button update { dependsOn = !autoUpdate }
+      }
+    }
+  }
+} // MLModule MIP
+
+//----------------------------------------------------------------------------------
+// MLModule PlaneClip
+//----------------------------------------------------------------------------------
+MLModule PlaneClip {
+  DLL = "MLImageUtilities"
+  author = "Bart De Dobbelaer"
+  status = "stable"
+  exampleNetwork = "$(LOCAL)/PlaneClip/PlaneClipExample.mlab"
+  Window {
+    Category {
+      Field plane { title = "" }
+      Horizontal {
+        alignX = right
+        Field = autoApply
+        Button apply { dependsOn = !autoApply }
+      }
+    }
+  }
+
+} // MLModule PlaneClip
+
+//----------------------------------------------------------------------------------
+// MLModule AnalyzeHeader
+//----------------------------------------------------------------------------------
+MLModule AnalyzeHeader {
+  DLL = "MLImageUtilities"
+  author = "Bart De Dobbelaer"
+  status   = "stable"
+  comment  = "Parses Analyze Header for scale factor"
+  
+  Window {
+    Category {
+      w = 250 mw = 250 pw = 250
+      Field filename { browseButton = YES browseMode = open }
+      Separator { direction = Horizontal }
+      Field funused1 { edit = NO minLength = 10 }
+      Field funused2 { edit = NO minLength = 10 }
+      Field funused3 { edit = NO minLength = 10 }
+    }
+  }
+} // MLModule AnalyzeHeader
+
+//---------------------------------------------------------------------
+// MacroModule LocalAnalyzeLoad
+//----------------------------------------------------------------------------------
+MacroModule LocalAnalyzeLoad {
+  author = "Bart De Dobbelaer"
+  status = "stable"
+  externalDefinition = "$(LOCAL)/LocalAnalyzeLoad/LocalAnalyzeLoad.script"
+} // MacroModule LocalAnalyzeLoad

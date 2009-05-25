@@ -1,0 +1,40 @@
+Interface {
+  Inputs  {}
+  Outputs {
+    Field output0 { internalName = Bypass.output0 }
+  }
+  Parameters {  
+    Field filename { type = string value = "" }
+    Field useScaling { type = bool value = NO }
+    
+    Field scaleFactor { type = float value = 1.0 }
+  }
+}
+
+Commands {
+  source = $(LOCAL)/LocalAnalyzeLoad.py
+  droppedFileCommand = fileDropped
+  initCommand        = init
+  wakeupCommand      = filenameChanged
+  FieldListener {
+    listenField = filename
+    listenField = useScaling
+    command = filenameChanged
+  }
+}
+
+Window {
+  Vertical  {
+    droppedFileCommand = fileDropped
+    margin = 8
+    Horizontal {
+      Field filename { alignGroup = group1 w = 300 mw = 300 pw = 300}
+      Button { title = "Browse..." command = fileDialog }
+    }
+    Separator { direction = Horizontal }
+    Horizontal {
+      Checkbox = useScaling
+      Field scaleFactor { edit = NO minLength = 10 }
+    }
+  }
+}
