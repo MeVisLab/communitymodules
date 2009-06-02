@@ -65,5 +65,6 @@
 # What -------------------------------- When ---------------- Who ----- Where
 
 # The YourInstaller installer (this comment is used as title for the html installer pages)
-# YourInstaller/YourInstaller.mlinstall always                whoever   *
+# YourInstaller/YourInstaller.mlinstall     always           whoever         *
 
+AddOns/MeVisLabCommunityAddOn.mlinstall     always           wolf@mevis.de   *           

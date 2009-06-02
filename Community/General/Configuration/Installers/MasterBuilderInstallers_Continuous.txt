@@ -7,3 +7,5 @@
 # YourInstaller/YourInstaller.mlinstall always                whoever   *
 
 
+AddOns/MeVisLabCommunityAddOn.mlinstall     always           wolf@mevis.de   *           
+
