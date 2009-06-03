@@ -1,0 +1,15 @@
+
+[general]
+type = doxygen
+
+[document]
+name = MeVisLabCppReference
+
+[doxygen]
+PROJECT_NAME = "Community Sources C++ Reference"
+INPUT = $${MLAB_Community_General}/Sources
+FILE_PATTERNS = *.h
+ENABLED_SECTIONS = USE_GLOBAL_DOXYGEN_DOC USE_MAIN_MAIN_PAGE
+IGNORE_PREFIX = MLAB
+HAVE_DOT = NO
+GENERATE_QHP = YES
