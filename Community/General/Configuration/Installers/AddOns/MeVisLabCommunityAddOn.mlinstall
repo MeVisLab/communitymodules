@@ -25,6 +25,6 @@ SWITCH_PACKAGE MLAB_Community/General
 + Package.def
 + Modules
 
-SWITCH_PACKAGE Community/ThirdParty
+SWITCH_PACKAGE MLAB_Community/ThirdParty
 + Package.def
 + Modules
