@@ -18,3 +18,6 @@
 # Sources/ML/MLExampleProject/*
 
 
+Sources/ML/MLCSOCommunityModules/*
+Sources/ML/MLLoadCAT08Data/*
+Sources/ML/MLWEMCommunityModules/*
