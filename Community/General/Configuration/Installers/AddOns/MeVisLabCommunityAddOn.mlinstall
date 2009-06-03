@@ -14,14 +14,14 @@ $RELEASE 1
 #$MODULEDATABASETOOL 1
 
 # change the default license text
-# $INPUT_LICENSE_TEXT $(MeVisLabCommunity_General)/Configuration/Installers/AddOns/Resources/MeVisLabCommunityAddOnLicense.txt
+$INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/Resources/MeVisLabCommunityAddOnLicense.txt
  
 #---------------------------------------------------------------------
 # INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
 #---------------------------------------------------------------------
 
 # Collecting files for AddOn:
-SWITCH_PACKAGE Community/General
+SWITCH_PACKAGE MLAB_Community/General
 + Package.def
 + Modules
 
