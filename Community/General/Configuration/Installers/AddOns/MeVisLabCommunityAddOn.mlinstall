@@ -51,7 +51,7 @@ $INSTALLER_ADDON_FOR_PRODUCT_INSTALLDIR  $(MEVISLAB_INSTALLER_PRODUCT_INSTALLDIR
 #INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/SDK/modifyFilesForPublicRelease.mli
 #INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/signPackages.mli
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/installerSetup.mli
-INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/generateLicense.mli
+#INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/generateLicense.mli
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/generateInstaller.mli
 #---------------------------------------------------------------------
 
