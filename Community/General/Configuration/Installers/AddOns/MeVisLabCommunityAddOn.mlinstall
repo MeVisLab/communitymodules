@@ -17,7 +17,42 @@ $RELEASE 1
 $INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/Resources/MeVisLabCommunityAddOnLicense.txt
  
 #---------------------------------------------------------------------
-INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
+# Default AddOn for MeVisLab installation
+
+# Build PKG installer for Mac OS X
+$INSTALLER_MACX_BUILDPKG         1
+$INSTALLER_MACX_PKG_RELOCATABLE  1
+
+$INSTALLER_LICENSE_PAGE 1
+
+# this is required so that packages are rescanned!
+$INSTALLER_RUN_MEVISLAB_INSTALL 1
+
+# Include common components
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/year.mli
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/setup.mli
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/exclude.mli
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/SDK/exclude.mli
+
+# include the product definition of MeVisLab
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/SDK/MeVisLabProductDefinition.mli
+
+# set the product for which we are an add on!
+$INSTALLER_ADDON_FOR_PRODUCT MeVisLab
+$INSTALLER_PRODUCT_KEY $(PRODUCT)$(MEVISLAB_VERSION)$(MLAB_COMPILER_VERSION)
+
+# take over product definition, to allow addon installation in MeVisLab
+$INSTALLER_ADDON_FOR_PRODUCT_TITLE       $(MEVISLAB_INSTALLER_PRODUCT_TITLE)
+$INSTALLER_ADDON_FOR_PRODUCT_MENU        $(MEVISLAB_INSTALLER_PRODUCT_MENU)
+$INSTALLER_ADDON_FOR_PRODUCT_KEY         $(MEVISLAB_INSTALLER_PRODUCT_KEY)
+$INSTALLER_ADDON_FOR_PRODUCT_INSTALLDIR  $(MEVISLAB_INSTALLER_PRODUCT_INSTALLDIR)
+
+# Include common components
+#INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/SDK/modifyFilesForPublicRelease.mli
+#INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/signPackages.mli
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/installerSetup.mli
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/generateLicense.mli
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/generateInstaller.mli
 #---------------------------------------------------------------------
 
 # Collecting files for AddOn:
