@@ -14,7 +14,7 @@ $PUBLIC_MEVISLAB 1
 $MODULEDATABASETOOL 1
 
 # change the default license text
-$INPUT_LICENSE_TEXT $(MLAB_MeVisResearch_Applications)/Configuration/Installers/AddOns/Resources/MeVisLabCommunityAddOnLicense.txt
+$INPUT_LICENSE_TEXT $(MLAB_MeVisLabCommunity_General)/Configuration/Installers/AddOns/Resources/MeVisLabCommunityAddOnLicense.txt
  
 #---------------------------------------------------------------------
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
