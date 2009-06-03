@@ -17,7 +17,7 @@ $RELEASE 1
 $INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/Resources/MeVisLabCommunityAddOnLicense.txt
  
 #---------------------------------------------------------------------
-INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
+# INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
 #---------------------------------------------------------------------
 
 # Collecting files for AddOn:
