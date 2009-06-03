@@ -27,4 +27,4 @@ SWITCH_PACKAGE Community/General
 
 SWITCH_PACKAGE Community/ThirdParty
 + Package.def
-+ Modules
+#+ Modules
