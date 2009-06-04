@@ -18,9 +18,9 @@
 # Sources/ML/MLExampleProject/*
 
 
-Sources/ML/MLCSOCommunityModules/*
-Sources/ML/MLLoadCAT08Data/*
-Sources/ML/MLWEMCommunityModules/*
-Sources/ML/MLImageUtilities/*
-Sources/ML/MLTestModules/*
+#Sources/ML/MLCSOCommunityModules/*
+#Sources/ML/MLLoadCAT08Data/*
+#Sources/ML/MLWEMCommunityModules/*
+#Sources/ML/MLImageUtilities/*
+#Sources/ML/MLTestModules/*
 
