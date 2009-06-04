@@ -5,10 +5,3 @@ type = package
 files = 
   CommunitySourcesDocumentation.mldoc
 
-#[internal]
-#files =
-#  Internal/SetupManager/SetupManager.mldoc
-#  Internal/MeVisLabInstallers/MeVisLabInstallers.mldoc
-#  Internal/MeVisMasterBuilder/MeVisMasterBuilder.mldoc
-#  ADK/ADK/ADK.mldoc
-#  Internal/InternalADK/InternalADK.mldoc
