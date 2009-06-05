@@ -1,0 +1,242 @@
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters { }
+}
+
+Commands {
+  source = $(LOCAL)/template.py
+}
+
+Window "MainWindow" {
+
+  Accel { key = "F5" command = showFullScreen }
+  Accel { key = "Escape" command = showNormalScreen }
+  Accel { key = "Right" command = navigateSlideUp }
+  Accel { key = "Down" command = navigateSlideUp }
+  Accel { key = "Page Down" command = navigateSlideUp }
+  Accel { key = "Left" command = navigateSlideDown }
+  Accel { key = "Up" command = navigateSlideDown }
+  Accel { key = "Page Up" command = navigateSlideDown }
+  Accel { key = "Home" command = navigateSlideHome }
+    
+  wakeupCommand = init
+  
+  name = main
+  
+  style = KUL.whiteBackground
+  
+  EventFilter {
+    control = main
+    filter = Enter
+    children = no
+    command = grabFocus
+  }
+  /*EventFilter {
+    control = main
+    filter = MouseButtonRelease
+    children = no
+    command = navigateSlideMouse
+  }*/
+  
+  Vertical {
+    expandX = YES
+    expandY = YES
+    margin = 0
+    spacing = 0
+    frameMargin = 0
+    
+    // HEADER
+    Empty {
+      h = 10 mh = 10 ph = 10
+    }
+    
+    Horizontal {
+      alignY = top
+      expandX = YES
+      expandY = NO
+      h = 76 mh = 76 ph = 76
+      
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/headerMiddle.png"
+        }
+      }
+      bgMode = stretchX
+        
+      Empty {
+        w = 10
+      }
+      Image {
+        image = $(LOCAL)/style/headerLeft.png
+        alignX = Left
+      }
+      
+      Empty {
+        w = 10
+      }
+      
+      // HEADER TITLE      
+      Vertical {
+        alignY = Center
+        expandX = YES
+        expandY = YES
+        h = 76 mh = 76 ph = 76
+        
+        // INCLUDE HEADER
+        Label { 
+          style = KUL.headerText 
+          title = [HEADER]
+        }
+
+                  
+      }// END HEADER TITLE   
+        
+      Image {
+        image = $(LOCAL)/style/headerRight.png
+        alignX = Right
+      }
+    }    
+    
+    // MENU ITEMS    
+    Horizontal {
+      expandX = YES
+      expandY = YES
+      h = 22 mh = 22 ph = 22 maxh = 22
+      name = menu
+      
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/headerMiddle2.png"
+        }
+      }
+      bgMode = stretchX
+        
+      Empty {
+        w = 10
+      }
+      
+      // INCLUDE MENU
+      [MENU]
+      
+      Empty {
+        expandX = YES
+      }
+            
+      EventFilter {
+        control = menu
+        filter = MouseButtonRelease
+        command = navigateToSlide
+        name = menuEventFilter
+        children = YES
+        eatEvent = YES
+      }
+    }
+    
+    Empty {
+     h = 10 mh = 10 ph = 10
+    }// END HEADER
+    
+    // CONTENT
+    Horizontal {
+      expandX = YES
+      expandY = YES    
+      
+      // LEFT SPACER
+      Empty {
+        alignX = Left
+        expandX = NO
+        expandY = YES
+        w = 10
+      }        
+      
+      // SLIDES
+      Vertical {
+        expandX = YES
+        expandY = YES
+        
+        TabView {
+          expandX = YES
+          expandY = YES
+          name = slides
+          mode = invisible
+          
+          // INCLUDE SLIDES
+          [SLIDES]
+          
+        }// END TABVIEW
+        
+      
+      }// END SLIDES
+      
+      // RIGHT SPACER
+      Empty {
+        alignX = Right
+        expandX = NO
+        expandY = YES
+        w = 10
+      }
+      
+    }// END CONTENT
+    
+    // FOOTER
+    Empty {
+      h = 10 mh = 10 ph = 10
+    }
+    
+    Horizontal {
+      //alignY = bottom
+      expandX = YES
+      expandY = NO
+      h = 40 mh = 40 ph = 40
+          
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/footerMiddle.png"
+        }
+      }
+      bgMode = stretchX  
+            
+      Horizontal {
+        alignY = Center
+        alignX = Center
+        expandX = YES
+        expandY = NO
+        h = 40 mh = 40 ph = 40
+        
+        Label { 
+          style = KUL.footerText 
+          title = [FOOTER]
+        }
+        Label { 
+          title = " | " 
+          style = KUL.footerText
+        }
+        Label {
+          title = ""
+          name = autoSlideCounter
+          style = KUL.footerText
+        }
+        Label { 
+          title = " | " 
+          style = KUL.footerText 
+        }
+        Label {
+          title = "" 
+          name = autoDate
+          style = KUL.footerText
+        }
+      }
+          
+    }
+    
+    Empty {
+      h = 10 mh = 10 ph = 10
+    }// END FOOTER          
+     
+  }// END GLOBAL VERTICAL
+  
+  Execute = grabFocus
+  
+}// END WINDOW

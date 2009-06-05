@@ -1,0 +1,54 @@
+
+[SLIDETITLE] = Horizontal { 
+  Label {
+    expandX = YES
+    h = 30 mh = 30 ph = 30
+    alignY = Center
+    alignX = Right 
+    style = KUL.titleText
+    title = [TEXT]
+  }
+  }
+  
+////////////////////////////////////////////////////////////
+
+[MENUITEM] = Label { style = KUL.menuText title = [TEXT] [NAME] } Empty { w = 5 }
+  
+////////////////////////////////////////////////////////////
+
+[MENUEMPTY] = 
+
+////////////////////////////////////////////////////////////
+
+[BULLET] = Horizontal { 
+  expandX = YES 
+  expandY = NO 
+  alignX = Left
+  Empty { w = 20 } 
+  Image { image = $(LOCAL)/style/bullet.png }
+  Label { title = [TEXT] style = KUL.bulletText } 
+  }
+
+////////////////////////////////////////////////////////////
+
+[BULLETSUB] = Horizontal { 
+  expandX = YES 
+  expandY = NO 
+  alignX = Left
+  Empty { w = 40 } 
+  Image { image = $(LOCAL)/style/subBullet.png }
+  Label { title = [TEXT] style = KUL.subBulletText } 
+  }
+  
+////////////////////////////////////////////////////////////
+
+[SEPARATOR] = 
+  Empty { expandY = YES }
+  Horizontal {
+    alignX = Center
+    Label { title = [TEXT] style = KUL.separatorText }
+  }
+  Empty { expandY = YES }
+  
+////////////////////////////////////////////////////////////
+

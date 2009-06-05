@@ -1,0 +1,179 @@
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters { }
+}
+
+Commands {
+  source = $(LOCAL)/template.py
+}
+
+Window "MainWindow" {
+
+  Accel { key = "F5" command = showFullScreen }
+  Accel { key = "Escape" command = showNormalScreen }
+  Accel { key = "Right" command = navigateSlideUp }
+  Accel { key = "Down" command = navigateSlideUp }
+  Accel { key = "Page Down" command = navigateSlideUp }
+  Accel { key = "Left" command = navigateSlideDown }
+  Accel { key = "Up" command = navigateSlideDown }
+  Accel { key = "Page Up" command = navigateSlideDown }
+  Accel { key = "Home" command = navigateSlideHome }
+    
+  wakeupCommand = init
+  
+  name = main  
+  
+  style = MeVisLab.background
+  bgMode = stretchX
+
+  
+  EventFilter {
+    control = main
+    filter = Enter
+    children = no
+    command = grabFocus
+  }
+  /*EventFilter {
+    control = main
+    filter = MouseButtonRelease
+    children = no
+    command = navigateSlideMouse
+  }*/
+  
+  Vertical {
+    expandX = YES
+    expandY = YES
+    margin = 0
+    spacing = 0
+    frameMargin = 0
+        
+    // HEADER
+    
+    Horizontal {
+      alignY = Bottom
+      expandX = YES
+      expandY = NO
+      h = 85
+      
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/headerMiddle.png"
+        }
+      }
+      bgMode = stretchX
+      
+      Image {
+        image = $(LOCAL)/style/headerLeft.png
+        alignX = Left
+      }          
+
+      Empty {
+        w = 10
+        expandX = YES
+      }
+        
+      Image {
+        image = $(LOCAL)/style/headerRight.png
+        alignX = Right
+      }
+      
+      Empty { w = 10 }
+    }
+            
+    // CONTENT
+    Horizontal {
+      expandX = YES
+      expandY = YES    
+            
+      // LEFT SPACER
+      Empty {
+        alignX = Left
+        expandX = NO
+        expandY = YES
+        w = 10
+      }
+      
+      // SLIDES
+      Vertical {
+        expandX = YES
+        expandY = YES
+        
+        TabView {
+          expandX = YES
+          expandY = YES
+          name = slides
+          mode = invisible
+          
+          // INCLUDE SLIDES
+          [SLIDES]
+          
+        }// END TABVIEW
+              
+      }// END SLIDES
+      
+      // RIGHT SPACER
+      Empty {
+        alignX = Right
+        expandX = NO
+        expandY = YES
+        w = 10
+      }
+      
+    }// END CONTENT
+    
+    // FOOTER
+    
+    Empty {
+      h = 10
+    }
+    Horizontal {
+      alignY = bottom
+      expandX = YES
+      expandY = NO
+      h = 20
+          
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/background.png"
+        }
+      }
+      bgMode = stretchX 
+      
+      Horizontal {
+        alignX = Left
+        Empty { w = 10 }
+        Label { 
+          style = MeVisLab.footerText 
+          title = [FOOTER]
+        }
+        Label { 
+          title = " - " 
+          style = MeVisLab.footerText 
+        }
+        Label {
+          title = ""
+          name = autoDate
+          style = MeVisLab.footerText
+        }
+      }
+     
+      Horizontal {
+        alignX = Center
+        Label {
+          title = ""
+          name = autoSlideCounter
+          style = MeVisLab.footerText
+        }
+      }
+      
+      Empty { w = 10 alignX = Right }
+      
+    } // END FOOTER          
+     
+  }// END GLOBAL VERTICAL
+  
+  Execute = grabFocus
+  
+}// END WINDOW

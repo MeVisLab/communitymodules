@@ -1,0 +1,127 @@
+
+DefineStyle UZ.whiteBackground {
+  derive = Panel.default
+  colors {
+    bg = white
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.menuText {
+  titleFont {
+    weight = Bold
+  }
+  colors {
+    fg = "black"
+    bg = "white:$(LOCAL)/style/headerMiddle.png"
+  }    
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.titleText {
+  titleFont {
+    weight = Bold
+    size = 36
+  }
+  colors {
+    fg = "#00a1d7"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.separatorText {
+  titleFont {
+    weight = Bold
+    size = 48
+  }
+  colors {
+    fg = "#00a1d7"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.headerText {
+  titleFont {
+    size = 36
+  }
+  colors {
+    fg = "#979797"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.footerText {
+  colors {
+    fg = "black"
+    bg = "white:$(LOCAL)/style/footerMiddle.png"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.bulletText {
+  titleFont {
+    size = [SCALE = 20]
+  }
+  colors {
+    fg = "#979797"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.subBulletText {
+  titleFont {
+    size = [SCALE = 18]
+  }
+  colors {
+    fg = "#00a1d7"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.button {
+  derive = Panel.default
+  colors {
+    button = "white"
+    buttonText = "#00a1d7"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.subSeparatorText {
+  titleFont {
+    size = [SCALE = 12]
+  }
+  colors {
+    fg = "#979797"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle UZ.smallBulletText {
+  titleFont {
+    size = [SCALE = 6]
+  }
+  colors {
+    fg = "#00a1d7"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+

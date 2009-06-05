@@ -1,0 +1,31 @@
+
+DefineStyle MeVisLab.background {
+  derive = Panel.default
+  colors {
+    bg = "white:$(LOCAL)/style/background.png"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle MeVisLab.titleText {
+  titleFont {
+    family = Helvetica
+    size = 30
+  }
+  colors {
+    fg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle MeVisLab.footerText {
+  derive = Panel.default
+  colors {
+    fg = "white"
+    bg = "white:$(LOCAL)/style/background.png"
+  }
+}
+
+////////////////////////////////////////////////////////////

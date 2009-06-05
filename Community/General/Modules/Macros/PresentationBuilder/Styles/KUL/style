@@ -1,0 +1,93 @@
+
+DefineStyle KUL.whiteBackground {
+  derive = Panel.default
+  colors {
+    bg = white
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.menuText {
+  titleFont {
+    weight = Bold
+  }
+  colors {
+    fg = "#333333"
+    bg = "white:$(LOCAL)/style/headerMiddle2.png"
+  }    
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.titleText {
+  titleFont {
+    weight = Bold
+    size = 16
+  }
+  colors {
+    fg = "#a60046"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.headerText {
+  titleFont {
+    size = 24
+  }
+  colors {
+    fg = "white"
+    bg = "white:$(LOCAL)/style/headerMiddle.png"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.separatorText {
+  titleFont {
+    weight = Bold
+    size = 48
+  }
+  colors {
+    fg = "#a60046"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.footerText {
+  
+  colors {
+    fg = "black"
+    bg = "#E8F5F6:$(LOCAL)/style/footerMiddle.png"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.bulletText {
+  titleFont {
+    size = [SCALE = 20]
+  }
+  colors {
+    fg = "#333333"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+DefineStyle KUL.subBulletText {
+  titleFont {
+    size = [SCALE = 18]
+  }
+  colors {
+    fg = "#333333"
+    bg = "white"
+  }
+}
+
+////////////////////////////////////////////////////////////

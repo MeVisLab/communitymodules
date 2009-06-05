@@ -1,0 +1,243 @@
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters { }
+}
+
+Commands {
+  source = $(LOCAL)/template.py
+}
+
+Window "MainWindow" {
+
+  Accel { key = "F5" command = showFullScreen }
+  Accel { key = "F6" command = showNormalScreen }
+  Accel { key = "Right" command = navigateSlideUp }
+  Accel { key = "Down" command = navigateSlideUp }
+  Accel { key = "Page Down" command = navigateSlideUp }
+  Accel { key = "Left" command = navigateSlideDown }
+  Accel { key = "Up" command = navigateSlideDown }
+  Accel { key = "Page Up" command = navigateSlideDown }
+  Accel { key = "Home" command = navigateSlideHome }
+    
+  wakeupCommand = init
+  
+  name = main  
+  
+  style = UZ.whiteBackground
+
+  
+  EventFilter {
+    control = main
+    filter = Enter
+    children = no
+    command = grabFocus
+  }
+  /*EventFilter {
+    control = main
+    filter = MouseButtonRelease
+    children = no
+    command = navigateSlideMouse
+  }*/
+  
+  Vertical {
+    expandX = YES
+    expandY = YES
+    margin = 0
+    spacing = 0
+    frameMargin = 0
+        
+    // HEADER
+    Empty {
+     h = 10
+    }
+    
+    Horizontal {
+      alignY = Bottom
+      expandX = YES
+      expandY = NO
+      h = 73
+              
+      Empty {
+        w = 10
+      }
+      Image {
+        image = $(LOCAL)/style/headerLeft.png
+        alignX = Left
+      }
+      
+      // HEADER TITLE      
+      Vertical {
+        alignY = Bottom
+        expandX = YES
+        expandY = YES
+        h = 73
+        
+        // INCLUDE HEADER
+        Label { 
+          style = UZ.headerText 
+          title = [HEADER]
+          alignY = Bottom 
+          alignX = Center 
+        }   
+                  
+      } // END HEADER TITLE        
+        
+      Image {
+        image = $(LOCAL)/style/headerRight.png
+        alignX = Right
+      }
+      Empty {
+        w = 10
+      }
+    }
+    
+    Empty {
+     h = 10 ph = 10 mh = 10
+    }// END HEADER
+    
+       
+    // MENU ITEMS
+    Horizontal {
+                
+      expandX = YES
+      expandY = NO
+      h = 33 mh = 33 ph = 33 maxh = 33
+      name = menu
+          
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/headerMiddle.png"
+        }
+      }
+      bgMode = stretchX
+      
+      Empty {
+        w = 10
+      }
+      
+      // INCLUDE MENU
+      [MENU]
+      
+      Empty {
+        w = 10
+        expandX = YES
+      }
+            
+      EventFilter {
+        control = menu
+        filter = MouseButtonRelease
+        command = navigateToSlide
+        name = menuEventFilter
+        children = YES
+        eatEvent = YES
+      }
+          
+    } // END MENU ITEMS
+
+    Empty {
+     h = 10 ph = 10 mh = 10
+    }
+    
+    // CONTENT
+    Horizontal {
+      expandX = YES
+      expandY = YES    
+            
+      // LEFT SPACER
+      Empty {
+        alignX = Left
+        expandX = NO
+        expandY = YES
+        w = 10
+      }
+      
+      // SLIDES
+      Vertical {
+        expandX = YES
+        expandY = YES
+        
+        TabView {
+          expandX = YES
+          expandY = YES
+          name = slides
+          mode = invisible
+          
+          // INCLUDE SLIDES
+          [SLIDES]
+          
+        }// END TABVIEW
+              
+      }// END SLIDES
+      
+      // RIGHT SPACER
+      Empty {
+        alignX = Right
+        expandX = NO
+        expandY = YES
+        w = 10
+      }
+      
+    }// END CONTENT
+    
+    // FOOTER
+    
+    Empty {
+      h = 10 ph = 10 mh = 10
+    }
+    Horizontal {
+      alignY = bottom
+      expandX = YES
+      expandY = NO
+      h = 33 ph = 33 mh = 33
+          
+      style {
+        colors {
+          bg = "white:$(LOCAL)/style/footerMiddle.png"
+        }
+      }
+      bgMode = stretchX  
+      
+      Horizontal {
+        expandX = YES
+        expandY = YES
+        h = 33 ph = 33 mh = 33
+        Empty { expandX = Yes }
+        Label { 
+          style = UZ.footerText 
+          title = [FOOTER]
+          h = 33 ph = 33 mh = 33
+        }
+        Label { 
+          title = " | " 
+          style = UZ.footerText 
+         }
+         Label {
+          title = ""
+          name = autoSlideCounter
+          style = UZ.footerText
+        }
+        Label { 
+          title = " | " 
+          style = UZ.footerText 
+        }
+        Label {
+          title = ""
+          name = autoDate
+          style = UZ.footerText
+        }
+        Empty { expandX = Yes }
+      }
+      
+    }
+    
+    Empty {
+      h = 10 ph = 10 mh = 10
+    }// END FOOTER          
+     
+  }// END GLOBAL VERTICAL
+  
+  Execute = grabFocus
+  
+}// END WINDOW

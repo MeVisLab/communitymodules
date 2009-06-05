@@ -1,0 +1,12 @@
+
+[SLIDETITLE] = Horizontal {  
+  Label {
+    alignX = Center
+    alignY = Center
+    style = MeVisLab.titleText
+    title = [TEXT]
+  }
+  }
+  
+////////////////////////////////////////////////////////////
+
