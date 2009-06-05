@@ -1,0 +1,625 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "873 229 96 56"
+  }
+  fields  {
+    instanceName = SoGroup1
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "561 229 96 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module VoxValueRescale {
+  internal  {
+    frame = "785 393 128 64"
+  }
+  fields  {
+    instanceName = alphaRescale
+    slope = 1
+    intercept = 0
+    storedMin = 0
+    storedMax = 4095
+    storedRange = 4095
+    storedRangeNeg = -4095
+    storedValue = 0
+    storedCenter = 1085
+    storedWidth = 1598
+    outputMin = 0
+    outputMax = 4095
+    outputRange = 4095
+    outputRangeNeg = -4095
+    outputValue = 0.5
+    outputCenter = 1085
+    outputWidth = 1598
+  }
+}
+module VoxValueRescale {
+  internal  {
+    frame = "929 393 128 64"
+  }
+  fields  {
+    instanceName = lutRescale
+    slope = 1
+    intercept = 0
+    storedMin = 0
+    storedMax = 4095
+    storedRange = 4095
+    storedRangeNeg = -4095
+    storedValue = 0
+    storedCenter = 1085
+    storedWidth = 1598
+    outputMin = 0
+    outputMax = 4095
+    outputRange = 4095
+    outputRangeNeg = -4095
+    outputValue = 0.5
+    outputCenter = 1085
+    outputWidth = 1598
+  }
+}
+module SoView2DVoxelValue {
+  internal  {
+    frame = "613 321 152 64"
+    windows  {
+      window _default {
+        geometry = "92 146 336 356"
+        sizeHint = "336 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = annoReadPix
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    voxelPosition = "4.3376 42.4757 11.5"
+    integerPosition = "4 42 11"
+    worldPosition = "4.3376 42.4757 11.5"
+    storedValue = 841
+    outputValue = 841
+    storedValueString = 841
+    outputValueString = 841.000000
+  }
+}
+module SoView2DAnnotation {
+  internal  {
+    frame = "453 321 152 64"
+    windows  {
+      window _default {
+        geometry = "393 225 424 408"
+        sizeHint = "424 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = annotation
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "0.9 0.9 0.9"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    annotationMode = ANNO_MODE_AUTO
+    showOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    verticalRuler = TRUE
+    horizontalRuler = FALSE
+    showTechnicalInfo = FALSE
+    showAnnotation = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    minDetailFontSize = 10
+    maxDetailFontSize = 18
+    minShortFontSize = 8
+    maxShortFontSize = 12
+    userDetailFontSize = 12
+    userShortFontSize = 10
+    textShadow = TRUE
+    annotationUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01) GV"
+    annotationUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotationUserBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotationUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotationCTTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(input02) $(input09)"
+    annotationCTTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality) "
+    annotationCTBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotationCTBottomRight = "CT Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input07) / $(input08)"
+    annotationMRTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)):
+$(input01) GV"
+    annotationMRTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotationMRBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotationMRBottomRight = "MR Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    shortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    shortTopRight = $(Modality)
+    shortBottomLeft = "Slice: $(slice)"
+    shortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    abreviateChars = -1
+    abreviateShortChars = 16
+    input00 = "4 42 11"
+    input01 = 841
+    input02 = 841
+    input03 = 1085
+    input04 = 1598
+    input05 = 1085
+    input06 = 1598
+    input07 = 1085
+    input08 = 1598
+    input09 = HU
+  }
+}
+module SoView2DSliceShift {
+  internal  {
+    frame = "1025 169 144 64"
+    windows  {
+      window _default {
+        geometry = "26 59 364 209"
+        sizeHint = "364 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = sliceShift
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = FALSE
+    button1 = IGNORED
+    button2 = PRESSED
+    button3 = IGNORED
+    shift = PRESSED
+    control = RELEASED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = MOVE_ALL_CURSOR
+    editX = TRUE
+    editY = TRUE
+  }
+}
+module SoView2DSliceZoom {
+  internal  {
+    frame = "1089 265 144 64"
+    windows  {
+      window _default {
+        geometry = "158 233 364 259"
+        sizeHint = "364 259"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = sliceZoom
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = FALSE
+    button1 = IGNORED
+    button2 = PRESSED
+    button3 = IGNORED
+    shift = RELEASED
+    control = PRESSED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = ZOOM_CURSOR
+    min = 1
+    max = 100
+    sensitivity = 100.9049988
+    dragMode = DRAG_TAKE_AND_PUSH
+  }
+}
+module SoMouseGrabber {
+  internal  {
+    frame = "929 321 128 64"
+    windows  {
+      window _default {
+        geometry = "136 204 497 416"
+        sizeHint = "497 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = lutMouseGrabber
+    on = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = PRESSED
+    button1Pressed = FALSE
+    button2Pressed = FALSE
+    button3Pressed = FALSE
+    shift = RELEASED
+    ctrl = RELEASED
+    alt = RELEASED
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    cursorShape = LUT_CURSOR
+    x = 1597.560059
+    y = 1085.300049
+    xmin = 0
+    xmax = 4095
+    ymin = 0
+    ymax = 4095
+    maskValid = FALSE
+    flipX = FALSE
+    flipY = TRUE
+    swapXY = FALSE
+    sensitivity = 1
+    wheelOverflow = FALSE
+    wheel = 32
+    wheelStep = 1
+    wheelMin = 0
+    wheelMax = 100
+  }
+}
+module SoRLLookUpTable {
+  internal  {
+    frame = "781 321 136 64"
+  }
+  fields  {
+    instanceName = lut
+    _channelEditorState = ""
+    alphaCenter = 1085
+    alphaWidth = 1598
+    greyCenter = 1085
+    greyWidth = 1598
+    redCenter = 0.5
+    redWidth = 1
+    blueCenter = 0.5
+    blueWidth = 1
+    useColorRamps = FALSE
+    invertGrey = FALSE
+    invertAlpha = FALSE
+    colorFactor = "1 1 1"
+    alphaFactor = 1
+    autoSetDefaultRamp = FALSE
+    setDefaultRampOnce = FALSE
+    inputImageValid = TRUE
+    rangeMin = 0
+    rangeMax = 4095
+    widthMin = 0
+    enableNegWidth = FALSE
+    widthMax = 4095
+    rangeStep = 10
+    rangeStepStep = 100
+    selectorX = 0
+    selectorY = 0
+    setInputMinMax = TRUE
+    useEditor = FALSE
+    useTraceColors = FALSE
+    trCol0 = "1 1 1"
+    trCol0Name = White
+    trCol0Alpha = 1
+    trCol1 = "0.501961 0.501961 0.501961"
+    trCol1Name = Grey
+    trCol1Alpha = 1
+    trCol2 = "0.862745 0 0.172549"
+    trCol2Name = Red
+    trCol2Alpha = 1
+    trCol3 = "1 0.462745 0.490196"
+    trCol3Name = "Light Red"
+    trCol3Alpha = 1
+    trCol4 = "0 0.819608 0.160784"
+    trCol4Name = Green
+    trCol4Alpha = 1
+    trCol5 = "0.5607839999999999 1 0.435294"
+    trCol5Name = "Light Green"
+    trCol5Alpha = 1
+    trCol6 = "0.184314 0.239216 0.929412"
+    trCol6Name = Blue
+    trCol6Alpha = 1
+    trCol7 = "0.490196 0.541176 1"
+    trCol7Name = "Light Blue"
+    trCol7Alpha = 1
+    trCol8 = "0.631373 0 0.678431"
+    trCol8Name = "Dark Magenta"
+    trCol8Alpha = 1
+    trCol9 = "0.894118 0.380392 1"
+    trCol9Name = Magenta
+    trCol9Alpha = 1
+    trColA = "0 0.682353 0.756863"
+    trColAName = "Dark Cyan"
+    trColAAlpha = 1
+    trColB = "0.501961 1 0.980392"
+    trColBName = Cyan
+    trColBAlpha = 1
+    trColC = "0.615686 0.6 0.196078"
+    trColCName = "Dark Yellow"
+    trColCAlpha = 1
+    trColD = "1 0.976471 0.368627"
+    trColDName = Yellow
+    trColDAlpha = 1
+    trColE = "1 1 1"
+    trColEName = "Half Transparent"
+    trColEAlpha = 0.06274499744
+    trColF = "1 1 1"
+    trColFName = Transparent
+    trColFAlpha = 0
+  }
+}
+module SoView2DSlicer {
+  internal  {
+    frame = "1181 169 120 64"
+  }
+  fields  {
+    instanceName = slicer
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = FALSE
+    button1 = IGNORED
+    button2 = PRESSED
+    button3 = IGNORED
+    shift = RELEASED
+    control = RELEASED
+    alt = RELEASED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = TRUE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = MOVE_INOUT_CURSOR
+    sensitivity = 0.5
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "1129 493 96 56"
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = "I:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+  }
+  internalFields = ""
+}
+module SoView2D {
+  internal  {
+    frame = "1333 221 88 56"
+    windows  {
+      window _default {
+        geometry = "410 200 466 687"
+        sizeHint = "466 687"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2D
+    startSlice = 11
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 63
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "2 2"
+    spacing = "4 4"
+    sliceZoom = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0.163682 0.982096"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    status = "Nothing active"
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "1009 -19 112 56"
+    windows  {
+      window _viewer {
+        geometry = "1334 220 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+connections  {
+  SoGroup1.children = "lut.self lutMouseGrabber.self"
+  SoGroup.children = "annotation.self annoReadPix.self"
+  alphaRescale.input0 = LocalImage.outImage
+  alphaRescale.storedCenter = lut.alphaCenter
+  alphaRescale.storedWidth = lut.alphaWidth
+  lutRescale.input0 = LocalImage.outImage
+  lutRescale.storedCenter = lut.greyCenter
+  lutRescale.storedWidth = lut.greyWidth
+  annotation.input00 = annoReadPix.integerPosition
+  annotation.input01 = annoReadPix.storedValue
+  annotation.input02 = annoReadPix.outputValue
+  annotation.input03 = lut.greyCenter
+  annotation.input04 = lut.greyWidth
+  annotation.input05 = alphaRescale.outputCenter
+  annotation.input06 = alphaRescale.outputWidth
+  annotation.input07 = lutRescale.outputCenter
+  annotation.input08 = lutRescale.outputWidth
+  lutMouseGrabber.x = lut.greyWidth
+  lutMouseGrabber.y = lut.greyCenter
+  lutMouseGrabber.xmin = lut.widthMin
+  lutMouseGrabber.xmax = lut.widthMax
+  lutMouseGrabber.ymin = lut.rangeMin
+  lutMouseGrabber.ymax = lut.rangeMax
+  lut.inputImage = LocalImage.outImage
+  lut.alphaCenter = lut.greyCenter
+  lut.alphaWidth = lut.greyWidth
+  lut.greyCenter = lutMouseGrabber.y
+  lut.greyWidth = lutMouseGrabber.x
+  SoView2D.image = LocalImage.outImage
+  SoRenderArea.children = SoView2D.self
+}

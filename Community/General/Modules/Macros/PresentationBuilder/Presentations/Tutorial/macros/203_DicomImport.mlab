@@ -1,0 +1,101 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module View2D {
+  internal  {
+    frame = "881 221 80 56"
+    windows  {
+      window _default {
+        geometry = "695 323 471 462"
+        sizeHint = "200 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.9 0.9 0.9"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "873 341 96 56"
+    windows  {
+      window _default {
+        geometry = "751 566 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+  }
+  internalFields = ""
+}
+module DicomImport {
+  internal  {
+    frame = "757 221 104 56"
+    windows  {
+      window _default {
+        geometry = "65 397 586 212"
+        sizeHint = "532 212"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "531 422 225 239"
+        sizeHint = "225 239"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomImport
+    source = ""
+    target = ""
+    options = "-r -v2"
+  }
+  internalFields = ""
+}
+connections  {
+  View2D.inImage = LocalImage.outImage
+}

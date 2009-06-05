@@ -1,0 +1,73 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "604 270 128 56"
+    windows  {
+      window _default {
+        geometry = "857 244 337 404"
+        sizeHint = "337 404"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "211 265 274 440"
+        sizeHint = "274 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792157 0.792157 0.792157"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667 0.266667 0.266667"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.066667 0.066667 0.066667"
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = ""
+    primitiveValueListValid = FALSE
+    selectedTab = 0
+  }
+}
+connections = ""

@@ -1,0 +1,630 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoBackground {
+  internal  {
+    frame = "641 309 112 56"
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "913 425 96 64"
+    windows  {
+      window _default {
+        geometry = "129 181 499 199"
+        sizeHint = "499 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = tag_data
+    name = $(DemoDataPath)/Shoulder_Fracture_tags.dcm
+    trueName = "C:/Program Files (x86)/MeVisLab/data/demodata/Shoulder_Fracture_tags.dcm"
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "1057 425 112 64"
+    windows  {
+      window _default {
+        geometry = "129 181 499 199"
+        sizeHint = "499 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = intensity_data
+    name = $(DemoDataPath)/Shoulder_Fracture.dcm
+    trueName = "C:/Program Files (x86)/MeVisLab/data/demodata/Shoulder_Fracture.dcm"
+  }
+  internalFields = ""
+}
+module ChangeLUTColor {
+  internal  {
+    frame = "1253 653 136 56"
+    windows  {
+      window _default {
+        geometry = "354 87 267 100"
+        sizeHint = "267 100"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ChangeLUTColor4
+    visualType = AsInput
+    color = "0.45098 0.313725 1"
+    intensity = 1
+    alpha = 1
+  }
+}
+module LinearLUT {
+  internal  {
+    frame = "397 549 88 56"
+    windows  {
+      window _default {
+        geometry = "29 61 438 222"
+        sizeHint = "438 222"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LinearLUT
+    visualType = RGBA
+    relative = TRUE
+    minIndex = 0
+    maxIndex = 1
+    startColor = "0 0 0"
+    endColor = "1 1 1"
+    startAlpha = 0
+    endAlpha = 0
+    colorInterpolation = RGB
+  }
+}
+module SoMLLUT {
+  internal  {
+    frame = "781 309 88 56"
+  }
+  fields  {
+    instanceName = SoMLLUT
+  }
+}
+module LUTConcat {
+  internal  {
+    frame = "829 549 168 56"
+  }
+  fields  {
+    instanceName = LUTConcat1
+    lut0On = TRUE
+    lut1On = TRUE
+    lut2On = TRUE
+    lut3On = TRUE
+    lut4On = TRUE
+    lut5On = TRUE
+    concatMode = Rows
+  }
+}
+module LUTConcat {
+  internal  {
+    frame = "701 429 168 56"
+  }
+  fields  {
+    instanceName = LUTConcat
+    lut0On = TRUE
+    lut1On = TRUE
+    lut2On = TRUE
+    lut3On = TRUE
+    lut4On = TRUE
+    lut5On = TRUE
+    concatMode = Rows
+  }
+}
+module SoGVRTagVolume {
+  internal  {
+    frame = "901 309 136 56"
+    windows  {
+      window _default {
+        geometry = "204 271 251 119"
+        sizeHint = "251 119"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGVRTagVolume
+    enabled = TRUE
+    filterTagData = TRUE
+    scaleTagDataToLutHeight = FALSE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "877 221 152 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "637 545 104 64"
+    windows  {
+      window _default {
+        geometry = "221 659 463 357"
+        sizeHint = "463 357"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = bone1
+    currentColor = "1 1 1"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0 0, 1276.12 0.0515073 0.0476441 0.0270413, 2495.09 0.854902 0.976471 0.756863, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 1276.12 0.0122699, 2495.09 0.601227, 4095 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.8 0.8 0.8"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4 0.4 0.4"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module ChangeLUTColor {
+  internal  {
+    frame = "1101 653 136 56"
+    windows  {
+      window _default {
+        geometry = "204 271 267 100"
+        sizeHint = "267 100"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ChangeLUTColor3
+    visualType = AsInput
+    color = "0.396078 0.858824 1"
+    intensity = 1
+    alpha = 1
+  }
+}
+module ChangeLUTColor {
+  internal  {
+    frame = "949 653 136 56"
+    windows  {
+      window _default {
+        geometry = "888 145 267 100"
+        sizeHint = "267 100"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ChangeLUTColor2
+    visualType = AsInput
+    color = "1 0.388235 0.219608"
+    intensity = 1
+    alpha = 1
+  }
+}
+module ChangeLUTColor {
+  internal  {
+    frame = "797 653 136 56"
+    windows  {
+      window _default {
+        geometry = "54 91 267 100"
+        sizeHint = "267 100"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ChangeLUTColor1
+    visualType = AsInput
+    color = "0.454902 1 0.415686"
+    intensity = 1
+    alpha = 1
+  }
+}
+module ChangeLUTColor {
+  internal  {
+    frame = "649 653 128 56"
+    windows  {
+      window _default {
+        geometry = "354 87 267 100"
+        sizeHint = "267 100"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ChangeLUTColor
+    visualType = AsInput
+    color = "1 0.733333 0.2"
+    intensity = 1
+    alpha = 1
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "877 737 104 64"
+    windows  {
+      window _default {
+        geometry = "90 690 463 357"
+        sizeHint = "463 357"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = bones
+    currentColor = "1 1 1"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0.027451 0.14902 0.043137, 1095.06 0.231373 0.2 0.058824, 1542.77 0.968627 0.956863 0.933333, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 1095.06 0, 1542.77 1, 4095 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.8 0.8 0.8"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4 0.4 0.4"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "509 545 104 64"
+    windows  {
+      window _default {
+        geometry = "92 798 463 357"
+        sizeHint = "463 357"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = other_bones
+    currentColor = "1 1 1"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0 0, 1371.35 0.0515073 0.0476441 0.0270413, 1857.03 0.980392 0.929412 0.729412, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 1371.35 0, 1857.03 0.834356, 4095 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.8 0.8 0.8"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4 0.4 0.4"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module SoGVRVolRen {
+  internal  {
+    frame = "1065 309 112 56"
+    windows  {
+      window _default {
+        geometry = "277 188 380 568"
+        sizeHint = "380 568"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGVRVolRen
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    on = TRUE
+    autoLoad = TRUE
+    interactiveQuality = 0.5
+    staticQuality = 1
+    interactiveSamplingRate = 1
+    staticSamplingRate = 1
+    renderMode = Illuminated
+    blendMode = Blend
+    octreeNodeSize = NODE_SIZE_32
+    octreeParentComputationMethod = Rank
+    octreeParentComputationRank = 4
+    gradientQuality = GradientQualityAutomatic
+    currentTimePoint = 0
+    maxTimePoint = 0
+    force8bit = TRUE
+    filterVolumeData = FilterLinear
+    filterLut = TRUE
+    enhancementAlphaMix = 0
+    boundaryEnhancement = FALSE
+    boundaryEnhancementFactor = 1.370000005
+    boundaryEnhancementExponent = 0.6000000238
+    boundaryEnhancementGradientBias = 0
+    silhouetteEnhancement = FALSE
+    silhouetteEnhancementExponent = 4
+    silhouetteEnhancementFactor = 2
+    toneShading = FALSE
+    toneShadingWarmColor = "0.266667 0.219608 0.164706"
+    toneShadingColdColor = "0.082353 0.133333 0.32549"
+    toneShadingWarmDiffuse = 0.1230000034
+    toneShadingColdDiffuse = 0.01400000043
+    toneShadingAngle = 45
+    materialAmbient = 0.6029999852
+    materialDiffuse = 1
+    materialSpecular = 1
+    materialSpecularity = 14.89999962
+    light1Enabled = TRUE
+    light1DiffuseIntensity = 1
+    light1SpecularIntensity = 1
+    light1Color = "1 1 1"
+    light1PolarPhi = 45
+    light1PolarRho = 0
+    light2Enabled = FALSE
+    light2DiffuseIntensity = 1
+    light2SpecularIntensity = 1
+    light2Color = "1 1 1"
+    light2PolarPhi = 0
+    light2PolarRho = 0
+    light3Enabled = FALSE
+    light3DiffuseIntensity = 1
+    light3SpecularIntensity = 1
+    light3Color = "1 1 1"
+    light3PolarPhi = -45
+    light3PolarRho = 0
+    check3DTextureSupport = TRUE
+    subVolumeStartX = 0
+    subVolumeStartY = 0
+    subVolumeStartZ = 0
+    subVolumeEndX = 131
+    subVolumeEndY = 94
+    subVolumeEndZ = 166
+    selectionAlphaThreshold = 0.200000003
+    selectedPoint1 = "-1 -1 -1"
+    selectedWorldPoint1 = "-1 -1 -1"
+    selectionActive = FALSE
+    zbuffer = TRUE
+    permitClipping = TRUE
+    useWorldCoords = TRUE
+    greyCenter = 0.5
+    greyWidth = 0.5
+    greyInvert = FALSE
+    alphaCenter = 0.5
+    alphaWidth = 0.5
+    alphaInvert = FALSE
+    colorFactor = "1 1 1"
+    alphaFactor = 1
+    sizeOutputX = 131
+    sizeOutputY = 94
+    sizeOutputZ = 166
+    useImageCacheFile = FALSE
+    imageCacheFilename = ""
+    incrementalUpdate = TRUE
+    highQualityStaticUpdate = FALSE
+    staticRenderingAfterInteractionOnly = FALSE
+    adaptQualityToWindowSize = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "885 133 136 56"
+    windows  {
+      window _viewer {
+        geometry = "764 256 476 524"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "232 418 511 367"
+        sizeHint = "511 367"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "204 271 537 445"
+        sizeHint = "537 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.200000003
+    position = "563.782 -476.321 174.717"
+    orientation = "-0.655272 -0.12992 -0.744137 4.47407"
+    nearDistance = 548.5540161
+    farDistance = 726.0239868
+    focalDistance = 637.2000122
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+connections  {
+  ChangeLUTColor4.inLUT = bones.outLUT
+  SoMLLUT.inLUT = LUTConcat.outLUT
+  LUTConcat1.inLUT0 = ChangeLUTColor.outLUT
+  LUTConcat1.inLUT1 = ChangeLUTColor1.outLUT
+  LUTConcat1.inLUT2 = ChangeLUTColor2.outLUT
+  LUTConcat1.inLUT3 = ChangeLUTColor3.outLUT
+  LUTConcat1.inLUT4 = ChangeLUTColor4.outLUT
+  LUTConcat.inLUT0 = LinearLUT.outLUT
+  LUTConcat.inLUT1 = other_bones.outLUT
+  LUTConcat.inLUT2 = bone1.outLUT
+  LUTConcat.inLUT3 = LUTConcat1.outLUT
+  SoGVRTagVolume.image = tag_data.outImage
+  SoSeparator.children = "SoBackground.self SoMLLUT.self SoGVRTagVolume.self SoGVRVolRen.self"
+  ChangeLUTColor3.inLUT = bones.outLUT
+  ChangeLUTColor2.inLUT = bones.outLUT
+  ChangeLUTColor1.inLUT = bones.outLUT
+  ChangeLUTColor.inLUT = bones.outLUT
+  SoGVRVolRen.image = intensity_data.outImage
+  SoExaminerViewer.children = SoSeparator.self
+}

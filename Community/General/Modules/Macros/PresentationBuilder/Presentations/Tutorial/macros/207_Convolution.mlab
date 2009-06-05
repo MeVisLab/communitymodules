@@ -1,0 +1,142 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module KernelEditor {
+  internal  {
+    frame = "605 -899 104 56"
+    windows  {
+      window _default {
+        geometry = "74 135 407 802"
+        sizeHint = "407 802"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = KernelEditor
+    kernelX = 3
+    kernelY = 3
+    kernelZ = 1
+    kernelC = 1
+    kernelT = 1
+    kernelU = 1
+    fieldWidth = 6
+    precision = 3
+    value = 1
+    numElements = 9
+    elementSum = 1
+    status = "#Elems=9, Sum=1.000000, 2 Undos, 0 Redos"
+    kernel = "(*,0,0,0,0,0):   0.000, 0.000, 0.000
+(*,1,0,0,0,0):   0.000, 1.000, 0.000
+(*,2,0,0,0,0):   0.000, 0.000, 0.000
+
+"
+  }
+}
+module SynchroView2D {
+  internal  {
+    frame = "405 -1003 120 56"
+    windows  {
+      window _default {
+        geometry = "181 661 804 519"
+        sizeHint = "804 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "577 682 481 140"
+        sizeHint = "481 140"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D
+    leftInventorInputOn = FALSE
+    rightInventorInputOn = FALSE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = FALSE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 0
+    slice2 = 0
+    lut1w = 3038
+    lut1c = 1272
+    lut2w = 3038
+    lut2c = 1272
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.9 0.9 0.9"
+    drawCurrentPos = TRUE
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "417 -819 96 56"
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab/data/demodata/Bone.tiff"
+  }
+  internalFields = ""
+}
+module Convolution {
+  internal  {
+    frame = "441 -899 96 56"
+    windows  {
+      window _default {
+        geometry = "913 362 304 179"
+        sizeHint = "304 179"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Convolution
+    borderHandling = PadDstFill
+    fillValue = 2000
+    referenceExtentMode = Overlap
+    intervalMinOfFilteredVoxels = 0
+    intervalMaxOfFilteredVoxels = 1024
+    useIntervalOfFilteredVoxels = FALSE
+    externalKernel = "(*,0,0,0,0,0):   0.000, 0.000, 0.000
+(*,1,0,0,0,0):   0.000, 1.000, 0.000
+(*,2,0,0,0,0):   0.000, 0.000, 0.000
+
+"
+    kernelInfo = "9 elems, 3x3x1x1x1x1"
+    kernelOutput = "(0,0,0,0,0,0):0.062500
+(1,0,0,0,0,0):0.125000
+(2,0,0,0,0,0):0.062500
+(0,1,0,0,0,0):0.125000
+(1,1,0,0,0,0):0.250000
+(2,1,0,0,0,0):0.125000
+(0,2,0,0,0,0):0.062500
+(1,2,0,0,0,0):0.125000
+(2,2,0,0,0,0):0.062500
+"
+    predefKernel = "3x3 Gauss Kernel"
+  }
+}
+connections  {
+  SynchroView2D.inImage1 = LocalImage.outImage
+  SynchroView2D.inImage2 = Convolution.output0
+  Convolution.input0 = LocalImage.outImage
+  Convolution.externalKernel = KernelEditor.kernel
+}

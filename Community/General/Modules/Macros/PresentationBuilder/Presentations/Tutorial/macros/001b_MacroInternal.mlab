@@ -1,0 +1,138 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "481 145 96 64"
+  }
+  fields  {
+    instanceName = group
+  }
+}
+module ContourManager {
+  internal  {
+    frame = "409 417 128 64"
+  }
+  fields  {
+    instanceName = cm
+    fill = TRUE
+    fillAdditive = FALSE
+    fillNotAdditiveInclContours = FALSE
+    fillLines3D = FALSE
+    keepContours = FALSE
+    ignoreMatrix = FALSE
+    filename = "C:\\WINNT\\Profiles\\andrea\\Desktop\\Contour.cnt"
+    ignoreTimePointForLoading = FALSE
+    ignoreImageSizeForLoading = FALSE
+    colorCurrent = "0.116896 0.234863 0.96"
+    colorFillCurrent = "0.16 0.33 0.96"
+    colorFillCurrentAlpha = 0.5
+    colorContour = "0.111017 0.536165 0.96"
+    colorFill = "0.111017 0.536165 0.96"
+    colorFillAlpha = 0.3008219898
+    colorSeeds = "0.123188 0.912349 0.96"
+    colorLastPath = "0.96 0 0.011905"
+    contourWidthAuto = TRUE
+    contourWidth = 1
+    bigSeeds = TRUE
+    drawSeeds = TRUE
+    label = unknown
+    drawLabelToContour = FALSE
+    labelFontSize = 16
+    labelDistanceX = 2
+    labelDistanceY = -2
+    creator = LiveWire
+    creatorIdx = 0
+    group = 0
+    defaultGroup = 0
+    numberOfGroups = 0
+    setUniqueGroup = FALSE
+    groupIndexForMask = 0
+    setGroupIndexForMask = FALSE
+    useGroupForPalette = FALSE
+    groupToSearchFor = 0
+    sliceOfGroup = 0
+    timePointOfGroup = 0
+    emphasizeCurrentContourWithPalette = FALSE
+    actionMode = "New Contour"
+    interpolCounter = 1
+    seedDistanceMin = 8
+    interpolateOnlyOpenLines = TRUE
+    closeInterpolatedLines = FALSE
+    checkLineDirection = TRUE
+    clockwise = FALSE
+    drawBezier = FALSE
+    piecewise = FALSE
+    bezierError = 60.3076
+    setBackgrdToZero = TRUE
+    useShiftForSelection = FALSE
+    currentContourIndex = -1
+    numberOfContours = 0
+    localGlobalCurrent = TRUE
+    currentContourIndexGlobal = -1
+    numberOfContoursGlobal = 0
+    sliceOfCurrentGlobal = 0
+    sizeOfReticle = 3
+    ignoreTimePoint = TRUE
+  }
+}
+module LiveWire {
+  internal  {
+    frame = "581 377 104 64"
+  }
+  fields  {
+    instanceName = lw
+    clockwise = FALSE
+    doubleClick = FALSE
+    allowB3Closing = TRUE
+    imageMax = 4095
+    costDirection = Minimum
+    computeAuto = TRUE
+    fixedCost = "Liver*"
+    weight0 = 1
+    transform0 = Linear
+    mean0 = 2200
+    deviation0 = 300
+    weight1 = 1
+    transform1 = Linear
+    mean1 = 1800
+    deviation1 = 600
+    weight2 = 0
+    transform2 = Linear
+    mean2 = 1
+    deviation2 = 1
+    weight3 = 0
+    transform3 = Linear
+    mean3 = 1
+    deviation3 = 1
+    weight4 = 0
+    transform4 = Linear
+    mean4 = 1
+    deviation4 = 1
+    weight5 = 0
+    transform5 = Linear
+    mean5 = 1
+    deviation5 = 1
+    weight6 = 0.8000000119
+    transform6 = Linear
+    mean6 = 500
+    deviation6 = 300
+    weight7 = 0
+    transform7 = Linear
+    mean7 = 1
+    deviation7 = 1
+    weight8 = 0
+    transform8 = Linear
+    mean8 = 1
+    deviation8 = 1
+    weight9 = 0
+    transform9 = Linear
+    mean9 = 1
+    deviation9 = 1
+  }
+}
+connections  {
+  group.children = "cm.outputInv lw.outputInv"
+  lw.inputBaseContourManager = cm.outputBaseThis
+}

@@ -1,0 +1,5 @@
+
+HEADER = MeVisLab Tutorial
+FOOTER = Bart De Dobbelaer
+STYLE = UZ
+MODULE = Tutorial

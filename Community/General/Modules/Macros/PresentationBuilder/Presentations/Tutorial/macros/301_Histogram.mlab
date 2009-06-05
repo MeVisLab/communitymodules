@@ -1,0 +1,387 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalImage {
+  internal  {
+    frame = "769 93 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = D:/MeVisLab/Packages/MIC/Macros/Modules/Macros/PresentationBuilder/Presentations/Tutorial/data/Bone.tiff
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module Diagram2D {
+  internal  {
+    frame = "745 -339 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "680 208 483 554"
+        sizeHint = "483 554"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 600
+    maxX = 1600
+    autoRangeX = FALSE
+    minY = 0
+    maxY = 1172
+    autoRangeY = TRUE
+    axisColor = "1 1 1"
+    axisRotation = LeftBottom
+    drawDiagramTitle = FALSE
+    diagramTitleString = ""
+    borderH = 39
+    autoBorderH = TRUE
+    borderV = 25
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn]"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 1 1"
+    lineStyle = Solid
+    markerType = None
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = 1013.573303
+    mousePosY = 1013.573303
+    mousePosValid = FALSE
+    curveSelection = Curve
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = TRUE
+  }
+}
+module Histogram {
+  internal  {
+    frame = "773 -75 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "804 305 430 271"
+        sizeHint = "430 271"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Histogram
+    useMask = TRUE
+    xRange = "Static Min/Max"
+    maskMode = Weights
+    curveType = Line
+    curveStyle = 0
+    updateMode = AutoUpdate
+    upToDate = TRUE
+    status = "Histogram(s) up-to-date"
+    useStepFunction = FALSE
+    useBinSizeOneRepresentation = TRUE
+    useBackgroundValue = FALSE
+    backgroundValue = 0
+    binSize = 1
+    progress = 1
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "737 -411 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "1459 127 704 522"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "498 466 290 109"
+        sizeHint = "290 109"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.3882350027561188 0.3882350027561188 0.3882350027561188"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 15
+    frameRateAvi = 7
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module SmoothHistogram {
+  internal  {
+    frame = "689 -163 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SmoothHistogram
+    numOfIterations = 100
+    edge = 7
+    stepSize = 0.1000000015
+    useStepFunction = FALSE
+    diffFun = Linear
+  }
+}
+module ConcatenateCurves {
+  internal  {
+    frame = "785 -255 144 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = CatCurves
+    enable1 = TRUE
+    enable2 = TRUE
+    enable3 = TRUE
+    enable4 = TRUE
+  }
+}
+module StylePalette {
+  internal  {
+    frame = "681 -243 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "602 158 619 464"
+        sizeHint = "619 464"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StylePalette
+    color1 = "1 1 0.498039215686275"
+    color2 = "1 0 0"
+    color3 = "0 0 1"
+    color4 = "0 1 0"
+    color5 = "1 0.5 0"
+    color6 = "1 0 1"
+    color7 = "0 1 1"
+    color8 = "0.5 1 0.5"
+    color9 = "1 0 0.5"
+    color10 = "0.5 1 0"
+    color11 = "0.5 0 1"
+    color12 = "0 1 0.5"
+    lineStyle1 = Solid
+    lineStyle2 = Solid
+    lineStyle3 = None
+    lineStyle4 = Solid
+    lineStyle5 = Solid
+    lineStyle6 = Solid
+    lineStyle7 = Solid
+    lineStyle8 = Solid
+    lineStyle9 = Solid
+    lineStyle10 = Solid
+    lineStyle11 = Solid
+    lineStyle12 = Solid
+    lineWidth1 = 1
+    lineWidth2 = 2
+    lineWidth3 = 2
+    lineWidth4 = 1
+    lineWidth5 = 1
+    lineWidth6 = 1
+    lineWidth7 = 1
+    lineWidth8 = 1
+    lineWidth9 = 1
+    lineWidth10 = 1
+    lineWidth11 = 1
+    lineWidth12 = 1
+    markerType1 = None
+    markerType2 = None
+    markerType3 = Triangle
+    markerType4 = None
+    markerType5 = None
+    markerType6 = None
+    markerType7 = None
+    markerType8 = None
+    markerType9 = None
+    markerType10 = None
+    markerType11 = None
+    markerType12 = None
+    markerSize1 = 10
+    markerSize2 = 10
+    markerSize3 = 15
+    markerSize4 = 10
+    markerSize5 = 10
+    markerSize6 = 10
+    markerSize7 = 10
+    markerSize8 = 10
+    markerSize9 = 10
+    markerSize10 = 10
+    markerSize11 = 10
+    markerSize12 = 10
+    antiAlias1 = FALSE
+    antiAlias2 = FALSE
+    antiAlias3 = FALSE
+    antiAlias4 = FALSE
+    antiAlias5 = FALSE
+    antiAlias6 = FALSE
+    antiAlias7 = FALSE
+    antiAlias8 = FALSE
+    antiAlias9 = FALSE
+    antiAlias10 = FALSE
+    antiAlias11 = FALSE
+    antiAlias12 = FALSE
+    name1 = ""
+    name2 = ""
+    name3 = ""
+    name4 = ""
+    name5 = ""
+    name6 = ""
+    name7 = ""
+    name8 = ""
+    name9 = ""
+    name10 = ""
+    name11 = ""
+    name12 = ""
+    currentStyle = 0
+    currentColor = "1 1 1"
+    currentLineStyle = None
+    currentLineWidth = 1
+    currentMarkerType = None
+    currentMarkerSize = 4
+    currentAntiAlias = FALSE
+    currentName = ""
+    reservedEntries = 0
+  }
+}
+module IntervalThresh {
+  internal  {
+    frame = "841 5 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "856 378 373 367"
+        sizeHint = "373 367"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IntervalThresh
+    lowerType = UserDef
+    innerType = UserDef
+    upperType = UserDef
+    imageMin = 0
+    imageMax = 4095
+    imageRange = 4095
+    threshCenter = 1100
+    threshWidth = 1000
+    threshMin = 600
+    threshMax = 1600
+    lowerUserValue = 0
+    innerUserValue = 1
+    upperUserValue = 0
+    changeMinMax = FALSE
+    changedMin = 0
+    changedMax = 4095
+  }
+}
+module HistogramPeakEstimate {
+  internal  {
+    frame = "833 -163 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 406 329 300"
+        sizeHint = "257 300"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = HistogramPeakEstimate
+    numOfIterations = 100
+    stepSize = 1
+    minHeight = 0
+    minSlope = 0
+    distForSlope = 1
+    numOfPeaks = 3
+    peakPos1 = 710
+    peakPos2 = 972
+    peakPos3 = 1172
+    peakPos4 = -1
+    peakPos5 = -1
+    peakPos6 = -1
+    peakPos7 = -1
+    peakPos8 = -1
+    peakPos9 = -1
+    peakPos10 = -1
+    minPeakPos = 710
+    maxPeakPos = 1172
+  }
+}
+connections  {
+  Diagram2D.inStylePalette = StylePalette.outStylePalette
+  Diagram2D.inCurveList = CatCurves.outCurveList
+  Diagram2D.minX = IntervalThresh.threshMin
+  Diagram2D.maxX = IntervalThresh.threshMax
+  Histogram.input0 = LocalImage.outImage
+  Histogram.input1 = IntervalThresh.output0
+  SoRenderArea.children = Diagram2D.outNode
+  SmoothHistogram.inHistogram = Histogram.outputHistogram
+  CatCurves.inCurve1 = Histogram.outputHistogramCurve
+  CatCurves.inCurve2 = SmoothHistogram.outHistogramCurve
+  CatCurves.inCurve3 = HistogramPeakEstimate.outPeakPositions
+  IntervalThresh.input0 = LocalImage.outImage
+  HistogramPeakEstimate.inHistogram = Histogram.outputHistogram
+}
+networkModel = ""

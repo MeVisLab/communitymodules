@@ -1,0 +1,117 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalImage {
+  internal  {
+    frame = "225 -587 96 56"
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+  }
+  internalFields = ""
+}
+module Mask {
+  internal  {
+    frame = "241 -779 80 56"
+    windows  {
+      window _default {
+        geometry = "768 267 366 89"
+        sizeHint = "366 89"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Mask
+    mode = Original
+    blending = 0.5
+    background = 0
+  }
+}
+module Threshold {
+  internal  {
+    frame = "293 -691 88 56"
+    windows  {
+      window _default {
+        geometry = "918 532 273 94"
+        sizeHint = "273 94"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold
+    threshold = 1200
+    minValue = 0
+    maxValue = 4095
+    relativeThreshold = FALSE
+  }
+}
+module View2D {
+  internal  {
+    frame = "241 -867 80 56"
+    windows  {
+      window _default {
+        geometry = "47 136 509 490"
+        sizeHint = "200 200"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.9 0.9 0.9"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+  }
+  internalFields = ""
+}
+connections  {
+  Mask.input0 = LocalImage.outImage
+  Mask.input1 = Threshold.output0
+  Threshold.input0 = LocalImage.outImage
+  View2D.inImage = Mask.output0
+}

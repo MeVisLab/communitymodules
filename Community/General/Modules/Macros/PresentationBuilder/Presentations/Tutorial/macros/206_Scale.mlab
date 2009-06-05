@@ -1,0 +1,115 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalImage {
+  internal  {
+    frame = "-839 -1227 96 56"
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+  }
+  internalFields = ""
+}
+module Info {
+  internal  {
+    frame = "-867 -1451 56 56"
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = MLOk
+    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
+    memoryImage2 = "handled by host"
+    moduleName = Scale
+    connectionValid = TRUE
+    dataValid = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "-799 -1451 80 56"
+    windows  {
+      window _default {
+        geometry = "761 201 476 462"
+        sizeHint = "200 200"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 5
+    lutWidth = 10
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.9 0.9 0.9"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+  }
+  internalFields = ""
+}
+module Scale {
+  internal  {
+    frame = "-823 -1331 64 56"
+    windows  {
+      window _default {
+        geometry = "152 276 394 226"
+        sizeHint = "394 226"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale
+    inputMin = 0
+    inputMax = 4095
+    updateMode = AutoUpdateMinMaxOn
+    useTrueRange = FALSE
+    typeSelect = Automatic
+    outputMin = 0
+    outputMax = 10
+    outputType = float
+  }
+}
+connections  {
+  Info.input0 = Scale.output0
+  View2D.inImage = Scale.output0
+  Scale.input0 = LocalImage.outImage
+}

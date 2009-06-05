@@ -1,0 +1,646 @@
+
+CONTENT = 
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    alignX = Center
+    alignY = Center
+    Image {
+      image = $(LOCAL)/data/MeVisLabSplash.png
+    }
+    MoviePlayer {
+      filename = $(LOCAL)/data/rotatingBrainAtlas.avi
+      showControls = NO
+      w = 370
+      h = 372
+    }
+  }
+  
+////////////////////////////////////////////////////////////
+
+NAME = Introduction
+CONTENT =
+  SEPARATOR = Introduction
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = MeVisLab
+  BULLETSUB = Developed by MeVis research, Bremen, Germany
+  BULLETSUB = Rapid Development Environment  
+  BULLETSUB = Medical Image Processing and Visualization
+  BULLETSUB = Current Version 1.5 (Windows, Linux, MacOS)
+  PUSHUP
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    alignX = Center
+    alignY = Center
+    Image {
+      image = $(LOCAL)/data/screen1.jpg
+      w = 290
+      h = 226
+    }
+    Image {
+      image = $(LOCAL)/data/screen3.jpg
+      w = 303 
+      h = 226
+    }
+  }
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    alignX = Center
+    alignY = Center
+    Image {
+      image = $(LOCAL)/data/screen4.jpg
+      w = 258
+      h = 258
+    }
+    Image {
+      image = $(LOCAL)/data/screen2.jpg
+      w = 333 
+      h = 258
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Rapid Development Environment?
+  BULLET = Rapid due to huge library of building blocks
+  BULLET = Building blocks act as black boxes
+  BULLET = MeVisLab Building Blocks (200+)
+  BULLETSUB = File handling: DICOM, Analyze, ...
+  BULLETSUB = Image filtering: diffusion, morphology, ...
+  BULLETSUB = Segmentation: region growing, livewire, ...
+  BULLETSUB = Analysis: histogram, calcvolume, statistics, ...
+  BULLETSUB = Visualization: volume rendering, slice viewer, ...
+  BULLET = Additional Building Blocks
+  BULLETSUB = ITK (300+)
+  BULLETSUB = VTK (1000+)
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = MeVisLab Development
+  BULLETSUB = Visual programming (network design)
+  BULLETSUB = Combine building blocks together to form networks
+  BULLETSUB = Easy extendable with new blocks/applications
+  BULLET = Different development layers
+  BULLETSUB = Modules in C++
+  BULLETSUB = Wizards generate source files for new modules
+  BULLETSUB = Macro modules and networks with scripting
+  BULLETSUB = MDL, Module Definition Language (static)
+  BULLETSUB = JavaScript and Python as scripting languages
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = MeVisLab Environment
+  Image {
+    alignX = Center
+    alignY = Center
+    image = $(LOCAL)/data/ide.png
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT=
+  BULLET = Not only Rapid Development Environment
+  BULLET = ADK, Application Development Kit
+  BULLETSUB = Possible to create standalone programs
+  BULLETSUB = Standalone, no MeVisLab required
+  BULLETSUB = Professional application (installer, license)
+  BULLETSUB = Also batch job applications
+  BULLET = Example splash screen
+  PUSHUP
+  Image {
+    alignX = Center
+    alignY = Center
+    image = $(LOCAL)/data/OverLayViewer.png
+  }
+
+////////////////////////////////////////////////////////////
+
+NAME = Quick Start
+CONTENT =
+  SEPARATOR = Quick Start
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = First Network
+  Horizontal {
+    expandX = YES expandY = YES
+    NETWORK = 000_FirstNetwork
+    PANEL = 000_FirstNetwork.View2D
+  }
+  
+////////////////////////////////////////////////////////////
+  
+CONTENT =
+  BULLET = Module types
+  BULLETSUB = ML (blue), Inventor (green), Macro (purple)
+  BULLET = Macro modules
+  BULLETSUB = Network of modules
+  BULLETSUB = Example: internal network of LiveWireMacro
+  Horizontal {
+    expandX = YES expandY = YES
+    NETWORK = 001_Modules
+    NETWORK = 001b_MacroInternal
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Module connections (drag and drop)
+  BULLETSUB = ML (blue), Inventor (green), Objects (brown)
+  BULLETSUB = Fields (black)
+  BULLETSUB = Invalid (Red)
+  Vertical { 
+    expandY = YES
+    NETWORK = 002_ModuleConnections
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Module interfaces
+  BULLET = Left: automatic panel
+  BULLETSUB = Created in C++ (inputs, outputs and parameters)
+  BULLET = Right: GUI panel (default on double click)
+  BULLETSUB = Created in MDL
+  BULLETSUB = Automatic conversion of fields to GUI elements
+  PUSHUP
+  Horizontal {
+    expandX = YES expandY = YES
+    alignX = Center alignY = Center
+    Image {
+      alignX = Center
+      alignY = Center
+      image = $(LOCAL)/data/autoPanel.png
+    }
+    Image {
+      alignX = Center
+      alignY = Center
+      image = $(LOCAL)/data/GUIPanel.png
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = Module parameters = Fields  
+  NETWORKHIDDEN = 004_ModuleFields
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    Horizontal {
+      expandX = YES
+      expandY = YES
+      VIEWER = 004_ModuleFields.SoExaminerViewer.self
+    }
+    PANEL = 004_ModuleFields.SoWEMRenderer
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = Field connections (drag and drop)
+  Horizontal {
+    expandX = YES expandY = YES
+    NETWORKHIDDEN = 005_FieldConnections
+    Vertical {
+      expandX = YES expandY = YES
+      VIEWER  = 005_FieldConnections.SoExaminerViewer.self
+      PANEL = 005_FieldConnections.SoWEMRenderer
+    }
+    Vertical {
+      expandX = YES expandY = YES
+      VIEWER  = 005_FieldConnections.SoExaminerViewer1.self
+      PANEL = 005_FieldConnections.SoWEMRenderer1
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+NAME = Viewers
+CONTENT =
+  SEPARATOR = Viewers
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = View2D, the basic 2D viewer
+  Horizontal {
+    expandX = YES expandY = YES
+    NETWORK = 101_FirstNetwork
+    PANEL = 101_FirstNetwork.View2D
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = View2D, not so basic ...
+  BULLETSUB = SoView2D: draws the image data
+  BULLETSUB = Extensions control viewer behaviour
+  Splitter {
+    expandX = YES
+    expandY = YES
+    direction = Horizontal
+    NETWORK = 102_View2D
+    RENDERAREA = 102_View2D.SoRenderArea.self
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = SoOrthoView2D
+  BULLETSUB = Orthogonal reformat (Axial, Sagittal and Coronal)
+  Horizontal {
+    expandX = YES expandY = YES
+    NETWORK = 103_OrthoView2D
+    RENDERAREA = 103_OrthoView2D.SoRenderArea.self
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  BULLET = SoView2DOverlay
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 104_Overlay
+    PANEL = 104_Overlay.View2D
+    Vertical {
+      alignX = Left
+      alignY = Top
+      Field 104_Overlay.Threshold.threshold { title = "Threshold:" slider = YES }
+      Field 104_Overlay.SoView2DOverlay.baseColor { title = "Color:" }
+      Field 104_Overlay.SoView2DOverlay.alphaFactor { title = "Alpha:" slider = YES }
+    }      
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = View3D, the basic 3D viewer
+  NETWORKHIDDEN = 105_View3D
+  VIEWER = 105_View3D.SoExaminerViewer.self
+
+////////////////////////////////////////////////////////////
+
+NAME = Miscellaneous
+CONTENT = 
+  SEPARATOR = Miscellaneous
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Loading images
+  BULLET = Dimensions 6D
+  BULLETSUB = X,Y,Z, Color, Time, Unit
+  BULLET = Pages
+  BULLETSUB = Memory caching
+  BULLETSUB = Parallel computing
+  PUSHUP
+  Horizontal {
+    alignX = Center
+    NETWORKHIDDEN = 201_LocalImageInfo
+    PANEL = 201_LocalImageInfo.LocalImage.ImgLoad
+    Empty { expandX = YES }
+    Panel {
+      module = 201_LocalImageInfo.Info
+    }
+  }  
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Importing DICOM images
+  BULLETSUB = Single DICOM slices from scanners
+  BULLETSUB = Convert to MeVisLab image data format
+  BULLETSUB = Automatic sorting on Patient name, Dataset, etc
+  BULLET = Saving images
+  BULLETSUB = Various file formats
+  BULLETSUB = Analyze (.hdr/.img)
+  BULLETSUB = DICOM (.dcm/.tiff)
+  BULLETSUB = Raw data (.raw)
+  BULLETSUB = Jpg, png, bmp, ...
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = ImgPropConvert
+  BULLETSUB = Changing image properties 
+  BULLETSUB = datatype, min/max, voxel size, ...
+  PUSHUP
+  Horizontal {
+    expandX = YES expandY = YES
+    NETWORKHIDDEN = 205_ImgPropConvert
+    Vertical {
+      alignX = Left
+      alignY = Top
+      PANEL = 205_ImgPropConvert.ImgPropConvert
+    }
+    PANEL = 205_ImgPropConvert.View2D
+  }  
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Scale
+  BULLETSUB = Changing datatype  <> changing min/max/values
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 206_Scale
+    PANEL = 206_Scale.View2D
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 206_Scale.Scale.inputMin { title = "Input Minimum:" edit = NO }
+      Field 206_Scale.Scale.inputMax { title = "Input Maximum:" edit = NO }
+      Field 206_Scale.Scale.useTrueRange { title = "Use True Range:" }
+      Field 206_Scale.Scale.outputMin { title = "Output Minimum:" }
+      Field 206_Scale.Scale.outputMax { title = "Output Maximum:" }
+      Field 206_Scale.Scale.outputType { title = "Output Data Type:" edit = NO }
+    }
+  }  
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Convolution
+  BULLETSUB = Kernel operations (Gauss, Laplace, Sobel, ...)
+  NETWORKHIDDEN = 207_Convolution
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    PANEL = 207_Convolution.SynchroView2D
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 207_Convolution.Convolution.predefKernel { title = "Kernel:" }
+      Field 207_Convolution.Convolution.borderHandling { title = "BorderHandling:" }
+      TextView 207_Convolution.KernelEditor.kernel { title = "Kernel:" }
+    }
+  }  
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Subimage
+  NETWORKHIDDEN = 211_Subimage
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    PANEL = 211_Subimage.View2D
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 211_Subimage.Subimage.fullSize { title = "Full Size:" }
+      Horizontal {
+        Field 211_Subimage.Subimage.x { title = "Start X:" }
+        Field 211_Subimage.Subimage.sx { title = "Size X:" }
+      }
+      Horizontal {
+        Field 211_Subimage.Subimage.y { title = "Start Y:" }
+        Field 211_Subimage.Subimage.sy { title = "Size Y:" }
+      }
+      Horizontal {
+        Field 211_Subimage.Subimage.z { title = "Start Z:" }
+        Field 211_Subimage.Subimage.sz { title = "Size Z:" }
+      }
+      Horizontal {
+        Field 211_Subimage.Subimage.t { title = "Start T:" }
+        Field 211_Subimage.Subimage.st { title = "Size T:" }
+      }
+    }
+  }  
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Mask
+  NETWORKHIDDEN = 212_Mask
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    PANEL = 212_Mask.View2D
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 212_Mask.Threshold.threshold { title = "Threshold:" slider = YES }
+      Field 212_Mask.Mask.mode { title = "Mode:" }
+      Field 212_Mask.Mask.blending { title = "Blending:" slider = YES }
+    }
+  }
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = Histogram
+  NETWORKHIDDEN = 301_Histogram
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    RENDERAREA = 301_Histogram.SoRenderArea.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 301_Histogram.IntervalThresh.threshMin { title = "Min:" slider = YES }
+      Field 301_Histogram.IntervalThresh.threshMax { title = "Max:" slider = YES }
+    }
+  }
+  
+////////////////////////////////////////////////////////////
+
+NAME = Interaction
+CONTENT = 
+  SEPARATOR = Interaction
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = SoView2DMarkerEditor
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 401_MarkerEditor
+    RENDERAREA = 401_MarkerEditor.View2D.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 401_MarkerEditor.SoView2DMarkerEditor.editorMode { title = "Editor Mode:" }
+      Field 401_MarkerEditor.SoView2DMarkerEditor.drawMode { title = "Draw Mode:" }
+      Field 401_MarkerEditor.SoView2DMarkerEditor.textMode { title = "Text Mode:" }
+      Field 401_MarkerEditor.SoView2DMarkerEditor.vectorArrow { title = "Vector Draw Mode:" }
+      Field 401_MarkerEditor.SoView2DMarkerEditor.currentType { title = "Current Type:" }
+      
+      Field 401_MarkerEditor.StylePalette.lineStyle1 { title = "Line Style:" }
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = RegionGrowing
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 401b_RegionGrowing
+    RENDERAREA = 401b_RegionGrowing.View2D.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 401b_RegionGrowing.SoView2DOverlay.blendMode { title = "Blend Mode:" }
+      Field 401b_RegionGrowing.SoView2DOverlay.alphaFactor { title = "Alpha Factor:" slider = YES }
+      Field 401b_RegionGrowing.SoView2DOverlay.baseColor { title = "Base Color:" }
+      Field 401b_RegionGrowing.RegionGrowing.basicNeighborhoodType { title = "Neighborhood:" }
+      Field 401b_RegionGrowing.RegionGrowing.intervalSize { title = "Interval size (%):" slider = YES }
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = CSOEditor
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 402_CSOEditor
+    RENDERAREA = 402_CSOEditor.View2D.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 402_CSOEditor.BaseSwitch.currentInput { title = "Processor: " }
+      Field 402_CSOEditor.CSOFreehandProcessor.creationMode { title = "Creation Mode:" dependsOn = "* 402_CSOEditor.BaseSwitch.currentInput == "0" *" }
+      Field 402_CSOEditor.CSOFreehandProcessor.finishingDistance { title = "Finishing Distance:" dependsOn = "* 402_CSOEditor.BaseSwitch.currentInput == "0" *" }
+      Field 402_CSOEditor.CSOBulgeProcessor.influenceRange { title = "Influence Range:" dependsOn = "* 402_CSOEditor.BaseSwitch.currentInput == "1" *" }
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = CSOInterpolate
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 403_CSOInterpolate
+    RENDERAREA = 403_CSOInterpolate.View2D.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Button 403_CSOInterpolate.CSOInterpolate.apply { title = "Apply" }
+      Field 403_CSOInterpolate.SoToggle.on { title = "Show Overlay:" }
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+NAME = Rendering
+CONTENT =
+  SEPARATOR = Rendering
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = SoWEMRenderer
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 601_WEMIsoSurface
+    VIEWER = 601_WEMIsoSurface.SoExaminerViewer.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Field 601_WEMIsoSurface.BaseSwitch.currentInput { title = "Current Input:" }
+      Field 601_WEMIsoSurface.WEMIsoSurface.isoMinValue { title = "Iso Min. Value:" }
+      Field 601_WEMIsoSurface.SoWEMRenderer.drawEdges { title = "Draw Edges:" }
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = SoLUTEditor
+  BULLETSUB = Lookup tables based on image values
+  BULLETSUB = Dynamic color maps
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 602_SoLUTEditor
+    TabView {
+      expandX = YES
+      expandY = YES
+      TabViewItem "2D" {
+        expandX = YES
+        expandY = YES
+        PANEL = 602_SoLUTEditor.View2D   
+      }
+      TabViewItem "3D" {
+        expandX = YES
+        expandY = YES
+        VIEWER = 602_SoLUTEditor.SoExaminerViewer.self
+      }
+    }
+    Panel {
+      alignY = Top
+      module = 602_SoLUTEditor.SoLUTEditor
+      panel = editor
+    }
+  }
+  
+////////////////////////////////////////////////////////////
+
+CONTENT =
+  BULLET = View3D (per) Tag Shaders
+  Horizontal {
+    expandX = YES
+    expandY = YES
+    NETWORKHIDDEN = 605_SoGVRTagVolume
+    VIEWER = 605_SoGVRTagVolume.SoExaminerViewer.self
+    Vertical {
+      alignX = Right
+      alignY = Top
+      Horizontal {
+        Field 605_SoGVRTagVolume.ChangeLUTColor.color { title = "Color:" }
+        Field 605_SoGVRTagVolume.ChangeLUTColor.intensity { title = "Intentsity:" slider=YES }
+        Field 605_SoGVRTagVolume.ChangeLUTColor.alpha { title = "Alpha:" slider = YES }
+      }
+      Horizontal {
+        Field 605_SoGVRTagVolume.ChangeLUTColor1.color { title = "Color:" }
+        Field 605_SoGVRTagVolume.ChangeLUTColor1.intensity { title = "Intentsity:" slider=YES }
+        Field 605_SoGVRTagVolume.ChangeLUTColor1.alpha { title = "Alpha:" slider = YES }
+      }
+      Horizontal {
+        Field 605_SoGVRTagVolume.ChangeLUTColor2.color { title = "Color:" }
+        Field 605_SoGVRTagVolume.ChangeLUTColor2.intensity { title = "Intentsity:" slider=YES }
+        Field 605_SoGVRTagVolume.ChangeLUTColor2.alpha { title = "Alpha:" slider = YES }
+      }
+      Horizontal {
+        Field 605_SoGVRTagVolume.ChangeLUTColor3.color { title = "Color:" }
+        Field 605_SoGVRTagVolume.ChangeLUTColor3.intensity { title = "Intentsity:" slider=YES }
+        Field 605_SoGVRTagVolume.ChangeLUTColor3.alpha { title = "Alpha:" slider = YES }
+      }
+      Horizontal {
+        Field 605_SoGVRTagVolume.ChangeLUTColor4.color { title = "Color:" }
+        Field 605_SoGVRTagVolume.ChangeLUTColor4.intensity { title = "Intentsity:" slider=YES }
+        Field 605_SoGVRTagVolume.ChangeLUTColor4.alpha { title = "Alpha:" slider = YES }
+      }
+    }
+  }
+  
+////////////////////////////////////////////////////////////

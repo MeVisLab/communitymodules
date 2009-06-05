@@ -1,0 +1,291 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2DPosition {
+  internal  {
+    frame = "453 189 136 56"
+    windows  {
+      window _default {
+        geometry = "721 234 483 576"
+        sizeHint = "483 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DPosition
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 0.666667 0"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "32 36.5874 35.5"
+    firstSliceWorldPosition = "32 36.5874 35.5"
+    blendOnto = 1
+    blendOutside = 0
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.172549 0.886275 0.0117647"
+    axialColor = "0.00784314 0.952941 0.968627"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = FALSE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "457 61 128 56"
+    windows  {
+      window _viewer {
+        geometry = "38 206 695 585"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module View2DExtensions {
+  internal  {
+    frame = "309 189 136 56"
+  }
+  fields  {
+    instanceName = View2DExtensions
+    slicerOn = TRUE
+    zoomOn = TRUE
+    panOn = TRUE
+    autoCenterOn = TRUE
+    position = "5.15521 -57.6365 8.02908"
+    positionMode = Off
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutMouseButton1 = IGNORED
+    lutMouseButton2 = IGNORED
+    lutMouseButton3 = PRESSED
+    lutMouseShift = RELEASED
+    lutMouseCtrl = RELEASED
+    lutRangeMin = 0
+    lutRangeMax = 4095
+    lutAlphaSync = TRUE
+    lutGreyCenter = 921.4000244
+    lutGreyWidth = 1024
+    lutAlphaCenter = 921.4000244
+    lutAlphaWidth = 1024
+    lutColorFactor = "1 1 1"
+    lutAlphaFactor = 1
+    lutAutoDefault = FALSE
+    lutSetInputMinMax = TRUE
+    lutUseTraceColors = FALSE
+    lutEnableNegWidth = FALSE
+    lutSetDefaultOnce = FALSE
+    lutTrCol0 = "1 1 1"
+    lutTrCol1 = "0.501961 0.501961 0.501961"
+    lutTrCol2 = "0.862745 0 0.172549"
+    lutTrCol3 = "1 0.462745 0.490196"
+    lutTrCol4 = "0 0.819608 0.160784"
+    lutTrCol5 = "0.5607839999999999 1 0.435294"
+    lutTrCol6 = "0.184314 0.239216 0.929412"
+    lutTrCol7 = "0.490196 0.541176 1"
+    lutTrCol8 = "0.631373 0 0.678431"
+    lutTrCol9 = "0.894118 0.380392 1"
+    lutTrColA = "0 0.682353 0.756863"
+    lutTrColB = "0.501961 1 0.980392"
+    lutTrColC = "0.615686 0.6 0.196078"
+    lutTrColD = "1 0.976471 0.368627"
+    lutTrColE = "1 1 1"
+    lutTrColF = "1 1 1"
+    annotationOn = TRUE
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+    annotationCol = "0.9 0.9 0.9"
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01) GV"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 921.4
+    annoInput04 = 1024
+    annoInput05 = 921.4000244
+    annoInput06 = 1024
+    annoInput07 = 921.4000244
+    annoInput08 = 1024
+    annoInput09 = HU
+    annoMouseOn = TRUE
+    annoReadPixFloorPos = "58 28 35"
+    annoReadPixVoxelPos = "58.6294 28.5315 35.5"
+    annoReadPixWorldPos = "58.6294 28.5315 35.5"
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+    borderWidth = 1
+    borderEvaluateFocus = FALSE
+    borderFocusColor = "1 1 1"
+    borderFocusWidth = 2
+  }
+  internalFields = ""
+}
+module SoOrthoView2D {
+  internal  {
+    frame = "605 189 120 56"
+    windows  {
+      window _default {
+        geometry = "765 214 389 595"
+        sizeHint = "389 595"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoOrthoView2D
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    worldPosition = "32 36.5874 35.5"
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    lutMode = LUT_BEST
+    slab = 1
+    layoutMode = LAYOUT_CUBE_EQUAL
+    worldPosSticky = FALSE
+    snapToCenter = FALSE
+    drawImageData = TRUE
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    synchronizeZoom = TRUE
+    sliceZoom = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin1 = "0 0"
+    sliceOrigin2 = "0 0"
+    sliceOrigin3 = "0 0"
+    synchronizePanning = FALSE
+    viewingCenter = "-1 -1 -1"
+    viewingCenter1 = "31.5 32 32"
+    viewingCenter2 = "32 36.5 32"
+    viewingCenter3 = "32 32 35.5"
+    invertKeyPanningDirections = FALSE
+    extraViewSpace = TRUE
+    extraViewLowerLeft = "0 0.5"
+    extraViewUpperRight = "0.5 1"
+    extraViewSize = "0.666 0.666"
+    margin = "2 2"
+    alternCubeLayout = FALSE
+    cacheMode = SLICE_CACHING_OFF
+    timePoint = 0
+    maxTimePoint = 0
+    status = "Nothing active"
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    sliceStep1 = 1
+    sliceStep2 = 1
+    sliceStep3 = 1
+    numSlices1 = 1
+    numSlices2 = 1
+    numSlices3 = 1
+    numXSlices1 = 1
+    numXSlices2 = 1
+    numXSlices3 = 1
+    synchronizeFilterMode = TRUE
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    useGlobalInputImage = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "489 333 96 56"
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = "I:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+  }
+  internalFields = ""
+}
+connections  {
+  SoView2DPosition.worldPosition = SoOrthoView2D.worldPosition
+  SoRenderArea.children = "View2DExtensions.outNode SoView2DPosition.self SoOrthoView2D.self"
+  View2DExtensions.inLUT = LocalImage.outImage
+  SoOrthoView2D.inputImage = LocalImage.outImage
+  SoOrthoView2D.worldPosition = SoView2DPosition.worldPosition
+}

@@ -1,0 +1,48 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalImage {
+  internal  {
+    frame = "1313 621 96 56"
+    windows  {
+      window _default {
+        geometry = "61 574 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/DTISubImg.dcm
+    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/DTISubImg.dcm"
+  }
+  internalFields = ""
+}
+module Info {
+  internal  {
+    frame = "1333 509 56 56"
+    windows  {
+      window _default {
+        geometry = "-4 295 564 371"
+        sizeHint = "564 371"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = MLOk
+    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
+    memoryImage2 = "handled by host"
+    moduleName = ImgLoad
+    connectionValid = TRUE
+    dataValid = TRUE
+  }
+}
+connections  {
+  Info.input0 = LocalImage.outImage
+}

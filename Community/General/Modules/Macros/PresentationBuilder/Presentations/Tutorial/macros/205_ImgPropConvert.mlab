@@ -1,0 +1,153 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ImgPropConvert {
+  internal  {
+    frame = "485 309 120 56"
+    windows  {
+      window _default {
+        geometry = "38 184 389 576"
+        sizeHint = "389 576"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgPropConvert
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 1
+    a01 = 0
+    a02 = 0
+    a03 = 0
+    a10 = 0
+    a11 = 1
+    a12 = 0
+    a13 = 0
+    a20 = 0
+    a21 = 0
+    a22 = 1
+    a23 = 0
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    changeDatatype = FALSE
+    datatype = "unsigned int8"
+    changePageSize = FALSE
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGreyvalue = FALSE
+    minGreyvalue = 0
+    changeMaxGreyvalue = FALSE
+    maxGreyvalue = 1
+    changeWorldMatrix = FALSE
+    voxelSizeX = 1
+    voxelSizeY = 1
+    voxelSizeZ = 1
+    autoApply = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "553 213 80 56"
+    windows  {
+      window _default {
+        geometry = "675 97 391 383"
+        sizeHint = "200 200"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 6
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 395.7999878
+    lutWidth = 648.4000244
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.9 0.9 0.9"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+  }
+  internalFields = ""
+}
+module Info {
+  internal  {
+    frame = "477 213 56 56"
+    windows  {
+      window _default {
+        geometry = "694 541 564 371"
+        sizeHint = "564 371"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = MLOk
+    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
+    memoryImage2 = "handled by host"
+    moduleName = ImgPropConvert
+    connectionValid = TRUE
+    dataValid = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "497 405 96 56"
+    windows  {
+      window _default {
+        geometry = "333 691 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/DTISubImg.dcm
+    trueName = "C:/Program Files (x86)/MeVisLab/data/demodata/DTISubImg.dcm"
+  }
+  internalFields = ""
+}
+connections  {
+  ImgPropConvert.input0 = LocalImage.outImage
+  View2D.inImage = ImgPropConvert.output0
+  Info.input0 = ImgPropConvert.output0
+}

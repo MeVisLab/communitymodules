@@ -1,0 +1,478 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "569 141 128 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "725 253 136 56"
+    windows  {
+      window _default {
+        geometry = "335 509 486 349"
+        sizeHint = "486 349"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay2
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 0.5
+    baseColor = "1 0.666667 0"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "581 253 136 56"
+    windows  {
+      window _default {
+        geometry = "335 509 486 349"
+        sizeHint = "486 349"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay1
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 0.5
+    baseColor = "1 0.666667 0"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+module OrthoReformat3 {
+  internal  {
+    frame = "597 333 120 56"
+  }
+  fields  {
+    instanceName = OrthoReformat3
+    useGlobalInputImage = TRUE
+  }
+}
+module SoView2DPosition {
+  internal  {
+    frame = "709 141 136 56"
+    windows  {
+      window _default {
+        geometry = "210 270 483 576"
+        sizeHint = "483 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DPosition
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 0.666667 0"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "31.5 39.5 32.5"
+    firstSliceWorldPosition = "31.0904 39.5245 32.5"
+    blendOnto = 1
+    blendOutside = 0
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.172549 0.886275 0.0117647"
+    axialColor = "0.00784314 0.952941 0.968627"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = FALSE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module View2DExtensions {
+  internal  {
+    frame = "421 141 136 56"
+  }
+  fields  {
+    instanceName = View2DExtensions
+    slicerOn = TRUE
+    zoomOn = TRUE
+    panOn = TRUE
+    autoCenterOn = TRUE
+    position = "5.15521 -57.6365 8.02908"
+    positionMode = Off
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutMouseButton1 = IGNORED
+    lutMouseButton2 = IGNORED
+    lutMouseButton3 = PRESSED
+    lutMouseShift = RELEASED
+    lutMouseCtrl = RELEASED
+    lutRangeMin = 0
+    lutRangeMax = 4095
+    lutAlphaSync = TRUE
+    lutGreyCenter = 1054
+    lutGreyWidth = 706.4000244
+    lutAlphaCenter = 1054
+    lutAlphaWidth = 706.4000244
+    lutColorFactor = "1 1 1"
+    lutAlphaFactor = 1
+    lutAutoDefault = FALSE
+    lutSetInputMinMax = TRUE
+    lutUseTraceColors = FALSE
+    lutEnableNegWidth = FALSE
+    lutSetDefaultOnce = FALSE
+    lutTrCol0 = "1 1 1"
+    lutTrCol1 = "0.501961 0.501961 0.501961"
+    lutTrCol2 = "0.862745 0 0.172549"
+    lutTrCol3 = "1 0.462745 0.490196"
+    lutTrCol4 = "0 0.819608 0.160784"
+    lutTrCol5 = "0.5607839999999999 1 0.435294"
+    lutTrCol6 = "0.184314 0.239216 0.929412"
+    lutTrCol7 = "0.490196 0.541176 1"
+    lutTrCol8 = "0.631373 0 0.678431"
+    lutTrCol9 = "0.894118 0.380392 1"
+    lutTrColA = "0 0.682353 0.756863"
+    lutTrColB = "0.501961 1 0.980392"
+    lutTrColC = "0.615686 0.6 0.196078"
+    lutTrColD = "1 0.976471 0.368627"
+    lutTrColE = "1 1 1"
+    lutTrColF = "1 1 1"
+    annotationOn = TRUE
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+    annotationCol = "0.9 0.9 0.9"
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01) GV"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 1054
+    annoInput04 = 706.4
+    annoInput05 = 1054
+    annoInput06 = 706.4000244
+    annoInput07 = 1054
+    annoInput08 = 706.4000244
+    annoInput09 = HU
+    annoMouseOn = TRUE
+    annoReadPixFloorPos = "6 46 32"
+    annoReadPixVoxelPos = "6.28424 46.1395 32.5"
+    annoReadPixWorldPos = "6.28424 46.1395 32.5"
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+    borderWidth = 1
+    borderEvaluateFocus = FALSE
+    borderFocusColor = "1 1 1"
+    borderFocusWidth = 2
+  }
+  internalFields = ""
+}
+module SoRenderArea {
+  internal  {
+    frame = "637 21 152 56"
+    windows  {
+      window _viewer {
+        geometry = "1336 307 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module SoOrthoView2D {
+  internal  {
+    frame = "861 141 120 56"
+    windows  {
+      window _default {
+        geometry = "869 261 389 595"
+        sizeHint = "389 595"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoOrthoView2D
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    worldPosition = "31.5 39.5 32.5"
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    lutMode = LUT_BEST
+    slab = 1
+    layoutMode = LAYOUT_CUBE_EQUAL
+    worldPosSticky = FALSE
+    snapToCenter = FALSE
+    drawImageData = TRUE
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    synchronizeZoom = TRUE
+    sliceZoom = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin1 = "0 0"
+    sliceOrigin2 = "0 0"
+    sliceOrigin3 = "0 0"
+    synchronizePanning = FALSE
+    viewingCenter = "-1 -1 -1"
+    viewingCenter1 = "31.5 32 32"
+    viewingCenter2 = "32 39.5 32"
+    viewingCenter3 = "32 32 32.5"
+    invertKeyPanningDirections = FALSE
+    extraViewSpace = TRUE
+    extraViewLowerLeft = "0 0.5"
+    extraViewUpperRight = "0.5 1"
+    extraViewSize = "0.666 0.666"
+    margin = "2 2"
+    alternCubeLayout = FALSE
+    cacheMode = SLICE_CACHING_OFF
+    timePoint = 0
+    maxTimePoint = 0
+    status = "Nothing active"
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    sliceStep1 = 1
+    sliceStep2 = 1
+    sliceStep3 = 1
+    numSlices1 = 1
+    numSlices2 = 1
+    numSlices3 = 1
+    numXSlices1 = 1
+    numXSlices2 = 1
+    numXSlices3 = 1
+    synchronizeFilterMode = TRUE
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    useGlobalInputImage = TRUE
+  }
+}
+module Threshold {
+  internal  {
+    frame = "613 429 88 56"
+    windows  {
+      window _default {
+        geometry = "507 466 273 94"
+        sizeHint = "273 94"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold
+    threshold = 1200
+    minValue = 0
+    maxValue = 4095
+    relativeThreshold = FALSE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "737 429 96 56"
+    windows  {
+      window _default {
+        geometry = "397 436 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Bone.tiff
+    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+  }
+  internalFields = ""
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "445 253 136 56"
+    windows  {
+      window _default {
+        geometry = "335 509 486 349"
+        sizeHint = "486 349"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 0.5
+    baseColor = "1 0.666667 0"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+connections  {
+  SoGroup.children = "SoView2DOverlay.self SoView2DOverlay1.self SoView2DOverlay2.self"
+  SoView2DOverlay2.image = OrthoReformat3.output2
+  SoView2DOverlay1.image = OrthoReformat3.output1
+  OrthoReformat3.input0 = Threshold.output0
+  SoView2DPosition.worldPosition = SoOrthoView2D.worldPosition
+  View2DExtensions.inLUT = LocalImage.outImage
+  SoRenderArea.children = "View2DExtensions.outNode SoGroup.self SoView2DPosition.self SoOrthoView2D.self"
+  SoOrthoView2D.inputImage = LocalImage.outImage
+  SoOrthoView2D.worldPosition = SoView2DPosition.worldPosition
+  Threshold.input0 = LocalImage.outImage
+  SoView2DOverlay.image = OrthoReformat3.output0
+}
