@@ -1,0 +1,9 @@
+
+//----------------------------------------------------------------------------------
+// MacroModule PresentationBuilder
+//----------------------------------------------------------------------------------
+MacroModule PresentationBuilder {
+  author = "Bart De Dobbelaer"
+  scriptOnly = YES
+  externalDefinition = "$(LOCAL)/PresentationBuilder.script"
+} // MacroModule PresentationBuilder

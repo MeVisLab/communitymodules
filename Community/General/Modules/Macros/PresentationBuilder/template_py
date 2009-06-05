@@ -1,0 +1,143 @@
+
+from mevis import MLABFileManager
+import time
+import re
+
+_width = 0
+_height = 0
+_scaleFactor = 1.0
+
+def grabFocus(event=None):
+  ctx.control("main").setFocus()
+  
+def navigateSlideMouse(event=None):
+  button = event['button']
+  if button == 'left':
+    navigateSlideUp()
+  if button == 'right':
+    navigateSlideDown()
+        
+def navigateSlideDown():
+  tab = ctx.control("slides")
+  current = tab.currentTab()
+  if current > 0:
+    tab.selectTabAtIndex(current - 1)
+    updateSlide()
+
+def navigateSlideUp():
+  tab = ctx.control("slides")
+  current = tab.currentTab()
+  if current < tab.countTabs():
+    tab.selectTabAtIndex(current + 1)
+    updateSlide()
+
+def navigateSlideHome():
+  tab = ctx.control("slides")
+  tab.selectTabAtIndex(0)
+  updateSlide()
+
+def showFullScreen():
+  win = ctx.window()
+  win.showFullscreen()
+  width = win.width()
+  height = win.height()
+  global _scaleFactor
+  w = float(width)/float(_width)
+  h = float(height)/float(_height)
+  if w < h:
+    _scaleFactor = w * 1.5
+  else:
+    _scaleFactor = h * 1.5
+  win.updateLayout()
+  centerNetworkView()
+  updateSlide()
+  
+def showNormalScreen():
+  win = ctx.window()
+  win.showNormal()
+  global _scaleFactor
+  _scaleFactor = 1
+  win.updateLayout()
+  centerNetworkView()
+  updateSlide()
+  win.resizeToMin()
+  win.updateLayout()
+  
+def updateSlide(field=None):
+  updateFonts()
+  updateFooter()
+  
+def updateFonts(field=None):  
+  tab = ctx.control("slides")
+  current = tab.currentTab() + 1
+  num = 0
+  local = ctx.localPath()
+  scaleRE = re.compile('\[SCALE\s+=\s+(.*?)\]')
+  while ctx.hasControl("bullet_" + `current` + "_" + `num`):
+    bullet = _bullets[`current`][num]
+    bullet = bullet.replace("$(LOCAL)",local)
+    matches = scaleRE.findall(bullet)
+    for i in range(len(matches)):
+      size = matches[i]
+      bulletScaleRe = re.compile('\[SCALE\s+=\s+' + size + '\]')
+      newsize = int(int(size) * _scaleFactor)
+      bullet = bulletScaleRe.sub(`newsize`,bullet)
+    ctx.control("bullet_" + `current` + "_" + `num`).setContentString(bullet)
+    num = num + 1 
+  
+def updateFooter(field=None):
+  if ctx.hasControl("autoSlideCounter"):
+    tab = ctx.control("slides")
+    current = tab.currentTab() + 1
+    num = tab.countTabs()
+    slideCounter = ctx.control("autoSlideCounter")
+    slideCounter.setTitle(" " + `current` + "/" + `num`)
+  if ctx.hasControl("autoDate"):
+    now = time.strftime("%d %B %Y")
+    autoDate = ctx.control("autoDate")
+    autoDate.setTitle(now)
+    
+def init():
+  setInitialScaleFactor()
+  updateFooter()
+  
+def setInitialScaleFactor(field=None):
+  global _width
+  _width = ctx.window().width()
+  global _height
+  _height = ctx.window().height()
+  
+def centerNetwork():
+  tab = ctx.control("slides")
+  current = tab.currentTab() + 1
+  count = 0
+  while ctx.hasControl("slide" + `current` + "_" + `count`):
+    ctx.control("slide" + `current` + "_" + `count`).viewAll()
+    count = count + 1
+  
+def centerNetworkView():
+  ctx.callLater(0,"centerNetwork")
+  
+def setupMovie():
+  tab = ctx.control("slides")
+  current = tab.currentTab() + 1
+  if ctx.hasControl("movie" + `current`):
+    player = ctx.control("movie" + `current`)
+    player.setLoop(1)
+    player.setAutoStart(1)
+    player.play()
+  
+def setupMoviePlayer():
+  ctx.callLater(0,"setupMovie")
+  
+def navigateToSlide(event):
+  eventFilter = ctx.control("menuEventFilter")
+  control = eventFilter.eventControl()
+  name = control.getName()
+  if name[0:8] == "menuItem":
+    slide = int(name[8:])
+    tab = ctx.control("slides")
+    num = tab.countTabs()
+    if slide >= 0:  
+      tab.selectTabAtIndex(slide)
+      updateSlide()

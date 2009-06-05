@@ -1,0 +1,73 @@
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {      
+    Field header { type = string value = "" }
+    Field footer { type = string value = "" }    
+    Field module { type = string value = "" }    
+    
+    Field presentation { type = string value = "" }
+    Field style { type = string value = "" }
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+Commands {
+  source = $(LOCAL)/PresentationBuilder.py
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+Window "Presentation Builder" {
+  style = Panel.default
+  wakeupCommand = initialize
+  
+  Category {
+    
+    ComboBox presentation {
+      name = presentations
+      editable = NO
+      activatedCommand = selectPresentation
+    }
+    
+    Box "Style" {   
+      Horizontal {
+        alignX = Center
+        w = 330
+        h = 90
+        DynamicFrame {
+          name = styleImages
+        }
+      }
+    }
+  
+    Box "Presentation" {
+      Field = header
+      Field = footer
+      Field = module
+      
+      Horizontal {
+        expandX = Yes
+        expandY = No
+        Label = "Style:"
+        ComboBox style {
+          name = styles
+          editable = NO
+          activatedCommand = selectStyle
+        }
+      }
+    }
+      
+    Button { 
+      title = "Build"
+      alignX = Right
+      dependsOn = "* presentation && style && module *"
+      command = buildPresentation 
+    }
+    
+  } //category  
+  
+}
+
