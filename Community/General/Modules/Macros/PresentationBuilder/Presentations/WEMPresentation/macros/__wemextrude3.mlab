@@ -1,0 +1,356 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGVRVolumeRenderer {
+  internal  {
+    frame = "485 85 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "884 273 416 551"
+        sizeHint = "416 551"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGVRVolumeRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    on = TRUE
+    autoLoad = TRUE
+    interactiveQuality = 0.5
+    staticQuality = 1
+    interactiveSamplingRate = 0.5
+    staticSamplingRate = 0.5
+    blendMode = Blend
+    octreeNodeSize = NODE_SIZE_32
+    octreeParentComputationMethod = Rank
+    octreeParentComputationRank = 4
+    currentTimePoint = 0
+    maxTimePoint = 0
+    force8bit = FALSE
+    filterVolumeData = FilterLinear
+    filterLut = TRUE
+    subVolumeStartX = 0
+    subVolumeStartY = 0
+    subVolumeStartZ = 0
+    subVolumeEndX = 119
+    subVolumeEndY = 119
+    subVolumeEndZ = 74
+    zbuffer = TRUE
+    permitClipping = TRUE
+    drawOnPlanes = TRUE
+    sizeOutputX = 119
+    sizeOutputY = 119
+    sizeOutputZ = 74
+    incrementalUpdate = TRUE
+    highQualityStaticUpdate = FALSE
+    staticRenderingAfterInteractionOnly = FALSE
+    adaptQualityToWindowSize = TRUE
+    renderMode = Direct
+    useImageCacheFile = FALSE
+    imageCacheFilename = ""
+    greyCenter = 0.5619999766
+    greyWidth = 0.7950000167
+    greyInvert = FALSE
+    alphaCenter = 0.5619999766
+    alphaWidth = 0.7950000167
+    alphaInvert = FALSE
+    colorFactor = "1 1 1"
+    alphaFactor = 1
+    enhancementAlphaMix = 0
+    boundaryEnhancement = FALSE
+    boundaryEnhancementFactor = 1.370000005
+    boundaryEnhancementExponent = 0.6000000238
+    boundaryEnhancementGradientBias = 0
+    silhouetteEnhancement = FALSE
+    silhouetteEnhancementExponent = 4
+    silhouetteEnhancementFactor = 2
+    toneShading = FALSE
+    toneShadingWarmColor = "0.2666670083999634 0.2196079939603806 0.1647060066461563"
+    toneShadingColdColor = "0.08235300332307816 0.1333329975605011 0.3254899978637695"
+    toneShadingWarmDiffuse = 0.1230000034
+    toneShadingColdDiffuse = 0.01400000043
+    toneShadingAngle = 45
+    materialAmbient = 0.6029999852
+    materialDiffuse = 1
+    materialSpecular = 1
+    materialSpecularity = 14.89999962
+    light1Enabled = TRUE
+    light1DiffuseIntensity = 1
+    light1SpecularIntensity = 1
+    light1Color = "1 1 1"
+    light1PolarPhi = 45
+    light1PolarRho = 0
+    light2Enabled = FALSE
+    light2DiffuseIntensity = 1
+    light2SpecularIntensity = 1
+    light2Color = "1 1 1"
+    light2PolarPhi = 0
+    light2PolarRho = 0
+    light3Enabled = FALSE
+    light3DiffuseIntensity = 1
+    light3SpecularIntensity = 1
+    light3Color = "1 1 1"
+    light3PolarPhi = -45
+    light3PolarRho = 0
+    gradientQuality = GradientQualityAutomatic
+    selectionAlphaThreshold = 0.200000003
+    selectedPoint1 = "-1 -1 -1"
+    selectedWorldPoint1 = "-1 -1 -1"
+    selectionActive = FALSE
+    useWorldCoords = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "413 -75 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "745 278 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "180 262 490 362"
+        sizeHint = "490 362"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = FALSE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_ORTHOGRAPHIC
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = FALSE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 252.5891571
+    position = "367.5209655761719 -17.71118545532227 -32.35025405883789"
+    orientation = "0.5495586395263672 0.6304430365562439 0.5482033491134644 1.997885942459106"
+    nearDistance = 281.0914001
+    farDistance = 457.9923096
+    focalDistance = 368.9298096
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoGVRDepthPeel {
+  internal  {
+    frame = "337 77 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "239 515 418 406"
+        sizeHint = "418 406"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGVRDepthPeel
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    useFBO = TRUE
+    useDepthPeeling = TRUE
+    useStencilBuffer = FALSE
+    layers = 4
+    simulatedAlpha = 1
+    opaqueBackgroundPass = TRUE
+    sceneDepthCompare = FALSE
+    modifyRGBA = TRUE
+    drawLayers = FALSE
+    insideAlpha = 0
+    outsideAlpha = 1
+    insideColor = "1 1 1"
+    outsideColor = "0.3333333432674408 0.6666666865348816 1"
+    insideTagValue = 1
+    outsideTagValue = 0
+    debugLayers = 0
+    tagMode = Off
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "457 197 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "262 526 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = FALSE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 0.5
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 0
+  }
+}
+module WEMExtrude {
+  internal  {
+    frame = "477 293 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "152 212 316 287"
+        sizeHint = "316 287"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMExtrude
+    lineColor = "0.3333333432674408 0.6666666865348816 1"
+    filterSensitivity = 0.9900000095
+    status = "Not enough hit points."
+    autoUpdate = TRUE
+    autoApply = TRUE
+    triangulate = TRUE
+    subdivide = TRUE
+    unify = TRUE
+    useJitter = TRUE
+    jitterFactor = 0.2000000328
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "369 293 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "779 208 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/../data/Head4_t1.small.tif
+    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/Head4_t1.small.tif
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+connections  {
+  SoGVRVolumeRenderer.image = LocalImage.outImage
+  SoGVRVolumeRenderer.alphaCenter = SoGVRVolumeRenderer.greyCenter
+  SoGVRVolumeRenderer.alphaWidth = SoGVRVolumeRenderer.greyWidth
+  SoExaminerViewer.children = "SoGVRDepthPeel.self SoGVRVolumeRenderer.self WEMExtrude.self"
+  SoGVRDepthPeel.children = SoWEMRenderer.self
+  SoWEMRenderer.inWEM = WEMExtrude.outWEM
+}
+networkModel = ""

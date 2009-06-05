@@ -1,0 +1,205 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSphere {
+  internal  {
+    frame = "541 293 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "543 491 119 35"
+        sizeHint = "119 35"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSphere
+    radius = 4
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "641 285 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "874 256 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = FALSE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = TRUE
+    edgeColor = "0.3333333432674408 0.6666666865348816 1"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 3
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "629 181 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "121 268 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _default {
+        geometry = "401 360 490 362"
+        sizeHint = "490 362"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = FALSE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_ORTHOGRAPHIC
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = FALSE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 10.64048576
+    position = "-3.680567741394043 -3.325353860855103 2.650760173797607"
+    orientation = "0.7118639945983887 -0.1713048219680786 -0.6811051964759827 1.601334810256958"
+    nearDistance = -1.215830684
+    farDistance = 12.47310734
+    focalDistance = 6.139220238
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module WEMExtrude {
+  internal  {
+    frame = "701 397 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "868 314 316 287"
+        sizeHint = "316 287"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMExtrude
+    lineColor = "0.3333333432674408 0.6666666865348816 1"
+    filterSensitivity = 0.9499999881
+    status = "Not enough hit points."
+    autoUpdate = TRUE
+    autoApply = TRUE
+    triangulate = TRUE
+    subdivide = TRUE
+    unify = FALSE
+    useJitter = TRUE
+    jitterFactor = 0.2000000328
+  }
+  internalFields = ""
+}
+connections  {
+  SoWEMRenderer.inWEM = WEMExtrude.outWEM
+  SoExaminerViewer.children = "SoSphere.self SoWEMRenderer.self WEMExtrude.self"
+}
+networkModel = ""

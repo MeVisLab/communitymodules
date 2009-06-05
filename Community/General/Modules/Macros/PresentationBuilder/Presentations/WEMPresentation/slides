@@ -1,0 +1,850 @@
+
+CONTENT = 
+  NETWORKHIDDEN = __wemtitle
+  VIEWER = __wemtitle.SoExaminerViewer.self
+  BULLETSMALL = WEMSubdivide
+  BULLETSMALL = WEMSmooth
+  BULLETSMALL = WEMModify
+  BULLETSMALL = WEMSave
+  BULLETSMALL = WEMClip
+  BULLETSMALL = WEMInitialize
+  BULLETSMALL = WEMBoolOp
+  BULLETSMALL = WEMPVL
+  BULLETSMALL = WEMReducePolygons
+  BULLETSMALL = WEMInteract
+  BULLETSMALL = WEMLoad
+  BULLETSMALL = SoWEMRenderer
+  
+////////////////////////////////////////////////////////////
+
+NAME = Introduction
+CONTENT = 
+  SEPARATOR = Introduction
+    SEPARATORSUB = Birth of a library
+    SEPARATORSUB = Growing up
+    SEPARATORSUB = Leuven - Bremen
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Birth of a library
+CONTENT = 
+  BULLET = February 2004
+    BULLETSUB = Olaf Konrad starts design of the WEM library
+    BULLETSUB = Code is a conversion from his diploma thesis
+  BULLET = July 2004
+    BULLETSUB = SoRLIsoSurface not sufficient
+    BULLETSUB = Experience on I/O and data structures
+    BULLETSUB = First code exchange
+  BULLET = Oktober 2004
+    BULLETSUB = MeVisLab user day
+    BULLETSUB = First look
+    BULLETSUB = Basic I/O and rendering
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Growing up
+CONTENT =
+  BULLET = 2005, a lot of new modules
+    BULLETSUB = WEMLoad, WEMSave, WEMReduce, WEMClip
+    BULLETSUB = WEMInfo, SoWEMDiagnosis, WEMModify
+  BULLET = January 2006
+    BULLETSUB = MeVisLab 1.3
+    BULLETSUB = First public release
+  BULLET = 2006-2007, mostly bug fixes
+    BULLETSUB = CSO as a side project
+    BULLETSUB = WEMPrimitiveValueList, WEMBoolOp
+  BULLET = 2008, major revision
+    BULLETSUB = WEMPatch, WEMAttributes, WEMObjectVector
+  PUSHUP    
+    
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Leuven - Bremen
+CONTENT = 
+  BULLET = Initial exchange
+    BULLETSUB = Zipped code
+    BULLETSUB = Manual merging
+  BULLET = Subversion
+    BULLETSUB = Server in Bremen
+    BULLETSUB = WEM and CSO library
+  BULLET = Developer issues
+    BULLETSUB = Release deadlines, code freeze
+    BULLETSUB = Coding style
+    BULLETSUB = Documentation, example networks
+    BULLETSUB = Bug fixes
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+NAME = Basics
+CONTENT = 
+  SEPARATOR = Basics
+    SEPARATORSUB = Definition
+    SEPARATORSUB = WEMPrimitive
+    SEPARATORSUB = WEMNode - WEMEdge - WEMFace
+    SEPARATORSUB = WEMPatch vs WEM
+    SEPARATORSUB = SoWEMRenderer
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Definition
+CONTENT =
+  Horizontal {
+    expandX = YES expandY = YES
+    Vertical {
+      expandX = YES expandY = YES
+      BULLET = WEM = Winged Edge Mesh
+        BULLETSUB = Baumgart, 1975
+        BULLETSUB = Vertices, edges and faces
+      BULLET = Advantages
+        BULLETSUB = Algorithm flexibility
+        BULLETSUB = Changing mesh geometry
+        BULLETSUB = Easy mesh traversal
+      BULLET = Disadvantages
+        BULLETSUB = Storage requirement
+        BULLETSUB = Complexity
+        BULLETSUB = Maintenance
+      PUSHUP
+    }
+    Vertical {
+      expandX = YES expandY = YES
+      Image {
+        image = $(LOCAL)/data/wem.png
+      }
+      Image {
+        image = $(LOCAL)/data/wemconnect.png
+      }
+      PUSHUP
+    }
+  }  
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMPrimitive
+CONTENT = 
+  BULLET = Base class for
+    BULLETSUB = WEMNode
+    BULLETSUB = WEMEdge
+    BULLETSUB = WEMFace
+  BULLET = Entry number
+    BULLETSUB = Fast lookup
+    BULLETSUB = Unique identifier
+  BULLET = Bit flag
+    BULLETSUB = setFlag(bit), unsetFlag(bit)
+    BULLETSUB = isSet(bit)
+    BULLETSUB = isTraversed() uses bit 16
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMNode - WEMEdge - WEMFace
+CONTENT = 
+  BULLET = WEMNode
+    BULLETSUB = Position
+    BULLETSUB = Normal
+    BULLETSUB = Surrounding faces/edges: valence
+  BULLET = WEMEdge
+    BULLETSUB = Head and tail
+    BULLETSUB = Edge pointers
+    BULLETSUB = Left and right face
+  BULLET = WEMFace
+    BULLETSUB = Nodes and edges
+    BULLETSUB = Normal
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMPatch vs WEM
+CONTENT = 
+  BULLET = WEMPatch
+    BULLETSUB = WEM pre v1.5
+    BULLETSUB = Array of nodes, edges and faces
+    BULLETSUB = WEMAttributes
+    BULLETSUB = Patch type
+    BULLETSUB = Unique id
+  BULLET = WEM
+    BULLETSUB = Array of WEMPatches
+    BULLETSUB = Observers
+    BULLETSUB = I/O
+    BULLETSUB = ML Base object
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = SoWEMRenderer
+CONTENT =
+  BULLET = Primitives: faces, edges, nodes
+  BULLET = Bounding box
+  BULLET = Node and face normals
+  BULLET = Transparency
+  BULLET = LUT coloring
+  NETWORKHIDDEN = __wemrendering
+  VIEWER = __wemrendering.SoExaminerViewer.self
+
+////////////////////////////////////////////////////////////
+
+NAME = Speed is everything
+CONTENT = 
+  SEPARATOR = Speed is everything
+    SEPARATORSUB = Bottlenecks
+    SEPARATORSUB = WEMDatastructures
+    SEPARATORSUB = WEMPrimitives
+    SEPARATORSUB = WEM I/O
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Bottlenecks
+CONTENT = 
+  BULLET = I/O
+    BULLETSUB = Disk access
+    BULLETSUB = Storage requirement
+    BULLETSUB = Building connectivity
+  BULLET = Processing modules
+    BULLETSUB = Copy input
+    BULLETSUB = Algorithms
+    BULLETSUB = Add/delete primitives
+  BULLET = Datastructures
+    BULLETSUB = Large number of primitives
+    BULLETSUB = Lookup/add/delete
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMDataStructures
+CONTENT =
+  Horizontal {
+    ExpandX = Yes
+    ExpandY = Yes
+    Vertical {
+    ExpandX = No
+    ExpandY = Yes
+      BULLET = WEMFastVector
+      BULLET = WEMVector
+      BULLET = WEMIndexVector  
+      BULLET = WEMHeap
+      BULLET = WEMQueue
+      BULLET = WEMContainer
+      PUSHUP
+    }
+    
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',1)"
+      filter = Enter
+      children = YES
+      control = bullet_14_0
+    }
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',2)"
+      filter = Enter
+      children = YES
+      control = bullet_14_1
+    }
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',3)"
+      filter = Enter
+      children = YES
+      control = bullet_14_2
+    }
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',4)"
+      filter = Enter
+      children = YES
+      control = bullet_14_3
+    }
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',5)"
+      filter = Enter
+      children = YES
+      control = bullet_14_4
+    }
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',6)"
+      filter = Enter
+      children = YES
+      control = bullet_14_5
+    }
+    EventFilter {
+      command = "py:showTabViewItem('tabview_wemdatastructures',0)"
+      filter = Leave
+      children = YES
+      control = bullet_14_0
+      control = bullet_14_1
+      control = bullet_14_2
+      control = bullet_14_3
+      control = bullet_14_4
+      control = bullet_14_5
+    }
+    
+    Vertical {
+    ExpandX = Yes
+    ExpandY = Yes
+      TabView {
+        expandX = Yes
+        expandY = Yes
+        mode = Invisible
+        name = tabview_wemdatastructures
+        TabViewItem { }
+        TabViewItem WEMFastVector {
+          BULLETSUB = Static array <T>
+          BULLETSUB = Insert, index: O(1)
+          BULLETSUB = Lookup, remove: O(n)
+          BULLETSUB = Remove by swap
+          PUSHUP          
+        }
+        TabViewItem WEMVector {
+          BULLETEMPTY
+          BULLETSUB = Dynamic grid <T>
+          BULLETSUB = Expand by BLOCKSIZE
+          BULLETSUB = Insert, index: O(1)
+          BULLETSUB = Lookup, remove: O(n)       
+          PUSHUP                
+        }
+        TabViewItem WEMIndexVector {
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETSUB = WEMVector<WEMPrimitive>
+          BULLETSUB = Index == entrynumber
+          BULLETSUB = WEMObjectVector<T>
+          BULLETSUB = Static array <T> of BLOCKSIZE
+          BULLETSUB = Pre-allocation
+          BULLETSUB = Insert, index: O(1)
+          BULLETSUB = Lookup, remove: O(1)   
+          PUSHUP          
+        }
+        TabViewItem WEMHeap {
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETSUB = WEMVector<WEMPrimitive>
+          BULLETSUB = Value + position
+          BULLETSUB = Sorted by smallest
+          BULLETSUB = Access: root()
+          BULLETSUB = Insert: O(1) + sorting
+          BULLETSUB = Remove: O(1) + sorting
+          BULLETSUB = Sorting: O(log(n))
+          PUSHUP          
+        }
+        TabViewItem WEMQueue {
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETSUB = WEMQueueElement
+          BULLETSUB = Head, tail and next pointer
+          BULLETSUB = Insert: O(1)
+          BULLETSUB = PopFront O(1)   
+          PUSHUP          
+        }
+        TabViewItem WEMContainer {
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETEMPTY
+          BULLETSUB = WEMVector<WEMPrimitive>
+          BULLETSUB = Duplicate check
+          BULLETSUB = Heap position as indexing
+          PUSHUP          
+        }
+      }
+      PUSHUP
+    }
+    PUSHUP
+  }
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMPrimitives
+CONTENT =
+  BULLET = As static as possible
+  BULLET = WEMNode
+    BULLETSUB = Dynamic connectivity
+    BULLETSUB = WEM_MAX_VALENCE
+  BULLET = WEMTriangle and WEMQuad
+    BULLETSUB = Fixed number of nodes/edges
+    BULLETSUB = Custom optimized methods
+  BULLET = WEMPolygon
+    BULLETSUB = Dynamic number of nodes/edges
+    BULLETSUB = WEM_MAX_NUM_NODES
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEM I/O
+CONTENT = 
+  BULLET = Disk access
+    BULLETSUB = Binary WEM format
+    BULLETSUB = Memory mapping
+  BULLET = Connectivity
+    BULLETSUB = Saved -> no need to rebuild
+  BULLET = Data
+    BULLETSUB = Loading order
+    BULLETSUB = Static
+    BULLETSUB = Pre-allocation
+  BULLET = Speedup?
+    BULLETSUB = TEN times faster
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+NAME = Under the hood
+CONTENT = 
+  SEPARATOR = Under the hood
+    SEPARATORSUB = WEMAttributes
+    SEPARATORSUB = WEMPrimitiveValueList
+    SEPARATORSUB = WEMModules
+    SEPARATORSUB = Notifications
+    SEPARATORSUB = C++ API
+  PUSHUP
+
+////////////////////////////////////////////////////////////  
+
+SUBTITLE = WEMAttributes
+CONTENT = 
+  NETWORKHIDDEN = __wemattributes
+  Horizontal {
+    expandX = Yes
+    expandY = Yes
+    
+    Vertical {
+      expandX = No
+      expandY = Yes
+      PUSHUP
+      Box {
+        dependsOn = "* __wemattributes.SoWEMRenderer.parameterOverwriteMode == "OVERWRITE_MODE_NONE" *"
+      
+        Field __wemattributes.LocalWEMLoad.colorMode { title = "Color Mode:" }
+
+        Separator { direction = horizontal }
+        
+        Horizontal {
+          CheckBox __wemattributes.LocalWEMLoad.drawFaces       { title = "Draw Faces" }
+            Field __wemattributes.LocalWEMLoad.faceDiffuseColor { title = "Diffuse Color:" }
+        }
+        
+        Horizontal {            
+            CheckBox __wemattributes.LocalWEMLoad.useFaceAmbientColor { title = "Use "  }
+            Field __wemattributes.LocalWEMLoad.faceAmbientColor       { title = "Ambient Color:" }
+        }
+        
+        Horizontal {            
+            CheckBox __wemattributes.LocalWEMLoad.useFaceSpecularColor { title = "Use" }
+            Field __wemattributes.LocalWEMLoad.faceSpecularColor       { title = "Specular Color:"  }
+        }          
+              
+        Separator { direction = horizontal }
+                
+        Horizontal {
+          CheckBox __wemattributes.LocalWEMLoad.drawEdges { title = "Draw edges" }
+          Field    __wemattributes.LocalWEMLoad.edgeColor { title = "Edge Color:" }
+        }      
+        Horizontal {
+          CheckBox __wemattributes.LocalWEMLoad.drawNodes { title = "Draw nodes" }
+          Field    __wemattributes.LocalWEMLoad.nodeColor { title = "Node Color:" }
+        }
+
+        Separator { direction = horizontal }
+        
+        Horizontal {
+          CheckBox __wemattributes.LocalWEMLoad.drawBoundingBoxes { title = "Draw bounding boxes" }
+          Field __wemattributes.LocalWEMLoad.boundingBoxColor     { title = " Color:" }
+        }
+        
+        Separator { direction = horizontal }
+              
+        Horizontal {
+          CheckBox __wemattributes.LocalWEMLoad.drawFaceNormals { title = "Draw face normals" }
+          Field __wemattributes.LocalWEMLoad.faceNormalsColor   { title = "Color:" }
+        }
+          
+        Horizontal {
+          CheckBox __wemattributes.LocalWEMLoad.drawNodeNormals { title = "Draw node normals" }
+          Field __wemattributes.LocalWEMLoad.nodeNormalsColor   { title = "Color:" }
+        }
+
+        Separator { direction = horizontal }
+        
+        Field __wemattributes.LocalWEMLoad.faceNormalsScale { title = "Face Normal Scale:" step = 0.1 }
+        Field __wemattributes.LocalWEMLoad.nodeNormalsScale { title = "Node Normal Scale:" step = 0.1 }
+                  
+        Separator { direction = horizontal }
+        
+        Field __wemattributes.LocalWEMLoad.faceAlphaValue     { title = "Face Alpha: "    step = 0.1 }
+        Field __wemattributes.LocalWEMLoad.faceShininessValue { title = "Face Shininess:" step = 0.1 }
+        
+        Separator { direction = horizontal }
+        
+        Field __wemattributes.LocalWEMLoad.lineWidth { title = "Line Width: " step = 1 }  
+        Field __wemattributes.LocalWEMLoad.pointSize { title = "Point Size: " step = 1 }
+        
+        Separator { direction = horizontal }
+      
+        CheckBox __wemattributes.LocalWEMLoad.useEdgeColoringMode { title = "Use coloring mode for edges" }
+        
+        Separator { direction = horizontal }
+          
+        Field __wemattributes.LocalWEMLoad.nodeRenderingMode { title = "Node Rendering Mode:" }
+        Field __wemattributes.LocalWEMLoad.boundingBoxMode   { title = "Bounding Box Mode:"   }
+        
+      }
+      BULLETSMALL = LocalWEMLoad
+    }
+    
+    Vertical {
+      expandX = No
+      expandY = Yes
+      PUSHUP
+      TOOLBUTTON __wemattributes.BoolString.boolValue { title = "Overwrite attributes" alignX = Right style = UZ.button }
+      Box { 
+        dependsOn = "* __wemattributes.SoWEMRenderer.parameterOverwriteMode == "OVERWRITE_MODE_ALL" *"
+      
+        Field __wemattributes.SoWEMRenderer.colorMode { title = "Color Mode:" }
+
+        Separator { direction = horizontal }
+        
+        Horizontal {
+          CheckBox __wemattributes.SoWEMRenderer.drawFaces       { title = "Draw Faces" }
+            Field __wemattributes.SoWEMRenderer.faceDiffuseColor { title = "Diffuse Color:" }
+        }
+        
+        Horizontal {            
+            CheckBox __wemattributes.SoWEMRenderer.useFaceAmbientColor { title = "Use "  }
+            Field __wemattributes.SoWEMRenderer.faceAmbientColor       { title = "Ambient Color:" }
+        }
+        
+        Horizontal {            
+            CheckBox __wemattributes.SoWEMRenderer.useFaceSpecularColor { title = "Use" }
+            Field __wemattributes.SoWEMRenderer.faceSpecularColor       { title = "Specular Color:"  }
+        }          
+              
+        Separator { direction = horizontal }
+                
+        Horizontal {
+          CheckBox __wemattributes.SoWEMRenderer.drawEdges { title = "Draw edges" }
+          Field    __wemattributes.SoWEMRenderer.edgeColor { title = "Edge Color:" }
+        }      
+        Horizontal {
+          CheckBox __wemattributes.SoWEMRenderer.drawNodes { title = "Draw nodes" }
+          Field    __wemattributes.SoWEMRenderer.nodeColor { title = "Node Color:" }
+        }
+
+        Separator { direction = horizontal }
+        
+        Horizontal {
+          CheckBox __wemattributes.SoWEMRenderer.drawBoundingBoxes { title = "Draw bounding boxes" }
+          Field __wemattributes.SoWEMRenderer.boundingBoxColor     { title = " Color:" }
+        }
+        
+        Separator { direction = horizontal }
+              
+        Horizontal {
+          CheckBox __wemattributes.SoWEMRenderer.drawFaceNormals { title = "Draw face normals" }
+          Field __wemattributes.SoWEMRenderer.faceNormalColor   { title = "Color:" }
+        }
+          
+        Horizontal {
+          CheckBox __wemattributes.SoWEMRenderer.drawNodeNormals { title = "Draw node normals" }
+          Field __wemattributes.SoWEMRenderer.nodeNormalColor   { title = "Color:" }
+        }
+
+        Separator { direction = horizontal }
+        
+        Field __wemattributes.SoWEMRenderer.faceNormalScaling { title = "Face Normal Scale:" step = 0.1 }
+        Field __wemattributes.SoWEMRenderer.nodeNormalScaling { title = "Node Normal Scale:" step = 0.1 }
+                  
+        Separator { direction = horizontal }
+        
+        Field __wemattributes.SoWEMRenderer.faceAlphaValue     { title = "Face Alpha: "    step = 0.1 }
+        Field __wemattributes.SoWEMRenderer.faceShininessValue { title = "Face Shininess:" step = 0.1 }
+        
+        Separator { direction = horizontal }
+        
+        Field __wemattributes.SoWEMRenderer.lineWidth { title = "Line Width: " step = 1 }  
+        Field __wemattributes.SoWEMRenderer.pointSize { title = "Point Size: " step = 1 }
+        
+        Separator { direction = horizontal }
+        
+        CheckBox __wemattributes.SoWEMRenderer.useEdgeColoringMode { title = "Use coloring mode for edges" }
+        
+        Separator { direction = horizontal }
+          
+        Field __wemattributes.SoWEMRenderer.nodeRenderingMode { title = "Node Rendering Mode:" }
+        Field __wemattributes.SoWEMRenderer.boundingBoxMode   { title = "Bounding Box Mode:"   }
+        
+      }
+      BULLETSMALL = SoWEMRenderer
+    }
+    
+    Vertical {
+      expandX = Yes
+      expandY = Yes
+  
+      VIEWER = __wemattributes.SoExaminerViewer.self
+    }
+  }
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMPrimitiveValueLists
+CONTENT = 
+  BULLET = Dynamically extend WEMPrimitives
+  BULLET = LUT display (SoWEMRenderer)
+  BULLET = Curve output (WEMInfo)
+  NETWORKHIDDEN = __wemprimitivevaluelist
+  Horizontal {
+    expandX = Yes
+    expandY = Yes
+    VIEWER = __wemprimitivevaluelist.SoExaminerViewer.self
+    RENDERAREA = __wemprimitivevaluelist.SoRenderArea.self
+  }
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMModules
+CONTENT = 
+  BULLET = Base class: WEMModule
+    BULLETSUB = IsProcessing? ElapsedTime
+  BULLET = WEMGenerator
+    BULLETSUB = OUTPUT
+    BULLETSUB = Attributes
+  BULLET = WEMInspector
+    BULLETSUB = INPUT
+    BULLETSUB = Notifications
+  BULLET = WEMProcessor
+    BULLETSUB = INPUT and OUTPUT
+    BULLETSUB = Copy operator
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Notifications
+CONTENT = 
+  BULLET = WEMInspector and WEMProcessor
+  BULLET = HandleNotification not sufficient
+    BULLETSUB = Input does not change
+    BULLETSUB = (Dis)Connect <> Processed
+    BULLETSUB = Finished, Selected, Repaint
+  BULLET = WEM: notification observers
+  BULLET = Auto-fields
+    BULLETSUB = Auto-Apply for fields
+    BULLETSUB = Auto-Update for connects and notifications
+    BULLETSUB = Auto-Clear for disconnects
+  PUSHUP  
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = C++ API
+CONTENT = 
+  BULLET = WEMBase methods
+    BULLETSUB = WEMPrimitives
+    BULLETSUB = WEMPatches
+  BULLET = WEMTools classes
+    BULLETSUB = WEMConnectedComponent
+    BULLETSUB = WEMDiagnosis
+    BULLETSUB = WEMGeometry
+    BULLETSUB = WEMFaceOp: intersect, cut
+    BULLETSUB = WEMEdgeOp: swap, split, collapse
+    BULLETSUB = WEMNodeOp: smooth
+    BULLETSUB = WEMSetOp: unify, difference, intersection
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+NAME = New in v2.0
+CONTENT = 
+  SEPARATOR = New in v2.0
+    SEPARATORSUB = WEMRequirements
+    SEPARATORSUB = WEMDemergePatches
+    SEPARATORSUB = SoWEMSelectRegion
+    SEPARATORSUB = WEMExtrude
+    SEPARATORSUB = WEMInteract
+    SEPARATORSUB = WEMSculpt
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMRequirements
+CONTENT = 
+  BULLET = WEMProcessor
+  BULLET = Different inputs possible
+    BULLETSUB = Edges?
+    BULLETSUB = Orientation?
+    BULLETSUB = Face type?
+  BULLET = Make compatible
+    BULLETSUB = Copy if necessary
+    BULLETSUB = Mirror, triangulate, ...
+  BULLET = Future?
+    BULLETSUB = Similar-sized primitives
+    BULLETSUB = Other?
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMDemergePatches
+CONTENT =
+  NETWORKHIDDEN = __wemdemergepatches
+  VIEWER = __wemdemergepatches.SoExaminerViewer.self
+  Horizontal {
+    ToolButton __wemdemergepatches.WEMDemergePatches.usePrimitiveValueList { title = "Use primitive value list" style = UZ.button }
+    Empty { expandX = Yes }
+    Field __wemdemergepatches.WEMDemergePatches.limit { title = "Limit (% primitives):" }
+  }
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = SoWEMSelectRegion
+CONTENT = 
+  NETWORKHIDDEN = __wemselectregion
+  Horizontal {
+    expandX = Yes
+    expandY = Yes
+    VIEWER = __wemselectregion.SoExaminerViewer.self
+    VIEWER = __wemselectregion.SoExaminerViewer1.self
+  }
+  Horizontal {
+    ToolButton __wemselectregion.SoWEMSelectRegion.allowMultipleSelections { title = "Allow Multiple Selections" style = UZ.button }
+    Empty { expandX = Yes }
+    Button __wemselectregion.SoWEMSelectRegion.closeSelection { title = "Close" style = UZ.button }
+    Button __wemselectregion.SoWEMSelectRegion.clearSelection { title = "Clear" style = UZ.button }
+  }
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMExtrude
+CONTENT = 
+  NETWORKHIDDEN = __wemextrude
+  VIEWER = __wemextrude.SoExaminerViewer.self
+  Horizontal {
+    ToolButton __wemextrude.WEMExtrude.unify { title = "Unify" style = UZ.button }
+    Empty { expandX = Yes }
+    Button __wemextrude.WEMExtrude.undo { title = "Undo" style = UZ.button }
+    Button __wemextrude.WEMExtrude.clear { title = "Clear" style = UZ.button }
+  }
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMExtrude + WEMBoolOp = Magic
+CONTENT = 
+  NETWORK = __wemextrude2
+  VIEWER = __wemextrude2.SoExaminerViewer.self
+  Horizontal {
+    alignX = Right
+    Button __wemextrude2.WEMExtrude.undo { title = "Undo" style = UZ.button }
+    Button __wemextrude2.WEMExtrude.clear { title = "Clear" style = UZ.button }
+  }
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMInteract
+CONTENT = 
+  NETWORKHIDDEN = __weminteract
+  VIEWER = __weminteract.SoExaminerViewer.self
+  Horizontal {
+    ToolButton __weminteract.SoToggle.on { title = "Show Removed Parts" style = UZ.button }
+    Empty { expandX = Yes }
+    Button __weminteract.WEMInteract.clear { title = "Clear" style = UZ.button }
+  }
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMExtrude + SoGVRDepthPeel = More magic
+CONTENT = 
+  NETWORKHIDDEN = __wemextrude3
+  VIEWER = __wemextrude3.SoExaminerViewer.self
+  Horizontal {
+    alignX = Right
+    Button __wemextrude3.WEMExtrude.undo { title = "Undo" style = UZ.button }
+    Button __wemextrude3.WEMExtrude.clear { title = "Clear" style = UZ.button }
+  }
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMSculpt
+CONTENT = 
+  NETWORKHIDDEN = __wemsculpt
+  VIEWER = __wemsculpt.SoExaminerViewer.self
+  Horizontal {
+    alignX = Right
+    Button __wemsculpt.WEMSculpt.clear { title = "Clear" style = UZ.button }
+  }
+
+////////////////////////////////////////////////////////////
+
+NAME = Future work
+CONTENT = 
+  SEPARATOR = Future work
+    SEPARATORSUB = Bug fixes
+    SEPARATORSUB = WEMTextures
+    SEPARATORSUB = WEMSubdivide
+    SEPARATORSUB = WEMDoctor
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = Bug fixes
+CONTENT = 
+  BULLET = WEMModify
+    BULLETSUB = WEMAttributes
+    BULLETSUB = Notifications
+  BULLET = WEMBoolOp
+    BULLETSUB = Tesselation
+    BULLETSUB = Stabbing
+    BULLETSUB = WEMRequirements
+  
+  PUSHUP
+
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMTextures
+CONTENT =
+  BULLET = Textured meshes
+  BULLET = WEMPrimitiveValueList
+    BULLETSUB = Texture coordinates S and T
+  BULLET = Extend WEM file format
+  BULLET = Applications?
+    BULLETSUB = Forensic imaging
+    BULLETSUB = Visualization
+  PUSHUP
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMSubdivide
+CONTENT = 
+  BULLET = Various subidivision schemes
+    BULLETSUB = Interpolating
+    BULLETSUB = Approximating
+    BULLETSUB = Valid for triangles and quads
+  PUSHUP
+  Image {
+    alignX = Center
+    image = $(LOCAL)/data/wemsubdivide.png
+  }
+  
+////////////////////////////////////////////////////////////
+
+SUBTITLE = WEMDoctor
+CONTENT =
+  BULLET = SoWEMDiagnosis continued
+    BULLETSUB = Valence3, redundancy, concavities, holes, ...
+    BULLETSUB = WEMRequirements
+  NETWORKHIDDEN = __wemdoctor
+  VIEWER = __wemdoctor.SoExaminerViewer.self
+  Horizontal {
+    expandX = Yes
+    ToolButton __wemdoctor.SoWEMRenderer.drawEdges { title = "Draw Edges"  style = UZ.button }
+    ToolButton __wemdoctor.BoolArithmetic1.inputBool1 { title = "Close Holes"  style = UZ.button }
+    Empty { expandX = Yes }
+    ToolButton __wemdoctor.BoolArithmetic.inputBool1 { title = "Show Boundaries"  style = UZ.button }
+  }
+
+////////////////////////////////////////////////////////////
+
+CONTENT = 
+  SEPARATOR = Questions
+  PUSHUP
+  
+////////////////////////////////////////////////////////////

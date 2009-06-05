@@ -1,0 +1,472 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module BoolArithmetic {
+  internal  {
+    frame = "957 37 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "518 257 323 210"
+        sizeHint = "183 210"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoolArithmetic1
+    inputBool1 = FALSE
+    inputBool2 = TRUE
+    operation = And
+  }
+}
+module BoolArithmetic {
+  internal  {
+    frame = "961 -67 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1014 295 183 210"
+        sizeHint = "183 210"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoolArithmetic
+    inputBool1 = FALSE
+    inputBool2 = FALSE
+    operation = Negation
+  }
+}
+module WEMModify {
+  internal  {
+    frame = "665 37 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "554 293 562 625"
+        sizeHint = "562 625"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMModify
+    isProcessing = FALSE
+    elapsedTime = 0.1089999974
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = "Center node"
+    modifyAttributes = FALSE
+    WEMs = "2@"
+    selectedWEMs = ""
+    modifyFieldsValid = TRUE
+    modifyAllPatches = TRUE
+    scale = "1 1 1"
+    translate = "0 0 0"
+    center = FALSE
+    rotation = "0 0 1 0"
+    transformMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useTransformMatrix = FALSE
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    closeBoundaries = FALSE
+    setNodeColor = FALSE
+    nodeColor = "1 1 1"
+    setNodeAlpha = FALSE
+    nodeAlpha = 1
+    nodeValueMode = None
+    nodeValue = 0
+    clampNodeMinValue = FALSE
+    minClampValue = 0
+    clampNodeMaxValue = FALSE
+    maxClampValue = 4095
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "653 125 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "279 328 533 427"
+        sizeHint = "337 427"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalWEMLoad
+    name = $(NETWORK)/../data/aneurysma_reduced.wem
+    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/aneurysma_reduced.wem
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    boundingBoxMode = "Axis Aligned"
+    isProcessing = FALSE
+    elapsedTime = 0.09399999678
+    selectedTab = 0
+  }
+  internalFields = ""
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "733 -259 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "137 301 1057 564"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "401 360 490 362"
+        sizeHint = "490 362"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_ORTHOGRAPHIC
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = FALSE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.03946008161
+    position = "0.02511664479970932 -0.1158868968486786 0.1586205065250397"
+    orientation = "-0.2557019889354706 0.1671264320611954 -0.9522002339363098 3.786638021469116"
+    nearDistance = 0.1242678389
+    farDistance = 0.2752871513
+    focalDistance = 0.2185486108
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoWEMDiagnosis {
+  internal  {
+    frame = "809 -67 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "163 460 541 488"
+        sizeHint = "541 451"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMDiagnosis
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    nodeAlpha = 1
+    edgeAlpha = 1
+    faceAlpha = 0.400000006
+    scaleNodes = 2
+    scaleEdges = 1.300000072
+    faceElevation = 0.1000000015
+    hitFaceEntryNum = -1
+    errorString = ""
+    selectedType = -1
+    selectedEntry = -1
+    selectedErrorString = ""
+    showRedundant = FALSE
+    showCollinear = FALSE
+    showOrphan = TRUE
+    showFlatRegion = FALSE
+    showBoundary = FALSE
+    showConcave = TRUE
+    showNeighbourhood = TRUE
+    showZeroSize = FALSE
+    showValence3 = FALSE
+    numRedundant = 0
+    numCollinear = 0
+    numOrphan = 0
+    numFlatRegion = 1
+    numBoundary = 2526
+    numConcave = 0
+    numNeighbourhood = 0
+    numZeroSize = 12093
+    numValence3 = 0
+    numFatal = 0
+    numError = 0
+    numWarning = 12093
+    numNotice = 2527
+    useMaxNumDisplayedErrors = TRUE
+    maxNumDisplayedErrors = 10
+    status = "12093 warnings, 2527 notices"
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "781 125 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1182 533 537 442"
+        sizeHint = "548 442"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoLUTEditor
+    currentColor = "1 1 1"
+    currentOpacity = 1
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 200
+    viewMin = 0
+    viewMax = 200
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,200.00]
+    viewRangeInfo = [0,200]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0.364706 1, 100.405 0.65098 1 0, 200 1 0 0.298039 ]"
+    alphaPoints = "[ 0 1, 100.405 1, 200 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 200
+    newRangeMode = ScaleFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.800000011920929 0.800000011920929 0.800000011920929"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4000000059604645 0.4000000059604645 0.4000000059604645"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "665 -67 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "908 205 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = FALSE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_LUT_VALUES
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = TRUE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = LUT,wss
+    selectedPrimitiveValueList = wss
+    primitiveValueListValid = TRUE
+    selectedTab = 3
+  }
+}
+connections  {
+  BoolArithmetic1.inputBool2 = BoolArithmetic.outputBool
+  WEMModify.inWEM = LocalWEMLoad.outWEM
+  WEMModify.closeBoundaries = BoolArithmetic1.outputBool
+  SoExaminerViewer.children = "SoWEMRenderer.self SoWEMDiagnosis.self"
+  SoWEMDiagnosis.inputWEM = LocalWEMLoad.outWEM
+  SoWEMDiagnosis.showBoundary = BoolArithmetic.negatedOutputBool
+  SoWEMRenderer.inWEM = WEMModify.outWEM
+  SoWEMRenderer.inLUT = SoLUTEditor.outLUT
+}
+networkModel = ""

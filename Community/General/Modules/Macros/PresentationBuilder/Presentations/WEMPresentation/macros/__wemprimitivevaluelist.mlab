@@ -1,0 +1,607 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "753 413 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "759 423 337 427"
+        sizeHint = "337 427"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalWEMLoad1
+    name = $(NETWORK)/../data/wembone.wem
+    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/wembone.wem
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    boundingBoxMode = "Axis Aligned"
+    isProcessing = FALSE
+    elapsedTime = 0.01600000076
+    selectedTab = 0
+  }
+  internalFields = ""
+}
+module SoLUTEditor {
+  internal  {
+    frame = "901 405 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "699 471 494 451"
+        sizeHint = "496 451"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoLUTEditor
+    currentColor = "0.800000011920929 0.9372549057006836 0.9372549057006836"
+    currentOpacity = 1
+    currentPosition = 0.5032538176
+    currentIndex = 1
+    rangeMin = 0
+    rangeMax = 1
+    viewMin = 0
+    viewMax = 1
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = TRUE
+    rangeInfo = [0.00,1.00]
+    viewRangeInfo = [0.000,1.000]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0.14902 0.45098 0.933333, 0.503254 0.8 0.937255 0.937255, 1 0.937255 0.0588235 0.0862745 ]"
+    alphaPoints = "[ 0 1, 0.503254 1, 1 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 1
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.800000011920929 0.800000011920929 0.800000011920929"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4000000059604645 0.4000000059604645 0.4000000059604645"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "841 293 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "878 333 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = FALSE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_LUT_VALUES
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = TRUE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = "Node Curvature"
+    primitiveValueListValid = TRUE
+    selectedTab = 3
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "837 197 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "99 524 465 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "209 200 490 362"
+        sizeHint = "490 362"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_ORTHOGRAPHIC
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = FALSE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 83.38453674
+    position = "-5.605052947998047 -21.07088470458984 -58.89028930664062"
+    orientation = "0.9642810225486755 0.09936435520648956 -0.2455378919839859 2.59708833694458"
+    nearDistance = 58.37184143
+    farDistance = 135.8479309
+    focalDistance = 100.6540604
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module StylePalette {
+  internal  {
+    frame = "617 293 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "417 318 631 488"
+        sizeHint = "631 488"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StylePalette
+    color1 = "0.3333333333333333 0.6666666666666666 1"
+    color2 = "0 0.3333333333333333 1"
+    color3 = "0 0 1"
+    color4 = "0 1 0"
+    color5 = "1 0.5 0"
+    color6 = "1 0 1"
+    color7 = "0 1 1"
+    color8 = "0.5 1 0.5"
+    color9 = "1 0 0.5"
+    color10 = "0.5 1 0"
+    color11 = "0.5 0 1"
+    color12 = "0 1 0.5"
+    lineStyle1 = Solid
+    lineStyle2 = Solid
+    lineStyle3 = Solid
+    lineStyle4 = Solid
+    lineStyle5 = Solid
+    lineStyle6 = Solid
+    lineStyle7 = Solid
+    lineStyle8 = Solid
+    lineStyle9 = Solid
+    lineStyle10 = Solid
+    lineStyle11 = Solid
+    lineStyle12 = Solid
+    lineWidth1 = 1
+    lineWidth2 = 1
+    lineWidth3 = 1
+    lineWidth4 = 1
+    lineWidth5 = 1
+    lineWidth6 = 1
+    lineWidth7 = 1
+    lineWidth8 = 1
+    lineWidth9 = 1
+    lineWidth10 = 1
+    lineWidth11 = 1
+    lineWidth12 = 1
+    markerType1 = None
+    markerType2 = None
+    markerType3 = None
+    markerType4 = None
+    markerType5 = None
+    markerType6 = None
+    markerType7 = None
+    markerType8 = None
+    markerType9 = None
+    markerType10 = None
+    markerType11 = None
+    markerType12 = None
+    markerSize1 = 4
+    markerSize2 = 4
+    markerSize3 = 4
+    markerSize4 = 4
+    markerSize5 = 4
+    markerSize6 = 4
+    markerSize7 = 4
+    markerSize8 = 4
+    markerSize9 = 4
+    markerSize10 = 4
+    markerSize11 = 4
+    markerSize12 = 4
+    antiAlias1 = FALSE
+    antiAlias2 = FALSE
+    antiAlias3 = FALSE
+    antiAlias4 = FALSE
+    antiAlias5 = FALSE
+    antiAlias6 = FALSE
+    antiAlias7 = FALSE
+    antiAlias8 = FALSE
+    antiAlias9 = FALSE
+    antiAlias10 = FALSE
+    antiAlias11 = FALSE
+    antiAlias12 = FALSE
+    name1 = ""
+    name2 = ""
+    name3 = ""
+    name4 = ""
+    name5 = ""
+    name6 = ""
+    name7 = ""
+    name8 = ""
+    name9 = ""
+    name10 = ""
+    name11 = ""
+    name12 = ""
+    currentStyle = 0
+    currentColor = "1 1 1"
+    currentLineStyle = None
+    currentLineWidth = 1
+    currentMarkerType = None
+    currentMarkerSize = 4
+    currentAntiAlias = FALSE
+    currentName = ""
+    reservedEntries = 0
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "733 293 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "349 586 464 326"
+        sizeHint = "464 326"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1729 290 307 440"
+        sizeHint = "307 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "2@"
+    selectedWEMs = ""
+    informationFieldsValid = TRUE
+    numNodes = 1307
+    numEdges = 3999
+    numFaces = 2666
+    uniqueId = 2
+    patchType = Triangles
+    hasEdges = TRUE
+    surfaceArea = 8432.386719
+    surfaceVolume = 10848.69531
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBox = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    center = "32.30754089355469 32.69111633300781 12.5"
+    minimum = "0.6150792837142944 1.3822340965271 0"
+    maximum = "64 64 25"
+    size = "63.38492071628571 62.6177659034729 25"
+    radius = 46.26995087
+    mainAxisCenter = "39.09260559082031 33.46616363525391 10.8326530456543"
+    xMainAxis = "0.81570965051651 0.5719717144966125 -0.08640770614147186"
+    yMainAxis = "-0.5671269297599792 0.8201791048049927 0.07532074302434921"
+    zMainAxis = "0.1139511168003082 -0.01243571005761623 0.9934085607528687"
+    xExt = 71.1081543
+    yExt = 76.72390747
+    zExt = 29.50272369
+    primitiveValueLists = "LUT,Node Curvature,Edge Length,Face Area,Face Quality,Node Valence"
+    selectedPrimitiveValueList = "Node Curvature"
+    primitiveValueListValid = TRUE
+    minPrimitiveValueList = 5.874563135730001
+    maxPrimitiveValueList = 176.2784179792861
+    meanPrimitiveValueList = 43.23026666769884
+    primitiveValueListUnits = degrees
+    edgeLengthUnits = mm
+    faceAreaUnits = mm2
+    curveScaleFactor = 1
+    selectedTab = 2
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "665 125 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "685 274 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "509 483 280 117"
+        sizeHint = "280 117"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "513 429 260 224"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module Diagram2D {
+  internal  {
+    frame = "673 197 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "675 304 445 576"
+        sizeHint = "445 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 5
+    maxX = 177
+    autoRangeX = TRUE
+    minY = 0
+    maxY = 3.136954784
+    autoRangeY = TRUE
+    axisColor = "0 0 0"
+    axisRotation = LeftBottom
+    drawDiagramTitle = TRUE
+    diagramTitleString = "Node Curvature"
+    borderH = 29
+    autoBorderH = TRUE
+    borderV = 40
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn] vc"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 1 1"
+    lineStyle = Solid
+    markerType = None
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = -9.757397652
+    mousePosY = 3.524110317
+    mousePosValid = TRUE
+    curveSelection = Diagram
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = TRUE
+  }
+}
+connections  {
+  SoWEMRenderer.inWEM = LocalWEMLoad1.outWEM
+  SoWEMRenderer.inLUT = SoLUTEditor.outLUT
+  SoWEMRenderer.selectedPrimitiveValueList = WEMInfo.selectedPrimitiveValueList
+  SoExaminerViewer.children = SoWEMRenderer.self
+  WEMInfo.inWEM = LocalWEMLoad1.outWEM
+  SoRenderArea.children = Diagram2D.outNode
+  Diagram2D.inStylePalette = StylePalette.outStylePalette
+  Diagram2D.inCurveList = WEMInfo.outputCurveData
+}
+networkModel = ""

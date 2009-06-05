@@ -1,0 +1,428 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "357 469 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "475 328 337 427"
+        sizeHint = "337 427"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalWEMLoad
+    name = $(NETWORK)/../data/XA.1.3.12.2.1107.5.4.7.4243.30000008022008083651500000208.wem
+    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/XA.1.3.12.2.1107.5.4.7.4243.30000008022008083651500000208.wem
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    boundingBoxMode = "Axis Aligned"
+    isProcessing = FALSE
+    elapsedTime = 0.01600000076
+    selectedTab = 0
+  }
+  internalFields = ""
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "277 189 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "148 357 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = FALSE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = FALSE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = FALSE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = FALSE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = TRUE
+    edgeColor = "0.2005000114440918 0.533833384513855 1"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 3
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "325 29 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "143 265 585 539"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "401 360 490 362"
+        sizeHint = "490 362"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = FALSE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7853980064
+    position = "292.5340881347656 -98.32113647460938 -632.1724243164062"
+    orientation = "-0.5706149339675903 -0.6099575161933899 -0.5498639941215515 4.185770034790039"
+    nearDistance = 164.8533783
+    farDistance = 363.4000549
+    focalDistance = 293.0546265
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "421 189 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "148 357 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer2
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = FALSE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 2
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 3
+  }
+}
+module WEMInteract {
+  internal  {
+    frame = "365 341 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "728 564 395 165"
+        sizeHint = "395 165"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInteract
+    lineColor = "0.3333333432674408 0.6666666865348816 1"
+    status = "All is well."
+    autoUpdate = TRUE
+    autoApply = TRUE
+    tagNodes = TRUE
+    generateEdges = TRUE
+  }
+  internalFields = ""
+}
+module BoolArithmetic {
+  internal  {
+    frame = "685 341 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "654 538 183 210"
+        sizeHint = "183 210"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoolArithmetic3
+    inputBool1 = FALSE
+    inputBool2 = FALSE
+    operation = Negation
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "609 109 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup1
+  }
+}
+module SoKeyGrabber {
+  internal  {
+    frame = "689 189 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "875 228 370 239"
+        sizeHint = "370 239"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoKeyGrabber
+    on = TRUE
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    lastKey = ESCAPE
+    key0 = ANY
+    key1 = ANY
+    key2 = ANY
+    key3 = ANY
+    key4 = ANY
+  }
+}
+module SoFlash {
+  internal  {
+    frame = "601 189 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "513 429 461 311"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoFlash
+    color = "0.3333333432674408 0.6666666865348816 1"
+    targetColor = "0 0.3333333432674408 1"
+    brightness = 1
+    time = 2
+    on = TRUE
+    outputColor = "0.2005000114440918 0.533833384513855 1"
+  }
+}
+module SoPolygonOffset {
+  internal  {
+    frame = "145 189 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoPolygonOffset
+    factor = 1
+    units = 1
+    styles = FILLED
+    on = TRUE
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "493 109 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "815 530 115 25"
+        sizeHint = "64 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoToggle
+    whichChild = -1
+    on = FALSE
+  }
+}
+connections  {
+  SoWEMRenderer1.inWEM = WEMInteract.innerWEM
+  SoWEMRenderer1.edgeColor = SoFlash.outputColor
+  SoExaminerViewer.children = "SoPolygonOffset.self SoWEMRenderer2.self SoToggle.self SoGroup1.self"
+  SoWEMRenderer2.inWEM = WEMInteract.outerWEM
+  WEMInteract.inWEM = LocalWEMLoad.outWEM
+  WEMInteract.tagNodes = BoolArithmetic3.outputBool
+  BoolArithmetic3.inputBool1 = SoKeyGrabber.ctrlPressed
+  SoGroup1.children = "WEMInteract.self SoFlash.self SoKeyGrabber.self"
+  SoToggle.children = SoWEMRenderer1.self
+}
+networkModel = ""
