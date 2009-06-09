@@ -1,0 +1,115 @@
+// **InsertLicense** code
+//----------------------------------------------------------------------------------
+//! MLMatlabScriptWrapper module definitions.
+/*!
+// \file    MLMatlabScriptWrapper.def
+// \author  Alexander Gryanik
+// \date    2009-02-23
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule MatlabScriptWrapper
+//----------------------------------------------------------------------------------
+MLModule MatlabScriptWrapper {
+  DLL            = "MLMatlabScriptWrapper"
+  genre          = "Other"
+  author         = "Alexander Gryanik, Ola Friman, Markus Harz"
+  status         = "work-in-progress"
+  comment        = "Execute matlab script on an image to produce an output image."
+  keywords       = "matlab scripting wrapper"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/MatlabScriptWrapper.html"
+  exampleNetwork = "$(LOCAL)/networks/MatlabScriptWrapperExample.mlab"
+  
+  Window {
+  width = 500
+  Category Main {
+    Vertical {
+      margin = 4
+      TextView MatlabScript {
+        dependsOn = !useExternalScript 
+        autoApply = Yes
+        showLineNumbers = Yes
+      }
+    
+      CheckBox useExternalScript {}
+      Horizontal {
+        Field matlabScriptPath {
+          title = "Matlab Script:" 
+          expandX = yes 
+          browseButton = ON 
+          browseMode = open 
+          browseFilter = "Database Files (*.m)" 
+          dependsOn = useExternalScript}
+      }
+      Vertical {
+        Horizontal {
+          Vertical {
+            Box "Input image names" {
+              Field inDataName0 {title = "Input0 name:" expandX = yes}
+              Field inDataName1 {title = "Input1 name:" expandX = yes}
+              Field inDataName2 {title = "Input2 name:" expandX = yes}
+            }
+          }
+          Vertical {
+            Box "Output image names" {
+              Field outDataName0 {title = "Output0 name:" expandX = yes}
+              Field outDataName1 {title = "Output1 name:" expandX = yes}
+              Field outDataName2 {title = "Output2 name:" expandX = yes}
+            }
+          }
+        
+        }
+        Box "XMarker names" {
+          Field inXMarkerName {title = "Input name:" expandX = yes}
+          Field outXMarkerName {title = "Output name:" expandX = yes}
+        }
+      }
+    
+      Horizontal {
+        CheckBox autoUpdate {title = "Auto-update on input data change"}
+        Button restartMatlab { alignX = Right title = "Restart Matlab"}
+      }
+      Field status {title = "Status:" edit = No}
+      Button update { alignX = Left title = "Update" }
+    }
+  }
+  Category Scalars{
+    Horizontal {
+      Vertical {
+        //Box "Input scalars" {
+          Horizontal {
+            Field scalarName0 {title = "Name:" expandX = yes}
+            Field scalar0 {title = "Value:" expandX = yes}
+          }
+          Horizontal {
+            Field scalarName1 {title = "Name:" expandX = yes}
+            Field scalar1 {title = "Value:" expandX = yes}
+          }
+          Horizontal {
+            Field scalarName2 {title = "Name:" expandX = yes}
+            Field scalar2 {title = "Value:" expandX = yes}
+          }     
+        //} 
+        //Box "Output scalars" {
+          Horizontal {
+            Field scalarName3 {title = "Name:" expandX = yes}
+            Field scalar3 {title = "Value:" expandX = yes}
+          }
+          Horizontal {
+            Field scalarName4 {title = "Name:" expandX = yes}
+            Field scalar4 {title = "Value:" expandX = yes}
+          }
+          Horizontal {
+            Field scalarName5 {title = "Name:" expandX = yes}
+            Field scalar5 {title = "Value:" expandX = yes}
+          }
+        //}
+      }
+    }
+  }
+}
+} // MLModule MatlabScriptWrapper
+

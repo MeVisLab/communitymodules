@@ -1,0 +1,1030 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Comment {
+  internal  {
+    frame = "953 589 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "625 584 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment3
+    comment = "This example creates and implict representation of a torus in Matlab and visualizes it in MeVisLab as an isosurface. Press the Update button in the MatlabScriptWrapper and see the result in the SoExaminerViewer."
+  }
+  internalFields = ""
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "801 521 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "420 451 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TorusRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_LUT_VALUES
+    drawFaces = TRUE
+    faceDiffuseColor = "1 1 0"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "1 0.3333333432674408 0"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0 0 0"
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = TRUE
+    selectedTab = 0
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "793 453 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "26 59 489 362"
+        sizeHint = "489 362"
+        wasOpen = no
+        wasActive = no
+      }
+      window _viewer {
+        geometry = "1175 433 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "48.92348480224609 94.9647216796875 145.5186157226562"
+    orientation = "0.3436312079429626 -0.2769282162189484 -0.8973450660705566 5.137053489685059"
+    nearDistance = 96.22691345
+    farDistance = 141.0202637
+    focalDistance = 118.6015244
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module WEMIsoSurface {
+  internal  {
+    frame = "797 589 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "771 491 375 427"
+        sizeHint = "375 427"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMIsoSurface
+    isProcessing = FALSE
+    elapsedTime = 0.123999998
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "1 0 0.4980392156862745"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "1 0 0"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "1 1 0"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    isoMinValue = 1200
+    isoMaxValue = 3
+    useMinValue = TRUE
+    useMaxValue = FALSE
+    cellExtend = "2 2 2"
+    useWorldCoords = TRUE
+    useInterpolation = TRUE
+    useQuadrification = FALSE
+    useFaceValueList = FALSE
+    useValenceThreeRemoval = TRUE
+    useZeroLengthEdgeRemoval = TRUE
+    progress = 1
+    selectedTab = 2
+  }
+}
+module Comment {
+  internal  {
+    frame = "1289 605 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "715 443 321 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment2
+    comment = "This example illustrates that MeVisLab and Matlab have different coordinate systems. Press the Update button in the MatlabScriptWrapper module and compare the Matlab-generated plots with the plot in the View2D module."
+  }
+  internalFields = ""
+}
+module View2D {
+  internal  {
+    frame = "1097 541 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "455 437 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D1
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_NEAREST
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 5.5"
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "1161 685 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files/MeVisLab2.0aVC8/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module SubImage {
+  internal  {
+    frame = "1189 605 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "175 619 559 353"
+        sizeHint = "559 353"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SubImage
+    boxInput = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    autoApplyBox = FALSE
+    x = 0
+    sx = 64
+    modifyX = FALSE
+    y = 0
+    sy = 64
+    modifyY = FALSE
+    z = 5
+    sz = 1
+    modifyZ = TRUE
+    c = 0
+    sc = 1
+    modifyC = FALSE
+    t = 0
+    st = 1
+    modifyT = FALSE
+    u = 0
+    su = 1
+    modifyU = FALSE
+    fillValue = 0
+    mode = VoxelStartSize
+    autoApply = TRUE
+  }
+}
+module MatlabScriptWrapper {
+  internal  {
+    frame = "1189 533 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "233 303 400 650"
+        sizeHint = "400 650"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MatlabScriptWrapper3
+    MatlabScript = "% This script illustrates the difference in coordinate
+% systems in MeVisLab and Matlab. MeVisLab uses a
+% (x,y) system while Matlab uses a (y,x) system. Image
+% will therefore appear flipped. The Matlab command
+% 'permute' can fix this.
+
+figure(1),clf
+subplot(121)
+imagesc(Input0), axis image
+title(sprintf('Direct plot of image from MeVisLab.\\nNote that the image is flipped.'))
+
+subplot(122)
+imagesc(permute(Input0,[2 1])), axis image
+title(sprintf('Plot of image from MeVisLab\\nafter permute(Input0,[2 1]) command'))
+
+colormap gray"
+    useExternalScript = FALSE
+    matlabScriptPath = ""
+    inDataName0 = Input0
+    inDataName1 = Input1
+    inDataName2 = Input2
+    outDataName0 = Output0
+    outDataName1 = Output1
+    outDataName2 = Output2
+    inXMarkerName = inXMarker
+    outXMarkerName = outXMarker
+    autoUpdate = FALSE
+    status = "Execution successful!"
+    scalarName0 = scalar0
+    scalar0 = 0
+    scalarName1 = scalar1
+    scalar1 = 0
+    scalarName2 = scalar2
+    scalar2 = 0
+    scalarName3 = scalar3
+    scalar3 = 0
+    scalarName4 = scalar4
+    scalar4 = 0
+    scalarName5 = scalar5
+    scalar5 = 0
+  }
+}
+module StylePalette {
+  internal  {
+    frame = "49 621 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = StylePalette
+    color1 = "1 1 0"
+    color2 = "1 0 0"
+    color3 = "0 0 1"
+    color4 = "0 1 0"
+    color5 = "1 0.5 0"
+    color6 = "1 0 1"
+    color7 = "0 1 1"
+    color8 = "0.5 1 0.5"
+    color9 = "1 0 0.5"
+    color10 = "0.5 1 0"
+    color11 = "0.5 0 1"
+    color12 = "0 1 0.5"
+    lineStyle1 = Solid
+    lineStyle2 = Solid
+    lineStyle3 = Solid
+    lineStyle4 = Solid
+    lineStyle5 = Solid
+    lineStyle6 = Solid
+    lineStyle7 = Solid
+    lineStyle8 = Solid
+    lineStyle9 = Solid
+    lineStyle10 = Solid
+    lineStyle11 = Solid
+    lineStyle12 = Solid
+    lineWidth1 = 1
+    lineWidth2 = 1
+    lineWidth3 = 1
+    lineWidth4 = 1
+    lineWidth5 = 1
+    lineWidth6 = 1
+    lineWidth7 = 1
+    lineWidth8 = 1
+    lineWidth9 = 1
+    lineWidth10 = 1
+    lineWidth11 = 1
+    lineWidth12 = 1
+    markerType1 = None
+    markerType2 = None
+    markerType3 = None
+    markerType4 = None
+    markerType5 = None
+    markerType6 = None
+    markerType7 = None
+    markerType8 = None
+    markerType9 = None
+    markerType10 = None
+    markerType11 = None
+    markerType12 = None
+    markerSize1 = 4
+    markerSize2 = 4
+    markerSize3 = 4
+    markerSize4 = 4
+    markerSize5 = 4
+    markerSize6 = 4
+    markerSize7 = 4
+    markerSize8 = 4
+    markerSize9 = 4
+    markerSize10 = 4
+    markerSize11 = 4
+    markerSize12 = 4
+    antiAlias1 = FALSE
+    antiAlias2 = FALSE
+    antiAlias3 = FALSE
+    antiAlias4 = FALSE
+    antiAlias5 = FALSE
+    antiAlias6 = FALSE
+    antiAlias7 = FALSE
+    antiAlias8 = FALSE
+    antiAlias9 = FALSE
+    antiAlias10 = FALSE
+    antiAlias11 = FALSE
+    antiAlias12 = FALSE
+    name1 = ""
+    name2 = ""
+    name3 = ""
+    name4 = ""
+    name5 = ""
+    name6 = ""
+    name7 = ""
+    name8 = ""
+    name9 = ""
+    name10 = ""
+    name11 = ""
+    name12 = ""
+    currentStyle = 0
+    currentColor = "1 1 1"
+    currentLineStyle = None
+    currentLineWidth = 1
+    currentMarkerType = None
+    currentMarkerSize = 4
+    currentAntiAlias = FALSE
+    currentName = ""
+    reservedEntries = 0
+  }
+}
+module MatlabScriptWrapper {
+  internal  {
+    frame = "813 661 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "257 300 400 657"
+        sizeHint = "400 657"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MatlabScriptWrapper2
+    MatlabScript = "% The script lines below sets the output image to an implicit % function representation of a torus.
+[x,y,z] = meshgrid(-10:0.25:10,-10:0.25:10,-10:0.25:10);
+R = 6;
+Output0 = (R-sqrt(x.^2+y.^2)).^2 + z.^2;"
+    useExternalScript = FALSE
+    matlabScriptPath = ""
+    inDataName0 = Input0
+    inDataName1 = Input1
+    inDataName2 = Input2
+    outDataName0 = Output0
+    outDataName1 = Output1
+    outDataName2 = Output2
+    inXMarkerName = inXMarker
+    outXMarkerName = outXMarker
+    autoUpdate = FALSE
+    status = "Execution successful!"
+    scalarName0 = scalar0
+    scalar0 = 0
+    scalarName1 = scalar1
+    scalar1 = 0
+    scalarName2 = scalar2
+    scalar2 = 0
+    scalarName3 = scalar3
+    scalar3 = 0
+    scalarName4 = scalar4
+    scalar4 = 0
+    scalarName5 = scalar5
+    scalar5 = 0
+  }
+}
+module Comment {
+  internal  {
+    frame = "385 477 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "715 443 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment1
+    comment = "In this example, a test pattern is created in MeVisLab and this pattern is modified in Matlab and used again as an overlay in MeVisLab. Press Update in the MatlabScriptWrapper module."
+  }
+  internalFields = ""
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "509 485 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "613 368 460 359"
+        sizeHint = "460 359"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 0.5619999766
+    baseColor = "1 1 0"
+    useWorldCoords = FALSE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+module View2D {
+  internal  {
+    frame = "469 389 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "234 451 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 0.5
+    lutWidth = 1
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
+  }
+  internalFields = ""
+}
+module TestPattern {
+  internal  {
+    frame = "441 653 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "263 482 248 401"
+        sizeHint = "248 401"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TestPattern
+    sizeX = 256
+    sizeY = 256
+    sizeZ = 1
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = float
+    fillValue = 1
+    autoApply = TRUE
+    pattern = FilledMaxEllipsoid
+    fillValue2 = 0
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+  }
+}
+module MatlabScriptWrapper {
+  internal  {
+    frame = "533 549 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "877 264 452 650"
+        sizeHint = "400 650"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MatlabScriptWrapper1
+    MatlabScript = "% This script illustrates with a toy example how images can be 
+% imported into Matlab, modified and exported back to MeVisLab.
+% In this particular example, the input image is divided with a 
+% sinusoidal pattern.
+
+% Copy input image to ouput
+Output0 = Input0;
+
+% Get size of input image
+[sy,sx] = size(Input0);
+
+% Make a sine pattern in the output
+mid = floor(sx/2);
+for k=1:sy
+   Output0(k,mid + floor(sx/10*sin(2*pi/sy*3*k)):end) = 0;
+end
+"
+    useExternalScript = FALSE
+    matlabScriptPath = ""
+    inDataName0 = Input0
+    inDataName1 = Input1
+    inDataName2 = Input2
+    outDataName0 = Output0
+    outDataName1 = Output1
+    outDataName2 = Output2
+    inXMarkerName = inXMarker
+    outXMarkerName = outXMarker
+    autoUpdate = FALSE
+    status = "Execution successful!"
+    scalarName0 = scalar0
+    scalar0 = 0
+    scalarName1 = scalar1
+    scalar1 = 0
+    scalarName2 = scalar2
+    scalar2 = 0
+    scalarName3 = scalar3
+    scalar3 = 0
+    scalarName4 = scalar4
+    scalar4 = 0
+    scalarName5 = scalar5
+    scalar5 = 0
+  }
+}
+module Comment {
+  internal  {
+    frame = "-11 501 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "373 492 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "This example creates an XMarkerList with Matlab and displays the points in 3D in MeVisLab. Press Update in the MatlabScriptWrapper and see the result in the SoExaminerViewer. The StylePalette module sets the color according to the type-feature set in the Matlab-script.
+"
+  }
+  internalFields = ""
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "85 429 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "589 304 605 607"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853981853
+    position = "1.466153740882874 -34.25235366821289 -22.5416316986084"
+    orientation = "-0.1885406076908112 0.8626965284347534 -0.4692621827125549 3.305067300796509"
+    nearDistance = 31.73994255
+    farDistance = 50.33739471
+    focalDistance = 41.04526138
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module So3DXMarker {
+  internal  {
+    frame = "101 501 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "20 228 292 745"
+        sizeHint = "292 745"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    scaleSize = 3
+    scaleLength = 0.1000000015
+    color = "0.3333333432674408 1 0"
+    validStylePalette = TRUE
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = TRUE
+    selectingOn = TRUE
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModeCorrect
+    instanceName = So3DXMarker
+    listString = ""
+    numItems = 30
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = 0
+    name = ""
+    newName = ""
+    actionClass = New
+    actionIndex = -1
+    actionId = -1
+    currentIndex = -1
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "10 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 10 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module MatlabScriptWrapper {
+  internal  {
+    frame = "145 621 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "925 237 400 657"
+        sizeHint = "400 657"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MatlabScriptWrapper
+    MatlabScript = "% This script illustrates how an XMarkerList is generated 
+% in Matlab and exported to MeVisLab.
+
+% Generate 30 angles between 0 and 2*pi
+phi = linspace(0,2*pi,30)';
+
+% Make a circle of points and set the vector and type
+% properties of the XMarkers.
+OutputXMarkerList.pos = 10*[cos(phi) sin(phi)];
+OutputXMarkerList.vec= 10*[-sin(phi) cos(phi)];
+OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
+"
+    useExternalScript = FALSE
+    matlabScriptPath = K:/Repository/MeVisResearch/Private/Modules/ML/MLMatlabModules/test.m
+    inDataName0 = Input0
+    inDataName1 = Input1
+    inDataName2 = Input2
+    outDataName0 = Output0
+    outDataName1 = Output1
+    outDataName2 = Output2
+    inXMarkerName = inXMarker
+    outXMarkerName = OutputXMarkerList
+    autoUpdate = FALSE
+    status = "Execution successful!"
+    scalarName0 = scalar0
+    scalar0 = 0
+    scalarName1 = scalar1
+    scalar1 = 0
+    scalarName2 = scalar2
+    scalar2 = 0
+    scalarName3 = scalar3
+    scalar3 = 0
+    scalarName4 = scalar4
+    scalar4 = 0
+    scalarName5 = scalar5
+    scalar5 = 0
+  }
+}
+connections  {
+  TorusRenderer.inWEM = WEMIsoSurface.outWEM
+  SoExaminerViewer1.children = TorusRenderer.self
+  WEMIsoSurface.input0 = MatlabScriptWrapper2.output0
+  View2D1.inImage = SubImage.output0
+  SubImage.input0 = LocalImage.outImage
+  MatlabScriptWrapper3.input0 = SubImage.output0
+  SoView2DOverlay.image = MatlabScriptWrapper1.output0
+  View2D.inImage = TestPattern.output0
+  View2D.inInvPreLUT = SoView2DOverlay.self
+  MatlabScriptWrapper1.input0 = TestPattern.output0
+  SoExaminerViewer.children = So3DXMarker.self
+  So3DXMarker.stylePalette = StylePalette.outStylePalette
+  So3DXMarker.inXMarkerList = MatlabScriptWrapper.outputXMarkerList
+}
+networkModel = ""

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+
+<body>
+
+
+
+
+
+<center>
+<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Details">Details</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Inputs">Inputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Outputs">Outputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Events%20And%20Interaction">Events And Interaction</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Example">Example</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Tips%20And%20Tricks">Tips And Tricks</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Known%20Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp; 
+  
+<hr width="100%">
+</center>
+
+
+
+
+
+<h2>MatlabScriptWrapper
+</h2>
+
+
+
+
+
+<h3><a name="Purpose"></a>Purpose</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+The <b>MatlabScriptWrapper</b> module offers
+the possibility to execute Matlab scripts within
+MevisLab and establish a link to a Matlab console, for example to
+transfer data between MeVisLab and Matlab. Note that Matlab must be
+installed for this module to function.</blockquote>
+
+
+
+
+
+<h3><a name="Usage"></a>Usage</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">Currently, three types of data structures can be transferred between MeVisLab and Matlab: <br>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li><span style="font-weight: bold;">Images:</span> Up to 3 images can be used. Images are
+stored as up to 6 dimensional matrices in Matlab. Note that MeVisLab
+and Matlab use different coordinate systems, see below for further
+information.</li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li><span style="font-weight: bold;">XMarkerLists:</span> An
+XMarker is an object that contains a point (up to 6 dimensions), a
+vector (3 dimension) and a type variable (integer). An XMarkerList is an array of XMarker objects. In Matlab, an XMarkerList is
+represented as a struct with the following members</li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <span style="font-style: italic;">&lt;variablename&gt;</span>.pos&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;where pos is an <span style="font-style: italic;">N</span>x2, <span style="font-style: italic;">N</span>x3, <span style="font-style: italic;">N</span>x4, <span style="font-style: italic;">N</span>x5 or <span style="font-style: italic;">N</span>x6 matrix with the position coordinates. <span style="font-style: italic;">N</span> is the number of XMarkers.<br>
+
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<span style="font-style: italic;">&lt;variablename&gt;</span>.vec&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; where vec is an <span style="font-style: italic;">N</span>x2 or <span style="font-style: italic;">N</span>x3 matrix of vectors.<br>
+
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<span style="font-style: italic;">&lt;variablename&gt;</span>.type&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;where &nbsp;type is an <span style="font-style: italic;">N</span>x1 vector of integers.<br>
+
+
+
+  <br>
+
+
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; Important: the pos matrix determines the number of XMarkers <span style="font-style: italic;">N</span>. The vec and type matrices must have the same number of rows <span style="font-style: italic;">N</span>,
+otherwise will &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;these values not be copied back to MeVisLab. See the example
+network for an example.<br>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li><span style="font-weight: bold;">Scalars:&nbsp;</span>Double
+precision. These can be used both as input and ouput variables. Field
+notifications will be sent in MeVisLab only if a scalar has changed its
+value after the Matlab script execution.</li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+The variable names for the above data structures in the Matlab workspace can be set.<br>
+
+
+The Matlab script can be written directly in the module GUI, or an
+external script file (.m) can be called.&nbsp;If you choose to use
+existing script the script in script field will
+disappear and there is no posibility to edit matlab script file form
+MevisLab. <br>
+
+
+Push the "Update"-button to execute the Matlab script, or set Auto-Update.&nbsp;
+</blockquote>
+
+
+
+
+
+
+
+<h3><a name="Details"></a>Details</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><span style="font-weight: bold;">Coordinate systems in MeVisLab and Matlab</span><br>
+
+
+In the context of this module, the only coordinate system that is
+considered is the discrete voxel index coordinate system, i.e., images
+are considered as multidimensional matrices. Both MeVisLab and Matlab
+have the origin in the upper left corner and a y-axis that points
+"downwards". However, note that MeVisLab starts counting a 0, whereas
+Matlab starts counting a 1, i.e., the upper left voxel has the
+coordinate (0,0) in MeVisLab and (1,1) in Matlab. The major difference
+between MeVisLab and Matlab is the&nbsp;indexing order: MeVisLab uses
+[x,y] while Matlab uses [y,x] (i.e., row-column into a matrix). Thus,
+an image will appear flipped when exported from MeVisLab and visualized
+in Matlab or vice-versa. To correct for this, one can use the <span style="font-style: italic;">permute</span> command in Matlab, for example<br>
+
+
+  <br>
+
+
+&gt;&gt; permute(Input0,[2 1])<br>
+
+
+  <br>
+
+
+which swaps the x and y axes. See the example network for an example.<br>
+
+
+</blockquote>
+
+
+
+
+
+
+<h3><a name="Inputs"></a>Inputs</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">Up to 3 input
+images and one XMarkerlist can be attached to the module. Input to the
+module from MeVisLab is optional, the output can be generated entirely
+in Matlab without input from MeVisLab (see the example network for
+examples).
+</blockquote>
+
+
+
+
+
+
+<h3><a name="Outputs"></a>Outputs</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">Up to 3 output images and one XMarkerList.
+</blockquote>
+
+
+
+
+
+
+<h3><a name="Parameters"></a>Parameters</h3>
+
+
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><b> Matlab Script</b><br>
+
+
+A&nbsp;field where the Matlab&nbsp;script can be written.&nbsp;<b></b>
+</blockquote>
+
+
+
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><b>Use External Script</b><br>
+
+
+Enables the possibility to use an external Matlab script file (.m).<br>
+
+
+
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><b>Input/Output image, XMarker names</b><br>
+
+
+The variable names in the Matlab script of the input and output data structures.
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><span style="font-weight: bold;">Auto-update on input data change</span><br>
+
+
+Execute the script automatically on input change (only for input images and the XMarkerList, not for changes in the GUI).<br>
+
+
+  <span style="font-weight: bold;">Status</span><br>
+
+
+This field gives information whether the Matlab script was executed correctly or not.<br>
+
+  <br>
+
+  <span style="font-weight: bold;">Restart Matlab</span><br>
+
+Restarts the Matlab engine.<br>
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><b>Update</b><br>
+
+
+Execute the Matlab script.<b><br>
+
+
+  </b></blockquote>
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;"><b><br>
+
+
+  </b>
+</blockquote>
+
+
+
+
+
+
+<h3><a name="Events And Interaction"></a>Events And Interaction</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+  <span style="color: rgb(0, 0, 0);">-</span></blockquote>
+
+
+
+
+
+<h3><a name="Example"></a>Example</h3>
+
+
+&nbsp;&nbsp;&nbsp; The example network shows a number of different uses of the <span style="font-weight: bold;">MatlabScriptWrapper</span> module.<br>
+
+
+<h3><a name="Tips And Tricks"></a>Tips And Tricks</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+  <span style="color: rgb(255, 0, 0);"><span style="color: rgb(0, 0, 0);">-</span> </span>
+</blockquote>
+
+
+
+
+
+<h3><a name="Known Bugs"></a>Known Bugs</h3>
+
+
+
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+  <span style="color: rgb(0, 0, 0);">-</span></blockquote>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+</body>
+</html>
