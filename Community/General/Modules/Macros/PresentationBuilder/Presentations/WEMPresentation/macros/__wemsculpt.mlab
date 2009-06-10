@@ -64,8 +64,8 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Head4_t1.small.tif
-    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/Head4_t1.small.tif
+    name = $(DemoDataPath)/Head4_t1.small.dcm
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Head4_t1.small.dcm"
     autoLoad = TRUE
     status = "File open"
   }

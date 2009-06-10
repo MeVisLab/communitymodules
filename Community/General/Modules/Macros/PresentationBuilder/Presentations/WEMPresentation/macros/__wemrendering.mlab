@@ -8,7 +8,7 @@ module LocalWEMLoad {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1364 296 337 427"
+        geometry = "1364 296 990 427"
         sizeHint = "337 427"
         wasOpen = no
         wasActive = no
@@ -17,8 +17,8 @@ module LocalWEMLoad {
   }
   fields  {
     instanceName = LocalWEMLoad2
-    name = $(MLAB_MIC_Presentations)/Resources/WEMPresentation/data/weminit3.wem
-    trueName = C:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/weminit3.wem
+    name = $(NETWORK)/../data/weminit3.wem
+    trueName = D:/MeVisLab/Packages/Community/General/Modules/Macros/PresentationBuilder/Presentations/WEMPresentation/data/weminit3.wem
     id = 0
     mirrorFaces = FALSE
     triangulateFaces = FALSE
@@ -60,7 +60,7 @@ module LocalWEMLoad {
     boundingBoxColor = "1 1 1"
     boundingBoxMode = "Axis Aligned"
     isProcessing = FALSE
-    elapsedTime = 0
+    elapsedTime = 0.01499999966
     selectedTab = 0
   }
   internalFields = ""
@@ -71,7 +71,7 @@ module LocalWEMLoad {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1364 296 337 427"
+        geometry = "491 478 662 427"
         sizeHint = "337 427"
         wasOpen = no
         wasActive = no
@@ -80,8 +80,8 @@ module LocalWEMLoad {
   }
   fields  {
     instanceName = LocalWEMLoad1
-    name = $(MLAB_MIC_Presentations)/Resources/WEMPresentation/data/weminit2.wem
-    trueName = C:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/weminit2.wem
+    name = $(NETWORK)/../data/weminit2.wem
+    trueName = D:/MeVisLab/Packages/Community/General/Modules/Macros/PresentationBuilder/Presentations/WEMPresentation/data/weminit2.wem
     id = 0
     mirrorFaces = FALSE
     triangulateFaces = FALSE
@@ -134,7 +134,7 @@ module LocalWEMLoad {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1364 296 337 427"
+        geometry = "123 348 816 427"
         sizeHint = "337 427"
         wasOpen = no
         wasActive = no
@@ -143,8 +143,8 @@ module LocalWEMLoad {
   }
   fields  {
     instanceName = LocalWEMLoad
-    name = $(MLAB_MIC_Presentations)/Resources/WEMPresentation/data/weminit1.wem
-    trueName = C:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/weminit1.wem
+    name = $(NETWORK)/../data/weminit1.wem
+    trueName = D:/MeVisLab/Packages/Community/General/Modules/Macros/PresentationBuilder/Presentations/WEMPresentation/data/weminit1.wem
     id = 0
     mirrorFaces = FALSE
     triangulateFaces = FALSE
@@ -382,9 +382,9 @@ module SoExaminerViewer {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "322 660 934 399"
+        geometry = "186 384 934 399"
         sizeHint = "400 400"
-        wasOpen = yes
+        wasOpen = no
         wasActive = no
       }
       window _default {
@@ -442,7 +442,7 @@ module SoExaminerViewer {
     stereoOffset = 3
     height = 2.802517176
     position = "1.680479288101196 0.3916476964950562 1.089085340499878"
-    orientation = "-0.8400055170059204 -0.5302779078483582 -0.1148737668991089 0.4393523931503296"
+    orientation = "-0.8400055766105652 -0.5302779078483582 -0.1148737743496895 0.4393523931503296"
     nearDistance = -0.7156416774
     farDistance = 3.130792618
     focalDistance = 1.401258588

@@ -89,7 +89,7 @@ module LocalImage {
         wasActive = no
       }
       window _default {
-        geometry = "721 565 458 242"
+        geometry = "489 644 458 242"
         sizeHint = "458 242"
         wasOpen = no
         wasActive = no
@@ -98,8 +98,8 @@ module LocalImage {
   }
   fields  {
     instanceName = segmented_liver
-    name = $(NETWORK)/../data/Pat6.jrjr.Segmente.tiff
-    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/Pat6.jrjr.Segmente.tiff
+    name = $(DemoDataPath)/Pat6.jrjr.Segmente.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Pat6.jrjr.Segmente.tiff"
     autoLoad = TRUE
     status = "File open"
   }
@@ -121,7 +121,7 @@ module WEMIsoSurface {
   fields  {
     instanceName = WEMIsoSurface
     isProcessing = FALSE
-    elapsedTime = 0.03200000152
+    elapsedTime = 0.2809999883
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -170,7 +170,6 @@ module WEMIsoSurface {
     useFaceValueList = FALSE
     useValenceThreeRemoval = TRUE
     useZeroLengthEdgeRemoval = TRUE
-    progress = 1
     selectedTab = 0
   }
 }
@@ -417,7 +416,7 @@ module SoExaminerViewer {
       window _viewer {
         geometry = "303 369 908 493"
         sizeHint = "400 400"
-        wasOpen = yes
+        wasOpen = no
         wasActive = no
       }
     }
@@ -469,7 +468,7 @@ module SoExaminerViewer {
     stereoOffset = 3
     height = 0.7853980064
     position = "5.136268615722656 -33.92157745361328 86.17828369140625"
-    orientation = "0.8411381840705872 -0.191536620259285 -0.5057669281959534 1.414603114128113"
+    orientation = "0.8411382436752319 -0.1915366351604462 -0.5057669281959534 1.414603114128113"
     nearDistance = 32.52939606
     farDistance = 186.6866608
     focalDistance = 109.4613953

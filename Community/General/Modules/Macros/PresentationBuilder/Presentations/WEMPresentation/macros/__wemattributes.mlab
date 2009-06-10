@@ -31,7 +31,7 @@ module LocalWEMLoad {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "31 213 337 427"
+        geometry = "468 443 657 427"
         sizeHint = "337 427"
         wasOpen = no
         wasActive = no
@@ -40,8 +40,8 @@ module LocalWEMLoad {
   }
   fields  {
     instanceName = LocalWEMLoad
-    name = $(NETWORK)/../data/venus.off
-    trueName = D:/MeVisLab/Packages/MIC/Presentations/Resources/WEMPresentation/data/venus.off
+    name = $(DemoDataPath)/venus.off
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/venus.off"
     id = 0
     mirrorFaces = TRUE
     triangulateFaces = FALSE
@@ -83,8 +83,8 @@ module LocalWEMLoad {
     boundingBoxColor = "0.3333333333333333 0.6666666666666666 1"
     boundingBoxMode = "Axis Aligned"
     isProcessing = FALSE
-    elapsedTime = 0.01499999966
-    selectedTab = 1
+    elapsedTime = 0.03200000152
+    selectedTab = 0
   }
   internalFields = ""
 }
