@@ -5,10 +5,11 @@ network  {
 module LocalImage {
   internal  {
     frame = "1313 621 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "61 574 492 211"
-        sizeHint = "492 211"
+        geometry = "61 574 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -16,18 +17,21 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/DTISubImg.dcm
-    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/DTISubImg.dcm"
+    name = $(DemoDataPath)/DTISubImg.dcm
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/DTISubImg.dcm"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module Info {
   internal  {
     frame = "1333 509 56 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "-4 295 564 371"
-        sizeHint = "564 371"
+        geometry = "-4 295 564 385"
+        sizeHint = "564 385"
         wasOpen = yes
         wasActive = no
       }
@@ -35,14 +39,12 @@ module Info {
   }
   fields  {
     instanceName = Info
-    pagedImgInfo = MLOk
-    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
-    memoryImage2 = "handled by host"
-    moduleName = ImgLoad
-    connectionValid = TRUE
-    dataValid = TRUE
+    pagedImgInfo = Ok
+    bypassIndex = -1
+    inPlaceIndex = -1
   }
 }
 connections  {
   Info.input0 = LocalImage.outImage
 }
+networkModel = ""

@@ -212,7 +212,7 @@ module SoView2DMarkerEditor {
     addOnClick = TRUE
     alphaFactor = 1
     iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
-    internalIconFile = $(MODULES)/std/base/images/markerIcons.tif
+    internalIconFile = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
     useIconFile = FALSE
     iconIdx = 0
     selectingOn = TRUE
@@ -275,8 +275,8 @@ module LocalImage {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "397 436 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -284,8 +284,8 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = D:/MeVisLab/Packages/MIC/Macros/Modules/Macros/PresentationBuilder/Presentations/Tutorial/data/Bone.tiff
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
     autoLoad = TRUE
     status = "File open"
   }

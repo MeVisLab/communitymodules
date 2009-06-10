@@ -8,12 +8,6 @@ CONTENT =
     Image {
       image = $(LOCAL)/data/MeVisLabSplash.png
     }
-    MoviePlayer {
-      filename = $(LOCAL)/data/rotatingBrainAtlas.avi
-      showControls = NO
-      w = 370
-      h = 372
-    }
   }
   
 ////////////////////////////////////////////////////////////

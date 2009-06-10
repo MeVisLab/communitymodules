@@ -5,10 +5,11 @@ network  {
 module LocalImage {
   internal  {
     frame = "617 357 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "697 468 492 211"
-        sizeHint = "492 211"
+        geometry = "697 468 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -16,23 +17,29 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "I:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module View2D {
   internal  {
     frame = "625 197 80 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = View2D
     inventorInputOn = FALSE
     view2DExtensionsOn = TRUE
     startSlice = -1
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
     slab = 1
     blendMode = BLEND_REPLACE
-    timePoint = -1
+    timePoint = 0
     maxTimePoint = -1
     filterMode = FILTER_LINEAR
     standardKeys = TRUE
@@ -44,6 +51,7 @@ module View2D {
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
     sliceZoom = 1
+    sliceZoomSynced = 1
     baseColor = "1 1 1"
     margin = "2 2"
     sliceOrigin = "0 0"
@@ -53,13 +61,16 @@ module View2D {
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.9 0.9 0.9"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.9 0.9 0.9"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0"
   }
   internalFields = ""
 }
 connections = ""
+networkModel = ""

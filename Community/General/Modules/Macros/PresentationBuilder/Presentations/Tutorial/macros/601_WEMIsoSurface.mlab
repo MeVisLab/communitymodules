@@ -5,6 +5,7 @@ network  {
 module WEMReducePolygons {
   internal  {
     frame = "685 317 152 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "473 335 341 413"
@@ -17,7 +18,7 @@ module WEMReducePolygons {
   fields  {
     instanceName = WEMReducePolygons
     isProcessing = FALSE
-    elapsedTime = 1.391000032
+    elapsedTime = 1.218000054
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -57,10 +58,13 @@ module WEMReducePolygons {
     boundingBoxColor = "1 1 1"
     copyInputWEMs = TRUE
     listenToFinishNotifications = TRUE
-    useInputWEMToCreateOutputWEM = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    modifyAttributes = FALSE
     targetReduction = 70
     smooth = TRUE
-    numEdgeCollapses = 19730
+    numEdgeCollapses = 19710
     reduction = 69
     useExpertMode = FALSE
     vertexPlacementMode = Middle
@@ -74,6 +78,7 @@ module WEMReducePolygons {
 module WEMSmooth {
   internal  {
     frame = "477 269 104 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "473 335 341 413"
@@ -86,7 +91,7 @@ module WEMSmooth {
   fields  {
     instanceName = WEMSmooth
     isProcessing = FALSE
-    elapsedTime = 0.2179999948
+    elapsedTime = 0.3280000091
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -126,7 +131,10 @@ module WEMSmooth {
     boundingBoxColor = "1 1 1"
     copyInputWEMs = TRUE
     listenToFinishNotifications = TRUE
-    useInputWEMToCreateOutputWEM = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    modifyAttributes = FALSE
     useLaplacianSmooth = TRUE
     smoothingFactor = 0.200000003
     smoothingPassesLaplace = 10
@@ -141,6 +149,7 @@ module WEMSmooth {
 module BaseSwitch {
   internal  {
     frame = "601 253 144 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "543 466 166 62"
@@ -159,10 +168,11 @@ module BaseSwitch {
 module LocalImage {
   internal  {
     frame = "617 469 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "397 436 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -170,14 +180,17 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module SoBackground {
   internal  {
     frame = "473 133 112 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = SoBackground
@@ -190,6 +203,7 @@ module SoBackground {
 module SoExaminerViewer {
   internal  {
     frame = "549 21 136 56"
+    moduleGroupName = ""
     windows  {
       window _viewer {
         geometry = "51 231 429 481"
@@ -242,11 +256,13 @@ module SoExaminerViewer {
     cursor = TRUE
     isCameraStored = TRUE
     perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
     height = 0.7853980064
-    position = "36.1399 -60.6776 44.8355"
-    orientation = "0.9970329999999999 0.0490948 -0.0592818 1.36905"
-    nearDistance = 56.40050125
-    farDistance = 131.3480072
+    position = "36.13990020751953 -60.6776008605957 44.83549880981445"
+    orientation = "0.9970332384109497 0.04909481108188629 -0.05928181484341621 1.369050025939941"
+    nearDistance = 56.40052032
+    farDistance = 131.3482971
     focalDistance = 99.73100281
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
@@ -267,6 +283,7 @@ module SoExaminerViewer {
 module SoWEMRenderer {
   internal  {
     frame = "601 133 128 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "475 339 337 404"
@@ -288,6 +305,7 @@ module SoWEMRenderer {
     useHighlightSelected = FALSE
     usePolygonOffset = TRUE
     useShapeHints = TRUE
+    allowHits = TRUE
     parameterOverwriteMode = OVERWRITE_MODE_ALL
     overwriteColorMode = FALSE
     overwriteFaceParameters = FALSE
@@ -296,11 +314,11 @@ module SoWEMRenderer {
     overwriteBoundingBoxParameters = FALSE
     colorMode = WEM_COLOR_GENERAL
     drawFaces = TRUE
-    faceDiffuseColor = "0.792157 0.792157 0.792157"
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
     useFaceAmbientColor = TRUE
-    faceAmbientColor = "0.266667 0.266667 0.266667"
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
     useFaceSpecularColor = TRUE
-    faceSpecularColor = "0.066667 0.066667 0.066667"
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
     drawEdges = FALSE
     edgeColor = "0 0 0"
     drawNodes = FALSE
@@ -329,10 +347,11 @@ module SoWEMRenderer {
 module WEMIsoSurface {
   internal  {
     frame = "605 389 120 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "849 308 379 419"
-        sizeHint = "379 419"
+        geometry = "849 308 375 427"
+        sizeHint = "375 427"
         wasOpen = yes
         wasActive = no
       }
@@ -341,7 +360,7 @@ module WEMIsoSurface {
   fields  {
     instanceName = WEMIsoSurface
     isProcessing = FALSE
-    elapsedTime = 0.3280000091
+    elapsedTime = 0.2820000052
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -390,7 +409,6 @@ module WEMIsoSurface {
     useFaceValueList = FALSE
     useValenceThreeRemoval = TRUE
     useZeroLengthEdgeRemoval = TRUE
-    progress = 1
     selectedTab = 0
   }
 }
@@ -404,3 +422,4 @@ connections  {
   SoWEMRenderer.inWEM = BaseSwitch.outputBaseObject0
   WEMIsoSurface.input0 = LocalImage.outImage
 }
+networkModel = ""

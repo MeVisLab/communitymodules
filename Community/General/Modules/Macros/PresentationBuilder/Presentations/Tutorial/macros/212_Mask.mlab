@@ -5,10 +5,11 @@ network  {
 module LocalImage {
   internal  {
     frame = "225 -587 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "397 436 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -16,18 +17,21 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module Mask {
   internal  {
     frame = "241 -779 80 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "768 267 366 89"
-        sizeHint = "366 89"
+        geometry = "768 267 372 97"
+        sizeHint = "372 97"
         wasOpen = yes
         wasActive = no
       }
@@ -43,10 +47,11 @@ module Mask {
 module Threshold {
   internal  {
     frame = "293 -691 88 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "918 532 273 94"
-        sizeHint = "273 94"
+        geometry = "918 532 268 92"
+        sizeHint = "268 92"
         wasOpen = yes
         wasActive = no
       }
@@ -63,10 +68,11 @@ module Threshold {
 module View2D {
   internal  {
     frame = "241 -867 80 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "47 136 509 490"
-        sizeHint = "200 200"
+        geometry = "47 136 400 400"
+        sizeHint = "400 400"
         wasOpen = yes
         wasActive = no
       }
@@ -77,6 +83,9 @@ module View2D {
     inventorInputOn = FALSE
     view2DExtensionsOn = TRUE
     startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
     slab = 1
     blendMode = BLEND_REPLACE
     timePoint = 0
@@ -91,6 +100,7 @@ module View2D {
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
     sliceZoom = 1
+    sliceZoomSynced = 1
     baseColor = "1 1 1"
     margin = "2 2"
     sliceOrigin = "0 0"
@@ -100,12 +110,14 @@ module View2D {
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.9 0.9 0.9"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.9 0.9 0.9"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
   }
   internalFields = ""
 }
@@ -115,3 +127,4 @@ connections  {
   Threshold.input0 = LocalImage.outImage
   View2D.inImage = Mask.output0
 }
+networkModel = ""

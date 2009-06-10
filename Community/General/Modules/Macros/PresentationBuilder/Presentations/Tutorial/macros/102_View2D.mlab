@@ -5,6 +5,7 @@ network  {
 module SoGroup {
   internal  {
     frame = "873 229 96 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = SoGroup1
@@ -13,14 +14,16 @@ module SoGroup {
 module SoGroup {
   internal  {
     frame = "561 229 96 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = SoGroup
   }
 }
-module VoxValueRescale {
+module VoxelValueRescale {
   internal  {
-    frame = "785 393 128 64"
+    frame = "781 393 136 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = alphaRescale
@@ -42,9 +45,10 @@ module VoxValueRescale {
     outputWidth = 1598
   }
 }
-module VoxValueRescale {
+module VoxelValueRescale {
   internal  {
-    frame = "929 393 128 64"
+    frame = "925 393 136 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = lutRescale
@@ -69,6 +73,7 @@ module VoxValueRescale {
 module SoView2DVoxelValue {
   internal  {
     frame = "613 321 152 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "92 146 336 356"
@@ -82,6 +87,7 @@ module SoView2DVoxelValue {
     instanceName = annoReadPix
     drawingOn = TRUE
     editingOn = TRUE
+    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -95,13 +101,15 @@ module SoView2DVoxelValue {
     wantsAllEvents = FALSE
     wantsKeyEvents = FALSE
     wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
     createNewMode = FALSE
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    voxelPosition = "4.3376 42.4757 11.5"
+    voxelPosition = "4.337600231170654 42.47570037841797 11.5"
     integerPosition = "4 42 11"
-    worldPosition = "4.3376 42.4757 11.5"
+    worldPosition = "4.337600231170654 42.47570037841797 11.5"
     storedValue = 841
     outputValue = 841
     storedValueString = 841
@@ -111,6 +119,7 @@ module SoView2DVoxelValue {
 module SoView2DAnnotation {
   internal  {
     frame = "453 321 152 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "393 225 424 408"
@@ -124,8 +133,9 @@ module SoView2DAnnotation {
     instanceName = annotation
     drawingOn = TRUE
     editingOn = TRUE
+    maskValid = FALSE
     fixZOn = TRUE
-    color = "0.9 0.9 0.9"
+    color = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     selectionTolerance = 4
     needsValidVoxel = TRUE
     button1 = IGNORED
@@ -137,6 +147,8 @@ module SoView2DAnnotation {
     wantsAllEvents = FALSE
     wantsKeyEvents = TRUE
     wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
     createNewMode = FALSE
     renderOnSlab = FALSE
     clipToSlice = FALSE
@@ -223,11 +235,20 @@ LUT C/W: $(input03) / $(input04)"
     input07 = 1085
     input08 = 1598
     input09 = HU
+    fontWidthDummyString = ""
+    targetWidth = 0
+    targetHeight = 0
+    drawBackgroundBox = FALSE
+    backgroundColor = "0.2000000029802322 0.2000000029802322 0.699999988079071"
+    backgroundOpacity = 0.5
+    backgroundEdgeColor = "0.2000000029802322 0.2000000029802322 0.699999988079071"
+    backgroundEdgeOpacity = 0.5
   }
 }
 module SoView2DSliceShift {
   internal  {
     frame = "1025 169 144 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "26 59 364 209"
@@ -241,6 +262,7 @@ module SoView2DSliceShift {
     instanceName = sliceShift
     drawingOn = TRUE
     editingOn = TRUE
+    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -254,17 +276,21 @@ module SoView2DSliceShift {
     wantsAllEvents = FALSE
     wantsKeyEvents = FALSE
     wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
     createNewMode = FALSE
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = MOVE_ALL_CURSOR
     editX = TRUE
     editY = TRUE
+    evalStarted = FALSE
   }
 }
 module SoView2DSliceZoom {
   internal  {
     frame = "1089 265 144 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "158 233 364 259"
@@ -278,6 +304,7 @@ module SoView2DSliceZoom {
     instanceName = sliceZoom
     drawingOn = TRUE
     editingOn = TRUE
+    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -291,6 +318,8 @@ module SoView2DSliceZoom {
     wantsAllEvents = FALSE
     wantsKeyEvents = TRUE
     wantsMouseWheelEvents = FALSE
+    setEventHandled = TRUE
+    ignoreHandledEvents = FALSE
     createNewMode = FALSE
     renderOnSlab = FALSE
     clipToSlice = FALSE
@@ -299,11 +328,13 @@ module SoView2DSliceZoom {
     max = 100
     sensitivity = 100.9049988
     dragMode = DRAG_TAKE_AND_PUSH
+    evalStarted = FALSE
   }
 }
 module SoMouseGrabber {
   internal  {
     frame = "929 321 128 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "136 204 497 416"
@@ -316,6 +347,8 @@ module SoMouseGrabber {
   fields  {
     instanceName = lutMouseGrabber
     on = TRUE
+    normalized = FALSE
+    clamp = TRUE
     button1 = IGNORED
     button2 = IGNORED
     button3 = PRESSED
@@ -329,13 +362,20 @@ module SoMouseGrabber {
     ctrlPressed = FALSE
     altPressed = FALSE
     cursorShape = LUT_CURSOR
-    x = 1597.560059
-    y = 1085.300049
+    absX = 0
+    absY = 0
+    y = 1085
+    x = 1598
+    y = 1085
     xmin = 0
     xmax = 4095
     ymin = 0
     ymax = 4095
+    cursorPresent = FALSE
+    checkCursorPresent = FALSE
     maskValid = FALSE
+    setEventHandled = FALSE
+    setWheelEventHandled = FALSE
     flipX = FALSE
     flipY = TRUE
     swapXY = FALSE
@@ -350,6 +390,7 @@ module SoMouseGrabber {
 module SoRLLookUpTable {
   internal  {
     frame = "781 321 136 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = lut
@@ -375,8 +416,8 @@ module SoRLLookUpTable {
     widthMin = 0
     enableNegWidth = FALSE
     widthMax = 4095
-    rangeStep = 10
-    rangeStepStep = 100
+    rangeStep = 10.00000095
+    rangeStepStep = 100.0000076
     selectorX = 0
     selectorY = 0
     setInputMinMax = TRUE
@@ -385,43 +426,43 @@ module SoRLLookUpTable {
     trCol0 = "1 1 1"
     trCol0Name = White
     trCol0Alpha = 1
-    trCol1 = "0.501961 0.501961 0.501961"
+    trCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
     trCol1Name = Grey
     trCol1Alpha = 1
-    trCol2 = "0.862745 0 0.172549"
+    trCol2 = "0.8627449870109558 0 0.1725489944219589"
     trCol2Name = Red
     trCol2Alpha = 1
-    trCol3 = "1 0.462745 0.490196"
+    trCol3 = "1 0.4627450108528137 0.4901959896087646"
     trCol3Name = "Light Red"
     trCol3Alpha = 1
-    trCol4 = "0 0.819608 0.160784"
+    trCol4 = "0 0.8196079730987549 0.1607840061187744"
     trCol4Name = Green
     trCol4Alpha = 1
-    trCol5 = "0.5607839999999999 1 0.435294"
+    trCol5 = "0.5607839822769165 1 0.4352940022945404"
     trCol5Name = "Light Green"
     trCol5Alpha = 1
-    trCol6 = "0.184314 0.239216 0.929412"
+    trCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
     trCol6Name = Blue
     trCol6Alpha = 1
-    trCol7 = "0.490196 0.541176 1"
+    trCol7 = "0.4901959896087646 0.5411760210990906 1"
     trCol7Name = "Light Blue"
     trCol7Alpha = 1
-    trCol8 = "0.631373 0 0.678431"
+    trCol8 = "0.6313729882240295 0 0.67843097448349"
     trCol8Name = "Dark Magenta"
     trCol8Alpha = 1
-    trCol9 = "0.894118 0.380392 1"
+    trCol9 = "0.8941180109977722 0.3803919851779938 1"
     trCol9Name = Magenta
     trCol9Alpha = 1
-    trColA = "0 0.682353 0.756863"
+    trColA = "0 0.6823530197143555 0.756862998008728"
     trColAName = "Dark Cyan"
     trColAAlpha = 1
-    trColB = "0.501961 1 0.980392"
+    trColB = "0.5019609928131104 1 0.9803919792175293"
     trColBName = Cyan
     trColBAlpha = 1
-    trColC = "0.615686 0.6 0.196078"
+    trColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
     trColCName = "Dark Yellow"
     trColCAlpha = 1
-    trColD = "1 0.976471 0.368627"
+    trColD = "1 0.9764710068702698 0.3686270117759705"
     trColDName = Yellow
     trColDAlpha = 1
     trColE = "1 1 1"
@@ -435,11 +476,13 @@ module SoRLLookUpTable {
 module SoView2DSlicer {
   internal  {
     frame = "1181 169 120 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = slicer
     drawingOn = TRUE
     editingOn = TRUE
+    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -453,20 +496,24 @@ module SoView2DSlicer {
     wantsAllEvents = FALSE
     wantsKeyEvents = FALSE
     wantsMouseWheelEvents = TRUE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
     createNewMode = FALSE
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = MOVE_INOUT_CURSOR
     sensitivity = 0.5
+    permitInteractionOutsideImage = FALSE
   }
 }
 module LocalImage {
   internal  {
     frame = "1129 493 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "397 436 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -474,14 +521,17 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "I:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module SoView2D {
   internal  {
     frame = "1333 221 88 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "410 200 466 687"
@@ -498,14 +548,17 @@ module SoView2D {
     numSlices = 1
     numXSlices = 1
     maxSlice = 63
+    keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
     upperRight = "1 1"
     margin = "2 2"
     spacing = "4 4"
+    plane = "0 0 1 11.5"
     sliceZoom = 1
+    sliceZoomSynchronized = 1
     minSliceZoomKeyboard = 1
-    sliceOrigin = "0.163682 0.982096"
+    sliceOrigin = "0.1636819988489151 0.9820960164070129"
     viewingCenter = "0 0 0"
     enableViewingCenter = FALSE
     unzoomOnImageChange = FALSE
@@ -516,6 +569,8 @@ module SoView2D {
     standardKeys = TRUE
     standardKeysNumbers = TRUE
     standardKeysNeedValidPosition = FALSE
+    passHandledFlagToInventor = FALSE
+    reverseExtensionDrawingOrder = FALSE
     blendMode = BLEND_REPLACE
     filterMode = FILTER_LINEAR
     cacheMode = SLICE_CACHING_OFF
@@ -556,6 +611,7 @@ module SoView2D {
 module SoRenderArea {
   internal  {
     frame = "1009 -19 112 56"
+    moduleGroupName = ""
     windows  {
       window _viewer {
         geometry = "1334 220 400 400"
@@ -623,3 +679,4 @@ connections  {
   SoView2D.image = LocalImage.outImage
   SoRenderArea.children = SoView2D.self
 }
+networkModel = ""

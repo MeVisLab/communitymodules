@@ -5,6 +5,7 @@ network  {
 module SoGroup {
   internal  {
     frame = "481 145 96 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = group
@@ -13,6 +14,7 @@ module SoGroup {
 module ContourManager {
   internal  {
     frame = "409 417 128 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = cm
@@ -80,6 +82,7 @@ module ContourManager {
 module LiveWire {
   internal  {
     frame = "581 377 104 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = lw
@@ -136,3 +139,4 @@ connections  {
   group.children = "cm.outputInv lw.outputInv"
   lw.inputBaseContourManager = cm.outputBaseThis
 }
+networkModel = ""

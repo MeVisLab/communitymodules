@@ -5,10 +5,11 @@ network  {
 module LocalImage {
   internal  {
     frame = "-839 -1227 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "135 276 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -16,32 +17,33 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module Info {
   internal  {
     frame = "-867 -1451 56 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = Info
-    pagedImgInfo = MLOk
-    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
-    memoryImage2 = "handled by host"
-    moduleName = Scale
-    connectionValid = TRUE
-    dataValid = TRUE
+    pagedImgInfo = Ok
+    bypassIndex = -1
+    inPlaceIndex = -1
   }
 }
 module View2D {
   internal  {
     frame = "-799 -1451 80 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "761 201 476 462"
-        sizeHint = "200 200"
+        geometry = "761 201 400 400"
+        sizeHint = "400 400"
         wasOpen = yes
         wasActive = no
       }
@@ -52,6 +54,9 @@ module View2D {
     inventorInputOn = FALSE
     view2DExtensionsOn = TRUE
     startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
     slab = 1
     blendMode = BLEND_REPLACE
     timePoint = 0
@@ -66,6 +71,7 @@ module View2D {
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
     sliceZoom = 1
+    sliceZoomSynced = 1
     baseColor = "1 1 1"
     margin = "2 2"
     sliceOrigin = "0 0"
@@ -75,22 +81,25 @@ module View2D {
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.9 0.9 0.9"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.9 0.9 0.9"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
   }
   internalFields = ""
 }
 module Scale {
   internal  {
     frame = "-823 -1331 64 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "152 276 394 226"
-        sizeHint = "394 226"
+        geometry = "152 276 384 240"
+        sizeHint = "384 240"
         wasOpen = yes
         wasActive = no
       }
@@ -113,3 +122,4 @@ connections  {
   View2D.inImage = Scale.output0
   Scale.input0 = LocalImage.outImage
 }
+networkModel = ""

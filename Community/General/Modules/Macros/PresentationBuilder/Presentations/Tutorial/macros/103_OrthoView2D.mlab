@@ -5,6 +5,7 @@ network  {
 module SoView2DPosition {
   internal  {
     frame = "453 189 136 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "721 234 483 576"
@@ -18,8 +19,9 @@ module SoView2DPosition {
     instanceName = SoView2DPosition
     drawingOn = TRUE
     editingOn = TRUE
+    maskValid = FALSE
     fixZOn = TRUE
-    color = "1 0.666667 0"
+    color = "1 0.6666669845581055 0"
     selectionTolerance = 4
     needsValidVoxel = TRUE
     button1 = PRESSED
@@ -31,18 +33,23 @@ module SoView2DPosition {
     wantsAllEvents = FALSE
     wantsKeyEvents = FALSE
     wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
     createNewMode = FALSE
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    worldPosition = "32 36.5874 35.5"
-    firstSliceWorldPosition = "32 36.5874 35.5"
+    worldPosition = "32 36.58739852905273 35.5"
+    firstSliceWorldPosition = "32 36.58739852905273 35.5"
+    drawingModel = DRAWINGMODEL_CROSSHAIRS
+    drawingModelSize = -1
     blendOnto = 1
     blendOutside = 0
+    lineWidth = 1
     colorAxes = FALSE
     sagittalColor = "1 0 0"
-    coronalColor = "0.172549 0.886275 0.0117647"
-    axialColor = "0.00784314 0.952941 0.968627"
+    coronalColor = "0.1725489944219589 0.8862749934196472 0.01176469959318638"
+    axialColor = "0.007843139581382275 0.9529410004615784 0.9686269760131836"
     updateOnPress = TRUE
     updateOnMotion = TRUE
     updateOnRelease = FALSE
@@ -54,6 +61,7 @@ module SoView2DPosition {
 module SoRenderArea {
   internal  {
     frame = "457 61 128 56"
+    moduleGroupName = ""
     windows  {
       window _viewer {
         geometry = "38 206 695 585"
@@ -92,6 +100,7 @@ module SoRenderArea {
 module View2DExtensions {
   internal  {
     frame = "309 189 136 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = View2DExtensions
@@ -99,7 +108,7 @@ module View2DExtensions {
     zoomOn = TRUE
     panOn = TRUE
     autoCenterOn = TRUE
-    position = "5.15521 -57.6365 8.02908"
+    position = "5.155210018157959 -57.63650131225586 8.029080390930176"
     positionMode = Off
     lutOn = TRUE
     lutMouseOn = TRUE
@@ -123,29 +132,30 @@ module View2DExtensions {
     lutEnableNegWidth = FALSE
     lutSetDefaultOnce = FALSE
     lutTrCol0 = "1 1 1"
-    lutTrCol1 = "0.501961 0.501961 0.501961"
-    lutTrCol2 = "0.862745 0 0.172549"
-    lutTrCol3 = "1 0.462745 0.490196"
-    lutTrCol4 = "0 0.819608 0.160784"
-    lutTrCol5 = "0.5607839999999999 1 0.435294"
-    lutTrCol6 = "0.184314 0.239216 0.929412"
-    lutTrCol7 = "0.490196 0.541176 1"
-    lutTrCol8 = "0.631373 0 0.678431"
-    lutTrCol9 = "0.894118 0.380392 1"
-    lutTrColA = "0 0.682353 0.756863"
-    lutTrColB = "0.501961 1 0.980392"
-    lutTrColC = "0.615686 0.6 0.196078"
-    lutTrColD = "1 0.976471 0.368627"
+    lutTrCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
+    lutTrCol2 = "0.8627449870109558 0 0.1725489944219589"
+    lutTrCol3 = "1 0.4627450108528137 0.4901959896087646"
+    lutTrCol4 = "0 0.8196079730987549 0.1607840061187744"
+    lutTrCol5 = "0.5607839822769165 1 0.4352940022945404"
+    lutTrCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
+    lutTrCol7 = "0.4901959896087646 0.5411760210990906 1"
+    lutTrCol8 = "0.6313729882240295 0 0.67843097448349"
+    lutTrCol9 = "0.8941180109977722 0.3803919851779938 1"
+    lutTrColA = "0 0.6823530197143555 0.756862998008728"
+    lutTrColB = "0.5019609928131104 1 0.9803919792175293"
+    lutTrColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
+    lutTrColD = "1 0.9764710068702698 0.3686270117759705"
     lutTrColE = "1 1 1"
     lutTrColF = "1 1 1"
     annotationOn = TRUE
     annoCoords = Voxel
     annoCTValue = ToHounsfield
+    valueHighPrecision = FALSE
     annotFontSize = ANNO_SIZE_AUTO
     annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
     annotVerticalRuler = TRUE
     annotHorizontalRuler = FALSE
-    annotationCol = "0.9 0.9 0.9"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationMode = ANNO_MODE_AUTO
     annotShowAnnot = ANNO_SHOW_DETAILED
     annotUserTopLeft = "$(PatientsName)
@@ -172,27 +182,29 @@ LUT C/W: $(input03) / $(input04)"
     annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
     annoInput03 = 921.4
     annoInput04 = 1024
-    annoInput05 = 921.4000244
+    annoInput05 = 921.4000244140625
     annoInput06 = 1024
-    annoInput07 = 921.4000244
+    annoInput07 = 921.4000244140625
     annoInput08 = 1024
     annoInput09 = HU
     annoMouseOn = TRUE
     annoReadPixFloorPos = "58 28 35"
-    annoReadPixVoxelPos = "58.6294 28.5315 35.5"
-    annoReadPixWorldPos = "58.6294 28.5315 35.5"
+    annoReadPixVoxelPos = "58.62939834594727 28.5314998626709 35.5"
+    annoReadPixWorldPos = "58.62939834594727 28.5314998626709 35.5"
     borderOn = TRUE
-    borderColor = "0.9 0.9 0.9"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     borderWidth = 1
     borderEvaluateFocus = FALSE
     borderFocusColor = "1 1 1"
     borderFocusWidth = 2
+    mouseGrabberMode = FALSE
   }
   internalFields = ""
 }
 module SoOrthoView2D {
   internal  {
     frame = "605 189 120 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "765 214 389 595"
@@ -208,7 +220,7 @@ module SoOrthoView2D {
     boundingBoxCaching = AUTO
     renderCulling = AUTO
     pickCulling = AUTO
-    worldPosition = "32 36.5874 35.5"
+    worldPosition = "32 36.58739852905273 35.5"
     blendMode = BLEND_REPLACE
     filterMode = FILTER_LINEAR
     lutMode = LUT_BEST
@@ -226,6 +238,7 @@ module SoOrthoView2D {
     sliceOrigin2 = "0 0"
     sliceOrigin3 = "0 0"
     synchronizePanning = FALSE
+    keepSlicesInView = FALSE
     viewingCenter = "-1 -1 -1"
     viewingCenter1 = "31.5 32 32"
     viewingCenter2 = "32 36.5 32"
@@ -234,7 +247,7 @@ module SoOrthoView2D {
     extraViewSpace = TRUE
     extraViewLowerLeft = "0 0.5"
     extraViewUpperRight = "0.5 1"
-    extraViewSize = "0.666 0.666"
+    extraViewSize = "0.6660000085830688 0.6660000085830688"
     margin = "2 2"
     alternCubeLayout = FALSE
     cacheMode = SLICE_CACHING_OFF
@@ -266,10 +279,11 @@ module SoOrthoView2D {
 module LocalImage {
   internal  {
     frame = "489 333 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "397 436 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -277,8 +291,10 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "I:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
@@ -289,3 +305,4 @@ connections  {
   SoOrthoView2D.inputImage = LocalImage.outImage
   SoOrthoView2D.worldPosition = SoView2DPosition.worldPosition
 }
+networkModel = ""

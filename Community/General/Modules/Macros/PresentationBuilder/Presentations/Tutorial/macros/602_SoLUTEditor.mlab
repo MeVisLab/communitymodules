@@ -5,6 +5,7 @@ network  {
 module SoExaminerViewer {
   internal  {
     frame = "765 -3 136 56"
+    moduleGroupName = ""
     windows  {
       window _viewer {
         geometry = "24 139 400 400"
@@ -57,11 +58,13 @@ module SoExaminerViewer {
     cursor = TRUE
     isCameraStored = TRUE
     perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
     height = 0.7853980064
-    position = "-29.827 -13.0501 144.324"
-    orientation = "0.268497 0.130943 -0.954339 2.80546"
-    nearDistance = 83.39520264
-    farDistance = 188.5090027
+    position = "-29.82699966430664 -13.05010032653809 144.3240051269531"
+    orientation = "0.2684970200061798 0.1309430152177811 -0.9543391466140747 2.805459976196289"
+    nearDistance = 83.39515686
+    farDistance = 188.5093994
     focalDistance = 135.8999939
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
@@ -82,10 +85,11 @@ module SoExaminerViewer {
 module View2D {
   internal  {
     frame = "909 -11 120 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "28 562 399 400"
-        sizeHint = "200 200"
+        geometry = "28 562 400 400"
+        sizeHint = "400 400"
         wasOpen = yes
         wasActive = no
       }
@@ -96,6 +100,9 @@ module View2D {
     inventorInputOn = TRUE
     view2DExtensionsOn = TRUE
     startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
     slab = 1
     blendMode = BLEND_REPLACE
     timePoint = 0
@@ -110,6 +117,7 @@ module View2D {
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
     sliceZoom = 1
+    sliceZoomSynced = 1
     baseColor = "1 1 1"
     margin = "2 2"
     sliceOrigin = "0 0"
@@ -119,18 +127,21 @@ module View2D {
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.9 0.9 0.9"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.9 0.9 0.9"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
   }
   internalFields = ""
 }
 module SoBackground {
   internal  {
     frame = "713 165 112 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = SoBackground
@@ -140,9 +151,10 @@ module SoBackground {
     depthBuffer = TRUE
   }
 }
-module SoGVRVolRen {
+module SoGVRVolumeRenderer {
   internal  {
-    frame = "833 165 112 56"
+    frame = "805 161 168 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "453 257 380 568"
@@ -164,17 +176,42 @@ module SoGVRVolRen {
     staticQuality = 1
     interactiveSamplingRate = 1
     staticSamplingRate = 1
-    renderMode = Direct
     blendMode = Blend
     octreeNodeSize = NODE_SIZE_32
     octreeParentComputationMethod = Rank
     octreeParentComputationRank = 4
-    gradientQuality = GradientQualityAutomatic
     currentTimePoint = 0
     maxTimePoint = 0
     force8bit = FALSE
     filterVolumeData = FilterLinear
     filterLut = TRUE
+    subVolumeStartX = 0
+    subVolumeStartY = 0
+    subVolumeStartZ = 0
+    subVolumeEndX = 64
+    subVolumeEndY = 64
+    subVolumeEndZ = 64
+    zbuffer = TRUE
+    permitClipping = TRUE
+    drawOnPlanes = TRUE
+    sizeOutputX = 64
+    sizeOutputY = 64
+    sizeOutputZ = 64
+    incrementalUpdate = TRUE
+    highQualityStaticUpdate = FALSE
+    staticRenderingAfterInteractionOnly = FALSE
+    adaptQualityToWindowSize = TRUE
+    renderMode = Direct
+    useImageCacheFile = FALSE
+    imageCacheFilename = ""
+    greyCenter = 0.5
+    greyWidth = 0.5
+    greyInvert = FALSE
+    alphaCenter = 0.5
+    alphaWidth = 0.5
+    alphaInvert = FALSE
+    colorFactor = "1 1 1"
+    alphaFactor = 1
     enhancementAlphaMix = 0.25
     boundaryEnhancement = FALSE
     boundaryEnhancementFactor = 1
@@ -184,8 +221,8 @@ module SoGVRVolRen {
     silhouetteEnhancementExponent = 1
     silhouetteEnhancementFactor = 1
     toneShading = FALSE
-    toneShadingWarmColor = "0.6745100000000001 0.5333329999999999 0.141176"
-    toneShadingColdColor = "0 0 0.4"
+    toneShadingWarmColor = "0.6745100021362305 0.5333330035209656 0.1411760002374649"
+    toneShadingColdColor = "0 0 0.4000000059604645"
     toneShadingWarmDiffuse = 0.6000000238
     toneShadingColdDiffuse = 0.200000003
     toneShadingAngle = 45
@@ -211,46 +248,22 @@ module SoGVRVolRen {
     light3Color = "1 1 1"
     light3PolarPhi = -45
     light3PolarRho = 0
-    check3DTextureSupport = TRUE
-    subVolumeStartX = 0
-    subVolumeStartY = 0
-    subVolumeStartZ = 0
-    subVolumeEndX = 64
-    subVolumeEndY = 64
-    subVolumeEndZ = 64
+    gradientQuality = GradientQualityAutomatic
     selectionAlphaThreshold = 0.200000003
     selectedPoint1 = "-1 -1 -1"
     selectedWorldPoint1 = "-1 -1 -1"
     selectionActive = FALSE
-    zbuffer = TRUE
-    permitClipping = TRUE
     useWorldCoords = TRUE
-    greyCenter = 0.5
-    greyWidth = 0.5
-    greyInvert = FALSE
-    alphaCenter = 0.5
-    alphaWidth = 0.5
-    alphaInvert = FALSE
-    colorFactor = "1 1 1"
-    alphaFactor = 1
-    sizeOutputX = 64
-    sizeOutputY = 64
-    sizeOutputZ = 64
-    useImageCacheFile = FALSE
-    imageCacheFilename = ""
-    incrementalUpdate = TRUE
-    highQualityStaticUpdate = FALSE
-    staticRenderingAfterInteractionOnly = FALSE
-    adaptQualityToWindowSize = TRUE
   }
 }
 module LocalImage {
   internal  {
     frame = "905 269 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "397 436 492 211"
-        sizeHint = "492 211"
+        geometry = "397 436 458 242"
+        sizeHint = "458 242"
         wasOpen = no
         wasActive = no
       }
@@ -258,19 +271,22 @@ module LocalImage {
   }
   fields  {
     instanceName = LocalImage
-    name = $(NETWORK)/../data/Bone.tiff
-    trueName = "D:/MeVisLab/Presentations/Tutorial Using MeVisLab/data/Bone.tiff"
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
   }
   internalFields = ""
 }
 module SoLUTEditor {
   internal  {
     frame = "773 269 104 56"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "682 309 506 441"
-        sizeHint = "506 441"
-        wasOpen = yes
+        geometry = "682 309 496 451"
+        sizeHint = "498 451"
+        wasOpen = no
         wasActive = no
       }
     }
@@ -308,10 +324,10 @@ module SoLUTEditor {
     selectedMarkerRadius = 6
     snapMarkerRadius = 10
     alphaLineWidth = 2
-    backgroundColor = "0.8 0.8 0.8"
+    backgroundColor = "0.800000011920929 0.800000011920929 0.800000011920929"
     borderColor = "0 0 0"
     alphaLineColor = "0 0 0"
-    histogramColor = "0.4 0.4 0.4"
+    histogramColor = "0.4000000059604645 0.4000000059604645 0.4000000059604645"
     drawColoredMarkers = TRUE
     markerColor = "1 1 1"
     selectedMarkerColor = "1 0.5 0.5"
@@ -325,3 +341,4 @@ connections  {
   View2D.inInvPostLUT = SoLUTEditor.outInventorLUT
   SoGVRVolRen.image = LocalImage.outImage
 }
+networkModel = ""
