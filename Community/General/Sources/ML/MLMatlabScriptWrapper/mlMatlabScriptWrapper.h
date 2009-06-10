@@ -45,6 +45,7 @@
 
 ML_START_NAMESPACE
 
+//! The ML module class MatlabScriptWrapper.
 class MLMATLABSCRIPTWRAPPER_EXPORT MatlabScriptWrapper : public BaseOp
 {
 public:
