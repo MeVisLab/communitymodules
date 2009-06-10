@@ -1,6 +1,6 @@
 PROJECT_NAME = "C++ Reference of MeVisLab Community Sources"
-INPUT = $${MLAB_Community_General}/Sources
-FILE_PATTERNS = *.h
+INPUT = $${MLAB_Community_General}/Sources $${MLAB_Community_General}/Modules
+FILE_PATTERNS = *.h *.hxx *.py *.js
 ENABLED_SECTIONS = USE_MCS_GLOBAL_DOXYGEN_DOC
 IGNORE_PREFIX = MLAB
 HAVE_DOT = NO
