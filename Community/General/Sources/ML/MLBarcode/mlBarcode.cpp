@@ -37,7 +37,8 @@
 // Include your header.
 #include "mlBarcode.h"
 
-namespace ml{
+ML_START_NAMESPACE
+
   //-----------------------------------------------------------------------------------
   //! This function is not available under non-Windows-Systems. This is
   //! an os-independent replacement.
@@ -157,7 +158,7 @@ namespace ml{
     // calling
     //   setThreadSupport(1);
     // So you can potentially multiply the performance of your algorithm.
-    // If not called or by calling \c setThreadSupport(0) (which is the default)
+    // If not called or by calling   setThreadSupport(0) (which is the default)
     // multithreading remains disabled for your algorithm.
     // IMPORTANT: Please activate multithreading only if you are sure that your
     //            algorithm supports it. Otherwise subtle errors could occur.
@@ -177,13 +178,16 @@ namespace ml{
   } // End ~Barcode
 
 
+  //--------------------------------------------------------------------------------
+  //! Creates the bar coded pixel line.
+  //--------------------------------------------------------------------------------
   void Barcode::makeCodeLine(){
 
     int _numofchars=0, n=0;  //number of chars to be coded, counter, counter
     int x=0, dx=0; // counter for pixels in codeline
     char _stripcode[9]; //code with 6 small bars (=0) and 3 large bars (=1) for one character
     char* _barcodefull; // text to be coded with '*' at the beginning and the end
-    int _color=0; //Color of the current bar
+    int _color=0; // Color of the current bar
 
 
     // One codeline is composed of:
@@ -195,7 +199,7 @@ namespace ml{
     //  - a light area at the end (size: _q pixels)
 
 
-    //set value for color
+    // Set value for color.
     _color = _background;
 
 
@@ -203,27 +207,27 @@ namespace ml{
     _numofchars = strlen(_textFld->getStringValue().c_str());
 
 
-    //Calculate the size of the codeline in pixel
+    // Calculate the size of the codeline in pixel
     _xsize = (int)((_numofchars+2)*(6*_x + 3*_ratio*_x) + (_numofchars+1) * _i + 2*_q);
 
-    //Check, if an old codeline exists and remove this.
+    // Check, if an old codeline exists and remove this.
     if (_codeline!=NULL) {
       delete [] _codeline;
     }
 
-    //Allocate memory for a new codeline
+    // Allocate memory for a new codeline
     _codeline = new int[_xsize];
     if(!_codeline) {
       mlDebug("Error initializing codeline");
     }
-    //Initialize new codeline, set all pixels to white
+    // Initialize new codeline, set all pixels to white
     for (x=0; x<_xsize; x++) {
       _codeline[x]=_background;
     }
 
-    //Allocate memory for the complete text (including 2x'*')
+    // Allocate memory for the complete text (including 2x'*')
     _barcodefull = new char [_numofchars+4];
-    //Initialize new string
+    // Initialize new string
     for(int i2=0;i2<_numofchars+2;i2++) {
       _barcodefull[i2] =0;
     }
@@ -234,19 +238,19 @@ namespace ml{
     strcat(_barcodefull,"*");                          //'*' at the end
 
 
-    //Light area at the beginning
+    // Light area at the beginning
     for(x=0; x<_q; x++) {
       _codeline[x]=_background;
     }
 
-    //Now we can start to build the bars for each character
+    // Now we can start to build the bars for each character
     _color = _background;
 
 
-    //Loop through the complete text
+    // Loop through the complete text
     for (unsigned int i3=0; i3<strlen(_barcodefull); i3++)
     {
-      //Get the code for the i-th character
+      // Get the code for the i-th character
       strcpy(_stripcode, Code39(_barcodefull[i3]));
 
 
@@ -310,8 +314,8 @@ namespace ml{
     } // end character loop
 
 
-    //After all this the light space at the end of the codeline should be left or
-    //in other words: _xsize - x == _q
+    // After all this the light space at the end of the codeline should be left or
+    // in other words: _xsize - x == _q
 
 
     //Light area at the end
@@ -326,7 +330,7 @@ namespace ml{
   } 
 
   //-----------------------------------------------------------------------------
-  // Returns the Code 3 of 9 value for a given ASCII character
+  // Returns the Code 3 of 9 value for a given ASCII character.
   //-----------------------------------------------------------------------------
   char* Barcode::Code39(char Asc)
   {
@@ -425,6 +429,9 @@ namespace ml{
     }
   }
 
+  //--------------------------------------------------------------------------------
+  //! Handle field changes of the field field.
+  //--------------------------------------------------------------------------------
   void Barcode::handleNotification (Field *field)
   {
     if (!_lockNotification && field )
@@ -443,31 +450,8 @@ namespace ml{
   }
 
   //--------------------------------------------------------------------------------
-  //! Sets properties of the output image with index \c outIndex
-  //! dependend on the properties of input image(s).
-  //! So for each property of the output image \c getOutImg(outIndex)
-  //! the corresponding properties of input image \c getInImg(0) and
-  //! \c getInImg(1) are merged and set.
-  //!
-  //! Access functions to the input and output images are defined
-  //! in the ml class \c BaseOp:\c getOutImg und BaseOp::\c getInImg.
-  //! Within the \c calcOutImageProps methods the properties and
-  //! operators are always valid and need not to be checked for validity
-  //! (otherwise \c calcOutImageProps wouldn't be called).
-  //! Access functions to the properties of an image are defined
-  //! in the classes \c ImageProperties, \c MedicalImageProperties and \c PagedImg:
-  //! -\c getImgExt,
-  //! -\c getBoxFromImgExt,
-  //! -\c getPageExt and \c setPageExt,
-  //! -\c getDataType and \c setDataType,
-  //! -\c getMinVoxelValue and -\c setMinVoxelValue,
-  //! -\c getMaxVoxelValue and -\c getMaxVoxelValue.
-  //!
-  //! If not implemented the default implementation copies the properties
-  //! of \c getInImg(0) to the output image(s).
-  //! 
-  //! It is not necessary to execute the superclass implementation in this
-  //! method if this class is derived directly from \c BaseOp.
+  //! Sets properties of the output image with index outIndex
+  //! dependent on the properties of input image(s).
   //--------------------------------------------------------------------------------
   void Barcode::calcOutImageProps(int /*outIndex*/)
   {
@@ -476,8 +460,7 @@ namespace ml{
       makeCodeLine();
     }
 
-
-    //Output image (barcode) is rotated for better use in mammogramms!
+    // Output image (barcode) is rotated for better use in mammogramms!
 
     getOutImg()->setImgExt  ( Vector(_xsize, _ysize, 1, 1, 1, 1));
     getOutImg()->setPageExt ( Vector(_xsize, _ysize, 1, 1, 1, 1));
@@ -498,68 +481,31 @@ namespace ml{
   }
 
   //--------------------------------------------------------------------------------
-  //! Implements the conversion of the untyped calcOutSubImage call into a typed one.
-  //!--------------------------------------------------------------------------------
-  //! \c calcOutSubimage analyses the data type of the image and calls the right
-  //! typed (template) function to calculate the output image.
-  //! Usually this function is implemented in the .cpp file by using the
-  //! macro \c CALC_OUTSUBIMAGE2_CPP in dyadic modules or \c CALC_OUTSUBIMAGE1 in
-  //! monadic modules (see mlOperatorMacros.h).
-  //! Similar macros for other header implementations and other input/output
-  //! configurations are also available.
-  //! Please do not implement this call yourself but use macros from
-  //! mlOperatorsMacros.h if possible to make it easier to add new data types
-  //! in future releases.
+  //! Calls correctly typed (template) version of calcOutSubImage to calculate page 
+  //! outSubImg of output image with index outSubImg.
   //--------------------------------------------------------------------------------
   CALC_OUTSUBIMAGE0_CPP(Barcode);
 
   //--------------------------------------------------------------------------------
-  //! In this method the algorithm must calculate the output page \c outSubImg from
-  //! the input subimages(s) \c inSubImg1 and \c inSubImg2. For each data type
-  //! this method is instanciated. Note that \c calcOutSubImage calls this
-  //! function by searching the correct data type and calling the correctly typed
-  //! template version. This is implemented automatically by the macro
-  //! CALC_OUTSUBIMAGE2 above. Note that this template function should
-  //! not be used outside this class since there could appear linker problems,
-  //! especially on dll-interfaces. Ask experienced template programmers before
-  //! doing that. Do that also before you use a debugger or performance profiler
-  //! on template code.
-  //! NOTES:
-  //! -\c outSubImg has the size of the page size which can be defined
-  //!  in \c calcOutImageProps.
-  //! -\c inSubImg1 and \c inSubImg2 have the sizes returned by \c calcInSubImageBox.
-  //!  There you can specify the input image regions which you need to calculate the
-  //!  \c outSubImg.
-  //! -if your algorithm in \c calcOutSubImage can be executed parallely (i.e.
-  //!  if it is thread save/reentrant) then you can use \c setThreadSupport(1) to
-  //!  improve performance of the algorithm. Please do this only if you are very
-  //!  sure what you are doing to avoid subtle errors :-).
-  //!
-  //! IMPORTANT:
-  //!   Since copying image properties is time consuming \c outSubImg and 
-  //!   \c inSubImg* do not contain valid image properties.
-  //!   Only subimage and typed subimage specific methods should be used.
-  //!   Accessing image properties will return invalid information
-  //!   The right way to get valid image properties is to retrieve them from 
-  //!   \c getInSubImg() or \c getOutSubImg(), respectively.
+  //! Method template for type-specific page calculation. Called by calcOutSubImage().
+  //! \param outSubImg   The typed subimage of output image outIndex loaded form file.
+  //! Parameter outIndex is the index of the output the subimage is calculated for and 
+  //!                    is not used here.
   //--------------------------------------------------------------------------------
   template <typename DATATYPE>
   void Barcode::calcOutSubImage(TSubImg<DATATYPE> *outImg, int /*outIndex*/)
   {
-    //Output image (barcode) is rotated for better use in mammogramms!
+    // Output image (barcode) is rotated for better use in mammogramms!
 
     Vector dim = outImg->getImgExt();
     SubImgBox loc = outImg->getBox();
-    DATATYPE temp_pixelvalue;
-
+    DATATYPE temp_pixelvalue=0;
 
     if (_codeline==NULL) {
       makeCodeLine();
-      //return;
     }
 
-
-    // loop over whole spatial coordinates of the image
+    // Loop over whole spatial coordinates of the image.
     Vector v(0,0,0,0,0,0);
     for (v.x=0; v.x<dim.x; v.x++) {
       //v.x=x;
@@ -575,4 +521,4 @@ namespace ml{
 
   }
 
-} // end of namespace ml.
+ML_END_NAMESPACE
