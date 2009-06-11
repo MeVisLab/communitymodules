@@ -44,7 +44,7 @@ ML_START_NAMESPACE
 #pragma warning( push )
 #pragma warning( disable : 4702 ) // VC8: unreachable code
 ML_BASEOP_CLASS_SOURCE(MatlabScriptWrapper, BaseOp);
-#pragma warning( pop ) 
+#pragma warning( pop )
 #else
 ML_BASEOP_CLASS_SOURCE(MatlabScriptWrapper, BaseOp);
 #endif
@@ -58,7 +58,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 {
   ML_TRACE_IN("MatlabScriptWrapper::MatlabScriptWrapper()")
 
-    FieldContainer *fields = getFieldContainer();
+  FieldContainer *fields = getFieldContainer();
   ML_CHECK(fields);
 
   //! Change field values here without calling handleNotification.
@@ -89,7 +89,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 
   //! Create image data randomly.
   (_autoCalculationFld = fields->addBool("autoUpdate"))->setBoolValue(false);
-  //! Add toggle to delete user set variables befor new calculation.
+  //! Add toggle to delete user set variables before new calculation.
   //(_deleteMatlabVarFld = fields->addBool("delMatlabVar"))->setBoolValue(false);
   //! Add update button.
   _calculateFld = fields->addNotify("update");
@@ -157,7 +157,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
   if(field == _restartMatlabFld)
   {
-    if(!_checkMatlabIsStarted()){
+    if(!_checkMatlabIsStarted()) {
       // Start Matlab if it's not started.
       m_pEngine  = engOpen("\0");
     }
@@ -167,11 +167,11 @@ void MatlabScriptWrapper::handleNotification (Field* field)
   }
 
   // Update output only if autoapply is enabled.
-  if (   ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) && (_autoCalculationFld->isOn()) 
+  if ( ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) && (_autoCalculationFld->isOn()) 
     || (field == _calculateFld) )
   {
     // Check if Matlab is started.
-    if (!_checkMatlabIsStarted()){
+    if (!_checkMatlabIsStarted()) {
       _statusFld->setStringValue("Cannot finding matlab engine!");
       return;
     }
@@ -225,7 +225,9 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     // Get scalars back from matlab. First store the current scalars so that
     // we can check if they change. A notification is only sent upon change.
     double tmpScalars[6];
-    for(int k=0; k<6; ++k) { tmpScalars[k] = _scalarFld[k]->getDoubleValue(); }
+    for(int k=0; k<6; ++k) {
+	   tmpScalars[k] = _scalarFld[k]->getDoubleValue();
+	 }
     _getScalarsBackFromMatlab();
     for(int k=0; k<6; ++k) {
       if(tmpScalars[k] == _scalarFld[k]->getDoubleValue()) {
@@ -264,7 +266,7 @@ BaseOp::INPUT_HANDLE MatlabScriptWrapper::handleInput(int inIndex, INPUT_STATE /
 //----------------------------------------------------------------------------------
 //! Sets properties of the output image at output \c outIndex.
 //----------------------------------------------------------------------------------
-void MatlabScriptWrapper::calcOutImageProps (int outIndex)
+void MatlabScriptWrapper::calcOutImageProps(int outIndex)
 {
   ML_TRACE_IN("MatlabScriptWrapper::calcOutImageProps ()");
 
@@ -315,7 +317,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     getOutImg(outIndex)->setMaxVoxelValue(*static_cast<double*>(mxGetPr(maxVal)));
     mxDestroyArray(minVal); minVal = NULL;
     mxDestroyArray(maxVal); maxVal = NULL;
-    engEvalString(m_pEngine, "clear mevtmpminval mevtmpmaxval");  
+    engEvalString(m_pEngine, "clear mevtmpminval mevtmpmaxval");
   }
   else
   {
@@ -328,7 +330,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
 //! Request input image in fixed datatype.
 //----------------------------------------------------------------------------------
 void MatlabScriptWrapper::calcInSubImageProps(int /*inIndex*/, InSubImageProps &props, int /*outIndex*/)
-{  
+{
   // Request input image in double type.
   props.inSubImgDType = MLdoubleType;
 }
@@ -344,7 +346,7 @@ SubImgBox MatlabScriptWrapper::calcInSubImageBox (int /*inIndex*/, const SubImgB
 }
 
 //----------------------------------------------------------------------------------
-//! Type specific page calculation. 
+//! Type specific page calculation.
 //----------------------------------------------------------------------------------
 void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
                                            int outIndex,
@@ -429,7 +431,6 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       //MLuint32 inDataSize = inImg->getBoxFromImgExt().getExt().getStrides().u;
       const MLuint32 inDataSize = imgSize.x*imgSize.y*imgSize.z*imgSize.c*imgSize.t*imgSize.u;
 
-
       // Set matlab image extent.
       const mwSize insizesArray[6] = {imgSize.x, imgSize.y, imgSize.z, imgSize.c, imgSize.t, imgSize.u};
       // Create numeric array
@@ -449,7 +450,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       freeTile(data);
       data = NULL;
     }
-  } 
+  }
 }
 
 //! Copy input XMarkerList to matlab.
@@ -513,7 +514,7 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
   }
 }
 
-//! Loads matlab script from a file, pastes it into script field and saves user written script. 
+//! Loads matlab script from a file, pastes it into script field and saves user written script.
 bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
 {
   // Clear input string
@@ -547,7 +548,7 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
       std::string line;
       while(!dat.eof())
       {
-        getline (dat,line);
+        getline(dat, line);
         tmpString << line << "\n";
       }
 
@@ -563,7 +564,7 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
   return true;
 }
 
-//! Gets XMarkerList from Matlab and copies results into output XMarkerList. 
+//! Gets XMarkerList from Matlab and copies results into output XMarkerList.
 void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
 {
   // Clear _outputXMarkerList.
@@ -620,16 +621,16 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
       {
         // Fill marker with zeros.
         XMarker outMarker(vec6(0),vec3(0),0);
-        // Write matlab points to marker.         
-        for(j=0; j<cols; j++) {
+
+        // Write matlab points to marker.
+        for(j=0; j<cols && cols<=6; j++) {
           outMarker.pos[j] = dataPos[i + j*rows];
         }
 
-
-        // Write matlab vec to marker.
+        // Write matlab vector to marker and prevent writing more than 3 dimensions
         if(dataVec!=NULL) {
           if(rows==mxGetM(m_vec)) {
-            for(j=0; j<mxGetN(m_vec); j++) {
+            for(j=0; j<mxGetN(m_vec) && mxGetN(m_vec)<=3; j++) {
               outMarker.vec[j] = dataVec[i + j*rows];
             }
           }
@@ -643,7 +644,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
             // Write type to XMarker.
             outMarker.type = static_cast<MLint>(dataType[i]);
           }
-        }     
+        }
 
         // Append XMarker to XMarkerList.
         _outputXMarkerList.push_back(outMarker);
@@ -654,7 +655,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
       // Destroy arrays.
       mxDestroyArray(m_pos);
       mxDestroyArray(m_vec);
-      mxDestroyArray(m_type);   
+      mxDestroyArray(m_type);
     }
   }
 }
@@ -679,7 +680,6 @@ void MatlabScriptWrapper::_copyInputScalarsToMatlab()
   }
   // Execute string and write input scalars into matlab.
   engEvalString(m_pEngine, execute.str().c_str());
-
 }
 
 //! Copies scalar values from matlab.
@@ -722,9 +722,8 @@ bool MatlabScriptWrapper::_checkMatlabIsStarted()
   }
 }
 
-void MatlabScriptWrapper::_clearAllVariables() 
+void MatlabScriptWrapper::_clearAllVariables()
 {
-
   std::ostringstream clearString;
   clearString << "clear ";
 
@@ -747,7 +746,7 @@ void MatlabScriptWrapper::_clearAllVariables()
   clearString << _outXMarkerNameFld->getStringValue();
 
   // Evaluate the string in Matlab
-  engEvalString(m_pEngine, clearString.str().c_str());  
+  engEvalString(m_pEngine, clearString.str().c_str());
 }
 
 ML_END_NAMESPACE
