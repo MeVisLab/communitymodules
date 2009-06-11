@@ -28,8 +28,8 @@ MLModule MatlabScriptWrapper {
   Category Main {
     Vertical {
       margin = 4
-      TextView MatlabScript {
-        dependsOn = !useExternalScript 
+      TextView matlabScript {
+        dependsOn = !useExternalScript
         autoApply = Yes
         showLineNumbers = Yes
       }
@@ -37,11 +37,11 @@ MLModule MatlabScriptWrapper {
       CheckBox useExternalScript {}
       Horizontal {
         Field matlabScriptPath {
-          title = "Matlab Script:" 
-          expandX = yes 
-          browseButton = ON 
-          browseMode = open 
-          browseFilter = "Database Files (*.m)" 
+          title = "Matlab Script:"
+          expandX = yes
+          browseButton = ON
+          browseMode = open
+          browseFilter = "Database Files (*.m)"
           dependsOn = useExternalScript}
       }
       Vertical {
@@ -60,19 +60,17 @@ MLModule MatlabScriptWrapper {
               Field outDataName2 {title = "Output2 name:" expandX = yes}
             }
           }
-        
         }
         Box "XMarker names" {
           Field inXMarkerName {title = "Input name:" expandX = yes}
           Field outXMarkerName {title = "Output name:" expandX = yes}
         }
       }
-    
       Horizontal {
         CheckBox autoUpdate {title = "Auto-update on input data change"}
-        Button restartMatlab { alignX = Right title = "Restart Matlab"}
+        Button restartMatlab {alignX = Right title = "Restart Matlab"}
       }
-      Field status {title = "Status:" edit = No}
+      Field status { title = "Status:" edit = No }
       Button update { alignX = Left title = "Update" }
     }
   }
@@ -91,8 +89,8 @@ MLModule MatlabScriptWrapper {
           Horizontal {
             Field scalarName2 {title = "Name:" expandX = yes}
             Field scalar2 {title = "Value:" expandX = yes}
-          }     
-        //} 
+          }
+        //}
         //Box "Output scalars" {
           Horizontal {
             Field scalarName3 {title = "Name:" expandX = yes}
@@ -110,6 +108,6 @@ MLModule MatlabScriptWrapper {
       }
     }
   }
-}
+  } // Window
 } // MLModule MatlabScriptWrapper
 
