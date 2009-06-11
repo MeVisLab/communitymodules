@@ -68,7 +68,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   _outputXMarkerListFld = fields->addBase("outputXMarkerList");
   _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
 
-  (_matlabScriptFld = fields->addString("MatlabScript"))->setStringValue("Output0=Input0 % Type your matlab script here.");
+  (_matlabScriptFld = fields->addString("matlabScript"))->setStringValue("Output0=Input0 % Type your matlab script here.");
 
   //! Use external matlab script.
   (_useExternalScriptFld = fields->addBool("useExternalScript"))->setBoolValue(false);
