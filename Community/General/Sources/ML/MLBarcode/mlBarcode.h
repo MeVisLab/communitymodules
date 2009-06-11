@@ -85,6 +85,16 @@ ML_START_NAMESPACE
     //@}
 
   private:
+    //! Pixelvalue for background
+    MLint _background;
+    //! Pixelvalue for foreground
+    MLint _foreground;
+     
+    int _lockNotification;
+
+    MLint _q, _x, _i, _ysize, _xsize;
+    float _ratio;
+
     //! Pointer to a memory buffer for a code line.
     int* _codeline;
 
