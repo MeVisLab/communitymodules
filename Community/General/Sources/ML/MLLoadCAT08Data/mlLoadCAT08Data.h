@@ -44,10 +44,12 @@
 // ML includes
 #include "mlOperatorIncludes.h"
 #include "mlXMarkerList.h"
-#include "mlGraph.h"
-#include "mlVesselNode.h"
-#include "mlVesselEdge.h"
-#include "mlSkeleton.h"
+#if ML_GRAPH_IS_AVAILABLE
+  #include "mlGraph.h"
+  #include "mlVesselNode.h"
+  #include "mlVesselEdge.h"
+  #include "mlSkeleton.h"
+#endif
 
 ML_START_NAMESPACE
 
@@ -82,7 +84,9 @@ private:
   BaseField* _outputSFld;
   BaseField* _outputEFld;
   BaseField* _outputCenterLineFld;
-  BaseField* _outputGraphFld;
+  #if ML_GRAPH_IS_AVAILABLE
+    BaseField* _outputGraphFld;
+  #endif
 
   //! Data structures for A,B,S,E points, centerlines and an ML Graph
   XMarkerList _AList;
@@ -90,7 +94,9 @@ private:
   XMarkerList _SList;
   XMarkerList _EList;
   XMarkerList _centerLineList;
-  Graph   _outputGraph;
+  #if ML_GRAPH_IS_AVAILABLE
+    Graph   _outputGraph;
+  #endif
 
   //! Clear all data structures.
   void _clearAll(); 

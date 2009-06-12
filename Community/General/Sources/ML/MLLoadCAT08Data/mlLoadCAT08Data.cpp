@@ -76,10 +76,11 @@ LoadCAT08Data::LoadCAT08Data ()
   _outputCenterLineFld = fields.addBase("outputCenterLine");
   _outputCenterLineFld->setBaseValue(&_centerLineList);
 
-  // Add base output for vessel graph
-  _outputGraphFld = fields.addBase("outputGraph");
-  _outputGraphFld->setBaseValue(&_outputGraph);
-
+  #if ML_GRAPH_IS_AVAILABLE
+    // Add base output for vessel graph
+    _outputGraphFld = fields.addBase("outputGraph");
+    _outputGraphFld->setBaseValue(&_outputGraph);
+  #endif
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -180,48 +181,49 @@ void LoadCAT08Data::handleNotification (Field *field)
     dataFileName.str("");     // This is a strange way to clear the dataFileName, but dataFileName.clear() does not work
     file_to_read.close();
 
-    // Get vessel centerline as XMarkers and Vessel Graph
-    dataFileName << pathname << "vessel" << vesselNbr << "/" << "reference.txt";
-    file_to_read.open(dataFileName.str().c_str());
-    if(file_to_read) {
-      int pointNbr = 0;
-      // Create a new vessel graph edge
-      VesselEdge *graphEdge = new VesselEdge;
-      VesselNode *rootNode = NULL;
-      do {
+    #if ML_GRAPH_IS_AVAILABLE
+      // Get vessel centerline as XMarkers and Vessel Graph
+      dataFileName << pathname << "vessel" << vesselNbr << "/" << "reference.txt";
+      file_to_read.open(dataFileName.str().c_str());
+      if(file_to_read) {
+        int pointNbr = 0;
+        // Create a new vessel graph edge
+        VesselEdge *graphEdge = new VesselEdge;
+        VesselNode *rootNode = NULL;
+        do {
 
-        // Extract point and radius
-        double x,y,z,r,foo;
-        file_to_read >> x >> y >> z >> r >> foo;
-        vec3 pos(x,y,z);
+          // Extract point and radius
+          double x,y,z,r,foo;
+          file_to_read >> x >> y >> z >> r >> foo;
+          vec3 pos(x,y,z);
 
-        // Add to XMarker list
-        _centerLineList.appendItem(XMarker(vec6(pos,0,0,0), vec3(0)));
+          // Add to XMarker list
+          _centerLineList.appendItem(XMarker(vec6(pos,0,0,0), vec3(0)));
 
-        // If this is the first point, add new root to the Vessel Graph
-        if(0 == pointNbr) {
-          rootNode = new VesselNode(pos);               // Create new node
-          _outputGraph.addNode(rootNode);                // Add it to the graph
-          GraphRoot *gRoot = new GraphRoot(rootNode);    // Make the new node a root
-          _outputGraph.addRoot(gRoot);
-        }
-        // Create a skeleton and add it to the edge
-        graphEdge->addSkeleton(Skeleton(pos, r, r));
+          // If this is the first point, add new root to the Vessel Graph
+          if(0 == pointNbr) {
+            rootNode = new VesselNode(pos);               // Create new node
+            _outputGraph.addNode(rootNode);                // Add it to the graph
+            GraphRoot *gRoot = new GraphRoot(rootNode);    // Make the new node a root
+            _outputGraph.addRoot(gRoot);
+          }
+          // Create a skeleton and add it to the edge
+          graphEdge->addSkeleton(Skeleton(pos, r, r));
 
-        // Increment
-        ++pointNbr;
-      }while(!file_to_read.eof());
-
-      // Finish generating the vessel graph by adding the edge and end node to the graph
-      VesselNode *endNode = new VesselNode(graphEdge->backSkeleton()->pos);
-      _outputGraph.addNode(endNode);
-      // Connect the vessel edge
-      graphEdge->setPred(rootNode);
-      graphEdge->setSucc(endNode);
-      // Add the vessel edge to the graph
-      _outputGraph.attachIdEdge(graphEdge,rootNode->getId(),endNode->getId());
-
-    }
+          // Increment
+          ++pointNbr;
+        }while(!file_to_read.eof());
+      
+        // Finish generating the vessel graph by adding the edge and end node to the graph
+        VesselNode *endNode = new VesselNode(graphEdge->backSkeleton()->pos);
+        _outputGraph.addNode(endNode);
+        // Connect the vessel edge
+        graphEdge->setPred(rootNode);
+        graphEdge->setSucc(endNode);
+        // Add the vessel edge to the graph
+        _outputGraph.attachIdEdge(graphEdge,rootNode->getId(),endNode->getId());
+      }
+    #endif
     dataFileName.str("");     // This is a strange way to clear the dataFileName, but dataFileName.clear() does not work
     file_to_read.close();
     file_to_read.clear();     // Another strange thing, clear() must be called when we read the file to eof, otherwise we cannot reopen file_to_read later.
@@ -232,7 +234,9 @@ void LoadCAT08Data::handleNotification (Field *field)
   _outputSFld->notifyAttachments();
   _outputEFld->notifyAttachments();
   _outputCenterLineFld->notifyAttachments();
-  _outputGraphFld->notifyAttachments();
+  #if ML_GRAPH_IS_AVAILABLE
+    _outputGraphFld->notifyAttachments();
+  #endif
 }
 
 void LoadCAT08Data::_clearAll() 
@@ -243,7 +247,9 @@ void LoadCAT08Data::_clearAll()
   _SList.clear();
   _EList.clear();
   _centerLineList.clear();
-  _outputGraph.clearGraph();
+  #if ML_GRAPH_IS_AVAILABLE
+    _outputGraph.clearGraph();
+  #endif
 }
 
 
