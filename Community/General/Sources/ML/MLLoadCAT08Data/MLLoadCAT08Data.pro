@@ -41,7 +41,12 @@ DLLDESTDIR = ../../../lib
 WARN = MAXIMUM64
 
 # add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLVesselGraph
+CONFIG += dll ML MLBase 
+
+exists( $${PACKAGE_SOURCES}/ML/MLVesselGraph/mlGraph.h ) {
+  CONFIG += MLVesselGraph
+  DEFINES += ML_GRAPH_IS_AVAILABLE
+}
 
 MLAB_PACKAGES += MeVisLab_Standard
 
