@@ -40,8 +40,8 @@ private:
   FloatField *_funused3Fld;
 
 
-  void AnalyzeHeader::swap(void *s,int bytes);
-  bool AnalyzeHeader::checkEndianness();
+  void swap(void *s,int bytes);
+  bool checkEndianness();
 
   ML_BASEOP_CLASS_HEADER(AnalyzeHeader)
 };
