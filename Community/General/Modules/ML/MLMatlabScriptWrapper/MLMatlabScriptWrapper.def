@@ -41,8 +41,9 @@ MLModule MatlabScriptWrapper {
           expandX = yes
           browseButton = ON
           browseMode = open
-          browseFilter = "Database Files (*.m)"
-          dependsOn = useExternalScript}
+          browseFilter = "MATLAB M-files (*.m)"
+          dependsOn = useExternalScript
+        }
       }
       Vertical {
         Horizontal {
@@ -67,8 +68,9 @@ MLModule MatlabScriptWrapper {
         }
       }
       Horizontal {
-        CheckBox autoUpdate {title = "Auto-update on input data change"}
-        Button restartMatlab {alignX = Right title = "Restart Matlab"}
+        CheckBox autoUpdate { title = "Auto-update on input data change" }
+        CheckBox showSessionWindow { title = "Show Matlab session window" }
+        Button restartMatlab { alignX = Right title = "Restart Matlab" }
       }
       Field status { title = "Status:" edit = No }
       Button update { alignX = Left title = "Update" }
