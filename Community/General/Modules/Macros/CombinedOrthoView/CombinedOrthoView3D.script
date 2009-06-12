@@ -52,7 +52,13 @@ Window {
           viewing = Yes
         }
       }
-    }      
+    }
+       
+    FieldListener {
+      listenField = position
+      listenField = margin
+      command = update
+    }
   }
   
   EventFilter {

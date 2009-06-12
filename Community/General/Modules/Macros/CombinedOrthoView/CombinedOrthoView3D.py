@@ -24,3 +24,6 @@ def mainFrameResizeEventSlot(event):
   freeFloat.setControlSize(soExaminerViewer, hwidth - 2 * margin, hheight - 2 * margin)
 
   return
+  
+def update():
+  mainFrameResizeEventSlot(None)

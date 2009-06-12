@@ -24,3 +24,6 @@ def mainFrameResizeEventSlot(event):
   freeFloat.setControlSize(soRenderArea1, hwidth - 2 * margin, hheight - 2 * margin)
 
   return
+
+def update():
+  mainFrameResizeEventSlot(None)
