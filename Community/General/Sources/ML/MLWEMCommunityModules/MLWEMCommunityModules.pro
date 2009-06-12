@@ -32,12 +32,12 @@ MSVC_USE_SUBDIRS = 1
 HEADERS += \
     MLWEMCommunityModulesInit.h \
     MLWEMCommunityModulesSystem.h \
-    WEMPlane\WEMMarchingCubes.h \
-    WEMPlane\WEMPlane.h
+    WEMPlane/WEMMarchingCubes.h \
+    WEMPlane/WEMPlane.h
 
 SOURCES += \
     MLWEMCommunityModulesInit.cpp \
-    WEMPlane\WEMPlane.cpp
+    WEMPlane/WEMPlane.cpp
 
 RELATEDFILES += \
     ../../../Modules/ML/MLWEMCommunityModules/MLWEMCommunityModules.def 
