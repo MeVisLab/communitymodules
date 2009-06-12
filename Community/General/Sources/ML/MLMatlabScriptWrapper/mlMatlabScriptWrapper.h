@@ -136,10 +136,13 @@ private:
   StringField* _matlabScriptFld;
   //! Use external script.
   BoolField* _useExternalScriptFld;
-  
+
   //! Name of file where matlab script will be dumped.
   StringField *_matlabScriptPathFld;
-  
+
+  //! Show the Matlab session window.
+  BoolField* _showSessionWindowFld;
+
   //{@ Set matlab names for input and output images.
   StringField *_inDataNameFld[3];
   StringField *_outDataNameFld[3];

@@ -76,6 +76,9 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   //! Where will matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
 
+  //! Show the Matlab session window.
+  (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(false);
+
   //! Set input and output data names used in matlab.
   (_inDataNameFld[0] = fields->addString("inDataName0"))->setStringValue("Input0");
   (_inDataNameFld[1] = fields->addString("inDataName1"))->setStringValue("Input1");
@@ -115,7 +118,9 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   //! Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
-  m_pEngine  = engOpen("\0");
+  m_pEngine = engOpen(NULL);
+  engSetVisible(m_pEngine,false);
+
   if ( !_checkMatlabIsStarted() )
   {
     std::cerr << "MatlabScriptWrapper::MatlabScriptWrapper():" << std::endl;
@@ -159,17 +164,24 @@ void MatlabScriptWrapper::handleNotification (Field* field)
   {
     if(!_checkMatlabIsStarted()) {
       // Start Matlab if it's not started.
-      m_pEngine  = engOpen("\0");
-    }
-    else{
-      std::cout<<"Matlab is already started";
+      m_pEngine = engOpen(NULL);
+      engSetVisible(m_pEngine,_showSessionWindowFld->getBoolValue());
+    } else {
+      std::cout << "Matlab is already started";
     }
   }
 
+  if(field == _showSessionWindowFld) {
+    if(_showSessionWindowFld->isOn()) {
+      engSetVisible(m_pEngine, true);
+    } else {
+      engSetVisible(m_pEngine, false);
+    }
+  }
+  
   // Update output only if autoapply is enabled.
-  if ( ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) && (_autoCalculationFld->isOn()) 
-    || (field == _calculateFld) )
-  {
+  if ( ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) && (_autoCalculationFld->isOn())
+    || (field == _calculateFld) ) {
     // Check if Matlab is started.
     if (!_checkMatlabIsStarted()) {
       _statusFld->setStringValue("Cannot finding matlab engine!");
@@ -181,8 +193,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     bool validScriptString = true;
     if(_useExternalScriptFld->isOn()) { // Get script from .m-file
       validScriptString = _loadMatlabScriptFromFile(evaluateString);
-    }
-    else {
+    } else {
       evaluateString = _matlabScriptFld->getStringValue();
     }
 
@@ -207,8 +218,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       if(mtmp!=NULL) {
         _statusFld->setStringValue("Execution successful!");
         engEvalString(m_pEngine, "clear mevmatscr");
-      }
-      else {
+      } else {
         _statusFld->setStringValue("Matlab script contains errors!");
         _clearAllVariables();
       }
@@ -493,7 +503,7 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
 
     // Get XMarkerList size and go through all list step by step.
     const size_t listSize = inputXMarkerList.size();
-    for(i = 0; i < listSize; i++) 
+    for(i = 0; i < listSize; i++)
     {
       XMarker marker = inputXMarkerList[i];
 
@@ -536,7 +546,6 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
     {
       // File to open.
       std::ifstream dat;
-
       dat.open(pathString.c_str());
       if(dat.fail()) {
         // Throw error message if file couldn't be opened.
