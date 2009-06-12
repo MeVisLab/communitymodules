@@ -17,7 +17,7 @@ WARN = HIGH
 
 # add dependencies of this project here
 
-CONFIG += dll ML MLBase MLTools MathUtils newmat MLWEM boost
+CONFIG += dll ML MLBase MLTools newmat MLWEM boost
 
 MLAB_PACKAGES += MeVisLab_Standard
 
