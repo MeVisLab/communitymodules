@@ -1,0 +1,26 @@
+//----------------------------------------------------------------------------------
+//! UMDVisLogo module definitions
+/*!
+// \file    UMDVisLogo.def
+// \author  Konrad Mühler
+// \date    2007-06-12
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoVisLogo {
+  DLL = "UMDVisLogo"
+
+  genre = ""
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = "Logo of VIS group for 3D viewer"
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDVisLogo"
+  externalDefinition = "$(LOCAL)/UMDVisLogo.script"
+  Description {
+  }
+
+} // InventorModule SoVisLogo
+

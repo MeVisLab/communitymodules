@@ -1,0 +1,2 @@
+Das PNG nicht mit Photoshop erstellen!
+Sondern mir PaintShopPro und dort nicht 16Mio Farben sondenr eine Palette und eine einzige Farbe als transparente Farbe wählen.
