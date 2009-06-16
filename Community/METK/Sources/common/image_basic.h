@@ -9,7 +9,7 @@
 #define __COMMON_IMPORTEXPORT __declspec(dllexport) 
 #endif
 #else
-#define MLIMAGEUTILITIES_EXPORT
+#define __COMMON_IMPORTEXPORT
 #endif
 
 #define NOMINMAX
