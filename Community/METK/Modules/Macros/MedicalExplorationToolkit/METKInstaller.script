@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKInstaller
+/*!
+// \file    METKInstaller.script
+// \author  Konrad Mühler
+// \date    2007-12-18
+//
+// This module is only a collector of ALL METK-Modules to build an installer file
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {}
+}
+
+
+Commands {
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2007-09-02T07:49:10
+//# hash: lV9ytxR5XcR1h6wYLmH7O5lQwMRhqgCB1EC7+XEOYbzrctFAazbl+kJh8Et1yHl0XbmBZ9GHDF1RCtxuRCCyfg==
+//# MeVis end
+

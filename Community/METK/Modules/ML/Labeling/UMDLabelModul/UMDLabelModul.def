@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! UMDLabelModul module definitions
+/*!
+// \file    UMDLabelModul.def
+// \author  Konrad Mühler, Maik Beyer
+// \date    2007-01-31
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoLabelModul {
+  DLL = "Labeling"
+
+  genre = ""
+  author = "Konrad Mühler, Maik Beyer"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDLabelModul"
+  hasGroupInputs = FALSE
+  externalDefinition = "$(LOCAL)/SoLabelModul.script"
+
+ 
+  
+} // InventorModule SoLabelModul
+

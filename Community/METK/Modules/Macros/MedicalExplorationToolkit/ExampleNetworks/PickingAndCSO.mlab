@@ -1,0 +1,178 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "537 365 128 56"
+    windows  {
+      window _default {
+        geometry = "743 460 196 174"
+        sizeHint = "196 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "641 461 112 56"
+    windows  {
+      window _default {
+        geometry = "40 369 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "701 197 136 56"
+    windows  {
+      window _viewer {
+        geometry = "305 125 255 212"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "586 369 515 356"
+        sizeHint = "515 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = SORTED_OBJECT_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = TRUE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "0 0 2.41421"
+    orientation = "0 0 1 0"
+    nearDistance = 1.414209962
+    farDistance = 3.414210081
+    focalDistance = 2.414210081
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "541 285 120 56"
+    windows  {
+      window _default {
+        geometry = "56 128 225 206"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-1.8875 -188.862 97.51779999999999"
+    camOrientation = "1 0 0 1.5708"
+  }
+  internalFields = ""
+}
+module METKCSO {
+  internal  {
+    frame = "701 293 104 56"
+  }
+  fields  {
+    instanceName = METKCSO
+    ignorePickable = TRUE
+    objectMustBeVisible = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  SoExaminerViewer.children = METKCSO.csoObjectColored
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKCSO.inObjectContainer = METKManager.outObjectContainer
+}

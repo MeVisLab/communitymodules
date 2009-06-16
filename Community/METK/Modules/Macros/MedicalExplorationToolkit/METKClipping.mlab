@@ -1,0 +1,158 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoTranslation {
+  internal  {
+    frame = "729 413 112 56"
+  }
+  fields  {
+    instanceName = SoTranslation2
+    translation = "0.000000 0.000000 0.000000"
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "305 413 112 56"
+    windows  {
+      window _default {
+        geometry = "268 287 304 173"
+        sizeHint = "304 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation1
+    translation = "0.000000 0.000000 0.000000"
+  }
+}
+module SoScale {
+  internal  {
+    frame = "645 413 88 56"
+  }
+  fields  {
+    instanceName = SoScale2
+    scaleFactor = "1.000000 1.000000 1.000000"
+  }
+}
+module SoScale {
+  internal  {
+    frame = "413 413 88 56"
+  }
+  fields  {
+    instanceName = SoScale1
+    scaleFactor = "1.000000 1.000000 1.000000"
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "949 289 72 64"
+    windows  {
+      window _default {
+        geometry = "300 54 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Clipping
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module SoClipBox {
+  internal  {
+    frame = "533 453 88 56"
+    windows  {
+      window _default {
+        geometry = "48 67 194 271"
+        sizeHint = "194 271"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "92 111 542 827"
+        sizeHint = "370 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoClipBox
+    on = TRUE
+    left = FALSE
+    right = FALSE
+    top = FALSE
+    bottom = FALSE
+    front = FALSE
+    rear = FALSE
+    hideGeometry = FALSE
+    isActive = FALSE
+    translation0 = "1.000000 0.000000 0.000000"
+    translation1 = "-1.000000 0.000000 0.000000"
+    translation2 = "0.000000 1.000000 0.000000"
+    translation3 = "0.000000 -1.000000 0.000000"
+    translation4 = "0.000000 0.000000 1.000000"
+    translation5 = "0.000000 0.000000 -1.000000"
+    rotation0 = "0.000000 0.000000 1.000000 1.570800"
+    rotation1 = "0.000000 0.000000 -1.000000 1.570800"
+    rotation2 = "0.000000 0.000000 1.000000 3.141590"
+    rotation3 = "0.000000 0.000000 1.000000 0.000000"
+    rotation4 = "-1.000000 0.000000 0.000000 1.570800"
+    rotation5 = "1.000000 0.000000 0.000000 1.570800"
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "485 225 184 64"
+    windows  {
+      window _viewer {
+        geometry = "0 19 1600 1153"
+        sizeHint = "400 402"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "114 133 208 217"
+        sizeHint = "208 217"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = clipBoxOut
+  }
+}
+connections  {
+  clipBoxOut.children = "SoTranslation1.self SoScale1.self SoClipBox.self SoScale2.self SoTranslation2.self"
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<ObjectNames>
+	<!--<object name="Liver">
+		<object>venous, ROI, LivSeg_</object>
+	</object>-->
+	
+	<!--<object name="Tumor">
+		<object>venous, ROI, TumSeg</object>
+	</object>-->			
+	
+	<object name="Vessels">
+		<object>PV1</object>
+		<object>PV4</object>
+		<object>PV6</object>
+		<object>PV3</object>
+		<object>PV2</object>
+		<object>PV7</object>
+		<object>PV8</object>
+		<object>PV5</object>
+	</object>
+	
+	
+	
+	<!-- PV Coded -->
+	<object name="PV1">
+		<object>PV_Coded_2520</object>		
+	</object>	
+	<object name="PV4">
+		<object>PV_Coded_4047</object>		
+	</object>	
+	<object name="PV6">
+		<object>PV_Coded_7506</object>		
+	</object>	
+	<object name="PV3">
+		<object>PV_Coded_7796</object>		
+	</object>	
+	<object name="PV2">
+		<object>PV_Coded_7820</object>		
+	</object>	
+	<object name="PV7">
+		<object>PV_Coded_8703</object>		
+	</object>	
+	<object name="PV8">
+		<object>PV_Coded_9390</object>		
+	</object>	
+	<object name="PV5">
+		<object>PV_Coded_9743</object>		
+	</object>	
+
+	
+	<!-- PV Territories -->
+	<object name="Territory_I">
+		<object>PV_Territories_709</object>		
+	</object>	
+	<object name="Territory_II">
+		<object>PV_Territories_4220</object>		
+	</object>
+	<object name="Territory_III">
+		<object>PV_Territories_6844</object>		
+	</object>
+	<object name="Territory_IV">
+		<object>PV_Territories_1965</object>		
+	</object>
+	<object name="Territory_V">
+		<object>PV_Territories_5405</object>
+	</object>
+	<object name="Territory_VI">
+		<object>PV_Territories_366</object>		
+	</object>
+	<object name="Territory_VII">
+		<object>PV_Territories_5364</object>		
+	</object>
+	<object name="Territory_VIII">
+		<object>PV_Territories_6973</object>		
+	</object>
+	
+	
+	<object name="Territories">
+		<object>Territory_I</object>
+		<object>Territory_II</object>
+		<object>Territory_III</object>
+		<object>Territory_IV</object>		
+		<object>Territory_V</object>
+		<object>Territory_VI</object>
+		<object>Territory_VII</object>
+		<object>Territory_VIII</object>		
+	</object>
+	
+	
+	
+	<object name="CutPlane">
+		<object>Cutting Plane</object>		
+	</object>
+	
+	<object name="Remnant">
+		<object>Remnant</object>		
+	</object>	
+	
+	<object name="Resection">
+		<object>Resection</object>		
+	</object>	
+
+
+	
+	<object name="All">
+		<object>Liver</object>
+		<object>Tumor</object>
+	</object>
+		
+</ObjectNames>

@@ -1,0 +1,27 @@
+[Ini]
+LengthTimeUnit=20
+LengthSeconds=20
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'All' view front 0.7
+[0] 'System' init
+
+[1,7] 'Cam' rotate 'All' axial 360 Bezier2
+
+[8,10] 'All' view 85 -50 0.6
+[8,10] 'large_Lymphnodes' setColor red
+[8,10] 'large_Lymphnodes' setTransparency 0
+[8,10] 'middle_Lymphnodes' setColor orange
+[8,10] 'middle_Lymphnodes' setTransparency 0.2
+[8,10] 'Lymphnode' setTransparency 0
+[8,10] 'Lymphnode' setTransparency 0.4
+[8,10] 'All' setTransparency 0.9
+
+[12,18] 'Lymphnode_4' view 90 -10 2
+[12,18] 'Lymphnode_4' setTransparency 0
+[12,18] 'Lymphnode' setTransparency 1
+[12,18] 'M. sternocleidom._left' setTransparency 0.3
+[12,18] 'A. carotis communis_left' setTransparency 0.3
+[12,18] 'V. jugularis_left' setTransparency 0.3

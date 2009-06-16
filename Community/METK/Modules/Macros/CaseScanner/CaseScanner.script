@@ -1,0 +1,55 @@
+//----------------------------------------------------------------------------------
+//! Macro module CaseScanner
+/*!
+// \file    CaseScanner.script
+// \author  Maik
+// \date    2007-01-05
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {
+  Field outObjectContainer {internalName = CaseSelectData.outObjectContainer}
+  }
+  Parameters {
+  field dirName {
+  type = string
+  value = ""
+  }
+  
+  field browseForDir {
+  type = trigger
+  }
+  Field clearData {internalName = CaseSelectData.clearObjectContainer}
+  Field scan {type = trigger}
+  
+  }
+}
+
+Commands {
+ source = $(LOCAL)/CaseScanner.py
+  initCommand = init
+ fieldlistener browseForDir { command = browseForDirectory }
+  FieldListener scan {command = scanTrigger}
+}
+  
+Window {
+Horizontal {
+  Button browseForDir { 
+  command = browseForDir
+  name = browseButton
+  }
+}
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2006-06-14T10:26:53
+//# hash: kx7RUj1CpxXxI2hruT0yU42HBBYQBdRtRWlKXn430FdeSNJ/wWCDJg0xjqArkoumKeLKNNPMV3VN433gIK+VYw==
+//# MeVis end
+

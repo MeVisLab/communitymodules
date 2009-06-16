@@ -1,0 +1,15 @@
+[Ini]
+LengthTimeUnit=30
+LengthSeconds=30
+RealTime=yes
+
+[Script]
+[0,2] 'System' init
+[2,10] 'getObjectsBySize "Lymphnode" diameter greater 16' setColor red 
+[5,10] 'All' view 90 30 0.7
+[2,10] 'Lymphnode' setTransparency 0
+[2,10] 'All' setTransparency 0.95
+
+[12,15] 'getObjectsBySize "Lymphnode" diameter lower 20' setColor LymphnodeColor
+[12,15] 'getObjectsBySize "Lymphnode" diameter greater 20' setColor red 
+[17,25] 'Cam' rotate 'All' axial 360

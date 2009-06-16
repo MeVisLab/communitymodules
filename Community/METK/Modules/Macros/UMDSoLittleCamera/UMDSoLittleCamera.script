@@ -1,0 +1,38 @@
+//----------------------------------------------------------------------------------
+//! Macro module UMDSoLittleCamera
+/*!
+// \file    UMDSoLittleCamera.script
+// \author  Konrad
+// \date    2005-07-26
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {
+    	Field self { internalName="SoSeparator.self" }
+  }
+  Parameters {
+  	Field rotation { internalName="CameraPlacement.rotation" }
+  	Field position { internalName="CameraPlacement.translation" }
+  	Field scale { internalName="Scale.x" }
+  	Field showUpVector { type=bool value=True }
+  }
+}
+
+
+Commands {
+
+	FieldListener showUpVector { command = "py:ctx.field('SoSwitch.whichChild').value=(not ctx.field('showUpVector').value)" }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-06-29T04:38:34
+//# hash: Y2X+fACdOnoIQ3zH7cDy2RFH3lOcEJKZMWKHUMdL2YlHPA5R7k2cjIQHo1VX2/0MpyH0Mmj7GldaxN856GX2Vg==
+//# MeVis end
+

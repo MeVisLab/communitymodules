@@ -1,0 +1,439 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoToggle {
+  internal  {
+    frame = "261 225 104 64"
+  }
+  fields  {
+    instanceName = LabelsOnOff
+    whichChild = -3
+    on = TRUE
+  }
+}
+module METKObjBrowser {
+  internal  {
+    frame = "-175 317 128 56"
+    windows  {
+      window _automatic {
+        geometry = "1817 314 454 440"
+        sizeHint = "213 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "-199 401 192 64"
+    windows  {
+      window _automatic {
+        geometry = "1398 83 390 590"
+        sizeHint = "270 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = selector
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "41 397 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module METKSilhouette {
+  internal  {
+    frame = "517 373 120 56"
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module METKLogFile {
+  internal  {
+    frame = "637 221 104 56"
+    windows  {
+      window _default {
+        geometry = "1673 442 500 184"
+        sizeHint = "500 160"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLogFile
+    loggingMode = User
+    logLocation = UserHome
+    userDefPath = ""
+    userDefFileName = Labels-LogFile.log
+    messageOnError = TRUE
+    enableLogFile = TRUE
+    trueFileName = "C:/Documents and Settings/kmuehler/Labels-LogFile.log"
+  }
+  internalFields = ""
+}
+module SoMLLUTChangeColor {
+  internal  {
+    frame = "97 157 160 56"
+    windows  {
+      window _default {
+        geometry = "499 337 288 171"
+        sizeHint = "288 171"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 310 204 225"
+        sizeHint = "204 225"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMLLUTChangeColor
+    enabled = TRUE
+    visualType = As_Input
+    color = "1 1 1"
+    intensity = 1
+    alpha = 1
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "661 397 72 56"
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 27
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 310
+    eventType = NoMessage
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "25 321 192 64"
+    windows  {
+      window _default {
+        geometry = "3 95 273 218"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 459 400 139"
+        sizeHint = "400 139"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = labelSwitcher
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = Name
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Labels
+    checkBoxInfo = LabelOn
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "261 -35 120 56"
+    windows  {
+      window _default {
+        geometry = "815 95 378 313"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableMouseOver = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "143.445 -110.735 107.08"
+    camOrientation = "0.248368 0.915284 -0.317125 1.62182"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+    enableUndo = FALSE
+  }
+  internalFields = ""
+}
+module METKLabels {
+  internal  {
+    frame = "269 309 104 56"
+    windows  {
+      window _default {
+        geometry = "830 88 385 585"
+        sizeHint = "283 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLabels
+    priority = 10000
+    debugComment = ""
+    debugState = None
+    lineWidth = 1
+    fontFile = c:/windows/Fonts/arial.ttf
+    fontSize = 12
+    fontColor = "0 0 0"
+    layHaloColorInvert = TRUE
+    layOrthRefLines = FALSE
+    invisObjStyle = None
+    arrowColor = "0 0 0"
+    refLineColor = "0 0 0"
+    refLineHaloColor = "1 1 1"
+    arrowColorHalo = "1 1 1"
+    arrowSize = 10
+    arrowThickness = 1.5
+    bgColor = "1 1 1"
+    defaultLabelBgColor = "0.800000011920929 0.800000011920929 0.800000011920929"
+    labelIfInteraction = TRUE
+    labelBackground = FALSE
+    motionLabeling = TRUE
+    debug_drawOrbit = FALSE
+    skipLevel = 3
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "261 157 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "305 53 128 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "653 325 104 56"
+    windows  {
+      window _default {
+        geometry = "406 361 475 347"
+        sizeHint = "544 347"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "25 245 192 56"
+    windows  {
+      window _default {
+        geometry = "5 343 271 185"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 459 400 139"
+        sizeHint = "400 139"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = Name
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "377 373 128 56"
+    windows  {
+      window _default {
+        geometry = "543 459 196 48"
+        sizeHint = "196 48"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "329 493 112 56"
+    windows  {
+      window _default {
+        geometry = "283 96 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1821 314 738 477"
+        sizeHint = "204 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12_LabelDebug.nsp.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  LabelsOnOff.children = METKLabels.outInventor
+  METKObjBrowser.inObjectContainer = selector.outObjectContainer
+  METKObjBrowser.objID = selector.selectedMultiObjIds
+  selector.inObjectContainer = METKManager.outObjectContainer
+  ObjConstrainedIterator.inObjectContainer = METKManager.outObjectContainer
+  METKSilhouette.inObjectContainer = METKManager.outObjectContainer
+  METKLogFile.inObjectContainer = ObjInspector.outObjectContainer
+  ObjInfo.inObjectContainer = METKManager.outObjectContainer
+  labelSwitcher.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKLabels.outObjectContainer
+  METKViewer3D.inInventor = SoGroup.self
+  METKLabels.inObjectContainer = METKManager.outObjectContainer
+  METKLabels.inInventor = METKIsoSurface.outInventor
+  SoSeparator.children = LabelsOnOff.self
+  SoGroup.children = "SoSeparator.self METKIsoSurface.outInventor METKSilhouette.outInventor"
+  ObjInspector.inObjectContainer = ObjInfo.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = labelSwitcher.outObjectContainer
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

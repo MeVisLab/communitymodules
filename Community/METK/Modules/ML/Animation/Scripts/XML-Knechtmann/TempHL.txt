@@ -1,0 +1,9 @@
+[Ini]
+LengthTimeUnit=2
+LengthSeconds=2
+Realtime=no
+
+[Script]
+[0] 'Liver' view 90 40 0.8
+[0] 'Liver' setTransparency 0
+[0,2] 'Liver' setTransparency 1

@@ -1,0 +1,80 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "505 213 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "397 133 120 56"
+    windows  {
+      window _default {
+        geometry = "648 137 300 302"
+        sizeHint = "300 302"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "457 309 112 56"
+    windows  {
+      window _default {
+        geometry = "47 437 522 276"
+        sizeHint = "522 276"
+        wasOpen = no
+        wasActive = no
+      }
+      window OpenCase {
+        geometry = "37 149 500 72"
+        sizeHint = "500 72"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+}

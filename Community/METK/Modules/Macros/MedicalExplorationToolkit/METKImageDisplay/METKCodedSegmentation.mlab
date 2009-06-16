@@ -1,0 +1,245 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module OrthoReformat3 {
+  internal  {
+    frame = "505 157 128 56"
+    windows  {
+      window _default {
+        geometry = "70 89 234 208"
+        sizeHint = "234 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoReformat36
+    useGlobalInputImage = TRUE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "529 241 80 64"
+  }
+  fields  {
+    instanceName = toAdd
+    filename = ""
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module CalcCodedSegmentation {
+  internal  {
+    frame = "381 -115 168 56"
+    windows  {
+      window _default {
+        geometry = "537 89 415 422"
+        sizeHint = "204 404"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CalcCodedSegmentation
+    NameToAdd = ""
+    addMinValue = 1
+    addMaxValue = -1
+    addAllExceptNull = FALSE
+    ImageValues = ""
+    ObjectValues = ""
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "969 29 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "845 137 72 64"
+    windows  {
+      window _default {
+        geometry = "441 182 829 766"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Image
+    objectID = Structure_Bones
+    layerID = Measures
+    infoID = boxCenter
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = "-0.776001 -13.3787 98.5259"
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 45
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "881 -99 80 56"
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ImgSave {
+  internal  {
+    frame = "521 -203 80 56"
+    windows  {
+      window _default {
+        geometry = "727 127 299 359"
+        sizeHint = "299 359"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "246 265 315 445"
+        sizeHint = "315 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = ""
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = TRUE
+    sourceName = ""
+    postfix = ""
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDiscardTags = FrameSpecific
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = LZW
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+connections  {
+  OrthoReformat36.input0 = toAdd.output0
+  CalcCodedSegmentation.input0 = OrthoReformat36.output2
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+  ImgSave.input0 = CalcCodedSegmentation.output0
+}

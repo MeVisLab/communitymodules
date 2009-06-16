@@ -1,0 +1,24 @@
+[Ini]
+LengthTimeUnit=10
+LengthSeconds=10
+RealTime=yes
+
+[Script]
+[0] 'System' initLiver
+[0] 'LiverOrgan' view 'LiverOrgan' front 1.25
+[0] 'Territory_P4' setVisible true
+[0] 'Territory_P4' setTransparency 1
+[0] 'Territory_P7' setVisible true
+[0] 'Territory_P7' setTransparency 1
+[0] 'Territory_P8' setVisible true
+[0] 'Territory_P8' setTransparency 1
+
+[3,10] 'LiverOrgan' setTransparency 1
+[10] 'LiverOrgan' setVisible false
+[3,10] 'LiverOrgan' view 'LiverOrgan' 90 -55 1.25
+[3,10] 'Territory_P4' setVisible true
+[3,10] 'Territory_P4' setTransparency 0.3
+[3,10] 'Territory_P7' setVisible true
+[3,10] 'Territory_P7' setTransparency 0.3
+[3,10] 'Territory_P8' setVisible true
+[3,10] 'Territory_P8' setTransparency 0.3

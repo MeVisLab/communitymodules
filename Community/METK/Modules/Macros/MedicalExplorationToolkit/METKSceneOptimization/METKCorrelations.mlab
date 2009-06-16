@@ -1,0 +1,494 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module MessageBox {
+  internal  {
+    frame = "461 -107 104 56"
+    windows  {
+      window _default {
+        geometry = "374 383 735 199"
+        sizeHint = "179 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MessageBox
+    message = "There is no file 'camera_data.dat'  for this case at required direction for occlusion-computation! | Press 'open' to open the file from another dir; 'compute' to compute the file and 'cancel' if no occlusion infos are requiered. | (This file is also essential for atomatic camerapositioning). | If you compute the file later you have to delete the file 'GeometricCorrelations.dat' to compute the file with occlusion-infos with the next loading of this case."
+    title = "Missing camera_data.dat file for occlusion-computation"
+    buttons = "open,  compute, Cancel"
+    buttonWidth = 80
+    icon = None
+    returnCode = 2
+  }
+  internalFields = ""
+}
+module METKGenerateCamData {
+  internal  {
+    frame = "549 117 168 56"
+    windows  {
+      window _default {
+        geometry = "440 186 500 450"
+        sizeHint = "500 450"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKGenerateCamData
+    BufferSize = 400
+    DivisionDepth = 3
+    Progress = 0
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "749 -139 120 56"
+    windows  {
+      window _default {
+        geometry = "590 311 200 200"
+        sizeHint = "200 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer2D
+    annotations = TRUE
+    layoutMode = LAYOUT_AXIAL
+    selectedPosition = "-11.5408 15.0031 6"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module Arithmetic2 {
+  internal  {
+    frame = "841 -71 96 64"
+    windows  {
+      window _default {
+        geometry = "690 444 201 89"
+        sizeHint = "201 89"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Intersection
+    function = Multiply
+    constant = 1
+    autoReplicate = FALSE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "781 65 88 64"
+    windows  {
+      window _default {
+        geometry = "376 317 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Structure1
+    filename = C:/Users/Kellermann/Uni/Diplomarbeit/Material/Datensaetze/Hals/Hals12/Hals12_TumorPart_1.dcm
+    autoLoad = TRUE
+    status = "File open"
+    progress = 1
+    format = DICOM/TIFF
+    dataType = int16
+    sizeX = 513
+    sizeY = 513
+    sizeZ = 63
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = 0
+    maxValue = 2179
+    comment = "Anonymized by MeVisLab"
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "176 176 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "893 65 88 64"
+    windows  {
+      window _default {
+        geometry = "218 262 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Structure2
+    filename = C:/Users/Kellermann/Uni/Diplomarbeit/Material/Datensaetze/Hals/Hals12/Hals12_Bones.dcm
+    autoLoad = TRUE
+    status = "File open"
+    progress = 1
+    format = DICOM/TIFF
+    dataType = int16
+    sizeX = 513
+    sizeY = 513
+    sizeZ = 63
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = 0
+    maxValue = 2179
+    comment = "Anonymized by MeVisLab"
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "176 176 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module Arithmetic1 {
+  internal  {
+    frame = "777 5 96 56"
+    windows  {
+      window _default {
+        geometry = "573 336 235 60"
+        sizeHint = "235 60"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic1
+    function = Divide
+    constant = 2550
+  }
+}
+module Arithmetic1 {
+  internal  {
+    frame = "885 5 104 56"
+    windows  {
+      window _default {
+        geometry = "573 336 235 60"
+        sizeHint = "235 60"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic11
+    function = Divide
+    constant = 2550
+  }
+}
+module CalcVolume {
+  internal  {
+    frame = "893 -143 136 64"
+    windows  {
+      window _default {
+        geometry = "157 220 345 239"
+        sizeHint = "345 239"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IntersectionVolume
+    minMode = UserDefined
+    intMin = 1
+    maxMode = ImageMax
+    intMax = 255
+    autoUpdate = TRUE
+    resultsValid = TRUE
+    unit = Milliliters
+    factor = 1
+    totalVolume = 0.11964111328125
+    numTimepoints = 1
+    minTimepoint = 0
+    minTimepointVolume = 0.11964111328125
+    maxTimepoint = 0
+    maxTimepointVolume = 0.11964111328125
+    userTimepoint = 0
+    userTimepointVolume = 0.11964111328125
+    curveType = Line
+    curveStyle = 0
+  }
+}
+module CalcVolume {
+  internal  {
+    frame = "697 -71 112 64"
+    windows  {
+      window _default {
+        geometry = "906 215 345 239"
+        sizeHint = "345 239"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Struct1Volume
+    minMode = UserDefined
+    intMin = 1
+    maxMode = ImageMax
+    intMax = 255
+    autoUpdate = TRUE
+    resultsValid = TRUE
+    unit = Milliliters
+    factor = 1
+    totalVolume = 41.7907516479492
+    numTimepoints = 1
+    minTimepoint = 0
+    minTimepointVolume = 41.7907516479492
+    maxTimepoint = 0
+    maxTimepointVolume = 41.7907516479492
+    userTimepoint = 0
+    userTimepointVolume = 41.7907516479492
+    curveType = Line
+    curveStyle = 0
+  }
+}
+module METKMeasures {
+  internal  {
+    frame = "301 -3 120 56"
+    windows  {
+      window _default {
+        geometry = "526 459 268 136"
+        sizeHint = "234 83"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "520 435 487 398"
+        sizeHint = "246 198"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMeasures
+    descriptionTag = Structure
+    structure = Lymphnode
+    done = TRUE
+  }
+  internalFields = ""
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "-39 61 160 56"
+    windows  {
+      window _default {
+        geometry = "703 547 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor1
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = Structure_V.jugularis_left
+    layerID = Files
+    infoID = InventorPointer
+  }
+}
+module UMDSoMinimalDistance {
+  internal  {
+    frame = "45 -3 168 56"
+    windows  {
+      window _default {
+        geometry = "496 358 294 352"
+        sizeHint = "294 352"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDSoMinimalDistance
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    resultsValid = FALSE
+    color = "1 1 1"
+    displayToolMeasure = FALSE
+    displayUnit = TRUE
+    displayName = FALSE
+    toolName = ""
+    displayToolOnlyOnValid = FALSE
+    displayInput = TRUE
+    autoCompute = FALSE
+    startPos = "23.7165 -24.0376 7.41719"
+    endPos = "-21.6504 -32.3199 6.41416"
+    distance = 46.12760162
+    minDistance = 0
+    unit = mm
+    scaleLine = 1
+    autoParam = FALSE
+    autoEntries = 2000
+    manEntries = 200
+    manPartition = 2
+    verbose = FALSE
+    displaySpheres = FALSE
+    sizeOfPointSet1 = 0
+    sizeOfPointSet2 = 0
+    error = 0
+    dummy = TRUE
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "137 61 160 56"
+    windows  {
+      window _default {
+        geometry = "981 543 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = Structure_V.jugularis_right
+    layerID = Files
+    infoID = InventorPointer
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "281 181 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    layerID = Image
+    infoID = ImageType
+    infoValue = Segmentation
+    useInfoValue = TRUE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "453 117 72 56"
+    windows  {
+      window _default {
+        geometry = "202 221 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = GlobalEvents
+    objectID = Communication
+    layerID = GlobalEvents
+    infoID = CaseLoaded
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = TRUE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 1
+    boolValue = FALSE
+    doubleValue = 74.072303772
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 6
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKGenerateCamData.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  Intersection.input0 = Arithmetic1.output0
+  Intersection.input1 = Arithmetic11.output0
+  Arithmetic1.input0 = Structure1.output0
+  Arithmetic11.input0 = Structure2.output0
+  IntersectionVolume.input0 = Intersection.output0
+  Struct1Volume.input0 = Arithmetic1.output0
+  METKMeasures.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  UMDPointerToInventor1.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  UMDSoMinimalDistance.inObject1Node = UMDPointerToInventor1.outInventor
+  UMDSoMinimalDistance.inObject2Node = UMDPointerToInventor.outInventor
+  UMDPointerToInventor.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  ObjInfo.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+}

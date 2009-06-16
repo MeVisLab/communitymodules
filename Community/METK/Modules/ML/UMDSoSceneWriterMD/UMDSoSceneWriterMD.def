@@ -1,0 +1,37 @@
+//----------------------------------------------------------------------------------
+//! UMDSoSceneWriterMD module definitions.
+/*!
+// \file    UMDSoSceneWriterMD.def
+// \author  Konrad Mühler
+// \date    2006-05-15
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule SoSceneWriterMD
+//----------------------------------------------------------------------------------
+MLModule SoSceneWriterMD {
+  DLL            = "UMDSoSceneWriterMD"
+
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "stable"
+  comment        = "New SceneWriter with ping when IV-file saved"
+  keywords       = ""
+  seeAlso        = "SoFileToSceneGraph"
+  documentation  = "$(LOCAL)/html/SoSceneWriterMD.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDSoSceneWriterMD"
+  
+  Window SoSceneWriterMD {
+     Vertical {
+        Button = writeScene
+        Button = fileSaved
+        Field = fileName { browseButton = Yes browseMode = save browseFilter = "Inventor files (*.iv)" }
+        Field = fileType { }
+     }
+  }
+
+} // MLModule SoSceneWriterMD
+

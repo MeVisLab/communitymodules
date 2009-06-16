@@ -1,0 +1,38 @@
+//----------------------------------------------------------------------------------
+//! METKUndo module definitions.
+/*!
+// \file    METKUndo.def
+// \author  kmuehler
+// \date    2008-06-19
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKUndo
+//----------------------------------------------------------------------------------
+MLModule METKUndo {
+  DLL            = "METKUndo"
+
+  genre          = ""
+  author         = "kmuehler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  //	documentation  = "$(LOCAL)/html/METKUndo.html"  
+  projectSource  = "$(UserProjectsPath)/sources/ML/METK/METKUndo"
+  
+  Window {
+    Vertical {
+      Field Undo {
+        tooltip = ""
+      }
+      Field undoCount {
+        tooltip = ""
+        edit = False
+      }
+    }
+  }
+} // MLModule METKUndo
+

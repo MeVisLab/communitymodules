@@ -1,0 +1,18 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'Lymphnode_3' setTransparency 0
+[0] 'Lymphnode_3' setColor turquoise
+[0] 'Lymphnode_4' setTransparency 0
+[0] 'Lymphnode_4' setColor turquoise
+[0] 'Lymphnode_5' setTransparency 0
+[0] 'Lymphnode_5' setColor turquoise
+[0] 'Lymphnode_12' setTransparency 0
+[0] 'Lymphnode_12' setColor turquoise
+[0] 'Lymphnode_13' setTransparency 0
+[0] 'Lymphnode_13' setColor turquoise
+[0] 'Lymphnode' setColor LymphnodeColor
+[0] 'Lymphnode' setTransparency 0

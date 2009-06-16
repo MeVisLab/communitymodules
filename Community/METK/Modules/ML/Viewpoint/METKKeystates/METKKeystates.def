@@ -1,0 +1,46 @@
+//----------------------------------------------------------------------------------
+//! METKKeystates module definitions
+/*!
+// \file    METKKeystates.def
+// \author  Konrad Mühler
+// \date    2008-09-30
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule METKKeystates {
+  DLL = "Viewpoint"
+
+  genre = "METKViewpoint"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/ML/Viewpoint/METKKeystates"
+  
+  externalDefinition = "$(LOCAL)/METKKeystates.script"
+}
+
+
+MacroModule METKKeystateVis {
+   genre              = "METKViewpoint"
+   author             = "Konrad Mühler"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = ""
+   seeAlso            = ""
+   externalDefinition = "$(LOCAL)/METKKeystateVis.script"
+}
+
+
+MacroModule KeystatesGUIDummy {
+   genre              = "METKViewpoint"
+   author             = "Konrad Mühler"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = ""
+   seeAlso            = ""
+   externalDefinition = "$(LOCAL)/KeystatesGUIDummy.script"
+}

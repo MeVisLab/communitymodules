@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! Label2DDemonstrator module definition
+/*!
+// \file    Label2DDemonstrator.def
+// \author  Konrad Mühler
+// \date    2008-04-17
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule Label2DDemonstrator {
+  genre = "ApplicationsMenu"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/Label2DDemonstrator.script"
+
+} // MacroModule Label2DDemonstrator
+

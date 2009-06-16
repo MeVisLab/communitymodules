@@ -1,0 +1,159 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "477 101 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module DebugCameraPath {
+  internal  {
+    frame = "325 181 136 56"
+  }
+  fields  {
+    instanceName = DebugCameraPath
+    color = "0 0 0"
+    transparency = 0
+    radius = 5
+  }
+  internalFields = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "605 181 120 56"
+    windows  {
+      window _default {
+        geometry = "1299 49 693 641"
+        sizeHint = "679 649"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = Scripts/ENT/init-script.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = FALSE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = "[Ini]
+LengthTimeUnit=1
+LengthSeconds=1
+RealTime=no
+
+[Script]
+[0] 'All' setVisible true
+[0,1] 'Cam' campath 'All'"
+    AnimationViewerName = METKViewer3D
+    debugState = Low
+    clearMeasureCacheForEachScript = TRUE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = TRUE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = ""
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+    useOffscreenRenderer = TRUE
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "421 21 120 56"
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "465 181 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "465 301 112 56"
+    windows  {
+      window _default {
+        geometry = "726 483 524 377"
+        sizeHint = "524 377"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12_WithCollections.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  SoSeparator.children = "DebugCameraPath.outInventor METKIsoSurface.outInventor"
+  DebugCameraPath.inObjectContainer = METKManager.outObjectContainer
+  UMDAnimation2.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = SoSeparator.self
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

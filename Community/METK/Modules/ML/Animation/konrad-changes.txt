@@ -1,0 +1,14 @@
+Diese Sache schieb ich nun schon 1 Jahr vor mir her. Jetzt mach ich sie endlich mal:
+
+Protokoll der Veränderungen an kModules, speziell den Animationsmodulen.
+
+[2005-11-03]: Fehlende Objekte in einem Sammelobjekt werden ignoriert
+[2005-11-03]: Endlich ist die Skriptsprache nicht mehr case-sensitive - ich hoffe, ich hab alle 523 Stellen im Code gefunden, an denen das relevant ist ;-)
+[2005-11-09]: Steffens Vessels - je nach anliegender ID können 1-3 Skripte ausgeführt werden und so bestimmte Verntrikel-Gefäße animieren
+[2006-01-04]: UMDAnimation2: BoudningBox-Warterei abgeschaltet. Ab nun geht das Modul nur noch mit neuen Versionen
+[2006-01-05]: Problem des un-synchronisierten Ändern von Farben, Transparenzen etc. mit der Frame-Schaltung gelöst!!! -> callLater=false muss sein, damit die Änderungen an den einzelnen Objekten sofort ausgeführt werden.
+[2006-01-05]: Eigentlich wollte ich die LowLevelScript Sache auf interne Streams umstellen, damit keine LL-Dateien mehr geschrieben werde. Allerdings stürtzte er seitdem immer wieder unerklärlich ab und auch die Umstellung von nehazu allen Dingen auf Pointer änderte nichts. Daher diesen Stand wieder zurückgenommen und beschlossen, alles beim alten, sprich den Dateien, zu belassen.
+[2006-01-13]: SpeedUp
+[2006-01-17]: UMDInteractiveAnimation
+[2006-01-23]: METKScriptInit wird mit einem ordentlichen load-Ereignis ausgeführt
+[2006-01-23]: Objekte können clipbar geschaltet werden

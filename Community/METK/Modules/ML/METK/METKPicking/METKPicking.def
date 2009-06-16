@@ -1,0 +1,60 @@
+MLModule METKPicking {
+   DLL                = "METKPicking"
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = ""
+   keywords           = "METK ObjMgr picking"
+   genre              = "METKMisc"
+   seeAlso            = "SoPickObject"
+   externalDefinition = "$(LOCAL)/METKPicking.script"
+
+}
+
+
+//Style for METKPicking
+DefineStyle METKPickingPopupStyle {
+	derive = Panel.default
+
+	// font for titles in the GUI (Buttons, Labels, ...)
+	titleFont {
+		family = "Tahoma"
+		size = 8
+		weight = Normal
+	}
+
+	// font for editing components in the GUI (NumberEdit, TextView, ...)
+	editFont {
+		family = "Tahoma"
+		size = 8
+		weight = Normal
+	}
+
+	// font for TabViews
+	tabFont {
+		family = "Tahoma"
+		size = 8
+		weight = Bold
+	}
+
+	// font for Box group titles
+	boxFont {
+		family = "Tahoma"
+		size = 8
+		weight = Bold
+	}
+
+	colors {
+		fg  = #000000
+		bg = #f2f2f2
+		
+		buttonText  = #000000
+
+		editText    = #000000
+		editBg      = #FFFFFF	//#E8EDE8
+
+		light     = #FFFFFF
+		boxText  = #000000
+		tabText  = #000000		
+	}
+	
+}

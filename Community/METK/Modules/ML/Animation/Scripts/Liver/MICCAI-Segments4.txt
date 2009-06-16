@@ -1,0 +1,50 @@
+[Ini]
+LengthTimeUnit=16
+LengthSeconds=16
+RealTime=yes
+
+[Script]
+[0] 'System' initLiver
+[0] 'LiverOrgan' view 'LiverOrgan' front 3
+
+[0] 'Territory_P4' borderP4 false
+[0] 'Territory_P4b' borderP4b false
+[0] 'Territory_P7' borderP7 false
+[0] 'Territory_P8' borderP8 false
+[0] 'LiverOrgan' borderLiver false
+
+[0] 'Territory' setVisible true
+[0] 'Territory' setTransparency 1
+
+[1,5] 'LiverOrgan' view 'LiverOrgan' 90 0 1.5
+[1,5] 'LiverOrgan' setTransparency 0.9
+[4,5] 'Tumor' setColor red
+
+[6,11] 'System' rotate 'LiverOrgan' axial 360
+
+
+
+
+[12] 'Territory_P4' setVisible true
+[12] 'Territory_P4' setTransparency 1
+[12,16] 'Territory_P4' setTransparency 1
+[12] 'Territory_P4b' setVisible true
+[12] 'Territory_P4b' setTransparency 1
+[12,16] 'Territory_P4b' setTransparency 1
+[12] 'Territory_P7' setVisible true
+[12] 'Territory_P7' setTransparency 1
+[12,16] 'Territory_P7' setTransparency 1
+[12] 'Territory_P8' setVisible true
+[12] 'Territory_P8' setTransparency 1
+[12,16] 'Territory_P8' setTransparency 1
+
+[13] 'Territory_P4' setSilhouetteWidth 1
+[13,15] 'Territory_P4' borderP4 true
+[13] 'Territory_P4b' setSilhouetteWidth 1
+[13,15] 'Territory_P4b' borderP4b true
+[13] 'Territory_P7' setSilhouetteWidth 1
+[13,15] 'Territory_P7' borderP7 true
+[13] 'Territory_P8' setSilhouetteWidth 1
+[13,15] 'Territory_P8' borderP8 true
+
+[12,16] 'Territory' setTransparency 0.2

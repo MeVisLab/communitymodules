@@ -1,0 +1,46 @@
+//----------------------------------------------------------------------------------
+//! Macro module BackgroundMacro2
+/*!
+// \file    BackgroundMacro2.script
+// \author  Sylvia Glasser
+// \date    2009-02-04
+//
+// create colored backgrounds
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {  Field OutLUT{internalName = ColoredLUT.self} }
+  Parameters {}
+}
+
+
+Commands {
+}
+
+Window{
+  Vertical{
+    Box Change_BG_Image{
+      Field TestPattern1.pattern{}
+      Field TestPattern1.dataType{}
+      Field TestPattern1.fillValue{}
+      Field TestPattern1.fillValue2{}            
+    }
+    Box Change_Colors{
+      Panel LUTParameters2{
+        module = SoLUTEditor
+        window= Editor
+      }
+    }    
+  }  
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2008-06-22T05:19:34
+//# hash: pmiahKkU97waRfRjGcwT7QnarFHvTf+QOGBmRnfvzfScQEhmoYtspGdjOmtImfP/KPn3xZwIN2Db6W876VDSkw==
+//# MeVis end
+

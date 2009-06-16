@@ -1,0 +1,72 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "537 301 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "581 393 72 64"
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+}

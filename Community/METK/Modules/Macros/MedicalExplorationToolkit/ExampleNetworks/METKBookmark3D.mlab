@@ -1,0 +1,182 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "645 101 120 56"
+    windows  {
+      window _default {
+        geometry = "619 197 693 641"
+        sizeHint = "679 649"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = Scripts/ENT/init-script.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = FALSE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = "[Ini]
+LengthTimeUnit=2
+LengthSeconds=2
+RealTime=yes
+
+[Script]
+[0,2] 'Cam' moveCoord -37.1976,39.9173,-49.317 0,0,1,0 169.188995361328 84.5944976806641"
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = TRUE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = ""
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+  }
+}
+module METKBookmark3D {
+  internal  {
+    frame = "669 253 136 56"
+    windows  {
+      window _default {
+        geometry = "714 128 295 220"
+        sizeHint = "100 160"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKBookmark3D
+    viewerName = METKViewer3D
+  }
+  internalFields = ""
+}
+module Comment {
+  internal  {
+    frame = "773 373 88 56"
+    windows  {
+      window _default {
+        geometry = "715 450 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "*Open a case, navigate to a point in the viewer and click "Save Bookmark". This position is stored in the ObjMGr and if you want to go back to this position after further navigation, double click the entry in the list.
+An interactive animation will be shown and bring you back to the bookmarked position.*"
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "485 101 120 56"
+    windows  {
+      window _default {
+        geometry = "20 150 386 465"
+        sizeHint = "238 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-37.1976 39.9173 -49.317"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "481 221 128 56"
+    windows  {
+      window _default {
+        geometry = "743 467 196 174"
+        sizeHint = "196 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "561 373 112 56"
+    windows  {
+      window _default {
+        geometry = "581 460 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  UMDAnimation2.inObjectContainer = METKManager.outObjectContainer
+  UMDAnimation2.inInventor = METKIsoSurface.outInventor
+  METKBookmark3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

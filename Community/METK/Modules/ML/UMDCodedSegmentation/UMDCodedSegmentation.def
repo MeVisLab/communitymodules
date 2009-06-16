@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------------
+//! UMDCodedSegmentation module definitions.
+/*!
+// \file    UMDCodedSegmentation.def
+// \author  Konrad Mühler
+// \date    2007-01-16
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule CalcCodedSegmentation
+//----------------------------------------------------------------------------------
+MLModule CalcCodedSegmentation {
+  DLL            = "UMDCodedSegmentation"
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "stable"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/CalcCodedSegmentation.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDCodedSegmentation"
+
+} // MLModule CalcCodedSegmentation
+

@@ -1,0 +1,70 @@
+//----------------------------------------------------------------------------------
+//! Macro module UMDViewerCommunicator
+/*!
+// \file    UMDViewerCommunicator.script
+// \author  Konrad Mühler
+// \date    2005-05-02
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {  	
+  	Field inObjectContainer { internalName="UMDObjCommunicator.inObjectContainer"}  	
+  	Field inInventor { internalName="input.child"}  	
+  }
+  Outputs {  	  	  	
+  	//Field BackgroundRamp { internalName = "BackgroundRamp.self" }
+  	//Field Background { internalName = "Background.self" }
+  	Field self { internalName="output.self"}
+  	Field Background { internalName = "BackgroundOut.self" }
+  }
+  Parameters {  	
+    	Field ObjName { internalName="UMDObjCommunicator.ObjName"}    
+  	Field CamOrientation { internalName="UMDObjCommunicator.CamOrientation"}
+  	Field CamPosition { internalName="UMDObjCommunicator.CamPosition"}
+  	Field CamHeight { internalName="UMDObjCommunicator.CamHeight"}
+  	Field CamFocalDistance { internalName="UMDObjCommunicator.CamFocalDistance"}
+  	Field CaptureFrame { internalName="UMDObjCommunicator.ViewerCaptureFrame"}
+  	Field CreateAVI { internalName="UMDObjCommunicator.ViewerCreateAVI"}
+  	Field Framerate { internalName="UMDObjCommunicator.ViewerFramerate"}
+  	Field CancelRecording { internalName="UMDObjCommunicator.ViewerCancelRecording"}
+  	Field UpdateMLOutput { internalName="UMDObjCommunicator.ViewerUpdateMLOutput"}
+  	Field newData { internalName="UMDObjCommunicator.newData"}
+  	
+  	Field Status { internalName="SoUMDViewerTrigger.StatusFld"}
+  	
+  	Field ProtocolViewerStatus { internalName="UMDObjCommunicator.ProtocolViewerStatus"}  	
+  	
+  	Field BackgroundColor { internalName="BackgroundRamp.colorFactor"}
+  	Field BackgroundGreyCenter { internalName="BackgroundRamp.greyCenter"}
+  	Field BackgroundGreyWidth { internalName="BackgroundRamp.greyWidth"}  	  
+  	
+  	Field Refresh { internalName = UMDObjCommunicator.refresh }
+  }
+}
+
+
+Commands {
+
+   	// Add the local's parent path to the import path, so that Python looks for local packages
+   	importPath = "$(LOCAL)/.."
+   
+   	// Include local functions
+   	source = "$(LOCAL)/UMDViewerCommunicator.py"
+   	
+   	// Call init() to initalize the script
+	initCommand = init
+
+	FieldListener ProtocolViewerStatus { callLater = false command = switchOnViewerStatus }		
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2004-12-16T00:41:54
+//# hash: GJYag+g+1AQmfKe4glDHONlpiS1dquBIV2PILoK7sQk8uVRRznH/hyflfQKwoa/6mmnLHo3JL4aHa9XWdnfCTA==
+//# MeVis end
+

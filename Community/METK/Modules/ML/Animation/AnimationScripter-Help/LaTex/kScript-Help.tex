@@ -1,0 +1,667 @@
+\listfiles %angeblich für Versionen
+%\documentclass[a4paper, 10pt]{article}
+\documentclass[11pt,DIV10]{scrartcl} 
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[dvips]{color}
+\usepackage{ngerman}
+\usepackage{epsfig}
+\usepackage{listings}
+\usepackage{scrtime}
+\usepackage{scrdate}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{parskip} %schicke absätze (keine Einrückung, Freiraum)
+\usepackage{calc} %für einfache berechnungen z.B. bei konstanten
+\usepackage[automark]{scrpage2}
+
+
+%\topmargin0cm
+%\textheight22cm
+%\textwidth15cm
+%\setlength{\oddsidemargin}{(21cm-2in-\textwidth)/2-1cm} %Textblock zentriert auf der Seite minus 2cm
+%\setlength{\marginparwidth}{\marginparwidth+1cm}
+
+\lstdefinelanguage{kMovie1}
+{ basicstyle = \ttfamily,
+  sensitive=false,
+  captionpos=b,
+  belowcaptionskip=0.3cm
+}
+
+\lstset{ 
+	language=kMovie1,
+	frame=trlb,
+	%float = tbh, %top, bottom, here ... p = seperate page	
+	escapechar=§,
+	%numbers=left,
+	backgroundcolor=\color[rgb]{0.9,0.9,0.9},	
+} 
+
+\usepackage[bf]{caption2}[2002/08/03]
+\captionstyle{center}
+
+\setkomafont{pagehead}{\scshape}
+%\setkomafont{pagehead}{\normalfont \sffamily}
+\chead{}
+\ihead{Animationen in MeVisLab - \today~- \thistime}
+\pagestyle{scrheadings}
+
+
+\definecolor{anw1}{rgb}{0.77,0.87,0.61}
+\definecolor{anw2}{rgb}{0.99,0.78,0.54}
+\definecolor{xml}{rgb}{0.43,0.81,0.96}
+\definecolor{idee}{rgb}{1.0,0.97,0.6}
+\definecolor{achtung}{rgb}{0.98,0.81,0.82}
+
+% ----------------------------------------------------------
+% Einstellungen zu Hyperref,
+% z.B. Document-Description-Felder in der PDF-Datei
+% MUSS AM SCHLUSS DER PRAEAMBEL STEHEN!
+% damit muss man aber das PDF schön über den Weg des PS erzeugen ... sonst kommt ein Fehler von wegen er kennt rgb nicht!
+% ----------------------------------------------------------
+\usepackage[dvips]{hyperref}
+\hypersetup{
+		pdftitle={Titel},    
+    pdfauthor={Konrad Mühler},
+    pdfcreator={LaTeX2e},
+    pdfborder=0 0 0,
+    breaklinks=true,
+    bookmarks=true,
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue,
+    colorlinks=true}
+    
+    
+\begin{document}
+
+\title{Animationen in MeVisLab - Konzept und Funktionsweise}
+
+\author{Konrad Mühler}
+
+\maketitle
+
+\tableofcontents
+
+Dieses Dokument beschreibt das Konzept und die Funktionsweise der Möglichkeiten zur Animationsgenerierung in MeVisLab, die in Magdeburg entwickelt werden. Das Konzept der zugrunde liegenden Skriptsprache wird im ersten Teil dieses Dokuments behandelt. Im zweiten Teil werden die entwickelten Animations-Module in MeVisLab und deren Funktionsweise vorgestellt. Der dritte Teil beschreibt alle bisher implementierten Anweisungen.
+
+\section{Einleitung}
+
+Um eine Animation erzeugen zu können, muss diese in einem Skript beschrieben werden. Ein solches Skript enthält Anweisungen, die die Veränderung einzelnen Parameter über die Zeit beschreiben. Dies können Eigenschaften von einzelnen Objekten wie Farbe und Transparenz sein oder Parameter von Kameras und Viewern. Ein Skript wird als Textdatei eingelesen und ausgeführt. Die entstehende Animation kann direkt visualisiert werden (\textit{Realtime}) oder als Video bzw. Einzelbilder gespeichert werden.
+
+Ein Grundgedanke der Skriptsprache ist der Einsatz von mehreren Abstraktionsebenen (\textit{Levels}) bei der Definition einer Anweisung. Auf unterster Ebene stehen die \textit{LowLevel}-Anweisungen. Diese sind atomar und werden direkt ausgeführt. Mehrere Anweisungen können zu abstrakteren \textit{HighLevel}-Anweisungen zusammengefasst werden, um den Entwurf von Skripten zu erleichtern (siehe \nameref{commands}). Gleiches gilt für Objektbezeichnungen und Parameter. Auch diese können abstrahiert werden (siehe \nameref{objects} und \nameref{parameter}).
+
+Weiterführende Informationen vor allem zum Konzept:
+\begin{itemize}
+\item \textbf{Webseite zum Animationsprojekt mit Beispielanimationen}\\
+\url{http://isgwww.cs.uni-magdeburg.de/cv/projects/animation/}
+
+\item \textbf{Paper MICCAI 2006:}\\
+\textit{``Adaptive script based animations for intervention planning''}\\
+(Auf Anfrage)
+
+\item \textbf{Technical Report 2006:}\\
+\textit{``Adaptive script based animations for medical education and intervention planning''}
+\url{http://wwwisg.cs.uni-magdeburg.de/cv/pub/files/Muehler06-TechnicalReport.pdf}
+
+\item \textbf{Diplomarbeit Konrad Mühler:}\\
+\textit{``Skriptbasierte Generierung von Animationen für die medizinische Aus- und Weiterbildung''}\\
+\url{http://wwwisg.cs.uni-magdeburg.de/cv/pub/files/DA_KonradMuehler.pdf}
+
+\item \textbf{Paper BVM 2006:}\\
+\textit{``Skriptbasierte Animationen für die Operationsplanung und Ausbildung``}\\
+\url{http://wwwisg.cs.uni-magdeburg.de/cv/pub/files/BVM-2006_Muehler.pdf}
+
+\item \textbf{Poster CURAC 2005}\\
+\textit{``Animation und interaktive Visualisierung patientenspezifischer Daten in einer Lernumgebung für die Planung von Leberoperationen''}\\
+\url{http://isgwww.cs.uni-magdeburg.de/cv/gallery/Poster/Poster_AniLST-Curac05.pdf}
+
+\end{itemize}
+
+
+
+\section{Skriptaufbau}
+
+Ein Skript gliedert sich in zwei Bereiche: einen \textit{Initialisierungsteil} und einen \textit{Anweisungsteil}. Im \textit{Initialisierungsteil} werden Einstellungen vorgenommen, die die Länge der Animation betreffen. Im \textit{Anweisungsteil} folgen die Anweisungen zur Animationsgenerierung.
+
+\subsection{Initialisierungsteil}
+
+Im Initialisierungsteil wird der zeitliche Rahmen einer Animation festegelgt. Dies geschieht mit Hilfe der Angabe der Zeiteinheiten (\texttt{LengthTimeUnit}) und der Länge der Animation in Sekunden (\texttt{LengthSeconds}).
+
+\begin{center}
+\colorbox{achtung}{\parbox{.85\linewidth}{\textbf{Achtung:} Sollten im Anweisungsteil Zeitangaben genutzt werden, die größer als \texttt{LengthTimeUnit} sind, kommt es zum Crash\\(Dies wird bald so geändert, dass die Länge in Zeiteinheiten aus den Skriptanweisungen selbst extrahiert wird.)}}
+\end{center}
+
+Weiterhin wird durch die Angabe des Parameters \texttt{RealTime} (\texttt{=yes} oder \texttt{=no}) angegeben, ob das Skript in Echtzeit ausgeführt werden soll oder nicht. Eine Ausführung in Echtzeit bedeutet zum Einen, dass am Ende kein Video erzeugt wird und zum Anderen, dass von der Standardframerate 14 nach oben und unten abgewichen wird, je nach verfügbarer Rechenpower und Umfang der Anweisungen.
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}, linewidth=7cm]{}
+[Ini]
+LengthTimeUnit=14
+LengthSeconds=10
+RealTime=no
+...
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+
+
+\subsection{Syntax der Anweisungen}
+
+Die Anweisungen der Skriptsprache gliedern sich in vier Bereiche. Jede Anweisung besteht dabei aus einer Zeitangabe, die den Zeitraum oder Zeitpunkt der Ausführung der Anweisung bestimmt, einer Objektbezeichnung, die das Objekt festlegt, auf das sich die Anweisung bezieht, der Befehlsbezeichnung und möglichen Parametern. Die vier Bereiche sind jeweils durch ein Leerzeichen getrennt.
+
+%Jeder Bereich kann bei der Umwandlung eines \textit{HighLevel}-Skriptes in ein \textit{LowLevel}-Skript Veränderungen unterworfen sein. 
+
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}, linewidth=8cm]{}
+Time Object Command [Parameter]
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}, linewidth=8cm]{}
+[0,10] 'Liver' setColor blue
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+
+\subsubsection{Zeitangaben}
+
+Es gibt zwei verschiedene Möglichkeiten der Zeitangabe: die Angabe eines \textbf{Zeitpunktes} oder die eines \textbf{Zeitbereiches}. Die Zeitangabe erfolgt in eckigen Klammern, wobei bei der Angabe eines Zeitbereiches dessen Start- und Endwert durch ein Komma getrennt wird. Bei der Angabe eines Zeitpunktes wird die Anweisung zu diesem ausgeführt. Im Fall eines Zeitbereiches wird versucht, die durch die Anweisung hervorgerufene Änderung in diesem Zeitbereich zu interpolieren. Ist dies nicht möglich, zum Beispiel weil es sich um eine diskrete Zustandsänderung handelt (Zeichenketten, Wahrheitswerte), wird die Anweisung zu Beginn des Zeitbereiches ausgeführt. Die Angabe der Zeiten erfolgt in abstrakten Zeiteinheiten. Die Umrechnung der Zeiteinheiten in reale Sekunden ergibt sich aus den Angaben im Initialisierungsteil.
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}, linewidth=4cm]{}
+[0,10] ...
+[5] ...
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+
+\subsubsection{Ersetzung von Objektbezeichnungen}\label{objects}
+
+An zweiter Stelle innerhalb einer Anweisung erfolgt die Bezeichnung des Objektes, auf welches die Anweisung angewendet werden soll. Um Objektbezeichnungen mit Leerzeichen zu ermöglichen wird diese in Hochkommata (') gesetzt. Auf der \textit{LowLevel}-Ebene entsprechen die Objektbezeichnungen den Bezeichnungen, die den Objekten bei der Segmentierung der Daten zugewiesen wurden bzw. die sie innerhalb des Datensatzes haben. Unteilbare Bezeichnungen, also die Bezeichnungen direkt im Datensatz werden als atomare Bezeichnungen bezeichnet.
+
+Im \textit{HighLevel}-Skript können dagegen andere Bezeichnungen gewählt werden. Diese werden anhand von Ersetzungsvorschriften in atomare Bezeichnungen überführt. Dabei kann eine einfache Ersetzung erfolgen (z.B. kann die Bezeichnung \texttt{'Liver'} durch \texttt{'Liver, segm'} substituiert werden). Oder eine Bezeichnung kann durch mehrere Bezeichnungen ersetzt werden (z.B. \texttt{'Lung'} durch \texttt{'Lung left'} und \texttt{'Lung right'}). \textbf{Erfolgt eine Ersetzung hin zu mehreren Objektbezeichnungen, so wird die Anweisung für das jeweilige Objekt im Ganzen kopiert.} Aus einer Anweisung für das Objekt \texttt{'Lung'} würden im Ersetzungsvorgang daher je eine Anweisung für \texttt{'Lung left'} und \texttt{'Lung right'} entstehen. Mithilfe dieser Ersetzungen ist es möglich, auf der Ebene des \textit{HighLevel}-Skriptes eine Anweisung für ganze Objektgruppen oder alle Objekte anzuwenden.
+
+Zusätzlich zu den atomaren Bezeichnungen der Objekte im Datensatz gibt es zwei systemseitige Bezeichnungen: \texttt{'Cam'} und \texttt{'System'}. Diese kommen bei Anweisungen zur Anwendung, die eine Manipulation der Kamera (z.B. eine Rotation) oder der gesamten Szene (z.B. eine Änderung des Hintergrundes) ermöglichen.
+
+Die Ersetzungsvorschriften werden in einer XML-Struktur abgelegt.
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}, escapechar=§]{}
+§\textrm{Anweisung mit einer zu ersetzenden Objektbezeichnung:}§
+	
+	[0,10] 'Lung' on
+
+§\textrm{Auszug aus der XML-Struktur mit den Ersetzungsvorschriften:}§
+
+	<object name="Lung">
+		<object>Lung left</object>
+		<object>Lung right</object>
+	</object>
+	<object name="Lung left">
+		<object>kind2, LiLungeSeg, m Int</object>		
+	</object>
+	<object name="Lung right">
+		<object>kind2, ReLungeSeg, m Int</object>		
+	</object>
+
+§\textrm{Zwei Anweisungen als Ergebnis der Ersetzungen:}§
+
+	[0,10] 'kind2, LiLungeSeg, m Int' on
+	[0,10] 'kind2, ReLungeSeg, m Int' on
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+
+\begin{center}
+\colorbox{achtung}{\parbox{.85\linewidth}{\textbf{Achtung:} Es werden nur Objektbezeichnungen ersetzt, die an der \texttt{object}-Position einer Anweisung stehen. Objektbezeichnungen in den Parametern werden bei der Umwandlung von \textit{High}- in \textit{LowLevel}-Skripte nicht ersetzt! Objektbezeichnungen die in Parametern stehen, werden erst bei der Interpretation des Skriptes im Verlauf einer Animation ersetzt, da erst zu diesem Zeitpunkt beispielsweise evtl. benötigte BoundingBoxen bekannt sind.}}
+\end{center}
+
+\begin{center}
+\colorbox{achtung}{\parbox{.85\linewidth}{\textbf{Achtung:} Die Anweisungen werden zuerst ersetzt und erst dann die Objektbezeichnungen!}}
+\end{center}
+
+\subsubsection{Ersetzung von Befehlen}\label{commands}
+
+Während eine Anweisung die Gesamtheit aus Zeitangabe, Objektbezeichnung, Befehlsbezeichnung und Parameter darstellt, wird im Weiteren als \textit{Befehl} nur die eigentliche Befehlsbezeichnung betrachtet. Die Befehle des \textit{LowLevel}-Skriptes sind atomar, das heißt, sie sind direkte Repräsentationen von Befehlen der Skriptschnittstelle. Eine Aufstellung elementarer Befehle findet sich Abschnitt \nameref{lowlevelcommands}. Auf diesen Befehlen aufbauend werden die \textit{HighLevel}-Befehle definiert. Ähnlich den Objektbezeichnungen kommt es auch hier zu Ersetzungen von \textit{HighLevel}-Befehlen in einen oder mehrere andere Befehle. Ebenso können die Ersetzungen hierarchisch strukturiert werden, sodass nicht jeder \textit{HighLevel}-Befehl sofort auf einen atomaren \textit{LowLevel}-Befehl abgebildet werden muss.
+
+Die Ersetzungsvorschriften für Befehle sind ebenfalls in einer XML-Struktur abgelegt. Da die Ersetzung eines Befehls durch einen oder mehrere Befehle aber Auswirkungen auf die gesamte Anweisung (z.B. die Zeitangaben oder Objektbezeichnungen) haben kann, gibt es einige Unterschiede zum Prozess der Objetkbezeichnungsersetzungen.
+
+Die Ersetzungsvorschrift umfasst eine oder mehrere komplette Anweisungen. Als Zeitangabe für die ersetzenden Anweisungen kann wahlweise eine konkrete Zeit, wie auch im Skript, angegeben werden oder aber durch ein \texttt{T} die Zeitangabe aus der zu ersetzenden Anweisung übernommen werden. Ähnliches gilt für die Objektbezeichnung, die entweder konkret eine Objektbezeichnung oder aber ein \texttt{O} als Platzhalter darstellen kann. Bei einem Platzhalter \texttt{O} würde die Objektbezeichnung aus der zu ersetzenden Anweisung genutzt werden. Mit Unterstützung dieser Notation kann die Objektbezeichnung bei der Ersetzung auch als Parameter in die neue Anweisung übernommen werden. Mithilfe eines \texttt{P} ist es außerdem möglich, auch die in der zu ersetzenden Anweisung eventuell angegebenen Parameter in die neue Anweisung zu übernehmen. Bei der Entwicklung der atomaren und \textit{HighLevel}-Anweisungen ist darauf zu achten, dass die Platzhalter \texttt{T},\texttt{O} und \texttt{P} nicht als Parameter in Frage kommen.
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}]{}
+§\textrm{\textbf{Beispiel 1:}}§
+§\textrm{Ausgangsanweisung:}§
+	[0,10] 'Liver' on
+	
+§\textrm{Auszug aus der XML-Struktur mit den Ersetzungsvorschriften:}§	
+	<command commandStr="on">
+		<command>T O setVisible true</command>
+		<command>T O setColor red</command>
+	</command>
+
+§\textrm{Ergebnis nach der Ersetzung:}§
+	[0,10] 'Liver' setVisible true
+	[0,10] 'Liver' setColor red
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}]{}	
+§\textrm{\textbf{Beispiel 2:}}§
+§\textrm{Ausgangsanweisung:}§
+	[0,10] 'Liver' view sagittal
+	
+§\textrm{Auszug aus der XML-Struktur mit den Ersetzungsvorschriften:}§
+	<command commandStr="view">
+		<command>T O on</command>
+		<command>T 'Cam' move O P 1.0</command>		
+	</command>	
+	
+§\textrm{Ergebnis nach der Ersetzung:}§
+	[0,10] 'Cam' move 'Liver' sagittal 1.0
+\end{lstlisting}
+\end{minipage}\end{center}
+
+
+
+
+\subsubsection{Ersetzung von Parametern} \label{parameter}
+
+Als Parameter einer Anweisung werden all' diejenigen Angaben gewertet, die nach der Befehlsbezeichnung folgen. Wird mehr als ein Parameter angegeben, erfolgt die Trennung durch Leerzeichen. Enthält ein einzelner Parameter ein oder mehrere Leerzeichen, so wird dieser Parameter in Hochkommata notiert.
+
+Auch für die Parameter sind Ersetzungen beim Umwandlungsprozess der Skripte vorgesehen. Dabei wird zwischen zwei Arten der Ersetzung unterschieden: der Einzelwertersetzung und den Geschwindigkeitsangaben.
+
+Bei Ersetzungen, die auf der ersten Art basieren, wird lediglich ein Austausch der Zeichenkette des Parameters durch eine andere Zeichenkette vorgenommen. So kann der Parameter \texttt{red} durch den RGB-Wert \texttt{255,0,0} ersetzt werden. Die Definition dieser Ersetzungsvorschriften erfolgt in der XML-Struktur für die Befehlsersetzungen. Die Ersetzung ist befehlsabhängig und wird in der Struktur als zusätzliches Element der Befehlsersetzung angegeben (siehe Listing \ref{Parameterersetzung}). 
+
+\begin{center}\begin{minipage}[t]{\linewidth}
+\begin{lstlisting}[language=kMovie1, backgroundcolor=\color{anw1}]{}
+<command commandStr="setColor">
+	...
+  <parameter paramStr="red" singleValue="255,0,0" />
+  <parameter paramStr="yellow" singleValue="255,255,0" />
+  <parameter paramStr="blue" singleValue="0,0,255" />
+  <parameter paramStr="green" singleValue="0,255,0" />
+</command>
+\end{lstlisting}
+\end{minipage}\end{center}
+
+Handelt es sich bei der Parameterersetzung um eine Einzelwertersetzung, so wird der zu ersetzende Wert mit \texttt{singleValue} angegeben. 
+
+\textbf{Es gibt nur Einzelwertersetzungen! Der Kram mit der Geschwindigkeit war eher ein Zugeständnis im Diplom, hat sich in der Praxis aber als untauglich erwiesen.}
+
+
+
+
+
+\newpage
+
+
+\section{Funktion der Module in MeVisLab}
+
+inklusive aller Felder der Module ...
+
+\newpage
+
+
+
+
+
+\section{Implementierte Anweisungen}
+
+\subsection{LowLevel-Anweisungen}\label{lowlevelcommands}
+
+\subsubsection{Bewegung der Kamera mit \texttt{move}}
+
+Diese Anweisung bewegt die Kamera.
+
+\begin{center}
+\colorbox{anw1}{\parbox{.85\linewidth}{
+\textbf{Parameter:}\\
+\texttt{target\_object camera\_sphere angle\_sagittal angle\_axial zoom}\\\\
+\textbf{Beispiele:}\\
+\texttt{[0,10] 'System' move 'Tumor' 'All' 90 0 1}\\
+\texttt{[5] 'System' move 'Lymphnode' 'All' 45 45 0.6}
+}}
+\end{center}
+
+\texttt{target\_object}
+\begin{quote}\texttt{target\_object} bezeichnet das Objekt, auf welches die Kamera von ihrer Position aus blicken soll.\end{quote}
+
+\texttt{camera\_sphere}
+\begin{quote}Die Ziel-Position befindet sich dabei auf einer Kugel, die eine BoundingBox umgibt. Das Objekt (die Objektgruppe) dieser Boundingbox wird im Parameter \texttt{camera\_sphere} angegeben. Klassicherweise ist es das Objekt \texttt{'All'} welches eine die gesamte Szene umschließende Kugel ergibt (Wenn denn dieses Objekt in der \texttt{ObjectNames.xml} definiert ist.).\end{quote}
+
+
+\texttt{angle\_sagittal} und \texttt{angle\_axial}
+\begin{quote}Die Position der Kamera auf der Kugel wird durch Kugelkoordinaten angegeben. Diese bestimmen die Position in Grad vom oberen Pol der umschließenden Kugel aus, und zwar in sagittale und in axiale Richtung. Die Koordinaten \texttt{90 0} geben gemeinhin die Sicht genau von vorne an.\end{quote}
+
+\texttt{zoom}
+\begin{quote}\texttt{Zoom} gibt den Zoom-Faktor der Kamera an. 1 ist gleichbedeutend mit ``Objekt ist vollständig im Viewer sichtbar''. Werte kleiner 1 stehen für ein geringere, Werte größer 1 für größere Entfernungen. Die Position der Kamera vom Zoom-Faktor nicht berührt.\end{quote}
+
+
+\subsubsection{Rotation der Kamera um ein Objekt mit \texttt{rotate}}
+
+Diese Anweisung rotiert die Kamera um eine Achse, die durch den Mittelpunkt eines (Ziel)Objektes verläuft.
+
+\begin{center}
+\colorbox{anw1}{\parbox{.85\linewidth}{
+\textbf{Parameter:}\\
+\texttt{object axis angle}\\\\
+\textbf{Beispiel:}\\
+\texttt{[0,10] 'System' rotate 'Kreuzband' 0,0,1 90}
+}}
+\end{center}
+
+\texttt{object}
+\begin{quote}Zielobjekt, durch dessen Mittelpunkt (der BoundingBox) die Rotationsachse verlaufen soll.\end{quote}
+
+\texttt{axis}
+\begin{quote}Rotationsachse. Werte wie \texttt{axial (0,0,-1)},\texttt{coronal (0,-1,0)},\texttt{sagittal (1,0,0)} können beispielsweise in der \texttt{HighLevel-Commands.xml} definiert werden bzw. sind in den Beispieldateien schon so definiert und können verwendet werden.\end{quote}
+
+\texttt{angle}
+\begin{quote}Zu rotierender Winkel in Grad\end{quote}
+
+
+\subsubsection{Rotation der Kamera um ihre Z-Achse mit \texttt{rotateCamZ/rotateCamZTo}}
+
+Diese Anweisungen rotieren die Kamera um ihre eigene Z-Achse, kippt sie also. Die Rotation kann absolut erfolgen (\texttt{rotateCamZTo}) oder relativ zur momentanen Neigung (\texttt{rotateCamZ}).
+
+\begin{center}
+\colorbox{anw1}{\parbox{.85\linewidth}{
+\textbf{Parameter:}\\
+\texttt{angle}\\\\
+\textbf{Beispiele:}\\
+\texttt{[0,10] 'System' rotateCamZ 45}\\
+\texttt{[0,10] 'System' rotateCamZTo 75}
+}}
+\end{center}
+
+\texttt{angle}
+\begin{quote}Zu rotierender Winkel in Grad\end{quote}
+  
+\subsubsection{Veränderung des Szenenhintergrundes mit \texttt{setBackground}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=6.4cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setBackground R,G,B [ramp]
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+\textbf{Beispiel:}
+\texttt{[0] 'System' setBackground red ramp}\\
+(red wird laut \texttt{HighLevel-Commands.xml} zu \texttt{255,0,0} ersetzt)
+
+Setzt die Hintergrundfarbe der Szene auf einen RGB-Wert. Wird der Parameter \texttt{ramp} angegeben, so wird der Hintergrund im Verlauf von dieser Farbe zu schwarz dargestellt. 
+
+
+\subsubsection{Veränderung der Farbe eines Objektes mit \texttt{setColor}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=3.5cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setColor R,G,B
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+\textbf{Beispiel:}
+\texttt{[0,10] 'Kreuzband' setColor 255,255,0} 
+ 
+Setzt die Farbe eines Objektes auf den angegebenen RGB-Wert, wobei die einzelnen Werte sich jeweils im Bereich zwischen 0 und 255 bewegen. 
+
+
+\subsubsection{Erzeugen eines Videos am Ende einer Animation mit \texttt{setCreateVideo}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=6cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setCreateVideo true|false
+\end{lstlisting}
+\end{minipage}\end{center} 
+
+\textbf{Beispiel:}
+\texttt{[0] 'System' setCreateVideo true} 
+ 
+Erlaubt oder verhindert das Erzeugen eines Videos am Ende einer Animationsgenerierung. Im RealTime-Modus ist die Videoerzeugung standardmäßig abgeschaltet (kann aber durch die Anweisung eingeschaltet werden). Bei \texttt{realtime=no} ist die Videoerzeugung standardmäßig aktiviert.
+
+
+\subsubsection{Veränderung der Darstellungsqualität eines Objektes mit \texttt{setQuality}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=4cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setQuality value
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0,10] 'Kreuzband' setQuality 0.5} 
+
+Setzt die Darstellungsqualität eines Objektes auf einen Wert zwischen 0 und 1. 
+
+
+
+\subsubsection{Selektions eines Objektes mit \texttt{setSelected}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=5.5cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setSelected true|false
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0] 'Kreuzband' setSelected true}
+ 
+Selektiert oder deselektiert ein Objekt. 
+
+ 
+\subsubsection{Veränderung des Darstellungsstils eines Objektes mit \texttt{setStyle}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=7cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setStyle Filled|Lines|Points
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0] 'Kreuzband' setStyle Lines} 
+ 
+Setzt den Darstellungsstil auf eine gefüllte (Filled), eine gitternetzige (Lines) oder eine gepunktete (Points) Darstellung. 
+
+ 
+\subsubsection{Veränderung der Transparenz eines Objektes mit \texttt{setTransparency}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=5.3cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setTransparency value
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0,10] 'Kreuzband' setTransparency low}\\
+(\texttt{low} wird laut \texttt{HighLevel-Commands.xml} zu \texttt{0.2} ersetzt)
+  
+Setzt die Transparenz eines Objektes auf einen angegebenen Wert zwischen 0 und 1.
+
+
+
+\subsubsection{Veränderung der Sichtbarkeit eines Objektes mit \texttt{setVisible}}
+ 
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=5cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+setVisible true|false
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0] 'Kreuzband' setVisible true} 
+
+Setzt die Sichtbarkeitseigenschaft eines Objektes.
+
+
+\newpage 
+
+
+\subsection{HighLevel-Anweisungen}
+
+
+
+\subsubsection{Ändern der Sichtbarkeit eines Objektes mit \texttt{on/off}}
+
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=3cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+object on
+object off
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0] 'Kreuzband' on}
+
+
+\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{xml}]{}
+Anweisungsersetzung in XML:
+
+<command commandStr="on">
+  <command>T O setVisible TRUE</command>		
+</command>
+<command commandStr="off">
+  <command>T O setVisible FALSE</command>		
+</command>
+\end{lstlisting}
+
+
+
+\subsubsection{Selektieren eines Objektes mit \texttt{select/deselect}}
+
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=3.7cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+object select
+object deselect
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0] 'Kreuzband' select}
+
+
+\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{xml}]{}
+Anweisungsersetzung in XML:
+
+<command commandStr="select">
+  <command>T O setSelected TRUE</command>		
+</command>
+<command commandStr="deselect">
+  <command>T O setSelected FALSE</command>		
+</command>
+\end{lstlisting}
+
+
+\subsubsection{Kamera einfach positionieren mit \texttt{view}}
+
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=6.5cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+object view direction zoom
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0,10] 'Kreuzband' view front 1}
+
+\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{xml}]{}
+Anweisungsersetzung in XML:
+
+<command commandStr ="view">		
+  <command>T 'Cam' rotateCamZTo 0</command>
+	<command>T 'Cam' move O P</command>
+</command>
+\end{lstlisting}
+
+
+Der Parameter \texttt{front} wird hierbei nochmals durch \texttt{90 0} ersetzt.
+
+\subsubsection{Objekt hervorheben mit \texttt{emphasize}}
+
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=4.3cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+object emphasize
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0,10] 'Kreuzband' emphasize}
+
+\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{xml}]{}
+Anweisungsersetzung in XML:
+
+<command commandStr ="emphasize">
+  <command>T O view front 1</command>
+  <command>T O setColor red</command>
+  <command>T O setTransparency low</command>
+</command>	
+\end{lstlisting}
+
+
+\subsubsection{Initialisierung mit \texttt{init}}
+
+\begin{center}\begin{minipage}[t]{\linewidth} 
+\begin{lstlisting}[linewidth=1cm, language=kMovie1, backgroundcolor=\color{anw1}]{}
+init
+\end{lstlisting}
+\end{minipage}\end{center}
+
+\textbf{Beispiel:}
+\texttt{[0] 'System' init}
+
+\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{xml}]{}
+Anweisungsersetzung in XML:
+
+<command commandStr="init">
+  <command>T 'All' on</command>
+  <command>T 'All' setTransparency normal</command>
+  <command>T 'Knochen' setTransparency high</command>
+  <command>T 'System' setBackground white</command>		
+  <command>T 'All' view front 1</command>
+  <command>T 'System' setBaseColors</command>
+</command>
+\end{lstlisting}
+
+Die init-Anweisung initialisiert eine Animation mit den Grundeinstellungen für alle Objekte und die Kamera. Sie ist im Gegensatz zu den anderen HighLevel-Anweisungen datensatzabhängig. Nicht unbedingt von jedem Patienten, aber von der Art der Daten (Knie, Hals, ...) wenn innerhalb eines Datensatzstypes immer die gleichen Bezeichnungen verwendet werden.
+
+
+%\section{Denkbare LowLevel-Anweisungen}
+%
+%\subsection*{Clippen mit \texttt{setClipPlane}}
+%
+%\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{anw2}]{}
+%object setClipPlane on-off side position excluded-object
+%      [slice]
+%\end{lstlisting}
+%
+%Mit Hilfe dieser Anweisung sollen Clipebenen durch die Szene gelegt werden können. Die Clipebenen sind achsenparallel.
+%
+%\begin{itemize}
+%\item \texttt{object} - Objekt oder Objektgruppe, die geclippt werden soll
+%\item \texttt{on-off} - true oder false zum Ein- und Ausschalten der Ebene
+%\item \texttt{side} - Richtung, aus der die Clipebene kommt (\textit{left,top,right,bottom,front,back})
+%\item \texttt{position} - Position der Ebene innerhalb des zu clippenden Objektes (\texttt{0...1}). \texttt{0} = am Anfang (nichts geclippt); \texttt{1} = komplett geclippt. Dieser Parameter würde bei einer Animation über die Zeit interpoliert werden können und die Ebene sich so durch das Objekt bewegen.
+%\item \texttt{excluded-object} - Objekt oder Objektgruppe, die vom Clippen ausgenommen werden soll. Der Parameter ist nicht unbedingt nötig, da schon durch die Angabe der zu clippenden Objete in \texttt{object} festgelegt wird, welche Objekte genau geclippt werden sollen. Vielleicht lass ich das auch weg. Mal sehen.
+%\item \texttt{slice} - Dieser Parameter kann optional gehalten werden. Er schaltet die Sichtbarkeit des Schnittbildes auf der Clipebene ein oder aus ... denkbar hier auch ein Paramter \texttt{plane-type} zur Angabe noch weitere Darstellungsstile der Ebene (\textit{transparent, colored})
+%\end{itemize}
+%
+%\subsection*{Frei definierbare Anweisungen}
+%
+%\begin{lstlisting}[float = h, language=kMovie1, backgroundcolor=\color{anw2}]{}
+%object setFloat layer-id info-id value
+%object setV3 layer-id info-id value
+%object setString layer-id info-id value
+%object setBool layer-id info-id value
+%\end{lstlisting}
+%
+%Auf der Basis des ObjMgr können die Objecte mit ihren Layern und InfoIDs direkt angesprochen werden. So besteht die Möglichkeit, neue Parameter zu animieren, ohne sofort neue LowLevel-Befehle direkt im Animations-Modul implementieren zu müssen.
+
+\end{document}

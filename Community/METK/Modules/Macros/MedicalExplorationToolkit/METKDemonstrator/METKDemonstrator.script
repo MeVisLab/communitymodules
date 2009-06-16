@@ -1,0 +1,311 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKDemonstrator
+/*!
+// \file    METKDemonstrator.script
+// \author  Konrad Mühler
+// \date    2007-11-15
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+	Inputs {}
+	Outputs {}
+	Parameters {}
+}
+
+
+
+Commands {
+	importPath = "$(LOCAL)"
+	importPath = "$(LOCAL)/.."
+	importPath = "$(LOCAL)/../../GUIClasses/"
+	
+	source = $(LOCAL)/METKDemonstrator.py  
+	
+	FieldListener METKCSO.cso { command=viewCSO }
+}
+
+
+
+Window METKDemonstrator {
+	w=1000 h=800
+	
+	style = METKDemonstratorStyle
+  	bgMode = SmoothStretch
+  	
+	EventFilter
+	{
+		name = ButtonEventFilter
+		filter = "MouseButtonPress,MouseButtonRelease,MouseMove,Enter,Leave" //,Wheel,MouseButtonDblClick,KeyRelease,KeyPress
+		command = analyzeButtonEventWindow
+	}
+  	
+	
+	Vertical {
+	
+		expandX=True expandY=True
+		
+		/*MenuBar {
+		 	style {titleFont { family = tahoma size = 9 } }
+		 	expandY = No expandX = No
+		 	SubMenu "File" {
+		    		MenuItem "Open..."  { command = openCase }
+		    		MenuItem "Save As..."  { command = saveAs }
+		    		MenuItem "Save"  { command = save }
+		    		Separator {direction = horizontal}
+		    		MenuItem "Quit"  { command = exit }
+		 	} //SubMenu
+		}//MenuBar*/
+		
+		Empty { h=10 w=10 }
+		
+		Horizontal {
+			Empty { h=10 w=10 }
+			Image { image="$(LOCAL)/img/title.png"}
+			HSpacer {}
+		}
+		
+		Empty { h=10 w=10 }
+		
+		Horizontal {
+
+			expandX=True expandY=True
+			
+			Empty { h=10 w=10 }
+			
+			Vertical {
+				expandX=True expandY=True
+
+				Grid
+				{					
+					margin=0  spacing=0
+					expandX=True expandY=True
+					fh=65
+
+					//Corners and White Sides		
+					Image { x=0 y=0 image=$(LOCAL)/img/corner_tl.png}  Image { x=2 y=0 image=$(LOCAL)/img/corner_tr.png}  Image { x=0 y=2 image=$(LOCAL)/img/corner_bl.png}  Image { x=2 y=2 image=$(LOCAL)/img/corner_br.png}
+					HSpacer { h=10 x=1 y=0 bgMode=SmoothStretch style=StyleWhiteBG }  HSpacer { h=10 x=1 y=2 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=0 y=1 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=2 y=1 bgMode=SmoothStretch style=StyleWhiteBG }
+
+					//Contents
+					Horizontal {			
+						x=1 y=1
+						bgMode=SmoothStretch style=StyleWhiteBG
+						expandX=True expandY=True
+
+						Empty { h=10 w=10 }
+						//Button { title = "Load Demo Case" command=loadDemo }
+						Image { name = bt_demo image="$(LOCAL)/img/bt_demo-n.png"}
+						HSpacer{}
+						//Button { title = "Browse for case ..." command=openCase }
+						Image { name = bt_browse image="$(LOCAL)/img/bt_browse-n.png"}
+						HSpacer{}
+						//Button { title = "Exit" command=exit }
+						Image { name = bt_exit image="$(LOCAL)/img/bt_exit-n.png"}
+						Empty { h=10 w=10 }
+					}
+				}
+					
+				Empty { h=10 w=10 }
+
+				Grid
+				{					
+					margin=0  spacing=0
+					expandX=True expandY=True					
+
+					//Corners and White Sides		
+					Image { x=0 y=0 image=$(LOCAL)/img/corner_tl.png}  Image { x=2 y=0 image=$(LOCAL)/img/corner_tr.png}  Image { x=0 y=2 image=$(LOCAL)/img/corner_bl.png}  Image { x=2 y=2 image=$(LOCAL)/img/corner_br.png}
+					HSpacer { h=10 x=1 y=0 bgMode=SmoothStretch style=StyleWhiteBG }  HSpacer { h=10 x=1 y=2 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=0 y=1 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=2 y=1 bgMode=SmoothStretch style=StyleWhiteBG }
+
+					//Contents
+					Vertical {
+						x=1 y=1
+						expandX=True expandY=True
+						bgMode=SmoothStretch style=StyleWhiteBG
+
+						Panel {
+							module = METKViewer3D	
+							expandX=True expandY=True	
+							bgMode=SmoothStretch style=StyleGrayBG
+						}
+						Empty { h=10 w=10 }
+
+						HyperText {
+							expandX=True expandY=False
+							bgMode=SmoothStretch style=StyleWhiteBG
+							h=70
+							text = "<body bgcolor='#FFFFFF'>You can rotate and select in the 3d viewer with the same cursor. Single clicks select an object. The camera will be moved animated to the selected object and the selected object will be shown in the small viewer in the right panel.</body>"
+							frameShape=noFrame
+						}						
+					} //Vertical
+				} //Grid								
+			} //Viewer and Top Buttons
+			
+			Empty { w=10 h=10 }
+
+			Vertical {				
+				expandY=True expandX=False
+
+				Grid
+				{					
+					margin=0  spacing=0
+					expandX=True expandY=True					
+					fh=225
+
+					//Corners and White Sides		
+					Image { x=0 y=0 image=$(LOCAL)/img/corner_tl.png}  Image { x=2 y=0 image=$(LOCAL)/img/corner_tr.png}  Image { x=0 y=2 image=$(LOCAL)/img/corner_bl.png}  Image { x=2 y=2 image=$(LOCAL)/img/corner_br.png}
+					HSpacer { h=10 x=1 y=0 bgMode=SmoothStretch style=StyleWhiteBG }  HSpacer { h=10 x=1 y=2 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=0 y=1 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=2 y=1 bgMode=SmoothStretch style=StyleWhiteBG }
+
+					//Contents
+					Vertical {
+						x=1 y=1
+						bgMode=SmoothStretch style=StyleWhiteBG
+						expandX=true expandY=true
+						
+						Horizontal {
+							expandX=true expandY=false
+							bgMode=SmoothStretch style=StyleWhiteBG
+							//Button { title="Hierarchy Browser" }
+							Image { name = bt_hierarchy image="$(LOCAL)/img/bt_hierarchy-n.png"}
+							HSpacer{}
+							//Button { title="StructrueGroup Browser" }							
+							Image { name = bt_sgb image="$(LOCAL)/img/bt_sgb-n.png"}
+						}
+					
+						TabView {							
+							mode=invisible
+							expandX=true expandY=true
+							name=browser
+
+							TabViewItem Hierarchy {
+								expandY=True expandX=True
+								Panel {
+									expandY=True expandX=True
+									module = METKHierarchyBrowser						
+								}
+							}
+
+							TabViewItem StructrueGroup {
+								expandY=True expandX=True
+								Panel {
+									expandY=True expandX=True
+									module = METKStructureGroupBrowser
+									window = singleListView
+								}
+							}
+
+						} //TabView
+					} //Vertical
+				} //Grid
+				
+				Empty { w=10 h=10 }
+				
+				Grid
+				{					
+					margin=0  spacing=0					
+
+					//Corners and White Sides		
+					Image { x=0 y=0 image=$(LOCAL)/img/corner_tl.png}  Image { x=2 y=0 image=$(LOCAL)/img/corner_tr.png}  Image { x=0 y=2 image=$(LOCAL)/img/corner_bl.png}  Image { x=2 y=2 image=$(LOCAL)/img/corner_br.png}
+					HSpacer { h=10 x=1 y=0 bgMode=SmoothStretch style=StyleWhiteBG }  HSpacer { h=10 x=1 y=2 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=0 y=1 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=2 y=1 bgMode=SmoothStretch style=StyleWhiteBG }
+
+					//Contents
+					Vertical {
+						x=1 y=1
+						expandX=True expandY=True
+						bgMode=SmoothStretch style=StyleWhiteBG 
+						Label { title="Visual Properties" style=StyleTitleFont }
+						Empty {h=5 w=5}
+						Panel {
+
+							module = METKObjBrowser
+							window = shortVisuals
+							expandY=false							
+						}
+					} //Vertical
+				} //Grid
+				
+				Empty { w=10 h=10 }
+				
+				Grid
+				{					
+					margin=0  spacing=0
+					expandX=true expandY=true
+
+					//Corners and White Sides		
+					Image { x=0 y=0 image=$(LOCAL)/img/corner_tl.png}  Image { x=2 y=0 image=$(LOCAL)/img/corner_tr.png}  Image { x=0 y=2 image=$(LOCAL)/img/corner_bl.png}  Image { x=2 y=2 image=$(LOCAL)/img/corner_br.png}
+					HSpacer { h=10 x=1 y=0 bgMode=SmoothStretch style=StyleWhiteBG }  HSpacer { h=10 x=1 y=2 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=0 y=1 bgMode=SmoothStretch style=StyleWhiteBG }  VSpacer { w=10 x=2 y=1 bgMode=SmoothStretch style=StyleWhiteBG }
+
+					//Contents
+					Vertical {
+						x=1 y=1
+						expandX=True expandY=True
+						bgMode=SmoothStretch style=StyleWhiteBG 
+					
+						Horizontal {
+							expandX=true expandY=false
+							bgMode=SmoothStretch style=StyleWhiteBG
+							//Button { title="Selected Objects" }
+							Image { name = bt_cso image="$(LOCAL)/img/bt_cso-n.png"}
+							HSpacer{}
+							//Button { title="Collections" }
+							Image { name = bt_collections image="$(LOCAL)/img/bt_collections-n.png"}
+						}
+				
+				
+						TabView {
+							mode = invisible
+							expandY=True expandX=True
+							name=tabbottom
+							
+							TabViewItem SelectedObject {
+								expandX=true expandY=true
+
+								VSpacer{}
+
+								Panel {
+									module = CSOViewer
+									expandX=true expandY=true
+									alignX=Center
+								}
+
+								Empty { w=10 h=10 }
+
+								Label { titleField=METKCSO.cso textAlignment=Center expandX=true }						
+
+								VSpacer{}
+							}
+
+							TabViewItem Collections {
+								expandX=true expandY=true
+
+								Panel {
+									expandX=true expandY=true
+									module = METKCollections
+									window = METKCollectionsListView
+								}
+
+								Empty { w=10 h=10 }
+
+								//Button METKCollections.create { title="Create New Collection" alignX=center }
+								Image { name = bt_addcol image="$(LOCAL)/img/bt_addcol-n.png" alignX=center }
+
+								Empty { w=10 h=10 }
+							}
+						} //TabView
+					} //Vertical
+				} //Grid
+			} //Vertical for controls
+			
+			Empty { w=10 h=10 }
+		
+		} //Horizontal with viewer
+		
+		Empty { w=10 h=10 }
+		
+	} // Vertical with menu
+	
+	initCommand = initWindow
+	
+} //Window

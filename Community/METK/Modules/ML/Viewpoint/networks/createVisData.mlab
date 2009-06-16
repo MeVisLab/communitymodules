@@ -1,0 +1,246 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKGenerateCamData {
+  internal  {
+    frame = "605 285 168 56"
+    windows  {
+      window _default {
+        geometry = "691 291 500 450"
+        sizeHint = "500 450"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKGenerateCamData
+    BufferSize = 400
+    DivisionDepth = 3
+    Progress = 0
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "61 117 120 56"
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "129 205 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "121 365 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "449 157 176 56"
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = off
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = FALSE
+    perspective = TRUE
+    height = 0
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 0
+    farDistance = 0
+    focalDistance = 0
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoVisibilitySolver {
+  internal  {
+    frame = "369 253 128 56"
+    windows  {
+      window _default {
+        geometry = "927 87 219 440"
+        sizeHint = "219 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVisibilitySolver
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    m_fldBufferSizeX = 400
+    m_fldBufferSizeY = 400
+    m_fldDivision = 3
+    m_fldDataPath = E:/HNO/Hals12/
+    m_fldSphereMode = 0
+    m_fldCurrentObj = 0
+    m_fldProgress = 0
+    m_fldEstTime = ""
+  }
+}
+module METKToSolverConnection {
+  internal  {
+    frame = "345 365 176 56"
+    windows  {
+      window _default {
+        geometry = "618 435 307 357"
+        sizeHint = "204 204"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKToSolverConnection
+    priority = 10000
+    debugComment = ""
+    dataPath = E:/HNO/Hals12/
+  }
+}
+module METKManager {
+  internal  {
+    frame = "345 469 112 56"
+    windows  {
+      window _default {
+        geometry = "381 440 524 348"
+        sizeHint = "524 348"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12.nsp.xml
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKGenerateCamData.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  SoCustomExaminerViewer.children = "SoVisibilitySolver.self METKToSolverConnection.outScene"
+  SoVisibilitySolver.m_fldScene = METKToSolverConnection.outScene
+  SoVisibilitySolver.m_fldDataPath = METKToSolverConnection.dataPath
+  METKToSolverConnection.inObjectContainer = METKManager.outObjectContainer
+}

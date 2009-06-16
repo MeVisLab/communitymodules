@@ -1,0 +1,12 @@
+[Ini]
+LengthTimeUnit=11
+LengthSeconds=15
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'Lymphnode' setColor red
+[0] 'All' setVisible true
+[0] 'All' view front 0.7
+[1,10] 'Cam' rotate 'All' axial 360

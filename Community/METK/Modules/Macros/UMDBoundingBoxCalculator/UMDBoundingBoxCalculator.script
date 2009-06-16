@@ -1,0 +1,51 @@
+//----------------------------------------------------------------------------------
+//! Macro module UMDBoundingBoxCalculator
+/*!
+// \file    UMDBoundingBoxCalculator.script
+// \author  Konrad
+// \date    2005-08-22
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field node { internalName = SoComputeBoundingBox.node }
+  }
+  
+  Outputs {
+  
+  }
+  
+  Parameters {
+    Field BoundingBox_String { type = string value = "0 0 0 0 0 0 0 0 0 0 0 0" persistent = false }
+    Field BoundingBox_min { internalName = SoCalculator.va persistent = false }
+    Field BoundingBox_max { internalName = SoCalculator.vb persistent = false }
+    Field objectCenter { internalName = SoCalculator.vd persistent = false }
+    Field boxCenter { internalName = SoCalculator.vc persistent = false }   
+  }
+}
+
+
+Commands {
+  // Add the local's parent path to the import path, so that Python looks for local packages
+  //importPath = "$(LOCAL)/.."
+   
+  // Include local functions
+  source = "$(LOCAL)/UMDBoundingBoxCalculator.py"
+   	
+  // Call init() to initalize the script
+  //initCommand = init
+
+  FieldListener { init = false  listenField = BoundingBox_min command = calcBBString }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:34:20
+//# hash: cTsOrxXd1MwXqtJ8z5b6d/EAvij/mhs7sory62tjsAymrmoju55AN7lKHVjTS4wddFVMA4VkWSpKrJ8QoddJgw==
+//# MeVis end
+

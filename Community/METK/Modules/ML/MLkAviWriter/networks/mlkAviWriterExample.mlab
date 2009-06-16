@@ -1,0 +1,144 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalImage {
+  internal  {
+    frame = "473 333 96 56"
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = D:/MeVisLab/data/demodata/Bone.tiff
+  }
+}
+module SoView2D {
+  internal  {
+    frame = "477 261 88 56"
+    windows  {
+      window _default {
+        geometry = "94 449 419 673"
+        sizeHint = "419 673"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2D
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 63
+    slab = 1
+    lowerLeft = "0.000000 0.000000"
+    upperRight = "1.000000 1.000000"
+    margin = "2.000000 2.000000"
+    spacing = "4.000000 4.000000"
+    sliceZoom = 1
+    sliceOrigin = "0.000000 0.000000"
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1.000000 1.000000 1.000000"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0.000000 0.000000 0.000000"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    status = "Nothing active"
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+  }
+}
+module OffscreenRender {
+  internal  {
+    frame = "457 197 128 56"
+    windows  {
+      window _default {
+        geometry = "116 233 281 132"
+        sizeHint = "281 132"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = OffscreenRender
+    imageType = RGB
+    width = 400
+    height = 400
+    bgColor = "0.000000 0.000000 0.000000"
+    demandDriven = FALSE
+  }
+}
+module AviWriter {
+  internal  {
+    frame = "481 125 80 56"
+    windows  {
+      window _default {
+        geometry = "768 223 412 335"
+        sizeHint = "412 335"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = AviWriter
+    enableRecording = FALSE
+    outputFilename = C:/AviWriterExample.avi
+    codecCode = cvid
+    framesPerSecond = 24
+    numFrames = 0
+    message = "No valid input image."
+    availableCodecs = "Available codecs on system:
+
+cvid
+i420
+iv31
+iv32
+iyuv
+mrle
+msvc
+uyvy
+yuy2
+yvu9
+yvyu
+m263
+m261
+mpg4
+mp42
+"
+  }
+}
+connections  {
+  SoView2D.image = LocalImage.outImage
+  OffscreenRender.sceneGraph = SoView2D.self
+  AviWriter.input0 = OffscreenRender.output0
+}

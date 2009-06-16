@@ -1,0 +1,68 @@
+Interface  {
+   Parameters  {
+      Field input {
+         type = string
+      }
+      Field push {
+         type = trigger
+      }
+      Field output {
+         type = string
+      }
+      Field pop {
+         type = trigger
+      }
+      Field listType {
+         type = enum
+         value = "FIFO"
+         values = "FIFO,LIFO"
+      }
+      Field numEntries {
+         type = int
+         value = 0
+      }
+      Field isEmpty {
+         type = bool
+         value = true
+      }
+   } // Parameters 
+
+} // Interface 
+
+Commands  {
+   // Include local functions
+   source = "$(LOCAL)/Queue.py"
+
+   // --- Commands
+   initCommand = init
+   
+   FieldListener {
+      listenField = push
+      command = pushListe
+   }
+
+   FieldListener {
+      listenField = pop
+      command = popListe
+   }
+} // Commands
+
+
+Window Queue {
+   Category Main {
+      Horizontal {
+         Button = push
+         Field = input
+      }
+      Horizontal {
+         Button = pop // { dependsOn = !isEmpty }
+         Field = output { edit = NO }
+      }
+      Buttonbar = listType {
+         expandX = NO
+         show = radio
+      }
+      Field = numEntries { title = "Number Of Entries" edit = NO }
+      Field = isEmpty { edit = NO }
+   } // Category Main
+} // Window 

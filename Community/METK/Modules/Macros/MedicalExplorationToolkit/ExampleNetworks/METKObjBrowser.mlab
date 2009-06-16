@@ -1,0 +1,122 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "421 237 120 56"
+    windows  {
+      window _default {
+        geometry = "814 152 200 200"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "417 333 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module Comment {
+  internal  {
+    frame = "733 381 88 56"
+    windows  {
+      window _default {
+        geometry = "760 442 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "Open a case and play around with the visual parameters."
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "569 421 112 56"
+    windows  {
+      window _default {
+        geometry = "769 701 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKObjBrowser {
+  internal  {
+    frame = "561 341 128 56"
+    windows  {
+      window _default {
+        geometry = "37 159 700 600"
+        sizeHint = "700 600"
+        wasOpen = no
+        wasActive = no
+      }
+      window shortVisuals {
+        geometry = "636 479 415 89"
+        sizeHint = "415 89"
+        wasOpen = no
+        wasActive = no
+      }
+      window  {
+        geometry = "493 254 700 600"
+        sizeHint = "700 600"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+connections  {
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  METKObjBrowser.inObjectContainer = METKManager.outObjectContainer
+}

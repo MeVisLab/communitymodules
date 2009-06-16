@@ -1,0 +1,629 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ImgLoad {
+  internal  {
+    frame = "769 685 80 56"
+    windows  {
+      window _default {
+        geometry = "491 370 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = E:/HNO/Hals12/Air.tif
+    autoLoad = TRUE
+    status = "File open"
+    progress = 0
+    format = DICOM/TIFF
+    dataType = int32
+    sizeX = 513
+    sizeY = 513
+    sizeZ = 63
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = 0
+    maxValue = 1
+    comment = MeVisLab
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "176 176 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "321 509 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "365 437 72 56"
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 3
+    eventType = NoMessage
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "897 529 192 64"
+    windows  {
+      window _default {
+        geometry = "543 459 119 149"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Visibility
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "733 549 120 56"
+    windows  {
+      window _default {
+        geometry = "443 459 400 133"
+        sizeHint = "400 133"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+    listenToROI = r1
+  }
+  internalFields = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "349 581 104 56"
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "897 609 192 64"
+    windows  {
+      window _default {
+        geometry = "543 459 119 149"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "600 472 400 345"
+        sizeHint = "400 345"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "508 314 475 511"
+        sizeHint = "270 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Labeling
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = Structure
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Labels
+    checkBoxInfo = LabelOn
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "537 677 112 56"
+    windows  {
+      window _default {
+        geometry = "381 346 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12.nsp.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "505 613 176 56"
+    windows  {
+      window _default {
+        geometry = "443 455 400 158"
+        sizeHint = "400 158"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = ""
+    imgValues = ""
+    listenToROI = r1
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "505 517 128 56"
+    windows  {
+      window _default {
+        geometry = "443 439 400 216"
+        sizeHint = "400 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKOverlay2D
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+    listenToROI = r1
+    setCSO = FALSE
+  }
+  internalFields = ""
+}
+module ViewSlices {
+  internal  {
+    frame = "885 261 120 56"
+    windows  {
+      window _automatic {
+        geometry = "786 312 289 400"
+        sizeHint = "289 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ViewSlices
+    SliceNumber = 0
+    pressedIndicatorField = FALSE
+    VoxelPosition = "0 0 0"
+    windowCenter = 0
+    windowWidth = 0
+    windowMax = 0
+    windowMin = 0
+    listenToROI = ""
+  }
+  internalFields = ""
+}
+module METK2DLabeling {
+  internal  {
+    frame = "609 413 128 56"
+    windows  {
+      window _default {
+        geometry = "406 443 301 112"
+        sizeHint = "301 112"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "481 223 605 625"
+        sizeHint = "301 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METK2DLabeling
+    priority = 10000
+    debugComment = ""
+    slice = 0
+    enableLabeling = TRUE
+    maxConflictIterations = 20
+    optFactor = 2
+    debugOutput = "Component IDs"
+    debugState = None
+    anchorPointInspection = 1
+    borderDistance = 7
+    minCompSize = 2
+    maxGroupDistance = 50
+    transpThreshold = 0.7
+    encircleSize = 15
+    textColor = "0 0 0"
+    boxColor = "1 1 1"
+    boxTransparency = 0.3
+    borderColor = "0 0 0"
+    lineColor = "1 1 0"
+    autoBoxColor = FALSE
+    innerBorder = 2
+    useAdditionalMask = FALSE
+    sendCSO = TRUE
+    CSO = ""
+  }
+}
+module SimpleView2D {
+  internal  {
+    frame = "609 285 112 56"
+    windows  {
+      window _automatic {
+        geometry = "406 476 354 440"
+        sizeHint = "354 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "613 313 460 443"
+        sizeHint = "208 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SimpleView2D
+    inventorInputOn = FALSE
+    startSlice = 0
+    timePoint = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    maxTimePoint = 0
+    filterMode = FILTER_NEAREST
+    standardKeys = TRUE
+    lutMode = LUT_BEST
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    worldPosition = "-109.813 -358.053 -481.227"
+    worldPositionOn = FALSE
+    worldPositionCol = "0.858621 0.858621 0.858621"
+    worldPositionEditingOn = TRUE
+    worldPositionBlendOnto = 1
+    worldPositionBlendOutside = 0
+    zoomOn = TRUE
+    useTraceColors = FALSE
+    lutSetInputMinMax = TRUE
+    lutMin = -500
+    lutMax = 500
+    slicerOn = TRUE
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutCenter = 0
+    lutWidth = 100
+    ctWindowsLutCenter = 0
+    ctWindowsLutWidth = 100
+    annotationOn = TRUE
+    annotationCol = "0.872414 0.872414 0.872414"
+    annotFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_SHORT
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 0
+    annoInput04 = 100
+    annoInput05 = 500
+    annoInput06 = 1000
+    annoInput07 = 0
+    annoInput08 = 100
+    annoInput09 = HU
+    annoReadPixFloorPos = "333 0 1"
+    annoReadPixVoxelPos = "333.57 0.60211 1.5"
+    annoReadPixWorldPos = "33.1162 -109.956 9"
+    borderOn = TRUE
+    borderColor = "0.872414 0.872414 0.872414"
+    currentTab = 0
+    deletingEnabled = TRUE
+    useCTWinOn = TRUE
+  }
+  internalFields = ""
+}
+module ImgLoad {
+  internal  {
+    frame = "1025 433 96 64"
+    windows  {
+      window _default {
+        geometry = "491 370 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BonesMask
+    filename = E:/HNO/Hals12/Hals12_Bones.dcm
+    autoLoad = TRUE
+    status = "File open"
+    progress = 0
+    format = DICOM/TIFF
+    dataType = int16
+    sizeX = 513
+    sizeY = 513
+    sizeZ = 63
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = 0
+    maxValue = 2179
+    comment = "Anonymized by MeVisLab"
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "176 176 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module Info {
+  internal  {
+    frame = "485 309 56 56"
+    windows  {
+      window _default {
+        geometry = "30 407 564 371"
+        sizeHint = "564 371"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = CalculationOfImagePropertiesFailed
+    memoryImage = Invalid
+    memoryImage2 = ""
+    bypassIndex = -1
+    inPlaceIndex = -1
+    moduleName = METK2DLabeling
+    connectionValid = TRUE
+    dataValid = FALSE
+  }
+}
+module SimpleView2D {
+  internal  {
+    frame = "1013 317 120 56"
+    windows  {
+      window _automatic {
+        geometry = "466 314 354 440"
+        sizeHint = "354 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SimpleView2D1
+    inventorInputOn = FALSE
+    startSlice = 0
+    timePoint = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    maxTimePoint = 0
+    filterMode = FILTER_NEAREST
+    standardKeys = TRUE
+    lutMode = LUT_BEST
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    worldPosition = "-109.813 -358.053 -481.227"
+    worldPositionOn = FALSE
+    worldPositionCol = "0.858621 0.858621 0.858621"
+    worldPositionEditingOn = TRUE
+    worldPositionBlendOnto = 1
+    worldPositionBlendOutside = 0
+    zoomOn = TRUE
+    useTraceColors = FALSE
+    lutSetInputMinMax = TRUE
+    lutMin = 0
+    lutMax = 2179
+    slicerOn = TRUE
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutCenter = 1024
+    lutWidth = 600
+    ctWindowsLutCenter = 1024
+    ctWindowsLutWidth = 600
+    annotationOn = TRUE
+    annotationCol = "0.872414 0.872414 0.872414"
+    annotFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_SHORT
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 1024
+    annoInput04 = 600
+    annoInput05 = 1024
+    annoInput06 = 600
+    annoInput07 = 1024
+    annoInput08 = 600
+    annoInput09 = HU
+    annoReadPixFloorPos = "393 111 42"
+    annoReadPixVoxelPos = "393.474 111.02 42.5"
+    annoReadPixWorldPos = "-103.063 -469.86 -411.812"
+    borderOn = TRUE
+    borderColor = "0.872414 0.872414 0.872414"
+    currentTab = 0
+    deletingEnabled = TRUE
+    useCTWinOn = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  ObjConstrainedIterator.inObjectContainer = ObjInspector.outObjectContainer
+  ObjInfo.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  Visibility.inObjectContainer = Labeling.outObjectContainer
+  METKROISelect.inObjectContainer = METKManager.outObjectContainer
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  Labeling.inObjectContainer = METKManager.outObjectContainer
+  METKCodedSegmentation.inObjectContainer = METKManager.outObjectContainer
+  METKOverlay2D.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKOverlay2D.image = METKCodedSegmentation.image
+  ViewSlices.inObjectContainer = METK2DLabeling.outObjectContainer
+  ViewSlices.input = METKOverlay2D.overlay
+  ViewSlices.overlay = METK2DLabeling.outInventor
+  ViewSlices.soview2d = METKROISelect.image
+  METK2DLabeling.input0 = METKCodedSegmentation.image
+  METK2DLabeling.input1 = ImgLoad.output0
+  METK2DLabeling.inObjectContainer = METKManager.outObjectContainer
+  METK2DLabeling.slice = ViewSlices.SliceNumber
+  SimpleView2D.inImage = METK2DLabeling.output0
+  SimpleView2D.startSlice = ViewSlices.SliceNumber
+  Info.input0 = METK2DLabeling.output0
+  SimpleView2D1.inImage = METKROISelect.image
+  SimpleView2D1.startSlice = SimpleView2D.startSlice
+}

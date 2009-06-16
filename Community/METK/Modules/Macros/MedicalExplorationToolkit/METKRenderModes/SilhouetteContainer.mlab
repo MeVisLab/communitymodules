@@ -1,0 +1,186 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSwitch {
+  internal  {
+    frame = "1241 317 96 56"
+    windows  {
+      window _default {
+        geometry = "703 547 178 92"
+        sizeHint = "178 92"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch
+    whichChild = 0
+  }
+}
+module SoEdgeEmphasize {
+  internal  {
+    frame = "1293 389 136 56"
+    windows  {
+      window _default {
+        geometry = "158 283 207 104"
+        sizeHint = "207 104"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoEdgeEmphasize
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    edgeOffset = "1 -1"
+    edgeColor = "0 0 0"
+    edgeWidth = 3.5
+    on = TRUE
+  }
+}
+module UMDInventorToPointer {
+  internal  {
+    frame = "1193 161 160 64"
+  }
+  fields  {
+    instanceName = SilhouettePointer
+    priority = 10000
+    debugComment = ""
+    Pointer = 178058720
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "1245 245 88 56"
+    windows  {
+      window _default {
+        geometry = "158 177 104 23"
+        sizeHint = "52 23"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoToggle
+    whichChild = -3
+    on = TRUE
+  }
+}
+module SoSilhouette {
+  internal  {
+    frame = "1181 389 104 56"
+    windows  {
+      window _default {
+        geometry = "174 470 175 100"
+        sizeHint = "175 100"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSilhouette
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    outlineColor = "0 0 0"
+    outlineWidth = 3.5
+    onlySilhouette = TRUE
+    on = TRUE
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "1201 469 160 56"
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1245 553 72 64"
+    windows  {
+      window _default {
+        geometry = "350 133 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 0
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  SoSwitch.children = "SoSilhouette.self SoEdgeEmphasize.self"
+  SoEdgeEmphasize.edgeColor = SoSilhouette.outlineColor
+  SoEdgeEmphasize.edgeWidth = SoSilhouette.outlineWidth
+  SoEdgeEmphasize.on = SoSilhouette.on
+  SoEdgeEmphasize.children = UMDPointerToInventor.outInventor
+  SilhouettePointer.inObjectContainer = UMDPointerToInventor.outObjectContainer
+  SilhouettePointer.inInventor = SoToggle.self
+  SoToggle.on = SoSilhouette.on
+  SoToggle.children = SoSwitch.self
+  SoSilhouette.children = UMDPointerToInventor.outInventor
+  UMDPointerToInventor.inObjectContainer = info.outObjectContainer
+  info.acceptedObjects = info.searchObjPattern
+}

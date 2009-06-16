@@ -1,0 +1,25 @@
+//----------------------------------------------------------------------------------
+//! UMDVisDataViewer module definitions
+/*!
+// \file    UMDVisDataViewer.def
+// \author  
+// \date    2007-04-26
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoVisDataViewer {
+  DLL = "Viewpoint"
+
+  genre = ""
+  author = ""
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/ML/Viewpoint/UMDVisDataViewer"
+  hasGroupInputs = FALSE
+
+} // InventorModule SoVisDataViewer
+

@@ -1,0 +1,10 @@
+[Ini]
+LengthTimeUnit=4
+LengthSeconds=6
+RealTime=yes
+
+[Script]
+[2,3] 'SELECTEDOBJECT' setColor red
+[2,3] 'SELECTEDOBJECT' setTransparency 0
+[0,4] 'SELECTEDOBJECT' newView 'All' front 5
+[0,1] 'System' setBaseColors

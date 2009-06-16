@@ -1,0 +1,71 @@
+UserGenres {
+   Genre METK {
+      Genre = METKOpen {
+         Title = "Loader"
+      }
+   }
+}
+
+
+MacroModule METKManager {
+   author             = "Christian Tietjen, Konrad Mühler"
+   status             = "work-in-progress"
+   comment            = "Main module needed for every application using the METK"
+   keywords           = "METK manager central container information ObjMgr"
+   seeAlso            = ""
+   genre              = "METK"
+   externalDefinition = "$(LOCAL)/METKManager.script"
+   exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKRenderModes.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKManager.html"
+}
+
+
+MacroModule METKPackFiles {
+   author             = "Konrad Mühler"
+   status             = "work-in-progress"
+   comment            = "Convert (Pack) TIFF files in a directory"
+   keywords           = "METK tiff dicom"
+   seeAlso            = ""
+   genre              = "METKOpen"
+   externalDefinition = "$(LOCAL)/METKPackFiles.script"
+   documentation      = "http://www.metk.net/METKDocumentation/METKPackFiles.html"
+}
+
+
+MacroModule METKConvertFiles {
+   genre              = "METKOpen"
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "save convert WEM OBJ IV STL"
+   seeAlso            = "SoSceneWriter WEMSave"   
+   externalDefinition = "$(LOCAL)/METKConvertFiles.script"
+   //exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKSaveCase.mlab"
+   //documentation      = "http://www.metk.net/METKDocumentation/METKSaveCase.html"
+}
+
+
+MacroModule METKSaveCase {
+   genre              = "METKOpen"
+   author = "Konrad Mühler, Christian Tietjen"
+   status = "stable"
+   comment = "Helps you to save a case in the right directory. It also prompts a warning if you may lost changes."
+   keywords = "save open dump "
+   seeAlso = "METKManager ObjDump"   
+   externalDefinition = "$(LOCAL)/METKSaveCase.script"
+   exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKSaveCase.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKSaveCase.html"
+}
+
+
+MacroModule METKCaseOptimizer {
+  genre = "METKOpen"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKCaseOptimizer.html"
+  externalDefinition = "$(LOCAL)/METKCaseOptimizer.script"
+  scriptOnly = yes
+} // MacroModule METKCaseOptimizer

@@ -1,0 +1,51 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKCaseOptimizer
+/*!
+// \file    METKCaseOptimizer.script
+// \author  Konrad
+// \date    2006-05-16
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field fileName { type = string value = "" }
+    Field getUnusedFiles { type = trigger }
+  }
+}
+
+
+Commands {
+	// Add the local's parent path to the import path, so that Python looks for local packages
+	importPath = "$(LOCAL)/.."
+
+	source = $(LOCAL)/METKCaseOptimizer.py
+  
+	// Call init() to initalize the script
+	//initCommand = init
+
+	FieldListener getUnusedFiles { command = getUnusedFiles }  	
+}
+
+Window METKCaseOptimizer {
+   style = PlannerStyle
+   Vertical { expandX=Yes expandY=Yes
+      Horizontal Case { w = 500
+         Field = fileName { browseButton = YES browseFilter = "XML files (*.xml)" }         
+      }
+      Button getUnusedFiles { title="Get unused files and DELETE them!!!" }
+   }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2006-02-04T06:23:50
+//# hash: hEMAotvcwOgheO7OhNMFhQk+wQ6CxAa4T7+DeOyvP+XP2YroeR9Uv1pyNq+16YdxtebOzlLHLTIMO+jCu8CW1Q==
+//# MeVis end
+

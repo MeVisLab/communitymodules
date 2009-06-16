@@ -1,0 +1,224 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoLUTEditor {
+  internal  {
+    frame = "173 181 104 56"
+    windows  {
+      window _default {
+        geometry = "1803 280 506 441"
+        sizeHint = "506 441"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoLUTEditor
+    currentColor = "1 1 1"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0 0, 1186.08 0.678431 0.678431 0.678431, 1878.68 0.940919 0.940919 0.940919, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 1186.08 0, 1878.68 1, 4095 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.8 0.8 0.8"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4 0.4 0.4"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module BackgroundMacro2 {
+  internal  {
+    frame = "13 125 136 56"
+    windows  {
+      window _default {
+        geometry = "1686 200 502 569"
+        sizeHint = "502 569"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BackgroundMacro2
+  }
+  internalFields = ""
+}
+module SoGVRVolRen {
+  internal  {
+    frame = "289 133 112 56"
+    windows  {
+      window _default {
+        geometry = "277 188 416 574"
+        sizeHint = "416 574"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGVRVolRen
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    on = TRUE
+    autoLoad = TRUE
+    interactiveQuality = 0.5
+    staticQuality = 1
+    interactiveSamplingRate = 1
+    staticSamplingRate = 1
+    blendMode = Blend
+    octreeNodeSize = NODE_SIZE_32
+    octreeParentComputationMethod = Rank
+    octreeParentComputationRank = 4
+    currentTimePoint = 0
+    maxTimePoint = 0
+    force8bit = FALSE
+    filterVolumeData = FilterLinear
+    filterLut = TRUE
+    subVolumeStartX = 0
+    subVolumeStartY = 0
+    subVolumeStartZ = 0
+    subVolumeEndX = 131
+    subVolumeEndY = 94
+    subVolumeEndZ = 166
+    zbuffer = TRUE
+    permitClipping = TRUE
+    drawOnPlanes = TRUE
+    sizeOutputX = 131
+    sizeOutputY = 94
+    sizeOutputZ = 166
+    incrementalUpdate = TRUE
+    highQualityStaticUpdate = FALSE
+    staticRenderingAfterInteractionOnly = FALSE
+    adaptQualityToWindowSize = TRUE
+    renderMode = Illuminated
+    useImageCacheFile = FALSE
+    imageCacheFilename = ""
+    greyCenter = 0.5
+    greyWidth = 0.5
+    greyInvert = FALSE
+    alphaCenter = 0.5
+    alphaWidth = 0.5
+    alphaInvert = FALSE
+    colorFactor = "1 1 1"
+    alphaFactor = 1
+    enhancementAlphaMix = 0
+    boundaryEnhancement = FALSE
+    boundaryEnhancementFactor = 1.370000005
+    boundaryEnhancementExponent = 0.6000000238
+    boundaryEnhancementGradientBias = 0
+    silhouetteEnhancement = FALSE
+    silhouetteEnhancementExponent = 4
+    silhouetteEnhancementFactor = 2
+    toneShading = FALSE
+    toneShadingWarmColor = "0.266667 0.219608 0.164706"
+    toneShadingColdColor = "0.082353 0.133333 0.32549"
+    toneShadingWarmDiffuse = 0.1230000034
+    toneShadingColdDiffuse = 0.01400000043
+    toneShadingAngle = 45
+    materialAmbient = 0.6029999852
+    materialDiffuse = 1
+    materialSpecular = 1
+    materialSpecularity = 14.89999962
+    light1Enabled = TRUE
+    light1DiffuseIntensity = 1
+    light1SpecularIntensity = 1
+    light1Color = "1 1 1"
+    light1PolarPhi = 45
+    light1PolarRho = 0
+    light2Enabled = FALSE
+    light2DiffuseIntensity = 1
+    light2SpecularIntensity = 1
+    light2Color = "1 1 1"
+    light2PolarPhi = 0
+    light2PolarRho = 0
+    light3Enabled = FALSE
+    light3DiffuseIntensity = 1
+    light3SpecularIntensity = 1
+    light3Color = "1 1 1"
+    light3PolarPhi = -45
+    light3PolarRho = 0
+    gradientQuality = GradientQualityAutomatic
+    selectionAlphaThreshold = 0.200000003
+    selectedPoint1 = "-1 -1 -1"
+    selectedWorldPoint1 = "-1 -1 -1"
+    selectionActive = FALSE
+    useWorldCoords = TRUE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "177 37 128 56"
+    windows  {
+      window _viewer {
+        geometry = "1842 214 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "337 241 112 64"
+    windows  {
+      window _default {
+        geometry = "129 181 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = intensity_data
+    name = $(DemoDataPath)/Shoulder_Fracture.dcm
+    trueName = "C:/Program Files/MeVisLab/data/demodata/Shoulder_Fracture.dcm"
+  }
+  internalFields = ""
+}
+connections  {
+  SoGVRVolRen.image = intensity_data.outImage
+  SoSeparator.children = "BackgroundMacro2.OutLUT SoLUTEditor.outInventorLUT SoGVRVolRen.self"
+}

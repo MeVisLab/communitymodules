@@ -1,0 +1,90 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "353 253 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module Comment {
+  internal  {
+    frame = "653 333 88 56"
+    windows  {
+      window _default {
+        geometry = "675 518 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = ""
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "393 421 112 56"
+    windows  {
+      window _default {
+        geometry = "195 560 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKHierarchyBrowser {
+  internal  {
+    frame = "369 333 160 56"
+    windows  {
+      window _default {
+        geometry = "743 479 115 122"
+        sizeHint = "106 122"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "643 479 400 54"
+        sizeHint = "400 54"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKHierarchyBrowser
+    root = Root
+    rootObjectTypeFilter = Source,Result
+    CSOon = FALSE
+    allObjects = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  METKStructureGroupBrowser.inObjectContainer = METKHierarchyBrowser.outObjectContainer
+  METKHierarchyBrowser.inObjectContainer = METKManager.outObjectContainer
+}

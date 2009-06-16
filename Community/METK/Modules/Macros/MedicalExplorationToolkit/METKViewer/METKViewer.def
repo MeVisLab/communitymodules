@@ -1,0 +1,32 @@
+UserGenres {
+   Genre METK {
+      Genre = METKViewer {
+         Title = "Viewer"
+      }
+   }
+}
+
+MacroModule METKViewer3D {
+   author             = "Konrad Mühler, Christian Tietjen"
+   status             = "stable"
+   comment            = "Viewer with camera. Operated by animation (ObjCommunicator)"
+   keywords           = "METK viewer animation camera"
+   seeAlso            = ""
+   genre              = "METKViewer"
+   externalDefinition = "$(LOCAL)/METKViewer3D.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKRenderModes.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKViewer3D.html"
+}
+
+
+MacroModule METKViewer2D {
+   author             = "Christian Tietjen, Konrad Mühler"
+   status             = "stable"
+   comment            = ""
+   keywords           = "METK viewer view2d"
+   seeAlso            = ""
+   genre              = "METKViewer"
+   externalDefinition = "$(LOCAL)/METKViewer2D.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKImageDisplay.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKViewer2D.html"
+}

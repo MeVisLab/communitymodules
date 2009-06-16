@@ -1,0 +1,45 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field outInventor { internalName = output.self }
+   }
+   Parameters {
+      Field creationTime { type = enum value = "OnVisible" values = "OnLoad,OnVisible" }
+      Field visibleOn    { type = enum value = "GeneralVisible" values = "StipplingVisible,GeneralVisible" }
+   }
+}
+
+Deployment {
+   module = SoStippling
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKStippling.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener visibleOn { command = visibleOnChanged }
+}
+
+Window METKStippling {
+   Vertical {
+      expandY = yes
+      Field = creationTime
+      Field = visibleOn
+      Panel {
+         module  = METKStructureGroupBrowser
+         window  = singleListView
+         expandY = yes
+      }
+   }
+}

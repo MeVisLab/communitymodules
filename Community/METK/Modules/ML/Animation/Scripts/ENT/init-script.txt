@@ -1,0 +1,10 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=1
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'All' setVisible true
+[0] 'All' view front 1

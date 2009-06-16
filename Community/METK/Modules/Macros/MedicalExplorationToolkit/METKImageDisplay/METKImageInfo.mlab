@@ -1,0 +1,162 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ImageStat {
+  internal  {
+    frame = "1421 365 88 56"
+    windows  {
+      window _default {
+        geometry = "915 301 449 586"
+        sizeHint = "487 586"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageStat
+    innerMin = 0
+    innerMax = 1
+    autoUpdate = FALSE
+    perSlice = FALSE
+    currentSlice = 0
+    resultsValid = FALSE
+    voxelsOutOfRange = 0
+    useMask = TRUE
+    maskStatus = "EMPTY mask image! Use mask is ignored!"
+  }
+}
+module Bypass {
+  internal  {
+    frame = "1365 529 72 64"
+  }
+  fields  {
+    instanceName = ROI
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module METKLoadSegMask {
+  internal  {
+    frame = "1457 533 144 56"
+    windows  {
+      window _default {
+        geometry = "80 148 400 461"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "33 176 453 387"
+        sizeHint = "204 138"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLoadSegMask
+    objID = ""
+  }
+  internalFields = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "1185 533 160 56"
+    windows  {
+      window _default {
+        geometry = "28 168 295 443"
+        sizeHint = "181 370"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1054 587 244 331"
+        sizeHint = "244 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Image
+    infoID = CodedSegObjectValue
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1229 609 72 64"
+    windows  {
+      window _default {
+        geometry = "484 10 829 1157"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "26 45 420 445"
+        sizeHint = "420 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Appearance
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 63
+    boolValue = TRUE
+    doubleValue = 0
+    vec3Value = "0.8 0.8 0.8"
+    vec4Value = "0 0 0 0"
+    mat4Value = "0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 42
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  ImageStat.input0 = ROI.output0
+  ImageStat.input1 = METKLoadSegMask.mask
+  METKLoadSegMask.inObjectContainer = info.outObjectContainer
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+}

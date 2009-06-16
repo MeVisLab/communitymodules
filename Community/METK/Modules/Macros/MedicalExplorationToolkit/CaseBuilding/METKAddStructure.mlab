@@ -1,0 +1,234 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKMsgSender {
+  internal  {
+    frame = "745 157 128 56"
+    windows  {
+      window _default {
+        geometry = "686 534 234 176"
+        sizeHint = "234 176"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgSender
+    priority = 10000
+    debugComment = ""
+    message = createIVFile
+    data = ""
+    status = idle
+    done = FALSE
+    successful = FALSE
+  }
+}
+module StructureFieldContainer {
+  internal  {
+    frame = "1105 317 160 56"
+    windows  {
+      window _default {
+        geometry = "701 525 204 194"
+        sizeHint = "204 194"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StructureFieldContainer
+  }
+  internalFields = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "729 237 160 56"
+    windows  {
+      window _default {
+        geometry = "703 437 181 370"
+        sizeHint = "181 370"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Global
+    infoID = ObjectType
+    infoValue = Source
+    useInfoValue = TRUE
+    objectID = ""
+  }
+}
+module SettingsManager {
+  internal  {
+    frame = "1113 237 128 56"
+    windows  {
+      window _default {
+        geometry = "990 276 312 418"
+        sizeHint = "312 418"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SettingsManager
+    storedFields = "StructureFieldContainer.strGroup,
+StructureFieldContainer.color,
+StructureFieldContainer.transparency,
+StructureFieldContainer.visible"
+    restrictLoad = FALSE
+    autoLoad = TRUE
+    filename = ""
+    postfix = ""
+    settingsString = ""
+    autoRestore = FALSE
+  }
+  internalFields = ""
+}
+module ImgSave {
+  internal  {
+    frame = "905 237 80 56"
+    windows  {
+      window _default {
+        geometry = "592 442 423 360"
+        sizeHint = "423 360"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = ""
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = FALSE
+    sourceName = ""
+    postfix = .result1
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = Packbits
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "949 341 72 56"
+  }
+  fields  {
+    instanceName = Bypass
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Info {
+  internal  {
+    frame = "1037 237 56 56"
+    windows  {
+      window _default {
+        geometry = "521 437 564 371"
+        sizeHint = "564 371"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = OperatorGraphDisconnected
+    memoryImage = Invalid
+    memoryImage2 = ""
+    moduleName = Bypass
+    connectionValid = TRUE
+    dataValid = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "837 341 72 56"
+    windows  {
+      window _default {
+        geometry = "26 45 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = PatientObject
+    acceptedLayers = Patient
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKMsgSender.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  ObjConstrainedIterator.inObjectContainer = ObjInfo.outObjectContainer
+  ImgSave.input0 = Bypass.output0
+  Info.input0 = Bypass.output0
+}

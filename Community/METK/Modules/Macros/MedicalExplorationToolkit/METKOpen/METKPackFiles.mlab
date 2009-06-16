@@ -1,0 +1,97 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ImgSave {
+  internal  {
+    frame = "521 405 80 56"
+    windows  {
+      window _default {
+        geometry = "70 89 299 359"
+        sizeHint = "299 359"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "158 177 881 769"
+        sizeHint = "315 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = ""
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = FALSE
+    sourceName = ""
+    postfix = .result1
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = None
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "521 533 80 56"
+    windows  {
+      window _default {
+        geometry = "471 123 315 319"
+        sizeHint = "315 319"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+connections  {
+  ImgSave.input0 = ImgLoad.output0
+}

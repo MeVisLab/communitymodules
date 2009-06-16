@@ -1,0 +1,80 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "773 341 72 56"
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "729 249 160 64"
+    windows  {
+      window _default {
+        geometry = "224 243 363 524"
+        sizeHint = "196 385"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = iterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Global
+    infoID = ObjectType
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+connections  {
+  iterator.inObjectContainer = ObjInfo.outObjectContainer
+}

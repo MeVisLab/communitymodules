@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! UMDBoundingBoxWrapper2 module definition
+/*!
+// \file    UMDBoundingBoxWrapper2.def
+// \author  Konrad Mühler
+// \date    2004-12-21
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDBoundingBoxWrapper2 {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDBoundingBoxWrapper2.script"
+
+} // MacroModule UMDBoundingBoxWrapper2
+

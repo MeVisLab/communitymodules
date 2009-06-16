@@ -1,0 +1,98 @@
+//----------------------------------------------------------------------------------
+//! Macro module ViewInView
+/*!
+// \file    ViewInView.script
+// \author  Konrad Mühler
+// \date    2007-04-05
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+  	Field showFenster { type = bool value = true persistent = no  }
+  }
+}
+
+
+Commands {
+	source = "$(LOCAL)/ViewInView.py"
+	
+	FieldListener METKCSO.cso { command = viewAllSmall }
+}
+
+
+Window {
+
+  initCommand = initWindowSlot
+  
+  w=1200
+  h=900
+
+  Horizontal {
+    expandX = yes
+    expandY = yes 
+
+    Vertical {
+      expandX = no
+      expandY = yes       
+      Button showFenster { }
+      Panel { module=METKManager }
+      Vertical { expandY = yes }
+    }
+      
+    Vertical {  
+      name = mainFrame
+      expandX = yes
+      expandY = yes 
+
+      FreeFloat {
+        name = freeFloatFrame
+
+        Vertical {
+          name = renderAreaFrame
+          expandX = yes
+          expandY = yes
+          Panel {
+          module = METKViewer3D
+            expandX = yes
+            expandY = yes
+          }
+        } // Vertical
+
+        Vertical {
+          name = renderAreaPanelFrame
+          Viewer smallViewer.viewer.self { 
+            //module = METKViewer3D 
+            border=false
+          }
+        } // Vertical
+
+      } // FreeFloat      
+
+    } // Vertical  
+  
+  } // Horizontal
+
+  FieldListener showFenster { command = showFensterSlot }
+
+  EventFilter {
+    filter  = Resize
+    control = mainFrame
+    command = mainFrameResizeEventSlot
+  }
+}
+
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2006-06-30T04:17:32
+//# hash: jxg7lna34iNts6U5j2N0czbsG03ZYYw5rcpr3dpMkFurlQZhDlGFiPBZC0gMu0IcRS9qcZYh8mOURpHUSakpBw==
+//# MeVis end
+

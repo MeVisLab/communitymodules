@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR"
+ content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+  <meta name="Description" content="MeVisLab module help page template">
+  <title>Module Help Page</title>
+</head>
+<body>
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a
+ href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a
+ href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#KnownBugs">Known
+Bugs</a>
+<hr width="100%"></center>
+<h2>
+AviWriter</h2>
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+<blockquote>The <span style="font-weight: bold;">AviWriter </span>module
+can collect an arbitrary number of images via its image input and
+compress then into an AVI. The AVI is compressed by a user-selectable
+compression algorithm and is written onto disk.<br>
+</blockquote>
+<h3>
+<a name="Usage"></a>Usage</h3>
+<blockquote>Choose a filename, a suitable compression algorithm and
+provide the module's image input with an ML image. This image must have
+a z-extend of one, say it must be one slice. The datatype of the image
+must be MLuint8 or a compatible. The image may be a greyvalue image or
+a colored one with three or four color channels (RGB or RGBA). If the
+image is of the latter type (RGBA), the fourth alpha channel is simply
+ignored.<br>
+Also, the input image's width and height must be a multiple of four.
+This is due to the usage of the Windows vfw-API. Additionally, the
+image extends must not vary while recording or those particular frames
+are being ignored.<br>
+  <br>
+If the module's '<span style="font-style: italic;">Enable Recording</span>'
+is checked, any image input change (or notification) triggers the
+module to record a frame, which is immediatly inserted into the AVI. To
+finish a recording, press '<span style="font-style: italic;">Finish
+Recording</span>', in order to cancel a recording, press '<span
+ style="font-style: italic;">Reset Recording</span>'.<br>
+  <br>
+On the '<span style="font-style: italic;">Codec</span>'-tab, there is
+an information field which displays the registered, available
+compression codecs on the current system. All codecs have unique
+identifiers consisting of four letters. If a codec is specified, only
+the first four letters are handled. Note that some of the displayed
+codecs are 'Read only' codecs, which means that one can play a movie
+that is compressed with a certain codec (in other words: the codec may
+be used for decompression), but this codec cannot be used for
+compressing images to a movie. In this case an error message is
+displayed in the status field and a default codec is chosen instead.<br>
+</blockquote>
+<h3>
+<a name="Details"></a>Details</h3>
+<blockquote>The AviWriter makes use of the Windows vfw-API, where <span
+ style="font-style: italic;">vfw </span>stands for VideoForWindows.
+This brings forth that the module is available only under Windows.<br>
+</blockquote>
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+<blockquote>The input image must have a height and width which are
+multiples of four (4). The extend in z-dimension must be 1 (a sinlge
+slice). The datatype of the input image must be MLuint8 or compatible.<br>
+The color dimension can be 1 which results into a greyvalue movie. Or,
+the color dimension can have an extend of 3 or more, where the first
+three entries are interpreted as RGB values.<br>
+</blockquote>
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+<blockquote>The ouuput of the module is an AVi written onto disk.<br>
+</blockquote>
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+<blockquote>
+  <h4>Main</h4>
+  <br>
+  <table style="text-align: left; width: 80%;" border="0"
+ cellspacing="2" cellpadding="2">
+    <tbody>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Enable
+Recording<br>
+        </td>
+        <td style="vertical-align: top;">If checked, all valid new
+images connected to the module's image input will be recorded. The
+frames are added on-the-fly into the current AVI movie. If unchecked,
+the module is set to passiv stance and no frames are recorded.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Output
+Filename<br>
+        </td>
+        <td style="vertical-align: top;">The name of the output file.
+This must be specified before a recording is started.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Fps<br>
+        </td>
+        <td style="vertical-align: top;">The number of frames per
+second of the target AVI movie.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Codec<br>
+        </td>
+        <td style="vertical-align: top;">The currently used compression
+codec. This field is only an information field: the codec can be chosen
+on the '<span style="font-style: italic;">Codec</span>'-tab.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Num.
+Frames<br>
+        </td>
+        <td style="vertical-align: top;">This information field
+displays the number of frames recorded so far into the current movie.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Reset
+Recording<br>
+        </td>
+        <td style="vertical-align: top;">If clicked, the current
+recording of a movie is canceled and a frames are being discarded.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Finish
+AVI<br>
+        </td>
+        <td style="vertical-align: top;">If clicked, the internal movie
+stream is closed. <span style="font-weight: bold;">Beware</span>: if
+the input images changes after a movie has been finished and '<span
+ style="font-style: italic;">Enable Recording</span>' is still checked,
+a new movie is created under the old name and the old movie is lost.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Status<br>
+        </td>
+        <td style="vertical-align: top;">Displays some status
+information and error messages.<br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <h4>Codec</h4>
+  <br>
+  <table style="text-align: left; width: 80%;" border="0"
+ cellspacing="2" cellpadding="2">
+    <tbody>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Codec<br>
+        </td>
+        <td style="vertical-align: top;">Here a codec code consisting
+of four letters can be entered. The codec is checked against the codecs
+installed on the current system and is accepted, if the codec is
+available. Addionally, the codec codes of all installed codecs are
+displayed in the field below.<br>
+        </td>
+      </tr>
+      <tr>
+        <td
+ style="vertical-align: top; font-weight: bold; white-space: nowrap;">Available
+Codecs<br>
+        </td>
+        <td style="vertical-align: top;">Displays the codec codes of
+all installed codecs on the current system.<br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+</blockquote>
+<h3>
+<a name="EventInteract"></a>Events &amp; Interaction</h3>
+<blockquote>None.<br>
+</blockquote>
+<h3>
+<a name="Example"></a>Example<br>
+</h3>
+<blockquote>In the example network, adjust the default codec if
+necessary. <br>
+Otherwise simply increment the '<span style="font-style: italic;">Start
+Slice</span>' value on the SoView2D-panel. If satisfied, click '<span
+ style="font-style: italic;">Finish AVI</span>' and have a look at the
+movie!<br>
+</blockquote>
+<h3>
+<a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+<blockquote>None</blockquote>
+<h3>
+<a name="KnownBugs"></a>Known Bugs</h3>
+<blockquote>None</blockquote>
+</body>
+</html>

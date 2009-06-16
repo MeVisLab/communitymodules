@@ -1,0 +1,35 @@
+//----------------------------------------------------------------------------------
+//! UMDMLInventorDemo module definitions.
+/*!
+// \file    UMDMLInventorDemo.def
+// \author  Konrad Mühler
+// \date    2008-01-07
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule MLInventorDemo
+//----------------------------------------------------------------------------------
+MLModule MLInventorDemo {
+  DLL            = "UMDMLInventorDemo"
+
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/MLInventorDemo.html"
+  exampleNetwork = "$(LOCAL)/networks/MLInventorDemoExample.mlab"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDMLInventorDemo"
+  
+  Window {
+    Vertical {
+      Field cubeSize {
+        tooltip = ""
+      }
+    }
+  }
+} // MLModule MLInventorDemo
+

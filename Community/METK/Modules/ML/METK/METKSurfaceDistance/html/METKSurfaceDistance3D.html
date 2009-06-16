@@ -1,0 +1,72 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr WIDTH="100%"></center>
+
+<h2>METKSurfaceDistance3D</h2>
+
+<h3>
+<a NAME="Purpose"></a>Purpose</h3>
+
+<blockquote>If you want to know the distance between structures in 3D, you can 
+  use the module. For accuracy purposes, the distance should be compute on the 
+  original volume data. Therefore, for given objects, the distance should be computed, 
+  for example with <a href="../../../../Projects/MedicalExplorationToolkit/METKImageDisplay/html/METKDistanceTransform.html">METKDistanceTransform</a>. 
+  The distance to other structures will be computed, if the according entries 
+  in the ObjMgr database are set.</blockquote>
+
+<h3>
+<a NAME="Usage"></a>Usage</h3>
+
+<blockquote>The distance is computed, if the structure is visible (LAY_APPEARANCE, 
+  INF_VISIBLE) and if the entry for distance computing is set (LAY_APPEARANCE, 
+  INF_SURFACEDIST). When the distance transformation image changes, the distances 
+  will be re-computed.</blockquote>
+
+<h3>Inputs</h3>
+
+<blockquote>The module has one input for the <a href="../../../../Projects/MedicalExplorationToolkit/METKOpen/html/METKManager.html">METKManager</a> 
+  and one for the distance transformation image.</blockquote>
+
+<h3>
+<a NAME="Outputs"></a>Outputs</h3>
+
+<blockquote>The module has one output for other METK modules and one for the SoIndexedTriangleStripsets 
+  containing the distance information.</blockquote>
+
+<h3>
+<a NAME="Parameters"></a>Parameters</h3>
+
+<blockquote>
+  <h4>Near/Far Distance</h4>
+The distance in mm 
+  <h4>Near/Far Distance Color</h4>
+  The color used for these distances. Distances between 0 mm and NearDistance 
+  mm<b></b> are colored with NearDistanceColor, and distances nearer then FarDistance 
+  are colored with the other one.</blockquote>
+
+<h3><a NAME="Tips&Tricks"></a>Tips &amp; Tricks</h3>
+
+<blockquote>The color and/or distance can only be changed before it was computed 
+  for the first time for a particular structure.</blockquote>
+
+<h3>
+<a NAME="KnownBugs"></a>Known Bugs</h3>
+
+<blockquote>None</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoShapePartition {
+  internal  {
+    frame = "761 181 128 56"
+    windows  {
+      window _default {
+        geometry = "543 455 201 159"
+        sizeHint = "201 159"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapePartition
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    shapePartitioning = FALSE
+    cubeSize = 20
+    valid = TRUE
+    autoUpdate = TRUE
+  }
+}
+module SoSceneWriter {
+  internal  {
+    frame = "673 13 112 56"
+    windows  {
+      window _default {
+        geometry = "556 294 295 93"
+        sizeHint = "295 93"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSceneWriter
+    filename = scene
+    format = INVENTOR_ASCII
+    bColorPerVertex = TRUE
+    bUseGlobalColor = FALSE
+    bNormalPerVertex = TRUE
+    bSaveNormals = TRUE
+  }
+}
+module WEMSave {
+  internal  {
+    frame = "869 13 88 56"
+    windows  {
+      window _default {
+        geometry = "402 459 482 145"
+        sizeHint = "482 145"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMSave
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = FALSE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = FALSE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    filename = ""
+    fileType = "Winged Edge Mesh File Format (.wem)"
+    inWEMValid = TRUE
+  }
+}
+module SoFileToSceneGraph {
+  internal  {
+    frame = "661 101 152 56"
+  }
+  fields  {
+    instanceName = SoFileToSceneGraph
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoWEMConvertInventor {
+  internal  {
+    frame = "829 101 168 56"
+    windows  {
+      window _default {
+        geometry = "678 547 250 71"
+        sizeHint = "250 71"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMConvertInventor
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    progress = 0
+    convertInfo = Ready
+    autoApply = TRUE
+    isProcessing = FALSE
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "745 253 160 56"
+    windows  {
+      window _default {
+        geometry = "672 340 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = Files
+    infoID = InventorPointer
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "729 405 192 56"
+    windows  {
+      window Settings {
+        geometry = "173 353 400 345"
+        sizeHint = "400 345"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Files
+    checkBoxInfo = Convert
+  }
+  internalFields = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "745 333 160 56"
+    windows  {
+      window _default {
+        geometry = "280 290 181 370"
+        sizeHint = "181 370"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Files
+    infoID = Convert
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "789 489 72 64"
+    windows  {
+      window _default {
+        geometry = "597 36 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Appearance,Communication
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Ready
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  SoShapePartition.input = UMDPointerToInventor.outInventor
+  SoSceneWriter.sceneGraph = SoFileToSceneGraph.outConvertedScene
+  WEMSave.inWEM = SoWEMConvertInventor.outWEM
+  SoFileToSceneGraph.inputObject = SoShapePartition.outConvertedShape
+  SoWEMConvertInventor.inScene = SoShapePartition.outConvertedShape
+  UMDPointerToInventor.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = info.outObjectContainer
+  ObjConstrainedIterator.inObjectContainer = METKStructureGroupBrowser.outObjectContainer
+}

@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! METKToSolverConnection module definitions
+/*!
+// \file    METKToSolverConnection.def
+// \author  Mathias Neugebauer
+// \date    2006-03-21
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule METKToSolverConnection {
+  DLL = "Viewpoint"
+
+  genre = "METKViewpoint"
+  author = "Mathias Neugebauer, Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/ML/Viewpoint/METKToSolverConnection"
+}

@@ -1,0 +1,88 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module TimeCounter {
+  internal  {
+    frame = "685 397 104 56"
+    windows  {
+      window _default {
+        geometry = "93 254 139 148"
+        sizeHint = "139 148"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TimeCounter
+    min = 1
+    max = 10
+    step = 1
+    frequency = 0.05000000075
+    on = FALSE
+    value = 5
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "581 393 72 64"
+    windows  {
+      window _automatic {
+        geometry = "26 45 420 445"
+        sizeHint = "420 445"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "26 45 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = GUI
+    acceptedLayers = InfoWin
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections = ""

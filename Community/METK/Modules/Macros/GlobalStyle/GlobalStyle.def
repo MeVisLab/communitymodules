@@ -1,0 +1,60 @@
+DefineStyle kStyle {
+	derive = default
+
+	// font for titles in the GUI (Buttons, Labels, ...)
+	titleFont {
+		family = "Tahoma"
+		size = 7
+		weight = Normal
+	}
+
+	// font for editing components in the GUI (NumberEdit, TextView, ...)
+	editFont {
+		family = "Tahoma"
+		size = 7
+		weight = Normal
+	}
+
+	// font for TabViews
+	tabFont {
+		family = "Tahoma"
+		size = 7
+		weight = Normal
+	}
+
+	// font for Box group titles
+	boxFont {
+		family = "Tahoma"
+		size = 7
+		weight = Normal
+	}
+
+	colors {
+		//fg  = #000000
+		//bg  = #FFFFFF:$(LOCAL)/img/verlauf-01.png		
+		bg  = #D4D0C8
+		
+		button      = #D4D0C8		
+		buttonText  = #000000
+
+		editText    = #000000
+		editBg      = #FFFFFF
+
+		light     = #FFFFFF
+		//midlight  = #00FF00
+		//dark      = #0000FF
+		//mid       = #0044FF	
+		//shadow    = #00FFFF
+
+		//highlight        = #8800FF
+		//highlightedText  = #0088FF
+
+		//brightText   = #88FF00
+		//link         = #
+		//linkVisited  = COLOR
+
+		boxText  = #000000
+		tabText  = #000000
+		
+	}
+}

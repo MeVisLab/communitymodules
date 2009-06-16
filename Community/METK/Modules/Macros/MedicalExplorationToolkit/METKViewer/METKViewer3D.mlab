@@ -1,0 +1,705 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoOrientationModel {
+  internal  {
+    frame = "897 317 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "26 59 143 27"
+        sizeHint = "143 27"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoOrientationModel
+    model = MAN
+  }
+}
+module SoOrientationInset {
+  internal  {
+    frame = "901 253 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "339 516 229 104"
+        sizeHint = "229 104"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoOrientationInset
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    on = FALSE
+    projectionType = ORTHOGRAPHIC
+    location = LOWER_RIGHT
+    size = "100 100"
+    sizeAsPercentage = FALSE
+  }
+}
+module SoMouseGrabber {
+  internal  {
+    frame = "-295 481 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "504 227 477 449"
+        sizeHint = "477 449"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = singleMove
+    on = TRUE
+    normalized = FALSE
+    clamp = TRUE
+    button1 = RELEASED
+    button2 = IGNORED
+    button3 = IGNORED
+    button1Pressed = FALSE
+    button2Pressed = FALSE
+    button3Pressed = FALSE
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = RELEASED
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    absX = 184
+    absY = 194
+    y = 0.5600000024
+    x = 0.5400000215
+    y = 0.5600000024
+    xmin = 0
+    xmax = 1
+    ymin = 0
+    ymax = 1
+    cursorPresent = FALSE
+    checkCursorPresent = FALSE
+    maskValid = TRUE
+    setEventHandled = FALSE
+    setWheelEventHandled = FALSE
+    flipX = FALSE
+    flipY = FALSE
+    swapXY = FALSE
+    sensitivity = 1
+    wheelOverflow = FALSE
+    wheel = 0
+    wheelStep = 1
+    wheelMin = 0
+    wheelMax = 100
+  }
+}
+module SoMouseGrabber {
+  internal  {
+    frame = "-295 393 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1396 389 477 449"
+        sizeHint = "477 449"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "807 114 381 741"
+        sizeHint = "303 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mousePickExt
+    on = TRUE
+    normalized = FALSE
+    clamp = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    button1Pressed = FALSE
+    button2Pressed = FALSE
+    button3Pressed = FALSE
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = RELEASED
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    absX = 36
+    absY = 260
+    y = 0.8899999857
+    x = 0.01499999966
+    y = 0.8899999857
+    xmin = 0
+    xmax = 1
+    ymin = 0
+    ymax = 1
+    cursorPresent = FALSE
+    checkCursorPresent = FALSE
+    maskValid = FALSE
+    setEventHandled = FALSE
+    setWheelEventHandled = FALSE
+    flipX = FALSE
+    flipY = FALSE
+    swapXY = FALSE
+    sensitivity = 1
+    wheelOverflow = FALSE
+    wheel = 0
+    wheelStep = 1
+    wheelMin = 0
+    wheelMax = 100
+  }
+}
+module METKObjBrowser {
+  internal  {
+    frame = "425 377 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "293 234 700 600"
+        sizeHint = "700 600"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "537 314 213 440"
+        sizeHint = "213 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = propExtGUI
+  }
+  internalFields = ""
+}
+module SoMouseGrabber {
+  internal  {
+    frame = "-295 329 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1396 389 477 449"
+        sizeHint = "477 449"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "807 114 381 741"
+        sizeHint = "303 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mousePropExt
+    on = TRUE
+    normalized = FALSE
+    clamp = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = PRESSED
+    button1Pressed = FALSE
+    button2Pressed = FALSE
+    button3Pressed = FALSE
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = RELEASED
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    absX = 117
+    absY = 142
+    y = 0.7599999905
+    x = 0.462500006
+    y = 0.7599999905
+    xmin = 0
+    xmax = 1
+    ymin = 0
+    ymax = 1
+    cursorPresent = FALSE
+    checkCursorPresent = FALSE
+    maskValid = FALSE
+    setEventHandled = FALSE
+    setWheelEventHandled = FALSE
+    flipX = FALSE
+    flipY = FALSE
+    swapXY = FALSE
+    sensitivity = 1
+    wheelOverflow = FALSE
+    wheel = 0
+    wheelStep = 1
+    wheelMin = 0
+    wheelMax = 100
+  }
+}
+module SoDirectionalLight {
+  internal  {
+    frame = "-155 333 136 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoDirectionalLight
+    on = TRUE
+    intensity = 1
+    color = "1 1 1"
+    direction = "0 0 -1"
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "793 257 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "543 459 178 92"
+        sizeHint = "178 92"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = logoSwitch
+    whichChild = -1
+  }
+}
+module SoVisLogo {
+  internal  {
+    frame = "793 325 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "541 435 409 197"
+        sizeHint = "204 198"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVisLogo
+    fldLocalPath = D:/Modules-2.0/UMD/METK/Modules/Inventor/UMDVisLogo
+    fldFilename = vislogo
+    fldCorner = topright
+  }
+}
+module IdleTrigger {
+  internal  {
+    frame = "797 37 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "224 243 211 80"
+        sizeHint = "211 80"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IdleTrigger
+    minIntermediateTime = 10
+    on = FALSE
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "153 393 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "92 111 195 94"
+        sizeHint = "190 94"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = shapeHintsSwitch
+    whichChild = -3
+  }
+}
+module METKPicking {
+  internal  {
+    frame = "301 381 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "136 155 363 180"
+        sizeHint = "363 180"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKPicking
+    priority = 10000
+    debugComment = ""
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    pickPixelTolerance = 3
+    objName = ""
+    objList = ""
+    mouseOverName = ""
+    mouseOverList = ""
+    selection = "0 0 0"
+    enableMouseOver = FALSE
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "273 449 160 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = iterSyncViewer
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "637 513 88 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = tempInput
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "529 513 96 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = afterScene
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "413 513 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = beforeScene
+  }
+}
+module SoShapeHints {
+  internal  {
+    frame = "161 469 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "48 67 294 173"
+        sizeHint = "294 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapeHints
+    vertexOrdering = COUNTERCLOCKWISE
+    shapeType = SOLID
+    faceType = UNKNOWN_FACE_TYPE
+    creaseAngle = 0
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "317 521 72 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "26 45 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module SoOrthographicCamera {
+  internal  {
+    frame = "-7 329 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "38 300 464 276"
+        sizeHint = "464 276"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = camera
+    viewportMapping = ADJUST_CAMERA
+    position = "-0.2014950066804886 -0.7345409989356995 -0.6479570269584656"
+    orientation = "0.9042034149169922 -0.4201552271842957 0.07671854645013809 2.288579940795898"
+    aspectRatio = 1
+    nearDistance = 0
+    farDistance = 2
+    focalDistance = 1
+    height = 2
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "601 33 176 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "561 399 515 408"
+        sizeHint = "515 408"
+        wasOpen = no
+        wasActive = no
+      }
+      window _viewer {
+        geometry = "268 287 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "196 171 453 445"
+        sizeHint = "453 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = viewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = SORTED_OBJECT_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 7
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = FALSE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = FALSE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_CORONAL
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = FALSE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 0
+    farDistance = 0
+    focalDistance = 0
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_SCENE_AND_VIEWER
+    button2events = TO_SCENE_AND_VIEWER
+    button3events = TO_SCENE_AND_VIEWER
+    keyEvents = TO_SCENE_AND_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = FALSE
+    enableHome = FALSE
+    enableViewAll = TRUE
+    enableSeek = FALSE
+    enableASC = TRUE
+    enableProjType = FALSE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module UMDViewerCommunicator {
+  internal  {
+    frame = "601 325 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "679 128 424 445"
+        sizeHint = "424 445"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "605 353 424 445"
+        sizeHint = "424 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDViewerCommunicator
+    ObjName = view3d
+    CamOrientation = "0.9042034149169922 -0.4201552271842957 0.07671854645013809 2.288579940795898"
+    CamPosition = "-0.2014950066804886 -0.7345409989356995 -0.6479570269584656"
+    CamHeight = 2
+    CamFocalDistance = 1
+    Framerate = 7
+    Status = Ready
+    ProtocolViewerStatus = FALSE
+    BackgroundColor = "1 1 1"
+    BackgroundGreyCenter = 0.5
+    BackgroundGreyWidth = 1
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "189 137 376 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "158 177 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = groupViewer3d
+  }
+}
+connections  {
+  SoOrientationInset.children = SoOrientationModel.self
+  propExtGUI.inObjectContainer = info.outObjectContainer
+  propExtGUI.objID = METKPicking.objName
+  logoSwitch.children = SoVisLogo.self
+  shapeHintsSwitch.children = SoShapeHints.self
+  METKPicking.inObjectContainer = iterSyncViewer.outObjectContainer
+  iterSyncViewer.inObjectContainer = info.outObjectContainer
+  tempInput.children = ""
+  afterScene.children = ""
+  beforeScene.children = ""
+  camera.position = UMDViewerCommunicator.CamPosition
+  camera.orientation = UMDViewerCommunicator.CamOrientation
+  camera.focalDistance = UMDViewerCommunicator.CamFocalDistance
+  camera.height = UMDViewerCommunicator.CamHeight
+  viewer.background = UMDViewerCommunicator.BackgroundColor
+  viewer.cancelRecording = UMDViewerCommunicator.CancelRecording
+  viewer.singleFrame = UMDViewerCommunicator.CaptureFrame
+  viewer.createAvi = UMDViewerCommunicator.CreateAVI
+  viewer.frameRate = UMDViewerCommunicator.Framerate
+  viewer.frameRateAvi = UMDViewerCommunicator.Framerate
+  viewer.updateMLOutput = UMDViewerCommunicator.UpdateMLOutput
+  viewer.children = groupViewer3d.self
+  UMDViewerCommunicator.CamOrientation = camera.orientation
+  UMDViewerCommunicator.CamPosition = camera.position
+  UMDViewerCommunicator.CamHeight = camera.height
+  UMDViewerCommunicator.CamFocalDistance = camera.focalDistance
+  groupViewer3d.children = "singleMove.self mousePropExt.self mousePickExt.self SoDirectionalLight.self camera.self shapeHintsSwitch.self METKPicking.outScene beforeScene.self UMDViewerCommunicator.self afterScene.self logoSwitch.self SoOrientationInset.self"
+}
+networkModel = ""

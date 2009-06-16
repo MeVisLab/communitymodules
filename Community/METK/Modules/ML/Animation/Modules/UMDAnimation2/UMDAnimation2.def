@@ -1,0 +1,67 @@
+//----------------------------------------------------------------------------------
+//! UMDAnimation2 module definitions.
+/*!
+// \file    UMDAnimation2.def
+// \author  Konrad Mühler
+// \date    2005-05-04
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule UMDAnimation2
+//----------------------------------------------------------------------------------
+MLModule UMDAnimation2 {
+  DLL            = "Animation"
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "stable"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  //documentation  = "$(LOCAL)/html/UMDAnimation2.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/Animation/UMDAnimation2"
+  externalDefinition = "$(LOCAL)/UMDAnimation2.script"
+
+} // MLModule UMDAnimation2
+
+
+
+/*DefineStyle kStyle {
+  derive = default
+
+  // font for titles in the GUI (Buttons, Labels, ...)
+  titleFont {
+    family = "Tahoma"
+    size = 10
+    weight = Normal
+  }
+
+  // font for editing components in the GUI (NumberEdit, TextView, ...)
+  editFont {
+    family = "Tahoma"
+    size = 10
+    weight = Normal
+  }
+
+  // font for TabViews
+  tabFont {
+    family = "Tahoma"
+    size = 10
+    weight = Normal
+  }
+
+  // font for Box group titles
+  boxFont {
+    family = "Tahoma"
+    size = 10
+    weight = Normal
+  }
+
+  colors {
+    fg  = #000000
+    bg  = #FFFFFF:$(LOCAL)/img/verlauf-01.png    
+  }
+}*/
+

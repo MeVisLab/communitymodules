@@ -1,0 +1,117 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "913 333 192 56"
+    windows  {
+      window Settings {
+        geometry = "603 547 400 112"
+        sizeHint = "400 112"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    showCeckBox = TRUE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Stippling
+  }
+  internalFields = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "477 193 104 64"
+  }
+  fields  {
+    instanceName = output
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "745 333 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "789 425 72 64"
+    windows  {
+      window _default {
+        geometry = "597 36 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    eventReceiveMode = None
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Ready
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKStructureGroupBrowser.inObjectContainer = info.outObjectContainer
+  output.children = ""
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+}

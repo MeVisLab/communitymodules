@@ -1,0 +1,85 @@
+Interface  {
+   Inputs {      
+      Field inObjectContainer { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters { 
+      Field loggingMode    { type = enum value = "Normal" values = "Demo,User,Test,Normal" }
+      Field logLocation    { type = enum value = "UserHome" values = "UserHome,CaseDir,UserDefined" }
+      Field userDefPath	   { type = string value = "" }
+      Field userDefFileName{ type = string value = "LogFile.log" }
+      Field messageOnError { type = bool value = false }
+      Field backupLogFile  { type = trigger }
+      Field clearLogFile   { internalName = MLLogFile.clear }
+      Field enableLogFile  { internalName = MLLogFile.enableLog }
+      Field trueFileName   { internalName = MLLogFile.trueLogFile }
+      Field logStatus      { internalName = MLLogFile.logStatus persistent = false }     
+   }
+}
+
+
+Commands {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/../../MedicalExplorationToolkit"
+   importPath = "$(LOCAL)"
+   source = "$(LOCAL)/METKLogFile.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   wakeupCommand = wakeUp
+   finalizeCommand = handleCleanupEvent
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+   
+   FieldListener loggingMode { command = loggingMode }
+   FieldListener {
+      listenField = logLocation 
+      listenField = userDefPath
+      listenField = userDefFileName
+      command = logLocation
+   }
+   FieldListener Console.consoleString { command = showWarning }
+}
+
+Window METKLogFile {
+   w = 500
+   Vertical {
+      Field = loggingMode
+      Field = logLocation
+      Field = userDefPath { 
+         title="Path:" 
+         browseButton = true
+         browseMode = directory
+         dependsOn  = "* logLocation == "UserDefined" *"
+      }
+      Field = userDefFileName { 
+         title="File:" 
+         //browseButton = true
+         //browseMode = directory
+         //dependsOn  = "* logLocation == "UserDefined" *"
+      }
+      
+      Field = trueFileName { edit = No }
+      Field = logStatus { edit = no }
+   }
+}
+
+
+Window MLLogFile {
+	Panel {
+		module = MLLogFile
+	}
+}
+
+Window Console {
+	Panel {
+		module = Console
+	}
+}
+
+Window ConsoleString {
+	TextView Console.consoleString { title="" edit=False console=true wrap=off}		
+}

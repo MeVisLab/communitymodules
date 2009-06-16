@@ -1,0 +1,135 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "529 205 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "277 189 120 56"
+    windows  {
+      window _default {
+        geometry = "556 25 700 918"
+        sizeHint = "700 923"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use case path"
+    scriptPath = ""
+    scriptFile = "Scripts\\ENT\\init-script.txt"
+    pathTypeObjectNamesPath1 = "Use case path"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = FALSE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = ""
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = TRUE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = ""
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "397 133 120 56"
+    windows  {
+      window _default {
+        geometry = "648 137 300 302"
+        sizeHint = "300 302"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "457 309 112 56"
+    windows  {
+      window _default {
+        geometry = "47 437 522 276"
+        sizeHint = "522 276"
+        wasOpen = no
+        wasActive = no
+      }
+      window OpenCase {
+        geometry = "37 149 500 72"
+        sizeHint = "500 72"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = G:/MiniHals12/ExampleCase.xml
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  UMDAnimation2.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+}

@@ -1,0 +1,8 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'TumorPart_1' setTransparency 0
+[0] 'TumorPart_1' setColor turquoise

@@ -1,0 +1,30 @@
+UserGenres {
+   Genre METK {
+      Genre = METKSurfaceDistance {
+         Title = "Surface Distance"
+      }
+   }
+}
+
+
+MLModule METKSurfaceDistance3D {
+   DLL                = "METKSurfaceDistance"
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK ObjMgr euclidean distance"
+   seeAlso            = "METKSurfaceDistance2D METKDistanceTransform"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKSurfaceDistance.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKSurfaceDistance3D.html"
+   genre              = "METKSurfaceDistance"
+
+   Window METKSurfaceDistance3D {
+      Vertical {
+         Field = nearDistance
+         Field = nearDistanceColor
+         Separator { direction = horizontal }
+         Field = farDistance
+         Field = farDistanceColor
+      }
+   }
+}

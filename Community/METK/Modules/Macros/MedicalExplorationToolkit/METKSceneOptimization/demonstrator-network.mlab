@@ -1,0 +1,22 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module AutomaskingDemonstrator {
+  internal  {
+    frame = "497 53 176 56"
+    windows  {
+      window _default {
+        geometry = "67 145 804 694"
+        sizeHint = "804 678"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AutomaskingDemonstrator
+  }
+  internalFields = ""
+}
+connections = ""

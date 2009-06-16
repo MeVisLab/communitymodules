@@ -1,0 +1,169 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "1265 341 128 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "1277 265 104 64"
+  }
+  fields  {
+    instanceName = textureToggle
+    whichChild = -3
+    on = TRUE
+  }
+}
+module SoTexture2 {
+  internal  {
+    frame = "1305 437 96 56"
+    windows  {
+      window _default {
+        geometry = "703 538 181 168"
+        sizeHint = "181 168"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTexture2
+    filename = ""
+    image = "0 0 0"
+    wrapS = REPEAT
+    wrapT = REPEAT
+    model = MODULATE
+    blendColor = "0 0 0"
+  }
+}
+module SoTexture2Transform {
+  internal  {
+    frame = "1149 429 152 56"
+  }
+  fields  {
+    instanceName = SoTexture2Transform
+    translation = "0 0"
+    rotation = 0
+    scaleFactor = "1 1"
+    center = "0 0"
+  }
+}
+module UMDInventorToPointer {
+  internal  {
+    frame = "1409 193 160 64"
+    windows  {
+      window _default {
+        geometry = "703 547 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TexturePointer
+    priority = 10000
+    debugComment = ""
+    Pointer = 180132816
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "1497 357 160 56"
+    windows  {
+      window _default {
+        geometry = "703 547 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1541 441 72 64"
+    windows  {
+      window _default {
+        geometry = "350 133 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 0
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  SoSeparator.children = "SoTexture2Transform.self SoTexture2.self UMDPointerToInventor.outInventor"
+  textureToggle.children = SoSeparator.self
+  TexturePointer.inObjectContainer = UMDPointerToInventor.outObjectContainer
+  TexturePointer.inInventor = textureToggle.self
+  UMDPointerToInventor.inObjectContainer = info.outObjectContainer
+  info.acceptedObjects = info.searchObjPattern
+}

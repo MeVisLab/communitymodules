@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<ObjectNames>
+	<object name="Liver">
+		<object>venous, ROI, LivSeg</object>
+	</object>		
+	
+	<object name="Tumor">
+		<object>venous, ROI, TumSeg</object>
+	</object>			
+		
+	<object name="Vessels1">
+		<object>venous, ROI, VascSeg coarse</object>		
+	</object>
+	<object name="Vessels2">
+		<object>venous, ROI, VascSeg</object>		
+	</object>
+	<object name="Vessels_Analysis">
+		<object>venous, ROI, PV col</object>		
+	</object>
+	
+	<object name="Vessels">
+		<object>venous, ROI, PV col</object>		
+	</object>
+	
+	
+	
+
+	
+	<!-- Territories -->
+	<object name="Territory_II">
+		<object>ter_II</object>		
+	</object>
+	<object name="Territory_III">
+		<object>ter_III</object>		
+	</object>
+	<object name="Territory_IV">
+		<object>ter_IV</object>		
+	</object>
+	<object name="Territory_IVa">
+		<object>ter_IVa</object>		
+	</object>	
+	<object name="Territory_IVb">
+		<object>ter_IVb</object>		
+	</object>
+	<object name="Territory_V">
+		<object>ter_V</object>
+	</object>
+	<object name="Territory_VI">
+		<object>ter_VI</object>		
+	</object>
+	<object name="Territory_VII">
+		<object>ter_VII</object>		
+	</object>
+	<object name="Territory_VIII">
+		<object>ter_VIII</object>		
+	</object>
+	
+	
+	<object name="Territories">
+		<object>Territory_II</object>
+		<object>Territory_III</object>
+		<object>Territory_IV</object>
+		<object>Territory_IVa</object>
+		<object>Territory_IVb</object>
+		<!-- <object>Territory_V</object> -->
+		<object>Territory_VI</object>
+		<object>Territory_VII</object>
+		<object>Territory_VIII</object>		
+	</object>
+	
+	
+	<object name="RightPart">
+		<object>Territory_IV</object>		
+		<object>Territory_VI</object>
+		<object>Territory_VII</object>
+		<object>Territory_VIII</object>
+	</object>
+	
+	<object name="LeftPart">
+		<object>Territory_II</object>
+		<object>Territory_III</object>
+		<object>Territory_IVa</object>
+		<object>Territory_IVb</object>
+	</object>
+	
+	<object name="LiverParts">
+		<object>LeftPart</object>
+		<object>RightPart</object>
+	</object>
+	
+
+	
+	<object name="All">
+		<object>Liver</object>
+		<object>Tumor</object>
+	</object>
+		
+</ObjectNames>

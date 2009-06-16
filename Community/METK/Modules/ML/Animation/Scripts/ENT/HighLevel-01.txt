@@ -1,0 +1,12 @@
+[Ini]
+LengthTimeUnit=10
+LengthSeconds=10
+RealTime=no
+
+[Script]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'All' view front 1
+[0] 'System' setClipPlane on left 0 'All' 'Lymphnodes'
+[0,10] 'System' setClipPlane on left 0.7 'All' 'Lymphnodes'
+[0,10] 'All' view 70 -45 1

@@ -1,0 +1,49 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field image { internalName = ImgLoad.output0 comment = "Selected ROI (region of interest)" }
+   }
+   Parameters {
+      Field ignoreEmptyString { type = bool value = True }
+      Field rois              { type = string value = "[none]" persistent = FALSE }
+      Field roiSelect         { type = string value = "" persistent = FALSE }
+      Field refresh	      { type = trigger }
+      Field listenToROI       { type = string value = "" }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKROISelect.py"
+   source = "$(LOCAL)/METKImageDisplay.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer    { command = _cls_info.handleEvents }
+   FieldListener roiSelect                  { command = setCurrentROI }
+   FieldListener ignoreEmptyString          { command = ignoreEmptyString }
+   FieldListener refresh		    { command = handleLoadedEvent }
+}
+
+Window METKROISelect {
+   style = PlannerStyle
+   Vertical {
+      Field = ignoreEmptyString
+      Field = listenToROI
+      Field = refresh
+      Field = roiSelect { title = "ROI:" edit = NO w = 400 }
+      ComboBox roiSelect {
+         editable = False
+         duplicatesEnabled = NO
+         comboField = rois
+      }
+   }
+}

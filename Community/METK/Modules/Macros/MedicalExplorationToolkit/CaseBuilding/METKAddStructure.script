@@ -1,0 +1,99 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjInfo.inObjectContainer }
+      Field image             { internalName = Bypass.input0 }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters { 
+      // Global
+      Field objectID     { type = string value = "" }
+      Field parentID     { type = string value = "[choose ROI]"  persistent = false }
+      Field parentIDs    { type = string value = "[choose ROI]"  persistent = false }
+      Field valid        { type = bool value = False persistent = false }
+      
+      // Description
+      Field name         { type = string value = "" persistent = false }
+      Field structure    { type = string value = "UserDefined" persistent = false }
+      Field strGroup     { internalName = StructureFieldContainer.strGroup }
+
+      // Appearance
+      Field color        { internalName = StructureFieldContainer.color }
+      Field transparency { internalName = StructureFieldContainer.transparency }
+      Field visible      { internalName = StructureFieldContainer.visible }
+      
+      Field create         { type = trigger }
+      Field filename       { internalName = ImgSave.filename }
+      
+      Field createImageFile   { type = bool value = False }
+      Field createIVFile      { type = bool value = True }
+      Field ready             { type = bool value = True persistent = false }
+      
+      Field settingsPath   { type = string value = "" }
+      Field saveSettings   { internalName = SettingsManager.save }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKAddStructure.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener create                     { command = create }
+   FieldListener {
+      listenField = ImgSave.sourceName
+      listenField = name
+      command = imageChanged
+   }
+   FieldListener structure                  { command = loadSetting }
+   FieldListener METKMsgSender.done         { command = ivfileCreated }
+}
+
+
+Window METKAddStructure {
+   w = 300
+   Vertical { 
+      Box Global {
+         Field = objectID { edit = No }
+         Horizontal {
+            Label "ParentID:" {}
+            ComboBox parentID {
+               editable = False
+               duplicatesEnabled = NO
+               comboField = parentIDs
+            }
+         }
+      }
+      Box Description {
+         Field = name      
+         Field = structure 
+         Field = strGroup { title = "Structure Group:" }
+      }
+      Box Appearance {
+         Field = color     
+         Field = transparency    
+         Field = visible   
+      }
+      Horizontal { alignX = Left
+         Field = createImageFile
+         Field = createIVFile
+         Field = ready { edit = No }
+      }
+      Horizontal { alignX = Right
+         Button = saveSettings { dependsOn = "* settingsPath != "" *" }
+         Button = create       { title = "Create Entries" dependsOn = "* parentID != "[choose ROI]" *" }
+      }
+      Separator { direction = horizontal }
+      Field = settingsPath { browseButton = Yes browseMode = directory }
+   }
+}

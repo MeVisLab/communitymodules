@@ -1,0 +1,11 @@
+[Ini]
+LengthTimeUnit=8
+LengthSeconds=17
+Realtime=yes
+
+[Script]
+[0,2] 'Liver' view front 1
+[0,2] 'Liver' setTransparency high
+[0] 'System' init
+[1,5] 'Cam' rotate 'Liver' axial 360 Bezier2
+[6,8] 'Tumor' view 50 10 2

@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! METKClipping module definition
+/*!
+// \file    METKClipping.def
+// \author  Konrad
+// \date    2006-01-24
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKClipping {
+  genre = "METKMisc"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKClipping.script"
+
+} // MacroModule METKClipping
+

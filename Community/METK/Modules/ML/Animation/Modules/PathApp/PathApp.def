@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! PathApp module definition
+/*!
+// \file    PathApp.def
+// \author  Konrad Mühler
+// \date    2009-02-19
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule PathApp {
+  genre = "ApplicationsMenu"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/PathApp.script"
+
+} // MacroModule PathApp

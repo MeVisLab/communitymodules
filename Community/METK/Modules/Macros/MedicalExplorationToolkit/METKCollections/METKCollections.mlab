@@ -1,0 +1,286 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "1121 161 160 64"
+    windows  {
+      window _default {
+        geometry = "224 243 363 524"
+        sizeHint = "196 385"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = viewerRemoving
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Global
+    infoID = ObjectType
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "773 341 72 56"
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module METKScriptBuilder {
+  internal  {
+    frame = "933 309 136 56"
+    windows  {
+      window _default {
+        geometry = "70 89 600 600"
+        sizeHint = "600 600"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "121 230 252 324"
+        sizeHint = "252 324"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKScriptBuilder
+    useCamera = TRUE
+    useColor = TRUE
+    useTransparency = TRUE
+    useVisibility = TRUE
+    useNPR = TRUE
+    setColorLast = FALSE
+    setTransparencyLast = FALSE
+    setVisibilityLast = FALSE
+    length = 3
+    realtime = FALSE
+    viewerName = 3DPreview
+    script = "[Ini]
+LengthTimeUnit=10
+LengthSeconds=2.0
+RealTime=yes
+
+[Script]"
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "1157 249 88 64"
+    windows  {
+      window _default {
+        geometry = "26 45 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = exchange
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = PatientObject
+    acceptedLayers = Patient
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "729 249 160 64"
+    windows  {
+      window _default {
+        geometry = "224 243 363 524"
+        sizeHint = "196 385"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = iterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Global
+    infoID = ObjectType
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjLoaderDump {
+  internal  {
+    frame = "941 253 120 56"
+  }
+  fields  {
+    instanceName = ObjLoaderDump
+  }
+}
+module ObjLoader {
+  internal  {
+    frame = "1061 253 88 56"
+    windows  {
+      window _default {
+        geometry = "114 133 242 320"
+        sizeHint = "242 320"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "180 199 244 281"
+        sizeHint = "244 281"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjLoader
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    suppressErrorLog = FALSE
+    fileName = ""
+    employLoaderName = ""
+    usedLoaderName = ""
+    miscLoaderInfo = ""
+  }
+}
+module ObjDump {
+  internal  {
+    frame = "1261 253 88 56"
+    windows  {
+      window _default {
+        geometry = "114 133 261 259"
+        sizeHint = "261 259"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjDump
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    fileName = ""
+    applicationID = METKCollection
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "1165 349 72 56"
+    windows  {
+      window _default {
+        geometry = "662 109 419 180"
+        sizeHint = "419 180"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+  }
+}
+connections  {
+  viewerRemoving.inObjectContainer = exchange.outObjectContainer
+  METKScriptBuilder.inObjectContainer = ObjMgr.outObjectContainer
+  exchange.inObjectContainer = ObjMgr.outObjectContainer
+  iterator.inObjectContainer = ObjInfo.outObjectContainer
+  ObjLoader.inObjectContainer = ObjMgr.outObjectContainer
+  ObjDump.inObjectContainer = ObjMgr.outObjectContainer
+}

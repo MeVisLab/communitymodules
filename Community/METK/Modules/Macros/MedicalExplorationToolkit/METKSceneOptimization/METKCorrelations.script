@@ -1,0 +1,575 @@
+Interface  {
+  Inputs  {
+    Field inObjectContainer {internalName = ObjConstrainedIterator.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = ObjConstrainedIterator.outObjectContainer }
+  }
+
+  Parameters {
+    
+    
+    Field caseLoaded {type = bool}
+    
+    Field allStructures    {type = string  comment = "list of all structures to get do this: list = eval('['+ ctx.field('allStructures').value[4:]+ '' '] '' )"}
+    Field demandStructure  {type = string  priority = 0}
+    Field first_dStructure {type = trigger}
+    Field next_dStructure  {type = trigger}
+    Field indice_csdStruct {type = int}
+    Field compareStructure {type = string }
+    Field first_cStructure {type = trigger}
+    Field next_cStructure  {type = trigger}
+    Field indice_cscStruct {type = int}
+    
+    Field calcEverythingWithSelection {type = bool comment = "if activ with the selection of demand and compare Structure all corresponding Calculation will be automaticly done, else the single compute-buttens have to be touched"}
+    
+    /*--- fields for Meta-Information-Correlations (mc) -----------------------------------------------------------------------*/
+    Field mc_DictContainer      {type = string comment = "contains the dictionary with Correlations, Correlationtypes and related structures"}
+    Field mc_SelectionOption    {type = enum items {item Case{} item D-Structure{}}}   // first item has to be the case item and the second the demand-structure item for global variable
+    Field mc_AllCorrelations    {type = string}    
+    Field mc_Correlation        {type = string priority = 0}    
+    Field mc_FirstCorrelation   {type = trigger}
+    Field mc_NextCorrelation    {type = trigger}
+    Field mc_AllCorrelTypes     {type = string}    
+    Field mc_CorrelType         {type = string priority = 0} 
+    Field mc_FirstCorrelType    {type = trigger}
+    Field mc_NextCorrelType     {type = trigger}                  
+    Field mc_RelatedStructures  {type = string  comment = "all correlationtype-related structures"}
+    Field mc_csRelatedStructure {type = string}
+    Field mc_prevRelatedStruct  {type = trigger}
+    Field mc_nextRelatedStruct  {type = trigger}
+    Field mc_IndiceCsRelStruct  {type = int}       
+    Field mc_CorrelationsD_C    {type = string}
+    Field mc_computeMetaCorrels {type = trigger priority = 0}
+   
+    /*--- fields for pathologic correlations (pc) stuff -----------------------------------------------------------------------*/
+    Field pc_takeGivenPatholInfos  {type = bool}
+    Field pc_show_edit_Criteria    {type = bool}
+    Field pc_malignantCriteria     {type = string value = "[['Tumor', [1, ('sizeInMaxExtension', '<=', 20)], [2, ('sizeInMaxExtension', '>', 20), ('sizeInMaxExtension', '<=', 40)], [3, ('sizeInMaxExtension', '>', 40)]]]"}   
+    Field pc_doubtfulCriteria      {type = string value = "[['Lymphnode', [1, ('sizeInMaxExtension', '<=', 30)], [2, ('sizeInMaxExtension', '>', 30), ('sizeInMaxExtension', '<=', 60)], [3, ('sizeInMaxExtension', '>', 60)]]]"} 
+    Field pc_Criteria_showEditBox  {type = bool removed = True}
+    Field pc_CriteriaEditOption    {type = enum items{item new{} item delete{}}}
+    Field pc_CiteriaCharacter      {type = enum items {item Malignant{} item Doubtful{}}}
+    Field pc_CiteriaStructure      {type = string}
+    Field pc_CriteriaStrProberty   {type = enum items {item ""{} item size{} item sizeInMaxExtension{} item diameter{}}}
+    Field pc_CriteriaCondition     {type = enum items {item "<="{} item "=="{} item ">"{}}} //item "<"{} item ">="{}
+    Field pc_CriteriaProbValue     {type = int}
+    Field pc_CritDegreeOfSeverity  {type = int}
+    Field pc_CriteriaApply         {type = trigger}
+    Field pc_CriteriaDeleteAll     {type = trigger}
+    Field pc_ClassifyDemand_manual {type = trigger}
+    
+    Field pc_malignantStructures   {type = string}
+    Field pc_doubtfulStructures    {type = string}
+    Field pc_benignStructures      {type = string}
+    
+    Field pc_characterOfD        {type = enum items {item ""{} item  Benign{} item Doubtful{} item Pathologic{}}}
+    Field pc_hazardState         {type = int}
+    Field pc_memberOf_Char_Haz   {type = string}
+ 
+    Field pc_InfiltrationDistance1   {type = int value = 2}
+    Field pc_InfiltDist1_Degree      {type = int value = 2}
+    Field pc_InfiltDist1_Structures  {type = string}
+    Field pc_InfiltrationDistance2   {type = int value = 5}
+    Field pc_InfiltDist2_Degree      {type = int value = 1}
+    Field pc_InfiltDist2_Structures  {type = string}
+    
+    Field pc_computePathologCorrels  {type = trigger priority = 0}
+    
+    
+    /*--- fields for geometric correlations (gc) stuff ------------------------------------------------------------------------*/
+    Field gc_NeighbThreshNear    {type = int    value = 0   min = 0                   max = gc_NeighbThreshFar }
+    Field gc_NeighbThreshFar     {type = int    value = 5   min = gc_NeighbThreshNear max = 100  }
+    Field gc_Neigbours            {type = string}
+    Field gc_NeigbMalignant      {type = string}
+    Field gc_NeigbDoubtful       {type = string}
+    Field gc_NeigbBenign         {type = string} 
+
+    Field gc_OcclusThreshLow     {type = int value = 0   min = 0                  max = gc_OcclusThreshHigh}
+    Field gc_OcclusThreshHigh    {type = int value = 100 min = gc_OcclusThreshLow max = 100}
+    Field gc_coveredObjects      {type = string comment = "Structures wich are occluded by the demand-structure"}
+    Field gc_Concealer           {type = string comment = "Structures which occlude the demand-structure"}
+
+    Field gc_DC_IntersectionVolume {type = float}    
+    
+    Field gc_DC_Distance         {type = float comment = "minimal euklidean Distance between Demand- and Compare-Structure"  }
+    Field gc_DC_absOcclut_DC     {type = int   comment = "percentage of absolut Occlusion of Demand-Structure by Compare-Structue" }
+    Field gc_DC_absOcclut_CD     {type = int   comment = "percentage of absolut Occlusion of Compare-Structure by Demand-Structue" }
+    Field gc_DC_amountViews_DC   {type = int   comment = "percentage of Viewpoints with Occlusions of Demand-Structure by Compare-Structure" }
+    Field gc_DC_amountViews_CD   {type = int   comment = "percentage of Viewpoints with Occlusions of Compare-Structure by Demand-Structure" }
+    Field gc_DC_Nested           {type = int   comment = "Value/hint for a certain nesting-state"}
+    
+    Field gc_ComputeGeomCorrels_D  {type = trigger priority = 0 comment = "triggers the geometric correls of Demand-Structure"}
+    Field gc_ComputeGeomCorrels_DC {type = trigger priority = 0 comment = "triggers the geometric correls between Demand-Structure and Compare-Structure"}
+    
+    Field cc_minDistanceInterval    {type = string value = 0,5 comment = "','-separated near- and far-border of distance interval"}
+    Field cc_meta_searchCriterias   {type = string value = ""}
+    Field cc_relatedStructures      {type = string}
+    Field cc_ComputeCombinedCorrels {type = trigger} 
+    
+    Field success {type = bool comment = "True if last execution was successful"}       
+  }
+}
+
+
+/*==============================================================================================================================*/
+Commands  {
+  // Add the local's parent path to the import path, so that Python looks for local packages
+  importPath = "$(LOCAL)/.."
+  // Include local functions 
+  source = "$(LOCAL)/METKCorrelations.py" 
+
+  // --- Commands -----------------------------------//
+  // Call init() to initalize the script 
+  initCommand = init
+
+  // Handle events from object container
+  FieldListener ObjInfo.outObjectContainer {command = _cls_info.handleEvents }// callLater = True }
+    
+  FieldListener demandStructure  {command = handle_changeDemandStructure } // callLater = True}    
+  FieldListener first_dStructure {command = update_firstDemandStructure}
+  FieldListener next_dStructure  {command = update_nextDemandStructure}
+  FieldListener compareStructure {command = handle_changeCompareStructure}    
+  FieldListener first_cStructure {command = update_firstCompareStructure}
+  FieldListener next_cStructure  {command = update_nextCompareStructure}
+       
+  FieldListener mc_SelectionOption    {command = update_MetaInfoCorrelations}   
+  FieldListener mc_Correlation        {command = update_allTypes_OfAMetaCorrel}
+  FieldListener mc_FirstCorrelation   {command = update_firstOfAllCorrelation}
+  FieldListener mc_NextCorrelation    {command = update_nextOfAllCorrelation}
+  FieldListener mc_FirstCorrelType    {command = update_firstCorrelType}
+  FieldListener mc_NextCorrelType     {command = update_nextCorrelType}
+  FieldListener mc_CorrelType         {command = update_RelatedStructures_OfAMetaCorrelType}  
+  FieldListener mc_prevRelatedStruct  {command = update_previousRelatedStruct}
+  FieldListener mc_nextRelatedStruct  {command = update_nextRelatedStruct}
+  FieldListener mc_computeMetaCorrels {command = update_MetaInfoCorrelations command = update_jointMetaCorrels_DC}
+    
+  FieldListener gc_ComputeGeomCorrels_D  {command = update_GeometricCorrelationsOfD_Structure} //command = get_NeighboursOfDemandStructure command = get_ConcealersAndCovered_DemandStruct}
+  FieldListener gc_ComputeGeomCorrels_DC {command = update_GeometricCorrelsBetweenDemand_Compare}
+    
+  FieldListener pc_CriteriaApply          {command = set_CharacterCriteria}
+  FieldListener pc_CriteriaDeleteAll      {command = delete_AllCharacterCriteria}
+  FieldListener pc_ClassifyDemand_manual  {command = set_DemandCharachter_Hazard}
+  FieldListener pc_hazardState            {command = update_memberOfCharcter_Hazard callLater = True}
+  FieldListener pc_computePathologCorrels {command = update_pathologicCorrelations}
+  
+  FieldListener cc_ComputeCombinedCorrels {command = update_combinedSearchCriteriaCompileds}
+  
+}
+
+
+/*================================================================================================================================*/
+Window METKCorrelations {
+  Vertical {
+    expandY = 1
+   
+    Box "Selected Demand-Structures" {
+      expandY = 0
+//      alignY  = Top
+      
+      Table{
+        
+        Row {
+          Label "Demand-Structure:"{  expandX = 0}
+          ComboBox demandStructure {  
+            comboField       = allStructures
+            comboSeparator   = "', '"  
+            editable         = No
+            expandX          = 1
+          }
+          Button first_dStructure {title = "First" expandX = 0}
+          Button next_dStructure  {title = "Next"  expandX = 0}
+        }
+        Row {
+          Label "Compared with:"{ }
+          ComboBox compareStructure { 
+            comboField       = allStructures
+            comboSeparator   = "', '"  
+            editable         = No
+            expandX          = 1
+          }
+           Button first_cStructure {title = "First" expandX = 0}
+           Button next_cStructure  {title = "Next"  expandX = 0}
+        }
+      }      
+    }
+    CheckBox calcEverythingWithSelection {title = "automatic Computations with Selection" alignY = Top}
+        
+    TabView {
+      
+      TabViewItem {
+        tabTitle = "Meta-Informations"
+        expandY  = 1        
+        
+        Panel{
+          window  = correlsInMetaInfos
+          name    = panelMetaCorrels
+    //      Execute = update_MetaCorrelListView
+        }
+      }
+      
+      TabViewItem {
+        tabTitle = "Geometric"
+        expandY  = 1
+        
+        Panel {
+          window = geometricCorrelations
+          name   = panelgc_AllGeometricCorrels
+        }
+      }
+          
+      TabViewItem {
+        tabTitle = "Pathologic"
+        expandY  = 1
+        
+        Panel {
+          window = pathologicCorrelations
+          name   = panelPathologicCorrelations
+        }
+      }
+      TabViewItem  {
+        tabTitle = "Combined"
+        expandY  = 1
+        Panel {
+          window = combinedCorrelations
+          name   = panelCombinedCorrelations
+        }       
+      }
+    }
+
+    Field success {title = success alignX = Left alignY = Bottom  edit = False tooltip = "shows if last execution was successful" }
+  }
+  Execute = update_MetaCorrelListView
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+Window correlsInMetaInfos {
+  name = "windowCorrelsOfMetaInfos"
+  shouldCloseCommand = closeWindow
+  
+  Vertical {
+    expandY = Expanding
+    Horizontal {
+      spacing = 10
+      expandY = 1
+      
+      ListView {
+        name                 = correlations
+        panelName            = panelListView
+        values               = "Correlations"
+        layout               = "l,l"
+        selectionMode        = Single
+        resizeMode           = All
+        updateDelay          = 100   
+        doubleClickedCommand = update_MetaCorrelListView
+      }
+      Execute = openWindow     
+           
+      ScrollView {
+        expandY   = 1
+        alignX    = Left
+        spacing   = 8
+        hscroller = Off
+        expandX = Fixed
+              
+        Box "Correlations: Demand-Compared"  {
+          ListBox mc_CorrelationsD_C {
+            rowSeparator = "), ("
+          }
+        }
+      
+        Box "Correlations and their Types" {
+          expandY = 1
+
+          Field mc_SelectionOption { 
+            title   = "Selection Option:"
+            tooltip = "Select 'Case' to get all Meta-Correlations and their types within the current case \
+and 'Structure' to get all Meta-Correlation of the demand-structure and their specific type"
+          }
+          Label " Select Meta-Correlation: "{alignGroup = label}      
+          Horizontal {
+          
+            ComboBox mc_Correlation {
+              editable         = No 
+              comboField       = mc_AllCorrelations
+              comboSeparator   = "', '" 
+              expandX          = True            
+            }
+            Button mc_FirstCorrelation {title = First w = 2 }
+            Button mc_NextCorrelation  {title = Next  w = 2 }
+          }
+          Label " Select Type of current Meta-Correlation: "{}      
+          Horizontal {
+            ComboBox mc_CorrelType { 
+              editable         = No 
+              comboField       = mc_AllCorrelTypes
+              comboSeparator   = "', '" 
+              expandX          = True
+            } 
+            Button mc_FirstCorrelType {title = First w = 2 dependsOn = mc_SelectionOption}
+            Button mc_NextCorrelType  {title = Next  w = 2 dependsOn = mc_SelectionOption}
+          } 
+          Empty { height = 10}
+          Box "Related Structures:"{
+            expandY = 1
+            ListBox mc_RelatedStructures {
+              expandY      = 1
+              rowSeparator = "', '"
+              tooltip      = "Structures which are in the selected 'Meta'-Correlation with the specified Correlationtype to each other; ordered by STP (insert-method)."               
+//              selectedCommand = "*py: ctx.field("demandStructure").setValue(""); *"
+            }
+            Horizontal{
+              Button mc_prevRelatedStruct  {title = "< Prev"  alignX = Left alignGroup = button name = nextRel instanceName = test }
+              Field  mc_csRelatedStructure {title = ""     minLength = 20 tooltip = "Current selected related Structure"} //enabled = Off 
+              Button mc_nextRelatedStruct  {title = "Next >"  alignX = Left alignGroup = button}
+            }              
+          } 
+        }   
+      }      
+    }
+    Button mc_computeMetaCorrels {title = "compute MC" expandX = 1 alignY = Bottom}
+  }  
+}  
+  
+/*------------------------------------------------------------------------------------------------------------------------------*/
+Window geometricCorrelations {
+  
+  Vertical{
+    expandY = 1
+    
+    ScrollView {
+      Box "Geometric-Correlations of Demand-Structure" {
+        spacing = 8
+        Label "<b><u> Occlusioninformations of Demand-Structure:</u></b>" {}
+        Horizontal {
+          alignX = left
+          Label "Occlusioninterval: " {}
+          Horizontal {
+
+            Field gc_OcclusThreshLow  {title = "Low:"   minLength = 4 step = 1 slider = True alignX = Left tooltip = "minimal occlusion of/by an object (in %)" }
+            Field gc_OcclusThreshHigh {title = "High:"  minLength = 4 step = 1 slider = True alignX = Left tooltip = "maximal occlusion of/by an object (in %)" }
+          }
+        }
+    
+        Table {
+          Row {
+            Label "Obj. occluded by D-Structure:" {  x = 0 y = 0 alignX = Center}
+            Label "Obj. occluding D-Structure:"   {  x = 1 y = 0 alignX = Center}
+          }
+          expandX = 1
+          Row {
+            ListBox gc_coveredObjects{    
+              rowSeparator  = ", " 
+              expandX       = 1
+              selectionMode = NoSelection
+              visibleRows   = 4       
+            }
+            ListBox gc_Concealer{   
+              rowSeparator  = ", " 
+              expandX       = 1
+              visibleRows   = 4
+              selectionMode = NoSelection
+            }
+          }
+        }
+
+        Empty {h = 8}
+    
+        Label "<b><u> Structures within a certain distance to Demand-Structure (ordered by nearness):</u></b>" {}
+        Horizontal {
+          alignX = left
+          Label "Distanceinterval: " {}
+          Horizontal {
+            Field gc_NeighbThreshNear {title = "Near:" minLength = 4 step = 1 slider = True alignX = Left tooltip = "minimal Distance for Neighbourhood (in mm)" }
+            Field gc_NeighbThreshFar  {title = "Far:"  minLength = 4 step = 1 slider = True alignX = Left tooltip = "maximal Distance for Neighbourhood (in mm)" }
+          }
+        }
+
+        Grid {
+          Label "All Neighbors:" {  x = 0 y = 0 alignX = Center}      
+          ListBox gc_Neigbours{    
+            x = 0 y = 1
+            rowSeparator  = ", " 
+            expandX       = 1
+            expandy       = 1
+            selectionMode = NoSelection
+            visibleRows   = 6        
+          }
+        } 
+      }
+      Box "Geometric-Correlations between Demand-Structure and Compare-Structure" {
+ 
+       Table {
+          spacing = 6
+          Row {
+            Label "   Distance(mm)  " {}          
+            Label "Occlusion DbyC   " {}
+            Label "Occlusion CbyD   " {}
+            Label "#Viewpoints (D_C)" {}
+            Label "#Viewpoints (C_D)" {}
+            Label " Intersection(ml)" {}
+            Label "  Nesting-Index  " {}
+          }
+          Row {
+            Field gc_DC_Distance           { title = ""}
+            Field gc_DC_absOcclut_DC       { title = ""} 
+            Field gc_DC_absOcclut_CD       { title = ""} 
+            Field gc_DC_amountViews_DC     { title = ""} 
+            Field gc_DC_amountViews_CD     { title = ""} 
+            Field gc_DC_IntersectionVolume { title = ""}
+            Field gc_DC_Nested             { title = ""}
+          }
+        }      
+      }
+    }
+    Horizontal {
+      Button gc_ComputeGeomCorrels_D  {title = "compute Demand GC"     expandX = 1 alignY = Bottom}
+      Button gc_ComputeGeomCorrels_DC {title = "compute Compareing GC" expandX = 1 alignY = Bottom}
+    }
+    
+  }
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+Window pathologicCorrelations{
+  expandY = Expanding
+  Vertical {     
+    expandY = 1
+    ScrollView {
+      expandY   = 1
+      layout    = Vertical 
+      hscroller = Auto
+      vscroller = Auto
+      Box "Structure-Classification"{
+        Label "<b><u> Criteria for Pathologic Character :</u></b>"{}
+        
+        CheckBox pc_takeGivenPatholInfos { title = "Take given character if it is already given." }
+        CheckBox pc_show_edit_Criteria {title = "show and edit Character-Criteria"}
+
+        ScrollView { 
+          visibleOn = pc_show_edit_Criteria
+          Grid {
+            visibleOn     = pc_show_edit_Criteria
+            minimumHeight = 150
+
+            Label "Malignant"  { x = 0 y = 1 alignY = Top}
+            Label "Doubtful"   { x = 0 y = 2 alignY = Top}
+            ListBox pc_malignantCriteria{
+              x = 1 y = 1
+              rowSeparator  = "], ["
+              tooltip       = "Criteria to determine malignant Character - Structure (Probertys and conditions for degree of severity, degree)"
+            }
+            ListBox pc_doubtfulCriteria {
+              x = 1 y = 2
+              rowSeparator = "], ["
+              tooltip      = "Criteria to determine doubtfoul Character - Structure (Probertys and conditions for degree of severity, degree)"
+            }           
+          }
+           
+          Box "Edit Criteria" {
+            Field  pc_CiteriaCharacter {title = "Character:      " alignX = Left}
+            Horizontal {
+              alignX = Left          
+              Field  pc_CriteriaEditOption {title = Editing-Option:}
+              Empty { width = 10}
+              Button pc_CriteriaDeleteAll  {title = "delete all"}
+            }
+            Separator {}
+        
+            Horizontal {
+              Field  pc_CiteriaStructure     {x = 1 y = 1 title = "Structure:"}
+              Field  pc_CritDegreeOfSeverity {title = "Degree:"}
+              Field  pc_CriteriaStrProberty  {x = 2 y = 1 title = "Condition:"}
+              Field  pc_CriteriaCondition    {x = 3 y = 1 title = "" mw = 10} 
+              Field  pc_CriteriaProbValue    {x = 4 y = 1 title = ""  editField = True }
+            
+              Button pc_CriteriaApply        { title = "Apply" }
+            }
+          }               
+        } 
+                             
+        Label "<b><u> Classified Structures :</u></b>"{}
+        Grid {
+          Label   "Malignant Structures:" {x = 0 y = 0}
+          ListBox pc_malignantStructures  {x = 0 y = 1 rowSeparator = ", " visibleRows = 4 tooltip = "sorted by maxDiameter"}
+          Label   "Doubtful Structures:"  {x = 1 y = 0}
+          ListBox pc_doubtfulStructures   {x = 1 y = 1 rowSeparator = ", " visibleRows = 4 tooltip = "sorted by maxDiameter"}
+          Label   "Benign Structures:"    {x = 2 y = 0}
+          ListBox pc_benignStructures     {x = 2 y = 1 rowSeparator = ", " visibleRows = 4 tooltip = "sorted by most endangered" }
+        }
+      }
+      
+      Box "Demand-Structure relevant Parameters" {
+        Horizontal {
+          alignX = Left
+          Vertical {
+            Field  pc_characterOfD {title = "Pathologic Character:" edit = True}
+            Field  pc_hazardState  {title = "Pathologic Hazard :"   edit = True tooltip = "Shows the degree of endangered for benign structures and the degree of severity of the other."} 
+          }
+          Button pc_ClassifyDemand_manual {title = "save edited Values" expandY = 1  tooltip = "Change privios Character and hazard-factor to the manualy edited for the Demand-Structure."}        
+        }
+        Empty {h = 5}
+        Label "<b><u> Members of the specified Character and HazardState (of Demand-Structure): </u></b>"{}
+        ListBox pc_memberOf_Char_Haz {
+          rowSeparator = ", "
+          expandY      = 1
+          tooltip      = "shows all structures ordered by (maxDiameter for not-benign structures) and (minimal distance to worst Neighbour for benign structures) 
+ with the same Character and HazardState (DegreeOfSeverity/ InfiltrationHazard) of the demand-structure." 
+        }
+        
+        
+        Empty {h = 8}
+        Label "<b><u> Endangered Neighbours of Demand-Structure: </u></b>"{}
+        Grid {
+          spacing = 5
+          Horizontal { x = 0 y = 0
+            alignX = Left
+            Label "Structs within Infiltration-Area" {}
+            Field pc_InfiltrationDistance1           { title = ""}
+            Label "mm:"                              {}
+          }
+          Horizontal { x = 1 y = 0
+            alignX = Left
+            Label "Structs within not Safe-Area " { }
+            Field pc_InfiltrationDistance2        { title = ""}
+            Label "mm:"                           { }            
+          }                                    
+          ListBox pc_InfiltDist1_Structures {x = 0 y = 1
+            rowSeparator = ", "
+            tooltip      = "structures with an other character as the demand-strcture (or doubtful character) wihin the infiltration-distance."
+          }
+          ListBox pc_InfiltDist2_Structures {x = 1 y = 1
+            rowSeparator = ", "
+            tooltip      = "structures with an other character as the demand-strcture (or doubtful character) within the not-safe-distance."
+          }
+        }
+      } 
+    } 
+    button pc_computePathologCorrels {title = "compute PC" expandX = 1 alignY = Bottom}
+  }  
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+Window combinedCorrelations{
+  Vertical {
+    expandY = 1
+    Field   cc_minDistanceInterval  {title = "MinDistance-Interval:" tooltip = "insert near-limit and far-limit comma-seperated for minimal distance to demand-structure. (e.g.: 0,5). With no entry all Structures except the demand which meets the search criterias will be extracted." }
+    Field   cc_meta_searchCriterias {title = "SearchCriterias:"      tooltip = "Define SearchCriteria for Meta-Information- Correlations. Input: Correlation1 == (or !=) CorrelType1;...; CorrelationN == (or !=) CorrelTypeN.\ With no entry all Structures within the distance interval will be extracted.\n There is no or-condition"}
+    Label "Structures within distance-interval to demand-structure meeting criterias :" {}
+    ListBox cc_relatedStructures    {
+      rowSeparator = ", "
+      expandY      = 1
+    }
+    Button cc_ComputeCombinedCorrels {title = "compute combined" expandX = 1 alignY = Bottom }
+  }
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+Window generateCamDataDialog{
+  Vertical {
+    Label "Please close the 'generateCamDat'-window (after completion) to continue!"{}
+    name = generateCamDataDialog
+  }
+}
+

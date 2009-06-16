@@ -1,0 +1,26 @@
+//----------------------------------------------------------------------------------
+//! UMDRegionDistanceTransformation module definitions.
+/*!
+// \file    UMDRegionDistanceTransformation.def
+// \author  Konrad Muehler
+// \date    2009-03-17
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule RegionDistanceTransformation
+//----------------------------------------------------------------------------------
+MLModule RegionDistanceTransformation {
+  DLL            = "UMDRegionDistanceTransformation"
+
+  genre          = ""
+  author         = "Konrad Muehler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/RegionDistanceTransformation.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDRegionDistanceTransformation"
+} // MLModule RegionDistanceTransformation
+

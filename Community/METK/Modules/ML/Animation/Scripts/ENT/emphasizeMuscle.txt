@@ -1,0 +1,12 @@
+[Ini]
+LengthTimeUnit=1
+LengthSeconds=1
+RealTime=yes
+
+[Script]
+[0] 'All' setTransparency 0.95
+[0] 'M. sternocleidom._right' setTransparency 0.3
+[0] 'Lymphnode_1' setTransparency 0
+[0] 'Lymphnode_2' setTransparency 0
+[0] 'Lymphnode_3' setTransparency 0
+[0] 'M. sternocleidom._right' view 80 -140 1.5

@@ -1,0 +1,93 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters { 
+      Field = objectID     { type = string value = "" }
+      Field = valid        { type = bool value = False persistent = false }
+      
+      // Global
+      Field = parent       { type = string value = "" persistent = false }
+      // Description
+      Field = name         { type = string value = "" persistent = false }
+      Field = structure    { type = string value = "" persistent = false }
+      Field = strGroup     { type = string value = "" persistent = false }
+      // Appearance
+      Field = color        { type = color  value = "0 0 0" persistent = false }
+      Field = flatShading  { type = bool   value = False   persistent = false }
+      Field = transparency { type = double value = 0       persistent = false }
+      Field = visible      { type = bool   value = False   persistent = false }
+      
+      Field layer          { type = string value = "" }
+      Field info           { type = string value = "" }
+      Field value          { type = string value = "" }
+      Field exist          { type = bool value = False persistent = false }
+      
+      Field applyStandard  { type = trigger }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   
+   // Include local functions
+   source = "$(LOCAL)/METKStructureDetails.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+   
+   FieldListener objectID { command = objectChanged }
+   
+   FieldListener {
+      listenField = layer
+      listenField = info
+      command = getSingleValue
+   }
+   
+   FieldListener applyStandard { command = applyStandard }
+}
+
+
+Window METKStructureDetails {
+   Vertical { 
+      Horizontal {
+         Field = objectID
+         Field = valid { edit = False }
+      }
+      TabView {
+         TabViewItem Standard {
+            Box Parent {
+               Field = parent
+            }
+            Box Description {
+               Field = name      
+               Field = structure 
+               Field = strGroup { title = "Structure Group:" }
+            }
+            Box Appearance {
+               Field = color     
+               Field = flatShading     
+               Field = transparency    
+               Field = visible   
+            }
+            Button = applyStandard { title = "Apply" }
+         }
+         TabViewItem Extended {
+            Field = layer
+            Field = info
+            Horizontal {
+               Field = value { edit = False }
+               Field = exist { edit = False }
+            }
+         }
+      }
+   }
+}

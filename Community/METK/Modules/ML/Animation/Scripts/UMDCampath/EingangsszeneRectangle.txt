@@ -1,0 +1,26 @@
+[Ini]
+LengthTimeUnit=18
+LengthSeconds=30
+RealTime=yes
+
+[Script]
+[0] 'All' setVisible true
+[0] 'All' setCampath Rectangle
+[0,1] 'Cam' campath 'All' 135;0;2
+[1,2] 'Cam' campath 'All' 135;45;2
+[2,3] 'Cam' campath 'All' 135;90;2
+[3,4] 'Cam' campath 'All' 135;135;2
+[4,5] 'Cam' campath 'All' 135;180;2
+[5,6] 'Cam' campath 'All' 135;225;2
+[6,7] 'Cam' campath 'All' 135;270;2
+[7,8] 'Cam' campath 'All' 135;315;2
+[8,9] 'Cam' campath 'All' 135;360;2
+[9,10] 'Cam' campath 'All' 45;0;2
+[10,11] 'Cam' campath 'All' 45;45;2
+[11,12] 'Cam' campath 'All' 45;90;2
+[12,13] 'Cam' campath 'All' 45;135;2
+[13,14] 'Cam' campath 'All' 45;180;2
+[14,15] 'Cam' campath 'All' 45;225;2
+[15,16] 'Cam' campath 'All' 45;270;2
+[16,17] 'Cam' campath 'All' 45;315;2
+[17,18] 'Cam' campath 'All' 45;360;2

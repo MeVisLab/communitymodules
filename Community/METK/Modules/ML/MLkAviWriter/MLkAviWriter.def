@@ -1,0 +1,80 @@
+//----------------------------------------------------------------------------------
+//! MLkAviWriter module definitions.
+/*!
+// \file    MLkAviWriter.def
+// \author  okonrad
+// \date    2005-07-21
+//
+*/
+// Last changed by $Author: okonrad $
+// $Id: MLkAviWriter.def 39184 2006-06-26 10:42:08Z okonrad $
+// $Source$
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule kAviWriter
+//----------------------------------------------------------------------------------
+MLModule kAviWriter {
+  DLL            = "MLkAviWriter"
+
+  genre          = ""
+  author         = "Olaf Konrad, Konrad Mühler"
+  status         = "stable"
+  comment        = "The kAviWriter takes an arbitrary number of images and compresses them into a movie."
+  keywords       = "movie compression avi"
+  seeAlso        = "SoExaminerViewer"
+  documentation  = "$(LOCAL)/html/kAviWriter.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/MLkAviWriter"
+  exampleNetwork = $(MODULES)/mevis/ML/MLkAviWriter/networks/mlkAviWriterExample.mlab
+
+
+  Window {
+    Category "All" {
+      TabView {
+        TabViewItem "Main" {
+                        
+            width   = 400
+            height  = 200
+            expandY =  NO
+            margin  =   8 
+            
+            CheckBox enableRecording { title = "Enable Recording" }    
+
+            Field outputFilename     { title = "Output Filename:"                                    
+                                       browseButton = ON 
+                                       browseMode   = SAVE  }                                       
+            
+            Horizontal {
+                Field framesPerSecond    { title = "Fps:"   step = 1                 }
+                Field codecCode          { title = "Codec:" edit = NO alignX = RIGHT }
+            } // horizontal         
+                       
+            Separator { direction = horizontal }            
+
+            Horizontal {            
+                Field numFrames       { title = "Num. Frames:" edit = NO }
+                Button triggerReset   { title = "Reset Recording"        }
+                Button triggerMakeAvi { title = "Finish AVI"             }            
+            } // horizontal
+
+            TextView message         { title = "Status:"  edit = NO}
+            
+        } // tabviewitem main    
+        
+        TabViewItem "Codec" {            
+
+            expandY = YES
+            margin  =   8
+            
+            Field codecCode          { title = "Codec:"                                    }
+            TextView availableCodecs { title = "Available Codecs:" edit = NO expandY = YES }
+        } // tabviewitem codec
+
+      } // tabview
+    } // category main 
+  
+  } // window 
+
+} // MLModule kAviWriter
+

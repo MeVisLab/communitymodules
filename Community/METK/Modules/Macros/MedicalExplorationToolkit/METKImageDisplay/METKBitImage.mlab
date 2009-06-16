@@ -1,0 +1,212 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "881 93 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ConstImg {
+  internal  {
+    frame = "781 -27 88 56"
+    windows  {
+      window _default {
+        geometry = "875 186 236 237"
+        sizeHint = "236 237"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "202 221 243 326"
+        sizeHint = "243 326"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ConstImg
+    sizeX = 256
+    sizeY = 256
+    sizeZ = 1
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = "unsigned int8"
+    fillValue = 0
+    autoApply = FALSE
+  }
+}
+module Switch {
+  internal  {
+    frame = "713 -139 144 56"
+  }
+  fields  {
+    instanceName = Switch
+    currentInput = 0
+    numberOfInputs = 5
+    maxInput = 4
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "717 169 72 64"
+    windows  {
+      window _default {
+        geometry = "441 182 829 766"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Image
+    objectID = Structure_Bones
+    layerID = Measures
+    infoID = boxCenter
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = "-0.776001 -13.3787 98.5259"
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 45
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "689 -27 80 56"
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    autoLoad = TRUE
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ImgSave {
+  internal  {
+    frame = "569 45 80 56"
+    windows  {
+      window _default {
+        geometry = "727 127 299 359"
+        sizeHint = "299 359"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "246 265 315 445"
+        sizeHint = "315 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = .euclid.dcm
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = TRUE
+    sourceName = ""
+    postfix = .euclid
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = LZW
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+connections  {
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+  Switch.input0 = ImgLoad.output0
+  Switch.input1 = ConstImg.output0
+}

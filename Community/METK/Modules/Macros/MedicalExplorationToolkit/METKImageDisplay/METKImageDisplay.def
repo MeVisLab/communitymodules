@@ -1,0 +1,98 @@
+UserGenres {
+   Genre METK {
+      Genre = METKImageDisplay {
+         Title = "Image Display"
+      }
+   }
+}
+
+MacroModule METKCodedSegmentation {
+   author             = "Christian Tietjen, Konrad Mühler"
+   status             = "stable"
+   comment            = "Generates a coded segmentation for all structures in the current ROI"
+   keywords           = "METK ObjMgr"
+   seeAlso            = "METKOverlay2D"
+   genre              = "METKImageDisplay"
+   externalDefinition = "$(LOCAL)/METKCodedSegmentation.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKImageDisplay.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKCodedSegmentation.html"
+}
+
+
+MacroModule METKBitImage {
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = "Generates a bit image encoding all structures in the current ROI into one image. Doesn't work for more than 32 structures!"
+   keywords           = "METKCodedSegmentation"
+   seeAlso            = "METKOverlay2D"
+   genre              = "METKImageDisplay"
+   externalDefinition = "$(LOCAL)/METKBitImage.script"
+   //exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKBitImage.mlab"
+   //documentation      = "http://www.metk.net/METKDocumentation/METKBitImage.html"
+}
+
+
+MacroModule METKROISelect {
+   author             = "Christian Tietjen"
+   deprecatedName     = METKCurrentROI
+   status             = "stable"
+   comment            = "Holds the corresponding ROI of the CSO"
+   keywords           = "METK ObjMgr image"
+   seeAlso            = ""
+   genre              = "METKImageDisplay"
+   externalDefinition = "$(LOCAL)/METKROISelect.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKImageDisplay.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKROISelect.html"
+}
+
+
+MacroModule METKOverlay2D {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Generates a colored overlay image for SoView2D"
+   keywords           = "METK ObjMgr overlay image"
+   seeAlso            = "METKCodedSegmentation"
+   genre              = "METKImageDisplay"
+   externalDefinition = "$(LOCAL)/METKOverlay2D.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKImageDisplay.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKOverlay2D.html"
+}
+
+
+MacroModule METKVolViz {
+   author             = "Konrad Mühler, Christian Tietjen"
+   status             = "test"
+   comment            = "Provides a DVR"
+   keywords           = "METK DVR direct volume rendering"
+   seeAlso            = ""
+   genre              = "METKImageDisplay"
+   externalDefinition = "$(LOCAL)/METKVolViz.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/VolumeRendering.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKVolViz.html"
+}
+
+
+MacroModule METKDistanceTransform {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Generates the distance transform for all selected structures in the current ROI"
+   keywords           = "METK ObjMgr"
+   seeAlso            = "METKSurfaceDistance2D METKSurfaceDistance3D"
+   genre              = "METKSurfaceDistance"
+   externalDefinition = "$(LOCAL)/METKDistanceTransform.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKSurfaceDistance.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKDistanceTransform.html"
+}
+
+
+MacroModule METKImageInfo {
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK statistics image"
+   seeAlso            = "METKCodedSegmentation"
+   genre              = "METKImageDisplay"
+   externalDefinition = "$(LOCAL)/METKImageInfo.script"
+   //exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKImageDisplay.mlab"
+   //documentation      = "http://www.metk.net/METKDocumentation/METKOverlay2D.html"
+}

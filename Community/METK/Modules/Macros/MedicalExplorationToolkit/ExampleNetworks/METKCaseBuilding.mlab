@@ -1,0 +1,471 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module WorldVoxelConvert {
+  internal  {
+    frame = "393 405 144 56"
+    windows  {
+      window _default {
+        geometry = "368 504 310 240"
+        sizeHint = "310 240"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WorldVoxelConvert1
+    voxelX = 409
+    voxelY = 409
+    voxelZ = 51
+    worldX = 65.95700073
+    worldY = 65.95700073
+    worldZ = 157.5
+    voxelPos = "409 409 51"
+    worldPos = "65.95699999999999 65.95699999999999 157.5"
+    voxelMode = TRUE
+    worldMode = FALSE
+    intVoxelCoords = TRUE
+    keepConstant = Voxel
+  }
+}
+module WorldVoxelConvert {
+  internal  {
+    frame = "397 349 136 56"
+    windows  {
+      window _default {
+        geometry = "436 182 310 240"
+        sizeHint = "310 240"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WorldVoxelConvert
+    voxelX = 102
+    voxelY = 102
+    voxelZ = 13
+    worldX = -65.95709991
+    worldY = -65.95709991
+    worldZ = 43.5
+    voxelPos = "102 102 13"
+    worldPos = "-65.9571 -65.9571 43.5"
+    voxelMode = TRUE
+    worldMode = FALSE
+    intVoxelCoords = TRUE
+    keepConstant = Voxel
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "197 189 120 56"
+    windows  {
+      window _default {
+        geometry = "337 407 200 200"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-109.897 20.9821 74.56619999999999"
+    camOrientation = "0.689302 -0.390047 -0.610513 2.77931"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "177 293 128 56"
+    windows  {
+      window _default {
+        geometry = "703 535 196 174"
+        sizeHint = "196 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnVisible
+  }
+  internalFields = ""
+}
+module ImgLoad {
+  internal  {
+    frame = "733 405 88 56"
+    windows  {
+      window _default {
+        geometry = "651 458 545 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad1
+    filename = Hals12.ROI.dcm
+    status = "File open"
+    progress = 0
+    format = DICOM/TIFF
+    dataType = int16
+    sizeX = 1
+    sizeY = 1
+    sizeZ = 1
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = -1500
+    maxValue = 2179
+    comment = MeVisLab
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "1 1 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module Threshold {
+  internal  {
+    frame = "733 317 88 56"
+    windows  {
+      window _default {
+        geometry = "667 547 273 94"
+        sizeHint = "273 94"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold
+    threshold = 240
+    minValue = -1500
+    maxValue = 2179
+    relativeThreshold = FALSE
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "-31 109 192 56"
+    windows  {
+      window _default {
+        geometry = "703 547 119 149"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKHierarchyBrowser {
+  internal  {
+    frame = "-15 189 160 56"
+    windows  {
+      window _default {
+        geometry = "703 547 106 122"
+        sizeHint = "106 122"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKHierarchyBrowser
+    root = Root
+    rootObjectTypeFilter = Source,Result
+    CSOon = FALSE
+    allObjects = FALSE
+  }
+  internalFields = ""
+}
+module ROISelect {
+  internal  {
+    frame = "613 397 88 56"
+    windows  {
+      window _default {
+        geometry = "559 426 489 393"
+        sizeHint = "489 393"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "823 232 569 617"
+        sizeHint = "300 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ROISelect
+    editMode = Edit
+    editModeFieldDisable = FALSE
+    startWorldPos = "-66.17189999999999 -66.17189999999999 42"
+    endWorldPos = "65.7422 65.7422 156"
+    startVoxelX = 102
+    startVoxelY = 102
+    startVoxelZ = 12
+    endVoxelX = 409
+    endVoxelY = 409
+    endVoxelZ = 50
+    boxOn = TRUE
+    boxShiftListen = RELEASED
+    boxCtrlListen = RELEASED
+    boxBlend = 0.1400000006
+    boxColor = "1 0.979525 0.387404"
+    allowDraw = TRUE
+    currentPosOn = Navigate
+    currentPos = "-0.214844 -0.214844 99"
+    currentPosShiftListen = PRESSED
+    currentPosCtrlListen = RELEASED
+    currentPosColor = "1 1 1"
+    allTimepoints = TRUE
+    timepoint = 0
+    reset = FALSE
+    layout = LAYOUT_ROW_EQUAL
+    greyWidth = 0.5
+    greyCenter = 0.25
+    annotationColor = "0.9 0.9 0.9"
+    borderColor = "0.9 0.9 0.9"
+    usePreview = FALSE
+    restriction = MaxMBytesIsotropic
+    limit = 10
+    unit = ""
+    worldPosition = "-0.429688 0 99"
+    useGlobalInputImage = TRUE
+    extraViewLowerLeft = "0 0"
+    extraViewUpperRight = "1 1"
+    annotationOn = TRUE
+    annotShowAnnot = ANNO_SHOW_HIDE
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+  }
+  internalFields = ""
+}
+module METKAddROI {
+  internal  {
+    frame = "545 229 112 56"
+    windows  {
+      window _default {
+        geometry = "910 228 400 213"
+        sizeHint = "400 193"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKAddROI
+    ROIType = Subregion
+    suffix = .ROI
+    filename = Hals12.ROI.dcm
+  }
+  internalFields = ""
+}
+module ImgLoad {
+  internal  {
+    frame = "513 493 80 56"
+    windows  {
+      window _default {
+        geometry = "651 458 545 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = D:/MeVisLab/Datensatz/test/Hals12.dcm
+    status = "File open"
+    progress = 1
+    format = DICOM/TIFF
+    dataType = int16
+    sizeX = 512
+    sizeY = 512
+    sizeZ = 63
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = -1500
+    maxValue = 2179
+    comment = MeVisLab
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "128 128 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "13 285 104 56"
+    windows  {
+      window _default {
+        geometry = "8 727 1293 347"
+        sizeHint = "537 347"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKManager {
+  internal  {
+    frame = "425 557 112 56"
+    windows  {
+      window _default {
+        geometry = "851 640 524 348"
+        sizeHint = "524 348"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = D:/MeVisLab/Datensatz/test/test.xml
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKAddStructure {
+  internal  {
+    frame = "701 229 136 56"
+    windows  {
+      window _default {
+        geometry = "39 438 300 428"
+        sizeHint = "300 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKAddStructure
+    objectID = Structure_
+    strGroup = ""
+    color = "1 1 1"
+    transparency = 0.8
+    visible = TRUE
+    filename = Hals12.ROI..dcm
+    createIVFile = TRUE
+    settingsPath = "//isg2003/profiles$/staff/tietjen/My Documents"
+  }
+  internalFields = ""
+}
+module METKAddImage {
+  internal  {
+    frame = "405 229 120 56"
+    windows  {
+      window _default {
+        geometry = "39 106 300 56"
+        sizeHint = "300 56"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "701 547 281 200"
+        sizeHint = "204 138"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "675 526 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKAddImage
+  }
+  internalFields = ""
+}
+connections  {
+  WorldVoxelConvert1.input0 = ImgLoad.output0
+  WorldVoxelConvert1.worldPos = ROISelect.endWorldPos
+  WorldVoxelConvert.input0 = ImgLoad.output0
+  WorldVoxelConvert.worldPos = ROISelect.startWorldPos
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  ImgLoad1.filename = METKAddROI.filename
+  Threshold.input0 = ImgLoad1.output0
+  METKStructureGroupBrowser.inObjectContainer = METKHierarchyBrowser.outObjectContainer
+  METKHierarchyBrowser.inObjectContainer = ObjInspector.outObjectContainer
+  ROISelect.inImage = ImgLoad.output0
+  METKAddROI.inObjectContainer = METKManager.outObjectContainer
+  METKAddROI.image = ROISelect.outImage
+  METKAddROI.startVoxel = WorldVoxelConvert.voxelPos
+  METKAddROI.endVoxel = WorldVoxelConvert1.voxelPos
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  METKAddStructure.inObjectContainer = METKManager.outObjectContainer
+  METKAddStructure.image = Threshold.output0
+  METKAddImage.inObjectContainer = METKManager.outObjectContainer
+  METKAddImage.image = ImgLoad.output0
+}

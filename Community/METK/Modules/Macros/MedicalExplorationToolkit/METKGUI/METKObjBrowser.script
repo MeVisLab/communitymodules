@@ -1,0 +1,337 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKObjBrowser
+/*!
+// \file    METKObjBrowser.script
+// \author  Konrad
+// \date    2006-01-26
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }
+    Field inObjectContainer { internalName = METKHierarchyBrowser.inObjectContainer }
+    Field inObjectContainer { internalName = UMDPointerToInventor.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = info.outObjectContainer }
+  }
+  Parameters {
+    Field = objID { internalName = METKHierarchyBrowser.selectedMultiObjIds persistent = FALSE }
+  
+    Field = updateList   { type = trigger }
+    //Field = applyColor   { type = trigger }
+    //Field = applyTransp  { type = trigger }
+    Field = updateObject { type = trigger }
+     
+     
+    Field = visible      { type = bool   persistent = FALSE }
+    Field = visibleGUI   { type = bool   persistent = FALSE }
+    Field = color        { type = color  persistent = FALSE }
+    Field = colorGUI     { type = color  persistent = FALSE }     
+    Field = transparency { type = double persistent = FALSE min = 0  max = 1 }
+    Field = transparencyGUI { type = double persistent = FALSE min = 0  max = 1 }
+    Field = silhouette    { type = bool   persistent = FALSE }
+    Field = silhouetteGUI { type = bool   persistent = FALSE }
+    Field = silhouetteColor    { type = color   persistent = FALSE }
+    Field = silhouetteColorGUI { type = color   persistent = FALSE }    
+    Field = silhouetteWidth { type = double   persistent = FALSE }
+    Field = silhouetteWidthGUI { type = double   persistent = FALSE }
+    Field = flat { type = bool   persistent = FALSE }
+    Field = flatGUI { type = bool   persistent = FALSE }    
+    Field = labelOn { type = bool persistent = false }
+    Field = labelOnGUI { type = bool persistent = false }
+    Field = labelText { type = string persistent = false }
+    Field = labelTextGUI { type = string persistent = false }    
+    Field = labelBgColor { type = color persistent = false }
+    Field = labelBgColorGUI { type = color persistent = false }        
+    Field = objName      { type = string persistent = FALSE }
+    Field = ivPointer    { type = string persistent = FALSE }
+    Field = fullPointer  { type = string persistent = FALSE }
+     
+    Field = markNonPersistent { type = bool persistent = FALSE value = False }
+     
+    // Measures
+    Field = maxDiameter  { type = float value = 0 persistent = FALSE }
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+
+  source = $(LOCAL)/METKObjBrowser.py
+  
+  initCommand = init
+     
+  //FieldListener applyColor   { callLater = false command = applyColor }
+  //FieldListener applyTransp  { callLater = false command = applyTransp } 
+  FieldListener updateObject { callLater = false command = updateObject }
+  FieldListener objID        { callLater = true  command = updateObject }  
+  FieldListener visibleGUI   { callLater = true  command = applyVisible }
+  FieldListener colorGUI     { callLater = false command = applyColor }
+  FieldListener transparencyGUI { callLater = false command = applyTransp }
+  FieldListener silhouetteGUI   { callLater = true  command = applySilhouette }
+  FieldListener silhouetteColorGUI   { callLater = true  command = applySilhouetteColor }
+  FieldListener silhouetteWidthGUI { callLater = true  command = applySilhouetteWidth }
+  FieldListener flatGUI   { callLater = true  command = applyFlat }
+  FieldListener labelOnGUI { callLater = true  command = applyLabelOn }
+  FieldListener labelTextGUI { callLater = true  command = applyLabelText }
+  FieldListener labelBgColorGUI { callLater = true  command = applyLabelBgColor }
+}
+
+
+
+Window METKObjBrowser {  
+  style = kStyle
+  bgMode = SmoothStretch
+  width = 700
+  height = 600
+      
+  
+  Horizontal {
+    expandX = True
+    expandY = True          
+  
+    Vertical {
+      expandX = True
+      expandY = True
+      
+      
+      Panel {
+        module = METKHierarchyBrowser
+      }
+    }
+    
+    Empty { w = 10 }
+  
+      
+    Grid {
+
+      margin = 0
+      spacing = 5
+      expandX = True
+      expandY = True
+      alignY = Top      
+
+      Empty { x = 0  y = 0  h = 10 }
+
+      Box {
+
+        x = 0
+        x2 = 1
+        y = 1
+        expandX = True
+        expandY = False
+        title = "Visual Parameter"
+        panelName = panelParameter
+        
+        Grid {
+          margin = 0
+          spacing = 5      
+          expandY = True
+          expandX = False                
+
+          Panel { 
+            x=0 y=0
+            window = shortVisuals
+          }
+
+          Field objID {
+            x=0 y=5 x2=1
+            title = "ObjID (for copy):"
+            alignGroup = 1
+          }
+
+          Field objName {
+            x=0 y=6 x2=1
+            title = "ObjName (for copy):"
+            alignGroup = 1
+          }
+
+          Field ivPointer {
+            x=0 y=7 x2=1
+            title = "ivPointer (for copy):"
+            alignGroup = 1
+          }
+
+          Field fullPointer {
+            x=0 y=8 x2=1
+            title = "fullPointer (for copy):"
+            alignGroup = 1
+          }
+          
+          
+          Label {
+            x=0 y=9
+            title = "Mark non persistent:"
+          }
+          Label {
+            x=0 y=10
+            title = "(set before any applies):"
+          }
+
+          CheckBox markNonPersistent {
+            x=1 y=9
+            title = ""
+            //alignGroup = 1            
+          }
+        } //Grid
+      } //Box      
+
+      Button updateObject {
+        x = 0
+        y = 2
+        title = "Update Values"
+        alignX = Left
+      }
+
+      Viewer SoCustomExaminerViewer.self {
+        x=0 y=3 x2=1
+        expandY=yes
+        panelName = panelViewer
+      }
+
+      Box Measures {
+        x=0 y=4 x2=1      
+        Field = maxDiameter { w = 200 edit = NO }
+      }
+
+    } //Grid    
+    
+    Empty { w = 10 }    
+  } //Horizontal
+}
+
+
+
+
+Window shortVisuals {
+  Vertical {
+    margin = 0
+    spacing = 5      
+    expandY = True
+    expandX = False                
+
+    Field visibleGUI {
+      title = "Visible:"      
+      labelAlignGroup = group1
+    }
+
+    Field colorGUI {        
+      title = "Color:"
+      labelAlignGroup = group1
+    }      
+    Field transparencyGUI {
+      title = "Transparency:"
+      slider = Yes
+      sliderSnap = 0.1
+      step = 0.05
+      labelAlignGroup = group1
+    }
+
+    Field silhouetteGUI {
+      title = "Silhouette:"
+      labelAlignGroup = group1
+    }
+    
+    Field silhouetteWidthGUI {
+      title = "Silhouette Width:"
+      labelAlignGroup = group1
+    }        
+
+    Field silhouetteColorGUI {
+      title = "Silhouette Color:"
+      labelAlignGroup = group1
+    }        
+    
+    Field flatGUI {
+      title = "Flat Shading:"      
+      labelAlignGroup = group1
+    }    
+    
+  } //Vertical
+} //Window
+
+
+
+
+Window extPopup {
+  style = ObjBrowserPopupStyle
+  Vertical {
+    frameLineWidth = 1
+    frameShape = Box
+    margin = 5
+    spacing = 5      
+    expandY = True
+    expandX = False                
+
+    Field visibleGUI {
+      title = "Visible:"      
+      labelAlignGroup = group1
+    }
+
+    Field colorGUI {        
+      title = "Color:"
+      labelAlignGroup = group1
+    }      
+    
+    Horizontal {
+      Label { title="Transparency:" }
+      Slider transparencyGUI {
+        //title = "Transparency:"      
+        snap = 0.1
+        
+      }
+    }
+
+    Horizontal {
+      Field silhouetteGUI {
+        title = "Silhouette:"
+        labelAlignGroup = group1
+      }
+      
+      Field silhouetteWidthGUI {
+        title="Size:"
+      }
+    }
+  } //Vertical
+} //Window
+
+
+
+Window shortLabels {
+  Vertical {
+    margin = 0
+    spacing = 5      
+    expandY = True
+    expandX = False                
+
+    Field labelOnGUI {
+      title = "Label On:"      
+      labelAlignGroup = group1
+    }
+
+    TextView labelTextGUI {        
+      title = "Text:"
+      labelAlignGroup = group1
+      visibleRows = 4
+    }      
+    
+    Field labelBgColorGUI {
+      title = "Background:"
+      labelAlignGroup = group1
+    }
+  } //Vertical
+} //Window
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end

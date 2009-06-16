@@ -1,0 +1,244 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module GraphLabelToColor {
+  internal  {
+    frame = "525 605 136 56"
+  }
+  fields  {
+    instanceName = GraphLabelToColor
+  }
+}
+module SoVascularSystem {
+  internal  {
+    frame = "517 501 136 56"
+    windows  {
+      window _default {
+        geometry = "1367 63 384 463"
+        sizeHint = "384 463"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVascularSystem
+    whichChild = -3
+    autoApply = TRUE
+    status = "Graph input invalid"
+    complexity = 0.6000000238
+    pointSize = 1
+    lineWidth = 1
+    textureScaleX = 0.5
+    textureScaleY = 0.5
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    recursionDepth = -1
+    showLines = FALSE
+    labelMode = GENERAL_LABEL
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    radiusMode = MIN_DIST
+    displayMode = DISPLAY_SURFACE
+    radiusScale = 1
+    radiusFixedSize = 1
+    visible = TRUE
+    texture = FALSE
+    numSmoothingPasses = 3
+    overallSmoothness = 0.6999999881
+    smoothIndependently = FALSE
+    radiusSmoothness = 0.6999999881
+    skeletonSmoothness = 0.6999999881
+    endCapScaling = 1
+    useGeneralColor = FALSE
+    generalColor = "1 1 1"
+    useAlternativeTransparency = FALSE
+    alternativeTransparencyColor = "0 0 0"
+    selectedCoordinate = "0 0 0"
+    snapMode = SNAP_TO_SKELETON
+    enableSelection = TRUE
+    nearestCoordinate = "0 0 0"
+    selectedEdgeId = 0
+    selectedNodeId = 0
+    nearestRadius = 0
+    nearestLabel = 0
+    nearestColor = "1 1 1"
+    useSkeletonColors = TRUE
+  }
+}
+module LoadTreeData {
+  internal  {
+    frame = "553 725 112 56"
+    windows  {
+      window _default {
+        geometry = "1357 563 408 137"
+        sizeHint = "408 137"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadTreeData
+    filename = E:/VesselTestData/data/Treedata_PV0001.txt
+    loadVesselVoxels = TRUE
+  }
+}
+module SoShapePartition {
+  internal  {
+    frame = "505 349 128 56"
+    windows  {
+      window _default {
+        geometry = "1403 777 201 159"
+        sizeHint = "201 159"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "534 360 219 349"
+        sizeHint = "219 349"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapePartition
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    shapePartitioning = TRUE
+    cubeSize = 10
+    valid = FALSE
+    autoUpdate = FALSE
+  }
+}
+module SoExtractColoredFaces {
+  internal  {
+    frame = "505 421 160 56"
+    windows  {
+      window _default {
+        geometry = "46 509 219 287"
+        sizeHint = "219 287"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExtractColoredFaces
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    selectedColor = "1 1 1"
+    valid = FALSE
+    printColors = FALSE
+  }
+}
+module SoSceneWriterMD {
+  internal  {
+    frame = "493 261 136 56"
+    windows  {
+      window _default {
+        geometry = "48 208 278 116"
+        sizeHint = "278 116"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSceneWriterMD
+    fileName = .iv
+    fileType = "Binary Inventor"
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "941 573 72 56"
+    windows  {
+      window _default {
+        geometry = "202 221 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    eventReceiveMode = None
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = Image
+    infoID = Filename
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 2179
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 44
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 15
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "909 653 136 56"
+    windows  {
+      window _default {
+        geometry = "897 268 232 149"
+        sizeHint = "232 149"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgReceiver
+    priority = 10000
+    debugComment = ""
+    message = createVesselSurface
+    data = ""
+    status = idle
+  }
+}
+connections  {
+  GraphLabelToColor.inputGraph = LoadTreeData.outputGraph
+  SoVascularSystem.inputGraph = GraphLabelToColor.outputGraph
+  SoShapePartition.input = SoExtractColoredFaces.outShape
+  SoExtractColoredFaces.input = SoVascularSystem.self
+  SoSceneWriterMD.inputObject = SoShapePartition.outConvertedShape
+  ObjInfo.inObjectContainer = METKMsgReceiver.outObjectContainer
+}

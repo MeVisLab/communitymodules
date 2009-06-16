@@ -1,0 +1,80 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKScriptBunch
+/*!
+// \file    METKScriptBunch.script
+// \author  Konrad
+// \date    2007-11-22
+//
+// A collection of animation scripts for fast execution via METKManager
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = info.outObjectContainer }
+  }
+  Parameters {
+  	Field baseScriptPath { type=string value = "Scripts/" }
+   	Field ENTScripts {type = string value = "Name,File@Ini Script,init-script.txt@View Lymph Nodes,lk-view.txt@Simple Rotation,rotation.txt@MICCAI Hals31,miccai-hals31.txt@SystemInstructions-01,SystemInstructions-01.txt@SystemInstructions-02,SystemInstructions-02.txt@SystemInstructions-03,SystemInstructions-03.txt" persistent=false }
+   	Field LiverScripts {type = string value = "Name,File@Ini Script,init-script.txt" persistent=false }
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+  source = $(LOCAL)/METKScriptBunch.py  
+  initCommand = init
+    
+  FieldListener info.outObjectContainer { command = _cls_METKInfo.handleEvents }
+}
+
+
+Window METKScriptBunch {
+	w=350
+	h=350
+	TabView {
+		mode = toolbox
+	
+		TabViewItem "ENT scripts"
+		{		
+			name = entScripts
+			expandX=yes expandY=yes
+
+			ListView ENTScripts {
+				name = lw_entScripts														
+				rowSeparator = "@"
+				columnSeparator = ","
+				cellSpacing = 5
+				selectionMode = Single
+				clickedCommand = entScriptSelected
+				cellSpacing = 20
+				expandX=yes expandY=yes
+			}						
+
+		}
+
+
+		TabViewItem "Liver scripts"
+		{		
+			name = liverScripts
+			expandX=yes expandY=yes
+
+			ListView LiverScripts {
+				name = lw_liverScripts
+				rowSeparator = "@"
+				columnSeparator = ","
+				cellSpacing = 5
+				selectionMode = Single
+				clickedCommand = liverScriptSelected
+				cellSpacing = 20
+				expandX=yes expandY=yes
+			}						
+
+		}
+	} //TabView
+}//Window

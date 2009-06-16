@@ -1,0 +1,47 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKManager {
+  internal  {
+    frame = "457 413 112 56"
+    windows  {
+      window _default {
+        geometry = "565 292 524 348"
+        sizeHint = "524 348"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKGenerateCamData {
+  internal  {
+    frame = "437 301 168 56"
+    windows  {
+      window _default {
+        geometry = "567 229 500 450"
+        sizeHint = "500 450"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKGenerateCamData
+    BufferSize = 400
+    DivisionDepth = 3
+    Progress = 1
+  }
+  internalFields = ""
+}
+connections  {
+  METKGenerateCamData.inObjectContainer = METKManager.outObjectContainer
+}

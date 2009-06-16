@@ -1,0 +1,45 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKManager {
+  internal  {
+    frame = "825 421 112 56"
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKDebug {
+  internal  {
+    frame = "909 261 104 56"
+  }
+  fields  {
+    instanceName = METKDebug
+    record = FALSE
+  }
+  internalFields = ""
+}
+module METKLogFile {
+  internal  {
+    frame = "733 269 104 56"
+  }
+  fields  {
+    instanceName = METKLogFile
+    loggingMode = Normal
+    logLocation = UserHome
+    userDefPath = ""
+    userDefFileName = LogFile.log
+    messageOnError = FALSE
+    enableLogFile = FALSE
+    trueFileName = "C:/Dokumente und Einstellungen/isg/LogFile.log"
+  }
+  internalFields = ""
+}
+connections  {
+  METKDebug.inObjectContainer = METKManager.outObjectContainer
+  METKLogFile.inObjectContainer = METKManager.outObjectContainer
+}

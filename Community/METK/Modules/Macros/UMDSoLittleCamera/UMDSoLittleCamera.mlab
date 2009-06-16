@@ -1,0 +1,333 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSwitch {
+  internal  {
+    frame = "357 549 88 56"
+    windows  {
+      window _default {
+        geometry = "543 459 178 92"
+        sizeHint = "178 92"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch
+    whichChild = 0
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "321 613 128 56"
+    windows  {
+      window _viewer {
+        geometry = "772 46 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "158 177 230 175"
+        sizeHint = "230 175"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "369 713 112 64"
+    windows  {
+      window _default {
+        geometry = "92 111 441 153"
+        sizeHint = "441 153"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ArrowPosition
+    translation = "0 0 -6"
+    rotation = "0 0 1 0"
+    scaleFactor = "1 1 1"
+    scaleOrientation = "0 0 1 0"
+    center = "0 0 0"
+  }
+}
+module SoBaseColor {
+  internal  {
+    frame = "241 717 112 56"
+    windows  {
+      window _default {
+        geometry = "202 221 104 37"
+        sizeHint = "103 37"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoBaseColor1
+    rgb = "0 0 1"
+  }
+}
+module SoArrow {
+  internal  {
+    frame = "513 717 80 56"
+    windows  {
+      window _default {
+        geometry = "204 524 329 168"
+        sizeHint = "329 168"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoArrow
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    position = "0 0 0"
+    rotationRef = "0 0 1"
+    length = 5
+    minDistance = 5
+    displayHead = TRUE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "489 409 208 64"
+    windows  {
+      window _viewer {
+        geometry = "772 46 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "158 177 230 175"
+        sizeHint = "230 175"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Camera
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoComposeVec3f {
+  internal  {
+    frame = "193 481 128 64"
+    windows  {
+      window _default {
+        geometry = "11 100 475 191"
+        sizeHint = "208 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale
+    x = 15
+    y = 15
+    z = 15
+    vector = ""
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "197 409 136 64"
+    windows  {
+      window _automatic {
+        geometry = "70 89 374 192"
+        sizeHint = "374 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "67 102 374 192"
+        sizeHint = "374 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraPlacement
+    translation = "-6.23517 74.8498 37.4876"
+    rotation = "0.877628 0.078481 -0.472875 4.83566"
+    scaleFactor = "15 15 15"
+    scaleOrientation = "0 0 1 0"
+    center = "0 0 0"
+  }
+}
+module SoRotationXYZ {
+  internal  {
+    frame = "349 409 120 64"
+    windows  {
+      window _default {
+        geometry = "153 697 367 377"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Adjust90
+    axis = X
+    angle = 1.570000052
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "129 649 112 64"
+    windows  {
+      window _automatic {
+        geometry = "41 654 374 192"
+        sizeHint = "374 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "48 67 374 192"
+        sizeHint = "374 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CenterToFront
+    translation = "0 3 0"
+    rotation = "0 0 1 0"
+    scaleFactor = "1 1 1"
+    scaleOrientation = "0 0 1 0"
+    center = "0 0 0"
+  }
+}
+module SoBaseColor {
+  internal  {
+    frame = "653 573 104 56"
+    windows  {
+      window _default {
+        geometry = "202 221 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoBaseColor
+    rgb = "1 0 0"
+  }
+}
+module SoCone {
+  internal  {
+    frame = "761 573 80 56"
+    windows  {
+      window _default {
+        geometry = "26 45 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCone
+    parts = ALL
+    bottomRadius = 1
+    height = 2
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "505 237 128 56"
+    windows  {
+      window _viewer {
+        geometry = "114 133 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoCube {
+  internal  {
+    frame = "457 573 80 56"
+    windows  {
+      window _default {
+        geometry = "48 67 136 213"
+        sizeHint = "136 213"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCube
+    width = 1.5
+    height = 3
+    depth = 2
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "541 573 104 56"
+    windows  {
+      window _default {
+        geometry = "403 318 374 192"
+        sizeHint = "374 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTransform
+    translation = "0 -2 0"
+    rotation = "0 0 1 0"
+    scaleFactor = "1 1 1"
+    scaleOrientation = "0 0 1 0"
+    center = "0 0 0"
+  }
+}
+connections  {
+  SoSwitch.children = SoSeparator1.self
+  SoSeparator1.children = "SoBaseColor1.self ArrowPosition.self SoArrow.self"
+  Camera.children = "CenterToFront.self SoSwitch.self SoCube.self SoTransform.self SoBaseColor.self SoCone.self"
+  Scale.y = Scale.x
+  Scale.z = Scale.x
+  CameraPlacement.scaleFactor = Scale.vector
+  SoSeparator.children = "CameraPlacement.self Adjust90.self Camera.self"
+}

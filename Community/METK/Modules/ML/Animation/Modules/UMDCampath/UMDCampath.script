@@ -1,0 +1,253 @@
+Interface  {
+  Inputs = ""
+  Outputs = ""
+  Parameters {
+    Field ScriptArea { type=TextView }
+    Field ScriptAreaExecute { type=trigger }
+    Field ScriptAreaLoad { type=trigger }
+    Field LoadFile { type=trigger }
+    Field LoadUsedXMLFile { type=trigger }
+    Field LoadUsedScriptFile { type=trigger }
+    Field LoadUsedFiles { type=trigger }
+    Field CleanUpDebugPath { type=trigger }
+    Field ClearScriptArea { type=trigger }
+    Field LastScriptFile { type=string }
+    Field LastXMLFile { type=string }
+    Field sphereMode { internalName = METKCalcCamPath.sphereMode }
+    Field sphereField { type = enum items { item=0 {title="Visibility"} 
+                      //item=1 {title="Visibility Stability"}
+                      //item=2 {title="Importance"}
+                      //item=3 {title="Importance Stability"}
+                      //item=4 {title="Number of Occluders"}
+                      //item=5 {title="Object Entropy"} 
+                      //item=6 {title="Distance to Viewplane"} 
+                      //item=7 {title="Distance to Current Viewpoint"} 
+                      //item=8 {title="Preferred Region"} 
+                      //item=9 {title="Silhouette Length"} 
+                      //item=10 {title="Image Center"}
+                      //item=11 {title="Final Weighted Sum"}
+          item=12 {title="CamPathFieldSum"}
+          item=13 {title="CamPathField1"}
+          item=14 {title="CamPathField2"}
+          item=15 {title="CamPathPos"}
+                    }
+            }
+    Field campathVPSize { internalName=UMDAnimation2.campathVPSize min=1.0 max=3.0 }
+    Field campathApexAngle { internalName=METKCalcCamPath.campathApexAngle min=20.0 max=50.0 }
+  }
+} // Interface
+
+Commands {
+  importPath = "$(LOCAL)"
+  importPath = "$(LOCAL)/../../../../Projects/MedicalExplorationToolkit"
+  source = $(LOCAL)/UMDCampath.py
+  initCommand = init
+  FieldListener sphereField       { command = setSphereField }
+  FieldListener sphereMode       { command = setSphereField }
+} // Commands
+
+Window UMDCampath {
+  w = 400      
+  expandX = yes  expandY = yes  
+  style = kStyle
+  bgMode = SmoothStretch
+  initCommand = initWindow
+  Vertical{
+  expandX = yes  expandY = yes
+    grid {
+      margin = 15
+      spacing = 10
+      expandX = yes  expandY = yes
+      Horizontal {
+        expandX = yes  expandY = yes
+        Box{
+          expandX = no expandY = yes
+          x=0 y=0
+        Vertical {
+          expandX = yes  expandY = yes
+          Horizontal{
+            expandX = no  expandY = yes
+            Vertical{
+              expandX = no  expandY = yes
+              Box{
+                layout = Grid
+                title = "Actions"
+                expandX = yes  expandY = no
+                x=0 y=0
+                Button LoadUsedFiles{
+                  x=0 y=0
+                  title = "Load Recent Files"
+                  command = loadUsedFiles
+                }
+                Button LoadUsedXMLFile{
+                  x=0 y=1
+                  title = "Load Recent XML"
+                  command = loadUsedXMLFile
+                }
+                Button LoadUsedScriptFile{
+                  x=0 y=2
+                  title = "Load Recent Script"
+                  command = loadUsedScriptFile
+                }
+                Button LoadFile{
+                  x=0 y=3
+                  title = "Load XML-File"
+                  command = openCase
+                }
+                Button ScriptAreaLoad{
+                  x=1 y=0
+                  title = "Load from Script File"
+                  command = loadScriptFile
+                }
+                Button ScriptAreaExecute{
+                  x=1 y=1
+                  title = "Execute ScriptArea"
+                  command = startAnimation
+                }
+                Button CleanUpDebugPath{
+                  x=1 y=2
+                  title = "Delete Debugpath"
+                  command = cleanUpDebugPath
+                }
+                Button ClearScriptArea{
+                  x=1 y=3
+                  title = "Clear Scriptarea"
+                  command = clearScriptArea
+                }
+              } // Box File
+              Box {
+                layout = Grid
+                title = "Script"
+                expandX = no  expandY = yes
+                x=0 y=1
+                TextView UMDAnimation2.ScriptArea {
+                  x=0 y=0
+                  expandX = no  expandY = yes
+                  title = "<b>Script Area</b>"
+                  edit = true
+                  autoApply = true
+                  visibleRows = 25
+                  wrap = Off
+                }
+              } // Box Script
+            }
+            Box {
+              layout = Vertical
+              title = "Optionen"
+              expandX = no  expandY = yes
+              x=1 y=0 
+              Checkbox UMDAnimation2.drawCameraPath{}
+              Field UMDAnimation2.debugState {}
+              Field DebugCameraPath.useArrows { title = "Use Arrows"}
+              Field DebugCameraPath.arrowColor { title = "Arrow Color:"}
+              Field DebugCameraPath.arrowScale { title = "Arrow Scale:"}
+              Field DebugCameraPath.arrowLengthScale { title = "Arrow Length Scale:"}
+              Field DebugCameraPath.useRealCams { title = "Use Real Cams"}
+              Field DebugCameraPath.realCamStep { title = "Real Cam every:"}
+              Field DebugCameraPath.heightFactor {}
+              Field DebugCameraPath.transparency { title = "SmallCam Transp"}
+              Field DebugCameraPath.color { title = "SmallCam Color" }
+              Field DebugCameraPath.radius { title = "SmallCam Radius" }
+              Field Sphere2.Color { title = "BSphere Color" }
+              Field Sphere2.Transparency { title = "BSphere Transp" }
+              Field Sphere2.Complexity { title = "BSphere Complex" }
+              Field Sphere2.Style { title = "BSphere Style" }
+              HSpacer {}
+              HSeparator {}
+              Field sphereMode { x=0 y=2 title="Sphere mode:" }
+              Field sphereField { x=0 y=3 title="Parameter map:" }
+              Horizontal {
+                x=0 y=4
+                Label {
+                  x=0 y=0
+                  title = "BB-Faktor:"
+                }
+                SpacerX {
+                  x=1 y=0
+                }
+                Slider campathVPSize {
+                  x=2 y=0
+                  pw = 100
+                  snap = 0.1
+                  pageStep = 1
+                  tracking = true
+                  format = %1.1f
+                }
+                Field campathVPSize { 
+                  x=3 y=0
+                  format=%1.1fX
+                  title="" 
+                  edit=false
+                }
+              }                      
+              Horizontal {
+                x=0 y=5
+                Label {
+                  x=0 y=0
+                  title = "Apex Angle:"
+                }
+                SpacerX {
+                  x=1 y=0
+                }
+                Slider campathApexAngle {
+                  x=2 y=0
+                  pw = 100
+                  snap = 0.1
+                  pageStep = 1
+                  tracking = true
+                  format = %1.1f
+                }
+                Field campathApexAngle { 
+                  x=3 y=0
+                  format=%1.1f°
+                  title="" 
+                  edit=false
+                }
+              }
+            }            
+          }
+          Box {
+            layout = Vertical
+            title = "VisDataViewer"
+            expandX = yes expandY = yes
+            x=0 y=1
+            Viewer SoExaminerViewer1.self {
+              border = false 
+              backgroundColor = #EEEEEE
+              expandY = yes expandX = yes
+      //        h = 150
+            }
+          } //Box
+        } // Vertical
+        }
+        Box {
+          layout = Grid
+          title = "Animation"
+          expandX = yes  expandY = yes
+          x=0 y=1
+          Panel {
+            x=0 y=1
+            expandX = yes expandY = yes
+            w=500 h=500
+            module  = METKViewer3D
+            window  = METKViewer
+          } // Panel
+        } // Box Animation
+      } // Horizontal
+    } // Grid    
+    Box {
+      layout = Grid
+      title = "Recent Files"
+      expandX = yes  expandY = Minimum
+      x=0 y=0
+      Label {
+        titleField = LastXMLFile
+        x=0 y=0
+      } // Label
+      Label {
+        titleField = LastScriptFile
+        x=0 y=1
+      } // Label
+    } // Box Recent Files
+  } // Vertical
+} // Window

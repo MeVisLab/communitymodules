@@ -1,0 +1,61 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "565 617 72 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "70 89 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = ""
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    stringValue = ""
+    intValue = 7
+    boolValue = TRUE
+    doubleValue = 1
+    vec3Value = "1 1 1"
+    vec4Value = "0 0 1 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = TRUE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 6
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections = ""
+networkModel = ""

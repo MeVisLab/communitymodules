@@ -1,0 +1,16 @@
+[Ini]
+LengthTimeUnit=11
+LengthSeconds=15
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'Bones' setSilhouette true
+[0] 'Bones' setSilhouetteWidth 2
+[0] 'All' setVisible false
+[0] 'Larynx' setVisible true
+[0] 'Tumor' setVisible true
+[0] 'Lymphnode' setColor red
+[0] 'Larynx' view front 1.2
+[1,10] 'Cam' rotate 'Larynx' axial 360

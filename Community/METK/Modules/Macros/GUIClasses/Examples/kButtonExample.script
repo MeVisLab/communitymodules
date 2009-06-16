@@ -1,0 +1,49 @@
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+  	field disableButton1 { type=bool value=false }
+  	field disableButton2 { type=bool value=false }
+  }
+}
+
+
+Commands {	
+	importPath = "$(LOCAL)"
+	importPath = "$(LOCAL)/.."	
+
+	source = $(LOCAL)/kButtonExample.py  	
+	
+	FieldListener disableButton1 { command = disableButton1 }
+	FieldListener disableButton2 { command = disableButton2 }
+}
+
+
+
+Window
+{	
+	EventFilter
+	{
+		name = eventFilter1
+		filter = "MouseButtonPress,MouseButtonRelease,MouseMove,Enter,Leave" //,Wheel,MouseButtonDblClick,KeyRelease,KeyPress
+		command = analyzeButtonEventWindow1
+	}
+	
+	Vertical
+	{
+		margin = 30
+		Horizontal
+		{
+			Image { name = button1 image="$(LOCAL)/Button1-normal.png"}
+			Checkbox disableButton1 { title="Disable 1st button" }
+		}
+		Horizontal
+		{
+			Image { name = button2 image="$(LOCAL)/Button2-normal.png"}
+			Checkbox disableButton2 { title="Disable 2nd button" }
+		}
+		
+	}				
+
+	initCommand = initWindow
+} //Window

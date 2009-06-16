@@ -1,0 +1,7 @@
+module METKCalcCamPath {
+  fields  {
+    instanceName = METKCalcCamPath
+  }
+
+}
+

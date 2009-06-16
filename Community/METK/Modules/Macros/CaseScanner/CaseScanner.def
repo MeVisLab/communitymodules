@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! CaseScanner module definition
+/*!
+// \file    CaseScanner.def
+// \author  Maik
+// \date    2007-01-05
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule CaseScanner {
+  genre = ""
+  author = "Maik"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/CaseScanner.script"
+
+} // MacroModule CaseScanner
+

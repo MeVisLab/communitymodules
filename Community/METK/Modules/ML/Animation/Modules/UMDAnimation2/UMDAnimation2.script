@@ -1,0 +1,428 @@
+Interface {
+  Inputs {        
+  }
+  Outputs {            
+  }
+  Parameters {    
+    Field modulePathTemp { type=string value="$(LOCAL)" persistent=False }    
+  }
+}
+
+
+Commands {
+
+     // Add the local's parent path to the import path, so that Python looks for local packages
+     importPath = "$(LOCAL)/.."
+   
+     // Include local functions
+     source = "$(LOCAL)/UMDAnimation2.py"
+     
+     // Call init() to initalize the script
+  initCommand = init
+}
+
+
+Description {
+  Field modulePath {
+    persistent=False 
+  }
+}
+
+
+Window UMDAnimation2 {   
+
+  w = 400      
+   expandX = yes  expandY = yes  
+  style = kStyle
+  bgMode = SmoothStretch
+  
+  
+  TabView {
+    expandX=yes  expandY=yes
+
+    TabViewItem MainSettings {
+      Grid {  
+        margin = 15
+        spacing = 10
+        expandX = yes  expandY = yes          
+
+        Box {
+          layout = Grid
+          title = "File Locations"
+          expandX = yes  expandY = no
+          x=0 y=0
+
+          Grid {
+            x=0 y=0
+            Image {
+              x=0 y=0
+              image = $(LOCAL)/img/script-location-48x48.png
+              expandX=no
+            }
+
+            Label {
+              x=1 y=0
+              title = "In this section you can set the <b>location of a script</b>.<br>You can use relative (to local path) and absolute notation.<br>The path of the script file will be used to search for decomposition XMLs, wether or not its a relative or absollute one."
+            }
+          }
+
+          Empty { x=0 y=1 h=10 }
+
+          Field modulePath {        
+            x=0 y=2
+            name = modulePath
+            title = "Module Path:"
+            edit = no          
+            trim = Center
+            labelAlignGroup = lag1
+          }
+          
+
+          Horizontal
+          {
+            x=0 y=3
+            Field pathTypeScriptPath {            
+              title = "Path:"
+              labelAlignGroup = on3
+            }
+
+            Field scriptPath {            
+              title = ""
+              dependsOn = "pathTypeScriptPath=='Other path'"
+              browseButton = true
+              browseTitle = "..."
+              browseMode = directory
+            }
+          }
+          
+
+          Field scriptFile {
+            x=0 y=4
+            name = scriptFile
+            title = "Script File:"
+            alignGroup = none
+            //spacing = -23 //verdammt warum immer nur diese GUI-Hacks
+            browseButton = true
+            browseTitle = "..."
+            labelAlignGroup = lag1
+          }
+
+
+        }//Box Locations
+
+
+        Box {
+          layout = Grid
+          title = "Execute Scripts"
+          expandX = yes  expandY = yes
+          x=0 y=1
+          spacing = 10
+
+          Grid {
+            x=0 x2=2 y=0
+            Image {
+              x=0 y=0
+              image = $(LOCAL)/img/script-execute-48x48.png
+              expandX=no
+            }
+            Label {
+              x=1 y=0
+              title = "In this section you can <b>execute</b> an external script defined above, a single script command or a script in the script area."
+            }
+          }
+
+          Field scriptFile {
+            x=0 x2=1 y=1
+            title = "<b>I. Script File</b>"        
+            trim = Center
+            edit = no
+            labelAlignGroup = lag2
+          }
+
+          Button ScriptExecute {
+            x=2 y=1          
+            title = "Execute Script"
+          }        
+
+          Field CommandLine {
+            x=0 x2=1 y=2          
+            title = "<b>II. Single Command</b>"
+            labelAlignGroup = lag2
+          }
+
+          Button CommandLineExecute {
+            x=2 y=2
+            title = "Execute Command"          
+          }
+
+          Separator { x=0 x2=2 y=3 }
+
+          TextView ScriptArea {
+            x=0 x2=2 y=4
+            expandX = yes  expandY = yes
+            title = "<b>III. Script Area</b>"
+            edit = true
+            autoApply = true
+            visibleRows = 10
+            wrap = Off
+          }
+
+          Button 
+          {
+            x=1 y=5
+            title = "Load from Script File"
+            command = loadScriptFile
+          }            
+
+          Button ScriptAreaExecute
+          {
+            x=2 y=5
+            title = "Execute ScriptArea"
+          }            
+
+        } //Box execute  
+      } // Grid
+    } //TabViewItem MainSettings
+    
+    TabViewItem Parsing {
+      Grid {  
+        margin = 15
+        spacing = 10
+        expandX = yes  expandY = yes          
+
+        Box {
+          layout = Grid
+          title = "File Locations"
+          expandX = yes  expandY = no
+          x=0 y=0
+
+          Grid {
+            x=0 y=0
+            Image {
+              x=0 y=0
+              image = $(LOCAL)/img/script-location-48x48.png
+              expandX=no
+            }
+
+            Label {
+              x=1 y=0
+              title = "In this section you can set the <b>depending files</b>.<br>You can use relative (to local path) and absolute notation.<br>The path of the script file will be used to search for decomposition XMLs, wether or not its a relative or absollute one."
+            }
+          }
+
+
+          Empty { x=0 y=1 h=10 }
+
+          Box {
+            layout = Grid
+            expandX= yes        
+            title = "File for replacing object names"
+            x=0 y=6
+
+            Horizontal
+            {
+              x=0 y=0          
+              Field pathTypeObjectNamesPath1 {            
+                title = "Path:"
+                labelAlignGroup = on1
+              }
+
+              Field objectNamesPath1 {            
+                title = ""
+                dependsOn = "pathTypeObjectNamesPath1=='Other path'"
+                browseButton = true
+                browseTitle = "..."
+                browseMode = directory
+              }
+            }
+
+            Field objectNamesFile1 {
+              x=0 y=1
+              title = "Filename:"
+              labelAlignGroup = on1
+            }
+
+          } // Box
+
+
+          Empty { x=0 y=7 h=10 }
+
+          Box {
+            layout = Grid
+            expandX= yes        
+            title = "File for object commands"
+            x=0 y=8
+
+            Checkbox useObjectNamesFile2 {
+              x=0 y=0
+              title = "Use this file for replace object commands by clear names"
+            }
+
+            Horizontal
+            {
+              x=0 y=1
+              dependsOn = "useObjectNamesFile2"
+              Field pathTypeObjectNamesPath2 {            
+                title = "Path:"
+                labelAlignGroup = on2
+              }
+
+              Field objectNamesPath2 {            
+                title = ""
+                dependsOn = "pathTypeObjectNamesPath2=='Other path'"
+                browseButton = true
+                browseTitle = "..."
+                browseMode = directory
+              }
+            }
+
+            Field objectNamesFile2 {
+              x=0 y=2
+              title = "Filename:"
+              labelAlignGroup = on2
+              dependsOn = "useObjectNamesFile2"
+            }
+
+          } // Box
+
+          Empty { x=0 y=9 h=10 }
+
+          Box {
+            layout = Grid
+            expandX= yes        
+            title = "File for high level commands"
+            x=0 y=10
+
+            Horizontal
+            {
+              x=0 y=0
+              Field pathTypeHighLevelCommandsPath {            
+                title = "Path:"
+                labelAlignGroup = on3
+              }
+
+              Field highLevelCommandsPath {            
+                title = ""
+                dependsOn = "pathTypeHighLevelCommandsPath=='Other path'"
+                browseButton = true
+                browseTitle = "..."
+                browseMode = directory
+              }
+            }
+
+            Field highLevelCommandsFile {
+              x=0 y=1
+              title = "Filename:"
+              labelAlignGroup = on3
+            }
+
+          } // Box
+
+        }//Box Locations
+
+      } // Grid
+    } //TabViewItem  
+    
+    TabViewItem ProfessionalSettings {
+      Vertical {  
+        margin = 15 spacing = 10
+        expandX = yes expandY = yes  
+        
+        Field  debugState { }
+
+        Checkbox clearMeasureCacheForEachScript {
+          title = "Clear cache for each script"
+        }
+        
+        Button Reset {
+          title = "Reset internal caches"
+        }
+        
+        Field playStatus { edit = False }
+        
+        Field animationSpeed { }
+        
+        Field AnimationViewerName {
+          title = " Viewer for Animation:"
+        }
+        
+        Checkbox drawCameraPath {          
+          title = "Draw camera path"
+        }
+        
+        Checkbox enableSelection {
+          title = "Enable selection animations via CSO"
+        }        
+
+        Checkbox writeLowLevelScript {
+          title = "Write Lowlevel script file to location of script file."
+        }        
+      } //Vertical        
+    } //TabViewItem
+    
+    
+    TabViewItem OffscreenRendering {
+      Vertical {
+        margin = 15 spacing = 10
+        expandX = yes expandY = yes 
+      
+        
+        Checkbox useOffscreenRenderer {
+          title = "Use OffscreenRenderer"
+        }                
+
+        Field framerate {
+          title = "Framerate:"
+        }
+        
+        Horizontal {
+          Label { title = "Video Size X/Y:"}
+          LineEdit videoXSize { fw=50 textAlignment=Right }
+          Label { title = "x" }
+          LineEdit videoYSize { fw=50 textAlignment=Right }
+          HSpacer {}
+        }
+        
+        Field offScreenFilename { }
+        Field offScreenFolder { }
+        Field saveVideo { }
+        Field saveFrames { }
+
+        Box {
+          title = "Only some notifyer"
+          Field offScreenReady { }
+          Field offScreenRender { }
+          Field offScreenInit { }
+          Field offScreenFinishAVI { }
+        }
+      } //Vertical
+    } //TabViewItem
+    
+    
+    TabViewItem CamPath {
+      Vertical {
+        margin = 15 spacing = 10
+        expandX = yes expandY = yes 
+        
+        Field campathVPSize { }
+      }
+    } //TabViewItem
+    
+    
+    TabViewItem TestSphere {
+      Vertical {
+        margin = 15 spacing = 10
+        expandX = yes expandY = yes 
+
+        Field testSphereCenter { }
+        Field testSphereRadius { }
+        Field testCrossPoint { }
+        Field testCamPosition { }
+        Field testTargetPosition { }
+        Field testSphereAngle { }
+
+      } // Vertical
+    } //TabViewItem
+    
+  } //TabView
+} // Window

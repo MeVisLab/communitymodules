@@ -1,0 +1,146 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+
+  <meta name="GENERATOR"
+ content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+
+  <meta name="Description" content="Template for an ILAB module">
+  <title>Help Template</title>
+     <!--===============================================================-->
+<!-- Draw Operator                                                 --> <!--===============================================================-->
+</head>
+  <body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a
+ href="#Usage">Usage</a>&nbsp;&nbsp; <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp; <a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; <a
+ href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a
+ href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="#KnownBugs">Known Bugs</a>
+<hr width="100%"></center>
+
+<h2> UMDObjDemo</h2>
+
+<h3> <a name="Purpose"></a>Purpose</h3>
+
+<blockquote>Dieses Modul ist eine simple Demonstration des ObjMgrs. Ich werde
+hier kurz erkl&auml;ren, wie man mithilfe des Wizards sich ein eigenes ObjClient-Modul
+bauen kann und welche Einstellungen man f&uuml;r Compiler und Linker zus&auml;tzlich
+vornehmen muss. Das UMDObjDemo-Modul selbst reagiert auf s&auml;mtliche Events
+und z&auml;hlt sie f&uuml;r jedes Objekt im ObjMgr ([ID][Test][EventCount])</blockquote>
+
+<h3> <a name="Usage"></a>Usage</h3>
+
+<blockquote>Einfach an einen ObjMgr andocken und schauen, was passiert, wenn
+man Events jeglicher Art generiert.</blockquote>
+
+<h3> <a name="Details"></a>Details</h3>
+
+<blockquote>Dinge, die es beim Bau eines Obj-Modules zu beachten gibt:<br>
+<br>
+<table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4' width='90%'><tr><td class='FontNormal'>1. Der Include-Pfad muss erweitert werden um:<br>
+<br>
+<TT>$(MEVIS_LIB)\std\ML\MLObjMgr\ObjMgr</TT></td></tr></table><br>
+<br>
+<table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4' width='90%'><tr><td class='FontNormal'>2. Je nach dem ob <B>Debug oder nicht</B> muss die Bibliothek<br>
+<br>
+<TT>"MLObjMgr_d.lib" / "MLObjMgr.lib"</TT><br>
+<br>
+eingebunden werden.</td></tr></table><br>
+<br>
+<table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4' width='90%'><tr><td class='FontNormal'>3. Um eine Reihe von unsinnigen Warnungen auszuschalten gilt es, folgendes einzubinden:<br>
+<br>
+<TT>#ifdef WIN32<br>
+#pragma warning (disable : 4275)<br>
+#pragma warning (disable : 4503)<br>
+#pragma warning (disable : 4786)<br>
+#endif</TT></td></tr></table><br>
+<br>
+<table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4' width='90%'><tr><td class='FontNormal'>4. Die *.bat-Datei sollte nicht gelöscht aber zumindest geleert werden. Sonst erstellt er die Projektfiles immer wieder von Neuem und überschreibt vorgenommene Änderungen</td></tr></table><br>
+<br>
+<table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4' width='90%'><tr><td class='FontNormal'>5. Folgende Zeilen sollte wiefolgt ersetzt oder hinzugefügt werden:<br>
+<br>
+<U><B>mlMODULENAME.cpp</B></U><br>
+<br>
+<TT>ML_BASEOP_CLASS_SOURCE(MODULENAME, BaseOp);<br>
+ML_CLASS_SOURCE(MODULENAME,ObjMgrClient);</TT><br>
+<br>
+Constructor:<br>
+<TT>MODULENAME::MODULENAME(void)  : BaseOp(0, 0)<br>
+MODULENAME::MODULENAME() : inherited(0,0,ObjMgrClient::EVENTS_SELECTED)</TT><br>
+<br>
+folgende Methode kommt hinzu:<br>
+<TT>void MODULENAME::handleObjMgrNotification() { ... }</TT><br>
+<br>
+in der normalen HandleNotification sollte:<br>
+<TT>inherited::handleNotification(field);</TT><br>
+nicht fehlen.<br>
+<br>
+<br>
+<U><B>mlMODULNAME.h</B></U><br>
+<br>
+hinzufügen:<br>
+<TT>#include &lt;mlObjMgrClient.h&gt;</TT><br>
+<br>
+aus <TT>public BaseOp</TT><br>
+wird <TT>public ObjMgrClient</TT><br>
+<br>
+in die private-Deklaration kommt:<br>
+<TT>typedef ObjMgrClient inherited;</TT><br>
+<br>
+und aus <TT>ML_BASEOP_CLASS_HEADER(MODULNAME)</TT><br>
+wird <TT>ML_CLASS_HEADER(MODULNAME)</TT><br>
+<br>
+und es kommt natürlich die ObjMgrNotification hinzu:<br>
+<TT>virtual void handleObjMgrNotification();</TT></td></tr></table><br>
+<br>
+Nun rollen zwar immer noch Warnungen durch. Die können aber durch ein Herabsetzen des Warnlevels auf 3 ignoriert werden. Hoffe ich.<br>
+</blockquote>
+
+<h3> <a name="Inputs"></a>Inputs</h3>
+
+<blockquote>ObjMgr</blockquote>
+
+<h3> <a name="Outputs"></a>Outputs</h3>
+
+<blockquote>ObjMgr</blockquote>
+
+<h3> <a name="Parameters"></a>Parameters</h3>
+
+<blockquote>
+  <h4> <b>None.</b></h4>
+</blockquote>
+<dl>
+  <dl>
+    <dl>
+    </dl>
+  </dl>
+</dl>
+
+<h3> </h3>
+
+<h3> <a name="EventInteract"></a>Events &amp; Interaction</h3>
+
+<blockquote>...<br>
+</blockquote>
+
+<h3> <a name="Example"></a>Example</h3>
+
+<blockquote>Einfach anschauen &nbsp;...</blockquote>
+
+<h3> <a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+<blockquote>None</blockquote>
+
+<h3> <a name="KnownBugs"></a>Known Bugs</h3>
+
+<blockquote>None</blockquote>
+  <br>
+</body>
+</html>

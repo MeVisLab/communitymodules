@@ -1,0 +1,267 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSwitch {
+  internal  {
+    frame = "-235 197 88 56"
+    windows  {
+      window _default {
+        geometry = "556 191 195 94"
+        sizeHint = "190 94"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch1
+    whichChild = -1
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "-319 53 96 56"
+    windows  {
+      window _default {
+        geometry = "416 129 195 94"
+        sizeHint = "190 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch
+    whichChild = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-311 -31 80 64"
+    windows  {
+      window _viewer {
+        geometry = "224 243 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = output
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-287 281 80 64"
+    windows  {
+      window _viewer {
+        geometry = "224 243 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = input
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "253 -31 120 64"
+  }
+  fields  {
+    instanceName = BackgroundOut
+  }
+}
+module UMDObjCommunicator {
+  internal  {
+    frame = "-39 117 160 56"
+    windows  {
+      window _automatic {
+        geometry = "631 350 429 420"
+        sizeHint = "429 420"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "164 613 528 498"
+        sizeHint = "429 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDObjCommunicator
+    ObjName = ""
+    CamPosition = "0.000000 0.000000 0.000000"
+    CamOrientation = "0.000000 0.000000 0.000000 0.000000"
+    CamHeight = 0
+    CamFocalDistance = 0
+    ViewerFramerate = 1
+    ViewerStatus = Ready
+    ProtocolViewerStatus = FALSE
+    ViewerBGColor = "1.000000 1.000000 1.000000"
+    ViewerBGGreyCenter = 0
+    ViewerBGGreyWidth = 0
+  }
+  internalFields = ""
+}
+module SoBackground {
+  internal  {
+    frame = "321 113 112 64"
+    windows  {
+      window _default {
+        geometry = "136 155 129 134"
+        sizeHint = "129 134"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "158 177 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Background
+    rotate = TRUE
+    flip = FALSE
+    on = FALSE
+    depthBuffer = TRUE
+  }
+}
+module SoRLLookUpTable {
+  internal  {
+    frame = "165 113 136 64"
+    windows  {
+      window _default {
+        geometry = "158 177 601 553"
+        sizeHint = "601 553"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "980 365 297 445"
+        sizeHint = "297 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BackgroundRamp
+    _channelEditorState = ""
+    alphaCenter = 0.5
+    alphaWidth = 1
+    greyCenter = 0
+    greyWidth = 0
+    redCenter = 0.5
+    redWidth = 1
+    blueCenter = 0.5
+    blueWidth = 1
+    useColorRamps = FALSE
+    invertGrey = FALSE
+    invertAlpha = FALSE
+    colorFactor = "1.000000 1.000000 1.000000"
+    alphaFactor = 1
+    autoSetDefaultRamp = TRUE
+    setDefaultRampOnce = TRUE
+    inputImageValid = FALSE
+    rangeMin = 0
+    rangeMax = 1
+    widthMin = 0
+    enableNegWidth = FALSE
+    widthMax = 1
+    rangeStep = 0.004999999888
+    rangeStepStep = 0.05000000075
+    selectorX = 0
+    selectorY = 0
+    setInputMinMax = TRUE
+    useEditor = FALSE
+    useTraceColors = FALSE
+    trCol0 = "1.000000 1.000000 1.000000"
+    trCol0Name = White
+    trCol0Alpha = 1
+    trCol1 = "0.501961 0.501961 0.501961"
+    trCol1Name = Grey
+    trCol1Alpha = 1
+    trCol2 = "0.862745 0.000000 0.172549"
+    trCol2Name = Red
+    trCol2Alpha = 1
+    trCol3 = "1.000000 0.462745 0.490196"
+    trCol3Name = "Light Red"
+    trCol3Alpha = 1
+    trCol4 = "0.000000 0.819608 0.160784"
+    trCol4Name = Green
+    trCol4Alpha = 1
+    trCol5 = "0.560784 1.000000 0.435294"
+    trCol5Name = "Light Green"
+    trCol5Alpha = 1
+    trCol6 = "0.184314 0.239216 0.929412"
+    trCol6Name = Blue
+    trCol6Alpha = 1
+    trCol7 = "0.490196 0.541176 1.000000"
+    trCol7Name = "Light Blue"
+    trCol7Alpha = 1
+    trCol8 = "0.631373 0.000000 0.678431"
+    trCol8Name = "Dark Magenta"
+    trCol8Alpha = 1
+    trCol9 = "0.894118 0.380392 1.000000"
+    trCol9Name = Magenta
+    trCol9Alpha = 1
+    trColA = "0.000000 0.682353 0.756863"
+    trColAName = "Dark Cyan"
+    trColAAlpha = 1
+    trColB = "0.501961 1.000000 0.980392"
+    trColBName = Cyan
+    trColBAlpha = 1
+    trColC = "0.615686 0.600000 0.196078"
+    trColCName = "Dark Yellow"
+    trColCAlpha = 1
+    trColD = "1.000000 0.976471 0.368627"
+    trColDName = Yellow
+    trColDAlpha = 1
+    trColE = "1.000000 1.000000 1.000000"
+    trColEName = "Half Transparent"
+    trColEAlpha = 0.06274510175
+    trColF = "1.000000 1.000000 1.000000"
+    trColFName = Transparent
+    trColFAlpha = 0
+  }
+}
+module SoUMDViewerTrigger {
+  internal  {
+    frame = "-211 117 152 56"
+    windows  {
+      window _default {
+        geometry = "638 106 407 300"
+        sizeHint = "407 300"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "611 113 407 300"
+        sizeHint = "407 300"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoUMDViewerTrigger
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    StatusFld = Ready
+  }
+}
+connections  {
+  SoSwitch1.children = input.self
+  SoSwitch.children = "input.self SoUMDViewerTrigger.self"
+  output.children = SoSwitch.self
+  input.children = ""
+  BackgroundOut.children = "BackgroundRamp.self Background.self"
+  UMDObjCommunicator.ViewerStatus = SoUMDViewerTrigger.StatusFld
+  UMDObjCommunicator.ViewerBGColor = BackgroundRamp.colorFactor
+  UMDObjCommunicator.ViewerBGGreyCenter = BackgroundRamp.greyCenter
+  UMDObjCommunicator.ViewerBGGreyWidth = BackgroundRamp.greyWidth
+  BackgroundRamp.greyCenter = UMDObjCommunicator.ViewerBGGreyCenter
+  BackgroundRamp.greyWidth = UMDObjCommunicator.ViewerBGGreyWidth
+  BackgroundRamp.colorFactor = UMDObjCommunicator.ViewerBGColor
+  SoUMDViewerTrigger.children = SoSwitch1.self
+}

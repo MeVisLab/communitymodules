@@ -1,0 +1,210 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "869 269 120 56"
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "425 361 192 64"
+    windows  {
+      window Settings {
+        geometry = "643 465 400 164"
+        sizeHint = "400 164"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "1078 439 384 430"
+        sizeHint = "115 149"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = set_SurfaceDistance_flag
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    checkBoxLayer = Appearance
+    checkBoxInfo = SurfaceDistance
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "681 461 112 56"
+    windows  {
+      window _default {
+        geometry = "581 453 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "449 189 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "797 133 120 56"
+    windows  {
+      window _default {
+        geometry = "1011 208 510 564"
+        sizeHint = "300 300"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer2D
+    annotations = TRUE
+    layoutMode = LAYOUT_AXIAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "533 101 120 56"
+    windows  {
+      window _default {
+        geometry = "20 133 451 524"
+        sizeHint = "238 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "94.65179999999999 -159.489 106.871"
+    camOrientation = "0.915856 0.273949 0.293529 1.60654"
+  }
+  internalFields = ""
+}
+module METKDistanceTransform {
+  internal  {
+    frame = "653 373 168 56"
+    windows  {
+      window _default {
+        geometry = "596 608 400 167"
+        sizeHint = "400 167"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKDistanceTransform
+    ignoreEmptyString = TRUE
+    structures = Lymphnode,Tumor
+    progressEuclid = 0
+  }
+  internalFields = ""
+}
+module METKSurfaceDistance3D {
+  internal  {
+    frame = "501 269 168 56"
+  }
+  fields  {
+    instanceName = METKSurfaceDistance3D
+    priority = 10000
+    debugComment = ""
+    nearDistance = 2
+    nearDistanceColor = "1 0 0"
+    farDistance = 5
+    farDistanceColor = "1 1 0"
+  }
+}
+module METKSurfaceDistance2D {
+  internal  {
+    frame = "677 269 168 56"
+    windows  {
+      window _default {
+        geometry = "741 472 204 99"
+        sizeHint = "204 99"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSurfaceDistance2D
+    display = TRUE
+    innerMarginValue = 2
+    outerMarginValue = 5
+    innerMarginColor = "1 0 0"
+    outerMarginColor = "1 1 0"
+  }
+  internalFields = ""
+}
+connections  {
+  METKROISelect.inObjectContainer = METKDistanceTransform.outObjectContainer
+  set_SurfaceDistance_flag.inObjectContainer = METKManager.outObjectContainer
+  METKIsoSurface.inObjectContainer = METKSurfaceDistance3D.outObjectContainer
+  METKViewer2D.inObjectContainer = METKROISelect.outObjectContainer
+  METKViewer2D.input = METKSurfaceDistance2D.margins
+  METKViewer2D.soview2d = METKROISelect.image
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKViewer3D.afterScene = METKSurfaceDistance3D.outInventor
+  METKDistanceTransform.inObjectContainer = METKManager.outObjectContainer
+  METKSurfaceDistance3D.input0 = METKDistanceTransform.image
+  METKSurfaceDistance3D.inObjectContainer = METKDistanceTransform.outObjectContainer
+  METKSurfaceDistance2D.mask = METKDistanceTransform.image
+}

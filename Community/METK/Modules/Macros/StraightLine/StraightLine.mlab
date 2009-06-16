@@ -1,0 +1,120 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Material {
+  internal  {
+    frame = "273 293 80 56"
+  }
+  fields  {
+    instanceName = Material
+    on = TRUE
+    style = FILLED
+    complexity = 0.8999999762
+    lineWidth = 1
+    linePattern = 1
+    pointSize = 1
+    ambientColor = "0.5 0.45 0.2"
+    diffuseColor = "0.5 0.45 0.2"
+    emissiveColor = "0.1 0.05 0.05"
+    specularColor = "0.6 0.55 0.3"
+    shininess = 0.200000003
+    transparency = 0
+    colorPresets = gold
+    stylePresets = solid
+  }
+  internalFields = ""
+}
+module SoCylinder {
+  internal  {
+    frame = "377 293 96 56"
+    windows  {
+      window _default {
+        geometry = "543 459 119 91"
+        sizeHint = "119 91"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCylinder
+    parts = ALL
+    radius = 1
+    height = 1.414209962
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "145 293 112 56"
+    windows  {
+      window _default {
+        geometry = "506 459 274 37"
+        sizeHint = "274 37"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation1
+    translation = "0 0.707107 0"
+  }
+}
+module SoRotation {
+  internal  {
+    frame = "29 293 104 56"
+    windows  {
+      window _default {
+        geometry = "854 450 394 39"
+        sizeHint = "394 39"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRotation1
+    rotation = "0.707107 0 -0.707107 0.9553160000000001"
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "-103 293 112 56"
+    windows  {
+      window _default {
+        geometry = "506 459 274 37"
+        sizeHint = "274 37"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation2
+    translation = "0 0.707107 0"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "149 109 184 56"
+    windows  {
+      window _viewer {
+        geometry = "114 133 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+connections  {
+  SoSeparator.children = "SoTranslation2.self SoRotation1.self SoTranslation1.self Material.self SoCylinder.self"
+}

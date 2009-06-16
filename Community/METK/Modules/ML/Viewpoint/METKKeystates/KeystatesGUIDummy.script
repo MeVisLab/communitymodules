@@ -1,0 +1,272 @@
+Interface  {
+   Inputs { }
+   Outputs { }
+
+   Parameters {
+   
+      Field slice3D         { type = int value = -1 }
+      Field MainViewer      { type = int value = 0 }
+      Field MainTabViews    { type = int value = 0 }
+      Field Tools           { type = int value = -1 }
+      
+      Field evaluate        { type = bool value = False }
+      Field host            { type = string value = "" }
+      Field port            { type = int value = 80 }
+      
+      Field helpTool        { type = int value = -1 }
+      Field helpText        { type = string value = "No help defined for this context.<br>Please move mouse over the NSP window to get more help." }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/../../../Projects/MedicalExplorationToolkit/"
+   
+   // Include local functions
+   source = "$(LOCAL)/KeystatesGUIDummy.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   //FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }   
+}
+
+
+/*Window KeystateDemo {
+style = PlannerStyle
+margin = 10
+Splitter {
+direction = vertical
+      
+Vertical {
+}
+      
+Grid {
+spacing = 4
+margin = 4
+         
+         
+         
+}
+      
+}
+}*/
+
+
+
+Window KeystateDemo {
+
+   FieldListener MainViewer {
+      command = changeMainViewer
+   }
+
+   FieldListener slice3D {
+      command = showSliceIn3D
+   }
+
+   FieldListener MainTabViews {
+      command = changeTabView
+   }  
+  
+   style = PlannerStyle
+   //maximized = true
+   expandX = Yes
+   expandY = Yes
+
+
+   //-------------------------------------------------------------------------------------------------     
+   Grid {
+      name = KeystateDemoMainWindow
+      expandX = Yes
+      expandY = Yes
+      margin = 10
+      spacing = 10
+
+      //linke Spalte------------------------------------------------------------------------------
+      Vertical{
+         x=0
+         y=0
+         x2=1
+         y2=31               
+         expandX = no
+         expandY = yes
+         
+         MenuBar {
+            style {titleFont { family = tahoma size = 9 } }
+          
+            SubMenu "File" {
+               name = FileMenu
+               MenuItem "Open..."    { command = openCase   accel = CTRL+O }
+               MenuItem "Close"      { command = closeCase  accel = CTRL+W }
+               MenuItem "Save"       { command = saveCase   accel = CTRL+S }
+               MenuItem "Save As..." { command = saveCaseAs accel = CTRL+SHIFT+S }
+               Separator { direction = horizontal }
+               //MenuItem "Quit"       { command = exit       accel = CTRL+Q }
+            } //SubMenu
+            SubMenu "Options" {
+               name = OptionsMenu
+               //MenuItem "Preferences" {  command = showPreferences accel = CTRL+P } 
+               //MenuItem "Toggle Decoration"  { command = showDecoration accel = CTRL+D }
+            }
+            SubMenu "Help" {
+               name = HelpMenu
+               //MenuItem "Show/Hide Help" { command = showHelp accel = F1 }
+               //MenuItem "About" { command = showAbout enabled = False }
+            }
+         }//MenuBar
+         
+         //Empty { expandY = no fh = 20 }
+
+         Panel {            
+            name    = StructureList
+            module  = StructureList
+            //window  = singleListView
+            expandY = yes
+         }
+         
+         Empty { expandY = no fh = 20 }
+
+         Panel {                        
+            module  = METKObjBrowser
+            window  = shortVisuals
+            expandY = no
+         }
+         
+         
+         Empty { expandY = no fh = 20 }
+         
+         
+      } //Vertical
+
+      //------------------------------------------------------------------------------------------
+      //mittlere Spalte : MenuListe        
+      Vertical {
+         x=2 y=0 x2=15 y2=1
+         expandX = yes
+         expandY = yes
+         
+         Empty { fh = 20 }
+         //Button zum Umschalten der Ansichten-------------------------------------------
+         Horizontal {
+            expandX = Yes
+            expandY = Yes
+            
+            Buttonbar MainViewer {               
+               name = SwitchDetail
+               show = toolbuttons
+               border = False
+               expandX = No
+               items {
+                  item 0 {
+                     title = 3D
+                     //style { titleFont { weight = Black size = 11 }}
+                     accel = 3
+                     tooltip = "Enlarged 3D view (3)"
+                  }
+                  item 1 {
+                     title = "A"
+                     accel = A
+                     tooltip = "Enlarged axial view (A)"
+                     //image = $(LOCAL)/images/IconAxial.png
+                  }
+                  item 2 {
+                     title = "C"
+                     accel = C
+                     tooltip = "Enlarged coronal view (C)"
+                     //image = $(LOCAL)/images/IconCoronal.png
+                  }
+                  item 3 {
+                     title = "S"
+                     accel = S
+                     tooltip = "Enlarged sagittal view (S)"
+                     //image = $(LOCAL)/images/IconSagittal.png
+                  }
+               }
+            }
+
+            Separator { direction = vertical expandX = No }
+
+            Buttonbar slice3D {
+               name = ShowSlicein3D
+               show = toolbuttons
+               border = False
+               autoScale = True
+               expandX = No               
+               items {
+                  item 0 {
+                     title = "3D+A"
+                     accel = SHIFT+A
+                     tooltip = "Show axial slice in 3D (Shift+A)"
+                  }
+                  item 1 {
+                     title = "3D+C"
+                     accel = SHIFT+C
+                     tooltip = "Show coronal slice in 3D (Shift+C)"
+                  }
+                  item 2 {
+                     title = "3D+S"
+                     accel = SHIFT+S
+                     tooltip = "Show sagittal slice in 3D (Shift+S)"
+                  }
+               }
+            }
+            
+            Separator { direction = vertical expandX = No }
+
+
+            Empty { fh = 20 expandX = yes  expandY = yes }
+
+            Buttonbar helpTool {
+               name = ShowHelp
+               show = toolbuttons
+               border = False
+               autoScale = True
+               items {
+                  item 0 {
+                     title = ""                     
+                     image = $(LOCAL)/images/Help.png
+                     tooltip = "Show context sensitiv help (F1)"
+                  }
+               }
+            }
+         } //Horizontal
+      }//Vertical
+      
+      //-----------------------------------------------------------------------------------------                
+      //mittlere Spalte: Views
+      DynamicFrame {
+         name = DynamicFrameControl
+         expandY = yes
+         expandX = yes
+         autoSize = False
+         x=2
+         y=2
+         x2=15
+         y2=30
+         
+         //groﬂe 3D Ansicht
+         //Axiale Ansicht mit Default-Einteilung
+         //Coronal Ansicht mit Default-Einteilung
+         //Sagittal Ansicht mit Default-Einteilung
+         //Ortho View
+         //TNM Window
+         
+      } //TabView 
+      
+      Panel {
+         
+         x=0
+         y=32
+         x2=15
+         y2=33
+         //h=200         
+         module = METKKeystateVis
+         window = METKKeystateVisListViewHorz
+      }
+      
+   } //Grid
+   initCommand = initWindow
+}

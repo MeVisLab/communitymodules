@@ -1,0 +1,41 @@
+Interface  {
+   Inputs  {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outInventor { internalName = textureToggle.self }
+   }
+   Parameters {
+      Field objectID     { internalName = info.searchObjPattern }
+      Field structure    { type = string value = "" }
+      Field initialize   { type = trigger }
+      Field visibleOn    { type = enum value = "TextureVisible" values = "TextureVisible,GeneralVisible" }
+      Field mode         { type = enum value = "HATCHING_OPACITY" values = "HATCHING_OPACITY,HATCHING_TAM" }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/TextureContainer.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   FieldListener info.outObjectContainer { callLater = false command = _cls_info.handleEvents }
+   FieldListener initialize { command = initialize}
+   FieldListener visibleOn  { command = visibleOnChanged }
+   FieldListener mode       { command = modeChanged }
+}
+
+
+Window TextureContainer {
+   Vertical {
+      Field = objectID { edit = NO }
+      Field = initialize
+      Field = mode
+   }
+}

@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! StraightLine module definition
+/*!
+// \file    StraightLine.def
+// \author  Konrad Mühler
+// \date    2008-08-06
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule StraightLine {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/StraightLine.script"
+
+} // MacroModule StraightLine
+

@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! UMDObjCommunicator module definition
+/*!
+// \file    UMDObjCommunicator.def
+// \author  Konrad
+// \date    2006-01-11
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDObjCommunicator {
+  genre = ""
+  author = "Konrad"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDObjCommunicator.script"
+
+} // MacroModule UMDObjCommunicator
+

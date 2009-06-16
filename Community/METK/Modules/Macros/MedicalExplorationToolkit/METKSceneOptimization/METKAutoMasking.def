@@ -1,0 +1,21 @@
+UserGenres {
+   Genre = METK {
+      Genre = METKSceneOptimization {
+         Title = SceneOptimization
+      }
+   }
+}
+
+
+MacroModule METKAutoMasking {
+   author             = "Kerstin Kellermann"
+   status             = "test"
+   comment            = ""
+   keywords           = ""
+   seeAlso            = ""
+   //exampleNetwork     = "$(LOCAL)/networks/METKAutoMasking.mlab"
+   scriptOnly         = NO
+   externalDefinition = "$(LOCAL)/METKAutoMasking.script"
+   genre              = "METKSceneOptimization"
+   //documentation      = "http://www.metk.net/METKDocumentation/METKAutoMasking.html"
+}

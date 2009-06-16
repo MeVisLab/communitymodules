@@ -1,0 +1,46 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+      Field inClipping { internalName = Clipping.child }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field outInventor { internalName = input3D.self }
+   }
+   Parameters {
+      Field useDepthPeeling { type = bool value = false }
+      Field creationTime    { type = enum value = "OnLoad" values = "OnLoad,OnVisible" }
+   }
+}
+
+Deployment {
+   module = SoDepthPeelRenderer
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKIsoSurface.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener useDepthPeeling         { command = useDepthPeeling }
+}
+
+Window METKIsoSurface {
+   Vertical {
+      expandY = yes
+      Field = useDepthPeeling
+      Field = creationTime
+      Panel {
+         module  = METKStructureGroupBrowser
+         window  = singleListView
+         expandY = yes
+      }
+   }
+}

@@ -1,0 +1,81 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer   { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters {
+      Field = update { type = trigger }
+      Field = currentKeystate   { type=string persistent=False }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/../../../Projects/MedicalExplorationToolkit/"
+   
+   // Include local functions
+   source = "$(LOCAL)/METKKeystateVis.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }   
+   FieldListener update { command = updateListView }
+}
+
+
+Window METKKeystateVis {
+   style = PlannerStyle
+   Vertical {
+      expandY = YES
+      Button = update { title = "Update Keystates" }
+
+      Panel { 
+         h = 300
+         expandY = YES
+         window = METKKeystateVisListViewHorz
+      }
+   }
+}
+
+
+Window METKKeystateVisListView {
+   style = PlannerStyle
+   expandY = YES
+   shouldCloseCommand = closeListView
+   Vertical {
+      expandY = YES
+      ListView {
+         expandY = YES
+         name = keystateList
+         values = "Preview,Title"
+         rowSeparator = "@"
+         columnSeparator = ","
+         sortByColumn = 0
+         layout = "l,l"
+         selectionMode = Single
+         resizeMode = last      
+      }
+      Execute = initListView
+   }
+}
+
+Window METKKeystateVisListViewHorz {
+   style = PlannerStyle
+   expandY = YES
+   shouldCloseCommand = closeListViewHorz
+   Vertical {
+      expandY = YES
+      IconView {
+         expandY = YES
+         name = keystateListHorz         
+         selectedCommand = keystateSelected         
+      }
+      Execute = initListViewHorz
+   }
+}

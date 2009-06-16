@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! UMDSoLittleCamera module definition
+/*!
+// \file    UMDSoLittleCamera.def
+// \author  Konrad
+// \date    2005-07-26
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDSoLittleCamera {
+  genre = ""
+  author = "Konrad"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDSoLittleCamera.script"
+
+} // MacroModule UMDSoLittleCamera
+

@@ -1,0 +1,71 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "265 137 80 64"
+  }
+  fields  {
+    instanceName = output3D
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "589 473 72 64"
+    windows  {
+      window _default {
+        geometry = "597 36 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Animation
+    acceptedLayers = DebugCameraPath
+    objectID = Viewer
+    layerID = view3d
+    infoID = Status
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Ready
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  output3D.children = ""
+}

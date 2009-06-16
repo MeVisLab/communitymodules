@@ -1,0 +1,449 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>AnimationScritper - Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="master.css" rel="stylesheet" type="text/css">
+</head>
+<body class="FontNormal">
+<div align="center" style="width:100%; background-color:#FFFFFF">
+  <div style="width:500px; margin 5 5 5 5;" align="left"> <span class="FontTitle">AnimationScripter</span><br>
+    <br>
+    <span class="FontSubTitle"><br>
+    <br>
+    </span>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">1. Erste
+          Schritte </font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px"> So, Freunde des bewegten
+            Bildes. Herzlich willkommen bei der Einf&uuml;hrung in den AnimationScripter.
+            Den AnimationScripter gibt es so eigentlich gar nicht. Der Begriff
+            beschreibt vielmehr die Animations-Funktionalit&auml;ten von MeViPlEx
+            (dem Medical Viewer, Player and Explorer).<br>
+            <br>
+            <strong>1. Auschecken</strong><br>
+            (Dieses Wort liest sich Aus-checken, und nicht Au-schecken!)<br>
+            <br>
+            Wenn ihr es noch nicht getan habt, m&uuml;sst ihr alle aktuellen MeVisLab-Module
+            aus unserem svn auschecken. Das macht ihr am besten zusammen mit Konrad
+            oder Puck. Die folgenden Pfade beziehen sich alle auf die Pfad-Struktur
+            dieses svn.<br>
+            <br>
+            <strong>2. Fall besorgen</strong><br>
+            Damit ihr was zum Animieren habt, braucht ihr einen funktionierenden
+            Fall. Dies ist der von Jeanette segmentierte <strong>Hals12</strong>.
+            Den findet ihr auf medvis unter User\konrad\Hals12. Den kopiert ihr
+            euch lokal irgendwo hin.<br>
+            <br>
+          </div></td>
+      </tr>
+    </table>
+    <br>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">2.
+          Laden des Netzwerks</font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px"> Da wir mit der Namensfindung
+            noch nicht durch sind, hei&szlig;t das zentrale Netzwerk der ganzen
+            Aktion hier noch MedicalPlayer.mlab.<br>
+            Ihr findet es unter MLabModules\Projects\MedicalPlayer<br>
+            Dieses Netzwerk &ouml;ffnet ihr mit MeVisLab.<br>
+            Das sollte dann ungef&auml;hr so aussehen:<br>
+            <img src="img/medicalplayer-net.png" width="450" height="301"> <br>
+            <em>Netz des MedicalPlayer</em><br>
+            <br>
+            <strong>Eine kurze Einf&uuml;hrung zum MedicalPlayer:</strong><br>
+            <br>
+            Der MP dient dem Laden, Visualisieren und Animieren von segmentierten
+            Daten. Zur Zeit kann er nur F&auml;lle laden, die mit NeckVision erstellt
+            wurden. Dies soll sich aber demn&auml;chst &auml;ndern. Der MP bildet
+            das zentrale Visualisierungs-Modul in allen zuk&uuml;nftigen Applikationen.
+            Er &uuml;bernimmt das Laden der Daten, das Erstellen des entsprechenden
+            Inventor-Netzwerkes und die Darstellung des Ganzen. Zus&auml;tzlich
+            kann der MP Szenen animieren.<br>
+            Nach au&szlig;en hin bietet der MP (demn&auml;chst) eine 3D-Sicht
+            und 2D-Sichten an, die von umgebenden Applikationen genutzt werden
+            k&ouml;nnen.<br>
+          </div></td>
+      </tr>
+    </table>
+    <br>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">3.
+          &Ouml;ffnen eines Falls</font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px"> Wie gesagt nehmen wir
+            als Beispielfall den Hals12.<br>
+            Ihr &ouml;ffnet das OpenCase-Modul durch Doppelklick und tragen bei
+            FileName die Hals12.xml ein. Danach klickt ihr auf Load und wartet.
+            Beim ersten &Ouml;ffnen dauert es noch etwas l&auml;nger. Danach geht
+            es aber immer sehr flott.<br>
+            <img src="img/opencase.png" width="450" height="278"> <br>
+            <br>
+            Danach k&ouml;nnt ihr das OpenCase-Modul schlie&szlig;en.<br>
+          </div></td>
+      </tr>
+    </table>
+    <br>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">4.
+          Liebe auf den ersten Blick</font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px"> Ist der Fall geladen,
+            so k&ouml;nnt ihr ihn euch einfach mal anschauen.<br>
+            Dazu &ouml;ffnet ihr das Visualization-Modul durch Doppelklick. Das
+            m&uuml;sste dan wiefolgt aussehen:<br>
+            <img src="img/visualization.png" width="450" height="406"> <br>
+            <br>
+            Mit einem Klick auf den ViewAll-Button kommen dann auch die Objekte
+            ins Bild.</div></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">4. Grundlagen der Animationsskripte</font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px"> <a href="Anweisungen-01.pdf"><strong>Vertiefende
+            Grundlagen zu Funktionsweise und Aufbau der Skriptsprache habe ich
+            hier zusammengeschrieben ...</strong></a> <br>
+            <br>
+            Grundlage aller Animationen bilden Skripte. Diese Skripte k&ouml;nnen
+            entweder aus einer Datei gelesen werden, oder aber direkt eingegeben
+            werden.<br>
+            Ein Skript besteht immer aus einem Ini- und einem Script-Teil.<br>
+            <br>
+            Im <strong>Ini-Teil </strong>werden die L&auml;nge der Animation in
+            Zeiteinheiten und in Sekunden angegeben. Au&szlig;erdem wird mit <span class="FontCode">RealTime</span>
+            eingestellt, ob die Animation als Video erzeugt werden oder in Echtzeit
+            gezeigt werden soll.<br>
+            <br>
+            <table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4'>
+              <tr>
+                <td class='FontCode'>[Ini]<br>
+                  LengthTimeUnit=4<br>
+                  LengthSeconds=2<br>
+                  RealTime=no<br>
+                  ...</td>
+              </tr>
+            </table>
+            <br>
+            <br>
+            Im <strong>Script-Teil</strong> folgt das Skript.<br>
+            Dabei ist eine Anweisung immer wie folgt aufgebaut:<br>
+            <br>
+            <table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4'>
+              <tr>
+                <td class='FontCode'>Zeitangabe Object Befehl Parameter</td>
+              </tr>
+            </table>
+            <br>
+            <br>
+            Die <strong>Zeitangabe</strong> erfolgt in Zeiteinheiten und kann
+            als Zeitpunkt oder, mit Komma getrennt, als Zeitbereich angegeben
+            werden.<br>
+            <br>
+            Die <strong>Objektbezeichnung</strong> steht in einfachen Anf&uuml;hrungszeichen
+            ('). Dies kann eine direkte Objektbezeichnung aus den Daten oder ein
+            zusammenfassendes Objekt sein, welches in der <span class="FontCode">ObjectNames.xml</span>
+            definiert wurde. F&uuml;r spezielle Anweisungen erfolgt die Angabe
+            von <span class="FontCode">'System'</span> als Objektbezeichnung.<br>
+            <br>
+            Der <strong>Befehl</strong> kann sowohl ein LowLevel- als auch ein
+            HighLevel-Befehl aus der <span class="FontCode">HighLevel-Commands.xml</span>
+            sein.<br>
+            <br>
+            <br>
+            <strong>Objektersetzungen</strong> <br>
+            <br>
+            Objektersetzungen werden in der <span class="FontCode">ObjectNames.xml</span>
+            definiert. Diese muss im gleichen Verzeichnis wie das Skript liegen.<br>
+            <br>
+            Ersetzungen werden wie folgt definiert:<br>
+            <br>
+            <table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4'>
+              <tr>
+                <td class='FontCode'> ...<br> &lt;object name=&quot;Kreuzband&quot;&gt;<br>
+                  &nbsp;&nbsp;&lt;object&gt;hinteres Kreuzband&lt;/object&gt;<br>
+                  &nbsp;&nbsp;&lt;object&gt;vorderes Kreuzband&lt;/object&gt;<br>
+                  &lt;/object&gt;<br>
+                  ... </td>
+              </tr>
+            </table>
+            <br>
+            <br>
+            <strong>Anweisungsersetzungen</strong> <br>
+            <br>
+            Die Definition von HighLevel-Anweisungen erfolgt in der <span class="FontCode">HighLevel-Commands.xml</span>
+            und sieht wie folgt aus:<br>
+            <br>
+            <table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4'>
+              <tr>
+                <td class='FontCode'> ...<br> &lt;command commandStr =&quot;emphasize&quot;&gt;<br>
+                  &nbsp;&nbsp;&lt;command&gt;T O view front 1&lt;/command&gt;<br>
+                  &nbsp;&nbsp;&lt;command&gt;T O setColor red&lt;/command&gt;<br>
+                  &nbsp;&nbsp;&lt;command&gt;T O setTransparency low&lt;/command&gt;<br>
+                  &lt;/command&gt;<br>
+                  ... </td>
+              </tr>
+            </table>
+            <br>
+            Es wird eine Liste von Anweisungen angegeben, die die obere Anweisung
+            ersetzen sollen. Dabei kann <strong><span class="FontCode">T</span></strong>
+            als Platzhalter f&uuml;r die in der oberen Anweisung verwendete Zeitangabe
+            genutzt werden. Gleiche gilt f&uuml;r <strong><span class="FontCode">O</span></strong>
+            und die Objektbezeichnung der oberen Anweisung (wird ebenfalls &uuml;bernommen).
+            <br>
+            <br>
+            <br>
+            <strong>Liste der m&ouml;glichen LowLevel-Anweisungen<br>
+            </strong>(HighLevel-Anweisungen kommen sp&auml;ter mal)<strong><br>
+            <br>
+            </strong>
+            <table align='center' style='border: 1px solid black;' cellpadding='4'>
+              <tr>
+                <td width="458" bgcolor="#FCFEE4" class='FontCode'> <strong>move</strong>
+                  <em>object a_sagi a_axial zoom</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'System' move 'Kreuzband' 90 0 1</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Bewegt die Kamera. Die Position ergibt
+                  sich dabei aus der Rotation in der sagittalen Ebene und daraufhin
+                  in der axialen Ebene um den Mittelpunkt des angegebenen Objektes
+                  und dem Zoomfaktor.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>rotate</strong>
+                  <em>object direction angle</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'System' rotate 'Kreuzband' axial 90</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Rotation der Kamera um den Mittelpunkt
+                  eines Objektes. Direction bezeichnet die Rotationsachse (<span class="FontCode">axial,coronal,sagittal</span>)
+                  und <span class="FontCode">angle</span> den zu rotierenden Winkel.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <p><strong>rotateCamZ
+                    </strong><em>angle</em><strong><br>
+                    rotateCamZTo</strong> <em>angle</em><br>
+                    <br>
+                    Beispiel:<br>
+                    [0,10] 'System' rotateCamZ 45</p></td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Rotiert die Kamera um ihre eigene Z-Achse
+                  (rausgehende Achse).</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr bgcolor="#FCFEE4">
+                <td class='FontCode'> <strong>setBackground</strong> <em>R,G,B
+                  [ramp]</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'System' setBackground red ramp<br>
+                  (<em>red</em> wird laut HighLevel-Commands.xml zu <em>255,0,0</em>
+                  ersetzt) </td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Setzt die Hintergrundfarbe der Szene auf
+                  einen RGB-Wert. Wird der Parameter <span class="FontCode">ramp</span>
+                  angegeben, so wird der Hintergrund im Verlauf von dieser Farbe
+                  zu schwarz dargestellt.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setColor</strong>
+                  <em>R,G,B</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'Kreuzband' setColor 255,255,0</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Setzt die Farbe eines Objektes auf den
+                  angegebenen RGB-Wert, wobei die Werte sich jeweils im Bereich
+                  zwischen 0 und 255 bewegen.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setCreateVideo</strong>
+                  <em>true|false</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'System' setCreateVideo true</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Erlaubt oder verhindert das Erzeugen eines
+                  Videos am Ende einer Animationsgenerierung.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setQuality</strong>
+                  <em>value</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'Kreuzband' setQuality 0.5</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Setzt die Darstellungsqualit&auml;t eines
+                  Objektes auf einen angegebenen Wert zwischen 0 und 1.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setSelected</strong>
+                  <em>true|false</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'Kreuzband' setSelected true</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Selektiert oder deselektiert ein Objekt.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setStyle</strong>
+                  <em>Filled|Lines|Points</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'Kreuzband' setStyle Lines</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Setzt den Darstellungsstil auf eine gef&uuml;llte,
+                  eine Gitternetz oder eine gepunktete Darstellung.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setTransparency</strong>
+                  <em>value</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'Kreuzband' setTransparency low<br>
+                  (<em>low</em> wird laut HighLevel-Commands.xml zu <em>0.2</em>
+                  ersetzt) </td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Setzt die Transparenz eines Objektes auf
+                  einen angegebenen Wert zwischen 0 und 1.</td>
+              </tr>
+              <tr>
+                <td class='FontNormal'><br> </td>
+              </tr>
+              <tr>
+                <td bgcolor="#FCFEE4" class='FontCode'> <strong>setVisible</strong>
+                  <em>true|false</em><br> <br>
+                  Beispiel:<br>
+                  [0,10] 'Kreuzband' setVisible true</td>
+              </tr>
+              <tr bgcolor="#BEE6F6">
+                <td class='FontNormal'>Setzt die Sichtbarkeitseigenschaft eines
+                  Objektes.</td>
+              </tr>
+            </table>
+            <br>
+          </div></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">6.
+          Das Animations-Interface</font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px">
+            <p>Den Viewer k&ouml;nnt ihr jetzt zur Seite schieben und das UMDAnimation2-Modul
+              &ouml;ffnen:<br>
+              <img src="img/animation-gui-1.png" width="450" height="343"><br>
+              <br>
+              &Uuml;ber diese Modul steuert ihr alle Animationen.<br>
+              <br>
+              Decomposition Path:<br>
+              Im Decomposition Path tragt ihr den Pfad ein, in dem euer Skript
+              zusammen mit der HighLevel-Commands.xml und der ObjectNames.xml
+              liegt.<br>
+              <br>
+              Script File:<br>
+              Hier tragt ihr den Namen eures Skriptes ein. Das Skript muss im
+              selben Verzeichnis wie die beiden XML-Dateien liegen.<br>
+              Mit Execute Script k&ouml;nnt ihr dieses Skript direkt ausf&uuml;hren.<br>
+              <br>
+              Single Command:<br>
+              Hier k&ouml;nnt ihr einzelne Anweisungen direkt ausf&uuml;hren.
+              <strong>Daf&uuml;r m&uuml;sst ihr lediglich die Zeitangabe weglassen!<br>
+              </strong>Ausf&uuml;hren mit Execute Command.<strong><br>
+              </strong><br>
+              Script Area:<br>
+              Hier k&ouml;nnt ihr ein Skript so wie es in einer Datei steht direkt
+              eingeben (Copy&amp;Paste) und es auch direkt ausf&uuml;hren.</p>
+          </div></td>
+      </tr>
+    </table>
+    <br>
+    <table width="500" cellspacing="0" cellpadding="3" class="borderBlue">
+      <tr>
+        <td class="FontTitle bgBlueTitle" height="20"><span class="FontSubTitle"><font color="#FFFFFF">7.
+          Beispielskript</font></span></td>
+      </tr>
+      <tr>
+        <td class="FontNormal"><div style="margin:5px">
+            <p>Das Beispielskript findet ihr in MLabModules\ML\Animation\Scripts\Hals12
+              im svn. Den Pfad dorthin bei euch m&uuml;sst ihr bei Decomposition
+              Paht angeben.<br>
+              Das Skript hei&szlig;t HighLevel-01.txt (fragt nicht warum, ist
+              historisch gewachsen).<br>
+              <br>
+              <br>
+            </p>
+            <table align='center' style='border: 1px solid black;' bgcolor='#FCFEE4' cellpadding='4'>
+              <tr>
+                <td class='FontCode'><p> [Ini]<br>
+                    LengthTimeUnit=10<br>
+                    LengthSeconds=10<br>
+                    RealTime=no</p>
+                  <p>[Script]<br>
+                    [0] 'System' setBackground white<br>
+                    [0] 'All' view front 0.7<br>
+                    [0] 'All' setBaseColors<br>
+                    [0] 'All' setTransparency 0.2<br>
+                    [1,10] 'Lymphnode_15' emphasizeLK15b</p>
+            </td>
+              </tr>
+            </table>
+            <br>
+            Was die einzelnen Anweisungen wie view, setBaseColors und emphasizeLK15b
+            machen, k&ouml;nnt ihr euch mal selbst aus der HighLevel-Commands.xml
+            raussuchen. Das schult :-)<br>
+          </div></td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module GenerateIVFile {
+  internal  {
+    frame = "889 293 112 56"
+    windows  {
+      window _default {
+        geometry = "280 526 369 200"
+        sizeHint = "369 200"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GenerateIVFile
+    filename = ""
+    ImageExists = TRUE
+    InventorExists = FALSE
+    creatingSurface = FALSE
+    converting = FALSE
+    saving = FALSE
+    ready = FALSE
+    queueing = TRUE
+    smoothing = TRUE
+    overwrite = FALSE
+  }
+}
+connections = ""

@@ -1,0 +1,34 @@
+Interface  {
+   Inputs  {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outInventor { internalName = file.outputNode }      
+   }
+   Parameters {
+      Field objectID     { internalName = info.searchObjPattern }
+      Field initialize   { type = trigger }
+      Field filename	 { internalName = file.name }      
+      Field measuresValid { type = bool  value = false }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKInventorObject.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   //Aus der Hilfe: "Be carefull, setting callLater to true can cause infinite loops of field notifications! Only use it when you know what you are doing!"
+   FieldListener info.outObjectContainer { callLater = false command = _cls_info.handleEvents }
+   FieldListener { callLater = true listenField = UMDBoundingBoxCalculator2.boundingBoxString command = writeBoundingBox}
+   FieldListener { listenField = initialize       command = initialize}
+   FieldListener measuresValid { command = callParent }
+}
+

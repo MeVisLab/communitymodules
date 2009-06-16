@@ -1,0 +1,80 @@
+//----------------------------------------------------------------------------------
+//! Macro module UMDObjCommunicator
+/*!
+// \file    UMDObjCommunicator.script
+// \author  Konrad
+// \date    2006-01-11
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs { 
+      Field inObjectContainer { internalName = info.inObjectContainer }    
+  }
+  Outputs {}
+  Parameters {
+    Field ObjName { type = string value = "" }
+    Field CamPosition { type = vec3f value = "" }
+    Field CamOrientation { type = vec4f value = "" }
+    Field CamHeight { type = float value = "" }
+    Field CamFocalDistance { type = float value = "" }
+    Field ViewerFramerate { type = int value = "" }
+    Field ViewerCaptureFrame { type = trigger value = "" }
+    Field ViewerCreateAVI { type = trigger value = "" }
+    Field ViewerCancelRecording { type = trigger value = "" }
+    Field ViewerUpdateMLOutput { type = trigger value = "" }
+    Field ViewerStatus { type = string value = "" }
+    Field ProtocolViewerStatus { type = bool value = "" }
+    Field ViewerBGColor { type = vec3f value = "" }
+    Field ViewerBGGreyCenter { type = float value = "" }
+    Field ViewerBGGreyWidth { type = float value = "" }    
+    Field refresh { type = trigger }    
+    Field newData { type = trigger }
+  }
+}
+
+
+Commands {
+
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"   
+   
+   // Include local functions
+   source = "$(LOCAL)/UMDObjCommunicator.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   //wakeupCommand = createObjMgrFields
+   
+   // Handle events
+   FieldListener info.outObjectContainer { callLater = false command = _cls_info.handleEvents }  
+   FieldListener ViewerStatus { callLater = false  command = ViewerStatusChanged }
+   
+   FieldListener ObjName { callLater = false  command = ObjNameChanged }
+   FieldListener CamPosition { callLater = false  command = CamPositionChanged }
+   FieldListener CamOrientation { callLater = false  command = CamOrientationChanged }
+   FieldListener CamHeight { callLater = false  command = CamHeightChanged }
+   /*FieldListener ViewerFramerate { callLater = false  command = ViewerFramerateChanged }  
+   FieldListener ViewerCaptureFrame { callLater = false  command = ViewerCaptureFrameChanged }  
+   FieldListener ViewerCreateAVI { callLater = false  command = ViewerCreateAVIChanged }  
+   FieldListener ViewerCancelRecording { callLater = false  command = ViewerCancelRecordingChanged }  
+   FieldListener ViewerUpdateMLOutput { callLater = false  command = ViewerUpdateMLOutputChanged }   
+   FieldListener ProtocolViewerStatus { callLater = false  command = ProtocolViewerStatusChanged }
+   FieldListener ViewerBGColor { callLater = false  command = ViewerBGColorChanged }
+   FieldListener ViewerBGGreyCenter { callLater = false  command = ViewerBGGreyCenterChanged }
+   FieldListener ViewerBGGreyWidth { callLater = false  command = ViewerBGGreyWidthChanged }*/
+   
+   FieldListener refresh { command = refreshAll }
+
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

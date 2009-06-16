@@ -1,0 +1,130 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "853 69 152 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module METKTexturing {
+  internal  {
+    frame = "1053 165 120 56"
+  }
+  fields  {
+    instanceName = METKTexturing
+    creationTime = OnVisible
+    visibleOn = TextureVisible
+    mode = HATCHING_OPACITY
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "877 -83 120 56"
+    windows  {
+      window _default {
+        geometry = "38 119 390 460"
+        sizeHint = "238 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "9.55911 -188.422 102.277"
+    camOrientation = "-0.9988590000000001 -0.0397602 -0.0264609 4.73893"
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "785 341 112 56"
+    windows  {
+      window _default {
+        geometry = "452 515 524 348"
+        sizeHint = "524 348"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKStippling {
+  internal  {
+    frame = "929 173 112 56"
+    windows  {
+      window _default {
+        geometry = "1034 218 370 429"
+        sizeHint = "227 176"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStippling
+    creationTime = OnVisible
+    visibleOn = StipplingVisible
+  }
+  internalFields = ""
+}
+module METKSilhouette {
+  internal  {
+    frame = "613 173 120 56"
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = SilhouetteVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "777 173 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+connections  {
+  SoGroup.children = "METKSilhouette.outInventor METKIsoSurface.outInventor METKStippling.outInventor METKTexturing.outInventor"
+  METKTexturing.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = SoGroup.self
+  METKStippling.inObjectContainer = METKManager.outObjectContainer
+  METKSilhouette.inObjectContainer = METKManager.outObjectContainer
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

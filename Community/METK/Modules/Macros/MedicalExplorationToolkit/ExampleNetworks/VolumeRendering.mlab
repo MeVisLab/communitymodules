@@ -1,0 +1,237 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "445 85 120 56"
+    windows  {
+      window _default {
+        geometry = "877 375 401 451"
+        sizeHint = "401 291"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 381 401 307"
+        sizeHint = "401 307"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = FALSE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = TRUE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-175.676 -35.4736 -248.586"
+    camOrientation = "-0.881431 0.274951 0.384034 4.08704"
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "-27 269 72 56"
+    windows  {
+      window _default {
+        geometry = "561 293 543 458"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = METKVolViz
+    layerID = Transferfunction
+    infoID = ColorPoints
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = "[ 0 0 0 0, 1100 0 0 0, 1200 1 1 1, 1300 0 0 0, 4095 1 1 1 ]"
+    intValue = 0
+    boolValue = TRUE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 31
+    searchLayerPattern = "***"
+    numLayers = 2
+    searchInfoPattern = "***"
+    numInfos = 2
+    numEvents = 3
+    eventType = NoMessage
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "-43 349 104 56"
+    windows  {
+      window _default {
+        geometry = "1968 230 554 482"
+        sizeHint = "537 347"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "313 173 112 56"
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "105 333 192 56"
+    windows  {
+      window _default {
+        geometry = "543 459 119 149"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKVolViz {
+  internal  {
+    frame = "437 205 104 56"
+    windows  {
+      window _default {
+        geometry = "2023 269 417 550"
+        sizeHint = "417 550"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKVolViz
+    ignoreEmptyString = TRUE
+    colorPoints = "[ 0 0 0 0, 1100 0 0 0, 1200 1 1 1, 1300 0 0 0, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 1100 0, 1200 1, 1300 0, 4095 0 ]"
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "321 333 176 56"
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = ""
+    imgValues = ""
+  }
+  internalFields = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "509 333 120 56"
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "441 501 112 56"
+    windows  {
+      window _default {
+        geometry = "694 376 528 452"
+        sizeHint = "528 452"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals31/Patient31_0003_readyCodSEgAllPickable.nsp.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKViewer3D.inObjectContainer = METKVolViz.outObjectContainer
+  METKViewer3D.beforeScene = SoBackground.self
+  METKViewer3D.inInventor = METKVolViz.self
+  ObjInfo.inObjectContainer = ObjInspector.outObjectContainer
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKVolViz.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKVolViz.input0 = METKCodedSegmentation.image
+  METKVolViz.input1 = METKROISelect.image
+  METKCodedSegmentation.inObjectContainer = METKManager.outObjectContainer
+  METKROISelect.inObjectContainer = METKManager.outObjectContainer
+}

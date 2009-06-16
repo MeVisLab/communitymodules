@@ -1,0 +1,164 @@
+//Additional Field Information
+Description   {
+   Field wVis { min=0 max=100 }
+   Field wImp { min=0 max=100 }
+   Field wEnt { min=0 max=100 }
+   Field wCam { min=0 max=100 }
+   Field wSilhouette { min=0 max=100 }
+   Field wVisSta { min=0 max=100 }
+   Field wImpSta { min=0 max=100 }
+   Field wNum { min=0 max=100 }
+   Field wDis { min=0 max=100 }
+   Field wReg { min=0 max=100 }   
+   Field wImageSpaceCenter { min=0 max=100 }
+   Field wKeystateVPDirection { min=0 max=100 }
+   
+   Field prefRegionRange {min=0 max=1 }
+}
+
+
+Window METKKeystates {
+
+   TabView {
+      TabViewItem FinalImportantButtons {
+         Horizontal {
+            Vertical {
+               spacing = 15
+               Box {
+                  layout = vertical
+                  spacing = 15
+                  margin = 15
+                  title = "1. Step"
+                  Button createNewKeystate {}
+               }                
+
+               Box {
+                  title = "2. Input Parameters that should be better set"
+                  spacing = 15
+                  margin = 15
+
+                  Field viewerName {}
+
+                  Box {
+                     spacing = 5
+                     margin = 5
+                     layout = vertical
+                     title = "Filename for Keystate file"
+                     Field keystateFilename { browseButton=true }
+                     Button loadFile {}
+                     Button saveFile {}
+                  }
+               }
+               
+               Box {
+                  layout = vertical
+                  spacing = 15
+                  margin = 15
+                  title = "3. Apply existing keystate"
+                  Field currentKeystate { }
+                  Button applyCurrentKeystate { }
+                  Horizontal {
+                     Button createAnimationFromKeystates { }
+                     Field animationStepLength { title="Step Length:" }
+                     Field animationStepPause { title="Step Pause:" }
+                     Field animationAsVideo { }
+                  }
+                  TextView animationScript {
+                     expandX = yes  expandY = yes
+                     title = "Script"
+                     edit = true
+                     autoApply = true
+                     visibleRows = 15
+                     wrap = Off
+                  } //TextView
+               } //Box
+            } //Ver
+            HSpacer { h=10 }
+         } //Hori
+         
+      }
+      
+      TabViewItem Stuff {
+         Field similarityVector {}
+         Button test {}                      
+      }
+      
+      TabViewItem MainSettings {      
+                           
+         Field currentStructure { title="Target Structure:" }
+         Field referenceGroup { }
+            
+         Empty {h=20}
+         
+         Field dataPath { editField=false }
+         
+         Empty {h=20}
+         
+         Horizontal {
+            Button init { title="Init" }
+            Button calc { title="Calculate Position" }
+            Button writeCamToObjMgr { title="Write Position to ObjMgr" }
+            HSpacer {}
+         }
+         
+         Field result {}
+         Field orient {}
+         Field setViewerCamAtTheEnd {}         
+         Field messageData {}
+         Field message {}
+      
+      }
+      
+      
+      TabViewItem Weights {
+         Vertical {
+            panelName = weights         
+            Field wVis { title="Visibility (0):" slider=true alignGroupX=group1 }
+            Field wVisSta { title="Visibility Stability (1):" slider=true alignGroupX=group1 }            
+            Field wImp { title="Importance (2):" slider=true }
+            Field wImpSta { title="Importance Stablility (3):" slider=true alignGroupX=group1 }
+            Field wNum { title="Number of Occluders (4):" slider=true }
+            Field wEnt { title="Visibility Entropy (5):" slider=true }
+            Field wDis { title="Distance to Viewplane (6):" slider=true }            
+            Field wCam { title="Dist. to Current Viewpoint (7):" slider=true }
+            Field wReg { title="Preferred Region (8):" slider=true }            
+            Field wSilhouette { title="Silhouette (9):" slider=true }
+            Field wImageSpaceCenter { title="ImageSpace Center (10):" slider=true }
+            Field wKeystateVPDirection { title="KeystateVPDirection:" slider=true }
+            Field visSta { title="Threshold VisStab (0.7 reco.):" }
+            Field impSta { title="Threshold ImpStab (0.7 reco.):" }
+            Box ParameterMapSphere {
+               layout=Vertical
+               expandX=false
+               Field showField { title="Number of field to show:" }
+               Field sphereMode { }
+            }
+         }
+      }
+      
+      TabViewItem PositionAndRegion {
+         Vertical {
+            Box PreferredRegion {
+               layout = vertical
+               Field prefRegionType { title="Preferred Region Type:" }
+               Field prefRegionVector { title="Preferred Region Vector:" }
+               Field prefRegionRange { title="Preferred Region Range:" slider=true }         
+               Field restrictToRegion { title="Restrict to the Preferred Region:" }
+            }
+            Empty{ h=20 }
+            Box CurrentCamPosition {
+               Field currentCam { title="Current Cam Position:" }
+               Field camRange { title="Range for Parameter Map for Distance to current CamPos:" slider=true }      
+            }
+         }
+         
+      }      
+      
+      /*TabViewItem Debug {      
+         Field debugState {}
+         Field debug { }      
+         Field inspect {}
+         Field datInfo { edit=False }
+      }*/
+   }
+}

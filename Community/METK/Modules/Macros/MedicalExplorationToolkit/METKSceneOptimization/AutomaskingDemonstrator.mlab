@@ -1,0 +1,452 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKCollections {
+  internal  {
+    frame = "1 -35 128 56"
+    windows  {
+      window _default {
+        geometry = "54 99 480 514"
+        sizeHint = "480 514"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCollections
+    objectTypeInclude = Result,Viewer2D,Viewer3D,CSO,Events,Tool,NPRShading
+    layerExclude = ""
+    infoExclude = InventorPointer,InventorFullPointer,IsoSurfacePointer,StipplePointer,SilhouettePointer
+    singleClick = Load
+    doubleClick = Show
+    animated = FALSE
+    videoStepLength = 10
+    capturedViewer = METKViewer3D
+    capturedViewerF = METKViewer3D
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "-31 381 112 56"
+    windows  {
+      window _default {
+        geometry = "741 130 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKManager {
+        geometry = "381 353 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "102 240 892 440"
+        sizeHint = "204 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window SaveAs {
+        geometry = "443 466 400 60"
+        sizeHint = "400 60"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = D:/Kerstin/Laborpraktikum/NeckSurgeryPlanner_2472/Hals31/Patient31_0003.nsp.xml
+    warnLevel = 3
+    autoSave = FALSE
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "285 381 104 56"
+    windows  {
+      window _default {
+        geometry = "125 275 475 350"
+        sizeHint = "544 350"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 456 446 171"
+        sizeHint = "204 171"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKIsoSurface {
+  internal  {
+    frame = "-271 181 128 56"
+    windows  {
+      window _default {
+        geometry = "116 439 275 342"
+        sizeHint = "196 174"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "76 260 824 389"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 466 292 195"
+        sizeHint = "204 130"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "-99 45 120 56"
+    windows  {
+      window _default {
+        geometry = "-4 120 200 200"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "640 30 519 440"
+        sizeHint = "440 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = D:/Kerstin/Laborpraktikum/NeckSurgeryPlanner_2472/Hals31/collections/temp.tif
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableMouseOver = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-34.7 -132.695 -148.457"
+    camOrientation = "0.994272 -0.07242129999999999 -0.07860250000000001 1.48898"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+    enableUndo = FALSE
+  }
+  internalFields = ""
+}
+module METKSilhouette {
+  internal  {
+    frame = "-139 181 120 56"
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "-99 109 152 56"
+    windows  {
+      window _viewer {
+        geometry = "443 341 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "205 277 72 56"
+    windows  {
+      window _default {
+        geometry = "605 297 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "515 445 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "332 287 627 440"
+        sizeHint = "331 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = GlobalEvents
+    objectID = Structure_A.carotis_left
+    layerID = Description
+    infoID = Importance
+    objectPersistent = FALSE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = TRUE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Left
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "50.7187347412109 84.2012634277344 -259.236999511719"
+    vec4Value = "-0.298425 0.954113 0.0247217 0.979069"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 36
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 5
+    numEvents = 2
+    eventType = AttributeCreated
+  }
+}
+module METKAutoMasking {
+  internal  {
+    frame = "-75 277 136 56"
+    windows  {
+      window _default {
+        geometry = "786 275 421 448"
+        sizeHint = "286 448"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 466 271 198"
+        sizeHint = "271 198"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "515 445 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKAutoMasking {
+        geometry = "543 466 377 339"
+        sizeHint = "377 339"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKAutoMasking
+    key_groupmode = G
+    key_group_run_forwards = PAD_ADD
+    key_group_run_backwards = PAD_SUBTRACT
+    autoMasking_Shortcut = M
+    color_CSO = "1 0 0"
+    color_selStructuresSilhouet = "1 0.3333333333333333 0"
+    groupColor = "0.00392156862745098 0.4745098039215686 0.7843137254901961"
+    color_CSM = "0 0.6666666666666666 1"
+    targetStructures = "[u'Structure_M.sternocleidom._left', u'Structure_M.sternocleidom._right']"
+    single_groupSelection = single
+    cSM = ""
+    dist_close = 0
+    dist_far = 100
+    maxPriority = 0.9990000129
+    prio_dist_close = 0.9990000129
+    prio_dist_far = 0
+    weight_dist = 1
+    prio_charact_same = 0.200000003
+    prio_charact_inverse = 1
+    prio_charact_other = 0.9499999881
+    weight_charact = 1
+    prio_correl = 0.3100000024
+    weight_correl = 0.5
+    enableAnimation = FALSE
+    enableAutomasking = TRUE
+    lastSelectedStructure = Structure_M.sternocleidom._right
+    activeCorrelationMode = FALSE
+    allCorrelations = ""
+    activeCorrel = ""
+  }
+  internalFields = ""
+}
+module METKSurfaceDistance3D {
+  internal  {
+    frame = "221 61 168 56"
+    windows  {
+      window _default {
+        geometry = "827 327 202 111"
+        sizeHint = "202 111"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSurfaceDistance3D
+    priority = 10000
+    debugComment = ""
+    nearDistance = 2
+    nearDistanceColor = "1 0 0"
+    farDistance = 5
+    farDistanceColor = "1 1 0"
+  }
+}
+module METKDistanceTransform {
+  internal  {
+    frame = "245 149 168 56"
+    windows  {
+      window _default {
+        geometry = "573 441 400 309"
+        sizeHint = "400 309"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "515 445 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKDistanceTransform
+    ignoreEmptyString = TRUE
+    structures = Lymphnode,Tumor
+    progressEuclid = 0
+    autoCompute = TRUE
+    overwriteFile = FALSE
+    listenToROI = ""
+  }
+  internalFields = ""
+}
+module View2D {
+  internal  {
+    frame = "465 53 80 56"
+    windows  {
+      window _default {
+        geometry = "543 441 514 450"
+        sizeHint = "200 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 231
+    lutWidth = 462
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.9 0.9 0.9"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.9 0.9 0.9"
+    valueHighPrecision = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  METKCollections.inObjectContainer = METKViewer3D.outObjectContainer
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  METKIsoSurface.inObjectContainer = METKAutoMasking.baseOut0
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = SoGroup.self
+  METKViewer3D.afterScene = METKSurfaceDistance3D.outInventor
+  METKSilhouette.inObjectContainer = METKAutoMasking.baseOut0
+  SoGroup.children = "METKIsoSurface.outInventor METKSilhouette.outInventor METKAutoMasking.nodeOut0 METKAutoMasking.nodeOut1"
+  ObjInfo.inObjectContainer = METKManager.outObjectContainer
+  METKAutoMasking.baseIn0 = METKManager.outObjectContainer
+  METKSurfaceDistance3D.input0 = METKDistanceTransform.image
+  METKSurfaceDistance3D.inObjectContainer = METKDistanceTransform.outObjectContainer
+  METKDistanceTransform.inObjectContainer = ObjInfo.outObjectContainer
+  View2D.inImage = METKDistanceTransform.image
+}

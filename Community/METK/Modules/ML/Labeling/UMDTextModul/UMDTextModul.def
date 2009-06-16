@@ -1,0 +1,200 @@
+//----------------------------------------------------------------------------------
+//! UMDTextModul module definitions
+/*!
+// \file    UMDTextModul.def
+// \author  Konrad Mühler, Maik Beyer
+// \date    2007-01-17
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoTextModul {
+  DLL = "Labeling"
+
+  genre = "Visualization"
+  author = "Konrad Mühler, Maik Beyer"
+  status = "work-in-progress"
+  comment = "Font node to use TrueTypeFonts with many options"
+  keywords = "Text font draw 2D string SoText"
+  seeAlso = "SoExtText2 SoText2"
+  exampleNetwork = "$(LOCAL)/SoTextModulExample.mlab" 
+  //documentation = 
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDTextModul"
+
+  Interface {
+    Inputs {}
+    Outputs {}
+    Parameters {}
+  }//Interface
+  
+  Description {
+     //Field on     {internalName=on type=bool comment="activate Label-visualisation" }
+     Field string { type=string comment="Textarea" }
+     Field font_1 { type=string comment="Path and filename" }
+     Field font_1_valid   { type=bool comment="if new path set this flag show, if font correct"}
+     Field font_2 { type=string comment="Path and filename" }
+     Field font_2_valid   { type=bool comment="if new path set this flag show, if font correct"}
+     Field font_3 { type=string comment="Path and filename" }
+     Field font_3_valid  { type=bool comment="if new path set this flag show, if font correct"}
+     Field font_4 { type=string comment="Path and filename" }
+     Field font_4_valid {type=bool comment="if new path set this flag show, if font correct"}
+     Field fontsize  { value=12 type=int min=0 comment="Font size, default=12"}
+     Field lineSpacing { value=1 type=int min=0 comment="Space between 2 lines"}
+     Field font {type=enum comment="select font" }
+     Field fontRenderType { type=enum comment="different kinds of visualisation"}
+     
+     Field underscore { type=bool comment="underscore the text" }   
+     Field alwaysOnTop { type=bool comment="If true, no depth test" }
+     Field blend { type=bool comment="Flag for GL_BLEND" }
+     Field justification {type=enum comment="Justification right, center, left" }
+     
+     Field color { type=color value="1.0 1.0 1.0" comment="Text color" }
+     Field colorAlpha { type=int value="1" min=0 max=1 comment="Text Transparency" }
+     
+     Field halo { type=enum value="NONE" comment="draw Text shadow or little contour" }
+     Field haloColor { type=color value="0.5 0.5 0.5" comment="Shadow color" }
+     Field haloAlpha { type=int value="0.5" min=0 max=1 comment="Shadow Transparency" }   
+     
+     Field background { type=bool value=false comment="on/off Text Background"}
+     Field backgroundColor { type=color value="0.0 0.0 0.0" comment="Text color" }
+     Field backgroundAlpha { type=int value="1" min=0 max=1 comment="Text Transparency" }   
+     Field textSize { type=vec2f comment="Text size (width, height)"}
+     Field viewportSize {type=vec2f  comment="current viewportsize" }
+     Field currTextBoxPos { type=vec2f  comment="current position of the textbox" }
+     Field translation { type=vec2f comment="manipulate the textbox in the viewport" }
+     Field freeze { type=bool comment="place label absolute" }
+     
+   }
+  
+  Commands { 
+     source=$(LOCAL)/SoTextModul.js
+  }
+  
+  Window TextModul {
+     
+     TabView {
+           
+       TabViewItem Setting {
+          Vertical {
+             Horizontal{
+                  Vertical{
+                     alignY=top
+                     TextView string {title="Text" edit=yes autoApply=no textFormat=plain alignY=top}
+                     Field textSize {title="Text Size:" edit=no alignY=bottom}
+		     Field viewportSize {title="Viewport Size:" edit=no alignY=bottom}
+		     Field currTextBoxPos {title="Current Position:" edit=no alignY=bottom}
+		     Field freeze { title="Freeze at Position:" alignY=bottom }
+		     Field translation {title="Position:" edit=yes dependsOn=freeze alignY=bottom}
+                  }
+                  
+                  Box {
+                    ButtonBar font {title="Font" show=radio  alignGroup=font}  
+		    ButtonBar fontRenderType {title = "Render-Style" show=radio alignGroup=font }
+                    
+                    
+					Box Text-Style {
+					  Horizontal {
+					     Field fontsize {title="Size:" step=1 alignX=left alignGroup=leftElement}
+					     Field lineSpacing{title="Linespace:" step=1 alignX=left} 
+					    
+					  }
+					  Field justification {title="Alignment:" alignX=left alignGroup=leftElement}
+					  Horizontal {
+					    Field underscore {title="Underscore:" alignX=left alignGroup=leftElement }
+					    Field alwaysOnTop {title="Always on Top:" alignX=left alignGroup=leftElement}					    
+					  }
+                      Horizontal {
+                        Field color {title="Color:" alignX=left alignGroup=leftElement }
+                        Field colorAlpha {title="Alpha:" step=0.05 slider=true alignX=left}
+                      }
+					}					
+								
+					Box Shadow {
+					  Field halo {title="Shadow:" alignX=left alignGroup=leftElement } //ButtonBar show=radio
+					  Horizontal {
+					    Field haloColor {title="Color:" alignX=left alignGroup=leftElement}
+					    Field haloAlpha {title="Alpha:" step=0.05 slider=true alignX=left}
+					  }
+					}
+					
+					Box Background {
+					  Horizontal {
+					      Field background {title="Textbackground:" alignX=left alignGroup=leftElement} 
+					      Field blend {title="Alphablending:" alignX=left}
+					  }
+					  Horizontal {
+					    Field backgroundColor {title="Color:"  alignX=left alignGroup=leftElement }
+					    Field backgroundAlpha {title="Alpha:" step=0.05 slider=true alignX=left dependsOn=blend }
+					  }
+					}			
+					
+					 
+                  }//box
+             }
+             
+          }
+       }
+       TabViewItem Fontpath {
+          Vertical {
+            Label "Explizit Filename needed! BrowseView show only Fontname!" {}
+            Horizontal {               
+              Field font_1 {title="Font 1 (Standard):" trim=Left 
+                  alignGroup=path
+                  minLength=25
+                  browseButton=true 
+                  browseMode=open 
+                  browseTitle="Select Font"
+                  browseFilter="TrueTypeFonts (*.ttf);;All files (*)"
+		  browseSelectedCommand=fileDialog
+              }
+              Field font_1_valid {title="" edit=false }
+            }
+           
+            Horizontal {
+              Field font_2 {title="Font 2 (Italic):" trim=Left 
+                  alignGroup=path
+                  minLength=25
+                  browseButton=true 
+                  browseMode=open 
+                  browseTitle="Select Font"
+                  browseFilter="TrueTypeFonts (*.ttf);;All files (*)"
+		  browseSelectedCommand=fileDialog
+              }
+              Field font_2_valid {title="" edit=false}
+            }
+            
+             Horizontal {
+              Field font_3 {title="Font 3 (Bold):" trim=Left 
+                  alignGroup=path
+                  minLength=25
+                  browseButton=true 
+                  //browseMode=open 
+                  browseTitle="Select Font"
+                  browseFilter="TrueTypeFonts (*.ttf);;All files (*)"
+		  browseSelectedCommand=fileDialog
+              }
+              Field font_3_valid {title="" edit=false}
+            }
+            
+             Horizontal {
+              Field font_4 {title="Font 4 (Bold+Italic):" trim=Left 
+                  alignGroup=path
+                  minLength=25
+                  browseButton=true 
+                  browseMode=open 
+                  browseTitle="Select Font"
+                  browseFilter="TrueTypeFonts (*.ttf);;All files (*)"
+		  browseSelectedCommand=fileDialog
+              }
+              Field font_4_valid {title="" edit=false}
+            }
+          }
+       }//endTabViewItem Fontpath
+     }// Tabview
+    
+  }//end Window TextModul
+  
+  
+} // InventorModule SoTextModul
+

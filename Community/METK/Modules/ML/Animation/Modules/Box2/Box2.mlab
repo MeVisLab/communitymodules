@@ -1,0 +1,161 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoCalculator {
+  internal  {
+    frame = "189 365 104 56"
+    windows  {
+      window _default {
+        geometry = "710 131 364 602"
+        sizeHint = "364 602"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCalculator
+    a = 0
+    b = 0
+    c = 0
+    d = 0
+    e = 0
+    f = 0
+    g = 0
+    h = 0
+    va = "0 0 0"
+    vb = "0 0 0"
+    vc = "0 0 0"
+    vd = "0 0 0"
+    ve = "0 0 0"
+    vf = "0 0 0"
+    vg = "0 0 0"
+    vh = "0 0 0"
+    oa = 0
+    ob = 0
+    oc = 0
+    od = 0
+    ova = "0 0 0"
+    ovb = "0 0 0"
+    ovc = "0 0 0"
+    ovd = "0 0 0"
+    expression = "ova=va-vb"
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "313 301 112 56"
+    windows  {
+      window _default {
+        geometry = "506 459 274 37"
+        sizeHint = "274 37"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation
+    translation = "-0.5 -0.5 -0.5"
+  }
+}
+module SoCube {
+  internal  {
+    frame = "537 301 80 56"
+    windows  {
+      window _default {
+        geometry = "543 459 117 91"
+        sizeHint = "117 91"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCube
+    width = 1
+    height = 1
+    depth = 1
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "433 301 96 56"
+    windows  {
+      window _materialeditor {
+        geometry = "264 93 200 166"
+        sizeHint = "200 166"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "70 89 204 268"
+        sizeHint = "204 268"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMaterial
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "1 0 0"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0.342
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "197 301 104 56"
+    windows  {
+      window _automatic {
+        geometry = "340 568 445 239"
+        sizeHint = "445 239"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "92 111 441 153"
+        sizeHint = "441 153"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTransform
+    translation = "0 0 0"
+    rotation = "0 0 1 0"
+    scaleFactor = "0 0 0"
+    scaleOrientation = "0 0 1 0"
+    center = "0 0 0"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "405 173 152 56"
+    windows  {
+      window _viewer {
+        geometry = "114 133 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+connections  {
+  SoTransform.translation = SoCalculator.va
+  SoTransform.scaleFactor = SoCalculator.ova
+  SoSeparator.children = "SoTransform.self SoTranslation.self SoMaterial.self SoCube.self"
+}

@@ -1,0 +1,19 @@
+MacroModule METKSurfaceDistance2D {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Displays a safety margin around a segmentation mask"
+   keywords           = ""
+   seeAlso            = "METKDistanceTransform METKSurfaceDistance3D"
+   scriptOnly         = NO
+   externalDefinition = "$(LOCAL)/METKSurfaceDistance2D.script"
+   genre              = "METKSurfaceDistance"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKSurfaceDistance.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKSurfaceDistance2D.html"
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-03-31T03:37:18
+//# hash: fpotD25L7dk/2qE7eVwSOf9vyRNwf6na5i4A82OYM1LqnrkuisT9z1Gxi2/HxVqdV2JwzJjv0L2TR6xCKZqdIg==
+//# MeVis end

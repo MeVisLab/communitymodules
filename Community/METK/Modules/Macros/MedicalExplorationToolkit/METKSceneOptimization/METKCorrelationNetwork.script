@@ -1,0 +1,260 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjConstrainedIterator.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjConstrainedIterator.outObjectContainer }
+   }
+   Parameters  {
+     
+     Field fileNameOfDistances    {type = string value = ""}
+     Field fileNameOfCorrelations {type = string value = ""}
+     
+     Field maxMaxNeighbourDist {type = int value = 100}
+     Field maxNeighbourDist    {type = int value = 20 min = 0 max = maxMaxNeighbourDist } 
+     Field applyMaxDist        {type = trigger}
+     
+     Field allStructures   {type = string}
+     Field structure       {type = string value = ""}    
+     Field existsStructure {type = string value = ""}
+     Field testStructExist {type = trigger }
+     Field structureExists {type = bool}
+    
+     Field correl_selection {type = enum items {item Case {} item Structure {}}}
+     
+     Field allCorrelations   {type = string}
+     Field correlation       {type = string value = "" comment = "avaiable correlation for choosen structure"}     
+     Field existsCorrel      {type = string value = ""}
+     Field testCorrelExist   {type = trigger}
+     Field correlationExists {type = bool}     
+     Field firstCorrelation  {type = trigger priority = 0}
+     Field nextCorrelation   {type = trigger priority = 0}
+     
+     Field allCorrelationType  {type = string}
+     Field correlationType     {type = string value = "" comment = "type of choosen current structure's correlation "}
+     Field existsCorrelType    {type = string value = ""}
+     Field testCorrelTypeExist {type = trigger}
+     Field correlTypeExists    {type = bool}    
+     Field firstCorrelType     {type = trigger}
+     Field nextCorrelType      {type = trigger}
+     
+     Field relatedStructures  {type = string value = "" comment = "all correlationtype-related structures"}
+     Field csRelatedStructure {type = string}
+     Field prevRelatedStruct  {type = trigger persistent = True }
+     Field nextRelatedStruct  {type = trigger deprecatedName = test2}
+     Field color_group        {type = color value = (0,0.5,1)} 
+     Field color_CSM          {type = color value = (0,1,1)} 
+     Field enableColering     {type = bool value = true}
+     
+     Field success {type = bool   comment = "True if last execution was successful"}
+     
+     // gehennicht weg ohne Semantic error warning
+     Field structure1 {type = string removed = True}
+     Field structure2 {type = string removed = True}
+     Field distance   {type = int removed = True}
+     Field structRelatedCorrel {type = string removed = True}
+     Field nearestRelated      {type = string removed = True}
+ //    Field dirOfDistancesFile {type = string removed = True value = ""}
+
+    
+   } // Parameters 
+} // Interface 
+
+Commands  {
+  // Add the local's parent path to the import path, so that Python looks for local packages
+  importPath = "$(LOCAL)/.."
+  // Include local functions 
+  source = "$(LOCAL)/METKCorrelationNetwork.py" 
+
+  // --- Commands -----------------------------------//
+  // Call init() to initalize the script 
+  initCommand = init
+
+  // Handle events from object container
+  FieldListener ObjInfo.outObjectContainer        { command = _cls_info.handleEvents  callLater = True}
+
+  FieldListener applyMaxDist        {command = update_NeigbourCorrelation}
+  FieldListener structure           {command = loadStructuresCorrelations} 
+  FieldListener testStructExist     {command = existsStructure}
+  FieldListener correl_selection    {command = deHighlighting_ALL command = loadAllCorrelations command = loadStructuresCorrelations}
+  FieldListener correlation         {command = loadCorrelationTypes} //listenField = structure 
+  FieldListener testCorrelExist     {command = existsCorrelation}
+  FieldListener correlationType     {command = loadRelatedStructures}
+  FieldListener testCorrelTypeExist {command = existsCorrelType}
+  FieldListener nextRelatedStruct   {command = nextRelatedStructure}
+  FieldListener prevRelatedStruct   {command = prevRelatedStructure}
+  FieldListener enableColering      {command = switchHighlightmode}
+  
+  FieldListener nextCorrelation  {command = getNextCorrelation }
+  FieldListener firstCorrelation {command = getFirstCorrelation }
+  FieldListener firstCorrelType  {command = getFirstCorrelationType}
+  FieldListener nextCorrelType   {command = getNextCorrelationType}
+} // Commands
+
+Window METKCorrelationNetwork {
+  shouldCloseCommand = closeWindow
+  Vertical {
+    expandY = True
+    TabView {      
+      TabViewItem  {
+        tabTitle = "Correlationlist"
+        Panel {
+          window = singleListView
+          name   = panelListView
+        }
+      }
+      TabViewItem { 
+        tabTitle = "Structure dependend Correlations"
+        Panel {
+          window = METKCorrelationNetwork1
+          name   = panelStructRelatedCorrels
+        }  
+      }
+    }      
+  }
+}
+
+
+Window singleListView {
+  shouldCloseCommand = closeWindow
+  Vertical {
+    expandY = True
+    ListView {
+      expandY       = YES
+      expandX       = YES
+      name          = objects
+      panelName     = panelListView
+      values        = "Correlations"
+      layout        = "l,l"
+      selectionMode = Single
+      resizeMode    = All
+      updateDelay   = 100
+      
+//      clickedCommand              = clickedObjects
+//      itemCollapsedCommand        = itemCollapsed
+//      checkListItemChangedCommand = checkListItemChanged
+    }
+    Execute = openWindow
+  }
+}
+
+
+Window METKCorrelationNetwork1 {
+  
+   style = PlannerStyle
+   Vertical {
+     childAlignGroup = combo
+     childAlignGroup = label
+     childAlignGroup = button
+     childAlignGroup = none
+     
+     spacing   = 10
+     panelName = panelStructRelatedCorrels
+     Box "Distance-Parameters" {
+      Field fileNameOfDistances    {edit = False} 
+      Label " Enter the maximal distance for neighbours." {}
+      Horizontal {
+        alignX = left
+        //Label "maxNeighbourDist: " {}
+        Field maxNeighbourDist {title = "Neighbourhood Distance:" minLength = 4 step = 1 slider = True alignX = Left tooltip = "maximal Distance for Neighbourhood (in mm)" }
+        Button = applyMaxDist  {title = "Apply" alignGroup = button}
+      }
+     }
+     
+     Box "Selection of Demand-Structure"{
+       Horizontal {
+ //        alignX = left
+         Label " Demand-Structure: "{ alignGroup = label}
+         ComboBox structure { 
+           //           alignGroup = combo
+           comboField       = allStructures
+           comboSeparator   = ", "  
+           editable         = No
+           //        activatedCommand = loadStructuresCorrelations
+           expandX = True
+         } 
+       }
+       Horizontal {
+         Field    existsStructure {editField = True   minimumWidth = 100 }
+         Button   testStructExist {title = "?" alignX = Left alignGroupX = button}
+         CheckBox structureExists {enabled = False}
+       }       
+     }
+     
+     Box "Correlerations" {  
+       Field fileNameOfCorrelations {edit = False} 
+       ButtonBar correl_selection {
+         tooltip = "umschalten zwischen derAuswahl von allen Correlationen und den möglich Correlationen der aktuellen Struktur"
+         show    = Radio
+         title   = "Selection of Rendition"
+         alignX = Left
+       }
+       alignX = Left
+       Vertical {
+         
+//         alignX = left
+         Horizontal {
+           Label " Correlation: "{alignGroup = label}
+           ComboBox correlation { 
+             editable         = No 
+             comboField       = allCorrelations
+             comboSeparator   = ", " 
+//             alignGroup       = combo 
+             expandX = True
+//             activatedCommand = loadCorrelationTypes
+           } 
+           Button firstCorrelation {title = First alignGroup = button }
+           Button nextCorrelation  {title = Next  alignGroup = button }
+         }
+         Horizontal {
+           Field    existsCorrel      {editField = True   minimumWidth = 70 }
+           Button   testCorrelExist   {title = "?" alignX = Left alignGroupX = button}
+           CheckBox correlationExists {enabled = False}
+         }
+       }
+       Vertical  {
+//         alignX = left
+         Horizontal {
+           Label " CorrelationType: "{alignGroup = label}
+           ComboBox correlationType { 
+             editable         = No 
+             comboField       = allCorrelationType
+             comboSeparator   = ", "            
+ //            alignGroup       = combo 
+ //            activatedCommand = loadRelatedStructures
+             minimumWidth     = 12
+             expandX = True
+           }
+           Button firstCorrelType {title = First alignGroup = button} 
+           Button nextCorrelType  {title = Next  alignGroup = button}  
+         }
+         Horizontal {
+           Field    existsCorrelType    {editField = True   minimumWidth = 70 }
+           Button   testCorrelTypeExist {title = "?" alignX = Left alignGroupX = button}
+           CheckBox correlTypeExists    {enabled = False}
+         }
+       }
+       Horizontal {
+//         Label "   Related Structures: "{alignGroup = label}
+         alignGroup = none
+         Field relatedStructures {edit = False minLength = 50}
+       }   
+       Horizontal{
+         Button prevRelatedStruct {title = "< Prev"  alignX = Left alignGroup = button name = nextRel instanceName = test }
+         Field csRelatedStructure {title = "Current Member" enabled = False  minLength = 20 }
+         Button nextRelatedStruct {title = "Next >"  alignX = Left alignGroup = button}
+       }
+       spacing = 10
+       Field success {alignX = Left alignGroup = none edit = True}
+       
+     }//box Correlations
+     Box Coloring {
+       Horizontal {
+         alignX = Left
+         CheckBox enableColering {}
+         Field color_group {title = Group alignX = Left}
+         Field color_CSM   {title = "Current Member" alignX = Left}
+       }
+     }
+   } //Vertikal
+}  // Window

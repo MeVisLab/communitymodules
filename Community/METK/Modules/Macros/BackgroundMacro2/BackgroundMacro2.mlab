@@ -1,0 +1,187 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2D {
+  internal  {
+    frame = "517 325 88 56"
+    windows  {
+      window _default {
+        geometry = "190 228 466 687"
+        sizeHint = "466 687"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2D
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 0
+    keepSlicesInView = FALSE
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "0 0"
+    spacing = "4 4"
+    plane = "0 0 1 0.5"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    updateInventorEvent = FALSE
+    blendMode = BLEND_BLEND
+    filterMode = FILTER_NEAREST
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_LEFT
+    sliceAlignY = SLICE_ALIGNY_TOP
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_SCALE_TO_VIEWER_IGNORE_RATIO
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    status = "Nothing active"
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module TestPattern {
+  internal  {
+    frame = "509 429 104 56"
+    windows  {
+      window _default {
+        geometry = "2142 168 259 377"
+        sizeHint = "259 377"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TestPattern1
+    sizeX = 256
+    sizeY = 256
+    sizeZ = 1
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = "unsigned int8"
+    fillValue = 255
+    autoApply = TRUE
+    pattern = YRamp
+    fillValue2 = 0
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "381 325 104 56"
+    windows  {
+      window _default {
+        geometry = "2232 443 506 441"
+        sizeHint = "506 441"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoLUTEditor
+    currentColor = "1 1 0"
+    currentOpacity = 1
+    currentPosition = 255
+    currentIndex = 1
+    rangeMin = 0
+    rangeMax = 255
+    viewMin = 0
+    viewMax = 255
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,255.00]
+    viewRangeInfo = [0,255]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0.34902 1, 255 1 1 0 ]"
+    alphaPoints = "[ 0 1, 255 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 255
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.8 0.8 0.8"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4 0.4 0.4"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "437 201 104 64"
+  }
+  fields  {
+    instanceName = ColoredLUT
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+connections  {
+  SoView2D.image = TestPattern1.output0
+  ColoredLUT.children = "SoLUTEditor.outInventorLUT SoView2D.self"
+}

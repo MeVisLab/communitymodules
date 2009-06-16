@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<ObjectNames>
+	<object name="largeLK">
+		<object>
+			getObjectsBySize "Lymphnode" diameter greater 25
+		</object>
+	</object>
+	<object name="middleLK">
+		<object>
+			getObjectsBySize "Lymphnode" diameter between 10,25
+		</object>
+	</object>	
+	<object name="smallLK">
+		<object>
+			getObjectsBySize "Lymphnode" diameter lower 10
+		</object>
+	</object>	
+</ObjectNames>

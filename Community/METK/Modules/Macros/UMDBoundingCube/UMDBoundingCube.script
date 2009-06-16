@@ -1,0 +1,50 @@
+//----------------------------------------------------------------------------------
+//! Macro module UMDBoundingCube
+/*!
+// \file    UMDBoundingCube.script
+// \author  Konrad
+// \date    2005-10-17
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {
+    Field self { internalName = "SoSeparator.self" }
+  }
+  Parameters {
+    Field Corner1 { type = vec3f value = "" }
+    Field Corner2 { type = vec3f value = "" }
+    Field Color { internalName = "SoMaterial.diffuseColor" }
+    Field Style { internalName = "SoDrawStyle.style" }
+    Field lineWidth { internalName = "SoDrawStyle.lineWidth" }
+  }
+}
+
+
+Commands {
+
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/UMDBoundingCube.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+
+   FieldListener Corner1 { command = setBox }
+   FieldListener Corner2 { command = setBox }
+   
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

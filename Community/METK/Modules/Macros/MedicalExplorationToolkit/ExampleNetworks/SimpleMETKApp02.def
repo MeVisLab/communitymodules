@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! SimpleMETKApp02 module definition
+/*!
+// \file    SimpleMETKApp02.def
+// \author  Konrad Mühler
+// \date    2008-03-14
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule SimpleMETKApp02 {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/SimpleMETKApp02.script"
+
+} // MacroModule SimpleMETKApp02
+

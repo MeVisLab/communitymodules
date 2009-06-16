@@ -1,0 +1,68 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoCalculator {
+  internal  {
+    frame = "461 349 104 56"
+    windows  {
+      window _default {
+        geometry = "70 89 409 607"
+        sizeHint = "417 607"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "92 111 304 445"
+        sizeHint = "304 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCalculator
+    a = 0
+    b = 0
+    c = 0
+    d = 0
+    e = 0
+    f = 0
+    g = 0
+    h = 0
+    va = "0.000000 0.000000 0.000000"
+    vb = "0.000000 0.000000 0.000000"
+    vc = "0.000000 0.000000 0.000000"
+    vd = "0.000000 0.000000 0.000000"
+    ve = "0.000000 0.000000 0.000000"
+    vf = "0.000000 0.000000 0.000000"
+    vg = "0.000000 0.000000 0.000000"
+    vh = "0.000000 0.000000 0.000000"
+    oa = 0
+    ob = 0
+    oc = 0
+    od = 0
+    ova = "0.000000 0.000000 0.000000"
+    ovb = "0.000000 0.000000 0.000000"
+    ovc = "0.000000 0.000000 0.000000"
+    ovd = "0.000000 0.000000 0.000000"
+    expression = ""
+  }
+}
+module SoComputeBoundingBox {
+  internal  {
+    frame = "149 349 168 56"
+  }
+  fields  {
+    instanceName = SoComputeBoundingBox
+    path = NULL
+    min = ""
+    max = ""
+    boxCenter = ""
+    objectCenter = ""
+  }
+}
+connections  {
+  SoCalculator.va = SoComputeBoundingBox.min
+  SoCalculator.vb = SoComputeBoundingBox.max
+  SoCalculator.vc = SoComputeBoundingBox.boxCenter
+  SoCalculator.vd = SoComputeBoundingBox.objectCenter
+}

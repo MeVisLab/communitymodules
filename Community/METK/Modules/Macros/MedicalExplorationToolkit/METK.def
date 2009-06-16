@@ -1,0 +1,149 @@
+UserGenres {
+   Genre = METK {
+      Genre = METKMisc {
+         Title = Misc
+      }
+      
+      Genre = METKViewpoint {
+         Title = Viewpoint
+      }
+      
+      Genre = METKAnimation {
+         Title = Animation
+      }
+      
+      Genre = METKLabeling {
+         Title = Labeling
+      }
+      
+   }
+}
+
+
+MacroModule METKPatientObject {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Displays current patient information"
+   keywords           = "METK patient object information ObjMgr"
+   seeAlso            = "METKCaseObject"
+   externalDefinition = "$(LOCAL)/METKPatientObject.script"
+   genre              = "METKMisc"
+   exampleNetwork     = "$(LOCAL)/ExampleNetworks/PatientAndCaseObject.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKPatientObject.html"
+}
+
+
+MacroModule METKCaseObject {
+   author             = "Jana Dornheim"
+   status             = "stable"
+   comment            = "Displays current case information"
+   keywords           = "METK case object information ObjMgr"
+   seeAlso            = "METKPatientObject"
+   externalDefinition = "$(LOCAL)/METKCaseObject.script"
+   genre              = "METKMisc"
+   exampleNetwork     = "$(LOCAL)/ExampleNetworks/PatientAndCaseObject.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKCaseObject.html"
+}
+
+
+MacroModule METKCSO {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Gives you information about the currently selected object"
+   keywords           = ""
+   seeAlso            = "METKManager"
+   externalDefinition = "$(LOCAL)/METKCSO.script"
+   genre              = "METKMisc"
+   exampleNetwork     = "$(LOCAL)/ExampleNetworks/PickingAndCSO.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKCSO.html"
+}
+
+
+MacroModule METKLoadSegMask {   
+   author             = "Konrad Mühler"
+   status             = "stable"
+   comment            = "Returns the segmentation mask of an object"
+   keywords           = ""
+   seeAlso            = "METKManager METKCSO"
+   externalDefinition = "$(LOCAL)/METKLoadSegMask.script"
+   genre              = "METKOpen"
+   exampleNetwork     = "$(LOCAL)/ExampleNetworks/METKLoadSegMask.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKLoadSegMask.html"
+}
+
+
+MacroModule METKStatus {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Shows the current status of the METK"
+   keywords           = "METK status current module progress bar time consuming"
+   seeAlso            = ""
+   externalDefinition = "$(LOCAL)/METKStatus.script"
+   genre              = "METKMisc"
+   documentation      = "http://www.metk.net/METKDocumentation/METKStatus.html"
+}
+
+
+MacroModule METKStructureDetails {
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = "Prompts error message on errors and writes console to a file"
+   keywords           = ""
+   seeAlso            = ""
+   externalDefinition = "$(LOCAL)/METKStructureDetails.script"
+   genre              = "METKMisc"
+   documentation      = "http://www.metk.net/METKDocumentation/METKStructureDetails.html"
+}
+
+
+
+DefineStyle PlannerStyle {
+   derive = default
+   colors {
+      fg = #000000
+      bg = #ECE9D8
+
+      editText = #000000
+      editBg = #FFFFFF
+
+      buttonText  = #000000
+      button      = #ECE9D8
+
+      light = #FFFFFF
+      midlight  = #ACA899
+      dark = #ACA899
+
+      boxText  = #000000
+      tabText  = #000000
+
+      //highlight = #FFFFFF // commented out, because otherwise selected text is not highlighted with blue background
+      //highlightedText = #000000
+   }
+   disabledColors {
+      fg = #000000
+      bg = #ECE9D8
+
+      editText    = #ACA899
+      editBg      = #FFFFFF
+
+      buttonText  = #ACA899
+      button      = #ECE9D8
+
+      light = #ECE9D8
+      midlight  = #ACA899
+      dark = #ACA899
+
+      boxText  = #ACA899
+      tabText  = #ACA899
+     
+      //highlight = #FFFFFF
+      //highlightedText = #000000
+      
+      //mid       = #ECE9D8
+      //shadow    = #ECE9D8
+      //brightText   = #ACA899
+      //link         = #ECE9D8
+      //linkVisited  = #ECE9D8
+
+   }
+}

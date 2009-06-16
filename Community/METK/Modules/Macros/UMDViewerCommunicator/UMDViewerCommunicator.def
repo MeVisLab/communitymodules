@@ -1,0 +1,23 @@
+//----------------------------------------------------------------------------------
+//! UMDViewerCommunicator module definition
+/*!
+// \file    UMDViewerCommunicator.def
+// \author  Konrad Mühler
+// \date    2005-05-02
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDViewerCommunicator {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDViewerCommunicator.script"
+  exampleNetwork = "$(LOCAL)/networks/UMDViewerCommunicatorExample.mlab"
+
+} // MacroModule UMDViewerCommunicator
+

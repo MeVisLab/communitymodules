@@ -1,0 +1,237 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoWEMConvertInventor {
+  internal  {
+    frame = "933 661 168 56"
+    windows  {
+      window _default {
+        geometry = "518 459 250 71"
+        sizeHint = "250 71"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMConvertInventor
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    progress = 0
+    convertInfo = Ready
+    autoApply = TRUE
+    isProcessing = FALSE
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "981 409 88 64"
+    windows  {
+      window _default {
+        geometry = "703 547 104 25"
+        sizeHint = "63 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = showAttrib
+    whichChild = -3
+    on = TRUE
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "1217 409 112 64"
+    windows  {
+      window _default {
+        geometry = "703 547 104 25"
+        sizeHint = "63 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = showHatching
+    whichChild = -1
+    on = FALSE
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "1125 409 88 64"
+    windows  {
+      window _default {
+        geometry = "703 547 104 25"
+        sizeHint = "63 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = showMap
+    whichChild = -3
+    on = TRUE
+  }
+}
+module SoWEM2AttribITSS {
+  internal  {
+    frame = "953 485 144 56"
+    windows  {
+      window _default {
+        geometry = "686 76 277 381"
+        sizeHint = "277 381"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEM2AttribITSS
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    updateAttributeName = ""
+    displayEnabled = FALSE
+    instanceNameDisplay = ""
+    numPatches = 0
+    numVertices = 0
+    coordIndexDisplay = "[  ]"
+    vertexDisplay = "[  ]"
+    normalDisplay = "[  ]"
+    colorDisplay = "[  ]"
+    texCoordDisplay = "[  ]"
+    numAttributes = 0
+    attributeEnumeration = ""
+    attributeSelection = ""
+    attributeDisplay = "[  ]"
+  }
+}
+module WEMInfoGenerator {
+  internal  {
+    frame = "957 557 136 56"
+    windows  {
+      window _default {
+        geometry = "627 388 308 266"
+        sizeHint = "308 266"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfoGenerator
+    autoApply = FALSE
+    id = 0
+    doi = 0
+    emphasis = FALSE
+    calculateCurvature = TRUE
+    color = "0.300000011920929 0.300000011920929 0.300000011920929"
+    transparency = 0
+    name = ""
+    updateValue = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "853 669 72 56"
+    windows  {
+      window _default {
+        geometry = "372 330 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = NPRShading,Appearance,Description
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "881 765 160 56"
+    windows  {
+      window _default {
+        geometry = "703 547 200 150"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "701 488 334 268"
+        sizeHint = "204 268"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = Files
+    infoID = InventorPointer
+  }
+}
+connections  {
+  SoWEMConvertInventor.inScene = UMDPointerToInventor.outInventor
+  showAttrib.children = SoWEM2AttribITSS.outAttribITSS
+  showHatching.children = UMDPointerToInventor.outInventor
+  showMap.children = UMDPointerToInventor.outInventor
+  SoWEM2AttribITSS.inWEM = WEMInfoGenerator.outWEM
+  SoWEM2AttribITSS.updateAttributeName = WEMInfoGenerator.updateValue
+  WEMInfoGenerator.inWEM = SoWEMConvertInventor.outWEM
+  ObjInfo.inObjectContainer = UMDPointerToInventor.outObjectContainer
+  ObjInfo.acceptedObjects = ObjInfo.searchObjPattern
+}

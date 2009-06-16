@@ -1,0 +1,36 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'Lymphnode_1' setTransparency 0
+[0] 'Lymphnode_1' setColor turquoise
+[0] 'Lymphnode_3' setTransparency 0
+[0] 'Lymphnode_3' setColor turquoise
+[0] 'Lymphnode_4' setTransparency 0
+[0] 'Lymphnode_4' setColor turquoise
+[0] 'Lymphnode_5' setTransparency 0
+[0] 'Lymphnode_5' setColor turquoise
+[0] 'Lymphnode_7' setTransparency 0
+[0] 'Lymphnode_7' setColor turquoise
+[0] 'Lymphnode_8' setTransparency 0
+[0] 'Lymphnode_8' setColor turquoise
+[0] 'Lymphnode_9' setTransparency 0
+[0] 'Lymphnode_9' setColor turquoise
+[0] 'Lymphnode_12' setTransparency 0
+[0] 'Lymphnode_12' setColor turquoise
+[0] 'Lymphnode_13' setTransparency 0
+[0] 'Lymphnode_13' setColor turquoise
+[0] 'Lymphnode_14' setTransparency 0
+[0] 'Lymphnode_14' setColor turquoise
+[0] 'Lymphnode_15' setTransparency 0
+[0] 'Lymphnode_15' setColor turquoise
+[0] 'Lymphnode_16' setTransparency 0
+[0] 'Lymphnode_16' setColor turquoise
+[0] 'Lymphnode_17' setTransparency 0
+[0] 'Lymphnode_17' setColor turquoise
+[0] 'Lymphnode_18' setTransparency 0
+[0] 'Lymphnode_18' setColor turquoise
+[0] 'Lymphnode' setColor LymphnodeColor
+[0] 'Lymphnode' setTransparency 0

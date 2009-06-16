@@ -1,0 +1,14 @@
+[Ini]
+LengthTimeUnit=10
+LengthSeconds=10
+RealTime=no
+
+[Script]
+[0,1] 'System' init
+[0] 'Bones' border false
+[1,10] 'All' view 90 -30 0.6
+[1,10] 'Lymphnode' setTransparency 0
+[1,10] 'All' setTransparency 0.95
+[5] 'Bones' border true
+[1,5] 'largeLK' setColor red
+[6,10] 'middleLK' setColor orange

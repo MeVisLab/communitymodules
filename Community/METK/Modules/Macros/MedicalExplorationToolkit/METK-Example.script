@@ -1,0 +1,80 @@
+// -- Interface --
+Interface  {
+   // Application has no inputs
+   Inputs {      
+   }
+ 
+   // Application has no outputs
+   Outputs {
+   	Field view3d { internalName = Visualization.view3d }
+   	Field outObjectContainer { internalName = ObjMgr.outObjectContainer }
+   }
+  
+   // Parameters
+   Parameters  {
+   }
+}
+
+
+// -- Commands --
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   source = "$(LOCAL)/METK-Example.py"
+}
+
+
+
+// -- Main Window --
+Window METK-Example {
+   h = 200
+   w = 400
+   Vertical{
+      expandY = yes
+      TabView  {
+         name = mainTab
+
+         // -- Import --
+         TabViewItem "Open Case" {
+            //tabSelectedCommand = ""
+            expandY = yes
+            Panel {
+               module  = OpenCase
+               expandX = yes
+               expandY = yes
+            } // Panel
+         } // TabViewItem
+
+         // -- Visualization --
+         TabViewItem "Visualization" {
+            //tabSelectedCommand = ""
+            expandY = yes
+            Panel {
+               module  = Visualization
+               expandX = yes
+               expandY = yes
+            } // Panel
+         } // TabViewItem
+         
+         TabViewItem "Developer" {
+            //tabSelectedCommand = ""
+            expandY = yes
+            Panel {
+               module  = Inspector
+               expandX = yes
+               expandY = yes
+            } // Panel
+         } // TabViewItem
+         
+         TabViewItem "ScriptInterface" {
+            expandY = yes
+            Panel {
+               module = UMDAnimation2
+               expandX = yes
+               expandY = yes
+            }
+         }
+    
+      } // TabView
+   } // Vertical
+} // Window

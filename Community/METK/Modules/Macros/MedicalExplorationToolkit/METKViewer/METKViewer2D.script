@@ -1,0 +1,98 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+      Field input { internalName = input.child }
+      Field soview2d { internalName = SoOrthoView2D.inputImage }
+      Field soview2d { internalName = world2voxel.input0 }
+      Field soview2d { internalName = voxel2world.input0 }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field view2d { internalName = output.self }
+   }
+   Parameters {
+      Field annotations      { internalName = SoView2DAnnotation.drawingOn }
+      Field layoutMode       { internalName = SoOrthoView2D.layoutMode }
+      Field selectedPosition { type = vector3f value = "0, 0, 0" }
+      Field worldPosition    { internalName = SoOrthoView2D.worldPosition }
+      Field voxelPosition    { type = vector3f value = "0, 0, 0" }
+      Field refreshObjMgr    { type = trigger }
+      Field autoRefreshObjMgr{ type = bool value=False }
+      Field windowCenter     { internalName = lut.greyCenter }
+      Field windowWidth      { internalName = lut.greyWidth }
+      
+      Field screenshotFile { internalName = viewer.outputSnapshotFile }
+      Field saveScreenshot { type = trigger }
+      Field saveThumbNail  { type = bool value = False }
+      Field thumbSize      { type = int value = 64 }
+      Field ready          { type = bool value = True }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKViewer2D.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener { 
+      listenField = selectedPosition
+      listenField = SoView2DPosition.worldPosition
+      command =     selectedPosition } 
+
+   FieldListener refreshObjMgr  { command = refresh }   
+   FieldListener saveScreenshot { command = saveScreenshot }
+   FieldListener IdleTrigger.triggerOutput { command = finishingScreenshot }   
+   FieldListener instanceName   { command = viewerNameChanged }
+   
+   FieldListener {
+      listenField = windowCenter
+      listenField = windowWidth
+      listenField = layoutMode
+      listenField = annotations
+      listenField = worldPosition
+      listenField = screenshotFile
+      command = autoRefreshObjMgr
+   }
+   
+   FieldListener {
+      listenField = voxelPosition
+      listenField = world2voxel.voxelPos
+      command = changedVoxelPos
+   }
+}
+
+Window METKViewer {
+   Viewer = viewer.self { }
+}
+
+Window Settings {
+   Vertical {
+      Field = annotations
+      Field = layoutMode
+      Field = selectedPosition
+      Field = worldPosition
+      Field = voxelPosition
+      Field = windowCenter { slider = ON }
+      Field = windowWidth { slider = ON }
+      Field = refreshObjMgr
+      Field = autoRefreshObjMgr
+      Box Screenshot { layout = Vertical
+         Horizontal {  mw = 100
+            Field = screenshotFile { title = "File:" }
+            Button = saveScreenshot { title = Save }
+         }
+         Horizontal { alignX = left
+            Field = saveThumbNail
+            Field = thumbSize { title = "Size:" dependsOn = saveThumbNail }
+         }
+         Field = ready { edit = No }
+      }
+   }
+}

@@ -1,0 +1,41 @@
+//----------------------------------------------------------------------------------
+//! Macro module StraightLine
+/*!
+// \file    StraightLine.script
+// \author  Konrad Mühler
+// \date    2008-08-06
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs { 
+    Field self { internalName="SoSeparator.self" }
+  }
+  Parameters {
+    Field startPoint { type=vec3f }
+    Field endPoint { type=vec3f }
+    Field Color { internalName = Material.diffuseColor }
+    Field Transparency { internalName = Material.transparency }    
+    Field radius { internalName = SoCylinder.radius }
+  }
+}
+
+
+Commands {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/StraightLine.py"
+   
+   // Call init() to initalize the script
+   wakeupCommand = init
+   
+   FieldListener startPoint { command = calcLine }
+   FieldListener endPoint   { command = calcLine }
+
+}

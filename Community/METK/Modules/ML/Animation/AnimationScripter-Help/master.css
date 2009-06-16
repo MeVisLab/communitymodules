@@ -1,0 +1,42 @@
+.FontNormal {
+	font-family:Verdana,Arial,sans-serif;
+	font-size: 8pt;
+	line-height:150%; }
+	
+.FontTitle {
+	font-family:Verdana,Arial,sans-serif;
+	font-size: 14pt;
+	font-weight: bold; }	
+
+
+.FontSubTitle {
+	font-family:Verdana,Arial,sans-serif;
+	font-size: 12pt;
+	font-weight: bold; }	
+
+.FontCode {
+	font-family:"Courier New",Courier,monospace;	
+	font-size: 10pt; }	
+
+
+
+.borderBlue {
+	border-width:1px;
+	border-color:#235B9C;
+	border-style:solid; }
+	
+.bgBlueTitle {
+	background-color: #235B9C;}
+	
+	
+.bgBlueBottom {
+	background-color: #DDEAF7;}
+
+
+.code_div {
+        font-family: monospace;
+        font-size: 10pt;
+        background-color: #FCFEE4;
+        border: 1px solid black;
+        padding:7px;
+}

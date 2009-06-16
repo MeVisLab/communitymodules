@@ -1,0 +1,54 @@
+UserGenres {
+   Genre METK {
+      Genre = METKCaseBuilding {
+         Title = "Case Building"
+      }
+   }
+}
+
+MacroModule METKAddImage {
+   genre              = "METKCaseBuilding"
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = ""
+   keywords           = "METK segmentation results ObjMgr case"
+   seeAlso            = "METKAddStructure METKAddROI"
+   externalDefinition = "$(LOCAL)/METKAddImage.script"
+   documentation      = "http://www.metk.net/METKDocumentation/METKAddImage.html"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKCaseBuilding.mlab"
+}
+
+MacroModule METKAddROI {
+   genre              = "METKCaseBuilding"
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK segmentation results ObjMgr case"
+   seeAlso            = "METKAddStructure METKAddImage"
+   externalDefinition = "$(LOCAL)/METKAddROI.script"
+   documentation      = "http://www.metk.net/METKDocumentation/METKAddROI.html"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKCaseBuilding.mlab"
+}
+
+MacroModule METKAddStructure {
+   genre              = "METKCaseBuilding"
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK segmentation results ObjMgr case"
+   seeAlso            = "METKAddImage METKAddROI"
+   externalDefinition = "$(LOCAL)/METKAddStructure.script"
+   documentation      = "http://www.metk.net/METKDocumentation/METKAddStructure.html"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKCaseBuilding.mlab"
+}
+
+MacroModule METKCaseBuilder {
+  genre = "METKCaseBuilding"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = "Creates a case from an image, a ROI and segmentation masks"
+  keywords = ""
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKCaseBuilder.html"
+  externalDefinition = "$(LOCAL)/METKCaseBuilder.script"
+} // MacroModule METKCaseBuilder

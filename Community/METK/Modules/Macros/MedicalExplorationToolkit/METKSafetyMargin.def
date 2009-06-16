@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! METKSafetyMargin module definition
+/*!
+// \file    METKSafetyMargin.def
+// \author  Konrad
+// \date    2007-11-08
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKSafetyMargin {
+  genre = "METKMisc"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKSafetyMargin.script"
+
+} // MacroModule METKSafetyMargin
+

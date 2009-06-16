@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! UMDAnonymizer module definition
+/*!
+// \file    UMDAnonymizer.def
+// \author  Konrad Mühler
+// \date    2008-03-03
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDAnonymizer {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDAnonymizer.script"
+
+} // MacroModule UMDAnonymizer
+

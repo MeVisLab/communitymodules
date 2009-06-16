@@ -1,0 +1,86 @@
+Interface  {
+   Inputs  {
+   }
+   Outputs {
+   }
+   Parameters {
+      Field filename        	{ type = string value = "" }
+      Field filenameOutput  	{ internalName = UserInventorFile.path }
+      Field ImageExists     	{ internalName = ImageFile.exists }
+      Field InventorExists  	{ internalName = InventorFile.exists }
+      Field filter              { internalName = Resample3D.filter }
+
+      Field start           	{ type = trigger }
+      Field creatingSurface	{ type = bool value = FALSE }
+      Field converting      	{ type = bool value = FALSE }
+      Field saving          	{ type = bool value = FALSE }
+      Field saved           	{ type = bool value = FALSE }
+      Field ready           	{ type = bool value = FALSE }
+      
+      Field saveInventor    	{ internalName = SceneWriter.writeScene }
+      Field update          	{ internalName = ImageFile.update }
+      
+      Field queueing        	{ type = bool value = FALSE }
+      Field smoothing       	{ type = bool value = TRUE }
+      Field splitting       	{ internalName = SoConvertShapeENT.shapePartitioning }
+      Field overwrite       	{ type = bool value = FALSE }
+      
+      Field imageValue	    	{ type = int }      
+      Field imageValueAuto    	{ type = bool value = TRUE }
+      
+      Field objTotal 		{ type = int persistent=FALSE }
+      Field objCurrent 		{ type = int persistent=FALSE }      
+      
+      Field ping { type=trigger }
+      Field continueWithNext { type = trigger }
+   }
+}
+
+
+Commands  {
+   // Include local functions
+   source = "$(LOCAL)/GenerateIvFile.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   FieldListener { listenField = filename command = addFile }   
+   FieldListener { listenField = start command = startByField }   
+   FieldListener { listenField = IsoSurface.info command = surfaceCreated }   
+   FieldListener { listenField = SoConvertShapeENT.outConvertedShape command = surfaceConverted }   
+   FieldListener { listenField = SceneWriter.fileSaved command = surfaceSaved callLater=True }
+   FieldListener { listenField = continueWithNext command = continueWithNext callLater=True }
+   FieldListener { listenField = filenameOutput command = filenameOutputChanged }
+   FieldListener { listenField = objTotal command = objTotal }
+   FieldListener { listenField = objCurrent command = objCurrent }
+   
+   FieldListener { listenField = ping command = ping }
+} // Commands
+
+
+Window GenerateIVFile { expandY=No
+   Vertical { expandX=Yes expandY=Yes
+      Horizontal {
+         Field = filename { browseButton = YES browseFilter = "Image files (*.dcm *.tif)"}
+      }
+      Field = queueing  { title = "Enable Queueing" }
+      Field = smoothing { title = "Smooth Surface" }
+      Field = filter    { title = "Resampling Filter:" dependsOn = smoothing }
+      Field = splitting { title = "Split Surface" }
+      Field = overwrite { title = "Overwrite Existing Surface" }
+      Field = imageValueAuto
+      Field = imageValue { dependsOn = !imageValueAuto }
+      Separator {
+         direction = horizontal
+      }
+      Horizontal { alignX = left alignY = top
+         Vertical { alignY = top
+            Button = start
+         }
+         Vertical {
+            Label { title = "Image missed!"  dependsOn = !ImageExists }
+            Label { title = "Ready."          dependsOn = ready }
+         }
+      }
+   }
+}

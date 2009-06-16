@@ -1,0 +1,48 @@
+//----------------------------------------------------------------------------------
+//! Macro module SimpleMETKApp
+/*!
+// \file    SimpleMETKApp.script
+// \author  Konrad Mühler
+// \date    2007-10-16
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {}
+}
+
+Commands {}
+
+Window SimpleMETKApp {
+	Vertical {
+		expandX=true expandY=true
+		MenuBar {
+			SubMenu File {
+				MenuItem "Open..."{name = open_case field = METKManager.browse }
+				MenuItem "Close"{name = close_case field = METKManager.cleanup}
+			}
+		}
+	
+		Splitter {
+			direction=horizontal
+			expandX=true expandY=true
+			Panel{							
+				module = METKStructureGroupBrowser
+				window = singleListView
+				expandY=true
+				w=200
+			}
+		
+			Panel{							
+				module = METKViewer3D
+				expandX=true expandY=true
+			}
+
+		}
+	}
+}

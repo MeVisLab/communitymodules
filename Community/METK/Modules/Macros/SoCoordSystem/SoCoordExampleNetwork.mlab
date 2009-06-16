@@ -1,0 +1,283 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "-147 261 104 56"
+    windows  {
+      window _default {
+        geometry = "773 461 453 354"
+        sizeHint = "453 354"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module UMDViewerCommunicator {
+  internal  {
+    frame = "-7 277 176 56"
+    windows  {
+      window _default {
+        geometry = "783 96 498 735"
+        sizeHint = "304 420"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDViewerCommunicator
+    ViewerName = mainView
+    CamOrientation = "0.000000 0.000000 1.000000 0.000000"
+    CamPosition = "0.000000 0.000000 2.000000"
+    CamHeight = 2
+    Status = Ready
+    ProtocolViewerStatus = TRUE
+    BackgroundColor = "1.000000 1.000000 1.000000"
+    BackgroundGreyCenter = 0.5
+    BackgroundGreyWidth = 1
+  }
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "-91 117 120 56"
+    windows  {
+      window _default {
+        geometry = "45 626 694 103"
+        sizeHint = "244 103"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    HLScriptFileName = E:/VisualC++/Skripte/HighLevel-01.txt
+    CommandLine = ""
+    InteractiveAnimation = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "-67 373 72 56"
+    windows  {
+      window _default {
+        geometry = "92 111 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 2
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 2139
+    eventType = NoMessage
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "-3 605 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+    networkMode = NotConnected
+    networkAddress = ""
+    networkPort = 7623
+    commOnlyMarkedInfo = TRUE
+  }
+}
+module SoDirectionalLight {
+  internal  {
+    frame = "101 597 136 56"
+  }
+  fields  {
+    instanceName = SoDirectionalLight
+    on = TRUE
+    intensity = 1
+    color = "1.000000 1.000000 1.000000"
+    direction = "0.000000 0.000000 -1.000000"
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "189 485 104 56"
+    windows  {
+      window _default {
+        geometry = "70 89 369 192"
+        sizeHint = "369 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTransform
+    translation = "0.000000 1.000000 0.000000"
+    rotation = "0.417029 0.551678 0.722315 1.000000"
+    scaleFactor = "-0.500000 0.500000 0.500000"
+    scaleOrientation = "0.000000 0.000000 1.000000 0.000000"
+    center = "0.000000 0.000000 0.000000"
+  }
+}
+module SoCube {
+  internal  {
+    frame = "313 429 80 56"
+    windows  {
+      window _default {
+        geometry = "246 265 136 213"
+        sizeHint = "136 213"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "117 145 136 64"
+    windows  {
+      window _viewer {
+        geometry = "8 100 335 324"
+        sizeHint = "400 402"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "747 95 490 737"
+        sizeHint = "453 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = mainView
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.000000 0.000000 0.000000"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 7
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = TRUE
+    viewing = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_ORTHOGRAPHIC
+    userSettingOrientation = "0.000000 0.000000 1.000000 0.000000"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = FALSE
+    height = 2
+    position = "0.000000 0.000000 2.000000"
+    orientation = "0.000000 0.000000 1.000000 0.000000"
+    nearDistance = 0.9990000129
+    farDistance = 2.202199936
+    focalDistance = 1.955610037
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 31
+    rotationAxis = "0.000000 1.000000 0.000000"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoCoordSystem {
+  internal  {
+    frame = "53 421 120 56"
+  }
+  fields  {
+    instanceName = SoCoordSystem
+  }
+}
+connections  {
+  ObjInspector.inObjectContainer = ObjMgr.outObjectContainer
+  UMDViewerCommunicator.inObjectContainer = ObjMgr.outObjectContainer
+  UMDViewerCommunicator.inInventor = SoCoordSystem.self
+  UMDViewerCommunicator.CamOrientation = mainView.orientation
+  UMDViewerCommunicator.CamPosition = mainView.position
+  UMDViewerCommunicator.CamHeight = mainView.height
+  UMDAnimation2.inObjectContainer = ObjMgr.outObjectContainer
+  ObjInfo.inObjectContainer = ObjMgr.outObjectContainer
+  mainView.cancelRecording = UMDViewerCommunicator.cancelRecording
+  mainView.singleFrame = UMDViewerCommunicator.captureFrame
+  mainView.createAvi = UMDViewerCommunicator.createAVI
+  mainView.updateMLOutput = UMDViewerCommunicator.updateMLOutput
+  mainView.height = UMDViewerCommunicator.CamHeight
+  mainView.position = UMDViewerCommunicator.CamPosition
+  mainView.orientation = UMDViewerCommunicator.CamOrientation
+  mainView.children = "UMDViewerCommunicator.self SoCoordSystem.self SoDirectionalLight.self"
+}

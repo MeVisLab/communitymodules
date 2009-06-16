@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! Arrow2 module definition
+/*!
+// \file    Arrow2.def
+// \author  Konrad Mühler
+// \date    2008-07-04
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule Arrow2 {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/Arrow2.script"
+
+} // MacroModule Arrow2
+

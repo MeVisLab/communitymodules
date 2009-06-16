@@ -1,0 +1,101 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKScriptBuilder
+/*!
+// \file    METKScriptBuilder.script
+// \author  Konrad Mühler
+// \date    2006-09-13
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = info.outObjectContainer }
+  }
+  Parameters {
+      Field buildNewScript { type = trigger }
+      Field appendToScript { type = trigger }
+      Field useCamera { type = bool value=True }   
+      Field useColor { type = bool }   
+      Field useTransparency { type = bool }
+      Field useVisibility { type = bool }
+      Field useNPR { type = bool }
+      Field setColorLast { type = bool value = True }
+      Field setTransparencyLast { type = bool value = True }
+      Field setVisibilityLast { type = bool value = True }
+      Field length { type = double value = 5.0 }
+      Field realtime { type = bool value = True }
+      
+      Field viewerName { type = string value = "METKViewer3D" }
+      
+      Field script { type = string }
+      
+      Field clear { type = trigger }
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+  importPath = "$(LOCAL)/../METKRenderModes/"
+  source = $(LOCAL)/METKScriptBuilder.py
+  
+  // Call init() to initalize the script
+  initCommand = init
+    
+  FieldListener buildNewScript  { command = buildNewScript callLater = True }
+  FieldListener appendToScript  { command = appendToScript callLater = True }
+  FieldListener clear  		{ command = clear callLater = True }
+  
+}
+
+
+Window METKScriptBuilder
+{
+	w = 600
+	h = 600
+	Vertical {
+		expandX = yes expandY = yes
+		Vertical {
+			expandX=no expandY=no
+			Checkbox useCamera {}
+			Horizontal {
+				Checkbox useColor {}
+				Checkbox setColorLast {}
+			}			
+			Horizontal {
+				Checkbox useTransparency {}
+				Checkbox setTransparencyLast {}
+			}
+			Horizontal {
+				Checkbox useVisibility {}
+				Checkbox setVisibilityLast {}
+			}
+			
+			Checkbox useNPR {}
+			
+			Field length {}
+			
+			Checkbox realtime {}
+			
+			Field viewerName {}
+			
+			Button buildNewScript { }
+			
+			Button appendToScript { }
+			
+			Button clear { }
+		}
+		TextView script {		
+			expandX = yes expandY = yes		
+			autoApply = true
+			visibleRows = 10
+			wrap = Off
+		}
+	}
+}

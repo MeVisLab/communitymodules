@@ -1,0 +1,13 @@
+[Ini]
+LengthTimeUnit=3
+LengthSeconds=30
+RealTime=no
+
+[Script]
+[0] 'All' setVisible true
+[0] 'All' setCampath Parable
+[0,1] 'Cam' campath 'All' 1;1;2;10 145;170;2 90;45;3
+[1] 'All' setCampath Rectangle
+[1,2] 'Cam' campath 'All' 1;1;2 145;170;2 90;45;3
+[2] 'All' setCampath Linear
+[2,3] 'Cam' campath 'All' 1;1;2 145;170;2 90;45;3

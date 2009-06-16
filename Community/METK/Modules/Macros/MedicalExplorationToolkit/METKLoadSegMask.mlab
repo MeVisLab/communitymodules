@@ -1,0 +1,153 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "497 461 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module ImgLoad {
+  internal  {
+    frame = "801 549 80 56"
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module IntervalThresh {
+  internal  {
+    frame = "785 477 112 56"
+    windows  {
+      window _default {
+        geometry = "451 359 384 351"
+        sizeHint = "384 351"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IntervalThresh
+    lowerType = UserDef
+    innerType = UserDef
+    upperType = UserDef
+    imageMin = -100000
+    imageMax = 100000
+    imageRange = 200000
+    threshCenter = 0
+    threshWidth = 200000
+    threshMin = -100000
+    threshMax = 100000
+    lowerUserValue = 0
+    innerUserValue = 1
+    upperUserValue = 0
+    changeMinMax = FALSE
+    changedMin = -100000
+    changedMax = 100000
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "661 537 72 64"
+    windows  {
+      window _default {
+        geometry = "582 38 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = CSO
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKStructureGroupBrowser.inObjectContainer = info.outObjectContainer
+  IntervalThresh.input0 = ImgLoad.output0
+}

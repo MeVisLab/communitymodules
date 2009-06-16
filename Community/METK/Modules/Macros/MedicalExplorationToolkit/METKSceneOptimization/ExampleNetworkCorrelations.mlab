@@ -1,0 +1,329 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKCalcCamPos {
+  internal  {
+    frame = "-427 85 136 56"
+    windows  {
+      window _default {
+        geometry = "92 180 948 439"
+        sizeHint = "615 439"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "532 191 478 440"
+        sizeHint = "317 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCalcCamPos
+    priority = 10000
+    debugComment = ""
+    currentStructure = ""
+    multipleStructures = ""
+    debug = ""
+    viewerName = METKViewer3D
+    dataPath = ""
+    showField = 0
+    sphereMode = "Grid Sphere"
+    currentCam = "0 0 0"
+    camRange = 0
+    visSta = 0
+    impSta = 0
+    inspect = 0
+    wVis = 0
+    wImp = 0
+    wNum = 0
+    wEnt = 0
+    wDis = 0
+    wCam = 0
+    wReg = 0
+    wVisSta = 0
+    wImpSta = 0
+    wSilhouette = 0
+    wImageSpaceCenter = 0
+    prefRegionVector = "0 0 1"
+    prefRegionRange = 1
+    prefRegionType = "Vector region"
+    restrictToRegion = FALSE
+    minDistVec = "0 0 0"
+    minRange = 0
+    result = "0 0 0"
+    orient = "0 0 0 0"
+    setViewerCamAtTheEnd = FALSE
+    debugState = None
+    datInfo = ""
+    message = solver
+    data = ""
+  }
+}
+module METKCorrelationNetwork {
+  internal  {
+    frame = "261 45 168 56"
+    windows  {
+      window _default {
+        geometry = "395 155 728 664"
+        sizeHint = "728 664"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCorrelationNetwork
+    fileNameOfDistances = ""
+    fileNameOfCorrelations = ""
+    maxMaxNeighbourDist = 100
+    maxNeighbourDist = 20
+    allStructures = ""
+    structure = ""
+    existsStructure = ""
+    structureExists = FALSE
+    correl_selection = Case
+    allCorrelations = ""
+    correlation = ""
+    existsCorrel = ""
+    correlationExists = FALSE
+    allCorrelationType = ""
+    correlationType = ""
+    existsCorrelType = ""
+    correlTypeExists = FALSE
+    relatedStructures = ""
+    csRelatedStructure = ""
+    color_group = "0 0 0"
+    color_CSM = "0 0 0"
+    enableColering = TRUE
+    success = TRUE
+    structure1 = ""
+    structure2 = ""
+    distance = 0
+    structRelatedCorrel = ""
+    nearestRelated = ""
+    geometricCorrels = ""
+    gcStructure1 = ""
+    gcStructure2 = ""
+    gcDistance_1_2 = -1
+    gcNeigboursDict = ""
+    gcNeigbAll = ""
+    gcNeigbMalignant = ""
+    gcNeigbDoubtful = ""
+    gcNeigbBenign = ""
+  }
+  internalFields = ""
+}
+module METKCorrelations {
+  internal  {
+    frame = "-59 165 136 56"
+    windows  {
+      window _default {
+        geometry = "61 33 728 687"
+        sizeHint = "728 687"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "32 225 625 440"
+        sizeHint = "322 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window correlsInMetaInfos {
+        geometry = "380 155 620 513"
+        sizeHint = "620 513"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCorrelations
+    caseLoaded = FALSE
+    allStructures = ""
+    demandStructure = ""
+    indice_csdStruct = 11
+    compareStructure = ""
+    indice_cscStruct = 9
+    mc_DictContainer = ""
+    mc_SelectionOption = Structure
+    mc_AllCorrelations = ""
+    mc_Correlation = N_Classification
+    mc_AllCorrelTypes = ""
+    mc_CorrelType = ""
+    mc_RelatedStructures = ""
+    mc_csRelatedStructure = ""
+    mc_IndiceCsRelStruct = 11
+    pc_takeGivenCharact = TRUE
+    pc_malignantCriteria = "[['Tumor', ()]]"
+    pc_malignantSort = sizeInMaxExtension
+    pc_doubtfulCriteria = "[['Lymphnode', ('sizeInMaxExtension', '<=', 30, 1), ('sizeInMaxExtension', '>', 30, 2), ('sizeInMaxExtension', '<=', 60, 2), ('sizeInMaxExtension', '>', 60, 3)]]"
+    pc_doubtfulSort = sizeInMaxExtension
+    pc_Criteria_showEditBox = TRUE
+    pc_CriteriaEditOption = new
+    pc_CiteriaCharacter = Malignant
+    pc_CiteriaStructure = ""
+    pc_CriteriaStrProberty = ""
+    pc_CriteriaCondition = >
+    pc_CriteriaProbValue = 0
+    pc_CritDegreeOfSeverity = 0
+    pc_InfiltrationDistance1 = 0
+    pc_InfiltDist1_Degree = 0
+    pc_InfiltrationDistance2 = 2
+    pc_InfiltDist2_Degree = 0
+    gcHeadline = "Structure1, Structure2, Distance in mm], "
+    geometricCorrels = ""
+    gcStructure1 = ""
+    gcStructure2 = ""
+    gcDistance_1_2 = -1
+    gcNeighbThreshNear = 0
+    gcNeighbThreshFar = 5
+    gcNeighbThreshFarMax = 120
+    gcNeigbAll = ""
+    gcNeigbMalignant = ""
+    gcNeigbDoubtful = ""
+    gcNeigbBenign = ""
+    success = FALSE
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "-47 269 112 56"
+    windows  {
+      window _default {
+        geometry = "575 196 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKManager {
+        geometry = "381 353 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "102 240 892 440"
+        sizeHint = "204 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window SaveAs {
+        geometry = "443 466 400 60"
+        sizeHint = "400 60"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = C:/Users/Kellermann/Uni/Diplomarbeit/Material/Datensätze/Hals/Hals31/Segmentierung/Patient31_0003.nsp.xml
+    warnLevel = 3
+    autoSave = FALSE
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "117 205 104 56"
+    windows  {
+      window _default {
+        geometry = "125 275 475 350"
+        sizeHint = "544 350"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 456 446 171"
+        sizeHint = "204 171"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "-187 205 72 56"
+    windows  {
+      window _default {
+        geometry = "556 201 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "515 445 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "332 287 627 440"
+        sizeHint = "331 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = GlobalEvents
+    objectID = Structure_A.carotis_left
+    layerID = Description
+    infoID = Importance
+    objectPersistent = FALSE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = TRUE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Left
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "50.7187347412109 84.2012634277344 -259.236999511719"
+    vec4Value = "-0.298425 0.954113 0.0247217 0.979069"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 5
+    numEvents = 5
+    eventType = AttributeCreated
+  }
+}
+connections  {
+  METKCorrelations.inObjectContainer = METKManager.outObjectContainer
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  ObjInfo.inObjectContainer = METKManager.outObjectContainer
+}

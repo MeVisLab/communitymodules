@@ -1,0 +1,488 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "1021 613 120 56"
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+  }
+  internalFields = ""
+}
+module METKLogFile {
+  internal  {
+    frame = "909 765 104 56"
+    windows  {
+      window _default {
+        geometry = "521 153 500 134"
+        sizeHint = "500 134"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLogFile
+    loggingMode = Test
+    logLocation = UserHome
+    userDefPath = ""
+    userDefFileName = LogFile.log
+    messageOnError = FALSE
+    enableLogFile = TRUE
+    trueFileName = "C:/Dokumente und Einstellungen/isg/LogFile.log"
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "537 933 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKCollections {
+  internal  {
+    frame = "625 773 128 56"
+  }
+  fields  {
+    instanceName = METKCollections
+    objectTypeInclude = Result,Viewer2D,Viewer3D,CSO,Events,Tool
+    layerExclude = ""
+    infoExclude = InventorPointer,InventorFullPointer
+    singleClick = Load
+    doubleClick = Show
+    animated = FALSE
+    capturedViewer = "[any viewer]"
+    capturedViewerF = "[any viewer]"
+  }
+  internalFields = ""
+}
+module METKInfoWin {
+  internal  {
+    frame = "785 861 112 56"
+  }
+  fields  {
+    instanceName = METKInfoWin
+    infoHeader = "<html><font size='+2'><b>Loading Case</b></font></html>"
+    infoText = "Load initial configuration"
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "841 605 128 56"
+  }
+  fields  {
+    instanceName = METKOverlay2D
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "721 693 176 56"
+    windows  {
+      window _default {
+        geometry = "70 89 400 111"
+        sizeHint = "400 111"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = ""
+    imgValues = ""
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "853 485 120 56"
+    windows  {
+      window _default {
+        geometry = "1552 291 300 302"
+        sizeHint = "300 302"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer2D
+    annotations = TRUE
+    layoutMode = LAYOUT_ROW
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "569 533 80 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module METKManager {
+  internal  {
+    frame = "361 973 112 56"
+    windows  {
+      window _default {
+        geometry = "719 630 522 201"
+        sizeHint = "522 201"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12.xml
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+module METKBookmark3D {
+  internal  {
+    frame = "1157 781 136 56"
+    windows  {
+      window _default {
+        geometry = "180 199 106 124"
+        sizeHint = "106 124"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1230 493 244 173"
+        sizeHint = "244 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKBookmark3D
+    viewerName = METKViewer3D
+  }
+  internalFields = ""
+}
+module METKObjBrowser {
+  internal  {
+    frame = "985 941 128 56"
+    windows  {
+      window _default {
+        geometry = "180 199 700 602"
+        sizeHint = "700 487"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "565 461 120 56"
+    windows  {
+      window _default {
+        geometry = "160 135 200 202"
+        sizeHint = "200 202"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "268 287 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKClipping {
+  internal  {
+    frame = "409 685 112 56"
+  }
+  fields  {
+    instanceName = METKClipping
+  }
+  internalFields = ""
+}
+module METKScriptInit {
+  internal  {
+    frame = "881 1029 112 56"
+    windows  {
+      window _default {
+        geometry = "411 705 700 84"
+        sizeHint = "700 84"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKScriptInit
+    scriptFile = ML/Animation/Scripts/ENT/init-script.txt
+  }
+  internalFields = ""
+}
+module METKScriptTrigger {
+  internal  {
+    frame = "1197 949 136 56"
+    windows  {
+      window _default {
+        geometry = "9 688 791 74"
+        sizeHint = "700 30"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKScriptTrigger
+    scriptFile = Hals12/HighLevel-01.txt
+  }
+  internalFields = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "1357 869 120 56"
+    windows  {
+      window _default {
+        geometry = "1808 75 700 918"
+        sizeHint = "700 923"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1291 123 506 773"
+        sizeHint = "445 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = ML/Animation/Scripts/ENT/init-script.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = TRUE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = "'System' newmove"
+    ScriptArea = "[INI]
+LENGTHTIMEUNIT=10
+LENGTHSECONDS=20
+REALTIME=YES
+
+[SCRIPT]
+[0] 'All' view front 1
+[1,10] 'Cam' rotate 'All' axial 360"
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = FALSE
+    testSphereCenter = "-0.649002 -13.2988 98.5645"
+    testSphereRadius = 173.515637080036
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = ""
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1013 821 72 56"
+    windows  {
+      window _default {
+        geometry = "246 265 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 46
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 685
+    eventType = NoMessage
+  }
+}
+module METKIsoSurface {
+  internal  {
+    frame = "393 585 128 64"
+    windows  {
+      window _default {
+        geometry = "1023 407 155 23"
+        sizeHint = "155 23"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjects
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "1197 673 104 64"
+    windows  {
+      window _default {
+        geometry = "0 19 502 354"
+        sizeHint = "502 354"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "238 423 672 411"
+        sizeHint = "218 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Inspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+connections  {
+  METKROISelect.inObjectContainer = METKStructureGroupBrowser.outObjectContainer
+  METKLogFile.inObjectContainer = METKManager.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKCollections.inObjectContainer = METKManager.outObjectContainer
+  METKOverlay2D.inObjectContainer = METKManager.outObjectContainer
+  METKOverlay2D.image = METKCodedSegmentation.image
+  METKCodedSegmentation.inObjectContainer = METKManager.outObjectContainer
+  METKViewer2D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer2D.input = METKOverlay2D.overlay
+  METKViewer2D.soview2d = METKROISelect.image
+  SoGroup.children = METKObjects.outInventor
+  METKBookmark3D.inObjectContainer = METKManager.outObjectContainer
+  METKObjBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inInventor = SoGroup.self
+  METKClipping.inObjectContainer = METKManager.outObjectContainer
+  METKScriptInit.inObjectContainer = METKManager.outObjectContainer
+  UMDAnimation2.inObjectContainer = METKManager.outObjectContainer
+  ObjInfo.inObjectContainer = METKManager.outObjectContainer
+  METKObjects.inObjectContainer = METKManager.outObjectContainer
+  METKObjects.inClipping = METKClipping.clipBox
+  Inspector.inObjectContainer = METKManager.outObjectContainer
+}

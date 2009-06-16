@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! METKScriptInit module definition
+/*!
+// \file    METKScriptInit.def
+// \author  Konrad
+// \date    2006-01-20
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKScriptInit {
+  genre = "METKAnimation"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = "Starts a script after a case was loaded"
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKScriptInit.script"
+
+} // MacroModule METKScriptInit
+

@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! Cinema module definition
+/*!
+// \file    UMDCampath.def
+// \author  Marcus Wolff
+// \date    2008-02-16
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDCampath {
+  genre = ""
+  author = "Marcus Wolff"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDCampath.script"
+
+} // MacroModule UMDCampath

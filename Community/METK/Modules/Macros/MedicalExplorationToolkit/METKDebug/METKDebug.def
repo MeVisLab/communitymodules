@@ -1,0 +1,32 @@
+UserGenres {
+   Genre = METK {
+      Genre = METKDebug {
+         Title = Debug
+      }
+   }
+}
+
+
+MacroModule METKDebug {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Logs frequency and amount of ObjMgr events"
+   keywords           = "METK debug error time consuming"
+   seeAlso            = "METKLogFile"
+   externalDefinition = "$(LOCAL)/METKDebug.script"
+   genre              = "METKDebug"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/LogFileAndDebug.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKDebug.html"
+}
+
+MacroModule METKLogFile {
+   author             = "Christian Tietjen, Konrad Mühler"
+   status             = "stable"
+   comment            = "Prompts error message on errors and writes console to a file"
+   keywords           = "METK debug error log"
+   seeAlso            = "METKDebug"
+   externalDefinition = "$(LOCAL)/METKLogFile.script"
+   genre              = "METKDebug"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/LogFileAndDebug.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKLogFile.html"
+}

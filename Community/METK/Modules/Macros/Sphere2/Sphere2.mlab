@@ -1,0 +1,114 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Material {
+  internal  {
+    frame = "457 309 80 56"
+    windows  {
+      window _default {
+        geometry = "715 335 323 337"
+        sizeHint = "323 337"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "46 149 311 464"
+        sizeHint = "239 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Material
+    on = TRUE
+    style = FILLED
+    complexity = 0.8999999762
+    lineWidth = 1
+    linePattern = 1
+    pointSize = 1
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.8 0.8 0.8"
+    emissiveColor = "0 0 0"
+    specularColor = "0 0 0"
+    shininess = 0.200000003
+    transparency = 0
+    colorPresets = gold
+    stylePresets = solid
+  }
+  internalFields = ""
+}
+module SoTransform {
+  internal  {
+    frame = "309 301 104 56"
+    windows  {
+      window _automatic {
+        geometry = "340 568 445 239"
+        sizeHint = "445 239"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "92 111 458 145"
+        sizeHint = "458 145"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTransform
+    translation = "0 0 0"
+    rotation = "0 0 1 0"
+    scaleFactor = "1 1 1"
+    scaleOrientation = "0 0 1 0"
+    center = "0 0 0"
+  }
+}
+module SoSphere {
+  internal  {
+    frame = "629 293 88 56"
+    windows  {
+      window _default {
+        geometry = "114 133 306 47"
+        sizeHint = "126 31"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "26 45 204 103"
+        sizeHint = "204 103"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSphere
+    radius = 15
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "417 173 128 56"
+    windows  {
+      window _viewer {
+        geometry = "114 133 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+connections  {
+  SoSeparator.children = "SoTransform.self Material.self SoSphere.self"
+}

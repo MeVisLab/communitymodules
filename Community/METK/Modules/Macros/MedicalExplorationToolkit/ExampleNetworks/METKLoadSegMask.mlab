@@ -1,0 +1,155 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Comment {
+  internal  {
+    frame = "741 229 88 56"
+    windows  {
+      window _default {
+        geometry = "735 516 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "Load a case and select an object you want to see the segmentation mask for."
+  }
+  internalFields = ""
+}
+module SimpleView2D {
+  internal  {
+    frame = "593 125 112 56"
+    windows  {
+      window _default {
+        geometry = "771 132 269 248"
+        sizeHint = "208 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SimpleView2D
+    inventorInputOn = FALSE
+    startSlice = 0
+    timePoint = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    maxTimePoint = 0
+    filterMode = FILTER_NEAREST
+    standardKeys = TRUE
+    lutMode = LUT_BEST
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    worldPosition = "-109.813 -358.053 -481.227"
+    worldPositionOn = FALSE
+    worldPositionCol = "0.858621 0.858621 0.858621"
+    worldPositionEditingOn = TRUE
+    worldPositionBlendOnto = 1
+    worldPositionBlendOutside = 0
+    zoomOn = TRUE
+    useTraceColors = FALSE
+    lutSetInputMinMax = TRUE
+    lutMin = 0
+    lutMax = 1
+    slicerOn = TRUE
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutCenter = 1
+    lutWidth = 1
+    ctWindowsLutCenter = 1
+    ctWindowsLutWidth = 1
+    annotationOn = TRUE
+    annotationCol = "0.872414 0.872414 0.872414"
+    annotFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_SHORT
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 1
+    annoInput04 = 1
+    annoInput05 = 1
+    annoInput06 = 1
+    annoInput07 = 1
+    annoInput08 = 1
+    annoInput09 = HU
+    annoReadPixFloorPos = "157 125 109"
+    annoReadPixVoxelPos = "157.583 125.571 109.5"
+    annoReadPixWorldPos = "-50.6772 76.98860000000001 -138.5"
+    borderOn = TRUE
+    borderColor = "0.872414 0.872414 0.872414"
+    currentTab = 0
+    deletingEnabled = TRUE
+    useCTWinOn = TRUE
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "585 317 112 56"
+    windows  {
+      window _default {
+        geometry = "581 460 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKLoadSegMask {
+  internal  {
+    frame = "561 229 144 56"
+    windows  {
+      window _default {
+        geometry = "356 341 204 194"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLoadSegMask
+    objID = Structure_LiverOrgan
+  }
+  internalFields = ""
+}
+connections  {
+  SimpleView2D.inImage = METKLoadSegMask.mask
+  METKLoadSegMask.inObjectContainer = METKManager.outObjectContainer
+}

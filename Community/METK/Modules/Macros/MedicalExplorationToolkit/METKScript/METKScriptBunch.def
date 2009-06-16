@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! METKScriptBunch module definition
+/*!
+// \file    METKScriptBunch.def
+// \author  Konrad Mühler
+// \date    2007-11-22
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKScriptBunch {
+  genre = "METKAnimation"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = "Collection of animation scripts for direct execution"
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKScriptBunch.script"
+
+} // MacroModule METKScriptBunch
+

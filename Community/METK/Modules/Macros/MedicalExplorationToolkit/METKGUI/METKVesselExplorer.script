@@ -1,0 +1,267 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKVesselExplorer
+/*!
+// \file    METKVesselExplorer.script
+// \author  Konrad Mühler
+// \date    2006-07-28
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = externalObjMgr.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = externalObjMgr.outObjectContainer }
+  }
+  Parameters {
+     Field objID { internalName = METKStructureGroupBrowser.selectedObjId persistent = FALSE }       
+     Field updateObject { type = trigger }          
+     Field objNamesEnum { type = string persistent = FALSE }
+     Field parentsEnum { type = string persistent = FALSE }
+     Field caseType { type = string value="Liver,HNO" }
+     Field selectedCaseType { type = string value="Liver" }
+     Field updateList { internalName = METKStructureGroupBrowser.updateView}
+     Field internalObjMgr { type = bool  value = true }     
+     Field showOldInNew { type = bool value = false }
+     Field saveNewVessel { type = trigger }         
+     Field syncViewer { type = bool value = true }
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+
+  source = $(LOCAL)/METKVesselExplorer.py
+  
+  initCommand = init
+     
+  FieldListener updateObject { callLater = false command = updateObject }
+  FieldListener objID        { callLater = true  command = updateObject }  
+  FieldListener selectedCaseType { callLater = true  command = caseTypeChanged }  
+  FieldListener internalObjMgr { command = changeObjMgr }     
+  FieldListener LoadBase.upToDate { command = treeXMLLoaded  callLater = true}
+  FieldListener showOldInNew { command = showOldInNew }
+  FieldListener saveNewVessel { command = saveNewVessel }
+  FieldListener syncViewer { command = syncViewer }
+}
+
+
+
+Window {  
+    	style = kStyle
+    	bgMode = SmoothStretch
+    	    		
+    	width = 1000
+    	height = 900
+    	       
+
+	Vertical {
+	
+		expandX=TRUE
+		expandY=TRUE      		
+	
+	    	MenuBar {
+	    		SubMenu "File" {
+				MenuItem "Open ..." {
+					name = openCase 
+					command = openCase
+				}
+	
+				MenuItem "Save As ..." {
+					name = saveCase 
+					command = saveCase
+				}
+				Separator {direction = horizontal}
+				MenuItem "Quit" {
+					name = exit 
+					command = exit
+				}
+			}//SubMenu
+	    	} //MenuBar
+	    	
+	    	//Separator {}
+	    	/*Panel {
+	    		fh = 100	    		
+	    	}*/
+	    	
+	    	Empty { h = 5 }
+
+		Horizontal {
+			expandX=TRUE expandY=TRUE
+			
+			Empty { w = 10 }
+
+			Splitter { 
+				direction = horizontal
+				Vertical {
+					expandX = FALSE
+					expandY = TRUE			
+					w = 300
+
+					Horizontal {
+						expandX=TRUE
+						Label { title = "Case Type:" }
+						Combobox selectedCaseType {
+							expandX=TRUE
+							comboField = caseType
+							//textChangedCommand = caseTypeChanged
+						}
+					}
+					
+					Checkbox internalObjMgr {
+						title = "Use internal ObjMgr"
+					}
+
+					Panel {
+						module = METKStructureGroupBrowser
+					}						
+
+					Horizontal {
+						expandX = FALSE
+						expandY = FALSE
+
+						Button updateList {
+							title = "Update List"				
+						}
+					}
+				}
+
+				//Empty { w = 10 }		
+
+				Vertical {
+					margin = 0
+					spacing = 5
+					expandX=TRUE
+					expandY=TRUE      								
+
+					TabView {
+						//x=0 y=1 x2=1
+						expandX=TRUE  expandY=TRUE
+						
+						TabViewItem "Vessel Change" {
+							expandX=true expandY=true
+							
+							Field objID {
+								title = "Current Vessel"
+							}
+							
+							Splitter {
+								direction = vertical
+								Splitter {
+									direction = horizontal
+									Panel {
+										module = ViewerOldIV
+									}
+									Panel {
+										module = ViewerNewIV
+									}					
+
+								}
+
+								Panel {
+									module = ViewerTotalVessel
+								}
+							}
+							Checkbox showOldInNew {
+								title = "Show old vessel in vessel tree"
+							}
+							Checkbox syncViewer {
+								title = "Synchronize Viewer"
+							}
+
+							Button saveNewVessel {
+								title = "Save new vessel"
+							}
+							
+						}
+						
+						TabViewItem "All Parameter" {
+							expandX=true expandY=true
+							Box {
+								title = "Object attributes"					
+								expandX=TRUE expandY=TRUE
+								Panel {				
+									expandX=TRUE expandY=TRUE
+									module = METKSingleObjInfo
+									window = ListViewOnly
+								}		
+							}
+
+							Button updateObject {
+								//x=0  y=3
+								title = "Update Values"
+								alignX = Left
+							}	
+						}
+
+						TabViewItem "Visual Parameter" {
+							expandX = true  expandY = true
+
+							Vertical {
+								expandX = true  expandY = true
+								Panel {
+									module = METKObjBrowser
+									panel = panelParameter
+									expandX = true expandY = true
+								}
+
+								Panel {
+									module = METKObjBrowser
+									panel = panelViewer
+									expandX = true expandY = true
+								}
+							}
+						}
+
+						TabViewItem "Viewer" {
+							expandX=true  expandY=true
+							Panel {
+								module = METKViewer3D
+							}
+						}
+
+					}//TabView
+
+				} //Vertical
+			} //Splitter
+			
+			Empty { w = 10 }		
+		} //Horizontal
+		Empty { h = 9 }
+	}// Vertical for MenuBar	
+} // Window
+
+
+Window OpenCase{    
+    Panel{
+        module = METKManager
+        window = OpenCase
+    }
+}
+
+Window SaveCase{    
+    Panel{
+        module = METKSaveCase
+    }
+}
+
+
+Window ObjInspector{    
+    Panel{
+        module = ObjInspector
+    }
+}
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

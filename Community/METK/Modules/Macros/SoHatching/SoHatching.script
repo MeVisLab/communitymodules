@@ -1,0 +1,41 @@
+Interface  {
+  Inputs  {
+    Field input {
+      internalName = Geometry.child
+    }
+  }
+  Outputs  {
+    Field output {
+      internalName = Hatching.self
+    }
+  }
+  Parameters {
+    Field lightingType { internalName = ShaderSwitch.whichChild }
+    Field textureUnit { internalName = HatchingSampler.unit }
+    Field gamma {
+      internalName = UniformGamma.value
+      min = 0
+      max = 4
+    }
+    Field scale { internalName = UniformScale.value }
+  }
+}
+
+Window SoHatching {
+  Vertical {
+    Box "Lighting Type" {
+      ButtonBar lightingType {
+        border = true
+        direction = vertical
+        show = one
+        items  {
+          item 0 { title = "Diffuse Lighting" }
+          item 1 { title = "Shading Map" }
+        }
+      }
+    }
+    Field scale { title = "TexCoord Scale:" }
+    Field textureUnit { }
+    Field gamma { slider = yes }
+  }
+}

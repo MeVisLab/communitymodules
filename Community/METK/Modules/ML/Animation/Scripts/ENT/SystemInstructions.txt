@@ -1,0 +1,15 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'Lymphnode' setTransparency 0
+[0] 'All' setTransparency 0.9
+[0] 'System' setBaseColors
+[0] 'All' setVisible true
+[0] 'middleLK' view front 1
+[0] 'middleLK' setColor orange
+[0] 'largeLK' setColor red
+[0] 'smallLK' setTransparency 0.4

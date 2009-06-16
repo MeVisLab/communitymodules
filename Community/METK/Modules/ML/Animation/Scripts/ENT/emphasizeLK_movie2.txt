@@ -1,0 +1,9 @@
+[Ini]
+LengthTimeUnit=10
+LengthSeconds=10
+RealTime=no
+
+[Script]
+[0] 'System' setBackground white
+[0] 'All' view front 0.7
+[1,10] 'Lymphnode_15' emphasizeLK15b

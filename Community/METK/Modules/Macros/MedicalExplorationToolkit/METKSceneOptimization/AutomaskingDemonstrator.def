@@ -1,0 +1,21 @@
+UserGenres {
+   Genre = METK {
+      Genre = METKSceneOptimization {
+         Title = SceneOptimization
+      }
+   }
+}
+
+
+MacroModule AutomaskingDemonstrator {
+   author             = "Kerstin Kellermann"
+   status             = "test"
+   comment            = ""
+   keywords           = ""
+   seeAlso            = ""
+   //exampleNetwork     = ""
+   scriptOnly         = NO
+   externalDefinition = "$(LOCAL)/AutomaskingDemonstrator.script"
+   genre              = "ApplicationsMenu"
+   //documentation      = ""
+}

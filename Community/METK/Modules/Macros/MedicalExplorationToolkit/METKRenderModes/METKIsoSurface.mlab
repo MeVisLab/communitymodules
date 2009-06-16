@@ -1,0 +1,229 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "937 253 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "453 105 104 64"
+    windows  {
+      window _viewer {
+        geometry = "114 133 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = input3D
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "457 181 96 56"
+    windows  {
+      window _default {
+        geometry = "180 199 195 94"
+        sizeHint = "190 94"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch
+    whichChild = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "345 261 128 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoDepthPeelRenderer {
+  internal  {
+    frame = "509 261 152 56"
+    windows  {
+      window _default {
+        geometry = "654 479 299 316"
+        sizeHint = "299 316"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoDepthPeelRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    useFBO = TRUE
+    useDepthPeeling = TRUE
+    useStencilBuffer = FALSE
+    layers = 4
+    simulatedAlpha = 1
+    opaqueBackgroundPass = TRUE
+    sceneDepthCompare = FALSE
+    debugLayers = FALSE
+    changeLayerColor = FALSE
+    layer1Color = "1 1 1"
+    layer2Color = "1 1 1"
+    layer3Color = "1 1 1"
+    layer4Color = "1 1 1"
+    layer5Color = "1 1 1"
+    layer6Color = "1 1 1"
+    layer7Color = "1 1 1"
+    layer8Color = "1 1 1"
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "753 253 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "473 457 80 64"
+    windows  {
+      window _viewer {
+        geometry = "92 111 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Clipping
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "385 377 80 64"
+    windows  {
+      window _automatic {
+        geometry = "92 111 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = clipNo
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "561 377 80 64"
+  }
+  fields  {
+    instanceName = clipYes
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "789 425 72 64"
+    windows  {
+      window _default {
+        geometry = "597 36 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = Viewer
+    layerID = view3d
+    infoID = Status
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Ready
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKStructureGroupBrowser.inObjectContainer = info.outObjectContainer
+  input3D.children = SoSwitch.self
+  SoSwitch.children = "SoGroup.self SoDepthPeelRenderer.self"
+  SoGroup.children = "clipNo.self Clipping.self clipYes.self"
+  SoDepthPeelRenderer.children = "clipNo.self Clipping.self clipYes.self"
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+  Clipping.children = ""
+  clipNo.children = ""
+  clipYes.children = ""
+}

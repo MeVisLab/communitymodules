@@ -1,0 +1,480 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoShaderParameter1f {
+  internal  {
+    frame = "829 121 152 64"
+    windows  {
+      window _default {
+        geometry = "543 459 182 64"
+        sizeHint = "116 64"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 459 396 136"
+        sizeHint = "204 136"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UniformScale
+    name = scale
+    value = 1
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1549 217 136 64"
+    windows  {
+      window _default {
+        geometry = "541 414 204 240"
+        sizeHint = "204 240"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ShadingMapGroup
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1121 217 144 64"
+    windows  {
+      window _default {
+        geometry = "541 414 309 240"
+        sizeHint = "204 240"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DiffuseLightingGroup
+  }
+}
+module SoVertexShader {
+  internal  {
+    frame = "1421 289 120 64"
+    windows  {
+      window _default {
+        geometry = "664 400 565 452"
+        sizeHint = "422 352"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "325 501 317 163"
+        sizeHint = "212 163"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MapVS
+    isActive = TRUE
+    sourceType = GLSL_PROGRAM
+    sourceProgram = "void main(void) 
+{
+   gl_Position = ftransform();
+   gl_TexCoord[0] = gl_MultiTexCoord0;
+}"
+  }
+}
+module SoShaderProgram {
+  internal  {
+    frame = "1693 289 136 64"
+    windows  {
+      window _automatic {
+        geometry = "307 858 340 136"
+        sizeHint = "204 136"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MapSP
+    shaderObject = "[  ]"
+    parameter = "[  ]"
+  }
+}
+module SoShaderProgram {
+  internal  {
+    frame = "1269 289 136 64"
+    windows  {
+      window _automatic {
+        geometry = "307 858 340 136"
+        sizeHint = "204 136"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DiffuseSP
+    shaderObject = "[  ]"
+    parameter = "[  ]"
+  }
+}
+module SoFragmentShader {
+  internal  {
+    frame = "1125 289 136 64"
+    windows  {
+      window _default {
+        geometry = "-1 184 693 796"
+        sizeHint = "412 342"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "319 691 323 163"
+        sizeHint = "212 163"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DiffuseFS
+    isActive = TRUE
+    sourceType = GLSL_PROGRAM
+    sourceProgram = "uniform sampler2D hatchingTexture;
+uniform float gamma;
+uniform float scale;
+varying float diffuse;
+
+void main(void)
+{
+   float hatchFactor = diffuse;
+   hatchFactor = pow(hatchFactor, gamma);
+   hatchFactor = hatchFactor * 6.3;
+
+   float white = 0.0;
+   vec3 weight0 = vec3(0.0);
+   vec3 weight1 = vec3(0.0);
+
+   if (hatchFactor >= 6.0) {
+      white = 1.0;
+   } else if (hatchFactor > 5.0) {
+      white = hatchFactor - 5.0;
+      weight0.x = 1.0 - white;
+   } else if (hatchFactor > 4.0) {
+      weight0.x = hatchFactor - 4.0;
+      weight0.y = 1.0 - weight0.x;
+   } else if (hatchFactor  >3.0) {
+      weight0.y = hatchFactor - 3.0;
+      weight0.z = 1.0 - weight0.y;
+   } else if (hatchFactor > 2.0) {
+      weight0.z = hatchFactor - 2.0;
+      weight1.x = 1.0 - weight0.z;
+   } else if (hatchFactor > 1.0) {
+      weight1.x = hatchFactor - 1.0;
+      weight1.y = 1.0 - weight1.x;
+   } else if (hatchFactor > 0.0) {
+      weight1.y = hatchFactor;
+      weight1.z = 1.0 - weight1.y;
+   }
+
+   float greyLevel = texture2D(hatchingTexture, gl_TexCoord[0].xy*scale)[0];
+   float hatchTex0 = float(greyLevel < 1.0);
+   float hatchTex1 = float(greyLevel < 0.83);
+   float hatchTex2 = float(greyLevel < 0.66);
+   float hatchTex3 = float(greyLevel < 0.5);
+   float hatchTex4 = float(greyLevel < 0.33);
+   float hatchTex5 = float(greyLevel < 0.17);
+
+   float hatchGrey = white +
+                     hatchTex0 * weight0.x +
+                     hatchTex1 * weight0.y +
+                     hatchTex2 * weight0.z +
+                     hatchTex3 * weight1.x +
+                     hatchTex4 * weight1.y +
+                     hatchTex5 * weight1.z;
+
+   gl_FragColor = vec4(hatchGrey, hatchGrey, hatchGrey, 1.0);
+}"
+  }
+}
+module SoFragmentShader {
+  internal  {
+    frame = "1549 289 136 64"
+    windows  {
+      window _default {
+        geometry = "568 194 693 770"
+        sizeHint = "412 342"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "319 691 323 163"
+        sizeHint = "212 163"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MapFS
+    isActive = TRUE
+    sourceType = GLSL_PROGRAM
+    sourceProgram = "uniform sampler2D hatchingTexture;
+uniform float gamma;
+uniform float scale;
+uniform sampler2D shadingMap;
+uniform vec2 shadingMapSize;
+
+void main(void)
+{
+   vec2 shadingTexCoord = gl_FragCoord.xy/shadingMapSize;
+   float hatchFactor = texture2D(shadingMap, shadingTexCoord)[0];
+   hatchFactor = pow(hatchFactor, gamma);
+   hatchFactor = hatchFactor * 6.3;
+
+   float white = 0.0;
+   vec3 weight0 = vec3(0.0);
+   vec3 weight1 = vec3(0.0);
+
+   if (hatchFactor >= 6.0) {
+      white = 1.0;
+   } else if (hatchFactor > 5.0) {
+      white = hatchFactor - 5.0;
+      weight0.x = 1.0 - white;
+   } else if (hatchFactor > 4.0) {
+      weight0.x = hatchFactor - 4.0;
+      weight0.y = 1.0 - weight0.x;
+   } else if (hatchFactor  >3.0) {
+      weight0.y = hatchFactor - 3.0;
+      weight0.z = 1.0 - weight0.y;
+   } else if (hatchFactor > 2.0) {
+      weight0.z = hatchFactor - 2.0;
+      weight1.x = 1.0 - weight0.z;
+   } else if (hatchFactor > 1.0) {
+      weight1.x = hatchFactor - 1.0;
+      weight1.y = 1.0 - weight1.x;
+   } else if (hatchFactor > 0.0) {
+      weight1.y = hatchFactor;
+      weight1.z = 1.0 - weight1.y;
+   }
+
+   float greyLevel = texture2D(hatchingTexture, gl_TexCoord[0].xy*scale)[0];
+   float hatchTex0 = float(greyLevel < 1.0);
+   float hatchTex1 = float(greyLevel < 0.83);
+   float hatchTex2 = float(greyLevel < 0.66);
+   float hatchTex3 = float(greyLevel < 0.5);
+   float hatchTex4 = float(greyLevel < 0.33);
+   float hatchTex5 = float(greyLevel < 0.17);
+
+   float hatchGrey = white +
+                     hatchTex0 * weight0.x +
+                     hatchTex1 * weight0.y +
+                     hatchTex2 * weight0.z +
+                     hatchTex3 * weight1.x +
+                     hatchTex4 * weight1.y +
+                     hatchTex5 * weight1.z;
+
+   gl_FragColor = vec4(hatchGrey, hatchGrey, hatchGrey, 1.0);
+}"
+  }
+}
+module SoVertexShader {
+  internal  {
+    frame = "997 289 120 64"
+    windows  {
+      window _default {
+        geometry = "45 404 565 452"
+        sizeHint = "422 352"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "325 501 317 163"
+        sizeHint = "212 163"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DiffuseVS
+    isActive = TRUE
+    sourceType = GLSL_PROGRAM
+    sourceProgram = "uniform vec3 lightDir;
+varying float diffuse;
+
+void main(void)
+{
+   vec3 lightDirNorm;
+   gl_Position = ftransform();
+   gl_TexCoord[0] = gl_MultiTexCoord0;
+
+   if (any(bvec3(lightDir)))
+      lightDirNorm = normalize(lightDir);
+   else
+      lightDirNorm = vec3(0.0, 0.0, 1.0);
+   vec3 normalW = normalize(gl_NormalMatrix * gl_Normal);
+   diffuse = max(0.0, dot(lightDirNorm, normalW));
+}"
+  }
+}
+module SoShaderParameter1f {
+  internal  {
+    frame = "829 49 152 64"
+    windows  {
+      window _default {
+        geometry = "543 459 182 64"
+        sizeHint = "116 64"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 459 396 136"
+        sizeHint = "204 136"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UniformGamma
+    name = gamma
+    value = 1
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "1353 121 112 64"
+    windows  {
+      window _default {
+        geometry = "710 98 178 92"
+        sizeHint = "178 92"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "347 675 204 182"
+        sizeHint = "204 182"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ShaderSwitch
+    whichChild = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1701 121 88 64"
+    windows  {
+      window _default {
+        geometry = "541 459 204 93"
+        sizeHint = "204 93"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Geometry
+  }
+}
+module SoMLSampler2D {
+  internal  {
+    frame = "993 121 128 64"
+    windows  {
+      window _default {
+        geometry = "626 514 375 395"
+        sizeHint = "375 395"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "55 531 345 419"
+        sizeHint = "345 419"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = HatchingSampler
+    name = hatchingTexture
+    unit = 2
+    enableBorder = FALSE
+    borderColor = "0 0 0 0"
+    minFilter = LINEAR
+    magFilter = LINEAR
+    wrapS = REPEAT
+    startT = 0
+    startU = 0
+    wrapT = REPEAT
+    startZ = 0
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "1301 -47 184 64"
+    windows  {
+      window _viewer {
+        geometry = "443 334 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "329 551 389 356"
+        sizeHint = "219 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Hatching
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "1009 197 96 56"
+    windows  {
+      window _default {
+        geometry = "741 69 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "392 599 448 136"
+        sizeHint = "204 136"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(NETWORK)/SoHatchingTextureCombined_bw.bmp
+    trueName = "D:/MeVisLab 1.4/MLabModules/Macros/SoHatchingTextureCombined_bw.bmp"
+  }
+  internalFields = ""
+}
+connections  {
+  ShadingMapGroup.children = "MapVS.self MapFS.self MapSP.self"
+  DiffuseLightingGroup.children = "DiffuseVS.self DiffuseFS.self DiffuseSP.self"
+  ShaderSwitch.children = "DiffuseLightingGroup.self ShadingMapGroup.self"
+  Geometry.children = ""
+  HatchingSampler.image = LocalImage.outImage
+  Hatching.children = "UniformGamma.self UniformScale.self HatchingSampler.self ShaderSwitch.self Geometry.self"
+}

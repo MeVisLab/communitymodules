@@ -1,0 +1,382 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module BoundingBox {
+  internal  {
+    frame = "341 481 104 64"
+    windows  {
+      window _default {
+        geometry = "501 712 504 220"
+        sizeHint = "504 220"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "92 111 265 445"
+        sizeHint = "265 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = boundary
+    boundingBox = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    boundingBoxExtent = "0 0 0 0 0 0"
+    objectMin = 2179
+    objectMax = 2179
+    updateMode = AutoClear
+    upToDate = FALSE
+    v1X = 0
+    v1Y = 0
+    v1Z = 0
+    v1C = 0
+    v1T = 0
+    v1U = 0
+    v2X = -1
+    v2Y = -1
+    v2Z = -1
+    v2C = -1
+    v2T = -1
+    v2U = -1
+    eX = 0
+    eY = 0
+    eZ = 0
+    eC = 0
+    eT = 0
+    eU = 0
+    objectVoxels = 0
+    objectVolume = 0
+    boxVoxels = 0
+    boxVolume = 0
+  }
+}
+module BitMorphology {
+  internal  {
+    frame = "329 645 112 56"
+    windows  {
+      window _default {
+        geometry = "880 294 300 456"
+        sizeHint = "300 456"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BitMorphology
+    borderHandling = PadSrcClamp
+    fillValue = 0
+    referenceExtentMode = Overlap
+    kernelX = 3
+    kernelY = 3
+    kernelZ = 3
+    kernelC = 1
+    kernelT = 1
+    kernelU = 1
+    makeSpherical = FALSE
+    externalKernel = ""
+    useExternalKernel = FALSE
+    kernelInfo = "27 elems, 3x3x3x1x1x1"
+    numKernelElements = 27
+    filterMode = BitDilation
+  }
+}
+module Arithmetic2 {
+  internal  {
+    frame = "345 573 96 56"
+    windows  {
+      window _default {
+        geometry = "703 547 201 89"
+        sizeHint = "201 89"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic2
+    function = Subtract
+    constant = 0
+    autoReplicate = FALSE
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "761 845 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module OrthoReformat3 {
+  internal  {
+    frame = "545 781 128 56"
+    windows  {
+      window _default {
+        geometry = "70 89 234 208"
+        sizeHint = "234 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoReformat36
+    useGlobalInputImage = TRUE
+  }
+}
+module UMDSoThresholdToPointSet {
+  internal  {
+    frame = "521 637 192 56"
+    windows  {
+      window _default {
+        geometry = "940 203 161 131"
+        sizeHint = "161 131"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDSoThresholdToPointSet
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    minValue = 0
+    maxValue = 1
+    setColor = TRUE
+    colorFlag = FALSE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "577 861 80 56"
+    windows  {
+      window _default {
+        geometry = "1218 99 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "158 177 325 445"
+        sizeHint = "325 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    autoLoad = TRUE
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "805 765 72 56"
+    windows  {
+      window _default {
+        geometry = "202 221 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    eventReceiveMode = None
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = Image
+    infoID = Filename
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 2179
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 44
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 15
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module BoundingBox {
+  internal  {
+    frame = "565 709 104 56"
+    windows  {
+      window _default {
+        geometry = "498 424 504 220"
+        sizeHint = "504 220"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "92 111 265 445"
+        sizeHint = "265 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBox
+    boundingBox = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    boundingBoxExtent = "0 0 0 0 0 0"
+    objectMin = 2179
+    objectMax = 2179
+    updateMode = AutoClear
+    upToDate = FALSE
+    v1X = 0
+    v1Y = 0
+    v1Z = 0
+    v1C = 0
+    v1T = 0
+    v1U = 0
+    v2X = -1
+    v2Y = -1
+    v2Z = -1
+    v2C = -1
+    v2T = -1
+    v2U = -1
+    eX = 0
+    eY = 0
+    eZ = 0
+    eC = 0
+    eT = 0
+    eU = 0
+    objectVoxels = 0
+    objectVolume = 0
+    boxVoxels = 0
+    boxVolume = 0
+  }
+}
+module UMDSoMainAxis {
+  internal  {
+    frame = "553 561 128 64"
+    windows  {
+      window _default {
+        geometry = "821 124 375 418"
+        sizeHint = "375 418"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "92 111 375 445"
+        sizeHint = "375 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMainAxis
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    resultsValid = TRUE
+    color = "1 0.8 0"
+    displayToolMeasure = TRUE
+    displayUnit = TRUE
+    displayName = FALSE
+    toolName = ""
+    displayToolOnlyOnValid = TRUE
+    displayInput = FALSE
+    xAxis = "1 0 0"
+    yAxis = "0 1 0"
+    zAxis = "0 0 1"
+    xDiameter = 0
+    yDiameter = 0
+    zDiameter = 0
+    maxDiameter = 0
+    baryCenter = "0 0 0"
+    midPoint = "0 0 0"
+    displayBoundingBox = FALSE
+    lineWidth = 1
+    axisOrigin = ORIGIN_MIDPOINT
+    unit = mm
+    displayMainAxis = FALSE
+    largestValueOnly = FALSE
+  }
+}
+connections  {
+  boundary.input0 = Arithmetic2.output0
+  boundary.objectMin = BoundingBox.objectMin
+  boundary.objectMax = BoundingBox.objectMax
+  BitMorphology.input0 = BoundingBox.output0
+  Arithmetic2.input0 = BitMorphology.output0
+  Arithmetic2.input1 = BoundingBox.output0
+  OrthoReformat36.input0 = ImgLoad.output0
+  UMDSoThresholdToPointSet.inImage = BoundingBox.output0
+  ObjInfo.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  BoundingBox.input0 = OrthoReformat36.output2
+  SoMainAxis.inObject1Node = UMDSoThresholdToPointSet.self
+}

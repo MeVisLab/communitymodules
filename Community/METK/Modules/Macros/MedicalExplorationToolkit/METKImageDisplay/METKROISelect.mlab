@@ -1,0 +1,231 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module DecomposeVector {
+  internal  {
+    frame = "1381 561 136 64"
+    windows  {
+      window _default {
+        geometry = "676 235 451 56"
+        sizeHint = "451 56"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = endVector
+    v = "0.000000 0.000000 0.000000 0.000000"
+    x = 0
+    y = 0
+    z = 0
+    d = 0
+  }
+}
+module DecomposeVector {
+  internal  {
+    frame = "1381 497 136 64"
+    windows  {
+      window _default {
+        geometry = "676 235 451 56"
+        sizeHint = "451 56"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = startVector
+    v = "0.000000 0.000000 0.000000 0.000000"
+    x = 0
+    y = 0
+    z = 0
+    d = 0
+  }
+}
+module Switch {
+  internal  {
+    frame = "1193 453 144 56"
+    windows  {
+      window _default {
+        geometry = "246 265 161 31"
+        sizeHint = "156 31"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Switch
+    currentInput = 0
+  }
+}
+module Subimage {
+  internal  {
+    frame = "1253 533 88 56"
+    windows  {
+      window _default {
+        geometry = "185 343 428 319"
+        sizeHint = "428 319"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "26 45 856 812"
+        sizeHint = "264 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Subimage
+    boxInput = "0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 -1.000000 -1.000000 -1.000000 -1.000000 -1.000000 -1.000000"
+    autoApplyBox = FALSE
+    x = 0
+    sx = 0
+    modifyX = TRUE
+    y = 0
+    sy = 0
+    modifyY = TRUE
+    z = 0
+    sz = 0
+    modifyZ = TRUE
+    c = 0
+    sc = 0
+    modifyC = FALSE
+    t = 0
+    st = 0
+    modifyT = FALSE
+    u = 0
+    su = 0
+    modifyU = FALSE
+    fillValue = 0
+    mode = VoxelStartEnd
+    autoApply = TRUE
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "1609 485 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "1201 613 80 56"
+    windows  {
+      window _default {
+        geometry = "224 243 315 319"
+        sizeHint = "315 319"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1653 553 72 64"
+    windows  {
+      window _default {
+        geometry = "441 182 829 766"
+        sizeHint = "578 410"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Image
+    objectID = Communication
+    layerID = Measures
+    infoID = boxCenter
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = "-0.776001 -13.3787 98.5259"
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 43
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  Switch.input1 = ImgLoad.output0
+  Switch.input2 = Subimage.output0
+  Subimage.input0 = ImgLoad.output0
+  Subimage.x = startVector.x
+  Subimage.sx = endVector.x
+  Subimage.y = startVector.y
+  Subimage.sy = endVector.y
+  Subimage.z = startVector.z
+  Subimage.sz = endVector.z
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+}

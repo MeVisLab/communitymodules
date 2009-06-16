@@ -1,0 +1,19 @@
+Interface  {
+  Inputs {
+  }
+  Outputs {
+     Field output0 { internalName = Arithmetic11.output0 }
+  }
+  Parameters {
+     Field toBePoweredBy2 { internalName = Arithmetic0.arg2X }
+     Field filename       { internalName = ImgLoad.filename  }
+  }
+}
+
+Window {
+   Vertical {
+      w = 600
+      Field = filename { browseButton = True }
+      Field = toBePoweredBy2
+   }
+}

@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! UMDBoundingBoxCalculator module definition
+/*!
+// \file    UMDBoundingBoxCalculator.def
+// \author  Konrad
+// \date    2005-08-22
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDBoundingBoxCalculator {
+  genre = ""
+  author = "Konrad"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDBoundingBoxCalculator.script"
+
+} // MacroModule UMDBoundingBoxCalculator
+

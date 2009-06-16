@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! UMDBoundingBoxCalculator2 module definitions.
+/*!
+// \file    UMDBoundingBoxCalculator2.def
+// \author  Konrad
+// \date    2006-05-16
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule UMDBoundingBoxCalculator2
+//----------------------------------------------------------------------------------
+MLModule UMDBoundingBoxCalculator2 {
+  DLL            = "UMDBoundingBoxCalculator2"
+
+  genre          = ""
+  author         = "Konrad"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/UMDBoundingBoxCalculator2.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDBoundingBoxCalculator2"
+
+} // MLModule UMDBoundingBoxCalculator2
+

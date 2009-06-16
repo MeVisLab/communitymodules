@@ -1,0 +1,23 @@
+[Ini]
+LengthTimeUnit=27
+LengthSeconds=27
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'All' setVisible true
+[0] 'All' view front 0.6
+[0] 'All' setSilhouette false
+[1,5] 'M. sternocleidom._left' setTransparency 0.5
+[5] 'M. sternocleidom._left' border true
+[1,5] 'largeLK' setTransparency 0
+[1,5] 'largeLK' setColor red
+[1,5] 'Bones' setTransparency 1
+[1,5] 'All' setTransparency high
+[5] 'Lymphnode' border true
+[1,10] 'largeLK' view left 2
+[11,15] 'Cam' rotate 'largeLK' axial -45 BEZIER2
+[16,20] 'Cam' rotate 'largeLK' axial 110 BEZIER2
+[21,25] 'All' view front 0.6
+[21,25] 'Bones' setTransparency high

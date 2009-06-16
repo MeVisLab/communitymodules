@@ -1,0 +1,53 @@
+//----------------------------------------------------------------------------------
+//! VisibilityDemonstrator module definition
+/*!
+// \file    VisibilityDemonstrator.def
+// \author  Konrad Mühler
+// \date    2006-01-30
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule VisibilityDemonstrator {
+  genre = "ApplicationsMenu"
+  author = "Konrad Mühler, Mathias Neugebauer, Christian Tietjen"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/VisibilityDemonstrator.script"
+
+} // MacroModule VisibilityDemonstrator
+
+DefineStyle VisDemoStyle {
+	derive = Panel.default
+
+	// font for titles in the GUI (Buttons, Labels, ...)
+	titleFont {
+		family = "Tahoma"
+		size = 9
+		weight = Normal
+	}
+
+	// font for editing components in the GUI (NumberEdit, TextView, ...)
+	editFont {
+		family = "Tahoma"
+		size = 9
+		weight = Normal
+	}
+
+	// font for TabViews
+	tabFont {
+		family = "Tahoma"
+		size = 10
+		weight = Bold
+	}
+
+	// font for Box group titles
+	boxFont {
+		family = "Tahoma"
+		size = 10
+		weight = Bold
+	}
+}

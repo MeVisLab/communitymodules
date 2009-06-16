@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<HighLevel>
+
+	<!-- Objekte selektieren -->
+
+	<command commandStr="select">
+		<command>T O setSelected TRUE</command>		
+	</command>
+	<command commandStr="deselect">
+		<command>T O setSelected FALSE</command>		
+	</command>	
+	
+
+	<!-- Objekte sichtbar setzen ohne weitere Auswirkungen -->
+
+	<command commandStr="on">
+		<command>T O setVisible TRUE</command>		
+	</command>
+	<command commandStr="off">
+		<command>T O setVisible FALSE</command>		
+	</command>
+
+
+	<!-- Objekte transparenztechnisch ein/ausblenden -->
+	<command commandStr="blendOut">
+		<command>T O setTransparency transparent</command>		
+	</command>	
+	<command commandStr="blendIn">
+		<command>T O setTransparency opaque</command>		
+	</command>	
+	
+
+	<!-- View sagittal/axial/coronal -->
+	<command commandStr ="view">
+		<command>T O on</command>
+		<command>T 'Cam' move O P</command>		
+	</command>	
+	
+	
+	<!-- Kompelxe Hervorhebungen -->
+	<command commandStr ="emphasize">
+		<command>T O view front 3</command>
+		<command>T O setColor red</command>
+		<command>T O setTransparency opaque</command>
+	</command>	
+	<command commandStr ="deemphasize">		
+		<command>T O setColor green</command>
+		<command>T O setTransparency normal</command>
+	</command>	
+	
+	
+	<!-- Laden eines Objekte (on/off setzen) ... weil zeitaufwendig eigentlich direkt in der Ini, dann ist es einmal da -->
+	<command commandStr="load">
+		<command>T O on</command>
+		<command>T O off</command>
+	</command>
+	
+	
+	<!-- Grundinitialisierung -->
+	<command commandStr="init">
+		<command>T 'System' setBackground white</command>
+		<command>T 'Liver' on</command>
+		<command>T 'Liver' setTransparency low</command>
+		<command>T 'Liver' setColor LiverColor</command>
+		<!--<command>T 'Vessels' on</command>-->
+		<command>T 'Tumor' on</command>
+		<command>T 'Tumor' setColor TumorColor</command>
+		<command>T 'Tumor' setTransparency opaque</command>
+		<command>T 'Cam' move 'Liver' front 0.8</command>
+	</command>
+	
+	<command commandStr="initNachbau">
+		<command>T 'System' setBackground white ramp</command>
+		<command>T 'System' setWatchUpVector true</command>		
+		<command>T 'Vessels' on</command>
+		<!-- <command>T 'VesselsForColor' setColor VesselColor</command> Das ist doch Beschiss!!!-->
+		<command>T 'LiverParts' on</command>		
+		<command>T 'RightPart' setColor RightColor</command>
+		<command>T 'RightPart' setTransparency normal</command>
+		<command>T 'LeftPart' setColor LeftColor</command>
+		<command>T 'LeftPart' setTransparency normal</command>
+		<command>T 'Cam' move 'LeftPart' front 1.8</command>
+	</command>
+	
+	
+	<command commandStr="TerColor">
+		<command>T 'Territory_II' setColor Ter_II</command>
+		<command>T 'Territory_III' setColor Ter_III</command>
+		<command>T 'Territory_IVa' setColor Ter_IVa</command>
+		<command>T 'Territory_IVb' setColor Ter_IVb</command>			
+		<command>T 'Territory_VI' setColor Ter_VI</command>			
+		<command>T 'Territory_VII' setColor Ter_VII</command>					
+		<command>T 'Territory_VIII' setColor Ter_VIII</command>			
+	</command>
+	
+	
+	
+	<!-- Farbwerte -->
+	<command commandStr="setColor">
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />
+		<parameter paramStr="brown" singleValue="96,57,19" />
+		<parameter paramStr="lightorange" singleValue="253,198,137" />
+		<parameter paramStr="red2" singleValue="178,12,16" />
+		<parameter paramStr="darkgreen" singleValue="0,124,53" />
+		
+		<parameter paramStr="LiverColor" singleValue="135,73,44" />
+		<parameter paramStr="TumorColor" singleValue="198,171,67" />
+		
+		<parameter paramStr="VesselColor" singleValue="32,152,229" />
+		<parameter paramStr="RightColor" singleValue="57,181,74" />
+		<parameter paramStr="LeftColor" singleValue="237,28,36" />
+			
+		<parameter paramStr="Ter_II" singleValue="220,0,44" /> <!-- nice red-->
+		<parameter paramStr="Ter_III" singleValue="255,249,94" /> <!-- nice yellow-->
+		<parameter paramStr="Ter_IVa" singleValue="125,138,255" /> <!-- some blue-->
+		<parameter paramStr="Ter_IVb" singleValue="143,255,111" /> <!-- lightgreen-->
+		<parameter paramStr="Ter_V" singleValue="255,118,125" /> <!-- some lightred-->
+		<parameter paramStr="Ter_VI" singleValue="47,61,237" /> <!-- some blue-->
+		<parameter paramStr="Ter_VII" singleValue="0,209,41" /> <!-- nice green-->
+		<parameter paramStr="Ter_VIII" singleValue="157,153,50" /> <!-- dark yellow-->
+		
+		
+	</command>
+	
+	
+	<command commandStr="setBackground">
+		<parameter paramStr="white" singleValue="255,255,255" />
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />		
+	</command>	
+	
+	
+	<!-- Transarenzen -->
+	<command commandStr="setTransparency">
+		<parameter paramStr="normal" singleValue="0.5" />
+		<parameter paramStr="high" singleValue="0.8" />
+		<parameter paramStr="low" singleValue="0.2" />
+		<parameter paramStr="opaque" singleValue="0" />
+		<parameter paramStr="transparent" singleValue="1" />
+	</command>
+	
+	
+	<!-- Geschwindigkeiten -->
+	<command commandStr="rotate">
+		<parameter paramStr="slow" valuePerTimeUnit="5" />
+		<parameter paramStr="fast" valuePerTimeUnit="15" />
+	</command>
+	
+	
+	<!-- Krass ... from_ muss davor weil er sonst beginnt, "Lung left" wegzuersetzen ... oder man nennt Lung_left eben mit Unterstrich ... hmmmm-->
+	<command commandStr="move">
+		<parameter paramStr="top" singleValue="0 0" />
+		<parameter paramStr="bottom" singleValue="180 0" />
+		<parameter paramStr="right" singleValue="90 90" />
+		<parameter paramStr="left" singleValue="90 -90" />
+		<parameter paramStr="front" singleValue="90 0" />
+		<parameter paramStr="back" singleValue="90 180" />
+		
+		<parameter paramStr="sagittal" singleValue="right" />		
+		<parameter paramStr="axial" singleValue="top" />
+		<parameter paramStr="coronal" singleValue="back" />
+		
+		<parameter paramStr="slow" valuePerTimeUnit="5" />
+		<parameter paramStr="fast" valuePerTimeUnit="15" />
+	</command>
+	
+
+	
+	
+	
+	
+		
+	<command commandStr="jitterOn">
+		<command>T O setColor red</command>
+		<command>T O setTransparency 0.3</command>		
+	</command>	
+	<command commandStr="jitterOff">
+		<command>T O setColor 141,198,63</command>
+		<command>T O setTransparency 0.7</command>		
+	</command>	
+	
+</HighLevel>

@@ -1,0 +1,16 @@
+MacroModule GenerateIVFileDir {
+   author             = "Christian Tietjen, Konrad Mühler"
+   status             = "stable"
+   comment            = "Converts selected DCM mask files of a directory into IV"
+   keywords           = "inventor"
+   seeAlso            = ""
+   externalDefinition = "$(LOCAL)/GenerateIVFileDir.script"
+   genre = "ApplicationsMenu"
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-03-31T03:37:18
+//# hash: fpotD25L7dk/2qE7eVwSOf9vyRNwf6na5i4A82OYM1LqnrkuisT9z1Gxi2/HxVqdV2JwzJjv0L2TR6xCKZqdIg==
+//# MeVis end

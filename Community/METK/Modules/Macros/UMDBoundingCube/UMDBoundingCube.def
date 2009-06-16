@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! UMDBoundingCube module definition
+/*!
+// \file    UMDBoundingCube.def
+// \author  Konrad
+// \date    2005-10-17
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule UMDBoundingCube {
+  genre = ""
+  author = "Konrad"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/UMDBoundingCube.script"
+
+} // MacroModule UMDBoundingCube
+

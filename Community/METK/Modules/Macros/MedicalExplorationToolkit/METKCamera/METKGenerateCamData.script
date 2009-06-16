@@ -1,0 +1,73 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKGenerateCamData
+/*!
+// \file    METKGenerateCamData.script
+// \author  Konrad Mühler
+// \date    2007-06-07
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }    
+  }
+  Outputs {
+    Field outObjectContainer { internalName = info.outObjectContainer }
+  }
+  Parameters { 
+    Field BufferSize { internalName = SoVisibilitySolver.m_fldBufferSizeX }
+    Field DivisionDepth { internalName = SoVisibilitySolver.m_fldDivision }
+    Field Init { internalName = METKToSolverConnection.init }
+    Field Compute { internalName = SoVisibilitySolver.m_fldCompute }
+    Field Progress { internalName = SoVisibilitySolver.m_fldProgress }
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+  source = $(LOCAL)/METKGenerateCamData.py
+  
+  initCommand = init
+  
+  FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+  
+}
+
+Window generateCamData{
+  w = 500
+  h = 450
+
+  Horizontal {
+    expandX=yes expandY=yes
+    name = generateCamData
+    Panel { module = METKStructureGroupBrowser }
+    
+    Empty {w=20}
+    
+    Vertical {
+      expandX=no expandY=no
+      alignY=top
+      Empty {h=20 w=20}
+      Field SoVisibilitySolver.m_fldBufferSizeX { title="Buffersize X" }
+      Field SoVisibilitySolver.m_fldBufferSizeY { title="Buffersize Y" }
+      Field DivisionDepth {}
+      Field Init {}
+      Field Compute {}
+      Empty {h=20 w=20}
+      Horizontal {
+        ProgressBar SoVisibilitySolver.m_fldProgress {}
+        Label { titleField=SoVisibilitySolver.m_fldEstTime }
+      }
+      Empty {h=20 w=20}
+      Label {
+        title = "<font size=+1>1. Make all objects <b>visible</b><br>that should be included in the calculation<br><br>2. Press <b>Init</b> to create the camera_ids.dat file<br><br>3. Start <b>Computation</b></font>"
+      }
+    }
+    
+    Empty {w=20}
+  }
+}

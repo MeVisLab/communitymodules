@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! kButtonExample module definition
+/*!
+// \file    kButtonExample.def
+// \author  Konrad Mühler
+// \date    2007-08-13
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule kButtonExample {
+  genre = "GUI"
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = "This is a demo module to show the behaviour of the new kButton class in python"
+  keywords = "GUI, Button"
+  seeAlso = ""
+  scriptOnly = yes
+   
+  externalDefinition = "$(LOCAL)/kButtonExample.script"
+
+} // MacroModule kButtonExample

@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! UMDMETK module definitions.
+/*!
+// \file    UMDMETK.def
+// \author  Konrad Mühler
+// \date    2006-12-12
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKObjXMLWriter
+//----------------------------------------------------------------------------------
+MLModule METKObjXMLWriter {
+  DLL            = "Animation"
+
+  genre          = "METKAnimation"
+  author         = "Konrad Mühler"
+  status         = "stable"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/METKObjXMLWriter.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/Animation/METKObjXMLWriter"
+
+} // MLModule METKObjXMLWriter
+

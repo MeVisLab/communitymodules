@@ -1,0 +1,113 @@
+//----------------------------------------------------------------------------------
+//! METKDemonstrator module definition
+/*!
+// \file    METKDemonstrator.def
+// \author  Konrad Mühler
+// \date    2007-11-15
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKDemonstrator {
+  genre = "ApplicationsMenu"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKDemonstrator.script"
+
+} // MacroModule METKDemonstrator
+
+
+
+
+DefineStyle METKDemonstratorStyle {
+	derive = Panel.default
+
+	// font for titles in the GUI (Buttons, Labels, ...)
+	titleFont {
+		family = "Tahoma"
+		size = 9
+		weight = Normal
+	}
+
+	// font for editing components in the GUI (NumberEdit, TextView, ...)
+	editFont {
+		family = "Tahoma"
+		size = 9
+		weight = Normal
+	}
+
+	// font for TabViews
+	tabFont {
+		family = "Tahoma"
+		size = 10
+		weight = Bold
+	}
+
+	// font for Box group titles
+	boxFont {
+		family = "Tahoma"
+		size = 10
+		weight = Bold
+	}
+
+	colors {
+		fg  = #000000
+		bg = #E8EDE8:$(LOCAL)/img/bg1.png
+		
+		button = #F2F2D9
+
+		buttonText  = #000000
+
+		editText    = #000000
+		editBg      = #E8EDE8
+
+		light     = #FFFFFF
+
+		highlightedText  = #1A4A1A
+
+		boxText  = #000000
+		tabText  = #000000
+		
+	}
+	
+	disabledColors {
+        	bg = #F2F2D9
+		fg = #F2F2D9
+		button = #F2F2D9		
+   	}
+}
+
+DefineStyle StyleWhiteBG {
+	derive = METKDemonstratorStyle
+
+	colors {
+		bg = #FFFFFF
+	}	
+}
+
+
+DefineStyle StyleGrayBG {
+	derive = METKDemonstratorStyle
+
+	colors {
+		bg = #DDDDDD
+	}	
+}
+
+
+DefineStyle StyleTitleFont {
+	derive = METKDemonstratorStyle
+	
+	titleFont {
+		family = "Tahoma"
+		size = 12
+		weight = Bold
+	}	
+	
+	colors {
+		bg = #FFFFFF
+	}		
+}

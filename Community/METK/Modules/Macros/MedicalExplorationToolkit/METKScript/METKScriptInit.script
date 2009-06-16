@@ -1,0 +1,96 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKScriptInit
+/*!
+// \file    METKScriptInit.script
+// \author  Konrad
+// \date    2006-01-20
+//
+// // Starts a script after a case was loaded
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = info.outObjectContainer }
+  }
+  Parameters {
+      Field manualInit { type = trigger }
+      Field reset { type = trigger }
+      Field scriptFile { type = string }      
+      Field scriptExecuted { type = trigger }      
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+  source = $(LOCAL)/METKScriptInit.py  
+  initCommand = init
+    
+  FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+  FieldListener reset { command = resetState }
+  FieldListener manualInit { command = loadInitScript }  
+  
+}
+
+
+backgroundImage = "img/verlauf-01.png"
+
+Window METKScriptInit {   
+
+	w = 700	
+	style = kStyle   
+   	
+	bgMode = SmoothStretch
+        expandY = yes
+        expandX = yes
+            		
+	Grid {
+
+		margin  = 0
+		spacing = 5
+
+		Label {
+			x = 0
+			y = 0					
+			title = "Script:"						
+		}
+
+		Field scriptFile {
+			title = ""
+			browseButton = true
+			browseTitle = "..."			
+			x = 1
+			y = 0
+		}            
+
+		Button reset
+		{
+			x = 1
+			y = 1
+			title = "Reset for new loading"				
+		}  					
+		
+		Button manualInit
+		{
+			x = 1
+			y = 2
+			title = "Manual Init"
+		}  					
+		
+
+	} //Grid
+} // Window
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

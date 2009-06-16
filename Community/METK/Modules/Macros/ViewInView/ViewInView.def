@@ -1,0 +1,35 @@
+//----------------------------------------------------------------------------------
+//! ViewInView module definition
+/*!
+// \file    ViewInView.def
+// \author  Konrad Mühler
+// \date    2007-04-05
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule ViewInView {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = "Enables a 3D viewer in a 3D viewer"
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/ViewInView.script"  
+
+} // MacroModule ViewInView
+
+
+MacroModule ViewerFenster {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/ViewerFenster.script"  
+
+} // MacroModule ViewerFenster
+

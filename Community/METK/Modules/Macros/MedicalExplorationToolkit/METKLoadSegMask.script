@@ -1,0 +1,38 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }      
+   }
+   Outputs {      
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field mask { internalName = IntervalThresh.output0 }
+   }
+   Parameters {
+      Field objID { internalName = METKStructureGroupBrowser.selectedObjId }
+      Field load { type=trigger }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   
+   // Include local functions
+   source = "$(LOCAL)/METKLoadSegMask.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }   
+   FieldListener {
+      listenField = objID
+      listenField = load
+      command = loadMask
+   }   
+}
+
+Window METKLoadSegMask {
+	Panel {
+		module = METKStructureGroupBrowser
+	}
+}

@@ -1,0 +1,129 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "409 333 192 56"
+    windows  {
+      window _default {
+        geometry = "543 466 119 149"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1548 122 270 440"
+        sizeHint = "270 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "1483 162 400 320"
+        sizeHint = "400 320"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = Structure
+    useCSO = FALSE
+    valueEntry = Name
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "277 245 120 56"
+    windows  {
+      window _default {
+        geometry = "543 441 200 200"
+        sizeHint = "238 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "273 333 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "273 437 112 56"
+    windows  {
+      window _default {
+        geometry = "381 447 524 348"
+        sizeHint = "524 348"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 314 204 440"
+        sizeHint = "204 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

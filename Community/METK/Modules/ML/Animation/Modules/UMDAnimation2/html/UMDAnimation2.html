@@ -1,0 +1,127 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr WIDTH="100%"></center>
+
+<h2>
+TestFilter</h2>
+
+<h3>
+<a NAME="Purpose"></a>Purpose</h3>
+
+<blockquote>The <b>TestFilter</b> module offers operations to remove edges
+from images. It also can fill regions in 2D and 3D, overwrite it by simple
+text or boxes, lines, pixels, spheres, circles, cones, halfspaces, ellipses
+or disks. Coordinates for object drawings are received by a field connection
+and are used to specify the objects' location, orientation and extents.
+All pixels values written into an image are not simply overwritten but
+replaced by the result of user selectable function. Undo and redraw facilities
+exist which also permit changes of object properties after drawing them.</blockquote>
+
+<h3>
+<a NAME="Usage"></a>Usage</h3>
+
+<blockquote>Press button 1, then button 2 and hope that it does not explode!</blockquote>
+
+<h3>
+<a NAME="Details"></a>Details</h3>
+
+<blockquote>The <b>Draw</b> module and the <b>SimpleDraw</b> macro offer
+operations to draw objects into images. Regions can be filled in 2D/3D,
+overwritten by simple text.</blockquote>
+
+<h3>
+<a NAME="Inputs"></a>Inputs</h3>
+
+<blockquote>The module has one input which must be of an integer data type.
+Floating point data cannot be handled and will result in an empty output
+image.</blockquote>
+
+<h3>
+<a NAME="Outputs"></a>Outputs</h3>
+
+<blockquote>The module has two outputs. The first is the normalized image
+and the second is the inverted image.</blockquote>
+
+<h3>
+<a NAME="Parameters"></a>Parameters</h3>
+
+<blockquote>
+<h4>Main</h4>
+This panel contains the frequently used drawing parameters.
+
+<ul>
+<li><b>Draw: </b><br>
+Selects the object to be drawn, default is <b>Nothing</b>.
+  <ul>
+  <li><b>Nothing:</b> Changes of <b>Position Input</b> do not cause any manipulation of the image.</li>
+  <li><b>Voxel:</b> At the position given by <b>Position Input</b> a voxel of the size <b>VoxelSize</b> 
+  is drawn.</li>
+  <li><b>Line:</b> At the position given by <b>Position Input</b> a line of width <b>VoxelSize</b>
+  is drawn.</li>
+  </ul></li>
+
+<li><b>Undo:</b><br>
+Restores the image with all information saved in the undo list.</li>
+</ul>
+
+<h4>Text</h4>
+This panel contains the special parameters used for text drawing.
+
+<ul>
+<li><b>Text: </b><br>
+Selects the object to be drawn, default is <b>Nothing</b>.
+  <ul>
+  <li><b>Nothing:</b> Changes of <b>Position Input</b> do not cause any modification of the image.</li>
+  <li><b>Voxel:</b> At the position given by <b>Position Input</b> a voxel of the size <b>VoxelSize</b> 
+  is drawn.</li>
+  <li><b>Line:</b> At the position given by <b>Position Input</b> a line of width <b>VoxelSize</b>
+  is drawn.</li>
+  </ul></li>
+
+<li><b>Pixel Size:</b><br>
+Selects how the object is drawn, default is <b>10</b>.</li>
+</ul>
+</blockquote>
+
+<h3>
+<a NAME="EventInteract"></a>Events &amp; Interaction</h3>
+
+<blockquote>Connected to a viewer this module can handle mouse clicks in
+the following way:...
+</blockquote>
+
+<h3>
+<a NAME="Example"></a>Example</h3>
+
+<blockquote>The example network permits simple drawing of ellipses with
+diameters of 8 and 5 voxels to all areas where voxel values are between
+0 and 1000.
+<br>The values written into the ellipse are 1500.
+</blockquote>
+
+<h3>
+<a NAME="Tips&Tricks"></a>Tips &amp; Tricks</h3>
+
+<blockquote>None</blockquote>
+
+<h3>
+<a NAME="KnownBugs"></a>Known Bugs</h3>
+
+<blockquote>None</blockquote>
+
+</body>
+</html>

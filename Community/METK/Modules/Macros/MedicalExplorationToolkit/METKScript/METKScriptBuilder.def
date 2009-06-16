@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! METKScriptTrigger module definition
+/*!
+// \file    METKScriptBuilder.def
+// \author  Konrad Mühler
+// \date    2006-09-13
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKScriptBuilder {
+  genre = "METKAnimation"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKScriptBuilder.html"
+  externalDefinition = "$(LOCAL)/METKScriptBuilder.script"
+} // MacroModule METKScriptBuilder
+

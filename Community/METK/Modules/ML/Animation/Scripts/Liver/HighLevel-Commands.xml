@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<HighLevel>
+
+	<command commandStr="border">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor 0,0,0</command>
+		<command>T O setSilhouetteWidth 5</command>		
+	</command>
+
+	<command commandStr="borderLiver">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor LiverColor</command>
+		<command>T O setSilhouetteWidth 10</command>		
+	</command>
+
+	<command commandStr="borderP4">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor Ter_V</command>
+		<command>T O setSilhouetteWidth 7</command>		
+	</command>
+
+	<command commandStr="borderP4b">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor Ter_IVb</command>
+		<command>T O setSilhouetteWidth 7</command>		
+	</command>
+
+	<command commandStr="borderP7">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor Ter_VII</command>
+		<command>T O setSilhouetteWidth 7</command>		
+	</command>
+	
+	<command commandStr="borderP8">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor Ter_VIII</command>
+		<command>T O setSilhouetteWidth 7</command>		
+	</command>
+	
+
+
+	<!-- Objekte sichtbar setzen ohne weitere Auswirkungen -->
+
+	<command commandStr="on">
+		<command>T O setVisible TRUE</command>		
+	</command>
+	<command commandStr="off">
+		<command>T O setVisible FALSE</command>		
+	</command>
+
+
+	<!-- Objekte transparenztechnisch ein/ausblenden -->
+	<command commandStr="blendOut">
+		<command>T O setTransparency transparent</command>		
+	</command>	
+	<command commandStr="blendIn">
+		<command>T O setTransparency opaque</command>		
+	</command>	
+	
+
+	<!-- View sagittal/axial/coronal -->
+	<command commandStr ="view">
+		<command>T 'Cam' move O P</command>
+		<command>T 'Cam' rotateCamZTo 0</command>
+	</command>
+	
+	<command commandStr ="newView">				
+		<command>T 'Cam' move O 'All' P</command>
+		<command>T 'Cam' rotateCamZTo 0</command>
+	</command>	
+	
+	<!-- Kompelxe Hervorhebungen -->
+	<command commandStr ="emphasize">
+		<!--<command>T O view front 1</command>-->
+		<command>T O setColor red</command>
+		<!--<command>T O setTransparency opaque</command>-->
+	</command>	
+	<command commandStr ="deemphasize">		
+		<command>T O setColor green</command>
+		<command>T O setTransparency normal</command>
+	</command>	
+	
+	
+	<!-- Grundinitialisierung -->
+	<command commandStr="init">
+		<command>T 'System' setBackground white</command>
+		<command>T 'Territories' load</command>
+		<command>T 'Territories' setTransparency transparent</command>
+		<command>T 'Liver' on</command>
+		<command>T 'Liver' setTransparency low</command>
+		<command>T 'Liver' setColor LiverColor</command>
+		<command>T 'Vessels' on</command>
+		<command>T 'Tumor' on</command>
+		<command>T 'Tumor' setColor TumorColor</command>
+		<command>T 'Tumor' setTransparency opaque</command>
+		<command>T 'Cam' move 'Liver' front 0.8</command>
+	</command>
+	
+	<command commandStr="init2">
+		<command>T 'System' setBackground white</command>
+		<command>T 'LiverOrgan' on</command>
+		<command>T 'LiverOrgan' setTransparency high</command>
+		<command>T 'LiverOrgan' setColor LiverColor</command>		
+		<command>T 'Tumor' on</command>
+		<command>T 'Tumor' setColor TumorColor</command>
+		<command>T 'Tumor' setTransparency opaque</command>
+		<command>T 'Cam' move 'LiverOrgan' front 0.8</command>
+	</command>
+	
+	<command commandStr="init3">
+		<command>T 'System' setBackground white</command>
+		<command>T 'LiverOrgan' on</command>
+		<command>T 'LiverOrgan' setTransparency low</command>
+		<command>T 'LiverOrgan' setColor LiverColor</command>		
+		<command>T 'Tumor' on</command>
+		<command>T 'Tumor' setColor TumorColor</command>
+		<command>T 'Tumor' setTransparency opaque</command>
+		<command>T 'Vessel' on</command>
+		<command>T 'Tumor' setTransparency opaque</command>
+		<command>T 'Cam' move 'LiverOrgan' front 0.8</command>
+	</command>
+
+
+	
+	<command commandStr="initLiver">
+		<command>T 'System' setBackground white</command>
+		<command>T 'LiverOrgan' on</command>
+		<command>T 'LiverOrgan' setTransparency high</command>
+		<command>T 'LiverOrgan' setColor LiverColor</command>		
+		<command>T 'Tumor' on</command>
+		<command>T 'Tumor' setColor TumorColor</command>
+		<command>T 'Tumor' setTransparency opaque</command>
+		<command>T 'Cam' move 'LiverOrgan' front 0.8</command>
+	</command>	
+
+
+			
+	<!-- Farbwerte -->
+	<command commandStr="setColor">
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />
+		<parameter paramStr="brown" singleValue="96,57,19" />
+		<parameter paramStr="lightorange" singleValue="253,198,137" />
+		<parameter paramStr="red2" singleValue="178,12,16" />
+		<parameter paramStr="darkgreen" singleValue="0,124,53" />
+		
+		<parameter paramStr="LiverColor" singleValue="135,73,44" />
+		<parameter paramStr="TumorColor" singleValue="198,171,67" />
+		
+		<parameter paramStr="VesselColor" singleValue="32,152,229" />
+		<parameter paramStr="RightColor" singleValue="57,181,74" />
+		<parameter paramStr="LeftColor" singleValue="237,28,36" />
+			
+		<parameter paramStr="Ter_II" singleValue="220,0,44" /> <!-- nice red-->
+		<parameter paramStr="Ter_III" singleValue="255,249,94" /> <!-- nice yellow-->
+		<parameter paramStr="Ter_IVa" singleValue="125,138,255" /> <!-- some blue-->
+		<parameter paramStr="Ter_IVb" singleValue="143,255,111" /> <!-- lightgreen-->
+		<parameter paramStr="Ter_V" singleValue="255,118,125" /> <!-- some lightred-->
+		<parameter paramStr="Ter_VI" singleValue="47,61,237" /> <!-- some blue-->
+		<parameter paramStr="Ter_VII" singleValue="0,209,41" /> <!-- nice green-->
+		<parameter paramStr="Ter_VIII" singleValue="157,153,50" /> <!-- dark yellow-->
+
+		<parameter paramStr="PV0_Color" singleValue="255,255,255" /> <!-- white ... -->
+		<parameter paramStr="PV1_Color" singleValue="228,97,255" /> <!-- magenta ... -->
+		<parameter paramStr="PV2_Color" singleValue="220,0,44" /> <!-- red ... -->
+		<parameter paramStr="PV3_Color" singleValue="255,249,94" /> <!-- yellow ... -->
+		<parameter paramStr="PV4a_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="PV4_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="PV5_Color" singleValue="255,118,125" /> <!-- lightred ... -->
+		<parameter paramStr="PV6_Color" singleValue="47,61,237" /> <!-- blue ... -->
+		<parameter paramStr="PV7_Color" singleValue="0,209,41" /> <!-- green ... -->
+		<parameter paramStr="PV8_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="PV_Color" singleValue="0,0,255" /> <!-- blue ... -->
+
+		<parameter paramStr="Terr_PV0_Color" singleValue="255,255,255" /> <!-- white ... -->
+		<parameter paramStr="Terr_PV1_Color" singleValue="228,97,255" /> <!-- magenta ... -->
+		<parameter paramStr="Terr_PV2_Color" singleValue="220,0,44" /> <!-- red ... -->
+		<parameter paramStr="Terr_PV3_Color" singleValue="255,249,94" /> <!-- yellow ... -->
+		<parameter paramStr="Terr_PV4a_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="Terr_PV4_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="Terr_PV5_Color" singleValue="255,118,125" /> <!-- lightred ... -->
+		<parameter paramStr="Terr_PV6_Color" singleValue="47,61,237" /> <!-- blue ... -->
+		<parameter paramStr="Terr_PV7_Color" singleValue="0,209,41" /> <!-- green ... -->
+		<parameter paramStr="Terr_PV8_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		
+		<parameter paramStr="HA0_Color" singleValue="255,255,255" /> <!-- white ... -->
+		<parameter paramStr="HA1_Color" singleValue="228,97,255" /> <!-- magenta ... -->
+		<parameter paramStr="HA2_Color" singleValue="220,0,44" /> <!-- red ... -->
+		<parameter paramStr="HA3_Color" singleValue="255,249,94" /> <!-- yellow ... -->
+		<parameter paramStr="HA4a_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="HA4_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="HA5_Color" singleValue="255,118,125" /> <!-- lightred ... -->
+		<parameter paramStr="HA6_Color" singleValue="47,61,237" /> <!-- blue ... -->
+		<parameter paramStr="HA7_Color" singleValue="0,209,41" /> <!-- green ... -->
+		<parameter paramStr="HA8_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="HA_Color" singleValue="220,0,44" /> <!-- red ... -->
+		
+		<parameter paramStr="Terr_HA0_Color" singleValue="255,255,255" /> <!-- white ... -->
+		<parameter paramStr="Terr_HA1_Color" singleValue="228,97,255" /> <!-- magenta ... -->
+		<parameter paramStr="Terr_HA2_Color" singleValue="220,0,44" /> <!-- red ... -->
+		<parameter paramStr="Terr_HA3_Color" singleValue="255,249,94" /> <!-- yellow ... -->
+		<parameter paramStr="Terr_HA4a_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="Terr_HA5_Color" singleValue="255,118,125" /> <!-- lightred ... -->
+		<parameter paramStr="Terr_HA6_Color" singleValue="47,61,237" /> <!-- blue ... -->
+		<parameter paramStr="Terr_HA7_Color" singleValue="0,209,41" /> <!-- green ... -->
+		<parameter paramStr="Terr_HA8_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+
+		
+		<parameter paramStr="MV0_Color" singleValue="255,255,255" /> <!-- white ... -->
+		<parameter paramStr="MV1_Color" singleValue="228,97,255" /> <!-- magenta ... -->
+		<parameter paramStr="LHV_Color" singleValue="220,0,44" /> <!-- red ... -->
+		<parameter paramStr="MV4a_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="MV4bp_Color" singleValue="0,174,193" /> <!-- darkcyan ... -->
+		<parameter paramStr="MV4ba_Color" singleValue="143,255,111" /> <!-- lightgreen ... -->
+		<parameter paramStr="MV5_Color" singleValue="255,118,125" /> <!-- lightred ... -->
+		<parameter paramStr="RHV_Color" singleValue="0,209,41" /> <!-- green ... -->
+		<parameter paramStr="MHV_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="MV8i_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="MV8s_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="HV_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		
+		<parameter paramStr="Terr_MV0_Color" singleValue="255,255,255" /> <!-- white ... -->
+		<parameter paramStr="Terr_MV1_Color" singleValue="228,97,255" /> <!-- magenta ... -->
+		<parameter paramStr="Terr_LHV_Color" singleValue="220,0,44" /> <!-- red ... -->
+		<parameter paramStr="Terr_MV4a_Color" singleValue="125,138,255" /> <!-- lightblue ... -->
+		<parameter paramStr="Terr_MV4bp_Color" singleValue="0,174,193" /> <!-- darkcyan ... -->
+		<parameter paramStr="Terr_MV4ba_Color" singleValue="143,255,111" /> <!-- lightgreen ... -->
+		<parameter paramStr="Terr_MV5_Color" singleValue="255,118,125" /> <!-- lightred ... -->
+		<parameter paramStr="Terr_RHV_Color" singleValue="0,209,41" /> <!-- green ... -->
+		<parameter paramStr="Terr_MHV_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="Terr_MV8i_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		<parameter paramStr="Terr_MV8s_Color" singleValue="157,153,50" /> <!-- darkyellow ... -->
+		
+	</command>
+
+	<command commandStr="setSilhouetteColor">
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />
+		<parameter paramStr="brown" singleValue="96,57,19" />
+		<parameter paramStr="lightorange" singleValue="253,198,137" />
+		<parameter paramStr="red2" singleValue="178,12,16" />
+		<parameter paramStr="darkgreen" singleValue="0,124,53" />
+		
+		<parameter paramStr="white" singleValue="255,255,255" />
+		
+		<parameter paramStr="LiverColor" singleValue="135,73,44" />
+		<parameter paramStr="TumorColor" singleValue="198,171,67" />
+
+		<parameter paramStr="Ter_II" singleValue="220,0,44" /> <!-- nice red-->
+		<parameter paramStr="Ter_III" singleValue="255,249,94" /> <!-- nice yellow-->
+		<parameter paramStr="Ter_IVa" singleValue="125,138,255" /> <!-- some blue-->
+		<parameter paramStr="Ter_IVb" singleValue="143,255,111" /> <!-- lightgreen-->
+		<parameter paramStr="Ter_V" singleValue="255,118,125" /> <!-- some lightred-->
+		<parameter paramStr="Ter_VI" singleValue="47,61,237" /> <!-- some blue-->
+		<parameter paramStr="Ter_VII" singleValue="0,209,41" /> <!-- nice green-->
+		<parameter paramStr="Ter_VIII" singleValue="157,153,50" /> <!-- dark yellow-->			
+		
+	</command>
+	
+	
+	
+	<command commandStr="setBackground">
+		<parameter paramStr="white" singleValue="255,255,255" />
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />		
+	</command>	
+	
+	
+	<!-- Transarenzen -->
+	<command commandStr="setTransparency">
+		<parameter paramStr="normal" singleValue="0.5" />
+		<parameter paramStr="high" singleValue="0.8" />
+		<parameter paramStr="low" singleValue="0.2" />
+		<parameter paramStr="opaque" singleValue="0" />
+		<parameter paramStr="transparent" singleValue="1" />
+	</command>
+	
+	
+	
+	<!-- Krass ... from_ muss davor weil er sonst beginnt, "Lung left" wegzuersetzen ... oder man nennt Lung_left eben mit Unterstrich ... hmmmm-->
+	<command commandStr="move">
+		<parameter paramStr="top" singleValue="0 0" />
+		<parameter paramStr="bottom" singleValue="180 0" />
+		<parameter paramStr="right" singleValue="90 90" />
+		<parameter paramStr="left" singleValue="90 -90" />
+		<parameter paramStr="front" singleValue="90 0" />
+		<parameter paramStr="back" singleValue="90 180" />
+		
+		<parameter paramStr="sagittal" singleValue="right" />		
+		<parameter paramStr="axial" singleValue="top" />
+		<parameter paramStr="coronal" singleValue="back" />
+		
+		<parameter paramStr="slow" valuePerTimeUnit="5" />
+		<parameter paramStr="fast" valuePerTimeUnit="15" />
+	</command>
+		
+</HighLevel>

@@ -1,0 +1,70 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters { 
+      Field = Name   { type = string value = "" persistent = FALSE }
+      Field = DOB    { type = string value = "" persistent = FALSE }
+      Field = PID    { type = string value = "" persistent = FALSE }
+      Field = Weight { type = string value = "" persistent = FALSE }
+      Field = Sex    { type = string value = "" persistent = FALSE }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   
+   // Include local functions
+   source = "$(LOCAL)/METKPatientObject.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+
+   FieldListener { 
+      listenField = Name
+      listenField = DOB
+      listenField = PID
+      listenField = Weight
+      listenField = Sex
+      command = changed }
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+}
+
+
+Window METKPatientObject {
+   Vertical { 
+      panelName = patientInformationPanel
+      Vertical {
+           panelName = patientPropertiesPanel
+           w = 300
+           Horizontal {
+               Label Name {title = "Patients Name :" w=150}
+               LineEdit Name {w = 250}
+           }
+           Horizontal {
+               Label DOB {title = "Date of Birth :" w=150}
+               LineEdit DOB {w = 250}
+           }
+           Horizontal {
+               Label Sex {title = "Sex :" w=150}
+               LineEdit Sex {w = 250}
+           }
+           Horizontal {
+               Label Weight {title = "Weight :" w=150}
+               LineEdit Weight {w = 250}
+           }
+      }
+      Horizontal {
+          panelName = patientIDPanel
+          Label PID {title = "Patient ID :" w=150}
+          LineEdit PID {w = 250}
+      }
+   }
+}

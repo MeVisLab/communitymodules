@@ -1,0 +1,44 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer  { internalName = input.inObjectContainer }
+      Field outObjectContainer { internalName = output.inObjectContainer }
+   }
+   Outputs = ""
+   Parameters {
+      Field = convert {
+         type = trigger
+      }
+      Field = ready {
+         type = bool
+         value = FALSE
+         persistent = FALSE
+      }
+      Field = readableFormat {
+         type = bool
+         value = FALSE
+         persistent = FALSE
+      }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/NeckVisionXMLConverter.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener convert { command = handleEvents }
+}
+
+Window ConvertXML {
+   Vertical {
+      Button = convert
+      Field = readableFormat { edit = NO }
+      Field = ready { edit = NO }
+   }
+}

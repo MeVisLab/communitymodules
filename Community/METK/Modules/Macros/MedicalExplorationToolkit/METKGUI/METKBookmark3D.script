@@ -1,0 +1,76 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKBookmark3D
+/*!
+// \file    METKBookmark3D.script
+// \author  Konrad
+// \date    2006-01-26
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }    
+  }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+   }
+  Parameters {
+     Field = updateList   { type = trigger }   
+     Field = saveBookmark { type = trigger }
+     Field viewerName	  { type = string value = "METKViewer3D" }
+     
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+
+  source = $(LOCAL)/METKBookmark3D.py
+  
+  initCommand = init
+  FieldListener saveBookmark { command = saveBookmark }
+  FieldListener updateList { command = updateListView }
+}
+
+
+
+Window {  
+	style = kStyle
+    	bgMode = SmoothStretch
+    	
+	shouldCloseCommand = closeWindow
+	Vertical {
+		expandY = True
+		ListView {
+			expandY = YES
+			expandX = YES
+			name = bookmarklist
+			values = "Bookmarks"
+			rowSeparator = "@"
+			columnSeparator = ","
+			sortByColumn = 0
+			layout = "l"
+			selectionMode = Single
+			resizeMode = last
+			doubleClickedCommand = selectBookmark
+		}
+		
+		Button updateList { }
+		Button saveBookmark { }	
+	}
+	Execute = openWindow
+}
+
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

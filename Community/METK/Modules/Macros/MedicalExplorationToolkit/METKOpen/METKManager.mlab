@@ -1,0 +1,581 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjDump {
+  internal  {
+    frame = "293 765 88 56"
+    windows  {
+      window _default {
+        geometry = "92 111 261 259"
+        sizeHint = "261 259"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjDump
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    fileName = ""
+    applicationID = ""
+  }
+}
+module OrthoReformat3 {
+  internal  {
+    frame = "1057 525 128 56"
+    windows  {
+      window _default {
+        geometry = "70 89 234 208"
+        sizeHint = "234 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoReformat36
+    useGlobalInputImage = TRUE
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "1061 729 136 64"
+    windows  {
+      window _default {
+        geometry = "56 449 232 149"
+        sizeHint = "232 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "136 155 547 278"
+        sizeHint = "218 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = createIVFile
+    priority = 10000
+    debugComment = ""
+    message = createIVFile
+    data = ""
+    status = idle
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "845 729 136 64"
+    windows  {
+      window _default {
+        geometry = "92 111 232 149"
+        sizeHint = "232 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "158 177 218 224"
+        sizeHint = "218 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadRequest
+    priority = 10000
+    debugComment = ""
+    message = loadFile
+    data = ""
+    status = idle
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "841 873 160 64"
+    windows  {
+      window _default {
+        geometry = "100 197 247 385"
+        sizeHint = "196 385"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "804 430 244 331"
+        sizeHint = "244 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = objCreateIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    layerID = Image
+    infoID = ImageType
+    infoValue = Segmentation
+    useInfoValue = TRUE
+    objectID = ""
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "853 809 136 64"
+    windows  {
+      window _default {
+        geometry = "56 449 232 149"
+        sizeHint = "232 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "136 155 547 278"
+        sizeHint = "218 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MeasureRequest
+    priority = 10000
+    debugComment = ""
+    message = getMeasures
+    data = ""
+    status = idle
+  }
+}
+module METKMsgSender {
+  internal  {
+    frame = "849 637 128 56"
+    windows  {
+      window _default {
+        geometry = "48 67 232 224"
+        sizeHint = "232 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgSender
+    priority = 10000
+    debugComment = ""
+    message = createObjectContainer
+    data = ""
+    status = idle
+    done = FALSE
+    successful = FALSE
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "689 545 160 64"
+    windows  {
+      window _default {
+        geometry = "100 197 247 385"
+        sizeHint = "196 385"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "804 430 244 331"
+        sizeHint = "244 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = iterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    layerID = Image
+    infoID = ImageType
+    infoValue = Segmentation
+    useInfoValue = TRUE
+    objectID = ""
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "613 909 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "613 825 72 64"
+    windows  {
+      window _default {
+        geometry = "158 177 543 408"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Appearance
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "1081 605 80 56"
+    windows  {
+      window _default {
+        geometry = "70 89 315 319"
+        sizeHint = "315 319"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module Info {
+  internal  {
+    frame = "1085 449 72 64"
+    windows  {
+      window _default {
+        geometry = "365 626 611 407"
+        sizeHint = "611 407"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "26 45 218 445"
+        sizeHint = "218 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgInfo
+    pagedImgInfo = CalculationOfImagePropertiesFailed
+    memoryImage = Invalid
+    memoryImage2 = ""
+    moduleName = OrthoReformat3
+    connectionValid = TRUE
+    dataValid = FALSE
+  }
+}
+module ObjLoaderHepaVision {
+  internal  {
+    frame = "269 621 152 56"
+    windows  {
+      window _default {
+        geometry = "664 547 278 17"
+        sizeHint = "278 17"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjLoaderHepaVision
+  }
+}
+module GenerateIVFile {
+  internal  {
+    frame = "1065 669 112 56"
+    windows  {
+      window _default {
+        geometry = "43 420 318 256"
+        sizeHint = "318 256"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "48 67 497 445"
+        sizeHint = "243 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GenerateIVFile
+    filename = ""
+    filenameOutput = .dcm
+    ImageExists = FALSE
+    InventorExists = FALSE
+    filter = Lanczos_3
+    creatingSurface = FALSE
+    converting = FALSE
+    saving = FALSE
+    saved = FALSE
+    ready = FALSE
+    queueing = TRUE
+    smoothing = TRUE
+    splitting = TRUE
+    overwrite = TRUE
+    imageValue = 0
+    imageValueAuto = TRUE
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "561 553 112 64"
+    windows  {
+      window _default {
+        geometry = "158 177 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = infoConverted
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "605 673 88 64"
+  }
+  fields  {
+    instanceName = converted
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+  }
+}
+module FileInformation {
+  internal  {
+    frame = "449 753 112 64"
+    windows  {
+      window _default {
+        geometry = "821 86 304 370"
+        sizeHint = "304 370"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = fileInfo
+    path = ""
+    dirname = ""
+    filename = ""
+    basename = ""
+    extension = ""
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
+    isDirectory = FALSE
+    isReadable = FALSE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module ObjMgr {
+  internal  {
+    frame = "445 649 72 64"
+  }
+  fields  {
+    instanceName = source
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+  }
+}
+module ConvertXML {
+  internal  {
+    frame = "517 445 104 56"
+    windows  {
+      window _default {
+        geometry = "253 135 300 80"
+        sizeHint = "300 80"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ConvertXML
+  }
+  internalFields = ""
+}
+module ObjLoader {
+  internal  {
+    frame = "437 565 88 56"
+    windows  {
+      window _default {
+        geometry = "1150 236 303 315"
+        sizeHint = "303 315"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjLoader
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    fileName = ""
+    employLoaderName = ""
+    usedLoaderName = ObjDump
+    miscLoaderInfo = ""
+  }
+}
+module ObjLoaderDump {
+  internal  {
+    frame = "301 565 120 56"
+  }
+  fields  {
+    instanceName = ObjLoaderDump
+  }
+}
+connections  {
+  ObjDump.inObjectContainer = info.outObjectContainer
+  OrthoReformat36.input0 = ImgLoad.output0
+  createIVFile.inObjectContainer = info.outObjectContainer
+  LoadRequest.inObjectContainer = info.outObjectContainer
+  objCreateIterator.inObjectContainer = info.outObjectContainer
+  MeasureRequest.inObjectContainer = info.outObjectContainer
+  METKMsgSender.inObjectContainer = info.outObjectContainer
+  iterator.inObjectContainer = converted.outObjectContainer
+  info.inObjectContainer = ObjMgr.outObjectContainer
+  ImgInfo.input0 = OrthoReformat36.output2
+  infoConverted.inObjectContainer = converted.outObjectContainer
+  fileInfo.path = ObjLoader.fileName
+  ConvertXML.inObjectContainer = ObjLoader.outObjectContainer
+  ConvertXML.outObjectContainer = infoConverted.outObjectContainer
+  ObjLoader.inObjectContainer = source.outObjectContainer
+}

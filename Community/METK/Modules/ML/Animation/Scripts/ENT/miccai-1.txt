@@ -1,0 +1,17 @@
+[Ini]
+LengthTimeUnit=10
+LengthSeconds=10
+RealTime=no
+
+[Script]
+[0] 'System' setBackground white
+[0] 'All' view 90 -50 0.7
+[0] 'Lymphnodes' setTransparency 0
+[0] 'All' setTransparency 0.9
+[0] 'System' setBaseColors
+[2,8] 'Lymphnode_4' view 90 -10 2
+[2,8] 'Lymphnode_4' setTransparency 0
+[2,8] 'Lymphnodes' setTransparency 1
+[2,8] 'M. sternocleidom._left' setTransparency 0.3
+[2,8] 'A. carotis communis_left' setTransparency 0.3
+[2,8] 'V. jugularis_left' setTransparency 0.3

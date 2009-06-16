@@ -1,0 +1,98 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "5 193 72 64"
+  }
+  fields  {
+    instanceName = Info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "117 377 120 64"
+    windows  {
+      window _automatic {
+        geometry = "154 453 519 358"
+        sizeHint = "379 358"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CaseSelectData
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+    networkMode = NotConnected
+    networkAddress = ""
+    networkPort = 7623
+    commOnlyMarkedInfo = TRUE
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "269 197 104 56"
+    windows  {
+      window _default {
+        geometry = "2 134 572 354"
+        sizeHint = "502 354"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+connections  {
+  Info.inObjectContainer = CaseSelectData.outObjectContainer
+  ObjInspector.inObjectContainer = CaseSelectData.outObjectContainer
+}

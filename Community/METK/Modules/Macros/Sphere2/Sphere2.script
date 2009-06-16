@@ -1,0 +1,47 @@
+//----------------------------------------------------------------------------------
+//! Macro module Sphere2
+/*!
+// \file    Sphere2.script
+// \author  Konrad Mühler
+// \date    2006-07-07
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs { 
+    Field self { internalName="SoSeparator.self" }
+  }
+  Parameters {
+    Field Center { internalName = SoTransform.translation }
+    Field Radius { internalName = SoSphere.radius }
+    Field Color { internalName = Material.diffuseColor }
+    Field Transparency { internalName = Material.transparency }
+    Field Style { internalName = Material.stylePresets }
+    Field Complexity { internalName = Material.complexity }
+  }
+}
+
+
+Commands {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/Sphere2.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2006-06-30T04:17:32
+//# hash: jxg7lna34iNts6U5j2N0czbsG03ZYYw5rcpr3dpMkFurlQZhDlGFiPBZC0gMu0IcRS9qcZYh8mOURpHUSakpBw==
+//# MeVis end
+

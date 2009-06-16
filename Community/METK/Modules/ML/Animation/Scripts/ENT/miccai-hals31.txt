@@ -1,0 +1,28 @@
+[INI]
+LENGTHTIMEUNIT=35
+LENGTHSECONDS=35
+REALTIME=yes
+
+[SCRIPT]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'All' setVisible true
+[0] 'All' view front 1
+[0] 'Bones' border false
+[1,2] 'All' view front 0.8
+[3,10] 'System' rotate 'All' axial 360
+[11,12] 'Lymphnode' view front 1.6
+
+[11,15] 'Lymphnode' setTransparency 0
+[11,15] 'All' setTransparency 0.95
+[14] 'Bones' border true
+[11,15] 'largeLK' setColor red
+[11,15] 'middleLK' setColor orange
+
+[20,27] 'Lymphnode_5' view 90 10 2
+[20,27] 'Lymphnode_5' setColor red
+[20,27] 'Lymphnode_5' setTransparency 0
+[20,27] 'Lymphnode' setTransparency 0.2
+[20,27] 'M. sternocleidom._right' setTransparency 0.1
+[20,27] 'V. jugularis_right' setTransparency 0.1
+[20,27] 'A. carotis_right' setTransparency 0.1

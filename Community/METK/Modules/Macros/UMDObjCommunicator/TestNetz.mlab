@@ -1,0 +1,274 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module UMDViewerCommunicator {
+  internal  {
+    frame = "481 205 176 56"
+    windows  {
+      window _automatic {
+        geometry = "854 167 424 445"
+        sizeHint = "424 445"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDViewerCommunicator
+    ObjName = Viewer3D
+    CamOrientation = "0.000000 0.000000 0.000000 0.000000"
+    CamPosition = "0.000000 0.000000 0.000000"
+    CamHeight = 0
+    Framerate = 1
+    Status = ""
+    ProtocolViewerStatus = FALSE
+    BackgroundColor = "1.000000 1.000000 1.000000"
+    BackgroundGreyCenter = 0
+    BackgroundGreyWidth = 0
+    EnableRendering = TRUE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "485 493 72 56"
+    windows  {
+      window _default {
+        geometry = "284 67 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = Viewer3D
+    layerID = Camera
+    infoID = Position
+    stringValue = "(-3.6815099999999998, -2.8614199999999999, 2.07952)"
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = 2
+    searchInfoPattern = "***"
+    numInfos = 1
+    numEvents = 2321
+    eventType = NoMessage
+  }
+}
+module SoCube {
+  internal  {
+    frame = "217 365 80 56"
+    windows  {
+      window _default {
+        geometry = "290 309 136 213"
+        sizeHint = "136 213"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "193 249 176 64"
+    windows  {
+      window _viewer {
+        geometry = "1033 705 457 351"
+        sizeHint = "400 402"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1093 426 453 445"
+        sizeHint = "453 445"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = Viewer3D
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.000000 0.000000 0.000000"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_ORTHOGRAPHIC
+    userSettingOrientation = "0.000000 0.000000 1.000000 0.000000"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = FALSE
+    height = 4.610129833
+    position = "2.746040 2.853110 2.400870"
+    orientation = "-0.747213 0.232575 -0.622560 1.355450"
+    nearDistance = 2.900449991
+    farDistance = 6.364779949
+    focalDistance = 4.630889893
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    rotationAxis = "0.000000 1.000000 0.000000"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "749 485 104 56"
+    windows  {
+      window _default {
+        geometry = "241 674 453 354"
+        sizeHint = "453 354"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "541 589 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+    networkMode = NotConnected
+    networkAddress = ""
+    networkPort = 7623
+    commOnlyMarkedInfo = TRUE
+  }
+}
+module UMDObjCommunicator {
+  internal  {
+    frame = "585 389 160 56"
+    windows  {
+      window _default {
+        geometry = "846 169 304 173"
+        sizeHint = "304 173"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "706 103 429 445"
+        sizeHint = "429 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDObjCommunicator
+    ObjName = Viewer3D
+    CamPosition = "2.746040 2.853110 2.400870"
+    CamOrientation = "-0.747213 0.232575 -0.622560 1.355450"
+    CamHeight = 4.610129833
+    ViewerFramerate = 0
+    ViewerStatus = ""
+    ProtocolViewerStatus = FALSE
+    ViewerBGColor = "0.000000 0.000000 0.000000"
+    ViewerBGGreyCenter = 0
+    ViewerBGGreyWidth = 0
+  }
+}
+connections  {
+  UMDViewerCommunicator.inObjectContainer = ObjMgr.outObjectContainer
+  UMDViewerCommunicator.ObjName = Viewer3D.instanceName
+  ObjInfo.inObjectContainer = ObjMgr.outObjectContainer
+  Viewer3D.cancelRecording = UMDObjCommunicator.ViewerCancelRecording
+  Viewer3D.singleFrame = UMDObjCommunicator.ViewerCaptureFrame
+  Viewer3D.createAvi = UMDObjCommunicator.ViewerCreateAVI
+  Viewer3D.updateMLOutput = UMDObjCommunicator.ViewerUpdateMLOutput
+  Viewer3D.height = UMDObjCommunicator.CamHeight
+  Viewer3D.position = UMDObjCommunicator.CamPosition
+  Viewer3D.orientation = UMDObjCommunicator.CamOrientation
+  Viewer3D.children = SoCube.self
+  ObjInspector.inObjectContainer = ObjMgr.outObjectContainer
+  UMDObjCommunicator.ObjName = Viewer3D.instanceName
+  UMDObjCommunicator.CamPosition = Viewer3D.position
+  UMDObjCommunicator.CamOrientation = Viewer3D.orientation
+  UMDObjCommunicator.CamHeight = Viewer3D.height
+  UMDObjCommunicator.ViewerCaptureFrame = Viewer3D.singleFrame
+  UMDObjCommunicator.ViewerCreateAVI = Viewer3D.createAvi
+  UMDObjCommunicator.ViewerCancelRecording = Viewer3D.cancelRecording
+  UMDObjCommunicator.ViewerUpdateMLOutput = Viewer3D.updateMLOutput
+}

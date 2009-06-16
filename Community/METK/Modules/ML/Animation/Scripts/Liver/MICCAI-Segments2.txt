@@ -1,0 +1,39 @@
+[Ini]
+LengthTimeUnit=15
+LengthSeconds=3
+RealTime=yes
+
+[Script]
+[0] 'System' initLiver
+[0] 'LiverOrgan' view 'LiverOrgan' front 1.25
+[0] 'Territory_P4' borderP4 false
+[0] 'Territory_P7' borderP7 false
+[0] 'Territory_P8' borderP8 false
+[0] 'Territory_P4' setTransparency 1
+[0] 'Territory_P7' setTransparency 1
+[0] 'Territory_P8' setTransparency 1
+[0] 'LiverOrgan' borderLiver false
+
+[3,10] 'LiverOrgan' setTransparency 1
+[8] 'LiverOrgan' borderLiver true
+[3,10] 'Tumor' setColor red
+
+[12] 'Territory_P4' setVisible true
+[12] 'Territory_P4' setTransparency 1
+[12] 'Territory_P7' setVisible true
+[12] 'Territory_P7' setTransparency 1
+[12] 'Territory_P8' setVisible true
+[12] 'Territory_P8' setTransparency 1
+[12] 'Territory_P4' setColor yellow
+[12] 'Territory_P7' setColor orange
+[12] 'Territory_P8' setColor darkgreen
+[12] 'Territory_P4' setVisible true
+[12,15] 'Territory_P4' setTransparency 0.8
+[15] 'Territory_P4' borderP4 true
+[12] 'Territory_P7' setVisible true
+[12,15] 'Territory_P7' setTransparency 0.8
+[15] 'Territory_P7' borderP7 true
+[12] 'Territory_P8' setVisible true
+[12,15] 'Territory_P8' setTransparency 0.8
+[15] 'Territory_P8' borderP8 true
+[3,15] 'LiverOrgan' view 'LiverOrgan' 110 -50 1.25

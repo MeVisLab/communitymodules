@@ -1,0 +1,167 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "469 125 136 56"
+    windows  {
+      window _viewer {
+        geometry = "747 157 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "65.91889999999999 162.282 178.385"
+    orientation = "-0.899442 0.385227 0.206406 0.805956"
+    nearDistance = 167.8820038
+    farDistance = 327.4809875
+    focalDistance = 247.602005
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoHatching {
+  internal  {
+    frame = "537 245 96 56"
+    windows  {
+      window _default {
+        geometry = "299 576 229 109"
+        sizeHint = "229 109"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoHatching
+    lightingType = 0
+    textureUnit = 2
+    gamma = 3
+  }
+  internalFields = ""
+}
+module SoBackground {
+  internal  {
+    frame = "633 149 112 56"
+    windows  {
+      window _default {
+        geometry = "92 146 129 134"
+        sizeHint = "129 134"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module LocalSoFile {
+  internal  {
+    frame = "537 333 96 56"
+    windows  {
+      window _default {
+        geometry = "382 429 522 211"
+        sizeHint = "522 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalSoFile
+    name = $(DemoDataPath)/Teapot.iv
+  }
+  internalFields = ""
+}
+module SoShaderParameter3f {
+  internal  {
+    frame = "365 241 152 64"
+    windows  {
+      window _default {
+        geometry = "80 564 242 62"
+        sizeHint = "242 62"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "522 459 242 134"
+        sizeHint = "242 134"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = lightDir
+    name = lightDir
+    value = "-1 1 2"
+  }
+}
+connections  {
+  SoExaminerViewer.children = "lightDir.self SoHatching.output SoBackground.self"
+  SoHatching.input = LocalSoFile.outputNode
+}

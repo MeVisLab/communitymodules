@@ -1,0 +1,308 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "685 149 120 56"
+    windows  {
+      window _default {
+        geometry = "566 176 693 651"
+        sizeHint = "679 659"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = Scripts/ENT/init-script.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = FALSE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = ""
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = TRUE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    campathVPSize = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = ""
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+    useOffscreenRenderer = TRUE
+  }
+}
+module SoMouseGrabber {
+  internal  {
+    frame = "417 205 128 56"
+    windows  {
+      window _default {
+        geometry = "405 317 477 449"
+        sizeHint = "477 449"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "807 114 381 741"
+        sizeHint = "303 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMouseGrabber
+    on = TRUE
+    normalized = FALSE
+    clamp = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    button1Pressed = FALSE
+    button2Pressed = FALSE
+    button3Pressed = FALSE
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = RELEASED
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    absX = 519
+    absY = 225
+    y = 0.7599999905
+    x = 0.462500006
+    y = 0.7599999905
+    xmin = 0
+    xmax = 1
+    ymin = 0
+    ymax = 1
+    maskValid = FALSE
+    flipX = FALSE
+    flipY = FALSE
+    swapXY = FALSE
+    sensitivity = 1
+    wheelOverflow = FALSE
+    wheel = 1
+    wheelStep = 1
+    wheelMin = 0
+    wheelMax = 100
+  }
+}
+module METKCSO {
+  internal  {
+    frame = "765 205 104 56"
+    windows  {
+      window _default {
+        geometry = "863 145 424 379"
+        sizeHint = "424 379"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCSO
+    ignorePickable = TRUE
+    objectMustBeVisible = TRUE
+    filterDoubleEvents = FALSE
+    useColor = FALSE
+    color = "1 0 0"
+    useTransparency = FALSE
+    transparency = 0
+    useSilhouette = FALSE
+    silhouetteColor = "0 0 0"
+    silhouetteWidth = 3
+    silhouetteOnOff = TRUE
+  }
+  internalFields = ""
+}
+module METKCorrelationNetwork {
+  internal  {
+    frame = "509 333 168 56"
+    windows  {
+      window _default {
+        geometry = "929 327 590 664"
+        sizeHint = "590 664"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "457 237 367 440"
+        sizeHint = "297 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "432 141 617 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKCorrelationNetwork {
+        geometry = "543 466 115 17"
+        sizeHint = "54 17"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCorrelationNetwork
+    fileNameOfDistances = ""
+    fileNameOfCorrelations = ""
+    maxMaxNeighbourDist = 100
+    maxNeighbourDist = 20
+    allStructures = ""
+    structure = ""
+    existsStructure = ""
+    structureExists = FALSE
+    correl_selection = Structure
+    allCorrelations = ""
+    correlation = ""
+    existsCorrel = ""
+    correlationExists = FALSE
+    allCorrelationType = ""
+    correlationType = ""
+    existsCorrelType = ""
+    correlTypeExists = FALSE
+    relatedStructures = ""
+    csRelatedStructure = ""
+    color_group = "0 0.3333333333333333 1"
+    color_CSM = "0 0.6666666666666666 1"
+    enableColering = FALSE
+    success = FALSE
+    structure1 = ""
+    structure2 = ""
+    distance = 0
+    structRelatedCorrel = True
+    nearestRelated = ""
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "701 269 72 56"
+    windows  {
+      window _default {
+        geometry = "676 117 543 671"
+        sizeHint = "543 408"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "515 445 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "478 321 627 440"
+        sizeHint = "331 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = GlobalEvents
+    objectID = Communication
+    layerID = Status
+    infoID = StatusMessage
+    objectPersistent = FALSE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = TRUE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Communicate
+    infoNetCommMode = Default
+    stringValue = "Case closed."
+    intValue = 0
+    boolValue = TRUE
+    doubleValue = 0.5
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = TRUE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 12
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+module SoKeyGrabber {
+  internal  {
+    frame = "577 205 112 56"
+    windows  {
+      window _default {
+        geometry = "572 173 380 226"
+        sizeHint = "380 226"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoKeyGrabber
+    on = TRUE
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    lastKey = G
+    key0 = G
+    key1 = ANY
+    key2 = ANY
+    key3 = ANY
+    key4 = ANY
+  }
+}
+connections  {
+  UMDAnimation2.inObjectContainer = ObjInfo.outObjectContainer
+  METKCSO.inObjectContainer = ObjInfo.outObjectContainer
+  ObjInfo.inObjectContainer = METKCorrelationNetwork.outObjectContainer
+}

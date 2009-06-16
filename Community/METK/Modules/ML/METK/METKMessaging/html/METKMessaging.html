@@ -1,0 +1,127 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr WIDTH="100%"></center>
+
+<h2>
+METK Messaging Modules</h2>
+
+<p> <font face="Arial"><b>METKGlobalMessages / METKMsgSender / METKMsgReceiver</b></font></p>
+
+<blockquote><p ALIGN="LEFT">Alle Parameter von Objekten, Viewern, selektierte Objekte, 
+  Patientendaten etc. werden im ObjMgr gespeichert. Auf diesen kann 
+  jedes METK-Modul sowohl lesend als auch schreibend zugreifen. Durch das 
+  Event-System des ObjMgr ist jedes angeschlossene 
+  Modul in der Lage, über für es interessante Veränderungen von Parametern 
+  sofort informiert zu werden und darauf zu reagieren. Diese Art der 
+  Kommunikation erfolgt nicht synchronisiert, dass heißt Änderungen von 
+  Parametern werden gebroadcastet und es wird vom Sender keine Antwort erwartet.
+  Es gibt jedoch einige spezielle 
+  Nachrichten, die alle Module betreffen, und Nachrichten, bei denen der Sender 
+  eine Bestätigung benötigt.</font></p>
+  </blockquote>
+
+<h3>
+<a NAME="Usage"></a><font face="Arial"><b>METKGlobalMessages </b></font></h3>
+
+<blockquote><p>Beim Laden oder Schließen eines Falles werden Nachrichten 
+  versendet, auf die alle METK-Module hören. Mit Hilfe von METKGlobalMessages 
+  kann ein Makromodul auf Modulebene darüber informiert werden. In diesem Fall 
+  können die Module benötigte Daten erstellen bzw. löschen.</p></blockquote>
+
+<h3>
+<a NAME="Details"></a>Details</h3>
+
+<blockquote>
+  <p>Das Modul hört auf Änderungen des Eintrags [Communication/GlobalEvents/CaseLoaded]. 
+  Der Eintrag ist entweder &quot;Loaded&quot; oder &quot;Cleanup&quot;. Wenn &quot;Loaded&quot; gesendet 
+  wurde, sind alle Einträge im ObjMgr bereits vorhanden, sodass auf den Daten 
+  gearbeitet werden kann.</p>
+</blockquote>
+
+<h3>
+<a NAME="Parameters"></a>Parameters</h3>
+
+<blockquote>
+<h4>Loaded</h4>
+<p>Dieser Trigger wird benachrichtigt, wenn ein neuer Fall geladen wurde.</p>
+<h4>Cleanup</h4>
+<p>Dieser Trigger wird benachrichtigt, wenn ein Fall geschlossen werden soll.</p>
+</blockquote>
+
+<h3>
+<a NAME="Usage"></a><font face="Arial">METKMsgSender / METKMsgReceiver</font></h3>
+
+<blockquote>
+  <p><font FACE="SFRM1095" SIZE="3" COLOR="#231f20">Zur </font> <font FACE="SFBX1095" SIZE="3" COLOR="#231f20">synchronisierten 
+    Kommunikation </font><font FACE="SFRM1095" SIZE="3" COLOR="#231f20">zwischen 
+    einzelnen Modulen wurden die Module </font> <font FACE="SFTT1095" SIZE="3" COLOR="#231f20">METKMsgSender 
+    </font> <font FACE="SFRM1095" SIZE="3" COLOR="#231f20">und </font> <font FACE="SFTT1095" SIZE="3" COLOR="#231f20">METKMsgReceiver 
+    </font> <font FACE="SFRM1095" SIZE="3" COLOR="#231f20">entwickelt. Diese beiden 
+    Module können über den </font><font FACE="SFTT1095" SIZE="3" COLOR="#231f20">ObjMgr 
+    </font><font FACE="SFRM1095" SIZE="3" COLOR="#231f20">sich gegenseitig Events 
+    zukommen lassen, deren Empfang bestätigt (</font><font FACE="SFTI1095" SIZE="3" COLOR="#231f20"><i>processing</i></font><font FACE="SFRM1095" SIZE="3" COLOR="#231f20">) 
+    und deren Abarbeitung (</font><font FACE="SFTI1095" SIZE="3" COLOR="#231f20"><i>done</i></font><font FACE="SFRM1095" SIZE="3" COLOR="#231f20">) 
+    bestätigt werden müssen. Es wird immer nur EIN Receiver benachrichtigt!!</font></p>
+</blockquote>
+
+<h3>
+<a NAME="Details"></a>Details</h3>
+
+<blockquote> 
+  <p>Die beiden Sender und Receiver k&ouml;nnen beliebige Nachrichten im String-Format 
+    miteinander austauschen. &Uuml;ber welchen &quot;Kanal&quot; die beiden Kommunizieren, 
+    wird &uuml;ber <font face="Courier New, Courier, mono">Message</font> festgelegt. 
+    Sollte kein Receiver auf dem Kanal h&ouml;ren, wird die &Uuml;bermittlung 
+    abgebrochen, d.h. <font face="Courier New, Courier, mono">Done</font> ist 
+    &quot;True&quot; und <font face="Courier New, Courier, mono">Successful</font> 
+    ist &quot;False&quot;. Ist ein passender Receiver vorhanden, wird die <font face="Courier New, Courier, mono">Status</font> 
+    auf &quot;Processing&quot; gesetzt. Der Inhalt der Nachricht wird &uuml;ber 
+    <font face="Courier New, Courier, mono">Data</font> gesendet. Nach der gesendeten 
+    Best&auml;tigung sind <font face="Courier New, Courier, mono">Done</font> 
+    und <font face="Courier New, Courier, mono">Successful</font> &quot;True&quot;. 
+    Au&szlig;er einer positiven Benachrichtigung k&ouml;nnen keine Nachrichten 
+    zur&uuml;ckgesendet werden.</p>
+</blockquote>
+
+<h3>
+<a NAME="Parameters"></a>Parameters</h3>
+
+<blockquote> 
+  <h4>Message</h4>
+  <p>Legt den Informationskanal fest.</p>
+  <h4>Data</h4>
+  <p>Enth&auml;lt die zu sendende Nachricht.</p>
+  <h4>Send / Done</h4>
+  <p>Abschicken der Nachricht bzw. Best&auml;tigen der Nachricht (nach dem Bearbeiten).</p>
+  <h4>Status</h4>
+  <p>Momentaner Status der Bearbeitung:</p>
+  <ul>
+    <li> Done: keine Nachricht zu bearbeiten</li>
+    <li> Processing: Nachricht wird bearbeitet.</li>
+    <li> Nobody's listening: kein Receiver h&ouml;rt auf dem eingetragenen Kanal 
+      in <font face="Courier New, Courier, mono">Messages</font>.</li>
+  </ul>
+  <h4>Done</h4>
+  <p>Ist &quot;False&quot;, wenn eine Nachricht gesendet wurde, aber noch keine 
+    Best&auml;tigung zur&uuml;ckgekommen ist. Ist &quot;True&quot;, wenn eine 
+    Best&auml;tigung empfangen wurde oder kein passender Receiver vorhanden ist.</p>
+  <h4>Successful</h4>
+  <p>Ist nur dann &quot;True&quot;, wenn die Nachricht erfolgreich bearbeitet 
+    wurde.</p>
+</blockquote>
+</body>
+</html>

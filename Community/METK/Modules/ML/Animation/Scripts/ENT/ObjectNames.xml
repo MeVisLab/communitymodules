@@ -1,0 +1,431 @@
+<?xml version="1.0" ?>
+<ObjectNames>
+	<object name="All">
+		<object>
+			A. carotis communis_left
+		</object>
+		<object>
+			A. carotis communis_right
+		</object>
+		<object>
+			Bones
+		</object>
+		<object>
+			C. cricoidea
+		</object>
+		<object>
+			C. thyroidea
+		</object>
+		<object>
+			Gl. parotis_left
+		</object>
+		<object>
+			Gl. parotis_right
+		</object>
+		<object>
+			Gl. submandibularis_left
+		</object>
+		<object>
+			Gl. submandibularis_right
+		</object>
+		<object>
+			Lung1
+		</object>
+		<object>
+			Lung2
+		</object>
+		<object>
+			Lymphnode_1
+		</object>
+		<object>
+			Lymphnode_10
+		</object>
+		<object>
+			Lymphnode_11
+		</object>
+		<object>
+			Lymphnode_12
+		</object>
+		<object>
+			Lymphnode_13
+		</object>
+		<object>
+			Lymphnode_14
+		</object>
+		<object>
+			Lymphnode_15
+		</object>
+		<object>
+			Lymphnode_16
+		</object>
+		<object>
+			Lymphnode_17
+		</object>
+		<object>
+			Lymphnode_18
+		</object>
+		<object>
+			Lymphnode_2
+		</object>
+		<object>
+			Lymphnode_3
+		</object>
+		<object>
+			Lymphnode_4
+		</object>
+		<object>
+			Lymphnode_5
+		</object>
+		<object>
+			Lymphnode_6
+		</object>
+		<object>
+			Lymphnode_7
+		</object>
+		<object>
+			Lymphnode_8
+		</object>
+		<object>
+			Lymphnode_9
+		</object>
+		<object>
+			M. sternocleidom._left
+		</object>
+		<object>
+			M. sternocleidom._right
+		</object>
+		<object>
+			Pharynx
+		</object>
+		<object>
+			Trachea
+		</object>
+		<object>
+			TumorPart_1
+		</object>
+		<object>
+			V. jugularis_left
+		</object>
+		<object>
+			V. jugularis_right
+		</object>
+	</object>
+	<object name="right">
+		<object>
+			A. carotis communis_right
+		</object>
+		<object>
+			Gl. parotis_right
+		</object>
+		<object>
+			Gl. submandibularis_right
+		</object>
+		<object>
+			Lymphnode_11
+		</object>
+		<object>
+			Lymphnode_12
+		</object>
+		<object>
+			Lymphnode_13
+		</object>
+		<object>
+			Lymphnode_14
+		</object>
+		<object>
+			Lymphnode_15
+		</object>
+		<object>
+			Lymphnode_16
+		</object>
+		<object>
+			Lymphnode_17
+		</object>
+		<object>
+			Lymphnode_18
+		</object>
+		<object>
+			M. sternocleidom._right
+		</object>
+		<object>
+			V. jugularis_right
+		</object>
+	</object>
+	<object name="I">
+		<object>
+			Lymphnode_1
+		</object>
+	</object>
+	<object name="VI">
+		<object>
+			Lymphnode_10
+		</object>
+		<object>
+			Lymphnode_11
+		</object>
+		<object>
+			Lymphnode_12
+		</object>
+		<object>
+			Lymphnode_13
+		</object>
+		<object>
+			Lymphnode_14
+		</object>
+		<object>
+			Lymphnode_15
+		</object>
+		<object>
+			Lymphnode_17
+		</object>
+		<object>
+			Lymphnode_18
+		</object>
+		<object>
+			Lymphnode_2
+		</object>
+		<object>
+			Lymphnode_3
+		</object>
+		<object>
+			Lymphnode_4
+		</object>
+		<object>
+			Lymphnode_5
+		</object>
+		<object>
+			Lymphnode_6
+		</object>
+		<object>
+			Lymphnode_7
+		</object>
+		<object>
+			Lymphnode_8
+		</object>
+		<object>
+			Lymphnode_9
+		</object>
+	</object>
+	<object name="Respiratory Tract">
+		<object>
+			Lung1
+		</object>
+		<object>
+			Lung2
+		</object>
+		<object>
+			Pharynx
+		</object>
+		<object>
+			Trachea
+		</object>
+	</object>
+	<object name="Tumor">
+		<object>
+			TumorPart_1
+		</object>
+	</object>
+	<object name="Gland">
+		<object>
+			Gl. parotis_left
+		</object>
+		<object>
+			Gl. parotis_right
+		</object>
+		<object>
+			Gl. submandibularis_left
+		</object>
+		<object>
+			Gl. submandibularis_right
+		</object>
+	</object>
+	<object name="Larynx">
+		<object>
+			C. cricoidea
+		</object>
+		<object>
+			C. thyroidea
+		</object>
+	</object>
+	<object name="Salivary Gland">
+		<object>
+			Gl. parotis_left
+		</object>
+		<object>
+			Gl. parotis_right
+		</object>
+		<object>
+			Gl. submandibularis_left
+		</object>
+		<object>
+			Gl. submandibularis_right
+		</object>
+	</object>
+	<object name="Lung">
+		<object>
+			Lung1
+		</object>
+		<object>
+			Lung2
+		</object>
+	</object>
+	<object name="Vein">
+		<object>
+			V. jugularis_left
+		</object>
+		<object>
+			V. jugularis_right
+		</object>
+	</object>
+	<object name="Muscle">
+		<object>
+			M. sternocleidom._left
+		</object>
+		<object>
+			M. sternocleidom._right
+		</object>
+	</object>
+	<object name="Vessel">
+		<object>
+			A. carotis communis_left
+		</object>
+		<object>
+			A. carotis communis_right
+		</object>
+		<object>
+			V. jugularis_left
+		</object>
+		<object>
+			V. jugularis_right
+		</object>
+	</object>
+	<object name="Artery">
+		<object>
+			A. carotis communis_left
+		</object>
+		<object>
+			A. carotis communis_right
+		</object>
+	</object>
+	<object name="Lymphnode">
+		<object>
+			Lymphnode_1
+		</object>
+		<object>
+			Lymphnode_10
+		</object>
+		<object>
+			Lymphnode_11
+		</object>
+		<object>
+			Lymphnode_12
+		</object>
+		<object>
+			Lymphnode_13
+		</object>
+		<object>
+			Lymphnode_14
+		</object>
+		<object>
+			Lymphnode_15
+		</object>
+		<object>
+			Lymphnode_16
+		</object>
+		<object>
+			Lymphnode_17
+		</object>
+		<object>
+			Lymphnode_18
+		</object>
+		<object>
+			Lymphnode_2
+		</object>
+		<object>
+			Lymphnode_3
+		</object>
+		<object>
+			Lymphnode_4
+		</object>
+		<object>
+			Lymphnode_5
+		</object>
+		<object>
+			Lymphnode_6
+		</object>
+		<object>
+			Lymphnode_7
+		</object>
+		<object>
+			Lymphnode_8
+		</object>
+		<object>
+			Lymphnode_9
+		</object>
+	</object>
+	<object name="III">
+		<object>
+			Lymphnode_16
+		</object>
+	</object>
+	<object name="Cartilago">
+		<object>
+			C. cricoidea
+		</object>
+		<object>
+			C. thyroidea
+		</object>
+	</object>
+	<object name="Bone">
+		<object>
+			Bones
+		</object>
+	</object>
+	<object name="left">
+		<object>
+			A. carotis communis_left
+		</object>
+		<object>
+			Gl. parotis_left
+		</object>
+		<object>
+			Gl. submandibularis_left
+		</object>
+		<object>
+			Lymphnode_1
+		</object>
+		<object>
+			Lymphnode_10
+		</object>
+		<object>
+			Lymphnode_2
+		</object>
+		<object>
+			Lymphnode_3
+		</object>
+		<object>
+			Lymphnode_4
+		</object>
+		<object>
+			Lymphnode_5
+		</object>
+		<object>
+			Lymphnode_6
+		</object>
+		<object>
+			Lymphnode_7
+		</object>
+		<object>
+			Lymphnode_8
+		</object>
+		<object>
+			Lymphnode_9
+		</object>
+		<object>
+			M. sternocleidom._left
+		</object>
+		<object>
+			V. jugularis_left
+		</object>
+	</object>
+</ObjectNames>

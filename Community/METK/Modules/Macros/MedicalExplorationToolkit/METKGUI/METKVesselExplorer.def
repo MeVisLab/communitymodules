@@ -1,0 +1,20 @@
+UserGenres {
+   Genre METK {
+      Genre = METKGUI {
+         Title = GUI
+      }
+   }
+}
+
+
+MacroModule METKVesselExplorer {
+  genre = "METKGUI"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = "METK vessel explorer"
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKVesselExplorer.html"
+  externalDefinition = "$(LOCAL)/METKVesselExplorer.script"
+
+} // MacroModule METKVesselExplorer

@@ -1,0 +1,9 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=no
+
+[Script]
+[0] 'System' initLiver
+[0] 'Tumor' setColor red
+[0] 'LiverOrgan' view 'LiverOrgan' 80 -20 1.25

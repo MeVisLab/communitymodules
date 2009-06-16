@@ -1,0 +1,25 @@
+//----------------------------------------------------------------------------------
+//! UMDVisibilitySolver module definitions
+/*!
+// \file    UMDVisibilitySolver.def
+// \author  
+// \date    2007-04-16
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoVisibilitySolver {
+  DLL = "Viewpoint"
+
+  genre = ""
+  author = ""
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/ML/Viewpoint/UMDVisibilitySolver"
+  hasGroupInputs = FALSE
+
+} // InventorModule SoVisibilitySolver
+

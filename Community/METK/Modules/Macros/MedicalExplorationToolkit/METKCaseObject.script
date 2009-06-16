@@ -1,0 +1,56 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters { 
+      Field = Directory   { type = string value = "" persistent = FALSE }
+      Field = XMLFile   { type = string value = "" persistent = FALSE }
+      Field = Finding    { type = string value = "" persistent = FALSE }
+      Field = Order    { type = string value = "" persistent = FALSE }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   
+   // Include local functions
+   source = "$(LOCAL)/METKCaseObject.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+
+   FieldListener { 
+      listenField = Directory
+      listenField = XMLFile
+      listenField = Finding
+      listenField = Order
+      command = changed }
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+}
+
+
+Window METKCaseObject {
+   Vertical { 
+      panelName = caseInformationPanel
+      Vertical {
+          panelName = fileNamePanel
+          Field Directory {w = 500 browseButton = Yes browseMode = directory}
+          Field XMLFile {w = 500 browseButton = Yes browseMode = save}
+      }
+      Horizontal {
+          panelName = findingPanel
+          TextView Finding {w = 500 title = "Finding:" autoApply = Yes expandY = Yes}
+      }
+      Horizontal {
+          panelName = OrderPanel
+          TextView Order {w = 500 title = "Order:" autoApply = Yes expandY = Yes}
+      }
+   }
+}

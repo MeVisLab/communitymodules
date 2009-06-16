@@ -1,0 +1,61 @@
+//----------------------------------------------------------------------------------
+//! UMDInventorPointer module definitions.
+/*!
+// \file    UMDInventorPointer.def
+// \author  Konrad
+// \date    2006-02-02
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule UMDPointerToInventor
+//----------------------------------------------------------------------------------
+
+MLModule UMDInventorToPointer {
+  DLL            = "UMDInventorPointer"
+
+  genre          = ""
+  author         = "Konrad"
+  status         = "stable"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/UMDInventorToPointer.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDInventorPointer"
+  exampleNetwork     = "$(LOCAL)/Example/Beam.mlab"
+  Window UMDInventorToPointer {
+     Vertical {
+	    Field = objectID
+	    Field = layerID
+	    Field = infoID
+	    Field = Pointer { edit = No w = 200 }
+	 }
+  }
+} // MLModule UMDInventorToPointer
+
+
+
+MLModule UMDPointerToInventor {
+  DLL            = "UMDInventorPointer"
+
+  genre          = ""
+  author         = "Konrad"
+  status         = "stable"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/UMDPointerToInventor.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDInventorPointer"
+  exampleNetwork     = "$(LOCAL)/Example/Beam.mlab"
+
+  Window UMDPointerToInventor {
+     Vertical {
+	    Field = objectID
+	    Field = layerID
+	    Field = infoID
+	    Field = Pointer { edit = No w = 200 }
+	 }
+  }
+} // MLModule UMDPointerToInventor

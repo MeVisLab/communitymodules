@@ -1,0 +1,148 @@
+//----------------------------------------------------------------------------------
+//! METK2DLabeling module definitions.
+/*!
+// \file    METK2DLabeling.def
+// \author  Konrad Mühler
+// \date    2008-04-11
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METK2DLabeling
+//----------------------------------------------------------------------------------
+MLModule METK2DLabeling {
+	DLL            = "METK2DLabeling"
+
+	genre          = ""
+	author         = "Konrad Mühler"
+	status         = "work-in-progress"
+	comment        = "Module to label MCSM in 2d"
+	keywords       = ""
+	seeAlso        = ""
+	documentation  = "$(LOCAL)/html/METK2DLabeling.html"
+	projectSource  = "$(UserProjectsPath)/sources/ML/METK/METK2DLabeling"
+
+	Window {
+		Vertical {
+			Field enableLabeling { title="Enable Labeling" }
+
+			Empty { w=10 h=5 }
+
+			TabView {
+				mode=toolbox
+				expandX=true expandY=true
+
+
+				TabViewItem Appearance {
+					expandX=true expandY=true
+					tabTitle = "Appearance"
+					spacing=5
+					margin=5
+
+					Box LabelBox {
+						title = "Label Boxes"
+						layout = vertical
+						spacing=10
+						Field textColor { title="Text Color:" }
+						Field autoBoxColor { title="Auto Box Color:" }
+						Field boxColor { title="Box Color:" dependsOn=!autoBoxColor }
+						Field boxTransparency { title="Box Transparency:" }
+						Field borderColor { title="Border Color:" }
+						Field innerBorder { title="Inner Box Border:" }
+						Empty { w=10 h=2 }
+					}
+
+					Box Lines {
+						title = "Lines & Distances"
+						layout = vertical
+						spacing=10
+						Field lineColor { title="Line Color:" }
+						Field borderDistance { title="Distance Comp<->Label:" }
+						Empty { w=10 h=2 }
+					}
+					
+					Field sendCSO { title="Send CSO to METKManager" }
+					Field CSO { title="Selected Object:" edit=false }
+
+					VSpacer {w=10}
+				}
+
+				TabViewItem Thresholds {
+					expandX=true expandY=true
+					tabTitle = "Thresholds for Drawing Styles"
+					spacing=5
+					margin=5
+
+					Field encircleSize { title="Encircle Size Limit:" }					
+					Field maxGroupDistance { title="Max. Distance for Grouping:" }
+					Field minCompSize { title="Min. Size of a Component:" }
+					Field transpThreshold { title="Threshold for Importants:" }
+
+					VSpacer {w=10}
+				}
+
+				TabViewItem Debug {
+					expandX=true expandY=true
+					tabTitle = "Debug Facilities"
+					spacing=5
+					margin=5
+
+					Field debugState { title="Debug State:" }
+					Field slice { title="Slice:" }
+					Field maxConflictIterations { title="Iterations to solve Conflicts:" }
+					Field optFactor { title="Speed up Factor (rec.:2):" }
+					Field useAdditionalMask { title="Use extra Mask (Hals12 only):" }
+
+					Box Step {
+						title = "Step by Step"
+						layout = vertical
+						spacing=5
+						margin=5						
+
+						Button calculate { title="Calculate All" alignX=Center }
+						Button initPlacement { title="Initial Placement" alignX=Center }
+						Button refine { title="Refine" alignX=Center }
+						Button refineSingleStep { title="Refine single step" alignX=Center }
+					}
+
+					Box Output {
+						title = "Debug Output"
+						layout = vertical
+						spacing=5
+						margin=5						
+
+						Label { title="Inspection Output Field:" }
+						Field debugOutput { title="" }
+
+						Empty { w=10 h=10 }
+
+						Horizontal {
+							Label { title="AnchorPoint to inspect:" }
+							NumberEdit anchorPointInspection { step=1 minLength=3 }
+						}
+					}
+
+					VSpacer {w=10}
+				}	
+			} //TabView
+		} //Vertical
+	} //Window	
+		
+} // MLModule METK2DLabeling
+
+
+
+
+
+
+InventorModule SoDraw2DLabels {
+  DLL            = "METK2DLabeling"
+
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+}

@@ -1,0 +1,160 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "1353 557 96 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoLabel {
+  internal  {
+    frame = "1257 713 80 64"
+    windows  {
+      window _default {
+        geometry = "114 133 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = label
+    label = "*"abcdef"*"
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1133 705 72 64"
+    windows  {
+      window _default {
+        geometry = "165 136 543 408"
+        sizeHint = "543 408"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 0
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Files
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module LocalSoFile {
+  internal  {
+    frame = "1361 713 96 64"
+    windows  {
+      window _default {
+        geometry = "194 298 522 211"
+        sizeHint = "522 211"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "136 155 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = file
+    name = $(NETWORK)/empty.iv
+  }
+  internalFields = ""
+}
+module UMDBoundingBoxCalculator2 {
+  internal  {
+    frame = "1041 469 192 56"
+    windows  {
+      window _default {
+        geometry = "92 111 334 192"
+        sizeHint = "334 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDBoundingBoxCalculator2
+    boundingBoxString = "3.40282e+038 3.40282e+038 3.40282e+038 0 0 0 -3.40282e+038 -3.40282e+038 -3.40282e+038 0 0 0"
+    boundingBoxMin = "3.40282e+38 3.40282e+38 3.40282e+38"
+    boundingBoxMax = "-3.40282e+38 -3.40282e+38 -3.40282e+38"
+    objectCenter = "0 0 0"
+    boxCenter = "0 0 0"
+  }
+}
+module UMDInventorToPointer {
+  internal  {
+    frame = "1297 229 160 56"
+    windows  {
+      window _default {
+        geometry = "852 148 210 217"
+        sizeHint = "210 217"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDInventorToPointer
+    priority = 10000
+    debugComment = ""
+    Pointer = 459882360
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+connections  {
+  SoGroup.children = "label.self file.outputNode"
+  info.acceptedObjects = info.searchObjPattern
+  UMDBoundingBoxCalculator2.inputObject = SoGroup.self
+  UMDInventorToPointer.inObjectContainer = info.outObjectContainer
+  UMDInventorToPointer.inInventor = SoGroup.self
+}

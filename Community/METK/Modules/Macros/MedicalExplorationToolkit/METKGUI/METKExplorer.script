@@ -1,0 +1,359 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKExplorer
+/*!
+// \file    METKExplorer.script
+// \author  Konrad
+// \date    2006-01-26
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = externalObjMgr.inObjectContainer }
+  }
+  Outputs {}
+  Parameters {
+     Field objID { internalName = METKHierarchyBrowser.selectedObjId persistent = FALSE }       
+     Field updateObject { type = trigger }          
+     Field objNamesEnum { type = string persistent = FALSE }
+     Field parentsEnum { type = string persistent = FALSE }
+     Field caseType { type = string value="Liver,HNO" }
+     Field selectedCaseType { type = string value="Liver" }
+     Field updateList { internalName = METKHierarchyBrowser.updateView}
+     Field internalObjMgr { type = bool  value = true}
+     Field showAllObjects { internalName = METKHierarchyBrowser.allObjects }          
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+
+  source = $(LOCAL)/METKExplorer.py
+  
+  initCommand = init
+     
+  FieldListener updateObject { callLater = false command = updateObject }
+  FieldListener objID        { callLater = true  command = updateObject }  
+  FieldListener selectedCaseType { callLater = true  command = caseTypeChanged }  
+  FieldListener internalObjMgr { command = changeObjMgr }     
+  FieldListener GenerateVesselSender.done { command = nextVessel }     
+}
+
+
+
+Window {  
+       style = kStyle
+       bgMode = SmoothStretch
+       
+       shouldCloseCommand = closeWindow              
+   
+       width = 800
+       height = 800
+              
+
+   Vertical {
+   
+      expandX=TRUE
+      expandY=TRUE            
+   
+          MenuBar {
+             SubMenu "File" {
+            MenuItem "Open ..." {
+               name = openCase 
+               command = openCase
+            }
+   
+            MenuItem "Save" {
+               name = saveCase 
+               command = saveCase
+            }
+            MenuItem "Save As ..." {
+               name = saveCase 
+               command = saveCaseAs
+            }
+            Separator {direction = horizontal}
+            MenuItem "Quit" {
+               name = exit 
+               command = exit
+            }
+         }//SubMenu
+          } //MenuBar
+                 
+          Empty { h = 5 }
+
+      Horizontal {
+         expandX=TRUE expandY=TRUE
+         
+         Empty { w = 10 }
+
+         Splitter { direction = horizontal
+            Vertical {
+               expandX = FALSE
+               expandY = TRUE         
+               w = 300
+
+               Horizontal {
+                  expandX=TRUE
+                  Label { title = "Case Type:"}
+                  Combobox selectedCaseType {
+                     expandX=TRUE
+                     comboField = caseType
+                     //textChangedCommand = caseTypeChanged
+                  }
+               }
+               
+               Checkbox internalObjMgr {
+                  title = "Use internal ObjMgr"
+               }
+
+               TabView {
+                  //mode = invisible
+                  expandX=TRUE expandY=TRUE
+                  panelName = Browser
+
+                  TabViewItem Hierarchy {      
+                     expandX=TRUE expandY=TRUE
+
+                     Panel {
+                        module = METKHierarchyBrowser
+                     }
+                  }
+
+                  TabViewItem StructureGroup {
+                     expandX=TRUE expandY=TRUE
+
+                     Panel {
+                        module = METKStructureGroupBrowser
+                     }                  
+                  }
+
+               }
+
+               Horizontal {
+                  expandX = FALSE
+                  expandY = FALSE
+
+                  Button updateList {
+                     title = "Update List"            
+                  }
+
+                  Checkbox showAllObjects {
+                     title = "Show all objects"
+                  }
+               }
+               
+               Horizontal {               
+                  
+                  Checkbox METKManager.computeSurfaces {
+                     title = "Generate IVFiles on start"
+                  }
+                  
+                  Button {
+                     title = "Delete objects without existing IV file"
+                     command = deleteNonIVObjects
+                  }
+               }
+            }
+
+
+
+            Vertical {
+               margin = 0
+               spacing = 5
+               expandX=TRUE
+               expandY=TRUE                              
+
+               TabView {
+                  //x=0 y=1 x2=1
+                  expandX=TRUE  expandY=TRUE
+
+                  TabViewItem Hierarchy { 
+                     expandX=TRUE expandY=TRUE            
+
+                     Vertical {
+
+                        margin=0
+                        spacing=5
+                        expandX=TRUE expandY=TRUE                     
+
+                        Empty { h = 10 }
+
+                        Box {                        
+                           expandX=TRUE                        
+                           title="Object Name"
+                           Grid {
+                              margin=0
+                              spacing=5                              
+                              expandX=TRUE
+
+                              Field objID {
+                                 x=0 y=0 x2=2
+                                 title = "ObjID:"
+                                 alignGroup = 1
+                              }
+
+                              Label { x=0 y=1 title = "ObjName:" alignGroup = 1}
+
+                              Combobox {
+                                 x=1 y=1
+                                 name = comboObjName
+                                 autoComplete = TRUE
+                                 expandX=TRUE                        
+                                 comboField = objNamesEnum
+                                 textChangedCommand = objNamesCombo                                                
+                              }
+
+                              Button {
+                                 expandX=FALSE
+                                 x=2 y=1
+                                 title = "Rename Object"
+                                 command = renameObject
+                              }
+                           }
+                        } //Box
+
+                        Box {                        
+                           title = "Object location"
+                           expandX=TRUE expandY=FALSE
+                           layout = horizontal
+                           Button { command=deleteObject title="Delete Object" accel = Ctrl+D tooltip = "Ctrl + D" }
+                           Button { command=changeParent title="Change Parent" }
+                        }
+                        
+                        Box {                        
+                           title = "Vessel Generation"
+                           expandX=TRUE expandY=FALSE
+                           layout = vertical
+                           Horizontal {
+                              expandX=FALSE expandY=FALSE
+                              Button { command=generateVessel title="Create Vessel-IV for this object" }
+                              //Field METKGenerateVesselIV.skeletThinningMode {  }                              
+                              Checkbox GenerateVesselSender.done { title="Done" edit=False }
+                              //Field METKGenerateVesselIV.polyBinarySubDivision { title="BinSubDev"  }
+                              CheckBox METKGenerateVesselIV.useTraceColors {}
+                              CheckBox METKGenerateVesselIV.setTraceColorsAsColors {}
+                           }
+                           Horizontal {
+                              Button { command=generateVesselAll title="Generate new IV for all vessels" }
+                              Button { command=reloadObject title="Reload inventor file" }                              
+                              Empty {}
+                              Empty {}
+                           }
+                           /*Horizontal {
+                              Button { command=setPersitent title = "Set visual parameter persistent" }
+                           }*/
+                           
+                        }
+                        
+
+                        Box {                                                
+                           title = "Description Info"
+                           expandX=TRUE expandY=TRUE
+                           Panel {                        
+                              expandX=TRUE expandY=TRUE
+                              module = DescriptionTags
+                           }
+                        }                                 
+                     } //Vertical                  
+                  } //TabViewItem
+
+
+                  TabViewItem "Visual Parameter" {
+                     expandX = true  expandY = true
+                     panelName = visualParameter
+
+                     Vertical {
+                        expandX = true  expandY = true
+                        Panel {
+                           module = METKObjBrowser
+                           panel = panelParameter
+                           expandX = true expandY = true
+                        }
+
+                        Panel {
+                           module = METKObjBrowser
+                           panel = panelViewer
+                           expandX = true expandY = true
+                        }
+                     }
+                  }
+
+                  TabViewItem "Viewer" {
+                     expandX=true  expandY=true
+                     Panel {
+                        module = METKViewer3D
+                     }
+                  }
+
+               }//TabView
+
+               Box {
+                  title = "Object attributes"               
+                  expandX=TRUE expandY=TRUE
+                  Panel {            
+                     expandX=TRUE expandY=TRUE
+                     module = METKSingleObjInfo
+                     window = ListViewOnly
+                  }      
+               }
+
+               Button updateObject {
+                  //x=0  y=3
+                  title = "Update Values"
+                  alignX = Left
+               }   
+
+            } //Vertical
+         } //Splitter
+         
+         Empty { w = 10 }      
+      } //Horizontal
+      Empty { h = 9 }
+   }// Vertical for MenuBar
+   
+   Execute = openWindow
+}
+
+
+Window winChangeParent {  
+   style = kStyle
+       bgMode = SmoothStretch
+   title = "Change Parent"
+   Horizontal {
+      expandX=yes  expandY=no
+      Empty { w = 10 }
+      Vertical {      
+         Empty { h = 10 }
+         Combobox {
+            name = comboNewParent
+            autoComplete = TRUE
+            expandX=TRUE
+            comboField = parentsEnum
+         }
+         Empty { h = 10 }
+         Horizontal {
+            expandX=yes  expandY=no
+            Button {fh=25 alignX = Center title = "OK" command = closeWinChangeParentYes}
+            Button {fh=25 alignX = Center title = "Cancel" command = closeWinChangeParentCancel}
+         }
+         Empty { h = 1 }
+      } // Vertical
+      Empty { w = 10 }
+   } //Horizontal
+   
+   Execute = openWinChangeParent
+   
+} // Window winChangeParent
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

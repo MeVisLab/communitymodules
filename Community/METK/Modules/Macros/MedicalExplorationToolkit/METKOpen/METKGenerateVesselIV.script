@@ -1,0 +1,34 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = METKMsgReceiver.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = METKMsgReceiver.outObjectContainer }
+   }
+   Parameters  {
+      Field IVFilename { internalName =  SoSceneWriterMD.fileName }
+      Field ready { type=bool value=false }
+      Field generateIV { type=trigger }      
+      Field defaultColor { type=color value="0.8 0.8 0.8" }
+      Field useTraceColors { type=bool value=false }
+      Field setTraceColorsAsColors { type=bool value=false }
+   }
+
+} // Interface 
+
+Commands  {
+   // Include local functions
+   importPath = "$(LOCAL)/.."
+   source = "$(LOCAL)/METKGenerateVesselIV.py"
+
+   // --- Commands
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener METKMsgReceiver.data       { command = requestReceived }
+   FieldListener SoShapePartition.valid       { command = shapeCreated }   
+   FieldListener SoExtractColoredFaces.valid       { command = facesExtracted }   
+   //FieldListener generateIV { command = generate callLater=true }
+   FieldListener SoSceneWriterMD.fileSaved{ command = saved }
+   
+} // Commands

@@ -1,0 +1,48 @@
+\documentclass[a4paper,12pt]{scrartcl}
+
+\usepackage[T1]{fontenc}        % Use EC fonts
+\usepackage[latin1]{inputenc}  % Compatibility with Umlauts
+
+\begin{document}
+
+
+\section*{METKDemonstrator - Short Documentation}
+
+Der METKDemonstrator dient der schnellen Präsentation einiger grundlegender Techniken des MedicalExplorationToolkits (METK).
+
+\subsection*{Laden eine Falles}
+
+Neben dem Demo-Datensatz (einem HNO-Fall) können beliebige eigene Fälle geladen werden, so sie denn mit dem NeckSegmenter bzw. NeckVision der Uni Magdeburg oder HepaVision von MeVis erstellt wurden. Beim Laden von HepaVision Fällen ist zu beachten, dass die XML-Datei des Falles schon im ObjMgr-Format vorliegen muss, da die Konvertierung des Ursprungs HepaVision-Formats nicht (mehr) funktioniert.
+
+Die XML-Datei des Falles muss außerdem im Verzeichnis der Segmentierungsmasken und Bilddaten liegen oder die Verweise auf Daten in Unterverzeichnissen müssen in der XML-Datei entsprechend vorhanden sein. Automatisch aus einem \texttt{datasets}-Pfad geladen, wie es bei MeVis gemacht wird, wird nichts. Die Segmentierungsergebnisse und alles was sonst noch gebraucht wird, wird relativ zur XML-Datei geladen.
+
+Um einen HepaVision-Fall also laden zu können, muss also die ObjMgr-XML-Datei des Falles zu den anderen Daten kopiert und von dort geladen werden.
+
+Das erstmalige Laden eines Falles dauert etwas länger, da hier die Inventor-Objekte als Dateien im Datenverzeichnis erzeugt werden. Danach geht das Laden und anzeigen der Strukturen um so schneller.
+
+\subsection*{3D-Viewer}
+Im 3D-Viewer kann wie gewohnt navigiert werden. Werden Objekte selektiert, so "`fliegt"' die Kamera an sie heran. Dazu muss nicht in den Selektionsmodus geschaltet werden. Einfaches klicken mit der "`Hand"' reicht.
+
+\subsection*{Strukturbrowser}
+
+Rechts oben befinden sich 2 Arten von Strukturbrowsern, wie sie im METK zum Einsatz kommen. Der Hierarchy-Browser bildet die Parent-Child-Struktur eines Datensatzes ab. Gewöhnlich werden hier die ROIs und die aus ihnen segmentierten Strukturen dargestellt. Im StruktureGroup-Browser werden nur die segmentierten Strukturen dargestellt. Sie werden gruppiert entsprechend ihres \texttt{StructrueGroup}-Eintrags im \texttt{Description}-Layer.
+
+Durch das Häkchen können einzelne Strukturen oder ganze Gruppen sichtbar und unsichtbar gemacht werden.
+
+
+\subsection*{Visualisierungseigenschaften}
+
+In der Mitte rechts können die Visualisierungseigenschaften wie Farbe und Transparenz einzelner Strukturen verändert werden. Es wird dabei die Struktur angepasst, die im aktuellen Browser selektiert ist. Beim StructureGroup-Browser muss (derzeit noch) wirklich eine Struktur (Blatt des Baums) ausgewählt sein. Beim Hierarchy-Browser können auch Elternknoten gewählt werden. Die eingestellten Eigenschaften werden dann für alle Childs gesetzt.
+
+
+\subsection*{Selected Object}
+
+In diesem kleinen Viewer wird das aktuell selektierte Objekt angezeigt, so es denn im 3D-Viewer selektiert wurde. Man könnte diesen Viewer auch zusätzlich mit den Browsern koppeln, nur das wäre zu verwirrend für einen ersten Eindruck. Deswegen hier also nur das im 3D-Viewer selektierte Objekt.
+
+
+\subsection*{Collections}
+
+Der aktuelle Status aller Visualisierungsparameter einschließlich der Kamera kann durch eine Collection festgehalten und gespeichert werden. Wird eine schon bestehende Collection in der Liste selektiert, so wird sie geladen und animiert eingeblendet.
+
+
+\end{document}

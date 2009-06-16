@@ -1,0 +1,21 @@
+UserGenres {
+   Genre = METK {
+      Genre = METKSceneOptimization {
+         Title = SceneOptimization
+      }
+   }
+}
+
+
+MacroModule METKCorrelationNetwork {
+   author             = "Kerstin Kellermann, Christian Tietjen"
+   status             = "test"
+   comment            = ""
+   keywords           = ""
+   seeAlso            = ""
+   //exampleNetwork     = "$(LOCAL)/networks/METKCorrelationNetwork.mlab"
+   scriptOnly         = NO
+   externalDefinition = "$(LOCAL)/METKCorrelationNetwork.script"
+   genre              = "METKSceneOptimization"
+   //documentation      = "http://www.metk.net/METKDocumentation/METKCorrelationNetwork.html"
+}

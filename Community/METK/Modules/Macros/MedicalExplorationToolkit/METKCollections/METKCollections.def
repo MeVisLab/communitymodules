@@ -1,0 +1,11 @@
+MacroModule METKCollections {
+   genre              = "METKMisc"
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK collections ObjMgr case screenshot"
+   seeAlso            = ""
+   externalDefinition = "$(LOCAL)/METKCollections.script"
+   documentation      = "http://www.metk.net/METKDocumentation/METKCollections.html"
+   exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKCollections.mlab"
+}

@@ -1,0 +1,24 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Label3DDemo {
+  internal  {
+    frame = "501 269 104 56"
+    windows  {
+      window _default {
+        geometry = "536 271 820 541"
+        sizeHint = "820 541"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Label3DDemo
+    METKStructureGroupBrowser = ""
+    LastXMLFile = E:/HNO/Hals12/Hals12_LabelDebug.nsp.xml
+  }
+  internalFields = ""
+}
+connections = ""

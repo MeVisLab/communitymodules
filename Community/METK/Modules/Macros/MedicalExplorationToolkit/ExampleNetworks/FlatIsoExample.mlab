@@ -1,0 +1,197 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKObjBrowser {
+  internal  {
+    frame = "153 261 128 56"
+    windows  {
+      window _default {
+        geometry = "205 210 700 600"
+        sizeHint = "700 600"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "157 109 104 56"
+    windows  {
+      window _default {
+        geometry = "60 361 821 347"
+        sizeHint = "530 347"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "665 249 192 64"
+    windows  {
+      window _default {
+        geometry = "556 503 277 237"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 374 400 320"
+        sizeHint = "400 320"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SwitchFlatIso
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = FlatIso
+  }
+  internalFields = ""
+}
+module METKSilhouette {
+  internal  {
+    frame = "533 253 120 56"
+    windows  {
+      window _default {
+        geometry = "585 136 235 203"
+        sizeHint = "235 203"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "532 453 223 163"
+        sizeHint = "223 163"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "421 157 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "397 61 120 56"
+    windows  {
+      window _default {
+        geometry = "1662 142 200 200"
+        sizeHint = "238 216"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = FALSE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "31.9864 -185.524 94.55800000000001"
+    camOrientation = "0.990668 0.102181 0.0901959 1.59607"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "337 269 128 56"
+    windows  {
+      window _default {
+        geometry = "854 494 196 174"
+        sizeHint = "196 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "481 365 112 56"
+    windows  {
+      window _default {
+        geometry = "731 296 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12.nsp.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKObjBrowser.inObjectContainer = METKManager.outObjectContainer
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  SwitchFlatIso.inObjectContainer = METKManager.outObjectContainer
+  METKSilhouette.inObjectContainer = METKManager.outObjectContainer
+  SoSeparator.children = "METKIsoSurface.outInventor METKSilhouette.outInventor"
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = SoSeparator.self
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

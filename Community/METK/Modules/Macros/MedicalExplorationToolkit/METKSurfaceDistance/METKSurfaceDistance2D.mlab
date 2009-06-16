@@ -1,0 +1,241 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2DContour {
+  internal  {
+    frame = "1057 461 144 56"
+    windows  {
+      window _default {
+        geometry = "1072 553 469 352"
+        sizeHint = "258 352"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1067 440 385 445"
+        sizeHint = "385 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DContour2
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 1
+    quality = 1
+    contour_color = "0.2 1 0.2"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.8000000119
+    drawLines = TRUE
+    pointSize = 1
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = FALSE
+    currentContour = 0
+    displayNumberContours = 0
+    displayStatus = "No image"
+    displayLegend = FALSE
+    stringOut = ""
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 0
+    activeStipple = FALSE
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "881 461 144 56"
+    windows  {
+      window _default {
+        geometry = "578 550 469 352"
+        sizeHint = "258 352"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "648 437 385 445"
+        sizeHint = "385 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DContour1
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 1
+    quality = 1
+    contour_color = "0.2 1 0.2"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.8000000119
+    drawLines = TRUE
+    pointSize = 1
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = FALSE
+    currentContour = 0
+    displayNumberContours = 0
+    displayStatus = "No image"
+    displayLegend = FALSE
+    stringOut = ""
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 0
+    activeStipple = FALSE
+  }
+}
+module OrthoReformat3 {
+  internal  {
+    frame = "893 573 120 56"
+    windows  {
+      window _default {
+        geometry = "48 67 234 208"
+        sizeHint = "234 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoReformat3
+    useGlobalInputImage = FALSE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "897 341 128 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module Bypass {
+  internal  {
+    frame = "917 653 72 56"
+  }
+  fields  {
+    instanceName = Bypass
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module SoView2DContour {
+  internal  {
+    frame = "717 461 136 56"
+    windows  {
+      window _default {
+        geometry = "29 58 469 352"
+        sizeHint = "258 352"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "218 441 385 445"
+        sizeHint = "385 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DContour
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = -2
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    density = 1
+    quality = 1
+    contour_color = "0.2 1 0.2"
+    linePattern = 65535
+    smoothingPasses = 0
+    smoothingFactor = 0.8000000119
+    drawLines = TRUE
+    pointSize = 1
+    drawOrthogonals = FALSE
+    invertDirection = FALSE
+    interactiveDensity = FALSE
+    currentContour = 0
+    displayNumberContours = 0
+    displayStatus = "No image"
+    displayLegend = FALSE
+    stringOut = ""
+    activeThicker = FALSE
+    minDensityValue = 0
+    maxDensityValue = 0
+    activeStipple = FALSE
+  }
+}
+connections  {
+  SoView2DContour2.image = OrthoReformat3.output2
+  SoView2DContour2.density = SoView2DContour.density
+  SoView2DContour2.contour_color = SoView2DContour.contour_color
+  SoView2DContour2.drawLines = SoView2DContour.drawLines
+  SoView2DContour2.interactiveDensity = SoView2DContour.interactiveDensity
+  SoView2DContour2.triggerAddContour = SoView2DContour.triggerAddContour
+  SoView2DContour2.triggerRemoveAll = SoView2DContour.triggerRemoveAll
+  SoView2DContour1.image = OrthoReformat3.output1
+  SoView2DContour1.density = SoView2DContour.density
+  SoView2DContour1.contour_color = SoView2DContour.contour_color
+  SoView2DContour1.drawLines = SoView2DContour.drawLines
+  SoView2DContour1.interactiveDensity = SoView2DContour.interactiveDensity
+  SoView2DContour1.triggerAddContour = SoView2DContour.triggerAddContour
+  SoView2DContour1.triggerRemoveAll = SoView2DContour.triggerRemoveAll
+  OrthoReformat3.input0 = Bypass.output0
+  SoGroup.children = "SoView2DContour.self SoView2DContour1.self SoView2DContour2.self"
+  SoView2DContour.image = OrthoReformat3.output0
+}

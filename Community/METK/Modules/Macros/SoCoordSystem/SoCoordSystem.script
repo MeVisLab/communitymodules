@@ -1,0 +1,34 @@
+//----------------------------------------------------------------------------------
+//! Macro module SoCoordSystem
+/*!
+// \file    SoCoordSystem.script
+// \author  Konrad Mühler
+// \date    2004-12-01
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {
+  
+  Field self { internalName = "SoSeparator.self" }
+  
+  }
+  Parameters {
+     Field scale { internalName = SoTransform.scaleFactor }  
+  }
+}
+
+
+Commands {
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2004-08-16T01:23:39
+//# hash: aaEx+scnEFCdHXdoWBYtGyvqVjdaMy35wyl2M5UFxLerrkBSaFFR/Jpm6ZY6R5o2QqhRXWgGf4dAWtFBlXiSnA==
+//# MeVis end

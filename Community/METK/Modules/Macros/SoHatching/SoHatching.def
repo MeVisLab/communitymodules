@@ -1,0 +1,18 @@
+//----------------------------------------------------------------------------------
+//! SoHatching module definition
+/*!
+// \file    SoHatching.def
+// \author  Roland Pfisterer
+// \date    2007-11-07
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule SoHatching {
+   author             = "Roland Pfisterer"
+   status             = "stable"
+   comment            = "simple hatching shader, can be used together with SoShadingMap"
+   keywords           = "NPR hatching shader"
+   seeAlso            = "SoShadingMap"
+   externalDefinition = "$(LOCAL)/SoHatching.script"
+   exampleNetwork     = "$(LOCAL)/SoHatchingExample.mlab"
+}

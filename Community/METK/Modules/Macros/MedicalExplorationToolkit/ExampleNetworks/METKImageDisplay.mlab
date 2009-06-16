@@ -1,0 +1,130 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "997 277 120 56"
+    windows  {
+      window _default {
+        geometry = "443 459 400 133"
+        sizeHint = "400 133"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+    listenToROI = ROI1
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "801 357 176 56"
+    windows  {
+      window _default {
+        geometry = "596 687 400 133"
+        sizeHint = "400 133"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = ""
+    imgValues = ""
+    listenToROI = ROI1
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "945 429 112 56"
+    windows  {
+      window _default {
+        geometry = "77 238 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "901 109 120 56"
+    windows  {
+      window _default {
+        geometry = "189 154 526 502"
+        sizeHint = "300 300"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "788 163 340 343"
+        sizeHint = "340 343"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer2D
+    annotations = FALSE
+    layoutMode = LAYOUT_AXIAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.275000006
+    windowWidth = 0.1424999982
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "825 277 128 56"
+    windows  {
+      window _default {
+        geometry = "156 626 400 191"
+        sizeHint = "400 191"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKOverlay2D
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+    listenToROI = ROI1
+  }
+  internalFields = ""
+}
+connections  {
+  METKROISelect.inObjectContainer = METKManager.outObjectContainer
+  METKCodedSegmentation.inObjectContainer = METKManager.outObjectContainer
+  METKViewer2D.inObjectContainer = METKOverlay2D.outObjectContainer
+  METKViewer2D.input = METKOverlay2D.overlay
+  METKViewer2D.soview2d = METKROISelect.image
+  METKOverlay2D.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKOverlay2D.image = METKCodedSegmentation.image
+}

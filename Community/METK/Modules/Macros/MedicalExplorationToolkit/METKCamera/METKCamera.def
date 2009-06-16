@@ -1,0 +1,14 @@
+
+
+MacroModule METKGenerateCamData {
+  genre = "METKViewpoint"
+  author = "Konrad Mühler, Mathias Neugebauer"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKGenerateCamData.script"
+
+} // MacroModule METKGenerateCamData
+

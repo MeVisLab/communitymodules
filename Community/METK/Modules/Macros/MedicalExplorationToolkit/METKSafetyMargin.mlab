@@ -1,0 +1,212 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "337 345 160 64"
+    windows  {
+      window _default {
+        geometry = "543 349 181 370"
+        sizeHint = "181 370"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = iter
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Description
+    infoID = Margin
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ImgSave {
+  internal  {
+    frame = "529 125 80 56"
+    windows  {
+      window _default {
+        geometry = "440 391 423 360"
+        sizeHint = "423 360"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = ""
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = FALSE
+    sourceName = ""
+    postfix = .result1
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = LZW
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module IntervalThresh {
+  internal  {
+    frame = "513 205 112 56"
+    windows  {
+      window _default {
+        geometry = "451 359 384 351"
+        sizeHint = "384 351"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IntervalThresh
+    lowerType = UserDef
+    innerType = UserDef
+    upperType = UserDef
+    imageMin = -100000
+    imageMax = 100000
+    imageRange = 200000
+    threshCenter = 2.5
+    threshWidth = 5
+    threshMin = 0
+    threshMax = 5
+    lowerUserValue = 0
+    innerUserValue = 1
+    upperUserValue = 0
+    changeMinMax = FALSE
+    changedMin = -100000
+    changedMax = 100000
+  }
+}
+module EuclideanDTF {
+  internal  {
+    frame = "521 277 112 56"
+    windows  {
+      window _default {
+        geometry = "568 216 434 357"
+        sizeHint = "434 357"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "373 75 438 554"
+        sizeHint = "287 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = EuclideanDTF
+    outputMode = DistanceOnly
+    dtfPrecision = FloatPrecision
+    distanceScaling = 1
+    applyTime = OnRequest
+    dimension = 3D
+    minValue = 1
+    maxValue = 1
+    cacheSizeKB = -1
+    selectedAlgorithm = AutoSelectFastest
+    autoUpdateMode = Off
+    autoUpdateTime = ImmediatelyOnInputChange
+    progress = 0
+  }
+}
+module METKLoadSegMask {
+  internal  {
+    frame = "505 349 144 56"
+  }
+  fields  {
+    instanceName = METKLoadSegMask
+    objID = ""
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "541 433 72 64"
+    windows  {
+      window _default {
+        geometry = "300 54 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Clipping
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  iter.inObjectContainer = info.outObjectContainer
+  ImgSave.input0 = IntervalThresh.output0
+  IntervalThresh.input0 = EuclideanDTF.output0
+  EuclideanDTF.input0 = METKLoadSegMask.mask
+  METKLoadSegMask.inObjectContainer = info.outObjectContainer
+}

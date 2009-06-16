@@ -1,0 +1,25 @@
+UserGenres {
+   Genre METK {
+      Genre = METKGUI {
+         Title = GUI
+      }
+   }
+}
+
+
+MacroModule METKExplorer {
+  genre = "METKGUI"
+  author = "Konrad Mühler, Christian Tietjen"
+  status = "work-in-progress"
+  comment = ""
+  keywords = "METK explorer"
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKExplorer.html"
+  externalDefinition = "$(LOCAL)/METKExplorer.script"
+
+} // MacroModule METKExplorer
+
+
+DefineStyle METKExplorer.default {
+	derive = kStyle
+}

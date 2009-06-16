@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! METKAutoFading module definitions.
+/*!
+// \file    UMDMETKAutoFading.def
+// \author  Konrad Mühler
+// \date    2007-06-18
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKAutoFading
+//----------------------------------------------------------------------------------
+MLModule METKAutoFading {
+  DLL            = "Viewpoint"
+
+  genre          = "METKAnimation"
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  //documentation  = "$(LOCAL)/html/METKAutoFading.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/Viewpoint/METKAutoFading"
+  externalDefinition = "$(LOCAL)/METKAutoFading.script"
+
+} // MLModule METKAutoFading
+

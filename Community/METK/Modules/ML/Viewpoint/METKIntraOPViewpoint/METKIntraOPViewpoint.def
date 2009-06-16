@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------------
+//! METKIntraOPViewpoint module definitions.
+/*!
+// \file    METKIntraOPViewpoint.def
+// \author  Konrad Mühler
+// \date    2007-07-30
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKIntraOPViewpoint
+//----------------------------------------------------------------------------------
+MLModule METKIntraOPViewpoint {
+  DLL            = "Viewpoint"
+
+  genre          = "METKViewpoint"
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  //documentation  = "$(LOCAL)/html/METKIntraOPViewpoint.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/Viewpoint/METKIntraOPViewpoint"
+
+} // MLModule METKIntraOPViewpoint
+

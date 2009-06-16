@@ -1,0 +1,220 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSphere {
+  internal  {
+    frame = "973 453 88 56"
+    windows  {
+      window _default {
+        geometry = "224 243 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSphere
+    radius = 4
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "885 365 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "385 29 176 56"
+    windows  {
+      window _viewer {
+        geometry = "462 730 400 402"
+        sizeHint = "400 402"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "180 199 453 445"
+        sizeHint = "453 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1.000000 1.000000 1.000000"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0.000000 0.000000 1.000000 0.000000"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-3.234740 -12.285400 13.059800"
+    orientation = "0.630231 -0.435809 0.642556 1.026700"
+    nearDistance = 11.93309975
+    farDistance = 24.51860046
+    focalDistance = 18.21960068
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    rotationAxis = "0.000000 1.000000 0.000000"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "305 157 160 56"
+    windows  {
+      window _default {
+        geometry = "85 495 211 217"
+        sizeHint = "211 217"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 282782544
+    objectID = 4444
+    layerID = eee
+    infoID = rrr
+  }
+}
+module SoCube {
+  internal  {
+    frame = "801 445 80 56"
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "437 333 104 56"
+    windows  {
+      window _default {
+        geometry = "949 643 453 354"
+        sizeHint = "453 354"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "597 413 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+    networkMode = NotConnected
+    networkAddress = ""
+    networkPort = 7623
+    commOnlyMarkedInfo = TRUE
+  }
+}
+module UMDInventorToPointer {
+  internal  {
+    frame = "793 261 160 56"
+    windows  {
+      window _default {
+        geometry = "622 107 210 217"
+        sizeHint = "210 217"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDInventorToPointer
+    priority = 10000
+    debugComment = ""
+    Pointer = 282782544
+    objectID = 4444
+    layerID = eee
+    infoID = rrr
+  }
+}
+connections  {
+  SoSeparator.children = "SoCube.self SoSphere.self"
+  SoCustomExaminerViewer.children = UMDPointerToInventor.outInventor
+  UMDPointerToInventor.inObjectContainer = ObjMgr.outObjectContainer
+  ObjInspector.inObjectContainer = ObjMgr.outObjectContainer
+  UMDInventorToPointer.inObjectContainer = ObjMgr.outObjectContainer
+  UMDInventorToPointer.inInventor = SoSeparator.self
+}

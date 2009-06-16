@@ -1,0 +1,57 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKGlobalMessages {
+  internal  {
+    frame = "509 213 168 56"
+    windows  {
+      window _default {
+        geometry = "2000 155 220 87"
+        sizeHint = "220 87"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKGlobalMessages1
+    priority = 10000
+    debugComment = ""
+    lastMessage = Loaded
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "477 389 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+  }
+}
+module METKGlobalMessages {
+  internal  {
+    frame = "321 213 160 56"
+    windows  {
+      window _default {
+        geometry = "1736 155 220 87"
+        sizeHint = "220 87"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKGlobalMessages
+    priority = 10000
+    debugComment = ""
+    lastMessage = Loaded
+  }
+}
+connections  {
+  METKGlobalMessages1.inObjectContainer = ObjMgr.outObjectContainer
+  METKGlobalMessages.inObjectContainer = ObjMgr.outObjectContainer
+}

@@ -1,0 +1,939 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKSaveCase {
+  internal  {
+    frame = "325 197 120 56"
+    windows  {
+      window _automatic {
+        geometry = "645 403 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSaveCase
+    fileName = "G:/Leber/Tumor/Berlin20060310_Pat_H_C/Fall im LST/Berlin-HC/data/Pat_H_C_new6_final.xml"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "737 669 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module SoShapePartition {
+  internal  {
+    frame = "1133 -71 152 64"
+    windows  {
+      window _default {
+        geometry = "48 67 205 196"
+        sizeHint = "205 196"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoConvertShapeENT
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    shapePartitioning = TRUE
+    cubeSize = 20
+    valid = TRUE
+    autoUpdate = TRUE
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "605 -15 120 64"
+    windows  {
+      window _default {
+        geometry = "70 89 195 94"
+        sizeHint = "190 94"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = switchOldVisible
+    whichChild = -1
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "613 -151 136 64"
+    windows  {
+      window _default {
+        geometry = "594 135 300 302"
+        sizeHint = "300 302"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "890 329 346 162"
+        sizeHint = "346 162"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ViewerTotalVessel
+    bgColor = "1 1 1"
+    syncViewer = TRUE
+    syncWithList = ""
+    syncWith = ViewerOldIV
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module LoadBase {
+  internal  {
+    frame = "1517 381 88 56"
+    windows  {
+      window _default {
+        geometry = "745 503 495 200"
+        sizeHint = "495 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadBase
+    autoUpdate = AutoClear
+    status = "No object loaded."
+    nodeName = ""
+    filename = ""
+    useBaseDir = FALSE
+    baseDir = ""
+    format = Auto
+    upToDate = FALSE
+  }
+}
+module SoVesselExplorer {
+  internal  {
+    frame = "1289 53 128 56"
+    windows  {
+      window _default {
+        geometry = "122 636 406 645"
+        sizeHint = "406 645"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVesselExplorer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    tree_1_color = "0 1 0"
+    singleColor = FALSE
+    subTreeColor = TRUE
+    invertSubColor = FALSE
+    transColor = 0
+    currentEdgeID = _ID
+    currentEdgeRadius = 0
+    currentEdgeLength = 0
+    currentEdgeHierarchy = 0
+    pathLength = ""
+    pathLengthFloat = 0
+    skeleton = TRUE
+    surface = FALSE
+    trifurcation = TRUE
+    rootSphere = TRUE
+    toggleMarker = FALSE
+    firstMarker = TRUE
+    secondMarker = FALSE
+    setAnnoMarker = TRUE
+    getAnnoMarker = FALSE
+    nameAnnoMarker = ""
+    lineWidth = 3
+    radiusRootSphere = 1
+    radiusTrifurcationSphere = 1
+    konrad1 = FALSE
+    stringValue = ""
+    stringValue2 = ""
+  }
+}
+module Diagram2D {
+  internal  {
+    frame = "1321 -155 96 56"
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 0
+    maxX = 1
+    autoRangeX = TRUE
+    minY = 0
+    maxY = 1
+    autoRangeY = TRUE
+    axisColor = "1 1 1"
+    axisRotation = LeftBottom
+    drawDiagramTitle = FALSE
+    diagramTitleString = "very meaningful title :-)"
+    borderH = 0
+    autoBorderH = TRUE
+    borderV = 0
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn]"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 1 1"
+    lineStyle = Solid
+    markerType = None
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = 0
+    mousePosY = 0
+    mousePosValid = FALSE
+    curveSelection = Diagram
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = FALSE
+  }
+}
+module SoSceneWriter {
+  internal  {
+    frame = "1033 -159 112 64"
+    windows  {
+      window _default {
+        geometry = "26 45 311 97"
+        sizeHint = "311 97"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = writeNewIV
+    filename = scene
+    format = INVENTOR_ASCII
+    bColorPerVertex = TRUE
+    bUseGlobalColor = FALSE
+    bNormalPerVertex = TRUE
+    bSaveNormals = TRUE
+  }
+}
+module SoImplicitPolygonizer {
+  internal  {
+    frame = "1269 157 152 56"
+    windows  {
+      window _default {
+        geometry = "740 29 420 496"
+        sizeHint = "420 496"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoImplicitPolygonizer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    toggle_auto_apply = TRUE
+    toggle_visible = TRUE
+    toggle_scale_inventor_output = TRUE
+    polygonal_density = 0.05000000075
+    toggle_tetDecomp = FALSE
+    binarySubdivSteps = 3
+    polygBounds = 2000
+    startingPoint = "0 0 0"
+    cs_connected = FALSE
+    message = ""
+    toggle_color = TRUE
+    useLUTTraceColors = FALSE
+    toggle_general_color = FALSE
+    general_color = "1 1 1"
+    smoothness_amount = 0.75
+    toggle_smooth_indep = FALSE
+    smooth_radius_amount = 0.200000003
+    smooth_point_amount = 0.200000003
+    radius_modes = MIN_DIST
+    radius_scale = 1
+    radius_fixed = 1
+    blending_strength = MEDIUM
+    toggle_surf_skelet = FALSE
+    changes_applied = TRUE
+  }
+}
+module SoImplicitFunction {
+  internal  {
+    frame = "1285 221 136 56"
+  }
+  fields  {
+    instanceName = SoImplicitFunction
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    implicit_funcs = Blob
+  }
+}
+module SoVesselParser {
+  internal  {
+    frame = "1301 293 120 56"
+  }
+  fields  {
+    instanceName = SoVesselParser
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    filename = "graph structure"
+    fileinfo = "
+	version no.: 6
+	image size: 361  261  50
+	voxel size: 0.683594  0.683594  3.300000
+	no. edges: 86
+	no. nodes: 85
+	no. roots: 1
+"
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "353 89 160 64"
+    windows  {
+      window _default {
+        geometry = "92 111 211 217"
+        sizeHint = "211 217"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = P2I_old
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = Files
+    infoID = InventorFullPointer
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "757 25 120 64"
+    windows  {
+      window _default {
+        geometry = "202 221 300 302"
+        sizeHint = "300 302"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "491 328 346 162"
+        sizeHint = "346 162"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ViewerNewIV
+    bgColor = "1 1 1"
+    syncViewer = TRUE
+    syncWithList = ""
+    syncWith = ViewerTotalVessel
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "301 -63 120 64"
+    windows  {
+      window Settings {
+        geometry = "55 331 346 162"
+        sizeHint = "346 162"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ViewerOldIV
+    bgColor = "1 1 1"
+    syncViewer = TRUE
+    syncWithList = ""
+    syncWith = ViewerNewIV
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "601 725 112 56"
+    windows  {
+      window _default {
+        geometry = "26 45 522 288"
+        sizeHint = "522 288"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "292 437 257 306"
+        sizeHint = "257 306"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = "G:/Leber/Tumor/Berlin20060310_Pat_H_C/Fall im LST/Berlin-HC/data/Pat_H_C_new6_final.xml"
+    warnLevel = 0
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+module METKObjXMLWriter {
+  internal  {
+    frame = "689 205 144 56"
+    windows  {
+      window _default {
+        geometry = "48 67 208 174"
+        sizeHint = "208 174"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "773 265 208 174"
+        sizeHint = "208 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjXMLWriter
+    priority = 10000
+    debugComment = ""
+    directory = ""
+    filename = ""
+    useCasePath = FALSE
+    objXML = ""
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "741 597 120 56"
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "169 477 192 56"
+    windows  {
+      window _default {
+        geometry = "371 386 433 331"
+        sizeHint = "231 151"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "24 413 773 260"
+        sizeHint = "265 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "1037 445 104 56"
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKObjBrowser {
+  internal  {
+    frame = "177 197 128 56"
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "601 601 112 64"
+  }
+  fields  {
+    instanceName = internalObjMgr
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 5
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 83
+    eventType = NoMessage
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "469 601 120 64"
+  }
+  fields  {
+    instanceName = externalObjMgr
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module METKSingleObjInfo {
+  internal  {
+    frame = "9 297 144 64"
+    windows  {
+      window _automatic {
+        geometry = "26 45 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "48 67 400 48"
+        sizeHint = "400 48"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "224 243 104 134"
+        sizeHint = "104 134"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DescriptionTags
+    objID = ""
+    layerID = Description
+  }
+  internalFields = ""
+}
+module METKSingleObjInfo {
+  internal  {
+    frame = "9 397 144 56"
+  }
+  fields  {
+    instanceName = METKSingleObjInfo
+    objID = ""
+    layerID = ""
+  }
+  internalFields = ""
+}
+module SoShapeHints {
+  internal  {
+    frame = "833 301 112 56"
+    windows  {
+      window _default {
+        geometry = "48 67 294 173"
+        sizeHint = "294 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapeHints
+    vertexOrdering = COUNTERCLOCKWISE
+    shapeType = SOLID
+    faceType = UNKNOWN_FACE_TYPE
+    creaseAngle = 0
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "849 165 176 56"
+    windows  {
+      window _viewer {
+        geometry = "224 243 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "246 265 537 445"
+        sizeHint = "537 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = FALSE
+    popupMenuEnabled = TRUE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = TRUE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = TRUE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "0 0 2.41421"
+    orientation = "0 0 1 0"
+    nearDistance = 1.414209962
+    farDistance = 3.414210081
+    focalDistance = 2.414210081
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "849 397 160 56"
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "621 505 72 64"
+    windows  {
+      window _default {
+        geometry = "48 67 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Communicate
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 5
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 83
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKSaveCase.inObjectContainer = info.outObjectContainer
+  METKSaveCase.fileName = METKManager.fileName
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  SoConvertShapeENT.input = SoVesselExplorer.outPickedObject
+  switchOldVisible.children = P2I_old.outInventor
+  ViewerTotalVessel.inObjectContainer = METKManager.outObjectContainer
+  ViewerTotalVessel.beforeScene = switchOldVisible.self
+  ViewerTotalVessel.inInventor = SoVesselExplorer.self
+  SoVesselExplorer.SoImplicitPolygonizer = SoImplicitPolygonizer.self
+  SoVesselExplorer.inputGraph = LoadBase.outObject
+  Diagram2D.inCurveList = SoVesselExplorer.outCurveData
+  writeNewIV.sceneGraph = SoConvertShapeENT.outConvertedShape
+  SoImplicitPolygonizer.inputFunction = SoImplicitFunction.outputFunction
+  SoImplicitFunction.inputParser = SoVesselParser.outputParser
+  SoVesselParser.inputGraph = LoadBase.outObject
+  P2I_old.inObjectContainer = METKManager.outObjectContainer
+  P2I_old.objectID = METKStructureGroupBrowser.selectedObjId
+  ViewerNewIV.inObjectContainer = METKManager.outObjectContainer
+  ViewerNewIV.inInventor = SoVesselExplorer.outPickedObject
+  ViewerOldIV.inObjectContainer = METKManager.outObjectContainer
+  ViewerOldIV.inInventor = P2I_old.outInventor
+  METKManager.fileName = METKSaveCase.fileName
+  METKObjXMLWriter.inObjectContainer = info.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKStructureGroupBrowser.inObjectContainer = info.outObjectContainer
+  ObjInspector.inObjectContainer = info.outObjectContainer
+  METKObjBrowser.inObjectContainer = info.outObjectContainer
+  METKObjBrowser.objID = METKStructureGroupBrowser.selectedObjId
+  internalObjMgr.inObjectContainer = METKManager.outObjectContainer
+  DescriptionTags.inObjectContainer = info.outObjectContainer
+  DescriptionTags.objID = METKStructureGroupBrowser.selectedObjId
+  METKSingleObjInfo.inObjectContainer = info.outObjectContainer
+  METKSingleObjInfo.objID = METKStructureGroupBrowser.selectedObjId
+  SoCustomExaminerViewer.children = "SoShapeHints.self UMDPointerToInventor.outInventor"
+  UMDPointerToInventor.inObjectContainer = info.outObjectContainer
+  info.inObjectContainer = internalObjMgr.outObjectContainer
+}

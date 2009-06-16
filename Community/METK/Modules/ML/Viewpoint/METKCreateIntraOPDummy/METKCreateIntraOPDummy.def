@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------------
+//! METKCreateIntraOPDummy module definitions.
+/*!
+// \file    METKCreateIntraOPDummy.def
+// \author  Konrad Mühler
+// \date    2007-07-26
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKCreateIntraOPDummy
+//----------------------------------------------------------------------------------
+MLModule METKCreateIntraOPDummy {
+  DLL            = "Viewpoint"
+
+  genre          = "METKViewpoint"
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = "This module creates dummy tumors for a new intra OP viewpoint pre-calculation"
+  keywords       = ""
+  seeAlso        = ""
+  //documentation  = "$(LOCAL)/html/METKCreateIntraOPDummy.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/Viewpoint/METKCreateIntraOPDummy"
+
+} // MLModule METKCreateIntraOPDummy
+

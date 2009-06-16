@@ -1,0 +1,115 @@
+//Additional Field Information
+Description   {
+	Field wVis { min=0 max=100 }
+	Field wImp { min=0 max=100 }
+	Field wEnt { min=0 max=100 }
+	Field wCam { min=0 max=100 }
+	Field wSilhouette { min=0 max=100 }
+	Field wVisSta { min=0 max=100 }
+	Field wImpSta { min=0 max=100 }
+	Field wNum { min=0 max=100 }
+	Field wDis { min=0 max=100 }
+	Field wReg { min=0 max=100 }	
+	Field wImageSpaceCenter { min=0 max=100 }
+	
+	Field prefRegionRange {min=0 max=1 }	
+}
+
+
+Window {
+
+	TabView {
+		TabViewItem MainSettings {		
+									
+			Field currentStructure { title="Target Structure:" }
+				
+			Empty {h=20}
+			
+			Field dataPath { editField=false }
+			
+			Empty {h=20}
+			
+			Horizontal {
+				Button init { title="Init" }
+				Button calc { title="Calculate Position" }
+				Button writeCamToObjMgr { title="Write Position to ObjMgr" }
+				HSpacer {}
+			}
+			
+			Field result {}
+			Field orient {}
+			Field setViewerCamAtTheEnd {}			
+			Field data {}
+			Field message {}
+		
+		}
+		
+		
+		TabViewItem Weights {
+			Vertical {
+				Field wVis { title="Visibility (0):" slider=true alignGroupX=group1 }
+				Horizontal {
+					Field wVisSta { title="Visibility Stability (1):" slider=true alignGroupX=group1 }				
+					Empty { w=20 }
+					Field visSta { title="Threshold VisStab (0.7 reco.):" }
+				}
+				Field wImp { title="Importance (2):" slider=true }
+				Horizontal {
+					Field wImpSta { title="Importance Stablility (3):" slider=true alignGroupX=group1 }
+					Empty { w=20 }
+					Field impSta { title="Threshold ImpStab (0.7 reco.):" }
+				}
+				Field wNum { title="Number of Occluders (4):" slider=true }
+				Field wEnt { title="Visibility Entropy (5):" slider=true }
+				Field wDis { title="Distance to Viewplane (6):" slider=true }				
+				Field wCam { title="Dist. to Current Viewpoint (7):" slider=true }
+				Field wReg { title="Preferred Region (8):" slider=true }				
+				Field wSilhouette { title="Silhouette (9):" slider=true }
+				Field wImageSpaceCenter { title="ImageSpace Center (10):" slider=true }
+				Box ParameterMapSphere {
+					layout=Vertical
+					expandX=false
+					Field showField { title="Number of field to show:" }
+					Field sphereMode { }
+				}
+			}
+		}
+		
+		TabViewItem PositionAndRegion {
+			Vertical {
+				Box PreferredRegion {
+					layout = vertical
+					Field prefRegionType { title="Preferred Region Type:" }
+					Field prefRegionVector { title="Preferred Region Vector:" }
+					Field prefRegionRange { title="Preferred Region Range:" slider=true }			
+					Field restrictToRegion { title="Restrict to the Preferred Region:" }
+				}
+				Empty{ h=20 }
+				Box CurrentCamPosition {
+					Field currentCam { title="Current Cam Position:" }
+					Field camRange { title="Range for Parameter Map for Distance to current CamPos:" slider=true }		
+				}
+			}
+			
+		}
+		
+		TabViewItem MultipleObjects {
+			Field calcMultiple {}
+			Field multipleStructures {}
+		}		
+		
+		TabViewItem MinimalDistance {
+			Field minDistVec { title="Vector of Minimal Distance:"}
+			Field minRange { title="Range (Width) of Area for Positions for MinDist:" slider=true }
+			Button calcMin {}
+		}
+		
+		
+		TabViewItem Debug {		
+			Field debugState {}
+			Field debug { }		
+			Field inspect {}
+			Field datInfo { edit=False }
+		}
+	}
+}

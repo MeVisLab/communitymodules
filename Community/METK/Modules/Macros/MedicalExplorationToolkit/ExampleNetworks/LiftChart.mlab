@@ -1,0 +1,155 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "769 277 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKLiftChart {
+  internal  {
+    frame = "473 269 112 56"
+  }
+  fields  {
+    instanceName = METKLiftChart
+    priority = 10000
+    debugComment = ""
+    active = TRUE
+    verticalOffset = 100
+    aggregation = Structure
+    minImportance = 0.5
+    maxExtent = 0.75
+    divideBySide = FALSE
+    hideSideUnkown = FALSE
+  }
+}
+module METKROISelect {
+  internal  {
+    frame = "629 277 120 56"
+    windows  {
+      window _default {
+        geometry = "443 459 400 133"
+        sizeHint = "400 133"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+    listenToROI = ROI1
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "453 37 120 56"
+  }
+  fields  {
+    instanceName = METKViewer2D
+    annotations = TRUE
+    layoutMode = LAYOUT_AXIAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "489 133 96 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module METKOverlay2D {
+  internal  {
+    frame = "321 221 128 56"
+    windows  {
+      window _default {
+        geometry = "443 439 400 191"
+        sizeHint = "400 191"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKOverlay2D
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+    listenToROI = ROI1
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "281 309 176 56"
+    windows  {
+      window _default {
+        geometry = "443 459 400 133"
+        sizeHint = "400 133"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = ""
+    imgValues = ""
+    listenToROI = ROI1
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "473 437 112 56"
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKLiftChart.inObjectContainer = METKManager.outObjectContainer
+  METKROISelect.inObjectContainer = METKManager.outObjectContainer
+  METKViewer2D.inObjectContainer = METKOverlay2D.outObjectContainer
+  METKViewer2D.input = SoGroup.self
+  METKViewer2D.soview2d = METKROISelect.image
+  SoGroup.children = "METKOverlay2D.overlay METKLiftChart.outInventor"
+  METKOverlay2D.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKOverlay2D.image = METKCodedSegmentation.image
+  METKCodedSegmentation.inObjectContainer = METKManager.outObjectContainer
+}

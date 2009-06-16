@@ -1,0 +1,44 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field outInventor { internalName = output.self }
+   }
+   Parameters {
+      Field creationTime { type = enum value = "OnVisible" values = "OnLoad,OnVisible" }
+      Field visibleOn    { type = enum value = "TextureVisible" values = "TextureVisible,GeneralVisible" }
+      Field mode         { type = enum value = "HATCHING_OPACITY" values = "HATCHING_OPACITY,HATCHING_TAM" }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKTexturing.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener visibleOn { command = visibleOnChanged }
+   FieldListener mode { command = modeChanged }
+}
+
+Window METKStippling {
+   Vertical {
+      expandY = yes
+      Field = creationTime
+      Field = visibleOn
+      Field = mode
+      Panel {
+         module  = METKStructureGroupBrowser
+         window  = singleListView
+         expandY = yes
+      }
+   }
+}

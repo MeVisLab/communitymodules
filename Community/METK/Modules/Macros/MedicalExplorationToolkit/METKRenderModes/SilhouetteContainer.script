@@ -1,0 +1,42 @@
+Interface  {
+   Inputs  {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outInventor { internalName = SoToggle.self }
+   }
+   Parameters {
+      Field objectID     { internalName = info.searchObjPattern }
+      Field structure    { type = string value = "" }
+      Field initialize   { type = trigger }
+      Field visibleOn    { type = enum value = "SilhouetteVisible" values = "SilhouetteVisible,GeneralVisible" }
+      Field mode         { type = enum value = "Silhouette"        values = "Silhouette,EgdeEmphasize" }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/SilhouetteContainer.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   FieldListener info.outObjectContainer { callLater = false command = _cls_info.handleEvents }
+   FieldListener initialize  { command = initialize}
+   FieldListener visibleOn   { command = visibleOnChanged }
+   FieldListener mode        { command = modeChanged }
+}
+
+
+Window SilhouetteContainer {
+   Vertical {
+      Field = objectID { edit = NO }
+      Field = initialize
+      Field = visibleOn
+      Field = mode
+   }
+}

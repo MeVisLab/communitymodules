@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! Box2 module definition
+/*!
+// \file    Box2.def
+// \author  Konrad Mühler
+// \date    2006-07-07
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule Box2 {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/Box2.script"
+
+} // MacroModule Box2
+

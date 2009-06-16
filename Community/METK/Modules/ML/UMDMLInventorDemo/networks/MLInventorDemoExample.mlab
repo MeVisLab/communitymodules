@@ -1,0 +1,400 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2D {
+  internal  {
+    frame = "85 -91 88 56"
+  }
+  fields  {
+    instanceName = SoView2D
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 63
+    keepSlicesInView = FALSE
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "2 2"
+    spacing = "4 4"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    updateInventorEvent = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    status = "Nothing active"
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "33 -235 112 56"
+    windows  {
+      window _viewer {
+        geometry = "611 246 509 437"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "81 -3 96 56"
+    windows  {
+      window _default {
+        geometry = "717 524 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = C:/MeVisLab/data/demodata/Bone.tiff
+  }
+  internalFields = ""
+}
+module SoView2DExtensionExample {
+  internal  {
+    frame = "-631 -91 192 56"
+  }
+  fields  {
+    instanceName = SoView2DExtensionExample
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-435 5 104 56"
+    windows  {
+      window _default {
+        geometry = "717 524 492 211"
+        sizeHint = "492 211"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage1
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = C:/MeVisLab/data/demodata/Bone.tiff
+  }
+  internalFields = ""
+}
+module SoRenderArea {
+  internal  {
+    frame = "-483 -235 120 56"
+    windows  {
+      window _viewer {
+        geometry = "118 68 509 437"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module SoView2D {
+  internal  {
+    frame = "-431 -91 96 56"
+  }
+  fields  {
+    instanceName = SoView2D1
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 63
+    keepSlicesInView = FALSE
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "2 2"
+    spacing = "4 4"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    updateInventorEvent = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    status = "Nothing active"
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "-223 -235 176 56"
+    windows  {
+      window _viewer {
+        geometry = "852 261 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = FALSE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "20.9781 23.6542 16.3806"
+    orientation = "-0.741536 0.67072 0.016089 1.09293"
+    nearDistance = 33.86059952
+    farDistance = 37.3586998
+    focalDistance = 35.60789871
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module MLInventorDemo {
+  internal  {
+    frame = "-63 -27 128 56"
+    windows  {
+      window _default {
+        geometry = "507 160 134 29"
+        sizeHint = "134 29"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MLInventorDemo
+    cubeSize = 3
+  }
+}
+connections  {
+  SoView2D.image = LocalImage.outImage
+  SoRenderArea.children = "MLInventorDemo.outInventor2 SoView2D.self"
+  SoRenderArea1.children = "SoView2DExtensionExample.self SoView2D1.self"
+  SoView2D1.image = LocalImage1.outImage
+  SoCustomExaminerViewer.children = MLInventorDemo.outInventor
+}

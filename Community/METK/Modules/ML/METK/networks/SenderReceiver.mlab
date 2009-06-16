@@ -1,0 +1,148 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKMsgSender {
+  internal  {
+    frame = "749 277 136 56"
+    windows  {
+      window _default {
+        geometry = "2372 57 260 199"
+        sizeHint = "232 199"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgSender2
+    priority = 10000
+    debugComment = ""
+    message = "something uninteresting"
+    data = http://www.uninteressant.de/
+    status = "Nobody's listening."
+    done = TRUE
+    successful = FALSE
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "765 485 104 56"
+    windows  {
+      window _default {
+        geometry = "1678 692 502 354"
+        sizeHint = "502 354"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "569 197 144 56"
+    windows  {
+      window _default {
+        geometry = "2044 290 232 149"
+        sizeHint = "232 149"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgReceiver1
+    priority = 10000
+    debugComment = ""
+    message = hallo2
+    data = ""
+    status = done
+  }
+}
+module METKMsgSender {
+  internal  {
+    frame = "573 277 136 56"
+    windows  {
+      window _default {
+        geometry = "2045 56 232 199"
+        sizeHint = "232 199"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgSender1
+    priority = 10000
+    debugComment = ""
+    message = hallo2
+    data = heißa
+    status = done
+    done = TRUE
+    successful = TRUE
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "605 565 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+  }
+}
+module METKMsgSender {
+  internal  {
+    frame = "393 277 128 56"
+    windows  {
+      window _default {
+        geometry = "1676 63 232 199"
+        sizeHint = "232 199"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgSender
+    priority = 10000
+    debugComment = ""
+    message = hallo
+    data = "juch he"
+    status = done
+    done = TRUE
+    successful = TRUE
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "389 197 136 56"
+    windows  {
+      window _default {
+        geometry = "1678 299 232 149"
+        sizeHint = "232 149"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMsgReceiver
+    priority = 10000
+    debugComment = ""
+    message = hallo
+    data = ""
+    status = done
+  }
+}
+connections  {
+  METKMsgSender2.inObjectContainer = ObjMgr.outObjectContainer
+  ObjInspector.inObjectContainer = ObjMgr.outObjectContainer
+  METKMsgReceiver1.inObjectContainer = METKMsgSender1.outObjectContainer
+  METKMsgSender1.inObjectContainer = ObjMgr.outObjectContainer
+  METKMsgSender.inObjectContainer = ObjMgr.outObjectContainer
+  METKMsgReceiver.inObjectContainer = METKMsgSender.outObjectContainer
+}

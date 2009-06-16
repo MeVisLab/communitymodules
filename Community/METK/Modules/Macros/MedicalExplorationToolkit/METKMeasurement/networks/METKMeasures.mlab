@@ -1,0 +1,39 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKMeasures {
+  internal  {
+    frame = "685 325 120 56"
+    windows  {
+      window _default {
+        geometry = "726 472 234 83"
+        sizeHint = "234 83"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMeasures
+    descriptionTag = Structure
+    structure = ""
+    done = FALSE
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "689 493 112 56"
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  METKMeasures.inObjectContainer = METKManager.outObjectContainer
+}

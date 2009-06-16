@@ -1,0 +1,605 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SomnOffscreenRenderer {
+  internal  {
+    frame = "-43 -51 168 56"
+    windows  {
+      window _default {
+        geometry = "498 314 392 481"
+        sizeHint = "290 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SomnOffscreenRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    bufferSizeX = 400
+    bufferSizeY = 400
+    saveImage = FALSE
+    saveAVI = FALSE
+    fldFilename = "c:\\temp.bmp"
+    transparencyType = SORTED_OBJECT_BLEND
+    aviFilename = c:/temp.avi
+    aviFramerate = 7
+    bufferType = BUFFER_PBUFFER
+  }
+}
+module SoCube {
+  internal  {
+    frame = "377 93 80 56"
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "345 -11 144 56"
+    windows  {
+      window _viewer {
+        geometry = "443 222 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _default {
+        geometry = "392 475 515 356"
+        sizeHint = "515 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer2
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.85098 0.85098 0.85098"
+    transparency = SORTED_OBJECT_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-201.48 156.497 -155.62"
+    orientation = "0.300433 -0.879931 -0.36805 2.75113"
+    nearDistance = 291.3349915
+    farDistance = 295.3640137
+    focalDistance = 351.552002
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "497 -11 144 56"
+    windows  {
+      window _viewer {
+        geometry = "1357 219 643 574"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "386 356 515 356"
+        sizeHint = "515 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.901961 0.901961 0.901961"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-56.766 -233.285 149.042"
+    orientation = "0.11049 0.634179 -0.765251 3.21915"
+    nearDistance = 165.4029999
+    farDistance = 273.6960144
+    focalDistance = 219.4960022
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "-15 121 192 64"
+    windows  {
+      window _default {
+        geometry = "51 115 119 149"
+        sizeHint = "119 149"
+        wasOpen = yes
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 459 400 139"
+        sizeHint = "400 139"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = labelSwitcher
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = Name
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Labels
+    checkBoxInfo = LabelOn
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "169 -67 128 56"
+    windows  {
+      window _default {
+        geometry = "1328 127 200 200"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D1
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-0.97112 -0.0628079 1.43282"
+    camOrientation = "0.289998 -0.443466 -0.8480799999999999 1.17594"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+  }
+  internalFields = ""
+}
+module METKLabels {
+  internal  {
+    frame = "565 301 104 56"
+    windows  {
+      window _default {
+        geometry = "830 88 385 585"
+        sizeHint = "283 440"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLabels
+    priority = 10000
+    debugComment = ""
+    debugState = None
+    fontFile = c:/windows/Fonts/arial.ttf
+    fontSize = 12
+    fontColor = "0 0 0"
+    layFlushLayout = TRUE
+    layFading = FALSE
+    layHaloColorInvert = TRUE
+    layOrthRefLines = TRUE
+    layRefLinesForInvisObj = TRUE
+    arrowColor = "0 0 0"
+    arrowColorHalo = "1 1 1"
+    arrowSize = 10
+    arrowThickness = 1.5
+    bgColor = "1 1 1"
+    labelIfInteraction = TRUE
+    labelIfInvis = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "613 149 136 56"
+    windows  {
+      window _viewer {
+        geometry = "1357 219 643 574"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "386 356 515 356"
+        sizeHint = "515 356"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 0.498039"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-200.75 -184.039 -37.5144"
+    orientation = "0.469252 0.722355 -0.507943 3.44746"
+    nearDistance = 202.8040009
+    farDistance = 379.1719971
+    focalDistance = 280.7999878
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "337 197 112 56"
+  }
+  fields  {
+    instanceName = SoSeparator1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "485 213 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "193 13 128 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoShapeHints {
+  internal  {
+    frame = "249 285 112 56"
+    windows  {
+      window _default {
+        geometry = "48 67 277 114"
+        sizeHint = "277 114"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapeHints
+    vertexOrdering = COUNTERCLOCKWISE
+    shapeType = SOLID
+    faceType = UNKNOWN_FACE_TYPE
+    creaseAngle = 0
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "-11 437 104 56"
+    windows  {
+      window _default {
+        geometry = "406 361 475 347"
+        sizeHint = "544 347"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "-39 349 192 56"
+    windows  {
+      window _default {
+        geometry = "784 60 119 149"
+        sizeHint = "119 149"
+        wasOpen = yes
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 459 400 139"
+        sizeHint = "400 139"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = Name
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "225 381 128 56"
+    windows  {
+      window _default {
+        geometry = "543 459 196 48"
+        sizeHint = "196 48"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "329 493 112 56"
+    windows  {
+      window _default {
+        geometry = "584 571 524 377"
+        sizeHint = "524 377"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = "C:/Dokumente und Einstellungen/horst/Desktop/mevis/Hals12/Hals12_Labeling2.xml"
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "61 229 120 56"
+    windows  {
+      window _default {
+        geometry = "543 434 200 200"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "8.6472 -172.336 24.0713"
+    camOrientation = "0.998662 0.0507269 0.0100323 2.00453"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  SoExaminerViewer2.children = SoGroup.self
+  SoExaminerViewer1.children = SoSeparator1.self
+  labelSwitcher.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D1.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D1.inInventor = SoGroup.self
+  METKLabels.inObjectContainer = METKManager.outObjectContainer
+  METKLabels.inInventor = METKIsoSurface.outInventor
+  SoExaminerViewer.children = SoSeparator.self
+  SoSeparator1.children = "SoShapeHints.self METKIsoSurface.outInventor"
+  SoSeparator.children = METKLabels.outInventor
+  SoGroup.children = "SoSeparator.self METKIsoSurface.outInventor SoCube.self"
+  ObjInspector.inObjectContainer = METKManager.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+}

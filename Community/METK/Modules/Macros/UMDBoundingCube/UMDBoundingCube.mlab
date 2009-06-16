@@ -1,0 +1,83 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoMaterial {
+  internal  {
+    frame = "537 389 96 56"
+    windows  {
+      window _materialeditor {
+        geometry = "70 89 222 29"
+        sizeHint = "222 29"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMaterial
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.8 0.8 0.8"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoDrawStyle {
+  internal  {
+    frame = "389 389 104 56"
+    windows  {
+      window _default {
+        geometry = "48 67 208 173"
+        sizeHint = "208 173"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SoDrawStyle
+    style = FILLED
+    pointSize = 0
+    lineWidth = 0
+    linePattern = 65535
+  }
+}
+module SoCube {
+  internal  {
+    frame = "649 389 80 56"
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+}
+module SoTransform {
+  internal  {
+    frame = "269 389 104 56"
+  }
+  fields  {
+    instanceName = SoTransform
+    translation = "0.000000 0.000000 0.000000"
+    rotation = "0.000000 0.000000 1.000000 0.000000"
+    scaleFactor = "1.000000 1.000000 1.000000"
+    scaleOrientation = "0.000000 0.000000 1.000000 0.000000"
+    center = "0.000000 0.000000 0.000000"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "509 253 152 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+connections  {
+  SoSeparator.children = "SoTransform.self SoDrawStyle.self SoMaterial.self SoCube.self"
+}

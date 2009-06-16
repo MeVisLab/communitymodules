@@ -1,0 +1,33 @@
+//----------------------------------------------------------------------------------
+//! METKInstaller module definition
+/*!
+// \file    METKInstaller.def
+// \author  Konrad Mühler
+// \date    2007-12-18
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule METKInstaller {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = "This module is only a collector of ALL METK-Modules to build an installer file"
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKInstaller.script"
+
+} // MacroModule METKInstaller
+
+
+MacroModule METKTestCenter {
+  genre = ""
+  author = "Christian Tietjen"
+  status = "work-in-progress"
+  comment = "This module dynamically instantiates all METK modules successively and accomplishs some tests"
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/METKTestCenter.script"
+
+} // MacroModule METKInstaller
+

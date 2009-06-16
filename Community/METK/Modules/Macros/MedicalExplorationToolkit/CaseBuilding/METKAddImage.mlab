@@ -1,0 +1,179 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module DicomTagViewer {
+  internal  {
+    frame = "1113 229 128 56"
+    windows  {
+      window _default {
+        geometry = "870 115 635 546"
+        sizeHint = "443 378"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "700 402 206 440"
+        sizeHint = "206 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagViewer
+    tagName0 = Modality
+    tagValue0 = ""
+    tagName1 = ProtocolName
+    tagValue1 = ""
+    tagName2 = StudyDate
+    tagValue2 = ""
+    tagName3 = StudyTime
+    tagValue3 = ""
+    tagName4 = InstitutionName
+    tagValue4 = ""
+    tagName5 = Manufacturer
+    tagValue5 = ""
+    tagName6 = ManufacturersModelName
+    tagValue6 = ""
+    tagName7 = BodyPartExamined
+    tagValue7 = ""
+    tagName8 = ""
+    tagValue8 = ""
+    maxValueLen = 80
+    showPrivateTags = FALSE
+    tagListSubset = AllTags
+    dicomFile = ""
+    trimSpaces = FALSE
+  }
+}
+module ImgSave {
+  internal  {
+    frame = "905 237 80 56"
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = ""
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = FALSE
+    sourceName = ""
+    postfix = .result1
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = None
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "949 341 72 56"
+  }
+  fields  {
+    instanceName = Bypass
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Info {
+  internal  {
+    frame = "1037 237 56 56"
+    windows  {
+      window _default {
+        geometry = "521 437 564 371"
+        sizeHint = "564 371"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = OperatorGraphDisconnected
+    memoryImage = Invalid
+    memoryImage2 = ""
+    moduleName = Bypass
+    connectionValid = TRUE
+    dataValid = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "837 341 72 56"
+    windows  {
+      window _default {
+        geometry = "26 45 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = PatientObject
+    acceptedLayers = Patient
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+connections  {
+  DicomTagViewer.input0 = Bypass.output0
+  ImgSave.input0 = Bypass.output0
+  Info.input0 = Bypass.output0
+}

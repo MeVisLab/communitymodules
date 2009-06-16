@@ -1,0 +1,195 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Arithmetic0 {
+  internal  {
+    frame = "585 173 96 56"
+    windows  {
+      window _default {
+        geometry = "718 238 320 233"
+        sizeHint = "320 233"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic0
+    arg1 = "2 0 0"
+    arg1X = 2
+    arg1XAsVec = FALSE
+    operation = Power
+    arg2 = "0 0 0"
+    arg2X = 0
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module ImgPropConvert {
+  internal  {
+    frame = "461 357 120 56"
+    windows  {
+      window _default {
+        geometry = "609 334 389 576"
+        sizeHint = "389 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgPropConvert
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 1
+    a01 = 0
+    a02 = 0
+    a03 = 0
+    a10 = 0
+    a11 = 1
+    a12 = 0
+    a13 = 0
+    a20 = 0
+    a21 = 0
+    a22 = 1
+    a23 = 0
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    changeDatatype = TRUE
+    datatype = "unsigned int32"
+    changePageSize = FALSE
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGreyvalue = FALSE
+    minGreyvalue = 0
+    changeMaxGreyvalue = FALSE
+    maxGreyvalue = 1
+    changeWorldMatrix = FALSE
+    voxelSizeX = 1
+    voxelSizeY = 1
+    voxelSizeZ = 1
+    autoApply = TRUE
+  }
+}
+module Info {
+  internal  {
+    frame = "357 253 56 56"
+    windows  {
+      window _default {
+        geometry = "521 437 564 371"
+        sizeHint = "564 371"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "701 402 433 440"
+        sizeHint = "204 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = CalculationOfImagePropertiesFailed
+    memoryImage = Invalid
+    memoryImage2 = ""
+    bypassIndex = -1
+    inPlaceIndex = -1
+    moduleName = ImgLoad
+    connectionValid = TRUE
+    dataValid = FALSE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "481 445 80 56"
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    autoLoad = TRUE
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module Arithmetic1 {
+  internal  {
+    frame = "469 173 104 56"
+    windows  {
+      window _default {
+        geometry = "686 547 235 60"
+        sizeHint = "235 60"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic11
+    function = Multiply
+    constant = 1
+  }
+}
+module Arithmetic1 {
+  internal  {
+    frame = "473 261 96 56"
+    windows  {
+      window _default {
+        geometry = "769 250 235 60"
+        sizeHint = "235 60"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic1
+    function = Divide
+    constant = 0
+  }
+}
+connections  {
+  ImgPropConvert.input0 = ImgLoad.output0
+  Info.input0 = ImgLoad.output0
+  Arithmetic11.input0 = Arithmetic1.output0
+  Arithmetic11.constant = Arithmetic0.resultX
+  Arithmetic1.input0 = ImgPropConvert.output0
+  Arithmetic1.constant = Info.maxValue
+}

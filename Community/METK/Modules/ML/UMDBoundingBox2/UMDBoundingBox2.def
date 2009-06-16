@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! UMDBoundingBox2 module definitions.
+/*!
+// \file    UMDBoundingBox2.def
+// \author  Konrad Mühler
+// \date    2005-05-10
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule UMDBoundingBox2
+//----------------------------------------------------------------------------------
+MLModule UMDBoundingBox2 {
+  DLL            = "UMDBoundingBox2"
+
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  //documentation  = "$(LOCAL)/html/UMDBoundingBox2.html"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDBoundingBox2"
+
+} // MLModule UMDBoundingBox2
+

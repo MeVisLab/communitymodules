@@ -1,0 +1,7 @@
+module METKShowClusteredObjects {
+  fields  {
+    instanceName = METKShowClusteredObjects
+  }
+
+}
+

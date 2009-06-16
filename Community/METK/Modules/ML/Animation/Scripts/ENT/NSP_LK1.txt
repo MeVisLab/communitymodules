@@ -1,0 +1,8 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'Lymphnode' setTransparency 0
+[0] 'Lymphnode' setColor turquoise

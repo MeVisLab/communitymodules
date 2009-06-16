@@ -1,0 +1,25 @@
+//----------------------------------------------------------------------------------
+//! METKCalcCamPath module definitions.
+/*!
+// \file    METKCalcCamPath.def
+// \author  Marcus Wolff
+// \date    2008-07-01
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKCalcCamPath
+//----------------------------------------------------------------------------------
+MLModule METKCalcCamPath {
+  DLL            = "Viewpoint"
+
+  genre          = "METKViewpoint"
+  author         = "Marcus Wolff"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  projectSource  = "$(UserProjectsPath)/sources/ML/Viewpoint/METKCalcCamPath"
+} // MLModule METKCalcCamPath
+

@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! SoCoordSystem module definition
+/*!
+// \file    SoCoordSystem.def
+// \author  Konrad Mühler
+// \date    2004-12-01
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule SoCoordSystem {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/SoCoordSystem.script"  
+
+} // MacroModule SoCoordSystem

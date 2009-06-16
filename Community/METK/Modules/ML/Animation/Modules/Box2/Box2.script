@@ -1,0 +1,36 @@
+//----------------------------------------------------------------------------------
+//! Macro module Box2
+/*!
+// \file    Box2.script
+// \author  Konrad Mühler
+// \date    2006-07-07
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs { 
+    Field self { internalName="SoSeparator.self" }
+  }
+  Parameters {
+    Field Corner1 { internalName = SoCalculator.va }
+    Field Corner2 { internalName = SoCalculator.vb }
+    Field Color { type = color internalName = SoMaterial.diffuseColor }
+    Field Transparency { internalName = SoMaterial.transparency }
+  }
+}
+
+
+Commands {
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2006-06-30T04:17:32
+//# hash: jxg7lna34iNts6U5j2N0czbsG03ZYYw5rcpr3dpMkFurlQZhDlGFiPBZC0gMu0IcRS9qcZYh8mOURpHUSakpBw==
+//# MeVis end
+

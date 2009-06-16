@@ -1,0 +1,315 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStippling {
+  internal  {
+    frame = "993 -75 112 56"
+    windows  {
+      window _default {
+        geometry = "690 534 227 176"
+        sizeHint = "227 176"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStippling
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+  }
+  internalFields = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "469 113 152 64"
+  }
+  fields  {
+    instanceName = ShadingDisplayGroup
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "481 209 112 64"
+    windows  {
+      window _automatic {
+        geometry = "534 437 219 194"
+        sizeHint = "219 194"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = HatchingGroup
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module METKCSO {
+  internal  {
+    frame = "1157 397 104 56"
+    windows  {
+      window _default {
+        geometry = "603 547 400 148"
+        sizeHint = "400 148"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCSO
+    ignorePickable = TRUE
+    objectMustBeVisible = TRUE
+    filterDoubleEvents = TRUE
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "477 17 136 64"
+  }
+  fields  {
+    instanceName = ShadingMapGroup
+  }
+}
+module ShadingMapDisplay {
+  internal  {
+    frame = "833 -75 144 56"
+  }
+  fields  {
+    instanceName = ShadingMapDisplay
+  }
+  internalFields = ""
+}
+module SoHatching {
+  internal  {
+    frame = "1121 -75 96 56"
+    windows  {
+      window _default {
+        geometry = "529 459 229 109"
+        sizeHint = "229 109"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoHatching
+    lightingType = 1
+    textureUnit = 2
+    gamma = 1
+    scale = 1
+  }
+  internalFields = ""
+}
+module SoShadingMap {
+  internal  {
+    frame = "581 -75 120 56"
+    windows  {
+      window _default {
+        geometry = "148 136 290 620"
+        sizeHint = "290 620"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShadingMap
+    name = shadingMap
+    unit = 1
+    enableBorder = FALSE
+    borderColor = "0 0 0 0"
+    minFilter = LINEAR
+    magFilter = LINEAR
+    wrapS = REPEAT
+    use16BitFloat = TRUE
+    bufferSize = "0 0"
+    bufferType = WEIGHTED
+    depthPeelLayer = 0
+    shaderDebugOutput = FALSE
+    updateAllIDs = FALSE
+    numIDFld = 1
+    updatedIDList = "[  ]"
+    uniformSizeName = shadingMapSize
+    weightCosineShading = 1
+    weightRaking = 0.3000000119
+    weightPlateau = 0
+    weightMaxCurvature = 0
+    weightSurfaceShape = 0
+    weightDistance = 0
+    weightDOI = 0
+    weightEmphasis = 0
+    weightDepth = 0
+    weightRimLight = 0
+    weightDepthShadow = 0
+    weightDepthFading = 0
+    weightFeatureLines = 0.8000000119
+    normalizationType = EQUALIZATION
+    lightDir = "-1 1 0"
+    cosineSmoothing = 0
+    rakingFrequency = 0
+    rakingExaggeration = 0
+    maxDistance = 30
+    gaussKernelWidthLight = 15
+    gaussKernelWidthShadow = 59
+    depthFadingIntensity = 1
+    depthFadingMin = 0.5
+    depthFadingMax = 0.8000000119
+    depthFadingExponent = 1
+    featureLinesWidth = 2
+    gamma = 1
+    stretchLowPercentile = 0.009999999776
+    stretchHighPercentile = 0.8999999762
+    borderEnhancement = 0.3000000119
+    detailAmplitude = 0
+    spatialEffect = 0
+    foregroundExtension = 0.5
+    sceneInformation = NONE
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "953 317 192 56"
+    windows  {
+      window _default {
+        geometry = "703 547 119 149"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "311 627 400 320"
+        sizeHint = "400 320"
+        wasOpen = yes
+        wasActive = no
+      }
+      window singleListView {
+        geometry = "543 459 106 122"
+        sizeHint = "106 122"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = NPRShading
+    checkBoxInfo = NPRSettingsActive
+  }
+  internalFields = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "757 -191 152 64"
+  }
+  fields  {
+    instanceName = output
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "969 397 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Image
+    infoID = ImageType
+    infoValue = Segmentation
+    useInfoValue = TRUE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1013 473 72 64"
+    windows  {
+      window _default {
+        geometry = "597 36 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = Viewer
+    layerID = view3d
+    infoID = Status
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Ready
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  METKStippling.inObjectContainer = METKStructureGroupBrowser.outObjectContainer
+  ShadingDisplayGroup.children = ""
+  HatchingGroup.children = ""
+  METKCSO.inObjectContainer = info.outObjectContainer
+  ShadingMapGroup.children = ""
+  ShadingMapDisplay.input = ShadingDisplayGroup.self
+  SoHatching.input = HatchingGroup.self
+  METKStructureGroupBrowser.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  output.children = "SoShadingMap.self ShadingMapDisplay.output METKStippling.outInventor SoHatching.output"
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+}

@@ -1,0 +1,78 @@
+Interface  {
+   Parameters  {
+      Field directory {
+         type = string
+      }
+      Field apply {
+         type = trigger
+      }
+      Field liste {
+         type = string
+         value = ""
+      }
+      Field invertSelection {
+         type = trigger
+      }
+      Field toggleString {
+         type = string
+         value = ""
+      }
+      Field progress {
+         type = float
+         value = 0.0
+      }
+   } // Parameters 
+
+} // Interface 
+
+Commands  {
+   // Include local functions
+   source = "$(LOCAL)/GenerateIVFileDir.py"
+
+   // --- Commands
+   initCommand = init
+   
+   FieldListener {
+      listenField = directory
+      command = updateDir
+   }
+
+   FieldListener {
+      listenField = apply
+      command = start
+   }
+
+   FieldListener {
+      listenField = invertSelection
+      command = invertSelection
+   }
+   
+   FieldListener {
+      listenField = GenerateIVFile.Queue.numEntries
+      command = updateProgress
+   }
+} // Commands
+
+
+Window GenerateIVFileDir {
+   style = PlannerStyle
+   Category Main { w = 500 expandY = YES
+      Field = directory { browseButton = YES browseMode = directory w = 200 }
+      ListView = liste {
+         expandX = YES
+         expandY = YES
+         visibleRows = 20
+         selectionMode = NoSelection
+         rowSeparator = "?"
+         header = NO
+         checkList = YES
+         toggleField = toggleString
+      }
+      Button = invertSelection
+      Field = GenerateIVFile.smoothing { title = "Smooth Surface" }
+      Field = GenerateIVFile.SoConvertShapeENT.shapePartitioning { title = "Split Surface" }
+      Field GenerateIVFile.overwrite { title = "Overwrite Existing Surface" }
+      Button = apply { title = "Start" }
+      ProgressBar = progress {  expandY=No expandX = YES }
+   } // Category Main
+} // Window 

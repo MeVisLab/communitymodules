@@ -1,0 +1,188 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module MessageBox {
+  internal  {
+    frame = "685 661 104 56"
+    windows  {
+      window _default {
+        geometry = "543 442 353 199"
+        sizeHint = "179 199"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MessageBox
+    message = "Case's correlation changed | Save changes?"
+    title = "Detect Changes"
+    buttons = "OK, Cancel"
+    buttonWidth = 80
+    icon = None
+    returnCode = 1
+  }
+  internalFields = ""
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "393 765 160 56"
+    windows  {
+      window _default {
+        geometry = "703 547 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor1
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = Structure_V.jugularis_right
+    layerID = Files
+    infoID = InventorPointer
+  }
+}
+module UMDSoMinimalDistance {
+  internal  {
+    frame = "445 661 168 56"
+  }
+  fields  {
+    instanceName = UMDSoMinimalDistance
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    resultsValid = FALSE
+    color = "1 1 1"
+    displayToolMeasure = TRUE
+    displayUnit = TRUE
+    displayName = FALSE
+    toolName = ""
+    displayToolOnlyOnValid = TRUE
+    displayInput = TRUE
+    autoCompute = FALSE
+    startPos = "38.1535 91.63720000000001 -158.436"
+    endPos = "38.3807 91.24939999999999 -158.432"
+    distance = 0.4494729936
+    minDistance = 0
+    unit = mm
+    scaleLine = 1
+    autoParam = FALSE
+    autoEntries = 2000
+    manEntries = 200
+    manPartition = 2
+    verbose = FALSE
+    displaySpheres = FALSE
+    sizeOfPointSet1 = 0
+    sizeOfPointSet2 = 0
+    error = 0
+    dummy = TRUE
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "569 765 160 56"
+    windows  {
+      window _default {
+        geometry = "981 543 200 108"
+        sizeHint = "200 108"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = Structure_A.carotis_left
+    layerID = Files
+    infoID = InventorPointer
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "761 845 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = FALSE
+    layerID = Files
+    infoID = InventorPointer
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "805 765 72 56"
+    windows  {
+      window _default {
+        geometry = "202 221 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = GlobalEvents
+    objectID = Structure_M.sternocleidom._left
+    layerID = Appearance
+    infoID = Color
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = "0.39 0.16 0.08"
+    intValue = 2179
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 36
+    searchLayerPattern = "***"
+    numLayers = 6
+    searchInfoPattern = "***"
+    numInfos = 10
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  UMDPointerToInventor1.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  UMDSoMinimalDistance.inObject1Node = UMDPointerToInventor1.outInventor
+  UMDSoMinimalDistance.inObject2Node = UMDPointerToInventor.outInventor
+  UMDPointerToInventor.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+  ObjInfo.inObjectContainer = ObjConstrainedIterator.outObjectContainer
+}

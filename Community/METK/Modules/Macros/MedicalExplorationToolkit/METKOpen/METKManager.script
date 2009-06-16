@@ -1,0 +1,117 @@
+Interface  {
+   Inputs {	
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+   }
+   Parameters {
+      Field fileName       { type = string value = "" }
+      Field browse         { type = trigger }
+      Field load           { type = trigger }
+      Field status         { type = string value = "Ready." persistent = FALSE priority = 0 }
+ 
+      Field new            { type = trigger }
+      Field cleanup        { type = trigger }
+
+      Field save           { type = trigger }
+      Field saveAs         { type = trigger }
+      Field saveAsFilename { type = string value = "" persistent = FALSE }
+      Field warnLevel      { type = int value = 0 min = 0 max = 3 }
+      Field changeDetected { type = bool value = false persistent = false }
+      Field autoSave       { type = bool value = false }
+      
+      Field caseLoaded     { type = bool value = False persistent = false }
+      
+      Field computeSurfaces    { type = bool value = True }
+      //Field computeBoundingBox { type = bool value = False }
+      //Field computeWEM         { type = bool value = False }
+   }
+}
+
+Deployment {
+   module = UMDBoundingBoxCalculator2
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKManager.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+
+   FieldListener ConvertXML.detectedFormat  { command = detectedFormat }
+   FieldListener ConvertXML.successful      { command = convertSuccessful }     
+   FieldListener GenerateIVFile.ready       { command = ivFilesGenerated }
+   FieldListener cleanup                    { command = cleanup }
+   FieldListener info.outObjectContainer    { command = infoChanged }
+   FieldListener MeasureRequest.data        { command = gotMeasureRequest callLater = True }
+   FieldListener LoadRequest.data      	    { command = gotLoadRequest }      
+   FieldListener createIVFile.data          { command = createIVFile callLater = True }      
+   
+   FieldListener load      { command = load }
+   FieldListener browse    { command = browse }
+   FieldListener new       { command = new    }
+   FieldListener save      { command = save   }
+   FieldListener saveAs    { command = saveAs }
+}
+
+
+Window METKManager {
+   style = PlannerStyle
+   Vertical {
+      Box "Case Management" {
+         layout = Vertical
+         Horizontal {
+            alignX = left
+            Button = new  { title = "New..." dependsOn = !caseLoaded }
+            Button = browse { title = "Load..." dependsOn = !caseLoaded }
+            Button = load { dependsOn = "* !caseLoaded && fileName != "" *"}
+            Button = save { dependsOn = caseLoaded }
+            Button = saveAs { title = "Save As..." dependsOn = caseLoaded }
+            Button = cleanup { dependsOn = caseLoaded }
+         }
+         Vertical {
+            Field = fileName { edit = no w = 500 }
+            Field = ConvertXML.detectedFormat { edit = no }
+            Field = status { edit = no }
+            Field = changeDetected { edit = no }
+         }
+      }
+      Box "Save Case Warn Level" {
+         layout = Vertical
+         ButtonBar warnLevel {
+            show = radio
+            direction = vertical
+            items {
+               item 0 { title = "No warnings." }
+               item 1 { title = "Warn on Object created/removed." }
+               item 2 { title = "Warn on Attribute created/removed." }
+               item 3 { title = "Warn on Attribute changed." }
+            }
+         }
+         Field = autoSave
+      }
+      Box "Memory/Time Managment" { 
+         Field = computeSurfaces
+         //Field = computeBoundingBox
+         //Field = computeWEM
+      }
+   }
+}
+
+
+Window SaveAs {
+   style = PlannerStyle
+   title = "Save Case File"
+   Vertical {
+      Field = saveAsFilename { w = 400 }
+      Horizontal { alignX = Right
+         Button { title = Save command = modalDialogSave }
+         Button { title = Cancel command = modalDialogCancel }
+      }
+   }
+}

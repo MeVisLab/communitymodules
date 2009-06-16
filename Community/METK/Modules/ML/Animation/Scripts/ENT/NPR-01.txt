@@ -1,0 +1,24 @@
+[Ini]
+LengthTimeUnit=25
+LengthSeconds=30
+RealTime=no
+
+[Script]
+[0] 'System' setBackground white
+[0] 'System' setBaseColors
+[0] 'All' setVisible true
+[0] 'All' view front 1
+[0] 'All' setSilhouette false
+[1,10] 'Lymphnode' setTransparency 0
+[1,5] 'Bones' setTransparency 1
+[5] 'Bones' setSilhouette true
+[5] 'Bones' setSilhouetteWidth 4
+[5] 'Bones' setSilhouetteColor 0,0,0
+[1,5] 'All' setTransparency 0.9
+[1,7] 'middleLK' view front 1
+[1,10] 'middleLK' setColor orange
+[1,10] 'largeLK' setColor red
+[1,10] 'smallLK' setTransparency 0.4
+[8,15] 'Cam' rotate 'middleLK' axial 360 BEZIER2
+[16,20] 'largeLK' view left 1
+[21,25] 'All' view left 1

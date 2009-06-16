@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<OBJDUMP application="" version="1.0">
+
+  <OBJECT id="ApplicationObject">
+    <LAYER id="Application">
+      <INFO id="ApplicationName" type="omAttribute_std_string" value="MedicalExplorationToolkit"/>
+      <INFO id="ApplicationVersion" type="omAttribute_std_string" value="1.0"/>
+      <INFO id="MeVisLab" type="omAttribute_std_string" value="1.2"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="ApplicationObject"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Application"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="CaseObject">
+    <LAYER id="Case">
+      <INFO id="Comment" type="omAttribute_std_string" value=""/>
+      <INFO id="Finding" type="omAttribute_std_string" value="Please enter the finding for the choosen dataset"/>
+      <INFO id="Order" type="omAttribute_std_string" value="diese und jene..."/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="CaseObject"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Case"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Image_Hals12">
+    <LAYER id="Global">
+      <INFO id="ChildIds" type="omAttribute_std_string" value="ROI_Hals12_ROI0;"/>
+      <INFO id="Id" type="omAttribute_std_string" value="Image_Hals12"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Source"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Original"/>
+      <INFO id="Institition" type="omAttribute_std_string" value="Helios Kliniken Borna "/>
+      <INFO id="Modality" type="omAttribute_std_string" value="CT"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="-1"/>
+      <INFO id="SizeX" type="omAttribute_MLint32" value="512"/>
+      <INFO id="SizeY" type="omAttribute_MLint32" value="512"/>
+      <INFO id="SizeZ" type="omAttribute_MLint32" value="63"/>
+      <INFO id="StudyDate" type="omAttribute_std_string" value="20040212"/>
+      <INFO id="ToWorldMatrix" type="omAttribute_mat4" value="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+      <INFO id="VoxelSizeX" type="omAttribute_double" value="0.4296875"/>
+      <INFO id="VoxelSizeY" type="omAttribute_double" value="0.4296875"/>
+      <INFO id="VoxelSizeZ" type="omAttribute_double" value="3"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="PatientObject">
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="PatientObject"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Patient"/>
+    </LAYER>
+    <LAYER id="Patient">
+      <INFO id="DOB" type="omAttribute_std_string" value="20000101"/>
+      <INFO id="Name" type="omAttribute_std_string" value="NewPatientsName"/>
+      <INFO id="PID" type="omAttribute_std_string" value="NewPatientID"/>
+      <INFO id="Sex" type="omAttribute_std_string" value="M "/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="ROI_Hals12_ROI0">
+    <LAYER id="Global">
+      <INFO id="ChildIds" type="omAttribute_std_string" value="Structure_TumorPart_1;Structure_Lymphnode_4;Structure_Lymphnode_5;Structure_Lymphnode_6;Structure_Trachea;Structure_V.jugularis_left;Structure_A.carotiscommunis_left;Structure_M.sternocleidom._right;Structure_Pharynx;Structure_M.sternocleidom._left;Structure_Gl.submandibularis_right;Structure_Gl.submandibularis_left;Structure_Gl.parotis_right;Structure_Gl.parotis_left;Structure_C.thyroidea;Structure_C.cricoidea;Structure_Bones;Structure_Lymphnode_1;Structure_Lymphnode_2;Structure_Lymphnode_3;"/>
+      <INFO id="Id" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="Image_Hals12"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_ROI0.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Original"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="-1"/>
+      <INFO id="SizeX" type="omAttribute_MLint32" value="513"/>
+      <INFO id="SizeY" type="omAttribute_MLint32" value="513"/>
+      <INFO id="SizeZ" type="omAttribute_MLint32" value="63"/>
+      <INFO id="ToWorldMatrix" type="omAttribute_mat4" value="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+      <INFO id="VoxelSizeX" type="omAttribute_double" value="0.4296875"/>
+      <INFO id="VoxelSizeY" type="omAttribute_double" value="0.4296875"/>
+      <INFO id="VoxelSizeZ" type="omAttribute_double" value="3"/>
+    </LAYER>
+  </OBJECT>
+
+
+  <OBJECT id="Structure_A.carotiscommunis_left">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.94 0.2 0.2"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.4"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="A. carotis communis_left"/>
+      <INFO id="Side" type="omAttribute_std_string" value="left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Artery"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Vessel"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_A. carotis communis_left.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_A.carotiscommunis_left"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_A. carotis communis_left.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Bones">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 1"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.9"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Bones"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Bone"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Bone"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Bones.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Bones"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Bones.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_C.cricoidea">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.66 0.82 1"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.4"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="C. cricoidea"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Cartilago"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Larynx"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_C. cricoidea.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_C.cricoidea"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_C. cricoidea.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_C.thyroidea">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.66 0.82 1"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.4"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="C. thyroidea"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Cartilago"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Larynx"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_C. thyroidea.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_C.thyroidea"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_C. thyroidea.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Gl.parotis_left">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.71 0.59 0.43"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Gl. parotis_left"/>
+      <INFO id="Side" type="omAttribute_std_string" value="left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Salivary Gland"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Gland"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Gl. parotis_left.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Gl.parotis_left"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Gl. parotis_left.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Gl.parotis_right">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.71 0.59 0.43"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Gl. parotis_right"/>
+      <INFO id="Side" type="omAttribute_std_string" value="right"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Salivary Gland"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Gland"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Gl. parotis_right.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Gl.parotis_right"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Gl. parotis_right.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Gl.submandibularis_left">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.71 0.59 0.43"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Gl. submandibularis_left"/>
+      <INFO id="Side" type="omAttribute_std_string" value="left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Salivary Gland"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Gland"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Gl. submandibularis_left.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Gl.submandibularis_left"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Gl. submandibularis_left.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Gl.submandibularis_right">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.71 0.59 0.43"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Gl. submandibularis_right"/>
+      <INFO id="Side" type="omAttribute_std_string" value="right"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Salivary Gland"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Gland"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Gl. submandibularis_right.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Gl.submandibularis_right"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Gl. submandibularis_right.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Lymphnode_1">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Level" type="omAttribute_std_string" value="I"/>
+      <INFO id="Name" type="omAttribute_std_string" value="Lymphnode_1"/>
+      <INFO id="Side" type="omAttribute_std_string" value="Left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Lymphnode"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Lymphnode"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Lymphnode_1.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Lymphnode_1"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Lymphnode_1.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Lymphnode_2">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Level" type="omAttribute_std_string" value="VI"/>
+      <INFO id="Name" type="omAttribute_std_string" value="Lymphnode_2"/>
+      <INFO id="Side" type="omAttribute_std_string" value="Left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Lymphnode"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Lymphnode"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Lymphnode_2.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Lymphnode_2"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Lymphnode_2.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Lymphnode_3">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Level" type="omAttribute_std_string" value="VI"/>
+      <INFO id="Name" type="omAttribute_std_string" value="Lymphnode_3"/>
+      <INFO id="Side" type="omAttribute_std_string" value="Left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Lymphnode"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Lymphnode"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Lymphnode_3.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Lymphnode_3"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Lymphnode_3.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>    
+  </OBJECT>
+
+  <OBJECT id="Structure_Lymphnode_4">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Level" type="omAttribute_std_string" value="VI"/>
+      <INFO id="Name" type="omAttribute_std_string" value="Lymphnode_4"/>
+      <INFO id="Side" type="omAttribute_std_string" value="Left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Lymphnode"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Lymphnode"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Lymphnode_4.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Lymphnode_4"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Lymphnode_4.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Lymphnode_5">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Level" type="omAttribute_std_string" value="VI"/>
+      <INFO id="Name" type="omAttribute_std_string" value="Lymphnode_5"/>
+      <INFO id="Side" type="omAttribute_std_string" value="Left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Lymphnode"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Lymphnode"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Lymphnode_5.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Lymphnode_5"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Lymphnode_5.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Lymphnode_6">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Level" type="omAttribute_std_string" value="VI"/>
+      <INFO id="Name" type="omAttribute_std_string" value="Lymphnode_6"/>
+      <INFO id="Side" type="omAttribute_std_string" value="Left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Lymphnode"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Lymphnode"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Lymphnode_6.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Lymphnode_6"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Lymphnode_6.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_M.sternocleidom._left">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.39 0.16 0.08"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.5"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="M. sternocleidom._left"/>
+      <INFO id="Side" type="omAttribute_std_string" value="left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Muscle"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Muscle"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_M. sternocleidom._left.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_M.sternocleidom._left"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_M. sternocleidom._left.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_M.sternocleidom._right">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.39 0.16 0.08"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.5"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="M. sternocleidom._right"/>
+      <INFO id="Side" type="omAttribute_std_string" value="right"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Muscle"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Muscle"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_M. sternocleidom._right.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_M.sternocleidom._right"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_M. sternocleidom._right.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Pharynx">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 0.74 0.59"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.8"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Pharynx"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Pharynx"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Respiratory Tract"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Pharynx.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Pharynx"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Pharynx.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="1"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_Trachea">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 0.9 0.71"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="Trachea"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Trachea"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Respiratory Tract"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_Trachea.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_Trachea"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_Trachea.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="1"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_TumorPart_1">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="1 1 0.78"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="SHAPE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="TumorPart_1"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Tumor"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Tumor"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_TumorPart_1.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_TumorPart_1"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_TumorPart_1.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+  <OBJECT id="Structure_V.jugularis_left">
+    <LAYER id="Appearance">
+      <INFO id="BoundingBoxOn" type="omAttribute_bool" value="FALSE"/>
+      <INFO id="Color" type="omAttribute_vec3" value="0.31 0.31 0.98"/>
+      <INFO id="PickStyle" type="omAttribute_std_string" value="UNPICKABLE"/>
+      <INFO id="Transparency" type="omAttribute_double" value="0.4"/>
+      <INFO id="Visible" type="omAttribute_bool" value="FALSE"/>
+    </LAYER>
+    <LAYER id="Description">
+      <INFO id="Name" type="omAttribute_std_string" value="V. jugularis_left"/>
+      <INFO id="Side" type="omAttribute_std_string" value="left"/>
+      <INFO id="Structure" type="omAttribute_std_string" value="Vein"/>
+      <INFO id="StructureGroup" type="omAttribute_std_string" value="Vessel"/>
+    </LAYER>
+    <LAYER id="Files">
+      <INFO id="InventorFile" type="omAttribute_std_string" value="Hals12_V. jugularis_left.iv"/>
+    </LAYER>
+    <LAYER id="Global">
+      <INFO id="Id" type="omAttribute_std_string" value="Structure_V.jugularis_left"/>
+      <INFO id="ObjectType" type="omAttribute_std_string" value="Result"/>
+      <INFO id="ParentId" type="omAttribute_std_string" value="ROI_Hals12_ROI0"/>
+      <INFO id="Valid" type="omAttribute_bool" value="TRUE"/>
+    </LAYER>
+    <LAYER id="Image">
+      <INFO id="Filename" type="omAttribute_std_string" value="Hals12_V. jugularis_left.dcm"/>
+      <INFO id="ImageType" type="omAttribute_std_string" value="Segmentation"/>
+      <INFO id="ObjectValue" type="omAttribute_MLint32" value="2179"/>
+    </LAYER>
+  </OBJECT>
+
+</OBJDUMP>

@@ -1,0 +1,83 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'LiverOrgan' on
+[0] 'LiverOrgan' setTransparency high
+[0] 'LiverOrgan' setColor LiverColor
+[0] 'Tumor' on
+[0] 'Tumor' setColor TumorColor
+[0] 'Tumor' setTransparency opaque
+[0] 'LiverOrgan' view front 0.8
+
+
+[0] 'PVAnalysis' setColor PV_Color
+[0] 'HVAnalysis' setColor HV_Color
+[0] 'HAAnalysis' setColor HA_Color
+
+#[0] 'PV0' setColor PV0_Color
+#[0] 'PV1' setColor PV1_Color
+#[0] 'PV2' setColor PV2_Color
+#[0] 'PV3' setColor PV3_Color
+#[0] 'PV4' setColor PV4_Color
+#[0] 'PV5' setColor PV5_Color
+#[0] 'PV6' setColor PV6_Color
+#[0] 'PV7' setColor PV7_Color
+#[0] 'PV8' setColor PV8_Color
+#
+#[0] 'HA0' setColor HA0_Color
+#[0] 'HA1' setColor HA1_Color
+#[0] 'HA2' setColor HA2_Color
+#[0] 'HA3' setColor HA3_Color
+#[0] 'HA4' setColor HA4_Color
+#[0] 'HA4a' setColor HA4a_Color
+#[0] 'HA5' setColor HA5_Color
+#[0] 'HA6' setColor HA6_Color
+#[0] 'HA7' setColor HA7_Color
+#[0] 'HA8' setColor HA8_Color
+#
+#[0] 'MV0' setColor MV0_Color
+#[0] 'MV1' setColor MV1_Color
+#[0] 'LHV' setColor LHV_Color
+#[0] 'MV4bp' setColor MV4bp_Color
+#[0] 'MV4ba' setColor MV4ba_Color
+#[0] 'MV5' setColor MV5_Color
+#[0] 'RHV' setColor RHV_Color
+#[0] 'MV8i' setColor MV8i_Color
+#[0] 'MV8s' setColor MV8s_Color
+#[0] 'HV' setColor HV_Color
+
+[0] 'Territory' setTransparency 0.4
+[0] 'Territory_PV0' setColor Terr_PV0_Color
+[0] 'Territory_PV1' setColor Terr_PV1_Color
+[0] 'Territory_PV2' setColor Terr_PV2_Color
+[0] 'Territory_PV3' setColor Terr_PV3_Color
+[0] 'Territory_PV4' setColor Terr_PV4_Color
+[0] 'Territory_PV5' setColor Terr_PV5_Color
+[0] 'Territory_PV6' setColor Terr_PV6_Color
+[0] 'Territory_PV7' setColor Terr_PV7_Color
+[0] 'Territory_PV8' setColor Terr_PV8_Color
+
+[0] 'Territory_HA0' setColor Terr_HA0_Color
+[0] 'Territory_HA1' setColor Terr_HA1_Color
+[0] 'Territory_HA2' setColor Terr_HA2_Color
+[0] 'Territory_HA3' setColor Terr_HA3_Color
+[0] 'Territory_HA4' setColor Terr_HA4_Color
+[0] 'Territory_HA4a' setColor Terr_HA4a_Color
+[0] 'Territory_HA5' setColor Terr_HA5_Color
+[0] 'Territory_HA6' setColor Terr_HA6_Color
+[0] 'Territory_HA7' setColor Terr_HA7_Color
+[0] 'Territory_HA8' setColor Terr_HA8_Color
+
+[0] 'Territory_MV0' setColor Terr_MV0_Color
+[0] 'Territory_MV1' setColor Terr_MV1_Color
+[0] 'Territory_LHV' setColor Terr_LHV_Color
+[0] 'Territory_MV4bp' setColor Terr_MV4bp_Color
+[0] 'Territory_MV4ba' setColor Terr_MV4ba_Color
+[0] 'Territory_MV5' setColor Terr_MV5_Color
+[0] 'Territory_RHV' setColor Terr_RHV_Color
+[0] 'Territory_MV8i' setColor Terr_MV8i_Color
+[0] 'Territory_MV8s' setColor Terr_MV8s_Color

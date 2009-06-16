@@ -1,0 +1,21 @@
+Campath-Anweisungen:
+1. Campath-Variante auswählen:
+Befehl: 	setCampath
+Parameter: 	Campath-Variante (Linear, Rectangle, Parable, ParableRectangle)
+Beispiel:	[0] All setCampath Parable
+
+2. Campath-Berechnung:
+Befehl:		Campath
+Parameter:	1. Objekt
+		2. Punkte durch Leerzeichen getrennt
+		 Punkt:	X;Y;Z;P
+			X;Y;Z - Punkt, zu welchem die Kamera bewegt werden soll
+			P     - Anzahl der Frames, für welche an dieser Stelle gehalten werden soll (optional)
+Beispiel:	[0,1] 'Cam' campath 'All' 1;1;2;10 145;170;2 90;45;3
+
+Gesamtbeispiel:	[0] 'All' setCampath Parable
+		[0,1] 'Cam' campath 'All' 1;1;2;10 145;170;2 90;45;3
+		[1] 'All' setCampath Rectangle
+		[1,2] 'Cam' campath 'All' 1;1;2 145;170;2 90;45;3
+		[2] 'All' setCampath Linear
+		[2,3] 'Cam' campath 'All' 1;1;2 145;170;2 90;45;3

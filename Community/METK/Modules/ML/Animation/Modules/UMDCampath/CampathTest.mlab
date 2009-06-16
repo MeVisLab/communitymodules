@@ -1,0 +1,28 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module UMDCampath {
+  internal  {
+    frame = "497 373 112 56"
+    windows  {
+      window _default {
+        geometry = "198 124 1123 888"
+        sizeHint = "1123 866"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDCampath
+    ScriptArea = ""
+    LastScriptFile = ""
+    LastXMLFile = ""
+    sphereMode = "Grid Sphere"
+    apexAngle = 20
+    sphereField = 0
+  }
+  internalFields = ""
+}
+connections = ""

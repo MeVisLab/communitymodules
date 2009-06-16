@@ -1,0 +1,24 @@
+//----------------------------------------------------------------------------------
+//! METKCalcCamPos module definitions
+/*!
+// \file    METKCalcCamPos.def
+// \author  Mathias Neugebauer
+// \date    2006-03-21
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule METKCalcCamPos {
+  DLL = "Viewpoint"
+
+  genre = "METKViewpoint"
+  author = "Mathias Neugebauer, Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/ML/Viewpoint/METKCalcCamPos"
+  
+  externalDefinition = "$(LOCAL)/METKCalcCamPos.script"  
+}

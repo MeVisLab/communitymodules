@@ -1,0 +1,141 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field outInventor { internalName = output.self }
+   }
+   Parameters {
+      Field objectIDs       { type = string value = "" persistent = false }
+      //Field displayType   { internalName = displaySwitch.whichChild }
+      Field opacification   { type = trigger }
+      Field allShading  { type = trigger }
+      Field allStippling  { type = trigger }
+      Field renderCSO       { type = enum value = "Distance" values = "Emphasis,Distance,Both" }
+      Field overrideStipplingGamma { type = trigger }
+      Field stipplingGamma { type = float value = 1.0 }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKNPRShading.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener METKStructureGroupBrowser.selectedObjId { command = changedFocus }
+   FieldListener opacification { command = opacification }
+   FieldListener allShading { command = allShading }
+   FieldListener allStippling { command = allStippling }
+   FieldListener overrideStipplingGamma { command = overrideStipplingGamma }
+   FieldListener {
+      listenField = SoShadingMap.bufferType
+      listenField = SoShadingMap.lightDir
+      listenField = SoShadingMap.cosineSmoothing
+      listenField = SoShadingMap.rakingExaggeration
+      listenField = SoShadingMap.rakingFrequency
+      listenField = SoShadingMap.weightCosineShading
+      listenField = SoShadingMap.weightRaking
+      listenField = SoShadingMap.weightPlateau
+      listenField = SoShadingMap.weightMaxCurvature
+      listenField = SoShadingMap.weightSurfaceShape
+      listenField = SoShadingMap.normalizationType
+      listenField = SoShadingMap.maxDistance
+      listenField = SoShadingMap.weightDistance
+      listenField = SoShadingMap.weightDOI
+      listenField = SoShadingMap.weightEmphasis
+      listenField = SoShadingMap.weightDepth
+      listenField = SoShadingMap.weightRimLight
+      listenField = SoShadingMap.gaussKernelWidthLight
+      listenField = SoShadingMap.weightDepthShadow
+      listenField = SoShadingMap.gaussKernelWidthShadow
+      listenField = SoShadingMap.weightDepthFading
+      listenField = SoShadingMap.depthFadingIntensity
+      listenField = SoShadingMap.depthFadingMin
+      listenField = SoShadingMap.depthFadingMax
+      listenField = SoShadingMap.depthFadingExponent
+      listenField = SoShadingMap.weightFeatureLines
+      listenField = SoShadingMap.featureLinesWidth
+      listenField = SoShadingMap.gamma
+      listenField = SoShadingMap.sceneInformation
+      listenField = SoShadingMap.borderEnhancement
+      listenField = SoShadingMap.detailAmplitude
+      listenField = SoShadingMap.spatialEffect
+      listenField = SoShadingMap.foregroundExtension
+      command = globalPropChanged
+   }
+   
+   FieldListener {
+      listenField = METKCSO.cso
+      listenField = renderCSO
+      command = renderCSOChanged
+   }
+}
+
+Window METKNPRShading {
+   Vertical {
+      expandY = yes
+      Horizontal {
+         expandY = yes
+   Vertical {
+      Horizontal {
+         Label "Structure Browser:" { }
+         Button {
+            title = "hide <<"
+            command = "js: ctx.control('structureBrowser').setVisible(false); ctx.window().updateFrame(false,false);"
+         }
+          Button {
+            title = "show >>"
+            command = "js: ctx.control('structureBrowser').setVisible(true); ctx.window().updateFrame(false,false);"
+         }
+      }
+      Separator { }
+      Panel {
+               module = SoShadingMap
+            }
+   }
+         Vertical {
+      name = structureBrowser
+            expandY = yes
+            Horizontal {
+               expandY = yes
+               Panel {
+                  mw = 200
+                  module  = METKStructureGroupBrowser
+                  window  = singleListView
+                  expandY = yes
+               }
+               DynamicFrame {
+                  mw = 350
+                  name = DynamicFrameControl
+                  expandY = yes
+                  expandX = yes
+               }
+            }
+      Horizontal {
+        expandX = no
+              Button = opacification { expandY = no }
+              Button = allShading { expandY = no }
+              Button = allStippling { expandY = no }
+            }
+      Horizontal {
+        expandX = no
+        Button = overrideStipplingGamma { expandY = no }
+        Field = stipplingGamma { title ="Gamma:" expandY = no }
+      }
+            Field  = METKCSO.cso { title = "CSO" edit = No }
+            Field  = renderCSO
+         }
+      }
+   }
+   initCommand = initWindow
+}

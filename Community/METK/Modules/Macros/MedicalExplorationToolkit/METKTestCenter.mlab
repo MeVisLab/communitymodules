@@ -1,0 +1,128 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module MLLogFile {
+  internal  {
+    frame = "629 309 88 56"
+    windows  {
+      window _default {
+        geometry = "615 460 377 324"
+        sizeHint = "294 324"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MLLogFile
+    logWarnings = TRUE
+    logErrors = TRUE
+    logFatals = TRUE
+    logDebugs = TRUE
+    logCouts = TRUE
+    logCerrs = TRUE
+    logOthers = TRUE
+    logLine = TRUE
+    logFileName = TRUE
+    logTime = TRUE
+    logFunc = TRUE
+    logReason = TRUE
+    logHandling = TRUE
+    logLibraryPrefix = TRUE
+    logMessageType = TRUE
+    enableLog = TRUE
+    logFile = $(HOME)/MLLogFile.log
+    trueLogFile = H:/MLLogFile.log
+    logStatus = "Log file okay."
+  }
+}
+module Console {
+  internal  {
+    frame = "633 245 80 56"
+    windows  {
+      window _default {
+        geometry = "656 444 294 357"
+        sizeHint = "294 357"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Console
+    logWarnings = TRUE
+    logErrors = TRUE
+    logFatals = TRUE
+    logDebugs = TRUE
+    logCouts = FALSE
+    logCerrs = TRUE
+    logOthers = TRUE
+    logLine = TRUE
+    logFileName = TRUE
+    logTime = TRUE
+    logFunc = TRUE
+    logReason = TRUE
+    logHandling = TRUE
+    logLibraryPrefix = TRUE
+    logMessageType = TRUE
+    maxConsoleSize = 3
+    consoleString = "MLABWarning:MLABInfo: InfoConst, Message='JavaScript language loaded.'.
+C:/Program Files/MeVisLab/MLabModules/std/ML/MLDiagnosis/mlDiagnosis.def(957):MLABWarning:13:55:56:, Message='<font color=black>CheckBox logInformation</font> :<font color = red>Field not found</font>'.
+"
+  }
+}
+module Tester {
+  internal  {
+    frame = "537 245 64 56"
+    windows  {
+      window _default {
+        geometry = "535 246 536 752"
+        sizeHint = "536 752"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Tester
+    status = ""
+    testedPercentage = 0
+    imgSizeLimit = 32768
+    secsTotal = 900
+    mSecsPerModule = 10000
+    mSecsPerTest = 2500
+    tryMemoryLeakDetection = TRUE
+    doNotTest = "ErrorTest
+Tester
+Test
+Control
+Checksum"
+    moduleView = ""
+    infoView = ""
+    reportView = ""
+    fatalInfos = 0
+    informationInfos = 0
+    warningInfos = 0
+    hintInfos = 0
+    noticeInfos = 0
+    testErrorInfos = 0
+    testWarningInfos = 0
+    timeoutInfos = 0
+    testFieldTypes = TRUE
+    testFieldReferences = TRUE
+    testFieldStyles = TRUE
+    testFieldNames = TRUE
+    testPageExtents = TRUE
+    testNewDelete = TRUE
+    testInstantiation = TRUE
+    testFieldTouches = TRUE
+    testMultipleInputImages = TRUE
+    runMultipleInputImagesFieldTouches = TRUE
+    runMultipleInputImagesDataRequests = TRUE
+    testBaseInputsWOTouch = TRUE
+    testBaseInputsWTouch = TRUE
+    testArbitraryFieldValues = TRUE
+  }
+}
+connections = ""

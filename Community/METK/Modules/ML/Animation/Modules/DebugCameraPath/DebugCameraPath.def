@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! DebugCameraPath module definition
+/*!
+// \file    DebugCameraPath.def
+// \author  Konrad Mühler
+// \date    2006-07-13
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule DebugCameraPath {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/DebugCameraPath.script"
+
+} // MacroModule DebugCameraPath
+

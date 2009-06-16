@@ -1,0 +1,157 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module StandardXMLConverter {
+  internal  {
+    frame = "921 149 160 56"
+    windows  {
+      window _default {
+        geometry = "224 243 148 80"
+        sizeHint = "148 80"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StandardXMLConverter
+    ready = FALSE
+    readableFormat = FALSE
+  }
+}
+module NeckVisionXMLConverter {
+  internal  {
+    frame = "529 157 176 56"
+    windows  {
+      window _default {
+        geometry = "511 178 148 80"
+        sizeHint = "148 80"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = NeckVisionXMLConverter
+    ready = FALSE
+    readableFormat = FALSE
+  }
+}
+module HepaXMLConverter {
+  internal  {
+    frame = "745 61 144 56"
+    windows  {
+      window _default {
+        geometry = "511 178 148 80"
+        sizeHint = "148 80"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = HepaXMLConverter
+    ready = FALSE
+    readableFormat = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "885 297 72 64"
+    windows  {
+      window _default {
+        geometry = "334 177 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = output
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 19
+    searchLayerPattern = "***"
+    numLayers = 1
+    searchInfoPattern = "***"
+    numInfos = 2
+    numEvents = 128
+    eventType = NoMessage
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "653 297 72 64"
+    windows  {
+      window _default {
+        geometry = "26 45 539 1016"
+        sizeHint = "539 1016"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = input
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 5
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  StandardXMLConverter.inObjectContainer = input.outObjectContainer
+  StandardXMLConverter.outObjectContainer = output.outObjectContainer
+  NeckVisionXMLConverter.inObjectContainer = input.outObjectContainer
+  NeckVisionXMLConverter.outObjectContainer = output.outObjectContainer
+  HepaXMLConverter.inObjectContainer = input.outObjectContainer
+  HepaXMLConverter.outObjectContainer = output.outObjectContainer
+}

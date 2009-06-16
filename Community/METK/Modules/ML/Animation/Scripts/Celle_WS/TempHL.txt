@@ -1,0 +1,11 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'Liver' setVisible true
+[0] 'Tumor' setVisible true
+[0] 'Tumor' view front 2
+[0] 'Liver' setColor 135,73,44
+[0] 'Liver' setTransparency 0.7

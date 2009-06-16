@@ -1,0 +1,639 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module OrthoReformat3 {
+  internal  {
+    frame = "289 477 128 56"
+    windows  {
+      window _default {
+        geometry = "70 89 234 208"
+        sizeHint = "234 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoReformat36
+    useGlobalInputImage = TRUE
+  }
+}
+module OffscreenRender {
+  internal  {
+    frame = "465 -107 128 56"
+    windows  {
+      window _default {
+        geometry = "26 45 273 199"
+        sizeHint = "273 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OffscreenRender
+    transparencyType = BLEND
+    imageType = RGBA
+    supported = TRUE
+    stencilBuffer = FALSE
+    size = "64 64"
+    bgColor = "0 0 0"
+    autoApply = FALSE
+  }
+}
+module SoSceneWriterMD {
+  internal  {
+    frame = "325 -223 136 64"
+    windows  {
+      window _automatic {
+        geometry = "26 45 217 173"
+        sizeHint = "217 173"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "664 547 278 116"
+        sizeHint = "278 116"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SceneWriter
+    fileName = .iv
+    fileType = "Binary Inventor"
+  }
+}
+module FileInformation {
+  internal  {
+    frame = "101 353 120 64"
+    windows  {
+      window _default {
+        geometry = "192 293 304 370"
+        sizeHint = "304 370"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "114 133 208 431"
+        sizeHint = "208 431"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UserInventorFile
+    path = ""
+    dirname = ""
+    filename = ""
+    basename = ""
+    extension = ""
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
+    isDirectory = FALSE
+    isReadable = FALSE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module IntervalThresh {
+  internal  {
+    frame = "297 293 112 56"
+    windows  {
+      window _default {
+        geometry = "817 139 397 352"
+        sizeHint = "397 352"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IntervalThresh
+    lowerType = ImgMin
+    innerType = ImgOrig
+    upperType = ImgMin
+    imageMin = -100000
+    imageMax = 100000
+    imageRange = 200000
+    threshCenter = 12025
+    threshWidth = 0
+    threshMin = 12025
+    threshMax = 12025
+    lowerUserValue = 0
+    innerUserValue = 0
+    upperUserValue = 0
+    changeMinMax = FALSE
+    changedMin = -100000
+    changedMax = 100000
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "349 -99 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module ModifyRegion {
+  internal  {
+    frame = "361 45 112 56"
+    windows  {
+      window _default {
+        geometry = "38 748 845 336"
+        sizeHint = "845 336"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ModifyRegion1
+    offsetMode = Voxels
+    scalarModifier = -2
+    vectorModifier = "5 5 5"
+    boxModifier = "0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000"
+    voxelExtensionDivisor = 1
+    voxelExtensionMode = Enlarging
+    inBox = "-44.993099 -30.650999 -16.146999 0.000000 0.000000 0.000000 -20.993099 -2.651010 61.853001 0.000000 0.000000 0.000000"
+    outBox = "-49.993099 -35.650999 -21.146999 0 0 0 -15.993099 2.34899 66.853001 0 0 0"
+    autoApply = TRUE
+    selectParameter = Vector
+    fillValue = 0
+    clampBox = "0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000"
+    useClampBox = FALSE
+    enableWarnings = TRUE
+  }
+  internalFields = ""
+}
+module BoundingBox {
+  internal  {
+    frame = "301 357 104 56"
+    windows  {
+      window _default {
+        geometry = "628 528 504 220"
+        sizeHint = "504 220"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBox
+    boundingBox = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    boundingBoxExtent = "0 0 0 0 0 0"
+    objectMin = 12025
+    objectMax = 12025
+    updateMode = AutoUpdate
+    upToDate = FALSE
+    v1X = 0
+    v1Y = 0
+    v1Z = 0
+    v1C = 0
+    v1T = 0
+    v1U = 0
+    v2X = -1
+    v2Y = -1
+    v2Z = -1
+    v2C = -1
+    v2T = -1
+    v2U = -1
+    eX = 0
+    eY = 0
+    eZ = 0
+    eC = 0
+    eT = 0
+    eU = 0
+    objectVoxels = 0
+    objectVolume = 0
+    boxVoxels = 0
+    boxVolume = 0
+  }
+}
+module SoShapePartition {
+  internal  {
+    frame = "325 -159 152 64"
+    windows  {
+      window _default {
+        geometry = "11 179 279 173"
+        sizeHint = "279 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoConvertShapeENT
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    shapePartitioning = FALSE
+    cubeSize = 30
+    valid = FALSE
+    autoUpdate = FALSE
+  }
+}
+module BoolInt {
+  internal  {
+    frame = "253 101 72 56"
+    windows  {
+      window _default {
+        geometry = "136 155 224 197"
+        sizeHint = "224 197"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoolInt
+    boolValue = TRUE
+    invBoolValue = TRUE
+    intValue = 1
+    offValue = 0
+    onValue = 1
+    defaultBool = Unchanged
+  }
+  internalFields = ""
+}
+module Switch {
+  internal  {
+    frame = "329 101 144 56"
+    windows  {
+      window _default {
+        geometry = "128 286 161 31"
+        sizeHint = "156 31"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Switch
+    currentInput = 1
+    NumberOfInputs = 5
+    maxInput = 4
+  }
+}
+module SoMLWorldToVoxel {
+  internal  {
+    frame = "285 -27 136 56"
+    windows  {
+      window _default {
+        geometry = "810 221 212 199"
+        sizeHint = "212 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMLWorldToVoxel
+    matrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    inverse = FALSE
+    shift = FALSE
+  }
+}
+module Queue {
+  internal  {
+    frame = "125 269 72 56"
+    windows  {
+      window _default {
+        geometry = "979 159 205 146"
+        sizeHint = "205 146"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "92 111 208 233"
+        sizeHint = "208 233"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Queue
+    input = ""
+    output = ""
+    listType = FIFO
+    numEntries = 0
+    isEmpty = FALSE
+  }
+  internalFields = ""
+}
+module MinMaxScan {
+  internal  {
+    frame = "301 413 104 56"
+    windows  {
+      window _default {
+        geometry = "815 491 472 262"
+        sizeHint = "472 262"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MinMaxScan
+    minValue = 0
+    maxValue = 0
+    inputType = "unsigned int8"
+    trueMinValue = 0
+    trueMaxValue = 0
+    proposedType = "unsigned int8"
+    upToDate = FALSE
+    updateMode = AutoUpdate
+    typeSelect = Float
+    outputType = "unsigned int8"
+    preferUnsigned = TRUE
+  }
+}
+module Scale {
+  internal  {
+    frame = "321 229 64 56"
+    windows  {
+      window _default {
+        geometry = "181 205 412 237"
+        sizeHint = "412 237"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale
+    inputMin = 0
+    inputMax = 0
+    updateMode = AutoUpdateMinMaxOn
+    useTrueRange = FALSE
+    typeSelect = Float
+    outputMin = 0
+    outputMax = 1000
+    outputType = float
+  }
+}
+module IdleTrigger {
+  internal  {
+    frame = "117 197 88 56"
+    windows  {
+      window _default {
+        geometry = "880 158 211 80"
+        sizeHint = "211 80"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IdleTrigger
+    minIntermediateTime = 50
+    on = FALSE
+  }
+}
+module FileInformation {
+  internal  {
+    frame = "177 -215 112 64"
+    windows  {
+      window _default {
+        geometry = "169 231 304 370"
+        sizeHint = "304 370"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "515 144 208 431"
+        sizeHint = "208 431"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = InventorFile
+    path = .iv
+    dirname = ""
+    filename = .iv
+    basename = ""
+    extension = .iv
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
+    isDirectory = FALSE
+    isReadable = FALSE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module FileInformation {
+  internal  {
+    frame = "169 481 112 64"
+    windows  {
+      window _default {
+        geometry = "1123 246 304 370"
+        sizeHint = "304 370"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "114 133 208 431"
+        sizeHint = "208 431"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageFile
+    path = ""
+    dirname = ""
+    filename = ""
+    basename = ""
+    extension = ""
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
+    isDirectory = FALSE
+    isReadable = FALSE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module Resample3D {
+  internal  {
+    frame = "381 165 104 56"
+    windows  {
+      window _default {
+        geometry = "907 318 339 331"
+        sizeHint = "339 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Resample3D
+    keep = "Voxel size"
+    filter = Triangle/Linear
+    isotropic = TRUE
+    filterAlways = FALSE
+    filterAlwaysTolerance = 0
+    zoom = "0.683594 0.683594 3.3"
+    imageSize = "25 29 79"
+    voxelSize = "3 3 3"
+    subVoxelShift = "0 0 0"
+    useReferenceImage = FALSE
+  }
+}
+module SoRLIsoSurface {
+  internal  {
+    frame = "429 -31 120 64"
+    windows  {
+      window _default {
+        geometry = "728 638 479 456"
+        sizeHint = "479 456"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "92 111 349 445"
+        sizeHint = "349 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IsoSurface
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    info = "(1416/706) polygons created"
+    autoLoad = FALSE
+    inputChannel = 0
+    lowResolutionOn = TRUE
+    invert = FALSE
+    drawCentered = FALSE
+    useSubVol = FALSE
+    useMask = FALSE
+    useInvTree = TRUE
+    depthSort = FALSE
+    maskMask = 65535
+    useZBuffer = TRUE
+    checkForBreaks = TRUE
+    threshold = 400
+    drawNormals = FALSE
+    vecLen = 1
+    snap = 0.1000000015
+    numSmoothes = 1
+    smoothFactor = 0.75
+    selectionPoint = "-1 -1 -1"
+    selectionWPoint = "-1 -1 -1"
+    subVolOriginX = 0
+    subVolOriginY = 0
+    subVolOriginZ = 0
+    subVolSizeX = 35
+    subVolSizeY = 39
+    subVolSizeZ = 89
+    sizeOutputX = 35
+    sizeOutputY = 39
+    sizeOutputZ = 89
+    smoothMode = RL_POLYGONIZER_SMOOTH_CORRECTED
+    surfTraceCode = RL_POLYGONIZER_TRACE_COLS_OFF
+    surfNeighCode = RL_POLYGONIZER_NEIGH_INVENTOR
+    surfColorCode = RL_POLYGONIZER_COLOR_AMB_DIFF
+    staticSteps = 1
+    interactiveSteps = 1
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "313 545 80 64"
+    windows  {
+      window _default {
+        geometry = "1650 123 315 319"
+        sizeHint = "315 319"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "26 45 269 445"
+        sizeHint = "269 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Image
+    filename = ""
+    autoLoad = TRUE
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+connections  {
+  OrthoReformat36.input0 = Image.output0
+  OffscreenRender.sceneGraph = IsoSurface.self
+  SceneWriter.inputObject = SoConvertShapeENT.outConvertedShape
+  SceneWriter.fileName = InventorFile.path
+  IntervalThresh.input0 = BoundingBox.output0
+  SoSeparator.children = "SoMLWorldToVoxel.self IsoSurface.self"
+  ModifyRegion1.input0 = Switch.output0
+  BoundingBox.input0 = MinMaxScan.output0
+  SoConvertShapeENT.input = SoSeparator.self
+  Switch.input0 = Scale.output0
+  Switch.input1 = Resample3D.output0
+  Switch.currentInput = BoolInt.intValue
+  SoMLWorldToVoxel.image = ModifyRegion1.output0
+  MinMaxScan.input0 = OrthoReformat36.output2
+  Scale.input0 = IntervalThresh.output0
+  InventorFile.update = ImageFile.update
+  InventorFile.dirname = ImageFile.dirname
+  InventorFile.basename = ImageFile.basename
+  Resample3D.input0 = Scale.output0
+  IsoSurface.image = ModifyRegion1.output0
+}

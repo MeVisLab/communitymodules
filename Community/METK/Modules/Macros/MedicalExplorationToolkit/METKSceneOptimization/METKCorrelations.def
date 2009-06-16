@@ -1,0 +1,22 @@
+UserGenres {
+   Genre = METK {
+      Genre = METKSceneOptimization {
+         Title = SceneOptimization
+      }
+   }
+}
+
+
+MacroModule METKCorrelations {
+   author             = "Kerstin Kellermann"
+   status             = work-in-progress
+   comment            = ""
+   keywords           = ""
+   seeAlso            = ""
+   //exampleNetwork     = "$(LOCAL)/networks/METKCorrelationNetwork.mlab"
+   scriptOnly         = NO
+   onlyOneInstance    = Yes  //only one instance of this module can be started as an application, additional created versions just show the allready running applications//doesn't seems to work
+   externalDefinition = $(LOCAL)/METKCorrelations.script
+   genre              = "METKSceneOptimization"
+   //documentation      = "http://www.metk.net/METKDocumentation/METKCorrelationNetwork.html"
+}

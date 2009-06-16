@@ -1,0 +1,102 @@
+//----------------------------------------------------------------------------------
+//! UMDMETKMessaging module definitions.
+/*!
+// \file    UMDMETKMessaging.def
+// \author  Christian Tietjen
+// \date    2006-05-16
+//
+*/
+//----------------------------------------------------------------------------------
+
+UserGenres {
+   Genre METK {
+      Genre = METKMessaging {
+         Title = "Messaging"
+      }
+   }
+}
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKMsgReceiver
+//----------------------------------------------------------------------------------
+MLModule METKMsgReceiver {
+  DLL            = "METKMessaging"
+
+  genre          = "METKMessaging"
+  author         = "Christian Tietjen"
+  status         = "stable"
+  comment        = "Receives events from METKMsgSender"
+  keywords       = ""
+  seeAlso        = "METKMsgSender METKGlobalMessages"
+  documentation  = "$(LOCAL)/html/METKMessaging.html"
+  exampleNetwork = $(LOCAL)/networks/SenderReceiver.mlab
+  projectSource  = "$(UserProjectsPath)/sources/ML/METK/METKMessaging"
+  
+  Window METKMsgReceiver {
+     Vertical {
+        Box { layout = Vertical
+           Field = message
+           Field = data
+           Field = done
+        }
+        Box { layout = Vertical
+           Field = status { edit = NO w = 210 }
+        }
+     }
+  }
+
+} // MLModule METKMsgReceiver
+
+
+MLModule METKMsgSender {
+  DLL            = "METKMessaging"
+
+  genre          = "METKMessaging"
+  author         = "Christian Tietjen"
+  status         = "stable"
+  comment        = "Send events to METKMsgReceiver"
+  keywords       = ""
+  seeAlso        = "METKMsgReceiver METKGlobalMessages"
+  documentation  = "$(LOCAL)/html/METKMessaging.html"
+  exampleNetwork = $(LOCAL)/networks/SenderReceiver.mlab
+  projectSource  = "$(UserProjectsPath)/sources/ML/METK/METKMessaging"
+
+  Window METKMsgSender {
+    Vertical {
+      Box { layout = Vertical
+         Field = message
+         Field = data
+         Field = send
+      }
+      Box { layout = Vertical
+         Field = done { edit = NO }
+         Field = successful { edit = NO }
+         Field = status { edit = NO w = 210 }
+      }
+   }
+  }
+} // MLModule METKMsgReceiver
+
+
+MLModule METKGlobalMessages {
+  DLL            = "METKMessaging"
+
+  genre          = "METKMessaging"
+  author         = "Christian Tietjen"
+  status         = "stable"
+  comment        = "Send global load/cleanup events"
+  keywords       = ""
+  seeAlso        = "METKMsgReceiver METKMsgSender"
+  documentation  = "$(LOCAL)/html/METKMessaging.html"
+  exampleNetwork = $(LOCAL)/networks/Broadcasting.mlab
+  projectSource  = "$(UserProjectsPath)/sources/ML/METK/METKMessaging"
+
+  Window METKGlobalMessages {
+     Vertical { w = 220
+        Button = loaded
+        Button = cleanup
+        Field = lastMessage { edit = NO }
+     }
+  }
+} // MLModule METKGlobalMessages

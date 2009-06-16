@@ -1,0 +1,276 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "597 61 104 56"
+    windows  {
+      window _viewer {
+        geometry = "1054 303 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module BackgroundMacro {
+  internal  {
+    frame = "597 141 136 56"
+    windows  {
+      window _default {
+        geometry = "1092 489 200 160"
+        sizeHint = "200 160"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BackgroundMacro
+    startColor = "1 1 1"
+    endColor = "1 1 1"
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+  internalFields = ""
+}
+module Comment {
+  internal  {
+    frame = "285 141 88 56"
+    windows  {
+      window _default {
+        geometry = "146 214 346 216"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "Open a case and add a new collection for some views  and turn on and off some structures. Then you can jump between the collections.
+
+If you switch on the animation flag, the transition between the collections is animated.
+
+Create a video of all collections by clicking the button."
+  }
+  internalFields = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "437 45 120 56"
+    windows  {
+      window _default {
+        geometry = "753 158 693 641"
+        sizeHint = "679 649"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "636 290 668 618"
+        sizeHint = "379 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = /Scripts/ENT/init-script.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = FALSE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = "[Ini]
+LengthTimeUnit=2.0
+LengthSeconds=2.0
+RealTime=yes
+
+[Script]
+
+[0,2.0] 'Cam' setCameraFocalDistance 229.296997070313
+[0,2.0] 'Cam' setCameraHeight 359.805999755859
+[0,2.0] 'Cam' setCameraOrientation 0.999456,-0.0116792,-0.0308469,1.57591
+[0,2.0] 'Cam' setCameraPosition -1.95404,-135.936,-173.097"
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = FALSE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = c:/temp/frame00105.bmp
+    offScreenFolder = c:/temp
+    videoXSize = 300
+    videoYSize = 300
+    saveFrames = FALSE
+    saveVideo = TRUE
+  }
+}
+module METKCollections {
+  internal  {
+    frame = "289 253 128 56"
+    windows  {
+      window _default {
+        geometry = "28 75 477 411"
+        sizeHint = "480 512"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKCollectionsDetailsNew {
+        geometry = "373 642 426 273"
+        sizeHint = "410 273"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "711 327 451 542"
+        sizeHint = "265 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKCollectionsListView {
+        geometry = "187 281 274 283"
+        sizeHint = "108 122"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKCollectionsDetails {
+        geometry = "484 638 410 242"
+        sizeHint = "410 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCollections
+    objectTypeInclude = Result,Viewer2D,Viewer3D,CSO,Events,Tool
+    layerExclude = ""
+    infoExclude = InventorPointer,InventorFullPointer,IsoSurfacePointer,StipplePointer,SilhouettePointer
+    singleClick = Load
+    doubleClick = Show
+    animated = TRUE
+    capturedViewer = METKViewer3D
+    capturedViewerF = METKViewer3D
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "437 141 120 56"
+    windows  {
+      window _default {
+        geometry = "940 177 442 440"
+        sizeHint = "200 200"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "668 456 351 182"
+        sizeHint = "351 182"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    decoration = FALSE
+    screenshotFile = D:/AGVisualisierung/Hals31/collections/temp.tif
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-1.95404 -135.936 -173.097"
+    camOrientation = "0.999456 -0.0116792 -0.0308469 1.57591"
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "433 245 128 56"
+    windows  {
+      window _default {
+        geometry = "551 446 325 317"
+        sizeHint = "196 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "433 333 112 56"
+    windows  {
+      window _default {
+        geometry = "205 574 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  SoSeparator.children = "METKViewer3D.viewer BackgroundMacro.output"
+  UMDAnimation2.inObjectContainer = METKViewer3D.outObjectContainer
+  UMDAnimation2.inInventor = SoSeparator.self
+  METKCollections.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = METKIsoSurface.outInventor
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

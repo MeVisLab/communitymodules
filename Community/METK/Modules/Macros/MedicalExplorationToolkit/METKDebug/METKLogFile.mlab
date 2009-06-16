@@ -1,0 +1,145 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "813 445 72 56"
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0.000000 0.000000 0.000000"
+    vec4Value = "0.000000 0.000000 0.000000 0.000000"
+    mat4Value = "1.000000 0.000000 0.000000 0.000000
+0.000000 1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000 0.000000
+0.000000 0.000000 0.000000 1.000000"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module MLLogFile {
+  internal  {
+    frame = "709 365 88 56"
+  }
+  fields  {
+    instanceName = MLLogFile
+    logWarnings = TRUE
+    logErrors = TRUE
+    logFatals = TRUE
+    logDebugs = TRUE
+    logCouts = TRUE
+    logCerrs = TRUE
+    logOthers = TRUE
+    logLine = TRUE
+    logFileName = TRUE
+    logTime = TRUE
+    logFunc = TRUE
+    logReason = TRUE
+    logHandling = TRUE
+    logLibraryPrefix = TRUE
+    logMessageType = TRUE
+    enableLog = FALSE
+    logFile = $(HOME)/MLLogFile.log
+    trueLogFile = H:/MLLogFile.log
+    logStatus = "Log file okay."
+  }
+}
+module CoreControl {
+  internal  {
+    frame = "913 365 96 56"
+    windows  {
+      window _default {
+        geometry = "70 89 436 494"
+        sizeHint = "436 494"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CoreControl
+    symbolControlledDebugging = FALSE
+    fullDebugging = FALSE
+    onWarnings = Continue
+    onErrors = Continue
+    onFatals = Continue
+    onDebugs = Continue
+    onCouts = Continue
+    onCerrs = Continue
+    onOthers = Continue
+    maxNumThreads = 1
+    catchExceptions = TRUE
+    memOptLevel = 0
+    cacheSizeInKB = 500000
+    currUsedCacheSizeInKB = 0
+    debugSymbols = ""
+    traceListDepth = 256
+    traceStackDepth = 32
+    traceOnWarnings = FALSE
+    traceOnErrors = FALSE
+    traceOnFatals = FALSE
+    traceOnDebugs = FALSE
+    traceOnCouts = FALSE
+    traceOnCerrs = FALSE
+    traceOnOthers = FALSE
+  }
+}
+module Console {
+  internal  {
+    frame = "817 365 80 56"
+  }
+  fields  {
+    instanceName = Console
+    logWarnings = TRUE
+    logErrors = TRUE
+    logFatals = TRUE
+    logDebugs = TRUE
+    logCouts = TRUE
+    logCerrs = TRUE
+    logOthers = TRUE
+    logLine = TRUE
+    logFileName = TRUE
+    logTime = TRUE
+    logFunc = TRUE
+    logReason = TRUE
+    logHandling = TRUE
+    logLibraryPrefix = TRUE
+    logMessageType = TRUE
+    maxConsoleSize = 3
+    consoleString = ""
+  }
+}
+connections = ""

@@ -1,0 +1,65 @@
+Interface  {
+   Inputs  {
+      Field inObjectContainer { internalName = UMDPointerToInventor.inObjectContainer }
+      Field distanceObject { internalName = WEMInfoGenerator.distanceObject }
+   }
+   Outputs {
+      Field outAttribITSS { internalName = showAttrib.self }
+      Field outWEM { internalName = SoWEMConvertInventor.outWEM }
+      Field outShadingDisplay { internalName = showMap.self }
+      Field outHatching { internalName = showHatching.self }
+   }
+   Parameters {
+      Field objectID    { internalName = UMDPointerToInventor.objectID }
+      Field initialize  { type = trigger }
+      Field idNr { internalName = WEMInfoGenerator.id }
+      
+      Field color        { internalName = WEMInfoGenerator.color }
+      Field doi          { internalName = WEMInfoGenerator.doi }
+      Field transparency { internalName = WEMInfoGenerator.transparency }
+      Field emphasis     { internalName = WEMInfoGenerator.emphasis }
+      Field displayType { type = enum value = "ShadingMap" values = "Invisible,ShadingMap,Stippling,Hatching" }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/NPRShadingContainer.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener initialize { command = initialize }
+   
+   FieldListener {
+      listenField = color
+      listenField = displayType
+      command = settingsChanged
+   }
+}
+
+
+Window NPRShadingContainer {
+   Vertical {
+      Field = objectID { edit = NO }
+      Field = idNr { edit = NO }
+      Field = initialize
+   }
+}
+
+Window Settings {
+   w = 350
+   Vertical {
+      Field = displayType
+      Field = color
+      Field = doi { title = "Degree of Interest" slider = yes }
+      Field = transparency { slider = yes }
+      Field = emphasis { edit = No }
+   }
+}

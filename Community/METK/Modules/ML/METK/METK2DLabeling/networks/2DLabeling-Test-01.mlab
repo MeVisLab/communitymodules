@@ -1,0 +1,291 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SimpleView2D {
+  internal  {
+    frame = "677 165 120 56"
+    windows  {
+      window _automatic {
+        geometry = "466 314 354 440"
+        sizeHint = "354 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SimpleView2D1
+    inventorInputOn = FALSE
+    startSlice = 1
+    timePoint = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    maxTimePoint = 0
+    filterMode = FILTER_NEAREST
+    standardKeys = TRUE
+    lutMode = LUT_BEST
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    worldPosition = "-109.813 -358.053 -481.227"
+    worldPositionOn = FALSE
+    worldPositionCol = "0.858621 0.858621 0.858621"
+    worldPositionEditingOn = TRUE
+    worldPositionBlendOnto = 1
+    worldPositionBlendOutside = 0
+    zoomOn = TRUE
+    useTraceColors = FALSE
+    lutSetInputMinMax = TRUE
+    lutMin = 0
+    lutMax = 2179
+    slicerOn = TRUE
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutCenter = 1024
+    lutWidth = 600
+    ctWindowsLutCenter = 1024
+    ctWindowsLutWidth = 600
+    annotationOn = TRUE
+    annotationCol = "0.872414 0.872414 0.872414"
+    annotFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_SHORT
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 1024
+    annoInput04 = 600
+    annoInput05 = 1024
+    annoInput06 = 600
+    annoInput07 = 1024
+    annoInput08 = 600
+    annoInput09 = HU
+    annoReadPixFloorPos = "393 111 42"
+    annoReadPixVoxelPos = "393.474 111.02 42.5"
+    annoReadPixWorldPos = "-103.063 -469.86 -411.812"
+    borderOn = TRUE
+    borderColor = "0.872414 0.872414 0.872414"
+    currentTab = 0
+    deletingEnabled = TRUE
+    useCTWinOn = TRUE
+  }
+  internalFields = ""
+}
+module Info {
+  internal  {
+    frame = "357 197 56 56"
+    windows  {
+      window _default {
+        geometry = "30 407 564 371"
+        sizeHint = "564 371"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    pagedImgInfo = Ok
+    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
+    memoryImage2 = "handled by host"
+    bypassIndex = -1
+    inPlaceIndex = -1
+    moduleName = METK2DLabeling
+    connectionValid = TRUE
+    dataValid = TRUE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "497 405 80 56"
+    windows  {
+      window _default {
+        geometry = "491 370 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = E:/HNO/Hals12/Hals12_Bones.dcm
+    autoLoad = TRUE
+    status = "File open"
+    progress = 0
+    format = DICOM/TIFF
+    dataType = int16
+    sizeX = 513
+    sizeY = 513
+    sizeZ = 63
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    minValue = 0
+    maxValue = 2179
+    comment = "Anonymized by MeVisLab"
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "176 176 1 1 1 1"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module SimpleView2D {
+  internal  {
+    frame = "481 173 112 56"
+    windows  {
+      window _automatic {
+        geometry = "675 242 354 440"
+        sizeHint = "354 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "613 313 460 443"
+        sizeHint = "208 208"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SimpleView2D
+    inventorInputOn = FALSE
+    startSlice = 1
+    timePoint = 0
+    slab = 1
+    blendMode = BLEND_REPLACE
+    maxTimePoint = 0
+    filterMode = FILTER_NEAREST
+    standardKeys = TRUE
+    lutMode = LUT_BEST
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    worldPosition = "-109.813 -358.053 -481.227"
+    worldPositionOn = FALSE
+    worldPositionCol = "0.858621 0.858621 0.858621"
+    worldPositionEditingOn = TRUE
+    worldPositionBlendOnto = 1
+    worldPositionBlendOutside = 0
+    zoomOn = TRUE
+    useTraceColors = FALSE
+    lutSetInputMinMax = TRUE
+    lutMin = 0
+    lutMax = 65535
+    slicerOn = TRUE
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutCenter = 2895
+    lutWidth = 0
+    ctWindowsLutCenter = 2895
+    ctWindowsLutWidth = -4095
+    annotationOn = TRUE
+    annotationCol = "0.872414 0.872414 0.872414"
+    annotFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_SHORT
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 2895
+    annoInput04 = -4095
+    annoInput05 = 2895
+    annoInput06 = 0
+    annoInput07 = 2895
+    annoInput08 = 0
+    annoInput09 = HU
+    annoReadPixFloorPos = "333 0 1"
+    annoReadPixVoxelPos = "333.57 0.60211 1.5"
+    annoReadPixWorldPos = "33.1162 -109.956 9"
+    borderOn = TRUE
+    borderColor = "0.872414 0.872414 0.872414"
+    currentTab = 0
+    deletingEnabled = TRUE
+    useCTWinOn = TRUE
+  }
+  internalFields = ""
+}
+module METK2DLabeling {
+  internal  {
+    frame = "481 301 128 56"
+    windows  {
+      window _default {
+        geometry = "406 443 217 56"
+        sizeHint = "217 56"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METK2DLabeling
+    priority = 10000
+    debugComment = ""
+    slice = 1
+  }
+}
+connections  {
+  SimpleView2D1.inImage = ImgLoad.output0
+  SimpleView2D1.startSlice = SimpleView2D.startSlice
+  Info.input0 = METK2DLabeling.output0
+  SimpleView2D.inImage = METK2DLabeling.output0
+  METK2DLabeling.input0 = ImgLoad.output0
+  METK2DLabeling.slice = SimpleView2D.startSlice
+}

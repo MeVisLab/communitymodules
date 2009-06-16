@@ -1,0 +1,14 @@
+[Ini]
+LengthTimeUnit=2
+LengthSeconds=20
+RealTime=yes
+
+[Script]
+[0] 'All' setVisible true
+[0] 'System' init
+[0] 'All' setCampath ParableRectangle
+[0,1] 'Cam' campathvp Structure_Lymphnode_7
+[0,1] 'Structure_Lymphnode_7' setColor red
+[1,2] 'Cam' campathvp Structure_Lymphnode_15
+[1,2] 'Structure_Lymphnode_7' setColor LymphnodeColor
+[1,2] 'Structure_Lymphnode_15' setColor red

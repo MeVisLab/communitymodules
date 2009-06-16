@@ -1,0 +1,16 @@
+[Ini]
+LengthTimeUnit=0
+LengthSeconds=0
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'All' view 85 -50 0.6
+[0] 'large_Lymphnodes' setColor red
+[0] 'large_Lymphnodes' setTransparency 0
+[0] 'middle_Lymphnodes' setColor orange
+[0] 'middle_Lymphnodes' setTransparency 0.2
+[0] 'Lymphnodes' setTransparency 0
+[0] 'Lymphnodes' setTransparency 0.4
+[0] 'All' setTransparency 0.9
+[0] 'System' setBaseColors

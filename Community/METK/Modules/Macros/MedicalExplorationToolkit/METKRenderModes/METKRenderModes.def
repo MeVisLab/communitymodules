@@ -1,0 +1,66 @@
+UserGenres {
+   Genre METK {
+      Genre = METKRenderModes {
+         Title = "Render Modes"
+      }
+   }
+}
+
+MacroModule METKIsoSurface {
+   author             = "Konrad Mühler, Christian Tietjen"
+   status             = "stable"
+   comment            = "Holds all needed data for iso surface visualization"
+   keywords           = "METK shaded marching cubes"
+   seeAlso            = "METKSilhouette METKTexturing"
+   genre              = "METKRenderModes"
+   externalDefinition = "$(LOCAL)/METKIsoSurface.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKRenderModes.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKIsoSurface.html"
+}
+
+MacroModule METKSilhouette {
+   author             = "Christian Tietjen"
+   status             = "stable"
+   comment            = "Holds all needed data for silhouette visualization"
+   keywords           = "METK llustrative NPR"
+   seeAlso            = "METKStippling METKIsoSurface METKTexturing"
+   genre              = "METKRenderModes"
+   externalDefinition = "$(LOCAL)/METKSilhouette.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKRenderModes.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKSilhouette.html"
+}
+
+MacroModule METKStippling {
+   author             = "Alexandra Baer, Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = "Holds all needed data for stippling visualization"
+   keywords           = "METK illustrative NPR"
+   seeAlso            = "METKIsoSurface METKSilhouette METKTexturing"
+   genre              = "METKRenderModes"
+   externalDefinition = "$(LOCAL)/METKStippling.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKRenderModes.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKStippling.html"
+}
+
+MacroModule METKTexturing {
+   author             = "Rocco Gasteiger, Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = "Holds all needed data for hatching visualization"
+   keywords           = "METK illustrative NPR"
+   seeAlso            = "METKStippling METKSilhouette"
+   genre              = "METKRenderModes"
+   externalDefinition = "$(LOCAL)/METKTexturing.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKRenderModes.mlab"
+   documentation      = "http://www.metk.net/METKDocumentation/METKTexturing.html"
+}
+
+MacroModule METKNPRShading {
+   author             = "Roland Pfisterer, Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK winged edge mesh NPR illustrative shadow map"
+   seeAlso            = ""
+   genre              = "METKRenderModes"
+   externalDefinition = "$(LOCAL)/METKNPRShading.script"
+   exampleNetwork     = "$(LOCAL)/../ExampleNetworks/METKNPRShadingExample.mlab"
+}

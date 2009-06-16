@@ -1,0 +1,832 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoShapePartition {
+  internal  {
+    frame = "1825 229 128 56"
+  }
+  fields  {
+    instanceName = SoShapePartition
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    shapePartitioning = FALSE
+    cubeSize = 20
+    valid = FALSE
+    autoUpdate = FALSE
+  }
+}
+module GenerateIVFileDir {
+  internal  {
+    frame = "1833 333 128 56"
+  }
+  fields  {
+    instanceName = GenerateIVFileDir
+    directory = ""
+    liste = ""
+    toggleString = ""
+    progress = 0
+  }
+  internalFields = ""
+}
+module GenerateIVFile {
+  internal  {
+    frame = "1833 429 112 56"
+  }
+  fields  {
+    instanceName = GenerateIVFile
+    filename = ""
+    filenameOutput = ""
+    ImageExists = FALSE
+    InventorExists = FALSE
+    filter = Gaussian
+    creatingSurface = FALSE
+    converting = FALSE
+    saving = FALSE
+    saved = FALSE
+    ready = FALSE
+    queueing = FALSE
+    smoothing = TRUE
+    splitting = FALSE
+    overwrite = FALSE
+    imageValue = 0
+    imageValueAuto = TRUE
+  }
+  internalFields = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "1821 509 120 56"
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = Scripts/ENT/init-script.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = FALSE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = ""
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = TRUE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = ""
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+    useOffscreenRenderer = TRUE
+  }
+}
+module METKVolViz {
+  internal  {
+    frame = "1813 -427 104 56"
+  }
+  fields  {
+    instanceName = METKVolViz
+    ignoreEmptyString = TRUE
+    colorPoints = "[ 0 0 0 0, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 4095 1 ]"
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "1805 -499 120 56"
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "0 0 1"
+    camOrientation = "0 0 1 0"
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "1805 -571 120 56"
+  }
+  fields  {
+    instanceName = METKViewer2D
+    annotations = TRUE
+    layoutMode = LAYOUT_AXIAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module METKToSolverConnection {
+  internal  {
+    frame = "1489 541 176 56"
+  }
+  fields  {
+    instanceName = METKToSolverConnection
+    priority = 10000
+    debugComment = ""
+    dataPath = ""
+  }
+}
+module METKSurfaceDistance3D {
+  internal  {
+    frame = "1485 461 168 56"
+  }
+  fields  {
+    instanceName = METKSurfaceDistance3D
+    priority = 10000
+    debugComment = ""
+    nearDistance = 2
+    nearDistanceColor = "1 0 0"
+    farDistance = 5
+    farDistanceColor = "1 1 0"
+  }
+}
+module METKSurfaceDistance2D {
+  internal  {
+    frame = "1485 389 168 56"
+  }
+  fields  {
+    instanceName = METKSurfaceDistance2D
+    display = TRUE
+    innerMarginValue = 2
+    outerMarginValue = 5
+    innerMarginColor = "1 0 0"
+    outerMarginColor = "1 1 0"
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "1473 309 192 56"
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKStructureDetails {
+  internal  {
+    frame = "1493 221 152 56"
+  }
+  fields  {
+    instanceName = METKStructureDetails
+    objectID = ""
+    layer = ""
+    info = ""
+    value = ""
+  }
+  internalFields = ""
+}
+module METKStippling {
+  internal  {
+    frame = "1513 141 112 56"
+  }
+  fields  {
+    instanceName = METKStippling
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+  }
+  internalFields = ""
+}
+module METKStatus {
+  internal  {
+    frame = "1517 53 104 56"
+  }
+  fields  {
+    instanceName = METKStatus
+  }
+  internalFields = ""
+}
+module METKSingleObjInfo {
+  internal  {
+    frame = "1505 -19 144 56"
+  }
+  fields  {
+    instanceName = METKSingleObjInfo
+    objID = ""
+    layerID = ""
+  }
+  internalFields = ""
+}
+module METKSilhouette {
+  internal  {
+    frame = "1525 -107 120 56"
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module METKScriptTrigger {
+  internal  {
+    frame = "1509 -187 136 56"
+  }
+  fields  {
+    instanceName = METKScriptTrigger
+    scriptFile = ""
+  }
+  internalFields = ""
+}
+module METKScriptInit {
+  internal  {
+    frame = "1521 -267 112 56"
+  }
+  fields  {
+    instanceName = METKScriptInit
+    scriptFile = ""
+  }
+  internalFields = ""
+}
+module METKScriptBunch {
+  internal  {
+    frame = "1509 -355 136 56"
+  }
+  fields  {
+    instanceName = METKScriptBunch
+    baseScriptPath = Scripts/
+  }
+  internalFields = ""
+}
+module METKScriptBuilder {
+  internal  {
+    frame = "1501 -435 136 56"
+  }
+  fields  {
+    instanceName = METKScriptBuilder
+    useCamera = TRUE
+    useColor = FALSE
+    useTransparency = FALSE
+    useVisibility = FALSE
+    useNPR = FALSE
+    setColorLast = TRUE
+    setTransparencyLast = TRUE
+    setVisibilityLast = TRUE
+    length = 5
+    realtime = TRUE
+    viewerName = METKViewer3D
+    script = ""
+  }
+  internalFields = ""
+}
+module METKSaveCase {
+  internal  {
+    frame = "1509 -515 120 56"
+  }
+  fields  {
+    instanceName = METKSaveCase
+    fileName = ""
+  }
+  internalFields = ""
+}
+module METKSafetyMargin {
+  internal  {
+    frame = "1493 -595 136 56"
+  }
+  fields  {
+    instanceName = METKSafetyMargin
+    structure = ""
+    marginList = 1,5,10,20,30
+    colorMargins = 5,10
+    transparency = 0.5
+  }
+  internalFields = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "1149 549 120 56"
+  }
+  fields  {
+    instanceName = METKROISelect
+    ignoreEmptyString = TRUE
+  }
+  internalFields = ""
+}
+module METKPicking {
+  internal  {
+    frame = "1157 469 104 56"
+  }
+  fields  {
+    instanceName = METKPicking
+    priority = 10000
+    debugComment = ""
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    pickPixelTolerance = 3
+    objName = ""
+    selection = "0 0 0"
+  }
+}
+module METKPatientObject {
+  internal  {
+    frame = "1137 381 144 56"
+  }
+  fields  {
+    instanceName = METKPatientObject
+  }
+  internalFields = ""
+}
+module METKPackFiles {
+  internal  {
+    frame = "1157 301 120 56"
+  }
+  fields  {
+    instanceName = METKPackFiles
+    directory = ""
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "1153 213 128 56"
+  }
+  fields  {
+    instanceName = METKOverlay2D
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+  }
+  internalFields = ""
+}
+module METKObjXMLWriter {
+  internal  {
+    frame = "1137 125 144 56"
+  }
+  fields  {
+    instanceName = METKObjXMLWriter
+    priority = 10000
+    debugComment = ""
+    directory = ""
+    filename = ""
+    useCasePath = TRUE
+    objXML = ""
+  }
+}
+module METKObjBrowser {
+  internal  {
+    frame = "1145 29 128 56"
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module METKMsgSender {
+  internal  {
+    frame = "1153 -155 128 56"
+  }
+  fields  {
+    instanceName = METKMsgSender
+    priority = 10000
+    debugComment = ""
+    message = ""
+    data = ""
+    status = idle
+    done = FALSE
+    successful = FALSE
+  }
+}
+module METKMsgReceiver {
+  internal  {
+    frame = "1149 -243 136 56"
+  }
+  fields  {
+    instanceName = METKMsgReceiver
+    priority = 10000
+    debugComment = ""
+    message = ""
+    data = ""
+    status = idle
+  }
+}
+module METKMeasures {
+  internal  {
+    frame = "1165 -331 120 56"
+  }
+  fields  {
+    instanceName = METKMeasures
+    descriptionTag = Structure
+    structure = ""
+    done = FALSE
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "1185 -507 112 56"
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKLogFile {
+  internal  {
+    frame = "901 549 104 56"
+  }
+  fields  {
+    instanceName = METKLogFile
+    loggingMode = Normal
+    logLocation = UserHome
+    userDefPath = ""
+    userDefFileName = LogFile.log
+    messageOnError = FALSE
+    enableLogFile = TRUE
+    trueFileName = "C:/Documents and Settings/kmuehler/LogFile.log"
+  }
+  internalFields = ""
+}
+module METKLoadSegMask {
+  internal  {
+    frame = "881 477 144 56"
+  }
+  fields  {
+    instanceName = METKLoadSegMask
+    objID = ""
+  }
+  internalFields = ""
+}
+module METKLiftChart {
+  internal  {
+    frame = "897 373 112 56"
+  }
+  fields  {
+    instanceName = METKLiftChart
+    priority = 10000
+    debugComment = ""
+    active = TRUE
+    verticalOffset = 100
+    aggregation = Structure
+    minImportance = 0.5
+    maxExtent = 0.75
+    divideBySide = FALSE
+    hideSideUnkown = FALSE
+  }
+}
+module METKIsoSurface {
+  internal  {
+    frame = "889 197 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKIntraOPViewpoint {
+  internal  {
+    frame = "857 109 160 56"
+  }
+  fields  {
+    instanceName = METKIntraOPViewpoint
+    priority = 10000
+    debugComment = ""
+    NewTumorCenter = "0 0 0"
+    NewTumorRadius = 1
+    initDone = FALSE
+    _msgGetCamPos_done = FALSE
+  }
+}
+module METKInfoWin {
+  internal  {
+    frame = "889 21 112 56"
+  }
+  fields  {
+    instanceName = METKInfoWin
+    infoHeader = ""
+    infoText = ""
+  }
+  internalFields = ""
+}
+module METKHierarchyBrowser {
+  internal  {
+    frame = "849 -75 160 56"
+  }
+  fields  {
+    instanceName = METKHierarchyBrowser
+    root = Root
+    rootObjectTypeFilter = Source,Result
+    CSOon = FALSE
+    allObjects = FALSE
+  }
+  internalFields = ""
+}
+module METKGlobalMessages {
+  internal  {
+    frame = "849 -163 160 56"
+  }
+  fields  {
+    instanceName = METKGlobalMessages
+    priority = 10000
+    debugComment = ""
+    lastMessage = "None received."
+  }
+}
+module METKGenerateCamData {
+  internal  {
+    frame = "837 -331 168 56"
+  }
+  fields  {
+    instanceName = METKGenerateCamData
+    BufferSize = 400
+    DivisionDepth = 3
+    Progress = 0
+  }
+  internalFields = ""
+}
+module METKDistanceTransform {
+  internal  {
+    frame = "557 445 168 56"
+  }
+  fields  {
+    instanceName = METKDistanceTransform
+    ignoreEmptyString = TRUE
+    structures = ""
+    progressEuclid = 0
+    autoCompute = TRUE
+    overwriteFile = FALSE
+  }
+  internalFields = ""
+}
+module METKDemonstrator {
+  internal  {
+    frame = "577 349 144 56"
+  }
+  fields  {
+    instanceName = METKDemonstrator
+  }
+  internalFields = ""
+}
+module METKDebug {
+  internal  {
+    frame = "581 269 104 56"
+  }
+  fields  {
+    instanceName = METKDebug
+    record = FALSE
+  }
+  internalFields = ""
+}
+module METKCreateIntraOPDummy {
+  internal  {
+    frame = "541 181 184 56"
+  }
+  fields  {
+    instanceName = METKCreateIntraOPDummy
+    priority = 10000
+    debugComment = ""
+    MinVoxelCount = 1250
+    SubDivSize = 4
+  }
+}
+module METKCollections {
+  internal  {
+    frame = "577 93 128 56"
+  }
+  fields  {
+    instanceName = METKCollections
+    objectTypeInclude = Result,Viewer2D,Viewer3D,CSO,Events,Tool,NPRShading
+    layerExclude = ""
+    infoExclude = InventorPointer,InventorFullPointer,IsoSurfacePointer,StipplePointer,SilhouettePointer
+    singleClick = Load
+    doubleClick = Show
+    animated = FALSE
+    videoStepLength = 10
+    capturedViewer = "[any viewer]"
+    capturedViewerF = "[any viewer]"
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "553 -11 176 56"
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = ""
+    imgValues = ""
+  }
+  internalFields = ""
+}
+module METKClipping {
+  internal  {
+    frame = "585 -91 112 56"
+  }
+  fields  {
+    instanceName = METKClipping
+  }
+  internalFields = ""
+}
+module METKCaseOptimizer {
+  internal  {
+    frame = "561 -187 144 56"
+  }
+  fields  {
+    instanceName = METKCaseOptimizer
+    fileName = ""
+  }
+  internalFields = ""
+}
+module METKCaseObject {
+  internal  {
+    frame = "569 -267 128 56"
+  }
+  fields  {
+    instanceName = METKCaseObject
+  }
+  internalFields = ""
+}
+module METKCalcCamPos {
+  internal  {
+    frame = "581 -347 136 56"
+  }
+  fields  {
+    instanceName = METKCalcCamPos
+    priority = 10000
+    debugComment = ""
+    currentStructure = ""
+    multipleStructures = ""
+    debug = ""
+    viewerName = METKViewer3D
+    dataPath = ""
+    showField = 0
+    sphereMode = "Grid Sphere"
+    currentCam = "0 0 0"
+    camRange = 0
+    visSta = 0
+    impSta = 0
+    inspect = 0
+    wVis = 0
+    wImp = 0
+    wNum = 0
+    wEnt = 0
+    wDis = 0
+    wCam = 0
+    wReg = 0
+    wVisSta = 0
+    wImpSta = 0
+    wSilhouette = 0
+    wImageSpaceCenter = 0
+    prefRegionVector = "0 0 1"
+    prefRegionRange = 1
+    prefRegionType = "Vector region"
+    restrictToRegion = FALSE
+    minDistVec = "0 0 0"
+    minRange = 0
+    result = "0 0 0"
+    orient = "0 0 0 0"
+    setViewerCamAtTheEnd = FALSE
+    debugState = None
+    message = solver
+    data = ""
+  }
+}
+module METKCSO {
+  internal  {
+    frame = "597 -443 104 56"
+  }
+  fields  {
+    instanceName = METKCSO
+    ignorePickable = TRUE
+    objectMustBeVisible = TRUE
+    filterDoubleEvents = FALSE
+  }
+  internalFields = ""
+}
+module METKBookmark3D {
+  internal  {
+    frame = "253 525 136 56"
+  }
+  fields  {
+    instanceName = METKBookmark3D
+    viewerName = METKViewer3D
+  }
+  internalFields = ""
+}
+module METKAutoFading {
+  internal  {
+    frame = "265 421 128 56"
+  }
+  fields  {
+    instanceName = METKAutoFading
+    priority = 10000
+    debugComment = ""
+    UseMETKValues = FALSE
+    CurrentObject = ""
+    ViewerName = METKViewer3D
+    dataPath = ""
+    similarPosition = "0 0 0"
+    camPosition = "0 0 0"
+    camOrientation = "0 0 0 0"
+    message = fading
+    data = ""
+  }
+}
+module METKAddStructure {
+  internal  {
+    frame = "253 325 136 56"
+  }
+  fields  {
+    instanceName = METKAddStructure
+    objectID = ""
+    strGroup = UserDefined
+    color = "0.8 0.8 0.8"
+    transparency = 0
+    visible = TRUE
+    filename = ""
+    createImageFile = FALSE
+    createIVFile = TRUE
+    settingsPath = ""
+  }
+  internalFields = ""
+}
+module METKAddROI {
+  internal  {
+    frame = "257 229 112 56"
+  }
+  fields  {
+    instanceName = METKAddROI
+    ROIType = OwnImage
+    suffix = .ROI
+    filename = ""
+  }
+  internalFields = ""
+}
+module METKAddImage {
+  internal  {
+    frame = "245 117 120 56"
+  }
+  fields  {
+    instanceName = METKAddImage
+  }
+  internalFields = ""
+}
+connections = ""

@@ -1,0 +1,61 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+      Field input0 { internalName = SoGVRTagVolume.image comment = "Input for the current coded segmentation" }
+      Field input1 { internalName = SoGVRVolRen.image comment = "Input for the current ROI" }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field self { internalName = SoGroup.self }
+   }
+   Parameters {
+      Field rois              { type = string value = "[none]" persistent = FALSE }
+      Field roiSelect         { type = string value = "" persistent = FALSE }
+      Field ignoreEmptyString { type = bool value = True }   
+      Field refresh	      { type = trigger }
+      Field colorPoints	      { internalName = SoLUTEditor2D.colorPoints }
+      Field alphaPoints	      { internalName = SoLUTEditor2D.alphaPoints }
+      Field refreshObjMgr     { type = trigger }      
+      Field listenToROI       { type = string value = "" }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKVolViz.py"
+   source = "$(LOCAL)/METKImageDisplay.py"
+   
+   initCommand = init //init2 is called from ImageDisplay.py
+      
+   FieldListener info.outObjectContainer    { command = _cls_info.handleEvents }
+   FieldListener info2.outObjectContainer { command = myHandleEvents }
+   FieldListener roiSelect               { command = setCurrentROI }   
+   FieldListener ignoreEmptyString          { command = ignoreEmptyString }   
+   FieldListener refresh		{ command=buildLUT }
+   FieldListener refreshObjMgr		{ command=refreshObjMgr }
+}
+
+
+
+Window METKVolViz {   
+   Vertical {
+      Field = ignoreEmptyString
+      Field = listenToROI
+      Field = roiSelect { title = "ROI:" edit = NO w = 400 }
+      ComboBox roiSelect {
+         editable = False
+         duplicatesEnabled = NO
+         comboField = rois
+      }
+      Viewer SoView2D.self { type = SoRenderArea h = 28 w = 100 border = false }
+      Box Window {
+      	Panel {
+      		module = SoLUTEditor2D
+      		window = Editor
+      	}
+      }
+   }   
+}

@@ -1,0 +1,50 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters { 
+      Field log { type = string value = "" persistent = False}
+      Field clear { type = trigger }
+      Field record { type = bool value = False }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/../../MedicalExplorationToolkit"
+   importPath = "$(LOCAL)"
+   
+   // Include local functions
+   source = "$(LOCAL)/METKDebug.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEventsOnce }
+   FieldListener clear { command = clear }
+}
+
+
+Window METKDebug {
+   Vertical { w = 300 expandY = YES
+      TextView log {
+         edit      = NO
+   autoApply = YES
+   hscroller = Off
+   vscroller = On
+   console = True
+         visibleRows = 20
+         expandY = YES
+         textFormat = Rich
+      }
+      Horizontal {
+         Button = clear
+         Button = record
+      }
+   }
+}

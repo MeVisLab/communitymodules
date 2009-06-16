@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------------
+//! UMDObjDemo module definitions.
+/*!
+// \file    UMDObjDemo.def
+// \author  Konrad Mühler
+// \date    2005-04-22
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule UMDObjDemo
+//----------------------------------------------------------------------------------
+MLModule UMDObjDemo {
+  DLL            = "UMDObjDemo"
+
+  genre          = ""
+  author         = "Konrad Mühler"
+  status         = "work-in-progress"
+  comment        = "Example for a single ObjModule"
+  keywords       = "ObjMgr"
+  seeAlso        = ""
+  //documentation  = "$(LOCAL)/html/UMDObjDemo.html"
+  //exampleNetwork = "$(LOCAL)/networks/UMDObjDemoExample.mlab"
+  projectSource  = "$(UserProjectsPath)/sources/ML/UMDObjDemo"
+
+} // MLModule UMDObjDemo
+

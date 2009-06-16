@@ -1,0 +1,6 @@
+[Ini]
+LengthTimeUnit=1
+LengthSeconds=1
+Realtime=yes
+[Script]
+[0,1] 'Cam' moveCoord 140.255,-115.816,97.5178 0.808936,0.415706,0.415706,1.78126 349.646 174.823

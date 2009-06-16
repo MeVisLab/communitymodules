@@ -1,0 +1,139 @@
+UserGenres {
+   Genre METK {
+      Genre = METKGUI {
+         Title = GUI
+      }
+   }
+}
+
+
+MacroModule METKObjBrowser {
+  genre = "METKGUI"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKObjBrowser.html"
+  externalDefinition = "$(LOCAL)/METKObjBrowser.script"
+  exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKObjBrowser.mlab"
+
+} // MacroModule METKObjBrowser
+
+//Style for ObjBrowser
+DefineStyle ObjBrowserPopupStyle {
+	derive = Panel.default
+
+	// font for titles in the GUI (Buttons, Labels, ...)
+	titleFont {
+		family = "Tahoma"
+		size = 8
+		weight = Normal
+	}
+
+	// font for editing components in the GUI (NumberEdit, TextView, ...)
+	editFont {
+		family = "Tahoma"
+		size = 8
+		weight = Normal
+	}
+
+	// font for TabViews
+	tabFont {
+		family = "Tahoma"
+		size = 8
+		weight = Bold
+	}
+
+	// font for Box group titles
+	boxFont {
+		family = "Tahoma"
+		size = 8
+		weight = Bold
+	}
+
+	colors {
+		fg  = #000000
+		bg = #f2f2f2
+		
+		buttonText  = #000000
+
+		editText    = #000000
+		editBg      = #FFFFFF	//#E8EDE8
+
+		light     = #FFFFFF
+		boxText  = #000000
+		tabText  = #000000		
+	}
+	
+}
+
+
+MacroModule METKHierarchyBrowser {
+  genre = "METKGUI"
+  author = "Christian Tietjen"
+  status = "stable"
+  comment = "Shows the internal hierarchy of the objects, according to parent and child IDs"
+  keywords = "METK"
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKHierarchyBrowser.html"
+  externalDefinition = "$(LOCAL)/METKHierarchyBrowser.script"
+  exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKBrowser.mlab"
+
+} // MacroModule METKHierarchyBrowser
+
+
+MacroModule METKStructureGroupBrowser {
+  genre = "METKGUI"
+  author = "Christian Tietjen"
+  status = "stable"
+  comment = "Shows the internal hierarchy of the objects, according to the StuctureGroup tag"
+  keywords = "METK"
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKStructureGroupBrowser.html"
+  externalDefinition = "$(LOCAL)/METKStructureGroupBrowser.script"
+  exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKBrowser.mlab"
+
+} // MacroModule METKStructureGroupBrowser
+
+
+MacroModule METKBookmark3D {
+  genre = "METKGUI"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = "METK bookmark"
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKBookmark3D.html"
+  externalDefinition = "$(LOCAL)/METKBookmark3D.script"
+  exampleNetwork = "$(LOCAL)/../ExampleNetworks/METKBookmark3D.mlab"
+
+} // MacroModule METKBookmark3D
+
+
+MacroModule METKInfoWin {
+  genre = "METKGUI"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = "METK info window"
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKInfoWin.html"
+  externalDefinition = "$(LOCAL)/METKInfoWin.script"
+
+} // MacroModule METKBookmark3D
+
+
+
+
+MacroModule METKSingleObjInfo {
+  genre = "METKGUI"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  documentation      = "http://www.metk.net/METKDocumentation/METKSingleObjInfo.html"
+  externalDefinition = "$(LOCAL)/METKSingleObjInfo.script"
+
+} // MacroModule METKSingleObjInfo

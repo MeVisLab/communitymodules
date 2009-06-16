@@ -1,0 +1,151 @@
+Interface {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+   }
+   Parameters {
+      Field = objID { type = string value = "" }
+      Field = layerID { type = string value = "" }      
+      //Field doubleClickedEntry { type = string  value = "" }
+      
+      Field update { type = trigger }
+      Field newEntry { type = trigger }
+      Field comboNewEntryEnum { type = string persistent = FALSE }
+   }
+}
+
+
+Commands {
+   importPath = "$(LOCAL)/.."
+   source = $(LOCAL)/METKSingleObjInfo.py
+   
+   initCommand = init
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }   
+   FieldListener objID { command = updateListView }
+   FieldListener layerID { command = updateListView }
+   FieldListener update { command = updateListView }
+   //FieldListener doubleClickedEntry { command = descriptionEdit }  
+}
+
+
+
+Window METKSingleObjInfo {
+   style = kStyle
+   bgMode = SmoothStretch
+   shouldCloseCommand = closeWindow
+   expandY = True  expandX = True
+   Vertical {
+      expandY = True  expandX = True
+      ListView {
+         expandY = True  expandX = True
+         name = objects
+         values = "ID,Value"
+         rowSeparator = "@"
+         columnSeparator = ","
+         sortByColumn = 0
+         layout = "l"
+         selectionMode = Single
+         resizeMode = last
+         doubleClickedCommand  = doubleClicked         
+      }
+      Button newEntry { title = "Add Value" command = addNewEntry alignX=right }
+      Execute = openWindow
+   }
+}
+
+Window ListViewOnly {
+   style = kStyle
+   bgMode = SmoothStretch
+   shouldCloseCommand = closeWindow
+   expandY = True  expandX = True
+   Vertical {
+      expandY = True  expandX = True
+      ListView {
+         expandY = True  expandX = True
+         name = objects
+         values = "ID,Value"
+         rowSeparator = "@"
+         columnSeparator = ","
+         sortByColumn = 0
+         layout = "l"
+         selectionMode = Single
+         resizeMode = last         
+      }      
+      Execute = openWindow
+   }
+}
+
+
+Window Settings {
+   Vertical { w = 400
+      Field = objID      
+      Field = layerID      
+   }
+}
+
+
+Window winEditValue {  
+	style = kStyle
+    	bgMode = SmoothStretch
+	title = "Edit Value"   
+	Horizontal {
+		LineEdit {
+			name = editValue
+			w=300
+		}
+			
+		Button {alignX = Center title = "Ok" command = closeWinEditValueYes}
+		Button {alignX = Center title = "Cancel" command = closeWinEditValueCancel}
+	} // Horizontal   
+	
+	Execute = openWinEditValue
+	
+} // Window winEditValue
+
+
+Window winNewEntry {           
+	style = kStyle
+    	bgMode = SmoothStretch
+	title = "New Entry"
+	Horizontal {
+		Empty { w = 10 }		
+		Vertical {
+			Empty { h = 10 }
+			Box { 
+				title = "Insert new info entry"
+				layout = vertical
+
+				Horizontal {
+					Label { title = "Entry name:" aligngroup=a1}
+					LineEdit { name = newEntry  aligngroup=a2}
+				}
+
+				Horizontal { 
+					Label { title = "Value:"  aligngroup=a1}
+					Combobox {			
+						name = comboNewEntryValue
+						autoComplete = TRUE
+						expandX=TRUE								
+						comboField = comboNewEntryEnum	
+						aligngroup=a2
+						w = 150
+					}
+
+					Button { fh=25 title = "Get used values"  command = getUsedValues }
+				}
+			} //Box 
+			Empty { h = 10 }
+			Horizontal {	
+				Button { fh=25 alignX = Center title = "OK" command = closeWinNewEntryYes}
+				Button { fh=25 alignX = Center title = "Cancel" command = closeWinNewEntryCancel}
+			}
+			Empty { h = 1 }
+		} // Vertical   
+		Empty { w = 10 }
+	} //Horizontal
+	
+	Execute = openWinNewEntry
+	
+} // Window winNewEntry

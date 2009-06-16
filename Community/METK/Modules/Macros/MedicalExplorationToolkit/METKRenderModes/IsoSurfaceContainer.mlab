@@ -1,0 +1,246 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoToggle {
+  internal  {
+    frame = "941 297 88 64"
+    windows  {
+      window _default {
+        geometry = "543 459 104 25"
+        sizeHint = "63 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IsoVisible
+    whichChild = -3
+    on = TRUE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "933 401 104 64"
+  }
+  fields  {
+    instanceName = 3DGroup
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoToggle {
+  internal  {
+    frame = "941 225 88 64"
+    windows  {
+      window _default {
+        geometry = "543 459 104 25"
+        sizeHint = "63 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Visible
+    whichChild = -3
+    on = TRUE
+  }
+}
+module UMDInventorToPointer {
+  internal  {
+    frame = "745 161 160 64"
+    windows  {
+      window _default {
+        geometry = "214 330 210 217"
+        sizeHint = "210 217"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IsoSurfacePointer
+    priority = 10000
+    debugComment = ""
+    Pointer = 193485072
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module UMDInventorToPointer {
+  internal  {
+    frame = "737 233 160 64"
+    windows  {
+      window _default {
+        geometry = "214 330 210 217"
+        sizeHint = "210 217"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FullObjectPointer
+    priority = 10000
+    debugComment = ""
+    Pointer = 181904056
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1005 481 88 64"
+    windows  {
+      window _automatic {
+        geometry = "92 111 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Object3D
+  }
+}
+module UMDPointerToInventor {
+  internal  {
+    frame = "665 573 160 56"
+  }
+  fields  {
+    instanceName = UMDPointerToInventor
+    priority = 10000
+    debugComment = ""
+    Pointer = 0
+    objectID = ""
+    layerID = ""
+    infoID = ""
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "881 489 96 64"
+    windows  {
+      window _default {
+        geometry = "254 372 173 188"
+        sizeHint = "173 188"
+        wasOpen = no
+        wasActive = no
+      }
+      window _materialeditor {
+        geometry = "268 287 222 29"
+        sizeHint = "222 29"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "495 141 208 217"
+        sizeHint = "208 217"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = material
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.8 0.8 0.8"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "709 641 72 64"
+    windows  {
+      window _default {
+        geometry = "350 133 578 410"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 0
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = "***"
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "945 153 80 64"
+    windows  {
+      window _viewer {
+        geometry = "26 45 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View3D
+  }
+}
+connections  {
+  IsoVisible.children = 3DGroup.self
+  3DGroup.children = "material.self Object3D.self"
+  Visible.children = IsoVisible.self
+  IsoSurfacePointer.inObjectContainer = FullObjectPointer.outObjectContainer
+  IsoSurfacePointer.inInventor = Visible.self
+  FullObjectPointer.inObjectContainer = UMDPointerToInventor.outObjectContainer
+  FullObjectPointer.inInventor = 3DGroup.self
+  Object3D.children = UMDPointerToInventor.outInventor
+  UMDPointerToInventor.inObjectContainer = info.outObjectContainer
+  info.acceptedObjects = info.searchObjPattern
+  View3D.children = Visible.self
+}

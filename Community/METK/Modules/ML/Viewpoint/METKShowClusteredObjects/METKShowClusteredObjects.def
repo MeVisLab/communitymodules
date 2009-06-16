@@ -1,0 +1,25 @@
+//----------------------------------------------------------------------------------
+//! METKShowClusteredObjects module definitions.
+/*!
+// \file    METKShowClusteredObjects.def
+// \author  Marcus Wolff
+// \date    2008-04-08
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule METKShowClusteredObjects
+//----------------------------------------------------------------------------------
+MLModule METKShowClusteredObjects{
+  DLL            = "Viewpoint"
+
+  genre          = "METKViewpoint"
+  author         = "Marcus Wolff"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = ""
+  seeAlso        = ""
+  projectSource  = "$(UserProjectsPath)/sources/ML/Viewpoint/METKShowClusteredObjects"
+} // MLModule METKShowClusteredObjects
+

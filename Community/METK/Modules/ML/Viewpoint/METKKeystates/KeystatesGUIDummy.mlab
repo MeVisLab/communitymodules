@@ -1,0 +1,522 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKObjBrowser {
+  internal  {
+    frame = "401 133 128 56"
+    windows  {
+      window _default {
+        geometry = "293 215 700 638"
+        sizeHint = "700 638"
+        wasOpen = no
+        wasActive = no
+      }
+      window shortVisuals {
+        geometry = "507 442 272 185"
+        sizeHint = "272 185"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "535 314 486 464"
+        sizeHint = "216 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "361 337 192 64"
+    windows  {
+      window _default {
+        geometry = "70 89 154 151"
+        sizeHint = "154 151"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "603 547 400 139"
+        sizeHint = "400 139"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "109 292 390 465"
+        sizeHint = "270 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StructureList
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = Name
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    disableGrouping = FALSE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "809 261 160 56"
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = "***"
+    infoID = "***"
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "853 341 72 56"
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 3
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 9
+    eventType = NoMessage
+  }
+}
+module METKKeystateVis {
+  internal  {
+    frame = "377 213 128 56"
+    windows  {
+      window _default {
+        geometry = "541 369 204 331"
+        sizeHint = "204 331"
+        wasOpen = no
+        wasActive = no
+      }
+      window METKKeystateVisListView {
+        geometry = "543 459 106 122"
+        sizeHint = "106 122"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKKeystateVis
+  }
+  internalFields = ""
+}
+module SoView2DHint {
+  internal  {
+    frame = "1201 -43 112 56"
+    windows  {
+      window _default {
+        geometry = "180 199 283 90"
+        sizeHint = "283 90"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DHint
+    renderSlices3D = TRUE
+    renderExtensions3D = FALSE
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "1329 -47 128 64"
+    windows  {
+      window _default {
+        geometry = "1783 52 178 92"
+        sizeHint = "178 92"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = 3DWithSlice
+    whichChild = -1
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1265 -147 128 56"
+  }
+  fields  {
+    instanceName = SoGroup1
+  }
+}
+module SoShapeHints {
+  internal  {
+    frame = "1073 -43 112 56"
+    windows  {
+      window _default {
+        geometry = "224 243 294 112"
+        sizeHint = "294 112"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapeHints
+    vertexOrdering = UNKNOWN_ORDERING
+    shapeType = UNKNOWN_SHAPE_TYPE
+    faceType = UNKNOWN_FACE_TYPE
+    creaseAngle = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "649 189 96 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module METKSilhouette {
+  internal  {
+    frame = "709 341 120 56"
+    windows  {
+      window _default {
+        geometry = "70 89 247 52"
+        sizeHint = "247 52"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module METKROISelect {
+  internal  {
+    frame = "1545 201 128 64"
+    windows  {
+      window _default {
+        geometry = "778 167 400 73"
+        sizeHint = "400 73"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCurrentROI
+    ignoreEmptyString = TRUE
+    listenToROI = ""
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "1121 205 128 56"
+    windows  {
+      window _default {
+        geometry = "180 199 400 164"
+        sizeHint = "400 164"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKOverlay2D
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+    listenToROI = ""
+    setCSO = TRUE
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "1257 205 128 56"
+  }
+  fields  {
+    instanceName = METKOverlay2D1
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+    listenToROI = ""
+    setCSO = TRUE
+  }
+  internalFields = ""
+}
+module METKOverlay2D {
+  internal  {
+    frame = "1385 205 128 56"
+  }
+  fields  {
+    instanceName = METKOverlay2D2
+    showOverlay = TRUE
+    showMenu = TRUE
+    ignoreEmptyString = TRUE
+    listenToROI = ""
+    setCSO = TRUE
+  }
+  internalFields = ""
+}
+module METKCodedSegmentation {
+  internal  {
+    frame = "1225 301 176 56"
+  }
+  fields  {
+    instanceName = METKCodedSegmentation
+    ignoreEmptyString = TRUE
+    objValues = Structure_TumorPart_1:1,4,7,12,34;Structure_V.jugularis_left:2,14,26,29,36;Structure_Trachea:3,4,6,7;Structure_A.carotis_right:5,10,16;Structure_Pharynx:6,7;Structure_Gl.submandibularis_right:8;Structure_V.jugularis_right:9,10,18,23;Structure_Gl.submandibularis_left:11,12;Structure_M.sternocleidom._left:13,14,27,31;Structure_Lymphnode_4:15,16;Structure_Lymphnode_5:17,18,20,24;Structure_Lymphnode_6:19,20;Structure_Lymphnode_7:21;Structure_M.sternocleidom._right:22,23,24;Structure_Lymphnode_1:25,26,27,37;Structure_Lymphnode_2:28,29;Structure_Lymphnode_3:30,31;Structure_Lung1:32;Structure_Bones:33,34;Structure_A.carotis_left:35,36,37;Structure_Lung2:38;
+    imgValues = 1:Structure_TumorPart_1;2:Structure_V.jugularis_left;3:Structure_Trachea;4:Structure_Trachea,Structure_TumorPart_1;5:Structure_A.carotis_right;6:Structure_Pharynx,Structure_Trachea;7:Structure_Pharynx,Structure_Trachea,Structure_TumorPart_1;8:Structure_Gl.submandibularis_right;9:Structure_V.jugularis_right;10:Structure_V.jugularis_right,Structure_A.carotis_right;11:Structure_Gl.submandibularis_left;12:Structure_Gl.submandibularis_left,Structure_TumorPart_1;13:Structure_M.sternocleidom._left;14:Structure_M.sternocleidom._left,Structure_V.jugularis_left;15:Structure_Lymphnode_4;16:Structure_Lymphnode_4,Structure_A.carotis_right;17:Structure_Lymphnode_5;18:Structure_Lymphnode_5,Structure_V.jugularis_right;19:Structure_Lymphnode_6;20:Structure_Lymphnode_6,Structure_Lymphnode_5;21:Structure_Lymphnode_7;22:Structure_M.sternocleidom._right;23:Structure_M.sternocleidom._right,Structure_V.jugularis_right;24:Structure_M.sternocleidom._right,Structure_Lymphnode_5;25:Structure_Lymphnode_1;26:Structure_Lymphnode_1,Structure_V.jugularis_left;27:Structure_Lymphnode_1,Structure_M.sternocleidom._left;28:Structure_Lymphnode_2;29:Structure_Lymphnode_2,Structure_V.jugularis_left;30:Structure_Lymphnode_3;31:Structure_Lymphnode_3,Structure_M.sternocleidom._left;32:Structure_Lung1;33:Structure_Bones;34:Structure_Bones,Structure_TumorPart_1;35:Structure_A.carotis_left;36:Structure_A.carotis_left,Structure_V.jugularis_left;37:Structure_A.carotis_left,Structure_Lymphnode_1;38:Structure_Lung2
+    listenToROI = ""
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "1397 81 120 64"
+    windows  {
+      window Settings {
+        geometry = "460 350 367 368"
+        sizeHint = "367 368"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CoronalPreview
+    annotations = TRUE
+    layoutMode = LAYOUT_CORONAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "1261 81 120 64"
+    windows  {
+      window Settings {
+        geometry = "460 350 367 368"
+        sizeHint = "367 368"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SagittalPreview
+    annotations = TRUE
+    layoutMode = LAYOUT_SAGITTAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer2D {
+  internal  {
+    frame = "1133 81 120 64"
+    windows  {
+      window _default {
+        geometry = "543 434 200 200"
+        sizeHint = "200 200"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "151 285 367 368"
+        sizeHint = "367 368"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AxialPreview
+    annotations = TRUE
+    layoutMode = LAYOUT_AXIAL
+    selectedPosition = "0 0 0"
+    worldPosition = "0.5 0.5 0.5"
+    voxelPosition = "0 0 0"
+    autoRefreshObjMgr = FALSE
+    windowCenter = 0.5
+    windowWidth = 1
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    ready = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "597 -179 120 56"
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableMouseOver = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-0.201495 -0.734541 -0.647957"
+    camOrientation = "0.904203 -0.420155 0.0767185 2.28858"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+    enableUndo = FALSE
+    showInset = FALSE
+    insetType = MAN
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "561 341 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "737 501 112 56"
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  METKObjBrowser.inObjectContainer = METKKeystateVis.outObjectContainer
+  METKObjBrowser.objID = StructureList.selectedMultiObjIds
+  StructureList.inObjectContainer = METKManager.outObjectContainer
+  ObjConstrainedIterator.inObjectContainer = ObjInfo.outObjectContainer
+  ObjInfo.inObjectContainer = METKManager.outObjectContainer
+  METKKeystateVis.inObjectContainer = StructureList.outObjectContainer
+  3DWithSlice.children = "AxialPreview.view2d SagittalPreview.view2d CoronalPreview.view2d"
+  SoGroup1.children = "SoShapeHints.self SoView2DHint.self 3DWithSlice.self"
+  SoGroup.children = "METKIsoSurface.outInventor METKSilhouette.outInventor"
+  METKSilhouette.inObjectContainer = METKManager.outObjectContainer
+  METKCurrentROI.inObjectContainer = METKManager.outObjectContainer
+  METKOverlay2D.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKOverlay2D.image = METKCodedSegmentation.image
+  METKOverlay2D1.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKOverlay2D1.image = METKCodedSegmentation.image
+  METKOverlay2D2.inObjectContainer = METKCodedSegmentation.outObjectContainer
+  METKOverlay2D2.image = METKCodedSegmentation.image
+  METKCodedSegmentation.inObjectContainer = METKManager.outObjectContainer
+  CoronalPreview.inObjectContainer = METKOverlay2D2.outObjectContainer
+  CoronalPreview.input = METKOverlay2D2.overlay
+  CoronalPreview.soview2d = METKCurrentROI.image
+  SagittalPreview.inObjectContainer = METKOverlay2D1.outObjectContainer
+  SagittalPreview.input = METKOverlay2D1.overlay
+  SagittalPreview.soview2d = METKCurrentROI.image
+  AxialPreview.inObjectContainer = METKOverlay2D.outObjectContainer
+  AxialPreview.input = METKOverlay2D.overlay
+  AxialPreview.soview2d = METKCurrentROI.image
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = SoGroup.self
+  METKViewer3D.afterScene = SoGroup1.self
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

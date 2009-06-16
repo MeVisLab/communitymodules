@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! Cinema module definition
+/*!
+// \file    Cinema.def
+// \author  Konrad Mühler
+// \date    2006-12-18
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule Cinema {
+  genre = "ApplicationsMenu"
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/Cinema.script"
+
+} // MacroModule Cinema

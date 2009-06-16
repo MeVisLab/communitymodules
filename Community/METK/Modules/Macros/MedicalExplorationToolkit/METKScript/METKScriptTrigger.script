@@ -1,0 +1,88 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKScriptTrigger
+/*!
+// \file    METKScriptTrigger.script
+// \author  Konrad Mühler
+// \date    2006-01-20
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field inObjectContainer { internalName = info.inObjectContainer }
+  }
+  Outputs {
+    Field outObjectContainer { internalName = info.outObjectContainer }
+  }
+  Parameters {
+      Field = executeScript { type = trigger }
+      Field = scriptFile { type = string }   
+  }
+}
+
+
+Commands {
+  importPath = "$(LOCAL)/.."
+  source = $(LOCAL)/METKScriptTrigger.py
+  
+  // Call init() to initalize the script
+  initCommand = init
+    
+  FieldListener executeScript  { command = executeScript }
+  
+}
+
+
+
+
+backgroundImage = "img/verlauf-01.png"
+
+Window METKScriptTrigger {   
+
+	w = 700	
+	   
+   	style = kStyle
+	bgMode = SmoothStretch
+        expandY = yes
+        expandX = yes
+            		
+	Grid {
+
+		margin  = 0
+		spacing = 5
+
+		Label {
+			x = 0
+			y = 0					
+			title = "Script:"						
+		}
+
+		Field scriptFile {
+			title = ""
+			browseButton = true
+			browseTitle = "..."			
+			x = 1
+			y = 0
+		}            
+
+		Button executeScript
+		{
+			x = 2
+			y = 0
+			title = "Execute Script"
+		}  					
+
+	} //Grid
+} // Window
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

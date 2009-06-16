@@ -1,0 +1,31 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKManager {
+  internal  {
+    frame = "361 325 112 56"
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = ""
+    warnLevel = 0
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+module METKGenerateCamData {
+  internal  {
+    frame = "317 205 168 56"
+  }
+  fields  {
+    instanceName = METKGenerateCamData
+    BufferSize = 400
+    DivisionDepth = 3
+    Progress = 0
+  }
+  internalFields = ""
+}
+connections  {
+  METKGenerateCamData.inObjectContainer = METKManager.outObjectContainer
+}

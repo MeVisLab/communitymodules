@@ -1,0 +1,44 @@
+Interface  {
+   Inputs {
+      Field mask { internalName = Bypass.input0 comment = "Input for the distance transformation image" }
+   }
+   Outputs {
+      Field margins { internalname = SoGroup.self }
+   }
+   Parameters  {
+      Field display { type = bool value = true }
+      Field innerMarginValue { type = double value = 2 }
+      Field outerMarginValue { type = double value = 5 }
+      Field innerMarginColor { type = color value = "1 0 0" }
+      Field outerMarginColor { type = color value = "1 1 0" }
+   } // Parameters 
+
+} // Interface 
+
+Commands  {
+   // Include local functions
+   importPath = "$(LOCAL)/.."
+   source = "$(LOCAL)/METKSurfaceDistance2D.py"
+
+   // --- Commands
+   initCommand = init
+   FieldListener {
+      listenField = display
+      listenField = innerMarginValue
+      listenField = outerMarginValue
+      listenField = innerMarginColor
+      listenField = outerMarginColor
+      listenField = mask
+      command = display 
+   }
+} // Commands
+
+Window METKSurfaceDistance2D {
+   Vertical {
+      Field = display
+      Field = innerMarginValue
+      Field = outerMarginValue
+      Field = innerMarginColor
+      Field = outerMarginColor
+   }
+}

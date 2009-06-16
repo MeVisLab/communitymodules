@@ -1,0 +1,206 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer   { internalName = ObjInfo.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjInfo.outObjectContainer }
+   }
+   Parameters {
+      Field = objectTypeInclude { type = string deprecatedName = objectInclude value = "Result,Viewer2D,Viewer3D,CSO,Events,Tool,NPRShading" }
+      Field = layerExclude      { type = string value = "" }
+      Field = infoExclude       { type = string value = "InventorPointer,InventorFullPointer,IsoSurfacePointer,StipplePointer,SilhouettePointer" }
+      
+      Field = title             { type = string value = "" persistent = FALSE }
+      Field = comment           { type = string value = "" persistent = FALSE }
+      
+      Field = create            { type = trigger }
+      Field = renderVideo       { type = trigger }
+      
+      Field = singleClick       { type = enum value = "Load" values = "Load,Show" }
+      Field = doubleClick       { type = enum value = "Show" values = "Load,Show" }
+      
+      Field = animated          { type = bool value = False }
+      Field = videoStepLength   { type = int value = 10 }
+      
+      //Field = exchange          { type = trigger } // scheint niemand mehr zu benutzen (10.01.2007)
+      
+      Field = capturedViewer    { type = string value = "[any viewer]" }
+      Field = capturedViewerF   { type = string value = "[any viewer]" }
+      Field = updateViewerList  { type = trigger }
+   }
+}
+
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKCollections.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   wakeupCommand = wakeup
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+
+   FieldListener create     { command = saveCollection }
+   FieldListener updateViewerList   { command = updateViewerList }
+
+   FieldListener renderVideo   { command = initRenderVideo }
+   FieldListener METKScriptBuilder.script { command = scriptAppended }
+   FieldListener capturedViewer { command=setViewer}
+}
+
+
+Window METKCollections {
+   style = PlannerStyle
+   Vertical {
+      expandY = YES
+      TabView {
+         expandY = no
+         TabViewItem Settings {
+            Horizontal {
+               Field = animated               
+               Label "Make sure that there is an UMDAnimation2 module!" { dependsOn = animated }
+            }
+            Horizontal {
+               Field capturedViewer {
+                  comboBox = True
+                  comboField = capturedViewerF
+               }
+               Button = updateViewerList { title = "Update" }
+            }
+         }
+         TabViewItem "Advanced Settings" {
+            w = 400
+            Field = objectTypeInclude
+            Field = layerExclude
+            Field = infoExclude
+            Horizontal {
+               ButtonBar singleClick {
+                  title = "On Single Click:"
+                  show = radio
+                  direction = Horizontal
+                  alignX = center
+                  ignoreMinSize = true
+                  expandY = no
+                  items {
+                     item "Load" { title = "Load Collection" }
+                     item "Show" { title = "Show Details" }
+                  }
+               }
+               ButtonBar doubleClick {
+                  title = "On Double Click:"
+                  show = radio
+                  direction = Horizontal
+                  alignX = center
+                  ignoreMinSize = true
+                  expandY = no
+                  items {
+                     item "Load" { title = "Load Collection" }
+                     item "Show" { title = "Show Details" }
+                  }
+               }
+            }
+         }
+      }
+      Panel { h = 300
+         expandY = YES
+         window = METKCollectionsListView
+      }
+      Horizontal { alignX = Left
+         Button create { title = "Create New..." }
+         Button renderVideo { title = "Create New Video" }
+         Field = videoStepLength
+      }
+   }
+}
+
+
+Window METKCollectionsListView {
+   style = PlannerStyle
+   expandY = YES
+   shouldCloseCommand = closeListView
+   Vertical {
+      expandY = YES
+      ListView {
+         expandY = YES
+         name = collectionList
+         values = "Preview,Title"
+         rowSeparator = "@"
+         columnSeparator = ","
+         sortByColumn = 0
+         layout = "l,l"
+         selectionMode = Single
+         resizeMode = last
+      
+         clickedCommand = clicked
+         doubleClickedCommand = doubleClicked
+      }
+      Execute = initListView
+   }
+}
+
+
+Window METKCollectionsDetails {
+   style = PlannerStyle
+   Vertical {
+      expandY = YES
+            Field = title
+      Horizontal {
+         alignY = Bottom
+         Image {
+            name = imageView
+            w = 150
+            h = 150
+            fw = 150
+            fh = 150
+            expandY = NO
+            expandX = NO
+            autoResize = True
+         }
+         Vertical {
+            expandY = YES
+            TextView = comment {
+               autoApply = YES
+               visibleRows = 3
+            }
+         }
+      }
+   }
+   Execute = initDetailView
+}
+
+
+Window METKCollectionsDetailsNew {
+   style = PlannerStyle
+   Vertical {
+      Panel {
+         window = METKCollectionsDetails
+      }
+      Horizontal {
+         alignX = Right
+         Button { title = Save   command = modalDialogSave   }
+         Button { title = Cancel command = modalDialogCancel }
+      }
+   }
+}
+
+
+Window METKCollectionsDetailsExist {
+   style = PlannerStyle
+   Vertical {
+      Panel {
+         window = METKCollectionsDetails
+      }
+      Horizontal {
+         alignX = Right
+         Button { title = Load   command = modalDialogLoad   }
+         Button { title = Remove command = modalDialogRemove }
+         Button { title = Cancel command = modalDialogCancel }
+      }
+   }
+}

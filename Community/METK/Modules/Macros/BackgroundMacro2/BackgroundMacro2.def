@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! BackgroundMacro2 module definition
+/*!
+// \file    BackgroundMacro2.def
+// \author  Sylvia Glasser
+// \date    2009-02-04
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule BackgroundMacro2 {
+  genre = ""
+  author = "Sylvia Glasser"
+  status = "work-in-progress"
+  comment = "create colored backgrounds"
+  keywords = ""
+  seeAlso = ""
+  exampleNetwork = "$(LOCAL)/networks/BackgroundMacro2Example.mlab"
+   
+  externalDefinition = "$(LOCAL)/BackgroundMacro2.script"
+
+} // MacroModule BackgroundMacro2
+

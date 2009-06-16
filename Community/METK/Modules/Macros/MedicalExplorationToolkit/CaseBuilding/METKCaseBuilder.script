@@ -1,0 +1,73 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }      
+   }
+   Outputs {      
+      Field outObjectContainer { internalName = info.outObjectContainer }
+   }
+   Parameters {
+      Field importImage { type=trigger }
+      Field validImage { type=bool value=false persistent=False }
+      Field infoText { type=string }
+      Field structuresEnum { type = string persistent = FALSE }
+      Field structuregroupEnum { type = string persistent = FALSE }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKCaseBuilder.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }      
+   FieldListener importImage { command = importImg }
+   FieldListener METKAddStructure.ready { command = createNextStruc }
+}
+
+Window METKCaseBuilder {
+   Vertical {
+      Field importImage { title="Import Image" }
+   }
+}
+
+Window StructureInfo {
+   w=300
+   h=200
+   Vertical {
+      expandX=true expandY=true
+      margin=10
+      Label { titleField=infoText textWrap=WordBreak }
+      Empty { h=15 w=10}
+      Horizontal {
+         Label { title="Type of Structure:" alignGroup=label1 }
+         Combobox {
+            name = comboStructure
+            autoComplete = TRUE
+            expandX=TRUE
+            comboField = structuresEnum
+         }
+      }
+      Empty { h=5 w=10}
+      Horizontal {
+         Label { title="Group of Structure:" alignGroup=label1 }
+         Combobox {            
+            name = comboStructureGroup
+            autoComplete = TRUE
+            expandX=TRUE
+            comboField = structuregroupEnum
+         }
+      }            
+      Empty { h=5 w=10}
+      Horizontal {
+         HSpacer { h=10 }
+         Button { title="Skip Structure ..." command = closeStructInfoSkip }
+         Button { title="Save and Next Structure ..." command=closeStructInfo }
+      }
+   }
+}

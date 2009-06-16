@@ -1,0 +1,10 @@
+MacroModule METKGenerateVesselIV {
+   genre	      = "METKMisc"	
+   author             = "Konrad Mühler"
+   status             = "work-in-progress"
+   comment            = "Generate vessel surfaces"
+   keywords           = ""
+   seeAlso            = ""
+   scriptOnly         = NO
+   externalDefinition = "$(LOCAL)/METKGenerateVesselIV.script"   
+}

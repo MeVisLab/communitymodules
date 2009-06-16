@@ -1,0 +1,319 @@
+//-------------------------------------------------------------------------------------------------
+//! Macro module Cinema
+/*!
+// \file    Cinema.script
+// \author  Konrad Mühler
+// \date    2006-12-18
+//
+// // 
+*/
+//-------------------------------------------------------------------------------------------------
+
+Interface {
+   Inputs  {}
+   Outputs {}
+   Parameters {  
+      Field local { type=string value=$(LOCAL) }
+      Field caseType { type=enum  items { item = None item = ENT item = Liver } value = "None"  }
+      Field listViewType { type=enum  items { item = Hierarchy item = StructureGroup } value = "Hierarchy" }
+      Field initScript { type=trigger }
+      Field baseScriptPath { type=string value = "Scripts/" }
+      Field startAnimation { type=trigger }
+      Field stopAnimation { type=trigger }
+      Field pauseAnimation { type=trigger }
+      
+      Field ENTScripts {type = string value = "Name,File@Ini Script,init-script.txt@View Lymph Nodes,lk-view.txt@Simple Rotation,rotation.txt@MICCAI Hals31,miccai-hals31.txt@SystemInstructions-01,SystemInstructions-01.txt@SystemInstructions-02,SystemInstructions-02.txt@SystemInstructions-03,SystemInstructions-03.txt" persistent=false }
+      Field LiverScripts {type = string value = "Name,File@Ini Script,init-script.txt" persistent=false }
+      
+      Field animationSpeed { internalName=UMDAnimation2.animationSpeed min=-1 max=2 }
+   }
+}
+
+
+Commands {
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/../../../../Projects/MedicalExplorationToolkit"
+   
+   source = $(LOCAL)/Cinema.py
+       
+   initCommand = init
+   wakeupCommand = wakeup
+   
+   FieldListener ObjInfo.inObjectContainer { command = _cls_info.handleEvents }
+   FieldListener initScript { command = initScript }   
+   FieldListener startAnimation { command = startAnimation }
+   FieldListener stopAnimation { command = stopAnimation }
+   FieldListener pauseAnimation { command = pauseAnimation }   
+   FieldListener UMDAnimation2.scriptFile { command = loadScriptFile }   
+   FieldListener listViewType { command = listViewTypeCahnged }
+
+}
+
+
+     
+Window Cinema {
+
+   DefineStyle smallFont { derive = PlannerStyle  editFont { size = 7 }  tabFont { size = 7 }  titleFont { size = 7 }  boxFont { size = 7 }}
+
+   shouldCloseCommand = exit
+   style = PlannerStyle
+   w = 1000
+   h = 680
+
+   Splitter {
+      direction = horizontal
+
+      TabView {
+         x=0 y=2
+         expandX=yes expandY=yes
+         name = tw_sidepanel
+         mode = toolbox
+         w=280
+
+
+         //-------------Basic Options--------------------------------
+         TabViewItem "Basic Options"
+         {      
+            name = basicOptions
+//            Label { title="Basic Options" }
+               Button { title = "Open ENT Case" image = $(LOCAL)/ENTLogo.png command=openENT }
+               Button { title = "Open Liver Case" image = $(LOCAL)/LiverLogo.png command=openLST }
+               Button initScript { title="Run Init Script" }
+            
+
+         }
+
+
+         //-------------------DIE LISTEN FÜR DIE SKRIPTE UND DEREN VERWALTUNG IST IM PRINZIP METKSCRIPTBUNCH!!!!!
+         //-------------------MUSS NOCH DURCH DIESES MODUL AUSGETAUSCHT WERDEN DAMIT NUR NOCH AN EINER STELLE SCRIPTE GEPFLEGT WERDEN MÜSSEN
+         //-------------ENT Scripts--------------------------------
+/*         TabViewItem "ENT scripts"
+         {      
+            name = entScripts
+            expandX=yes expandY=yes
+            //Label { title="ENT Scripts" }
+            ListView ENTScripts {
+               name = lw_entScripts                                          
+               rowSeparator = "@"
+               columnSeparator = ","
+               cellSpacing = 5
+               selectionMode = Single
+               clickedCommand = entScriptSelected
+               cellSpacing = 20
+               expandX=yes expandY=yes
+            }                  
+
+         }*/
+
+         //-------------Liver Scripts--------------------------------
+         TabViewItem "Predefined scripts"
+         {      
+            name = preScripts
+            expandX=yes expandY=yes
+            Box {
+               expandX=yes expandY=yes
+               title="ENT Scripts"
+               ListView ENTScripts {
+                  name = lw_entScripts                                          
+                  rowSeparator = "@"
+                  columnSeparator = ","
+                  cellSpacing = 5
+                  selectionMode = Single
+                  clickedCommand = entScriptSelected
+                  cellSpacing = 20
+                  expandX=yes expandY=yes
+               }
+            }
+            Empty {h=10 w=10}
+            Box {
+               expandX=yes expandY=yes
+               title="Liver Scripts" 
+               ListView LiverScripts {
+                  name = lw_liverScripts
+                  rowSeparator = "@"
+                  columnSeparator = ","
+                  cellSpacing = 5
+                  selectionMode = Single
+                  clickedCommand = liverScriptSelected
+                  cellSpacing = 20
+                  expandX=yes expandY=yes
+               }                  
+            }
+         }
+                  
+         //-------------Script Area--------------------------------
+         TabViewItem "Script Area"
+         {
+            expandX=yes expandY=yes
+            TextView UMDAnimation2.ScriptArea {
+               title = "Current Script:"
+               wrap = off
+               autoApply = Yes
+               style = smallFont
+               expandX=yes expandY=yes
+            }              
+         }
+
+
+         //-------------Object Options--------------------------------
+         TabViewItem "Object Options"
+         {
+            name = objectOptions
+            expandX=yes expandY=yes
+                     
+            Label { title="Object Options" }
+
+            Horizontal {
+               expandX=TRUE expandY=TRUE
+               Vertical {
+                  expandX=TRUE expandY=TRUE
+                  Horizontal {
+                     ButtonBar listViewType {
+                        autoScale = yes
+                        items {
+                           item Hierarchy { title = "Hierarchy View"}
+                           item StructureGroup { title = "StructureGroup View"}
+                        }
+                     }
+                  }
+                  TabView {                        
+                     expandX=TRUE expandY=TRUE
+                     mode = invisible
+                     name = ObjectListView
+
+                     TabViewItem Hierarchy {      
+                        expandX=TRUE expandY=TRUE
+                        name = TabHierarchy
+                        Panel { module = METKHierarchyBrowser }
+                     }
+
+                     TabViewItem StructureGroup {
+                        name = TabStructureGroup
+                        expandX=TRUE expandY=TRUE
+                        Panel { module = METKStructureGroupBrowser }
+                     }
+                  } //TabView
+
+                  Horizontal {
+                     expandX = FALSE expandY = FALSE                              
+                     Button METKHierarchyBrowser.updateView { title = "Update List" }
+                     Checkbox METKHierarchyBrowser.allObjects { title = "Show all objects" }
+                  }                     
+               } //Vertical
+
+               Vertical {
+                  expandX = true  expandY = false
+                  alignY=top
+                  Panel {
+                     module = METKObjBrowser
+                     window = shortVisuals
+                     expandX = false expandY = true
+                  }
+               }
+            } //Horizontal
+         } //TabViewItem
+
+         
+         //-------------Keystate I--------------------------------         
+         TabViewItem "Keystate I" {
+            Panel {
+               module  = StructureOfInterest
+               window  = METKStructureGroupBrowser
+               expandX=yes expandY=yes
+               h = 300
+            }
+            Field METKKeystates.currentStructure  { title="Selected Structure:" }
+            Field METKKeystates.referenceGroup  { title="Reference Group:" }
+            Field METKKeystates.animationAsVideo { }
+               
+         } //TabViewItem
+
+         
+         //-------------Keystate Debug--------------------------------         
+         TabViewItem "Keystate Debug" {
+               Panel {
+                  module  = METKKeystates
+                  window  = METKKeystates
+                  panel = weights
+                  expandX=yes expandY=yes
+               }
+               Viewer = SoCustomExaminerViewer1.self { expandX=yes expandY=yes }
+               
+         } //TabViewItem
+                  
+         //-------------Debug Information--------------------------------
+         TabViewItem "Debug Information"
+         {
+            //                     layout = vertical
+            expandX = true expandY = true
+            Horizontal {                  
+               expandX = no
+               Field UMDAnimation2.debugState { title = "Debug State:" }
+               Checkbox UMDAnimation2.writeLowLevelScript { title = "Write low level script" }
+               Field UMDAnimation2.framerate { title = "Framerate:" }
+            }
+            Log { style = smallFont expandX = true expandY = true}                     
+         }                                    
+      } //TabView
+               
+      Vertical {
+            
+         expandX=yes expandY=yes            
+         Panel {
+            //w = 400 //h = 400      
+            pw =570
+            module  = METKViewer3D
+            window  = METKViewer
+            expandX=yes expandY=yes
+         }
+         Vertical {               
+            Horizontal {
+               expandX=yes expandY=no
+               Empty { expandX=yes }
+               Button startAnimation { title = "Play" name = b_play }
+               Button stopAnimation { title = "Stop" name = b_stop }
+               Button pauseAnimation { title = "Pause" name = b_pause }
+               Empty { expandX=yes }
+            }
+            Horizontal {
+               alignX=center
+               Slider animationSpeed {                  
+                  pw = 100
+                     
+                  snap = 0.1
+                  pageStep = 1
+                  tracking = true
+                  format = %1.1f
+               }                                 
+                  
+               Field animationSpeed { format=%1.1f title="" edit=false }
+            }
+               
+            Separator { direction = Horizontal }
+               
+            Panel {
+               module = METKKeystateVis
+               window = METKKeystateVisListViewHorz
+            }
+            Horizontal {
+               HSpacer { h=10 }
+               Button METKKeystates.createNewKeystate {}
+               Button METKKeystateVis.update { title = "Update Keystates" }
+               Button METKKeystates.applyCurrentKeystate { title = "Apply Current Keystates" }
+               Button METKKeystates.createAnimationFromKeystates { title = "Create Animation" }
+               Button METKKeystates.clearKeystates { title = "Clear Keystates" }
+               HSpacer { h=10 }
+            }
+            Horizontal {
+               HSpacer { h=10 }                  
+               Button METKKeystates.saveFile { title = "Save Keystates" }
+               Button METKKeystates.loadFile { title = "Load Keystates" }
+               Field METKKeystates.keystateFilename { w=200 title = "File:" browseButton=true }
+               HSpacer { h=10 }
+            }
+         } //Vertical            
+      } //Vertical                  
+   } //Splitter
+                  
+   initCommand = initWindow
+}

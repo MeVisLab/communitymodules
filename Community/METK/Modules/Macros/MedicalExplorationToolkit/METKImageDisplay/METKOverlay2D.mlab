@@ -1,0 +1,510 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "1729 537 96 64"
+    windows  {
+      window _default {
+        geometry = "484 10 829 1157"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "26 45 420 445"
+        sizeHint = "420 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = appearance
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Appearance
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 63
+    boolValue = TRUE
+    doubleValue = 0
+    vec3Value = "0.8 0.8 0.8"
+    vec4Value = "0 0 0 0"
+    mat4Value = "0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 42
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+module SoView2DMenuItem {
+  internal  {
+    frame = "1137 733 144 56"
+    windows  {
+      window _default {
+        geometry = "154 607 536 414"
+        sizeHint = "263 414"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DMenuItem
+    labelOn = "Show Overlay"
+    valueOn = ""
+    labelOff = "Hide Overlay"
+    valueOff = ""
+    idString = showOverlay
+    color = "1 1 1"
+    backgroundColor = "0.592157 0.607843 0.615686"
+    transparency = 1
+    showItem = TRUE
+    showBackground = TRUE
+    useShadowText = FALSE
+    borderWidth = 3
+    editable = FALSE
+    useAsButton = TRUE
+    sensitive = TRUE
+    isSelected = FALSE
+    isHighlighted = FALSE
+    alignX = ALIGN_CENTER
+    alignY = ALIGN_Y_TOP
+    itemPosition = "0.5 0.5"
+    iconOffPath = ""
+    iconOnPath = ""
+    minItemExt = "16 16"
+  }
+}
+module ObjConstrainedIterator {
+  internal  {
+    frame = "1561 541 160 56"
+    windows  {
+      window _default {
+        geometry = "202 221 436 385"
+        sizeHint = "196 385"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1054 587 244 331"
+        sizeHint = "244 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjConstrainedIterator
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    layerID = Image
+    infoID = CodedSegObjectValue
+    infoValue = ""
+    useInfoValue = FALSE
+    objectID = ""
+  }
+}
+module SoView2D {
+  internal  {
+    frame = "1053 365 88 56"
+    windows  {
+      window _default {
+        geometry = "48 67 471 673"
+        sizeHint = "471 673"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2D
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 0
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "0 0"
+    spacing = "0 0"
+    sliceZoom = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_SCALE_TO_VIEWER_IGNORE_RATIO
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    status = "Nothing active"
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module LUTToMLImage {
+  internal  {
+    frame = "1037 429 120 56"
+  }
+  fields  {
+    instanceName = LUTToMLImage
+    minIndex = 0
+    maxIndex = 4095
+    autoIndexRange = TRUE
+    maxEntry = 255
+    height = 1
+    depth = 1
+    rescale = FALSE
+    rescaleWidth = 256
+  }
+}
+module SoView2DPosition {
+  internal  {
+    frame = "1557 429 136 56"
+    windows  {
+      window _default {
+        geometry = "148 120 457 571"
+        sizeHint = "457 571"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DPosition
+    drawingOn = FALSE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "-1 -1 -1"
+    firstSliceWorldPosition = "-1 -1 -1"
+    blendOnto = 1
+    blendOutside = 0
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.172549 0.886275 0.011765"
+    axialColor = "0.007842999999999999 0.952941 0.968627"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = FALSE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "1053 613 104 56"
+  }
+  fields  {
+    instanceName = SoLUTEditor
+    currentColor = "0 0 0"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0 0, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 4095 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.8 0.8 0.8"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.4 0.4 0.4"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1181 365 152 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module Reformat {
+  internal  {
+    frame = "1357 485 104 56"
+    windows  {
+      window _default {
+        geometry = "158 177 456 602"
+        sizeHint = "456 602"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Reformat
+    matrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useInventorComposition = FALSE
+    composeMatrix = TRUE
+    scale = "1 1 1"
+    rotation = "0 0 1 0"
+    translation = "0 0 0"
+    center = "0 0 0"
+    fillValue = 0
+    interactive = TRUE
+    autoCenter = TRUE
+    interpolation = NearestNeighbor
+    memoryAccess = Global
+    isVectorUpdateEnabled = FALSE
+  }
+}
+module GetVoxelValue {
+  internal  {
+    frame = "1561 485 112 56"
+    windows  {
+      window _default {
+        geometry = "920 97 324 287"
+        sizeHint = "324 287"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GetVoxelValue
+    position = "-1 -1 -1 0 0 0"
+    updateMode = AutoClear
+    coordinateType = World
+  }
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "1205 485 136 56"
+    windows  {
+      window _default {
+        geometry = "26 45 330 266"
+        sizeHint = "330 266"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "246 265 734 445"
+        sizeHint = "385 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay
+    drawingOn = TRUE
+    editingOn = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = PRESSED
+    button3 = PRESSED
+    shift = PRESSED
+    control = PRESSED
+    alt = PRESSED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "1229 609 72 64"
+    windows  {
+      window _default {
+        geometry = "484 10 829 1157"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "26 45 420 445"
+        sizeHint = "420 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = info
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = "***"
+    acceptedLayers = Appearance
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 63
+    boolValue = TRUE
+    doubleValue = 0
+    vec3Value = "0.8 0.8 0.8"
+    vec4Value = "0 0 0 0"
+    mat4Value = "0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 42
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+connections  {
+  appearance.inObjectContainer = info.outObjectContainer
+  ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
+  SoView2D.image = LUTToMLImage.output0
+  LUTToMLImage.inLUT = SoLUTEditor.outLUT
+  SoGroup.children = "SoLUTEditor.outInventorLUT SoView2DMenuItem.self SoView2DPosition.self SoView2DOverlay.self"
+  Reformat.inOverlay = SoView2DOverlay.self
+  GetVoxelValue.input0 = Reformat.output0
+  GetVoxelValue.position = SoView2DPosition.worldPosition
+  SoView2DOverlay.image = Reformat.output1
+}

@@ -1,0 +1,109 @@
+Interface {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+   }
+   Parameters {
+      Field = root { type = string value = "All Structures" }
+      Field = rootObjectTypeFilter { type = string value = "Source,Result" }
+      Field = groupByInfo { type = enum value = "StructureGroup" values = "StructureGroup,Structure,Resection,ResectionName" }
+      Field = selectedObjId { type = string value = "" persistent = FALSE }
+      Field = selectedMultiObjIds { type = string value = "" persistent = FALSE }
+      Field = checkedObjIds { type = string value = "," persistent = FALSE }
+      Field = useCSO { type = bool value = FALSE }
+      Field = updateView { type = trigger }      
+      Field = valueEntry    { type = enum   value = "objectID" values = "objectID,Name" }
+      
+      Field = showCeckBox   { type = bool   value = true }
+      Field = writeToObjMgr { type = bool   value = true }
+      Field = disableGrouping { type = bool   value = false }
+      Field = setValuesByCheckedObjIdString { type = bool   value = false }
+      Field = checkBoxLayer { type = string value = "Appearance" }
+      Field = checkBoxInfo  { type = string value = "Visible" }      
+   }
+}
+
+
+Commands {
+   importPath = "$(LOCAL)/.."
+   source = $(LOCAL)/METKStructureGroupBrowser.py
+   
+   initCommand = init
+   FieldListener info.outObjectContainer { command = handleEvent }
+   FieldListener updateView { command = updateListView }
+   FieldListener groupByInfo { command = updateListView }
+
+   FieldListener {
+      listenField = showCeckBox
+      listenField = checkBoxLayer
+      listenField = checkBoxInfo
+      listenField = valueEntry
+      command = changedCheckBoxProps
+   }
+}
+
+
+
+Window METKStructureGroupBrowser {
+   shouldCloseCommand = closeWindow
+   Vertical {
+      expandY = True
+      ButtonBar groupByInfo { 
+         show = One
+      }
+      
+      Panel {
+        window = singleListView
+        name = panelListView
+      }      
+   }
+}
+
+
+Window singleListView {
+   shouldCloseCommand = closeWindow
+   Vertical {
+      expandY = True
+      ListView {
+         expandY = YES
+         expandX = YES
+         name = objects
+         panelName = panelListView
+         values = "Structure"
+         rowSeparator = "@"
+         columnSeparator = ","
+         sortByColumn = 0
+         layout = "l,l"
+         selectionMode = Single
+         resizeMode = last
+         updateDelay = 100
+      
+         clickedCommand = clickedObjects
+         itemCollapsedCommand = itemCollapsed
+         checkListItemChangedCommand = checkListItemChanged
+      }
+      Execute = openWindow
+   }
+}
+
+
+
+Window Settings {
+   Vertical { w = 400
+      Field = root
+      Field = rootObjectTypeFilter
+      Field = groupByInfo
+      Field = valueEntry
+      Field = showCeckBox
+      Field = checkBoxLayer { dependsOn = showCeckBox }
+      Field = checkBoxInfo  { dependsOn = showCeckBox }
+      Field = writeToObjMgr
+      Field = setValuesByCheckedObjIdString      
+      Field = useCSO
+      Field = selectedObjId { edit = no }
+      Field = selectedMultiObjIds { edit = no }
+      Field = checkedObjIds      
+   }
+}

@@ -1,0 +1,202 @@
+Interface  {
+  Inputs  {
+    Field baseIn0 {
+      internalName = METKCorrelationNetwork.inObjectContainer
+    }
+/*    Field inObjectContainer {
+      internalName = METKCorrelationNetwork.inObjectContainer
+    }
+*/  }
+  Outputs  {
+    Field baseOut0 {
+      internalName = METKCorrelationNetwork.outObjectContainer
+    }
+    Field nodeOut0 {
+      internalName = SoKeyGrabber.self
+    }
+    Field nodeOut1 {
+      internalName = SoMouseGrabber.self
+    }   
+  }
+  Parameters {
+       
+    Field key_groupmode  {
+      type  = enum  value = G
+      items { item A{} item B{} item C{}item D{} item E{} item F {} item G {} item H {} item I{} item J {} item K {} 
+        item L {} item M{} item N {} item O {} item P {} item Q{} item R {} item S {} item T {} item U{} item V {} 
+        item W {} item X {} item Y{} item Z {} item F1{} item F2{} item F3{} item F4{}  item F5{}  item F6{} item F7{} 
+        item F8{} item F9{} item F10{} item F11{} item F12{}}          
+    }
+    Field key_group_run_forwards  {
+      type = enum value = "PAD_ADD"
+      items {item RIGHT_ARROW {title = "Right Arrow"}item UP_ARROW {title = "Up Arrow"} item PAGE_UP {title = "Page Up"} 
+        item  PAD_ADD{title = "Pad Add"} item TAB {title = "Tab"} item SPACE {title = "Space"}}
+    }
+    Field key_group_run_backwards {
+      type = enum value = "PAD_SUBTRACT"
+      items {item LEFT_ARROW {title = "Left Arrow"} item DOWN_ARROW {title = "Down Arrow"} item PAGE_DOWN {title = "Page Down"} 
+        item  PAD_SUBTRACT{title = "Pad Subtract"} item BACKSPACE {title = "Backspace"}}
+    }
+    Field autoMasking_Shortcut {type = enum value = B
+      items {     
+        item A{}  item B{}  item C{}   item D{}   item E{}   item F{}   item G{}  item H{}  item I{}  item J{}  item K{} 
+        item L{}  item M{}  item N{}   item O{}   item P{}   item Q{}   item R{}  item S{}  item T{}  item U{}  item V{} 
+        item W{}  item X{}  item Y{}   item Z{}   item F1{}  item F2{}  item F3{} item F4{} item F5{} item F6{} item F7{} 
+        item F8{} item F9{} item F10{} item F11{} item F12{} item SPACE {title = "Space"}} 
+    }
+    Field color_CSO                   {type = color value = (1,0.3,0)}
+    Field color_selStructuresSilhouet {type = color value = (1,0,0)}
+    Field groupColor                  {type = color } 
+    Field color_CSM                   {type = color }    
+    
+    Field targetStructures      {type = string}
+    Field single_groupSelection {type = enum items {item single{} item group{}}}
+    Field cSM                   {type = string}
+    
+    Field dist_close {type = float value = 5}
+    Field dist_far   {type = float value = 50}
+    
+    Field maxPriority {type = float value = 0,95}
+    Field prio_dist_close {type = float value = 1.0}
+    Field prio_dist_far   {type = float value = 0.0}
+    Field weight_dist     {type = float value = 1}
+    
+    Field prio_charact_same    {type = float value = 0.0}
+    Field prio_charact_inverse {type = float value = 0.85}
+    Field prio_charact_other   {type = float value = 1.0}
+    Field weight_charact       {type = float value = 1}
+    
+    Field prio_correl   {type = float value = 0.12}
+    Field weight_correl {type = float value = 0.25}   
+    
+    Field recalcPrios   {type = trigger}
+    
+    Field enableAnimation   {type = bool}
+    Field enableAutomasking {type = bool}
+    Field automasking       {type = trigger } 
+    
+// fields only in automatic Panal 
+    Field lastSelectedStructure {type = string}
+
+// ---old---    
+    Field activeCorrelationMode {type = bool }
+    Field allCorrelations       {type = string}
+    Field activeCorrel          {type = string} 
+      
+  }
+}
+
+Commands  {
+  // Add the local's parent path to the import path, so that Python looks for local packages
+  importPath = "$(LOCAL)/.."
+  // Include local functions 
+  source = "$(LOCAL)/METKAutoMasking.py" 
+
+  // --- Commands -----------------------------------//
+  // Call init() to initalize the script 
+  initCommand = init
+     
+  FieldListener ObjInfo.outObjectContainer           {command = _cls_info.handleEvents}
+  FieldListener METKCorrelationNetwork.allStructures {command = handleNewCaseCorrelation}
+//  FieldListener SoKeyGrabber.keyPressed              {command = handleKeyboardEvent}
+  FieldListener METKCSO.selection                    {listenField = recalcPrios command = selectionOfStructure callLater = True}
+  FieldListener automasking                          {command = automasking}
+  FieldListener enableAutomasking                    {command = switchAutomaskingMode} 
+  FieldListener dist_close {command = setNeighbourDist}
+} // Commands
+
+
+Window METKAutoMasking {
+  style = PlannerStyle
+  TabView {
+    TabViewItem  {
+      tabTitle = Automasking
+      Vertical {
+        ScrollView {
+          Box Selection {
+            Field targetStructures {}
+            Field METKCSO.cso {title = CSO:}
+            ButtonBar single_groupSelection {
+              show       = Radio
+              direction  = Horizontal
+              border     = False
+              title      = "Selection-Mode"             
+              //       enumAutoFormat = False   
+              alignX     = Left
+              minimumWidth = 15                                  
+            }
+            Combobox METKCorrelationNetwork.correlation {
+              comboField     = METKCorrelationNetwork.allCorrelations
+              comboSeparator = ", "
+            }
+            ComboBox METKCorrelationNetwork.correlationType {
+              comboField     = METKCorrelationNetwork.allCorrelationType
+              comboSeparator = ", "  
+              editable       = No
+            }
+            CheckBox METKCorrelationNetwork.enableColering {}
+            Field METKCorrelationNetwork.csRelatedStructure   {title = CSM edit = False} // dependsOn = activeCorrelationMode}
+            Horizontal {
+              Button METKCorrelationNetwork.prevRelatedStruct {title = <<prev dependsOn = single_groupSelection}
+              Button METKCorrelationNetwork.nextRelatedStruct {title = next>> dependsOn = single_groupSelection}              
+            }            
+          }
+          SpacerY {}
+          Box "Distance Parameters" {
+            Field dist_close {}
+            Field dist_far   {}
+          }
+          Box Prioritys {
+            Field maxPriority {}
+            SpacerY  {h = 8}
+            Field prio_dist_close {}
+            Field prio_dist_far   {}
+            Field weight_dist     {}
+            SpacerY  {h = 8}
+            Field prio_charact_same    {}
+            Field prio_charact_inverse {}
+            Field prio_charact_other   {}
+            Field weight_charact       {}
+            SpacerY  {h = 8}
+            Field prio_correl   {}
+            Field weight_correl {}
+          }
+          Button recalcPrios {title = recalculation}
+          Separator {}
+          Field  enableAnimation   {}
+          Field  enableAutomasking {}
+          Button automasking { title = Masking dependsOn = !enableAutomasking}
+          
+/*          Box Automasking {
+            Field enableAutomasking {}
+            Horizontal {          
+              Button = automasking  {alignX = Left dependsOn = enableAutomasking } 
+            }
+*/       
+        }       
+      } 
+    } 
+    TabViewItem  {
+      tabTitle = Parameters
+      Vertical {
+        Empty {h = 5}
+        Box highlightingParameters {title = "Highlighting Parameters"
+          //Field multibleSelection           {tooltip = "key allocation for multiple selection of structures"  }
+          Field color_CSO                          {title = "CSOs Silhouettes:" tooltip = "color of the currently selected structure's silhouette"}
+          Field color_selStructuresSilhouet        {title = "Selecteds' Silhouettes:" tooltip = "color of all selected structure's silhouettes"}
+          Field METKCorrelationNetwork.color_group {title = "CSCGs Color" tooltip = "color of all related structures of the choosen correlation"}
+          Field METKCorrelationNetwork.color_CSM   {title = "CSM's Color" tooltip = "color of the currently selected Member of the choosen correlation group"} // Color of the corrently selected group member
+        }
+        Box assignmentOfKeys { title = "Assignment Of Keys"
+          Vertical {
+            Field key_groupmode           {title = "Groupmode:"}
+            Field key_group_run_forwards  {title = "   Traverse Forward:"}
+            Field key_group_run_backwards {title = "   Traverse Backward:"}
+            Field autoMasking_Shortcut    {title = "Automasking:"}
+          }
+        } 
+      }
+    }
+  
+  }
+}  // Window

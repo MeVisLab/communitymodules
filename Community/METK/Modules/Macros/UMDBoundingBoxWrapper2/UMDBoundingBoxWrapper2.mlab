@@ -1,0 +1,68 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module UMDBoundingBox2 {
+  internal  {
+    frame = "521 437 144 56"
+  }
+  fields  {
+    instanceName = UMDBoundingBox2
+    priority = 10000
+    debugComment = ""
+    bb_BoundingBox = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    bb_ObjectMin = 4095
+    bb_ObjectMax = 4095
+    bb_UpToDate = FALSE
+  }
+}
+module BoundingBox {
+  internal  {
+    frame = "325 373 104 56"
+    windows  {
+      window _default {
+        geometry = "252 109 522 235"
+        sizeHint = "522 235"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBox
+    boundingBox = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    boundingBoxExtent = "0 0 0 0 0 0"
+    objectMin = 4095
+    objectMax = 4095
+    updateMode = Off
+    upToDate = FALSE
+    v1X = 0
+    v1Y = 0
+    v1Z = 0
+    v1C = 0
+    v1T = 0
+    v1U = 0
+    v2X = -1
+    v2Y = -1
+    v2Z = -1
+    v2C = -1
+    v2T = -1
+    v2U = -1
+    eX = 0
+    eY = 0
+    eZ = 0
+    eC = 0
+    eT = 0
+    eU = 0
+    objectVoxels = 0
+    objectVolume = 0
+    boxVoxels = 0
+    boxVolume = 0
+  }
+}
+connections  {
+  UMDBoundingBox2.bb_BoundingBox = BoundingBox.boundingBox
+  UMDBoundingBox2.bb_UpToDate = BoundingBox.upToDate
+  BoundingBox.objectMin = UMDBoundingBox2.bb_ObjectMin
+  BoundingBox.objectMax = UMDBoundingBox2.bb_ObjectMax
+  BoundingBox.update = UMDBoundingBox2.bb_Update
+}

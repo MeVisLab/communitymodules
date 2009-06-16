@@ -1,0 +1,66 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+      Field image { internalName = Reformat.input0 comment = "Input for the current coded segmentation" }
+      Field image { internalName = Reformat.input1 comment = "Input for the current coded segmentation" }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field overlay { internalName = SoGroup.self }
+   }
+   Parameters {
+      Field = showOverlay { internalName = SoView2DOverlay.drawingOn }
+      Field = showMenu  { internalName = SoView2DMenuItem.showItem }
+
+      Field ignoreEmptyString { type = bool value = True }
+      Field rois              { type = string value = "[none]" persistent = FALSE }
+      Field roiSelect         { type = string value = "" persistent = FALSE }
+      Field listenToROI       { type = string value = "" }
+      
+      Field setCSO { type = bool value = true }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKImageDisplay.py"
+   source = "$(LOCAL)/METKOverlay2D.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer       { command = _cls_info.handleEvents }
+   FieldListener appearance.numEvents    { command = appearanceChanged }
+   FieldListener {
+      listenField = GetVoxelValue.storedValue
+      listenField = SoView2DPosition.worldPosition
+      command = selectOverlay
+   }
+   FieldListener SoView2DMenuItem.selected { command = toggleOverlay }
+   FieldListener roiSelect                 { command = setCurrentROI }
+   FieldListener image                     { command = imageSet }
+   FieldListener ignoreEmptyString         { command = ignoreEmptyString }
+}
+
+Window METKOverlay2D {
+   style = PlannerStyle
+   Vertical {
+      Field = ignoreEmptyString
+      Field = listenToROI
+      Field = roiSelect { title = "ROI:" edit = NO w = 400 }
+      ComboBox roiSelect {
+         editable = False
+         duplicatesEnabled = NO
+         comboField = rois
+      }
+      Separator { direction = horizontal }
+      Viewer SoView2D.self { type = SoRenderArea h = 28 w = 100 border = false }
+      Field = showOverlay
+      Field = showMenu
+      Field = setCSO
+   }
+}

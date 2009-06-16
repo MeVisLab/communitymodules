@@ -1,0 +1,193 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+      Field inObjectContainer { internalName = UMDViewerCommunicator.inObjectContainer }
+
+      Field beforeScene { internalName = beforeScene.child }
+      Field inInventor { internalName = UMDViewerCommunicator.inInventor }
+      Field inInventor { internalName = tempInput.child }
+      Field afterScene  { internalName = afterScene.child }      
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field viewer { internalName = viewer.self }
+      Field 3dScene { internalName = groupViewer3d.self }
+   }
+   Parameters {
+      Field bgColor { internalName = UMDViewerCommunicator.BackgroundColor }
+      Field RefreshObjMgr { internalName = UMDViewerCommunicator.Refresh }
+      Field syncViewer { type = bool value = false }
+      Field syncWithList { type = string value = "" }
+      Field syncWith { type = string value = "" }
+      Field shapeHints { type = bool  value = True }
+      Field viewAll    { internalName = viewer.viewAll }
+      Field automaticViewAll    { internalName = viewer.automaticViewAll }
+      Field viewing    { internalName = viewer.viewing }
+      Field decoration { internalName = viewer.decoration }
+      
+      Field screenshotFile { internalName = viewer.outputSnapshotFile }
+      Field saveScreenshot { type = trigger }
+      Field saveThumbNail  { type = bool value = False }
+      Field thumbSize      { type = int value = 64 }
+      Field ready          { type = bool value = True persistent = False }
+      
+      Field pickPixelTolerance       { internalName = METKPicking.pickPixelTolerance }
+      Field scrapLight               { internalName = METKPicking.scrapLight }
+      Field importanceWeighting      { internalName = METKPicking.importanceWeighting }
+      Field boundingBoxSizeWeighting { internalName = METKPicking.boundingBoxSizeWeighting }
+      Field showBoundingBoxes        { internalName = METKPicking.showBoundingBoxes }
+      Field enableMouseOver          { internalName = METKPicking.enableMouseOver }
+      
+      Field enableVisLogo  { type = bool value = false }
+      Field logoType    { internalName = SoVisLogo.fldFilename }
+      Field logoLocation  { internalName = SoVisLogo.fldCorner }
+      
+      Field camPosition    { internalName = camera.position }
+      Field camOrientation  { internalName = camera.orientation }
+      
+      Field enablePropExtension  { type = bool value = false }
+      Field propExtVisible  { type = bool value = false }
+      Field enablePickExtension { type = bool value = false }
+      Field pickExtVisible  { type = bool value = false }
+      
+      Field enableUndo { type=bool value=false } //Enables the sending of camera data to ObjMgr after Mouse Button Release
+      
+      Field showInset { internalName = SoOrientationInset.on }
+      Field insetType { internalName = SoOrientationModel.model }
+   }
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKViewer3D.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }   
+   
+   FieldListener METKPicking.objName { command = pickedObjectChanged }    
+   
+   FieldListener METKPicking.mouseOverName { command = mouseOverObjectChanged }    
+   
+   FieldListener instanceName { command = viewerNameChanged }
+   
+   FieldListener syncViewer { command = syncViewer }
+   
+   FieldListener syncWith { command = syncWith }
+   
+   FieldListener shapeHints { command = switchShapeHints }
+
+   FieldListener saveScreenshot { command = saveScreenshot }
+   FieldListener IdleTrigger.triggerOutput { command = finishingScreenshot }
+   FieldListener enableVisLogo { command = visLogo }
+   
+   FieldListener mousePropExt.button1Pressed { command = hidePropExt callLater=true }   
+   FieldListener mousePropExt.button3Pressed { command = showPropExt callLater=true }   
+   FieldListener mousePickExt.button1Pressed { command = showPickExt callLater=true }   
+   FieldListener mousePickExt.button3Pressed { command = hidePickExt callLater=true }         
+   
+   FieldListener singleMove.button1Pressed { command = sendCamera callLater=true }
+}
+
+
+
+Window METKViewer {
+   Viewer = viewer.self {}
+}
+
+
+
+Window Settings {
+   TabView {
+      Vertical "Viewer" {
+         Field = decoration
+         Field = automaticViewAll
+         Field = viewing { title = "Viewing mode" }
+         Field = bgColor { title = "Background Color:" }
+         Field = shapeHints { title="Use SoShapeHints (recommended)" }
+         Field = enableVisLogo { title="Show Logo" }
+         Field = logoType { title="Logo:" dependsOn=enableVisLogo }
+         Field = logoLocation { title="Logo Corner:" dependsOn=enableVisLogo }
+         Field = showInset { title = "Show Inset:" }
+         Field = insetType { title = "Inset Type:" }
+      }
+      Vertical Camera {
+         Field = viewAll
+         Field = RefreshObjMgr { title = "Refresh values in ObjMgr" }
+         Field = syncViewer { title = "Sync this viewer with another" }
+         Field syncWith { title = "... with this one:" dependsOn = syncViewer }
+         Field enableUndo {}
+      }
+      Vertical Screenshot {
+         Horizontal {  mw = 100
+            Field = screenshotFile { title = "File:" }
+            Button = saveScreenshot { title = Save }
+         }
+         Horizontal { alignX = left
+            Field = saveThumbNail
+            Field = thumbSize { title = "Size:" dependsOn = saveThumbNail }
+         }
+         Field = ready { edit = No }
+      }
+      Vertical Picking {
+         Field = pickPixelTolerance
+         Field = scrapLight
+         Field = importanceWeighting
+         Field = boundingBoxSizeWeighting
+         Field = showBoundingBoxes
+         Field = enableMouseOver
+      }
+   }
+}
+
+
+
+Window METKViewerExt {
+  expandX = yes expandY = yes
+  name = viewerExt  
+  initCommand = initViewerExt
+  
+  FreeFloat {
+    name = freeFloatFrame
+    autoSize = True
+    
+    Vertical {
+      name = renderAreaFrame
+      expandX = yes expandY = yes
+      Panel {
+        window = METKViewer
+        expandX = yes expandY = yes
+      }
+    } // Vertical
+
+    Vertical {
+      name = inlinePanelFrameProp
+      Panel {
+        module = propExtGUI
+        window = extPopup
+      }
+    } // Vertical
+    
+    Vertical {
+      name = inlinePanelFramePick
+      expandX = yes expandY = yes
+      Panel {         
+        module = METKPicking
+        window = MultiSelection
+        initCommand = initPickWin
+        expandX = yes expandY = yes
+      }
+    } // Vertical
+  } // FreeFloat
+
+  EventFilter {
+    filter  = Resize
+    control = viewerExt
+    command = viewerExtResizeEvent
+  } // EventFilter
+}

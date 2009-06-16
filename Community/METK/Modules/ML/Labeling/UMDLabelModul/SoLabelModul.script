@@ -1,0 +1,294 @@
+//----------------------------------------------------------------------------------
+//! Macro module SoLabelModul
+/*!
+// \file    SoLabelModul.script
+// \author  Maik
+// \date    2007-02-04
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+ Interface {
+    Inputs {}
+    Outputs {}
+    Parameters {
+       Field = preObject {type=trigger}
+       Field = sucObject {type=trigger}}
+  }
+  
+  Description {
+     Field on          {internalName=on type=bool comment="activate Label-visualisation" }
+     Field autoUpdate  {internalName=autoUpdate type=bool comment="start Labeling by valid input" }
+     Field start       {internalName=start type=trigger comment="Start Label-visualisation" }
+     Field autoStart   {internalName=autoStart type=bool comment="start labeling if input valid" }
+     Field updateTextSize {internalName=updateTextSize type=trigger comment="calculate new textsize in next renderpass"}
+     
+     Field clear       {internalName=clear type=trigger comment="clear input (labels and input-model)" }
+     Field numberShapes{internalName=numberShapes type=short comment="number of structures and labels"}
+     Field curObject   {internalName=curObject type=short min=0 max=numberShapes comment="current Structure for internal/external Labels"}
+     Field fld_labelText   {internalName=fld_labelText type=string comment="Internal Label for current structure (size=40characters)" }    
+     
+     Field applyStyle { internalName=applyStyle type=trigger comment="Set style parameter for Label"}
+     Field applyStyleToAll { internalName=applyStyleToAll type=trigger comment="Set style parameter for all Labels"}
+     Field resetStyle { internalName=resetStyle type=trigger comment="Set style parameter to default values"}
+     Field resetStyleToAll { internalName=resetStyleToAll type=trigger comment="Set style parameter to default values for all labels"}
+     Field resetParameter { internalName=resetParameter type=trigger comment="Set label parameter to default values"}
+     Field resetParameterForAll { internalName=resetParameterForAll type=trigger comment="Set label parameter to default values for all labels"}
+     Field setLabelData    {internalName=setLabelData type=trigger comment="set Label parameter, like text, visible... " }
+     //Field setLabelDataToAll {internalName=setLabelData type=trigger comment="set parameter" }
+     Field getObjectData {internalName=getObjectData type=trigger comment="get label data" }
+     
+     Field fontPath    {internalName=fontPath type=string comment="path to a valid true type font" }
+     Field fontPathValid{internalName=fontPathValid type=bool comment="true, if font-file correct" }
+     Field fontPath2    {internalName=fontPath2 type=string comment="path to a valid true type font" }
+     Field fontPathValid2{internalName=fontPathValid2 type=bool comment="true, if font-file correct" }     
+     Field fontSize    {internalName=fontSize type=int value=12 comment="Label text font size" }     
+     Field fld_labelTextColor {internalName=fld_labelTextColor type=color comment="text color for external labels" }
+     Field refLineColor { internalName=refLineColor type=color  comment="color reference line" }
+     Field arrowSize    { internalName=arrowSize comment="size of arrow in pixel"}
+     Field arrowThickness {internalName=arrowThickness value=1 comment="linewidth of arrow visualisation"}
+     Field arrowColor    { internalName=arrowColor comment="arrow color"}
+     Field arrowColorHalo  { internalName=arrowColorHalo comment="arrow halo color"}
+     Field refLineHalo {internalName=refLineHalo type=bool comment="if true, reference line have a halo (for better contrast)" }
+     Field refLineHaloColor {internalName=refLineHaloColor type=color comment="halo color for reference line"}
+     Field refLineWidth { internalName=refLineWidth type=float min=0 comment="reference line width" }
+     Field flushLayout { internalName=flushLayout type=bool comment="if true flush label placement, else circular label placement" }
+     Field orthoRefLines { internalName=orthoRefLines type=bool comment="if true reference lines are orthogonal, else straight lines" }
+     Field refLinesForInvisObj { internalName=refLinesForInvisObj type=bool comment="if true a reference line is drawing, else only a little arrow ist drawing"}
+     Field haloColorInvert {internalName=haloColorInvert type=bool comment="Halo color is invertcolor" }
+     Field linePattern {internalName=inePattern type=int min=0 max=65535 value=65535 comment="patter for referenceLine (see glLineStipple)" }
+     Field linePatternInvisObj {internalName=linePatternInvisObj type=int min=0 max=65535 value=62451 comment="patter for referenceLine (invisible Objects; see glLineStipple)" }
+     
+     Field labelOn     {internalName=labelOn type=bool comment="draw Labeltext" }
+     Field labelPriority { internalName=labelPriority type=int min=1 value=1 comment="text with high priority is drawing first"}
+     Field labelIfInvis{internalName=labelIfInvis type=bool comment="label invisible structures" }
+     Field labelIfInteraction {internalName=labelIfInteraction type=bool comment="label if interaction" }
+     Field labelColorID {internalName=labelColorID type=int comment="ID in color model" }
+     Field objectIsBackground { internalName=labelIfInvis type=bool comment="labels can overlay this object" }
+     
+     Field errors {internalName=errors type=int comment="Number of not labeled objects"}
+     Field notLabeledObjects {internalName=notLabeledObjects type=String comment="Object number of not labeled objects"}
+     
+     Field mouseListener     {internalName=mouseListener type=bool comment="react of mouse events" }
+     Field mousePos          {internalName=mousePos type=vec2f comment="current mouse position" }
+     Field mouseClickLeft    {internalName=mouseClickLeft type=bool comment="left mouse click to label get object ID" }
+     Field mouseClickMiddle  {internalName=mouseClickMiddle type=bool comment="middle mouse click to label get object ID" }
+     Field mouseClickRight   {internalName=mouseClickRight type=bool comment="right mouse click to label get object ID" }
+     Field mouseClickObject  {internalName=mouseClickObject type=short comment="current selected object (CSO) from click event"}
+     Field mouseOverObject   {internalName=mouseOverObject type=short comment="mouse over CSO" }
+     Field cso_coordinates   {internalName=cso_coordinates type=vec3f comment="World coordinates of reference point"}
+     
+     Field status_refPoint {internalName=status_refPoint type=vec2 comment="screenposition reference point" }
+     Field status_textPos {internalName=status_textPos type=vec2 comment="screenposition text position (point left-top corner)" }
+     Field status_textSize{internalName=status_textSize type=vec2 comment="text size" }
+     Field status_label {internalName=status_label type=bool comment="label visible"}
+     Field status_objectVisible {internalName=status_objectVisible type=bool comment="object visible" }
+     Field isInteraction {internalName=isInteraction }     
+     
+     Field orbitDistance {internalName=orbitDistance min=1 type=int comment="distance label<->object"}
+     Field skipLevel { internalName=skipLevel type=int min=1 comment="ID-Buffer sample rate" }
+     Field w_angle { internalName=w_angle type=int min=0 max=1 comment="weight 'angle' for label placement" }
+     Field w_angle_io { internalName=w_angle_io type=int min=0 max=1 comment="weight 'angle' for label placement for invisible objects" }
+     //Field w_angle_n1 { internalName=w_angle_n1 type=int min=0 max=1 comment="weight 'angle' for label placement to n objects" }
+     Field w_delta { internalName=w_delta type=int min=0 max=1 comment="weight 'delta' (distance to old position) for label placement" }
+     Field w_delta_io { internalName=w_delta_io type=int min=0 max=1 comment="weight 'delta' (distance to old position) for label placement for invisible objects" }
+     //Field w_delta_n1 { internalName=w_delta_n1 type=int min=0 max=1 comment="weight 'delta' (distance to old position) for label placement to n objects" }
+     Field w_intersection { internalName=w_intersection type=int min=0 max=1 comment="weight to consider potential reference-line-line intersection" }
+     Field w_intersection_io { internalName=w_intersection_io type=int min=0 max=1 comment="weight to consider potential reference-line-line intersection for invisible objects" }
+     
+     Field w_length { internalName=w_length type=int min=0 max=1 comment="weight 'length' reference line for label placement" }
+     Field w_length_io { internalName=w_length_io type=int min=0 max=1 comment="weight 'length' reference line for label placement for invisible objects" }
+     //Field w_length_n1 { internalName=w_length_n1 type=int min=0 max=1 comment="weight 'length' reference line for label placement to n objects" }
+     Field w_neighbor { internalName=w_neighbor type=int min=0 max=1 comment="weight 'neighbor' (minimal distance to other label) for label placement" }
+     Field w_neighbor_io { internalName=w_neighbor_io type=int min=0 max=1 comment="weight 'neighbor' (minimal distance to other label) for label placement for invisible objects" }
+     //Field w_neighbor_n1 { internalName=w_neighbor_n1 type=int min=0 max=1 comment="weight 'neighbor' (minimal distance to other label) for label placement to n objects" }     
+  }
+  
+  Commands {
+        importPath = "$(LOCAL)/.."
+	source = $(LOCAL)/SoLabelModul.py
+	
+	//initCommand = init
+	FieldListener preObject { command=preObject }
+   	FieldListener sucObject { command=sucObject } 
+  }
+  
+  Window LabelModul {
+     
+    Vertical {
+        Horizontal {
+          Field on {title="activate Labelmodul:" }
+	  CheckBox autoStart  {title="Auto Start" alignX=right dependsOn=on}
+	}
+        Separator {}
+      TabView {
+        TabViewItem "Object" {
+	  Box "Object Data" {
+          alignY=Top
+      	 
+	  Horizontal{
+	     Field curObject {title="Current Object:" slider=true step=1 alignX=left }
+	     Field numberShapes { title="/" edit=false alignX=left}
+	     //Button preObject {title="<<" ignoreMinSize=yes command=preObject alignX=left}
+	     //Button sucObject {title=">>" ignoreMinSize=yes command=sucObject alignX=left}
+        Button preObject {title="<<" ignoreMinSize=yes alignX=left}
+	     Button sucObject {title=">>" ignoreMinSize=yes alignX=left}
+          }
+	  Box{
+	    panelName = objectPanel
+	    title=""
+	    Horizontal {
+	       Field labelOn { title="Label:" alignX=left}
+	       Field objectIsBackground { title="Object is Background:" alignX=left}
+          Field labelPriority {title="Priority:" dependsOn=labelOn step=1} 
+	    }
+	    
+       Horizontal {
+            Field labelIfInvis { title="Label if Object Invisible:" dependsOn=labelOn alignX=left}
+            Field labelIfInteraction { title="Label if Interaction:" dependsOn=labelOn alignX=left}
+       }
+	    TextView fld_labelText { title="Label Text:"  }	    
+	    Box "Info" {
+          Horizontal {
+            Field status_label {title="Labeled:" edit=false alignX=left alignGroup=status }
+            Field isInteraction {title="Interaction:" edit=false }
+          }
+	       Horizontal {           
+            Field status_objectVisible {title="Object Visible:" edit=false alignGroup=status alignX=left }
+		      
+            
+	       }
+          Horizontal {
+            Field errors {title="Errors:" edit=no}
+            Field notLabeledObjects{ title="Not Labeled Objects:" edit=no}
+          }
+          Horizontal {
+               Field status_textPos {title="Text Position:" edit=false alignX=left }
+	            Field status_textSize {title="Text Size:" edit=false alignX=left }
+          }
+	       Field status_refPoint {title="Reference Point:" edit=false alignX=left }          
+	    }
+	    Horizontal { 
+	       CheckBox autoUpdate {title="Auto Update:" alignX=left }	   
+	       Button setLabelData {title="Apply" dependsOn=!autoUpdate alignX=left }         
+	       Button getObjectData {title="Get Data" alignX=right}
+	    }
+       Horizontal {
+         Button resetParameter { title="Set to Default"      }
+         Button resetParameterForAll { title="Set All Labels to Default"       }
+       }
+           }//end vertical 2; objectPanel
+	   //Separator{} 
+	 }
+      }
+      
+      TabViewItem "Font+Style" {         
+         Box "Labelstyle" {
+           Horizontal{
+	          Field curObject {title="Current Object:" slider=true step=1 alignX=left }
+	          Field numberShapes { title="/" edit=false alignX=left}
+	          //Button preObject {title="<<" ignoreMinSize=yes command=preObject alignX=left}
+             //Button sucObject {title=">>" ignoreMinSize=yes command=sucObject alignX=left}
+             Button preObject {title="<<" ignoreMinSize=yes alignX=left}
+             Button sucObject {title=">>" ignoreMinSize=yes alignX=left}
+           }
+           Box "" {
+	          Field fld_labelTextColor { title="Text Color:" alignX=left alignGroup=left alignGroup=left}
+	          Field fontSize       { title="Font Size:" alignX=left step=1 alignGroup=left}
+           
+             Horizontal{
+               Field refLineColor   { title="Line: Color:" alignX=left alignGroup=left }
+               Field refLineWidth {title="Thickness:" step=0.1  alignX=left }
+             }
+             Horizontal{
+                 Field arrowColor   { title="Arrow: Color:" alignX=left alignGroup=left}    
+                 Field arrowThickness {title="Thickness:" step=0.1  }
+                 Field arrowSize   { title="Size:" step=1}
+             }           
+             Horizontal {
+                //Field refLineHalo   { title="Halo:" alignX=left alignGroup=left }
+                //Field refLineHaloColor { title="Line:" alignX=left dependsOn=refLineHalo}
+                //Field arrowColorHalo {title="Arrow:" step=0.1 alignX=left dependsOn=refLineHalo}
+             }
+             Horizontal { 
+                Button applyStyle {title="Apply" alignX=left}
+                Button applyStyleToAll {title="Apply to All" alignX=left}
+                Button resetStyle {title="Set to Default" alignX=right}
+                Button resetStyleToAll {title="Set All Labels to Default" alignX=right}
+             }
+           }
+           Box "Font-Preference" {
+	        Horizontal {
+	           Field fontPath {title="Font:" minLength=25 alignX=left}
+	   	     CheckBox fontPathValid {title="ok" edit=false}
+	        }
+            Horizontal {
+	           Field fontPath2 {title="Font:" minLength=25 alignX=left}
+	   	     CheckBox fontPathValid2 {title="ok" edit=false}
+	        }
+         }
+         Box "Generel Parameter" {            
+            Field flushLayout { title="Flush Layout:"   }
+            Field orthoRefLines { title="Orthogonal Lines:" }            
+            Horizontal {
+               Field refLinesForInvisObj {title="Line instead Arrow:"}
+               Label "(only for invisible Objects Visualisation)"{}
+            }
+            Field haloColorInvert  { title="Invert Color for Halo:"}
+            Box "Line Pattern"{
+              Horizontal {
+                 Field linePattern {title="Reference Line to Object:" alignGroup=pattern alignX=left}
+                 Label "Default: 65535 (0xffff)"{}
+              }
+              Horizontal {               
+                 Field linePatternInvisObj {title="Line to invisible Object:" alignGroup=pattern alignX=left dependsOn=refLinesForInvisObj}
+                 Label "Default: 62451 (0xf3f3)"{}
+              }
+            }
+   	   }
+	      }
+	      
+      }
+      TabViewItem "Parameter" {
+	       Box "" {
+            panelName=annotatorParameter
+            Field orbitDistance {title="Orbit Distance:" alignX=left step=1 }
+            Field skipLevel {title="Buffer Sample Rate:" alignX=left step=1 }
+            Separator {}
+            Label {title = "Label Parameter:" }
+            Field w_angle {title="Weight Angle:" alignX=left step=0.1 slider=on }
+            Field w_delta {title="Weight Delta:" alignX=left step=0.1 slider=on }
+            Field w_length {title="Weight Distance:" alignX=left step=0.1 slider=on }
+            Field w_neighbor {title="Weight Neighbor:" alignX=left step=0.1 slider=on }
+            Field w_intersection {title="Weight Intersection:" alignX=left step=0.1 slider=on}
+            Separator {}
+            Label {title = "Label Parameter für unvisible Objects:" }
+            Field w_angle_io {title="Weight Angle:" alignX=left step=0.1 slider=on}
+            Field w_delta_io {title="Weight Delta:" alignX=left step=0.1 slider=on}
+            Field w_length_io {title="Weight Distance:" alignX=left step=0.1 slider=on}
+            Field w_neighbor_io {title="Weight Neighbor:" alignX=left step=0.1 slider=on}
+            Field w_intersection_io {title="Weight Intersection:" alignX=left step=0.1 slider=on}
+         }
+         
+      }
+      TabViewItem "CSO" {
+            Field mouseListener { title="Mouse Listener:" }
+            Field mouseClickObject { title="Clicked CSO:" edit=no dependsOn=mouseListener }
+            Field mouseOverObject { title="Mouseover CSO:" edit=no dependsOn=mouseListener }
+            Field cso_coordinates {title="Worldcoord. CSO:" edit=no dependsOn=mouseListener }
+            Field mousePos { title="Mouse Position:" edit=no dependsOn=mouseListener}
+            Box "Click Event by:" {
+               Field mouseClickLeft {title="Mouse Button Left:" dependsOn=mouseListener}
+               Field mouseClickMiddle {title="Mouse Button Middle:" dependsOn=mouseListener}
+               Field mouseClickRight {title="Mouse Button Right:" dependsOn=mouseListener}            
+            }
+      }
+     }
+     Horizontal{  
+	     Button clear {title="Clear All" alignX=center}
+        Button updateTextSize {title="update TextSize"} //bug in METK
+	     Button start {title="Start Labeling" alignX=center}
+	   }
+    }
+  }//ende Window

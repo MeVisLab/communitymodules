@@ -1,0 +1,19 @@
+[Ini]
+LengthTimeUnit=1
+LengthSeconds=1
+RealTime=yes
+
+[Script]
+[0] 'System' setBackground white
+[0] 'All' setTransparency 1
+[0] 'Bones' setTransparency 0.8
+[0] 'Lymphnode_15' setTransparency 0
+[0] 'M. sternocleidom._right' setTransparency 0.3
+[0] 'A. carotis communis_right' setTransparency 0.3
+[0] 'V. jugularis_right' setTransparency 0.3
+[0] 'Lymphnode_15' view 90 195 4
+
+[0] 'Lymphnode_14' setTransparency 0.5
+[0] 'Lymphnode_13' setTransparency 0.5
+[0] 'Lymphnode_17' setTransparency 0.5
+[0] 'Lymphnode_12' setTransparency 0.5

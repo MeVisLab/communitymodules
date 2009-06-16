@@ -1,0 +1,48 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+      Field outInventor { internalName = output.self }
+   }
+   Parameters {
+      Field creationTime { type = enum value = "OnVisible" values = "OnLoad,OnVisible" }
+      Field visibleOn    { type = enum value = "GeneralVisible" values = "SilhouetteVisible,GeneralVisible" }
+      Field mode         { type = enum value = "Silhouette" values = "Silhouette,EgdeEmphasize" }
+   }
+}
+
+Deployment {
+   module = SoSilhouette
+}
+
+Commands  {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)/.."
+   
+   // Include local functions
+   source = "$(LOCAL)/METKSilhouette.py"
+   
+   // Call init() to initalize the script
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener visibleOn { command = visibleOnChanged }
+   FieldListener mode { command = modeChanged }
+}
+
+Window METKSilhouette {
+   Vertical {
+      expandY = yes
+      Field = creationTime
+      Field = visibleOn
+      Field = mode
+      Panel {
+         module  = METKStructureGroupBrowser
+         window  = singleListView
+         expandY = yes
+      }
+   }
+}

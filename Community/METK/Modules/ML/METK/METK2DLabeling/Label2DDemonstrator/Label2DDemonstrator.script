@@ -1,0 +1,250 @@
+//----------------------------------------------------------------------------------
+//! Macro module Label2DDemonstrator
+/*!
+// \file    Label2DDemonstrator.script
+// \author  Konrad Mühler
+// \date    2008-04-17
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {    
+  }
+}
+
+Commands {
+  importPath = "$(LOCAL)"
+  importPath = "$(LOCAL)/../../../../Projects/MedicalExplorationToolkit"
+
+  source = $(LOCAL)/Label2DDemonstrator.py
+  initCommand = init  
+}
+
+Window Label2DDemonstrator {
+  w=950
+  h=700
+  style = kStyle
+  Splitter {
+    direction = horizontal
+  //Horizontal {
+    expandX=true expandY=true
+    //margin=10
+    //spacing=10
+    Vertical {
+      expandX=true expandY=true
+      margin=10
+      spacing=10
+      w=300
+      
+      Field METK2DLabeling.enableLabeling { title="Enable Labeling" }
+      
+      Empty { w=10 h=5 }
+      
+      TabView {
+        mode=toolbox
+        expandX=true expandY=true
+        
+        TabViewItem Case {
+          expandX=true expandY=true
+          tabTitle = "Case Management"
+          spacing=5
+          margin=5
+          
+          Vertical {
+            Label { title="Recent case:" }
+            Field METKManager.fileName { title="" edit = no wrap=true }
+          }
+          
+          Horizontal {
+                   Button METKManager.load { title="Load recent case"  dependsOn = "* !METKManager.caseLoaded && METKManager.fileName != "" *" alignX=Center }
+                   Button METKManager.browse { title = "Browse..." dependsOn = !METKManager.caseLoaded alignX=Center }
+                 }
+                    
+                    Horizontal {
+                      Button METKManager.save { dependsOn = METKManager.caseLoaded alignX=Center }
+                      Button METKManager.saveAs { title = "Save As..." dependsOn = METKManager.caseLoaded alignX=Center }
+                    }
+                    
+                    Button METKManager.cleanup { dependsOn = METKManager.caseLoaded alignX=Center }
+         
+                 
+                 VSpacer { w=10 }                   
+        } //TabView Case
+        
+        TabViewItem Text {
+          expandX=true expandY=true
+          tabTitle = "Label Text"
+          spacing=5
+          margin=5
+          
+          Button { title="Set Names as Label" command=setLabelsNames alignX=center }
+          Button { title="Set StructureGroup as Label" command=setLabelsStructureGroup alignX=center }
+          Button { title="Set Name and Measures as Label" command=setLabelsMeasures alignX=center }
+          Button { title="Set Name and Volume for Liver" command=setLabelsLiver alignX=center }
+          
+          VSpacer {w=10}                  
+        }//TabViewItem Text
+        
+        TabViewItem Visibility {
+          expandX=true expandY=true          
+          tabTitle = "Label Visibility"
+          spacing=5
+          margin=5
+
+          Label { title="ROI:" }
+          ComboBox METKCodedSegmentation.roiSelect { editable = False  duplicatesEnabled = NO comboField = METKCodedSegmentation.rois }
+
+          Empty { w=10 h=10 }
+          
+          Label { title="Labels On/Off:" }
+          Panel {
+            module=Labeling
+            h=200
+          }
+          Empty { w=10 h=10 }
+          Label { title="Visibility On/Off:" }
+          Panel {
+            module=Visibility
+            h=200
+          }
+          
+          VSpacer {w=10}
+        } //TabViewItem Visibility
+        
+        TabViewItem Appearance {
+          expandX=true expandY=true
+          tabTitle = "Appearance"
+          spacing=5
+          margin=5
+
+          Box LabelBox {
+            title = "Label Boxes"
+            layout = vertical
+            spacing=10
+            Field METK2DLabeling.textColor { title="Text Color:" }
+            Field METK2DLabeling.autoBoxColor { title="Auto Box Color:" }
+            Field METK2DLabeling.boxColor { title="Box Color:" dependsOn=!METK2DLabeling.autoBoxColor }
+            Field METK2DLabeling.boxTransparency { title="Box Transparency:" }
+            Field METK2DLabeling.borderColor { title="Border Color:" }
+            Field METK2DLabeling.innerBorder { title="Inner Box Border:" }
+            Empty { w=10 h=2 }
+          }//Box LabelBox
+                
+          Box Lines {
+            title = "Lines & Distances"
+            layout = vertical
+            spacing=10
+            Field METK2DLabeling.lineColor { title="Line Color:" }
+            Field METK2DLabeling.borderDistance { title="Distance Comp<->Label:" }
+            Empty { w=10 h=2 }
+          }//Box Lines
+          
+          Field METK2DLabeling.sendCSO { title="Send CSO to METKManager" }
+          Field METK2DLabeling.CSO { title="Selected Object:" edit=false }          
+          
+          VSpacer {w=10}
+        } //TabViewItem Appearance
+        
+        TabViewItem Thresholds {
+          expandX=true expandY=true
+          tabTitle = "Thresholds for Drawing Styles"
+          spacing=5
+          margin=5
+
+          Field METK2DLabeling.encircleSize { title="Encircle Size Limit:" }          
+          Field METK2DLabeling.maxGroupDistance { title="Max. Distance for Grouping:" }
+          Field METK2DLabeling.minCompSize { title="Min. Size of a Component:" }
+          Field METK2DLabeling.transpThreshold { title="Threshold for Importants:" }
+          
+          VSpacer {w=10}
+        } //TabViewItem Thresholds
+                
+        TabViewItem Debug {
+          expandX=true expandY=true
+          tabTitle = "Debug Facilities"
+          spacing=5
+          margin=5
+          
+          Field METK2DLabeling.debugState { title="Debug State:" }
+          Field METK2DLabeling.slice { title="Slice:" }
+          Field METK2DLabeling.maxConflictIterations { title="Iterations to solve Conflicts:" }
+          Field METK2DLabeling.optFactor { title="Speed up Factor (rec.:2):" }
+          Field METK2DLabeling.useAdditionalMask { title="Use extra Mask (Hals12 only):" }
+
+          Box Step {
+            title = "Step by Step"
+            layout = vertical
+            spacing=5
+            margin=5            
+            
+            Button METK2DLabeling.calculate { title="Calculate All" alignX=Center }
+            Button METK2DLabeling.initPlacement { title="Initial Placement" alignX=Center }
+            Button METK2DLabeling.refine { title="Refine" alignX=Center }
+            Button METK2DLabeling.refineSingleStep { title="Refine single step" alignX=Center }
+          }//Box Step
+          
+          Box Output {
+            title = "Debug Output"
+            layout = vertical
+            spacing=5
+            margin=5            
+            
+            Label { title="Inspection Output Field:" }
+            Field METK2DLabeling.debugOutput { title="" }
+            
+            Empty { w=10 h=10 }
+            
+            Horizontal {
+              Label { title="AnchorPoint to inspect:" }
+              NumberEdit METK2DLabeling.anchorPointInspection { step=1 minLength=3 }
+            }
+            
+            Empty { w=10 h=10 }
+            
+            Box Lut {
+              title = "Windowing"
+              layout = vertical
+              spacing=5
+              margin=5            
+
+              Field SimpleView2D.ctWindowsLutCenter {title="LutCenter:" }
+              Field SimpleView2D.ctWindowsLutWidth { title="LutWidth:" }
+            }
+          }//Box Output
+          
+          VSpacer {w=10}
+        }//TabViewItem Debug  
+      } //TabView
+    } //Vertical
+    
+    Vertical {
+      expandX=true expandY=true
+      w=650
+                              
+      TabView {      
+        mode=top
+        expandX=true expandY=true
+        TabViewItem ViewSlices {
+          expandX=true expandY=true
+          Panel {
+            module = ViewSlices
+          }          
+        }        
+
+        TabViewItem DebugOutput {
+          expandX=true expandY=true
+          Panel {
+            module = SimpleView2D
+          }          
+        }
+      }
+    } //Vertical for Viewers
+    
+  } //Splitter
+  
+}

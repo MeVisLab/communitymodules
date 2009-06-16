@@ -1,0 +1,159 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoTransform {
+  internal  {
+    frame = "-51 277 104 56"
+    windows  {
+      window _default {
+        geometry = "26 45 374 192"
+        sizeHint = "374 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTransform
+    translation = "0.000000 0.000000 0.000000"
+    rotation = "0.000000 0.000000 1.000000 0.000000"
+    scaleFactor = "1.000000 1.000000 1.000000"
+    scaleOrientation = "0.000000 0.000000 1.000000 0.000000"
+    center = "0.000000 0.000000 0.000000"
+  }
+}
+module SoArrow {
+  internal  {
+    frame = "357 261 88 56"
+    windows  {
+      window _default {
+        geometry = "70 89 347 170"
+        sizeHint = "347 170"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoArrowZ
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    position = "0.000000 0.000000 1.000000"
+    rotationRef = "0.000000 0.000000 0.000000"
+    length = 1
+    minDistance = 5
+    displayHead = TRUE
+  }
+}
+module SoArrow {
+  internal  {
+    frame = "245 261 88 56"
+    windows  {
+      window _default {
+        geometry = "70 89 347 170"
+        sizeHint = "347 170"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoArrowY
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    position = "0.000000 1.000000 0.000000"
+    rotationRef = "0.000000 0.000000 0.000000"
+    length = 1
+    minDistance = 5
+    displayHead = TRUE
+  }
+}
+module SoArrow {
+  internal  {
+    frame = "149 269 88 56"
+    windows  {
+      window _default {
+        geometry = "70 89 347 170"
+        sizeHint = "347 170"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoArrowX
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    position = "1.000000 0.000000 0.000000"
+    rotationRef = "0.000000 0.000000 0.000000"
+    length = 1
+    minDistance = 5
+    displayHead = TRUE
+  }
+}
+module SoBaseColor {
+  internal  {
+    frame = "341 425 104 64"
+    windows  {
+      window _default {
+        geometry = "48 67 281 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Blue
+    rgb = "0 0 1"
+  }
+}
+module SoBaseColor {
+  internal  {
+    frame = "197 417 104 64"
+    windows  {
+      window _default {
+        geometry = "48 67 281 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Green
+    rgb = "0 1 0"
+  }
+}
+module SoBaseColor {
+  internal  {
+    frame = "77 409 104 64"
+    windows  {
+      window _default {
+        geometry = "48 67 281 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Red
+    rgb = "1 0 0"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "145 125 240 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+connections  {
+  SoSeparator.children = "SoTransform.self Red.self SoArrowX.self Green.self SoArrowY.self Blue.self SoArrowZ.self"
+}

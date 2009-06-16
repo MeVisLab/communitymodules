@@ -1,0 +1,132 @@
+Interface  {
+  Inputs = ""
+  Outputs = ""
+  Parameters{
+  
+    Field presetting0 {type = trigger}
+    Field presetting1 {type = trigger}
+    Field presetting2 {type = trigger}
+    Field presetting3 {type = trigger} 
+    Field presetting4 {type = trigger}
+    Field default     {type = trigger}
+  }
+}
+
+Commands {
+  // Add the local's parent path to the import path, so that Python looks for local packages
+  importPath = "$(LOCAL)/.."
+  // Include local functions 
+  source = "$(LOCAL)/AutomaskingDemonstrator.py" 
+   
+  // Call init() to initalize the script
+  initCommand = init
+}
+
+Window AutomaskingDemonstrator {
+
+  shouldCloseCommand = exit
+  style = VisDemoStyle
+  expandY = Yes expandX = Yes
+   
+  w=800
+
+  Vertical {
+    expandX=Yes expandY=Yes
+    MenuBar {
+      style { titleFont { family = tahoma size = 9 } }
+      expandY = No
+      expandX = No
+      SubMenu "File" {
+        MenuItem "Open..."     { command = openCase }
+        MenuItem "Restart"     { command = restart}
+        MenuItem "Save As..."  { command = saveAs }
+        MenuItem "Save"        { command = save }
+        Separator {direction = horizontal}
+        MenuItem "Quit"  { command = exit }
+      } //SubMenu
+    }// Menubar
+    Horizontal {
+      expandX=yes expandY=yes
+      Panel {            
+        module  = METKViewer3D
+        window  = METKViewer
+        expandX=yes expandY=yes
+        w=500
+        h=500
+      }
+      Vertical {
+        alignY = Top
+        alignX = Right
+        Box Selection {
+          Field METKAutoMasking.targetStructures {}
+          Field METKAutoMasking.METKCSO.cso {title = CSO:}
+          ButtonBar METKAutoMasking.single_groupSelection {
+            show       = Radio
+            direction  = Horizontal
+            border     = False
+            title      = "Selection-Mode"             
+            //       enumAutoFormat = False   
+            alignX     = Left
+            minimumWidth = 15                                  
+          }
+        }
+        ScrollView {
+          w = 300
+          expandX=yes expandY=yes         
+          Box correlations {
+            Combobox METKAutoMasking.METKCorrelationNetwork.correlation {
+              comboField     = METKAutoMasking.METKCorrelationNetwork.allCorrelations
+              comboSeparator = ", "
+            }
+            ComboBox METKAutoMasking.METKCorrelationNetwork.correlationType {
+              comboField     = METKAutoMasking.METKCorrelationNetwork.allCorrelationType
+              comboSeparator = ", "  
+              editable       = No
+            }
+            CheckBox METKAutoMasking.METKCorrelationNetwork.enableColering {}
+            Field METKAutoMasking.cSM { edit = False} // dependsOn = activeCorrelationMode}
+            Horizontal {
+              Button METKAutoMasking.METKCorrelationNetwork.prevRelatedStruct {title = <<prev dependsOn = METKAutoMasking.single_groupSelection}
+              Button METKAutoMasking.METKCorrelationNetwork.nextRelatedStruct {title = next>> dependsOn = METKAutoMasking.single_groupSelection}              
+            }            
+          }
+          SpacerY {}
+          Box "Distance Parameters" {
+            Field METKAutoMasking.dist_close {}
+            Field METKAutoMasking.dist_far   {}
+          }
+          Box Prioritys {
+            Field METKAutoMasking.maxPriority {}
+            SpacerY  {h = 8}
+            Field METKAutoMasking.prio_dist_close {}
+            Field METKAutoMasking.prio_dist_far   {}
+            Field METKAutoMasking.weight_dist     {}
+            SpacerY  {h = 8}
+            Field METKAutoMasking.prio_charact_same    {}
+            Field METKAutoMasking.prio_charact_inverse {}
+            Field METKAutoMasking.prio_charact_other   {}
+            Field METKAutoMasking.weight_charact       {}
+            SpacerY  {h = 8}
+            Field METKAutoMasking.prio_correl   {}
+            Field METKAutoMasking.weight_correl {}
+          }                     
+        }
+        Grid {
+          spacing = 3
+          margin  = 5
+          Button presetting0 {x = 0 y = 0 command = setPresetting0}
+          Button presetting1 {x = 0 y = 1 command = setPresetting1}
+          Button presetting2 {x = 1 y = 0 command = setPresetting2}
+          Button presetting3 {x = 1 y = 1 command = setPresetting3}
+          Button presetting4 {x = 2 y = 0 command = setPresetting4}
+          Button default     {x = 2 y = 1 command = setPresettingDefault}
+        }
+        Box AutoMasking {
+          Field  METKAutoMasking.enableAnimation   {}
+          Field  METKAutoMasking.enableAutomasking {}
+          Button METKAutoMasking.automasking { title = Masking dependsOn = !METKAutoMasking.enableAutomasking}
+        }  
+      }       
+    }
+  }
+}

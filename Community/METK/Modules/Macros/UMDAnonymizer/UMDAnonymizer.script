@@ -1,0 +1,90 @@
+//----------------------------------------------------------------------------------
+//! Macro module UMDAnonymizer
+/*!
+// \file    UMDAnonymizer.script
+// \author  Konrad Mühler
+// \date    2008-03-03
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+      Field directory {
+         type = string
+      }
+      Field apply {
+         type = trigger
+      }
+      Field liste {
+         type = string
+         value = ""
+      }
+      Field invertSelection {
+         type = trigger
+      }
+      Field toggleString {
+         type = string
+         value = ""
+      }
+      Field progress {
+         type = float
+         value = 0.0
+      }      
+   } // Parameters 
+}
+
+
+Commands {
+  source = $(LOCAL)/UMDAnonymizer.py
+   
+   FieldListener {
+      listenField = directory
+      command = updateDir
+   }
+
+   FieldListener {
+      listenField = apply
+      command = start
+   }
+
+   FieldListener {
+      listenField = invertSelection
+      command = invertSelection
+   }
+  
+}
+
+
+
+Window UMDAnonymizer {   
+   Category Main { w = 500 expandY = YES
+      Field = directory { browseButton = YES browseMode = directory w = 200 }
+      ListView = liste {
+         expandX = YES
+         expandY = YES
+         visibleRows = 20
+         selectionMode = NoSelection
+         rowSeparator = "?"
+         header = NO
+         checkList = YES
+         toggleField = toggleString
+      }
+      Button = invertSelection
+      Field = ImgSave.tiffCompression { title = "Compression" }
+      Button = apply { title = "Start" }      
+   } // Category Main
+} // Window 
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2008-02-04T04:51:45
+//# hash: q/FZJQGyfdUBEqXc1z2GbtVChwXG0lL/iwrI3HS5hwSzUTbd6In9sD4I7KHpHGrvdOCIsDodT5+56Po+3xWbpg==
+//# MeVis end
+

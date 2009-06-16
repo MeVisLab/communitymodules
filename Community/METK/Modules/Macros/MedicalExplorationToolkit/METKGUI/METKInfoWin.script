@@ -1,0 +1,80 @@
+//----------------------------------------------------------------------------------
+//! Macro module METKInfoWin
+/*!
+// \file    METKInfoWin.script
+// \author  Konrad Mühler
+// \date    2006-07-20
+//
+// // 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+	Inputs {
+		Field inObjectContainer { internalName = info.inObjectContainer }    
+	}
+	Outputs {
+		Field outObjectContainer { internalName = info.outObjectContainer }
+	}
+	Parameters {
+		Field infoHeader   	{ type = string }   
+		Field infoText     	{ type = string }
+		//Field showWin		{ internalName = TimeCounter.on }     
+		Field showWin		{ type = bool value=False persistent=False }     
+	}	
+}
+
+
+Commands {
+  	importPath = "$(LOCAL)/.."
+
+	source = $(LOCAL)/METKInfoWin.py
+  
+	initCommand = init
+	FieldListener showWin { command = showWin }
+	FieldListener info.outObjectContainer { command = _cls_info.handleEvents }          
+	FieldListener TimeCounter.value { command = checkVisibility }
+}
+
+
+
+Window METKInfoWin {  
+	//style = kStyle
+    	//bgMode = SmoothStretch
+	//style = LSTStyle
+	bgMode = Stretch  
+    	
+    	name = METKInfoWin
+	w = 300
+	//borderless = True
+	
+    	Vertical {
+    		spacing = 10
+    		margin = 20
+    	
+		Label {
+			titlefield = infoHeader
+			textAlignment = Center
+		}
+		Label {
+			titlefield = infoText
+			textAlignment = Center
+		}	
+	}
+	
+	initCommand = initWindow
+
+}
+
+
+
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T17:40:57
+//# hash: WQEHMsR7B0GvquHzDVEpPxacp3jqZyxcWbRLi7hbDagCk0x4neDwt7RHsJZf/1RlCEHC9vY+q+Z9gApI0CeNZw==
+//# MeVis end
+

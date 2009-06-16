@@ -1,0 +1,8 @@
+[Ini]
+LengthTimeUnit=10
+LengthSeconds=10
+RealTime=yes
+
+[Script]
+[0] 'All' view front 1
+[0,10] 'Cam' rotate 'All' axial 360

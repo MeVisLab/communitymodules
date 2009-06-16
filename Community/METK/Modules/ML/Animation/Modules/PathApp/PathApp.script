@@ -1,0 +1,167 @@
+//-------------------------------------------------------------------------------------------------
+//! Macro module PathApp
+/*!
+// \file    PathApp.script
+// \author  Konrad Mühler
+// \date    2009-02-19
+//
+// // 
+*/
+//-------------------------------------------------------------------------------------------------
+
+Interface {
+   Inputs  {}
+   Outputs {}
+   Parameters {  
+      Field local { type=string value=$(LOCAL) }
+      Field caseType { type=enum  items { item = None item = ENT item = Liver } value = "None"  }
+      Field listViewType { type=enum  items { item = Hierarchy item = StructureGroup } value = "Hierarchy" }
+      Field initScript { type=trigger }
+      Field baseScriptPath { type=string value = "Scripts/" }
+      Field startAnimation { type=trigger }
+      Field stopAnimation { type=trigger }
+      Field pauseAnimation { type=trigger }
+      
+      Field animationSpeed { internalName=UMDAnimation2.animationSpeed min=-1 max=2 }
+      
+      
+      Field animationLength { type=integer value=5 }
+      Field startStructure { internalName=startStructure.selectedObjId}
+      Field endStructure { internalName=endStructure.selectedObjId }
+      Field useGreenRed { type=bool value=true }
+      Field renderVideo { type=bool value=false }
+      Field videoPath { internalName=UMDAnimation2.offScreenFolder }
+      Field generateScript { type=trigger }
+   }
+}
+
+
+Commands {
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/../../../../Projects/MedicalExplorationToolkit"
+   
+   source = $(LOCAL)/PathApp.py
+       
+   initCommand = init
+   wakeupCommand = wakeup
+   
+   FieldListener ObjInfo.inObjectContainer { command = _cls_info.handleEvents }
+   FieldListener initScript { command = initScript }   
+   FieldListener startAnimation { command = startAnimation }
+   FieldListener stopAnimation { command = stopAnimation }
+   FieldListener pauseAnimation { command = pauseAnimation }      
+   FieldListener generateScript { command = generateScript }
+}
+
+
+     
+Window PathApp {
+
+   DefineStyle smallFont { derive = PlannerStyle  editFont { size = 6 }  tabFont { size = 6 }  titleFont { size = 6 }  boxFont { size = 6 }}
+
+   shouldCloseCommand = exit
+   style = PlannerStyle
+   w = 1200
+   h = 850
+
+   Splitter {
+      direction = horizontal
+      
+      Vertical {
+         
+         spacing = 5
+         margin = 10
+      
+
+         Button { title = "Open ENT Case"  command=openENT alignX=center }
+         Button { title = "Open Liver Case" command=openLST alignX=center }
+         Button initScript { title="Run Init Script" alignX=center }
+            
+         TextView UMDAnimation2.ScriptArea {
+            title = "Current Script:"
+            wrap = off
+            autoApply = Yes
+            style = smallFont
+            expandX=yes expandY=yes
+         }              
+
+
+         Field UMDAnimation2.debugState { title = "Debug State:" }
+         Checkbox UMDAnimation2.writeLowLevelScript { title = "Write low level script" }
+         Field UMDAnimation2.framerate { title = "Framerate:" }
+         
+         Field animationLength { }
+         
+         Box {
+            margin = 5
+            spacing = 5
+            
+            title = "Start and end structure for the path:"
+            Horizontal {
+               Label { title="Start Structure:" }
+               Label { title="End Structure:" }
+            }
+
+            Horizontal {
+               Panel { 
+                  ph=225
+                  module  = startStructure
+                  window  = singleListView
+                  expandX=yes expandY=yes
+               }
+               Panel {               
+                  module  = endStructure
+                  window  = singleListView
+                  expandX=yes expandY=yes
+               }            
+            } //Horizontal
+         } //Box
+         
+         Field useGreenRed { }
+         Field renderVideo { }
+         Field videoPath { }
+         
+         Empty { h=20 w=20 }
+         
+         Button generateScript { alignX=center }
+         
+      } //Vertical
+               
+      Vertical {
+            
+         expandX=yes expandY=yes            
+         Panel {
+            pw =570
+            module  = METKViewer3D
+            window  = METKViewer
+            expandX=yes expandY=yes
+         }
+         Vertical {               
+            Horizontal {
+               expandX=yes expandY=no
+               Empty { expandX=yes }
+               Button startAnimation { title = "Play" name = b_play }
+               Button stopAnimation { title = "Stop" name = b_stop }
+               Button pauseAnimation { title = "Pause" name = b_pause }
+               Empty { expandX=yes }
+            }
+            Horizontal {
+               alignX=center
+               Slider animationSpeed {                  
+                  pw = 100
+                     
+                  snap = 0.1
+                  pageStep = 1
+                  tracking = true
+                  format = %1.1f
+               }                                 
+                  
+               Field animationSpeed { format=%1.1f title="" edit=false }
+            }
+               
+         } //Vertical            
+      } //Vertical                  
+   } //Splitter
+                  
+   initCommand = initWindow
+}

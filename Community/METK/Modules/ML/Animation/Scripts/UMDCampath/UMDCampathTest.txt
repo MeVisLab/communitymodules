@@ -1,0 +1,8 @@
+[Ini]
+LengthTimeUnit=1
+LengthSeconds=5
+RealTime=yes
+
+[Script]
+[0] 'All' setVisible true
+[0,1] 'Cam' campath 'All' 90;90;1

@@ -1,0 +1,26 @@
+MLModule METKLiftChart {
+   DLL                = "METKLiftChart"
+   author             = "Christian Tietjen"
+   status             = "work-in-progress"
+   comment            = ""
+   keywords           = "METK ObjMgr parallel coordinates view2d slice"
+   seeAlso            = ""
+   genre              = "METKMisc"
+   exampleNetwork     = "$(LOCAL)/../networks/METKLiftChart.mlab"
+
+   Description {
+      Field = minImportance { min = 0 max = 2 }
+      Field = maxExtent { min = 0 max = 1 }
+   }
+   Window METKLiftChart {
+      Vertical {
+         Field = active
+         Field = verticalOffset
+         Field = aggregation
+         Field = minImportance { slider = yes }
+         Field = maxExtent { slider = yes }
+         Field = divideBySide
+         Field = hideSideUnkown
+      }
+   }
+}

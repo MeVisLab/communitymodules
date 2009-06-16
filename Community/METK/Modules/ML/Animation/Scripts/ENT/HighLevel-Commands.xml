@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<HighLevel>
+
+	<!-- Objekte selektieren -->
+
+	<command commandStr="select">
+		<command>T O setSelected TRUE</command>		
+	</command>
+	<command commandStr="deselect">
+		<command>T O setSelected FALSE</command>		
+	</command>	
+	
+
+	<!-- Objekte sichtbar setzen ohne weitere Auswirkungen -->
+
+	<command commandStr="on">
+		<command>T O setVisible TRUE</command>		
+	</command>
+	<command commandStr="off">
+		<command>T O setVisible FALSE</command>		
+	</command>
+
+
+	<!-- Objekte transparenztechnisch ein/ausblenden -->
+	<command commandStr="blendOut">
+		<command>T O setTransparency transparent</command>		
+	</command>	
+	<command commandStr="blendIn">
+		<command>T O setTransparency opaque</command>		
+	</command>	
+	
+
+	<!-- View sagittal/axial/coronal -->
+	<command commandStr ="view">
+		<command>T 'Cam' move O P</command>
+		<command>T 'Cam' rotateCamZTo 0</command>
+	</command>
+	
+	<command commandStr ="newView">				
+		<command>T 'Cam' move O 'All' P</command>
+		<command>T 'Cam' rotateCamZTo 0</command>
+	</command>
+	
+	<command commandStr ="viewSmurf">				
+		<command>T 'Cam' smurf O P</command>
+		<command>T 'Cam' rotateCamZTo 0</command>
+	</command>
+	
+	
+	
+	<!-- Kompelxe Hervorhebungen -->
+	<command commandStr ="emphasize">
+		<command>T O view front 1</command>
+		<command>T O setColor red</command>
+		<command>T O setTransparency low</command>
+	</command>	
+	<command commandStr ="deemphasize">		
+		<command>T O setColor green</command>
+		<command>T O setTransparency normal</command>
+	</command>	
+	
+	
+	<!-- Laden eines Objekte (on/off setzen) ... weil zeitaufwendig eigentlich direkt in der Ini, dann ist es einmal da -->
+	<command commandStr="load">
+		<command>T O on</command>
+		<command>T O off</command>
+	</command>
+	
+	<command commandStr="border">
+		<command>T O setSilhouette P</command>
+		<command>T O setSilhouetteColor 0,0,0</command>
+		<command>T O setSilhouetteWidth 5</command>		
+	</command>
+	
+	
+	<!-- Grundinitialisierung -->
+	<command commandStr="init">
+		<command>T 'All' on</command>
+		<!--<command>T 'All' setTransparency normal</command>-->
+		<!--<command>T 'Knochen' setTransparency normal</command>-->
+		<command>T 'System' setBackground white</command>		
+		<command>T 'All' view front 1</command>
+		<command>T 'System' setBaseColors</command>
+	</command>
+	
+	<command commandStr="setBaseColors">
+		<command>T 'Lymphnode' setColor LymphnodeColor</command>
+		<command>T 'Muscle' setColor MuscleColor</command>
+		<command>T 'Artery' setColor VesselsAColor</command>
+		<command>T 'Vein' setColor VesselsVColor</command>
+		<command>T 'Gland' setColor GlandulaColor</command>
+		<command>T 'Larynx' setColor KehlkopfColor</command>
+		<command>T 'Lung' setColor LungColor</command>
+		<command>T 'Tumor' setColor TumorColor</command>
+		<command>T 'Bone' setColor BoneColor</command>
+		<command>T 'Trachea' setColor TracheaColor</command>
+		<command>T 'Pharynx' setColor PharynxColor</command>
+		
+		<command>T 'Lymphnode' setTransparency 0</command>
+		<command>T 'Muscle' setTransparency 0.5</command>
+		<command>T 'Vessel' setTransparency 0</command>		
+		<command>T 'Gland' setTransparency 0</command>
+		<command>T 'Larynx' setTransparency 0.4</command>
+		<command>T 'Lung' setTransparency 0</command>
+		<command>T 'Tumor' setTransparency 0</command>
+		<command>T 'Bone' setTransparency 0.8</command>
+		<command>T 'Trachea' setTransparency 0</command>
+		<command>T 'Pharynx' setTransparency 0.8</command>
+		
+		<command>T 'Bone' setSilhouette true</command>		
+		<command>T 'Bone' setSilhouetteWidth 2</command>		
+
+		<command>T 'Muscle' setSilhouette true</command>		
+		<command>T 'Muscle' setSilhouetteWidth 2</command>		
+		
+		<command>T 'All' setSilhouette false</command>
+		<command>T 'All' setSilhouetteColor 0,0,0</command>
+		<command>T 'All' setSilhouetteWidth 1</command>
+	</command>
+	
+	<!-- Farbwerte -->
+	<command commandStr="setColor">
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightorange" singleValue="242,156,116" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />
+		<parameter paramStr="brown" singleValue="96,57,19" />
+		<parameter paramStr="lightorange" singleValue="253,198,137" />
+		<parameter paramStr="red2" singleValue="178,12,16" />
+		<parameter paramStr="darkgreen" singleValue="0,124,53" />
+		<parameter paramStr="turquoise" singleValue="125,180,180" />
+		
+		<parameter paramStr="KnochenColor" singleValue="127,127,127" />		
+		<parameter paramStr="Knorpel1Color" singleValue="242,177,35" />
+		<parameter paramStr="Knorpel2Color" singleValue="242,118,35" />
+		<parameter paramStr="KreuzbandColor" singleValue="35,40,245" />
+		<parameter paramStr="MeniskusColor" singleValue="84,212,231" />
+		
+		
+		
+		<parameter paramStr="LymphnodeColor" singleValue="255,255,150" />		
+		<parameter paramStr="MuscleColor" singleValue="99,41,20" />
+		<parameter paramStr="VesselsAColor" singleValue="240,51,51" />		
+		<parameter paramStr="VesselsVColor" singleValue="79,79,250" />		
+		<parameter paramStr="GlandulaColor" singleValue="180,150,110" />		
+		<parameter paramStr="KehlkopfColor" singleValue="168,209,255" />		
+		<parameter paramStr="LungColor" singleValue="255,230,181" />		
+		<parameter paramStr="TumorColor" singleValue="255,255,200" />		
+		<parameter paramStr="BoneColor" singleValue="255,255,255" />		
+		<parameter paramStr="TracheaColor" singleValue="255,230,181" />		
+		<parameter paramStr="PharynxColor" singleValue="255,189,150" />		
+	</command>
+	
+	
+	<command commandStr="setBackground">
+		<parameter paramStr="red" singleValue="255,0,0" />
+		<parameter paramStr="yellow" singleValue="255,255,0" />
+		<parameter paramStr="blue" singleValue="0,0,255" />
+		<parameter paramStr="green" singleValue="0,255,0" />
+		<parameter paramStr="orange" singleValue="242,101,34" />
+		<parameter paramStr="lightblue" singleValue="0,174,239" />
+		<parameter paramStr="white" singleValue="255,255,255" />
+	</command>	
+	
+	
+	<!-- Transarenzen -->
+	<command commandStr="setTransparency">
+		<parameter paramStr="normal" singleValue="0.5" />
+		<parameter paramStr="high" singleValue="0.8" />
+		<parameter paramStr="low" singleValue="0.2" />
+		<parameter paramStr="opaque" singleValue="0" />
+		<parameter paramStr="transparent" singleValue="1" />
+	</command>
+	
+	
+	<!-- Geschwindigkeiten -->
+	<command commandStr="rotate">
+		<parameter paramStr="slow" valuePerTimeUnit="15" />
+		<parameter paramStr="fast" valuePerTimeUnit="45" />
+		<parameter paramStr="axial" singleValue="0,0,-1" />
+		<parameter paramStr="sagittal" singleValue="1,0,0" />
+		<parameter paramStr="coronal" singleValue="0,-1,0" />
+	</command>
+		
+	<command commandStr="move">
+		<parameter paramStr="top" singleValue="1 0" />
+		<parameter paramStr="bottom" singleValue="180 0" />
+		<parameter paramStr="right" singleValue="90 90" />
+		<parameter paramStr="left" singleValue="90 -90" />
+		<parameter paramStr="front" singleValue="90 0" />
+		<parameter paramStr="back" singleValue="90 180" />
+		
+		<parameter paramStr="sagittal" singleValue="right" />		
+		<parameter paramStr="axial" singleValue="top" />
+		<parameter paramStr="coronal" singleValue="back" />
+	</command>
+
+
+	<command commandStr="newmove">
+		<parameter paramStr="top" singleValue="1 0" />
+		<parameter paramStr="bottom" singleValue="180 0" />
+		<parameter paramStr="right" singleValue="90 90" />
+		<parameter paramStr="left" singleValue="90 -90" />
+		<parameter paramStr="front" singleValue="90 0" />
+		<parameter paramStr="back" singleValue="90 180" />
+		
+		<parameter paramStr="sagittal" singleValue="right" />		
+		<parameter paramStr="axial" singleValue="top" />
+		<parameter paramStr="coronal" singleValue="back" />
+	</command>
+
+	
+	<command commandStr="singleShow">
+		<command>T 'All' setTransparency 0.9</command>
+		<command>T O setTransparency 0</command>
+		<command>T O view front 3</command>
+	</command>
+	
+	
+	<command commandStr="emphasizeLK15">		
+		<command>T 'All' setTransparency 1</command>
+		<command>T 'Bones' setTransparency 0.8</command>
+		<command>T 'Lymphnode_15' setTransparency 0</command>
+		<command>T 'M. sternocleidom._right' setTransparency 0.3</command>
+		<command>T 'A. carotis communis_right' setTransparency 0.3</command>
+		<command>T 'V. jugularis_right' setTransparency 0.3</command>
+		<command>T 'Lymphnode_15' view 90 195 4</command>
+		<command>T 'Lymphnode_14' setTransparency 0.5</command>
+		<command>T 'Lymphnode_13' setTransparency 0.5</command>
+		<command>T 'Lymphnode_17' setTransparency 0.5</command>
+		<command>T 'Lymphnode_12' setTransparency 0.5</command>
+	</command>
+
+	<command commandStr="emphasizeLK15b">		
+		<command>T 'Lung' setTransparency 1</command>
+		<command>T 'Lymphnode_1' setTransparency 1</command>
+		<command>T 'Lymphnode_2' setTransparency 1</command>
+		<command>T 'Lymphnode_3' setTransparency 1</command>
+		<command>T 'Lymphnode_4' setTransparency 1</command>
+		<command>T 'Lymphnode_5' setTransparency 1</command>
+		<command>T 'Lymphnode_6' setTransparency 1</command>
+		<command>T 'Lymphnode_7' setTransparency 1</command>
+		<command>T 'Lymphnode_8' setTransparency 1</command>
+		<command>T 'Lymphnode_9' setTransparency 1</command>
+		<command>T 'Lymphnode_10' setTransparency 1</command>
+		<command>T 'Lymphnode_11' setTransparency 1</command>
+		<command>T 'Lymphnode_16' setTransparency 1</command>
+		<command>T 'Lymphnode_18' setTransparency 1</command>
+		<command>T 'Nerves' setTransparency 1</command>
+		<command>T 'Glandula' setTransparency 1</command>
+		<command>T 'Kehlkopf' setTransparency 1</command>
+		<command>T 'Pharynx' setTransparency 1</command>
+		<command>T 'Trachea' setTransparency 1</command>
+		<command>T 'Tumor' setTransparency 1</command>
+		<command>T 'M. sternocleidom._left' setTransparency 1</command>
+		<command>T 'A. carotis communis_left' setTransparency 1</command>
+		<command>T 'V. jugularis_left' setTransparency 1</command>					
+		<command>T 'Bones' setTransparency 0.9</command>
+		<command>T 'Lymphnode_15' setTransparency 0</command>
+		<command>T 'Lymphnode_15' setColor 255,255,0</command>
+		<command>T 'M. sternocleidom._right' setTransparency 0.4</command>
+		<command>T 'A. carotis communis_right' setTransparency 0.4</command>
+		<command>T 'V. jugularis_right' setTransparency 0.4</command>
+		<command>T 'Lymphnode_15' view 110 -25 3</command>
+		<command>T 'Lymphnode_14' setTransparency 0.5</command>
+		<command>T 'Lymphnode_13' setTransparency 0.5</command>
+		<command>T 'Lymphnode_17' setTransparency 0.5</command>
+		<command>T 'Lymphnode_12' setTransparency 0.5</command>
+	</command>	
+
+	
+	
+	
+	<command commandStr="smurf">
+		<parameter paramStr="neckWeights" singleValue="'30 50 0 50 5 50 30 0.9 50 0.9 1 1 1'" />
+		<!-- WeightVis + " " + WeightReg + " " + WeightCam + " " + WeightEnt + " " + WeightNum + " " + WeightImp + " " + WeightSta + " " + ThresSta + " " + WeightSta2 + " " + ThresSta2 -->
+	</command>
+	
+	
+</HighLevel>

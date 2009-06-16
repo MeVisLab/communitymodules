@@ -1,0 +1,1185 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "737 -83 80 56"
+  }
+  fields  {
+    instanceName = ObjInfo1
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = ""
+    layerID = ""
+    infoID = ""
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = ""
+    intValue = 0
+    boolValue = FALSE
+    doubleValue = 0
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = FALSE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = -1
+    searchLayerPattern = "***"
+    numLayers = -1
+    searchInfoPattern = "***"
+    numInfos = -1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "849 65 192 64"
+    windows  {
+      window _automatic {
+        geometry = "680 283 270 440"
+        sizeHint = "270 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StructureOfInterest
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    disableGrouping = FALSE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "541 37 184 56"
+    windows  {
+      window _viewer {
+        geometry = "443 334 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "386 330 515 408"
+        sizeHint = "515 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 0.984314 0.901961"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 0
+    farDistance = 0
+    focalDistance = 0
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "721 -11 112 56"
+    windows  {
+      window _default {
+        geometry = "406 359 475 350"
+        sizeHint = "475 350"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector1
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module METKKeystateVis {
+  internal  {
+    frame = "713 69 128 56"
+    windows  {
+      window _default {
+        geometry = "541 369 204 331"
+        sizeHint = "204 331"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "541 459 204 138"
+        sizeHint = "204 138"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKKeystateVis
+  }
+  internalFields = ""
+}
+module METKKeystates {
+  internal  {
+    frame = "669 165 120 56"
+    windows  {
+      window _default {
+        geometry = "1372 70 709 803"
+        sizeHint = "709 803"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "264 289 317 440"
+        sizeHint = "317 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKKeystates
+    priority = 10000
+    debugComment = ""
+    currentStructure = ""
+    debug = ""
+    viewerName = METKViewer3D
+    dataPath = ""
+    showField = 0
+    sphereMode = "Grid Sphere"
+    currentCam = "0 0 0"
+    camRange = 0
+    visSta = 0
+    impSta = 0
+    inspect = 0
+    wVis = 0
+    wImp = 0
+    wNum = 0
+    wEnt = 0
+    wDis = 0
+    wCam = 0
+    wReg = 0
+    wVisSta = 0
+    wImpSta = 0
+    wSilhouette = 0
+    wImageSpaceCenter = 0
+    wKeystateVPDirection = 0
+    prefRegionVector = "0 0 1"
+    prefRegionRange = 1
+    prefRegionType = "Vector region"
+    restrictToRegion = FALSE
+    result = "0 0 0"
+    orient = "0 0 0 0"
+    setViewerCamAtTheEnd = FALSE
+    datInfo = ""
+    similarityVector = ""
+    keystateFilename = d:/temp/keystates1.xml
+    currentKeystate = ""
+    animationScript = ""
+    referenceGroup = "Structure Group"
+    animationStepLength = 3
+    animationStepPause = 1
+    animationAsVideo = FALSE
+    message = similarVP
+    messageData = ""
+  }
+}
+module DebugCameraPath {
+  internal  {
+    frame = "669 325 136 56"
+  }
+  fields  {
+    instanceName = DebugCameraPath
+    color = "0 0 0"
+    transparency = 0
+    radius = 5
+    heightFactor = 0.2
+    useRealCams = FALSE
+    realCamStep = 0
+    useArrows = TRUE
+    arrowColor = "0 0 0"
+    arrowScale = 2
+    arrowLengthScale = 0.8
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "425 213 128 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module BackgroundMacro {
+  internal  {
+    frame = "85 29 136 56"
+    windows  {
+      window _default {
+        geometry = "543 454 200 160"
+        sizeHint = "200 160"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BackgroundMacro
+    startColor = "1 1 1"
+    endColor = "1 1 1"
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+  internalFields = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "373 -51 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "117 -115 136 56"
+    windows  {
+      window _viewer {
+        geometry = "750 289 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "1504 418 515 356"
+        sizeHint = "515 356"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "401 314 484 440"
+        sizeHint = "484 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = SORTED_OBJECT_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = FALSE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "27.8541 -430.423 159.768"
+    orientation = "0.998511 0.0460232 0.0292767 1.4235"
+    nearDistance = 304.0870056
+    farDistance = 540.2689819
+    focalDistance = 422.0599976
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "1049 -139 176 56"
+    windows  {
+      window _viewer {
+        geometry = "443 334 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-106.008 -178.539 82.02930000000001"
+    orientation = "0.930544 -0.339104 -0.138192 1.63024"
+    nearDistance = 149.3049927
+    farDistance = 255.0090027
+    focalDistance = 202.1040039
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module METKMeasures {
+  internal  {
+    frame = "1093 173 120 56"
+    windows  {
+      window _default {
+        geometry = "526 459 234 83"
+        sizeHint = "234 83"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKMeasures
+    descriptionTag = StructureGroup
+    structure = Lymphnode
+    done = TRUE
+  }
+  internalFields = ""
+}
+module METKDistanceTransform {
+  internal  {
+    frame = "1069 101 168 56"
+    windows  {
+      window _default {
+        geometry = "457 449 400 167"
+        sizeHint = "400 167"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKDistanceTransform
+    ignoreEmptyString = TRUE
+    structures = Lymphnode,Tumor
+    progressEuclid = 0
+    autoCompute = TRUE
+    overwriteFile = FALSE
+    listenToROI = ""
+  }
+  internalFields = ""
+}
+module METKSurfaceDistance3D {
+  internal  {
+    frame = "1085 21 168 56"
+    windows  {
+      window _default {
+        geometry = "629 276 202 111"
+        sizeHint = "202 111"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "536 404 214 260"
+        sizeHint = "214 260"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSurfaceDistance3D
+    priority = 10000
+    debugComment = ""
+    nearDistance = 2
+    nearDistanceColor = "1 0 0"
+    farDistance = 5
+    farDistanceColor = "1 1 0"
+  }
+}
+module METKLogFile {
+  internal  {
+    frame = "157 589 104 56"
+    windows  {
+      window _default {
+        geometry = "393 442 500 184"
+        sizeHint = "500 160"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKLogFile
+    loggingMode = Test
+    logLocation = UserDefined
+    userDefPath = "d:\\"
+    userDefFileName = CinemaLogFile.log
+    messageOnError = FALSE
+    enableLogFile = TRUE
+    trueFileName = "d:\\/CinemaLogFile.log"
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "25 381 192 56"
+    windows  {
+      window _default {
+        geometry = "795 581 115 149"
+        sizeHint = "115 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "449 282 270 440"
+        sizeHint = "270 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKStructureGroupBrowser
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    disableGrouping = FALSE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKObjBrowser {
+  internal  {
+    frame = "57 173 128 56"
+    windows  {
+      window _automatic {
+        geometry = "535 314 216 440"
+        sizeHint = "216 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKObjBrowser
+  }
+  internalFields = ""
+}
+module METKSingleObjInfo {
+  internal  {
+    frame = "-135 185 144 64"
+    windows  {
+      window _automatic {
+        geometry = "26 45 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "48 67 400 48"
+        sizeHint = "400 48"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DescriptionTags
+    objID = ""
+    layerID = Description
+  }
+  internalFields = ""
+}
+module METKSingleObjInfo {
+  internal  {
+    frame = "-127 269 144 56"
+  }
+  fields  {
+    instanceName = METKSingleObjInfo
+    objID = ""
+    layerID = ""
+  }
+  internalFields = ""
+}
+module METKHierarchyBrowser {
+  internal  {
+    frame = "33 269 160 56"
+    windows  {
+      window _automatic {
+        geometry = "771 261 331 540"
+        sizeHint = "212 295"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKHierarchyBrowser
+    root = Root
+    rootObjectTypeFilter = Source,Result
+    CSOon = FALSE
+    allObjects = FALSE
+  }
+  internalFields = ""
+}
+module METKCalcCamPos {
+  internal  {
+    frame = "517 -187 136 56"
+    windows  {
+      window _default {
+        geometry = "888 578 308 440"
+        sizeHint = "308 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "972 227 458 710"
+        sizeHint = "218 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCalcCamPos
+    priority = 10000
+    debugComment = ""
+    currentStructure = ""
+    multipleStructures = ""
+    debug = ""
+    viewerName = METKViewer3D
+    dataPath = E:/HNO/Hals12/
+    showField = 0
+    sphereMode = "Grid Sphere"
+    currentCam = "0 0 0"
+    camRange = 0
+    visSta = 0
+    impSta = 0
+    inspect = 0
+    wVis = 0
+    wImp = 0
+    wNum = 0
+    wEnt = 0
+    wDis = 0
+    wCam = 0
+    wReg = 0
+    wVisSta = 0
+    wImpSta = 0
+    wSilhouette = 0
+    wImageSpaceCenter = 0
+    prefRegionVector = "0 0 1"
+    prefRegionRange = 1
+    prefRegionType = "Vector region"
+    restrictToRegion = FALSE
+    minDistVec = "0 0 0"
+    minRange = 0
+    result = "0 0 0"
+    orient = "0 0 0 0"
+    setViewerCamAtTheEnd = FALSE
+    debugState = None
+    datInfo = ""
+    message = solver
+    data = ""
+  }
+}
+module METKSilhouette {
+  internal  {
+    frame = "525 325 120 56"
+    windows  {
+      window _default {
+        geometry = "8 100 235 50"
+        sizeHint = "235 50"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module Console {
+  internal  {
+    frame = "1049 389 80 56"
+    windows  {
+      window _default {
+        geometry = "110 103 277 338"
+        sizeHint = "277 338"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Console
+    logInformation = TRUE
+    logWarnings = TRUE
+    logErrors = TRUE
+    logFatals = TRUE
+    logDebugs = TRUE
+    logCouts = TRUE
+    logCerrs = TRUE
+    logOthers = TRUE
+    logLine = TRUE
+    logFileName = TRUE
+    logTime = TRUE
+    logFunc = TRUE
+    logReason = TRUE
+    logHandling = TRUE
+    logLibraryPrefix = TRUE
+    logMessageType = TRUE
+    maxConsoleSize = 3
+    consoleString = "MLABWarning:MLABInfo: MLABMacroModule, Message='ModifyRegion(ModifyRegion1): Warning: world/voxel conversion impossible without a valid image at input0, a voxel size of (1, 1, 1) is assumed.'.
+"
+  }
+}
+module METKScriptInit {
+  internal  {
+    frame = "913 469 112 56"
+    windows  {
+      window _default {
+        geometry = "242 184 700 84"
+        sizeHint = "700 84"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKScriptInit
+    scriptFile = Scripts//ENT/init-script.txt
+  }
+  internalFields = ""
+}
+module UMDAnimation2 {
+  internal  {
+    frame = "365 -187 120 56"
+    windows  {
+      window _default {
+        geometry = "1757 306 693 641"
+        sizeHint = "679 649"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "29 266 484 563"
+        sizeHint = "379 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDAnimation2
+    priority = 10000
+    debugComment = ""
+    pathTypeScriptPath = "Use module path"
+    scriptPath = ""
+    scriptFile = Scripts//ENT/rotation.txt
+    pathTypeObjectNamesPath1 = "Automatic via ObjMgr"
+    objectNamesPath1 = ""
+    objectNamesFile1 = ObjectNames.xml
+    pathTypeObjectNamesPath2 = "Use script path"
+    useObjectNamesFile2 = TRUE
+    objectNamesPath2 = ""
+    objectNamesFile2 = ObjectNames_static.xml
+    pathTypeHighLevelCommandsPath = "Use script path"
+    highLevelCommandsPath = ""
+    highLevelCommandsFile = HighLevel-Commands.xml
+    CommandLine = ""
+    ScriptArea = "[Ini]
+LengthTimeUnit=10
+LengthSeconds=2
+RealTime=no
+
+[Script]
+[0] 'All' view front 1
+[0] 'All' setTransparency 0
+[0,10] 'All' setTransparency 0.9
+[0,10] 'Cam' rotate 'All' axial 360
+"
+    AnimationViewerName = METKViewer3D
+    debugState = None
+    clearMeasureCacheForEachScript = FALSE
+    testSphereCenter = "0 0 0"
+    testSphereRadius = 0
+    testCrossPoint = "0 0 0"
+    testCamPosition = "0 0 0"
+    testTargetPosition = "0 0 0"
+    testSphereAngle = 0
+    drawCameraPath = FALSE
+    enableSelection = FALSE
+    playStatus = Stop
+    animationSpeed = 1
+    campathVPSize = 1
+    writeLowLevelScript = FALSE
+    framerate = 7
+    offScreenFilename = c:/temp/frame00015.bmp
+    offScreenFolder = c:/temp
+    videoXSize = 400
+    videoYSize = 400
+    saveFrames = FALSE
+    saveVideo = TRUE
+    useOffscreenRenderer = TRUE
+  }
+}
+module METKCSO {
+  internal  {
+    frame = "157 517 104 56"
+    windows  {
+      window _default {
+        geometry = "92 146 400 73"
+        sizeHint = "400 73"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKCSO
+    ignorePickable = TRUE
+    objectMustBeVisible = TRUE
+    filterDoubleEvents = FALSE
+    useColor = FALSE
+    color = "1 0 0"
+    useTransparency = FALSE
+    transparency = 0
+    useSilhouette = FALSE
+    silhouetteColor = "0 0 0"
+    silhouetteWidth = 3
+    silhouetteOnOff = TRUE
+  }
+  internalFields = ""
+}
+module METKViewer3D {
+  internal  {
+    frame = "349 61 120 56"
+    windows  {
+      window _default {
+        geometry = "1308 77 200 200"
+        sizeHint = "238 228"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "136 155 351 232"
+        sizeHint = "351 232"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "423 314 440 440"
+        sizeHint = "440 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 128
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    showBoundingBoxes = FALSE
+    enableMouseOver = FALSE
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "-1.88949 -188.862 97.51779999999999"
+    camOrientation = "1 -5.69851e-06 -5.69851e-06 1.5708"
+    enablePropExtension = FALSE
+    propExtVisible = FALSE
+    enablePickExtension = FALSE
+    pickExtVisible = FALSE
+    enableUndo = FALSE
+    showInset = FALSE
+    insetType = MAN
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "401 321 128 64"
+  }
+  fields  {
+    instanceName = METKObjects
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "473 605 112 56"
+    windows  {
+      window _default {
+        geometry = "31 391 524 189"
+        sizeHint = "524 189"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "180 199 257 306"
+        sizeHint = "257 306"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12.nsp.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = FALSE
+  }
+  internalFields = ""
+}
+module ObjInfo {
+  internal  {
+    frame = "709 565 72 56"
+    windows  {
+      window _default {
+        geometry = "16 356 578 571"
+        sizeHint = "578 410"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = Selected
+    acceptedObjects = Communication
+    acceptedLayers = GlobalEvents
+    objectID = Communication
+    layerID = GlobalEvents
+    infoID = CaseLoaded
+    objectPersistent = TRUE
+    layerPersistent = TRUE
+    infoPersistent = TRUE
+    objectPrivate = FALSE
+    layerPrivate = FALSE
+    infoPrivate = FALSE
+    objectNetCommMode = Default
+    layerNetCommMode = Default
+    infoNetCommMode = Default
+    stringValue = Loaded
+    intValue = 0
+    boolValue = TRUE
+    doubleValue = 0.5
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    genObjIDPrefix = ""
+    genLayerIDPrefix = ""
+    infoType = omAttribute_std_string
+    autoNotify = TRUE
+    newObjID = ""
+    searchObjPattern = "***"
+    numObjects = 44
+    searchLayerPattern = "***"
+    numLayers = 2
+    searchInfoPattern = "***"
+    numInfos = 2
+    numEvents = 0
+    eventType = NoMessage
+  }
+}
+module ObjInspector {
+  internal  {
+    frame = "725 501 104 56"
+    windows  {
+      window _default {
+        geometry = "165 208 475 347"
+        sizeHint = "530 347"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "136 204 218 173"
+        sizeHint = "218 173"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+connections  {
+  ObjInfo1.inObjectContainer = ObjInspector1.outObjectContainer
+  StructureOfInterest.inObjectContainer = METKKeystates.outObjectContainer
+  SoCustomExaminerViewer1.children = "SoGroup.self METKKeystates.outScene"
+  ObjInspector1.inObjectContainer = METKKeystateVis.outObjectContainer
+  METKKeystateVis.inObjectContainer = METKKeystates.outInternalObjMgr
+  METKKeystates.inObjectContainer = METKManager.outObjectContainer
+  METKKeystates.currentStructure = StructureOfInterest.selectedObjId
+  METKKeystates.currentKeystate = METKKeystateVis.currentKeystate
+  DebugCameraPath.inObjectContainer = METKManager.outObjectContainer
+  SoGroup.children = "METKObjects.outInventor METKSilhouette.outInventor DebugCameraPath.outInventor"
+  SoSeparator.children = "BackgroundMacro.output METKViewer3D.3dScene"
+  SoExaminerViewer.children = SoSeparator.self
+  SoCustomExaminerViewer.children = METKSurfaceDistance3D.outInventor
+  METKDistanceTransform.inObjectContainer = METKMeasures.outObjectContainer
+  METKSurfaceDistance3D.input0 = METKDistanceTransform.image
+  METKSurfaceDistance3D.inObjectContainer = METKDistanceTransform.outObjectContainer
+  METKLogFile.inObjectContainer = METKManager.outObjectContainer
+  METKStructureGroupBrowser.inObjectContainer = METKManager.outObjectContainer
+  METKStructureGroupBrowser.selectedObjId = METKHierarchyBrowser.selectedObjId
+  METKStructureGroupBrowser.selectedMultiObjIds = METKHierarchyBrowser.selectedMultiObjIds
+  METKStructureGroupBrowser.updateView = METKHierarchyBrowser.updateView
+  METKObjBrowser.inObjectContainer = METKHierarchyBrowser.outObjectContainer
+  METKObjBrowser.objID = METKHierarchyBrowser.selectedMultiObjIds
+  DescriptionTags.inObjectContainer = METKSingleObjInfo.outObjectContainer
+  DescriptionTags.objID = METKHierarchyBrowser.selectedObjId
+  METKSingleObjInfo.inObjectContainer = METKStructureGroupBrowser.outObjectContainer
+  METKSingleObjInfo.objID = METKHierarchyBrowser.selectedObjId
+  METKHierarchyBrowser.inObjectContainer = METKStructureGroupBrowser.outObjectContainer
+  METKHierarchyBrowser.selectedObjId = METKStructureGroupBrowser.selectedObjId
+  METKHierarchyBrowser.selectedMultiObjIds = METKStructureGroupBrowser.selectedMultiObjIds
+  METKSilhouette.inObjectContainer = METKManager.outObjectContainer
+  UMDAnimation2.inObjectContainer = METKManager.outObjectContainer
+  UMDAnimation2.inInventor = SoSeparator.self
+  METKCSO.inObjectContainer = METKLogFile.outObjectContainer
+  METKViewer3D.inObjectContainer = METKManager.outObjectContainer
+  METKViewer3D.beforeScene = METKSurfaceDistance3D.outInventor
+  METKViewer3D.inInventor = SoGroup.self
+  METKObjects.inObjectContainer = METKManager.outObjectContainer
+  ObjInfo.inObjectContainer = METKManager.outObjectContainer
+  ObjInspector.inObjectContainer = ObjInfo.outObjectContainer
+}

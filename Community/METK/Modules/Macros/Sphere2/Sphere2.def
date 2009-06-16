@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! Sphere2 module definition
+/*!
+// \file    Sphere2.def
+// \author  Konrad Mühler
+// \date    2006-07-07
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule Sphere2 {
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/Sphere2.script"
+
+} // MacroModule Sphere2
+

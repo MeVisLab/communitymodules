@@ -1,0 +1,61 @@
+Interface {
+   Inputs {
+      Field inObjectContainer { internalName = info.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = info.outObjectContainer }
+   }
+   Parameters {
+      Field = root { type = string value = "Root" }
+      Field = rootObjectTypeFilter { type = string value = "Source,Result" }      
+      Field = selectedObjId { type = string value = "" persistent = FALSE }
+      Field = selectedMultiObjIds { type = string value = "" persistent = FALSE }
+      Field = CSOon { type = bool value = False }
+      Field = allObjects { type = bool value = False }
+      Field = updateView { type = trigger }
+   }
+}
+
+
+Commands {
+   importPath = "$(LOCAL)/.."
+   source = $(LOCAL)/METKHierarchyBrowser.py
+   
+   initCommand = init
+   FieldListener info.outObjectContainer { command = _cls_info.handleEvents }   
+   FieldListener updateView { command = updateListView }
+}
+
+
+
+Window METKHierarchyBrowser {
+   shouldCloseCommand = closeWindow
+   Vertical {
+      expandY = True
+      ListView {
+         expandY = YES
+         expandX = YES
+         name = objects
+         values = "Objects"
+         rowSeparator = "@"
+         columnSeparator = ","
+         sortByColumn = 0
+         layout = "l"
+         selectionMode = Single
+         resizeMode = last
+      
+         clickedCommand = clickedObjects
+         itemCollapsedCommand = itemCollapsed
+      }
+      Execute = openWindow
+   }
+}
+
+Window Settings {
+   Vertical { w = 400
+      Field = root
+      Field = rootObjectTypeFilter { dependsOn = !allObjects }
+      Field = allObjects
+      Field = CSOon
+   }
+}

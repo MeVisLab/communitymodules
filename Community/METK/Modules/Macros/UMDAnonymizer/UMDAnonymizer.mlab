@@ -1,0 +1,460 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module DicomTagModify {
+  internal  {
+    frame = "713 -11 128 56"
+    windows  {
+      window _default {
+        geometry = "269 441 514 261"
+        sizeHint = "514 261"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify4
+    tagName0 = SeriesInstanceUID
+    tagValue0 = ""
+    removeTag0 = TRUE
+    tagVR0 = UI
+    stdTagVR0 = TRUE
+    tagName1 = StudyID
+    tagValue1 = ""
+    removeTag1 = TRUE
+    tagVR1 = SH
+    stdTagVR1 = TRUE
+    tagName2 = FrameOfReferenceUID
+    tagValue2 = ""
+    removeTag2 = TRUE
+    tagVR2 = UI
+    stdTagVR2 = TRUE
+    tagName3 = StorageMediaFileSetUID
+    tagValue3 = ""
+    removeTag3 = TRUE
+    tagVR3 = UI
+    stdTagVR3 = TRUE
+    tagName4 = ""
+    tagValue4 = ""
+    removeTag4 = FALSE
+    tagVR4 = LO
+    stdTagVR4 = TRUE
+    tagName5 = ""
+    tagValue5 = ""
+    removeTag5 = TRUE
+    tagVR5 = UI
+    stdTagVR5 = TRUE
+    discardSource = None
+    sourcePresent = FALSE
+    trimSpaces = TRUE
+    autoApply = TRUE
+  }
+}
+module DicomTagModify {
+  internal  {
+    frame = "713 45 128 56"
+    windows  {
+      window _default {
+        geometry = "269 441 514 261"
+        sizeHint = "514 261"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify3
+    tagName0 = SeriesTime
+    tagValue0 = ""
+    removeTag0 = TRUE
+    tagVR0 = TM
+    stdTagVR0 = TRUE
+    tagName1 = AcquisitionTime
+    tagValue1 = ""
+    removeTag1 = TRUE
+    tagVR1 = TM
+    stdTagVR1 = TRUE
+    tagName2 = ContentTime
+    tagValue2 = ""
+    removeTag2 = TRUE
+    tagVR2 = TM
+    stdTagVR2 = TRUE
+    tagName3 = ReferringPhysiciansName
+    tagValue3 = ""
+    removeTag3 = TRUE
+    tagVR3 = PN
+    stdTagVR3 = TRUE
+    tagName4 = PatientID
+    tagValue4 = Anonym
+    removeTag4 = FALSE
+    tagVR4 = LO
+    stdTagVR4 = TRUE
+    tagName5 = StudyInstanceUID
+    tagValue5 = ""
+    removeTag5 = TRUE
+    tagVR5 = UI
+    stdTagVR5 = TRUE
+    discardSource = None
+    sourcePresent = FALSE
+    trimSpaces = TRUE
+    autoApply = TRUE
+  }
+}
+module DicomTagModify {
+  internal  {
+    frame = "713 109 128 56"
+    windows  {
+      window _default {
+        geometry = "290 308 514 261"
+        sizeHint = "514 261"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify2
+    tagName0 = SOPInstanceUID
+    tagValue0 = ""
+    removeTag0 = TRUE
+    tagVR0 = UI
+    stdTagVR0 = TRUE
+    tagName1 = StudyDate
+    tagValue1 = ""
+    removeTag1 = TRUE
+    tagVR1 = DA
+    stdTagVR1 = TRUE
+    tagName2 = SeriesDate
+    tagValue2 = ""
+    removeTag2 = TRUE
+    tagVR2 = DA
+    stdTagVR2 = TRUE
+    tagName3 = AcquisitionDate
+    tagValue3 = ""
+    removeTag3 = TRUE
+    tagVR3 = DA
+    stdTagVR3 = TRUE
+    tagName4 = ContentDate
+    tagValue4 = ""
+    removeTag4 = TRUE
+    tagVR4 = DA
+    stdTagVR4 = TRUE
+    tagName5 = StudyTime
+    tagValue5 = ""
+    removeTag5 = TRUE
+    tagVR5 = TM
+    stdTagVR5 = TRUE
+    discardSource = None
+    sourcePresent = FALSE
+    trimSpaces = TRUE
+    autoApply = TRUE
+  }
+}
+module FileInformation {
+  internal  {
+    frame = "497 389 112 56"
+    windows  {
+      window _default {
+        geometry = "667 534 377 439"
+        sizeHint = "287 362"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "150 288 204 440"
+        sizeHint = "204 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileInformation
+    path = ""
+    dirname = ""
+    filename = ""
+    basename = ""
+    extension = ""
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
+    isDirectory = FALSE
+    isReadable = FALSE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module DicomTagModify {
+  internal  {
+    frame = "713 197 128 56"
+    windows  {
+      window _default {
+        geometry = "290 308 514 261"
+        sizeHint = "514 261"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify1
+    tagName0 = PatientsAge
+    tagValue0 = ""
+    removeTag0 = TRUE
+    tagVR0 = AS
+    stdTagVR0 = TRUE
+    tagName1 = MediaStorageSOPClassUID
+    tagValue1 = ""
+    removeTag1 = TRUE
+    tagVR1 = UI
+    stdTagVR1 = TRUE
+    tagName2 = MediaStorageSOPInstanceUID
+    tagValue2 = ""
+    removeTag2 = TRUE
+    tagVR2 = UI
+    stdTagVR2 = TRUE
+    tagName3 = TransferSyntaxUID
+    tagValue3 = ""
+    removeTag3 = TRUE
+    tagVR3 = UI
+    stdTagVR3 = TRUE
+    tagName4 = ImplementationClassUID
+    tagValue4 = ""
+    removeTag4 = TRUE
+    tagVR4 = UI
+    stdTagVR4 = TRUE
+    tagName5 = SOPClassUID
+    tagValue5 = ""
+    removeTag5 = TRUE
+    tagVR5 = UI
+    stdTagVR5 = TRUE
+    discardSource = None
+    sourcePresent = FALSE
+    trimSpaces = TRUE
+    autoApply = TRUE
+  }
+}
+module ImgSave {
+  internal  {
+    frame = "737 -75 80 56"
+    windows  {
+      window _default {
+        geometry = "692 357 423 364"
+        sizeHint = "423 364"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "865 244 352 440"
+        sizeHint = "352 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgSave
+    filename = .anonym1.dcm
+    status = "No image"
+    progress = 0
+    format = DICOMTIFF
+    comment = MeVisLab
+    allowOverwrite = TRUE
+    autoFilename = TRUE
+    sourceName = ""
+    postfix = .anonym1
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = None
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module ImgLoad {
+  internal  {
+    frame = "737 461 80 56"
+    windows  {
+      window _automatic {
+        geometry = "525 314 237 440"
+        sizeHint = "237 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "622 410 304 328"
+        sizeHint = "304 328"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgLoad
+    filename = ""
+    autoLoad = TRUE
+    status = "File not open"
+    progress = 0
+    format = ""
+    dataType = ""
+    sizeX = 0
+    sizeY = 0
+    sizeZ = 0
+    sizeC = 0
+    sizeT = 0
+    sizeU = 0
+    minValue = 0
+    maxValue = 0
+    comment = ""
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    pageSize = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module AnonymizeMacro {
+  internal  {
+    frame = "297 317 128 56"
+  }
+  fields  {
+    instanceName = AnonymizeMacro
+    patientsName = NewPatientsName
+    seriesDescription = NewSeriesDesc
+    patientsBirthDate = 20000101
+    patientID = NewPatientID
+    changePatientsName = TRUE
+    changeSeriesDescription = TRUE
+    changePatientsBirthDate = TRUE
+    changePatientID = TRUE
+    outName = ""
+    status = "No image"
+    comment = "Anonymized by MeVisLab"
+    tiffCompression = None
+  }
+  internalFields = ""
+}
+module DicomTagModify {
+  internal  {
+    frame = "717 277 120 56"
+    windows  {
+      window _default {
+        geometry = "631 647 514 261"
+        sizeHint = "514 261"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagModify
+    tagName0 = InstitutionName
+    tagValue0 = "Uni Magdeburg"
+    removeTag0 = FALSE
+    tagVR0 = LO
+    stdTagVR0 = TRUE
+    tagName1 = InstitutionAddress
+    tagValue1 = ""
+    removeTag1 = TRUE
+    tagVR1 = ST
+    stdTagVR1 = TRUE
+    tagName2 = PerformingPhysiciansName
+    tagValue2 = ""
+    removeTag2 = TRUE
+    tagVR2 = PN
+    stdTagVR2 = TRUE
+    tagName3 = OperatorsName
+    tagValue3 = ""
+    removeTag3 = TRUE
+    tagVR3 = PN
+    stdTagVR3 = TRUE
+    tagName4 = PatientsName
+    tagValue4 = ""
+    removeTag4 = TRUE
+    tagVR4 = PN
+    stdTagVR4 = TRUE
+    tagName5 = PatientsBirthDate
+    tagValue5 = ""
+    removeTag5 = TRUE
+    tagVR5 = DA
+    stdTagVR5 = TRUE
+    discardSource = None
+    sourcePresent = FALSE
+    trimSpaces = TRUE
+    autoApply = TRUE
+  }
+}
+module DicomTagViewer {
+  internal  {
+    frame = "465 -27 128 56"
+    windows  {
+      window _default {
+        geometry = "75 209 520 601"
+        sizeHint = "443 378"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagViewer
+    tagName0 = UID
+    tagValue0 = ""
+    tagName1 = ""
+    tagValue1 = ""
+    tagName2 = ""
+    tagValue2 = ""
+    tagName3 = ""
+    tagValue3 = ""
+    tagName4 = ""
+    tagValue4 = ""
+    tagName5 = ""
+    tagValue5 = ""
+    tagName6 = ""
+    tagValue6 = ""
+    tagName7 = ""
+    tagValue7 = ""
+    tagName8 = ""
+    tagValue8 = ""
+    maxValueLen = 80
+    showPrivateTags = FALSE
+    tagListSubset = AllTags
+    dicomFile = ""
+    trimSpaces = TRUE
+  }
+}
+connections  {
+  DicomTagModify4.input0 = DicomTagModify3.output0
+  DicomTagModify3.input0 = DicomTagModify2.output0
+  DicomTagModify2.input0 = DicomTagModify1.output0
+  DicomTagModify1.input0 = DicomTagModify.output0
+  ImgSave.input0 = DicomTagModify4.output0
+  DicomTagModify.input0 = ImgLoad.output0
+  DicomTagViewer.input0 = DicomTagModify4.output0
+}

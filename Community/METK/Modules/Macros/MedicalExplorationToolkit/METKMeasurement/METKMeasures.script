@@ -1,0 +1,42 @@
+Interface  {
+   Inputs {
+      Field inObjectContainer { internalName = ObjConstrainedIterator.inObjectContainer }
+   }
+   Outputs {
+      Field outObjectContainer { internalName = ObjConstrainedIterator.outObjectContainer }
+   }
+   Parameters  {
+      Field descriptionTag { type = enum value = "Structure" values = "Structure,StructureGroup,Name" }
+      Field structure { type = string value = "" }
+      Field start     { type = trigger }
+      Field done      { type = bool value = False }
+
+   } // Parameters 
+
+} // Interface 
+
+Commands  {
+   // Include local functions
+   importPath = "$(LOCAL)/.."
+   source = "$(LOCAL)/METKMeasures.py"
+
+   // --- Commands
+   initCommand = init
+   
+   // Handle events from object container
+   FieldListener ObjInfo.outObjectContainer { command = _cls_info.handleEvents }
+   FieldListener start                      { command = start }
+   FieldListener SoMainAxis.resultsValid    { command = saveResults }
+} // Commands
+
+Window METKMeasures {
+   style = PlannerStyle
+   Vertical { expandX=Yes expandY=No
+      Field = descriptionTag
+      Field = structure
+      Horizontal {
+         Button = start
+         Field = done { edit = False }
+      }
+   }
+}

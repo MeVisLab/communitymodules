@@ -1,0 +1,210 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "369 401 192 64"
+    windows  {
+      window _default {
+        geometry = "543 459 298 302"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 374 400 320"
+        sizeHint = "400 320"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GlobalVisibility
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Visible
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "609 161 192 64"
+    windows  {
+      window _default {
+        geometry = "864 198 280 340"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 374 400 320"
+        sizeHint = "400 320"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SiilhouetteVisibility
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = Silhouette
+  }
+  internalFields = ""
+}
+module METKStructureGroupBrowser {
+  internal  {
+    frame = "137 161 192 64"
+    windows  {
+      window _default {
+        geometry = "106 218 357 352"
+        sizeHint = "119 149"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "443 374 400 320"
+        sizeHint = "400 320"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IsoSurfaceVisibility
+    root = "All Structures"
+    rootObjectTypeFilter = Source,Result
+    groupByInfo = StructureGroup
+    useCSO = FALSE
+    valueEntry = objectID
+    showCeckBox = TRUE
+    writeToObjMgr = TRUE
+    setValuesByCheckedObjIdString = FALSE
+    checkBoxLayer = Appearance
+    checkBoxInfo = IsoSurface
+  }
+  internalFields = ""
+}
+module SoGroup {
+  internal  {
+    frame = "433 93 96 56"
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module METKViewer3D {
+  internal  {
+    frame = "397 29 120 56"
+    windows  {
+      window _default {
+        geometry = "1523 147 875 730"
+        sizeHint = "238 216"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKViewer3D
+    bgColor = "1 1 1"
+    syncViewer = FALSE
+    syncWithList = ""
+    syncWith = ""
+    shapeHints = TRUE
+    automaticViewAll = FALSE
+    viewing = TRUE
+    decoration = TRUE
+    screenshotFile = none
+    saveThumbNail = FALSE
+    thumbSize = 64
+    pickPixelTolerance = 3
+    scrapLight = 0.05000000075
+    importanceWeighting = 0.75
+    boundingBoxSizeWeighting = 0.5
+    enableVisLogo = FALSE
+    logoType = vislogo
+    logoLocation = topright
+    camPosition = "6.16758 -188.674 98.50109999999999"
+    camOrientation = "0.999424 0.0166899 0.0295433 1.56604"
+  }
+  internalFields = ""
+}
+module METKSilhouette {
+  internal  {
+    frame = "477 165 120 56"
+    windows  {
+      window _default {
+        geometry = "526 433 235 203"
+        sizeHint = "235 203"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKSilhouette
+    creationTime = OnVisible
+    visibleOn = GeneralVisible
+    mode = Silhouette
+  }
+  internalFields = ""
+}
+module METKIsoSurface {
+  internal  {
+    frame = "337 165 128 56"
+  }
+  fields  {
+    instanceName = METKIsoSurface
+    useDepthPeeling = FALSE
+    creationTime = OnLoad
+  }
+  internalFields = ""
+}
+module METKManager {
+  internal  {
+    frame = "417 341 112 56"
+    windows  {
+      window _default {
+        geometry = "381 346 524 377"
+        sizeHint = "524 377"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = METKManager
+    fileName = E:/HNO/Hals12/Hals12.nsp.xml
+    warnLevel = 0
+    autoSave = FALSE
+    computeSurfaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  GlobalVisibility.inObjectContainer = METKManager.outObjectContainer
+  SiilhouetteVisibility.inObjectContainer = METKManager.outObjectContainer
+  IsoSurfaceVisibility.inObjectContainer = METKManager.outObjectContainer
+  SoGroup.children = "METKIsoSurface.outInventor METKSilhouette.outInventor"
+  METKViewer3D.inObjectContainer = METKIsoSurface.outObjectContainer
+  METKViewer3D.inInventor = SoGroup.self
+  METKSilhouette.inObjectContainer = METKManager.outObjectContainer
+  METKIsoSurface.inObjectContainer = METKManager.outObjectContainer
+}

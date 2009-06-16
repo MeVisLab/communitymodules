@@ -1,0 +1,241 @@
+//---------------------------------0----------------------------------------------------------------
+//! Macro module VisibilityDemonstrator
+/*!
+// \file    VisibilityDemonstrator.script
+// \author  Konrad Mühler, Mathias Neugebauer, Christian Tietjen
+// \date    2006-01-30
+//
+// // 
+*/
+//-------------------------------------------------------------------------------------------------
+
+Interface {
+   Inputs  {}
+   Outputs {}
+   Parameters {
+      Field reset3D   { type = trigger }
+      Field resetData { type = trigger }
+      Field makeSingleScreenshot  { type = trigger }
+      Field makeScreenshotSeries  { type = trigger }
+      Field saveTIFF              { type = trigger }
+      Field collectionView        { type = bool value = False }
+      Field postFix               { type = string value = "" }
+      
+      Field wVis  { internalName = METKCalcCamPos.wVis  value = 1 min=0 max=100 }
+      Field wVisSta  { internalName = METKCalcCamPos.wVisSta  value = 1 min=0 max=100 }
+      Field wReg  { internalName = METKCalcCamPos.wReg  value = 1 min=0 max=100 }
+      Field wEnt  { internalName = METKCalcCamPos.wEnt  value = 1 min=0 max=100 }
+      Field wNum  { internalName = METKCalcCamPos.wNum  value = 1 min=0 max=100 }
+      Field wImp  { internalName = METKCalcCamPos.wImp  value = 1 min=0 max=100 }
+      Field wImpSta { internalName = METKCalcCamPos.wImpSta value = 1 min=0 max=100 }
+      Field wCam  { internalName = METKCalcCamPos.wCam  value = 1 min=0 max=100 }
+      Field wDis  { internalName = METKCalcCamPos.wDis  value = 1 min=0 max=100 }
+      Field wSil  { internalName = METKCalcCamPos.wSilhouette  value = 1 min=0 max=100 }
+      Field wCenter  { internalName = METKCalcCamPos.wImageSpaceCenter  value = 1 min=0 max=100 }
+      
+      Field preSets    { type = enum value = "None" values = "None,Neck,Knee,Liver,VPE,VPEReal" }
+      
+      Field animationLength { type = double value = 3 }
+      Field zoomFactor      { type = double value = 7 }
+      
+      Field allowWorstPositions { type=bool value=false }
+            
+      Field sphereMode { internalName = METKCalcCamPos.sphereMode }
+      Field sphereField { type = enum items { item=0 {title="Visibility"} 
+                           item=1 {title="Visibility Stability"}
+                           item=2 {title="Importance"}
+                           item=3 {title="Importance Stability"}
+                           item=4 {title="Number of Occluders"}
+                           item=5 {title="Object Entropy"} 
+                           item=6 {title="Distance to Viewplane"} 
+                           item=7 {title="Distance to Current Viewpoint"} 
+                           item=8 {title="Preferred Region"} 
+                           item=9 {title="Silhouette Length"} 
+                           item=10 {title="Image Center"}
+                           item=11 {title="Final Weighted Sum"}
+                         }
+               }
+   }
+}
+
+
+Commands {
+   // Add the local's parent path to the import path, so that Python looks for local packages
+   importPath = "$(LOCAL)"
+   importPath = "$(LOCAL)/../MedicalExplorationToolkit"
+   source = $(LOCAL)/VisibilityDemonstrator.py
+   
+    // Call init() to initalize the script
+   initCommand = init
+   
+   FieldListener ObjInfo.inObjectContainer { command = _cls_info.handleEvents }
+   FieldListener reset3D                   { command = reset3D }
+   FieldListener resetData                 { command = resetData }
+   FieldListener makeSingleScreenshot      { command = saveSingleView }
+   FieldListener makeScreenshotSeries      { command = saveViewSeries }
+   FieldListener saveTIFF                  { command = saveTIFF }
+   FieldListener METKMsgSender.done        { command = saveSeriesEnd }
+   FieldListener preSets                   { command = preSets }
+   FieldListener METKCSO.cso         { command = setCSO }   
+   FieldListener sphereField         { command = setSphereField }   
+   FieldListener sphereMode         { command = setSphereField }     
+   FieldListener allowWorstPositions      { command = allowWorstPositions }
+   
+}
+
+      
+Window VisibilityDemonstrator {
+
+   shouldCloseCommand = exit
+   style = VisDemoStyle
+   expandY = Yes expandX = Yes
+   
+   w=800
+
+   Vertical {
+      expandX=Yes expandY=Yes
+      MenuBar {
+         style { titleFont { family = tahoma size = 9 } }
+         expandY = No
+         expandX = No
+         SubMenu "File" {
+            MenuItem "Open..."  { command = openCase }
+            MenuItem "Save As..."  { command = saveAs }
+            MenuItem "Save"  { command = save }
+            Separator {direction = horizontal}
+            MenuItem "Quit"  { command = exit }
+         } //SubMenu
+         SubMenu "Appearance" {
+            MenuItem "Toggle Decoration"  { command = showDecoration }
+            MenuItem "Toggle Collections" { command = showCollections }
+            MenuItem "Show Structure Group Browser" { command = structureGroupBrowser }
+            MenuItem "Show Thresholds" { command = showThresholds }
+            MenuItem "Show Animation Settings" { command = showAnimationSettings }
+            MenuItem "Reset Animation Cache" { command = resetAnimationCache }
+         } //SubMenu
+      }//MenuBar
+      Horizontal {
+         expandX=yes expandY=yes
+         Panel {            
+            module  = METKViewer3D
+            window  = METKViewer
+            expandX=yes expandY=yes
+            w=900
+            h=900
+         }
+         Vertical {
+            expandY=Yes expandX=No
+            Box { 
+      title = "View Parameter Map on Surrounding Sphere"
+      layout = Vertical
+      Viewer VisDataView.self {
+         border = false 
+         backgroundColor = #EEEEEE
+         expandY = No expandX = Yes
+                     h = 300
+               }
+               
+      Field sphereMode { title="Sphere mode:" }
+      Field sphereField { title="Parameter map:" }
+               
+            }
+            Box Weights {
+               layout=vertical
+                  Field = preSets { title = "Parameterizations:" enumAutoFormat = No }
+                  Empty {h=10 w=10}                                          
+      Field = wEnt  { slider = yes title = "Object Entropy:" tooltip = "Weighting of the size of the projected surface without consideration of occluding objects" }
+      Field = wVis  { slider = yes title = "Unoccluded Surface:" tooltip = "Weighting of the size of the unoccluded surface" }
+      Field = wVisSta  { slider = yes title = "Unoccluded Stability:" tooltip = "Weighting of the stability of the size of the unoccluded surface" }
+      Field = wNum  { slider = yes title = "Number of Occluders:" tooltip = "Weighting of the number of Occluders (Number * Degree of occlusion)" }
+      Field = wImp  { slider = yes title = "Importance of Occluders:" tooltip = "Weighting of the Importance of the occluding surfaces (Transparency)" }
+      Field = wImpSta { slider = yes title = "Importance Stability:" tooltip = "Weighting of the stability of the Importance of the occluding surfaces" }                  
+      Field = wReg  { slider = yes title = "Preferred Region:" tooltip = "Weighting of the 'view of the surgeon'" }
+      Field = wCam  { slider = yes title = "Viewpoint Distance:" tooltip = "Weighting of the distance to the current viewpoint" }
+      Field = wDis  { slider = yes title = "Distance to Viewplane:" tooltip = "Weighting of the distance to viewplane" }
+      Field = wSil  { slider = yes title = "Silhouette Length:" tooltip = "Weighting of the length of the silhouette" }
+                Field = wCenter  { slider = yes title = "Image Center:" tooltip = "Weighting of the image center value of the structure" }
+
+                Empty { h=20 w=5 }
+                               
+                Button { title = "Calculate new position for selected object" command=recalc alignX=Center }
+               
+                Empty { h=20 w=5 }
+               
+                Field allowWorstPositions { title="Allow negative weights:" }
+               
+                Empty { h=10 w=5 }
+               
+            } //Box
+            Empty { h=30 w=5 }
+            /*Horizontal {
+               expandX = No
+               expandY = No
+               Button = reset3D { title = "Reset 3D Viewer" }
+               //Button = SoVisDataView.reset { title = "Reset Data View" expandX = No alignX = Right w = 50 }
+               Button = resetData { title = "Reset Weighting" }
+            }*/
+            Horizontal {
+               visibleOn = collectionView
+               expandX = No
+               expandY = No
+               Button = makeSingleScreenshot { title = "Single Collection" }
+               Button = makeScreenshotSeries { title = "Collection Series" }
+               Button = saveTIFF             { title = "Save Screenshot" }
+               Field = postFix               { w = 100}
+            }
+            
+            VSpacer {}
+         }
+         Panel { 
+            visibleOn = collectionView
+            fw = 200
+            expandY = Yes
+            module  = METKCollections
+            window  = METKCollectionsListView
+         }
+      }
+      Accel {
+         key = "Ctrl+D"        
+         command = showScripts
+      } //Accel      
+
+   }
+}
+
+
+Window Structures {
+   shouldCloseCommand = closedSGB
+   style = VisDemoStyle
+   Panel {
+      fw = 200
+      fh = 400
+      expandX = No
+      expandY = No
+      module  = METKStructureGroupBrowser
+      window  = singleListView
+   }
+}
+
+
+Window Thresholds {
+   shouldCloseCommand = closedThres
+   style = VisDemoStyle
+   Vertical {
+      expandX = No
+      expandY = No
+      Field = METKCalcCamPos.thresSta  { slider = yes title = "Non-Occlusion Stability Threshold:" tooltip = "Grenzwert, der bei der Binarisierung genutzt wird (je kleiner desto größer ist das Stabilitätsfeld)" }
+      Field = METKCalcCamPos.thresSta2 { slider = yes title = "Importance Stability Threshold:"    tooltip = "Grenzwert...nur diesmal halt für die Wichtigkeitsinfos" }
+   }
+}
+
+
+Window AnimationSettings {
+   shouldCloseCommand = closedAniS
+   style = VisDemoStyle
+   Horizontal {
+      expandX = No
+      expandY = No
+      Field animationLength { title = "Animation Length:" }
+      Field zoomFactor { title = "Zoom:" }
+   }
+}

@@ -1,0 +1,91 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ObjInspector {
+  internal  {
+    frame = "661 189 104 56"
+    windows  {
+      window _default {
+        geometry = "676 179 598 489"
+        sizeHint = "452 354"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInspector
+    priority = -1
+    debugComment = Inspector
+  }
+}
+module ObjInfo {
+  internal  {
+    frame = "477 189 72 56"
+    windows  {
+      window _default {
+        geometry = "117 146 455 851"
+        sizeHint = "455 851"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ObjInfo
+    priority = 10000
+    debugComment = ""
+    operationSuccessful = TRUE
+    eventReceiveMode = All
+    acceptedObjects = "***"
+    acceptedLayers = Global
+    objectID = 1
+    layerID = 1
+    infoID = 1
+    infoValue = 5
+    autoNotify = TRUE
+    numObjects = 1
+    numLayers = 2
+    numInfos = 1
+    numEvents = -1
+    eventType = NoMessage
+  }
+}
+module ObjMgr {
+  internal  {
+    frame = "437 389 72 56"
+  }
+  fields  {
+    instanceName = ObjMgr
+    eventLogging = TRUE
+    eventFilter = TRUE
+    permitRecursiveNotification = TRUE
+    clientsReceiveOwnNotification = FALSE
+    infoFileName = ""
+    networkMode = NotConnected
+    networkAddress = ""
+    networkPort = 7623
+    commOnlyMarkedInfo = TRUE
+  }
+}
+module UMDObjDemo {
+  internal  {
+    frame = "249 197 112 56"
+    windows  {
+      window _default {
+        geometry = "114 133 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = UMDObjDemo
+    priority = 10000
+    debugComment = ""
+  }
+}
+connections  {
+  ObjInspector.inObjectContainer = ObjMgr.outObjectContainer
+  ObjInfo.inObjectContainer = ObjMgr.outObjectContainer
+  UMDObjDemo.inObjectContainer = ObjMgr.outObjectContainer
+}
