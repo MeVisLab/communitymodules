@@ -1,0 +1,9 @@
+
+Package {
+  packageGroup = "UMD"
+  packageName  = "METK"
+
+  owner = "Konrad"
+  description = "The Medical Explortation Toolkit (www.metk.net)"
+}
+
