@@ -15,10 +15,14 @@
 
 
 #pragma warning(disable:4251)
+#ifdef WIN32
 #ifndef common_EXPORTS
 #define __COMMON_IMPORTEXPORT __declspec(dllimport)
 #else
 #define __COMMON_IMPORTEXPORT __declspec(dllexport) 
+#endif
+#else
+#define MLIMAGEUTILITIES_EXPORT
 #endif
 
 // ML includes
