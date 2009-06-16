@@ -24,6 +24,12 @@ INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/LibDll/typicalP
 + Modules
 + Documentation\Publish
 
+SWITCH_PACKAGE Community/METK
++ Package.def
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/LibDll/typicalPackage.mli
++ Modules
++ Documentation\Publish
+
 SWITCH_PACKAGE Community/ThirdParty
 + Package.def
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/LibDll/typicalPackage.mli
