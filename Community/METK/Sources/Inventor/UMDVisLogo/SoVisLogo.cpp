@@ -25,7 +25,7 @@
 // TODO: include more inventor things here
 #include "XVLeaveScope.h"
 
-#include <GL/glaux.h>
+#include <GL/glew.h>
 #pragma warning( disable : 4611 )
 #include "png.h"
 
