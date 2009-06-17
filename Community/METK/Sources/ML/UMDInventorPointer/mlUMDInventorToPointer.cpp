@@ -85,7 +85,7 @@ void UMDInventorToPointer::handleNotification (Field *field)
 
    if (field == inInventor)
    {            
-      _pointer->setStringValue(inInventor->getStringValue());
+      _pointer->setIntValue(kBasics::hex2int(inInventor->getStringValue()));
       writePointer();
    }
 
@@ -125,11 +125,11 @@ void UMDInventorToPointer::writePointer()
          if (&obj) {
             if (!obj.hasAttribute(fieldLayerID->getStringValue(), fieldInfoID->getStringValue())) {
                omAttribute& attrNew = (*oc)[fieldObjectID->getStringValue()][fieldLayerID->getStringValue()][fieldInfoID->getStringValue()];
-               attrNew.set_MLint32(_pointer->getIntValue());
+			   attrNew.set_MLint32(_pointer->getIntValue());
                attrNew.flags().markPersistent(false);
             }
             else{
-               (*oc)[fieldObjectID->getStringValue()][fieldLayerID->getStringValue()][fieldInfoID->getStringValue()].set_MLint32(_pointer->getIntValue());
+				(*oc)[fieldObjectID->getStringValue()][fieldLayerID->getStringValue()][fieldInfoID->getStringValue()].set_MLint32(_pointer->getIntValue());
             }
             sendNotification();
          }

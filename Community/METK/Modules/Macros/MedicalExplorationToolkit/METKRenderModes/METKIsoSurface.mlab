@@ -5,6 +5,7 @@ network  {
 module METKStructureGroupBrowser {
   internal  {
     frame = "937 253 192 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = METKStructureGroupBrowser
@@ -15,6 +16,7 @@ module METKStructureGroupBrowser {
     valueEntry = objectID
     showCeckBox = TRUE
     writeToObjMgr = TRUE
+    disableGrouping = FALSE
     setValuesByCheckedObjIdString = FALSE
     checkBoxLayer = Appearance
     checkBoxInfo = Visible
@@ -24,6 +26,7 @@ module METKStructureGroupBrowser {
 module SoSeparator {
   internal  {
     frame = "453 105 104 64"
+    moduleGroupName = ""
     windows  {
       window _viewer {
         geometry = "114 133 400 402"
@@ -44,6 +47,7 @@ module SoSeparator {
 module SoSwitch {
   internal  {
     frame = "457 181 96 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "180 199 195 94"
@@ -61,6 +65,7 @@ module SoSwitch {
 module SoGroup {
   internal  {
     frame = "345 261 128 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = SoGroup
@@ -69,6 +74,7 @@ module SoGroup {
 module SoDepthPeelRenderer {
   internal  {
     frame = "509 261 152 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "654 479 299 316"
@@ -106,6 +112,7 @@ module SoDepthPeelRenderer {
 module ObjConstrainedIterator {
   internal  {
     frame = "753 253 160 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = ObjConstrainedIterator
@@ -122,6 +129,7 @@ module ObjConstrainedIterator {
 module SoGroup {
   internal  {
     frame = "473 457 80 64"
+    moduleGroupName = ""
     windows  {
       window _viewer {
         geometry = "92 111 400 402"
@@ -138,6 +146,7 @@ module SoGroup {
 module SoGroup {
   internal  {
     frame = "385 377 80 64"
+    moduleGroupName = ""
     windows  {
       window _automatic {
         geometry = "92 111 208 173"
@@ -154,6 +163,7 @@ module SoGroup {
 module SoGroup {
   internal  {
     frame = "561 377 80 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = clipYes
@@ -162,6 +172,7 @@ module SoGroup {
 module ObjInfo {
   internal  {
     frame = "789 425 72 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "597 36 539 1016"
@@ -188,9 +199,6 @@ module ObjInfo {
     objectPrivate = FALSE
     layerPrivate = FALSE
     infoPrivate = FALSE
-    objectNetCommMode = Default
-    layerNetCommMode = Default
-    infoNetCommMode = Default
     stringValue = Ready
     intValue = 0
     boolValue = FALSE
@@ -227,3 +235,4 @@ connections  {
   clipNo.children = ""
   clipYes.children = ""
 }
+networkModel = ""

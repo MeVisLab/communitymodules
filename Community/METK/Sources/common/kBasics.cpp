@@ -934,5 +934,23 @@ namespace kBasics
 	}
 
 
+	long hex2int(const string& hexStr)
+	{
+		char *offset;
+		if (hexStr.length( ) > 2)
+		{
+			if (hexStr[0] == '0' && hexStr[1] == 'x')
+			{
+				return strtol(hexStr.c_str( ), &offset, 0);
+			}
+			else
+			{
+				std::cout << "hex must start with 0x";
+				return 0;
+			}
+		}
+		return 0;
+	}
+
 
 } //namespace kBasics

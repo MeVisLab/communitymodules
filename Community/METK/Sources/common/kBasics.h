@@ -139,6 +139,7 @@ namespace kBasics
 	__COMMON_IMPORTEXPORT bool lineIntersection(POINT p1, POINT p2, POINT p3, POINT p4, POINT &intersectionPoint);
 	__COMMON_IMPORTEXPORT bool boxIntersection(POINT r1_corner1, POINT r1_corner2, POINT r2_corner1, POINT r2_corner2, BOX &intersectionBox);
 	__COMMON_IMPORTEXPORT bool pointInBox(POINTF p1, POINT corner1, POINT corner2);
+	__COMMON_IMPORTEXPORT long hex2int(const string& hexStr);
 
 }
 

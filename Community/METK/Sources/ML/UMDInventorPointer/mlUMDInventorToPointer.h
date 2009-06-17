@@ -37,7 +37,7 @@
 
 #include <ObjMgr/mlObjMgrClient.h>
 
-//#include "kBasics.h"
+#include "kBasics.h"
 
 
 ML_START_NAMESPACE
@@ -60,7 +60,7 @@ public:
 	// ----------------------------------------------------------
 
 	//! 
-	IntField *_pointer;
+	IntField* _pointer;
 	
 	SoNodeField* inInventor;
 	StringField* fieldObjectID;

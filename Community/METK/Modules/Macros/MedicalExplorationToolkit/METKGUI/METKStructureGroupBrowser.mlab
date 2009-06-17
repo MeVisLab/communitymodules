@@ -5,6 +5,7 @@ network  {
 module ObjConstrainedIterator {
   internal  {
     frame = "537 301 160 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = ObjConstrainedIterator
@@ -21,6 +22,7 @@ module ObjConstrainedIterator {
 module ObjInfo {
   internal  {
     frame = "581 393 72 64"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = info
@@ -39,19 +41,16 @@ module ObjInfo {
     objectPrivate = FALSE
     layerPrivate = FALSE
     infoPrivate = FALSE
-    objectNetCommMode = Default
-    layerNetCommMode = Default
-    infoNetCommMode = Default
     stringValue = ""
     intValue = 0
     boolValue = FALSE
     doubleValue = 0
-    vec3Value = "0.000000 0.000000 0.000000"
-    vec4Value = "0.000000 0.000000 0.000000 0.000000"
-    mat4Value = "1.000000 0.000000 0.000000 0.000000
-0.000000 1.000000 0.000000 0.000000
-0.000000 0.000000 1.000000 0.000000
-0.000000 0.000000 0.000000 1.000000"
+    vec3Value = "0 0 0"
+    vec4Value = "0 0 0 0"
+    mat4Value = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
     genObjIDPrefix = ""
     genLayerIDPrefix = ""
     infoType = omAttribute_std_string
@@ -70,3 +69,4 @@ module ObjInfo {
 connections  {
   ObjConstrainedIterator.inObjectContainer = info.outObjectContainer
 }
+networkModel = ""

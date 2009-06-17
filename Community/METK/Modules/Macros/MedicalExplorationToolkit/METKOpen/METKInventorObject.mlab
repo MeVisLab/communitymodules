@@ -5,6 +5,7 @@ network  {
 module SoGroup {
   internal  {
     frame = "1353 557 96 56"
+    moduleGroupName = ""
   }
   fields  {
     instanceName = SoGroup
@@ -13,6 +14,7 @@ module SoGroup {
 module SoLabel {
   internal  {
     frame = "1257 713 80 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "114 133 208 173"
@@ -30,11 +32,12 @@ module SoLabel {
 module ObjInfo {
   internal  {
     frame = "1133 705 72 64"
+    moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "165 136 543 408"
-        sizeHint = "543 408"
-        wasOpen = yes
+        geometry = "165 136 499 408"
+        sizeHint = "499 408"
+        wasOpen = no
         wasActive = no
       }
     }
@@ -56,9 +59,6 @@ module ObjInfo {
     objectPrivate = FALSE
     layerPrivate = FALSE
     infoPrivate = FALSE
-    objectNetCommMode = Default
-    layerNetCommMode = Default
-    infoNetCommMode = Default
     stringValue = ""
     intValue = 0
     boolValue = FALSE
@@ -87,6 +87,7 @@ module ObjInfo {
 module LocalSoFile {
   internal  {
     frame = "1361 713 96 64"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "194 298 522 211"
@@ -111,6 +112,7 @@ module LocalSoFile {
 module UMDBoundingBoxCalculator2 {
   internal  {
     frame = "1041 469 192 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "92 111 334 192"
@@ -132,6 +134,7 @@ module UMDBoundingBoxCalculator2 {
 module UMDInventorToPointer {
   internal  {
     frame = "1297 229 160 56"
+    moduleGroupName = ""
     windows  {
       window _default {
         geometry = "852 148 210 217"
@@ -145,7 +148,7 @@ module UMDInventorToPointer {
     instanceName = UMDInventorToPointer
     priority = 10000
     debugComment = ""
-    Pointer = 459882360
+    Pointer = 0x15F7F9A0
     objectID = ""
     layerID = ""
     infoID = ""
@@ -158,3 +161,4 @@ connections  {
   UMDInventorToPointer.inObjectContainer = info.outObjectContainer
   UMDInventorToPointer.inInventor = SoGroup.self
 }
+networkModel = ""

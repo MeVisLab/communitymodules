@@ -246,9 +246,6 @@ module ObjInfo {
     objectPrivate = FALSE
     layerPrivate = FALSE
     infoPrivate = FALSE
-    objectNetCommMode = Default
-    layerNetCommMode = Default
-    infoNetCommMode = Default
     stringValue = ""
     intValue = 0
     boolValue = FALSE
@@ -431,9 +428,6 @@ module ObjInfo {
     objectPrivate = FALSE
     layerPrivate = FALSE
     infoPrivate = FALSE
-    objectNetCommMode = Default
-    layerNetCommMode = Default
-    infoNetCommMode = Default
     stringValue = ""
     intValue = 0
     boolValue = FALSE
