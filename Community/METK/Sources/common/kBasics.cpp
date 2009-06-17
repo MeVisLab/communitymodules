@@ -502,15 +502,15 @@ namespace kBasics
 	//		if s == 0, then h = -1 (undefined)
 	const SbVec3f RGB_to_HSV( SbVec3f RGB )
 	{
-		float min, max, delta, h , s , v;
+		float min_f, max_f, delta, h , s , v;
 		SbVec3f HSV;
-		min = min( RGB[0], min(RGB[1], RGB[2] ) );
-		max = max( RGB[0], max(RGB[1], RGB[2] ) );
-		v = max;				// v
-		delta = max - min;
+		min_f = min( RGB[0], min(RGB[1], RGB[2] ) );
+		max_f = max( RGB[0], max(RGB[1], RGB[2] ) );
+		v = max_f;				// v
+		delta = max_f - min_f;
 		//if( max != 0 )
 		if( delta != 0 )
-			s = delta / max;		// s
+			s = delta / max_f;		// s
 		else {
 			// r = g = b = 0		// s = 0, v is undefined
 			s = 0;
@@ -519,9 +519,9 @@ namespace kBasics
 			//return;
 			RETURN_HSV(h,s,v);
 		}
-		if( RGB[0] == max )
+		if( RGB[0] == max_f )
 			h = ( RGB[1] - RGB[2] ) / delta;		// between yellow & magenta
-		else if( RGB[1] == max )
+		else if( RGB[1] == max_f )
 			h = 2 + ( RGB[2] - RGB[0] ) / delta;	// between cyan & yellow
 		else
 			h = 4 + ( RGB[0] - RGB[1] ) / delta;	// between magenta & cyan
@@ -663,7 +663,7 @@ namespace kBasics
 	*/ 
 	double getCurrentTime()
 	{
-		LONGLONG Frequency, LastTime;
+		long long Frequency, LastTime;
 		double TimeScale;
 		QueryPerformanceFrequency( (LARGE_INTEGER*) &Frequency); 
 		TimeScale = 1.0/Frequency;
