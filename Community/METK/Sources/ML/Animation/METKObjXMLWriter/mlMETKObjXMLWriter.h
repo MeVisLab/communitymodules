@@ -24,7 +24,7 @@
 #include "ObjMgrCommunicator.h"
 #include "METK.h"
 #include "kBasics.h"
-#include "Hashtable.h"
+#include "HashTable.h"
 #include "AnimationParser/AnimationParser.h"
 
 ML_START_NAMESPACE
@@ -35,50 +35,50 @@ class ANIMATION_EXPORT METKObjXMLWriter : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	METKObjXMLWriter ();
-	~METKObjXMLWriter (void);
+  //! Constructor.
+  METKObjXMLWriter ();
+  ~METKObjXMLWriter (void);
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
 
-	virtual void handleObjMgrNotification();
+  virtual void handleObjMgrNotification();
 
-	virtual void activateAttachments();
+  virtual void activateAttachments();
 
 private:
 
-	typedef ObjMgrClient inherited;
-	
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  typedef ObjMgrClient inherited;
 
-	//!
-	NotifyField *_run;
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	//!
-	StringField *_directory;
+  //!
+  NotifyField *_run;
 
-	//!
-	StringField *_filename;
+  //!
+  StringField *_directory;
 
-	//!
-	BoolField *_useCasePath;
+  //!
+  StringField *_filename;
 
-	//!
-	StringField *_objXML;
+  //!
+  BoolField *_useCasePath;
 
-
-	//@}
-
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(METKObjXMLWriter)
+  //!
+  StringField *_objXML;
 
 
-	void createXML();	
+  //@}
 
-	ObjMgrCommunicator* myObjMgr;
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(METKObjXMLWriter)
+
+
+  void createXML();
+
+  ObjMgrCommunicator* myObjMgr;
 
 };
 
