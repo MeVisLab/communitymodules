@@ -1,4 +1,5 @@
-//XMLParser.h
+//! An XMLParser class based on Xerces.
+//! file XMLParser.h
 
 #ifndef _XMLParser_
 #define _XMLParser_
@@ -8,7 +9,7 @@
 #ifndef common_EXPORTS
 #define __COMMON_IMPORTEXPORT __declspec(dllimport)
 #else
-#define __COMMON_IMPORTEXPORT __declspec(dllexport) 
+#define __COMMON_IMPORTEXPORT __declspec(dllexport)
 #endif
 #else
 #define __COMMON_IMPORTEXPORT
@@ -39,44 +40,45 @@
 XERCES_CPP_NAMESPACE_USE
 
 
-//  Simple error handler deriviative to install on parser
+//!  Simple error handler deriviative to install on parser
 class __COMMON_IMPORTEXPORT XMLParserErrorHandler : public DOMErrorHandler
 {
 public:
-    XMLParserErrorHandler();
-    ~XMLParserErrorHandler();
-	
-    bool getSawErrors() const;
-    bool handleError(const DOMError& domError);
-    void resetErrors();
-	
+  XMLParserErrorHandler();
+  ~XMLParserErrorHandler();
+
+  bool getSawErrors() const;
+  bool handleError(const DOMError& domError);
+  void resetErrors();
+
 private :
-    XMLParserErrorHandler(const XMLParserErrorHandler&);
-    void operator=(const XMLParserErrorHandler&);
-	bool    fSawErrors; //This is set if we get any errors
+  XMLParserErrorHandler(const XMLParserErrorHandler&);
+  void operator=(const XMLParserErrorHandler&);
+  bool    fSawErrors; //This is set if we get any errors
 };
 
 
 
+//! An XMLParser class based on Xerces.
 class __COMMON_IMPORTEXPORT XMLParser
 {
 private:
-	DOMImplementation *impl;
-	DOMBuilder        *parser;
-    XERCES_CPP_NAMESPACE::DOMDocument* xml_doc;
-	DOMNode* rootNode;
+  DOMImplementation *impl;
+  DOMBuilder        *parser;
+  XERCES_CPP_NAMESPACE::DOMDocument* xml_doc;
+  DOMNode* rootNode;
 
 public:
-	XMLParser() { }
-	~XMLParser();
+  XMLParser() { }
+  ~XMLParser();
 
 
-	DOMNode* getRootNode() { return rootNode; }
+  DOMNode* getRootNode() { return rootNode; }
 
-	int parseXMLFile(const char*);
-	int parseXMLString(const std::string* xmlString);
-	
-	int XMLParser::countChildElements(DOMNode *n);
+  int parseXMLFile(const char*);
+  int parseXMLString(const std::string* xmlString);
+
+  int countChildElements(DOMNode *n);
 };
 
 
