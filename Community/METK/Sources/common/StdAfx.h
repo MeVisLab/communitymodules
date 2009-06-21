@@ -12,9 +12,11 @@
 
 
 // Fügen Sie hier Ihre Header-Dateien ein
-#define WIN32_LEAN_AND_MEAN		// Selten benutzte Teile der Windows-Header nicht einbinden
+#define WIN32_LEAN_AND_MEAN   // Selten benutzte Teile der Windows-Header nicht einbinden
 
-#include <windows.h>
+#ifdef WIN32
+  #include <windows.h>
+#endif
 
 // ZU ERLEDIGEN: Verweisen Sie hier auf zusätzliche Header-Dateien, die Ihr Programm benötigt
 
