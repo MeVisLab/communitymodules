@@ -1,0 +1,257 @@
+network = ""
+module SoArrow {
+   internal  {
+      frame = "480 271 56 43"
+      windows  {
+         window _default {
+            geometry = "225 187 375 212"
+            sizeHint = "355 212"
+            wasOpen = no
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoArrow
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+      position<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      rotationRef<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      length<ILABFloatField> = 13
+      minDistance<ILABFloatField> = 5
+      displayHead<ILABBoolField> = TRUE
+   }   //<mdl> fields 
+
+}   //<mdl> module SoArrow
+module SoArrow {
+   internal  {
+      frame = "727 281 64 43"
+      windows  {
+         window _default {
+            geometry = "702 191 355 182"
+            sizeHint = "355 182"
+            wasOpen = yes
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoArrow1
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+      position<ILABVector3fField> = "5.000000 0.000000 0.000000"
+      rotationRef<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      length<ILABFloatField> = 13
+      minDistance<ILABFloatField> = 5
+      displayHead<ILABBoolField> = TRUE
+   }   //<mdl> fields 
+
+}   //<mdl> module SoArrow
+module SoRLAxis {
+   internal  {
+      frame = "358 95 65 43"
+      windows  {
+         window _default {
+            geometry = "97 660 404 313"
+            sizeHint = "404 313"
+            wasOpen = no
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoRLAxis
+      autoAdjustSettings<ILABBoolField> = TRUE
+      axisVolumeSize<ILABVector3fField> = "10.000000 10.000000 10.000000"
+      axisOn<ILABBoolField> = TRUE
+      axisFontNum<ILABIntegerField> = 0
+      axis1Visibility<ILABBoolField> = TRUE
+      axis2Visibility<ILABBoolField> = TRUE
+      axis3Visibility<ILABBoolField> = TRUE
+      axisNumberingOn<ILABBoolField> = TRUE
+      axisSubTickingOn<ILABBoolField> = FALSE
+      multiAxisXY<ILABBoolField> = FALSE
+      multiAxisXZ<ILABBoolField> = FALSE
+      multiAxisYX<ILABBoolField> = FALSE
+      multiAxisYZ<ILABBoolField> = FALSE
+      multiAxisZX<ILABBoolField> = FALSE
+      multiAxisZY<ILABBoolField> = FALSE
+      axis1Text<ILABStringField> = "*""X""*"
+      axis2Text<ILABStringField> = "*""Y""*"
+      axis3Text<ILABStringField> = "*""Z""*"
+      axisNumBias<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      axisNumScale<ILABVector3fField> = "1.000000 1.000000 1.000000"
+      axisStepSizes<ILABVector3fField> = "1.000000 1.000000 1.000000"
+      axisOrigin<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      axisMinEnds<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      axisMaxEnds<ILABVector3fField> = "10.000000 10.000000 10.000000"
+      axisMarkerLength<ILABVector3fField> = "0.500000 0.500000 0.500000"
+      axisTicksMin<ILABVector3fField> = "0.000000 0.000000 0.000000"
+      axisTicksMax<ILABVector3fField> = "10.000000 10.000000 10.000000"
+      axis1Color<ILABColorField> = "1.000000 1.000000 1.000000"
+      axis1Transparency<ILABFloatField> = 1
+      axis2Color<ILABColorField> = "1.000000 1.000000 1.000000"
+      axis2Transparency<ILABFloatField> = 1
+      axis3Color<ILABColorField> = "1.000000 1.000000 1.000000"
+      axis3Transparency<ILABFloatField> = 1
+      axisWingLength<ILABVector3fField> = "0.333333 0.333333 0.333333"
+      axisOverScale<ILABVector3fField> = "1.100000 1.110000 1.100000"
+      axisSubTickSteps<ILABVector3fField> = "0.200000 0.200000 0.200000"
+      axisSubTickScales<ILABVector3fField> = "0.250000 0.250000 0.250000"
+      boxOn<ILABBoolField> = TRUE
+      boxColor<ILABColorField> = "1.000000 1.000000 1.000000"
+      boxTransparency<ILABFloatField> = 1
+   }   //<mdl> fields 
+
+}   //<mdl> module SoRLAxis
+module SoSeparator {
+   internal  {
+      frame = "576 133 89 43"
+   }
+   fields  {
+      instanceName<ILABStringField> = SoSeparator1
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+   }
+
+}   //<mdl> module SoSeparator
+module SoSeparator {
+   internal  {
+      frame = "422 191 81 43"
+   }
+   fields  {
+      instanceName<ILABStringField> = SoSeparator
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+   }
+
+}   //<mdl> module SoSeparator
+module SoRotationXYZ {
+   internal  {
+      frame = "348 273 100 43"
+      windows  {
+         window _default {
+            geometry = "50 189 200 164"
+            sizeHint = "200 164"
+            wasOpen = no
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoRotationXYZ
+      axis<ILABEnumField> = X
+      angle<ILABFloatField> = 3.14
+   }
+}   //<mdl> module SoRotationXYZ
+module SoExaminerViewer {
+   internal  {
+      frame = "471 33 121 43"
+      windows  {
+         window _default {
+            geometry = "180 199 519 325"
+            sizeHint = "519 325"
+            wasOpen = no
+         }
+         window _viewer {
+            geometry = "17 167 666 590"
+            sizeHint = "400 402"
+            wasOpen = yes
+         }
+      }   //<mdl> windows 
+   }   //<mdl> internal 
+   fields  {
+      instanceName<ILABStringField> = SoExaminerViewer
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+      border<ILABBoolField> = FALSE
+      background<ILABColorField> = "0.000000 0.000000 0.000000"
+      transparency<ILABEnumField> = DELAYED_BLEND
+      antialiasing<ILABBoolField> = FALSE
+      antialiasingNumPasses<ILABIntegerField> = 1
+      grabKeyFocus<ILABBoolField> = TRUE
+      snapshotFormat<ILABEnumField> = SNAPSHOT_RGB
+      autoRedrawWhenRecording<ILABBoolField> = TRUE
+      frameRate<ILABFloatField> = 15
+      frameRateAvi<ILABFloatField> = 7
+      status<ILABStringField> = "*"ready"*"
+      outputSnapshotFile<ILABStringField> = "*"""none"""*"
+      outputSnapshotFileWritten<ILABStringField> = "*"""none"""*"
+      autoIncreaseFile<ILABBoolField> = TRUE
+      writeSnapshot<ILABBoolField> = TRUE
+      autoUpdateML<ILABBoolField> = FALSE
+      showSnapshotWithShell<ILABBoolField> = FALSE
+      snapCount<ILABIntegerField> = 0
+      headlight<ILABBoolField> = TRUE
+      decoration<ILABBoolField> = TRUE
+      popupMenuEnabled<ILABBoolField> = FALSE
+      viewing<ILABBoolField> = TRUE
+      externalCamera<ILABBoolField> = FALSE
+      drawStyle<ILABEnumField> = VIEW_AS_IS
+      interactiveDrawStyle<ILABEnumField> = VIEW_LOW_COMPLEXITY
+      viewAllFlag<ILABBoolField> = FALSE
+      initialCameraOrientation<ILABEnumField> = CAMERA_KEEP_AS_IS
+      applyCameraOrientation<ILABEnumField> = CAMERA_KEEP_AS_IS
+      cameraType<ILABEnumField> = CAMERA_PERSPECTIVE
+      userSettingOrientation<ILABRotationField> = "0.000000 0.000000 1.000000 0.000000"
+      automaticViewAll<ILABBoolField> = FALSE
+      storeCurrentState<ILABBoolField> = TRUE
+      saveCamera<ILABBoolField> = TRUE
+      cursor<ILABBoolField> = TRUE
+      isCameraStored<ILABBoolField> = TRUE
+      perspective<ILABBoolField> = TRUE
+      height<ILABFloatField> = 0.785398
+      position<ILABVector3fField> = "-10.001400 -11.481200 -11.986100"
+      orientation<ILABRotationField> = "0.924266 0.138804 -0.355621 2.536930"
+      nearDistance<ILABFloatField> = 14.0822
+      farDistance<ILABFloatField> = 36.6815
+      focalDistance<ILABFloatField> = 26.0966
+      button1events<ILABEnumField> = TO_VIEWER
+      button2events<ILABEnumField> = TO_VIEWER
+      button3events<ILABEnumField> = TO_VIEWER
+      animationEnabled<ILABBoolField> = FALSE
+      feedback<ILABBoolField> = FALSE
+      feedbackSize<ILABIntegerField> = 32
+      rotationAxis<ILABVector3fField> = "0.000000 1.000000 0.000000"
+      rotationAngle<ILABFloatField> = 360
+      rotationSteps<ILABIntegerField> = 80
+      rotationCurrentStep<ILABIntegerField> = 0
+      recordRotation<ILABBoolField> = TRUE
+   }   //<mdl> fields 
+
+}   //<mdl> module SoExaminerViewer
+module SoRotationXYZ {
+   internal  {
+      frame = "572 276 107 43"
+      windows  {
+         window _default {
+            geometry = "705 447 200 168"
+            sizeHint = "200 164"
+            wasOpen = yes
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoRotationXYZ2
+      axis<ILABEnumField> = Y
+      angle<ILABFloatField> = 1
+   }
+}   //<mdl> module SoRotationXYZ
+connections  {
+   SoSeparator1.children = "SoRotationXYZ2.self SoArrow1.self"
+   SoSeparator.children = "SoRotationXYZ.self SoArrow.self"
+   SoExaminerViewer.children = "SoRLAxis.self SoSeparator.self SoSeparator1.self"
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: qKQ34zQe0eSnejW7brDZfNHtIN6Y7x7bIFVKSFnKIEPWAkUCfezOoeHJLkPWs74sKJMUp2xnIwMsQp741xKIwQ==
+//# MeVis end

@@ -1,0 +1,133 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "877 125 152 56"
+    windows  {
+      window _viewer {
+        geometry = "184 298 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-3.90241 -3.96481 0.661619"
+    orientation = "-7.43526e-05 0.80746 -0.5899219999999999 4.19543"
+    nearDistance = 4.108980179
+    farDistance = 8.439959526
+    focalDistance = 6.27230978
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "857 277 112 56"
+    windows  {
+      window _default {
+        geometry = "666 547 274 37"
+        sizeHint = "274 37"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation
+    translation = "1 1 1"
+  }
+}
+module SoCube {
+  internal  {
+    frame = "769 277 80 56"
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+}
+module SoClearGLBuffers {
+  internal  {
+    frame = "981 277 136 56"
+    windows  {
+      window _default {
+        geometry = "701 513 204 219"
+        sizeHint = "204 219"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoClearGLBuffers
+    clearColorBuffer = FALSE
+    clearDepthBuffer = TRUE
+    clearAccumBuffer = FALSE
+    clearStencilBuffer = FALSE
+    whichGLbuffers = 256
+  }
+}
+connections  {
+  SoExaminerViewer.children = "SoCube.self SoTranslation.self SoClearGLBuffers.self SoCube.self"
+}

@@ -1,0 +1,345 @@
+network  {
+  watchlist = ""
+}
+module SoQHull3D {
+  internal  {
+    frame = "-43 253 152 56"
+    windows  {
+      window _default {
+        geometry = "29 217 218 194"
+        sizeHint = "218 194"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "743 93 231 445"
+        sizeHint = "231 445"
+        wasOpen = no
+      }
+    }   //<mdl> windows 
+  }   //<mdl> internal 
+  fields  {
+    instanceName = SoQHull3D
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    numInput = 708
+    numOutput = 60
+    numTriangles = 116
+    ch_surface = 278
+    ch_volume = 329
+    showPoints = TRUE
+    showFaces = TRUE
+    pointColor = "0.500000 0.500000 1.000000"
+    faceColor = "0.700000 0.700000 0.400000"
+    useColors = FALSE
+    state = "convex hull finished"
+    showNormals = FALSE
+    useFaceNormals = TRUE
+  }   //<mdl> fields 
+
+}   //<mdl> module SoQHull3D
+module SoExaminerViewer {
+  internal  {
+    frame = "69 105 136 64"
+    windows  {
+      window _viewer {
+        geometry = "456 537 400 402"
+        sizeHint = "400 402"
+        wasOpen = yes
+      }
+      window _default {
+        geometry = "26 59 523 369"
+        sizeHint = "523 369"
+        wasOpen = no
+      }
+    }   //<mdl> windows 
+  }   //<mdl> internal 
+  fields  {
+    instanceName = InputScene
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.000000 0.000000 0.000000"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0.000000 0.000000 1.000000 0.000000"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "4.689310 -15.089800 -14.256100"
+    orientation = "0.724829 0.656385 -0.209240 2.572080"
+    nearDistance = 15.11590004
+    farDistance = 30.21980095
+    focalDistance = 22.6602993
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    rotationAxis = "0.000000 1.000000 0.000000"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }   //<mdl> fields 
+
+}   //<mdl> module SoExaminerViewer
+module SoExaminerViewer {
+  internal  {
+    frame = "-115 105 136 64"
+    windows  {
+      window _default {
+        geometry = "26 59 523 369"
+        sizeHint = "523 369"
+        wasOpen = no
+      }
+      window _viewer {
+        geometry = "38 539 400 402"
+        sizeHint = "400 402"
+        wasOpen = yes
+      }
+    }   //<mdl> windows 
+  }   //<mdl> internal 
+  fields  {
+    instanceName = ConvexHull
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.000000 0.000000 0.000000"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0.000000 0.000000 1.000000 0.000000"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-0.849259 -14.222800 20.616900"
+    orientation = "0.073594 0.325770 -0.942580 3.238300"
+    nearDistance = 14.9197998
+    farDistance = 30.41620064
+    focalDistance = 22.6602993
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    rotationAxis = "0.000000 1.000000 0.000000"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }   //<mdl> fields 
+
+}   //<mdl> module SoExaminerViewer
+module SoTranslation {
+  internal  {
+    frame = "-303 469 112 56"
+    windows  {
+      window _default {
+        geometry = "180 317 300 118"
+        sizeHint = "300 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation2
+    translation = "5.000000 -5.000000 5.000000"
+  }
+}   //<mdl> module SoTranslation
+module SoSeparator {
+  internal  {
+    frame = "-247 373 112 56"
+  }
+  fields  {
+    instanceName = SoSeparator2
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+
+}   //<mdl> module SoSeparator
+module SoSphere {
+  internal  {
+    frame = "-187 469 88 56"
+    windows  {
+      window _default {
+        geometry = "26 59 208 173"
+        sizeHint = "208 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSphere
+    radius = 2
+  }
+}   //<mdl> module SoSphere
+module SoSeparator {
+  internal  {
+    frame = "-31 389 112 56"
+  }
+  fields  {
+    instanceName = SoSeparator1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+
+}   //<mdl> module SoSeparator
+module SoSeparator {
+  internal  {
+    frame = "181 373 104 56"
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+
+}   //<mdl> module SoSeparator
+module SoTranslation {
+  internal  {
+    frame = "-87 469 112 56"
+    windows  {
+      window _default {
+        geometry = "158 233 300 173"
+        sizeHint = "300 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation1
+    translation = "5.000000 0.000000 0.000000"
+  }
+}   //<mdl> module SoTranslation
+module SoTranslation {
+  internal  {
+    frame = "129 469 112 56"
+    windows  {
+      window _default {
+        geometry = "180 262 300 173"
+        sizeHint = "300 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation
+    translation = "0.000000 5.000000 5.000000"
+  }
+}   //<mdl> module SoTranslation
+module SoCube {
+  internal  {
+    frame = "341 373 88 56"
+  }
+  fields  {
+    instanceName = SoCube2
+    width = 2
+    height = 2
+    depth = 2
+  }
+
+}
+module SoCube {
+  internal  {
+    frame = "29 469 88 56"
+  }
+  fields  {
+    instanceName = SoCube1
+    width = 2
+    height = 2
+    depth = 2
+  }
+
+}
+module SoCube {
+  internal  {
+    frame = "249 469 80 56"
+  }
+  fields  {
+    instanceName = SoCube
+    width = 2
+    height = 2
+    depth = 2
+  }
+
+}
+connections  {
+  SoQHull3D.children = "SoSeparator2.self SoSeparator1.self SoSeparator.self SoCube2.self"
+  InputScene.children = SoQHull3D.self
+  ConvexHull.children = SoQHull3D.out_qhull
+  SoSeparator2.children = "SoTranslation2.self SoSphere.self"
+  SoSeparator1.children = "SoTranslation1.self SoCube1.self"
+  SoSeparator.children = "SoTranslation.self SoCube.self"
+}
+

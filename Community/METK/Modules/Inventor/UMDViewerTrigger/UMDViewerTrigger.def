@@ -1,0 +1,27 @@
+//----------------------------------------------------------------------------------
+//! UMDViewerTrigger module definitions
+/*!
+// \file    UMDViewerTrigger.def
+// \author  Konrad Mühler
+// \date    2005-04-23
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoUMDViewerTrigger {
+  DLL = "UMDViewerTrigger"
+
+  genre = ""
+  author = "Konrad Mühler"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDViewerTrigger"
+  hasGroupInputs = TRUE
+  Description {
+  }
+
+} // InventorModule SoUMDViewerTrigger
+

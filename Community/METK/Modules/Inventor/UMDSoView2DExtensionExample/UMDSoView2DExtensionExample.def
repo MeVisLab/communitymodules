@@ -1,0 +1,11 @@
+InventorModule SoView2DExtensionExample {
+  DLL = "UMDSoView2DExtensionExample"
+
+  genre = ""
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+
+}

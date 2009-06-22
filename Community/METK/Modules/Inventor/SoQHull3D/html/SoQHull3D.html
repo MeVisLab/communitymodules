@@ -1,0 +1,237 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta name="Description" content="Template for an ILAB module">
+   <title>Help - SoQHull3D</title>
+<!--===============================================================-->
+<!-- Draw Operator                                                 -->
+<!--===============================================================-->
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr WIDTH="100%"></center>
+
+<h2>SoQHull3D</h2>
+
+<h3><a NAME="Purpose"></a>Purpose</h3>
+
+<blockquote>The <b>SoQHull3D</b> module calculates the convex hull of an 3d
+  inventor scene using the &quot;Quickhull Algorithm&quot;.</blockquote>
+
+<h3><a NAME="Usage"></a>Usage</h3>
+
+<blockquote>Connect an invetor scene to <b>SoQHull3D</b> and the module to a 3D
+  viewer (e.g. SoExaminerViewer).<br>The left connector (out_qhull) gives you the convex hull, the right one (self) the input scene.
+</blockquote>
+
+<h3><a NAME="Details"></a>Details</h3>
+
+<blockquote>None.</blockquote>
+
+<h3><a NAME="Inputs"></a>Inputs</h3>
+
+<blockquote>An inventor scene.</blockquote>
+
+<h3><a NAME="Outputs"></a>Outputs</h3>
+
+<blockquote>
+<ul>
+<li>The convex hull as points (SoPointSet) and faces (SoIndexedFaceSet).</li>
+<li>The input scene (SoQhull3D behaves like SoSeparator).</li>
+</ul>
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+
+
+<h4>Options</h4>
+<blockquote>This panel contains drawing parameters and a state field.</blockquote>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Render Points / Point Color</b></li>
+	</dl>
+		<dd>
+		<ul>
+		Select if points should be drawn.<br>
+		Select the point color.<br>
+		Default is <b>enabled / blue</b>.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Render Faces / Face Color</b></li>
+	</dl>
+		<dd>
+		<ul>
+		Select if faces should be drawn.<br>
+		Select the face color.<br>
+		Default is <b>enabled / yellow</b>.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Use Colors</b></li>
+	</dl>
+		<dd>
+		<ul>
+		Select if points and faces should be drawn in the defined colors.<br>
+		Deselect if points and faces should be drawn using inventor standard.<br>
+		Default is <b>disabled</b>.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>State</b></li>
+	</dl>
+		<dd>
+		<ul>
+		Gives some information about calculations.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+
+<h4>Statistics</h4>
+<blockquote>This panel contains statistical information about the convex hull.</blockquote>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b># Input Values</b></li>
+	</dl>
+		<dd>
+		<ul>
+		The number of vertex values that where collected from the inventor scene.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b># Hull Vertices</b></li>
+	</dl>
+		<dd>
+		<ul>
+		The number of vertices that build the convex hull.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b># Hull Faces</b></li>
+	</dl>
+		<dd>
+		<ul>
+		The number of faces that build the convex hull.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Surface</b></li>
+	</dl>
+		<dd>
+		<ul>
+		The surface of the convex hull.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Volume</b></li>
+	</dl>
+		<dd>
+		<ul>
+		The volume of the the convex hull.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<blockquote>The values for surface and volume are estimated by QHull functions.</blockquote>
+
+<h4>"Hidden" options</h4>
+<blockquote>These options are present in the automatic panel of SoQhull3D.</blockquote>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Show Normals</b></li>
+	</dl>
+		<dd>
+		<ul>
+		Render the face or vertex normals of the convex hull.<br>
+		Default is <b>disabled</b>.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+<dl>
+	<dl>
+	<ul>
+		<li><b>Use Face Normals</b></li>
+	</dl>
+		<dd>
+		<ul>
+		Decide which kind of normals should be used for rendering: Face normals or vertex normals.<br>
+		Note: For some objects QHull does not generate vertex normals.<br>
+		Default is <b>enabled</b>.
+		</ul>
+		</dd>
+	</ul>
+</dl>
+
+
+<h3><a NAME="EventInteract"></a>Events &amp; Interaction</h3>
+
+<blockquote>None</blockquote>
+
+<h3><a NAME="Example"></a>Example</h3>
+
+<blockquote>...</blockquote>
+
+<h3><a NAME="Tips&Tricks"></a>Tips &amp; Tricks</h3>
+
+<blockquote>None</blockquote>
+
+<h3><a NAME="KnownBugs"></a>Known Bugs</h3>
+
+<blockquote>For some objects QHull does not generate vertex normals but the convex hull is computed. Use face normals instead.</blockquote>
+
+</body>
+</html>

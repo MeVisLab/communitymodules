@@ -1,0 +1,25 @@
+//----------------------------------------------------------------------------------
+//! UMDmnOffscreenRenderer module definitions
+/*!
+// \file    UMDmnOffscreenRenderer.def
+// \author  Mathias Neugebauer
+// \date    2007-03-30
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SomnOffscreenRenderer {
+  DLL = "UMDmnOffscreenRenderer"
+
+  genre = ""
+  author = "Mathias Neugebauer, Roland Pfisterer"
+  status = "work-in-progress"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDmnOffscreenRenderer"
+  hasGroupInputs = FALSE
+
+} // InventorModule SomnOffscreenRenderer
+

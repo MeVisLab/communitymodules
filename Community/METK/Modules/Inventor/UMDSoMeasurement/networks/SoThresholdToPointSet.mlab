@@ -1,0 +1,146 @@
+network = ""
+module SoThresholdToPointSet {
+   internal  {
+      frame = "311 -259 158 43"
+      windows  {
+         window _default {
+            geometry = "80 189 163 139"
+            sizeHint = "163 139"
+            wasOpen = yes
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoThresholdToPointSet0
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+      minValue<ILABFloatField> = 1100
+      maxValue<ILABFloatField> = 4096
+      setColor<ILABBoolField> = TRUE
+      colorFlag<ILABBoolField> = FALSE
+   }   //<mdl> fields 
+
+}   //<mdl> module SoThresholdToPointSet
+module SoMaterial {
+   internal  {
+      frame = "149 -258 77 43"
+      windows  {
+         window _materialeditor {
+            geometry = "26 45 221 28"
+            sizeHint = "221 28"
+            wasOpen = no
+         }
+         window _automatic {
+            geometry = "48 67 200 251"
+            sizeHint = "200 251"
+            wasOpen = no
+         }
+      }   //<mdl> windows 
+   }   //<mdl> internal 
+   fields  {
+      instanceName<ILABStringField> = SoMaterial0
+      ambientColor<ILABStringField> = "0.204082 0.12971 0.0239268"
+      diffuseColor<ILABStringField> = "0.795918 0.505869 0.0933146"
+      specularColor<ILABStringField> = "0.923469 0.428866 0.00636875"
+      emissiveColor<ILABStringField> = "0 0 0"
+      shininess<ILABStringField> = 0.2
+      transparency<ILABStringField> = 0
+   }
+
+}   //<mdl> module SoMaterial
+module LocalImage {
+   internal  {
+      frame = "312 -174 83 43"
+   }
+   fields  {
+      instanceName<ILABStringField> = LocalImage0
+      name<ILABStringField> = $(DemoDataPath)/Bone.tiff
+      localname<ILABStringField> = C:/Programme/ILAB5/data/demodata/Bone.tiff
+   }
+}
+module SoExaminerViewer {
+   internal  {
+      frame = "309 -373 129 43"
+      windows  {
+         window _viewer {
+            geometry = "674 240 400 402"
+            sizeHint = "400 402"
+            wasOpen = yes
+         }
+      }
+   }
+   fields  {
+      instanceName<ILABStringField> = SoExaminerViewer0
+      renderCaching<ILABEnumField> = AUTO
+      boundingBoxCaching<ILABEnumField> = AUTO
+      renderCulling<ILABEnumField> = AUTO
+      pickCulling<ILABEnumField> = AUTO
+      border<ILABBoolField> = FALSE
+      background<ILABColorField> = "0.000000 0.000000 0.000000"
+      transparency<ILABEnumField> = DELAYED_BLEND
+      antialiasing<ILABBoolField> = FALSE
+      antialiasingNumPasses<ILABIntegerField> = 1
+      grabKeyFocus<ILABBoolField> = TRUE
+      snapshotFormat<ILABEnumField> = SNAPSHOT_RGB
+      autoRedrawWhenRecording<ILABBoolField> = TRUE
+      frameRate<ILABFloatField> = 15
+      frameRateAvi<ILABFloatField> = 7
+      status<ILABStringField> = "*"ready"*"
+      outputSnapshotFile<ILABStringField> = "*"none"*"
+      outputSnapshotFileWritten<ILABStringField> = "*"none"*"
+      autoIncreaseFile<ILABBoolField> = TRUE
+      writeSnapshot<ILABBoolField> = TRUE
+      autoUpdateML<ILABBoolField> = FALSE
+      showSnapshotWithShell<ILABBoolField> = FALSE
+      snapCount<ILABIntegerField> = 0
+      headlight<ILABBoolField> = TRUE
+      decoration<ILABBoolField> = TRUE
+      popupMenuEnabled<ILABBoolField> = FALSE
+      viewing<ILABBoolField> = TRUE
+      externalCamera<ILABBoolField> = FALSE
+      drawStyle<ILABEnumField> = VIEW_AS_IS
+      interactiveDrawStyle<ILABEnumField> = VIEW_LOW_COMPLEXITY
+      viewAllFlag<ILABBoolField> = FALSE
+      initialCameraOrientation<ILABEnumField> = CAMERA_KEEP_AS_IS
+      applyCameraOrientation<ILABEnumField> = CAMERA_KEEP_AS_IS
+      cameraType<ILABEnumField> = CAMERA_PERSPECTIVE
+      userSettingOrientation<ILABRotationField> = "0.000000 0.000000 1.000000 0.000000"
+      automaticViewAll<ILABBoolField> = FALSE
+      storeCurrentState<ILABBoolField> = TRUE
+      saveCamera<ILABBoolField> = TRUE
+      cursor<ILABBoolField> = TRUE
+      isCameraStored<ILABBoolField> = TRUE
+      perspective<ILABBoolField> = TRUE
+      height<ILABFloatField> = 0.785398
+      position<ILABVector3fField> = "184.320000 109.326000 60.959900"
+      orientation<ILABRotationField> = "0.360481 0.627255 0.690366 2.198410"
+      nearDistance<ILABFloatField> = 127.368
+      farDistance<ILABFloatField> = 219.773
+      focalDistance<ILABFloatField> = 170.256
+      button1events<ILABEnumField> = TO_VIEWER
+      button2events<ILABEnumField> = TO_VIEWER
+      button3events<ILABEnumField> = TO_VIEWER
+      animationEnabled<ILABBoolField> = FALSE
+      feedback<ILABBoolField> = FALSE
+      feedbackSize<ILABIntegerField> = 32
+      rotationAxis<ILABVector3fField> = "0.000000 1.000000 0.000000"
+      rotationAngle<ILABFloatField> = 360
+      rotationSteps<ILABIntegerField> = 80
+      rotationCurrentStep<ILABIntegerField> = 0
+      recordRotation<ILABBoolField> = TRUE
+   }   //<mdl> fields 
+
+}   //<mdl> module SoExaminerViewer
+connections  {
+   SoThresholdToPointSet0.inImage = LocalImage0.output
+   SoExaminerViewer0.children = "SoMaterial0.self SoThresholdToPointSet0.self"
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: C1b7Snr29Vv8MnyggTO1QyaZbGmNpfekPZh3xqEU+9THoqUk4Ig7DEAzNNmIyFOcQwXJv+nmZCzHqluC00vShQ==
+//# MeVis end

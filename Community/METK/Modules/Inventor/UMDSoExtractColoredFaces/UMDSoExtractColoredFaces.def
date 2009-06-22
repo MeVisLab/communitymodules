@@ -1,0 +1,28 @@
+//----------------------------------------------------------------------------------
+//! UMDSoExtractColoredFaces module definitions
+/*!
+// \file    UMDSoExtractColoredFaces.def
+// \author  Konrad Mühler
+// \date    2008-02-01
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoExtractColoredFaces {
+  DLL = "UMDSoExtractColoredFaces"
+
+  genre = "VesselVis"
+  author = "Konrad Mühler"
+  status = "stable"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDSoExtractColoredFaces"
+  hasGroupInputs = FALSE
+  exampleNetwork = $(LOCAL)/examples/SoExtractColoredFaces.mlab
+  
+  Description {
+  }
+
+} // InventorModule SoExtractColoredFaces
+

@@ -1,0 +1,47 @@
+//----------------------------------------------------------------------------------
+//! UMDQHull module definitions
+/*!
+// \file    UMDQHull.def
+// \author  Jens Haase
+// \date    2005-02-07
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoQHull3D {
+  DLL = UMDQHull3D
+
+  genre = ""
+  author = "Jens Haase"
+  status = "work-in-progress"
+  comment = "3D Convex Hull with QHull"
+  keywords = "3D Convex Hull"
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDQHull3D"
+  hasGroupInputs = TRUE
+  Description {
+  }
+
+   Window {
+     Category Options {
+       CheckBox showPoints { title = "Render Points" }
+       Field pointColor { title = "Point Color" }
+       CheckBox showFaces { title = "Render Faces" }
+       Field faceColor { title = "Face Color" }
+       CheckBox useColors { title = "Use Colors" }
+       Field state      { title = "State:"  edit = NO  }
+
+     } // category Volume
+     Category Statistics {
+        Field numInput { title = "# Input Values" edit = NO }
+        Field numOutput { title = "# Hull Vertices" edit = NO }
+        Field numTriangles { title = "# Hull Faces" edit = NO }
+        Separator { direction = horizontal }
+        Label { title = "values estimated by QHull:" }
+        Field ch_surface { title = "Surface" edit = NO }
+        Field ch_volume { title = "Volume" edit = NO }
+     } //category Statistics
+   } // window
+
+} // InventorModule SoQHull3D

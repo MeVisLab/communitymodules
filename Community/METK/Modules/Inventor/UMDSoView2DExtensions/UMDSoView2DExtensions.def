@@ -1,0 +1,80 @@
+InventorModule SoView2DHalo {
+  DLL = "UMDSoView2DExtensions"
+
+  genre = ""
+  author = "Christian Tietjen, Björn Meyer"
+  status = "stable"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+
+  Window  {
+    Category General {
+      Box Buttons {
+        layout = Horizontal
+        Vertical  {
+          expandX = NO
+          Field = button1
+          Field = button2
+          Field = button3
+        }
+        Vertical  {
+          expandX = NO
+          Field = shift
+          Field = control
+          Field = alt
+        }
+      }  // Box Buttons
+      Box Style {
+         layout = Vertical
+         Field = useLineStyle
+         Separator { direction = Horizontal }
+         Field = useColor
+         Horizontal {
+            Field = color { dependsOn = !useColor }
+            Vertical {
+               Field = upColor   { dependsOn = useColor }
+               Field = downColor { dependsOn = useColor }
+            }
+         }
+         
+      }
+    }  // Category General
+  }  // Window
+}
+
+
+InventorModule SoTextureMaskedArea {
+  DLL = "UMDSoView2DExtensions"
+
+  genre = ""
+  author = "Björn Meyer"
+  status = "test"
+  comment = ""
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDSoView2DExtensions"
+
+  Description  {
+      Field overlayAlpha {
+        min = 0
+        max = 1
+      }
+  }
+  
+  Window {
+  	Table {
+  		Row {
+  			Field = drawingOn
+  			Field = showTextureOnly
+  		}
+  		Row {
+  			Field = overlayColour
+  			Field overlayAlpha { step = 0.05 stepstep = 0.2 slider = yes }
+  		}
+  		Row {
+  			Field = chooseTextureEnum {title = "Choose Texture"}
+  		}
+  	}
+  }
+} // InventorModule SoTextureMaskedArea

@@ -1,0 +1,230 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoExtractColoredFaces {
+  internal  {
+    frame = "449 341 160 56"
+    windows  {
+      window _default {
+        geometry = "46 509 219 287"
+        sizeHint = "219 287"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExtractColoredFaces
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    selectedColor = "0.5607839999999999 1 0.435294"
+    valid = TRUE
+  }
+}
+module SoShapePartition {
+  internal  {
+    frame = "457 261 128 56"
+    windows  {
+      window _default {
+        geometry = "1403 777 201 159"
+        sizeHint = "201 159"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShapePartition
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    shapePartitioning = TRUE
+    cubeSize = 10
+    valid = TRUE
+    autoUpdate = FALSE
+  }
+}
+module LoadTreeData {
+  internal  {
+    frame = "465 517 112 56"
+    windows  {
+      window _default {
+        geometry = "1357 563 408 137"
+        sizeHint = "408 137"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadTreeData
+    filename = E:/VesselTestData/data/Treedata_PV0001.txt
+    loadVesselVoxels = TRUE
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "417 181 176 56"
+    windows  {
+      window _viewer {
+        geometry = "815 268 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "401 314 484 440"
+        sizeHint = "484 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.7853980064
+    position = "-84.55249999999999 -249.159 -544.54"
+    orientation = "0.076157 -0.049001 -0.995891 1.60722"
+    nearDistance = 24.39649963
+    farDistance = 41.73839951
+    focalDistance = 33.05879974
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    enableSpacemouseDevice = FALSE
+    enablePowerMateDevice = FALSE
+    enableAppleRemoteDevice = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoVascularSystem {
+  internal  {
+    frame = "461 429 136 56"
+    windows  {
+      window _default {
+        geometry = "1367 63 384 463"
+        sizeHint = "384 463"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVascularSystem
+    whichChild = -3
+    autoApply = TRUE
+    status = "Graph is valid"
+    complexity = 0.6000000238
+    pointSize = 1
+    lineWidth = 1
+    textureScaleX = 0.5
+    textureScaleY = 0.5
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    recursionDepth = -1
+    showLines = FALSE
+    labelMode = GENERAL_LABEL
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    radiusMode = MIN_DIST
+    displayMode = DISPLAY_SURFACE
+    radiusScale = 1
+    radiusFixedSize = 1
+    visible = TRUE
+    texture = FALSE
+    numSmoothingPasses = 3
+    overallSmoothness = 0.6999999881
+    smoothIndependently = FALSE
+    radiusSmoothness = 0.6999999881
+    skeletonSmoothness = 0.6999999881
+    endCapScaling = 1
+    useGeneralColor = FALSE
+    generalColor = "1 1 1"
+    useAlternativeTransparency = TRUE
+    alternativeTransparencyColor = "0 0 0"
+    selectedCoordinate = "0 0 0"
+    snapMode = SNAP_TO_SKELETON
+    enableSelection = TRUE
+    nearestCoordinate = "0 0 0"
+    selectedEdgeId = 0
+    selectedNodeId = 0
+    nearestRadius = 0
+    nearestLabel = 0
+    nearestColor = "1 1 1"
+    useSkeletonColors = FALSE
+  }
+}
+connections  {
+  SoExtractColoredFaces.input = SoVascularSystem.self
+  SoShapePartition.input = SoExtractColoredFaces.outShape
+  SoCustomExaminerViewer.children = SoShapePartition.outConvertedShape
+  SoVascularSystem.inputGraph = LoadTreeData.outputGraph
+}

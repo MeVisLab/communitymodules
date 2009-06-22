@@ -1,0 +1,148 @@
+InventorModule UMDSoAngleLines {
+   DLL = UMDSoMeasurement
+   genre = Measurement            
+   author = "Henry Sonnet, Christian Tietjen"
+   status = stable
+   comment = "Calculates and renders the angle between two lines in 3D."
+   keywords = "angle 3d measurement lines"
+   seealso = "AngleLines2D3D  SoAngleToObjects DistanceLine2D3D"
+   documentation = $(LOCAL)/html/SoAngleLines.html
+   externalDefinition = $(LOCAL)/SoAngleLines.script
+} // InventorModule SoAngleLines
+
+
+InventorModule UMDSoArrow {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Christian Tietjen"
+   status = stable
+   comment = "Draws an arrow"
+   externalDefinition = $(LOCAL)/SoArrow.script
+   documentation = $(LOCAL)/html/SoArrow.html
+   exampleNetwork = $(LOCAL)/networks/SoArrow.mlab
+}
+
+InventorModule UMDSoCake {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Christian Tietjen"
+   status = stable
+   comment = "Draws an tasty cake"
+   keywords = "cake 3d inventor pitch circle"
+   documentation = $(LOCAL)/html/SoCake.html
+   seeAlso = "SoDistanceLine SoAngleLines"
+   externalDefinition = $(LOCAL)/SoCake.script
+} // InventorModule SoCake
+
+
+InventorModule UMDSoDistanceLine {
+   DLL = UMDSoMeasurement
+   genre = Measurement
+   author = "Henry Sonnet, Christian Tietjen"
+   status = stable
+   comment = "Draws a line showing the distance"
+   keywords = "distance 3d measurement"
+   seealso = "SoAngleLines SoMinimalDistance SoMainAxis"
+   documentation = $(LOCAL)/html/SoDistanceLine.html
+   externalDefinition = $(LOCAL)/SoDistanceLine.script
+} // InventorModule SoDistanceLine
+
+
+InventorModule UMDSoMainAxis {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Christian Tietjen"
+   status = stable
+   comment = "Computes the main axis of an object"
+   keywords = "automatic measurement object orientated bounding box obb inertia axis distance 3d"
+   seealso = "SoAngleToObjects SoMinimalDistance"
+   exampleNetwork = $(LOCAL)/networks/SoMainAxis.mlab
+   documentation  = $(LOCAL)/html/SoMainAxis.html
+   externalDefinition = $(LOCAL)/SoMainAxis.script
+} // InventorModule SoMainAxis
+
+
+InventorModule UMDSoMaximumExtension {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Friederike Adler"
+   status = test
+   comment = "Computes the maximum extension of an object"
+   keywords = "automatic measurement object orientated bounding box obb inertia axis distance 3d"
+   seealso = "UMDSoMainAxis"
+   //exampleNetwork = $(LOCAL)/networks/SoMainAxis.mlab
+   //documentation  = $(LOCAL)/html/SoMainAxis.html
+   //externalDefinition = $(LOCAL)/SoMainAxis.script
+} // InventorModule SoMainAxis
+
+
+InventorModule UMDSoAngleToObjects {
+   DLL = UMDSoMeasurement
+   genre = Measurement
+   author = "Christian Tietjen"
+   status = "stable"
+   comment = "Measures and displays the angle between two objects automaticaly."
+   keywords = "angle 3d automatic measurement"
+   seealso = "AngleLines2D3D SoAngleLines SoMainAxis SoMinimalDistance"
+   exampleNetwork = $(LOCAL)/networks/SoAngleToObjects.mlab
+   externalDefinition = $(LOCAL)/SoAngleToObjects.script
+   documentation = $(LOCAL)/html/SoAngleToObjects.html
+} // InventorModule SoAngleToObjects
+
+
+InventorModule UMDSoThresholdToPointSet {
+   DLL = UMDSoMeasurement
+   genre = Measurement
+   author = "Christian Tietjen"
+   status = stable
+   comment = "Generates a pointset out of an image"
+   keywords = "converting image pointset threshold"
+   seealso = SoShapeToPointSet
+   exampleNetwork = $(LOCAL)/networks/SoThresholdToPointSet.mlab
+   documentation = $(LOCAL)/html/SoThresholdToPointSet.html
+   externalDefinition = $(LOCAL)/SoThresholdToPointSet.script
+} // InventorModule SoThresholdToPointSet
+
+
+InventorModule UMDSoShapeToPointSet {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Christian Tietjen"
+   status = stable
+   comment = "Generates a pointset out of a shape"
+   keywords = "converting shape pointset inv2point"
+   seealso = SoThresholdToPointSet
+   documentation = $(LOCAL)/html/SoShapeToPointSet.html
+   exampleNetwork = $(LOCAL)/networks/SoShapeToPointSet.mlab
+   Window {Label="No Parameters"}
+} // InventorModule SoShapeToPointSet
+
+
+InventorModule UMDSoMinimalDistance {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Christian Tietjen"
+   status = stable
+   comment = "Computes the shortest distance between two objects"
+   keywords = "measurement 3d minimum minimal shortest distance automatic"
+   seealso = "SoMainAxis SoAngleToObjects SoThresholdToPointSet SoShapeToPointSet DistanceLine2D3D SoDistanceLine"
+   exampleNetwork = $(LOCAL)/networks/SoMinimalDistance.mlab
+   documentation  = $(LOCAL)/html/SoMinimalDistance.html
+   externalDefinition = $(LOCAL)/SoMinimalDistance.script
+} // InventorModule SoMinimalDistance
+
+
+InventorModule SoVerticalRuler {
+   DLL = UMDSoMeasurement
+   genre = Visualization
+   author = "Christian Tietjen"
+   status = "work-in-progress"
+   comment = ""
+   keywords = "measurement 3d"
+   seealso = "SoMainAxis SoAngleToObjects SoThresholdToPointSet SoShapeToPointSet DistanceLine2D3D SoDistanceLine"
+   Window SoVerticalRuler {
+      Vertical {
+         Field = color
+      }
+   }
+} // InventorModule SoVerticalRuler

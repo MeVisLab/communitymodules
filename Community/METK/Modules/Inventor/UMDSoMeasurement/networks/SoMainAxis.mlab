@@ -1,0 +1,178 @@
+network  {
+  watchlist = ""
+}
+module SoMainAxis {
+  internal  {
+    frame = "277 -283 120 56"
+    windows  {
+      window _default {
+        geometry = "87 242 368 455"
+        sizeHint = "368 455"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMainAxis0
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    resultsValid = TRUE
+    color = "0.100000 1.000000 0.100000"
+    transparency = 0.39726
+    displayUnit = TRUE
+    displayName = FALSE
+    toolName = "*""*"
+    displayToolOnlyOnValid = TRUE
+    displayInput = TRUE
+    xAxis = "1.000000 0.000000 0.000000"
+    yAxis = "0.000000 1.000000 0.000000"
+    zAxis = "0.000000 0.000000 1.000000"
+    xDiameter = 6
+    yDiameter = 6
+    zDiameter = 2
+    baryCenter = "3.709090 0.000000 0.000000"
+    midPoint = "2.000000 0.000000 0.000000"
+    displayBoundingBox = TRUE
+    lineWidth = 1
+    axisOrigin = ORIGIN_MIDPOINT
+    unit = mm
+    displayMainAxis = TRUE
+    largestValueOnly = FALSE
+  }   //<mdl> fields 
+
+}   //<mdl> module SoMainAxis
+module SoExaminerViewer {
+  internal  {
+    frame = "265 -347 160 56"
+    windows  {
+      window _viewer {
+        geometry = "532 220 507 490"
+        sizeHint = "400 402"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer0
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0.000000 0.000000 0.000000"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    autoRedrawWhenRecording = TRUE
+    frameRate = 15
+    frameRateAvi = 7
+    status = ready
+    outputSnapshotFile = "*"none"*"
+    outputSnapshotFileWritten = "*"none"*"
+    autoIncreaseFile = TRUE
+    writeSnapshot = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = TRUE
+    viewing = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0.000000 0.000000 1.000000 0.000000"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    height = 0.785398
+    position = "6.028020 0.544479 11.576200"
+    orientation = "-0.209835 0.131712 -0.968825 1.783470"
+    nearDistance = 5.49212
+    farDistance = 22.0444
+    focalDistance = 13.41
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    animationEnabled = TRUE
+    feedback = FALSE
+    feedbackSize = 32
+    rotationAxis = "0.000000 1.000000 0.000000"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }   //<mdl> fields 
+
+}   //<mdl> module SoExaminerViewer
+module SoSeparator {
+  internal  {
+    frame = "281 -211 128 56"
+  }
+  fields  {
+    instanceName = SoSeparator0
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+
+}   //<mdl> module SoSeparator
+module SoCube {
+  internal  {
+    frame = "193 -131 96 56"
+  }
+  fields  {
+    instanceName = SoCube0
+    width = 2
+    height = 4
+    depth = 2
+  }
+
+}
+module SoTransform {
+  internal  {
+    frame = "301 -123 120 56"
+  }
+  fields  {
+    instanceName = SoTransform0
+    translation = "4.000000 0.000000 0.000000"
+    rotation = "0.000000 0.000000 1.000000 0.000000"
+    scaleFactor = "1.000000 3.000000 1.000000"
+    scaleOrientation = "0.000000 0.000000 1.000000 0.000000"
+    center = "0.000000 0.000000 0.000000"
+  }
+
+}   //<mdl> module SoTransform
+module SoSphere {
+  internal  {
+    frame = "405 -139 104 56"
+  }
+  fields  {
+    instanceName = SoSphere0
+    radius = 1
+  }
+}
+connections  {
+  SoMainAxis0.inObject1Node = SoSeparator0.self
+  SoExaminerViewer0.children = SoMainAxis0.self
+  SoSeparator0.children = "SoCube0.self SoTransform0.self SoSphere0.self"
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: CxwZi2cgunjIaywDMmUbaHHioj7PLLjEFIoNAE73wK9MX7SMinG8p4IFZLyv+d7GsDXuAU/zk5O23UGs4lf/jg==
+//# MeVis end

@@ -1,0 +1,85 @@
+
+
+Interface {
+  Parameters {
+    Field dummy {type=bool value=true}
+  }
+}
+
+
+Description  {
+  Field transparency {
+    min = 0
+    max = 1
+  }
+  Field inObject1Node {deprecatedName=inputObject}
+  Field inObject2Node {deprecatedName=inputObject2}
+}
+
+
+Window  {
+  Vertical  {
+    TabView Main {
+        TabViewItem Display {
+          Box { layout=Vertical
+            CheckBox  displayInput {title=Input alignGroup=parameter}
+            Horizontal { expandX=No
+              Empty {w=10}
+              Field  transparency { step=.1 slider=Yes alignGroup=subParameter dependsOn=displayInput}
+            }
+          }       
+          Box {layout=Vertical
+            //Tool is displayed always. 
+            CheckBox dummy {title="Tool" dependsOn=!dummy}
+            Execute = "*js: ctx.field("dummy").setValue(true);*"
+            Horizontal {expandX=No alignX=left
+              Empty {w=10}
+              Vertical {
+                Table { alignGroup=subParameter
+                  Row{
+                     CheckBox displayUnit {title=Unit}
+                     Empty  {}
+                  }
+                  Row{
+                     CheckBox displayName {title=Name}
+                     Field toolName {title="" dependsOn=displayName}
+                  }
+                }
+                CheckBox displayToolOnlyOnValid {title="Display on Valid"  alignGroup=subParameter}
+                Field color {alignGroup=subParameter}
+              }
+            }
+
+          }   
+        }//TabViewItem Display
+        TabViewItem Measures {
+           Box { layout=Vertical expandY=yes
+            Field angleDegree {title="Angle/Deg:" edit = NO alignGroup=measureGroup}
+            Field connectPos {edit = NO alignGroup=measureGroup}
+            Field startPos {edit=no alignGroup=measureGroup}
+            Field endPos {edit=no alignGroup=measureGroup}
+           }  
+        }//TabViewItem Measures
+      }//TabView Main
+      Horizontal {
+        Box {layout=Horizontal expandX=true         
+          Empty {expandX=true}
+        }
+        Box {layout=Horizontal expandX=false
+          CheckBox resultsValid {enabled=false title=Valid}
+        }
+      }//Horizontal
+    } // Vertical 
+} // Window 
+
+
+
+
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: N/mv76K5fVZs91ywdaJzEhLF3+/zlE7DWBsZa/BdsRWSQcIYca5QCvepyVDo0ErQ8r8udltrAKhs3P8TvRJMPA==
+//# MeVis end

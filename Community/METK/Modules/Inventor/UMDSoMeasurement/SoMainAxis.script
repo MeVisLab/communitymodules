@@ -1,0 +1,93 @@
+
+
+Description  {
+   Field lineWidth {
+      min = 1
+      max = 10
+   }
+
+  // Porting to ILAB%
+  Field inObject1Node {deprecatedName=inputObject}
+  Field axisOrigin  {
+    items {
+     item ORIGIN_BARYCENTER {deprecatedName=barycenter}
+     item ORIGIN_MIDPOINT   {deprecatedName=midpoint}
+    }
+  }
+}
+
+
+Window  {
+  Vertical {
+    TabView Tools {
+      expandY = NO
+      TabViewItem Display {
+        panelName = "Display"
+        Box { layout=Vertical
+          CheckBox  displayInput {title=Input alignGroup=parameter}
+        }//Box 
+        Box {layout=Vertical
+          CheckBox displayMainAxis {title=Axis alignGroup=parameter}
+          Horizontal {expandX=No alignX=left
+            Empty {w=10}
+            Vertical{ 
+              Field axisOrigin {title="Origin:" dependsOn=displayMainAxis alignGroup=subParameter}
+              Field = displayToolMeasure
+              Table  { alignGroup=subParameter dependsOn = displayToolMeasure
+                Row  {
+                  CheckBox displayUnit {dependsOn=displayMainAxis title=Unit}
+                  Field    unit        {dependsOn=displayUnit title=""}
+                }
+                Row  { 
+                  CheckBox displayName {dependsOn=displayMainAxis title=Name}
+                  Field  toolName    {dependsOn=displayName title=""}
+                }
+              }
+              CheckBox largestValueOnly {dependsOn=displayMainAxis title="Largest Only" alignGroup=subParameter}
+              CheckBox displayToolOnlyOnValid {title="Display on Valid" alignGroup=subParameter}
+            }//Vertical
+          }//Horizontal
+        }//Box
+        Box {layout=Vertical
+          checkBox displayBoundingBox {title="Bounding Box" alignGroup=parameter}
+          Horizontal {expandX=Yes alignX=left
+            Empty {w=10}
+            Field lineWidth {step=1 slider=Yes dependsOn=displayBoundingBox alignGroup=subParameter}
+          }//Horizontal
+        }//Box
+        Box {layout=Vertical
+          Field = color
+        }
+      } // TabViewItem Display
+      TabViewItem Measures {
+        panelName = "Measures"
+        Box "Axes Orientation" {layout=Vertical
+          Field xAxis {edit = NO alignGroup=vectorMeasures}
+          Field yAxis {edit = NO alignGroup=vectorMeasures}
+          Field zAxis {edit = NO alignGroup=vectorMeasures}
+        }
+        Box Extents {layout=Vertical 
+          Field xDiameter {edit = NO expandX = YES}
+          Field yDiameter {edit = NO expandX = YES}
+          Field zDiameter {edit = NO expandX = YES}
+          Separator { direction = horizontal }
+          Field maxDiameter {edit = NO expandX = YES}
+        }
+        Box "Axes Center" {layout=Vertical
+          Field baryCenter {edit = NO alignGroup=vectorMeasures} 
+          Field midPoint {edit = NO alignGroup=vectorMeasures}
+        }
+      } // TabViewItem Measures
+    } // TabView Tools
+    Box {layout=Horizontal expandX=Yes alignX=right
+      Field resultsValid {title="Valid" edit=No}
+    }
+  } // Vertical Main
+} // Window 
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: eb6S/tZ1SnDrOvRA48thLmKvzw3hi2cKNAret43X25KsuFXyEsNYyMyO+NsxIW06SzjISQ/enn+cpXcwmnKJFA==
+//# MeVis end

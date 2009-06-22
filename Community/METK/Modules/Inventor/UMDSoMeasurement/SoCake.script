@@ -1,0 +1,35 @@
+
+Description  {
+   Field angleArc {
+      min = 0.00
+      max = 6.28
+   }
+   Field angleDegree {
+      min = 0.00
+      max = 360.00
+   }
+}
+
+Window  {
+   Category Parameters {
+      Vertical  {
+         expandY = NO
+         Field angleArc {
+            step = 0.017
+         }
+         Field angleDegree {
+            step = 1
+         }
+         Field = radius
+         Field = height
+      }
+
+   } // Category Parameters
+} // Window 
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: aW8GGckpNuBFx5GR5p2c7SzEHrpL0gvsqwiD+UV/CD4keNVvJ8KAdyTdxG/JZt8T/ElQHNhWkEeo6+eUX7vCNA==
+//# MeVis end

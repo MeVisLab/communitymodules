@@ -1,0 +1,40 @@
+
+
+Interface {
+  Parameters {
+    //invert color flag
+    Field colorFlag {type=bool value=false}
+  }
+}
+
+
+Description{
+  //Porting to MeVisLab
+  Field inImage {deprecatedName=image}
+}
+
+Commands {
+  source="$(LOCAL)/SoThresholdToPointSet.js"
+  initCommand=init
+}
+
+Window  {
+      Vertical  {
+         expandY = NO
+         Box "Interval"{layout=Vertical
+           Field = minValue
+           Field = maxValue
+         }
+         Box {layout=Vertical
+          CheckBox colorFlag {title="Color"}
+          FieldListener colorFlag {command=listenColorFlag}
+         }
+      }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: X1M65zEuZV/Khb3I1rplKA/xdzQf/AoXgfZh5ncsDY3/ClrBpKz3deV7lMRJx7s5L5ztUt2ldw+s63d0QgXB3w==
+//# MeVis end

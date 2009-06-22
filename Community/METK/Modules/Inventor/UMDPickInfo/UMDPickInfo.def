@@ -1,0 +1,50 @@
+//----------------------------------------------------------------------------------
+//! UMDPickInfo module definitions
+/*!
+// \file    UMDPickInfo.def
+// \author  Stefan Hiller
+// \date    2007-09-11
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoPickInfo {
+  DLL = "UMDPickInfo"
+
+  genre = ""
+  author = "Stefan Hiller"
+  status = "test"
+  comment = "Get picking information."
+  keywords = "pick picking test demo"
+  seeAlso = "SoPickStyle"
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDPickInfo"
+  examplenetwork = "$(LOCAL)/networks/SoPickInfoExample.mlab"
+  hasGroupInputs = FALSE
+
+  Window _default {
+    Vertical {
+      expandY = True
+      Box Picking {
+        expandY = True
+        title = "Picking"
+        Field infoHitCoordinate { title = "Hit Coordinate:" expandX = YES edit = NO }
+        Field infoHitNormal     { title = "Hit Normal:"     expandX = YES edit = NO }
+        Separator { direction = Horizontal expandX = YES }
+        Table {
+          expandY = True
+          Row {
+            Label              { title = "Pick Path:" }
+            Field infoTypeName { title = "Detail Type:" expandX = YES edit = NO }
+          }
+          Row {
+            HyperText { textField = infoPickPath expandX = YES }
+            HyperText { textField = infoDetail   expandX = YES }
+          }
+        }
+      }
+      Field infoStatus          { title = "Status:"         expandX = YES edit = NO }
+    }
+  } // window _default
+  
+} // InventorModule SoPickInfo
+

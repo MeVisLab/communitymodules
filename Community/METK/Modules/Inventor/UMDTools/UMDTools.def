@@ -1,0 +1,144 @@
+//----------------------------------------------------------------------------------
+//! UMDLocalColor module definitions
+/*!
+// \file    UMDLocalColor.def
+// \author  Christian Tietjen
+// \date    2004-09-24
+//
+*/
+//----------------------------------------------------------------------------------
+
+InventorModule SoClearGLBuffers {
+   genre          = ""
+   hasGroupInputs = NO
+   hasViewer      = NO
+   DLL            = UMDTools
+   author         = "Christian Tietjen"
+   status         = stable
+   seealso        = ""
+   comment        = ""
+   keywords       = "OpenGL Clear z Buffers"
+   exampleNetwork = "$(LOCAL)/networks/SoClearGLBuffers.mlab"
+} // InventorModule SoClearGLBuffers
+
+InventorModule SoFileToSceneGraph {
+   genre          = ""
+   hasGroupInputs = NO
+   hasViewer      = NO
+   DLL            = UMDTools
+   author         = "Christian Tietjen"
+   status         = stable
+   seealso        = ""
+   comment        = ""
+   keywords       = "convert inventor"
+   exampleNetwork = "$(LOCAL)/networks/SoFileToSceneGraph.mlab"
+   
+   Window {
+   }
+} // InventorModule SoFileToSceneGraph
+
+InventorModule SoFramesPerSecond {
+  DLL = "UMDTools"
+
+  genre = ""
+  author = "Christian Tietjen"
+  status = "stable"
+  comment = "Returns the frames per second. Is not able to differ between low fps because of high computataion effort and simply no user interaction!"
+  keywords = "fps runtime"
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDTools"
+
+  Window {
+     Field = fps { edit = No format = "%2.2f" }
+  }
+} // InventorModule SoFramesPerSecond
+
+
+InventorModule SoMinimalEnclosingCircle {
+  DLL = "UMDTools"
+
+  genre = ""
+  author = "Christian Tietjen"
+  status = "work-in-progress"
+  comment = ""
+  keywords = "mec"
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDTools"
+  hasGroupInputs = YES
+  
+  Window SoMinimalEnclosingCircle {
+     Vertical {
+       Field = center
+       Field = radius
+     }
+  }
+} // InventorModule SoMinimalEnclosingCircle
+
+
+InventorModule SoMousePosition {
+  DLL = "UMDTools"
+  author = "Maik Beyer"
+  status = "stable"
+  comment = "Get the current Mousepositon"
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDTools"
+  hasGroupInputs = FALSE
+  
+  Window SoMousePosition {
+     Vertical {
+       Field mousePosition {title="Position:" }
+     }
+  }
+  
+} //InventorModule SoMousePosition
+
+
+InventorModule SoShapeInfo {
+   DLL = "UMDTools"
+   genre = ""
+   author = "Christian Tietjen"
+   status = "stable"
+   comment = "Returns the number of points, lines and triangles in the subgraph"
+   keywords = ""
+   seeAlso = ""
+   projectSource = "$(UserProjectsPath)/sources/Inventor/UMDTools"
+   Window {
+      Vertical {
+         Field = numPoints    { edit = No }
+         Field = numLines     { edit = No }
+         Field = numTriangles { edit = No }
+         Field = numNodes     { edit = No }
+      }
+   }
+} // InventorModule SoShapeInfo
+
+
+InventorModule SoShapePartition {
+   DLL = "UMDTools"
+   deprecatedName = SoConvertShapeENT
+   //hasGroupInputs = YES
+   genre = ""
+   author = "Christian Tietjen"
+   status = "stable"
+   comment = "This module splits a scene in several cubes (bounding boxes) and converts all shapes in SoIndexedTriangleStripSets"
+   keywords = "sorted object blend"
+   seeAlso = "ivfix SoIndexedTriangleStripSet"
+   projectSource = "$(UserProjectsPath)/sources/Inventor/UMDTools"
+ 
+   Window {
+      Vertical {
+         Box { layout=Vertical
+            Field = shapePartitioning
+            Field = cubeSize { dependsOn = shapePartitioning }
+         }
+         Box { layout=Vertical
+            Field = valid { edit  = NO }
+         }
+         Box { layout=Vertical
+            Field = update { dependsOn = !autoUpdate }
+            Field = autoUpdate
+         }
+      }
+   }
+
+} // InventorModule SoShapePartition
+

@@ -1,0 +1,53 @@
+
+
+Description {
+  //Porting to MeVisLab
+  Field interactionMode {
+    items{
+      item INTERACTION_DIRECT_SELECT {deprecatedName=directSelect}
+    }
+  }
+}            
+
+
+Window  {
+  Vertical Main {
+    Box Measures {layout=Vertical
+      Field startPos {}
+      Field endPos {}
+      Field connectPos {}
+      Horizontal {alignGroup=measureGroup
+        Field angleDegree{edit = NO title="Angle/Degree:"}
+        Field angleArc {edit = NO title ="Angle/Arc:"}
+      }
+    }//Box Measures
+    Box Tool {layout=Vertical
+      Table {alignX=left expandX=NO alignGroup=toolGroup
+        Row {
+          CheckBox unitFlag {title="Display Unit" }
+          Field unit {dependsOn=unitFlag title="" }
+        }
+        Row {
+          CheckBox toolNameFlag {title="Display Name" }
+          Field toolName {title="" dependsOn=toolNameFlag }
+        }
+      }
+      Field  color {alignGroup=toolGroup}
+      Field minDistance {title="Line Interrupt Distance:" 
+             tooltip="Minimal distance of distance line interrupt for drawing the result/unit" 
+             alignGroup=toolGroup
+      }           
+    }//Box Tool
+    Box Other {
+      Field = keyboardIncrement
+      Field = interactionMode
+    }//Box Other
+  }   //Vertical Main
+} // Window 
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: Nsgw8zfxEoTGnjsTxBsGaGmMVTKlawJnPYHEWMKD/O71shQhsN1EaA9VYYrThWbCCvDOG7it+n5ajrCcruRqaA==
+//# MeVis end

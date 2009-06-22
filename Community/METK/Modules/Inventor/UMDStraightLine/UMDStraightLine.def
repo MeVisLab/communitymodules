@@ -1,0 +1,26 @@
+//----------------------------------------------------------------------------------
+//! UMDStraightLine module definitions
+/*!
+// \file    UMDStraightLine.def
+// \author  kmuehler
+// \date    2008-08-06
+*/
+//----------------------------------------------------------------------------------
+
+
+InventorModule SoStraightLine {
+  DLL = "UMDStraightLine"
+
+  genre = ""
+  author = "kmuehler"
+  status = "stable"
+  comment = "A single line with a start and an endpoint"
+  keywords = ""
+  seeAlso = ""
+  projectSource = "$(UserProjectsPath)/sources/Inventor/UMDStraightLine"
+  hasGroupInputs = FALSE
+  Description {
+  }
+
+} // InventorModule SoStraightLine
+

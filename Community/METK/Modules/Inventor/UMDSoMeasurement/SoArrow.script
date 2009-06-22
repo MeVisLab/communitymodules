@@ -1,0 +1,22 @@
+
+Window {
+  Vertical {
+    Box "Geometry" {layout=Vertical
+      Field  position    {alignGroup=allAlign}
+      Field  length      {alignGroup=allAlign}      
+      CheckBox  displayHead {alignGroup=allAlign}
+      Field  minDistance {alignGroup=allAlign}
+      Field  scale {alignGroup=allAlign}      
+    }
+    Box "Interaction" {layout=Vertical
+      Field rotationRef {title="Rotation Ref. Point:" alignGroup=allAlign}
+    }
+  }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: CnkLIPcb1phOartvgwg7VEai84g00i9HmEJgCvfOh0/lbPwnMMuYaEP2xo4cpLUleQ+gc+6uQnNBlgLvom/0wQ==
+//# MeVis end

@@ -1,0 +1,106 @@
+
+Interface {
+  Parameters {
+    Field dummy {type=bool value=true}
+  }
+}
+
+
+Description  {
+   Field error {
+      min = 0
+      max = 100
+   }
+   Field manPartition {
+      min = 2
+      max = 6
+   }
+
+  //Porting to MeVisLab
+  Field inObject1Node  {deprecatedName=inputObject}
+  Field inObject2Node {deprecatedName=inputObject2}
+
+} // Description 
+
+
+Window  {
+  Vertical {
+    TabView Main {
+      TabViewItem Display {
+        Box { layout=Vertical
+          CheckBox  displayInput {title=Input alignGroup=parameter}
+          Horizontal { expandX=No
+            Empty {w=10}
+          }
+        }       
+        Box {layout=Vertical
+          //Tool is displayed always. 
+          CheckBox dummy {title="Tool" dependsOn=!dummy}
+          Execute = "*js: ctx.field("dummy").setValue(true);*"
+          Horizontal {expandX=No alignX=left
+            Empty {w=10}
+            Vertical {
+              CheckBox = displayToolMeasure
+              Table { alignGroup=subParameter  dependsOn = displayToolMeasure
+                Row{
+                   CheckBox displayUnit {title=Unit}
+                   Field unit {title="" dependsOn=displayUnit}
+                }
+                Row{
+                   CheckBox displayName {title=Name}
+                   Field toolName {title="" dependsOn=displayName}
+                }
+              }
+              CheckBox displayToolOnlyOnValid {title="Display on Valid"  alignGroup=subParameter}
+              Field color {alignGroup=subParameter}
+      	      Field minDistance {title="Line Interrupt Distance:" 
+                tooltip="Minimal distance of distance line interrupt for drawing the result/unit" 
+                alignGroup=toolGroup
+              }                        
+              Field scaleLine {title="Scale Line:" 	                      
+                      alignGroup=toolGroup }
+            }
+          }
+
+        }   
+      }//TabViewItem Display
+      TabViewItem Measures {
+         Box { layout=Vertical expandY=yes
+          Field distance {edit=no alignGroup=measureGroup}
+          Field error {step=1 alignGroup=measureGroup}
+          Field startPos {edit=no alignGroup=measureGroup}
+          Field endPos {edit=no alignGroup=measureGroup}
+         }  
+      }//TabViewItem Measures
+      TabViewItem Advanced {
+         Box {layout = Vertical
+          Field sizeOfPointSet1 {edit = NO}
+          Field sizeOfPointSet2 {edit = NO}
+          Field = autoParam
+          Field autoEntries {dependsOn = autoParam}
+          Field manEntries {dependsOn = !autoParam}
+          Field manPartition {step = 1 dependsOn = !autoParam}
+          Field = displaySpheres
+          Field = verbose
+         }  
+      }//TabViewItems Advanced
+    }//TabView Main
+    Horizontal {
+      Box {layout=Horizontal expandX=true         
+        CheckBox  autoCompute {title=Auto}
+        Button computeMinimalDistance {title=Update dependsOn=!autoCompute w=50}
+        Empty {expandX=true}
+      }
+      Box {layout=Horizontal expandX=false
+        CheckBox resultsValid {edit=false title=Valid}
+      }
+    }//Horizontal
+  }//Vertical               
+} // Window 
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2005-08-18T18:57:42
+//# hash: dd/1C7Mw9TMMhx6zjq272NoXiR7DEJQDK0lgvsWE06NgFHuYG1XCq94vTXGVj5bzT4Pw5hTJ66qK7qHUlo5cJg==
+//# MeVis end
