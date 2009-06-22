@@ -61,7 +61,8 @@ void METKMsgReceiver::handleNotification (Field *field)
          omObject &obj = (*oc)[OBJ_COMMUNICATION];
          if (obj.isValid()) {
             obj[LAY_STATUSEVENTS][INF_MESSAGE] = messageFld->getStringValue();
-            obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(MSG_READY);
+            //obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(MSG_READY);
+			obj[LAY_STATUSEVENTS][INF_STATUS] = MSG_READY; //for linux compatibility - not sure if it still sends an omMessage
 			//SoDebugError::postInfo("RECEIVER: READY","");
             sendNotification();
             statusFld->setStringValue(MSG_DONE);
@@ -98,7 +99,7 @@ void METKMsgReceiver::handleObjMgrNotification()
                   if (status == MSG_INIT && message == messageFld->getStringValue()) {
                      // instance is responsible. Setting INF_STATUS to MSG_PROCESSING
                      statusFld->setStringValue(MSG_PROCESSING);
-                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(MSG_PROCESSING);
+                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(MSG_PROCESSING); //see line 64 for linux test
 					 //SoDebugError::postInfo("RECEIVER: PROCESSING","");
                      dataFld->setStringValue(obj[LAY_STATUSEVENTS][INF_DATA]);
                      sendNotification();

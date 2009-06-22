@@ -51,7 +51,8 @@ public:
 	{
 		
 		int i=hash(str);
-		list<R>::iterator b = table[i].begin();
+		list<R>::iterator b;
+		b = table[i].begin();
 		while( b != table[i].end() )
 		{
 			if( (*b).str == str ) return false;

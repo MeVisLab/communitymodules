@@ -43,9 +43,9 @@
 
 #include <mlOpenGL.h>
 
-#include <windows.h>
+//#include <windows.h>
 #include <string>
-#include <FLOAT.H>
+//#include <FLOAT.H>
 
 #include <GL/gl.h>
 #include <stdio.h>
