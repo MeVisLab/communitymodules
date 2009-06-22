@@ -66,7 +66,8 @@ public:
 	bool remove(const std::string& str)
 	{
 		int i=hash(str);
-		list<R>::iterator b = table[i].begin();
+		list<R>::iterator b;
+		b = table[i].begin();
 		while( b != table[i].end() )
 		{
 			if( (*b).str == str )
@@ -83,7 +84,8 @@ public:
 	attrType* find(const std::string& str)
 	{
 		int i=hash(str);
-		list<R>::iterator b = table[i].begin();
+		list<R>::iterator b;
+		b = table[i].begin();
 		while( b != table[i].end() )
 		{
 			if( (*b).str == str ) return &(*b).attr;
