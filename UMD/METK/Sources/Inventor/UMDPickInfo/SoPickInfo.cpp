@@ -9,9 +9,16 @@
 */
 //----------------------------------------------------------------------------------
 
+
+// For snprintf make the typical windows compatibility stuff...
+#include <stdio.h>
+#ifdef WIN32
+  #define snprintf _snprintf
+#endif
+
+
 // Local includes
 #include "SoPickInfo.h"
-#include <mlUtils.h>  // for itoa
 
 // Wrap inventor includes into XVEnterScope and XVLeaveScope to avoid
 // collisions between OpenInventor and Windows headers.
@@ -114,13 +121,13 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 				std::string details("<table border=1 cellpadding=4> <tr> <td colspan=2>SoPointDetail</td> </tr> ");
 				char iA[100];	// buffer large enough even for 64 bit integers
 
-				MLsnprintf(iA, 99, "%I64ld", pointDetail->getCoordinateIndex());
+				snprintf(iA, 99, "%d", pointDetail->getCoordinateIndex());
 				details += "<tr> <td>Coordinate Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", pointDetail->getMaterialIndex());
+				snprintf(iA, 99, "%d", pointDetail->getMaterialIndex());
 				details += "<tr> <td>Material Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", pointDetail->getNormalIndex());
+				snprintf(iA, 99, "%d", pointDetail->getNormalIndex());
 				details += "<tr> <td>Normal Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", pointDetail->getTextureCoordIndex());
+				snprintf(iA, 99, "%d", pointDetail->getTextureCoordIndex());
 				details += "<tr> <td>Texture Coordinate Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -135,13 +142,13 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 				std::string details("<table border=1 cellpadding=4> <tr> <td colspan=2>SoLineDetail</td> </tr> ");
 				char iA[100];	// buffer large enough for 64 bit int strings
 
-				MLsnprintf(iA, 99, "%I64ld", lineDetail->getPoint0()->getCoordinateIndex());
+				snprintf(iA, 99, "%d", lineDetail->getPoint0()->getCoordinateIndex());
 				details += "<tr> <td>Point0 Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", lineDetail->getPoint1()->getCoordinateIndex(), iA, 10);
+				snprintf(iA, 99, "%d", lineDetail->getPoint1()->getCoordinateIndex(), iA, 10);
 				details += "<tr> <td>Point1 Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", lineDetail->getLineIndex());
+				snprintf(iA, 99, "%d", lineDetail->getLineIndex());
 				details += "<tr> <td>Line Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", lineDetail->getPartIndex());
+				snprintf(iA, 99, "%d", lineDetail->getPartIndex());
 				details += "<tr> <td>Part Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -158,14 +165,14 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 
 				for (int i = 0; i < faceDetail->getNumPoints(); i++)
 				{
-					MLsnprintf(iA, 99, "%I64ld", i);
+					snprintf(iA, 99, "%d", i);
 					details += "<tr> <td>Point " + std::string(iA);
-					MLsnprintf(iA, 99, "%I64ld", faceDetail->getPoint(i)->getCoordinateIndex());
+					snprintf(iA, 99, "%d", faceDetail->getPoint(i)->getCoordinateIndex());
 					details += " Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				}
-				MLsnprintf(iA, 99, "%I64ld", faceDetail->getFaceIndex());
+				snprintf(iA, 99, "%d", faceDetail->getFaceIndex());
 				details += "<tr> <td>Face Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", faceDetail->getPartIndex());
+				snprintf(iA, 99, "%d", faceDetail->getPartIndex());
 				details += "<tr> <td>Part Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -180,9 +187,9 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 				std::string details("<table border=1 cellpadding=4> <tr> <td colspan=2>SoTextDetail</td> </tr> ");
         char iA[100];	// buffer large enough for 64 bit int strings
 
-				MLsnprintf(iA, 99, "%I64ld", textDetail->getStringIndex());
+				snprintf(iA, 99, "%d", textDetail->getStringIndex());
 				details += "<tr> <td>String Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				MLsnprintf(iA, 99, "%I64ld", textDetail->getCharacterIndex());
+				snprintf(iA, 99, "%d", textDetail->getCharacterIndex());
 				details += "<tr> <td>Character Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -291,7 +298,7 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 
 			for (int i = 0; i < pickPath->getLength(); i++)
 			{
-				MLsnprintf(iA, 99, "%I64ld", i);
+				snprintf(iA, 99, "%d", i);
 				path += "<tr> <td>" + std::string(iA) + "</td> <td>" 
 					+ pickPath->getNode(i)->getTypeId().getName().getString() + "</td> <td>"
 					+ pickPath->getNode(i)->getName().getString() + "</td> </tr> ";
