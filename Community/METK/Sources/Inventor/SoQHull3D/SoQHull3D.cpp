@@ -19,6 +19,8 @@
 // TODO: include more inventor things here
 #include "XVLeaveScope.h"
 
+#include <list>
+
 SO_NODE_SOURCE(SoQHull3D)
 
 
@@ -284,7 +286,7 @@ void SoQHull3D::drawPoints()
 		delete[] points; points = NULL;
 
 	} else {
-		if (debug) cout << " not enough points to render or input scene disconnected" << endl;
+		if (debug) std::cout << " not enough points to render or input scene disconnected" << std::endl;
 	}
 }
 
@@ -371,7 +373,7 @@ void SoQHull3D::drawFaces()
 		delete[] indices;       indices       = NULL;
 	
 	} else {
-		if (debug) cout << "not enough points to render faces or input scene disconnected" << endl;	
+		if (debug) std::cout << "not enough points to render faces or input scene disconnected" << std::endl;	
 	}
 }
 
@@ -463,7 +465,7 @@ void SoQHull3D::drawNormals()
 		delete[] vertexNorm_points; vertexNorm_points = NULL;
 	
 	} else {
-		if (debug) cout << "not enough points to render normals or input scene disconnected" << endl;	
+		if (debug) std::cout << "not enough points to render normals or input scene disconnected" << std::endl;	
 	}
 
 }
@@ -633,7 +635,7 @@ void SoQHull3D::nodeChanged(SoNodeSensor* sensor)
 			//no hull was found
 			} else {
 				state.setValue("no convex hull found");
-				if (debug) cout << " no convex hull found" << endl;
+				if (debug) std::cout << " no convex hull found" << std::endl;
 			}		
 
 		//no input
