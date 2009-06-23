@@ -55,6 +55,7 @@
 
 #pragma warning( push, 3 )
 
+#include <GL/glew.h>
 #include <mlOpenGL.h>
 
 #include <XVEnterScope.h>
