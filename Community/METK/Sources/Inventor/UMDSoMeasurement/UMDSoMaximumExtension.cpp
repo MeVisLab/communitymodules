@@ -343,12 +343,12 @@ void UMDSoMaximumExtension::computeWidthExtension(int &size){
 	// suche nach diameter punkt, welcher am nächsten zum Koordinatenursprung liegt
 	// dieser wird in den Koordinatenursprung transliert, alle anderen werden entsprechend 
 	// mit transliert
-	if(min(fDist_1,fDist_2)==fDist_1){
+	if(std::min(fDist_1,fDist_2)==fDist_1){
 		SbVec3f translateVec3f(-1*point_1[0],-1*point_1[1],-1*point_1[2]);
 		// Bestimmen des Translationsvektors
 		_sbMatrix.setTranslate(translateVec3f);
 	}
-	else if(min(fDist_1,fDist_2)==fDist_2){
+	else if(std::min(fDist_1,fDist_2)==fDist_2){
 		SbVec3f translateVec3f(-1*point_2[0],-1*point_2[1],-1*point_2[2]);
 		// Bestimmen des Translationsvektors
 		_sbMatrix.setTranslate(translateVec3f);
