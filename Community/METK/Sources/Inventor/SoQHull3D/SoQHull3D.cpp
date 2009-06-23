@@ -142,8 +142,8 @@ void SoQHull3D::callQHull()
 		unsigned int i = 0;
 
 		//for vertex normals
-		list <SbVec3f> normalList;
-		list <SbVec3f>::iterator iN;
+		std::list <SbVec3f> normalList;
+		std::list <SbVec3f>::iterator iN;
 		normalList.clear();
 		SbVec3f tmp_normal = SbVec3f(0, 0, 0);
 
