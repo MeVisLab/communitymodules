@@ -26,7 +26,7 @@ MLModule kAviWriter {
   seeAlso        = "SoExaminerViewer"
   documentation  = "$(LOCAL)/html/kAviWriter.html"
   projectSource  = "$(UserProjectsPath)/sources/ML/MLkAviWriter"
-  exampleNetwork = $(MODULES)/mevis/ML/MLkAviWriter/networks/mlkAviWriterExample.mlab
+  exampleNetwork = $(MLAB_UMD_METK)/Modules/ML/MLkAviWriter/networks/mlkAviWriterExample.mlab
 
 
   Window {
