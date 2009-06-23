@@ -125,7 +125,13 @@ void UMDInventorToPointer::writePointer()
          if (&obj) {
             if (!obj.hasAttribute(fieldLayerID->getStringValue(), fieldInfoID->getStringValue())) {
                omAttribute& attrNew = (*oc)[fieldObjectID->getStringValue()][fieldLayerID->getStringValue()][fieldInfoID->getStringValue()];
-			   attrNew.set_MLint32(_pointer->getIntValue());
+			         attrNew.set_MLint32(_pointer->getIntValue());
+               #pragma message("error in UMDPointerToInventor::writePointer(): This function will fail for pointers larger than 2^31 and requires porting (see e.g. MLStringToPtr())!")
+               #ifdef MEVIS_64BIT
+                 ML_PRINT_ERROR("UMDPointerToInventor::writePointer()", 
+                                ML_BAD_DATA_TYPE, 
+                                "This function will fail for pointers larger than 2^31 and requires porting (see e.g. MLStringToPtr())!");
+               #endif
                attrNew.flags().markPersistent(false);
             }
             else{

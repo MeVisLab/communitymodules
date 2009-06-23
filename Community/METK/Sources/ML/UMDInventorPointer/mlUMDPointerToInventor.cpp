@@ -156,8 +156,16 @@ void UMDPointerToInventor::getPointer()
          if (obj.isValid())
          {
             bool pValid = obj.hasAttribute(fieldLayerID->getStringValue(), fieldInfoID->getStringValue());
-            if (pValid)
+            if (pValid){
                _myPointer = obj[fieldLayerID->getStringValue()][fieldInfoID->getStringValue()].get_MLint32();
+               #pragma message("error in UMDPointerToInventor::getPointer(): This function will fail for pointers larger than 2^31 and requires porting (see e.g. MLStringToPtr())!")
+               #ifdef MEVIS_64BIT
+                 ML_PRINT_ERROR("UMDPointerToInventor::getPointer()", 
+                                ML_BAD_DATA_TYPE, 
+                                "This function will fail for pointers larger than 2^31 and requires porting (see e.g. MLStringToPtr())!");
+               #endif
+            }
+               
          }
       }		
    }

@@ -67,7 +67,7 @@ private:
 
 	typedef ObjMgrClient inherited;
 
-	__int64 _myPointer;
+	MLint64 _myPointer;
 
 	//! Implements interface for the runtime type system of the ML.
 	ML_CLASS_HEADER(UMDPointerToInventor)
