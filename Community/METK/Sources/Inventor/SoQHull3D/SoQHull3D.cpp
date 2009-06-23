@@ -197,7 +197,7 @@ void SoQHull3D::callQHull()
 
 			//index-stuff -> create a lookup table 'lut'
 			IndexVector::iterator iL;
-			iL = max_element(convexHullIndexLUT.begin(), convexHullIndexLUT.end());
+			iL = std::max_element(convexHullIndexLUT.begin(), convexHullIndexLUT.end());
 			int maxID = *iL;
 			int32_t* lut = new int32_t[maxID];
 			for (iL = convexHullIndexLUT.begin(), i=0; iL != convexHullIndexLUT.end(); iL++, i++)	lut[*iL] = i;
