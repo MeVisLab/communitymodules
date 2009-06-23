@@ -165,8 +165,8 @@ void SoMinimalEnclosingCircle::compute(SoGLRenderAction* action) {
    if (SbVec2s(_winSize[0], _winSize[1]) != SoViewportRegionElement::get(state).getWindowSize()) {
       _winSize[0] = SoViewportRegionElement::get(state).getWindowSize()[0];
       _winSize[1] = SoViewportRegionElement::get(state).getWindowSize()[1];
-      if (_pixelMatrix) delete[] _pixelMatrix; 
-      _pixelMatrix = new SbBool[(_winSize[0] + 1) * (_winSize[1] + 1)];
+      if (_pixelMatrix) delete[] _pixelMatrix;
+      _pixelMatrix = new SbBool[static_cast<int>((_winSize[0] + 1) * (_winSize[1] + 1))];
    }
 
    // iniatilize the raster
