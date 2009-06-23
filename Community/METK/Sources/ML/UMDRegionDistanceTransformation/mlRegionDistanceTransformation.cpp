@@ -81,7 +81,7 @@ void RegionDistanceTransformation::calcGlobalDistanceField()
 
 			if (currentComponentID==0.0) //is pixel a background pixel
 			{			
-				currentDistance = min(currentDistance,min(a+1,min(b+1,min(c+1,d+1))));
+				currentDistance = min(static_cast<float>(currentDistance),min(a+1,min(b+1,min(c+1,d+1))));
 			}
 			else
 			{
@@ -96,7 +96,7 @@ void RegionDistanceTransformation::calcGlobalDistanceField()
 				}
 				else
 				{
-					currentDistance = min(currentDistance,min(a+1,min(b+1,min(c+1,d+1))));
+					currentDistance = min(static_cast<float>(currentDistance),min(a+1,min(b+1,min(c+1,d+1))));
 				}
 			}
 			_globalDistanceField->setValueAt(pos,currentDistance);
@@ -118,7 +118,7 @@ void RegionDistanceTransformation::calcGlobalDistanceField()
 
 			if (currentComponentID==0.0) //is pixel a background pixel
 			{			
-				currentDistance = min(currentDistance,min(a+1,min(b+1,min(c+1,d+1))));
+				currentDistance = min(static_cast<float>(currentDistance),min(a+1,min(b+1,min(c+1,d+1))));
 			}
 			else
 			{
@@ -132,7 +132,7 @@ void RegionDistanceTransformation::calcGlobalDistanceField()
 				}
 				else
 				{
-					currentDistance = min(currentDistance,min(a+1,min(b+1,min(c+1,d+1))));
+					currentDistance = min(static_cast<float>(currentDistance),min(a+1,min(b+1,min(c+1,d+1))));
 				}
 			}
 			_globalDistanceField->setValueAt(pos,currentDistance);
