@@ -21,7 +21,7 @@
 #include "kBasics.h"
 #include "HashTable.h"
 #include "kScriptFrameEntry.h"
-#include "stdafx.h"
+#include "StdAfx.h"
 
 using namespace std;
 

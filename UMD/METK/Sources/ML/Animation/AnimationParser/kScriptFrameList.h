@@ -25,7 +25,7 @@
 #include "kScriptCommandObject.h"
 #include "kScriptFrameEntry.h"
 #include "HashTable.h"
-#include "stdafx.h"
+#include "StdAfx.h"
 
 using namespace std;
 
