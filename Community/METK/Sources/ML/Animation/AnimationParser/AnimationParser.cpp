@@ -9,7 +9,7 @@
 //----------------------------------------------------------------------------------
 
 
-#include "stdafx.h" //DLL-Standard
+#include "StdAfx.h" //DLL-Standard
 #include "AnimationParser.h"
 #include <iostream>
 #include <fstream>
