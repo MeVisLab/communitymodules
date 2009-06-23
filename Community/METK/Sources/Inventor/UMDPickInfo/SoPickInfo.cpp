@@ -11,6 +11,7 @@
 
 // Local includes
 #include "SoPickInfo.h"
+#include <stdlib.h>  // for itoa
 
 // Wrap inventor includes into XVEnterScope and XVLeaveScope to avoid
 // collisions between OpenInventor and Windows headers.
