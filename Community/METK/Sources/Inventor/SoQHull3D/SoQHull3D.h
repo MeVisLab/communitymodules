@@ -50,19 +50,19 @@ extern "C"
 }
 
 //QHull: global vector for input points
-typedef vector <realT> realTVector;
+typedef std::vector <realT> realTVector;
 static realTVector inputPointList;
 
 
 
 //global vectors for point values
-typedef vector <SbVec3f> PointVector;
+typedef std::vector <SbVec3f> PointVector;
 static PointVector convexHullPoints;
 static PointVector convexHullFaceNormals;
 static PointVector convexHullVertexNormals;
 
 //... and for index values
-typedef vector <int> IndexVector;
+typedef std::vector <int> IndexVector;
 static IndexVector convexHullIndexLUT;
 static IndexVector convexHullFaceIndexList;
 
