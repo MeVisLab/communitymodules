@@ -84,74 +84,74 @@ CvpCalcVis::~CvpCalcVis()
 
 bool CvpCalcVis::setData (string cPath)
 {
-	string pathVis(cPath);
-	pathVis.append("camera_data.dat");
-	string pathIds(cPath);
-	pathIds.append("camera_ids.dat");
-	    
-	_loadIds(pathIds.c_str());
+  string pathVis(cPath);
+  pathVis.append("camera_data.dat");
+  string pathIds(cPath);
+  pathIds.append("camera_ids.dat");
 
-	FILE * pFile;
-	pFile = fopen (pathVis.c_str(),"rb");
-	fread(&m_iViewportX,sizeof(int),1,pFile);
-	fread(&m_iViewportY,sizeof(int),1,pFile);
-	fread(&m_iDiv,sizeof(int),1,pFile);
-	fread(&m_iNrOfObjects,sizeof(int),1,pFile);	
-	fread(&m_cVersionChar[0],sizeof(char),1,pFile);
-	fread(&m_cVersionChar[1],sizeof(char),1,pFile);
-	fread(&m_cVersionChar[2],sizeof(char),1,pFile);
+  _loadIds(pathIds.c_str());
 
-	if (m_cVersionChar[0]!='V' || m_cVersionChar[1]!='0' || m_cVersionChar[2]!='3')
-	{
-		cout << "wrong version of viewpoint data (without silhouette and imageSpaceCenter information) ... please re-generate viewpoint data for this dataset" << endl;
-		return false;
-	}
+  FILE * pFile;
+  pFile = fopen (pathVis.c_str(),"rb");
+  fread(&m_iViewportX,sizeof(int),1,pFile);
+  fread(&m_iViewportY,sizeof(int),1,pFile);
+  fread(&m_iDiv,sizeof(int),1,pFile);
+  fread(&m_iNrOfObjects,sizeof(int),1,pFile);
+  fread(&m_cVersionChar[0],sizeof(char),1,pFile);
+  fread(&m_cVersionChar[1],sizeof(char),1,pFile);
+  fread(&m_cVersionChar[2],sizeof(char),1,pFile);
 
-	m_oSphere = new CvpDivSphere( m_fSphereX, m_fSphereY, m_fSphereZ, m_fSphereRadius, m_iDiv, 1 );
-	std::cout << "sphere data: x:" << m_fSphereX << "  y:" << m_fSphereY << "  z:" << m_fSphereZ << "  radius:" << m_fSphereRadius << "   div:" << m_iDiv << std::endl;
-	QuickSort(m_oSphere->vPoints);
+  if (m_cVersionChar[0]!='V' || m_cVersionChar[1]!='0' || m_cVersionChar[2]!='3')
+  {
+    cout << "wrong version of viewpoint data (without silhouette and imageSpaceCenter information) ... please re-generate viewpoint data for this dataset" << endl;
+    return false;
+  }
 
-	m_fResultMatrix = new float**[m_oSphere->vPoints.size()];
-	for ( unsigned int ri1 = 0; ri1 < m_oSphere->vPoints.size(); ri1++)
-	{
-		m_fResultMatrix[ri1] = new float*[m_iNrOfObjects];
-		for (int ri2 = 0; ri2 < m_iNrOfObjects; ri2++)
-		{
-			m_fResultMatrix[ri1][ri2] = new float[m_iNrOfObjects+PARAM_COUNT];
-		}
-	}
-	
-	unsigned int i = 0;
-	for ( i = 0; i< m_oSphere->vPoints.size(); i++)
-	{
-		for ( int j = 0; j< m_iNrOfObjects;j++)
-		{
-			fread(m_fResultMatrix[i][j],sizeof(float),m_iNrOfObjects+PARAM_COUNT,pFile);
-		} 
-	}
-	fclose (pFile);
+  m_oSphere = new CvpDivSphere( m_fSphereX, m_fSphereY, m_fSphereZ, m_fSphereRadius, m_iDiv, 1 );
+  std::cout << "sphere data: x:" << m_fSphereX << "  y:" << m_fSphereY << "  z:" << m_fSphereZ << "  radius:" << m_fSphereRadius << "   div:" << m_iDiv << std::endl;
+  QuickSort(m_oSphere->vPoints);
 
-	m_oObjectImportance = new CvpField( m_iNrOfObjects );
-	m_oObjectStatus     = new CvpField( m_iNrOfObjects );
-	for ( i = 0; (int)i < m_iNrOfObjects; i++ ) m_oObjectStatus->setValueAt( i, 0 );
+  m_fResultMatrix = new float**[m_oSphere->vPoints.size()];
+  for ( unsigned int ri1 = 0; ri1 < m_oSphere->vPoints.size(); ri1++)
+  {
+    m_fResultMatrix[ri1] = new float*[m_iNrOfObjects];
+    for (int ri2 = 0; ri2 < m_iNrOfObjects; ri2++)
+    {
+      m_fResultMatrix[ri1][ri2] = new float[m_iNrOfObjects+PARAM_COUNT];
+    }
+  }
 
-	m_oVisField = new CvpField(m_oSphere->vPoints.size());
-	m_oImpField = new CvpField(m_oSphere->vPoints.size());
-	m_oNumField = new CvpField(m_oSphere->vPoints.size());
-	m_oEntField = new CvpField(m_oSphere->vPoints.size());
-	m_oDisField = new CvpField(m_oSphere->vPoints.size());
-	m_oCamField = new CvpField(m_oSphere->vPoints.size());
-	m_oVisStaField = new CvpField(m_oSphere->vPoints.size());
-	m_oImpStaField = new CvpField(m_oSphere->vPoints.size());
-	m_oSilField = new CvpField(m_oSphere->vPoints.size());
-	m_oCenterField = new CvpField(m_oSphere->vPoints.size());
-	m_oSumField = new CvpField(m_oSphere->vPoints.size());
+  unsigned int i = 0;
+  for ( i = 0; i< m_oSphere->vPoints.size(); i++)
+  {
+    for ( int j = 0; j< m_iNrOfObjects;j++)
+    {
+      fread(m_fResultMatrix[i][j],sizeof(float),m_iNrOfObjects+PARAM_COUNT,pFile);
+    }
+  }
+  fclose (pFile);
 
-	m_oTempField = new CvpField(m_oSphere->vPoints.size());
-	m_oTempField2 = new CvpField(m_oSphere->vPoints.size());
+  m_oObjectImportance = new CvpField( m_iNrOfObjects );
+  m_oObjectStatus     = new CvpField( m_iNrOfObjects );
+  for ( i = 0; (int)i < m_iNrOfObjects; i++ ) m_oObjectStatus->setValueAt( i, 0 );
 
-	m_flHasData=true;
-	return m_flHasData; 
+  m_oVisField = new CvpField(m_oSphere->vPoints.size());
+  m_oImpField = new CvpField(m_oSphere->vPoints.size());
+  m_oNumField = new CvpField(m_oSphere->vPoints.size());
+  m_oEntField = new CvpField(m_oSphere->vPoints.size());
+  m_oDisField = new CvpField(m_oSphere->vPoints.size());
+  m_oCamField = new CvpField(m_oSphere->vPoints.size());
+  m_oVisStaField = new CvpField(m_oSphere->vPoints.size());
+  m_oImpStaField = new CvpField(m_oSphere->vPoints.size());
+  m_oSilField = new CvpField(m_oSphere->vPoints.size());
+  m_oCenterField = new CvpField(m_oSphere->vPoints.size());
+  m_oSumField = new CvpField(m_oSphere->vPoints.size());
+
+  m_oTempField = new CvpField(m_oSphere->vPoints.size());
+  m_oTempField2 = new CvpField(m_oSphere->vPoints.size());
+
+  m_flHasData=true;
+  return m_flHasData;
 }
 
 
@@ -178,7 +178,7 @@ void CvpCalcVis::_loadIds(const char* cPath)
 
 
 int CvpCalcVis::getSphereValues (float &fX,float &fY,float &fZ,float &fR,int &iDiv) const
-{  
+{
   fX = m_fSphereX;
   fY = m_fSphereY;
   fZ = m_fSphereZ;
@@ -189,7 +189,7 @@ int CvpCalcVis::getSphereValues (float &fX,float &fY,float &fZ,float &fR,int &iD
 
 
 int CvpCalcVis::findObjectId (string sStruct)
-{  
+{
   for ( unsigned int i=0; i<m_vStructures.size(); i++)
   {
     if ((*m_vStructures[i]).compare(sStruct) == 0) return i;
@@ -198,26 +198,26 @@ int CvpCalcVis::findObjectId (string sStruct)
 }
 
 string CvpCalcVis::getObjectName (int iID)
-{  
+{
   if (iID>0 && (unsigned int)iID<m_vStructures.size())
-    return (*m_vStructures[iID]); 
+    return (*m_vStructures[iID]);
   return "";
 }
 
 string CvpCalcVis::getFocusObject(){
-	return getObjectName(m_iCurrentId);
+  return getObjectName(m_iCurrentId);
 }
 
 
 int CvpCalcVis::setFocusObject (string cName)
-{  
+{
   m_iCurrentId = findObjectId(cName);
   if (m_iCurrentId == -1) return 0;
   return 1;
 }
 
 int CvpCalcVis::setCamPos ( float fX, float fY, float fZ )
-{  
+{
   m_fCamX = fX;
   m_fCamY = fY;
   m_fCamZ = fZ;
@@ -225,19 +225,19 @@ int CvpCalcVis::setCamPos ( float fX, float fY, float fZ )
 }
 
 int CvpCalcVis::setCamRange ( float fR )
-{  
+{
   m_fCamRange = fR;
   return 1;
 }
 
 int CvpCalcVis::setVisStability ( float fVisSta )
-{  
+{
   m_fVisSta = fVisSta;
   return 1;
 }
 
 int CvpCalcVis::setImpStability ( float fImpSta )
-{  
+{
   m_fImpSta = fImpSta;
   return 1;
 }
@@ -247,7 +247,7 @@ void CvpCalcVis::_calcVisField (void)
   if (!m_flHasData) return;
   for (int i=0; i<m_oVisField->getSize(); i++)
   {
-    m_oVisField->setValueAt(i, m_fResultMatrix[i][m_iCurrentId][m_iNrOfObjects] / 
+    m_oVisField->setValueAt(i, m_fResultMatrix[i][m_iCurrentId][m_iNrOfObjects] /
                                m_fResultMatrix[i][m_iCurrentId][m_iCurrentId]);
   }
 }
@@ -262,13 +262,13 @@ void CvpCalcVis::_calcImpField (void)
     for (int j=0; j<m_iNrOfObjects; j++)
     {
       fSum+=m_oObjectStatus->getValueAt(j) *
-            m_oObjectImportance->getValueAt(j)*( m_fResultMatrix[i][m_iCurrentId][j] / 
-                                                 m_fResultMatrix[i][m_iCurrentId][m_iCurrentId] );  
+            m_oObjectImportance->getValueAt(j)*( m_fResultMatrix[i][m_iCurrentId][j] /
+                                                 m_fResultMatrix[i][m_iCurrentId][m_iCurrentId] );
     }
     m_oImpField->setValueAt( i, fSum );
   }
   m_oImpField->normalize();
-  m_oImpField->invert(); 
+  m_oImpField->invert();
 }
 
 void CvpCalcVis::_calcNumField (void)
@@ -283,12 +283,12 @@ void CvpCalcVis::_calcNumField (void)
     {
       if ( m_fResultMatrix[i][m_iCurrentId][j] != 0 && j != m_iCurrentId && m_oObjectStatus->getValueAt(j) != 0 ) iSum++;
     }
-    fVisibility = 1 - (m_fResultMatrix[i][m_iCurrentId][m_iNrOfObjects] / 
-                       m_fResultMatrix[i][m_iCurrentId][m_iCurrentId] ); 
+    fVisibility = 1 - (m_fResultMatrix[i][m_iCurrentId][m_iNrOfObjects] /
+                       m_fResultMatrix[i][m_iCurrentId][m_iCurrentId] );
     m_oNumField->setValueAt( i, (float) iSum );
   }
   m_oNumField->normalize();
-  m_oNumField->invert(); 
+  m_oNumField->invert();
 }
 
 void CvpCalcVis::_calcEntField (void)
@@ -322,22 +322,22 @@ void CvpCalcVis::_calcCamField (void)
 void CvpCalcVis::_calcPrefRegionField (void)
 {
     if (!m_flHasData) return;
-	m_oRegField->fillWith(0);
-	if (prefRegionType==PR_VECTOR)
-	{
-		//Vector-Region
-		addVectorRegionToStackField(0,prefRegionVectorX,prefRegionVectorY,prefRegionVectorZ,(float)prefRegionRange);
-	}
-	else
-	{
-		addPointRegionToStackField(0,
-								   (prefRegionVectorX*m_oSphere->fRadius) + m_oSphere->fMx,
-								   (prefRegionVectorY*m_oSphere->fRadius) + m_oSphere->fMy,
-								   (prefRegionVectorZ*m_oSphere->fRadius) + m_oSphere->fMz,
-								   (float)prefRegionRange);
-	}
-	setStackFieldAsRegionField(0);
-	m_oRegField->normalize();
+  m_oRegField->fillWith(0);
+  if (prefRegionType==PR_VECTOR)
+  {
+    //Vector-Region
+    addVectorRegionToStackField(0,prefRegionVectorX,prefRegionVectorY,prefRegionVectorZ,(float)prefRegionRange);
+  }
+  else
+  {
+    addPointRegionToStackField(0,
+                   (prefRegionVectorX*m_oSphere->fRadius) + m_oSphere->fMx,
+                   (prefRegionVectorY*m_oSphere->fRadius) + m_oSphere->fMy,
+                   (prefRegionVectorZ*m_oSphere->fRadius) + m_oSphere->fMz,
+                   (float)prefRegionRange);
+  }
+  setStackFieldAsRegionField(0);
+  m_oRegField->normalize();
 }
 
 void CvpCalcVis::_calcSilField (void)
@@ -391,12 +391,12 @@ void CvpCalcVis::_calcSum (void)
   for (i=0; i<m_oTempField->getSize(); i++) m_oTempField->setValueAt( i, m_oRegField->getValueAt(i) * m_fRegW );
   m_oSumField->add((*m_oTempField));
 
-  //PrefReg für -zusätzlich- Restrict  
+  //PrefReg für -zusätzlich- Restrict
   if (restrictToRegion)
   {
-	  for (i=0; i<m_oTempField->getSize(); i++) m_oTempField->setValueAt( i, m_oRegField->getValueAt(i));  
-	  m_oTempField->binarize(0.1f);
-	  m_oSumField->multiply((*m_oTempField));
+    for (i=0; i<m_oTempField->getSize(); i++) m_oTempField->setValueAt( i, m_oRegField->getValueAt(i));
+    m_oTempField->binarize(0.1f);
+    m_oSumField->multiply((*m_oTempField));
   }
   kDebug::Debug("min1: "+kBasics::FloatToString(m_oSumField->getMinValue()) ,kDebug::DL_HIGH);
   kDebug::Debug("max1: "+kBasics::FloatToString(m_oSumField->getMaxValue()) ,kDebug::DL_HIGH);
@@ -407,7 +407,7 @@ void CvpCalcVis::_calcSum (void)
 
 
 CvpField* CvpCalcVis::getField (int iField)
-{  
+{
   if (iField == VIS_FIELD) return m_oVisField;
   if (iField == IMP_FIELD) return m_oImpField;
   if (iField == NUM_FIELD) return m_oNumField;
@@ -438,13 +438,13 @@ int CvpCalcVis::calc (void)
   _calcStaField(IMP_FIELD);
   _calcSilField();
   _calcCenterField();
-  _calcPrefRegionField();  
+  _calcPrefRegionField();
   _calcSum();
   return 1;
 }
 
 void CvpCalcVis::setStackSize (unsigned int iSize)
-{  
+{
   if (m_oFieldStack != NULL) delete[] m_oFieldStack;
   m_iStackSize = iSize;
   m_oFieldStack = new CvpField[iSize];
@@ -479,9 +479,9 @@ int CvpCalcVis::copyFieldToStack (int iFieldType, unsigned int iStackPos)
     if ( iFieldType == REG_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oNumField->getValueAt( i ) );
     if ( iFieldType == STA_VIS_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oVisStaField->getValueAt( i ) );
     if ( iFieldType == STA_IMP_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oImpStaField->getValueAt( i ) );
-	if ( iFieldType == SIL_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oSilField->getValueAt( i ) );
-	if ( iFieldType == CENTER_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oCenterField->getValueAt( i ) );
-    if ( iFieldType == SUM_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oSumField->getValueAt( i ) );    
+  if ( iFieldType == SIL_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oSilField->getValueAt( i ) );
+  if ( iFieldType == CENTER_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oCenterField->getValueAt( i ) );
+    if ( iFieldType == SUM_FIELD ) m_oFieldStack[iStackPos].setValueAt (i, m_oSumField->getValueAt( i ) );
   }
   return 1;
 }
@@ -495,8 +495,8 @@ int CvpCalcVis::copyStackFieldToStack ( unsigned int iFromStackPos, unsigned int
   if ( !m_oFieldStack[iToStackPos].isValid() ) m_oFieldStack[iToStackPos].setSize( m_oSphere->vPoints.size() );
   for ( unsigned int i = 0; i < m_oSphere->vPoints.size(); i++ )
   {
-    m_oFieldStack[iToStackPos].setValueAt (i, m_oFieldStack[iFromStackPos].getValueAt( i ) );    
-  } 
+    m_oFieldStack[iToStackPos].setValueAt (i, m_oFieldStack[iFromStackPos].getValueAt( i ) );
+  }
   return 1;
 }
 
@@ -515,16 +515,16 @@ int CvpCalcVis::multiplyStackFields ( unsigned int iStackPos1, unsigned int iSta
 }
 
 int CvpCalcVis::multiplyStackField ( unsigned int iStackPos1, double factor )
-{  
-	if ( !m_oFieldStack[iStackPos1].isValid() ) return 0;
-	if ( !m_flHasData ) return 0;
-	if ( iStackPos1 >= m_iStackSize ) return 0;		
-    
-	m_oFieldStack[iStackPos1].multiply( (float)factor );
+{
+  if ( !m_oFieldStack[iStackPos1].isValid() ) return 0;
+  if ( !m_flHasData ) return 0;
+  if ( iStackPos1 >= m_iStackSize ) return 0;
 
-	return 1;
+  m_oFieldStack[iStackPos1].multiply( (float)factor );
+
+  return 1;
 }
- 
+
 
 int CvpCalcVis::addStackFields ( unsigned int iStackPos1, unsigned int iStackPos2, unsigned int iStackPosResult )
 {
@@ -539,7 +539,7 @@ int CvpCalcVis::addStackFields ( unsigned int iStackPos1, unsigned int iStackPos
   else                                       m_oFieldStack[iStackPosResult].add( m_oFieldStack[iStackPos2] );
   return 1;
 }
- 
+
 CvpField* CvpCalcVis::getStackField ( unsigned int iStackPos )
 {
   if ( iStackPos >= m_iStackSize ) return NULL;
@@ -547,7 +547,7 @@ CvpField* CvpCalcVis::getStackField ( unsigned int iStackPos )
 }
 
 int CvpCalcVis::setStackFieldAsRegionField ( int iStackPos )
-{  
+{
   if ( !m_flHasData ) return 0;
   m_oRegField = getStackField ( iStackPos );
   return 1;
@@ -558,7 +558,7 @@ int CvpCalcVis::addPointRegionToStackField ( int iStackPos, float fX, float fY, 
 {
   if ( !m_flHasData ) return 0;
   if ( ( unsigned int ) iStackPos >= m_iStackSize ) return 0;
-  if ( !m_oFieldStack[iStackPos].isValid() ) m_oFieldStack[iStackPos].setSize( m_oSphere->vPoints.size() );  
+  if ( !m_oFieldStack[iStackPos].isValid() ) m_oFieldStack[iStackPos].setSize( m_oSphere->vPoints.size() );
   _calcPointRegion( m_oTempField, fX, fY, fZ, fRange );
   m_oFieldStack[iStackPos].merge( (*m_oTempField) );
   return 1;
@@ -579,7 +579,7 @@ int CvpCalcVis::clearStack( int iStackPos )
 {
   if ( !m_flHasData ) return 0;
   if ( ( unsigned int ) iStackPos >= m_iStackSize ) return 0;
-  if ( !m_oFieldStack[iStackPos].isValid() ) m_oFieldStack[iStackPos].setSize( m_oSphere->vPoints.size() );  
+  if ( !m_oFieldStack[iStackPos].isValid() ) m_oFieldStack[iStackPos].setSize( m_oSphere->vPoints.size() );
   m_oFieldStack[iStackPos].fillWith(0.0);
   return 1;
 }
@@ -599,7 +599,7 @@ vector<string*> CvpCalcVis::getStructureNames ( void )
 {
   return m_vStructures;
 }
-    
+
 
 int CvpCalcVis::setImportance ( string sStruct, float fImportance )
 {
@@ -621,7 +621,7 @@ int CvpCalcVis::setStatus ( string sStruct, bool flEnabled )
 }
 
 void CvpCalcVis::_scaleNormalizedField (CvpField *oField, float fRange)
-{ 
+{
   for (int i=0; i<oField->getSize(); i++)
   {
       oField->setValueAt( i, max( oField->getValueAt(i) - ( 1 - fRange ), 0.0f ) );
@@ -630,84 +630,84 @@ void CvpCalcVis::_scaleNormalizedField (CvpField *oField, float fRange)
 }
 
 void CvpCalcVis::setApexAngle(int angle){
-	_apexAngle=angle;
+  _apexAngle=angle;
 }
 
 int CvpCalcVis::findNeighborPointDirection(int index,SbVec3f dir, const std::list<int>& visited, SbVec3f newPosition){
-	float x,y,z;
-	getSpherePos(index,x,y,z);
-	SbVec3f actPos(x,y,z);
-	_calcPointRegion(m_oTempField,x,y,z,1.0);
-	_calcPointRegion(m_oTempField2,x,y,z,1.0);
-	m_oTempField2->binarize(0.95);
-	//double minang=180.0;
-	double maxValue=0.0;
-	int ret=-1;
-	SbVec3f centerOfSphere(m_fSphereX,m_fSphereY,m_fSphereZ);
-	for(int i=0;i<m_oTempField->getSize();i++){
-		if(std::find(visited.begin(),visited.end(),i)!=visited.end()){
-			continue;
-		}
-		if(m_oTempField2->getValueAt(i)<=0.0){
-			m_oTempField->setValueAt(i,0.0);
-		}else{
-			if(dir.length()>0){
-				SbVec3f actPoint;
-				getSpherePos(i,actPoint[0],actPoint[1],actPoint[2]);
-				SbVec3f actDir=actPoint - actPos;
-				if(actDir.length()>0){
-					double percentage=actDir.length()/dir.length();
-					SbVec3f newDir=actPos+percentage*dir;
-					SbVec3f centerToPoint=newDir-centerOfSphere;
-					percentage=m_fSphereRadius/centerToPoint.length();
-					SbVec3f pointOnSphere=centerOfSphere+percentage*centerToPoint;
-					SbVec3f diffDir=pointOnSphere-actPos;
-					double skalprod=(actDir[0]*diffDir[0]+actDir[1]*diffDir[1]+actDir[2]*diffDir[2])/(actDir.length()*diffDir.length());
-					double ang=0.0;
-					ang=acos(skalprod)/kBasics::PI*180;
-					if(skalprod==0.0){
-						ang=90.0;
-					}
-					if(ang<=_apexAngle){
-						getStackField(4)->setValueAt(i,0.5);
-						if(getStackField(1)->getValueAt(i)>maxValue){
-						//if(getField(VIS_FIELD)->getValueAt(i)>maxValue){
-					//		std::cout << "(" << dir[0] << ";" << dir[1] << ";" << dir[2] << ")" << std::endl;
-					//		std::cout << "(" << actDir[0] << ";" << actDir[1] << ";" << actDir[2] << ")" << std::endl;
-					//		std::cout << skalprod << "::" << ang << std::endl;
-							maxValue=getStackField(1)->getValueAt(i);
-							//maxValue=getField(VIS_FIELD)->getValueAt(i);
-							ret=i;
-						}
-					}
-				}
-			}
-		}
-	}
-	if(ret>=0){
-		return ret;
-	}
-	m_oTempField->setValueAt(index,0.0);
-	ret=m_oTempField->getMaxPos();
-	if(ret==index){
-		//std::cout << m_oTempField->getValueAt(ret);
-		//std::cout << m_oTempField->toString() << std::endl;
-	}
-	return ret;
+  float x,y,z;
+  getSpherePos(index,x,y,z);
+  SbVec3f actPos(x,y,z);
+  _calcPointRegion(m_oTempField,x,y,z,1.0);
+  _calcPointRegion(m_oTempField2,x,y,z,1.0);
+  m_oTempField2->binarize(0.95);
+  //double minang=180.0;
+  double maxValue=0.0;
+  int ret=-1;
+  SbVec3f centerOfSphere(m_fSphereX,m_fSphereY,m_fSphereZ);
+  for(int i=0;i<m_oTempField->getSize();i++){
+    if(std::find(visited.begin(),visited.end(),i)!=visited.end()){
+      continue;
+    }
+    if(m_oTempField2->getValueAt(i)<=0.0){
+      m_oTempField->setValueAt(i,0.0);
+    }else{
+      if(dir.length()>0){
+        SbVec3f actPoint;
+        getSpherePos(i,actPoint[0],actPoint[1],actPoint[2]);
+        SbVec3f actDir=actPoint - actPos;
+        if(actDir.length()>0){
+          double percentage=actDir.length()/dir.length();
+          SbVec3f newDir=actPos+percentage*dir;
+          SbVec3f centerToPoint=newDir-centerOfSphere;
+          percentage=m_fSphereRadius/centerToPoint.length();
+          SbVec3f pointOnSphere=centerOfSphere+percentage*centerToPoint;
+          SbVec3f diffDir=pointOnSphere-actPos;
+          double skalprod=(actDir[0]*diffDir[0]+actDir[1]*diffDir[1]+actDir[2]*diffDir[2])/(actDir.length()*diffDir.length());
+          double ang=0.0;
+          ang=acos(skalprod)/kBasics::PI*180;
+          if(skalprod==0.0){
+            ang=90.0;
+          }
+          if(ang<=_apexAngle){
+            getStackField(4)->setValueAt(i,0.5);
+            if(getStackField(1)->getValueAt(i)>maxValue){
+            //if(getField(VIS_FIELD)->getValueAt(i)>maxValue){
+          //    std::cout << "(" << dir[0] << ";" << dir[1] << ";" << dir[2] << ")" << std::endl;
+          //    std::cout << "(" << actDir[0] << ";" << actDir[1] << ";" << actDir[2] << ")" << std::endl;
+          //    std::cout << skalprod << "::" << ang << std::endl;
+              maxValue=getStackField(1)->getValueAt(i);
+              //maxValue=getField(VIS_FIELD)->getValueAt(i);
+              ret=i;
+            }
+          }
+        }
+      }
+    }
+  }
+  if(ret>=0){
+    return ret;
+  }
+  m_oTempField->setValueAt(index,0.0);
+  ret=m_oTempField->getMaxPos();
+  if(ret==index){
+    //std::cout << m_oTempField->getValueAt(ret);
+    //std::cout << m_oTempField->toString() << std::endl;
+  }
+  return ret;
 }
 
 //Does this function get the nearest point on the bounding sphere related to a given point in space?
 int CvpCalcVis::getFieldPos(const float &fX, const float &fY, const float &fZ){
-	_calcPointRegion(m_oTempField,fX,fY,fZ,1.0);
-	return m_oTempField->getMaxPos();
+  _calcPointRegion(m_oTempField,fX,fY,fZ,1.0);
+  return m_oTempField->getMaxPos();
 }
 
 void CvpCalcVis::getSpherePos(int index, float &fX, float &fY, float &fZ){
-	if(index<(int)m_oSphere->vPoints.size()){
-		fX = m_oSphere->vPoints[index]->x;
-	    fY = m_oSphere->vPoints[index]->y;
-		fZ = m_oSphere->vPoints[index]->z;
-	}
+  if(index<(int)m_oSphere->vPoints.size()){
+    fX = m_oSphere->vPoints[index]->x;
+      fY = m_oSphere->vPoints[index]->y;
+    fZ = m_oSphere->vPoints[index]->z;
+  }
 }
 void CvpCalcVis::_calcPointRegion ( CvpField* oField, float fX, float fY, float fZ, float fRange )
 {
@@ -740,7 +740,7 @@ void CvpCalcVis::_calcVecRegion ( CvpField *oField, float fX, float fY, float fZ
   }
   oField->normalize();
   oField->invert();
-  if ( fRange != 1 ) _scaleNormalizedField( oField, fRange );  
+  if ( fRange != 1 ) _scaleNormalizedField( oField, fRange );
 }
 
 void CvpCalcVis::_calcStaField (int iField)
@@ -751,10 +751,10 @@ void CvpCalcVis::_calcStaField (int iField)
   int iIndex1, iIndex2, iIndexStart;
   bool flDiffers;
   float fStartColor;
-  
+
   if (iField == VIS_FIELD) { oInField = m_oVisField; fThresh = m_fVisSta; }
   if (iField == IMP_FIELD) { oInField = m_oImpField; fThresh = m_fImpSta; }
-  
+
   m_oTempField2->fillWith(0);
    unsigned int i=0;
    for (i=0; (int)i < oInField->getSize(); i++)
@@ -776,7 +776,7 @@ void CvpCalcVis::_calcStaField (int iField)
         iIndex2 = m_oSphere->vPoints[i]->getNeighbour(j)->id;
         if ( m_oTempField->getValueAt(iIndex2) != fStartColor ) { flDiffers = true; break; }
       }
-      if (flDiffers) 
+      if (flDiffers)
       {
         m_oTempField2->setValueAt(iIndex1,-1.0);
       }
@@ -820,7 +820,7 @@ void CvpCalcVis::_calcStaField (int iField)
 
 int CvpCalcVis::setWeight ( int iFieldType, float fValue )
 {
-   if ( !m_flHasData ) return 0; 
+   if ( !m_flHasData ) return 0;
    if ( iFieldType == VIS_FIELD ) m_fVisW = fValue;
    if ( iFieldType == IMP_FIELD ) m_fImpW = fValue;
    if ( iFieldType == NUM_FIELD ) m_fNumW = fValue;
@@ -837,7 +837,7 @@ int CvpCalcVis::setWeight ( int iFieldType, float fValue )
 
 float CvpCalcVis::getWeight ( int iFieldType )
 {
-   if ( !m_flHasData ) return 0; 
+   if ( !m_flHasData ) return 0;
    if ( iFieldType == VIS_FIELD ) return m_fVisW;
    if ( iFieldType == IMP_FIELD ) return m_fImpW;
    if ( iFieldType == NUM_FIELD ) return m_fNumW;
@@ -855,27 +855,27 @@ float CvpCalcVis::getWeight ( int iFieldType )
 
 void CvpCalcVis::setPrefRegionVector ( float fX, float fY, float fZ )
 {
-	prefRegionVectorX = fX;
-	prefRegionVectorY = fY;
-	prefRegionVectorZ = fZ;
-	_calcPrefRegionField();
+  prefRegionVectorX = fX;
+  prefRegionVectorY = fY;
+  prefRegionVectorZ = fZ;
+  _calcPrefRegionField();
 }
 
 void CvpCalcVis::setPrefRegionRange ( double value )
 {
-	prefRegionRange = value;
-	_calcPrefRegionField();
+  prefRegionRange = value;
+  _calcPrefRegionField();
 }
 
 void CvpCalcVis::setRestrictToRegion ( bool value )
 {
-	restrictToRegion = value;
+  restrictToRegion = value;
 }
 
 void CvpCalcVis::setPrefRegionType ( PrefRegionTypeEnum value )
 {
-	prefRegionType = value;
-	_calcPrefRegionField();
+  prefRegionType = value;
+  _calcPrefRegionField();
 }
 
 
@@ -919,17 +919,17 @@ int CvpCalcVis::getStackMaxPos ( int iStackPos, float &fX, float &fY, float &fZ 
 
 int CvpCalcVis::getMatrixValues ( int iCamID, string sStruct, std::vector<float>* vValues)
 {
-	if ( !m_flHasData ) return -1;		
+  if ( !m_flHasData ) return -1;
 
-	vValues->clear();
-	if (iCamID<0 || (unsigned int)iCamID>=m_oSphere->vPoints.size()) return -1;
-	int iObjID = findObjectId (sStruct);
-	if (iObjID==-1) return -1;
-	for (int k = 0; k<m_iNrOfObjects + 3; k++)
-	{		
-		vValues->push_back(float(m_fResultMatrix[iCamID][iObjID][k]));
-	}  
-	return 0;
+  vValues->clear();
+  if (iCamID<0 || (unsigned int)iCamID>=m_oSphere->vPoints.size()) return -1;
+  int iObjID = findObjectId (sStruct);
+  if (iObjID==-1) return -1;
+  for (int k = 0; k<m_iNrOfObjects + 3; k++)
+  {
+    vValues->push_back(float(m_fResultMatrix[iCamID][iObjID][k]));
+  }
+  return 0;
 }
 
 
@@ -956,14 +956,14 @@ void CvpCalcVis::logResults (void)
   fout.open("c:/calcVis.txt",ios::out);
   fout<<"Spherepoints:"<<endl;
   fout<<"-------------"<<endl;
-  
+
   for (i = 0; (unsigned int)i<m_oSphere->vPoints.size(); i++)
   {
     fout<<i<<": ("<<m_oSphere->vPoints[i]->x<<","<<m_oSphere->vPoints[i]->y<<","<<m_oSphere->vPoints[i]->z<<") : "<<m_oSphere->vPoints[i]->id<<endl;
   }
   fout<<"ResultMatrix:"<<endl;
   fout<<"-------------"<<endl;
-  
+
   for (i = 0; (unsigned int)i<m_oSphere->vPoints.size(); i++)
   {
     fout<<"Viewpoint: "<<i<<endl;
@@ -989,39 +989,39 @@ void CvpCalcVis::logResults (void)
 
 int CvpCalcVis::getDataViewportX(void)
 {
-	return m_iViewportX;
+  return m_iViewportX;
 }
 
 
 int CvpCalcVis::getDataViewportY(void)
 {
-	return m_iViewportY;
+  return m_iViewportY;
 }
 
 int CvpCalcVis::getDataNrOfObjects(void)
 {
-	return m_iNrOfObjects;
+  return m_iNrOfObjects;
 }
 
 
 int CvpCalcVis::getDataDiv(void)
 {
-	return m_iDiv;
+  return m_iDiv;
 }
 
 int CvpCalcVis::getDataCamCount(void)
 {
-	if (m_oSphere)
-		return m_oSphere->vPoints.size();
-	return -1;
+  if (m_oSphere)
+    return m_oSphere->vPoints.size();
+  return -1;
 }
 
 string CvpCalcVis::getDataVersion(void)
 {
-	string s;
-	s+=m_cVersionChar[0];
-	s+=m_cVersionChar[1];
-	s+=m_cVersionChar[2];
-	return s;
+  string s;
+  s+=m_cVersionChar[0];
+  s+=m_cVersionChar[1];
+  s+=m_cVersionChar[2];
+  return s;
 }
 

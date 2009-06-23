@@ -25,7 +25,7 @@
 #include "kBasics.h"
 #include "kCamera.h"
 #include "METK.h"
-#include "Hashtable.h"
+#include "HashTable.h"
 
 #include "vpBasic/vpCalcVis.h"
 #include "vpBasic/vpField.h"

@@ -23,7 +23,7 @@
 #include <ObjMgr/mlObjMgrClient.h>
 
 #include "kBasics.h"
-#include "Hashtable.h"
+#include "HashTable.h"
 #include "ObjMgrCommunicator.h"
 
 ML_START_NAMESPACE

@@ -21,7 +21,7 @@
 #include <inttypes.h>
 
 #include "kBasics.h"
-#include "Hashtable.h"
+#include "HashTable.h"
 #include "kCamera.h"
 #include "kDebug.h"
 #include "METK.h"
