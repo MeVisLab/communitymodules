@@ -242,7 +242,7 @@ void SoTextureMaskedArea::draw(View2DSliceList *dsl, View2DSlice *dslice, int /*
          oPointer	= (_ML_UINT8 *) originalData;
          
          // get original
-         oOk = dsl->getInputImage()->getTile3D(originalData, MLuint8Type, 0, 0, currentSlice.getValue(), ox, oy, 1);
+         oOk = dsl->getInputImage()->getTile3D(originalData, static_cast<MLDataType>(MLuint8Type), 0, 0, currentSlice.getValue(), ox, oy, 1);
          
          // compute texture, if not done already
          if (!textureOK) computeTexture();
@@ -362,14 +362,14 @@ void SoTextureMaskedArea::computeTexture()
          if (tc == 3)
          {
             inTexture.getTile6D(textureData, 
-               MLuint8Type, 
+               static_cast<MLDataType>(MLuint8Type), 
                XVImageSize(0, 0, 0, 0, 0, 0), 
                XVImageSize(tx, ty, tz, 3, 1, 1));
          }
          else if (tc == 1)
          {
             inTexture.getTile3D(textureData, 
-               MLuint8Type, 
+               static_cast<MLDataType>(MLuint8Type), 
                0, 0, 0, 
                tx, ty, tz);
          }
@@ -428,7 +428,7 @@ void SoTextureMaskedArea::computeTexture()
       
       
       // get mask
-      mOk = inMask.getTile3D(maskData, MLuint8Type, 0, 0, currentSlice.getValue(), mx, my, 1);
+      mOk = inMask.getTile3D(maskData, static_cast<MLDataType>(MLuint8Type), 0, 0, currentSlice.getValue(), mx, my, 1);
       
       // tile the small texture onto a big one ...
       //if ( (tx<ox) || (ty<oy) )
