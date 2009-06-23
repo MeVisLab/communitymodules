@@ -41,10 +41,12 @@
 
 #include "XVLeaveScope.h"
 
+#include <vector>
+
 // QHull: include
 extern "C"
 {
-	#include "qhull/qhull_a.h"
+  #include "qhull/qhull_a.h"
 }
 
 //QHull: global vector for input points
@@ -81,10 +83,10 @@ public:
   //@{! fields
   SoSFInt32 numInput;
   SoSFInt32 numOutput;
-	SoSFInt32 numTriangles;
+  SoSFInt32 numTriangles;
 
-	SoSFInt32 ch_surface;
-	SoSFInt32 ch_volume;
+  SoSFInt32 ch_surface;
+  SoSFInt32 ch_volume;
 
   SoSFBool showPoints;
   SoSFBool showFaces;
@@ -96,12 +98,12 @@ public:
 
   SoSFString state;
 
-	//! 'hidden' fields in automatic panel
-	SoSFBool showNormals;
-	SoSFBool useFaceNormals;
+  //! 'hidden' fields in automatic panel
+  SoSFBool showNormals;
+  SoSFBool useFaceNormals;
 
-	//! output
-	SoSFNode out_qhull;
+  //! output
+  SoSFNode out_qhull;
 
   //@}
 
@@ -123,49 +125,49 @@ protected:
 
   //! callback action for collectiong primitives of an open inventor scene
   SoCallbackAction *callbackAction;
-       
+
   //! called when entering a node during callback
   static SoCallbackAction::Response preCB(void *userData, SoCallbackAction *action, const SoNode *node);
 
   //! called if the child is a shape (consisting of points)
   static void pointCB(void *userData, SoCallbackAction *action,
-		const SoPrimitiveVertex *v);
+    const SoPrimitiveVertex *v);
 
   //! called if the child is a shape (consisting of line segments)
   static void lineSegmentCB(void *userData, SoCallbackAction *action,
-		const SoPrimitiveVertex *v1,
+    const SoPrimitiveVertex *v1,
     const SoPrimitiveVertex *v2);
 
   //! called if the child is a shape (consisting of triangles)
   static void triangleCB(void *userData, SoCallbackAction *action,
-		const SoPrimitiveVertex *v1,
+    const SoPrimitiveVertex *v1,
     const SoPrimitiveVertex *v2,
     const SoPrimitiveVertex *v3);
 
 
   //! collects points, lines and triangles of the inventor scene
-	void collectPrimitives();
+  void collectPrimitives();
 
-	//! execute QHull
-	void callQHull();
+  //! execute QHull
+  void callQHull();
 
-	//! drawing routines
-	void drawPoints();
-	void drawFaces();
-	void drawNormals();
+  //! drawing routines
+  void drawPoints();
+  void drawFaces();
+  void drawNormals();
 
 private:
-	//! group for output
-	SoGroup *output;
+  //! group for output
+  SoGroup *output;
 
-	//! separators for points, faces and normals
-	SoSeparator *chPoints, *chFaces, *chNormals;
+  //! separators for points, faces and normals
+  SoSeparator *chPoints, *chFaces, *chNormals;
 
-	//! state variable
-	bool convexHullFound;
+  //! state variable
+  bool convexHullFound;
 
-	//! transformation matrix
-	SbMatrix transMatrix;
+  //! transformation matrix
+  SbMatrix transMatrix;
 
 };
 
