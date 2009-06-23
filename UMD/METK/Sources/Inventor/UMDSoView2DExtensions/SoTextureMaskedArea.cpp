@@ -361,10 +361,9 @@ void SoTextureMaskedArea::computeTexture()
       case 0 :	//inTexture.getTile3D(textureData, MLuint8Type, 0, 0, 0, tx, ty, tz);
          if (tc == 3)
          {
-            inTexture.getTile6D(textureData, 
-               static_cast<MLDataType>(MLuint8Type), 
-               XVImageSize(0, 0, 0, 0, 0, 0), 
-               XVImageSize(tx, ty, tz, 3, 1, 1));
+            XVImageSize p1(0, 0, 0, 0, 0, 0);
+            XVImageSize p2(tx, ty, tz, 3, 1, 1);
+            inTexture.getTile6D(textureData, static_cast<MLDataType>(MLuint8Type), p1, p2);
          }
          else if (tc == 1)
          {
