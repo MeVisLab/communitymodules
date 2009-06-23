@@ -24,6 +24,13 @@
 #endif
 #include "XVLeaveScope.h"
 
+// Resolve platform dependent itoa function.
+#ifdef WIN32
+  #define myIToA(A, B, C) _itoa(A, B, C)
+#else
+  #define myIToA(A, B, C)  itoa(A, B, C)
+#endif
+
 #include <string>		// for concatenation, also uses non-standard function itoa
 
 SO_NODE_SOURCE(SoPickInfo)
@@ -114,13 +121,13 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 				std::string details("<table border=1 cellpadding=4> <tr> <td colspan=2>SoPointDetail</td> </tr> ");
 				char iA[33];	// buffer for 32-bit int + 0
 
-				_itoa(pointDetail->getCoordinateIndex(), iA, 10);
+				myIToA(pointDetail->getCoordinateIndex(), iA, 10);
 				details += "<tr> <td>Coordinate Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(pointDetail->getMaterialIndex(), iA, 10);
+				myIToA(pointDetail->getMaterialIndex(), iA, 10);
 				details += "<tr> <td>Material Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(pointDetail->getNormalIndex(), iA, 10);
+				myIToA(pointDetail->getNormalIndex(), iA, 10);
 				details += "<tr> <td>Normal Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(pointDetail->getTextureCoordIndex(), iA, 10);
+				myIToA(pointDetail->getTextureCoordIndex(), iA, 10);
 				details += "<tr> <td>Texture Coordinate Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -135,13 +142,13 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 				std::string details("<table border=1 cellpadding=4> <tr> <td colspan=2>SoLineDetail</td> </tr> ");
 				char iA[33];	// buffer for 32-bit int + 0
 
-				_itoa(lineDetail->getPoint0()->getCoordinateIndex(), iA, 10);
+				myIToA(lineDetail->getPoint0()->getCoordinateIndex(), iA, 10);
 				details += "<tr> <td>Point0 Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(lineDetail->getPoint1()->getCoordinateIndex(), iA, 10);
+				myIToA(lineDetail->getPoint1()->getCoordinateIndex(), iA, 10);
 				details += "<tr> <td>Point1 Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(lineDetail->getLineIndex(), iA, 10);
+				myIToA(lineDetail->getLineIndex(), iA, 10);
 				details += "<tr> <td>Line Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(lineDetail->getPartIndex(), iA, 10);
+				myIToA(lineDetail->getPartIndex(), iA, 10);
 				details += "<tr> <td>Part Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -158,14 +165,14 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 
 				for (int i = 0; i < faceDetail->getNumPoints(); i++)
 				{
-					_itoa(i, iA, 10);
+					myIToA(i, iA, 10);
 					details += "<tr> <td>Point " + std::string(iA);
-					_itoa(faceDetail->getPoint(i)->getCoordinateIndex(), iA, 10);
+					myIToA(faceDetail->getPoint(i)->getCoordinateIndex(), iA, 10);
 					details += " Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				}
-				_itoa(faceDetail->getFaceIndex(), iA, 10);
+				myIToA(faceDetail->getFaceIndex(), iA, 10);
 				details += "<tr> <td>Face Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(faceDetail->getPartIndex(), iA, 10);
+				myIToA(faceDetail->getPartIndex(), iA, 10);
 				details += "<tr> <td>Part Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -180,9 +187,9 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 				std::string details("<table border=1 cellpadding=4> <tr> <td colspan=2>SoTextDetail</td> </tr> ");
 				char iA[33];	// buffer for 32-bit int + 0
 
-				_itoa(textDetail->getStringIndex(), iA, 10);
+				myIToA(textDetail->getStringIndex(), iA, 10);
 				details += "<tr> <td>String Index</td> <td>" + std::string(iA) + "</td> </tr> ";
-				_itoa(textDetail->getCharacterIndex(), iA, 10);
+				myIToA(textDetail->getCharacterIndex(), iA, 10);
 				details += "<tr> <td>Character Index</td> <td>" + std::string(iA) + "</td> </tr> ";
 				details += "</table>";
 
@@ -291,7 +298,7 @@ void SoPickInfo::handleEvent(SoHandleEventAction *action)
 
 			for (int i = 0; i < pickPath->getLength(); i++)
 			{
-				_itoa(i, iA, 10);
+				myIToA(i, iA, 10);
 				path += "<tr> <td>" + std::string(iA) + "</td> <td>" 
 					+ pickPath->getNode(i)->getTypeId().getName().getString() + "</td> <td>"
 					+ pickPath->getNode(i)->getName().getString() + "</td> </tr> ";
