@@ -1578,7 +1578,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //horizontal
       if (searchPoint.y-searchDist>0)
       {
-        for (int i=searchPoint.x; i<mlMin(_sliceSizeOpt.x,searchPoint.x+searchDist); i++) //to the right
+        for (int i=searchPoint.x; i<mlMin(_sliceSizeOpt.x,static_cast<MLint>(searchPoint.x+searchDist)); i++) //to the right
         {
           if (_components[compID].freeSpaceField->getValueAt(i,searchPoint.y-searchDist)==1)
           {
@@ -1654,7 +1654,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //horizontal
       if (searchPoint.y+searchDist<_sliceSizeOpt.y)
       {
-        for (int i=searchPoint.x; i<mlMin(_sliceSizeOpt.x,searchPoint.x+searchDist); i++) //to the right
+        for (int i=searchPoint.x; i<mlMin(_sliceSizeOpt.x,static_cast<MLint>(searchPoint.x+searchDist)); i++) //to the right
         {
           if (_components[compID].freeSpaceField->getValueAt(i,searchPoint.y+searchDist)==1)
           {
@@ -1669,7 +1669,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //vertical
       if (searchPoint.x+searchDist<_sliceSizeOpt.x)
       {
-        for (int i=searchPoint.y; i<mlMin(_sliceSizeOpt.y,searchPoint.y+searchDist); i++) //to the bottom
+        for (int i=searchPoint.y; i<mlMin(_sliceSizeOpt.y,static_cast<MLint>(searchPoint.y+searchDist)); i++) //to the bottom
         {
           if (_components[compID].freeSpaceField->getValueAt(searchPoint.x+searchDist,i)==1)
           {
@@ -1708,7 +1708,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //vertical
       if (searchPoint.x-searchDist>0)
       {
-        for (int i=searchPoint.y; i<mlMin(_sliceSizeOpt.y,searchPoint.y+searchDist); i++) //to the bottom
+        for (int i=searchPoint.y; i<mlMin(_sliceSizeOpt.y,static_cast<MLint>(searchPoint.y+searchDist)); i++) //to the bottom
         {
           if (_components[compID].freeSpaceField->getValueAt(searchPoint.x-searchDist,i)==1)
           {
@@ -1731,7 +1731,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //horizontal
       if (searchPoint.y-searchDist>0)
       {
-        for (int i=mlMax(1,searchPoint.x-searchDist); i<mlMin(_sliceSizeOpt.x,searchPoint.x+searchDist); i++) //to the right
+        for (int i=mlMax(1,searchPoint.x-searchDist); i<mlMin(_sliceSizeOpt.x,static_cast<MLint>(searchPoint.x+searchDist)); i++) //to the right
         {
           if (_components[compID].freeSpaceField->getValueAt(i,searchPoint.y-searchDist)==1)
           {
@@ -1780,7 +1780,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //horizontal
       if (searchPoint.y+searchDist<_sliceSizeOpt.y)
       {
-        for (int i=mlMax(1,searchPoint.x-searchDist); i<mlMin(_sliceSizeOpt.x,searchPoint.x+searchDist); i++) //to the right
+        for (int i=mlMax(1,searchPoint.x-searchDist); i<mlMin(_sliceSizeOpt.x,static_cast<MLint>(searchPoint.x+searchDist)); i++) //to the right
         {
           if (_components[compID].freeSpaceField->getValueAt(i,searchPoint.y+searchDist)==1)
           {
@@ -1794,7 +1794,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //right vertical
       if (searchPoint.x+searchDist<_sliceSizeOpt.x)
       {
-        for (int i=searchPoint.y; i<mlMin(searchPoint.y+searchDist,_sliceSizeOpt.y); i++) //to the bottom
+        for (int i=searchPoint.y; i<mlMin(static_cast<MLint>(searchPoint.y+searchDist),_sliceSizeOpt.y); i++) //to the bottom
         {
           if (_components[compID].freeSpaceField->getValueAt(searchPoint.x+searchDist,i)==1)
           {
@@ -1808,7 +1808,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //left vertical
       if (searchPoint.x-searchDist>0)
       {
-        for (int i=searchPoint.y; i<mlMin(searchPoint.y+searchDist,_sliceSizeOpt.y); i++) //to the bottom
+        for (int i=searchPoint.y; i<mlMin(static_cast<MLint>(searchPoint.y+searchDist),_sliceSizeOpt.y); i++) //to the bottom
         {
           if (_components[compID].freeSpaceField->getValueAt(searchPoint.x-searchDist,i)==1)
           {
@@ -1858,7 +1858,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //vertical
       if (searchPoint.x-searchDist>0)
       {
-        for (int i=mlMax(searchPoint.y-searchDist,1); i<mlMin(_sliceSizeOpt.y,searchPoint.y+searchDist); i++) //to the bottom
+        for (int i=mlMax(searchPoint.y-searchDist,1); i<mlMin(_sliceSizeOpt.y,static_cast<MLint>(searchPoint.y+searchDist)); i++) //to the bottom
         {
           if (_components[compID].freeSpaceField->getValueAt(searchPoint.x-searchDist,i)==1)
           {
@@ -1879,7 +1879,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //first horizontal
       if (searchPoint.y+searchDist<_sliceSizeOpt.y)
       {
-        for (int i=searchPoint.x; i<mlMin(searchPoint.x+searchDist,_sliceSizeOpt.x); i++) //to the right
+        for (int i=searchPoint.x; i<mlMin(static_cast<MLint>(searchPoint.x+searchDist),_sliceSizeOpt.x); i++) //to the right
         {
           if (_components[compID].freeSpaceField->getValueAt(i,searchPoint.y+searchDist)==1)
           {
@@ -1893,7 +1893,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //second horizontal
       if (searchPoint.y-searchDist>0)
       {
-        for (int i=searchPoint.x; i<mlMin(searchPoint.x+searchDist,_sliceSizeOpt.x); i++) //to the right
+        for (int i=searchPoint.x; i<mlMin(static_cast<MLint>(searchPoint.x+searchDist),_sliceSizeOpt.x); i++) //to the right
         {
           if (_components[compID].freeSpaceField->getValueAt(i,searchPoint.y-searchDist)==1)
           {
@@ -1907,7 +1907,7 @@ bool METK2DLabeling::findNewPosition(int compID, kBasics::POINT searchPoint, int
       //vertical
       if (searchPoint.x+searchDist<_sliceSizeOpt.x)
       {
-        for (int i=mlMax(searchPoint.y-searchDist,1); i<mlMin(_sliceSizeOpt.y,searchPoint.y+searchDist); i++) //to the bottom
+        for (int i=mlMax(searchPoint.y-searchDist,1); i<mlMin(_sliceSizeOpt.y,static_cast<MLint>(searchPoint.y+searchDist)); i++) //to the bottom
         {
           if (_components[compID].freeSpaceField->getValueAt(searchPoint.x+searchDist,i)==1)
           {
