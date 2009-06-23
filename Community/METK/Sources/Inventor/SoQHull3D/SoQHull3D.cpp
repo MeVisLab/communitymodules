@@ -20,6 +20,7 @@
 #include "XVLeaveScope.h"
 
 #include <list>
+#include <iostream>
 
 SO_NODE_SOURCE(SoQHull3D)
 
