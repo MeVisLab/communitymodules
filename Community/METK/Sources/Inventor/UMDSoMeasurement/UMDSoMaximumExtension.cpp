@@ -5,11 +5,20 @@
 // #############################
 
 
+#include <Inventor/errors/SoDebugError.h>
 #include "UMDSoDistanceLine.h"
 #include "UMDSoShapeToPointSet.h"
 #include "UMDSoMaximumExtension.h"
 #include "SoQHull3D.h"
 #include <stdio.h>
+
+#ifdef WIN32
+  #define MyMessageBox(A, B, C, D) MessageBox(A, B, C, D) 
+  #define My_MB_OK                 MB_OK
+#else
+  #define MyMessageBox(A, B, C, D) SoDebugError::post("File %s, line %d: %d %s %s", __FILE__, __LINE__, A, B, C );
+  #define My_MB_OK
+#endif
 
 
 SO_NODE_SOURCE(UMDSoMaximumExtension);
@@ -196,7 +205,7 @@ float UMDSoMaximumExtension::computeMaxExtensionBruteForce(float* p_fPointSet, i
 		pWidth_1.setValue(defaultPoint);
 		pWidth_2.setValue(defaultPoint);
 
-		MessageBox (NULL, L"No Points available for computing the maximum extension!", L"UMDSoMaximumExtension::computeMaxExtensionBruteForce", MB_OK);
+		MyMessageBox (NULL, L"No Points available for computing the maximum extension!", L"UMDSoMaximumExtension::computeMaxExtensionBruteForce", My_MB_OK);
 	}
 	//display();
 	return fMaxExtension;
@@ -286,7 +295,7 @@ float UMDSoMaximumExtension::computeDistance(float* p_fPoint1, float* p_fPoint2)
 	}
 	else{
 		fDistance = 0.0;
-		MessageBox (NULL, L"Points are identical, there is no distance between them!", L"UMDSoMaximumExtension::computeDistance", MB_OK);
+		MyMessageBox (NULL, L"Points are identical, there is no distance between them!", L"UMDSoMaximumExtension::computeDistance", My_MB_OK);
 	}
 	return fDistance;
 }
@@ -298,7 +307,7 @@ float UMDSoMaximumExtension::computeDistance(SbVec3f vec1, SbVec3f vec2){
 	}
 	else{
 		fDistance = 0.0;
-		MessageBox (NULL, L"Points are identical, there is no distance between them!", L"UMDSoMaximumExtension::computeDistance", MB_OK);
+		MyMessageBox (NULL, L"Points are identical, there is no distance between them!", L"UMDSoMaximumExtension::computeDistance", My_MB_OK);
 	}
 	return fDistance;
 }
