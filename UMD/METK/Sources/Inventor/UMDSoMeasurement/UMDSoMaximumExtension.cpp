@@ -20,6 +20,9 @@
   #define My_MB_OK
 #endif
 
+// Define a local MyMin instead of min, because there we have platform dependent collisions in headers.
+#define MyMin(A,B) ((A)<(B) ? (A) : (B))
+
 
 SO_NODE_SOURCE(UMDSoMaximumExtension);
 
@@ -343,12 +346,12 @@ void UMDSoMaximumExtension::computeWidthExtension(int &size){
 	// suche nach diameter punkt, welcher am nächsten zum Koordinatenursprung liegt
 	// dieser wird in den Koordinatenursprung transliert, alle anderen werden entsprechend 
 	// mit transliert
-	if(std::min(fDist_1,fDist_2)==fDist_1){
+	if(MyMin(fDist_1,fDist_2)==fDist_1){
 		SbVec3f translateVec3f(-1*point_1[0],-1*point_1[1],-1*point_1[2]);
 		// Bestimmen des Translationsvektors
 		_sbMatrix.setTranslate(translateVec3f);
 	}
-	else if(std::min(fDist_1,fDist_2)==fDist_2){
+	else if(MyMin(fDist_1,fDist_2)==fDist_2){
 		SbVec3f translateVec3f(-1*point_2[0],-1*point_2[1],-1*point_2[2]);
 		// Bestimmen des Translationsvektors
 		_sbMatrix.setTranslate(translateVec3f);
