@@ -51,7 +51,7 @@ public:
   {
 
     int i=hash(str);
-    std::list<R>::iterator b;
+    typename std::list<R>::iterator b;
     b = table[i].begin();
     while( b != table[i].end() )
     {
@@ -66,7 +66,7 @@ public:
   bool remove(const std::string& str)
   {
     int i=hash(str);
-    std::list<R>::iterator b;
+    typename std::list<R>::iterator b;
     b = table[i].begin();
     while( b != table[i].end() )
     {
@@ -84,7 +84,7 @@ public:
   attrType* find(const std::string& str)
   {
     int i=hash(str);
-    std::list<R>::iterator b;
+    typename std::list<R>::iterator b;
     b = table[i].begin();
     while( b != table[i].end() )
     {
