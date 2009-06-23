@@ -5,7 +5,7 @@
 // \author  Konrad Mühler
 // \date    2005-04-23
 //
-// 
+//
 */
 // --------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@
 // collisions between OpenInventor and Windows headers.
 #include "XVEnterScope.h"
 #include <Inventor/nodes/SoSubNode.h>
-#include <Inventor/Sensors/SoFieldSensor.h>
+#include <Inventor/sensors/SoFieldSensor.h>
 #include <Inventor/nodes/SoSeparator.h>
 #include <Inventor/fields/SoSFString.h>
 #include <Inventor/elements/SoCacheElement.h>
@@ -30,35 +30,35 @@
 
 //! Module to control the rendering status of an ExaminerViewer
 class UMDVIEWERTRIGGER_EXPORT SoUMDViewerTrigger : public SoSeparator
-{	
-	SO_NODE_HEADER(SoUMDViewerTrigger); //!< Implements the runtime type system interface of this new node.
+{
+  SO_NODE_HEADER(SoUMDViewerTrigger); //!< Implements the runtime type system interface of this new node.
 
-public:	
-	SoUMDViewerTrigger();
-	
-	static void  initClass(); 
+public:
+  SoUMDViewerTrigger();
 
-	virtual void GLRenderBelowPath(SoGLRenderAction* action);
-	
-	//SoSFString ViewerNameFld;	//!< Relay Name of Viewer to ViewerWriter
-	SoSFString StatusFld;		//!< Rendering/Ready
-	//SoSFString PongFld;
-	//SoSFVec3f PositionFld;		//!< Postion of the camera
-	//SoSFRotation OrientationFld;//!< Orientation of the camera	
+  static void  initClass();
 
-	//SoSFTrigger ForceRedrawFld;
+  virtual void GLRenderBelowPath(SoGLRenderAction* action);
 
-protected:	
-	virtual ~SoUMDViewerTrigger();
+  //SoSFString ViewerNameFld; //!< Relay Name of Viewer to ViewerWriter
+  SoSFString StatusFld;   //!< Rendering/Ready
+  //SoSFString PongFld;
+  //SoSFVec3f PositionFld;    //!< Postion of the camera
+  //SoSFRotation OrientationFld;//!< Orientation of the camera
+
+  //SoSFTrigger ForceRedrawFld;
+
+protected:
+  virtual ~SoUMDViewerTrigger();
 
 private:
-	bool frameRendered;	//!< Sets FALSE before RenderPath and TRUE after coming back
-	//SoGLRenderAction* globalAction;
-	bool currentlyLeft;	//!< Denies a rerendering after a direct call of rendering
-	SoTimerSensor* timerSensor; //!< Delays the "Ready" of status a little bit to let a change proceed
-	
-	static void timerEvent(void* data, SoDataSensor* a);
-	void render(SoDataSensor* sensor);
+  bool frameRendered; //!< Sets FALSE before RenderPath and TRUE after coming back
+  //SoGLRenderAction* globalAction;
+  bool currentlyLeft; //!< Denies a rerendering after a direct call of rendering
+  SoTimerSensor* timerSensor; //!< Delays the "Ready" of status a little bit to let a change proceed
+
+  static void timerEvent(void* data, SoDataSensor* a);
+  void render(SoDataSensor* sensor);
 
 
     //! node sensor: to react on field changes
