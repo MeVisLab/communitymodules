@@ -1,9 +1,10 @@
 #ifndef MNOGLOFFSCREEN__H
 #define MNOGLOFFSCREEN__H
-
-#include <windows.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
+#ifdef WIN32
+  #include <windows.h>
+#endif
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 #include "wglext.h"
 
