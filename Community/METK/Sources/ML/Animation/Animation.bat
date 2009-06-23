@@ -1,3 +1,3 @@
-%MEVIS_LIB%\make\win32\createDsp.bat Animation
+"%MLAB_ROOT%\MeVis\Foundation\BuildTools\Scripts\createProject.bat" Animation
 
 
