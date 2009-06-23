@@ -1,10 +1,14 @@
 #ifndef CVPEDGE_H
 #define CVPEDGE_H
 
-#ifndef VPBASIC_EXPORTS
-#define __VPBASIC_IMPORTEXPORT __declspec(dllimport)
+#ifdef WIN32
+  #ifndef VPBASIC_EXPORTS
+    #define __VPBASIC_IMPORTEXPORT __declspec(dllimport)
+  #else
+    #define __VPBASIC_IMPORTEXPORT __declspec(dllexport) 
+  #endif
 #else
-#define __VPBASIC_IMPORTEXPORT __declspec(dllexport) 
+  #define __VPBASIC_IMPORTEXPORT
 #endif
 
 class CvpPoint;
