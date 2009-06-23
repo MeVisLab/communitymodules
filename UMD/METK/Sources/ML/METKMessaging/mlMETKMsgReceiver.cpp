@@ -99,7 +99,7 @@ void METKMsgReceiver::handleObjMgrNotification()
                   if (status == MSG_INIT && message == messageFld->getStringValue()) {
                      // instance is responsible. Setting INF_STATUS to MSG_PROCESSING
                      statusFld->setStringValue(MSG_PROCESSING);
-                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(std::string(MSG_PROCESSING)); //see line 64 for linux test
+                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_PROCESSING)); //see line 64 for linux test
 					 //SoDebugError::postInfo("RECEIVER: PROCESSING","");
                      dataFld->setStringValue(obj[LAY_STATUSEVENTS][INF_DATA]);
                      sendNotification();

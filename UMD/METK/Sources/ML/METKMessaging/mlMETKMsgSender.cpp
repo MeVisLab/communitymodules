@@ -82,7 +82,7 @@ void METKMsgSender::handleNotification (Field *field)
 			   //std::cout<<"SENDER: _sending=true "<<std::endl;
                obj[LAY_STATUSEVENTS][INF_MESSAGE] = messageFld->getStringValue();
                obj[LAY_STATUSEVENTS][INF_DATA] = dataFld->getStringValue();
-               obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(std::string(MSG_INIT));
+               obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_INIT));
 			   //std::cout<<"SENDER: INIT"<<std::endl;
                sendNotification();
                statusFld->setStringValue(MSG_PROCESSING);               
@@ -90,7 +90,7 @@ void METKMsgSender::handleNotification (Field *field)
 			   doneFld->setBoolValue(false); //done immer erst nach success als letztes setzen
             } else {               
                statusFld->setStringValue("Nobody's listening.");
-               obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(std::string(MSG_DONE));
+               obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_DONE));
 			   //std::cout<<"SENDER: DONE   NOBODYs LISTENING"<<std::endl;
                sendNotification();
                successFld->setBoolValue(false);
@@ -137,7 +137,7 @@ void METKMsgSender::handleObjMgrNotification()
                   // request for new process received, checking responsibility
                   if (status == MSG_READY && message == messageFld->getStringValue()) {
                      // instance is responsible. Setting INF_STATUS to MSG_DONE
-                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(std::string(MSG_DONE));
+                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_DONE));
 					 //SoDebugError::postInfo("SENDER: DONE","");
                      sendNotification();
                      _sending = false;
