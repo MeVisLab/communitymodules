@@ -23,6 +23,9 @@
 #ifndef __UMDSO_MEASUREMENT_INIT__
 #define __UMDSO_MEASUREMENT_INIT__
 
+#include <GL/glew.h>
+#include <mlOpenGL.h>
+
 #ifdef WIN32
 
 //Unterdr"uckt die Warnung warning C4275: class 'SoCoordinate4' ist keine DLL-Schnittstelle 
@@ -54,9 +57,6 @@
 #pragma warning (disable: 4018)
 
 #pragma warning( push, 3 )
-
-#include <GL/glew.h>
-#include <mlOpenGL.h>
 
 #include <XVEnterScope.h>
 #include "XVInventorWrapper.h"
