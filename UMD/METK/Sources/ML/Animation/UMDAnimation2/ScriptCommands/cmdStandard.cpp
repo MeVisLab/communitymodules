@@ -2,10 +2,12 @@
 
 ML_START_NAMESPACE
 
+// Introduce a constant to avoid implicit constructor call in comparison which is not allowed under some circumstances in ISO c++.
+omIDType defaultOMID = omID_DEFAULT;
 
 void AnimationExecuter::commandLayer(vector<string>* tempEntryParams, kScriptFrameEntry* currentEntry/*, int frameNr, size_t FrameEntryListIter*/)
 {
-	if (currentEntry->getObjectID() != omID_DEFAULT && currentEntry->getObjectID()!="")
+	if ((currentEntry->getObjectID() != defaultOMID) && (currentEntry->getObjectID()!=""))
 	{
 		if (currentEntry->getParamType() == kScriptFrameEntry::PARAMT_FLOAT) //INT wird als Float behandelt ...
 			setDoubleValueInterpol(currentEntry->getObjectID(),currentEntry->getLayerID(),currentEntry->getInfoID(),(*tempEntryParams)[0],currentEntry->getCurrentFrame(), currentEntry->getFrameCount());
