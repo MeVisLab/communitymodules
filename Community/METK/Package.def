@@ -1,6 +1,6 @@
 
 Package {
-  packageGroup = "Community"
+  packageGroup = "UMD"
   packageName  = "METK"
 
   owner = "Konrad"
