@@ -17,7 +17,7 @@ WARN = HIGH
 
 # add dependencies of this project here
 
-CONFIG += dll ML MLBase MLTools MathUtils newmat MLCSO boost
+CONFIG += dll ML MLBase MLTools newmat MLCSO boost
 
 MLAB_PACKAGES += MeVisLab_Standard
 
@@ -32,10 +32,17 @@ MSVC_USE_SUBDIRS = 1
 HEADERS += \
     MLCSOCommunityModulesInit.h \
     MLCSOCommunityModulesSystem.h \
+    MLCSOCommunityModulesDefs.h \
+    MinimalDistancePointClouds\MinimalDistancePointClouds.h \
+    MinimalDistancePointClouds\TileSphere.h \
+    MinimalDistancePointClouds\TileSphereHashTable.h \
     CSODistance\CSODistance.h
 
 SOURCES += \
     MLCSOCommunityModulesInit.cpp \
+    MinimalDistancePointClouds\MinimalDistancePointClouds.cpp \
+    MinimalDistancePointClouds\TileSphere.cpp \
+    MinimalDistancePointClouds\TileSphereHashTable.cpp \
     CSODistance\CSODistance.cpp
 
 RELATEDFILES += \

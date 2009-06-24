@@ -122,8 +122,8 @@ void CSODistance::_process()
   if (_csoList != NULL) {
 
     if ((_csoList->numCSO() >= 2) && (_csoList->getCSOAt(0)->getIsFinished()) && (_csoList->getCSOAt(1)->getIsFinished())) {
-      MATHUTILS_NAMESPACE::MinimalDistancePointClouds* pointSetsMinDist = NULL;
-      ML_CHECK_NEW(pointSetsMinDist, MATHUTILS_NAMESPACE::MinimalDistancePointClouds);
+      MinimalDistancePointClouds* pointSetsMinDist = NULL;
+      ML_CHECK_NEW(pointSetsMinDist, MinimalDistancePointClouds);
 
       std::vector<vec3>pointSet1;
       std::vector<vec3>pointSet2;

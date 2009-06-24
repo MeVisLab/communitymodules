@@ -2,10 +2,9 @@
 #ifndef __CSODistance_H
 #define __CSODistance_H
 
-#include "../MLCSOCommunityModulesSystem.h"
+#include "../MLCSOCommunityModulesDefs.h"
 
-#include <CSOBase/CSOList.h>
-#include <MinimalDistancePointClouds.h>
+#include "../MinimalDistancePointClouds/MinimalDistancePointClouds.h"
 #include <mlXMarkerList.h>
 
 ML_START_NAMESPACE
