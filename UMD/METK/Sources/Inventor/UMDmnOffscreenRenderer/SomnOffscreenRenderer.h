@@ -118,13 +118,19 @@ private:
   SoSFString		aviFilename;
   SoSFInt32			aviFramerate;
   SoSFEnum			bufferType;
-  enum _enum_BufferType { BUFFER_AUTO=0, BUFFER_PBUFFER=1, BUFFER_FRAMEBUFFER=2, BUFFER_SCREENSHOT=3 };
+  enum _enum_BufferType { BUFFER_AUTO=0, 
+#ifdef USE_WINPBUFFER
+                          BUFFER_PBUFFER=1, BUFFER_FRAMEBUFFER=2, BUFFER_SCREENSHOT=3 
+#else
+                          BUFFER_FRAMEBUFFER=1, BUFFER_SCREENSHOT=2 
+#endif
+                        };
   
 
   SoGLRenderAction* m_renderAction;
   const SbViewportRegion* m_region;
 
-  ml::kAviWriter*  myAviWriter;
+  ML_NAMESPACE::kAviWriter*  myAviWriter;
 
   // EXT_framebuffer_object - http://oss.sgi.com/projects/ogl-sample/registry/EXT/framebuffer_object.txt
   PFNGLISRENDERBUFFEREXTPROC glIsRenderbufferEXT;

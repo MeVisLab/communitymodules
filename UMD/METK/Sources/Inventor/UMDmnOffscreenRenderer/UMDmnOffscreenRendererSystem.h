@@ -30,6 +30,11 @@
 #define UMDMNOFFSCREENRENDERER_EXPORT
 #endif
 
+// Enable usage of PBUFFERS only on windows systems
+#ifdef WIN32
+  #define USE_WINPBUFFER
+#endif
+
 
 #endif
 // __UMDMNOFFSCREENRENDERERSYSTEM_H__

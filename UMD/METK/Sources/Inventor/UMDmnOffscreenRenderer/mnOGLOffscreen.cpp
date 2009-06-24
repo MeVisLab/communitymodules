@@ -1,6 +1,8 @@
 
 #include "mnOGLOffscreen.h"
 
+#ifdef USE_WINPBUFFER
+
 CmnOGLOffscreen::CmnOGLOffscreen(HDC m_hgldc, int iWidth, int iHeight)
 {
   this->m_hgldc = m_hgldc;
@@ -52,7 +54,7 @@ int CmnOGLOffscreen::init(void)
   wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)wglGetProcAddress("wglChoosePixelFormatARB");
 
   if( !wglChoosePixelFormatARB ) return -5;
-		
+
 	g_pbuffer.hPBuffer = NULL;
 	g_pbuffer.nWidth   = iWidth;
 	g_pbuffer.nHeight  = iHeight;
@@ -123,3 +125,4 @@ void CmnOGLOffscreen::getPixelData (unsigned char *data)
 {
  glReadPixels(0,0,iWidth,iHeight,GL_RGBA,GL_UNSIGNED_BYTE,data);
 }
+#endif

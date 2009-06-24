@@ -7,7 +7,7 @@ TARGET  = UMDmnOffscreenRenderer
 DESTDIR    = ../../../lib
 DLLDESTDIR = ../../../lib
 
-CONFIG += dll inventor MLOpenGL opengl ML MLBase MLkAviWriter common boost
+CONFIG += dll inventor MLOpenGL ML MLBase MLkAviWriter common boost
 
 MLAB_PACKAGES += UMD_METK \
                  MeVisLab_Standard
@@ -24,6 +24,8 @@ HEADERS += \
 	SomnOffscreenRenderer.h \
 	mnOGLOffscreen.h \
 	image_basic.h
+	
+win32:HEADERS += wglext.h
 
 SOURCES += \
 	UMDmnOffscreenRendererInit.cpp \

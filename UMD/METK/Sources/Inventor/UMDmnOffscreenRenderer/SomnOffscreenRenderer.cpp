@@ -53,8 +53,12 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,		// Handle For This Window
 
 #define NONE 0
 #define FRAMEBUFFER 1
-#define PBUFFER 2
-#define SCREENSHOT 3
+#ifdef USE_WINPBUFFER
+  #define PBUFFER 2
+  #define SCREENSHOT 3
+#else
+  #define SCREENSHOT 2
+#endif
 
 SO_NODE_SOURCE(SomnOffscreenRenderer)
 
@@ -102,7 +106,9 @@ SomnOffscreenRenderer::SomnOffscreenRenderer()
 
 	SO_NODE_ADD_FIELD(bufferType, (BUFFER_AUTO));
 	SO_NODE_DEFINE_ENUM_VALUE(_enum_BufferType, BUFFER_AUTO);
+#ifdef USE_WINPBUFFER
 	SO_NODE_DEFINE_ENUM_VALUE(_enum_BufferType, BUFFER_PBUFFER);
+#endif
 	SO_NODE_DEFINE_ENUM_VALUE(_enum_BufferType, BUFFER_FRAMEBUFFER);
 	SO_NODE_DEFINE_ENUM_VALUE(_enum_BufferType, BUFFER_SCREENSHOT);
 	SO_NODE_SET_SF_ENUM_TYPE(bufferType, _enum_BufferType);
@@ -119,7 +125,7 @@ SomnOffscreenRenderer::SomnOffscreenRenderer()
 	_attachmentFunc = NULL;
 	m_bufferType = NONE;
 
-	myAviWriter = new ml::kAviWriter();
+	myAviWriter = new ML_NAMESPACE::kAviWriter();
 	myAviWriter->getFieldContainer()->getField("outputFilename")->setStringValue("c:/temp.avi");
 }
 
@@ -323,8 +329,14 @@ void SomnOffscreenRenderer::createBuffer (void)
 	}
 	else //if ( bufferType.getValue()==_enum_BufferType(BUFFER_PBUFFER) )
 	{
+#ifdef USE_WINPBUFFER
 		std::cout << "Framebuffer extension not initialized, using p-buffer instead" << std::endl;
 		m_bufferType = PBUFFER;
+#else
+    std::cout << "Framebuffer and PBUFFER extension not initialized/available, using screenshot instead" << std::endl;
+    m_flHasBuffer = true; // doesn't need buffer, so always true
+    m_bufferType = SCREENSHOT;
+#endif
 	}
 
 
@@ -354,6 +366,7 @@ void SomnOffscreenRenderer::createBuffer (void)
 
 		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);	// Unbind the FBO for now
 		break;
+#ifdef USE_WINPBUFFER
 	case PBUFFER:
 		// FAKE-Fenster um HDC zu kriegen, das muss auch besser gehen
 		//--------------------------------------------------------------------------
@@ -392,6 +405,7 @@ void SomnOffscreenRenderer::createBuffer (void)
 		m_poOff->init();
 		m_flHasBuffer = true;
 		break;
+#endif
   }
 
   m_region = new SbViewportRegion( m_iBufferSizeX, m_iBufferSizeY );
@@ -499,6 +513,7 @@ void SomnOffscreenRenderer::render(void)
 				}
 			}
 			break;
+#ifdef USE_WINPBUFFER
 		case PBUFFER:
 			if (!m_fldScene.getValue())
 			{
@@ -516,6 +531,7 @@ void SomnOffscreenRenderer::render(void)
 				m_poOff->disable();
 			}
 			break;
+#endif
 		case SCREENSHOT:
 			if (saveImage.getValue() || saveAVI.getValue()) saveToFile();
 			break;

@@ -1,8 +1,11 @@
 #ifndef MNOGLOFFSCREEN__H
 #define MNOGLOFFSCREEN__H
-#ifdef WIN32
-  #include <windows.h>
-#endif
+
+#include "UMDmnOffscreenRendererSystem.h"
+
+#ifdef USE_WINPBUFFER
+
+#include <windows.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -35,6 +38,7 @@ class CmnOGLOffscreen
 	  HDC   m_hgldc;
     HGLRC m_hglrc_old;
 	  HDC   m_hgldc_old;
+	  
     PBUFFER g_pbuffer;
 
     PFNWGLGETEXTENSIONSSTRINGARBPROC wglGetExtensionsStringARB;
@@ -45,6 +49,6 @@ class CmnOGLOffscreen
     PFNWGLQUERYPBUFFERARBPROC     wglQueryPbufferARB;
     PFNWGLCHOOSEPIXELFORMATARBPROC wglChoosePixelFormatARB;
 };
-
+#endif
 
 #endif
