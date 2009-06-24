@@ -90,7 +90,9 @@ SomnOffscreenRenderer::SomnOffscreenRenderer()
 	SO_NODE_ADD_FIELD(bufferSizeX, (400));
 	SO_NODE_ADD_FIELD(bufferSizeY, (400));
 	SO_NODE_ADD_FIELD(saveImage, (FALSE));
+#ifdef USE_AVISAVE
 	SO_NODE_ADD_FIELD(saveAVI, (FALSE));
+#endif
 	SO_NODE_ADD_FIELD(fldFilename, ("c:/temp.bmp"));
 	SO_NODE_ADD_FIELD(m_flCreateBuffer, ());
 	SO_NODE_ADD_FIELD(m_flRender, ());
@@ -106,9 +108,11 @@ SomnOffscreenRenderer::SomnOffscreenRenderer()
 	SO_NODE_SET_SF_ENUM_TYPE(transparencyType, _enum_transparencyType);
 
 	SO_NODE_ADD_FIELD(readyTrigger, ());
+#ifdef USE_AVISAVE
 	SO_NODE_ADD_FIELD(finishAVI, ());
 	SO_NODE_ADD_FIELD(aviFilename, ("c:/temp.avi"));
 	SO_NODE_ADD_FIELD(aviFramerate, (7));
+#endif
 
 	SO_NODE_ADD_FIELD(bufferType, (BUFFER_AUTO));
 	SO_NODE_DEFINE_ENUM_VALUE(_enum_BufferType, BUFFER_AUTO);
@@ -131,8 +135,10 @@ SomnOffscreenRenderer::SomnOffscreenRenderer()
 	_attachmentFunc = NULL;
 	m_bufferType = NONE;
 
+#ifdef USE_AVISAVE
 	myAviWriter = new ML_NAMESPACE::kAviWriter();
 	myAviWriter->getFieldContainer()->getField("outputFilename")->setStringValue("c:/temp.avi");
+#endif
 }
 
 SomnOffscreenRenderer::SomnOffscreenRenderer(int iBufferSizeX, int iBufferSizeY)
@@ -254,11 +260,11 @@ void SomnOffscreenRenderer::nodeChanged(SoNodeSensor* sensor)
     render();
   }
 
+#ifdef USE_AVISAVE
   else if ( field == &finishAVI)
   {
 	if (myAviWriter) myAviWriter->_endRecording();
   }
-
   else if ( field == &aviFilename)
   {
 	  if (myAviWriter) myAviWriter->getFieldContainer()->getField("outputFilename")->setStringValue(aviFilename.getValue().getString());
@@ -268,10 +274,11 @@ void SomnOffscreenRenderer::nodeChanged(SoNodeSensor* sensor)
   {
 	  if (myAviWriter) myAviWriter->getFieldContainer()->getField("framesPerSecond")->setStringValue(kBasics::IntToString(aviFramerate.getValue()));
   }
+#endif
 
   else if (field == &m_fldScene) //DANN HAT SICH WAS AN EINEM DER KINDER KINDERKNOTEN GEÄNDERT
   {
-	  //std::cout << "Changing ... Render" << std::endl;
+  //std::cout << "Changing ... Render" << std::endl;
 	  //render();
   }
 
@@ -515,7 +522,11 @@ void SomnOffscreenRenderer::render(void)
 					glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 					m_renderAction->apply(m_fldScene.getValue());
 					if ( _insideGlFunc != NULL ) _insideGlFunc();
-					if (saveImage.getValue() || saveAVI.getValue()) saveToFile();
+					if (saveImage.getValue() 
+#ifdef USE_AVISAVE
+					  || saveAVI.getValue()
+#endif
+					  ) saveToFile();
 					glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 					glBindRenderbufferEXT( GL_RENDERBUFFER_EXT, 0 );
 				}
@@ -535,13 +546,21 @@ void SomnOffscreenRenderer::render(void)
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				m_renderAction->apply(m_fldScene.getValue());
 				if ( _insideGlFunc != NULL ) _insideGlFunc();
-				if (saveImage.getValue() || saveAVI.getValue()) saveToFile();
+				if (saveImage.getValue() 
+#ifdef USE_AVISAVE
+				  || saveAVI.getValue()
+#endif
+				) saveToFile();
 				m_poOff->disable();
 			}
 			break;
 #endif
 		case SCREENSHOT:
-			if (saveImage.getValue() || saveAVI.getValue()) saveToFile();
+			if (saveImage.getValue() 
+#ifdef USE_AVISAVE
+			  || saveAVI.getValue()
+#endif
+			) saveToFile();
 			break;
 	}
 	readyTrigger.touch();
@@ -573,10 +592,12 @@ void SomnOffscreenRenderer::saveToFile(void)
 		test.file_write_bitmap(std::string(fldFilename.getValue().getString()));
 	}
 
+#ifdef USE_AVISAVE
 	if (saveAVI.getValue())
 	{		
 		myAviWriter->addImageToMovieByData(data, m_iBufferSizeX, m_iBufferSizeY);
 	}
+#endif
 
 	delete[] data;
 }

@@ -30,7 +30,9 @@
 #include <Inventor/actions/SoGLRenderAction.h>
 #include "XVLeaveScope.h"
 
-#include <mlkAviWriter.h>
+#ifdef USE_AVISAVE
+  #include <mlkAviWriter.h>
+#endif
 #include <kBasics.h>
 
 class CmnOGLOffscreen;
@@ -102,7 +104,9 @@ private:
   SoSFTrigger		m_flCreateBuffer, m_flRender;
   bool				m_flHasBuffer;
   SoSFBool			saveImage;
+#ifdef USE_AVISAVE
   SoSFBool			saveAVI;
+#endif
   SoSFString		fldFilename;
   SoSFEnum			transparencyType;
   enum _enum_transparencyType { SCREEN_DOOR = SoGLRenderAction::SCREEN_DOOR,
@@ -114,9 +118,11 @@ private:
 								SORTED_OBJECT_BLEND = SoGLRenderAction::SORTED_OBJECT_BLEND };
 
   SoSFTrigger		readyTrigger;
+#ifdef USE_AVISAVE
   SoSFTrigger		finishAVI;
   SoSFString		aviFilename;
   SoSFInt32			aviFramerate;
+#endif
   SoSFEnum			bufferType;
   enum _enum_BufferType { BUFFER_AUTO=0, 
 #ifdef USE_WINPBUFFER
@@ -130,7 +136,9 @@ private:
   SoGLRenderAction* m_renderAction;
   const SbViewportRegion* m_region;
 
+#ifdef USE_AVISAVE
   ML_NAMESPACE::kAviWriter*  myAviWriter;
+#endif
 
   // EXT_framebuffer_object - http://oss.sgi.com/projects/ogl-sample/registry/EXT/framebuffer_object.txt
   PFNGLISRENDERBUFFEREXTPROC glIsRenderbufferEXT;

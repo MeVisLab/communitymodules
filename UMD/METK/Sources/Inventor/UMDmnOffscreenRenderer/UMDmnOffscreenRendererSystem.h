@@ -33,6 +33,7 @@
 // Enable usage of PBUFFERS only on windows systems
 #ifdef WIN32
   #define USE_WINPBUFFER
+  #define USE_AVISAVE
 #endif
 
 

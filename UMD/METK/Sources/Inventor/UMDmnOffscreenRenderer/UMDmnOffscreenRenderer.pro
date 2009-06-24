@@ -7,7 +7,8 @@ TARGET  = UMDmnOffscreenRenderer
 DESTDIR    = ../../../lib
 DLLDESTDIR = ../../../lib
 
-CONFIG += dll inventor MLOpenGL ML MLBase MLkAviWriter common boost
+CONFIG += dll inventor MLOpenGL ML MLBase common boost
+win32:CONFIG += MLkAviWriter
 
 MLAB_PACKAGES += UMD_METK \
                  MeVisLab_Standard
