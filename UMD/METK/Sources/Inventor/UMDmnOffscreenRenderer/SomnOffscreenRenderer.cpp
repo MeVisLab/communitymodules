@@ -19,6 +19,9 @@
 #include <iostream>
 using namespace std;
 
+#ifndef USE_WINPBUFFER
+#include "GL/glew.h"
+#endif
 // Wrap inventor includes into XVEnterScope and XVLeaveScope to avoid
 // collisions between OpenInventor and Windows headers.
 #include "XVEnterScope.h"
@@ -32,6 +35,8 @@ using namespace std;
 
 // FAKE-Fenster um HDC zu kriegen, das muss auch besser gehen
 //--------------------------------------------------------------------------
+
+#ifdef USE_WINPBUFFER
 HDC			hDC=NULL;	// Private GDI Device Context
 HWND		hWnd=NULL;	// Holds Our Window Handle
 HINSTANCE	hInstance;	// Holds The Instance Of The Application
@@ -45,6 +50,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,		// Handle For This Window
 	// Pass All Unhandled Messages To DefWindowProc
 	return DefWindowProc(hWnd,uMsg,wParam,lParam);
 }
+#endif
 //--------------------------------------------------------------------------
 
 #include "XVLeaveScope.h"
@@ -169,6 +175,8 @@ SomnOffscreenRenderer::~SomnOffscreenRenderer()
   }
   else
   {
+
+#ifdef USE_WINPBUFFER
 	glIsRenderbufferEXT = (PFNGLISRENDERBUFFEREXTPROC)wglGetProcAddress("glIsRenderbufferEXT");
 	glBindRenderbufferEXT = (PFNGLBINDRENDERBUFFEREXTPROC)wglGetProcAddress("glBindRenderbufferEXT");
 	glDeleteRenderbuffersEXT = (PFNGLDELETERENDERBUFFERSEXTPROC)wglGetProcAddress("glDeleteRenderbuffersEXT");
@@ -186,7 +194,7 @@ SomnOffscreenRenderer::~SomnOffscreenRenderer()
 	glFramebufferRenderbufferEXT = (PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC)wglGetProcAddress("glFramebufferRenderbufferEXT");
 	glGetFramebufferAttachmentParameterivEXT = (PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVEXTPROC)wglGetProcAddress("glGetFramebufferAttachmentParameterivEXT");
 	glGenerateMipmapEXT = (PFNGLGENERATEMIPMAPEXTPROC)wglGetProcAddress("glGenerateMipmapEXT");
-
+#endif
 	if( !glIsRenderbufferEXT || !glBindRenderbufferEXT || !glDeleteRenderbuffersEXT || 
 		!glGenRenderbuffersEXT || !glRenderbufferStorageEXT || !glGetRenderbufferParameterivEXT || 
 		!glIsFramebufferEXT || !glBindFramebufferEXT || !glDeleteFramebuffersEXT || 
