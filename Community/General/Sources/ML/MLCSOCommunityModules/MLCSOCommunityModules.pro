@@ -33,16 +33,16 @@ HEADERS += \
     MLCSOCommunityModulesInit.h \
     MLCSOCommunityModulesSystem.h \
     MLCSOCommunityModulesDefs.h \
-    MinimalDistancePointClouds\MinimalDistancePointClouds.h \
-    MinimalDistancePointClouds\TileSphere.h \
-    MinimalDistancePointClouds\TileSphereHashTable.h \
+    MinimalDistancePointClouds/MinimalDistancePointClouds.h \
+    MinimalDistancePointClouds/TileSphere.h \
+    MinimalDistancePointClouds/TileSphereHashTable.h \
     CSODistance\CSODistance.h
 
 SOURCES += \
     MLCSOCommunityModulesInit.cpp \
-    MinimalDistancePointClouds\MinimalDistancePointClouds.cpp \
-    MinimalDistancePointClouds\TileSphere.cpp \
-    MinimalDistancePointClouds\TileSphereHashTable.cpp \
+    MinimalDistancePointClouds/MinimalDistancePointClouds.cpp \
+    MinimalDistancePointClouds/TileSphere.cpp \
+    MinimalDistancePointClouds/TileSphereHashTable.cpp \
     CSODistance\CSODistance.cpp
 
 RELATEDFILES += \
