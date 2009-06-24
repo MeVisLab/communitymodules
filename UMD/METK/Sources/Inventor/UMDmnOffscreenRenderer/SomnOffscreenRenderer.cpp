@@ -589,7 +589,8 @@ void SomnOffscreenRenderer::saveToFile(void)
 		}
 		//cout << "saving image" << endl;
 		//test.file_write_bitmap(std::string("c:\\test_neu.bmp"));
-		test.file_write_bitmap(std::string(fldFilename.getValue().getString()));
+		std::string fileName(fldFilename.getValue().getString());
+		test.file_write_bitmap(fileName);
 	}
 
 #ifdef USE_AVISAVE
