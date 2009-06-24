@@ -25,6 +25,7 @@ WARN = HIGH
 
 DEFINES += VIEWPOINT_EXPORTS
 DEFINES += UMDVISDATAVIEWER_EXPORTS
+DEFINES += UMDVISDATAVIEWER2D_EXPORTS
 DEFINES += VPBASIC_EXPORTS
 DEFINES += UMDVISIBILITYSOLVER_EXPORTS
 
@@ -33,10 +34,15 @@ DEFINES += UMDVISIBILITYSOLVER_EXPORTS
 MSVC_USE_SUBDIRS = 1
 
 
+
+
 HEADERS += \
     UMDVisDataViewer/UMDVisDataViewerInit.h \
     UMDVisDataViewer/UMDVisDataViewerSystem.h \
     UMDVisDataViewer/SoVisDataViewer.h \
+    UMDVisDataViewer2D/UMDVisDataViewer2DInit.h \
+    UMDVisDataViewer2D/UMDVisDataViewer2DSystem.h \
+    UMDVisDataViewer2D/SoVisDataViewer2D.h \
     METKAutoFading/mlMETKAutoFading.h \
     METKCalcCamPos/METKCalcCamPos.h \
     METKKeystates/METKKeystates.h \
@@ -60,9 +66,14 @@ HEADERS += \
     ViewpointInit.h
     
 
+
+
+
 SOURCES += \
     UMDVisDataViewer/UMDVisDataViewerInit.cpp \
     UMDVisDataViewer/SoVisDataViewer.cpp \
+    UMDVisDataViewer2D/UMDVisDataViewer2DInit.cpp \
+    UMDVisDataViewer2D/SoVisDataViewer2D.cpp \
     METKAutoFading/mlMETKAutoFading.cpp \
     METKCalcCamPos/METKCalcCamPos.cpp \
     METKKeystates/METKKeystates.cpp \

@@ -31,6 +31,7 @@
 
 //class SoSeparator;
 class SoVisDataViewer;
+class SoVisDataViewer2D;
 class SoSwitch;
 ML_START_NAMESPACE
 
@@ -59,6 +60,7 @@ private:
 	//@}
 
 	SoNodeField* _outScene;
+	SoNodeField* _outScene2;
 	NotifyField* _calc;
 	NotifyField* _calcMultiple;
 	NotifyField* _init;
@@ -121,6 +123,7 @@ private:
    string path;
    string* pathIds;
    SoVisDataViewer* m_soViewer;
+   SoVisDataViewer2D* m_soViewer2D;
    CvpCalcVis m_calcVis;
 
    vector<string*> m_vStructures;

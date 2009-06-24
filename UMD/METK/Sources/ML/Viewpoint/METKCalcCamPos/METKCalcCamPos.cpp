@@ -5,6 +5,7 @@
 #include <Inventor/nodes/SoSwitch.h>
 #include <Inventor/nodes/SoMaterial.h>
 #include "UMDVisDataViewer/SoVisDataViewer.h"
+#include "UMDVisDataViewer2D/SoVisDataViewer2D.h"
 
 #include <iostream>
 #include <stdio.h>
@@ -34,6 +35,7 @@ METKCalcCamPos::METKCalcCamPos() : inherited(0,0,ObjMgrClient::EVENTS_SELECTED)
 	handleNotificationOff();
 
 	_outScene = getFieldContainer()->addSoNode("outScene");
+	_outScene2 = getFieldContainer()->addSoNode("outScene2");
 	_calc = getFieldContainer()->addNotify("calc");
 	_calcMultiple = getFieldContainer()->addNotify("calcMultiple");
 	_init = getFieldContainer()->addNotify("init");
@@ -114,6 +116,8 @@ METKCalcCamPos::METKCalcCamPos() : inherited(0,0,ObjMgrClient::EVENTS_SELECTED)
 
 	m_soViewer = new SoVisDataViewer();
 	_outScene->setSoNodeValue(m_soViewer);
+	m_soViewer2D = new SoVisDataViewer2D();
+	_outScene2->setSoNodeValue(m_soViewer2D);
 
 	clearAcceptedObjectIDs();
 	clearAcceptedInfoLayerNames();
@@ -162,6 +166,7 @@ void METKCalcCamPos::handleNotification (Field *field)
 		m_calcVis.setFocusObject(_currentStructure->getStringValue());
 		m_calcVis.calc();
 		m_soViewer->touch();
+		m_soViewer2D->touch();
 		setCamPosition(SUM_FIELD,false);
 		updateObjectMgr();		
 		timerSensor->schedule();
@@ -176,25 +181,28 @@ void METKCalcCamPos::handleNotification (Field *field)
 	else if (field == _showField || field == _sphereMode)
 	{
 		m_soViewer->setSphereMode(_sphereMode->getEnumValue()+1); //Die ENUMs gehen 0..1 der sphereMode aber 1..2
-		if (_showField->getIntValue()==0) m_soViewer->setDataField(m_calcVis.getField(VIS_FIELD));
-		if (_showField->getIntValue()==1) m_soViewer->setDataField(m_calcVis.getField(STA_VIS_FIELD));
-		if (_showField->getIntValue()==2) m_soViewer->setDataField(m_calcVis.getField(IMP_FIELD));
-		if (_showField->getIntValue()==3) m_soViewer->setDataField(m_calcVis.getField(STA_IMP_FIELD));
-		if (_showField->getIntValue()==4) m_soViewer->setDataField(m_calcVis.getField(NUM_FIELD));
-		if (_showField->getIntValue()==5) m_soViewer->setDataField(m_calcVis.getField(ENT_FIELD));
-		if (_showField->getIntValue()==6) m_soViewer->setDataField(m_calcVis.getField(DIS_FIELD));
-		if (_showField->getIntValue()==7) m_soViewer->setDataField(m_calcVis.getField(CAM_FIELD));
-		if (_showField->getIntValue()==8) m_soViewer->setDataField(m_calcVis.getField(REG_FIELD));		
-		if (_showField->getIntValue()==9) m_soViewer->setDataField(m_calcVis.getField(SIL_FIELD));
-		if (_showField->getIntValue()==10) m_soViewer->setDataField(m_calcVis.getField(CENTER_FIELD));
-		if (_showField->getIntValue()==11) m_soViewer->setDataField(m_calcVis.getField(SUM_FIELD));
+
+		if (_showField->getIntValue()==0) { m_soViewer->setDataField(m_calcVis.getField(VIS_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(VIS_FIELD)); }
+		if (_showField->getIntValue()==1) { m_soViewer->setDataField(m_calcVis.getField(STA_VIS_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(STA_VIS_FIELD)); }
+		if (_showField->getIntValue()==2) { m_soViewer->setDataField(m_calcVis.getField(IMP_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(IMP_FIELD)); }
+		if (_showField->getIntValue()==3) { m_soViewer->setDataField(m_calcVis.getField(STA_IMP_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(STA_IMP_FIELD)); }
+		if (_showField->getIntValue()==4) { m_soViewer->setDataField(m_calcVis.getField(NUM_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(NUM_FIELD)); }
+		if (_showField->getIntValue()==5) { m_soViewer->setDataField(m_calcVis.getField(ENT_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(ENT_FIELD)); }
+		if (_showField->getIntValue()==6) { m_soViewer->setDataField(m_calcVis.getField(DIS_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(DIS_FIELD)); }
+		if (_showField->getIntValue()==7) { m_soViewer->setDataField(m_calcVis.getField(CAM_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(CAM_FIELD)); }
+		if (_showField->getIntValue()==8) { m_soViewer->setDataField(m_calcVis.getField(REG_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(REG_FIELD)); }
+		if (_showField->getIntValue()==9) { m_soViewer->setDataField(m_calcVis.getField(SIL_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(SIL_FIELD)); }
+		if (_showField->getIntValue()==10) { m_soViewer->setDataField(m_calcVis.getField(CENTER_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(CENTER_FIELD)); }
+		if (_showField->getIntValue()==11) { m_soViewer->setDataField(m_calcVis.getField(SUM_FIELD)); m_soViewer2D->setDataField(m_calcVis.getField(SUM_FIELD)); }
 		
-		if (_showField->getIntValue()==12) m_soViewer->setDataField(m_calcVis.getStackField(1));
-		if (_showField->getIntValue()==13) m_soViewer->setDataField(m_calcVis.getStackField(2));
-		if (_showField->getIntValue()==14) m_soViewer->setDataField(m_calcVis.getStackField(3));
-		if (_showField->getIntValue()==15) m_soViewer->setDataField(m_calcVis.getStackField(4));
-		if (_showField->getIntValue()==16) m_soViewer->setDataField(m_calcVis.getStackField(5));
+		if (_showField->getIntValue()==12) { m_soViewer->setDataField(m_calcVis.getStackField(1)); m_soViewer2D->setDataField(m_calcVis.getStackField(1)); }
+		if (_showField->getIntValue()==13) { m_soViewer->setDataField(m_calcVis.getStackField(2)); m_soViewer2D->setDataField(m_calcVis.getStackField(2)); }
+		if (_showField->getIntValue()==14) { m_soViewer->setDataField(m_calcVis.getStackField(3)); m_soViewer2D->setDataField(m_calcVis.getStackField(3)); }
+		if (_showField->getIntValue()==15) { m_soViewer->setDataField(m_calcVis.getStackField(4)); m_soViewer2D->setDataField(m_calcVis.getStackField(4)); }
+		if (_showField->getIntValue()==16) { m_soViewer->setDataField(m_calcVis.getStackField(5)); m_soViewer2D->setDataField(m_calcVis.getStackField(5)); }
+		
 		m_soViewer->touch();
+		m_soViewer2D->touch();
 	}
 
 	else if (field == _dataPath)
@@ -214,7 +222,10 @@ void METKCalcCamPos::handleNotification (Field *field)
 			{
 				m_calcVis.getSphereValues(fX,fY,fZ,fR,iDiv);
 				m_soViewer->createSphere(fX,fY,fZ,fR,iDiv);
+				m_soViewer2D->createSphere(fX,fY,fZ,fR,iDiv);
 				m_soViewer->setSphereMode(2);
+				
+				
 				m_vStructures = m_calcVis.getStructureNames ();
 				for (int i=0; i<m_vStructures.size(); i++)
 				{
@@ -300,6 +311,7 @@ void METKCalcCamPos::handleNotification (Field *field)
 		m_calcVis.multiplyStackFields ( 1, 2, 3 ); //Multiply the region with the sum field and store result in stack 3		
 		std::cout << "final result is in stack 3 (Field 15)" << std::endl;
 		m_soViewer->touch();
+		m_soViewer2D->touch();
 		setCamPosition(3,true);
 		updateObjectMgr();		
 		timerSensor->schedule();
@@ -366,6 +378,7 @@ void METKCalcCamPos::handleNotification (Field *field)
 
 				//New
 				m_soViewer->touch();
+				m_soViewer2D->touch();
 				setCamPosition(SUM_FIELD,false);
 			}
 		}
@@ -586,6 +599,7 @@ void METKCalcCamPos::calcMultiple(bool setCamera)
 	}
 	m_calcVis.getStackField(1)->normalize();	
 	m_soViewer->touch();
+	m_soViewer2D->touch();
 	if (setCamera)
 	{
 		setCamPosition(1,true);
