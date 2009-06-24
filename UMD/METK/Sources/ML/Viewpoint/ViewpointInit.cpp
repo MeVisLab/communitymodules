@@ -16,7 +16,7 @@
 
 // Include all module headers ...
 #include "METKCreateIntraOPDummy/mlMETKCreateIntraOPDummy.h"
-#include "METKIntraOPVIewpoint/mlMETKIntraOPViewpoint.h"
+#include "METKIntraOPViewpoint/mlMETKIntraOPViewpoint.h"
 #include "METKAutoFading/mlMETKAutoFading.h"
 #include "METKCalcCamPos/METKCalcCamPos.h"
 #include "METKShowClusteredObjects/METKShowClusteredObjects.h"
