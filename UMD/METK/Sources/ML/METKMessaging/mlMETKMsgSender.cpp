@@ -79,22 +79,24 @@ void METKMsgSender::handleNotification (Field *field)
          if (obj.isValid()) {
             if (METKMsgManager::numListener(this) > 0) {
                _sending = true;
-			   //std::cout<<"SENDER: _sending=true "<<std::endl;
+			         //std::cout<<"SENDER: _sending=true "<<std::endl;
                obj[LAY_STATUSEVENTS][INF_MESSAGE] = messageFld->getStringValue();
                obj[LAY_STATUSEVENTS][INF_DATA] = dataFld->getStringValue();
-               obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_INIT));
-			   //std::cout<<"SENDER: INIT"<<std::endl;
+               const omMessage initMsg(ML_NAMESPACE::std_string(MSG_INIT));
+               obj[LAY_STATUSEVENTS][INF_STATUS] = initMsg;
+               //std::cout<<"SENDER: INIT"<<std::endl;
                sendNotification();
                statusFld->setStringValue(MSG_PROCESSING);               
                successFld->setBoolValue(false);
-			   doneFld->setBoolValue(false); //done immer erst nach success als letztes setzen
+			         doneFld->setBoolValue(false); //done immer erst nach success als letztes setzen
             } else {               
                statusFld->setStringValue("Nobody's listening.");
-               obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_DONE));
-			   //std::cout<<"SENDER: DONE   NOBODYs LISTENING"<<std::endl;
+               const omMessage doneMsg(ML_NAMESPACE::std_string(MSG_DONE));
+               obj[LAY_STATUSEVENTS][INF_STATUS] = doneMsg;
+			         //std::cout<<"SENDER: DONE   NOBODYs LISTENING"<<std::endl;
                sendNotification();
                successFld->setBoolValue(false);
-			   doneFld->setBoolValue(true); //done immer erst nach success als letztes setzen
+			         doneFld->setBoolValue(true); //done immer erst nach success als letztes setzen
             }
          }
       }
@@ -132,16 +134,17 @@ void METKMsgSender::handleObjMgrNotification()
                   const omMessage& status  = obj[LAY_STATUSEVENTS][INF_STATUS];
                   const std_string& message = obj[LAY_STATUSEVENTS][INF_MESSAGE];
                   
-				  //SoDebugError::postInfo("METKMsgSender::handleObjMgrNotification in _sending STATUS   ",(status + " " + message).c_str());
+				          //SoDebugError::postInfo("METKMsgSender::handleObjMgrNotification in _sending STATUS   ",(status + " " + message).c_str());
 
                   // request for new process received, checking responsibility
                   if (status == MSG_READY && message == messageFld->getStringValue()) {
                      // instance is responsible. Setting INF_STATUS to MSG_DONE
-                     obj[LAY_STATUSEVENTS][INF_STATUS] = omMessage(ML_NAMESPACE::std_string(MSG_DONE));
-					 //SoDebugError::postInfo("SENDER: DONE","");
+                     const omMessage doneMsg(ML_NAMESPACE::std_string(MSG_DONE));
+                     obj[LAY_STATUSEVENTS][INF_STATUS] = doneMsg;
+					           //SoDebugError::postInfo("SENDER: DONE","");
                      sendNotification();
                      _sending = false;
-					 //SoDebugError::postInfo("SENDER: _sending=false ","");
+					           //SoDebugError::postInfo("SENDER: _sending=false ","");
                      
 					 statusFld->setStringValue(MSG_DONE);
                      successFld->setBoolValue(true);
