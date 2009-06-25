@@ -1,16 +1,18 @@
-
+//! 3D edge and triangle tables for Marching Cubes algorithm.
+//! \file   WEMMarchingCubes.h
+//! \author Bart De Dobbelaer
 /*
-    This program is written by: 
-    
+    This program is written by:
+
       Bart De Dobbelaer
-      
+
       Laboratory for Medical Imaging Research
       Radiologie/ESAT PSI
       Universitair Ziekenhuis Gasthuisberg
       Herestraat 49
       B-3000 Leuven
       Belgium
-      
+
     Email: Bart.DeDobbelaer@uz.kuleuven.ac.be
 */
 
@@ -19,10 +21,8 @@
 
 ////////////////////////////////////////////////////////////////////////
 
+//! 3D edge table in hex, see information about MC on the www for this coding.
 const int edge3DTable[256]={
-  /*
-      3D edge table in hex, see information about MC on the www for this coding
-  */
   0x0  , 0x109, 0x203, 0x30a, 0x406, 0x50f, 0x605, 0x70c,
   0x80c, 0x905, 0xa0f, 0xb06, 0xc0a, 0xd03, 0xe09, 0xf00,
   0x190, 0x99 , 0x393, 0x29a, 0x596, 0x49f, 0x795, 0x69c,
@@ -59,10 +59,8 @@ const int edge3DTable[256]={
 
 ////////////////////////////////////////////////////////////////////////
 
+//! 3D triangle table, see information about MC on the www for this coding.
 const int triTable[256][16] = {
-  /*
-      3D triangle table, see information about MC on the www for this coding
-  */
 {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
  {0, 8, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
  {0, 1, 9, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},

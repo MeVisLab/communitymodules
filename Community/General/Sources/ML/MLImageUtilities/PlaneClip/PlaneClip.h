@@ -1,16 +1,18 @@
-
+//! The ML module class PlaneClip to intersect an image with a plane.
+//! \file   AnalyzeHeader.h
+//! \author Bart De Dobbelaer
 /*
-        This program is written by: 
-        
+        This program is written by:
+
             Bart De Dobbelaer
-            
+
             Laboratory for Medical Imaging Research
             Radiologie/ESAT PSI
             Universitair Ziekenhuis Gasthuisberg
             Herestraat 49
             B-3000 Leuven
             Belgium
-            
+
         Email: Bart.DeDobbelaer@uz.kuleuven.ac.be
 */
 
@@ -28,6 +30,7 @@ ML_START_NAMESPACE
 
 ////////////////////////////////////////////////////////////////////////
 
+//! The ML module class PlaneClip to intersect an image with a plane.
 class MLIMAGEUTILITIES_EXPORT PlaneClip : public BaseOp {
 public:
   PlaneClip();

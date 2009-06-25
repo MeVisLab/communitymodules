@@ -1,3 +1,5 @@
+//! Implements the ML module class CSODistance.
+//! \file CSODistance.h
 
 #ifndef __CSODistance_H
 #define __CSODistance_H
@@ -14,7 +16,7 @@ ML_START_NAMESPACE
 
 //! The CSODistance calculates the smallest distance between two CSOs
 class MLCSOCOMMUNITYMODULES_EXPORT CSODistance : public BaseOp
-{ 
+{
 
 public:
 
@@ -59,7 +61,7 @@ private:
   BoolField* _autoApplyFld;
 
   //! XMarkerList output field
-	BaseField  *_outputXMarkerListFld;
+  BaseField  *_outputXMarkerListFld;
 
   /* MEMBER VARIABLES */
 
@@ -70,7 +72,7 @@ private:
   bool _isInNotificationCB;
 
   //! Output XMarkerList
-	XMarkerList *_outputXMarkerList;
+  XMarkerList *_outputXMarkerList;
 
 
   /* METHODS */

@@ -1,16 +1,19 @@
+//! The ML WEM module class WEMPlane to intersect a WEM with a plane.
+//! \file   WEMPlane.h
+//! \author Bart De Dobbelaer
 
 /*
-        This program is written by: 
-        
+        This program is written by:
+
             Bart De Dobbelaer
-            
+
             Laboratory for Medical Imaging Research
             Radiologie/ESAT PSI
             Universitair Ziekenhuis Gasthuisberg
             Herestraat 49
             B-3000 Leuven
             Belgium
-            
+
         Email: Bart.DeDobbelaer@uz.kuleuven.ac.be
 */
 
@@ -28,6 +31,7 @@ ML_START_NAMESPACE
 
 ////////////////////////////////////////////////////////////////////////
 
+//! The ML WEM module class WEMPlane to intersect a WEM with a plane.
 class MLWEMCOMMUNITYMODULES_EXPORT WEMPlane : public WEMProcessor {
 public:
   //! Standard constructor
@@ -52,7 +56,7 @@ private:
   //! Build plane for given patch
   void _buildPlane(WEMPatch* wemPatch);
 
-  ML_BASEOP_CLASS_HEADER(WEMPlane)  
+  ML_BASEOP_CLASS_HEADER(WEMPlane)
 };
 
 ////////////////////////////////////////////////////////////////////////
