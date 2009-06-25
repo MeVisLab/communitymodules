@@ -25,7 +25,7 @@ a full class documentation:
 \verbatim
 //! File containing the ML module class Dinner to prepare a dinner.
 //! \file    mlDinner.h
-//! \author  Ms. Cookman
+//! \author  Mrs Cookman
 
 //! ML module class to prepare a dinner each evening.
 class Dinner : public BaseOp {
