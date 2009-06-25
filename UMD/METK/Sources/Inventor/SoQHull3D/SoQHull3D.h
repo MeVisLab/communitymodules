@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoQHull3D derived from SoSeparator
+//! The Inventor module class SoQHull3D derived from SoSeparator.
 /*!
 // \file    SoQHull3D.h
 // \author  Jens Haase
@@ -67,7 +67,7 @@ static IndexVector convexHullIndexLUT;
 static IndexVector convexHullFaceIndexList;
 
 
-//! convex hull of invetor scene using qhull
+//! Convex hull of invetor scene using qhull.
 class UMDQHULL3D_EXPORT SoQHull3D : public SoSeparator
 {
   //! implements the runtime type system interface of this new node.

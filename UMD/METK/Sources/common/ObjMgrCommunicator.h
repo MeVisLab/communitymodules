@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! Class to handle communication with ObjMgr via get and set functions
+//! Class to handle communication with ObjMgr via get and set functions.
 /*!
 // \file    ObjMgrCommunicator.h
 // \author  Konrad Mühler
 // \date    2006-11-02
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@
 #ifndef common_EXPORTS
 #define __COMMON_IMPORTEXPORT __declspec(dllimport)
 #else
-#define __COMMON_IMPORTEXPORT __declspec(dllexport) 
+#define __COMMON_IMPORTEXPORT __declspec(dllexport)
 #endif
 #else
 #define __COMMON_IMPORTEXPORT
@@ -44,29 +44,30 @@
 
 ML_START_NAMESPACE
 
+//! Class to handle communication with ObjMgr via get and set functions.
 class __COMMON_IMPORTEXPORT ObjMgrCommunicator : public ObjMgrClient
 {
 public:
 
-	ObjMgrCommunicator (void);
+  ObjMgrCommunicator (void);
 
-	virtual void handleObjMgrNotification();
+  virtual void handleObjMgrNotification();
 
-	void setObjAttribute(const string ObjID, const string LayerID, const string InfoID, void* value, const string omInfoType, const bool createIfNotExists, const bool persistent, const bool ignoreType=false);
-	bool getObjAttribute(const string ObjID, const string LayerID, const string InfoID, omAttribute& attr);
-	bool getObjAttributeVec3f(const string ObjID, const string LayerID, const string InfoID, SbVec3f& vec3f);
-	bool getObjAttributeVec4f(const string ObjID, const string LayerID, const string InfoID, SbVec4f& vec4f);
-	bool getObjAttributeString(const string ObjID, const string LayerID, const string InfoID, string& value);
-	bool getObjAttributeFloat(const string ObjID, const string LayerID, const string InfoID, float& value);
-	bool getObjAttributeInt(const string ObjID, const string LayerID, const string InfoID, int& value);
-	bool getObjAttributeBool(const string ObjID, const string LayerID, const string InfoID, bool& value);
+  void setObjAttribute(const string ObjID, const string LayerID, const string InfoID, void* value, const string omInfoType, const bool createIfNotExists, const bool persistent, const bool ignoreType=false);
+  bool getObjAttribute(const string ObjID, const string LayerID, const string InfoID, omAttribute& attr);
+  bool getObjAttributeVec3f(const string ObjID, const string LayerID, const string InfoID, SbVec3f& vec3f);
+  bool getObjAttributeVec4f(const string ObjID, const string LayerID, const string InfoID, SbVec4f& vec4f);
+  bool getObjAttributeString(const string ObjID, const string LayerID, const string InfoID, string& value);
+  bool getObjAttributeFloat(const string ObjID, const string LayerID, const string InfoID, float& value);
+  bool getObjAttributeInt(const string ObjID, const string LayerID, const string InfoID, int& value);
+  bool getObjAttributeBool(const string ObjID, const string LayerID, const string InfoID, bool& value);
 
 private:
-	
-	typedef ObjMgrClient inherited;
-			
-	ML_CLASS_HEADER(ObjMgrCommunicator)
-		
+
+  typedef ObjMgrClient inherited;
+
+  ML_CLASS_HEADER(ObjMgrCommunicator)
+
 };
 
 

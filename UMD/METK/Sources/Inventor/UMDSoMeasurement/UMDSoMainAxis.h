@@ -20,7 +20,7 @@
 // $Id: UMDSoMainAxis.h,v 1.15 2003/09/05 16:14:44 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoMainAxis.h,v $
 
-/*!
+/*! This is the inventor interface for the MainAxis class.
 // \file    UMDSoMainAxis.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -42,18 +42,18 @@ class SoIndexedLineSet;
 class SO_MEASUREMENT_CLASS_SPEC UMDSoMainAxis : public UMDSoAutoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoMainAxis);
-  
-  
+
+
 public:
-  
+
   //! Constructor
   UMDSoMainAxis();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   // ######## Fields ##############
-  
+
   //! the three inertia axis
   SoSFVec3f xAxis, yAxis, zAxis;
 
@@ -94,7 +94,7 @@ private:
                             ORIGIN_BARYCENTER=barycenter,
                             ORIGIN_MIDPOINT  =midpoint
                             };
-  
+
   //! indicates the first member processing to set the \c color
   bool _firstInit;
 

@@ -1,3 +1,6 @@
+//! Inventor node class SoVerticalRuler derived from SoSeparator.
+//! \file SoVerticalRuler.h
+
 #ifndef __SOVERTICALRULER_H
 #define __SOVERTICALRULER_H
 
@@ -5,7 +8,7 @@
 
 #include <Inventor/fields/SoFields.h>
 
-
+//! Inventor node class SoVerticalRuler derived from SoSeparator.
 class SO_MEASUREMENT_CLASS_SPEC SoVerticalRuler : public SoSeparator {
 
   SO_NODE_HEADER(SoVerticalRuler);
@@ -13,13 +16,13 @@ class SO_MEASUREMENT_CLASS_SPEC SoVerticalRuler : public SoSeparator {
 public:
 
   SoSFColor color;
-  
+
   //! inventor runtime type system
   static void   initClass();
 
   //! Constructor
   SoVerticalRuler();
-  
+
 protected:
    //! Protected destructor
    virtual      ~SoVerticalRuler();

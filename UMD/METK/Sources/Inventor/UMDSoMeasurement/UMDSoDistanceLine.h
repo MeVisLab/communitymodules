@@ -20,7 +20,7 @@
 // $Id: UMDSoDistanceLine.h,v 1.9 2003/02/19 16:37:15 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoDistanceLine.h,v $
 
-/*!
+/*! Inventor node class UMDSoDistanceLine is a line for distance measurements.
 // \file    UMDSoDistanceLine.h
 // \author  Henry Sonnet / Christian Tietjen
 // \date    10/2001
@@ -39,7 +39,7 @@ class SoExtText2;
 class SoTransform;
 
 
-//! UMDSoDistanceLine ist eine Linie zur Abstandsmessung;
+//! Inventor node class UMDSoDistanceLine is a line for distance measurements;
 //! Die Linie besteht, wenn sie eine bestimmte Laenge ueber-
 //! schreitet, aus zwei getrennten Zylindern, zwischen denen
 //! sich die Abstandszahl sowie auf Wunsch eine Einheit
@@ -53,24 +53,24 @@ class SoTransform;
 //! Rückgabe: Länge der Distanz
 //! Basisklasse: \c SoMeasureTool
 //!
-//! Die Interaktionsmoeglichkeiten sind im Header von 
+//! Die Interaktionsmoeglichkeiten sind im Header von
 //! \c SoMeasureTool beschrieben
 class SO_MEASUREMENT_CLASS_SPEC UMDSoDistanceLine : public UMDSoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoDistanceLine);
-  
+
 
 public:
-  
+
   //! Constructor
   UMDSoDistanceLine();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   //! the second vertex
   SoSFVec3f endPos;
-  
+
   //! Wert, bei dessen Unterschreiten die Linie
   //! geschlossen dargestellt wird
   SoSFFloat minDistance;
@@ -91,39 +91,39 @@ protected:
   virtual ~UMDSoDistanceLine();
 
 
-private: 
-  
+private:
+
   //! haengt Knoten in Graphen
   void createDistLine();
 
-  //! gibt einen Gruppenknoten zurueck, der die beiden 
+  //! gibt einen Gruppenknoten zurueck, der die beiden
   //! Pfeilenden enthaelt
   void createArrows();
 
   //! Rueckgabe eines Separators mit Text
   void createText();
-  
+
   //! Positionsaenderungen
   void getTextTrafo();
-  
+
   //! Setzt den darzustellenden Text
   void getTextString();
-  
+
   //! additional initializations
   void initDistanceLine();
-  
+
   //! Feld-Sensoren initialisieren
   void initDistLineFieldSensors();
-  
+
   //! Welches Objekt wurde getroffen
   SbBool getPickedObjectMouseLeft(const SoPickedPoint *pickedPoint);
-  
+
   //! called if one of the vertices was changed
   void pointChanged();
-  
+
   //! die Funktionen zum Bewegen der Pfeilspitzen bei Tastatur-Events
   SbBool setArrowByKeyboard(float x, float y, float z, Taste taste);
-  
+
   //! \c endPos changed by user
   static void endChangedCB(void *userData, SoSensor* s);
 

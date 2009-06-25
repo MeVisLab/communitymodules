@@ -19,7 +19,7 @@
 // $Id: UMDMinimalDistance.h,v 1.13 2003/09/10 09:31:14 ritter Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDMinimalDistance.h,v $
 
-/*!
+/*! Computes the shortest euclidean distance between two pointsets.
 // \file    UMDMinimalDistance.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -39,14 +39,14 @@ class SoSeparator;
 //! Based on: "Efficient Distance Computation between Non-Convex Objects" by Sean Quinlan
 //! see: graphics.stanford.edu/courses/cs468-01-winter/papers/q-edcbnco-94.ps
 class SO_MEASUREMENT_CLASS_SPEC UMDMinimalDistance {
-  
+
 public:
-  
+
   //! Constructor
   UMDMinimalDistance();
   //! Destructor
   virtual ~UMDMinimalDistance();
-  
+
   //! This method passes the two pointsets in the form of two float-arrays (x,y,z, x,y,z, ...)
   //! and the number of the vectors
   void setPointSets(float* pointSet1, float* pointSet2, long size1, long size2);
@@ -67,16 +67,16 @@ public:
   int getUniqueIndex();
   //! returns a pointer on the hashtable
   HashTable* getHashTable();
-  
+
   //! returns the spheres for debugging purposes
   void displaySpheres(bool onOff);
   //! contains transparent spheres describing the tile spheres
   SoSeparator *_tileSphere1, *_tileSphere2;
   //! dumps the console with additional debbuging info
   void verbose(bool onOff);
-  
+
 private:
-  
+
   //! the one point set
   float* _pointSet1;
   //! the other point set
@@ -90,7 +90,7 @@ private:
 
   //! the maintainable error
   float _error;
-  
+
   //! dumps the console with additional debbuging info
   bool _verbose;
   //! decides whether the transparent spheres should be displayed
@@ -100,7 +100,7 @@ private:
 
   //! set by \c setNumEntries
   int _entries, _partition;
-  
+
   //! generates the tree of spheres for each point set
   TileSphere* generateTree(float* pointSet, long size);
   //! gets the BB of the main point set
@@ -112,16 +112,16 @@ private:
 //! It defines a single sub sphere for the algorithm.
 //! TileSphere will generate her own sub spheres if necessary
 class TileSphere {
-  
+
 public:
-  
+
   //! default Constructor
   TileSphere();
   //! Constructor with a pointer on the main class and presets for the distance computation
   TileSphere(UMDMinimalDistance* minimalDistance, int maxPartition = 2, int numElements = 2000, float error = 0);
   //! Destructor
   virtual ~TileSphere();
-  
+
   //! must be called, when TileSphere was instantiated with the default constructor.
   void setParameter(UMDMinimalDistance* minimalDistance, int maxPartition, int numElements, float error);
 
@@ -133,7 +133,7 @@ public:
   void getDeFactoSize();
   //! computes the distance and returns a reference to the nearest points of both sets
   float computeDistance(TileSphere* tileSphere, float*& point1, float*& point2);
-  
+
 
   //! returns the index of the TileSphere
   int32_t getSphereIndex();
@@ -145,7 +145,7 @@ public:
 
 
 private:
-  
+
   //! initializes the tile sphere
   void initSphere(UMDMinimalDistance* minimalDistance, int partition, int numElements, float error);
   //! pointer on the main class
@@ -163,21 +163,21 @@ private:
   bool _hasSubSpheres;
   //! stores the number of sub spheres, according to _partition to the power of 3
   int _partition;
-  
+
   //! pointer on the containing points
   float** _subset;
   //! number of containing points
   int _numEntries;
   //! maximum number of containing points
   int _maxEntries;
-  
+
   //! dimension of the point set
   float _minX, _maxX, _minY, _maxY, _minZ, _maxZ;
   //! position vector of the tile sphere
   float _position[3];
   //! radius of the tile sphere
   float _radius;
-  
+
   //! returns the BB of the tile sphere
   void getBB(float& minX, float& maxX, float& minY, float& maxY, float& minZ, float& maxZ);
   //! returns the postion vector
@@ -218,14 +218,14 @@ private:
 //! It defines a single sub sphere for the algorithm.
 //! TileSphere will generate her own sub spheres if necessary
 class HashTable {
-  
+
 public:
-  
+
   //! Constructor
   HashTable();
   //! Destructor
   virtual ~HashTable();
-  
+
   //! adds a pair of spheres into the hashtable
   void addPair(TileSphere* tileSphere1, TileSphere* tileSphere2);
   //! checks, whether the pair exists or not
@@ -233,9 +233,9 @@ public:
 
   //! hashtable statistics
   void getStatistics(int &addedPairs, int &hits, int &misses);
-  
+
 private:
-  
+
   //! size of the hashtable (1000)
   int _hashSize;
   //! the hashtable, consisting of an array of \c vector 's
@@ -243,7 +243,7 @@ private:
 
   //! hashtable statistics
   int _addedPairs, _hits, _misses;
-  
+
 };
 
 

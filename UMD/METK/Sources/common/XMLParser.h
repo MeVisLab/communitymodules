@@ -1,5 +1,5 @@
-//! An XMLParser class based on Xerces.
-//! file XMLParser.h
+//! Classes XMLParser and XMLParserErrorHandler based on Xerces.
+//! \file XMLParser.h
 
 #ifndef _XMLParser_
 #define _XMLParser_

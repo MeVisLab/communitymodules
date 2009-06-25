@@ -48,42 +48,42 @@
 
 
 
-//! Get picking information.
+//! The Inventor module class SoPickInfo derived from SoSeparator to get picking information.
 class UMDPICKINFO_EXPORT SoPickInfo : public SoSeparator
 {
-	//! Implements the runtime type system interface of this new node.
-	SO_NODE_HEADER(SoPickInfo);
+  //! Implements the runtime type system interface of this new node.
+  SO_NODE_HEADER(SoPickInfo);
 
 public:
-	//! Constructor
-	SoPickInfo();
+  //! Constructor
+  SoPickInfo();
 
-	//! Initializes this class (called on dll initialization).
-	static void  initClass();
+  //! Initializes this class (called on dll initialization).
+  static void  initClass();
 
-	SoSFVec3f			infoHitCoordinate;
-	SoSFVec3f			infoObjHitCoordinate;
-	SoSFVec3f			infoHitNormal;
-	SoSFVec3f			infoObjHitNormal;
-	SoSFString			infoStatus;
-	SoSFString			infoTypeName;
-	SoSFString			infoPickPath;
-	SoSFString			infoDetail;
+  SoSFVec3f     infoHitCoordinate;
+  SoSFVec3f     infoObjHitCoordinate;
+  SoSFVec3f     infoHitNormal;
+  SoSFVec3f     infoObjHitNormal;
+  SoSFString      infoStatus;
+  SoSFString      infoTypeName;
+  SoSFString      infoPickPath;
+  SoSFString      infoDetail;
 
 
 protected:
-	//! Protected destructor
-	virtual            ~SoPickInfo();
+  //! Protected destructor
+  virtual            ~SoPickInfo();
 
-	//! Method for event handling (keyboard/mouse).
-    virtual void		handleEvent(SoHandleEventAction* action);
+  //! Method for event handling (keyboard/mouse).
+    virtual void    handleEvent(SoHandleEventAction* action);
 
 private:
 
-	SbVec3f				_tempPickPoint;
-	bool				_leftMouseButtonDown;
+  SbVec3f       _tempPickPoint;
+  bool        _leftMouseButtonDown;
 
-	void				_resetFields();
+  void        _resetFields();
 };
 
 #endif // __SOPICKINFO_H

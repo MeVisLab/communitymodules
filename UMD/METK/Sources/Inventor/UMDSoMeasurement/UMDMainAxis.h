@@ -20,23 +20,23 @@
 // $Id: UMDMainAxis.h,v 1.7 2003/02/19 16:36:42 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/InventorModules/SoMeasurement/UMDMainAxis.h,v $
 
-/*!
+/*! Class UMDMainAxis.
 // \file    UMDMainAxis.h
 // \author  Christian Tietjen
 // \date    09/2002
 */
 #ifndef _UMDMainAxis
-#define _UMDMainAxis 
+#define _UMDMainAxis
 
 #include "UMDMeasurementInit.h"
 
-//! Some functions to compute three vectors from a set of points 
-//! from the R3. The vectors represent the global orientation of the 
+//! Some functions to compute three vectors from a set of points
+//! from the R3. The vectors represent the global orientation of the
 //! point set.
 class SO_MEASUREMENT_CLASS_SPEC UMDMainAxis {
-  
+
 public:
-  
+
   //! Constructor
   UMDMainAxis();
 
@@ -51,17 +51,17 @@ public:
   void getMainAxis(float*& xAxis, float*& yAxis, float*& zAxis);
   //! returns the three extensions of the object-orientated bounding box
   void getExtension(float& xExt, float& yExt, float& zExt);
-  
+
   //! returns a copy of the largest main axis
   float* getLargestMainAxis();
   //! returns the largest extension of the object-orientated bounding box
   float getLargestExtension();
-  
+
   //! returns a copy of the barycenter
   void getBaryCenter(float* x, float* y, float* z);
   //! returns a copy of the midpoint
   void getMidPoint(float* x, float* y, float* z);
-  
+
 
 private:
 
@@ -78,14 +78,14 @@ private:
   //! calculation of the inverse matrix (3x3 matrices only)
   //! \c invMatrix is the inverted matrix of \c aMatrix
   void getInverseMatrix(float** aMatrix, float** invMatrix);
-  
+
   //! returns a copy of the calculated barycenter.
   float* calcBaryCenter(const float* vertices, int size);
-  
+
   //! computes the dot (inner / scalar) product of two vectors
   float dotProduct(const float* vec1, const float* vec2);
   //! retruns the BB of the point set
-  void getBoundingBox(const float* pointSet, const long size, 
+  void getBoundingBox(const float* pointSet, const long size,
     float& minX, float& maxX, float& minY, float& maxY, float& minZ, float& maxZ);
 
   //! returns a copy of a vector with the direction of \c vector and the length \c length

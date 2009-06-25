@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SomnOffscreenRenderer derived from SoSeparator
+//! The Inventor module class SomnOffscreenRenderer derived from SoSeparator.
 /*!
 // \file    SomnOffscreenRenderer.h
 // \author  Mathias Neugebauer
 // \date    2007-03-30
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ class CmnOGLOffscreen;
 class SbViewportRegion;
 
 
-//! 
+//! The Inventor module class SomnOffscreenRenderer derived from SoSeparator.
 class UMDMNOFFSCREENRENDERER_EXPORT SomnOffscreenRenderer : public SoSeparator
 {
   //! Implements the runtime type system interface of this new node.
@@ -53,17 +53,17 @@ public:
   //! Initializes this class (called on dll initialization).
   static void  initClass();
 
-  void setTransparency	 ( SoGLRenderAction::TransparencyType eTrans );
-  void setSceneRoot		 ( SoNode *scene );
+  void setTransparency   ( SoGLRenderAction::TransparencyType eTrans );
+  void setSceneRoot    ( SoNode *scene );
   SoNode* getSceneRoot() { return m_fldScene.getValue(); };
-  void setInsideGlFunc	 ( void (*insideGlFunc) (void) );  
-  void setAttachmentFunc ( void (*attachmentFunc) (void) );  
-  void createBuffer		 ( void );
-  void render			 ( void );
-  void setSizeX			 ( int iX );
-  void setSizeY			 ( int iY );
-  int  getSizeX			 ( void );
-  int  getSizeY			 ( void );
+  void setInsideGlFunc   ( void (*insideGlFunc) (void) );
+  void setAttachmentFunc ( void (*attachmentFunc) (void) );
+  void createBuffer    ( void );
+  void render      ( void );
+  void setSizeX      ( int iX );
+  void setSizeY      ( int iY );
+  int  getSizeX      ( void );
+  int  getSizeY      ( void );
 
 
 protected:
@@ -90,48 +90,48 @@ private:
   bool initFramebufferExtension();
   void printFrameBufferStatus(GLenum status);
   void saveToFile();
-  
+
   // handles to the frame buffer and render buffer objects
-  GLuint			fbo;
-  GLuint			colorBuffer;
-  GLuint			depthBuffer;
+  GLuint      fbo;
+  GLuint      colorBuffer;
+  GLuint      depthBuffer;
 
   CmnOGLOffscreen*  m_poOff;
-  int				m_bufferType;
-  int				m_iBufferSizeX, m_iBufferSizeY;
-  SoSFNode			m_fldScene;
-  SoSFShort			bufferSizeX, bufferSizeY;
-  SoSFTrigger		m_flCreateBuffer, m_flRender;
-  bool				m_flHasBuffer;
-  SoSFBool			saveImage;
+  int       m_bufferType;
+  int       m_iBufferSizeX, m_iBufferSizeY;
+  SoSFNode      m_fldScene;
+  SoSFShort     bufferSizeX, bufferSizeY;
+  SoSFTrigger   m_flCreateBuffer, m_flRender;
+  bool        m_flHasBuffer;
+  SoSFBool      saveImage;
 #ifdef USE_AVISAVE
-  SoSFBool			saveAVI;
+  SoSFBool      saveAVI;
 #endif
-  SoSFString		fldFilename;
-  SoSFEnum			transparencyType;
+  SoSFString    fldFilename;
+  SoSFEnum      transparencyType;
   enum _enum_transparencyType { SCREEN_DOOR = SoGLRenderAction::SCREEN_DOOR,
-								ADD = SoGLRenderAction::ADD,
-								DELAYED_ADD = SoGLRenderAction::DELAYED_ADD,
-								SORTED_OBJECT_ADD = SoGLRenderAction::SORTED_OBJECT_ADD,
-								BLEND = SoGLRenderAction::BLEND,
-								DELAYED_BLEND = SoGLRenderAction::DELAYED_BLEND,
-								SORTED_OBJECT_BLEND = SoGLRenderAction::SORTED_OBJECT_BLEND };
+                ADD = SoGLRenderAction::ADD,
+                DELAYED_ADD = SoGLRenderAction::DELAYED_ADD,
+                SORTED_OBJECT_ADD = SoGLRenderAction::SORTED_OBJECT_ADD,
+                BLEND = SoGLRenderAction::BLEND,
+                DELAYED_BLEND = SoGLRenderAction::DELAYED_BLEND,
+                SORTED_OBJECT_BLEND = SoGLRenderAction::SORTED_OBJECT_BLEND };
 
-  SoSFTrigger		readyTrigger;
+  SoSFTrigger   readyTrigger;
 #ifdef USE_AVISAVE
-  SoSFTrigger		finishAVI;
-  SoSFString		aviFilename;
-  SoSFInt32			aviFramerate;
+  SoSFTrigger   finishAVI;
+  SoSFString    aviFilename;
+  SoSFInt32     aviFramerate;
 #endif
-  SoSFEnum			bufferType;
-  enum _enum_BufferType { BUFFER_AUTO=0, 
+  SoSFEnum      bufferType;
+  enum _enum_BufferType { BUFFER_AUTO=0,
 #ifdef USE_WINPBUFFER
-                          BUFFER_PBUFFER=1, BUFFER_FRAMEBUFFER=2, BUFFER_SCREENSHOT=3 
+                          BUFFER_PBUFFER=1, BUFFER_FRAMEBUFFER=2, BUFFER_SCREENSHOT=3
 #else
-                          BUFFER_FRAMEBUFFER=1, BUFFER_SCREENSHOT=2 
+                          BUFFER_FRAMEBUFFER=1, BUFFER_SCREENSHOT=2
 #endif
                         };
-  
+
 
   SoGLRenderAction* m_renderAction;
   const SbViewportRegion* m_region;

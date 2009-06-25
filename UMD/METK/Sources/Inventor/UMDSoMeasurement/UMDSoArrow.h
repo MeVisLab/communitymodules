@@ -13,7 +13,7 @@
 // $Id: UMDSoArrow.h,v 1.6 2003/02/19 16:37:15 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoArrow.h,v $
 
-/*!
+/*! Inventor node class generating an arrow which has a position and a reference point, from where it is pointing.
 // \file    UMDSoArrow.h
 // \author  Christian Tietjen
 // \date    10/2001
@@ -30,8 +30,7 @@ class SoCylinder;
 class SoDrawStyle;
 class SoFieldSensor;
 
-//! generates an arrow
-//! the arrow has a position and a reference point, from where he points at
+//! Inventor node class generating an arrow which has a position and a reference point, from where it is pointing.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoArrow : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoArrow);
@@ -44,7 +43,7 @@ public:
 
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
- 
+
   // ######## Fields ##############
   //! Position der Pfeilspitze
   SoSFVec3f position;
@@ -66,7 +65,7 @@ protected:
   virtual ~UMDSoArrow();
 
 
-private: 
+private:
 
   //! im nachhinein überflüssig, wird jetzt aber zum aufrechterhalten der Hierarchie
   //! beim Überprüfen der PickAction benötigt

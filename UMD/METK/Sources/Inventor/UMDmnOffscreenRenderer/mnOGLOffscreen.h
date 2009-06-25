@@ -1,3 +1,6 @@
+//! Class CmnOGLOffscreen and struct PBUFFER.
+//! \file mnOGLOffscreen.h
+
 #ifndef MNOGLOFFSCREEN__H
 #define MNOGLOFFSCREEN__H
 
@@ -11,6 +14,7 @@
 
 #include "wglext.h"
 
+//! Struct PBUFFER.
 typedef struct {
 
     HPBUFFERARB hPBuffer;
@@ -21,6 +25,7 @@ typedef struct {
 
 } PBUFFER;
 
+//! Class CmnOGLOffscreen
 class CmnOGLOffscreen
 {
   public:
@@ -35,10 +40,10 @@ class CmnOGLOffscreen
   private:
     int iWidth, iHeight;
 //    HGLRC m_hglrc;
-	  HDC   m_hgldc;
+    HDC   m_hgldc;
     HGLRC m_hglrc_old;
-	  HDC   m_hgldc_old;
-	  
+    HDC   m_hgldc_old;
+
     PBUFFER g_pbuffer;
 
     PFNWGLGETEXTENSIONSSTRINGARBPROC wglGetExtensionsStringARB;

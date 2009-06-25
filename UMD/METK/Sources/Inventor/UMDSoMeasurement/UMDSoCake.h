@@ -13,7 +13,7 @@
 // $Id: UMDSoCake.h,v 1.5 2003/02/19 16:37:15 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoCake.h,v $
 
-/*!
+/*! Inventor node class to generate a cylinder, from which a part is resected.
 // \file    UMDSoCake.h
 // \author  Christian Tietjen
 // \date    11/2001
@@ -30,7 +30,7 @@ class SoFieldSensor;
 class SoIndexedFaceSet;
 class SoVertexProperty;
 
-//! Generated a cylinder, from which a part is resected
+//! Inventor node class to generate a cylinder, from which a part is resected.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoCake : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoCake);
@@ -43,7 +43,7 @@ public:
 
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
- 
+
   //! the angle in arc resp. degree
   SoSFFloat angleArc, angleDegree;
   //! the measures of the cake
@@ -56,11 +56,11 @@ protected:
   virtual ~UMDSoCake();
 
 
-private: 
+private:
 
   //! Feld-Sensoren initialisieren
   void initCakeFieldSensors();
-  
+
   //! additional initializations
   void initUMDSoCake();
 

@@ -20,7 +20,7 @@
 // $Id: UMDSoAngleToObjects.h,v 1.10 2003/09/23 17:24:33 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoAngleToObjects.h,v $
 
-/*!
+/*! Computes the angle between two objects on the basis of the main axis computation.
 // \file    UMDSoAngleToObjects.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -41,20 +41,20 @@ class SoFieldSensor;
 class SO_MEASUREMENT_CLASS_SPEC UMDSoAngleToObjects : public UMDSoAutoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoAngleToObjects);
-  
-  
+
+
 public:
-  
+
   //! Constructor
   UMDSoAngleToObjects();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   // ######## Fields ##############
-  
+
   //! the second input object
-#ifdef ILAB5  
+#ifdef ILAB5
   SoSFNode inObject2Node;
 #else
   SoSFNode inputObject2;
