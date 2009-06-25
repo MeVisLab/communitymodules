@@ -22,7 +22,7 @@ ML_START_NAMESPACE
 
 ML_BASEOP_CLASS_SOURCE(PlaneClip, BaseOp);
 
-PlaneClip::PlaneClip() : BaseOp(1, 1) {
+PlaneClip::PlaneClip() : BaseOp(1, 2) {
   ML_TRACE_IN("PlaneClip::PlaneClip()")
   handleNotificationOff();
   
@@ -42,8 +42,10 @@ void PlaneClip::handleNotification (Field *field) {
       (_autoApplyFld->getBoolValue() && (
         field == _planeFld ||
         field == getInField(0)))
-      )
-		getOutField()->notifyAttachments();
+        ) {
+		getOutField(0)->notifyAttachments();
+		getOutField(1)->notifyAttachments();
+  }
   BaseOp::handleNotification(field);
 }
 
@@ -56,19 +58,19 @@ void PlaneClip::activateAttachments () {
 
 ////////////////////////////////////////////////////////////////////////
 
-void PlaneClip::calcOutImageProps (int ) {
+void PlaneClip::calcOutImageProps (int outIndex) {
   ML_TRACE_IN("PlaneClip::calcOutImageProps ()")
 
 	PagedImg *inImg=getUpdatedInImg(0);
 	if (inImg) {		
-		getOutImg()->setImgExt(inImg->getImgExt());
-		getOutImg()->setPageExt(inImg->getPageExt());
-		getOutImg()->setVoxelSize(inImg->getVoxelSize());
-		getOutImg()->setMinVoxelValue(inImg->getMinVoxelValue());
-		getOutImg()->setMaxVoxelValue(inImg->getMaxVoxelValue());
-		getOutImg()->setDataType(inImg->getDataType());
-		getOutImg()->setUpToDate();
-	} else getOutImg()->setOutOfDate();
+		getOutImg(outIndex)->setImgExt(inImg->getImgExt());
+		getOutImg(outIndex)->setPageExt(inImg->getPageExt());
+		getOutImg(outIndex)->setVoxelSize(inImg->getVoxelSize());
+		getOutImg(outIndex)->setMinVoxelValue(inImg->getMinVoxelValue());
+		getOutImg(outIndex)->setMaxVoxelValue(inImg->getMaxVoxelValue());
+		getOutImg(outIndex)->setDataType(inImg->getDataType());
+		getOutImg(outIndex)->setUpToDate();
+	} else getOutImg(outIndex)->setOutOfDate();
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -84,8 +86,7 @@ SubImgBox PlaneClip::calcInSubImageBox (int , const SubImgBox &outSubImgBox, int
 CALC_OUTSUBIMAGE1_CPP(PlaneClip);
 
 template <typename T>
-void PlaneClip::calcOutSubImage (TSubImg<T> *outSubImg, int,
-                                     TSubImg<T> *inSubImg) {
+void PlaneClip::calcOutSubImage (TSubImg<T> *outSubImg, int outIndex, TSubImg<T> *inSubImg) {
   ML_TRACE_IN("template <typename T> PlaneClip::calcOutSubImage ()")
                                      
   SubImgBox inbox = inSubImg->getBox();
@@ -102,10 +103,11 @@ void PlaneClip::calcOutSubImage (TSubImg<T> *outSubImg, int,
           for (p.y = inbox.v1.y;  p.y <= inbox.v2.y;  p.y++) { 
             for (p.x = inbox.v1.x;  p.x <= inbox.v2.x;  p.x++) { 
               pos = vec3(p.x,p.y,p.z);
-              if (plane.isInHalfSpace(pos))  
-                outSubImg->setImgVal(p,inSubImg->getImgVal(p));
-              else 
-                outSubImg->setImgVal(p,(T)0);
+              if (plane.isInHalfSpace(pos)) {
+                outSubImg->setImgVal(p,(outIndex == 0) ? inSubImg->getImgVal(p) : (T)0);
+              } else {
+                outSubImg->setImgVal(p,(outIndex == 0) ? (T)0 : inSubImg->getImgVal(p));
+              }
             }
           }
         }
