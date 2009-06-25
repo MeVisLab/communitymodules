@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoStraightLine derived from SoSeparator
+//! Inventor node SoStraightLine for a straight line with a start and an endpoint derived from SoSeparator.
 /*!
 // \file    SoStraightLine.h
 // \author  kmuehler
@@ -38,63 +38,63 @@ class SoTranslation;
 class SoRotation;
 class SoCylinder;
 
-//! A single line with a start and an endpoint
+//! Inventor node SoStraightLine for a straight line with a start and an endpoint derived from SoSeparator.
 class UMDSTRAIGHTLINE_EXPORT SoStraightLine : public SoSeparator
 {
-	//! Implements the runtime type system interface of this new node.
-	SO_NODE_HEADER(SoStraightLine);
+  //! Implements the runtime type system interface of this new node.
+  SO_NODE_HEADER(SoStraightLine);
 
 public:
-	//! Constructor
-	SoStraightLine();
+  //! Constructor
+  SoStraightLine();
 
-	virtual ~SoStraightLine();
+  virtual ~SoStraightLine();
 
-	//! Initializes this class (called on dll initialization).
-	static void  initClass();	
+  //! Initializes this class (called on dll initialization).
+  static void  initClass();
 
-	//@{! Fields
+  //@{! Fields
 
-	SoSFVec3f startPoint;
+  SoSFVec3f startPoint;
 
-	SoSFVec3f endPoint;
+  SoSFVec3f endPoint;
 
-	SoSFColor color;
+  SoSFColor color;
 
-	SoSFFloat thickness;
+  SoSFFloat thickness;
 
-	SoSFFloat transparency;
+  SoSFFloat transparency;
 
-	//@}
-
-
-	SbVec3f getDirectionVector() { return _dirVec; };
+  //@}
 
 
+  SbVec3f getDirectionVector() { return _dirVec; };
 
-protected:	
-	static void startPointChangedCB(void *data, SoSensor* sens);
-	static void endPointChangedCB(void *data, SoSensor* sens);
-	static void colorChangedCB(void *data, SoSensor* sens);
-	static void thicknessChangedCB(void *data, SoSensor* sens);
-	static void transparencyChangedCB(void *data, SoSensor* sens);	
+
+
+protected:
+  static void startPointChangedCB(void *data, SoSensor* sens);
+  static void endPointChangedCB(void *data, SoSensor* sens);
+  static void colorChangedCB(void *data, SoSensor* sens);
+  static void thicknessChangedCB(void *data, SoSensor* sens);
+  static void transparencyChangedCB(void *data, SoSensor* sens);
 
 private:
-	SoFieldSensor* _startPointSensor;
-	SoFieldSensor* _endPointSensor;
-	SoFieldSensor* _colorSensor;
-	SoFieldSensor* _thicknessSensor;
-	SoFieldSensor* _transparencySensor;
+  SoFieldSensor* _startPointSensor;
+  SoFieldSensor* _endPointSensor;
+  SoFieldSensor* _colorSensor;
+  SoFieldSensor* _thicknessSensor;
+  SoFieldSensor* _transparencySensor;
 
-	SoCylinder* _cylinder;
-	SoMaterial* _material;
-	SoTranslation* _translation1;
-	SoTranslation* _translation2;
-	SoRotation* _rotation1;
+  SoCylinder* _cylinder;
+  SoMaterial* _material;
+  SoTranslation* _translation1;
+  SoTranslation* _translation2;
+  SoRotation* _rotation1;
 
-	SbVec3f _dirVec;
+  SbVec3f _dirVec;
 
-	void calculate();
+  void calculate();
 };
 
 #endif // __SOSTRAIGHTLINE_H

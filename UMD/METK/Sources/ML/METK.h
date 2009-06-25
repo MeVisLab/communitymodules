@@ -1,3 +1,8 @@
+
+
+//! Global definitions for METK
+//! \file METK.h
+
 //--------------------------------------------------------------------------------
 //MÜSSTE DRINGEND MAL SORTIERT, NACH KONVENTIONEN BENANNT UND AUFGERÄUMT WERDEN!!!
 //--------------------------------------------------------------------------------
@@ -10,7 +15,7 @@
 // fixed object IDs
 
 #define LAY_GLOBAL        "Global"
-#define INF_ID			  "Id"
+#define INF_ID        "Id"
 #define INF_OBJTYPE       "ObjectType"
 #define INF_CHILDS        "ChildIds"
 #define INF_PARENT        "ParentId"
@@ -63,7 +68,7 @@
 #define INF_COMMENT      "Comment"          // String
 #define INF_SIDE         "Side"             // String  Left, Right
 #define INF_IMPORTANCE   "Importance"       // Double  0..1
-#define INF_RESULTTYPE	 "ResultType"       // String
+#define INF_RESULTTYPE   "ResultType"       // String
 
 #define LAY_FILES        "Files"
 #define INF_IVFILE       "InventorFile"
@@ -90,11 +95,11 @@
 #define INF_WORLDBB      "MidPoint"                 // String (2x Vec3: min, max)
 #define INF_OBJCENTER    "objectCenter"             // Vec3f
 
-#define LAY_LABEL		 "Labels"
-//#define INF_LABELTYPE	 "LabelType"
-#define INF_LABELON		 "LabelOn"					// Bool
-#define INF_LABELTEXT    "LabelText"				// String
-#define INF_LABELBG		 "LabelBG"					// SbVec3f
+#define LAY_LABEL    "Labels"
+//#define INF_LABELTYPE  "LabelType"
+#define INF_LABELON    "LabelOn"          // Bool
+#define INF_LABELTEXT    "LabelText"        // String
+#define INF_LABELBG    "LabelBG"          // SbVec3f
 
 
 // everything for LAY_IMAGE
@@ -124,8 +129,8 @@
 
 
 // VolumeRendering
-#define LAY_PROPERTIES	"Properties"
-#define LAY_TRANSFERFUNCTION	"Transferfunction"
+#define LAY_PROPERTIES  "Properties"
+#define LAY_TRANSFERFUNCTION  "Transferfunction"
 #define INF_COLORPOINTS "ColorPoints"
 #define INF_ALPHAPOINTS "AlphaPoints"
 
@@ -139,131 +144,131 @@
 //FROM kObjMgrAttr.h
 
 //  Objects (O_: Object)
-#define O_VESSELTREE			"VesselTree"
+#define O_VESSELTREE      "VesselTree"
 
 //  Layers of information (L_: layer)
-#define L_GLOBAL				"Global"
-#define L_VESSELTREE1			"VesselTree1"
-#define L_VESSELTREE2			"VesselTree2"
-#define L_TRANSFORMATION		"Transformation"
+#define L_GLOBAL        "Global"
+#define L_VESSELTREE1     "VesselTree1"
+#define L_VESSELTREE2     "VesselTree2"
+#define L_TRANSFORMATION    "Transformation"
 
 //  Specific information in layer (I_: info)
 
 // L_GLOBAL
-#define I_ID					"Id"
+#define I_ID          "Id"
 
-#define LAY_GLOBAL_REFRESH						"Refresh"
-#define LAY_VIEWER_CAMERA						"Camera"
-#define LAY_VIEWER_PROPERTIES					"Properties"
-#define INF_VIEWER_CAMERA_POSITION				"Position"
-#define INF_VIEWER_CAMERA_ORIENTATION			"Orientation"
-#define INF_VIEWER_CAMERA_HEIGHT				"Height"
-#define INF_VIEWER_CAMERA_NEWDATA				"NewData"
-#define INF_VIEWER_CAMERA_FOCALDISTANCE			"FocalDistance"
-#define INF_VIEWER_PROPERTIES_FRAMERATE			"Framerate"
-#define INF_VIEWER_PROPERTIES_CAPTUREFRAME		"CaptureFrame"
-#define INF_VIEWER_PROPERTIES_CREATEAVI			"CreateAVI"
-#define INF_VIEWER_PROPERTIES_CANCELRECORDING	"CancelRecording"
-#define INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT	"UpdateMLOutput"
-#define INF_VIEWER_PROPERTIES_VIEWERSTATUS		"ViewerStatus"
+#define LAY_GLOBAL_REFRESH            "Refresh"
+#define LAY_VIEWER_CAMERA           "Camera"
+#define LAY_VIEWER_PROPERTIES         "Properties"
+#define INF_VIEWER_CAMERA_POSITION        "Position"
+#define INF_VIEWER_CAMERA_ORIENTATION     "Orientation"
+#define INF_VIEWER_CAMERA_HEIGHT        "Height"
+#define INF_VIEWER_CAMERA_NEWDATA       "NewData"
+#define INF_VIEWER_CAMERA_FOCALDISTANCE     "FocalDistance"
+#define INF_VIEWER_PROPERTIES_FRAMERATE     "Framerate"
+#define INF_VIEWER_PROPERTIES_CAPTUREFRAME    "CaptureFrame"
+#define INF_VIEWER_PROPERTIES_CREATEAVI     "CreateAVI"
+#define INF_VIEWER_PROPERTIES_CANCELRECORDING "CancelRecording"
+#define INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT  "UpdateMLOutput"
+#define INF_VIEWER_PROPERTIES_VIEWERSTATUS    "ViewerStatus"
 #define INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS "ProtocolViewerStatus"
-#define INF_VIEWER_PROPERTIES_BGCOLOR			"BGColor"
-#define INF_VIEWER_PROPERTIES_BGGREYCENTER		"BGGreyCenter"
-#define INF_VIEWER_PROPERTIES_BGGREYWIDTH		"BGGreyWidth"
-#define LAY_VIEWER_SCREENSHOT					"Screenshot"
-#define INF_VIEWER_SCREENSHOT_FILE				"ScreenshotFilename"
-#define INF_VIEWER_SCREENSHOT_FLAG				"ScreenshotFlag" //generate thumbnail from screenshot
-#define INF_VIEWER_SCREENSHOT_THUMB				"ScreenshotThumb"  //True = make screenshot False = Done
+#define INF_VIEWER_PROPERTIES_BGCOLOR     "BGColor"
+#define INF_VIEWER_PROPERTIES_BGGREYCENTER    "BGGreyCenter"
+#define INF_VIEWER_PROPERTIES_BGGREYWIDTH   "BGGreyWidth"
+#define LAY_VIEWER_SCREENSHOT         "Screenshot"
+#define INF_VIEWER_SCREENSHOT_FILE        "ScreenshotFilename"
+#define INF_VIEWER_SCREENSHOT_FLAG        "ScreenshotFlag" //generate thumbnail from screenshot
+#define INF_VIEWER_SCREENSHOT_THUMB       "ScreenshotThumb"  //True = make screenshot False = Done
 
 
-#define O_ANIMATION				"Animation"
-#define LAY_ANIMATION_GLOBAL	"Global"
-#define INF_ANIMATION_RESET		"Reset"
-#define LAY_ANIMATION_SCRIPT	"Script"
-#define INF_SCRIPT_FULLSCRIPT	"FullScript"
-#define INF_SCRIPT_SCRIPTFILE	"ScriptFile"
-#define INF_SCRIPT_OBJNAMESPATH	"ObjNamesPath"
-#define INF_SCRIPT_STATUS		"Status"
+#define O_ANIMATION       "Animation"
+#define LAY_ANIMATION_GLOBAL  "Global"
+#define INF_ANIMATION_RESET   "Reset"
+#define LAY_ANIMATION_SCRIPT  "Script"
+#define INF_SCRIPT_FULLSCRIPT "FullScript"
+#define INF_SCRIPT_SCRIPTFILE "ScriptFile"
+#define INF_SCRIPT_OBJNAMESPATH "ObjNamesPath"
+#define INF_SCRIPT_STATUS   "Status"
 
-#define O_CASEOBJECT			"CaseObject"
-#define LAY_CASEOBJECT_CASE		"Case"
-#define INF_CASEOBJECT_CASE_DIRECTORY			"Directory"
+#define O_CASEOBJECT      "CaseObject"
+#define LAY_CASEOBJECT_CASE   "Case"
+#define INF_CASEOBJECT_CASE_DIRECTORY     "Directory"
 
 
-#define O_CLIPPING				"Clipping"
-#define INF_CLIPPING_SCALE		"Scale"
-#define LAY_CLIPPINGLEFT		"PlaneLeft"
-#define LAY_CLIPPINGRIGHT		"PlaneRight"
-#define LAY_CLIPPINGTOP			"PlaneTop"
-#define LAY_CLIPPINGBOTTOM		"PlaneBottom"
-#define LAY_CLIPPINGREAR		"PlaneRear"
-#define LAY_CLIPPINGFRONT		"PlaneFront"
+#define O_CLIPPING        "Clipping"
+#define INF_CLIPPING_SCALE    "Scale"
+#define LAY_CLIPPINGLEFT    "PlaneLeft"
+#define LAY_CLIPPINGRIGHT   "PlaneRight"
+#define LAY_CLIPPINGTOP     "PlaneTop"
+#define LAY_CLIPPINGBOTTOM    "PlaneBottom"
+#define LAY_CLIPPINGREAR    "PlaneRear"
+#define LAY_CLIPPINGFRONT   "PlaneFront"
 #define INF_CLIPPING_TRANSLATION "Translation"
-#define INF_CLIPPING_ROTATION	"Rotation"
-#define INF_CLIPPING_ON			"ClippingOn"
+#define INF_CLIPPING_ROTATION "Rotation"
+#define INF_CLIPPING_ON     "ClippingOn"
 
 
 
 
 //For each object
-#define INF_CLIPPING			"Clipping"
-#define INF_SILHOUETTECOLOR		"SilhouetteColor"
-#define INF_SILHOUETTEWIDTH		"SilhouetteWidth"
-#define INF_SILHOUETTE			"Silhouette"
+#define INF_CLIPPING      "Clipping"
+#define INF_SILHOUETTECOLOR   "SilhouetteColor"
+#define INF_SILHOUETTEWIDTH   "SilhouetteWidth"
+#define INF_SILHOUETTE      "Silhouette"
 
 
-#define I_ORIENTATION			"Orientation"
-#define I_POSITION				"Position"
-#define I_CAMHEIGHT				"CamHeight"
-#define I_CAPTUREFRAME			"CaptureFrame"
-#define I_CREATEAVI				"CreateAVISwitch"
-#define I_CANCELRECORDING		"CancelRecordingSwitch"
-#define I_UPDATEMLOUTPUT		"UpdateMLOutput"
+#define I_ORIENTATION     "Orientation"
+#define I_POSITION        "Position"
+#define I_CAMHEIGHT       "CamHeight"
+#define I_CAPTUREFRAME      "CaptureFrame"
+#define I_CREATEAVI       "CreateAVISwitch"
+#define I_CANCELRECORDING   "CancelRecordingSwitch"
+#define I_UPDATEMLOUTPUT    "UpdateMLOutput"
 
-#define I_STATUS				"Status"
-#define I_ENABLERENDERING		"EnableRendering"
+#define I_STATUS        "Status"
+#define I_ENABLERENDERING   "EnableRendering"
 
-#define I_BACKGROUNDCOLOR		"BackgroundColor"
-#define I_BACKGROUNDGREYCENTER	"BackgroundGreyCenter"
-#define I_BACKGROUNDGREYWIDTH	"BackgroundGreyWidth"
+#define I_BACKGROUNDCOLOR   "BackgroundColor"
+#define I_BACKGROUNDGREYCENTER  "BackgroundGreyCenter"
+#define I_BACKGROUNDGREYWIDTH "BackgroundGreyWidth"
 
-#define I_FRAMERATE				"Framerate"
+#define I_FRAMERATE       "Framerate"
 
-#define I_REFRESH				"Refresh"
+#define I_REFRESH       "Refresh"
 
-#define I_SHIFTX				"ShiftX"
-#define I_SHIFTY				"ShiftY"
-#define I_SHIFTZ				"ShiftZ"
+#define I_SHIFTX        "ShiftX"
+#define I_SHIFTY        "ShiftY"
+#define I_SHIFTZ        "ShiftZ"
 
 
 //L_VESSELSTREE#
-#define I_VESSELTREECOLOR		"Color"
+#define I_VESSELTREECOLOR   "Color"
 
-#define INF_MAXDIAMETER			"maxDiameter"
-#define INF_XDIAMETER			"xDiameter"
-#define INF_YDIAMETER			"yDiameter"
-#define INF_ZDIAMETER			"zDiameter"
-#define INF_MIDPOINT			"MidPoint"
-#define INF_OBJECTCENTER		"objectCenter"
-#define INF_XAXIS				"xAxis"
-#define INF_YAXIS				"yAxis"
-#define INF_ZAXIS				"zAxis"
+#define INF_MAXDIAMETER     "maxDiameter"
+#define INF_XDIAMETER     "xDiameter"
+#define INF_YDIAMETER     "yDiameter"
+#define INF_ZDIAMETER     "zDiameter"
+#define INF_MIDPOINT      "MidPoint"
+#define INF_OBJECTCENTER    "objectCenter"
+#define INF_XAXIS       "xAxis"
+#define INF_YAXIS       "yAxis"
+#define INF_ZAXIS       "zAxis"
 
 
 //SELECTION
-#define O_CSO					"CSO"
-#define LAY_SELECTEDOBJECT		"SelectedObject"
-#define INF_OBJECTID			"ObjectID"
+#define O_CSO         "CSO"
+#define LAY_SELECTEDOBJECT    "SelectedObject"
+#define INF_OBJECTID      "ObjectID"
 
 
 //DESCRIPTION
-#define LAY_DESCRIPTION			"Description"
-#define INF_NAME				"Name"
+#define LAY_DESCRIPTION     "Description"
+#define INF_NAME        "Name"
 #define INF_STRUCTURE           "Structure"
 #define INF_STRUCTUREGROUP      "StructureGroup"
 #define INF_COMMENT             "Comment"
 #define INF_SIDE                "Side"
-#define INF_RESULTTYPE			"ResultType"
+#define INF_RESULTTYPE      "ResultType"
 #define INF_IMPORTANCE          "Importance"
 
 #endif // __mlMETK_H

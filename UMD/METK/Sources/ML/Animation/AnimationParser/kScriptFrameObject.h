@@ -1,10 +1,10 @@
 //----------------------------------------------------------------------------------
-/*!
+/*! kScriptFrameObject ist a representation of one frame with the list of all instructions.
 // \file    kScriptFrameObject.h
 // \author  Konrad Mühler
 // \date    2005-07-05
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -25,23 +25,23 @@
 
 using namespace std;
 
-//! kScriptFrameObject ist a representation of one frame with the list of all instructions
+//! kScriptFrameObject ist a representation of one frame with the list of all instructions.
 class ANIMATION_EXPORT kScriptFrameObject
 {
-private:		
-	
-public:					
-	std::vector<kScriptFrameEntry*> EntryList;	//!< list of commands for this frame
-	//HashTable<int>* EntryIDList;				//!< IDs of the commands in the EntryList
+private:
 
-	//--------------------------------------------------------
-	//Functions
-	//--------------------------------------------------------
+public:
+  std::vector<kScriptFrameEntry*> EntryList;  //!< list of commands for this frame
+  //HashTable<int>* EntryIDList;        //!< IDs of the commands in the EntryList
 
-	kScriptFrameObject();
-	~kScriptFrameObject();
-	bool addFrameEntry(kScriptFrameEntry*);
-	int getEntryIDByCommandLine(const string commandLine);
+  //--------------------------------------------------------
+  //Functions
+  //--------------------------------------------------------
+
+  kScriptFrameObject();
+  ~kScriptFrameObject();
+  bool addFrameEntry(kScriptFrameEntry*);
+  int getEntryIDByCommandLine(const string commandLine);
 };
 
 #endif // _KSCRIPTFRAMEOBJECT_

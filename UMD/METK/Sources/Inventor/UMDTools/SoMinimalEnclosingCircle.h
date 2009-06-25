@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoMinimalEnclosingCircle derived from SoSeparator
+//! The Inventor node SoMinimalEnclosingCircle derived from SoSeparator to get the midpoint and the radius of these scene in screen space.
 /*!
 // \file    SoMinimalEnclosingCircle.h
 // \author  Christian Tietjen
 // \date    2004-12-23
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -33,65 +33,65 @@
 class SoState;
 class SoNodeSensor;
 
-//! 
+//! The Inventor node SoMinimalEnclosingCircle derived from SoSeparator to get the midpoint and the radius of these scene in screen space.
 class UMDTOOLS_EXPORT SoMinimalEnclosingCircle : public SoSeparator
 {
    //! Implements the runtime type system interface of this new node.
    SO_NODE_HEADER(SoMinimalEnclosingCircle);
-   
+
 public:
    //! Constructor
    SoMinimalEnclosingCircle();
-   
+
    SoSFVec3f center;
    SoSFFloat radius;
-   
+
    //! Initializes this class (called on dll initialization).
    static void  initClass();
-   
+
 protected:
    //! Protected destructor
    virtual      ~SoMinimalEnclosingCircle();
    virtual void GLRenderBelowPath(SoGLRenderAction* action);
    virtual void GLRender(SoGLRenderAction* action);
-   
+
    void compute(SoGLRenderAction* action);
-   
+
 private:
 
    enum SoMinimalEnclosingCircle_Method {MEC, MidPointRadius};
    //! Sensor to detect changes in node's fields.
    SoNodeSensor      *_nodeSensor;
-   
+
    //! Called by \c _nodeSensor when any field in node changes.
    //! Only redirects the call of this static function to the
    //! class method \c nodeChanged.
    static void       nodeChangedCB(void *data, SoSensor* sens);
-   
+
    //! Called by the static function \c _nodeChangedCB to notify node changes.
    void              nodeChanged(SoNodeSensor* sensor);
-   
+
    //! generates a float array out of an scene graph
    void getPointSet(SbVec3f* &pointSet, long &size);
-   
+
    const SbVec3f getScreenPos(const SbVec3f &vertex);
-   
+
    SbMatrix _objToScreen;
    SbVec2f  _winSize;
    SbBool*  _pixelMatrix;
-   
+
    SbVec3f* _pointSet3D;
    long     _size3D;
    float    _zValue;
    SbVec2f* _pointSet2D;
-   
+
    SbVec2f* _pointSetRaster;
    long     _sizeRaster;
 
    void rasterizeAndSort();
-   
+
    void screenSpaceBoundingBox();
-   
+
    inline float distance2D(const register float* point1, const register float* point2) {
       register float d1 = * point1      - * point2;
       register float d2 = *(point1 + 1) - *(point2 + 1);

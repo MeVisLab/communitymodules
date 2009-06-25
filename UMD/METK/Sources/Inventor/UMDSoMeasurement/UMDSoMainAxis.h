@@ -20,7 +20,7 @@
 // $Id: UMDSoMainAxis.h,v 1.15 2003/09/05 16:14:44 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoMainAxis.h,v $
 
-/*! This is the inventor interface for the MainAxis class.
+/*! The Inventor node class wrapping/interfacing the MainAxis class, derived from SoAutoMeasureTool.
 // \file    UMDSoMainAxis.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -37,8 +37,7 @@ class UMDSoDistanceLine;
 class SoFieldSensor;
 class SoIndexedLineSet;
 
-//! This is the inventor interface for the MainAxis class.
-//! The baseclass of this class is \c SoAutoMeasureTool
+//! The Inventor node class wrapping/interfacing the MainAxis class, derived from SoAutoMeasureTool.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoMainAxis : public UMDSoAutoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoMainAxis);

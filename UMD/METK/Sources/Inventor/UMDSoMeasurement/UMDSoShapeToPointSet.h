@@ -20,7 +20,7 @@
 // $Id: UMDSoShapeToPointSet.h,v 1.12 2003/09/23 17:24:33 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoShapeToPointSet.h,v $
 
-/*!
+/*! Inventor node UMDSoShapeToPointSet which converts any scenegraph into a pointset.
 // \file    UMDSoShapeToPointSet.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -50,21 +50,21 @@ class SoSFMatrix;
 class SoVertexProperty;
 struct ltstr;
 
-//! Converts any scenegraph into a pointset.
+//! Inventor node UMDSoShapeToPointSet which converts any scenegraph into a pointset.
 //! Every point occurs just one time in this set.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoShapeToPointSet : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoShapeToPointSet);
-  
-  
+
+
 public:
-  
+
   //! Constructor
   UMDSoShapeToPointSet();
 
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   //! the input node
   SoSFNode rootInput;
   //! direct access on the extracted point set
@@ -72,16 +72,16 @@ public:
   SoVertexProperty* vertexProperty;
   //! forces the computation
   void calculate();
-  
+
 
 protected:
-  
+
   //! Destructor
   virtual ~UMDSoShapeToPointSet();
-  
-  
+
+
 private:
-  
+
   //! internal representation of the point set
   SoPointSet* _pointSet;
   //! number of points
@@ -94,21 +94,21 @@ private:
   SoFieldSensor *_inputSens;
   //! callback action to collect the points
   SoCallbackAction* _myAction;
-  
+
   //! inserts the points into the hashtable
   void insertPoint(SbVec3f vector);
   //! reads out the hashtable. every point occurs only one time
   void collectPoints();
-  
+
   //! method called on input changed
   static void inputCB(void *userData, SoSensor*);
   //! called, if a new child in the scenegraph will be traversed
   static SoCallbackAction::Response  preCB(void *userData, SoCallbackAction *action, const SoNode *node);
   //! called if the child is a point set
-  static void pointCB   (void* userData, SoCallbackAction* action, 
+  static void pointCB   (void* userData, SoCallbackAction* action,
                          const SoPrimitiveVertex* v);
   //! called if the child is a line set
-  static void lineCB    (void* userData, SoCallbackAction* action, 
+  static void lineCB    (void* userData, SoCallbackAction* action,
                          const SoPrimitiveVertex* v1,
                          const SoPrimitiveVertex* v2);
   //! called if the child is a shape
@@ -116,7 +116,7 @@ private:
                          const SoPrimitiveVertex* v1,
                          const SoPrimitiveVertex* v2,
                          const SoPrimitiveVertex* v3);
-  
+
   //! the hashtable
   std::set<SbVec3f, ltstr>* _hashTable;
 };
@@ -131,7 +131,7 @@ struct ltstr {
   bool operator()(SbVec3f s1, SbVec3f s2) const {
     const float* p1 = s1.getValue();
     const float* p2 = s2.getValue();
-    
+
     if (*p1 < *p2) return true;
     else {
       if (*p1 > *p2) return false;

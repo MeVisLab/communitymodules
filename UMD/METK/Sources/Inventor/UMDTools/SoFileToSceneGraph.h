@@ -1,3 +1,6 @@
+//! Inventor node SoFileToSceneGraph derived from SoSeparator creating scene graphs from scenes loaded with SoFile.
+//! \file SoFileToSceneGraph.h
+
 #ifndef _SoFileToSceneGraph_H
 #define _SoFileToSceneGraph_H
 
@@ -8,6 +11,7 @@
 class SoFieldSensor;
 class SoSearchAction;
 
+//! Inventor node SoFileToSceneGraph derived from SoSeparator creating scene graphs from scenes loaded with SoFile.
 class UMDTOOLS_EXPORT SoFileToSceneGraph : public SoSeparator
 {
    typedef SoSeparator inherited;
@@ -16,7 +20,6 @@ class UMDTOOLS_EXPORT SoFileToSceneGraph : public SoSeparator
 
 
 public:
-   //! A float field.
    SoSFNode inputObject;
    SoSFNode outConvertedScene;
 
@@ -27,13 +30,13 @@ public:
 
 private:
 
-   //! the sensor for \c inputObject
+   //! the sensor for inputObject.
    SoFieldSensor* _inputObjectSensor;
-   //! called if inputObject has been changed, calls the non-static method \c inputChanged
+   //! called if inputObject has been changed, calls the non-static method inputChanged.
    static void  inputChangedCB(void *userData, SoSensor*);
-   //! called if the ouput should be changed, calls the non-static method \c outputChanged
+   //! called if the ouput should be changed, calls the non-static method outputChanged.
    void  inputChanged();
-   //! called by \c outputChangedCB
+   //! called by outputChangedCB
 
    SoSeparator* _inputSep;
    SoSearchAction* _searchAction;

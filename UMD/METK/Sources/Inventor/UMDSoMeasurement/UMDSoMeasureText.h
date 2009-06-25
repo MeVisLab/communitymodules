@@ -20,7 +20,7 @@
 // $Id: UMDSoMeasureText.h,v 1.2 2003/02/19 16:37:15 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoMeasureText.h,v $
 
-/*!
+/*! Inventor node class UMDSoMeasureText derived from SoSeparator.
 // \file    UMDSoMeasureText.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -37,17 +37,17 @@ class SoFieldSensor;
 class SoSwitch;
 class SoTransform;
 
-
+//! Inventor node class UMDSoMeasureText derived from SoSeparator.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoMeasureText : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoMeasureText);
-  
+
 
 public:
-  
+
   //! Constructor
   UMDSoMeasureText();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
 
@@ -67,7 +67,7 @@ protected:
 
 
 private:
-  
+
   SoSwitch *_switch2D3D;
 
   unsigned long _lastClick;

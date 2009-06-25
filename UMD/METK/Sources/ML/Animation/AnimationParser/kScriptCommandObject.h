@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-/*!
+/*! kScriptCommandObject is the class for handling a single command object.
 // \file    kScriptCommandObject.h
 // \author  Konrad Mühler
 // \date    2005-07-05

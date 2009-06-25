@@ -20,7 +20,7 @@
 // $Id: UMDSoMinimalDistance.h,v 1.9 2003/09/05 16:14:44 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoMinimalDistance.h,v $
 
-/*!
+/*! Inventor node UMDSoMinimalDistance computing the shortest euclidean distance between two pointsets.
 // \file    UMDSoMinimalDistance.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -37,30 +37,30 @@ class UMDSoDistanceLine;
 class SoFieldSensor;
 class SoSwitch;
 
-//! Computes the shortest euclidean distance between two pointsets
+//! Inventor node UMDSoMinimalDistance computing the shortest euclidean distance between two pointsets.
 //! Based on: "Efficient Distance Computation between Non-Convex Objects" by Sean Quinlan
 //! see: graphics.stanford.edu/courses/cs468-01-winter/papers/q-edcbnco-94.ps
 //! This class integrates the Non-Inventor class \c MinimalDistance into ILab
 class SO_MEASUREMENT_CLASS_SPEC UMDSoMinimalDistance : public UMDSoAutoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoMinimalDistance);
-  
-  
+
+
 public:
-  
+
   //! Constructor
   UMDSoMinimalDistance();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   // ######## Fields ##############
-  
+
   //! starts the distance computation
   SoSFTrigger computeMinimalDistance;
   //! if this is true, the computation starts automatically if a valid input is given
   SoSFBool autoCompute;
-  
+
   //! contain the second object
 #ifdef ILAB5
   SoSFNode inObject2Node;
@@ -79,7 +79,7 @@ public:
   SoSFEnum unit;
 
   SoSFFloat scaleLine;
- 
+
   //! Wert, bei dessen Unterschreiten die Linie
   //! geschlossen dargestellt wird
   SoSFFloat minDistance;
@@ -117,7 +117,7 @@ private:
 
   //! \c _spheres is just for debugging aims
   SoSeparator *_spheres;
-  
+
   //! the distance line
   UMDSoDistanceLine *_distanceLine;
 

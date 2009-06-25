@@ -12,7 +12,7 @@
 // $Id: UMDSoAutoMeasureTool.h,v 1.7 2003/09/23 17:24:33 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoAutoMeasureTool.h,v $
 
-/*! The inventor node class UMDSoAutoMeasureTool which is the base class for all automatic measurement tools.
+/*! The Inventor node class UMDSoAutoMeasureTool which is the base class for all automatic measurement tools.
 // \file    UMDSoAutoMeasureTool.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -26,7 +26,7 @@
 
 class SoFieldSensor;
 
-//! This is the base class for all automatic measurement tools.
+//! The Inventor node class UMDSoAutoMeasureTool which is the base class for all automatic measurement tools.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoAutoMeasureTool : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoAutoMeasureTool);

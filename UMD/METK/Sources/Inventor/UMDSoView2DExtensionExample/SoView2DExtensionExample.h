@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoView2DExtensionExample derived from SoView2DExtension
+//! The Inventor node SoView2DExtensionExample derived from SoView2DExtension.
 /*!
 // \file    SoView2DExtensionExample.h
 // \author  Konrad Mühler
@@ -28,7 +28,7 @@
 
 
 
-//!
+//! The Inventor node SoView2DExtensionExample derived from SoView2DExtension.
 class UMDSOVIEW2DEXTENSIONEXAMPLE_EXPORT SoView2DExtensionExample : public SoView2DExtension
 {
   //! Implements the runtime type system interface of this new node.

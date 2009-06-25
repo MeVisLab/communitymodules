@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The ML module class METKObjXMLWriter.
+//! The ML ObjMgr client module class METKObjXMLWriter.
 /*!
 // \file    mlMETKObjXMLWriter.h
 // \author  Konrad Mühler
@@ -30,7 +30,7 @@
 ML_START_NAMESPACE
 
 
-//!
+//! The ML ObjMgr client module class METKObjXMLWriter.
 class ANIMATION_EXPORT METKObjXMLWriter : public ObjMgrClient
 {
 public:

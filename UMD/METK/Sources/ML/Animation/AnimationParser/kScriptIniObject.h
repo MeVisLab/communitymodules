@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-/*!
+/*! kScriptIniObject is the class for information about a script like length or realtime.
 // \file    kScriptIniObject.h
 // \author  Konrad Mühler
 // \date    2005-07-05

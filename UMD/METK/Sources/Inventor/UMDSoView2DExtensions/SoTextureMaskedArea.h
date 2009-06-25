@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoTextureMaskedArea derived from SoView2DExtension.
+//! The Inventor node SoTextureMaskedArea derived from SoView2DExtension.
 /*!
 // \file    SoTextureMaskedArea.h
 // \author  Björn Meyer
@@ -49,7 +49,7 @@ class SoView2D;
 
 
 
-//! The Inventor module class SoTextureMaskedArea derived from SoView2DExtension.
+//! The Inventor node SoTextureMaskedArea derived from SoView2DExtension.
 class UMDSOVIEW2DEXTENSIONS_EXPORT SoTextureMaskedArea : public SoView2DExtension
 {
    //! Implements the runtime type system interface of this new node.

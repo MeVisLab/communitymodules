@@ -20,7 +20,7 @@
 // $Id: UMDSoVolEstimation.h,v 1.8 2003/02/19 16:37:15 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoVolEstimation.h,v $
 
-/*!
+/*! Inventor node UMDSoVolEstimation derived from UMDSoMeasureTool is a tool for approximated measuring of a volumen.
 // \file    UMDSoVolEstimation.h
 // \author  Christian Tietjen
 // \date    11/2001
@@ -42,8 +42,7 @@ class SoTransform;
 class SoTransformerDragger;
 
 
-//! UMDSoVolEstimation ist ein Tool zur approximativen Messung
-//! eines Volumens.
+//! Inventor node UMDSoVolEstimation derived from UMDSoMeasureTool is a tool for approximated measuring of a volumen.
 //! Anders als bei den anderen Vermessungstools wird das
 //! berechnete Volumen hier nur angezeigt, wenn das unitFlag
 //! gesetzt ist.
@@ -57,29 +56,29 @@ class SoTransformerDragger;
 //! ausführen
 //! Rückgabe: das Volumen des Volumens
 //! Basisklasse: \c SoMeasureTool
-//! Die Interaktionsmoeglichkeiten sind im Header von 
+//! Die Interaktionsmoeglichkeiten sind im Header von
 //! \c SoMeasureTool beschrieben
 class SO_MEASUREMENT_CLASS_SPEC UMDSoVolEstimation : public UMDSoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoVolEstimation);
-  
+
 
 public:
-  
+
   //! Constructor
   UMDSoVolEstimation();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   //! Volumen ausgeben
   SoSFFloat absVolume;
   //! Volumen des Ellipsoiden von Applikation berechnet
   //! Angabe immer in cmm
   SoSFFloat externVolume;
-  
+
   // ######## Fields ##############
-  
+
   //! Volumen wird extern berechnet
   SoSFBool volExternFlag;
 
@@ -98,42 +97,42 @@ protected:
   virtual ~UMDSoVolEstimation();
 
 
-private: 
-  
+private:
+
   //! additional initializations
   void initVolEstimation();
-  
+
   //! Feld-Sensoren initialisieren
   void initVolEstimationFieldSensors();
-  
+
   //! haengt Knoten in Graphen
   void createVolEstimation();
-  
+
   //! creates the SoTransformerDragger
   void createDragger();
 
-  //! gibt einen Gruppenknoten zurueck, der den 
+  //! gibt einen Gruppenknoten zurueck, der den
   //! Hüllkörper enthaelt
   void createEllipsoid();
 
   //! Rueckgabe eines Separators mit Text
   void createText();
-  
+
   //! Setzt den darzustellenden Text
   void getTextString();
-  
+
   //! \c startPos has been changed
   void pointChanged();
 
   //! Welches Objekt wurde getroffen
   SbBool getPickedObjectMouseLeft(const SoPickedPoint* pickedPoint);
-  
+
   //! die Funktionen zum Bewegen der Pfeilspitzen bei Tastatur-Events
   SbBool setArrowByKeyboard(float x, float y, float z, Taste taste);
 
   //! Der Callback für den Dragger
   static void valueChangedCB(void* userData, SoDragger* dragger);
-  
+
   //! the scale factor was changed
   static void scaleExternChangedCB(void* userData, SoSensor* s);
   //! the rotation was changed

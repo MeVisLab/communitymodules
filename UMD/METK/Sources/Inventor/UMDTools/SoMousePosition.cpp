@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoMousePosition
+//! The Inventor module class SoMousePosition getting the mouse position into a node field.
 /*!
 // \file    SoMousePosition.cpp
 // \author  Maik Beye
 // \date    2007-02-20
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -34,14 +34,14 @@ void SoMousePosition::initClass()
 // --------------------------------------------------------------------------
 SoMousePosition::SoMousePosition()
 {
-   
+
    // Execute inventor internal stuff for node construction.
    SO_NODE_CONSTRUCTOR(SoMousePosition);
-   
+
    SO_NODE_ADD_FIELD(mousePosition, (0.0,0.0));
    SO_NODE_ADD_FIELD(mouseX, (0));
    SO_NODE_ADD_FIELD(mouseY, (0));
-     
+
    // EventCallback fuer die Mousebutton-Ereignisse
    SoEventCallback* eventCB = new SoEventCallback;
    addChild(eventCB);
@@ -68,9 +68,9 @@ void SoMousePosition::mouseMoved(SoEventCallback* eventCB) {
 }
 
 void SoMousePosition::getMousePosition(SoEventCallback* eventCB) {
-   
+
    const SoEvent* event = eventCB->getEvent();
-   mousePosition.setValue( SbVec2s( event->getPosition()) ); 
-  
-   
+   mousePosition.setValue( SbVec2s( event->getPosition()) );
+
+
 }

@@ -9,7 +9,7 @@
 // PROHIBITED WITHOUT THE PRIOR EXPRESS WRITTEN PERMISSION OF MEVIS GGMBH
 //
 //----------------------------------------------------------------------------------
-//! The ML module class kAviWriter.
+//! ML module class kAviWriter taking an arbitrary number of images and compresses them into a movie.
 /*!
 // \file    mlkAviWriter.h
 // \author  okonrad, konrad muehler
@@ -48,7 +48,7 @@
 ML_START_NAMESPACE
 
 
-//! The kAviWriter takes an arbitrary number of images and compresses them into a movie.
+//! ML module class kAviWriter taking an arbitrary number of images and compresses them into a movie.
 class MLKAVIWRITER_EXPORT kAviWriter : public BaseOp
 {
 public:
@@ -113,7 +113,7 @@ private:
 
     //! Starts the recodring of a movie. Configures the movie header.
     void _startRecording(int imgWidth=0, int imgHeight=0);
-	//void _startRecording2(int imgWidth, int imgHeight);
+  //void _startRecording2(int imgWidth, int imgHeight);
 
     //! Adds the current image to the movie.
     void _addImageToMovie();

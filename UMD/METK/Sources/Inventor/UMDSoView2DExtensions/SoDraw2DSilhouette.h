@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoDraw2DSilhouette derived from SoView2DExtension
+//! The Inventor node SoDraw2DSilhouette derived from SoView2DExtension, calculating a surrounding of an object.
 /*!
 // \file    SoDraw2DSilhouette.h
 // \author  Björn Meyer
@@ -39,7 +39,7 @@
 
 
 
-//! 
+//! The Inventor node SoDraw2DSilhouette derived from SoView2DExtension, calculating a surrounding of an object.
 class UMDSOVIEW2DEXTENSIONS_EXPORT SoDraw2DSilhouette : public SoView2DExtension
 {
   //! Implements the runtime type system interface of this new node.
@@ -55,8 +55,8 @@ public:
   // Input Connector for vertex-pointer
   SoSFNode inLineSet;
 
-	SoSFVec3f barycentre;
-	SoSFInt32 stippleFactor;
+  SoSFVec3f barycentre;
+  SoSFInt32 stippleFactor;
 
   //! Handling of events occurring in the viewer.
   virtual bool evalEvent(SoView2D *view2d, View2DSliceList *list,

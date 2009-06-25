@@ -1,3 +1,7 @@
+//! Inventor node class derived from SoNode that clears specific GL buffers.
+//! \file    UMDStraightLineSystem.h
+//! \author  Nicolas Halper
+
 /////////////////////////////////////////////////////////////////////
 //
 //  SoClearGLBuffers
@@ -24,27 +28,28 @@
 class SoNodeSensor;
 class SoSensor;
 
+//! Inventor node class derived from SoNode that clears specific GL buffers.
 class UMDTOOLS_EXPORT SoClearGLBuffers : public SoNode {
 
     SO_NODE_HEADER(SoClearGLBuffers);
 
   public:
-	
-	SoClearGLBuffers();
-  SoSFBool clearColorBuffer;   // GL_COLOR_BUFFER_BIT The buffers currently enabled for color writing. 
-  SoSFBool clearDepthBuffer;   // GL_DEPTH_BUFFER_BIT The depth buffer. 
-  SoSFBool clearAccumBuffer;   // GL_ACCUM_BUFFER_BIT The accumulation buffer. 
-  SoSFBool clearStencilBuffer; // GL_STENCIL_BUFFER_BIT The stencil buffer. 
 
-	SoSFInt32 whichGLbuffers;
+  SoClearGLBuffers();
+  SoSFBool clearColorBuffer;   // GL_COLOR_BUFFER_BIT The buffers currently enabled for color writing.
+  SoSFBool clearDepthBuffer;   // GL_DEPTH_BUFFER_BIT The depth buffer.
+  SoSFBool clearAccumBuffer;   // GL_ACCUM_BUFFER_BIT The accumulation buffer.
+  SoSFBool clearStencilBuffer; // GL_STENCIL_BUFFER_BIT The stencil buffer.
+
+  SoSFInt32 whichGLbuffers;
 
   SoEXTENDER public:
-    virtual void	doAction(SoAction *action);
-    virtual void	GLRender(SoGLRenderAction *action);
-    virtual void	callback(SoCallbackAction *action);
+    virtual void  doAction(SoAction *action);
+    virtual void  GLRender(SoGLRenderAction *action);
+    virtual void  callback(SoCallbackAction *action);
 
   SoINTERNAL public:
-    static void		initClass();
+    static void   initClass();
 
   protected:
     virtual ~SoClearGLBuffers();

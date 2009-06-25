@@ -12,7 +12,7 @@
 // $Id: UMDSoMeasureTool.h,v 1.11 2003/09/09 16:20:03 milo Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoMeasureTool.h,v $
 
-/*!
+/*! The Inventor node UMDSoMeasureTool is a base class for measurement tools, derived from SoSeparator and already containing many nodes.
 // \file    UMDSoMeasureTool.h
 // \author  Henry Sonnet / Christian Tietjen
 // \date    09/2002
@@ -49,8 +49,8 @@ class SoTransform;
 
 #endif
 
-//! Die Basisklasse fuer die MessTools, abgeleitet von 
-//! SoSeparator; enthaelt bereits diverse Knoten:
+//! The Inventor node UMDSoMeasureTool is a base class for measurement tools, derived from SoSeparator and
+//! already containing many nodes. These nodes are
 //! - die Root
 //! - einen SoEventCallback-Knoten fuer Mousebutton- und Keyboardevents,
 //!   die Interaktionsmöglichkeiten, die möglich sind, werden weiter unten
@@ -64,7 +64,7 @@ class SoTransform;
 //!
 //! Grundsätzlich sind alle "beweglichen Teile" mit SoLocateHighlight-Knoten versehen,
 //! die beim Überfahren mit der Maus aufleuchten.
-//! 
+//!
 //! Um ein Werkzeugteil bewegen zu können, muß man es erst mit einem einfachen Klick
 //! anwählen. Es kann immer nur ein Werkzeug zur Zeit aktiviert werden,
 //! ein evtl. vorher selektiertes Werkzeug wird automatisch deselektiert
@@ -83,23 +83,23 @@ class SoTransform;
 class SO_MEASUREMENT_CLASS_SPEC UMDSoMeasureTool : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoMeasureTool);
-  
+
 
 public:
-  
+
   //! Konstruktor
   UMDSoMeasureTool();
   //! Destruktor
   virtual ~UMDSoMeasureTool();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   // ######## Fields ##############
-  
+
   //! the first vertice of the measure tool - default value is (-10, 0, 0)
   SoSFVec3f startPos;
-  
+
   //! the color of the measure tool
   SoSFColor color;
 
@@ -107,10 +107,10 @@ public:
   SoSFBool toolNameFlag;
   //! the tool name
   SoSFString toolName;
-  
+
   //! the step size for moving the tool vertices by the keyboard - default value is (0.01)
   SoSFFloat keyboardIncrement;
-  
+
   //! shows the unit - default value is (FALSE)
   SoSFBool unitFlag;
   //! the unit - default value is mm (cmm)
@@ -122,35 +122,35 @@ public:
   SoSFFloat scale;
 
 
-private: 
-  
+private:
+
   // ##### Die Funktionen #####
-  
+
   //! inits the measure tool fields
   void initMeasureTool();
-  
+
   //! Feld-Sensoren initialisieren
   void initMeasureToolFieldSensors();
-  
+
   //! haengt Knoten in Graphen
   void getObject();
-  
+
   //! gibt einen LevelOfDetail-Knoten zurueck, der fuer die Font-Groesse verantwortlich ist
   SoLevelOfDetail* getLOD();
-  
+
   //! Callback fuer Mousebutton-Events
   static void mousePressedCB(void* userData, SoEventCallback* eventCB);
-  
+
   //! Callback fuer Tastatur-Events
   static void cursorPressCB(void* userData, SoEventCallback* eventCB);
-  
+
   //! called if \c startPos has been changed
   static void startChangedCB(void* userData, SoSensor*);
 
   static void scaleChangedCB(void* userData, SoSensor*);
 
 protected:
-  
+
   //! Änderung der Unit-Beschriftung
   static void unitChangedCB(void* userData, SoSensor*);
 
@@ -164,11 +164,11 @@ protected:
   bool areEqual(const SbVec3f& vec1, const SbVec3f& vec2);
 
   // ####### virtuelle Funktionen ###########
-  
+
   //! Welches Objekt wurde getroffen;
   //! muss von abgeleiteter Klasse implementiert werden
   virtual SbBool getPickedObjectMouseLeft(const SoPickedPoint* /*pickedPoint*/){ return FALSE; }
-  
+
   //! jede abgeleitete Klasse muss die folgenden Funktionen implementieren;
   //! werden aufgerufen, wenn eine Position sich aendert
   virtual void pointChanged(){};
@@ -207,18 +207,18 @@ protected:
 
   //! deactivates a tool
   void resetHighLightNode(UMDSoMeasureTool* tool);
-  
+
   //! Handler für linke Maustaste
   static UMDSoMeasureTool *_currentTool;
   //! weiterschalten der Farben
   static int _colorCounter;
-  
+
   //! hier gehts los
   SoSeparator *_root;
-  
+
   //! Switch-Knoten fuer Dragger
   SoSwitch *_switchDragger;
-  
+
   //! der Inhaber aller LocateHighlight-Knoten
   SoSeparator *_highlightSep;
 
@@ -233,7 +233,7 @@ protected:
 
 
   SoSphere* _sphere;
-  
+
   //! Die Feld-Sensoren:
   SoFieldSensor *_startPosSens, *_toolNameFlagSens, *_toolNameSens, *_unitFlagSens, *_unitSens, *_interactionModeSens, *_scaleSens;
 };

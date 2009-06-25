@@ -20,7 +20,7 @@
 // $Id: UMDSoThresholdToPointSet.h,v 1.7 2004/08/02 11:32:20 florian Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoThresholdToPointSet.h,v $
 
-/*!
+/*! Inventor node UMDSoThresholdToPointSet generating a pointset from a given image.
 // \file    UMDSoThresholdToPointSet.h
 // \author  Christian Tietjen
 // \date    09/2002
@@ -42,9 +42,9 @@ class SoPointSet;
 class SoVertexProperty;
 
 
-//!  Generates a pointset from a given image. For each voxel
-//!  between a given threshold a point will be created.
-//!  The set can be bordered by a threshold.
+//! Inventor node UMDSoThresholdToPointSet generating a pointset from a given image.
+//! For each voxel between a given threshold a point will be created.
+//! The set can be bordered by a threshold.
 class SO_MEASUREMENT_CLASS_SPEC UMDSoThresholdToPointSet : public SoSeparator {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoThresholdToPointSet);
@@ -68,7 +68,7 @@ public:
 
   //! input image
 #ifdef ILAB5
-  SoSFMLImage inImage;  
+  SoSFMLImage inImage;
 #else
   SoSFMLImage image;
 #endif

@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoFramesPerSecond derived from SoSeparator
+//! The Inventor node SoFramesPerSecond derived from SoSeparator counting number of drawn frames per second.
 /*!
 // \file    SoFramesPerSecond.h
 // \author  Christian Tietjen
 // \date    2004-12-23
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -26,21 +26,21 @@
 #include <Inventor/SbTime.h>
 #include "XVLeaveScope.h"
 
-//! 
+//! The Inventor node SoFramesPerSecond derived from SoSeparator counting number of drawn frames per second.
 class UMDTOOLS_EXPORT SoFramesPerSecond : public SoSeparator
 {
    //! Implements the runtime type system interface of this new node.
    SO_NODE_HEADER(SoFramesPerSecond);
-   
+
 public:
    //! Constructor
    SoFramesPerSecond();
 
    SoSFFloat fps;
-   
+
    //! Initializes this class (called on dll initialization).
    static void  initClass();
-   
+
 protected:
    //! Protected destructor
    virtual            ~SoFramesPerSecond();

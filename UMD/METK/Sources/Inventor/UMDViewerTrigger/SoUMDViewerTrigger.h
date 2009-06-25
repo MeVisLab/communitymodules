@@ -1,6 +1,5 @@
 // --------------------------------------------------------------------------
-//! The Inventor module class SoUMDViewerTrigger derived from SoSeparator
-/*!
+/*! Inventor node SoUMDViewerTrigger derived from SoSeparator to control the rendering status of an ExaminerViewer.
 // \file    SoUMDViewerTrigger.h
 // \author  Konrad Mühler
 // \date    2005-04-23
@@ -28,7 +27,7 @@
 #include "XVLeaveScope.h"
 
 
-//! Module to control the rendering status of an ExaminerViewer
+//! Inventor node SoUMDViewerTrigger derived from SoSeparator to control the rendering status of an ExaminerViewer.
 class UMDVIEWERTRIGGER_EXPORT SoUMDViewerTrigger : public SoSeparator
 {
   SO_NODE_HEADER(SoUMDViewerTrigger); //!< Implements the runtime type system interface of this new node.

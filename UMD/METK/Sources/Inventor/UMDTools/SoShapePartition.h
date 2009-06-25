@@ -1,3 +1,6 @@
+//! Inventor node SoShapePartition derived from SoSeparator splitting a scene in several cubes (bounding boxes) and converts all shapes in SoIndexedTriangleStripSets.
+//! \file SoShapePartition.h
+
 #ifndef _SOSHAPEPARTITION
 #define _SOSHAPEPARTITION
 
@@ -33,17 +36,17 @@ class Triangle;
 struct ltVertex;
 struct ltEdge;
 
-
+//! Inventor node SoShapePartition derived from SoSeparator splitting a scene in several cubes (bounding boxes) and converts all shapes in SoIndexedTriangleStripSets.
 class UMDTOOLS_EXPORT SoShapePartition : public SoSeparator {
    //! macro that defines extended methods
    SO_NODE_HEADER(SoShapePartition);
-   
-   
+
+
 public:
-   
+
    //! Constructor
    SoShapePartition();
-   
+
    SoSFNode outConvertedShape;
    SoSFNode input;
 
@@ -54,19 +57,19 @@ public:
    SoSFBool valid;
    SoSFBool autoUpdate;
 
-   
+
    //! must be called first to initialize the class in OpenInventor
    static void initClass();
-   
-   
+
+
 protected:
-   
+
    //! Destructor
    virtual ~SoShapePartition();
-   
-   
+
+
 private:
-   
+
    //! internal representation of the point set
    SoVertexProperty** _vertexPropArray;
    SoGroup* _itssHolder;
@@ -80,14 +83,14 @@ private:
    void _nodeChanged  (SoField *field);
 
    void compute();
-   
+
    //! inserts the points into the hashtable
    const Vertex* insertVertex(const SbVec3f vector, const SbVec3f normal, const SbVec2f texCoord, const int arrayPosition);
    Edge* generateEdge(const Vertex* p1, const Vertex* p2, const int arrayPosition);
 
    //! generate TriangleStripSets out of the collected triangles
    void generateITSS();
-   
+
    //! callback action to collect the points
    SoCallbackAction* _myAction;
    //! called, if a new child in the scenegraph will be traversed
@@ -96,13 +99,13 @@ private:
       const SoPrimitiveVertex* v1,
       const SoPrimitiveVertex* v2,
       const SoPrimitiveVertex* v3);
-   
+
    //! map hashtable containing all vertices
    std::set<Vertex*, ltVertex>* _hashTable;
-   
+
    //! set containing all edges
    std::set<Edge*, ltEdge>* _edgeSet;
-   
+
    //! vector containing all triangles
    std::set<Triangle*>* _triangleSet;
 
@@ -144,7 +147,7 @@ public:
    void setVertex2(const Vertex* v);
    void setTriangle1(Triangle* tri);
    void setTriangle2(Triangle* tri);
-   
+
 private:
    const Vertex *_vertex1, *_vertex2;
    Triangle *_triangle1, *_triangle2;
@@ -166,7 +169,7 @@ public:
    const Edge* getEdge1() const;
    const Edge* getEdge2() const;
    const Edge* getEdge3() const;
-   
+
 private:
    const Vertex *_vertex1, *_vertex2, *_vertex3;
    Edge *_edge1, *_edge2, *_edge3;
@@ -175,13 +178,13 @@ private:
 
 //! sort criterion for the hashtable set
 struct ltVertex {
-   
+
    //! sorts points lexicographical
    //! test for vertex coordinates, if they are the same, test for color index
    bool operator()(const Vertex* v1, const Vertex* v2) const {
       const float* p1 = v1->vertex.getValue();
       const float* p2 = v2->vertex.getValue();
-      
+
       if (*p1 < *p2) return true;
       if (*p1 > *p2) return false;
       if (*(++p1) < *(++p2)) return true;
@@ -192,7 +195,7 @@ struct ltVertex {
 
       p1 = v1->normal.getValue();
       p2 = v2->normal.getValue();
-      
+
       if (*p1 < *p2) return true;
       if (*p1 > *p2) return false;
       if (*(++p1) < *(++p2)) return true;
@@ -203,7 +206,7 @@ struct ltVertex {
 
       p1 = v1->texCoord.getValue();
       p2 = v2->texCoord.getValue();
-      
+
       if (*p1 < *p2) return true;
       if (*p1 > *p2) return false;
       if (*(++p1) < *(++p2)) return true;
@@ -215,11 +218,11 @@ struct ltVertex {
 
 //! sort criterion for the edge set
 struct ltEdge {
-   
+
    bool operator()(const Edge edge1, const Edge edge2) const {
       const Vertex* e1v1 = edge1.getVertex1();
       const Vertex* e2v1 = edge2.getVertex1();
-      
+
       if (e1v1 < e2v1) return true;
       else {
          if (e1v1 > e2v1) return false;

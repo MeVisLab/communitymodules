@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoMousePosition derived from SoSeparator
+//! The Inventor node SoMousePosition getting the mouse position into a node field.
 /*!
 // \file    SoMousePosition.h
 // \author  Maik Beyer
 // \date    2007-02-20
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -30,12 +30,12 @@
 
 class SoEventCallback;
 
-//! 
+//! The Inventor node SoMousePosition getting the mouse position into a node field.
 class UMDTOOLS_EXPORT SoMousePosition : public SoGroup
 {
    //! Implements the runtime type system interface of this new node.
    SO_NODE_HEADER(SoMousePosition);
-   
+
 public:
    //! Constructor
    SoMousePosition();
@@ -43,20 +43,20 @@ public:
    SoSFVec2s mousePosition;
    SoSFInt32 mouseX;
    SoSFInt32 mouseY;
-   
+
    //! Initializes this class (called on dll initialization).
    static void  initClass();
-   
+
 protected:
    //! Protected destructor
    virtual            ~SoMousePosition();
 
    //! Callback for Location2-Events
    static void mouseMovedCB(void* userData, SoEventCallback* eventCB);
-   void        mouseMoved(SoEventCallback* eventCB);   
-    
+   void        mouseMoved(SoEventCallback* eventCB);
+
    void getMousePosition(SoEventCallback* eventCB);
-//private:  
+//private:
 
 };
 

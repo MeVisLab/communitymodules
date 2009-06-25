@@ -20,7 +20,7 @@
 // $Id: UMDSoRuler.h,v 1.9 2003/02/19 16:37:15 okonrad Exp $
 // $Source: /projects/repositories/mevis/Libraries/std/Inventor/SoMeasurement/UMDSoRuler.h,v $
 
-/*!
+/*! Inventor node UMDSoRuler is a ruler which can be moved by selections/interactions.
 // \file    UMDSoRuler.h
 // \author  Henry Sonnet / Christian Tietjen
 // \date    10/2001
@@ -39,8 +39,8 @@ class SoTranslate1Dragger;
 class SoTranslation;
 
 
-//! UMDSoRuler ist ein Lineal, das durch Selektion bewegt werden
-//! kann; am Anfangs- bzw. Endpunkt des Lineals befindet sich 
+//! Inventor node UMDSoRuler is a ruler which can be moved by selections/interactions.
+//! Am Anfangs- bzw. Endpunkt des Lineals befindet sich
 //! jeweils eine Kugel, bei deren Betaetigung ein Dragger erscheint,
 //! mit dessen Hilfe das Lineal in der Laenge veraendert werden kann.
 //! Beim Auswählen der Verbindungslinie erscheint ein Dragger zum
@@ -49,31 +49,31 @@ class SoTranslation;
 //! Rückgabe: Länge des Lineals
 //! Basisklasse: \c SoMeasureTool
 //!
-//! Die Interaktionsmoeglichkeiten sind im Header von 
+//! Die Interaktionsmoeglichkeiten sind im Header von
 //! \c SoMeasureTool beschrieben
 class SO_MEASUREMENT_CLASS_SPEC UMDSoRuler : public UMDSoMeasureTool {
   //! macro that defines extended methods
   SO_NODE_HEADER(UMDSoRuler);
-  
+
 
 public:
-  
+
   //! Constructor
   UMDSoRuler();
-  
+
   //! must be called first to initialize the class in OpenInventor
   static void initClass();
-  
+
   //! the second vertex
   SoSFVec3f endPos;
-  
+
   //! Wert, bei dessen Unterschreiten Linie geschlossen dargestellt
   //! wird
   SoSFFloat minDistance;
 
   //! Länge des Lineals
   SoSFFloat lineLength;
-  
+
 
 protected:
 
@@ -81,68 +81,68 @@ protected:
   virtual ~UMDSoRuler();
 
 
-private: 
-  
+private:
+
   //! Initialisierung der Variablen und Szenen-Graphen mit Knoten
   //! bestuecken
   void initRuler();
   //! Initialisierung der Variablen und Szenen-Graphen mit Knoten
   //! bestuecken
   void createRuler();
-  
+
   //! Feld-Sensoren initialisieren
   void initRulerFieldSensors();
-  
+
   //! erstellt einen LevelOfDetail-Knoten, der für die
   //! Detailierung der Strokes zuständig ist
   void createLevelOfStrokes();
 
-  //! gibt einen Gruppen-Knoten zurueck, 
+  //! gibt einen Gruppen-Knoten zurueck,
   //! der den Text fuer die Masseinheit enthaelt
   void createUnitGroup();
-  
+
   //! creates the interaction-part at \c startPos
   //SoSeparator* createDragStartSep();
   //! creates the interaction-part at \c endPos
   //SoSeparator* createDragEndSep();
   //! creates the interaction-part to move the strokes
   SoSeparator* createDragMoveScaleSep();
-  
+
   //! Skalenstriche werden bestimmt und positioniert
   void getStrokes();
-  
+
   //! gibt eine Separator zurueck, der die Ziffern
   //! des Lineals enthaelt
   SoAnnotation* getDigit(float digit);
-  
+
   //! Bestimmen der neuen Positionen
   void getUnitPos();
-  
+
   //! Setzt den darzustellenden Text
   void getTextString();
-  
+
   //! Welches Objekt wurde getroffen
   SbBool getPickedObjectMouseLeft(const SoPickedPoint* pickedPoint);
-  
+
   //! die Funktionen zum Bewegen der Pfeilspitzen bei Tastatur-Events
   SbBool setArrowByKeyboard(float x, float y, float z, Taste taste);
 
   //! Aktualisierungen veranlassen
   void pointChanged();
-  
+
   //! Callback for the Dragger at \c startPos
   //static void draggerStartCB(void* userData, SoDragger* dragger);
   //! Callback for the Dragger at \c endPos
   //static void draggerEndCB(void* userData, SoDragger* dragger);
   //! Callback for the Dragger for moving the strokes
   static void draggerMoveScaleCB(void* userData, SoDragger* dragger);
-  
+
   //! callback for \c endPos
   static void endChangedCB(void *userData, SoSensor* s);
   //! callback for \c minDistance
   static void minDistanceChangedCB(void *userData, SoSensor* s);
-  
-  
+
+
   //! null position of the strokes
   float _strokeCenterPos;
   //! null position of the strokes
@@ -163,14 +163,14 @@ private:
   SoSwitch *_unitSwitch;
   //! true if endPos was dragged
   bool _endDraggerDragged;
-  
+
   //! moves the vertices
-  SoTransform *_sphereTrafoStart, *_sphereTrafoEnd;  
-  
+  SoTransform *_sphereTrafoStart, *_sphereTrafoEnd;
+
   //! dragger to move the strokes
   SoTranslate1Dragger *_dragMoveScale;
   bool _changedByDragger;
-  
+
   //! Highlight-Knoten zur Hervorhebung der Interaktionsschnittstellen
   SoLocateHighlight *_sphereStartHighlight, *_sphereEndHighlight, *_lineHighlight;
 
@@ -180,7 +180,7 @@ private:
   SoComposeRotationFromTo *_rotLine, *_rotDragger;
   //! needed to define an own dragger (avtivePart, inactivePart)
   SoSeparator *_reglerAktiv, *_reglerInaktiv;
-  
+
   //! \c endPos was changed
   SoFieldSensor* _endPosSens;
   //! \c minDistance was changed
