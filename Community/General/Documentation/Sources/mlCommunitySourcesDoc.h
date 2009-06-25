@@ -18,12 +18,14 @@ Activating comments for classes, structs, functions, typdefs, enumerators
 etc. of course is also highly recommended, because this will also be added
 to the generated documentation then.
 
+The file types *.h, *.js, and *.py are scanned for comments and documentation.
+
 This is an example demonstrating many commonly used formatting commands and
-a full class documentation (Java Script or C++):
+a full class documentation:
 \verbatim
-//! File containing the ML module class Dinner prepare a dinner each evening.
+//! File containing the ML module class Dinner to prepare a dinner.
 //! \file    mlDinner.h
-//! \author  Mister Misterman
+//! \author  Ms. Cookman
 
 //! ML module class to prepare a dinner each evening.
 class Dinner : public BaseOp {
@@ -54,5 +56,7 @@ class Dinner : public BaseOp {
 
 };
 \endverbatim
+
+<h1><b><c> Thanks for keeping the documentation up to date! </c></b></h1><br><br><br><br>
 
 */
