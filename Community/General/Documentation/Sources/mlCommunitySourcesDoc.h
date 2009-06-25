@@ -30,33 +30,35 @@ a full class documentation:
 //! ML module class to prepare a dinner each evening.
 class Dinner : public BaseOp {
 
-  //! Enumerator identifiers for dinner objects.
-  enum DinnerObjects {
-    FORK = 0,     //!< Id for fork objects.
-    PLATE         //!< Id for plate objects.
-  };
+  public:
+    //! Enumerator identifiers for dinner objects.
+    enum DinnerObjects {
+      FORK = 0,     //!< Id for fork objects.
+      PLATE         //!< Id for plate objects.
+    };
 
-  //! Cooks the complete dinner.
-  //! \param  numForks  is the number of forks to lay on the table.
-  //! \param  numPlates is the number of plates to lay on the table.
-  //! \return is the complete number of objects layed on the table.
-  int createDinner(int numForks, int numPlates);
+    //! Cooks the complete dinner.
+    //! \param  numForks  is the number of forks to lay on the table.
+    //! \param  numPlates is the number of plates to lay on the table.
+    //! \return is the complete number of objects layed on the table.
+    int createDinner(int numForks, int numPlates);
 
-  //! Any C++ member documentation.
-  float _anyMember;
+  protected:
+    //! \name Function group creating dinner objects.
+    //@{
+    //! Creates and lays a fork on the table.
+    void _createFork();
 
-  //! \name Function group creating dinner objects.
-  //@{
-  //! Creates and lays a fork on the table.
-  void _createFork();
+    //! Creates and lays a plate on the table.
+    void _createPlate();
+    //@}
 
-  //! Creates and lays a plate on the table.
-  void createPlate();
-  //@}
+    //! Any C++ member documentation.
+    float _anyMember;
 
 };
 \endverbatim
 
-<h1><b><c> Thanks for keeping the documentation up to date! </c></b></h1><br><br><br><br>
+<h1><b><c> Thanks for keeping the documentation up to date! </c></b></h1><br><br>
 
 */
