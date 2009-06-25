@@ -1,4 +1,3 @@
-// **InsertLicense** code
 //-----------------------------------------------------------------------------------
 //!
 //! Doxygen reference for the MeVisLab Community Sources.
@@ -8,15 +7,15 @@
 
 This is the Doxygen reference page for the MeVisLab Community Sources.
 It contains source code documentation automatically generated on the
-Build Server for the Community Sources.
+Build Server for the MeVisLab Community Sources.
 
-To keep the file and class references up to date please assure that the
-file and class comments are added to your source codes and that they are
+To keep the file and class references up to date´, please assure that the
+file and class comments are added to your source code and that they are
 activated with an "!" at the beginning of comments.
 
 Activating comments for classes, structs, functions, typdefs, enumerators
-etc. of course is also highly recommended, because this will also be added
-to the generated documentation then.
+etc. is also highly recommended, because these comments will then be added
+to the generated documentation.
 
 The file types *.h, *.js, and *.py are scanned for comments and documentation.
 
@@ -40,7 +39,7 @@ class Dinner : public BaseOp {
     //! Cooks the complete dinner.
     //! \param  numForks  is the number of forks to lay on the table.
     //! \param  numPlates is the number of plates to lay on the table.
-    //! \return is the complete number of objects layed on the table.
+    //! \return is the complete number of objects laid on the table.
     int createDinner(int numForks, int numPlates);
 
   protected:
