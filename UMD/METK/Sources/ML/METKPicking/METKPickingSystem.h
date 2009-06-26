@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! Project global and OS specific declarations.
 /*!
-// \file    METKMessagingSystem.h
+// \file    METKPickingSystem.h
 // \author  Christian Tietjen
 // \date    2006-05-16
 //

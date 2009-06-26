@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------------------
+//! Project global and OS specific declarations.
 /*!
 // \file    METKLiftChartSystem.h
 // \author  Christian Tietjen

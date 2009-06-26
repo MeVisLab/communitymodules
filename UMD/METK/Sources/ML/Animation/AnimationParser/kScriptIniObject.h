@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------------------
-/*! kScriptIniObject is the class for information about a script like length or realtime.
+//! kScriptIniObject is the class for information about a script like length or realtime.
+/*!
 // \file    kScriptIniObject.h
 // \author  Konrad Mühler
 // \date    2005-07-05
@@ -22,7 +23,7 @@
 
 using namespace std;
 
-//!  kScriptIniObject is the class for information about a script like length or realtime.
+//! kScriptIniObject is the class for information about a script like length or realtime.
 class ANIMATION_EXPORT kScriptIniObject
 {
 private:

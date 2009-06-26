@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! Dynamic library and runtime type system initialization.
 /*!
-// \file    METKMessagingInit.h
+// \file    METKPickingInit.h
 // \author  Christian Tietjen
 // \date    2006-05-16
 //
@@ -15,7 +15,7 @@
 
 ML_START_NAMESPACE
 
-//! Calls init functions of all modules to add their types to the runtime type 
+//! Calls init functions of all modules to add their types to the runtime type
 //! system of the ML.
 int METKPickingInit (void);
 

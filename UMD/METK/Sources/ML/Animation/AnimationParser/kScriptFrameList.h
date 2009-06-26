@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------------------
-/*! kScriptFrameList is the class for handling a list of frame objects.
+//! kScriptFrameList is the class for handling a list of frame objects.
+/*!
 // \file    kScriptFrameList.h
 // \author  Konrad Mühler
 // \date    2005-07-05

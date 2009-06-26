@@ -1,5 +1,7 @@
 //----------------------------------------------------------------------------------
+//! Dynamic library and runtime type system initialization.
 /*!
+// \file    METKLiftChartInit.h
 // \author  Christian Tietjen
 //
 */
@@ -12,7 +14,7 @@
 
 ML_START_NAMESPACE
 
-//! Calls init functions of all modules to add their types to the runtime type 
+//! Calls init functions of all modules to add their types to the runtime type
 //! system of the ML.
 int METKLiftChartInit (void);
 

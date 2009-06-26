@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------------------
-/*! AnimationParser is the class for script parsing.
+//! AnimationParser is the class for script parsing.
+/*!
 // \file    AnimationParser.h
 // \author  Konrad Mühler
 // \date    2005-07-05

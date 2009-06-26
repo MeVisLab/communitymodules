@@ -1,3 +1,7 @@
+
+//! Class HeightCampath derived from AbstractCampath.
+//! \file HeightCampath.h
+
 #ifndef _HEIGHTCAMPATH_
 #define _HEIGHTCAMPATH_
 
@@ -5,6 +9,7 @@
 
 ML_START_NAMESPACE
 
+//! Class HeightCampath derived from AbstractCampath.
 class HeightCampath:public AbstractCampath{
   public:
     HeightCampath(ObjMgrCommunicator*,StringField*,kScriptFrameList*,kCamera*,AnimationCache*,

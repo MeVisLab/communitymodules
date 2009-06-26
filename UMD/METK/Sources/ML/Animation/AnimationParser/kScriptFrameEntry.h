@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------------------
-/*! kScriptFrameEntry is the class for handling a single frame entry.
+//! kScriptFrameEntry is the class for handling a single frame entry.
+/*!
 // \file    kScriptFrameEntry.h
 // \author  Konrad Mühler
 // \date    2005-07-05
@@ -23,7 +24,7 @@
 
 using namespace std;
 
-//!  kScriptFrameEntry is the class for handling a single frame entry (contains i.e. command id, number of frames for instruction, current frame for this instruction).
+//! kScriptFrameEntry is the class for handling a single frame entry (contains i.e. command id, number of frames for instruction, current frame for this instruction).
 class ANIMATION_EXPORT kScriptFrameEntry
 {
 private:

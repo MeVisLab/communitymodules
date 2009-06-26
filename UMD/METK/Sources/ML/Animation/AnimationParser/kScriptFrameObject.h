@@ -1,5 +1,6 @@
 //----------------------------------------------------------------------------------
-/*! kScriptFrameObject ist a representation of one frame with the list of all instructions.
+//! kScriptFrameObject ist a representation of one frame with the list of all instructions.
+/*!
 // \file    kScriptFrameObject.h
 // \author  Konrad Mühler
 // \date    2005-07-05

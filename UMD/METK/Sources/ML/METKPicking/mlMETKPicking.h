@@ -1,6 +1,6 @@
 
 //! ML ObjMgrClient module METKPicking.
-//! \file  METKPicking.h
+//! \file mlMETKPicking.h
 
 #ifndef __MLMETKPICKING_H
 #define __MLMETKPICKING_H

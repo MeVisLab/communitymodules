@@ -1,3 +1,7 @@
+
+//! Class GoogleRectangleCampath derived from AbstractCampath.
+//! \file GoogleRectangleCampath.h
+
 #ifndef _GOOGLERECTANGLECAMPATH_
 #define _GOOGLERECTANGLECAMPATH_
 
@@ -5,6 +9,7 @@
 
 ML_START_NAMESPACE
 
+//! Class GoogleRectangleCampath derived from AbstractCampath.
 class GoogleRectangleCampath:public AbstractCampath{
   public:
     GoogleRectangleCampath(ObjMgrCommunicator*,StringField*,kScriptFrameList*,kCamera*,AnimationCache*,
