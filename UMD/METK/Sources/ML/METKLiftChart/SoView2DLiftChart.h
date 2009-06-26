@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoView2DLiftChart derived from SoView2DExtension
+//! Inventor node SoView2DLiftChart derived from SoView2DExtension.
 /*!
 // \file    SoView2DLiftChart.h
 // \author  Christian Tietjen
 // \date    2006-03-30
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@
 
 #include "LiftChartData.h"
 
-//! 
+//! Inventor node SoView2DLiftChart derived from SoView2DExtension.
 class METKLIFTCHART_EXPORT SoView2DLiftChart : public SoView2DExtension
 {
    //! Implements the runtime type system interface of this new node.
@@ -92,7 +92,7 @@ private:
    float mapWorldToChart(const float* world);
    void  mapWorldToVoxel(const float* world, float &voxelX, float &voxelY, float &voxelZ);
    float getRatio();
-   
+
    const bool structureIsVisible(T_ConstStructureIterator iter);
 
    struct ltstr
