@@ -15,3 +15,4 @@ HIDE_UNDOC_MEMBERS     = NO
 HIDE_UNDOC_CLASSES     = NO
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
+STRIP_FROM_PATH        = ../.. ../../Community/ ../../UMD/ Community/ UMD/
