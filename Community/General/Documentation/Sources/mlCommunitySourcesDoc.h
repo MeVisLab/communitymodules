@@ -9,7 +9,7 @@ This is the Doxygen reference page for the MeVisLab Community Sources.
 It contains source code documentation automatically generated on the
 Build Server for the MeVisLab Community Sources.
 
-To keep the file and class references up to date´, please assure that the
+To keep the file and class references up to date, please assure that the
 file and class comments are added to your source code and that they are
 activated with an "!" at the beginning of comments.
 
