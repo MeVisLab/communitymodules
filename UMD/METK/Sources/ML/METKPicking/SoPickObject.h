@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoPickObject2 derived from SoGroup
+//! The Inventor module class SoPickObject derived from SoGroup.
 /*!
-// \file    SoPickObject2.h
+// \file    SoPickObject.h
 // \author  Konrad
 // \date    2005-09-28
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -41,19 +41,19 @@
 class SoEventCallback;
 class SoComputeBoundingBox;
 
-//! 
+//! The Inventor module class SoPickObject derived from SoGroup.
 class SoPickObject : public SoSeparator
 {
    //! Implements the runtime type system interface of this new node.
    SO_NODE_HEADER(SoPickObject);
-   
+
 public:
    //! Constructor
    SoPickObject();
-   
+
    //! Initializes this class (called on dll initialization).
    static void  initClass();
-   
+
    void setMLClass(ml::METKPicking* mlPick);
    void setScrapLight(const float scrapLight);
    void setBBWeight(const float bbWeight);
@@ -61,23 +61,23 @@ public:
    void setPickPixelTolerance(const int pipi);
    void setshowBB(const bool showBB);
    void setEnableMouseOver(const bool bValue);
-   
+
 protected:
    //! Protected destructor
    virtual            ~SoPickObject();
-   
+
    //! Callback for Mousebutton-Events
    static void mousePressedCB(void* userData, SoEventCallback* eventCB);
    void        mousePressed(SoEventCallback* eventCB);
 
    //! Callback for Mouse Move Events
    static void mouseMovedCB(void* userData, SoEventCallback* eventCB);
-   void		   mouseMoved(SoEventCallback* eventCB);
-   
+   void      mouseMoved(SoEventCallback* eventCB);
+
    //! Callback for MouseWheel-Events
    //static void mouseWheelCB(void* userData, SoEventCallback* eventCB);
    //void        mouseWheel(SoEventCallback* eventCB);
-   
+
 private:
    SbVec2s _pressPosition;
    SbVec3f _worldPosition;
@@ -88,13 +88,13 @@ private:
    int   _pickPixelTolerance;
    bool  _showBB;
    bool _enableMouseOver;
-   
+
    SoComputeBoundingBox* _computeBBox;
    SoNode* getShape(SoEventCallback* eventCB, std::vector<SoNode*>* allObjectsInRay);
    SoSeparator* _debugOutput;
 
    SoSeparator* addBB(const SbVec3f& corner1, const SbVec3f& corner2);
-   
+
    ml::METKPicking* _mlPick;
 };
 

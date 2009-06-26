@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The ML module class METKIntraOPViewpoint.
+//! The ML ObjMgrClient module class METKIntraOPViewpoint.
 /*!
 // \file    mlMETKIntraOPViewpoint.h
 // \author  Konrad Mühler
@@ -32,77 +32,77 @@
 ML_START_NAMESPACE
 
 
-//!
+//! The ML ObjMgrClient module class METKIntraOPViewpoint.
 class VIEWPOINT_EXPORT METKIntraOPViewpoint : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	METKIntraOPViewpoint (void);
-	~METKIntraOPViewpoint (void);
+  //! Constructor.
+  METKIntraOPViewpoint (void);
+  ~METKIntraOPViewpoint (void);
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
-	virtual void handleObjMgrNotification();
-	virtual void activateAttachments();
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
+  virtual void handleObjMgrNotification();
+  virtual void activateAttachments();
 
 private:
 
-	typedef ObjMgrClient inherited;
-  
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  typedef ObjMgrClient inherited;
 
-	//!
-	NotifyField *_GenerateVPForNewTumor;
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	//!
-	Vec3fField *_NewTumorCenter;
+  //!
+  NotifyField *_GenerateVPForNewTumor;
 
-	//!
-	DoubleField *_NewTumorRadius;
+  //!
+  Vec3fField *_NewTumorCenter;
 
-	//!
-	NotifyField *_GenerateVPForAllTumors;
+  //!
+  DoubleField *_NewTumorRadius;
 
-	NotifyField* _init;
+  //!
+  NotifyField *_GenerateVPForAllTumors;
 
-	BoolField* _initDone;
+  NotifyField* _init;
 
-	//@}
+  BoolField* _initDone;
 
-
-	ObjMgrCommunicator* myObjMgr;
-	AnimationCache* myCache;
-	ObjConstrainedIterator* myObjIterator;
-
-	bool waitingFor_getAllMeasures;
-	bool waitingFor_getCamPos;
-	bool gotCamPos;	
-	
-	//! \name Facilities to get and wait for all measures
-	//@{
-		METKMsgSender* _modMsgSenderGetCamPos;
-		BoolField* _msgGetCamPos_done;		 //!< Listener to receive "done"-Field of _modMsgSenderGetCamPos		
-		FieldSensor* _fs_cache_getAllMeasures; //out->in(SoFile)
-		static void fieldChanged_cache_getAllMeasures(void *usrData, void *sensor);		
-	//@}
-
-		std::list<string> listDummys;
+  //@}
 
 
-	struct intersectDummy 
-	{
-		std::string objID;
-		double volume;
-	};
+  ObjMgrCommunicator* myObjMgr;
+  AnimationCache* myCache;
+  ObjConstrainedIterator* myObjIterator;
 
-	std::list<intersectDummy> intersectingDummys;
+  bool waitingFor_getAllMeasures;
+  bool waitingFor_getCamPos;
+  bool gotCamPos;
+
+  //! \name Facilities to get and wait for all measures
+  //@{
+    METKMsgSender* _modMsgSenderGetCamPos;
+    BoolField* _msgGetCamPos_done;     //!< Listener to receive "done"-Field of _modMsgSenderGetCamPos
+    FieldSensor* _fs_cache_getAllMeasures; //out->in(SoFile)
+    static void fieldChanged_cache_getAllMeasures(void *usrData, void *sensor);
+  //@}
+
+    std::list<string> listDummys;
 
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(METKIntraOPViewpoint)
+  struct intersectDummy
+  {
+    std::string objID;
+    double volume;
+  };
+
+  std::list<intersectDummy> intersectingDummys;
+
+
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(METKIntraOPViewpoint)
 
 };
 

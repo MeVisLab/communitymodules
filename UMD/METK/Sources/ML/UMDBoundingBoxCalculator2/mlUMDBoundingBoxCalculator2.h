@@ -5,7 +5,7 @@
 // \author  Konrad
 // \date    2006-05-16
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@
 ML_START_NAMESPACE
 
 
-//! 
+//! The ML module class UMDBoundingBoxCalculator2.
 class UMDBOUNDINGBOXCALCULATOR2_EXPORT UMDBoundingBoxCalculator2 : public BaseOp
 {
 public:
@@ -51,22 +51,22 @@ public:
   virtual void handleNotification (Field *field);
 
 
-  //! 
+  //
   StringField* boundingBoxString;
 
-  //! 
-  Vec3fField* boundingBoxMin;  
+  //
+  Vec3fField* boundingBoxMin;
 
-  //! 
+  //
   Vec3fField* boundingBoxMax;
 
-  //! 
+  //
   Vec3fField* objectCenter;
 
-  //! 
+  //
   Vec3fField* boxCenter;
 
-  //!
+  //
   SoNodeField* inputObject;
 
 
@@ -81,7 +81,7 @@ private:
 
   //!
   SoComputeBoundingBox *_moduleComputeBoundingBox;
-  
+
   //!
   SoCalculator *_moduleCalculator;
 

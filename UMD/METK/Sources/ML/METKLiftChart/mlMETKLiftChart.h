@@ -1,4 +1,5 @@
 //----------------------------------------------------------------------------------
+//! ML ObjMgrClient METKLiftChart module METKLiftChart.
 /*!
 // \file    mlMETKLiftChart.h
 // \author  Christian Tietjen
@@ -25,33 +26,33 @@ class LiftChartData;
 ML_START_NAMESPACE
 
 
-//! 
+//! ML ObjMgrClient METKLiftChart module METKLiftChart.
 class METKLIFTCHART_EXPORT METKLiftChart : public ObjMgrClient
 {
 public:
 
-	//! Constructor/Destructor.
-	METKLiftChart();
+  //! Constructor/Destructor.
+  METKLiftChart();
    ~METKLiftChart();
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
 
-	virtual void handleObjMgrNotification();
+  virtual void handleObjMgrNotification();
 
-	virtual void activateAttachments();
+  virtual void activateAttachments();
 
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	//! 
-	
+  //!
+
    BoolField* _active;
    EnumField* _aggregation;
    FloatField* _minImportance;
@@ -63,7 +64,7 @@ private:
 
    SoNodeField* _outInventor;
 
-	//@}
+  //@}
 
    SoView2DLiftChart* _view2DLiftChart;
 
@@ -73,8 +74,8 @@ private:
    // next available structure which provides all necessary data
    const omObject* getNextStructure(const omObject* current = 0);
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(METKLiftChart)
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(METKLiftChart)
 
 };
 

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The ML module class METKAutoFading.
+//! The ML ObjMgrClient module METKAutoFading.
 /*!
 // \file    mlMETKAutoFading.h
 // \author  Konrad Mühler
@@ -40,85 +40,85 @@
 ML_START_NAMESPACE
 
 
-//!
+//! The ML ObjMgrClient module METKAutoFading.
 class VIEWPOINT_EXPORT METKAutoFading : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	METKAutoFading (void);
+  //! Constructor.
+  METKAutoFading (void);
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
-	virtual void handleObjMgrNotification();
-	virtual void activateAttachments();
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
+  virtual void handleObjMgrNotification();
+  virtual void activateAttachments();
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	SoNodeField* _outScene;
-	//!
-	BoolField* _EnableFading;
-	BoolField* _UseMETKValues;
+  SoNodeField* _outScene;
+  //!
+  BoolField* _EnableFading;
+  BoolField* _UseMETKValues;
 
-	//!
-	StringField* _CurrentObject;
+  //!
+  StringField* _CurrentObject;
 
-	StringField* _ViewerName;
+  StringField* _ViewerName;
 
-	NotifyField* _init;
-	NotifyField* _calc;
+  NotifyField* _init;
+  NotifyField* _calc;
 
-	StringField* _dataPath;
+  StringField* _dataPath;
 
-	Vec3fField* _similarPosition;
-	Vec3fField* _camPosition;
-	Vec4fField* _camOrientation;
+  Vec3fField* _similarPosition;
+  Vec3fField* _camPosition;
+  Vec4fField* _camOrientation;
 
-	StringField* _messageData;
-	StringField* _message;
-
-
-	//@}
-
-	struct Appearance
-	{
-		float Transparency;
-		SbVec3f Color;
-		float SilhouetteWidth;
-		SbVec3f SilhouetteColor;
-		bool SilhouetteVisible;
-	};
-
-	ObjMgrCommunicator* myObjMgr;
-
-	kCamera* myCamera;
-	
-	METKMsgReceiver* oReceiver;
-	SoTimerSensor* timerSensor; //for doneFld touching with a little delay
-	static void timerEvent(void* data, SoDataSensor* a);
+  StringField* _messageData;
+  StringField* _message;
 
 
-	CvpCalcVis m_calcVis;
+  //@}
 
-	SoVisDataViewer* m_soViewer;
+  struct Appearance
+  {
+    float Transparency;
+    SbVec3f Color;
+    float SilhouetteWidth;
+    SbVec3f SilhouetteColor;
+    bool SilhouetteVisible;
+  };
 
-	HashTable<Appearance> htOldValues; //ObjNamen und OldValues
-	set<string>	currentFading; //Kurze Liste zum schnelleren Durchiterieren
-	
+  ObjMgrCommunicator* myObjMgr;
 
-	void calcNewPosition();	
-	void setAcceptedEvents();
-	void resetAllCurrentOccluders();
-	bool findInSet(set<string> mySet, string toFind);
+  kCamera* myCamera;
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_BASEOP_CLASS_HEADER(METKAutoFading)
+  METKMsgReceiver* oReceiver;
+  SoTimerSensor* timerSensor; //for doneFld touching with a little delay
+  static void timerEvent(void* data, SoDataSensor* a);
+
+
+  CvpCalcVis m_calcVis;
+
+  SoVisDataViewer* m_soViewer;
+
+  HashTable<Appearance> htOldValues; //ObjNamen und OldValues
+  set<string> currentFading; //Kurze Liste zum schnelleren Durchiterieren
+
+
+  void calcNewPosition();
+  void setAcceptedEvents();
+  void resetAllCurrentOccluders();
+  bool findInSet(set<string> mySet, string toFind);
+
+  //! Implements interface for the runtime type system of the ML.
+  ML_BASEOP_CLASS_HEADER(METKAutoFading)
 
 };
 

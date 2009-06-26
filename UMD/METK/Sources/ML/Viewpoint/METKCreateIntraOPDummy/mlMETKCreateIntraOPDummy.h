@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The ML module class METKCreateIntraOPDummy.
+//! This ML ObjMgrClient module creates dummy tumors for a new intra OP viewpoint pre-calculation.
 /*!
 // \file    mlMETKCreateIntraOPDummy.h
 // \author  Konrad Mühler
@@ -29,7 +29,7 @@
 ML_START_NAMESPACE
 
 
-//! This module creates dummy tumors for a new intra OP viewpoint pre-calculation
+//! This ML ObjMgrClient module creates dummy tumors for a new intra OP viewpoint pre-calculation.
 class VIEWPOINT_EXPORT METKCreateIntraOPDummy : public ObjMgrClient
 {
 public:
@@ -74,13 +74,13 @@ public:
 
 
    virtual void handleObjMgrNotification();
-   
+
    virtual void activateAttachments();
 
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
   // ----------------------------------------------------------
   //@{ \name Module field declarations
@@ -96,28 +96,28 @@ private:
   //@}
 
 
-	std::string usedValues;
-	bool isCalculating;
+  std::string usedValues;
+  bool isCalculating;
 
-	ObjMgrCommunicator* myObjMgr;
+  ObjMgrCommunicator* myObjMgr;
 
-	void createMETKObjects();
-	void calcBoundingBox();
+  void createMETKObjects();
+  void calcBoundingBox();
 
-	bool validBoundingBox;
+  bool validBoundingBox;
 
-	struct BoundingBox
-	{
-		vec3 min;
-		vec3 max;
-		double xWidth;
-		double yWidth;
-		double zWidth;
-	};
-	
-	BoundingBox myBoundingBox;
+  struct BoundingBox
+  {
+    vec3 min;
+    vec3 max;
+    double xWidth;
+    double yWidth;
+    double zWidth;
+  };
 
-	HashTable<long> voxelsPerValue;
+  BoundingBox myBoundingBox;
+
+  HashTable<long> voxelsPerValue;
 
   //! Implements interface for the runtime type system of the ML.
   ML_CLASS_HEADER(METKCreateIntraOPDummy)

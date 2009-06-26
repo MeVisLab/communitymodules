@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The ML module class UMDPointerToInventor.
+//! The ML module UMDPointerToInventor derived from ObjMgrClient.
 /*!
 // \file    mlUMDPointerToInventor.h
 // \author  Konrad
 // \date    2006-02-02
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -33,46 +33,46 @@ class SoGroup;
 ML_START_NAMESPACE
 
 
-//! 
+//! The ML module UMDPointerToInventor derived from ObjMgrClient.
 class UMDINVENTORPOINTER_EXPORT UMDPointerToInventor : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	UMDPointerToInventor (void);
+  //! Constructor.
+  UMDPointerToInventor (void);
    ~UMDPointerToInventor (void);
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
 
-	virtual void handleObjMgrNotification();
+  virtual void handleObjMgrNotification();
 
-	virtual void activateAttachments();
+  virtual void activateAttachments();
 
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	//! 
-	IntField *fieldPointer;
-	
-	SoNodeField* outInventor;
-	StringField* fieldObjectID;
-	StringField* fieldLayerID;
-	StringField* fieldInfoID;	
+  //!
+  IntField *fieldPointer;
 
-	//@}
+  SoNodeField* outInventor;
+  StringField* fieldObjectID;
+  StringField* fieldLayerID;
+  StringField* fieldInfoID;
+
+  //@}
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
-	MLint64 _myPointer;
+  MLint64 _myPointer;
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(UMDPointerToInventor)
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(UMDPointerToInventor)
 
-	void getPointer();
+  void getPointer();
 };
 
 

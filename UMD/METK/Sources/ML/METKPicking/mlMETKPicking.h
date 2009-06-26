@@ -1,3 +1,7 @@
+
+//! ML ObjMgrClient module METKPicking.
+//! \file  METKPicking.h
+
 #ifndef __MLMETKPICKING_H
 #define __MLMETKPICKING_H
 
@@ -21,18 +25,18 @@ class SoPickObject;
 
 ML_START_NAMESPACE
 
-//! 
+//! ML ObjMgrClient module METKPicking.
 class METKPICKING_EXPORT METKPicking : public ObjMgrClient
 {
 public:
-   
+
    //! Constructor.
    METKPicking();
    ~METKPicking (void);
-   
+
    //! Handle field changes of the field \c field.
    virtual void handleNotification (Field *field);
-   
+
    virtual void activateAttachments();
 
    const float getTransparency(const SoNode* node);
@@ -43,13 +47,13 @@ public:
    const bool containsNode(const SoNode* node);
 
 private:
-   
+
    typedef ObjMgrClient inherited;
-   
+
    // ----------------------------------------------------------
    //@{ \name Module field declarations
    // ----------------------------------------------------------
-   
+
    FloatField* _scrapLight;
    FloatField* _importanceWeighting;
    FloatField* _boundingBoxSizeWeighting;
@@ -67,12 +71,12 @@ private:
    StringField* _mouseOverList;
    Vec3fField*  _selection;
    //@}
-   
+
    SoPickObject* _pickObject;
 
    bool _pickedObjectFound;
    omObjectContainer::const_iterator _pickedObjectIter;
-   
+
    //! Implements interface for the runtime type system of the ML.
    ML_CLASS_HEADER(METKPicking)
 };

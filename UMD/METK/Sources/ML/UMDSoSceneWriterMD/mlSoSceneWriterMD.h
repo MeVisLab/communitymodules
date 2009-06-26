@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The ML module class SoSceneWriterMD.
+//! Inventor node SoSceneWriterMD with ping when IV-file saved.
 /*!
 // \file    mlSoSceneWriterMD.h
 // \author  Konrad Mühler
@@ -37,7 +37,7 @@
 ML_START_NAMESPACE
 
 
-//! New SceneWriter with ping when IV-file saved
+//! Inventor node SoSceneWriterMD with ping when IV-file saved.
 class UMDSOSCENEWRITERMD_EXPORT SoSceneWriterMD : public BaseOp
 {
 public:
@@ -55,19 +55,19 @@ private:
   //@{ \name Module field declarations
   // ----------------------------------------------------------
 
-  //! 
+  //
   NotifyField *_writeScene;
 
-  //! 
+  //
   NotifyField *_fileSaved;
 
-  //! 
+  //
   StringField *_fileName;
 
-  //! 
+  //
   SoNodeField *_inputObject;
 
-  //!
+  //
   EnumField* _fileType;
 
   //@}

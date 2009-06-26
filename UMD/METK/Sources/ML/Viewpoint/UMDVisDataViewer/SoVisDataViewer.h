@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoVisDataViewer derived from SoSeparator
+//! The Inventor module class SoVisDataViewer derived from SoSeparator.
 /*!
 // \file    SoVisDataViewer.h
-// \author  
+// \author
 // \date    2007-04-26
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ class CvpField;
 
 
 
-//! 
+//! The Inventor module class SoVisDataViewer derived from SoSeparator.
 class UMDVISDATAVIEWER_EXPORT SoVisDataViewer : public SoShape //SoSeparator
 {
   //! Implements the runtime type system interface of this new node.

@@ -1,4 +1,9 @@
+
+//! Class to manage fields and operators which can be applied to them.
+//! \file vpField.h
+
 #ifndef VP_FIELD_H
+
 #define VP_FIELD_H
 #include <string>
 /*! \class CvpField
@@ -8,19 +13,20 @@
     \date 04-2007
 
     Die bei den Felder handelt es sich zur Zeit um \c float - Felder, da ich auf Kriegsfuss mit \c templates stehe...
-    aber eines Tage vielleicht, wer weiss. 
+    aber eines Tage vielleicht, wer weiss.
 */
 
 #ifdef WIN32
   #ifndef VPBASIC_EXPORTS
     #define __VPBASIC_IMPORTEXPORT __declspec(dllimport)
   #else
-    #define __VPBASIC_IMPORTEXPORT __declspec(dllexport) 
+    #define __VPBASIC_IMPORTEXPORT __declspec(dllexport)
   #endif
 #else
   #define __VPBASIC_IMPORTEXPORT
 #endif
 
+//! Class to manage fields and operators which can be applied to them.
 class __VPBASIC_IMPORTEXPORT CvpField{
   public:
     CvpField              ( );                                              //!<Konstruktor
@@ -41,10 +47,10 @@ class __VPBASIC_IMPORTEXPORT CvpField{
     int multiply          ( const CvpField &oField );                       //!<multipliziert alle Feldwerte von \p oField mit allen korrespondierenden Feldwerten
     int merge             ( const CvpField &oField );                       //!<mischt alle Feldwerte von \p oField mit allen korrespondierenden Feldwerten
     int getSize           ( void ) const;                                   //!<gibt die Groesse des Feldes zurueck
-    int setSize           ( int iSize );                                    //!<ermoeglicht bedingtes Setzen der Feldgroesse 
+    int setSize           ( int iSize );                                    //!<ermoeglicht bedingtes Setzen der Feldgroesse
     bool isValid          ( void ) const;                                   //!<gibt an ob vpField valide und somit verwendbar ist
     int binarize          ( float fThreshold );                             //!<binarisiert das Feld
-	std::string toString  ();												//!<gibt die Werte als String zurueck
+  std::string toString  ();                       //!<gibt die Werte als String zurueck
 
   private:
     float     *m_vfData;

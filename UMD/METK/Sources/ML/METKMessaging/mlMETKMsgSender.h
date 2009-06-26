@@ -1,3 +1,7 @@
+
+//! ML ObjMgrClient module METKMsgSender.
+//! \file  mlMETKMsgSender.h
+
 #ifndef __MLMETKMSGSENDER_H
 #define __MLMETKMSGSENDER_H
 
@@ -18,27 +22,27 @@
 ML_START_NAMESPACE
 
 
-//! 
+//! ML ObjMgrClient module METKMsgSender.
 class METKMESSAGING_EXPORT METKMsgSender : public ObjMgrClient
 {
 
 public:
 
-	//! Constructor.
-	METKMsgSender();
-	~METKMsgSender();
+  //! Constructor.
+  METKMsgSender();
+  ~METKMsgSender();
 
- 	StringField* messageFld;
-	StringField* dataFld;
-	StringField* statusFld;
-	NotifyField* sendFld;	
+  StringField* messageFld;
+  StringField* dataFld;
+  StringField* statusFld;
+  NotifyField* sendFld;
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
 
-	virtual void handleObjMgrNotification();
+  virtual void handleObjMgrNotification();
 
-	virtual void activateAttachments();
+  virtual void activateAttachments();
 
    const bool isSending() const { return _sending; }
 
@@ -46,21 +50,21 @@ public:
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
-	
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
+
    BoolField*   doneFld;
    BoolField*   successFld;
    //@}
 
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(METKMsgSender)
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(METKMsgSender)
 
-	bool _sending;
+  bool _sending;
 
 };
 

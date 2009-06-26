@@ -5,7 +5,7 @@
 // \author  Konrad Mühler
 // \date    2007-01-16
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@
 ML_START_NAMESPACE
 
 
-//! 
+//! The ML module class CalcCodedSegmentation.
 class UMDCODEDSEGMENTATION_EXPORT CalcCodedSegmentation : public BaseOp
 {
 public:
@@ -73,92 +73,92 @@ public:
   //! Method template for type-specific page calculation. Called by \c calcOutSubImage().
   //! \param outSubImg The typed subimage of output image \c outIndex calculated from \c inSubImg?.
   //! \param outIndex  The index of the output the subimage is calculated for.
-  //! \param inSubImg1 Temporary subimage of input 1.    
+  //! \param inSubImg1 Temporary subimage of input 1.
   void calcOutSubImage (SubImg *outSubImg, int outIndex,SubImg *inSubImgs);
   //@}
 
 
 private:
 
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	//! 
-	NotifyField *_fld_Add;
+  //!
+  NotifyField *_fld_Add;
 
-	//! 
-	StringField *_fld_NameToAdd;
+  //!
+  StringField *_fld_NameToAdd;
 
-	//!
-	BoolField *_fld_addAllExceptNull;
-	IntField *_fld_addMinValue;
-	IntField *_fld_addMaxValue;
+  //!
+  BoolField *_fld_addAllExceptNull;
+  IntField *_fld_addMinValue;
+  IntField *_fld_addMaxValue;
 
-	//! 
-	NotifyField *_fld_Reset;
+  //!
+  NotifyField *_fld_Reset;
 
-	//! 
-	NotifyField *_fld_Purge;
-
-
-	//! 
-	NotifyField *_fld_Finish;
+  //!
+  NotifyField *_fld_Purge;
 
 
-	//! 
-	StringField *_fld_ImageValues;
-	StringField *_fld_ObjectValues;
-	
-
-	//@}
+  //!
+  NotifyField *_fld_Finish;
 
 
-	int nextFreeValue;
-	vector<unsigned long>::size_type MAX_SIZE;
-	MLint64 replaceValues_MaxIndex;  
-	MLint64 nextStart;  
-
-	vector<MLint64>* replaceValues;
-	vector<string>* objectValues;
-	HashTable<string>* valuesForObjects;
-	vector<string>* objectNames;
-
-	VirtualVolume* _virtualVolume;
-
-	void reset();
-
-	void addImage();
-	//template <typename T>
-	//void addImageTemplated(T xxx);
-
-	void clearOutputImage();
-	//template <typename T>
-	//void clearOutputImageTemplated(T x);
-
-	void renewObjectValues();
-
-	void buildString();
-
-	void purgeValues();
-	template <typename T>
-	void purgeValuesTemplated(T x);
+  //!
+  StringField *_fld_ImageValues;
+  StringField *_fld_ObjectValues;
 
 
-	//! Compute the statistics of the data set.
-	bool  _computeBoundingBox();
+  //@}
 
-	//! Template helper function used by _computeBoundingBox to calculate type specific, it
-	//! computes the bounding box of an object within the input image object.
-	template <typename DT>
-	bool _computeBoundingBoxT(MLDataType ML_DT);
+
+  int nextFreeValue;
+  vector<unsigned long>::size_type MAX_SIZE;
+  MLint64 replaceValues_MaxIndex;
+  MLint64 nextStart;
+
+  vector<MLint64>* replaceValues;
+  vector<string>* objectValues;
+  HashTable<string>* valuesForObjects;
+  vector<string>* objectNames;
+
+  VirtualVolume* _virtualVolume;
+
+  void reset();
+
+  void addImage();
+  //template <typename T>
+  //void addImageTemplated(T xxx);
+
+  void clearOutputImage();
+  //template <typename T>
+  //void clearOutputImageTemplated(T x);
+
+  void renewObjectValues();
+
+  void buildString();
+
+  void purgeValues();
+  template <typename T>
+  void purgeValuesTemplated(T x);
+
+
+  //! Compute the statistics of the data set.
+  bool  _computeBoundingBox();
+
+  //! Template helper function used by _computeBoundingBox to calculate type specific, it
+  //! computes the bounding box of an object within the input image object.
+  template <typename DT>
+  bool _computeBoundingBoxT(MLDataType ML_DT);
 
     MLint b1x, b1y, b1z, b1c, b1t, b1u;
     MLint b2x, b2y, b2z, b2c, b2t, b2u;
 
 
-  
-    
+
+
   //! Implements interface for the runtime type system of the ML.
   ML_BASEOP_CLASS_HEADER(CalcCodedSegmentation)
 

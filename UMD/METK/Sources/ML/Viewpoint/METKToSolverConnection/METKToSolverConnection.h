@@ -1,5 +1,6 @@
-//METKToSolverConnection
-//METKTOSOLVERCONNECTION
+
+//! The ML ObjMgrClient module METKToSolverConnection.
+//! \file METKToSolverConnection.h
 
 #ifndef __METKToSolverConnection_H
 #define __METKToSolverConnection_H
@@ -22,35 +23,35 @@
 class SoSwitch;
 ML_START_NAMESPACE
 
-//! 
+//! The ML ObjMgrClient module METKToSolverConnection.
 class VIEWPOINT_EXPORT METKToSolverConnection : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	METKToSolverConnection();
-	~METKToSolverConnection (void);
+  //! Constructor.
+  METKToSolverConnection();
+  ~METKToSolverConnection (void);
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);   
-	virtual void activateAttachments();
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
+  virtual void activateAttachments();
 
-	const std::string* getFirstStructure();
-	const std::string* getNextStructure();
-	const std::string* getCurrentStructure();
-	const float getImportance();
-	const SoNode* getIVPointer();
-	const float getImportance(const std::string* name);
-	const SoNode* getIVPointer(const std::string* name);
-	bool getObjAttribute(const string ObjID, const string LayerID, const string InfoID, omAttribute& attr);
-	bool getObjAttributeString(const string ObjID, const string LayerID, const string InfoID, string& value);
+  const std::string* getFirstStructure();
+  const std::string* getNextStructure();
+  const std::string* getCurrentStructure();
+  const float getImportance();
+  const SoNode* getIVPointer();
+  const float getImportance(const std::string* name);
+  const SoNode* getIVPointer(const std::string* name);
+  bool getObjAttribute(const string ObjID, const string LayerID, const string InfoID, omAttribute& attr);
+  bool getObjAttributeString(const string ObjID, const string LayerID, const string InfoID, string& value);
 
 
 
 private:
-   
+
    typedef ObjMgrClient inherited;
-   
+
    // ----------------------------------------------------------
    //@{ \name Module field declarations
    // ----------------------------------------------------------

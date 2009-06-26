@@ -1,3 +1,7 @@
+
+//! ML ObjMgrClient module METKGlobalMessages.
+//! \file  mlMETKGlobalMessages.h
+
 #ifndef __MLMETKGLOBALMESSAGES_H
 #define __MLMETKGLOBALMESSAGES_H
 
@@ -18,37 +22,37 @@
 ML_START_NAMESPACE
 
 
-//! 
+//! ML ObjMgrClient module METKGlobalMessages.
 class METKMESSAGING_EXPORT METKGlobalMessages : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	METKGlobalMessages();
+  //! Constructor.
+  METKGlobalMessages();
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
 
-	virtual void handleObjMgrNotification();
+  virtual void handleObjMgrNotification();
 
-	virtual void activateAttachments();
+  virtual void activateAttachments();
 
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
-	
-	NotifyField* loadedFld;	
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
+
+  NotifyField* loadedFld;
    NotifyField* cleanupFld;
-	StringField* lastMessageFld;
+  StringField* lastMessageFld;
    //@}
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(METKGlobalMessages)
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(METKGlobalMessages)
 };
 
 

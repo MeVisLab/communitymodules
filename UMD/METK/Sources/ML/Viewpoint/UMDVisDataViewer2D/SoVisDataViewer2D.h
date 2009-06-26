@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The Inventor module class SoVisDataViewer2D derived from SoSeparator
+//! The Inventor node SoVisDataViewer2D derived from SoSeparator.
 /*!
 // \file    SoVisDataViewer2D.h
 // \author
@@ -31,7 +31,7 @@ class CvpField;
 
 
 
-//!
+//! The Inventor node SoVisDataViewer2D derived from SoSeparator.
 class UMDVISDATAVIEWER2D_EXPORT SoVisDataViewer2D : public SoSeparator
 {
   //! Implements the runtime type system interface of this new node.
@@ -48,7 +48,7 @@ public:
 
   void createSphere (float fSx, float fSy, float fSz, float fRadius, int iDiv);
   void setDataField (CvpField *oField);
-  
+
   void GLRenderBelowPath(SoGLRenderAction *action);
   //void computeBBox(SoAction * action, SbBox3f & box, SbVec3f & center);
   //void generatePrimitives(SoAction *action);

@@ -1,3 +1,7 @@
+
+//! ML ObjMgrClient module METKMsgReceiver.
+//! \file  mlMETKMsgReceiver.h
+
 #ifndef __MLMETKMSGRECEIVER_H
 #define __MLMETKMSGRECEIVER_H
 
@@ -17,48 +21,48 @@
 
 ML_START_NAMESPACE
 
-//! 
+//! ML ObjMgrClient module METKMsgReceiver.
 class METKMESSAGING_EXPORT METKMsgReceiver : public ObjMgrClient
 {
-   
+
 public:
-   
+
    //! Constructor.
    METKMsgReceiver();
    ~METKMsgReceiver();
-   
+
    StringField* messageFld;
-   NotifyField* doneFld;	
-   
+   NotifyField* doneFld;
+
    //! Handle field changes of the field \c field.
    virtual void handleNotification (Field *field);
-   
+
    virtual void handleObjMgrNotification();
-   
+
    virtual void activateAttachments();
-   
+
    const bool isProcessing() const { return _processing; }
-   
+
    const ObjMgr* getObjMgr() const;
-   
+
 private:
-   
+
    typedef ObjMgrClient inherited;
-   
+
    // ----------------------------------------------------------
    //@{ \name Module field declarations
    // ----------------------------------------------------------
-   
+
    StringField* dataFld;
    StringField* statusFld;
    //@}
-   
-   
+
+
    //! Implements interface for the runtime type system of the ML.
    ML_CLASS_HEADER(METKMsgReceiver);
-   
+
    bool _processing;
-   
+
 };
 
 

@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The ML module class RegionDistanceTransformation.
+//! The ML module class RegionDistanceTransformation derived from SmallImageInterface.
 /*!
 // \file    mlRegionDistanceTransformation.h
 // \author  Konrad Muehler
 // \date    2009-03-17
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -25,22 +25,22 @@
 // Local includes
 #include "UMDRegionDistanceTransformationSystem.h"
 
-//! 
+//! The ML module class RegionDistanceTransformation derived from SmallImageInterface.
 class UMDREGIONDISTANCETRANSFORMATION_EXPORT RegionDistanceTransformation : public SmallImageInterface
 {
 public:
-	//! the image processing is done in this method
-	virtual void _processImages();
+  //! the image processing is done in this method
+  virtual void _processImages();
 
-	//! write initialization code herein
-	virtual void _initializeAll();
+  //! write initialization code herein
+  virtual void _initializeAll();
 
 private:
-	
-	labField *_globalDistanceField;
-	labField *_componentIDs;
-	void calcGlobalDistanceField();
-	int calcConnectedComp();
+
+  labField *_globalDistanceField;
+  labField *_componentIDs;
+  void calcGlobalDistanceField();
+  int calcConnectedComp();
 
 };
 

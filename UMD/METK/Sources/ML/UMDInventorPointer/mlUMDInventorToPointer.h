@@ -1,11 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The ML module class UMDInventorToPointer.
+//! The ML module UMDInventorToPointer derived from ObjMgrClient.
 /*!
 // \file    mlUMDInventorToPointer.h
 // \author  Konrad
 // \date    2006-02-01
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -43,43 +43,43 @@
 ML_START_NAMESPACE
 
 
-//! 
+//! The ML module UMDInventorToPointer derived from ObjMgrClient.
 class UMDINVENTORPOINTER_EXPORT UMDInventorToPointer : public ObjMgrClient
 {
 public:
 
-	//! Constructor.
-	UMDInventorToPointer (void);
+  //! Constructor.
+  UMDInventorToPointer (void);
    ~UMDInventorToPointer (void);
 
-	//! Handle field changes of the field \c field.
-	virtual void handleNotification (Field *field);	
-	virtual void activateAttachments();
-	// ----------------------------------------------------------
-	//@{ \name Module field declarations
-	// ----------------------------------------------------------
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
+  virtual void activateAttachments();
+  // ----------------------------------------------------------
+  //@{ \name Module field declarations
+  // ----------------------------------------------------------
 
-	//! 
-	IntField* _pointer;
-	
-	SoNodeField* inInventor;
-	StringField* fieldObjectID;
-	StringField* fieldLayerID;
-	StringField* fieldInfoID;
+  //!
+  IntField* _pointer;
 
-	NotifyField* fieldRefresh;
+  SoNodeField* inInventor;
+  StringField* fieldObjectID;
+  StringField* fieldLayerID;
+  StringField* fieldInfoID;
 
-	//@}
+  NotifyField* fieldRefresh;
+
+  //@}
 
 private:
 
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
-	//! Implements interface for the runtime type system of the ML.
-	ML_CLASS_HEADER(UMDInventorToPointer)
+  //! Implements interface for the runtime type system of the ML.
+  ML_CLASS_HEADER(UMDInventorToPointer)
 
 
-	void writePointer();
+  void writePointer();
 
 };
 

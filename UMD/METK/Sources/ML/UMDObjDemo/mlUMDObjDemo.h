@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------
-//! The ML module class UMDObjDemo.
+//! ML ObjMgrClient module UMDObjDemo is an example for a single ObjMgrModule.
 /*!
 // \file    mlUMDObjDemo.h
 // \author  Konrad Mühler
@@ -39,25 +39,25 @@
 ML_START_NAMESPACE
 
 
-//! Example for a single ObjModule
+//! ML ObjMgrClient module UMDObjDemo is an example for a single ObjMgrModule.
 class UMDOBJDEMO_EXPORT UMDObjDemo : public ObjMgrClient
 {
 private:
-	typedef ObjMgrClient inherited;
+  typedef ObjMgrClient inherited;
 
     //Macro for declaring methods for the runtime system
     ML_CLASS_HEADER(UMDObjDemo)
 
 public:
 
-	//Constructor.
-	UMDObjDemo (void);
+  //Constructor.
+  UMDObjDemo (void);
 
-	//Called when input changes.
-	virtual void handleNotification(Field *field);
+  //Called when input changes.
+  virtual void handleNotification(Field *field);
 
-	// Called on notification from ObjMgr.
-	virtual void handleObjMgrNotification();
+  // Called on notification from ObjMgr.
+  virtual void handleObjMgrNotification();
 
 };
 
