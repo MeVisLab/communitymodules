@@ -1,3 +1,7 @@
+
+//! Class GoogleCampath derived from AbstractCampath.
+//! \file GoogleCampath.h
+
 #ifndef _GOOGLECAMPATH_
 #define _GOOGLECAMPATH_
 
@@ -5,6 +9,7 @@
 
 ML_START_NAMESPACE
 
+//! Class GoogleCampath derived from AbstractCampath.
 class GoogleCampath:public AbstractCampath{
   public:
     GoogleCampath(ObjMgrCommunicator*,StringField*,kScriptFrameList*,kCamera*,AnimationCache*,

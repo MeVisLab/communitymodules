@@ -1,3 +1,7 @@
+
+//! Class LinearCampath derived from AbstractCampath.
+//! \file LinearCampath.h
+
 #ifndef _LINEARCAMPATH_
 #define _LINEARCAMPATH_
 
@@ -5,6 +9,7 @@
 
 ML_START_NAMESPACE
 
+//! Class LinearCampath derived from AbstractCampath.
 class LinearCampath:public AbstractCampath{
   public:
     LinearCampath(ObjMgrCommunicator*,StringField*,kScriptFrameList*,kCamera*,AnimationCache*,

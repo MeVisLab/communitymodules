@@ -204,7 +204,7 @@ private:
   //@}
 
 
-  //Structure for a single point in transfer function
+  //! Structure for a single point in transfer function.
   struct TFPoint
   {
     float voxel;

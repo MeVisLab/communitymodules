@@ -1,3 +1,7 @@
+
+//! Base class for classes such as RectangleCamPath, LinearCamPath, HeightCamPath, GoogleCamPath, GoogleRectangleCampath.
+//! \file UMDCampath.h
+
 #ifndef _UMDCAMPATH_
 #define _UMDCAMPATH_
 
@@ -12,6 +16,8 @@
 #include "UMDAnimation2/AnimationCache.h"
 
 ML_START_NAMESPACE
+
+//! Helper class ScenePosition for the base class AbstractCamPath.
 struct ScenePosition
 {
   vec3 position;
@@ -23,6 +29,7 @@ struct ScenePosition
   ScenePosition(){}
 };
 
+//! Base class for classes such as RectangleCamPath, LinearCamPath, HeightCamPath, GoogleCamPath, GoogleRectangleCampath.
 class AbstractCampath
 {
   public:

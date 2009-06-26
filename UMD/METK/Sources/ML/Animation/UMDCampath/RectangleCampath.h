@@ -1,3 +1,7 @@
+
+//! Class RectangleCampath derived from AbstractCampath.
+//! \file RectangleCampath.h
+
 #ifndef _RECTANGLECAMPATH_
 #define _RECTANGLECAMPATH_
 
@@ -5,6 +9,7 @@
 
 ML_START_NAMESPACE
 
+//! Class RectangleCampath derived from AbstractCampath.
 class RectangleCampath:public AbstractCampath{
   public:
     RectangleCampath(ObjMgrCommunicator*,StringField*,kScriptFrameList*,kCamera*,AnimationCache*,
