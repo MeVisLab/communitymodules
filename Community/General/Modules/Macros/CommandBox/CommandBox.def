@@ -1,0 +1,23 @@
+//----------------------------------------------------------------------------------
+//! CommandBox module definition
+/*!
+// \file    CommandBox.def
+// \author  Stefan Saur
+// \date    2007-11-28
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule CommandBox {
+  genre = ""
+  author = "Stefan Saur"
+  status = "stable"
+  comment = "Touches a list of trigger fields."
+  keywords = ""
+  seeAlso = ""
+   
+  exampleNetwork     = "$(LOCAL)/CommandBoxExample.mlab"
+  externalDefinition = "$(LOCAL)/CommandBox.script"
+  scriptOnly = yes
+
+} // MacroModule CommandBox
+

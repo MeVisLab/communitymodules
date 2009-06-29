@@ -1,0 +1,100 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Comment {
+  internal  {
+    frame = "-131 -235 88 56"
+    windows  {
+      window _default {
+        geometry = "62 73 256 209"
+        sizeHint = "256 209"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "A CommandBox touches the fields given in the CommandList. In this example, the 
+'up' button from the module 'CounterOne' and the 'down' button from the module 'CounterTwo' are touched. "
+  }
+  internalFields = ""
+}
+module Counter {
+  internal  {
+    frame = "33 49 96 64"
+    windows  {
+      window _default {
+        geometry = "638 368 336 178"
+        sizeHint = "336 178"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CounterTwo
+    currentValue = 10
+    minValue = 0
+    maxValue = 10
+    startValue = 10
+    stepValue = 1
+    loop = TRUE
+    checkConsistency = TRUE
+  }
+  internalFields = ""
+}
+module Counter {
+  internal  {
+    frame = "21 -71 104 64"
+    windows  {
+      window _default {
+        geometry = "641 154 336 178"
+        sizeHint = "336 178"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CounterOne
+    currentValue = 0
+    minValue = 0
+    maxValue = 10
+    startValue = 0
+    stepValue = 1
+    loop = TRUE
+    checkConsistency = TRUE
+  }
+  internalFields = ""
+}
+module CommandBox {
+  internal  {
+    frame = "-135 -131 112 56"
+    windows  {
+      window _default {
+        geometry = "56 348 397 486"
+        sizeHint = "397 486"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CommandBox
+    isVerbose = TRUE
+    isProcessEvents = TRUE
+    isProcessInventorQueue = TRUE
+    commandList = "CounterOne.up
+# tihs is a comment
+CounterTwo.down"
+    sleep = 1000
+    startLoop = 0
+    stopLoop = 1
+    val = 0
+    isLoop = FALSE
+  }
+  internalFields = ""
+}
+connections = ""
