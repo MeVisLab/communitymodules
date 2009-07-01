@@ -17,6 +17,7 @@ MacroModule CommandBox {
    
   exampleNetwork     = "$(LOCAL)/CommandBoxExample.mlab"
   externalDefinition = "$(LOCAL)/CommandBox.script"
+  documentation  = "$(LOCAL)/html/CommandBox.html"
   scriptOnly = yes
 
 } // MacroModule CommandBox

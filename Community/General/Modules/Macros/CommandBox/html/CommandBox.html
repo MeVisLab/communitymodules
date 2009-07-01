@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+
+  
+  <meta name="Description" content="Template for an ILAB module">
+
+  
+  <title>CommandBox</title>
+<!--===============================================================--><!-- CommandBox                                                       --><!--===============================================================-->
+</head>
+
+
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;
+<a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp;
+<a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#KnownBugs">Known Bugs</a>
+<hr width="100%"></center>
+
+<h2>
+CommandBox</h2>
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+<blockquote>
+  <p>
+The <b>CommandBox</b> macro allows to touch several buttons/fields one after the other. It is useful when several buttons within a network have to be touched each time to process it. To speed up, these buttons can be defined in a list and automatically be touched one after the other by just one mouse-click. Furthermore, there is an option to process all buttons multiple times in a loop - useful when running a network on a large number of data.
+
+  </p>
+
+</blockquote>
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+<blockquote>
+<p>
+  Write the fields to be touched into the <b>CommandList</b>. One field per line in the form <i>moduleName.fieldName</i>. For a comment (in a separate line), use the character <i>#</i>. Finally, press the <b>Apply</b> button to touch all the listed fields in your network.
+</p>
+</blockquote>
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+<blockquote>
+The module has no input.
+</blockquote>
+
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+
+<blockquote>
+The module has no output.
+</blockquote>
+
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+
+<blockquote>
+  
+  <h4><b>Main</b></h4>
+
+  
+  <ul>
+
+    <li><span style="font-weight: bold;">CommandList</span>: List of fields that should be touched. One field per line in the form <i>moduleName.fieldName</i>.</li>
+
+
+    <li><span style="font-weight: bold;">Apply</span>: Touch all fields one after the other as listed in <b>CommandList</b>.</li>
+  
+  </ul>
+
+</blockquote>
+  
+<blockquote>
+
+<h4>Parameters</h4>
+
+  <ul>
+    <li><span style="font-weight: bold;">Process events</span>: If checked, the command <i>MLAB.processEvents</i> is executed after each field being touched.</li>
+    <li><span style="font-weight: bold;">Process inventor queue</span>: If checked, the command <i>MLAB.processInventorQueue</i> is executed after each field being touched.</li>
+    <li><span style="font-weight: bold;">Log commands</span>: if checked, the touched fields are logged into the console.</li>
+    <li><span style="font-weight: bold;">Sleep [ms]:</span>: Idle time between touching two fields in milli seconds.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+
+<h4>Loop</h4>
+
+
+  
+  <ul>
+    <li><span style="font-weight: bold;">Do loop</span>: If checked, the CommandList is processed multiple times, as defined by the loop parameters <b>Start</b> and <b>Stop</b>.</li>
+    <li><span style="font-weight: bold;">Start</span>: Start value of the loop.</li>
+    <li><span style="font-weight: bold;">Stop</span>: Stop value of the loop.</li>
+    <li><span style="font-weight: bold;">Value:</span>: Current value of the loop (start  Size &#060;= value &#060;= Stop).</li>
+  </ul>
+</blockquote>
+  
+
+  
+  <h3>
+  </h3>
+
+  
+  <h3>
+  <a name="EventInteract"></a>Events &amp; Interaction</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="Example"></a>Example</h3>
+
+  
+  <blockquote>The example network demonstrates the usage of the module by touching two different buttons of two Counter modules.</blockquote>
+
+  
+  <h3>
+  <a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="KnownBugs"></a>Known Bugs</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+</blockquote>
+
+</body>
+</html>

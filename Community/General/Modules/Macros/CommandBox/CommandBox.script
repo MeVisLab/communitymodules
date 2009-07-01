@@ -50,7 +50,7 @@ Window "CommandBox" {
 		   tooltip = "call MLAB.processEvents after each command"
 	         }
 	         CheckBox isProcessInventorQueue {
-	           title = "ProcessInventorQueue"
+	           title = "Process inventor queue"
 		   tooltip = "call MLAB.processInventorQueue after each command"
 	         }
 	      } // Row
@@ -72,19 +72,19 @@ Window "CommandBox" {
 	    Horizontal {
 	    
 	    CheckBox isLoop {
-	      title = "do loop"
+	      title = "Do loop"
 	      tooltip = "Process 'Command List' in a loop between start and stop value"
 	    }
 	      Field startLoop { 
-	        title = "start"
+	        title = "Start"
 		tooltip = "Start value for loop"
 	      }
 	      Field stopLoop { 
-	        title = "stop" 
+	        title = "Stop" 
 		tooltip = "Stop value for loop"
 	      }
 	      Field val { 
-	        title = "value"
+	        title = "Value"
 		edit = NO
 		tooltip = "Current iteration value of loop"
 	      }
