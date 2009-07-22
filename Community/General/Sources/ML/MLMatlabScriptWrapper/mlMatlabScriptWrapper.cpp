@@ -184,7 +184,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     || (field == _calculateFld) ) {
     // Check if Matlab is started.
     if (!_checkMatlabIsStarted()) {
-      _statusFld->setStringValue("Cannot finding matlab engine!");
+      _statusFld->setStringValue("Cannot find Matlab engine!");
       return;
     }
 
@@ -236,8 +236,8 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     // we can check if they change. A notification is only sent upon change.
     double tmpScalars[6];
     for(int k=0; k<6; ++k) {
-	   tmpScalars[k] = _scalarFld[k]->getDoubleValue();
-	 }
+      tmpScalars[k] = _scalarFld[k]->getDoubleValue();
+    }
     _getScalarsBackFromMatlab();
     for(int k=0; k<6; ++k) {
       if(tmpScalars[k] == _scalarFld[k]->getDoubleValue()) {
@@ -259,7 +259,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 //----------------------------------------------------------------------------------
 //! Configures (in)validation handling of inputs which are not connected or up to date.
 //----------------------------------------------------------------------------------
-BaseOp::INPUT_HANDLE MatlabScriptWrapper::handleInput(int inIndex, INPUT_STATE /*state*/) const
+BaseOp::INPUT_HANDLE MatlabScriptWrapper::handleInput (int inIndex, INPUT_STATE /*state*/) const
 {
   ML_TRACE_IN("MatlabScriptWrapper::handleInput ()");
 
@@ -276,7 +276,7 @@ BaseOp::INPUT_HANDLE MatlabScriptWrapper::handleInput(int inIndex, INPUT_STATE /
 //----------------------------------------------------------------------------------
 //! Sets properties of the output image at output \c outIndex.
 //----------------------------------------------------------------------------------
-void MatlabScriptWrapper::calcOutImageProps(int outIndex)
+void MatlabScriptWrapper::calcOutImageProps (int outIndex)
 {
   ML_TRACE_IN("MatlabScriptWrapper::calcOutImageProps ()");
 
@@ -287,7 +287,7 @@ void MatlabScriptWrapper::calcOutImageProps(int outIndex)
     return;
   }
 
-  // Get variable name in the matlab workspace of the ouput image 
+  // Get variable name in the matlab workspace of the output image
   std::string outname = _outDataNameFld[outIndex]->getStringValue();
 
   // Get the size of the image via the matlab workspace
@@ -315,7 +315,7 @@ void MatlabScriptWrapper::calcOutImageProps(int outIndex)
     mxDestroyArray(m_Y);
     m_Y = NULL;
     // Delete temp variable.
-    engEvalString(m_pEngine, "clear mevtmpdim");  
+    engEvalString(m_pEngine, "clear mevtmpdim");
 
     // Get min and max values in matlab workspace and set them in MeVisLab
     std::ostringstream minmaxCommand, maxCommand;
@@ -339,7 +339,7 @@ void MatlabScriptWrapper::calcOutImageProps(int outIndex)
 //----------------------------------------------------------------------------------
 //! Request input image in fixed datatype.
 //----------------------------------------------------------------------------------
-void MatlabScriptWrapper::calcInSubImageProps(int /*inIndex*/, InSubImageProps &props, int /*outIndex*/)
+void MatlabScriptWrapper::calcInSubImageProps (int /*inIndex*/, InSubImageProps &props, int /*outIndex*/)
 {
   // Request input image in double type.
   props.inSubImgDType = MLdoubleType;
@@ -426,10 +426,11 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       // Get whole image.
       MLErrorCode localErr =
         getTile(getInOp(i),getInOpIndex(i),
-        SubImgBox(Vector(0, 0, 0, 0, 0, 0),  Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1, imgSize.c-1, imgSize.t-1, imgSize.u-1)),
-        MLdoubleType,
-        &data,
-        ScaleShiftData(1,0));
+                SubImgBox(Vector(0, 0, 0, 0, 0, 0),
+                Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
+                MLdoubleType,
+                &data,
+                ScaleShiftData(1,0));
 
       // Check and save error code if necessary.
       if (localErr != ML_RESULT_OK) {
@@ -477,7 +478,7 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
   size_t i = 0;
   // Get names form gui.
   std::ostringstream inXMarkerStr, outXMarkerStr;
-  inXMarkerStr << _inXMarkerNameFld->getStringValue(); 
+  inXMarkerStr << _inXMarkerNameFld->getStringValue();
   outXMarkerStr << _outXMarkerNameFld->getStringValue();
 
   // Combine string.
@@ -631,7 +632,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
         // Fill marker with zeros.
         XMarker outMarker(vec6(0),vec3(0),0);
 
-        // Write matlab points to marker.
+        // Write matlab points to marker and prevent writing more than 6 dimensions
         for(j=0; j<cols && cols<=6; j++) {
           outMarker.pos[j] = dataPos[i + j*rows];
         }
@@ -645,6 +646,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
           }
         }
 
+        // Write matlab type vec to marker.
         if(dataType!=NULL)
         {
           // Set type only if number points and types equal otherwise zero.
@@ -675,7 +677,7 @@ void MatlabScriptWrapper::_copyInputScalarsToMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_copyInputScalarsToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_copyInputScalarsToMatlab(): Cannot find matlab engine!" << std::endl << std::flush;
     return;
   }
   // Internal loop.
@@ -751,7 +753,10 @@ void MatlabScriptWrapper::_clearAllVariables()
     clearString << _outDataNameFld[i]->getStringValue() << " ";
   }
 
-  // Clear XMarker data
+  // Clear input XMarker data
+  clearString << _inXMarkerNameFld->getStringValue() << " ";
+
+  // Clear output XMarker data
   clearString << _outXMarkerNameFld->getStringValue();
 
   // Evaluate the string in Matlab
