@@ -1,0 +1,140 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Comment {
+  internal  {
+    frame = "-275 -123 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "37 368 256 209"
+        sizeHint = "256 209"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "Press the apply button to compute the segmentation statistics."
+  }
+  internalFields = ""
+}
+module Threshold {
+  internal  {
+    frame = "41 133 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "509 491 268 92"
+        sizeHint = "268 92"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold1
+    threshold = 1300
+    minValue = 0
+    maxValue = 4095
+    relativeThreshold = FALSE
+  }
+}
+module Threshold {
+  internal  {
+    frame = "-115 133 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "509 491 268 92"
+        sizeHint = "268 92"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Threshold
+    threshold = 1500
+    minValue = 0
+    maxValue = 4095
+    relativeThreshold = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "29 57 120 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = ReferenceImage
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "-143 49 144 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SegmentationResult
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-63 245 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files/MeVisLab2.0VC8/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module SegmentationEvaluationMetric {
+  internal  {
+    frame = "-99 -27 200 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "638 298 264 423"
+        sizeHint = "264 423"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SegmentationEvaluationMetric
+    segmentationThreshold = 0
+    referenceThreshold = 0
+    truePositive = 0
+    trueNegative = 0
+    falsePositive = 0
+    falseNegative = 0
+    sensitivity = 0
+    specificity = 0
+    prevalence = 0
+    levelOfTest = 0
+    diceSimilarityCoefficient = 0
+    cFactor = 0
+    isAutoApply = FALSE
+  }
+}
+connections  {
+  Threshold1.input0 = LocalImage.outImage
+  Threshold.input0 = LocalImage.outImage
+  ReferenceImage.input0 = Threshold1.output0
+  SegmentationResult.input0 = Threshold.output0
+  SegmentationEvaluationMetric.input0 = SegmentationResult.output0
+  SegmentationEvaluationMetric.input1 = ReferenceImage.output0
+}
+networkModel = ""

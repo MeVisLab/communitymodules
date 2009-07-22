@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+   
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+   
+  
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+
+
+   
+  
+  <meta name="Description" content="MeVisLab module help page template">
+
+
+   
+  
+  <title>SegmentationEvaluationMetric</title>
+</head>
+
+
+<body>
+
+
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr width="100%"></center>
+
+
+
+<h2>
+SegmentationEvaluationMetric</h2>
+
+
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+
+
+<blockquote>Metric computation for the assessment of segmentation results. Given a segmentation and a reference segmentation, the module <b>SegmentationEvaluationMetric</b> computes some measures as described in:<br/>
+
+<i>Statistical validation metric for accuracy assessment in medical image segmentation</i><br/>
+Aleksandra Popovic, Matias de la Fuente, Martin Engelhardt, Klaus Radermacher<br/>
+Int J CARS, 2007(2):169-181<br/>
+<a href="http://dx.doi.org/10.1007/s11548-007-0125-1 ">DOI 10.1007/s11548-007-0125-1</a>
+<br/>
+to evaluate the segmentation result.
+</blockquote>
+
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+<blockquote>Connect <b>input0</b> with the segmentation result and <b>input1</b> with the reference image. Set the thresholds for the segmentation and reference image in the parameters (all voxels above the corresponding threshold are regarded as foreground) and press the <b>Apply</b> button.
+</blockquote>
+
+
+
+<h3>
+<a name="Details"></a>Details</h3>
+
+
+
+<blockquote>None.</blockquote>
+
+
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+
+
+<blockquote>
+<ul>
+  <li><b>input0</b> - segmentation image</li>
+  <li><b>input1</b> - reference image</li>
+</ul>  
+</blockquote>
+
+
+
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+
+
+
+<blockquote>The module has no outputs.</blockquote>
+
+
+
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+
+
+
+<blockquote>
+  
+  <h4>Input</h4>
+  
+  <ul>
+    <li><b>Segmentation Image Threshold</b> - all voxels with an intensity value greater this threshold are regarded as foreground in the segmentation image (input0).</li>
+    <li><b>Reference Image Threshold</b> - all voxels with an intensity value greater this threshold are regarded as foreground in the reference image (input1).</li>
+    <li><b>Is auto apply</b> - if checked, computation is started whenever the input changes.</li>
+    <li><b>Apply</b> - start the computation.</li>
+  </ul>
+
+  <br/>
+   
+  <h4>Output</h4>
+  <ul>
+    <li><b>True positive</b> - # of true positive voxels.</li>
+    <li><b>True negative</b> - # of true negative voxels.</li>
+    <li><b>False positive</b> - # of false positive voxels.</li>
+    <li><b>False negative</b> - # of false negative voxels.</li>
+    <li><b>Sensitivity</b></li>
+    <li><b>Specificity</b></li>
+    <li><b>Prevalence</b></li>
+    <li><b>Level of Test</b></li>
+    <li><b>Dice Similarity Coefficient</b></li>
+    <li><b>C-Factor</b></li>
+  </ul>
+
+
+</blockquote>
+
+
+
+<h3>
+<a name="EventInteract"></a>Events &amp; Interaction</h3>
+
+
+
+<blockquote>Describe which mouse clicks or movements, or keystrokes are
+needed for proper operation or how they are influenced by certain
+parameters. Also the usage of other or untypical devices should be
+discussed here.
+</blockquote>
+
+
+
+<h3>
+<a name="Example"></a>Example</h3>
+
+
+
+<blockquote>See example network.</blockquote>
+
+
+
+<h3>
+<a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+
+
+<blockquote>None.</blockquote>
+
+
+
+<h3>
+<a name="KnownBugs"></a>Known Bugs</h3>
+
+
+
+<blockquote>None.<br>
+
+</blockquote>
+
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+//----------------------------------------------------------------------------------
+//! CVLSegmentationEvaluationMetric module definitions.
+/*!
+// \file    CVLSegmentationEvaluationMetric.def
+// \author  Stefan Saur
+// \date    2009-07-21
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule SegmentationEvaluationMetric
+//----------------------------------------------------------------------------------
+MLModule SegmentationEvaluationMetric {
+  DLL            = "CVLSegmentationEvaluationMetric"
+
+  genre          = ""
+  author         = "Stefan Saur"
+  status         = "work-in-progress"
+  comment        = ""
+  keywords       = "sensitivity, specificity, TP, TN, FP, FN, prevalence, dice coefficient, similarity"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/SegmentationEvaluationMetric.html"
+  exampleNetwork = "$(LOCAL)/networks/SegmentationEvaluationMetricExample.mlab"
+  
+  Window {
+   Category "Main" {
+    Box "Input" {
+      Vertical {
+        Field segmentationThreshold { title = "Segmentation Image Threshold" tooltip = "all values above threshold are regarded as foreground" }
+        Field referenceThreshold { title = "Reference Image Threshold" tooltip = "all values above threshold are regarded as foreground"}
+        Horizontal {
+        CheckBox isAutoApply {}
+        Button apply {}
+      }
+      }
+    }
+    Box "Output" {
+    Vertical {
+    Field truePositive { title = "True positive (TP)" edit = NO minLength = 10}
+    Field trueNegative { title = "True negative (TN)" edit= NO }
+    Field falsePositive { title = "False positive (FP)" edit = NO }
+    Field falseNegative { title = "False negative (FN)" edit = NO } 
+    Field sensitivity { title = "Sensitivity" edit = NO }
+    Field specificity { title = "Specificity" edit = NO }
+    Field prevalence { title = "Prevalence" edit = NO }
+    Field levelOfTest { title = "Level of Test" edit = NO }
+    Field diceSimilarityCoefficient { title = "Dice Similarity Coefficient" edit = NO }
+    Field cFactor { title = "C-Factor" edit = NO }
+    }
+  }
+  }
+ }
+} // MLModule SegmentationEvaluationMetric
+
