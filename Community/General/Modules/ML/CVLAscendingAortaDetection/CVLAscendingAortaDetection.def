@@ -1,0 +1,96 @@
+//----------------------------------------------------------------------------------
+//! CVLAscendingAortaDetection module definitions.
+/*!
+// \file    CVLAscendingAortaDetection.def
+// \author  Stefan Saur
+// \date    2007-03-24
+//
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule AscendingAortaDetection
+//----------------------------------------------------------------------------------
+MLModule AscendingAortaDetection {
+  DLL            = "CVLAscendingAortaDetection"
+
+  genre          = ""
+  author         = "Stefan Saur"
+  status         = "stable"
+  comment        = "Automatic detection of the ascending aorta in computed tomography coronary angiography data sets."
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/AscendingAortaDetection.html"
+
+  Window {
+    Category "Main" {
+     
+	  Box "Input" {
+	    Field primaryThreshold {}
+		Field secondaryThreshold {}
+		Field minDiameter {}
+		Field maxDiameter {}
+		Field distanceCluster {}
+		Field increment {}
+		Field ratioLimit {}
+		Field useRatioLimit {}
+		Field startSearchArea {}
+		Field endSearchArea {}
+	  } // Box "input"
+
+	  Box "Output" {
+		Field seedPoint { edit = NO }
+		Field runTime { edit = NO }
+	  } // Box "output"
+
+	  Horizontal {
+		Field autoApply {}
+		Button apply {}
+	  }
+	  
+	  
+	} // Category "Main"
+	
+	Category "LargestCluster" {
+		Field priClusterSize { title = "ClusterSize" edit = NO }
+		Field priMeanIntensity { title = "MeanIntensity" edit = NO }
+		Field priStdIntensity { title = "StdIntensity" edit = NO }
+	    Field priBaryCenter { title = "BaryCenter" edit = NO }
+	    Field priLowerCenter { title = "LowerCenter" edit = NO }
+	    Field priUpperCenter { title = "UpperCenter" edit = NO }
+	    Field priRadiusBC { title = "RadiusBaryCenter" edit = NO }
+	    Field priBBLower { title = "BbLower" edit = NO }
+	    Field priBBUpper { title = "BbUpper" edit = NO }
+	    Field extensionLargestCluster { title = "Extension" edit = NO }
+	    Field meanRadiusLargestCluster { title = "MeanRadisu" edit = NO }
+	    Field stdRadiusLargestCluster { title = "StdRadius" edit = NO }
+	} // Category "LargestCluster"
+	
+	Category "SecondLargestCluster" {
+	   Field secClusterSize { title = "ClusterSize" edit = NO }
+	   Field secMeanIntensity { title = "MeanIntensity" edit = NO } 
+	   Field secStdIntensity { title = "StdIntensity" edit = NO }
+	   Field secBaryCenter { title = "BaryCenter" edit = NO }
+	   Field secLowerCenter { title = "LowerCenter" edit = NO }
+	   Field secUpperCenter { title = "UpperCenter" edit = NO }
+	   Field secRadiusBC { title = "RadiusBaryCenter" edit = NO }
+	   Field secBBLower { title = "BbLower" edit = NO }
+	   Field secBBUpper { title = "BbUpper" edit = NO }
+       Field extensionSecondLargestCluster { title = "Extension" edit = NO }
+	   Field meanRadiusSecondLargestCluster { title = "MeanRadius" edit = NO }
+	   Field stdRadiusSecondLargestCluster { title = "StdRadius" edit = NO }
+	} // Category "SecondLargestCluster"
+	
+	Category "Info" {
+	  Vertical { expandY = yes
+	    TextView info {
+	      autoApply = yes
+	      mw = 400
+	      mh = 300
+	    } // TextView
+	  } // Vertical
+	} // Category "Info"
+  } // Window
+
+} // MLModule AscendingAortaDetection

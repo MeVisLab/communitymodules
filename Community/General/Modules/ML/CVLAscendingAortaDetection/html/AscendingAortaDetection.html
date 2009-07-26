@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    
+  <meta name="Description" content="Template for an ILAB module">
+
+  
+  <title>AscendingAortaDetection</title>
+<!--===============================================================--><!-- CommandBox                                                       --><!--===============================================================-->
+</head>
+
+
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;
+<a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp;
+<a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#KnownBugs">Known Bugs</a>
+<hr width="100%"></center>
+
+<h2>
+AscendingAortaDetection</h2>
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+<blockquote>
+  <p>
+The <b>AscendingAorataDetection</b> module allows to detect the ascending aorta within a computed tomography coronary angiography (CTCA) data set. With some parameter changes, it is also possible to detect the descending aorta. The module is based on the publication<br/>
+<br/>
+<i>Automatic Ascending Aorta Detection in CTA Datasets</i><br/>
+Stefan C. Saur and Caroline Kühnel and Tobias Boskamp and Gábor Székely and Philippe Cattin<br/>
+Bildverarbeitung für die Medizin 2008<br/>
+<a href="ftp://ftp.vision.ee.ethz.ch/publications/proceedings/eth_biwi_00536.pdf">Download paper in pdf format</a>
+
+  </p>
+
+</blockquote>
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+<blockquote>
+<p>
+  Just connect the input image, adapt the parameters (per default, they are set to detect the ascending aorta) and press the <b>Apply</b> button to start the detection. As output, the world coordinates of a seed point within the ascending aorta is given. Further, all candidate points are given at the output <b>outXMarkerList</b>. The candidate points from largest cluster representing the ascending aorta are given at the output <b>outXMarkerListLargestCluster</b> whereas the candidates from the second largest cluster are given at <b>outXMarkerListSecondLargestCluster</b>.  
+</p>
+</blockquote>
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+<blockquote>
+The module has one input image which will be internally casted to MLuint16type.
+</blockquote>
+
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+
+<blockquote>
+The module has three XMarkerLists as output\
+<ul>
+  <li><b>outXMarkerList</b>: all candidate points as determined by the algorithm. Points from different clusters have a different XMarker <i>type</i> property.</li>
+  <li><b>outXMarkerListLargestCluster</b>: all candidate points from the largest cluster.</li>
+  <li><b>outXMarkerListSecondLargestCluster</b>: all candidate points from the second largest cluster.</li>
+</ul>
+</blockquote>
+
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+
+<blockquote>
+  
+  <h4><b>Main</b></h4>
+
+  
+  <ul>
+   <li><span style="font-weight: bold;">Primary Threshold</span>: primary threshold th_p in gray values.</li>
+   <li><span style="font-weight: bold;">Secondary Threshold</span>: secondary threshold th_s in gray values.</li>
+   <li><span style="font-weight: bold;">Min Diameter</span>: minimum diameter d_min in mm.</li>
+   <li><span style="font-weight: bold;">Max Diameter</span>: maximum diameter d_max in mm.</li>
+   <li><span style="font-weight: bold;">Distance Cluster</span>: distance limit for clustering d_clust.</li>
+   <li><span style="font-weight: bold;">Increment</span>: increment of search ray delta_x, delta_y, delta_z.</li>
+   <li><span style="font-weight: bold;">Radio Limit</span>: ratio a.</li>
+   <li><span style="font-weight: bold;">Use Ratio Limit</span>: if checked, ratio criterion is applied in the detection process.</li>
+   <li><span style="font-weight: bold;">Start Search Area</span>: start of search range VOI_x, VOI_y, VOI_z.</li>
+   <li><span style="font-weight: bold;">End Search Area</span>: end of search range VOI_x, VOI_y, VOI_z.</li>
+   <li><span style="font-weight: bold;">Seed Point</span>: seed point within the ascending aorta.</li>
+   <li><span style="font-weight: bold;">Run Time</span>: run time of the algorithm in seconds.</li>
+   <li><span style="font-weight: bold;">Auto Apply</span>: if checked, the algorithm is triggered upon connection of an input image.</li>
+   <li><span style="font-weight: bold;">Apply</span>: manually run algorithm.</li>
+    
+    <li><span style="font-weight: bold;">CommandList</span>: List of fields that should be touched. One field per line in the form <i>moduleName.fieldName</i>.</li>
+
+
+    <li><span style="font-weight: bold;">Apply</span>: Touch all fields one after the other as listed in <b>CommandList</b>.</li>
+  
+  </ul>
+
+</blockquote>
+  
+<blockquote>
+
+<h4>LargestCluster</h4>
+  Statistical information about the detected largest cluster. 
+  <ul>
+    <li><span style="font-weight: bold;">ClusterSize</span>: size of cluster i.e. number of candidate points.</li>
+    <li><span style="font-weight: bold;">MeanIntensity</span>: mean intensity within bounding box.</li>
+    <li><span style="font-weight: bold;">StdIntensity</span>: std intensity within bounding box.</li>
+    <li><span style="font-weight: bold;">BaryCenter</span>: barycenter of cluster.</li>
+    <li><span style="font-weight: bold;">LowerCenter</span>: center point at lower extend (z smallest) of cluster.</li>
+    <li><span style="font-weight: bold;">UpperCenter</span>: center point at upper extend (z largest) of cluster.</li>
+    <li><span style="font-weight: bold;">RadiusBaryCenter</span>: radius at bary center of cluster.</li>
+    <li><span style="font-weight: bold;">BbLower</span>: bounding box for cluster (see source code on how it is defined).</li>
+    <li><span style="font-weight: bold;">BbUpper</span>: bounding box for cluster (see source code on how it is defined).</li>
+    <li><span style="font-weight: bold;">Extension</span>: exentsion in z direction in mm.</li>
+    <li><span style="font-weight: bold;">MeanRadius</span>: mean radius in mm of candidates points within cluster.</li>
+    <li><span style="font-weight: bold;">StdRadius</span>: std of radius in mm of candidates points within cluster.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+
+<h4>SecondLargestCluster</h4>
+  Statistical information about the detected second largest cluster (equivalent to the information for the largest cluster). 
+  <ul>
+    <li><span style="font-weight: bold;">ClusterSize</span>: size of cluster i.e. number of candidate points.</li>
+    <li><span style="font-weight: bold;">MeanIntensity</span>: mean intensity within bounding box.</li>
+    <li><span style="font-weight: bold;">StdIntensity</span>: std intensity within bounding box.</li>
+    <li><span style="font-weight: bold;">BaryCenter</span>: barycenter of cluster.</li>
+    <li><span style="font-weight: bold;">LowerCenter</span>: center point at lower extend (z smallest) of cluster.</li>
+    <li><span style="font-weight: bold;">UpperCenter</span>: center point at upper extend (z largest) of cluster.</li>
+    <li><span style="font-weight: bold;">RadiusBaryCenter</span>: radius at bary center of cluster.</li>
+    <li><span style="font-weight: bold;">BbLower</span>: bounding box for cluster (see source code on how it is defined).</li>
+    <li><span style="font-weight: bold;">BbUpper</span>: bounding box for cluster (see source code on how it is defined).</li>
+    <li><span style="font-weight: bold;">Extension</span>: exentsion in z direction in mm.</li>
+    <li><span style="font-weight: bold;">MeanRadius</span>: mean radius in mm of candidates points within cluster.</li>
+    <li><span style="font-weight: bold;">StdRadius</span>: std of radius in mm of candidates points within cluster.</li>
+  </ul>
+</blockquote>
+  
+<blockquote>
+<h4>Info</h4>
+  <ul>
+    <li><span style="font-weight: bold;">Info</span>: Textfield providing additional output information from the algorithm.</li>
+  </ul>
+</blockquote>
+  
+
+
+
+  
+  <h3>
+  </h3>
+
+  
+  <h3>
+  <a name="EventInteract"></a>Events &amp; Interaction</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="Example"></a>Example</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+  
+  <h3>
+  <a name="KnownBugs"></a>Known Bugs</h3>
+
+  
+  <blockquote>None.</blockquote>
+
+</blockquote>
+
+</body>
+</html>
