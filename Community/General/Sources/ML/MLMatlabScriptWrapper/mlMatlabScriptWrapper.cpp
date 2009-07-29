@@ -222,6 +222,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
         _statusFld->setStringValue("Matlab script contains errors!");
         _clearAllVariables();
       }
+      mxDestroyArray(mtmp); mtmp = NULL;
     }
     // If the script string was not valid, clear all data so that
     // the user notes this.
@@ -283,48 +284,76 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
   // Proof if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "calcOutImageProps(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "calcOutImageProps(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
   // Get variable name in the matlab workspace of the output image
   std::string outname = _outDataNameFld[outIndex]->getStringValue();
+  mxArray *m_pImage = engGetVariable(m_pEngine, outname.c_str());
 
-  // Get the size of the image via the matlab workspace
-  std::ostringstream dim;
-  dim << "mevtmpdim=size(" << outname << ")";
-  engEvalString(m_pEngine, dim.str().c_str());
-  mxArray *m_Y = engGetVariable(m_pEngine, "mevtmpdim");
-
-  // If we could find the variable and calculate its size, go on.
-  if(m_Y != NULL)
+  // If we can find the variable and calculate its size, go on.
+  if(m_pImage != NULL)
   {
-    const mwSize m_numDims = mxGetN(m_Y);
-    double *ext = static_cast<double*>(mxGetPr(m_Y));
+    const mwSize m_numDims = mxGetNumberOfDimensions(m_pImage);
     Vector outExt = Vector(1,1,1,1,1,1);
     for (size_t i=0; i<m_numDims; i++)
     {
-      outExt[i] = static_cast<MLint>(ext[i]);
+      outExt[i] = static_cast<MLint>(mxGetDimensions(m_pImage)[i]);
     }
     // Set page size.
     getOutImg(outIndex)->setPageExt(outExt);
     // Set output image size.
     getOutImg(outIndex)->setImgExt(outExt);
     // Set output image datatype.
-    getOutImg(outIndex)->setDataType(MLdoubleType);
-    mxDestroyArray(m_Y);
-    m_Y = NULL;
-    // Delete temp variable.
-    engEvalString(m_pEngine, "clear mevtmpdim");
+    switch (mxGetClassID(m_pImage)) {
+      case mxDOUBLE_CLASS:
+         getOutImg(outIndex)->setDataType(MLdoubleType);
+         break;
+      case mxSINGLE_CLASS:
+        getOutImg(outIndex)->setDataType(MLfloatType);
+        break;
+      case mxINT8_CLASS:
+        getOutImg(outIndex)->setDataType(MLint8Type);
+        break;
+      case mxUINT8_CLASS:
+        getOutImg(outIndex)->setDataType(MLuint8Type);
+        break;
+      case mxINT16_CLASS:
+        getOutImg(outIndex)->setDataType(MLint16Type);
+        break;
+      case mxUINT16_CLASS:
+        getOutImg(outIndex)->setDataType(MLuint16Type);
+        break;
+      case mxINT32_CLASS:
+        getOutImg(outIndex)->setDataType(MLint32Type);
+        break;
+      case mxUINT32_CLASS:
+        getOutImg(outIndex)->setDataType(MLuint32Type);
+        break;
+      case mxINT64_CLASS: // Matlab does not support basic operations on this type
+        //getOutImg(outIndex)->setDataType(MLint64Type);
+        //break;
+      default:
+        getOutImg(outIndex)->setDataType(ML_BAD_DATA_TYPE);
+        std::cerr << "calcOutImageProps(): Output type from Matlab not supported!" << std::endl << std::flush;
+    }
+    mxDestroyArray(m_pImage); m_pImage = NULL;
 
     // Get min and max values in matlab workspace and set them in MeVisLab
-    std::ostringstream minmaxCommand, maxCommand;
+    std::ostringstream minmaxCommand;
     minmaxCommand << "mevtmpminval = min(" << outname << "(:));" << "mevtmpmaxval = max(" << outname << "(:));";
     engEvalString(m_pEngine, minmaxCommand.str().c_str());
     mxArray *minVal = engGetVariable(m_pEngine, "mevtmpminval");
     mxArray *maxVal = engGetVariable(m_pEngine, "mevtmpmaxval");
-    getOutImg(outIndex)->setMinVoxelValue(*static_cast<double*>(mxGetPr(minVal)));
-    getOutImg(outIndex)->setMaxVoxelValue(*static_cast<double*>(mxGetPr(maxVal)));
+    // if min and max are not defined, set default values
+    if ((minVal==NULL) || (minVal==NULL)) {
+      getOutImg(outIndex)->setMinVoxelValue(0);
+      getOutImg(outIndex)->setMaxVoxelValue(127);
+    } else {
+      getOutImg(outIndex)->setMinVoxelValue(mxGetScalar(minVal));
+      getOutImg(outIndex)->setMaxVoxelValue(mxGetScalar(maxVal));
+    }
     mxDestroyArray(minVal); minVal = NULL;
     mxDestroyArray(maxVal); maxVal = NULL;
     engEvalString(m_pEngine, "clear mevtmpminval mevtmpmaxval");
@@ -372,16 +401,51 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
   }
 
   // Get matlab image data.
-  mxArray *m_Y  = engGetVariable(m_pEngine, (_outDataNameFld[outIndex]->getStringValue()).c_str());
+  mxArray *m_pImage = engGetVariable(m_pEngine, (_outDataNameFld[outIndex]->getStringValue()).c_str());
 
-  if ( (m_Y != NULL) )
-  {
-    // Copy images back from matlab.
-    TSubImg<MLdouble> subImgBuf(outSubImg->getBox(), MLdoubleType, mxGetPr(m_Y));
-    outSubImg->copySubImage(subImgBuf);
-
-    mxDestroyArray(m_Y);
-    m_Y = NULL;
+  if ( (m_pImage != NULL) ) {
+    // Copy different types of images from Matlab.
+    switch (mxGetClassID(m_pImage)) {
+      case mxDOUBLE_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLdoubleType, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxSINGLE_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLfloatType, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxINT8_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLint8Type, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxUINT8_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLuint8Type, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxINT16_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLint16Type, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxUINT16_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLuint16Type, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxINT32_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLint32Type, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxUINT32_CLASS: {
+        SubImg subImgBuf(outSubImg->getBox(), MLuint32Type, mxGetPr(m_pImage));
+        outSubImg->copySubImage(subImgBuf);
+        } break;
+      case mxINT64_CLASS: // Matlab does not support basic operations on this type
+        //SubImg subImgBuf(outSubImg->getBox(), MLint64Type, mxGetPr(m_pImage));
+        //outSubImg->copySubImage(subImgBuf);
+        //} break;
+      default:
+        std::cerr << "calcOutSubImage(): Output type from Matlab not supported!" << std::endl << std::flush;
+    }
+    mxDestroyArray(m_pImage); m_pImage = NULL;
   }
   else
   {
@@ -476,7 +540,7 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
 
   // Internal loop.
   size_t i = 0;
-  // Get names form gui.
+  // Get names from GUI.
   std::ostringstream inXMarkerStr, outXMarkerStr;
   inXMarkerStr << _inXMarkerNameFld->getStringValue();
   outXMarkerStr << _outXMarkerNameFld->getStringValue();
