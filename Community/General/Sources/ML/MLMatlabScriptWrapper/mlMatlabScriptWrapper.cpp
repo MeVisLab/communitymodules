@@ -76,8 +76,6 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   //! Where will matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
 
-  //! Show the Matlab session window.
-  (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(false);
 
   //! Set input and output data names used in matlab.
   (_inDataNameFld[0] = fields->addString("inDataName0"))->setStringValue("Input0");
@@ -119,7 +117,6 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   handleNotificationOn();
 
   m_pEngine = engOpen(NULL);
-  engSetVisible(m_pEngine,false);
 
   if ( !_checkMatlabIsStarted() )
   {
@@ -136,6 +133,14 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
     std::cerr << "     PATH set to the above. Edit your 'current executable' settings accordingly."  << std::endl;
     std::cerr << "     DYLD_LIBRARY_PATH has to be extended to contain" << std::endl;
     std::cerr << "     /Applications/MATLAB_R2007b/bin/maci:/Applications/MATLAB_R2007b/sys/os/maci" << std::endl;
+
+    (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(false);
+    _statusFld->setStringValue("Cannot find Matlab engine!");
+  } else {
+    //! Show the Matlab session window.
+    bool vis;
+    engGetVisible(m_pEngine, &vis);
+    (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(vis);
   }
 }
 
@@ -165,13 +170,18 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     if(!_checkMatlabIsStarted()) {
       // Start Matlab if it's not started.
       m_pEngine = engOpen(NULL);
-      engSetVisible(m_pEngine,_showSessionWindowFld->getBoolValue());
+      // If Matlab engine is started, make session window (in)visible
+      if(_checkMatlabIsStarted()) {
+        engSetVisible(m_pEngine,_showSessionWindowFld->getBoolValue());
+      } else {
+        _statusFld->setStringValue("Cannot find Matlab engine!");
+      }
     } else {
       std::cout << "Matlab is already started";
     }
   }
 
-  if(field == _showSessionWindowFld) {
+  if( (field == _showSessionWindowFld) && _checkMatlabIsStarted() ) {
     if(_showSessionWindowFld->isOn()) {
       engSetVisible(m_pEngine, true);
     } else {
@@ -308,8 +318,8 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     // Set output image datatype.
     switch (mxGetClassID(m_pImage)) {
       case mxDOUBLE_CLASS:
-         getOutImg(outIndex)->setDataType(MLdoubleType);
-         break;
+        getOutImg(outIndex)->setDataType(MLdoubleType);
+        break;
       case mxSINGLE_CLASS:
         getOutImg(outIndex)->setDataType(MLfloatType);
         break;
@@ -366,12 +376,17 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
 }
 
 //----------------------------------------------------------------------------------
-//! Request input image in fixed datatype.
+//! Request input image in basic datatype.
 //----------------------------------------------------------------------------------
-void MatlabScriptWrapper::calcInSubImageProps (int /*inIndex*/, InSubImageProps &props, int /*outIndex*/)
+void MatlabScriptWrapper::calcInSubImageProps (int inIndex, InSubImageProps &props, int /*outIndex*/)
 {
-  // Request input image in double type.
-  props.inSubImgDType = MLdoubleType;
+  PagedImg *inImg = getNonDummyUpdatedInImg(inIndex);
+  if(inImg != NULL) {
+    props.inSubImgDType = inImg->getDataType();
+  } else {
+    // Request input image in double type.
+    props.inSubImgDType = MLdoubleType;
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -405,46 +420,42 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
 
   if ( (m_pImage != NULL) ) {
     // Copy different types of images from Matlab.
+    MLPhysicalDataType outputClass;
     switch (mxGetClassID(m_pImage)) {
-      case mxDOUBLE_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLdoubleType, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxSINGLE_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLfloatType, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxINT8_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLint8Type, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxUINT8_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLuint8Type, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxINT16_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLint16Type, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxUINT16_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLuint16Type, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxINT32_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLint32Type, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
-      case mxUINT32_CLASS: {
-        SubImg subImgBuf(outSubImg->getBox(), MLuint32Type, mxGetPr(m_pImage));
-        outSubImg->copySubImage(subImgBuf);
-        } break;
+      case mxDOUBLE_CLASS:
+        outputClass = MLdoubleType;
+        break;
+      case mxSINGLE_CLASS:
+        outputClass = MLfloatType;
+        break;
+      case mxINT8_CLASS:
+        outputClass = MLint8Type;
+        break;
+      case mxUINT8_CLASS:
+        outputClass = MLuint8Type;
+        break;
+      case mxINT16_CLASS:
+        outputClass = MLint16Type;
+        break;
+      case mxUINT16_CLASS:
+        outputClass = MLuint16Type;
+        break;
+      case mxINT32_CLASS:
+        outputClass = MLint32Type;
+        break;
+      case mxUINT32_CLASS:
+        outputClass = MLuint32Type;
+        break;
       case mxINT64_CLASS: // Matlab does not support basic operations on this type
-        //SubImg subImgBuf(outSubImg->getBox(), MLint64Type, mxGetPr(m_pImage));
-        //outSubImg->copySubImage(subImgBuf);
-        //} break;
+        //outputClass = MLint64Type;
+        //break;
       default:
+        outputClass = ML_BAD_DATA_TYPE;
         std::cerr << "calcOutSubImage(): Output type from Matlab not supported!" << std::endl << std::flush;
     }
+    SubImg subImgBuf(outSubImg->getBox(), outputClass, mxGetPr(m_pImage));
+    outSubImg->copySubImage(subImgBuf);
+
     mxDestroyArray(m_pImage); m_pImage = NULL;
   }
   else
@@ -472,7 +483,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
     // Get a valid input if possible. Dummy input is considered invalid.
     PagedImg *inImg = getUpdatedInImg(i);
 
-    if(!(inImg == DummyOp::getGlobalInstance().getOutImg(i)))
+    if(!(inImg == DummyOp::getGlobalInstance().getOutImg(0)))
     {
       // If we get an invalid pointer to the image we abort.
       if (!inImg) {
@@ -492,7 +503,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
         getTile(getInOp(i),getInOpIndex(i),
                 SubImgBox(Vector(0, 0, 0, 0, 0, 0),
                 Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
-                MLdoubleType,
+                inImg->getDataType(),
                 &data,
                 ScaleShiftData(1,0));
 
@@ -508,18 +519,64 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
 
       // Set matlab image extent.
       const mwSize insizesArray[6] = {imgSize.x, imgSize.y, imgSize.z, imgSize.c, imgSize.t, imgSize.u};
+
+      // Copy different types of images from MeVisLab.
+      mxClassID inputClass;
+      int elementSize;
+      switch (inImg->getDataType()) {
+        case MLdoubleType:
+          inputClass = mxDOUBLE_CLASS;
+          elementSize = sizeof(double);
+          break;
+        case MLfloatType:
+          inputClass = mxSINGLE_CLASS;
+          elementSize = sizeof(real32_T);
+          break;
+        case MLint8Type:
+          inputClass = mxINT8_CLASS;
+          elementSize = sizeof(int8_T);
+          break;
+        case MLuint8Type:
+          inputClass = mxUINT8_CLASS;
+          elementSize = sizeof(uint8_T);
+          break;
+        case MLint16Type:
+          inputClass = mxINT16_CLASS;
+          elementSize = sizeof(int16_T);
+          break;
+        case MLuint16Type:
+          inputClass = mxUINT16_CLASS;
+          elementSize = sizeof(uint16_T);
+          break;
+        case MLint32Type:
+          inputClass = mxINT32_CLASS;
+          elementSize = sizeof(int32_T);
+          break;
+        case MLuint32Type:
+          inputClass = mxUINT32_CLASS;
+          elementSize = sizeof(uint32_T);
+          break;
+        case MLint64Type:
+          inputClass = mxINT64_CLASS;
+          elementSize = sizeof(int64_T);
+          break;
+        default:
+          inputClass = mxDOUBLE_CLASS;
+          elementSize = sizeof(double);
+          std::cerr << "_copyInputImageDataToMatlab(): Output type from MeVisLab not supported!" << std::endl << std::flush;
+      }
       // Create numeric array
-      mxArray *m_X = mxCreateNumericArray(6, insizesArray, mxDOUBLE_CLASS, mxREAL);
+      mxArray *m_pImage = mxCreateNumericArray(6, insizesArray, inputClass, mxREAL);
 
       // Copy data to matlab array.
-      memcpy((void*)mxGetPr(m_X), data, inDataSize*sizeof(double));
+      memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
 
       // Get input names from gui.
       std::string inputName = _inDataNameFld[i]->getStringValue();
       // Write data to matlab.
-      engPutVariable(m_pEngine, inputName.c_str(), m_X);
+      engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
 
-      mxDestroyArray(m_X);
+      mxDestroyArray(m_pImage); m_pImage = NULL;
 
       // Free allocated memory for holding a slice.
       freeTile(data);
