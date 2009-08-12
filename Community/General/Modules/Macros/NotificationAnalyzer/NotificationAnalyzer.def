@@ -23,8 +23,9 @@ MacroModule NotificationAnalyzer {
   author = "Lars Bornemann"
   status = "test"
   comment = "Listen to all connected fields and count notifications for each"
-  keywords = "performance field notification debug"  
+  keywords = "performance field notification debug trace"  
   scriptOnly = yes
+  seeAlso = FieldTracer
   externalDefinition = "$(LOCAL)/NotificationAnalyzer.script"
   exampleNetwork = "$(LOCAL)/networks/NotficationAnalyzerExample.mlab"
 } // MacroModule StringListEntrytoString 
