@@ -62,8 +62,9 @@ class PostgreSQL:
     for i in range(len(values)):
       query.bindValue(i,values[i])
       
-    stored = query.execQuery()    
-    ID = query.lastInsertId()    
+    query.execQuery()  
+    currval = self._pgsql.query("SELECT currval('" + table + "_id_seq')")
+    ID = int(currval[0]['currval'])
     self._pgsql.removeQuery(query)
     
     return ID    
@@ -78,8 +79,8 @@ class PostgreSQL:
     ID = 0
       
     result = self.query("SELECT id FROM " + table + " WHERE " + where)
-    if len(results):
-      ID = int(results[0]['id'])
+    if len(result):
+      ID = int(result[0]['id'])
     else:
       ID = self.store(table,fields,values)
         
@@ -88,6 +89,10 @@ class PostgreSQL:
   #---------------------------------------------------------------------------------------------------------------------------------------
   def execute(self,query):
     self._pgsql.query(query)
+
+  #---------------------------------------------------------------------------------------------------------------------------------------
+  def commit(self):
+    self._pgsql.commit()
 
   #---------------------------------------------------------------------------------------------------------------------------------------
   def fetchLatest(self,table,field,limit=50):
@@ -123,7 +128,7 @@ class PostgreSQL:
     return results
       
   #---------------------------------------------------------------------------------------------------------------------------------------
-  def searchMultiple(self,searchString,tables,condition,searchFields,color=""):
+  def searchMultiple(self,searchString,tables,condition,searchFields,color="",aliases=""):
     if not self._pgsql:
       return []
       
@@ -138,7 +143,10 @@ class PostgreSQL:
           
       where.append("(" + " OR ".join(subwhere) + ")")
           
-    query = "SELECT * FROM " + tables + " WHERE " + condition + " AND " + " AND ".join(where)
+    query = "SELECT *" + aliases + " FROM " + tables + " WHERE "
+    if condition:
+      query += condition + " AND "
+    query += " AND ".join(where)
     
     return self._search(query,searchWords,color)
     
