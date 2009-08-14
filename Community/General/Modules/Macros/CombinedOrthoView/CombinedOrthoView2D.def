@@ -6,6 +6,7 @@ MacroModule CombinedOrthoView3D {
   author         = "Bart De Dobbelaer"
   status         = "work-in-progress"
   externalDefinition = "$(LOCAL)/CombinedOrthoView3D.script"
+  exampleNetwork = "$(LOCAL)/CombinedOrthoView3DExample.mlab"
 
 } // MacroModule CombinedOrthoView3D
 
@@ -16,6 +17,7 @@ MacroModule CombinedOrthoView2D {
   author         = "Bart De Dobbelaer"
   status         = "work-in-progress"
   externalDefinition = "$(LOCAL)/CombinedOrthoView2D.script"
+  exampleNetwork = "$(LOCAL)/CombinedOrthoView2DExample.mlab"
 
 } // MacroModule CombinedOrthoView2D
 

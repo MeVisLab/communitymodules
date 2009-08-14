@@ -1,0 +1,414 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Diagram2D {
+  internal  {
+    frame = "537 269 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 500
+    maxX = 1500
+    autoRangeX = TRUE
+    minY = 8
+    maxY = 864
+    autoRangeY = TRUE
+    axisColor = "1 1 1"
+    axisRotation = LeftBottom
+    drawDiagramTitle = FALSE
+    diagramTitleString = ""
+    borderH = 33
+    autoBorderH = TRUE
+    borderV = 25
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn]"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 1 1"
+    lineStyle = Solid
+    markerType = None
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = 0
+    mousePosY = 0
+    mousePosValid = FALSE
+    curveSelection = Diagram
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = FALSE
+  }
+}
+module Histogram {
+  internal  {
+    frame = "541 373 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "438 386 426 310"
+        sizeHint = "426 310"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Histogram
+    useMask = FALSE
+    xRange = "Dynamic Min/Max"
+    maskMode = Weights
+    curveType = Line
+    curveStyle = 0
+    updateMode = AutoUpdate
+    upToDate = TRUE
+    status = "Histogram(s) up-to-date"
+    useStepFunction = FALSE
+    useBinSizeOneRepresentation = TRUE
+    useBackgroundValue = TRUE
+    backgroundValue = 0
+    binSize = 1
+    progress = 1
+  }
+}
+module IntervalThreshold {
+  internal  {
+    frame = "513 453 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "847 159 373 367"
+        sizeHint = "373 367"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = IntervalThreshold
+    lowerType = ImgMin
+    innerType = ImgOrig
+    upperType = ImgMin
+    imageMin = 0
+    imageMax = 4095
+    imageRange = 4095
+    threshCenter = 1000
+    threshWidth = 1000
+    threshMin = 500
+    threshMax = 1500
+    lowerUserValue = 0
+    innerUserValue = 0
+    upperUserValue = 0
+    changeMinMax = FALSE
+    changedMin = -100000
+    changedMax = 100000
+  }
+}
+module View2DExtensions {
+  internal  {
+    frame = "645 373 136 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = View2DExtensions
+    slicerOn = TRUE
+    zoomOn = TRUE
+    panOn = TRUE
+    autoCenterOn = TRUE
+    position = "-3.984270095825195 -7.729000091552734 32.68109893798828"
+    positionMode = Off
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutMouseButton1 = IGNORED
+    lutMouseButton2 = IGNORED
+    lutMouseButton3 = PRESSED
+    lutMouseShift = RELEASED
+    lutMouseCtrl = RELEASED
+    lutRangeMin = 0
+    lutRangeMax = 4095
+    lutAlphaSync = TRUE
+    lutGreyCenter = 2437.000244
+    lutGreyWidth = 3614.000244
+    lutAlphaCenter = 2437.000244
+    lutAlphaWidth = 3614.000244
+    lutColorFactor = "1 1 1"
+    lutAlphaFactor = 1
+    lutAutoDefault = FALSE
+    lutSetInputMinMax = TRUE
+    lutUseTraceColors = FALSE
+    lutEnableNegWidth = FALSE
+    lutSetDefaultOnce = TRUE
+    lutTrCol0 = "1 1 1"
+    lutTrCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
+    lutTrCol2 = "0.8627449870109558 0 0.1725489944219589"
+    lutTrCol3 = "1 0.4627450108528137 0.4901959896087646"
+    lutTrCol4 = "0 0.8196079730987549 0.1607840061187744"
+    lutTrCol5 = "0.5607839822769165 1 0.4352940022945404"
+    lutTrCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
+    lutTrCol7 = "0.4901959896087646 0.5411760210990906 1"
+    lutTrCol8 = "0.6313729882240295 0 0.67843097448349"
+    lutTrCol9 = "0.8941180109977722 0.3803919851779938 1"
+    lutTrColA = "0 0.6823530197143555 0.756862998008728"
+    lutTrColB = "0.5019609928131104 1 0.9803919792175293"
+    lutTrColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
+    lutTrColD = "1 0.9764710068702698 0.3686270117759705"
+    lutTrColE = "1 1 1"
+    lutTrColF = "1 1 1"
+    annotationOn = TRUE
+    annoCoords = Voxel
+    annoCTValue = ToHounsfield
+    valueHighPrecision = FALSE
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01)"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 2437
+    annoInput04 = 3614
+    annoInput05 = 2437.000244140625
+    annoInput06 = 3614.000244140625
+    annoInput07 = 2437.000244140625
+    annoInput08 = 3614.000244140625
+    annoInput09 = HU
+    annoMouseOn = TRUE
+    annoReadPixFloorPos = "32 0 31"
+    annoReadPixVoxelPos = "32.60504150390625 0.4033613502979279 31.5"
+    annoReadPixWorldPos = "32.60504150390625 0.4033613502979279 31.5"
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    borderWidth = 1
+    borderEvaluateFocus = FALSE
+    borderFocusColor = "1 1 1"
+    borderFocusWidth = 2
+    mouseGrabberMode = FALSE
+  }
+  internalFields = ""
+}
+module SoView2DPosition {
+  internal  {
+    frame = "789 373 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "137 241 470 665"
+        sizeHint = "470 665"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DPosition
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "32.40083694458008 32.5 31.66596984863281"
+    firstSliceWorldPosition = "32.40083694458008 32.5 31.66596984863281"
+    drawingModel = DRAWINGMODEL_CROSSHAIRS
+    drawingModelSize = -1
+    blendOnto = 1
+    blendOutside = 0
+    lineWidth = 1
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.1725490242242813 0.886274516582489 0.0117647061124444"
+    axialColor = "0.007843137718737125 0.9529411792755127 0.9686274528503418"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = FALSE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "785 269 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoOrthoView2D {
+  internal  {
+    frame = "941 373 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "674 230 373 633"
+        sizeHint = "373 633"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoOrthoView2D
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    worldPosition = "32.40083694458008 32.5 31.66596984863281"
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    lutMode = LUT_BEST
+    slab = 1
+    layoutMode = LAYOUT_CUBE_EQUAL
+    worldPosSticky = FALSE
+    snapToCenter = FALSE
+    drawImageData = TRUE
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    synchronizeZoom = TRUE
+    sliceZoom = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin1 = "0 0"
+    sliceOrigin2 = "0 0"
+    sliceOrigin3 = "0 0"
+    synchronizePanning = FALSE
+    keepSlicesInView = FALSE
+    viewingCenter = "-1 -1 -1"
+    viewingCenter1 = "32.5 32 32"
+    viewingCenter2 = "32 32.5 32"
+    viewingCenter3 = "32 32 31.5"
+    invertKeyPanningDirections = FALSE
+    extraViewSpace = TRUE
+    extraViewLowerLeft = "0 0.5"
+    extraViewUpperRight = "0.5 1"
+    extraViewSize = "0.6660000085830688 0.6660000085830688"
+    margin = "2 2"
+    alternCubeLayout = FALSE
+    cacheMode = SLICE_CACHING_OFF
+    timePoint = 0
+    maxTimePoint = 0
+    status = "Nothing active"
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    sliceStep1 = 1
+    sliceStep2 = 1
+    sliceStep3 = 1
+    numSlices1 = 1
+    numSlices2 = 1
+    numSlices3 = 1
+    numXSlices1 = 1
+    numXSlices2 = 1
+    numXSlices3 = 1
+    synchronizeFilterMode = TRUE
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    useGlobalInputImage = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "673 573 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files (x86)/MeVisLab2.1aVC8-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module CombinedOrthoView2D {
+  internal  {
+    frame = "585 157 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "145 324 572 489"
+        sizeHint = "200 200"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CombinedOrthoView2D
+    position = TopLeft
+    margin = 2
+  }
+  internalFields = ""
+}
+connections  {
+  Diagram2D.inCurveList = Histogram.outputHistogramCurve
+  Histogram.input0 = IntervalThreshold.output0
+  IntervalThreshold.input0 = LocalImage.outImage
+  View2DExtensions.inLUT = LocalImage.outImage
+  SoView2DPosition.worldPosition = SoOrthoView2D.worldPosition
+  SoGroup.children = "View2DExtensions.outNode SoView2DPosition.self SoOrthoView2D.self"
+  SoOrthoView2D.inputImage = LocalImage.outImage
+  SoOrthoView2D.worldPosition = SoView2DPosition.worldPosition
+  CombinedOrthoView2D.child0 = Diagram2D.outNode
+  CombinedOrthoView2D.child1 = SoGroup.self
+}
+networkModel = ""
