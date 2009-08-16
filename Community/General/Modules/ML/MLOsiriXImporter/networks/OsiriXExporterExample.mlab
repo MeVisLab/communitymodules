@@ -1,0 +1,7 @@
+module OsiriXExporter {
+  fields  {
+    instanceName = OsiriXExporter
+  }
+
+}
+

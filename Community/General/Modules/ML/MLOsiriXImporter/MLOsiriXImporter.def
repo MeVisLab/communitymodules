@@ -1,0 +1,129 @@
+//----------------------------------------------------------------------------------
+//! MLOsiriXImporter module definitions.
+/*!
+// \file    MLOsiriXImporter.def
+// \author  Chunliang Wang
+// \date    2009-07-07
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule OsiriXImporter
+//----------------------------------------------------------------------------------
+MLModule OsiriXImporter {
+  DLL            = "MLOsiriXImporter"
+
+  genre          = "File"
+  author         = "Chunliang Wang"
+  status         = "work-in-progress"
+  comment        = "import image from OsiriX via shared memory"
+  keywords       = "OsriX Import"
+  seeAlso        = "OsriXExporter"
+  documentation  = "$(LOCAL)/html/OsiriXImporter.html"
+  exampleNetwork = "$(LOCAL)/networks/OsiriXImporterExample.mlab"
+  
+  Window {
+    Vertical {
+	  Field OperationName {
+        tooltip = "The name of this operation (should be unique on the system)"
+      }
+
+      Field Modified {
+        tooltip = "if it is true, the caching data should be recaculated."
+      }
+      Field Release {
+        tooltip = "When triggered, OsiriXImporter should free all memory. And set export port to empty."
+      }
+	        Field ShowMeVisLabWindow {
+        tooltip = "If set true, MeVisLab will be activated from background"
+      }
+      Field ParaName0 {
+        tooltip = "The name of parameter0"
+      }
+
+      Field Parameter0Value {
+        tooltip = "The value of parameter0"
+      }
+
+      Field ParaName1 {
+        tooltip = "The name of parameter1"
+      }
+
+      Field Parameter1Value {
+        tooltip = "The value of parameter1"
+      }
+
+      Field ParaName2 {
+        tooltip = "The name of parameter2"
+      }
+
+      Field Parameter2Value {
+        tooltip = "The value of parameter2"
+      }
+
+      Field ParaName3 {
+        tooltip = "The name of parameter3"
+      }
+      Field Parameter3Value {
+        tooltip = "The value of parameter3"
+      }
+	 Field ParaName4 {
+        tooltip = "The name of parameter4"
+      }
+      Field Parameter4Value {
+        tooltip = "The value of parameter4"
+      }
+
+      Field ParaName5 {
+        tooltip = "The name of parameter5"
+      }
+      Field Parameter5Value {
+        tooltip = "The value of parameter5"
+      }
+
+      Field DICOM_Series_UID {
+        tooltip = "The Series UID of the images on which the operation is performing. This can be used as a uniqe filename for saving intermediate result in MeVisLab"
+      }
+
+    }
+  }
+} // MLModule OsiriXImporter
+//----------------------------------------------------------------------------------
+//! MLOsiriXExporter module definitions.
+/*!
+// \file    MLOsiriXExporter.def
+// \author  Chunliang Wang
+// \date    2009-08-04
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule OsiriXExporter
+//----------------------------------------------------------------------------------
+MLModule OsiriXExporter {
+  DLL            = "MLOsiriXImporter"
+
+  genre          = "File"
+  author         = "Chunliang Wang"
+  status         = "work-in-progress"
+  comment        = "Export image to OsiriX"
+  keywords       = "OsiriX Export"
+  seeAlso        = "OsiriXImporter"
+  documentation  = "$(LOCAL)/html/OsiriXExporter.html"
+  exampleNetwork = "$(LOCAL)/networks/OsiriXExporterExample.mlab"
+  
+  Window {
+    Vertical {
+      Field OperationName {
+        tooltip = "The name of this operation (should be unique on the system)"
+      }
+      Field SendBackButton {
+        tooltip = "If triggered send results back to OsiriX"
+      }
+    }
+  }
+} // MLModule OsiriXExporter
+
+

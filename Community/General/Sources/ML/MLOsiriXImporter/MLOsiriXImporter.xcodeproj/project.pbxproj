@@ -1,0 +1,618 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1BBB0A3DF8176E3D7F0EC937 /* MLLinearAlgebra in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 639C40EFA979D07223FB6D58 /* MLLinearAlgebra */; };
+		3E90BBBE7067749EB6E1A9AC /* MLMemoryManager in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 0396DDF436C166B7BD26D0B2 /* MLMemoryManager */; };
+		83F2502FFDB5618D046FE2CD /* ML in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 650C0173642193369E858602 /* ML */; };
+		93F55C3A15ECCECAE7259376 /* boost_thread-xgcc40-mt-1_36 in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 6CA34A6677CCFB3CB5DC43C3 /* boost_thread-xgcc40-mt-1_36 */; };
+		B914129F10385C69007C9DC7 /* MeVisLab2OsiriXTBridge.mm in Build Sources */ = {isa = PBXBuildFile; fileRef = B914129A10385C69007C9DC7 /* MeVisLab2OsiriXTBridge.mm */; };
+		B91412A010385C69007C9DC7 /* SharedImagesManager.mm in Build Sources */ = {isa = PBXBuildFile; fileRef = B914129B10385C69007C9DC7 /* SharedImagesManager.mm */; };
+		B91412A110385C69007C9DC7 /* mlOsiriXExporter.mm in Build Sources */ = {isa = PBXBuildFile; fileRef = B914129C10385C69007C9DC7 /* mlOsiriXExporter.mm */; };
+		B91412A210385C69007C9DC7 /* mlOsiriXImporter.mm in Build Sources */ = {isa = PBXBuildFile; fileRef = B914129D10385C69007C9DC7 /* mlOsiriXImporter.mm */; };
+		B91412A310385C69007C9DC7 /* MLOsiriXImporterInit.mm in Build Sources */ = {isa = PBXBuildFile; fileRef = B914129E10385C69007C9DC7 /* MLOsiriXImporterInit.mm */; };
+		B914132D10385CD4007C9DC7 /* Foundation.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = B914132C10385CD4007C9DC7 /* Foundation.framework */; };
+		B914133210385CEB007C9DC7 /* Cocoa.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = B914133110385CEB007C9DC7 /* Cocoa.framework */; };
+		B914133410385D35007C9DC7 /* libMLBase.dylib in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = B914133310385D35007C9DC7 /* libMLBase.dylib */; };
+		B9F001BD10233AE200B69533 /* libMLOsiriXImporter.dylib in Project Copy */ = {isa = PBXBuildFile; fileRef = B9F001BB10233AE200B69533 /* libMLOsiriXImporter.dylib */; };
+		F104824F7EFA3CD00301325E /* MLUtilities in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 983DA09CED0D1524CC13DD71 /* MLUtilities */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Users/chuwa/develop/MeVis/trunk/Community/General/lib;
+			dstSubfolderSpec = 0;
+			files = (
+				B9F001BD10233AE200B69533 /* libMLOsiriXImporter.dylib in Project Copy */,
+			);
+			name = "Project Copy";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0396DDF436C166B7BD26D0B2 /* MLMemoryManager */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = MLMemoryManager; path = /Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib/libMLMemoryManager.dylib; sourceTree = "<absolute>"; };
+		25C7BAC79DA03EA6D5BE1D3C /* MLOsiriXImporter.def */ = {isa = PBXFileReference; lastKnownFileType = text; name = MLOsiriXImporter.def; path = ../../../Modules/ML/MLOsiriXImporter/MLOsiriXImporter.def; sourceTree = "<group>"; };
+		639C40EFA979D07223FB6D58 /* MLLinearAlgebra */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = MLLinearAlgebra; path = /Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib/libMLLinearAlgebra.dylib; sourceTree = "<absolute>"; };
+		650C0173642193369E858602 /* ML */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ML; path = /Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib/libML.dylib; sourceTree = "<absolute>"; };
+		6CA34A6677CCFB3CB5DC43C3 /* boost_thread-xgcc40-mt-1_36 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "boost_thread-xgcc40-mt-1_36"; path = "/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib/libboost_thread-xgcc40-mt-1_36.dylib"; sourceTree = "<absolute>"; };
+		7BFBD16BCB5F8557F53D3809 /* MLOsiriXImporter.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = MLOsiriXImporter.pro; sourceTree = "<group>"; };
+		983DA09CED0D1524CC13DD71 /* MLUtilities */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = MLUtilities; path = /Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib/libMLUtilities.dylib; sourceTree = "<absolute>"; };
+		B914129A10385C69007C9DC7 /* MeVisLab2OsiriXTBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MeVisLab2OsiriXTBridge.mm; sourceTree = "<group>"; };
+		B914129B10385C69007C9DC7 /* SharedImagesManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedImagesManager.mm; sourceTree = "<group>"; };
+		B914129C10385C69007C9DC7 /* mlOsiriXExporter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mlOsiriXExporter.mm; sourceTree = "<group>"; };
+		B914129D10385C69007C9DC7 /* mlOsiriXImporter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mlOsiriXImporter.mm; sourceTree = "<group>"; };
+		B914129E10385C69007C9DC7 /* MLOsiriXImporterInit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MLOsiriXImporterInit.mm; sourceTree = "<group>"; };
+		B91412A410385C7B007C9DC7 /* MeVisLab2OsiriXTBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeVisLab2OsiriXTBridge.h; sourceTree = "<group>"; };
+		B91412A510385C7B007C9DC7 /* SharedImagesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedImagesManager.h; sourceTree = "<group>"; };
+		B91412A610385C7B007C9DC7 /* mlOsiriXExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mlOsiriXExporter.h; sourceTree = "<group>"; };
+		B91412A710385C7B007C9DC7 /* mlOsiriXImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mlOsiriXImporter.h; sourceTree = "<group>"; };
+		B91412A810385C7B007C9DC7 /* MeVisOsiriXProxyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeVisOsiriXProxyProtocol.h; sourceTree = "<group>"; };
+		B91412A910385C7B007C9DC7 /* MLOsiriXImporterInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLOsiriXImporterInit.h; sourceTree = "<group>"; };
+		B91412AA10385C7B007C9DC7 /* MLOsiriXImporterSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLOsiriXImporterSystem.h; sourceTree = "<group>"; };
+		B914132C10385CD4007C9DC7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		B914133110385CEB007C9DC7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		B914133310385D35007C9DC7 /* libMLBase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMLBase.dylib; path = /Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib/libMLBase.dylib; sourceTree = "<absolute>"; };
+		B9F001BB10233AE200B69533 /* libMLOsiriXImporter.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMLOsiriXImporter.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83F2502FFDB5618D046FE2CD /* ML in Frameworks & Libraries */,
+				1BBB0A3DF8176E3D7F0EC937 /* MLLinearAlgebra in Frameworks & Libraries */,
+				3E90BBBE7067749EB6E1A9AC /* MLMemoryManager in Frameworks & Libraries */,
+				F104824F7EFA3CD00301325E /* MLUtilities in Frameworks & Libraries */,
+				93F55C3A15ECCECAE7259376 /* boost_thread-xgcc40-mt-1_36 in Frameworks & Libraries */,
+				B914132D10385CD4007C9DC7 /* Foundation.framework in Frameworks & Libraries */,
+				B914133210385CEB007C9DC7 /* Cocoa.framework in Frameworks & Libraries */,
+				B914133410385D35007C9DC7 /* libMLBase.dylib in Frameworks & Libraries */,
+			);
+			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05596AB53D8D521C69802C27 /* MLOsiriXImporter */ = {
+			isa = PBXGroup;
+			children = (
+				FB61758D0F0FDA4BA867C3D5 /* Sources */,
+				883D7615C4D2DE3FA1218F12 /* Headers */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				19D61F18B2F38D0DC87E7D4B /* Sources [Related Files] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+				B9F001BC10233AE200B69533 /* Products */,
+			);
+			name = MLOsiriXImporter;
+			sourceTree = "<group>";
+		};
+		1858B2A289DE2AF6BC1E59D9 /* ML */ = {
+			isa = PBXGroup;
+			children = (
+				4558565CD3BFE5BCBBC8650F /* MLOsiriXImporter */,
+			);
+			name = ML;
+			sourceTree = "<group>";
+		};
+		19D61F18B2F38D0DC87E7D4B /* Sources [Related Files] */ = {
+			isa = PBXGroup;
+			children = (
+				78826E689BEDD00FC7D51DA2 /* .. */,
+			);
+			name = "Sources [Related Files]";
+			sourceTree = "<group>";
+		};
+		4558565CD3BFE5BCBBC8650F /* MLOsiriXImporter */ = {
+			isa = PBXGroup;
+			children = (
+				25C7BAC79DA03EA6D5BE1D3C /* MLOsiriXImporter.def */,
+			);
+			name = MLOsiriXImporter;
+			sourceTree = "<group>";
+		};
+		78826E689BEDD00FC7D51DA2 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				7BA26FA3DF94E452AB39912C /* .. */,
+			);
+			name = ..;
+			sourceTree = "<group>";
+		};
+		7BA26FA3DF94E452AB39912C /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				FEB573B7CDBCE52BAF2BAA43 /* .. */,
+			);
+			name = ..;
+			sourceTree = "<group>";
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				7BFBD16BCB5F8557F53D3809 /* MLOsiriXImporter.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = "<group>";
+		};
+		883D7615C4D2DE3FA1218F12 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B91412A410385C7B007C9DC7 /* MeVisLab2OsiriXTBridge.h */,
+				B91412A510385C7B007C9DC7 /* SharedImagesManager.h */,
+				B91412A610385C7B007C9DC7 /* mlOsiriXExporter.h */,
+				B91412A710385C7B007C9DC7 /* mlOsiriXImporter.h */,
+				B91412A810385C7B007C9DC7 /* MeVisOsiriXProxyProtocol.h */,
+				B91412A910385C7B007C9DC7 /* MLOsiriXImporterInit.h */,
+				B91412AA10385C7B007C9DC7 /* MLOsiriXImporterSystem.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		B9F001BC10233AE200B69533 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9F001BB10233AE200B69533 /* libMLOsiriXImporter.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D61DEF2323826D36DB78B32E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				1858B2A289DE2AF6BC1E59D9 /* ML */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				B914132C10385CD4007C9DC7 /* Foundation.framework */,
+				B914133110385CEB007C9DC7 /* Cocoa.framework */,
+				650C0173642193369E858602 /* ML */,
+				B914133310385D35007C9DC7 /* libMLBase.dylib */,
+				639C40EFA979D07223FB6D58 /* MLLinearAlgebra */,
+				0396DDF436C166B7BD26D0B2 /* MLMemoryManager */,
+				983DA09CED0D1524CC13DD71 /* MLUtilities */,
+				6CA34A6677CCFB3CB5DC43C3 /* boost_thread-xgcc40-mt-1_36 */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B914129A10385C69007C9DC7 /* MeVisLab2OsiriXTBridge.mm */,
+				B914129B10385C69007C9DC7 /* SharedImagesManager.mm */,
+				B914129C10385C69007C9DC7 /* mlOsiriXExporter.mm */,
+				B914129D10385C69007C9DC7 /* mlOsiriXImporter.mm */,
+				B914129E10385C69007C9DC7 /* MLOsiriXImporterInit.mm */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		FEB573B7CDBCE52BAF2BAA43 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				D61DEF2323826D36DB78B32E /* Modules */,
+			);
+			name = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84DF9BF26397BB1ED8618223 /* libMLOsiriXImporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9F001C810233AEE00B69533 /* Build configuration list for PBXNativeTarget "libMLOsiriXImporter" */;
+			buildPhases = (
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libMLOsiriXImporter;
+			productInstallPath = ../../../lib/;
+			productName = libMLOsiriXImporter;
+			productReference = B9F001BB10233AE200B69533 /* libMLOsiriXImporter.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "MLOsiriXImporter" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 05596AB53D8D521C69802C27 /* MLOsiriXImporter */;
+			productRefGroup = B9F001BC10233AE200B69533 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84DF9BF26397BB1ED8618223 /* libMLOsiriXImporter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter -f MLOsiriXImporter.xcodeproj/qt_preprocess.mak";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B914129F10385C69007C9DC7 /* MeVisLab2OsiriXTBridge.mm in Build Sources */,
+				B91412A010385C69007C9DC7 /* SharedImagesManager.mm in Build Sources */,
+				B91412A110385C69007C9DC7 /* mlOsiriXExporter.mm in Build Sources */,
+				B91412A210385C69007C9DC7 /* mlOsiriXImporter.mm in Build Sources */,
+				B91412A310385C69007C9DC7 /* MLOsiriXImporterInit.mm in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8DB1DD96F65B1BF1FFC506E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+			};
+			name = Debug;
+		};
+		95E1EB2E5DDD587BE5B3E548 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+			};
+			name = Release;
+		};
+		B9F001C010233AE300B69533 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/Sources/ML/MLBase,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/SharedIncludes,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLLinearAlgebra,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLUtilities,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/ML/include,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLLinearAlgebra,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLUtilities,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLMemoryManager/Include,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/Sources/misc/boost,
+					.,
+					tmp/release/ui,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/Users/chuwa/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/Resources/mkspecs/macx-xcode",
+				);
+				INSTALL_DIR = /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter/../../../lib/;
+				INSTALL_PATH = "";
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib,
+					/Users/chuwa/develop/MeVis/trunk/Community/General/lib,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib,
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib\"";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OBJROOT = tmp/release/obj/;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-W",
+					"-fPIC",
+					"-DMEVIS_TARGET=MLOsiriXImporter",
+					"-DBOOST_ALL_DYN_LINK",
+					"-DMeVisLab",
+					"-DILAB5",
+					"-DMEVISLAB",
+					"-DUNIX",
+					"-DUNICODE",
+					"-D__STDC_LIMIT_MACROS",
+					"-D__STDC_CONSTANT_MACROS",
+					"-DMACOS",
+					"-Dlinux",
+					"-DLINUX",
+					"-DLinux",
+					"-DMLOSIRIXIMPORTER_EXPORTS",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-W",
+					"-fPIC",
+					"-DMEVIS_TARGET=MLOsiriXImporter",
+					"-DBOOST_ALL_DYN_LINK",
+					"-DMeVisLab",
+					"-DILAB5",
+					"-DMEVISLAB",
+					"-DUNIX",
+					"-DUNICODE",
+					"-D__STDC_LIMIT_MACROS",
+					"-D__STDC_CONSTANT_MACROS",
+					"-DMACOS",
+					"-Dlinux",
+					"-DLINUX",
+					"-DLinux",
+					"-DMLOSIRIXIMPORTER_EXPORTS",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-single_module",
+					"-dynamiclib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib",
+					"-L/Users/chuwa/develop/MeVis/trunk/Community/General/lib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = libMLOsiriXImporter;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Debug;
+		};
+		B9F001C110233AE300B69533 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter;
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/SharedIncludes,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLLinearAlgebra,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLUtilities,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/ML/include,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLLinearAlgebra,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLUtilities,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLMemoryManager/Include,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/Sources/misc/boost,
+					.,
+					tmp/release/ui,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/Users/chuwa/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/Resources/mkspecs/macx-xcode",
+				);
+				INSTALL_DIR = /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter/../../../lib/;
+				INSTALL_PATH = "";
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib,
+					/Users/chuwa/develop/MeVis/trunk/Community/General/lib,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib,
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib\"";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OBJROOT = tmp/release/obj/;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-W",
+					"-fPIC",
+					"-DMEVIS_TARGET=MLOsiriXImporter",
+					"-DBOOST_ALL_DYN_LINK",
+					"-DMeVisLab",
+					"-DILAB5",
+					"-DMEVISLAB",
+					"-DUNIX",
+					"-DUNICODE",
+					"-D__STDC_LIMIT_MACROS",
+					"-D__STDC_CONSTANT_MACROS",
+					"-DMACOS",
+					"-Dlinux",
+					"-DLINUX",
+					"-DLinux",
+					"-DMLOSIRIXIMPORTER_EXPORTS",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-W",
+					"-fPIC",
+					"-DMEVIS_TARGET=MLOsiriXImporter",
+					"-DBOOST_ALL_DYN_LINK",
+					"-DMeVisLab",
+					"-DILAB5",
+					"-DMEVISLAB",
+					"-DUNIX",
+					"-DUNICODE",
+					"-D__STDC_LIMIT_MACROS",
+					"-D__STDC_CONSTANT_MACROS",
+					"-DMACOS",
+					"-Dlinux",
+					"-DLINUX",
+					"-DLinux",
+					"-DMLOSIRIXIMPORTER_EXPORTS",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-single_module",
+					"-dynamiclib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib",
+					"-L/Users/chuwa/develop/MeVis/trunk/Community/General/lib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = libMLOsiriXImporter;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Release;
+		};
+		B9F001C210233AE300B69533 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				HEADER_SEARCH_PATHS = (
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/SharedIncludes,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLLinearAlgebra,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLUtilities,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/ML/include,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLLinearAlgebra,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLUtilities,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/Sources/MLMemoryManager/Include,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/Sources/misc/boost,
+					.,
+					tmp/release/ui,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/Users/chuwa/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/Resources/mkspecs/macx-xcode",
+				);
+				INSTALL_DIR = /Users/chuwa/develop/MeVis/trunk/Community/General/Sources/ML/MLOsiriXImporter/../../../lib/;
+				INSTALL_PATH = "";
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib,
+					/Users/chuwa/develop/MeVis/trunk/Community/General/lib,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib,
+					/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib,
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib\"";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OBJROOT = tmp/release/obj/;
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-W",
+					"-fPIC",
+					"-DMEVIS_TARGET=MLOsiriXImporter",
+					"-DBOOST_ALL_DYN_LINK",
+					"-DMeVisLab",
+					"-DILAB5",
+					"-DMEVISLAB",
+					"-DUNIX",
+					"-DUNICODE",
+					"-D__STDC_LIMIT_MACROS",
+					"-D__STDC_CONSTANT_MACROS",
+					"-DMACOS",
+					"-Dlinux",
+					"-DLINUX",
+					"-DLinux",
+					"-DMLOSIRIXIMPORTER_EXPORTS",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-O2",
+					"-Wall",
+					"-W",
+					"-fPIC",
+					"-DMEVIS_TARGET=MLOsiriXImporter",
+					"-DBOOST_ALL_DYN_LINK",
+					"-DMeVisLab",
+					"-DILAB5",
+					"-DMEVISLAB",
+					"-DUNIX",
+					"-DUNICODE",
+					"-D__STDC_LIMIT_MACROS",
+					"-D__STDC_CONSTANT_MACROS",
+					"-DMACOS",
+					"-Dlinux",
+					"-DLINUX",
+					"-DLinux",
+					"-DMLOSIRIXIMPORTER_EXPORTS",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-single_module",
+					"-dynamiclib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib",
+					"-L/Users/chuwa/develop/MeVis/trunk/Community/General/lib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVisLab/Standard/lib",
+					"-L/Users/chuwa/Applications/MeVisLab.app/Contents/Packages/MeVis/Foundation/lib",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = libMLOsiriXImporter;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "MLOsiriXImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DB1DD96F65B1BF1FFC506E0 /* Debug */,
+				95E1EB2E5DDD587BE5B3E548 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9F001C810233AEE00B69533 /* Build configuration list for PBXNativeTarget "libMLOsiriXImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9F001C010233AE300B69533 /* Debug */,
+				B9F001C110233AE300B69533 /* Release */,
+				B9F001C210233AE300B69533 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
+}
