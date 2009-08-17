@@ -1,0 +1,257 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module VTKInputInfos {
+  internal  {
+    frame = "121 149 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "181 365 387 542"
+        sizeHint = "387 542"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "833 510 587 577"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VTKInputInfos
+    idx = -1
+    status = "Invalid/open input"
+    connectedObjectClass = ""
+    selectedObjectClass = ""
+    numberOfOutputs = 0
+    numberOfInputs = 0
+    totalNumberOfInputConnections = 0
+    releaseDataFlag = 0
+    mTime = 0
+    debug = 0
+    globalWarningDisplay = 0
+    classNameA = ""
+    classNameW = ""
+    dataObjectType = 0
+    extentType = 0
+    scalarRange = "0 0"
+    scalarType = 0
+    dataDimension = 0
+    numberOfPoints = 0
+    numberOfItems = 0
+    numberOfCells = 0
+    length = 0
+    bounds = "0 0 0 0 0 0"
+    center = "0 0 0"
+    spacing = "0 0 0"
+    origin = "0 0 0"
+    dirCosines = "0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0"
+    ext = "0 0 0 0 0 0"
+    maxCellSize = 0
+    actualMemorySize = 0
+    piece = 0
+    numberOfPieces = 0
+    ghostLevel = 0
+    GetLength2 = 0
+    cellType = 0
+    cellDimension = 0
+    numberOfEdges = 0
+    numberOfFaces = 0
+    numberOfParts = 0
+    isExplicitCell = 0
+    isLinear = 0
+    isPrimaryCell = 0
+    numberOfPaths = 0
+    numberOfConsumers = 0
+    visibility = 0
+    pickable = 0
+    dragable = 0
+    matrix = "0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0"
+    xRangeMin = 0
+    yRangeMin = 0
+    zRangeMin = 0
+    xRangeMax = 0
+    yRangeMax = 0
+    zRangeMax = 0
+    isNumeric = 0
+    dataSize = 0
+    dataType = 0
+    dataTypeSize = 0
+    elementComponentSize = 0
+    maxId = 0
+    numberOfComponents = 0
+    numberOfTuples = 0
+    size = 0
+    dimension = 0
+    minimumU = 0
+    minimumV = 0
+    minimumW = 0
+    maximumU = 0
+    maximumV = 0
+    maximumW = 0
+    joinU = 0
+    joinV = 0
+    twistU = 0
+    twistV = 0
+    clockwiseOrdering = 0
+    derivativesAvailable = 0
+    numberOfBlocks = 0
+    numberOfGroups = 0
+    numberOfDataSets = 0
+    hasMetaData = 0
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "-31 141 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "-1115 414 318 416"
+        sizeHint = "318 416"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    usePolygonOffset = TRUE
+    useShapeHints = TRUE
+    allowHits = TRUE
+    parameterOverwriteMode = OVERWRITE_MODE_ALL
+    overwriteColorMode = FALSE
+    overwriteFaceParameters = FALSE
+    overwriteEdgeParameters = FALSE
+    overwriteNodeParameters = FALSE
+    overwriteBoundingBoxParameters = FALSE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawBoundingBoxes = FALSE
+    boundingBoxColor = "1 1 1"
+    drawFaceNormals = FALSE
+    drawNodeNormals = FALSE
+    faceNormalColor = "1 1 1"
+    nodeNormalColor = "1 1 1"
+    faceNormalScaling = 1
+    nodeNormalScaling = 1
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    lineWidth = 1
+    pointSize = 1
+    useEdgeColoringMode = FALSE
+    nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
+    boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = LUT
+    primitiveValueListValid = FALSE
+    selectedTab = 3
+  }
+}
+module Bypass {
+  internal  {
+    frame = "-283 53 72 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = Bypass
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module VTKToMLImage {
+  internal  {
+    frame = "-179 141 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = VTKToMLImage
+    convert2CompsTo = Complex
+    convert3CompsTo = Vec3
+    convert4CompsTo = Mat2
+    convert6CompsTo = Vec6
+    convert9CompsTo = Mat3
+    convert16CompsTo = Mat4
+    convert25CompsTo = Mat5
+    convert36CompsTo = Mat6
+    dirCosines = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useDirCosines = FALSE
+    status = "Invalid/open input"
+    imgInfo = "No valid vtkImageData connected"
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "13 61 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "863 572 173 90"
+        sizeHint = "173 90"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch
+    whichChild = -3
+  }
+}
+module BaseBypassOp {
+  internal  {
+    frame = "-131 213 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "-1086 510 577 224"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BaseBypassOp
+    enableBypass = TRUE
+    newNotificationsAvailable = FALSE
+    countNotifications = 0
+  }
+}
+connections  {
+  VTKInputInfos.inputvtkObject = BaseBypassOp.outBaseField
+  SoWEMRenderer.inWEM = BaseBypassOp.outBaseField
+  VTKToMLImage.inputvtkImageData = BaseBypassOp.outBaseField
+  SoSwitch.children = ""
+}
+networkModel = ""
