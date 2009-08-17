@@ -17,7 +17,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # add used projects here (see included pri files below for available projects)
-CONFIG += dll ML
+CONFIG += dll ML MLBase
 
 MLAB_PACKAGES += Community_General \
                  MeVisLab_Standard
@@ -33,12 +33,17 @@ HEADERS += \
     mlOsiriXImporter.h \
     mlOsiriXExporter.h
 
-SOURCES += \
+OBJECTIVE_SOURCES += \
     MLOsiriXImporterInit.mm \
     mlOsiriXImporter.mm \
-    mlOsiriXExporter.mm
+    mlOsiriXExporter.mm \
+    MeVisLab2OsiriXTBridge.mm \
+    SharedImagesManager.mm
 
 # additional files that are NOT compiled
 RELATEDFILES += \
     ../../../Modules/ML/MLOsiriXImporter/MLOsiriXImporter.def
 
+LIBS += \
+  -framework Foundation \
+  -framework AppKit
