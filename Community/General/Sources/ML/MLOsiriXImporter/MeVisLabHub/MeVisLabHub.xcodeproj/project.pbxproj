@@ -18,6 +18,7 @@
 		ABB76344067FB2A8000912C1 /* PluginFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB7633D067FB2A8000912C1 /* PluginFilter.h */; };
 		ABB76345067FB2A8000912C1 /* ROI.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB7633E067FB2A8000912C1 /* ROI.h */; };
 		ABB76346067FB2A8000912C1 /* ViewerController.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB7633F067FB2A8000912C1 /* ViewerController.h */; };
+		B70FD53410398B300094B238 /* MeVisLabHub.osirixplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* MeVisLabHub.osirixplugin */; };
 		B9146099103359E4005BDFCF /* Length.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608C103359E3005BDFCF /* Length.tiff */; };
 		B914609A103359E4005BDFCF /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B914608D103359E3005BDFCF /* logo.jpg */; };
 		B914609B103359E4005BDFCF /* 3DRotate.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608E103359E3005BDFCF /* 3DRotate.tiff */; };
@@ -47,6 +48,19 @@
 		B9FB8ABB101E073A00C7C47C /* MeVisHubWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = B9FB8AB9101E073A00C7C47C /* MeVisHubWindowController.h */; };
 		B9FB8ABC101E073A00C7C47C /* MeVisHubWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FB8ABA101E073A00C7C47C /* MeVisHubWindowController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B70FD4F2103989E10094B238 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../../../../../bin/PlugIns;
+			dstSubfolderSpec = 16;
+			files = (
+				B70FD53410398B300094B238 /* MeVisLabHub.osirixplugin in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -281,6 +295,7 @@
 				8D5B49B1048680CD000E48DA /* Sources */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 				8D5B49B5048680CD000E48DA /* Rez */,
+				B70FD4F2103989E10094B238 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -377,6 +392,10 @@
 		CE6A9A9108AC841300D0C1EE /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					x86_64,
+				);
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
