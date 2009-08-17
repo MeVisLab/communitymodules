@@ -25,3 +25,6 @@ Sources/ML/MLMatlabScriptWrapper/MLMatlabScriptWrapper.pro
 #Sources/ML/MLImageUtilities/*
 #Sources/ML/MLTestModules/*
 
+
+# Mac OS X only projects
+Sources/ML/MLOsiriXImporter/*       windows,linux
