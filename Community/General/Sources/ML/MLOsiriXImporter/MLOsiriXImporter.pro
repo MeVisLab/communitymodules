@@ -28,17 +28,20 @@ include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
 DEFINES += MLOSIRIXIMPORTER_EXPORTS
 
 HEADERS += \
+    MeVisOsiriXProxyProtocol.h \
+    MeVisLab2OsiriXTBridge.h \
+    SharedImagesManager.h \
     MLOsiriXImporterInit.h \
     MLOsiriXImporterSystem.h \
     mlOsiriXImporter.h \
     mlOsiriXExporter.h
 
 OBJECTIVE_SOURCES += \
+    MeVisLab2OsiriXTBridge.mm \
+    SharedImagesManager.mm \
     MLOsiriXImporterInit.mm \
     mlOsiriXImporter.mm \
-    mlOsiriXExporter.mm \
-    MeVisLab2OsiriXTBridge.mm \
-    SharedImagesManager.mm
+    mlOsiriXExporter.mm
 
 # additional files that are NOT compiled
 RELATEDFILES += \
