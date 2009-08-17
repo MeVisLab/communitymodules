@@ -1,0 +1,238 @@
+// **InsertLicense** code
+//----------------------------------------------------------------------------------
+//! Script of the LoadAny module
+/*!
+// \file    LoadAny.script
+// \author  Wolf Spindler
+// \date    08/09
+*/
+//----------------------------------------------------------------------------------
+
+Interface  {
+  Inputs = ""
+  Outputs  {
+    Field outImage {
+      internalName   = Bypass.output0
+    }
+    Field outBase {
+      internalName   = BaseBypassOp.outBaseField
+    }
+    Field outInventor {
+      internalName   = SoSwitch.self
+    }
+  }
+  Parameters  {
+    Field name              { type = string  value = ""    }
+    Field trueName          { type = string  value = ""    }
+    Field clearConsole      { type = trigger               }
+    Field load              { type = trigger               }
+    Field tryTypicalLoaders { type = trigger               }
+    Field tryAllLoaders     { type = trigger               }
+    Field verbose           { type = bool    value = false }
+    Field analyzeHeader     { type = bool    value = true  }
+    Field allowBioFormats   { type = bool    value = false }
+    Field close             { type = trigger               }
+    //Field prefLoader        { type = string  value = ""    }
+    Field textOut           { type = string  value = ""    }
+    Field loaderName        { type = string  value = ""    }
+    Field writerNames       { type = string  value = ""    }
+    Field formatInfo        { type = string  value = ""    }
+    Field shortFileHeader   { type = string  value = ""    }
+    Field fileHeader        { type = string  value = ""    }
+    Field status            { type = string  value = ""    }
+  }
+}
+
+Commands  {
+  source             = "$(LOCAL)/LoadAny.js"
+  source             = "$(LOCAL)/LoadAny.py"
+  droppedFileCommand = fileDropped
+  initCommand        = init
+  finalizeCommand    = clear
+  FieldListener {
+    listenField = name
+    listenField = load
+    listenField = analyzeHeader
+    listenField = allowBioFormats
+    command = "*js: nameChanged(false, false); *" 
+  }
+  FieldListener trueName { command = updateFileHeaderPy }
+}
+
+
+Window  {
+  initCommand = wakeUpInit
+  ExpandY = Yes
+  Vertical {
+    expandX = Yes
+    ExpandY = Yes
+    TabView {
+      ExpandX = Yes
+      ExpandY = Yes
+      TabViewItem Main {
+        ExpandX = Yes
+        ExpandY = Yes
+        Vertical  {
+          ExpandX = Yes
+          ExpandY = No
+          droppedFileCommand = fileDropped
+          margin = 8
+          Vertical {
+            expandY = No
+            Horizontal {
+              expandY = No
+              Field name { 
+                tooltip    = "The file name to be loaded, perhaps with variables which still have to be resolved"
+              }
+              Button { 
+                tooltip    = "Press to open a file selection dialog"
+                title      = "Browse..." 
+                command    = fileDialog 
+              }
+            }
+           
+            Field trueName { 
+              tooltip    = "The internally used path to the loaded file"
+              alignGroup = group1 
+              edit       = NO 
+              trim       = left
+            }
+
+            Box Examples {
+              ExpandY = No
+              HyperLabel {
+                ExpandY = No
+                title = "<table>
+                 <tr><td><nobr>$<b>(NETWORK)</b>/test.tif</nobr>      <td><nobr>for images relative to this network</nobr>
+                 <tr><td><nobr>$<b>(HOME)</b>/images/test.tif</nobr>  <td><nobr>for images in users home directory</nobr>
+                 <tr><td><nobr>$<b>(DemoDataPath)</b>/test.tif</nobr> <td><nobr>for images local to variable in mevislab.prefs</nobr></table>
+               "
+              }
+            } // Box Examples
+            
+            //Splitter {
+            //  Direction = Vertical
+            //  Vertical {
+            //    ExpandY = Yes
+            //    Label { title = "Preferred Loader:" }
+            //    ListView prefLoader {
+            //      tooltip       = "Short compactified description of the used loader"
+            //      expandY       = Yes
+            //      style         = fixed
+            //      rowSeparator  = \n
+            //      visibleRows   = 4
+            //      Header        = Yes
+            //      //selectionChangedCommand = "*js: ctx.field("updateModuleList").setStringValue(""); *"
+            //      //clickedCommand = "*js: ctx.field("updateModuleList").setStringValue(""); *"
+            //    }
+            //  }
+            //}
+          }
+          Horizontal {
+            CheckBox analyzeHeader{
+              title   = "Use Header Analysis"
+              tooltip = "Enables a heuristic to identify file formats correctly, e.g. if no or only a number is available as file extensions"
+            }          
+            CheckBox verbose {
+              tooltip = "Much more information is listed in the console if this checkbox is enabled"
+            }
+            CheckBox allowBioFormats {
+              title   = "Allow BioFormatsLoad"
+              tooltip = "If this flag is on and the module exists then the BioFormatsLoad module is also used for data loading"
+            }
+          }
+        }
+        
+
+        Field loaderName {
+          title           = "Loader:"
+          tooltip         = "Module used to open the file"
+          edit            = No
+        }
+        Field writerNames {
+          title           = "Writers:"
+          tooltip         = "Module(s) which could be used to save the file"
+          edit            = No
+        }
+        Field formatInfo {
+          tooltip         = "Shows information about the format of the opened file"
+          edit            = No
+        }
+        Field shortFileHeader {
+          title           = "Short Header:"
+          tooltip         = "First 48 (or less if null-chars are found) characters from the file."
+          edit            = No
+        }
+        TextView status {
+          tooltip         = "Shows general information, notes, errors etc. about the load process"
+          edit            = No
+          console         = Yes
+          visibleRows     = 5
+          expandY         = Yes
+        }
+    
+        Horizontal  {
+          Button clearConsole {
+            AlignX  = Left
+            title   = "Clear Console"
+            tooltip = "Clears the current status output"
+            command = "*js: ctx.field("status").value = ""; *"
+          }
+          Horizontal {
+            AlignX = Right
+            Button load {
+              title = "Load"
+              tooltip = "Load, reload or retry to load the specified file"
+            }
+            Button tryTypicalLoaders {
+              title = "Try Typical Loaders"
+              tooltip = "Try to open the file with the most common loaders while passing - but not analyzing - the file extension.
+Warning: This option is can be time consuming and instable because the file will be inappropriate for most loaders."
+              command = "*js: nameChanged(true, false); *"
+            }
+            Button tryAllLoaders {
+              title = "Try All Loaders"
+              tooltip = "Try to open the file with all loaders while passing - but not analyzing - the file extension.
+Warning: This option is can be time consuming and instable because the file will be inappropriate for most loaders."
+              command = "*js: nameChanged(false, true); *"
+            }
+            Button close {
+              tooltip = "Closes a currently open file"
+              command = "*js: clear(); logConsole("File closed.", false, false); *"
+            }
+          }
+        }
+
+        
+      } // TabViewItem Main
+
+      TabViewItem "Header Info" {
+        expandY  = Yes
+        Vertical {
+          expandY  = Yes
+          TextView fileHeader {
+            tooltip  = "First 1K characters of the file."
+            edit     = No
+            expandY  = Yes
+          }
+        }
+      }
+
+      TabViewItem "Text Output" {
+        ExpandX = Yes
+        ExpandY = Yes
+        Vertical  {
+          ExpandX = Yes
+          ExpandY = Yes
+          TextView textOut {
+            tooltip = "Output field for loaders which do not load files but single information such as strings"
+            edit    = No
+            ExpandY = Yes
+          }
+        }
+      }
+
+    } // TabView
+  } // Vertical
+
+} // Window
