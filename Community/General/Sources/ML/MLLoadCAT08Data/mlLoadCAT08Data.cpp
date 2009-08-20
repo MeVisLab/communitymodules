@@ -181,25 +181,30 @@ void LoadCAT08Data::handleNotification (Field *field)
     dataFileName.str("");     // This is a strange way to clear the dataFileName, but dataFileName.clear() does not work
     file_to_read.close();
 
-    #if ML_GRAPH_IS_AVAILABLE
-      // Get vessel centerline as XMarkers and Vessel Graph
-      dataFileName << pathname << "vessel" << vesselNbr << "/" << "reference.txt";
-      file_to_read.open(dataFileName.str().c_str());
-      if(file_to_read) {
-        int pointNbr = 0;
+    // Get vessel centerline as XMarkers and Vessel Graph
+    dataFileName << pathname << "vessel" << vesselNbr << "/" << "reference.txt";
+    file_to_read.open(dataFileName.str().c_str());
+    if(file_to_read) {
+      int pointNbr = 0;
+      #if ML_GRAPH_IS_AVAILABLE
         // Create a new vessel graph edge
         VesselEdge *graphEdge = new VesselEdge;
         VesselNode *rootNode = NULL;
-        do {
+      #endif
+      do {
+        // Extract point and radius
+        double x,y,z,r,foo;
+        file_to_read >> x >> y >> z >> r >> foo;
+        vec3 pos(x,y,z);
 
-          // Extract point and radius
-          double x,y,z,r,foo;
-          file_to_read >> x >> y >> z >> r >> foo;
-          vec3 pos(x,y,z);
+        // Create a marker and set its type to the vessel number
+        XMarker marker (vec6(pos,0,0,0), vec3(0));
+        marker.type = vesselNbr;
 
-          // Add to XMarker list
-          _centerLineList.appendItem(XMarker(vec6(pos,0,0,0), vec3(0)));
+        // Add to XMarker list
+        _centerLineList.appendItem(marker);
 
+        #if ML_GRAPH_IS_AVAILABLE
           // If this is the first point, add new root to the Vessel Graph
           if(0 == pointNbr) {
             rootNode = new VesselNode(pos);               // Create new node
@@ -209,11 +214,13 @@ void LoadCAT08Data::handleNotification (Field *field)
           }
           // Create a skeleton and add it to the edge
           graphEdge->addSkeleton(Skeleton(pos, r, r));
+        #endif
 
-          // Increment
-          ++pointNbr;
-        }while(!file_to_read.eof());
+        // Increment
+        ++pointNbr;
+      }while(!file_to_read.eof());
       
+      #if ML_GRAPH_IS_AVAILABLE
         // Finish generating the vessel graph by adding the edge and end node to the graph
         VesselNode *endNode = new VesselNode(graphEdge->backSkeleton()->pos);
         _outputGraph.addNode(endNode);
@@ -222,8 +229,9 @@ void LoadCAT08Data::handleNotification (Field *field)
         graphEdge->setSucc(endNode);
         // Add the vessel edge to the graph
         _outputGraph.attachIdEdge(graphEdge,rootNode->getId(),endNode->getId());
-      }
-    #endif
+      #endif
+    }
+    
     dataFileName.str("");     // This is a strange way to clear the dataFileName, but dataFileName.clear() does not work
     file_to_read.close();
     file_to_read.clear();     // Another strange thing, clear() must be called when we read the file to eof, otherwise we cannot reopen file_to_read later.
