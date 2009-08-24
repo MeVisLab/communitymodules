@@ -19,6 +19,9 @@
 		ABB76345067FB2A8000912C1 /* ROI.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB7633E067FB2A8000912C1 /* ROI.h */; };
 		ABB76346067FB2A8000912C1 /* ViewerController.h in Headers */ = {isa = PBXBuildFile; fileRef = ABB7633F067FB2A8000912C1 /* ViewerController.h */; };
 		B70FD53410398B300094B238 /* MeVisLabHub.osirixplugin in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* MeVisLabHub.osirixplugin */; };
+		B7350C091042F3F900705C92 /* MeVisLabScriptingBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = B7350C071042F3F900705C92 /* MeVisLabScriptingBridge.h */; };
+		B7350C0A1042F3F900705C92 /* MeVisLabScriptingBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B7350C081042F3F900705C92 /* MeVisLabScriptingBridge.m */; };
+		B7350C151042F77700705C92 /* MeVisLab.h in Headers */ = {isa = PBXBuildFile; fileRef = B7350C141042F77700705C92 /* MeVisLab.h */; };
 		B9146099103359E4005BDFCF /* Length.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608C103359E3005BDFCF /* Length.tiff */; };
 		B914609A103359E4005BDFCF /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B914608D103359E3005BDFCF /* logo.jpg */; };
 		B914609B103359E4005BDFCF /* 3DRotate.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608E103359E3005BDFCF /* 3DRotate.tiff */; };
@@ -78,6 +81,9 @@
 		ABB7633D067FB2A8000912C1 /* PluginFilter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PluginFilter.h; sourceTree = "<group>"; };
 		ABB7633E067FB2A8000912C1 /* ROI.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ROI.h; sourceTree = "<group>"; };
 		ABB7633F067FB2A8000912C1 /* ViewerController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ViewerController.h; sourceTree = "<group>"; };
+		B7350C071042F3F900705C92 /* MeVisLabScriptingBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeVisLabScriptingBridge.h; sourceTree = "<group>"; };
+		B7350C081042F3F900705C92 /* MeVisLabScriptingBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeVisLabScriptingBridge.m; sourceTree = "<group>"; };
+		B7350C141042F77700705C92 /* MeVisLab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeVisLab.h; sourceTree = "<group>"; };
 		B914608C103359E3005BDFCF /* Length.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Length.tiff; sourceTree = "<group>"; };
 		B914608D103359E3005BDFCF /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		B914608E103359E3005BDFCF /* 3DRotate.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 3DRotate.tiff; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 		AB2C26750677B0C400A08910 /* MeVisLabHub */ = {
 			isa = PBXGroup;
 			children = (
+				B7350C161042F78000705C92 /* Scripting Bridge */,
 				ABA48A640680BB600089EB4F /* MeVisLabHub.h */,
 				ABA48A660680BB690089EB4F /* MeVisLabHub.m */,
 				B9FB8AB9101E073A00C7C47C /* MeVisHubWindowController.h */,
@@ -227,6 +234,16 @@
 				ABB7633F067FB2A8000912C1 /* ViewerController.h */,
 			);
 			path = "OsiriX Headers";
+			sourceTree = "<group>";
+		};
+		B7350C161042F78000705C92 /* Scripting Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B7350C141042F77700705C92 /* MeVisLab.h */,
+				B7350C071042F3F900705C92 /* MeVisLabScriptingBridge.h */,
+				B7350C081042F3F900705C92 /* MeVisLabScriptingBridge.m */,
+			);
+			name = "Scripting Bridge";
 			sourceTree = "<group>";
 		};
 		B914608B103359E3005BDFCF /* ICON */ = {
@@ -280,6 +297,8 @@
 				B9B53728102B818F00559FEB /* OsiriX2MeVisLabTBridge.h in Headers */,
 				B9912200102DB75A007BB4B6 /* DCMView.h in Headers */,
 				B91469BA10338AFE005BDFCF /* CMIVDCMView.h in Headers */,
+				B7350C091042F3F900705C92 /* MeVisLabScriptingBridge.h in Headers */,
+				B7350C151042F77700705C92 /* MeVisLab.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +391,7 @@
 				B933E994102B09A100FD33FF /* SharedImagesManager.mm in Sources */,
 				B9B5371E102B818700559FEB /* OsiriX2MeVisLabTBridge.mm in Sources */,
 				B91469BB10338AFE005BDFCF /* CMIVDCMView.m in Sources */,
+				B7350C0A1042F3F900705C92 /* MeVisLabScriptingBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
