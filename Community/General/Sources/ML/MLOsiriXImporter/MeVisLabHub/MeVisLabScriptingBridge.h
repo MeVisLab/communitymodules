@@ -8,13 +8,9 @@
 
 #import <ScriptingBridge/ScriptingBridge.h>
 
-// Generated with:  sdef /Applications/MeVisLab.app | sdp -fh --basename MeVisLab
-#import "MeVisLab.h"
-
 
 @interface MeVisLabScriptingBridge : NSObject {
-	MeVisLabApplication *MeVisLab;
 }
-- (BOOL)openNetworkFile:(NSString *)filename;
-- (BOOL)closeNetwork:(NSString *)filename;
+- (BOOL)openNetworkWithFilename:(NSString *)filename;
+- (BOOL)closeNetworkWithFilename:(NSString *)filename;
 @end

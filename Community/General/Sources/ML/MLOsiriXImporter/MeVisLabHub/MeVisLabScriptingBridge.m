@@ -8,26 +8,18 @@
 
 #import "MeVisLabScriptingBridge.h"
 
+// Generated with:  sdef /Applications/MeVisLab.app | sdp -fh --basename MeVisLab
+#import "MeVisLab.h"
+
+#define MEVISLAB_BUNDLEID  @"de.mevis.MeVisLab"
+
 
 @implementation MeVisLabScriptingBridge
 
-- (id)init
+- (BOOL)openNetworkWithFilename:(NSString *)filename
 {
-	if ((self = [super init])) {
-		MeVisLab = [SBApplication applicationWithBundleIdentifier:@"de.mevis.MeVisLab"];
-	}
-	return self;
-}
-
-- (void)dealloc
-{
-	[MeVisLab release];
+	MeVisLabApplication *MeVisLab = [SBApplication applicationWithBundleIdentifier:MEVISLAB_BUNDLEID];
 	
-	[super dealloc];
-}
-
-- (BOOL)openNetworkFile:(NSString *)filename
-{
 	if ([MeVisLab isRunning]) {
 		[MeVisLab open:[NSArray arrayWithObject:filename]];
 		
@@ -36,8 +28,10 @@
 	return NO;
 }
 
-- (BOOL)closeNetwork:(NSString *)filename
+- (BOOL)closeNetworkWithFilename:(NSString *)filename
 {
+	MeVisLabApplication *MeVisLab = [SBApplication applicationWithBundleIdentifier:MEVISLAB_BUNDLEID];
+	
 	if ([MeVisLab isRunning]) {
 		NSArray *docs = [[MeVisLab documents] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"path == %@", filename]];
 		if ([docs count] > 0) {
