@@ -37,7 +37,7 @@ ML_START_NAMESPACE
 //! The MinimalDistancePointClouds implements 
 //! a fast nearest pair search algorithm described by Sean Quinlan 
 //! in 'Efficient Distance Computation between Non-Convex Objects'.
-class MinimalDistancePointClouds 
+class MLCSOCOMMUNITYMODULES_EXPORT MinimalDistancePointClouds 
 {
     
 public:

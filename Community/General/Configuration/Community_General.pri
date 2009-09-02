@@ -44,6 +44,15 @@ LIBS          += -L"$${PACKAGE_ROOT}"/lib
 
 # -- ML Projects -------------------------------------------------------------
 
+MLCSOCommunityModules {
+  CONFIG_FOUND += MLCSOCommunityModules
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLCSOCommunityModules
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLCSOCommunityModules/CSODistance
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLCSOCommunityModules/MinimalDistancePointClouds
+  win32:LIBS += MLCSOCommunityModules$${d}.lib
+  unix:LIBS += -lMLCSOCommunityModules$${d}
+}
+
 # -- Inventor Projects -------------------------------------------------------
 
 # -- Shared Projects ---------------------------------------------------------
