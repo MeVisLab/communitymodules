@@ -68,6 +68,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   _outputXMarkerListFld = fields->addBase("outputXMarkerList");
   _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
 
+  //! Use matlab commands in text field.
   (_matlabScriptFld = fields->addString("matlabScript"))->setStringValue("Output0=Input0 % Type your matlab script here.");
 
   //! Use external matlab script.
@@ -75,7 +76,6 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 
   //! Where will matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
-
 
   //! Set input and output data names used in matlab.
   (_inDataNameFld[0] = fields->addString("inDataName0"))->setStringValue("Input0");
@@ -177,7 +177,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
         _statusFld->setStringValue("Cannot find Matlab engine!");
       }
     } else {
-      std::cout << "Matlab is already started";
+      _statusFld->setStringValue("Matlab is already started");
     }
   }
 
@@ -188,7 +188,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       engSetVisible(m_pEngine, false);
     }
   }
-  
+
   // Update output only if autoapply is enabled.
   if ( ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) && (_autoCalculationFld->isOn())
     || (field == _calculateFld) ) {
@@ -306,41 +306,30 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
   if(m_pImage != NULL)
   {
     const mwSize m_numDims = mxGetNumberOfDimensions(m_pImage);
+    if(m_numDims>6) {
+      std::cerr << "calcOutImageProps(): Too many dimensions in Matlab image!" << std::endl << std::flush;
+      return;
+    }
     Vector outExt = Vector(1,1,1,1,1,1);
     for (size_t i=0; i<m_numDims; i++)
     {
       outExt[i] = static_cast<MLint>(mxGetDimensions(m_pImage)[i]);
     }
+
     // Set page size.
     getOutImg(outIndex)->setPageExt(outExt);
     // Set output image size.
     getOutImg(outIndex)->setImgExt(outExt);
     // Set output image datatype.
     switch (mxGetClassID(m_pImage)) {
-      case mxDOUBLE_CLASS:
-        getOutImg(outIndex)->setDataType(MLdoubleType);
-        break;
-      case mxSINGLE_CLASS:
-        getOutImg(outIndex)->setDataType(MLfloatType);
-        break;
-      case mxINT8_CLASS:
-        getOutImg(outIndex)->setDataType(MLint8Type);
-        break;
-      case mxUINT8_CLASS:
-        getOutImg(outIndex)->setDataType(MLuint8Type);
-        break;
-      case mxINT16_CLASS:
-        getOutImg(outIndex)->setDataType(MLint16Type);
-        break;
-      case mxUINT16_CLASS:
-        getOutImg(outIndex)->setDataType(MLuint16Type);
-        break;
-      case mxINT32_CLASS:
-        getOutImg(outIndex)->setDataType(MLint32Type);
-        break;
-      case mxUINT32_CLASS:
-        getOutImg(outIndex)->setDataType(MLuint32Type);
-        break;
+      case mxDOUBLE_CLASS: getOutImg(outIndex)->setDataType(MLdoubleType); break;
+      case mxSINGLE_CLASS: getOutImg(outIndex)->setDataType(MLfloatType);  break;
+      case mxINT8_CLASS:   getOutImg(outIndex)->setDataType(MLint8Type);   break;
+      case mxUINT8_CLASS:  getOutImg(outIndex)->setDataType(MLuint8Type);  break;
+      case mxINT16_CLASS:  getOutImg(outIndex)->setDataType(MLint16Type);  break;
+      case mxUINT16_CLASS: getOutImg(outIndex)->setDataType(MLuint16Type); break;
+      case mxINT32_CLASS:  getOutImg(outIndex)->setDataType(MLint32Type);  break;
+      case mxUINT32_CLASS: getOutImg(outIndex)->setDataType(MLuint32Type); break;
       case mxINT64_CLASS: // Matlab does not support basic operations on this type
         //getOutImg(outIndex)->setDataType(MLint64Type);
         //break;
@@ -422,30 +411,14 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
     // Copy different types of images from Matlab.
     MLPhysicalDataType outputClass;
     switch (mxGetClassID(m_pImage)) {
-      case mxDOUBLE_CLASS:
-        outputClass = MLdoubleType;
-        break;
-      case mxSINGLE_CLASS:
-        outputClass = MLfloatType;
-        break;
-      case mxINT8_CLASS:
-        outputClass = MLint8Type;
-        break;
-      case mxUINT8_CLASS:
-        outputClass = MLuint8Type;
-        break;
-      case mxINT16_CLASS:
-        outputClass = MLint16Type;
-        break;
-      case mxUINT16_CLASS:
-        outputClass = MLuint16Type;
-        break;
-      case mxINT32_CLASS:
-        outputClass = MLint32Type;
-        break;
-      case mxUINT32_CLASS:
-        outputClass = MLuint32Type;
-        break;
+      case mxDOUBLE_CLASS: outputClass = MLdoubleType; break;
+      case mxSINGLE_CLASS: outputClass = MLfloatType;  break;
+      case mxINT8_CLASS:   outputClass = MLint8Type;   break;
+      case mxUINT8_CLASS:  outputClass = MLuint8Type;  break;
+      case mxINT16_CLASS:  outputClass = MLint16Type;  break;
+      case mxUINT16_CLASS: outputClass = MLuint16Type; break;
+      case mxINT32_CLASS:  outputClass = MLint32Type;  break;
+      case mxUINT32_CLASS: outputClass = MLuint32Type; break;
       case mxINT64_CLASS: // Matlab does not support basic operations on this type
         //outputClass = MLint64Type;
         //break;
@@ -524,42 +497,15 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       mxClassID inputClass;
       int elementSize;
       switch (inImg->getDataType()) {
-        case MLdoubleType:
-          inputClass = mxDOUBLE_CLASS;
-          elementSize = sizeof(double);
-          break;
-        case MLfloatType:
-          inputClass = mxSINGLE_CLASS;
-          elementSize = sizeof(real32_T);
-          break;
-        case MLint8Type:
-          inputClass = mxINT8_CLASS;
-          elementSize = sizeof(int8_T);
-          break;
-        case MLuint8Type:
-          inputClass = mxUINT8_CLASS;
-          elementSize = sizeof(uint8_T);
-          break;
-        case MLint16Type:
-          inputClass = mxINT16_CLASS;
-          elementSize = sizeof(int16_T);
-          break;
-        case MLuint16Type:
-          inputClass = mxUINT16_CLASS;
-          elementSize = sizeof(uint16_T);
-          break;
-        case MLint32Type:
-          inputClass = mxINT32_CLASS;
-          elementSize = sizeof(int32_T);
-          break;
-        case MLuint32Type:
-          inputClass = mxUINT32_CLASS;
-          elementSize = sizeof(uint32_T);
-          break;
-        case MLint64Type:
-          inputClass = mxINT64_CLASS;
-          elementSize = sizeof(int64_T);
-          break;
+        case MLdoubleType: inputClass = mxDOUBLE_CLASS; elementSize = sizeof(double);   break;
+        case MLfloatType:  inputClass = mxSINGLE_CLASS; elementSize = sizeof(float);    break;
+        case MLint8Type:   inputClass = mxINT8_CLASS;   elementSize = sizeof(int8_T);   break;
+        case MLuint8Type:  inputClass = mxUINT8_CLASS;  elementSize = sizeof(uint8_T);  break;
+        case MLint16Type:  inputClass = mxINT16_CLASS;  elementSize = sizeof(int16_T);  break;
+        case MLuint16Type: inputClass = mxUINT16_CLASS; elementSize = sizeof(uint16_T); break;
+        case MLint32Type:  inputClass = mxINT32_CLASS;  elementSize = sizeof(int32_T);  break;
+        case MLuint32Type: inputClass = mxUINT32_CLASS; elementSize = sizeof(uint32_T); break;
+        case MLint64Type:  inputClass = mxINT64_CLASS;  elementSize = sizeof(int64_T);  break;
         default:
           inputClass = mxDOUBLE_CLASS;
           elementSize = sizeof(double);
