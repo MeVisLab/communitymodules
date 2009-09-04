@@ -20,6 +20,7 @@
 - (SBElementArray *) documents;
 
 @property (copy, readonly) NSString *name;  // The name of the application.
+@property (readonly) BOOL frontmost;  // Is this the frontmost (active) application?
 @property (copy, readonly) NSString *version;  // The version number of the application.
 
 - (void) open:(NSArray *)x;  // Open a document.
