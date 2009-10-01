@@ -42,13 +42,15 @@ def upload(field=None):
     winsources.append(MLABFileManager.nativePath(source))
     
   script  = _getScript()    
-  preCommand = ctx.field("preCommand").stringValue()
-  if preCommand:
-    script += preCommand + "\n"
+  commands = ctx.field("preCommand").stringValue().split(";")
+  for command in commands:
+    if command:
+      script += command + "\n"
   script += "put \"" + "\" \"".join(winsources) + "\" \"" + target + "\"\n"
-  postCommand = ctx.field("postCommand").stringValue()
-  if postCommand:
-    script += postCommand + "\n"
+  commands = ctx.field("postCommand").stringValue().split(";")
+  for command in commands:
+    if command:
+      script += command + "\n"
   script += "close\nexit\n"
     
   _executeScript(script)
