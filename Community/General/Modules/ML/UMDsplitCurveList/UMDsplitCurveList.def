@@ -1,0 +1,45 @@
+//----------------------------------------------------------------------------------
+//! UMDsplitCurveList module definitions.
+/*!
+// \file    UMDsplitCurveList.def
+// \author  Tobias Mönch
+// \date    2009-08-05
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule UMDsplitCurveList
+//----------------------------------------------------------------------------------
+MLModule UMDsplitCurveList {
+  DLL            = "UMDsplitCurveList"
+
+  genre          = ""
+  author         = "Tobias Mönch, Sylvia Glaßer"
+  status         = stable
+  comment        = "Splits a given CurveList into the selected curve and the remaining curveLists."
+  keywords       = "CurveData, CurveList"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/UMDsplitCurveList.html"
+  exampleNetwork = "$(LOCAL)/networks/UMDsplitCurveListExample.mlab"
+  
+  Window {
+    expandX = True
+    width = 500
+    Category  {
+      width = 500
+      expandX = True
+      alignX = Left
+
+      Horizontal {
+        Label {title = "Select Curve: "}
+        ComboBox AvailableCurves{
+          comboField = AvailableCurvesStr
+          comboSeparator = ","
+          editable = False
+        }      
+      }
+    }
+  }
+} // MLModule UMDsplitCurveList
+

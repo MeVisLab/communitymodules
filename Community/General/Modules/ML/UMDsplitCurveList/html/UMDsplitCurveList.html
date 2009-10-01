@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+   
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+   
+  
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+
+
+   
+  
+  <meta name="Description" content="MeVisLab module help page template">
+
+
+   
+  
+  <title>Module Help Page</title>
+</head>
+
+
+<body>
+
+
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr width="100%"></center>
+
+
+
+<h2>
+TestFilter</h2>
+
+
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+
+
+<blockquote>The module allows to select a single curve from a collection of several curves (CurveList) and therefor splits the input CurveList into (1) the selected curve, (2) the curves preceding the selection and (3) the remaining curves.</blockquote>
+
+
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+
+
+<blockquote>Just connect a module providing a CurveList and then select the desired curve using the GUI<br>
+
+</blockquote>
+
+
+
+<h3>
+<a name="Details"></a>Details</h3>
+
+
+
+<blockquote> - </blockquote>
+
+
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+
+
+<blockquote>There is only one input for the required CurveList.</blockquote>
+
+
+
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+
+
+
+<blockquote>The module provides three outputs:<br>
+(1) <i>outCurveList1</i> - the list of curves from the input CurveList beginning from index 0 till the selected curve. The output will be empty if the user selects the first provided curve. Selection of the last curve in the list will result in an output with n-1 curves.<br>
+(2) <i>outCurveData</i> - the curve that has been selected by the user.<br>
+(3) <i>outCurveList2</i> - the list of curves from the input CurveList beginning after the selected curve till the end. The output will be empty if the user selects the last provided curve. Selection of the first curve in the list will result in an output with n-1 curves.</blockquote>
+
+
+
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+
+
+<blockquote> - </blockquote>
+
+
+
+<h3>
+<a name="EventInteract"></a>Events &amp; Interaction</h3>
+
+
+
+<blockquote> - </blockquote>
+
+
+
+<h3>
+<a name="Example"></a>Example</h3>
+
+
+
+<blockquote> - </blockquote>
+
+
+
+<h3>
+<a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+
+
+<blockquote> - </blockquote>
+
+
+
+<h3>
+<a name="KnownBugs"></a>Known Bugs</h3>
+
+
+
+<blockquote> - </blockquote>
+
+
+
+</body>
+</html>
