@@ -83,7 +83,7 @@ void UMDsplitCurveList::handleNotification (Field *field)
     _availableCurvesVec.clear();
 
     // if the input is of type "CurveList" ....
-    if (strcmpi(_inputCurveListFld->getBaseValue()->getTypeIdName(),"CurveList")==0)
+    if (strncasecmp(_inputCurveListFld->getBaseValue()->getTypeIdName(),"CurveList",9)==0)
     {
       // set status
       inputOK = true;
@@ -98,8 +98,6 @@ void UMDsplitCurveList::handleNotification (Field *field)
         if (i!=0) _availableCurves.append(",");
 
         // append the strings to both: the output string and a similar string-vector
-        //_availableCurves.append(asString(i+1,0));
-        //_availableCurves.append(": ");
         _availableCurves.append(asString(i+1,0) + ": " + _inputCurveList->getCurveList()[i]->getTitle().c_str());
         
         _availableCurvesVec.push_back(asString(i+1,0) + ": " + _inputCurveList->getCurveList()[i]->getTitle().c_str());
@@ -120,7 +118,7 @@ void UMDsplitCurveList::handleNotification (Field *field)
     _curveData.clear();
 
     // status and index variables
-    int selectionIdx=0;
+    unsigned int selectionIdx=0;
     bool found = false;
 
     // run over the available curves ...
