@@ -2,6 +2,200 @@
 network  {
   watchlist = ""
 }
+module WEMInfo {
+  internal  {
+    frame = "37 109 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "535 590 464 326"
+        sizeHint = "464 326"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1729 290 307 440"
+        sizeHint = "307 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo3
+    isProcessing = FALSE
+    elapsedTime = 0.03099999949
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "4@"
+    selectedWEMs = ""
+    informationFieldsValid = TRUE
+    numNodes = 3980
+    numEdges = 12000
+    numFaces = 8000
+    uniqueId = 4
+    patchType = Triangles
+    hasEdges = TRUE
+    surfaceArea = 9088.235352
+    surfaceVolume = 11417.07031
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBox = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    center = "32.18994140625 32.51465225219727 12.5"
+    minimum = "0.3798865675926208 1.029304265975952 0"
+    maximum = "64 64 25"
+    size = "63.62011343240738 62.97069573402405 25"
+    radius = 46.46995926
+    mainAxisCenter = "36.70425415039062 31.73256301879883 11.25884342193604"
+    xMainAxis = "0.8256326913833618 0.5631536841392517 -0.0344751663506031"
+    yMainAxis = "-0.5586679577827454 0.8245398998260498 0.08957722038030624"
+    zMainAxis = "0.07887189090251923 -0.05469771102070808 0.995383083820343"
+    xExt = 76.63206482
+    yExt = 76.86981964
+    zExt = 28.9629631
+    primitiveValueLists = "LUT,Quadric Error,Face Area,Edge Length,Face Quality,Node Curvature,Node Valence"
+    selectedPrimitiveValueList = "Face Quality"
+    primitiveValueListValid = TRUE
+    minPrimitiveValueList = 0
+    maxPrimitiveValueList = 99.99987030029297
+    meanPrimitiveValueList = 91.96286586308479
+    primitiveValueListUnits = %
+    edgeLengthUnits = mm
+    faceAreaUnits = mm2
+    curveScaleFactor = 1
+    selectedTab = 2
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "-67 117 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "535 590 466 326"
+        sizeHint = "466 326"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1729 290 307 440"
+        sizeHint = "307 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo2
+    isProcessing = FALSE
+    elapsedTime = 0.04699999839
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "4@"
+    selectedWEMs = ""
+    informationFieldsValid = TRUE
+    numNodes = 3980
+    numEdges = 12000
+    numFaces = 8000
+    uniqueId = 4
+    patchType = Triangles
+    hasEdges = TRUE
+    surfaceArea = 9088.235352
+    surfaceVolume = 11417.07031
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBox = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    center = "32.18994140625 32.51465225219727 12.5"
+    minimum = "0.3798865675926208 1.029304265975952 0"
+    maximum = "64 64 25"
+    size = "63.62011343240738 62.97069573402405 25"
+    radius = 46.46995926
+    mainAxisCenter = "36.70425415039062 31.73256301879883 11.25884342193604"
+    xMainAxis = "0.8256326913833618 0.5631536841392517 -0.0344751663506031"
+    yMainAxis = "-0.5586679577827454 0.8245398998260498 0.08957722038030624"
+    zMainAxis = "0.07887189090251923 -0.05469771102070808 0.995383083820343"
+    xExt = 76.63206482
+    yExt = 76.86981964
+    zExt = 28.9629631
+    primitiveValueLists = "LUT,Quadric Error,Face Area,Edge Length,Face Quality,Node Curvature,Node Valence"
+    selectedPrimitiveValueList = "Edge Length"
+    primitiveValueListValid = TRUE
+    minPrimitiveValueList = 0
+    maxPrimitiveValueList = 8.441550254821777
+    meanPrimitiveValueList = 1.72643531275789
+    primitiveValueListUnits = mm
+    edgeLengthUnits = mm
+    faceAreaUnits = mm2
+    curveScaleFactor = 1
+    selectedTab = 2
+  }
+}
 module UMDsplitCurveList {
   internal  {
     frame = "-187 -67 136 56"
@@ -10,15 +204,15 @@ module UMDsplitCurveList {
       window _default {
         geometry = "118 141 500 31"
         sizeHint = "500 31"
-        wasOpen = yes
+        wasOpen = no
         wasActive = no
       }
     }
   }
   fields  {
     instanceName = UMDsplitCurveList
-    AvailableCurvesStr = "1: Face Area,2: Face Area"
-    AvailableCurves = "2: Face Area"
+    AvailableCurvesStr = "1: Face Area,2: Face Area,3: Edge Length,4: Face Quality"
+    AvailableCurves = "3: Edge Length"
   }
 }
 module LocalImage {
@@ -29,7 +223,7 @@ module LocalImage {
   fields  {
     instanceName = LocalImage
     name = $(DemoDataPath)/Bone.tiff
-    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    trueName = "C:/Program Files/MeVisLab2.0VC9-64/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
     autoLoad = TRUE
     status = "File open"
   }
@@ -51,7 +245,7 @@ module WEMIsoSurface {
   fields  {
     instanceName = WEMIsoSurface
     isProcessing = FALSE
-    elapsedTime = 0.2809999883
+    elapsedTime = 0.5929999948
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -131,7 +325,7 @@ module WEMInfo {
   fields  {
     instanceName = WEMInfo
     isProcessing = FALSE
-    elapsedTime = 0.07800000161
+    elapsedTime = 0.03099999949
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
@@ -147,7 +341,7 @@ module WEMInfo {
     uniqueId = 2
     patchType = Triangles
     hasEdges = TRUE
-    surfaceArea = 9452.926758
+    surfaceArea = 9452.927734
     surfaceVolume = 11593.98047
     label = ""
     description = ""
@@ -186,11 +380,11 @@ module WEMInfo {
     maximum = "64 64 25"
     size = "64 63.01695477962494 25"
     radius = 46.61581421
-    mainAxisCenter = "37.00667572021484 31.91140174865723 11.19961833953857"
-    xMainAxis = "0.8188340067863464 0.5700684189796448 -0.06732727587223053"
+    mainAxisCenter = "37.00667190551758 31.91140556335449 11.19961738586426"
+    xMainAxis = "0.8188340067863464 0.5700684189796448 -0.06732726097106934"
     yMainAxis = "-0.5646404027938843 0.8210079073905945 0.08442250639200211"
-    zMainAxis = "0.1034028306603432 -0.03111230954527855 0.994152843952179"
-    xExt = 76.54521942
+    zMainAxis = "0.103402815759182 -0.03111232072114944 0.994152843952179"
+    xExt = 76.54521179
     yExt = 77.21954346
     zExt = 29.9910202
     primitiveValueLists = "LUT,Edge Length,Face Area,Face Quality,Node Curvature,Node Valence"
@@ -198,7 +392,7 @@ module WEMInfo {
     primitiveValueListValid = TRUE
     minPrimitiveValueList = 0
     maxPrimitiveValueList = 1.142393827438354
-    meanPrimitiveValueList = 0.35443971761418
+    meanPrimitiveValueList = 0.3544397210796681
     primitiveValueListUnits = mm2
     edgeLengthUnits = mm
     faceAreaUnits = mm2
@@ -222,10 +416,10 @@ module Diagram2D {
   fields  {
     instanceName = Diagram2D
     minX = 0
-    maxX = 13
+    maxX = 9
     autoRangeX = TRUE
     minY = 0
-    maxY = 47.28749847
+    maxY = 99.92875671
     autoRangeY = TRUE
     axisColor = "1 1 1"
     axisRotation = LeftBottom
@@ -258,8 +452,8 @@ module Diagram2D {
     shift = IGNORED
     ctrl = IGNORED
     alt = IGNORED
-    mousePosX = -0.9825582504
-    mousePosY = 53.12361526
+    mousePosX = -0.6802326441
+    mousePosY = 53.3061676
     mousePosValid = TRUE
     curveSelection = Diagram
     selectionTolerance = 5
@@ -276,7 +470,7 @@ module SoRenderArea {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "675 102 400 400"
+        geometry = "978 171 400 400"
         sizeHint = "400 400"
         wasOpen = yes
         wasActive = no
@@ -331,7 +525,7 @@ module WEMInfo {
   fields  {
     instanceName = WEMInfo1
     isProcessing = FALSE
-    elapsedTime = 0.03200000152
+    elapsedTime = 0.01600000076
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
@@ -347,8 +541,8 @@ module WEMInfo {
     uniqueId = 4
     patchType = Triangles
     hasEdges = TRUE
-    surfaceArea = 9087.744141
-    surfaceVolume = 11418.16016
+    surfaceArea = 9088.235352
+    surfaceVolume = 11417.07031
     label = ""
     description = ""
     show = TRUE
@@ -386,19 +580,19 @@ module WEMInfo {
     maximum = "64 64 25"
     size = "63.62011343240738 62.97069573402405 25"
     radius = 46.46995926
-    mainAxisCenter = "36.68818664550781 31.71071624755859 11.26501941680908"
-    xMainAxis = "0.8260845541954041 0.5626350045204163 -0.03203367441892624"
-    yMainAxis = "-0.5583527684211731 0.8248476982116699 0.088703952729702"
-    zMainAxis = "0.07633084803819656 -0.05539087951183319 0.9955427646636963"
-    xExt = 76.63578033
-    yExt = 76.85345459
-    zExt = 28.82315826
+    mainAxisCenter = "36.70425415039062 31.73256301879883 11.25884342193604"
+    xMainAxis = "0.8256326913833618 0.5631536841392517 -0.0344751663506031"
+    yMainAxis = "-0.5586679577827454 0.8245398998260498 0.08957722038030624"
+    zMainAxis = "0.07887189090251923 -0.05469771102070808 0.995383083820343"
+    xExt = 76.63206482
+    yExt = 76.86981964
+    zExt = 28.9629631
     primitiveValueLists = "LUT,Quadric Error,Edge Length,Face Area,Face Quality,Node Curvature,Node Valence"
     selectedPrimitiveValueList = "Face Area"
     primitiveValueListValid = TRUE
     minPrimitiveValueList = 0
-    maxPrimitiveValueList = 12.19644355773926
-    meanPrimitiveValueList = 1.135967058496957
+    maxPrimitiveValueList = 8.992372512817383
+    meanPrimitiveValueList = 1.136028095684553
     primitiveValueListUnits = mm2
     edgeLengthUnits = mm
     faceAreaUnits = mm2
@@ -620,7 +814,7 @@ module WEMReducePolygons {
   fields  {
     instanceName = WEMReducePolygons
     isProcessing = FALSE
-    elapsedTime = 1.281000018
+    elapsedTime = 1.980999947
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -666,7 +860,7 @@ module WEMReducePolygons {
     modifyAttributes = FALSE
     targetReduction = 70
     smooth = TRUE
-    numEdgeCollapses = 9101
+    numEdgeCollapses = 9097
     reduction = 70
     useExpertMode = FALSE
     vertexPlacementMode = Middle
@@ -749,7 +943,7 @@ module SoExaminerViewer {
       window _viewer {
         geometry = "598 535 566 400"
         sizeHint = "400 400"
-        wasOpen = yes
+        wasOpen = no
         wasActive = no
       }
     }
@@ -917,11 +1111,13 @@ module SoTranslation {
   }
 }
 connections  {
+  WEMInfo3.inWEM = WEMReducePolygons.outWEM
+  WEMInfo2.inWEM = WEMReducePolygons.outWEM
   UMDsplitCurveList.inCurveList = CatCurves.outCurveList
   WEMIsoSurface.input0 = Subimage.output0
   WEMInfo.inWEM = WEMIsoSurface.outWEM
   Diagram2D.inStylePalette = StylePalette.outStylePalette
-  Diagram2D.inCurveList = UMDsplitCurveList.outCurveData
+  Diagram2D.inCurveList = UMDsplitCurveList.outCurveList1
   Diagram2D.diagramTitleString = WEMInfo.selectedPrimitiveValueList
   SoRenderArea.children = Diagram2D.outNode
   WEMInfo1.inWEM = WEMReducePolygons.outWEM
@@ -929,6 +1125,8 @@ connections  {
   WEMInfo1.selectedPrimitiveValueList = WEMInfo.selectedPrimitiveValueList
   CatCurves.inCurve1 = WEMInfo.outputCurveData
   CatCurves.inCurve2 = WEMInfo1.outputCurveData
+  CatCurves.inCurve3 = WEMInfo2.outputCurveData
+  CatCurves.inCurve4 = WEMInfo3.outputCurveData
   Subimage.input0 = LocalImage.outImage
   WEMReducePolygons.inWEM = WEMIsoSurface.outWEM
   SoWEMRenderer.inWEM = WEMIsoSurface.outWEM

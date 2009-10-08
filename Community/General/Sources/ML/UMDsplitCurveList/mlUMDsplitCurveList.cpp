@@ -25,7 +25,6 @@ s << d ;
 return s.str() ;
 }
 
-
 //! Implements code for the runtime type system of the ML
 ML_BASEOP_CLASS_SOURCE(UMDsplitCurveList, BaseOp);
 
@@ -110,7 +109,7 @@ void UMDsplitCurveList::handleNotification (Field *field)
   else _availableCurvesStrFld->setStringValue("");
 
   // check again if input is available 
-  if ((_inputCurveListFld->getBaseValue() != NULL) && (_inputCurveList->getNumCurves() > 0) && inputOK)
+  if (((field == _availableCurvesFld) ||(field == _inputCurveListFld)) && (_inputCurveListFld->getBaseValue() != NULL) && (_inputCurveList->getNumCurves() > 0) && inputOK)
   {
     // clear the output curveLists and the curveData
     _curveList1.getCurveList().clear();
@@ -122,7 +121,7 @@ void UMDsplitCurveList::handleNotification (Field *field)
     bool found = false;
 
     // run over the available curves ...
-    for (int i=0; i<_availableCurvesVec.size(); i++)
+    for (unsigned int i=0; i<_availableCurvesVec.size(); i++)
     {
       // check which curve has been selected
       if (_availableCurvesVec[i].compare(_availableCurvesFld->getStringValue()) == 0)
