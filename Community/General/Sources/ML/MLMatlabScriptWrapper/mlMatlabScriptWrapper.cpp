@@ -899,7 +899,7 @@ void MatlabScriptWrapper::_getStringsBackFromMatlab()
   // Internal loop.
   mxArray *temp = NULL;
   int tempsize = 0;
-  char *fieldVal;
+  char *fieldVal = NULL;
   // Get only output scalars.
   for(MLint i=0; i<6; i++)
   {
@@ -988,10 +988,10 @@ void MatlabScriptWrapper::_copyInputMatricesToMatlab()
     execute<<_matrixNameFld[i]->getStringValue()<<"=[";
       
     mat4 mat = _matrixFld[i]->getMatrixValue();
-    execute<<mat[0][0]<<","<<mat[1][0]<<","<<mat[2][0]<<","<<mat[3][0]<<";";
-    execute<<mat[0][1]<<","<<mat[1][1]<<","<<mat[2][1]<<","<<mat[3][1]<<";";
-    execute<<mat[0][2]<<","<<mat[1][2]<<","<<mat[2][2]<<","<<mat[3][2]<<";";
-    execute<<mat[0][3]<<","<<mat[1][3]<<","<<mat[2][3]<<","<<mat[3][3];
+    execute<<mat[0][0]<<","<<mat[0][1]<<","<<mat[0][2]<<","<<mat[0][3]<<";";
+    execute<<mat[1][0]<<","<<mat[1][1]<<","<<mat[1][2]<<","<<mat[1][3]<<";";
+    execute<<mat[2][0]<<","<<mat[2][1]<<","<<mat[2][2]<<","<<mat[2][3]<<";";
+    execute<<mat[3][0]<<","<<mat[3][1]<<","<<mat[3][2]<<","<<mat[3][3];
     execute<<"];";
   }
   // Execute string and write input matrices into matlab.
@@ -1017,7 +1017,10 @@ void MatlabScriptWrapper::_getMatricesBackFromMatlab()
     if(temp!=NULL)
     {
       double *fieldVal = static_cast<double*>(mxGetPr(temp));
-      _matrixFld[i]->setMatrixValue(mat4(fieldVal));
+      _matrixFld[i]->setMatrixValue(mat4(fieldVal[0],fieldVal[4],fieldVal[8],fieldVal[12],
+                                         fieldVal[1],fieldVal[5],fieldVal[9],fieldVal[13],
+                                         fieldVal[2],fieldVal[6],fieldVal[10],fieldVal[14],
+                                         fieldVal[3],fieldVal[7],fieldVal[11],fieldVal[15]));
     }
   }
   mxDestroyArray(temp);
