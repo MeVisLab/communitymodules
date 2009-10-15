@@ -113,6 +113,42 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_scalarNameFld[5] = fields->addString("scalarName5"))->setStringValue("scalar5");
   (_scalarFld[5] = fields->addDouble("scalar5"))->setDoubleValue(0.0);
 
+  // Set string name and value fields.
+  (_stringNameFld[0] = fields->addString("stringName0"))->setStringValue("string0");
+  (_stringFld[0] = fields->addString("string0"))->setStringValue("");
+  (_stringNameFld[1] = fields->addString("stringName1"))->setStringValue("string1");
+  (_stringFld[1] = fields->addString("string1"))->setStringValue("");
+  (_stringNameFld[2] = fields->addString("stringName2"))->setStringValue("string2");
+  (_stringFld[2] = fields->addString("string2"))->setStringValue("");
+  (_stringNameFld[3] = fields->addString("stringName3"))->setStringValue("string3");
+  (_stringFld[3] = fields->addString("string3"))->setStringValue("");
+  (_stringNameFld[4] = fields->addString("stringName4"))->setStringValue("string4");
+  (_stringFld[4] = fields->addString("string4"))->setStringValue("");
+  (_stringNameFld[5] = fields->addString("stringName5"))->setStringValue("string5");
+  (_stringFld[5] = fields->addString("string5"))->setStringValue("");
+  
+  // Set vector name and value fields.
+  (_vectorNameFld[0] = fields->addString("vectorName0"))->setStringValue("vector0");
+  (_vectorFld[0] = fields->addVec4f("vector0"))->setStringValue("0 0 0 0");
+  (_vectorNameFld[1] = fields->addString("vectorName1"))->setStringValue("vector1");
+  (_vectorFld[1] = fields->addVec4f("vector1"))->setStringValue("0 0 0 0");
+  (_vectorNameFld[2] = fields->addString("vectorName2"))->setStringValue("vector2");
+  (_vectorFld[2] = fields->addVec4f("vector2"))->setStringValue("0 0 0 0");
+  (_vectorNameFld[3] = fields->addString("vectorName3"))->setStringValue("vector3");
+  (_vectorFld[3] = fields->addVec4f("vector3"))->setStringValue("0 0 0 0");
+  (_vectorNameFld[4] = fields->addString("vectorName4"))->setStringValue("vector4");
+  (_vectorFld[4] = fields->addVec4f("vector4"))->setStringValue("0 0 0 0");
+  (_vectorNameFld[5] = fields->addString("vectorName5"))->setStringValue("vector5");
+  (_vectorFld[5] = fields->addVec4f("vector5"))->setStringValue("0 0 0 0");
+
+  // Set matrix name and value fields.
+  (_matrixNameFld[0] = fields->addString("matrixName0"))->setStringValue("matrix0");
+  (_matrixFld[0] = fields->addMatrix("matrix0"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
+  (_matrixNameFld[1] = fields->addString("matrixName1"))->setStringValue("matrix1");
+  (_matrixFld[1] = fields->addMatrix("matrix1"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
+  (_matrixNameFld[2] = fields->addString("matrixName2"))->setStringValue("matrix2");
+  (_matrixFld[2] = fields->addMatrix("matrix2"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
+
   //! Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
@@ -215,6 +251,12 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       _copyInputImageDataToMatlab();
       // Copy scalar values to matlab.
       _copyInputScalarsToMatlab();
+      // Copy string values to matlab.
+      _copyInputStringsToMatlab();
+      // Copy vector values to matlab.
+      _copyInputVectorsToMatlab();
+      // Copy matrix values to matlab.
+      _copyInputMatricesToMatlab();
 
 
       // Insert at the end of the script variable to proof execution status
@@ -253,6 +295,42 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     for(int k=0; k<6; ++k) {
       if(tmpScalars[k] == _scalarFld[k]->getDoubleValue()) {
         _scalarFld[k]->notifyAttachments();
+      }
+    }
+    // Get strings back from matlab. First store the current strings so that
+    // we can check if they change. A notification is only sent upon change.
+    std::string tmpstrings[6];
+    for(int k=0; k<6; ++k) {
+      tmpstrings[k] = _stringFld[k]->getStringValue();
+    }
+    _getStringsBackFromMatlab();
+    for(int k=0; k<6; ++k) {
+      if(tmpstrings[k] == _stringFld[k]->getStringValue()) {
+        _stringFld[k]->notifyAttachments();
+      }
+    }
+
+    // Get vectors back from matlab. First store the current vectors so that
+    // we can check if they change. A notification is only sent upon change.
+    for(int k=0; k<6; ++k) {
+      tmpstrings[k] = _vectorFld[k]->getStringValue();
+    }
+    _getVectorsBackFromMatlab();
+    for(int k=0; k<6; ++k) {
+      if(tmpstrings[k] == _vectorFld[k]->getStringValue()) {
+        _vectorFld[k]->notifyAttachments();
+      }
+    }
+
+    // Get matrices back from matlab. First store the current matrices so that
+    // we can check if they change. A notification is only sent upon change.
+    for(int k=0; k<3; ++k) {
+      tmpstrings[k] = _matrixFld[k]->getStringValue();
+    }
+    _getMatricesBackFromMatlab();
+    for(int k=0; k<3; ++k) {
+      if(tmpstrings[k] == _matrixFld[k]->getStringValue()) {
+        _matrixFld[k]->notifyAttachments();
       }
     }
 
@@ -786,6 +864,166 @@ void MatlabScriptWrapper::_getScalarsBackFromMatlab()
   temp = NULL;
 }
 
+//! Copies string values to matlab.
+void MatlabScriptWrapper::_copyInputStringsToMatlab()
+{
+  // Check if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputStringsToMatlab(): Cannot find matlab engine!" << std::endl << std::flush;
+    return;
+  }
+  // Internal loop.
+  MLint i = 0;
+  // Compose string that contains input scalars.
+  std::ostringstream execute;
+  // Put only input scalars into matlab.
+  for(i=0; i<6; i++)
+  {
+    execute<<_stringNameFld[i]->getStringValue()<<"='"<<(_stringFld[i]->getStringValue())<<"'\n";
+  }
+  // Execute string and write input scalars into matlab.
+  engEvalString(m_pEngine, execute.str().c_str());
+}
+
+//! Copies string values from matlab.
+void MatlabScriptWrapper::_getStringsBackFromMatlab()
+{
+  // Check if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_getStringsBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  // Internal loop.
+  mxArray *temp = NULL;
+  int tempsize = 0;
+  char *fieldVal;
+  // Get only output scalars.
+  for(MLint i=0; i<6; i++)
+  {
+    temp = engGetVariable(m_pEngine, (_stringNameFld[i]->getStringValue()).c_str());
+    if(temp!=NULL)
+    {
+      tempsize = mxGetN(temp)+1;
+      ML_CHECK_NEW(fieldVal,char[tempsize]);
+      mxGetString(temp,fieldVal,tempsize);
+      _stringFld[i]->setStringValue(fieldVal);
+      ML_DELETE(fieldVal);
+    }
+  }
+  mxDestroyArray(temp);
+  temp = NULL;
+}
+
+//! Copy input vectors to matlab.
+void MatlabScriptWrapper::_copyInputVectorsToMatlab()
+{
+  // Proof if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputVectorsToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    return;
+  }
+  // Internal loop.
+  MLint i = 0;
+  // Compose string that contains input vectors.
+  std::ostringstream execute;
+  // Put only input vectors into matlab.
+  for(i=0; i<6; i++)
+  {
+    execute<<_vectorNameFld[i]->getStringValue()<<"=[";
+      
+    vec4 vec = _vectorFld[i]->getVec4fValue();
+    execute<<vec[0]<<","<<vec[1]<<","<<vec[2]<<","<<vec[3];
+    execute<<"];";
+  }
+  // Execute string and write input vectors into matlab.
+  engEvalString(m_pEngine, execute.str().c_str());
+}
+
+//! Copies vector values from matlab.
+void MatlabScriptWrapper::_getVectorsBackFromMatlab()
+{
+  // Check if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_getVectorssBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  // Internal loop.
+  mxArray *temp = NULL;
+  // Get only output vectors.
+  for(MLint i=0; i<6; i++)
+  {
+    temp = engGetVariable(m_pEngine, (_vectorNameFld[i]->getStringValue()).c_str());
+    if(temp!=NULL)
+    {
+      double *fieldVal = static_cast<double*>(mxGetPr(temp));
+      _vectorFld[i]->setVec4fValue(vec4(fieldVal[0],fieldVal[1],fieldVal[2],fieldVal[3]));
+    }
+  }
+  mxDestroyArray(temp);
+  temp = NULL;
+}
+
+//! Copy input matrices to matlab.
+void MatlabScriptWrapper::_copyInputMatricesToMatlab()
+{
+  // Proof if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputMatricesToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    return;
+  }
+  // Internal loop.
+  MLint i = 0;
+  // Compose string that contains input matrices.
+  std::ostringstream execute;
+  // Put only input matrices into matlab.
+  for(i=0; i<3; i++)
+  {
+    execute<<_matrixNameFld[i]->getStringValue()<<"=[";
+      
+    mat4 mat = _matrixFld[i]->getMatrixValue();
+    execute<<mat[0][0]<<","<<mat[1][0]<<","<<mat[2][0]<<","<<mat[3][0]<<";";
+    execute<<mat[0][1]<<","<<mat[1][1]<<","<<mat[2][1]<<","<<mat[3][1]<<";";
+    execute<<mat[0][2]<<","<<mat[1][2]<<","<<mat[2][2]<<","<<mat[3][2]<<";";
+    execute<<mat[0][3]<<","<<mat[1][3]<<","<<mat[2][3]<<","<<mat[3][3];
+    execute<<"];";
+  }
+  // Execute string and write input matrices into matlab.
+  engEvalString(m_pEngine, execute.str().c_str());
+}
+
+//! Copies matrix values from matlab.
+void MatlabScriptWrapper::_getMatricesBackFromMatlab()
+{
+  // Check if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_getMatricesBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  // Internal loop.
+  mxArray *temp = NULL;
+  // Get only output matrices.
+  for(MLint i=0; i<3; i++)
+  {
+    temp = engGetVariable(m_pEngine, (_matrixNameFld[i]->getStringValue()).c_str());
+    if(temp!=NULL)
+    {
+      double *fieldVal = static_cast<double*>(mxGetPr(temp));
+      _matrixFld[i]->setMatrixValue(mat4(fieldVal));
+    }
+  }
+  mxDestroyArray(temp);
+  temp = NULL;
+}
+
 //! Check if Matlab is started.
 bool MatlabScriptWrapper::_checkMatlabIsStarted()
 {
@@ -809,6 +1047,17 @@ void MatlabScriptWrapper::_clearAllVariables()
   for(int i=0; i<6; i++) {
     clearString << _scalarNameFld[i]->getStringValue() << " ";
   }
+
+  // Clear strings
+  for(int i=0; i<6; i++) {
+    clearString << _stringNameFld[i]->getStringValue() << " ";
+  }
+
+  // Clear matrices
+  for(int i=0; i<3; i++) {
+    clearString << _matrixNameFld[i]->getStringValue() << " ";
+  }
+
 
   // Clear input images
   for(int i=0; i<3; i++) {

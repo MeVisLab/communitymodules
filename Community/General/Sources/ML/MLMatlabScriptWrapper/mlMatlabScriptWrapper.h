@@ -121,6 +121,18 @@ private:
   bool _checkMatlabIsStarted();
   //! Clear all variables that have been put in the Matlab workspace.
   void _clearAllVariables();
+  //! Copies string values to matlab.
+  void _copyInputStringsToMatlab();
+  //! Copies string values from matlab.
+  void _getStringsBackFromMatlab();
+  //! Copies vector values to matlab.
+  void _copyInputVectorsToMatlab();
+  //! Copies vector values from matlab.
+  void _getVectorsBackFromMatlab();
+  //! Copies matrix values to matlab.
+  void _copyInputMatricesToMatlab();
+  //! Copies matrix values from matlab.
+  void _getMatricesBackFromMatlab();
   // ----------------------------------------------------------
   //@{ \name Module field declarations
   // ----------------------------------------------------------
@@ -167,6 +179,21 @@ private:
   StringField *_scalarNameFld[6];
   //@}
  
+  //{@ String values.
+  StringField *_stringFld[6];
+  StringField *_stringNameFld[6];
+  //@}
+
+  //{@ Matrix values.
+  Vec4fField *_vectorFld[6];
+  StringField *_vectorNameFld[6];
+  //@}
+
+  //{@ Matrix values.
+  MatrixField *_matrixFld[3];
+  StringField *_matrixNameFld[3];
+  //@}
+
   //! Implements interface for the runtime type system of the ML.
   ML_BASEOP_CLASS_HEADER(MatlabScriptWrapper)
 

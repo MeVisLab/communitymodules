@@ -79,34 +79,108 @@ MLModule MatlabScriptWrapper {
   Category Scalars{
     Horizontal {
       Vertical {
-        //Box "Input scalars" {
-          Horizontal {
-            Field scalarName0 {title = "Name:" expandX = yes}
-            Field scalar0 {title = "Value:" expandX = yes}
-          }
-          Horizontal {
-            Field scalarName1 {title = "Name:" expandX = yes}
-            Field scalar1 {title = "Value:" expandX = yes}
-          }
-          Horizontal {
-            Field scalarName2 {title = "Name:" expandX = yes}
-            Field scalar2 {title = "Value:" expandX = yes}
-          }
-        //}
-        //Box "Output scalars" {
-          Horizontal {
-            Field scalarName3 {title = "Name:" expandX = yes}
-            Field scalar3 {title = "Value:" expandX = yes}
-          }
-          Horizontal {
-            Field scalarName4 {title = "Name:" expandX = yes}
-            Field scalar4 {title = "Value:" expandX = yes}
-          }
-          Horizontal {
-            Field scalarName5 {title = "Name:" expandX = yes}
-            Field scalar5 {title = "Value:" expandX = yes}
-          }
-        //}
+        Horizontal {
+          Field scalarName0 {title = "Name:" expandX = yes}
+          Field scalar0 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field scalarName1 {title = "Name:" expandX = yes}
+          Field scalar1 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field scalarName2 {title = "Name:" expandX = yes}
+          Field scalar2 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field scalarName3 {title = "Name:" expandX = yes}
+          Field scalar3 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field scalarName4 {title = "Name:" expandX = yes}
+          Field scalar4 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field scalarName5 {title = "Name:" expandX = yes}
+          Field scalar5 {title = "Value:" expandX = yes}
+        }
+      }
+    }
+  }
+  Category Strings {
+    Horizontal {
+      Vertical {
+        Horizontal {
+          Field stringName0 {title = "Name:" expandX = yes}
+          Field string0 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field stringName1 {title = "Name:" expandX = yes}
+          Field string1 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field stringName2 {title = "Name:" expandX = yes}
+          Field string2 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field stringName3 {title = "Name:" expandX = yes}
+          Field string3 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field stringName4 {title = "Name:" expandX = yes}
+          Field string4 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field stringName5 {title = "Name:" expandX = yes}
+          Field string5 {title = "Value:" expandX = yes}
+        }
+      }
+    }
+  }
+  Category Vectors{
+    Horizontal {
+      Vertical {
+        Horizontal {
+          Field vectorName0 {title = "Name:" expandX = yes}
+          Field vector0 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName1 {title = "Name:" expandX = yes}
+          Field vector1 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName2 {title = "Name:" expandX = yes}
+          Field vector2 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName3 {title = "Name:" expandX = yes}
+          Field vector3 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName4 {title = "Name:" expandX = yes}
+          Field vector4 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName5 {title = "Name:" expandX = yes}
+          Field vector5 {title = "Value:" expandX = yes}
+        }
+      }
+    }
+  }
+  Category Matrices {
+    Horizontal {
+      Vertical {
+        Vertical {
+          Field matrixName0 {title = "Name:" expandX = yes}
+          TextView matrix0 {title = "" expandX = yes autoApply = Yes}
+        }
+        Vertical {
+          Field matrixName1 {title = "Name:" expandX = yes}
+          TextView matrix1 {title = "" expandX = yes autoApply = Yes}
+        }
+        Vertical {
+          Field matrixName2 {title = "Name:" expandX = yes}
+          TextView matrix2 {title = "" expandX = yes autoApply = Yes}
+        }
       }
     }
   }
