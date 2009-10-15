@@ -171,15 +171,15 @@ MLModule MatlabScriptWrapper {
       Vertical {
         Vertical {
           Field matrixName0 {title = "Name:" expandX = yes}
-          TextView matrix0 {title = "" expandX = yes autoApply = Yes}
+          TextView matrix0 {title = "Value:" expandX = yes autoApply = Yes}
         }
         Vertical {
           Field matrixName1 {title = "Name:" expandX = yes}
-          TextView matrix1 {title = "" expandX = yes autoApply = Yes}
+          TextView matrix1 {title = "Value:" expandX = yes autoApply = Yes}
         }
         Vertical {
           Field matrixName2 {title = "Name:" expandX = yes}
-          TextView matrix2 {title = "" expandX = yes autoApply = Yes}
+          TextView matrix2 {title = "Value:" expandX = yes autoApply = Yes}
         }
       }
     }
