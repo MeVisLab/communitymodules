@@ -126,7 +126,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_stringFld[4] = fields->addString("string4"))->setStringValue("");
   (_stringNameFld[5] = fields->addString("stringName5"))->setStringValue("string5");
   (_stringFld[5] = fields->addString("string5"))->setStringValue("");
-  
+
   // Set vector name and value fields.
   (_vectorNameFld[0] = fields->addString("vectorName0"))->setStringValue("vector0");
   (_vectorFld[0] = fields->addVec4f("vector0"))->setStringValue("0 0 0 0");
@@ -148,9 +148,6 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_matrixFld[1] = fields->addMatrix("matrix1"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
   (_matrixNameFld[2] = fields->addString("matrixName2"))->setStringValue("matrix2");
   (_matrixFld[2] = fields->addMatrix("matrix2"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
-
-  //! Reactivate calls of handleNotification on field changes.
-  handleNotificationOn();
 
   m_pEngine = engOpen(NULL);
 
@@ -178,6 +175,9 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
     engGetVisible(m_pEngine, &vis);
     (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(vis);
   }
+
+  //! Reactivate calls of handleNotification on field changes.
+  handleNotificationOn();
 }
 
 
@@ -225,9 +225,9 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     }
   }
 
-  // Update output only if autoapply is enabled.
-  if ( ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) && (_autoCalculationFld->isOn())
-    || (field == _calculateFld) ) {
+  // Update output on an update or if autoapply is enabled.
+  if( (field == _calculateFld) ||
+      _autoCalculationFld->isOn() && ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) ) {
     // Check if Matlab is started.
     if (!_checkMatlabIsStarted()) {
       _statusFld->setStringValue("Cannot find Matlab engine!");
@@ -245,8 +245,14 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
     // Execute Matlab script only when the string is valid
     if(validScriptString) {
-      // Copy input XMarker to matlab.
-      _copyInputXMarkerToMatlab();
+      if( _inputXMarkerListFld->getBaseValue() != NULL ) {
+        // Check if a valid XMarkerList is attached to the input.
+        if( _inputXMarkerListFld->isValidValue() && ML_BASE_IS_A(_inputXMarkerListFld->getBaseValue(), XMarkerList) ) {
+          // Copy input XMarkerList to Matlab.
+          _copyInputXMarkerToMatlab();
+        }
+      }
+
       // Copy input image data to matlab.
       _copyInputImageDataToMatlab();
       // Copy scalar values to matlab.
@@ -257,7 +263,6 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       _copyInputVectorsToMatlab();
       // Copy matrix values to matlab.
       _copyInputMatricesToMatlab();
-
 
       // Insert at the end of the script variable to proof execution status
       // and run the script in Matlab
@@ -376,7 +381,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     return;
   }
 
-  // Get variable name in the matlab workspace of the output image
+  // Get variable name in the Matlab workspace of the output image
   std::string outname = _outDataNameFld[outIndex]->getStringValue();
   mxArray *m_pImage = engGetVariable(m_pEngine, outname.c_str());
 
@@ -417,7 +422,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     }
     mxDestroyArray(m_pImage); m_pImage = NULL;
 
-    // Get min and max values in matlab workspace and set them in MeVisLab
+    // Get min and max values in Matlab workspace and set them in MeVisLab
     std::ostringstream minmaxCommand;
     minmaxCommand << "mevtmpminval = min(" << outname << "(:));" << "mevtmpmaxval = max(" << outname << "(:));";
     engEvalString(m_pEngine, minmaxCommand.str().c_str());
@@ -434,9 +439,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     mxDestroyArray(minVal); minVal = NULL;
     mxDestroyArray(maxVal); maxVal = NULL;
     engEvalString(m_pEngine, "clear mevtmpminval mevtmpmaxval");
-  }
-  else
-  {
+  } else {
     getOutImg(outIndex)->setOutOfDate();
     getOutImg(outIndex)->setStateInfo("Cannot set output size, because variable could not be found in Matlab workspace.",ML_BAD_DATA_TYPE);
   }
@@ -478,7 +481,7 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "calcOutImageProps(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "calcOutImageProps(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
@@ -512,163 +515,13 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
   else
   {
     // Throw error, if no data available.
-    ML_PRINT_ERROR("MatlabScriptWrapper::calcOutSubImage()", ML_BAD_INPUT_IMAGE_POINTER, "Cannot copy from matlab data.");
+    ML_PRINT_ERROR("MatlabScriptWrapper::calcOutSubImage()", ML_BAD_INPUT_IMAGE_POINTER, "Cannot copy from Matlab data.");
   }
 }
 
 //////////////////////////////////////////////////////////////////////
 // Internal (private) methods.
 //////////////////////////////////////////////////////////////////////
-
-//! Copy input image data to matlab.
-void MatlabScriptWrapper::_copyInputImageDataToMatlab()
-{
-  if (!_checkMatlabIsStarted())
-  {
-    std::cerr << "_copyInputImageDataToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
-    return;
-  }
-
-  for(int i=0; i<3; i++)
-  {
-    // Get a valid input if possible. Dummy input is considered invalid.
-    PagedImg *inImg = getUpdatedInImg(i);
-
-    if(!(inImg == DummyOp::getGlobalInstance().getOutImg(0)))
-    {
-      // If we get an invalid pointer to the image we abort.
-      if (!inImg) {
-        ML_PRINT_ERROR("MatlabScriptWrapper::_copyInputImageDataToMatlab()", ML_BAD_INPUT_IMAGE_POINTER, "Could not find input image. Aborting.");
-        return;
-      }
-
-      // Get input image size.
-      Vector imgSize = inImg->getImgExt();
-
-      // Declare data pointer here and set it to null. Data will then only
-      // be allocated once for the first slice in the getTile() function below.
-      void *data = NULL;
-
-      // Get whole image.
-      MLErrorCode localErr =
-        getTile(getInOp(i),getInOpIndex(i),
-                SubImgBox(Vector(0, 0, 0, 0, 0, 0),
-                Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
-                inImg->getDataType(),
-                &data,
-                ScaleShiftData(1,0));
-
-      // Check and save error code if necessary.
-      if (localErr != ML_RESULT_OK) {
-        ML_PRINT_ERROR("MatlabScriptWrapper::copyInputImageDataToMatlab()", localErr, "Could not get input image tile. Aborting.");
-        return;
-      }
-
-      // Need also to have storage for complete output image.
-      //MLuint32 inDataSize = inImg->getBoxFromImgExt().getExt().getStrides().u;
-      const MLuint32 inDataSize = imgSize.x*imgSize.y*imgSize.z*imgSize.c*imgSize.t*imgSize.u;
-
-      // Set matlab image extent.
-      const mwSize insizesArray[6] = {imgSize.x, imgSize.y, imgSize.z, imgSize.c, imgSize.t, imgSize.u};
-
-      // Copy different types of images from MeVisLab.
-      mxClassID inputClass;
-      int elementSize;
-      switch (inImg->getDataType()) {
-        case MLdoubleType: inputClass = mxDOUBLE_CLASS; elementSize = sizeof(double);   break;
-        case MLfloatType:  inputClass = mxSINGLE_CLASS; elementSize = sizeof(float);    break;
-        case MLint8Type:   inputClass = mxINT8_CLASS;   elementSize = sizeof(int8_T);   break;
-        case MLuint8Type:  inputClass = mxUINT8_CLASS;  elementSize = sizeof(uint8_T);  break;
-        case MLint16Type:  inputClass = mxINT16_CLASS;  elementSize = sizeof(int16_T);  break;
-        case MLuint16Type: inputClass = mxUINT16_CLASS; elementSize = sizeof(uint16_T); break;
-        case MLint32Type:  inputClass = mxINT32_CLASS;  elementSize = sizeof(int32_T);  break;
-        case MLuint32Type: inputClass = mxUINT32_CLASS; elementSize = sizeof(uint32_T); break;
-        case MLint64Type:  inputClass = mxINT64_CLASS;  elementSize = sizeof(int64_T);  break;
-        default:
-          inputClass = mxDOUBLE_CLASS;
-          elementSize = sizeof(double);
-          std::cerr << "_copyInputImageDataToMatlab(): Output type from MeVisLab not supported!" << std::endl << std::flush;
-      }
-      // Create numeric array
-      mxArray *m_pImage = mxCreateNumericArray(6, insizesArray, inputClass, mxREAL);
-
-      // Copy data to matlab array.
-      memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
-
-      // Get input names from gui.
-      std::string inputName = _inDataNameFld[i]->getStringValue();
-      // Write data to matlab.
-      engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
-
-      mxDestroyArray(m_pImage); m_pImage = NULL;
-
-      // Free allocated memory for holding a slice.
-      freeTile(data);
-      data = NULL;
-    }
-  }
-}
-
-//! Copy input XMarkerList to matlab.
-void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
-{
-  // Proof if Matlab is started.
-  if (!_checkMatlabIsStarted())
-  {
-    std::cerr << "_copyInputXMarkerToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
-    return;
-  }
-
-  // Internal loop.
-  size_t i = 0;
-  // Get names from GUI.
-  std::ostringstream inXMarkerStr, outXMarkerStr;
-  inXMarkerStr << _inXMarkerNameFld->getStringValue();
-  outXMarkerStr << _outXMarkerNameFld->getStringValue();
-
-  // Combine string.
-  std::ostringstream setInXMarkerStr, setOutXMarkerStr;
-  setInXMarkerStr << inXMarkerStr.str() << "=struct('pos',[],'vec',[],'type',[])";
-  setOutXMarkerStr << outXMarkerStr.str() << "=struct('pos',[],'vec',[],'type',[])";
-
-  // Input XMarkerList transfered to matlab structure.
-  engEvalString(m_pEngine, setInXMarkerStr.str().c_str());
-  engEvalString(m_pEngine, setOutXMarkerStr.str().c_str());
-
-  // Check if a valid XMarkerList is attached to the input.
-  if( _inputXMarkerListFld->isValidValue() && ML_BASE_IS_A(_inputXMarkerListFld->getBaseValue(), XMarkerList)) 
-  {
-    // Get input list.
-    XMarkerList inputXMarkerList = *((XMarkerList*)_inputXMarkerListFld->getBaseValue());
-
-    // Strings to evaluate.
-    std::ostringstream setPos, setVec, setType;
-    setPos << inXMarkerStr.str() <<".pos=[";
-    setVec << inXMarkerStr.str() << ".vec=[";
-    setType << inXMarkerStr.str() << ".type=[";
-
-    // Get XMarkerList size and go through all list step by step.
-    const size_t listSize = inputXMarkerList.size();
-    for(i = 0; i < listSize; i++)
-    {
-      XMarker marker = inputXMarkerList[i];
-
-      // Write pos, vec and type to strings.
-      setPos<<std::dec<<marker.x()<<","<<std::dec<<marker.y()<<","<<std::dec<<marker.z()
-        <<","<<std::dec<<marker.c()<<","<<std::dec<<marker.t()<<","<<std::dec<<marker.u()<<";";
-      setVec<<std::dec<<marker.vx()<<","<<std::dec<<marker.vy()<<","<<std::dec<<marker.vz()<<";";
-      setType<<std::dec<<marker.type<<";";
-    }
-
-    setPos<<"]";
-    setVec<<"]";
-    setType<<"]";
-    // Put XMarkerList into matlab structure.
-    engEvalString(m_pEngine, setPos.str().c_str());
-    engEvalString(m_pEngine, setVec.str().c_str());
-    engEvalString(m_pEngine, setType.str().c_str());
-  }
-}
 
 //! Loads matlab script from a file, pastes it into script field and saves user written script.
 bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
@@ -719,6 +572,196 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
   return true;
 }
 
+//! Check if Matlab is started.
+bool MatlabScriptWrapper::_checkMatlabIsStarted()
+{
+  if(0 == engEvalString(m_pEngine, "mevTestIfMatlabIsRunning=3.14"))
+  {
+    engEvalString(m_pEngine, "clear mevTestIfMatlabIsRunning");
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+void MatlabScriptWrapper::_clearAllVariables()
+{
+  std::ostringstream clearString;
+  clearString << "clear ";
+
+  // Clear scalars
+  for(int i=0; i<6; i++) {
+    clearString << _scalarNameFld[i]->getStringValue() << " ";
+  }
+
+  // Clear strings
+  for(int i=0; i<6; i++) {
+    clearString << _stringNameFld[i]->getStringValue() << " ";
+  }
+
+  // Clear matrices
+  for(int i=0; i<3; i++) {
+    clearString << _matrixNameFld[i]->getStringValue() << " ";
+  }
+
+
+  // Clear input images
+  for(int i=0; i<3; i++) {
+    clearString << _inDataNameFld[i]->getStringValue() << " ";
+  }
+
+  // Clear output images
+  for(int i=0; i<3; i++) {
+    clearString << _outDataNameFld[i]->getStringValue() << " ";
+  }
+
+  // Clear input XMarker data
+  clearString << _inXMarkerNameFld->getStringValue() << " ";
+
+  // Clear output XMarker data
+  clearString << _outXMarkerNameFld->getStringValue();
+
+  // Evaluate the string in Matlab
+  engEvalString(m_pEngine, clearString.str().c_str());
+}
+
+//! Copy input image data to matlab.
+void MatlabScriptWrapper::_copyInputImageDataToMatlab()
+{
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputImageDataToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  for(int i=0; i<3; i++)
+  {
+    // Get a valid input if possible. Dummy input is considered invalid.
+    PagedImg *inImg = getUpdatedInImg(i);
+
+    if(!(inImg == DummyOp::getGlobalInstance().getOutImg(0)))
+    {
+      // If we get an invalid pointer to the image we abort.
+      if (!inImg) {
+        ML_PRINT_ERROR("MatlabScriptWrapper::_copyInputImageDataToMatlab()", ML_BAD_INPUT_IMAGE_POINTER, "Could not find input image. Aborting.");
+        return;
+      }
+
+      // Get input image size.
+      Vector imgSize = inImg->getImgExt();
+
+      // Declare data pointer here and set it to null. Data will then only
+      // be allocated once for the first slice in the getTile() function below.
+      void *data = NULL;
+
+      // Get whole image.
+      MLErrorCode localErr =
+        getTile(getInOp(i),getInOpIndex(i),
+                SubImgBox(Vector(0, 0, 0, 0, 0, 0),
+                Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
+                inImg->getDataType(),
+                &data,
+                ScaleShiftData(1,0));
+
+      // Check and save error code if necessary.
+      if (localErr != ML_RESULT_OK) {
+        ML_PRINT_ERROR("MatlabScriptWrapper::copyInputImageDataToMatlab()", localErr, "Could not get input image tile. Aborting.");
+        return;
+      }
+
+      // Need also to have storage for complete output image.
+      //MLuint32 inDataSize = inImg->getBoxFromImgExt().getExt().getStrides().u;
+      const MLuint32 inDataSize = imgSize.x*imgSize.y*imgSize.z*imgSize.c*imgSize.t*imgSize.u;
+
+      // Set Matlab image extent.
+      const mwSize insizesArray[6] = {imgSize.x, imgSize.y, imgSize.z, imgSize.c, imgSize.t, imgSize.u};
+
+      // Copy different types of images from MeVisLab.
+      mxClassID inputClass;
+      int elementSize;
+      switch (inImg->getDataType()) {
+        case MLdoubleType: inputClass = mxDOUBLE_CLASS; elementSize = sizeof(double);   break;
+        case MLfloatType:  inputClass = mxSINGLE_CLASS; elementSize = sizeof(float);    break;
+        case MLint8Type:   inputClass = mxINT8_CLASS;   elementSize = sizeof(int8_T);   break;
+        case MLuint8Type:  inputClass = mxUINT8_CLASS;  elementSize = sizeof(uint8_T);  break;
+        case MLint16Type:  inputClass = mxINT16_CLASS;  elementSize = sizeof(int16_T);  break;
+        case MLuint16Type: inputClass = mxUINT16_CLASS; elementSize = sizeof(uint16_T); break;
+        case MLint32Type:  inputClass = mxINT32_CLASS;  elementSize = sizeof(int32_T);  break;
+        case MLuint32Type: inputClass = mxUINT32_CLASS; elementSize = sizeof(uint32_T); break;
+        case MLint64Type:  inputClass = mxINT64_CLASS;  elementSize = sizeof(int64_T);  break;
+        default:
+          inputClass = mxDOUBLE_CLASS;
+          elementSize = sizeof(double);
+          std::cerr << "_copyInputImageDataToMatlab(): Output type from MeVisLab not supported!" << std::endl << std::flush;
+      }
+      // Create numeric array
+      mxArray *m_pImage = mxCreateNumericArray(6, insizesArray, inputClass, mxREAL);
+
+      // Copy data to Matlab array.
+      memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
+
+      // Get input names from gui.
+      std::string inputName = _inDataNameFld[i]->getStringValue();
+      // Write data to Matlab.
+      engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
+
+      mxDestroyArray(m_pImage); m_pImage = NULL;
+
+      // Free allocated memory for holding a slice.
+      freeTile(data);
+      data = NULL;
+    }
+  }
+}
+
+//! Copy input XMarkerList to matlab.
+void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
+{
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputXMarkerToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  // Get input list.
+  XMarkerList inputXMarkerList = *((XMarkerList*)_inputXMarkerListFld->getBaseValue());
+
+  // Internal loop.
+  size_t i = 0;
+
+  // Get input list name from GUI.
+  std::string inXMarkerStr = _inXMarkerNameFld->getStringValue();
+
+  // Strings to evaluate.
+  std::ostringstream setPos, setVec, setType;
+  setPos << inXMarkerStr.c_str() <<".pos=[";
+  setVec << inXMarkerStr.c_str() << ".vec=[";
+  setType << inXMarkerStr.c_str() << ".type=[";
+
+  // Get XMarkerList size and go through all list step by step.
+  const size_t listSize = inputXMarkerList.size();
+  for(i = 0; i < listSize; i++)
+  {
+    XMarker marker = inputXMarkerList[i];
+
+    // Write pos, vec and type to strings.
+    setPos<<std::dec<<marker.x()<<","<<std::dec<<marker.y()<<","<<std::dec<<marker.z()
+      <<","<<std::dec<<marker.c()<<","<<std::dec<<marker.t()<<","<<std::dec<<marker.u()<<";";
+    setVec<<std::dec<<marker.vx()<<","<<std::dec<<marker.vy()<<","<<std::dec<<marker.vz()<<";";
+    setType<<std::dec<<marker.type<<";";
+  }
+
+  setPos<<"]";
+  setVec<<"]";
+  setType<<"]";
+  // Put XMarkerList into matlab structure.
+  engEvalString(m_pEngine, setPos.str().c_str());
+  engEvalString(m_pEngine, setVec.str().c_str());
+  engEvalString(m_pEngine, setType.str().c_str());
+}
+
 //! Gets XMarkerList from Matlab and copies results into output XMarkerList.
 void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
 {
@@ -728,12 +771,12 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_getXMarkerBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_getXMarkerBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
   // Internal loop.
   size_t i=0, j=0;
-  // Get names form gui.
+  // Get names from GUI.
   std::string outXMarkerStr = _outXMarkerNameFld->getStringValue();
   // Compose temp string to execute in matlab.
   std::ostringstream executeStr;
@@ -844,7 +887,7 @@ void MatlabScriptWrapper::_getScalarsBackFromMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_getScalarsBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_getScalarsBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
@@ -870,7 +913,7 @@ void MatlabScriptWrapper::_copyInputStringsToMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_copyInputStringsToMatlab(): Cannot find matlab engine!" << std::endl << std::flush;
+    std::cerr << "_copyInputStringsToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
   // Internal loop.
@@ -892,7 +935,7 @@ void MatlabScriptWrapper::_getStringsBackFromMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_getStringsBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_getStringsBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
@@ -923,7 +966,7 @@ void MatlabScriptWrapper::_copyInputVectorsToMatlab()
   // Proof if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_copyInputVectorsToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_copyInputVectorsToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
   // Internal loop.
@@ -949,7 +992,7 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_getVectorssBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_getVectorssBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
@@ -975,7 +1018,7 @@ void MatlabScriptWrapper::_copyInputMatricesToMatlab()
   // Proof if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_copyInputMatricesToMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_copyInputMatricesToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
   // Internal loop.
@@ -1004,7 +1047,7 @@ void MatlabScriptWrapper::_getMatricesBackFromMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_getMatricesBackFromMatlab(): Cannot finding matlab engine!" << std::endl << std::flush;
+    std::cerr << "_getMatricesBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
@@ -1025,61 +1068,6 @@ void MatlabScriptWrapper::_getMatricesBackFromMatlab()
   }
   mxDestroyArray(temp);
   temp = NULL;
-}
-
-//! Check if Matlab is started.
-bool MatlabScriptWrapper::_checkMatlabIsStarted()
-{
-  if(0 == engEvalString(m_pEngine, "mevTestIfMatlabIsRunning=3.14"))
-  {
-    engEvalString(m_pEngine, "clear mevTestIfMatlabIsRunning");
-    return true;
-  }
-  else
-  {
-    return false;
-  }
-}
-
-void MatlabScriptWrapper::_clearAllVariables()
-{
-  std::ostringstream clearString;
-  clearString << "clear ";
-
-  // Clear scalars
-  for(int i=0; i<6; i++) {
-    clearString << _scalarNameFld[i]->getStringValue() << " ";
-  }
-
-  // Clear strings
-  for(int i=0; i<6; i++) {
-    clearString << _stringNameFld[i]->getStringValue() << " ";
-  }
-
-  // Clear matrices
-  for(int i=0; i<3; i++) {
-    clearString << _matrixNameFld[i]->getStringValue() << " ";
-  }
-
-
-  // Clear input images
-  for(int i=0; i<3; i++) {
-    clearString << _inDataNameFld[i]->getStringValue() << " ";
-  }
-
-  // Clear output images
-  for(int i=0; i<3; i++) {
-    clearString << _outDataNameFld[i]->getStringValue() << " ";
-  }
-
-  // Clear input XMarker data
-  clearString << _inXMarkerNameFld->getStringValue() << " ";
-
-  // Clear output XMarker data
-  clearString << _outXMarkerNameFld->getStringValue();
-
-  // Evaluate the string in Matlab
-  engEvalString(m_pEngine, clearString.str().c_str());
 }
 
 ML_END_NAMESPACE

@@ -77,11 +77,11 @@ public:
   //! \return Region of input image needed to compute the region \c outSubImgBox on output \c outIndex.
   virtual SubImgBox calcInSubImageBox (int inIndex, const SubImgBox &outSubImgBox, int outIndex);
   
-  //! Request input image in fixed datatypes according to user choice
+  //! Request input image in basic datatypes according to user choice
   //! \param inIndex        The input of which the datatype shall be set.
   //! \param props          The properties of input image upon calling of method.
   //! \param outIndex       The index of the output image.
-  virtual void calcInSubImageProps(int /*inIndex*/, InSubImageProps &/*props*/, int /*outIndex*/);
+  virtual void calcInSubImageProps(int inIndex, InSubImageProps &/*props*/, int /*outIndex*/);
   
   //! Calculates page \c outSubImg of output image with index \c outIndex by using \c inSubimgs.
   //! \param outSubImg The subimage of output image \c outIndex calculated from \c inSubImgs.
@@ -98,29 +98,29 @@ public:
   //  void calcOutSubImage (TSubImg<T> *outSubImg, int outIndex, TSubImg<T> *inSubImg1);
   //  virtual void calcOutSubImage (SubImg *outSubImg, int outIndex, SubImg *inSubImg);
   
-  
   //@}
 
 private:
   // ----------------------------------------------------------
   //@{ \name Module internal methods declarations
   // ----------------------------------------------------------
+  //! Loads matlab script from a file, pastes it into script field and saves user written script. 
+  bool _loadMatlabScriptFromFile(std::string& evaluateString);
+  //! Check if Matlab is started.
+  bool _checkMatlabIsStarted();
+  //! Clear all variables that have been put in the Matlab workspace.
+  void _clearAllVariables();
+
   //! Copies input image data into Matlab.
   void _copyInputImageDataToMatlab();
   //! Copies input XMarkerList into Matlab.
   void _copyInputXMarkerToMatlab();
-  //! Loads matlab script from a file, pastes it into script field and saves user written script. 
-  bool _loadMatlabScriptFromFile(std::string& evaluateString);
-  //! Gets XMarkerList from Matlab and copies results into output XMarkerList.
+  //! Copies XMarkerList from Matlab and copies results into output XMarkerList.
   void _getXMarkerBackFromMatlab();
   //! Copies scalar values to matlab.
   void _copyInputScalarsToMatlab();
   //! Copies scalar values from matlab.
   void _getScalarsBackFromMatlab();
-  //! Check if Matlab is started.
-  bool _checkMatlabIsStarted();
-  //! Clear all variables that have been put in the Matlab workspace.
-  void _clearAllVariables();
   //! Copies string values to matlab.
   void _copyInputStringsToMatlab();
   //! Copies string values from matlab.
@@ -133,6 +133,7 @@ private:
   void _copyInputMatricesToMatlab();
   //! Copies matrix values from matlab.
   void _getMatricesBackFromMatlab();
+
   // ----------------------------------------------------------
   //@{ \name Module field declarations
   // ----------------------------------------------------------
@@ -163,7 +164,7 @@ private:
   StringField *_inXMarkerNameFld;
   StringField *_outXMarkerNameFld;
   //@}
-  
+
   //! If true, the module updates on field changes.
   BoolField* _autoCalculationFld;
   //! Status messages.
@@ -172,26 +173,22 @@ private:
   NotifyField* _calculateFld;
   //! Restart Matlab button.
   NotifyField* _restartMatlabFld;
-  
 
   //{@ Scalar float values.
   DoubleField *_scalarFld[6];
   StringField *_scalarNameFld[6];
   //@}
- 
-  //{@ String values.
-  StringField *_stringFld[6];
-  StringField *_stringNameFld[6];
-  //@}
-
-  //{@ Matrix values.
+  //{@ Vector values.
   Vec4fField *_vectorFld[6];
   StringField *_vectorNameFld[6];
   //@}
-
   //{@ Matrix values.
   MatrixField *_matrixFld[3];
   StringField *_matrixNameFld[3];
+  //@}
+  //{@ String values.
+  StringField *_stringFld[6];
+  StringField *_stringNameFld[6];
   //@}
 
   //! Implements interface for the runtime type system of the ML.
