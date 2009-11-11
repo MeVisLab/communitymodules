@@ -22,9 +22,9 @@ MLModule MatlabScriptWrapper {
   seeAlso        = ""
   documentation  = "$(LOCAL)/html/MatlabScriptWrapper.html"
   exampleNetwork = "$(LOCAL)/networks/MatlabScriptWrapperExample.mlab"
-  
+
   Window {
-  width = 500
+  width = 600
   Category Main {
     Vertical {
       margin = 4
@@ -33,7 +33,7 @@ MLModule MatlabScriptWrapper {
         autoApply = Yes
         showLineNumbers = Yes
       }
-    
+
       CheckBox useExternalScript {}
       Horizontal {
         Field matlabScriptPath {
@@ -75,8 +75,8 @@ MLModule MatlabScriptWrapper {
       Field status { title = "Status:" edit = No }
       Button update { alignX = Left title = "Update" }
     }
-  }
-  Category Scalars{
+  } // Category Main
+  Category Scalars {
     Horizontal {
       Vertical {
         Horizontal {
@@ -105,7 +105,58 @@ MLModule MatlabScriptWrapper {
         }
       }
     }
-  }
+  } // Category Scalars
+  Category Vectors {
+    Horizontal {
+      Vertical {
+        Horizontal {
+          Field vectorName0 {title = "Name:" expandX = yes}
+          Field vector0 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName1 {title = "Name:" expandX = yes}
+          Field vector1 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName2 {title = "Name:" expandX = yes}
+          Field vector2 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName3 {title = "Name:" expandX = yes}
+          Field vector3 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName4 {title = "Name:" expandX = yes}
+          Field vector4 {title = "Value:" expandX = yes}
+        }
+        Horizontal {
+          Field vectorName5 {title = "Name:" expandX = yes}
+          Field vector5 {title = "Value:" expandX = yes}
+        }
+      }
+    }
+  } // Category Vectors
+  Category Matrices {
+    Horizontal {
+      Vertical {
+        Vertical {
+          //Field matrixName0 { title = "Name:" alignY = Top visibleOn = numberOfMatrices }
+          //TextView matrix0 { title = "Value:" maxh = 93 autoApply = Yes visibleOn = numberOfMatrices }
+          
+          Field matrixName0 {title = "Name:" expandX = yes}
+          TextView matrix0 {title = "Value:" maxh = 93 expandX = yes autoApply = Yes}
+        }
+        Vertical {
+          Field matrixName1 {title = "Name:" expandX = yes}
+          TextView matrix1 {title = "Value:" maxh = 93 expandX = yes autoApply = Yes}
+        }
+        Vertical {
+          Field matrixName2 {title = "Name:" expandX = yes}
+          TextView matrix2 {title = "Value:" maxh = 93 expandX = yes autoApply = Yes}
+        }
+      }
+    }
+  } // Category Matrices
   Category Strings {
     Horizontal {
       Vertical {
@@ -135,55 +186,7 @@ MLModule MatlabScriptWrapper {
         }
       }
     }
-  }
-  Category Vectors{
-    Horizontal {
-      Vertical {
-        Horizontal {
-          Field vectorName0 {title = "Name:" expandX = yes}
-          Field vector0 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName1 {title = "Name:" expandX = yes}
-          Field vector1 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName2 {title = "Name:" expandX = yes}
-          Field vector2 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName3 {title = "Name:" expandX = yes}
-          Field vector3 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName4 {title = "Name:" expandX = yes}
-          Field vector4 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName5 {title = "Name:" expandX = yes}
-          Field vector5 {title = "Value:" expandX = yes}
-        }
-      }
-    }
-  }
-  Category Matrices {
-    Horizontal {
-      Vertical {
-        Vertical {
-          Field matrixName0 {title = "Name:" expandX = yes}
-          TextView matrix0 {title = "Value:" expandX = yes autoApply = Yes}
-        }
-        Vertical {
-          Field matrixName1 {title = "Name:" expandX = yes}
-          TextView matrix1 {title = "Value:" expandX = yes autoApply = Yes}
-        }
-        Vertical {
-          Field matrixName2 {title = "Name:" expandX = yes}
-          TextView matrix2 {title = "Value:" expandX = yes autoApply = Yes}
-        }
-      }
-    }
-  }
+  } // Category Strings
   } // Window
 } // MLModule MatlabScriptWrapper
 
