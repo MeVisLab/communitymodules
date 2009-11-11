@@ -418,7 +418,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
         //break;
       default:
         getOutImg(outIndex)->setDataType(ML_BAD_DATA_TYPE);
-        std::cerr << "calcOutImageProps(): Output type from Matlab not supported!" << std::endl << std::flush;
+        std::cerr << "calcOutImageProps(): Output type from Matlab not supported" << std::endl << std::flush;
     }
     mxDestroyArray(m_pImage); m_pImage = NULL;
 
@@ -472,9 +472,7 @@ SubImgBox MatlabScriptWrapper::calcInSubImageBox (int /*inIndex*/, const SubImgB
 //----------------------------------------------------------------------------------
 //! Type specific page calculation.
 //----------------------------------------------------------------------------------
-void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
-                                           int outIndex,
-                                           SubImg* /*inSubImgs*/)
+void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg, int outIndex, SubImg* /*inSubImgs*/)
 {
   ML_TRACE_IN("MatlabScriptWrapper::calcOutSubImage ()");
 
@@ -505,7 +503,7 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg,
         //break;
       default:
         outputClass = ML_BAD_DATA_TYPE;
-        std::cerr << "calcOutSubImage(): Output type from Matlab not supported!" << std::endl << std::flush;
+        std::cerr << "calcOutSubImage(): Output type from Matlab not supported" << std::endl << std::flush;
     }
     SubImg subImgBuf(outSubImg->getBox(), outputClass, mxGetPr(m_pImage));
     outSubImg->copySubImage(subImgBuf);
@@ -606,7 +604,6 @@ void MatlabScriptWrapper::_clearAllVariables()
     clearString << _matrixNameFld[i]->getStringValue() << " ";
   }
 
-
   // Clear input images
   for(int i=0; i<3; i++) {
     clearString << _inDataNameFld[i]->getStringValue() << " ";
@@ -694,7 +691,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
         default:
           inputClass = mxDOUBLE_CLASS;
           elementSize = sizeof(double);
-          std::cerr << "_copyInputImageDataToMatlab(): Output type from MeVisLab not supported!" << std::endl << std::flush;
+          std::cerr << "_copyInputImageDataToMatlab(): Output type from MeVisLab not supported" << std::endl << std::flush;
       }
       // Create numeric array
       mxArray *m_pImage = mxCreateNumericArray(6, insizesArray, inputClass, mxREAL);
@@ -801,9 +798,10 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
   mxArray *m_type = engGetVariable(m_pEngine, "tmpOutXMarkerListType");
   engEvalString(m_pEngine, "clear tmpOutXMarkerListType");
 
-  // Get data from matlab array.
-  if(m_pos && !mxIsEmpty(m_pos))
-  {
+  // Get data from Matlab array.
+  if((m_pos  && !mxIsEmpty(m_pos) && mxGetClassID(m_pos) ==mxDOUBLE_CLASS) &&
+     (m_vec  && !mxIsEmpty(m_vec) && mxGetClassID(m_vec) ==mxDOUBLE_CLASS) &&
+     (m_type && !mxIsEmpty(m_type)&& mxGetClassID(m_type)==mxDOUBLE_CLASS)) {
     double *dataPos = static_cast<double*>(mxGetPr(m_pos));
     double *dataVec = static_cast<double*>(mxGetPr(m_vec));
     double *dataType = static_cast<double*>(mxGetPr(m_type));
@@ -897,10 +895,13 @@ void MatlabScriptWrapper::_getScalarsBackFromMatlab()
   for(MLint i=0; i<6; i++)
   {
     temp = engGetVariable(m_pEngine, (_scalarNameFld[i]->getStringValue()).c_str());
-    if(temp!=NULL)
-    {
-      double *fieldVal = static_cast<double*>(mxGetPr(temp));
-      _scalarFld[i]->setDoubleValue(fieldVal[0]);
+    if(temp!=NULL) {
+      if(mxGetClassID(temp)==mxDOUBLE_CLASS) {
+        double *fieldVal = static_cast<double*>(mxGetPr(temp));
+        _scalarFld[i]->setDoubleValue(fieldVal[0]);
+      } else {
+        std::cerr << "_getVectorsBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
+      }
     }
   }
   mxDestroyArray(temp);
@@ -992,7 +993,7 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
-    std::cerr << "_getVectorssBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    std::cerr << "_getVectorsBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
 
@@ -1002,10 +1003,17 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
   for(MLint i=0; i<6; i++)
   {
     temp = engGetVariable(m_pEngine, (_vectorNameFld[i]->getStringValue()).c_str());
-    if(temp!=NULL)
-    {
-      double *fieldVal = static_cast<double*>(mxGetPr(temp));
-      _vectorFld[i]->setVec4fValue(vec4(fieldVal[0],fieldVal[1],fieldVal[2],fieldVal[3]));
+    if(temp!=NULL) {
+      if(mxGetClassID(temp)==mxDOUBLE_CLASS) {
+        double *fieldVal = static_cast<double*>(mxGetPr(temp));
+        if(mxGetM(temp)==1 && mxGetN(temp)==4) {
+          _vectorFld[i]->setVec4fValue(vec4(fieldVal[0],fieldVal[1],fieldVal[2],fieldVal[3]));
+        } else {
+          std::cerr << "_getVectorsBackFromMatlab(): Incorrect vector size" << std::endl << std::flush;
+        }
+      } else {
+         std::cerr << "_getVectorsBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
+      }
     }
   }
   mxDestroyArray(temp);
@@ -1057,13 +1065,20 @@ void MatlabScriptWrapper::_getMatricesBackFromMatlab()
   for(MLint i=0; i<3; i++)
   {
     temp = engGetVariable(m_pEngine, (_matrixNameFld[i]->getStringValue()).c_str());
-    if(temp!=NULL)
-    {
-      double *fieldVal = static_cast<double*>(mxGetPr(temp));
-      _matrixFld[i]->setMatrixValue(mat4(fieldVal[0],fieldVal[4],fieldVal[8],fieldVal[12],
-                                         fieldVal[1],fieldVal[5],fieldVal[9],fieldVal[13],
-                                         fieldVal[2],fieldVal[6],fieldVal[10],fieldVal[14],
-                                         fieldVal[3],fieldVal[7],fieldVal[11],fieldVal[15]));
+    if(temp!=NULL) {
+      if(mxGetClassID(temp)==mxDOUBLE_CLASS) {
+        double *fieldVal = static_cast<double*>(mxGetPr(temp));
+        if(mxGetM(temp)==4 && mxGetN(temp)==4) {
+          _matrixFld[i]->setMatrixValue(mat4(fieldVal[0],fieldVal[4], fieldVal[8],fieldVal[12],
+                                             fieldVal[1],fieldVal[5], fieldVal[9],fieldVal[13],
+                                             fieldVal[2],fieldVal[6],fieldVal[10],fieldVal[14],
+                                             fieldVal[3],fieldVal[7],fieldVal[11],fieldVal[15]));
+        } else {
+          std::cerr << "_getMatricesBackFromMatlab(): Incorrect matrix size" << std::endl << std::flush;
+        }
+      } else {
+        std::cerr << "_getMatricesBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
+      }
     }
   }
   mxDestroyArray(temp);
