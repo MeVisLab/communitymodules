@@ -40,8 +40,11 @@
 
 // Local includes
 #include "MLMatlabScriptWrapperSystem.h"
-#include "MatlabCommon/engine.h"
 #include "mlXMarkerList.h"
+
+// Include the Matlab engine. Note that the correct path to this
+// file must be set in the MLMatlabScriptWrapper.pro file.
+#include "engine.h"
 
 ML_START_NAMESPACE
 
