@@ -15,7 +15,7 @@ MatlabScriptWrapper yourself. The basic steps for doing this are explained below
   as compiler.
   
 Steps 2 and 3 describe the compile process under Windows. Similar steps are
-required for Windows or Linux.
+required for Mac OS X or Linux.
   
 2. In the MLMatlabScriptWrapper.pro file, the path to the Matlab libraries must be set.
    For this, you will need to locate the required Matlab *.lib files. For example, 
@@ -52,6 +52,7 @@ required for Windows or Linux.
    If the module is still red, the DependencyWalker program can be used to find out which DLL-files that are missing.
    If you have DependencyWalker installed, it can be executed by right-clicking on the red MatlabScriptWrapper module
    in MeVisLab and then choosing "Debugging"->"Show DLL Dependency"
+   On Linux this can be done with /usr/bin/ldd
    
 If you experience troubles, please search the MeVisLab forum http://www.mevis-research.de/cgi-bin/discus/discus.cgi
 
@@ -60,3 +61,7 @@ If you experience troubles, please search the MeVisLab forum http://www.mevis-re
 General hints:
 
 - Under Windows, you may have to execute the command "matlab \regserver" from a Windows command prompt (not the Matlab prompt!).
+- Under Linux you need to set your LD_LIBRARY_PATH to include the matlab directories before you run MeVisLab:
+    setenv LD_LIBRARY_PATH ${MATLAB_ROOT}/bin/glnxa64/:$LD_LIBRARY_PATH
+  Replace ${MATLAB_ROOT} with the directory where matlab is installed. Use /bin/glnx86/ for the 32 bit version.
+  Should the module still be red also add ${MATLAB_ROOT}/sys/os/glnxa64/ to your LD_LIBRARY_PATH.
