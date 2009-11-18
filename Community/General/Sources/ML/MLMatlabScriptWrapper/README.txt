@@ -14,8 +14,6 @@ MatlabScriptWrapper yourself. The basic steps for doing this are explained below
   If you use Windows, the free Visual Studio Express version may be used
   as compiler.
   
-  Problems have been reported using the MatlabScriptWrapper module with Matlab 2009.
-  
 Steps 2 and 3 describe the compile process under Windows. Similar steps are
 required for Windows or Linux.
   
@@ -39,9 +37,21 @@ required for Windows or Linux.
    scanned by inspecting the Debug Output window.
 
 5. When the MatlabScriptWrapper module is dragged onto the MeVisLab workspace, a Matlab session should start
-   and a Matlab console window appear. If the module is red, make sure that you started the Release mode of
-   MeVisLab if you compiled in release mode, or in Debug mode if you compiled in debug mode. If the module
-   is still red, the DependencyWalker program can be used to find out which DLL-files that are missing.
+   and a Matlab console window appear. If the module is red, the correct DLL files are not found or loaded.
+   Check the following:
+   
+   - That you started the Release mode of MeVisLab if you compiled in release mode,
+     or in Debug mode if you compiled in debug mode.
+   - That the path to the Matlab DLL-files is known to the system. Under Windows, you may have to modify the
+     PATH environment variable manually (this has been reported with the Matlab 2009 versions). The Matlab
+     DLL files are found in a subdirectory in the $MATLABROOT$/bin/ directory, e.g., in
+     C:\Program Files\MATLAB\R2007b\bin\win32
+     Make sure that this directory is in the PATH environment variable and restart MeVisLab after the PATH variable
+     has been changed.
+     
+   If the module is still red, the DependencyWalker program can be used to find out which DLL-files that are missing.
+   If you have DependencyWalker installed, it can be executed by right-clicking on the red MatlabScriptWrapper module
+   in MeVisLab and then choosing "Debugging"->"Show DLL Dependency"
    
 If you experience troubles, please search the MeVisLab forum http://www.mevis-research.de/cgi-bin/discus/discus.cgi
 
