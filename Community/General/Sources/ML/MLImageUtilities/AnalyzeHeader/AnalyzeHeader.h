@@ -37,6 +37,8 @@ public:
 private:
   StringField *_filenameFld;
 
+  Vec4fField *_dimensionsFld;
+  Vec4fField *_voxelSizeFld;
 
   FloatField *_funused1Fld;
   FloatField *_funused2Fld;

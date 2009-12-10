@@ -28,10 +28,12 @@ AnalyzeHeader::AnalyzeHeader() : BaseOp(0, 0) {
   
   (_filenameFld = getFieldContainer()->addString("filename"))->setStringValue("");
 
-
   (_funused1Fld = getFieldContainer()->addFloat("funused1"))->setFloatValue(0.0f);
   (_funused2Fld = getFieldContainer()->addFloat("funused2"))->setFloatValue(0.0f);
   (_funused3Fld = getFieldContainer()->addFloat("funused3"))->setFloatValue(0.0f);
+
+  (_dimensionsFld = getFieldContainer()->addVec4f("dimensions"))->setVec4fValue(vec4(0.0f,0.0f,0.0f,0.0f));
+  (_voxelSizeFld = getFieldContainer()->addVec4f("voxelSize"))->setVec4fValue(vec4(0.0f,0.0f,0.0f,0.0f));
         
   handleNotificationOn();
 }
@@ -78,7 +80,7 @@ void AnalyzeHeader::handleNotification (Field *field) {
       
     FILE *file;
     int nr,i;
-    unsigned short d[3];
+    unsigned short d[8];
     bool swapendian;
 
     int hdrsize,extents,glmax,glmin,views,vols_added,start_field,field_skip,omax,
@@ -89,8 +91,11 @@ void AnalyzeHeader::handleNotification (Field *field) {
     unsigned short session_error,unused1,datatypean,bitpix,dim_un0,origin[5];
     float pixdim[8],vox_offset,cal_max,cal_min,compressed,verified;
 
-
     float funused1 = 0.0f, funused2 = 0.0f, funused3 = 0.0f;
+    for (i = 0;i < 8; i ++) {
+      d[i] = 0;
+      pixdim[i] = 0.0f;
+    }
 
 
     file=fopen(filename,"rb");
@@ -110,16 +115,10 @@ void AnalyzeHeader::handleNotification (Field *field) {
         fread(&extents,4,1,file);if (swapendian) swap(&extents,4);
         fread(&session_error,2,1,file);if (swapendian) swap(&session_error,2);
         fread(&regular,1,1,file);
-        fread(&hkey_un0,1,1,file);
-       
-        fseek(file,2,SEEK_CUR);//skip two bytes
-        fread(&d[0],2,1,file);if (swapendian) swap(&d[0],2);
-        fread(&d[1],2,1,file);if (swapendian) swap(&d[1],2);
-        fread(&d[2],2,1,file);if (swapendian) swap(&d[2],2);
-        //dim[0]=d[0];
-        //dim[1]=d[1];
-        //dim[2]=d[2];
-        fseek(file,8,SEEK_CUR);//skip eight bytes
+        fread(&hkey_un0,1,1,file);       
+        for (i=0;i<8;i++) {
+          fread(&d[i],2,1,file);if (swapendian) swap(&d[i],2);
+        }
         fread(&vox_units[0],4,1,file);
         fread(&cal_units[0],8,1,file);
         fread(&unused1,2,1,file);if (swapendian) swap(&unused1,2);
@@ -129,9 +128,6 @@ void AnalyzeHeader::handleNotification (Field *field) {
         for (i=0;i<8;i++) {
           fread(&pixdim[i],4,1,file);if (swapendian) swap(&pixdim[i],4);
         }
-	  	   //voxdim[0]=pixdim[1];
-	  	   //voxdim[1]=pixdim[2];
-		    //voxdim[2]=pixdim[3];
         fread(&vox_offset,4,1,file);if (swapendian) swap(&vox_offset,4);
         fread(&funused1,4,1,file);if (swapendian) swap(&funused1,4);
         fread(&funused2,4,1,file);if (swapendian) swap(&funused2,4);
@@ -168,14 +164,14 @@ void AnalyzeHeader::handleNotification (Field *field) {
       fclose(file);
     }
 
-
     _funused1Fld->setFloatValue(funused1);
     _funused2Fld->setFloatValue(funused2);
     _funused3Fld->setFloatValue(funused3);
-
-
+    _dimensionsFld->setVec4fValue(vec4(d[1],d[2],d[3],d[4]));
+    _voxelSizeFld->setVec4fValue(vec4(pixdim[1],pixdim[2],pixdim[3],pixdim[4]));
 
   }
+
   BaseOp::handleNotification(field);
 }
 
