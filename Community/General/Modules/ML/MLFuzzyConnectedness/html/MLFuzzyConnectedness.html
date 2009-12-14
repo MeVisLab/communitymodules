@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <meta name="Description" content="MeVisLab module help page template">
+
+
+
+
+
+  
+  
+  
+  
+  
+  <title>Module Help Page</title>
+</head>
+
+
+<body>
+
+
+
+
+
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;
+<a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp;
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp;
+<a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#KnownBugs">Known
+Bugs</a>
+<hr width="100%"></center>
+
+
+
+
+
+
+<h2>FuzzyConnectedness</h2>
+
+
+
+
+
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+
+
+
+
+
+<blockquote>Given an input image and an image with seed points, the&nbsp;<span style="font-weight: bold;">FuzzyConnectedness</span> module
+calculates a map of connectivities from each voxel to the seed points,
+as well as a label image in which each voxel is labeled according to
+which seed point it is closest to in the fuzzy connectivity sense. Due
+to the definition of fuzzy connectedness (see below), the implemented
+algorithm is suited for segmenting or separating bright objects on a
+dark background.</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+
+
+
+
+
+<blockquote>A 2D or 3D scalar gray-value image&nbsp; is attached to <span style="font-weight: bold;">input0</span>.
+An image of the same size&nbsp;containing different seed regions,
+labeled with integer number from 1 to 64,&nbsp; is attached to <span style="font-weight: bold;">input1</span>.<br>
+
+
+As shown in the example network, the <span style="font-weight: bold;">SoView2DMarkerEditor</span> can be used together with the <span style="font-weight: bold;">MarkerToMask</span> module to produce the seed region image. Set the <span style="font-style: italic;">Current Type</span> value in <span style="font-weight: bold;">SoView2DMarkerEditor</span> to values between 1 and 63 to define different seed regions, and use the <span style="font-style: italic;">Marker Type</span> option in the&nbsp;<span style="font-weight: bold;">MarkerToMask</span> module.
+
+
+
+</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="Details"></a>Details</h3>
+
+
+
+
+
+
+<blockquote>This module implements the fuzzy connectedness algorithm published in:<br>
+
+
+  <br>
+
+
+Xavier Tizon and &Ouml;rjan Smedby<br>
+
+
+  <span style="font-style: italic;">Segmentation with gray-scale connectedness can separate arteries and veins in MRA </span><br>
+
+
+J. Magn. Reson. Imaging 2002; 15:438-445<br>
+
+
+  <br>
+
+
+
+
+
+As described in this paper the fuzzy connectedness to given seed regions are calculated. <br>
+
+
+
+
+A path&nbsp;<img style="width: 19px; height: 19px;" alt="rho" src="images/Rho.png"> between between two voxels u,v is defined as a&nbsp;sequence of distinct voxels,<br>
+
+
+
+
+&nbsp;<img style="width: 149px; height: 16px;" alt="u=w_0, ... , w_n=v" src="images/Path.png"><br>
+
+where each voxel in the path is a neighbor to the previous voxel in a
+8-neighborhood or 26-neighborhood in 2D and 3D respectively:<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;<img style="width: 214px; height: 21px;" alt="w_(n+1) in N(w_i) for 0&lt;= i &lt; n" src="images/Nodes.png">.<br>
+
+
+  <br>
+
+
+
+
+The strength of path&nbsp;<img style="width: 17px; height: 17px;" alt="rho" src="images/Rho.png">is the minimum of the intensity value of the traversed voxels:<br>
+
+
+
+
+  <img style="width: 199px; height: 48px;" alt="S(rho)=min_(w in rho) (g(w))" src="images/PathStrength.png"><br>
+
+
+
+
+  where <span style="font-style: italic;">g</span>(..) represent the voxel intensity. The fuzzy connectedness between a seed region and a
+voxel is the maximum strength among all paths to from the region to the voxel:<br>
+
+
+
+
+  <img style="width: 241px; height: 58px;" alt="" src="images/FuzzyConnectednessSeeds.png">.<br>
+A connectivity map is calculated for each seed region, and the output
+connectivity map is the maximum connectivity over all seed regions. The
+label map
+indicates to which seed region each voxel belongs.<br>
+
+
+
+
+
+Due to the definition of the connectedness and due to the concurrent
+approach, seed points with higher intensity will overweight&nbsp; those
+with lower intensities.<br>
+
+
+
+
+
+  <br>
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+
+
+
+
+
+<blockquote>
+  <span style="font-weight: bold;">Input0
+  </span><span style="font-size: 12pt; font-weight: normal;" lang="EN-US">must
+be a scalar volume.<span style="font-weight: bold;"><br>
+
+
+Input1</span>
+is a mask of the different seed regions. The seed regions can be
+represented by integer values from 1 to 63. Values &gt; 63 in the
+mask will be treated as barriers and the propagation will stop from
+each side.</span>
+</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="Outputs"></a>Outputs</h3>
+
+
+
+
+
+
+<blockquote><span style="font-weight: bold;">Output0</span>
+is the concurrent connectivity map. <span style="font-weight: bold;">Output1</span>
+is the label map.</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="Parameters"></a>Parameters</h3>
+
+
+
+
+
+
+<blockquote>None<br>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="EventInteract"></a>Events &amp;
+Interaction</h3>
+
+
+
+
+
+&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; None
+
+<h3>
+<a name="Example"></a>Example</h3>
+
+
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  
+  <h3><span style="font-size: 12pt; font-weight: normal;" lang="EN-US">See example network.</span></h3>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+
+
+
+
+
+<blockquote>- This module does not support paging. Therefore the complete image has to be stored.<br>
+
+
+
+
+
+- Seed voxels with high intensities will outweight seed voxels with low intensities.</blockquote>
+
+
+
+
+
+
+<h3>
+<a name="KnownBugs"></a>Known Bugs</h3>
+
+
+
+
+
+
+<blockquote>None<br>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+</body>
+</html>

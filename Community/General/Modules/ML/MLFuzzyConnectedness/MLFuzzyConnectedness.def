@@ -1,0 +1,39 @@
+// **InsertLicense** code
+//----------------------------------------------------------------------------------
+//! MLFuzzyConnectedness module definitions.
+/*!
+// \file    MLFuzzyConnectedness.def
+// \author  Markus Hüllebrand
+// \date    2009-06-12
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule MLFuzzyConnectedness
+//----------------------------------------------------------------------------------
+MLModule FuzzyConnectedness {
+  DLL            = "MLFuzzyConnectedness"
+
+  genre          = "Fuzzy"
+  author         = "Markus Hüllebrand, Chunliang Wang, Ola Friman"
+  status         = "stable"
+  comment        = "Calculates a fuzzy connectedness classification"
+  keywords       = "fuzzy connectedness classification segmentation"
+  seeAlso        = "MarkerToMask"
+  documentation  = "$(LOCAL)/html/MLFuzzyConnectedness.html"
+  exampleNetwork = "$(LOCAL)/networks/MLFuzzyConnectednessExample.mlab"
+  
+  Window {
+    Vertical {
+      margin = 5
+      Horizontal {
+        Button startButton {
+          title = "Start"
+        }
+        Field autoUpdate {}
+      }
+    } 
+  }
+} // MLModule MLFuzzyConnectedness
+
