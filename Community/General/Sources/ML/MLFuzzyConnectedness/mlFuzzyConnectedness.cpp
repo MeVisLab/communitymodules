@@ -48,7 +48,7 @@ FuzzyConnectedness::FuzzyConnectedness ()
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
-  // Initialise fields
+  //Initialise fields
   _startButtonFld = getFieldContainer()->addNotify("startButton");
   _autoUpdateFld = getFieldContainer()->addBool("autoUpdate");
 
@@ -56,7 +56,7 @@ FuzzyConnectedness::FuzzyConnectedness ()
   handleNotificationOn();
 
   // Activate parallel execution of calcOutSubImage.
-  setThreadSupport(NO_THREAD_SUPPORT);
+  setThreadSupport(NO_THREAD_SUPPORT );
 
   // Specify whether the module can only process standard scalar voxel types or
   // also registered voxel types (vec2, mat2, complexf, Vector, etc.)
@@ -75,12 +75,12 @@ FuzzyConnectedness::~FuzzyConnectedness()
 void FuzzyConnectedness::handleNotification (Field *field)
 {
   ML_TRACE_IN("FuzzyConnectedness::handleNotification ()");
-  
   // Calculation will only be performed if either the start 
-  // button is pressed or the auto update mechanism is used. 
+  // button is pressed or  the auto update mechanism is used. 
   if ((field ==_startButtonFld) || ((field != _startButtonFld) && _autoUpdateFld->isOn()))
   {
-    //´If either input image is open the calculation will be cancelled.
+    _state = ML_RESULT_OK;
+    //If either input image is open the calculation will be cancelled.
     if(!getUpdatedInImg(0) || !getUpdatedInImg(1))
     {
       _state = ML_DISCONNECTED_GRAPH;
@@ -93,16 +93,16 @@ void FuzzyConnectedness::handleNotification (Field *field)
     else
     {
       // Same extent of image data and seed point image are required
-      if ( getUpdatedInImg(0)->getImgExt() != getUpdatedInImg(1)->getImgExt() ){
-        _state = ML_BAD_DIMENSION;
+      if ( getUpdatedInImg(0)->getImgExt() != getUpdatedInImg(1)->getImgExt() )
+      {
+        _state=ML_BAD_DIMENSION;
       }
       // Calculation will be started here
       else{
         _state = calculate(getUpdatedInImg(0),getUpdatedInImg(1));
       }
     }
-
-    // Let connected modules know that the output has changed.
+    // Let the connected modules know that the output has changed.
     getOutField(0)->notifyAttachments();
     getOutField(1)->notifyAttachments();
   }
@@ -123,19 +123,21 @@ MLErrorCode FuzzyConnectedness::calculate(PagedImg *inputData, PagedImg *inputMa
   _inputTmpImg.setBox(box);
   _pointerTmpImg.setBox(box);
   // Copy input image
-  MLErrorCode status = getTile(inputData, _inputTmpImg);
+
+  MLErrorCode status =getTile(inputData->getBaseOp(),inputData->getOutIndex(),_inputTmpImg);
   if(status==ML_RESULT_OK)
-  {
+  { 
     // Copy seed points
-    status = getTile(inputMarker,_labelMapOutImg);
+    status = getTile(inputMarker->getBaseOp(),inputMarker->getOutIndex(),_labelMapOutImg);
     if(status==ML_RESULT_OK)
-    {   
+    {  
       // Allocate memory for the connectivity map.
-      _connectivityMapOutImg.allocateAsMemoryBlockHandle();
+      _connectivityMapOutImg.allocate(ML_RETURN_NULL);
+
       if(_connectivityMapOutImg.getData()!=NULL)
       {
         // Allocate memory for the temporary image used internally.
-        _pointerTmpImg.allocateAsMemoryBlockHandle();
+        _pointerTmpImg.allocate(ML_RETURN_NULL);
         if( _pointerTmpImg.getData() != NULL )
         {
           // Calculate the minimum and maximum intensity values in the image.
