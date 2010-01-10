@@ -53,6 +53,13 @@
 	NSManagedObject* currentSeedingTool;
 	NSDictionary* outputMaskResult;
 	int currentSychronizeMode;
+	float transformmatrix[16];
+	float outputTransformmatrix[16];
+	BOOL updatingROI;
+	BOOL changingParameters;
+	BOOL ifOutputMask1Available;
+	BOOL ifSupportMemorySharing;
+	
 }
 -(id)initFromNIB;
 -(void)setWindowController:(ViewerController*)viewer;
@@ -75,8 +82,15 @@
 - (void)initializeToolsBar:(NSManagedObject*)configDict;
 - (IBAction)updateOutputImage:(id)sender;
 - (void)notifyMeVisLabSeedsChanged;
+- (void)notifyMeVisLabCSOChanged;
 - (IBAction)closeCurrentWindow:(id)sender;
 -(int)checkSynchronizeMode;
 -(void)updateMasksForOutputView:(int)index;
-- (void)initializeOutputViewROI;
+- (void)initializeOutputViewBrushROI;
+- (void)updateOutputViewCSOROI:(NSDictionary*)overlayObjects;
+- (void)handleMeVisLabNotification:(NSDictionary*) parameters;
+-(void)invert4X4Matrix:(float*)inElements: (float*) outElements;
+-(double) matrixDeterminant:(float*) elem;
+-(void) matrixAdjoint: (float*) inElem: (float*) outElem;
+-(float) matrixDeterminant3x3:(float)c10:(float)c11:(float)c12:(float)c20:(float)c21:(float)c22:(float)c30:(float)c31:(float)c32;
 @end

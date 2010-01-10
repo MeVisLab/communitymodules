@@ -17,7 +17,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase
+CONFIG += dll ML MLBase MLCSO MLCSOModules
 
 MLAB_PACKAGES += Community_General \
                  MeVisLab_Standard

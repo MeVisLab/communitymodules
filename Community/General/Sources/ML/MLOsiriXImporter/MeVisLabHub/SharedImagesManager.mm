@@ -68,7 +68,7 @@
 	
 	
 }
-- (BOOL)creatASharedImage:(NSMutableDictionary*)newImage ForDescription:(NSString*)description
+- (BOOL)creatASharedImage:(NSMutableDictionary*)newImage ForDescription:(NSString*)description SupportSharedMem:(BOOL)ifSupportMemorySharing
 {
 
 	[newImage setObject:description	forKey:@"Description"];
@@ -87,8 +87,16 @@
 	
 	if(![imageType isEqualToString:@"overlay"])
 	{
-		if(![self allocMemoryBlock:newImage])
-			return NO;
+		if(ifSupportMemorySharing)
+		{
+			if(![self allocSharedMemoryBlock:newImage])
+				return NO;
+		}
+		else if(![newImage	objectForKey:@"Data"])
+		{
+			if(![self allocMemoryBlock:newImage])
+				return NO;
+		}
 
 	}
 	[allocatedImages addObject:newImage];
@@ -136,7 +144,33 @@
 	return imageMatchsWithDescrpition;
 }
 
-- (BOOL)allocMemoryBlock:(NSMutableDictionary*)anImage;
+- (BOOL)allocMemoryBlock:(NSMutableDictionary*)anImage
+{
+	long size=[[anImage objectForKey:@"MemSize"] longValue];
+	void* memaddress=nil;
+
+	@try
+	{
+		memaddress = malloc( size );
+	}
+	@catch( NSException *ne)
+	{
+		NSLog(@"failed to allocate shared memory.");
+		
+	}
+	if(memaddress)
+	{
+		NSData* tempData=[[NSData alloc] initWithBytesNoCopy:memaddress length:size freeWhenDone:YES];
+		[anImage setObject:tempData forKey:@"Data"];
+		[tempData release];
+		[anImage setObject:[NSNumber numberWithBool:NO] forKey:@"NeedUnlink"];
+	}
+	else
+		return NO;
+	return YES;
+		
+}
+- (BOOL)allocSharedMemoryBlock:(NSMutableDictionary*)anImage
 {
 	NSString* memidstr=[anImage objectForKey:@"SharedMemoryID"];
 	if(!memidstr)
@@ -186,7 +220,7 @@
 	{
 		NSData* tempData=[[NSData alloc] initWithBytesNoCopy:shmAddress length:size freeWhenDone:NO];
 		NSData* oldData=[anImage objectForKey:@"Data"];
-		if(oldData&&(signed)[oldData length]==size)
+		if(oldData&&(signed)[oldData length]>=size)
 		{
 			void* oldptr=(void*)[oldData bytes];
 			memcpy(shmAddress, oldptr, size);

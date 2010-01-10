@@ -16,18 +16,22 @@
 	//common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
 	NSConnection *incomingConnection; 
 	NSString* incomingConnectionRegisteredName;
+
 	NSString* outgoingConnectionRegisteredName;
+
 	SharedImagesManager* imagesManager;
 	id remoteObjectProxy;
+	NSConnection* remoteConnection;
 	
 	
 	//different parts
 	MeVisHubWindowController* windowController;
+	BOOL ifSupportMemorySharing;
 	
 	
 }
 //common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
-- (id) initWithIncommingConnectionName:(NSString*)aname OutgoingConnection:(NSString*)bname;
+- (id) initWithIncommingConnectionName:(NSString*)aname SupportSharedMem:(BOOL)isSupported;
 - (void)prepareToDealloc;
 - (BOOL)registerIncomingConnectionWithName:(NSString*)aname;
 - (BOOL)connectToRemoteObjectRegisteredAs:(NSString*)registeredName;
@@ -41,4 +45,6 @@
 - (void) setWindowController:(MeVisHubWindowController*)window;
 - (NSDictionary*)prepareImageForUpperBridgeFromOsiriX:(NSString*)description;
 - (void) passingOnNotificationsToWindowController:(NSDictionary*)parameters;
+
+
 @end

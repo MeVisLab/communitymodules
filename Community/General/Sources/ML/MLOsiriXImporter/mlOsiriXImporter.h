@@ -21,6 +21,7 @@
 #include "mlOperatorIncludes.h"
 #define id Id
 #include "mlXMarkerList.h"
+#include <CSOBase/CSOModuleBase/CSOGenerator.h>
 #undef id
 
 @class MeVisLab2OsiriXTBridge;
@@ -43,6 +44,7 @@ public:
 	MeVisLab2OsiriXTBridge* bridgeToOsiriX;
 	void notifyInputImagesUpdated();
 	void notifyXMarkerListUpdated();
+	void notifyCSOListUpdated();
 	void updateParameters(NSDictionary* parameters);
  
   //! Handle field changes of the field field.
@@ -88,10 +90,13 @@ private:
 
   //! When triggered, OsiriXImporter should free all memory. And set export port to empty.
   NotifyField *_ReleaseFld;
-  //! Marker input from OsiriX	
+  //! Point marker input from OsiriX	
   BaseField *_OutputXMarkerListField;
 	XMarkerList _outputXMarkerList;
-
+	//! CSO Marker input from OsiriX
+	BaseField*   _OuputCSOListFld;
+	CSOList     _outputCSOList;
+	
     //! If set true, MeVisLab will be activated from background
 	BoolField *_ShowMeVisLabWindowFld;
 	

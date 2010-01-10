@@ -354,6 +354,7 @@ enum
 // Return the memory pointer that contains the ENTIRE series (a unique memory block for all images)
 - (float*) volumePtr;
 - (float*) volumePtr: (long) i;
+- (NSData*)volumeData;
 
 // Return the index into fileList that coresponds to the index in pixList
 - (long) indexForPix: (long) pixIndex;

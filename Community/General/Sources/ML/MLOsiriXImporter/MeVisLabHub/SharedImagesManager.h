@@ -14,11 +14,12 @@
 	long uniqueIndex;
 	NSString* uniqueMemoryIDStringPrefix;
 }
-- (id)initWithIDStringPrefix:(NSString*)astring;
+- (id)initWithIDStringPrefix:(NSString*)astring ;
 - (void)releaseAllImages;
 - (void)removeImage:(NSMutableDictionary*)anImage;
-- (BOOL)creatASharedImage:(NSMutableDictionary*)newImage ForDescription:(NSString*)description;
+- (BOOL)creatASharedImage:(NSMutableDictionary*)newImage ForDescription:(NSString*)description SupportSharedMem:(BOOL)ifSupportMemorySharing;
 - (void*)getMemoryPtrForImageDescription:(NSString*)description;
 - (NSDictionary*)getImageForDescription:(NSString*)description;
 - (BOOL)allocMemoryBlock:(NSMutableDictionary*)anImage;
+- (BOOL)allocSharedMemoryBlock:(NSMutableDictionary*)anImage;
 @end

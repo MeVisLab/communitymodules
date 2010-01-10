@@ -12,6 +12,9 @@
 // Local includes
 #include "mlOsiriXImporter.h"
 #import "MeVisLab2OsiriXTBridge.h"
+#define id Id
+#include <CSOTools/CSOGeneratePathPoints.h>
+#undef id
 ML_START_NAMESPACE
 
 
@@ -105,9 +108,12 @@ OsiriXImporter::OsiriXImporter ()
     }
   }
 
-  //Marker export
+  //Points Marker export
 	_OutputXMarkerListField = fields.addBase("outputXMarkerList");
 	_OutputXMarkerListField->setBaseValue(&_outputXMarkerList);
+  //CSO based Marker export
+	_OuputCSOListFld  = fields.addBase ("outputCSOList");
+	_OuputCSOListFld->setBaseValue(&_outputCSOList);
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
@@ -145,7 +151,7 @@ OsiriXImporter::OsiriXImporter ()
 	NSDate* fixData=[NSDate dateWithString:@"2009-01-01 01:00:00 +0100"];
 	NSTimeInterval uniqueNumberForNow=[fixData timeIntervalSinceNow];
 	NSString* uniqueName=[NSString stringWithFormat:@"OsiriXImporter:%f",uniqueNumberForNow];
-	bridgeToOsiriX=[[MeVisLab2OsiriXTBridge alloc] initWithIncommingConnectionName:uniqueName OutgoingConnection:@"MeVisHub:Exporter"];
+	bridgeToOsiriX=[[MeVisLab2OsiriXTBridge alloc] initWithIncommingConnectionName:uniqueName];
 	[bridgeToOsiriX setImporterML:this];
 }
 OsiriXImporter::~OsiriXImporter()
@@ -205,31 +211,135 @@ void OsiriXImporter::notifyXMarkerListUpdated()
 	if(!anImage)
 		return;
 	// Clear _outputXMarkerList.
-	if([[anImage objectForKey:@"OverlayType"] isEqualToString:@"points"])
+	_outputXMarkerList.clearList();
+	NSString* imagetype=[anImage objectForKey:@"ImageType"];
+	
+	if([imagetype isEqualToString:@"overlay"])
 	{
-		NSArray* points=[anImage objectForKey:@"Points"];
-		_outputXMarkerList.clearList();
-		unsigned i;
-		for(i=0; i<[points count]; i++)
+		NSArray* overlayObjects=[anImage objectForKey:@"OverlayObjects"];
+		for( NSDictionary* anOverlayObject in overlayObjects)
 		{
-			// Fill marker with zeros.
-			XMarker outMarker(vec6(0),vec3(0),0);
-			NSDictionary* apoint=[points objectAtIndex:i];
-			outMarker.pos[0]=[[apoint objectForKey:@"x"] intValue];
-			outMarker.pos[1]=[[apoint objectForKey:@"y"] intValue];
-			outMarker.pos[2]=[[apoint objectForKey:@"z"] intValue];
-			outMarker.type = [[apoint objectForKey:@"value"] intValue];
-					
-			// Append XMarker to XMarkerList.
-			_outputXMarkerList.push_back(outMarker);
+			if([[anOverlayObject objectForKey:@"OverlayType"] isEqualToString:@"points"])
+			{
+				NSArray* points=[anOverlayObject objectForKey:@"Points"];
+				
+				unsigned i;
+				for(i=0; i<[points count]; i++)
+				{
+					// Fill marker with zeros.
+					XMarker outMarker(vec6(0),vec3(0),0);
+					NSDictionary* apoint=[points objectAtIndex:i];
+					outMarker.pos[0]=[[apoint objectForKey:@"x"] intValue];
+					outMarker.pos[1]=[[apoint objectForKey:@"y"] intValue];
+					outMarker.pos[2]=[[apoint objectForKey:@"z"] intValue];
+					outMarker.type = [[apoint objectForKey:@"value"] intValue];
+							
+					// Append XMarker to XMarkerList.
+					_outputXMarkerList.push_back(outMarker);
+				}
+			}
 		}
 		
 	}
 	// Update local XMarkerList and set BaseValue of the output
-	(XMarkerList*)_OutputXMarkerListField->getBaseValue();
+	_OutputXMarkerListField->setBaseValue(&_outputXMarkerList);
 	// Notify the XMarkerList output
     _OutputXMarkerListField->notifyAttachments();
 
+}
+void OsiriXImporter::notifyCSOListUpdated()
+{
+	NSString* description=[NSString stringWithString:@"InputImage4"];
+	NSDictionary* anImage=[bridgeToOsiriX getImageFromLowerBridge:description];
+	if(!anImage)
+		return;
+	// Clear _outputCSOList.
+	_outputCSOList.removeAllCSO();
+	if([[anImage objectForKey:@"ImageType"] isEqualToString:@"overlay"])
+	{
+		NSArray* overlayObjects=[anImage objectForKey:@"OverlayObjects"];
+		for( NSDictionary* anOverlayObject in overlayObjects)
+		{
+			//check if it is the right type
+			if([[anOverlayObject objectForKey:@"OverlayType"] isEqualToString:@"points"])
+				continue;
+			
+			NSArray* points=[anOverlayObject objectForKey:@"Points"];
+
+			// check if enough points are given
+			if([points count]<2)
+				continue;
+			//add seeds points to a new CSO
+
+			std::string groupLabel = [[anOverlayObject valueForKey:@"Name"] UTF8String];
+			
+			
+			CSO* cso = _outputCSOList.addCSO(false);
+			CSOGroup * agroup=_outputCSOList.getGroupByLabel(groupLabel);
+			if(!agroup)
+			{
+				agroup=_outputCSOList.addGroup(false);
+				agroup->setLabel(groupLabel);
+				
+			}
+			agroup->addCSO(cso);
+			cso->addGroup(agroup);
+			cso->setType("CSOFreehandProcessor");
+			
+			for( NSDictionary* apoint in points)
+			{
+				vec3 newCSOPos;
+				newCSOPos = vec3([[apoint objectForKey:@"x"] intValue], [[apoint objectForKey:@"y"] intValue] , [[apoint objectForKey:@"z"] intValue]);
+				cso->appendSeedAndPathPoint(newCSOPos);
+				
+			}
+			
+			if([[anOverlayObject objectForKey:@"IsColsed"] boolValue])
+			{
+				// The CSO need to be closed, but if the follow code(copied from CSOConveter) are used, the created CSO is not correct. ??????? probably the file function will call these steps anyway
+				
+	//			CSOSeedPoint* firstSeedPoint  = cso->getFirstSeedPoint();
+//				CSOSeedPoint* lastSeedPoint   = cso->getLastSeedPoint();
+//				
+//				CSOPathPoints* closingPathPoints = cso->appendPathPoints(); 
+//				
+//				closingPathPoints->tailSeedPoint = lastSeedPoint;
+//				closingPathPoints->headSeedPoint = firstSeedPoint;
+//				
+//				lastSeedPoint->succPathPoints = closingPathPoints;
+//				firstSeedPoint->predPathPoints = closingPathPoints;
+				
+				cso->setIsClosed(true);
+				cso->setIsFinished(true);
+			}
+			else
+			{
+				cso->setIsClosed(false);
+				cso->setIsFinished(true);
+			}
+			if([[anOverlayObject objectForKey:@"OverlayType"] isEqualToString:@"polygon"])
+			{
+				cso->setSubType("SUB_TYPE_CLOSED_POLYLINE");
+				CSOGeneratePathPoints::fillAllPathPointsLinear(cso, 1);
+				
+			}
+			else if([[anOverlayObject objectForKey:@"OverlayType"] isEqualToString:@"spline"])
+			{
+				cso->setSubType("SUB_TYPE_CLOSED_SPLINE");		
+				CSOGeneratePathPoints::fillAllPathPointsSplineInterpolation(cso, 1);
+				
+			}
+			
+			
+			
+			
+		}
+		
+	}
+	// Update local CSOList and set BaseValue of the output
+	_OuputCSOListFld->setBaseValue(&_outputCSOList);;
+	// Notify the CSOList output
+    _OuputCSOListFld->notifyAttachments();
 }
 void OsiriXImporter::updateParameters(NSDictionary* parameters)
 {
@@ -243,8 +353,10 @@ void OsiriXImporter::updateParameters(NSDictionary* parameters)
 		}
 		else if([akey isEqualToString:@"SeriesUID"])
 			_DICOM_Series_UIDFld->setStringValue([[parameters valueForKey:akey] UTF8String]);
-		else if([akey isEqualToString:@"MarkerUpdated"])
+		else if([akey isEqualToString:@"PointMarkerUpdated"])
 			    notifyXMarkerListUpdated();
+		else if([akey isEqualToString:@"CSOMarkerUpdated"])
+			notifyCSOListUpdated();
 		else if([akey isEqualToString:@"ShowMeVisLab"])
 		{
 			_ShowMeVisLabWindowFld->setBoolValue(1);

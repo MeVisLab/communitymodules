@@ -412,10 +412,7 @@
 		CE6A9A9108AC841300D0C1EE /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					x86_64,
-				);
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -441,6 +438,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = MeVisLabHub;
 				SECTORDER_FLAGS = "";
+				VALID_ARCHS = i386;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",

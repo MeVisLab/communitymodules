@@ -43,26 +43,39 @@
 	[operationController setSelectedObjects:[NSArray arrayWithObject:operationConfigDict]];
 	
 	NSString* operationName=[operationConfigDict valueForKey:@"OperationName"];
+	ifSupportMemorySharing=[[operationConfigDict valueForKey:@"IfSupportMemorySharing"] boolValue];
+	NSString* osiriXImporterName=[[NSString stringWithString:@"OsiriXImporter:"] stringByAppendingString:operationName];
 	
+	bridgeExportToMeVisLab=[[OsiriX2MeVisLabTBridge alloc] initWithIncommingConnectionName:@"MeVisHub:Exporter" SupportSharedMem:ifSupportMemorySharing];
+	[bridgeExportToMeVisLab setWindowController:self];
 	
-	bridgeExportToMeVisLab=[[OsiriX2MeVisLabTBridge alloc] initWithIncommingConnectionName:@"MeVisHub:Exporter" OutgoingConnection:[[NSString stringWithString:@"OsiriXImporter:"] stringByAppendingString:operationName]];
-	bridgeImportFromMeVisLab=[[OsiriX2MeVisLabTBridge alloc] initWithIncommingConnectionName:@"MeVisHub:Importer" OutgoingConnection:[[NSString stringWithString:@"OsiriXExporter:"] stringByAppendingString:operationName]];
+	NSString* osiriXExporterName=[[NSString stringWithString:@"OsiriXExporter:"] stringByAppendingString:operationName];
+	bridgeImportFromMeVisLab=[[OsiriX2MeVisLabTBridge alloc] initWithIncommingConnectionName:@"MeVisHub:Importer" SupportSharedMem:ifSupportMemorySharing];
+	[bridgeImportFromMeVisLab setWindowController:self];
 	
+	BOOL isRemoteOperation=NO;
 
 	if([self prepareInputImages])
 	{
 		//try to connect to MeVisLab
-		NSString* operationName=[NSString stringWithString:@"OsiriXImporter:"];
-		operationName=[operationName stringByAppendingString:[operationConfigDict valueForKey:@"OperationName"]];
-		if(![bridgeExportToMeVisLab connectToRemoteObjectRegisteredAs:operationName])
+		NSString* commandLineString = [operationConfigDict valueForKey:@"CommandLineStr"];
+		if([commandLineString hasPrefix:@"Remote"])
 		{
-			NSString* commandLineString = [operationConfigDict valueForKey:@"CommandLineStr"];
+			isRemoteOperation=YES;
+			if([bridgeExportToMeVisLab connectToRemoteObjectRegisteredAs:osiriXImporterName]==NO)
+				NSRunAlertPanel(@"Failed", @"Failed to run this function, Please make sure the server is running." ,nil, nil, nil);
+
+		}
+		else if(![bridgeExportToMeVisLab connectToRemoteObjectRegisteredAs:osiriXImporterName])
+		{
+
+				
 			[self runCommandLineForOperation:commandLineString];
 			int sleepTime=0;
 			do{
 				sleep(3);
 				sleepTime+=3;
-			}while(sleepTime<=30 && ([bridgeExportToMeVisLab connectToRemoteObjectRegisteredAs:operationName] == NO));
+			}while(sleepTime<=30 && ([bridgeExportToMeVisLab connectToRemoteObjectRegisteredAs:osiriXImporterName] == NO));
 			if( sleepTime>30 )
 			{
 				NSRunAlertPanel(@"Failed", @"Failed to run this function, the link to this function is broken." ,nil, nil, nil);
@@ -76,10 +89,12 @@
 		NSNumber* needshowMeVisLabGUI = [operationConfigDict valueForKey:@"IfShowMevisWindow"];
 		if(![needshowMeVisLabGUI boolValue])
 		{
+			[bridgeImportFromMeVisLab connectToRemoteObjectRegisteredAs:osiriXExporterName];
 			NSRect screenrect=[[[osrixViewController window] screen] visibleFrame];
 			[[self window]setFrame:screenrect display:NO animate:NO];
 			[[self window] setLevel:NSFloatingWindowLevel];
 			[[self window] setDelegate:self];
+			[inputImageView becomeFirstResponder];
 			[self showWindow:self];
 			[self initializeToolsBar:operationConfigDict];
 			
@@ -87,11 +102,11 @@
 			{
 				NSRunAlertPanel(@"Failed", @"Failed to intialize parameters in MeVisLab" ,nil, nil, nil);
 			}
-			if(![self prepareOutputImages])
-			{
-				NSRunAlertPanel(@"Failed", @"Failed to run this function, the connection was established, but cannot create output Images. Check MeVisLab log for more information" ,nil, nil, nil);
-				return;
-			}
+		//	if(![self prepareOutputImages])
+//			{
+//				NSRunAlertPanel(@"Failed", @"Failed to run this function, the connection was established, but cannot create output Images. Check MeVisLab log for more information" ,nil, nil, nil);
+//				return;
+//			}
 			
 			//[[NSApplication sharedApplication] runModalForWindow:[self window]];
 		}
@@ -224,22 +239,19 @@
 
 	int dimension[4]={0,0,0,0};
 	float spacing[4]={1.0,1.0,1.0,1.0};
-	float transformmatrix[16]={ 1,0,0,0,
-								0,1,0,0,
-								0,0,1,0,
-								0,0,0,1};
+	
 	float maxvalue=1, minvalue=0;
 
 	
-	// Input Image 1: the image in the OsiriX Viewer
-	NSMutableDictionary* inputImage0=[NSMutableDictionary dictionaryWithCapacity:0];
+	// Input Image 0: the image in the OsiriX Viewer
+	NSMutableDictionary* inputImage0=[[NSMutableDictionary alloc] initWithCapacity:0];
 
 	[inputImage0 setObject:[NSString stringWithString:@"InputImage0"] forKey:@"Description"];
 	[inputImage0 setObject:[NSString stringWithString:@"float"] forKey:@"ImageType"];
 	
 	NSArray				*pixList = [osrixViewController pixList];
 	
-	float* volumePtr=[osrixViewController volumePtr:0];
+
 	DCMPix* curPix = [pixList objectAtIndex: 0];
 	NSManagedObject	*curImage = [[osrixViewController fileList] objectAtIndex:0];
 	inputImageSeriesUID=[curImage valueForKeyPath: @"series.seriesInstanceUID"];
@@ -260,6 +272,16 @@
 	spacing[2]=sliceThickness;
 	
 	int i;
+	for(i=0;i<16;i++)
+		transformmatrix[i]=0;
+	transformmatrix[0]=1;
+	transformmatrix[5]=1;
+	transformmatrix[10]=1;
+	transformmatrix[15]=1;
+//	transformmatrix[16]={ 1,0,0,0,
+//						  0,1,0,0,
+//						  0,0,1,0,
+//						  0,0,0,1};
 	float vectors[9];
 	[curPix orientation:vectors];
 	for(i=0;i<3;i++)
@@ -302,12 +324,13 @@
 	[inputImage0 setObject:[NSNumber numberWithFloat:minvalue] forKey:@"Minimum"];
 	
 	long size=dimension[0]*dimension[1]*dimension[2]*dimension[3]*sizeof(float);
-	NSData* volumeData=[NSData dataWithBytesNoCopy:volumePtr length:size freeWhenDone:NO];
+	NSData* volumeData=[osrixViewController volumeData];
 	[inputImage0 setObject:[NSNumber numberWithLong:size] forKey:@"MemSize"];
 	[inputImage0 setObject:volumeData forKey:@"Data"];
 
 	if(![bridgeExportToMeVisLab initializeAnImageForSharing:inputImage0])
 		return NO;
+	[inputImage0 release];
 	//Update Input View
 	
 	NSData	*newData = [inputImage0 objectForKey:@"Data"];
@@ -355,7 +378,7 @@
 		
 		
 	}
-	//InputMask1
+	//InputMask 0
 	NSArray* roiList=[osrixViewController roiList];
 	//check if contains Brush ROI
 	BOOL brushROIfound=NO;
@@ -382,7 +405,7 @@
 		}
 	if(brushROIfound)
 	{
-		NSMutableDictionary* inputMask0=[NSMutableDictionary dictionaryWithCapacity:0];
+		NSMutableDictionary* inputMask0=[[NSMutableDictionary alloc] initWithCapacity:0];
 		
 		[inputMask0 setObject:[NSString stringWithString:@"InputImage1"] forKey:@"Description"];
 		[inputMask0 setObject:[NSString stringWithString:@"char"] forKey:@"ImageType"];
@@ -410,6 +433,7 @@
 		[inputMask0 setObject:[NSNumber numberWithLong:size] forKey:@"MemSize"];
 		if(![bridgeExportToMeVisLab initializeAnImageForSharing:inputMask0])
 			return NO;
+		[inputMask0 release];
 		NSData	*newData = [inputMask0 objectForKey:@"Data"];
 		if(newData)
 		{
@@ -453,8 +477,237 @@
 		
 	}
 
-	//InputImage2
+	
+	//
+	//
+	//InputImage2: the image in the OsiriX Viewer
+	ViewerController*  secondOsrixViewController = [osrixViewController blendingController];
+	
+	if(secondOsrixViewController==nil)
+		return YES;
+	
+	NSMutableDictionary* inputImage1=[[NSMutableDictionary alloc] initWithCapacity:0];
+	
+	[inputImage1 setObject:[NSString stringWithString:@"InputImage2"] forKey:@"Description"];
+	[inputImage1 setObject:[NSString stringWithString:@"float"] forKey:@"ImageType"];
+	
+	pixList = [secondOsrixViewController pixList];
+	
+
+	curPix = [pixList objectAtIndex: 0];
+	curImage = [[secondOsrixViewController fileList] objectAtIndex:0];
+	//inputImageSeriesUID=[curImage valueForKeyPath: @"series.seriesInstanceUID"];//input series uid is only need for inputimage0, this uid is sent to MeVislab as a UID for saved intermediate results.
+	
+	
+	dimension[0] = [curPix pwidth];
+	dimension[1] = [curPix pheight];
+	dimension[2] = [pixList count];	
+	dimension[3] = [secondOsrixViewController maxMovieIndex];
+	spacing[0]=[curPix pixelSpacingX];
+	spacing[1]=[curPix pixelSpacingY];
+	sliceThickness = [curPix sliceInterval];   
+	if( sliceThickness == 0)
+	{
+		NSLog(@"Slice interval = slice thickness!");
+		sliceThickness = [curPix sliceThickness];
+	}	
+	spacing[2]=sliceThickness;
+	
+
+	[curPix orientation:vectors];
+	for(i=0;i<3;i++)
+	{
+		transformmatrix[0+i]=vectors[i*3]*spacing[i];
+		transformmatrix[4+i]=vectors[i*3+1]*spacing[i];
+		transformmatrix[8+i]=vectors[i*3+2]*spacing[i];
+		transformmatrix[12+i]=0;
+	}
+	transformmatrix[3]=[curPix originX];
+	transformmatrix[7]=[curPix originY];
+	transformmatrix[11]=[curPix originZ];
+	transformmatrix[15]=1;
+	
+	
+	
+	
+	maxvalue = [curPix maxValueOfSeries];
+	minvalue = [curPix minValueOfSeries];
+	
+	
+	
+	[dimensionarray removeAllObjects];
+	for(i=0;i<4;i++)
+		[dimensionarray addObject:[NSNumber numberWithInt:dimension[i]]];
+	[inputImage1 setObject:dimensionarray forKey:@"Dimension"];
+	
+	
+	[spacingarray removeAllObjects];
+	for(i=0;i<4;i++)
+		[spacingarray addObject:[NSNumber numberWithFloat:spacing[i]]];
+	[inputImage1 setObject:spacingarray forKey:@"Spacing"];
+	
+	[matrix removeAllObjects];;
+	for(i=0;i<16;i++)
+		[matrix addObject:[NSNumber numberWithFloat:transformmatrix[i]]];
+	[inputImage1 setObject:matrix forKey:@"MatrixToPatientCo"];
+	
+	[inputImage1 setObject:[NSNumber numberWithFloat:maxvalue] forKey:@"Maximum"];
+	[inputImage1 setObject:[NSNumber numberWithFloat:minvalue] forKey:@"Minimum"];
+	
+	size=dimension[0]*dimension[1]*dimension[2]*dimension[3]*sizeof(float);
+	volumeData=[secondOsrixViewController volumeData];
+	[inputImage1 setObject:[NSNumber numberWithLong:size] forKey:@"MemSize"];
+	[inputImage1 setObject:volumeData forKey:@"Data"];
+	
+	if(![bridgeExportToMeVisLab initializeAnImageForSharing:inputImage1])
+		return NO;
+	[inputImage1 release];
+	//Update Input View
+	
+//	newData = [inputImage1 objectForKey:@"Data"];
+//	if(newData)
+//	{
+//		float* newDataPtr=(float*)[newData bytes];
+//		NSMutableArray	*newPixList = [NSMutableArray arrayWithCapacity: 0];
+//		NSMutableArray	*newDcmList = [NSMutableArray arrayWithCapacity: 0];
+//		NSMutableArray  *newROIList = [NSMutableArray arrayWithCapacity: 0];
+//		pixList = [secondOsrixViewController pixList];
+//		curPix = [pixList objectAtIndex: 0];
+//		
+//		unsigned j;
+//		for( j = 0; j < [pixList count]; j++)
+//		{
+//			curPix = [pixList objectAtIndex: j];
+//			DCMPix	*copyPix = [curPix copy];
+//			[copyPix setfImage: (float*) (newDataPtr + j* dimension[0]* dimension[1])];
+//			[newPixList addObject: copyPix];
+//			[copyPix release];
+//			[newDcmList addObject: [[secondOsrixViewController fileList] objectAtIndex: j]];
+//			[newROIList addObject:[NSMutableArray arrayWithCapacity:0]];
+//			
+//		}
+//		[inputImageView setStringID: @"MeVisHubInput"];
+//		[inputImageView setDCM:newPixList :newDcmList :newROIList :0 :'i' :YES];
+//		[inputImageView setDrawing:YES];
+//		[inputImageSlider setNumberOfTickMarks:[pixList count]];
+//		[inputImageSlider setMaxValue:[pixList count]-1];
+//		[inputImageSlider setIntValue:[pixList count]/2];
+//		[inputImageView setIndexWithReset: [pixList count]/2 :YES];
+//		[inputImageView setOrigin: NSMakePoint(0,0)];
+//		[inputImageView setCurrentTool:tWL];
+//		[inputImageView scaleToFit];	
+//		
+//		
+		[[secondOsrixViewController window] performClose:self];
+		// Close the window to release more memory for rest steps.  This is not necessary. However it will become more complicated if the viewer will still running when the plugin closed, because the shared memory should be released but the plugin.
+		
+//		
+//		//[secondOsrixViewController replaceSeriesWith:newPixList :newDcmList :newData];
+//		
+//		
+//		
+//		
+//		
+//	}
 	//InputMask2
+	roiList=[secondOsrixViewController roiList];
+	//check if contains Brush ROI
+	brushROIfound=NO;
+	[roiNames removeAllObjects];
+
+	for(i=0;i<(signed)[roiList count];i++)
+		for(j=0;j<[[roiList objectAtIndex:i] count];j++)
+		{
+			ROI* aROI=[[roiList objectAtIndex:i] objectAtIndex:j];
+			if([aROI type]==tPlain)
+			{
+				brushROIfound=YES;
+				BOOL isInNameList=NO;
+				for(NSString* aname in roiNames)
+				{
+					if([aname isEqualToString:[aROI name]])
+						isInNameList=YES;
+				}
+				if(!isInNameList)
+					[roiNames addObject:[aROI name]];
+				
+			}
+			
+		}
+	if(brushROIfound)
+	{
+		NSMutableDictionary* inputMask1=[[NSMutableDictionary alloc] initWithCapacity:0];
+		
+		[inputMask1 setObject:[NSString stringWithString:@"InputImage3"] forKey:@"Description"];
+		[inputMask1 setObject:[NSString stringWithString:@"char"] forKey:@"ImageType"];
+		
+		NSMutableArray* dimensionarray=[NSMutableArray arrayWithCapacity:4];
+		for(i=0;i<4;i++)
+			[dimensionarray addObject:[NSNumber numberWithInt:dimension[i]]];
+		[inputMask1 setObject:dimensionarray forKey:@"Dimension"];
+		
+		
+		NSMutableArray* spacingarray=[NSMutableArray arrayWithCapacity:4];
+		for(i=0;i<4;i++)
+			[spacingarray addObject:[NSNumber numberWithFloat:spacing[i]]];
+		[inputMask1 setObject:spacingarray forKey:@"Spacing"];
+		
+		NSMutableArray* matrix=[NSMutableArray arrayWithCapacity:16];;
+		for(i=0;i<16;i++)
+			[matrix addObject:[NSNumber numberWithFloat:transformmatrix[i]]];
+		[inputMask1 setObject:matrix forKey:@"MatrixToPatientCo"];
+		
+		[inputMask1 setObject:[NSNumber numberWithInt:[roiNames count]] forKey:@"Maximum"];
+		[inputMask1 setObject:[NSNumber numberWithInt:0] forKey:@"Minimum"];
+		
+		size=dimension[0]*dimension[1]*dimension[2]*dimension[3]*sizeof(char);
+		[inputMask1 setObject:[NSNumber numberWithLong:size] forKey:@"MemSize"];
+		if(![bridgeExportToMeVisLab initializeAnImageForSharing:inputMask1])
+			return NO;
+		[inputMask1	release];
+		NSData	*newData = [inputMask1 objectForKey:@"Data"];
+		if(newData)
+		{
+			unsigned char* newDataPtr=(unsigned char*)[newData bytes];
+			memset(newDataPtr,0x00,size);
+			unsigned short tagValue;
+			//set tag value
+			int x,y,x1,x2,y1,y2,textureWidth;
+			unsigned char * texture;
+			unsigned k;
+			for(i=0;i<[roiList count];i++)
+				for(j=0;j<[[roiList objectAtIndex:i] count];j++)
+				{
+					ROI* tempROI = [[roiList objectAtIndex: i] objectAtIndex:j];
+					
+					if([tempROI type]==tPlain)
+						for(k=0;k<[roiNames count];k++)
+							if ([[tempROI name] isEqualToString:[roiNames objectAtIndex: k]]==YES)
+							{
+								x1 = [tempROI textureUpLeftCornerX];
+								y1 = [tempROI textureUpLeftCornerY];
+								x2 = [tempROI textureDownRightCornerX];
+								y2 = [tempROI textureDownRightCornerY];
+								textureWidth = [tempROI textureWidth];
+								texture = [tempROI textureBuffer];
+								tagValue = k+1;
+								for(y=y1;y<=y2;y++)
+									for(x=x1;x<=x2;x++)
+									{
+										if(*(texture+(y-y1)*textureWidth+x-x1))
+											*(newDataPtr+dimension[0]*dimension[1]*i+dimension[0]*y+x)+=tagValue;
+										
+									}
+								
+							}
+					
+					
+				}
+			
+		}
+		
+	}
+	
 	
 	
 	return YES;
@@ -754,31 +1007,35 @@
 			ROI * roi = [[note userInfo] objectForKey:@"ROI"];
 			if(roi)
 			{
-				int roitype =[roi type];
-				if(roitype==t2DPoint)
-				{
-					
-					[roi setName: [currentSeedingTool valueForKey:@"ObjectName"]];
-					RGBColor c;
-					NSColor* currentSeedColor=[self colorByGivenName:[currentSeedingTool valueForKey:@"ObjectColor"]];
-					CGFloat r, g, b;
-					[currentSeedColor getRed:&r green:&g blue:&b alpha:0L];
-					
-					
-					
-					c.red =(short unsigned int) (r * 65535.);
-					c.green =(short unsigned int)( g * 65535.);
-					c.blue = (short unsigned int)(b * 65535.);
-					
-					[roi setColor:c];
-					
-					
-					if([[currentSeedingTool valueForKey:@"UpdateInRealtime"] boolValue])
-					{
-						[self notifyMeVisLabSeedsChanged];
-						[self prepareOutputImages];
-					}
-				}
+				updatingROI=YES;
+
+				[roi setName: [currentSeedingTool valueForKey:@"ObjectName"]];
+				RGBColor c;
+				NSColor* currentSeedColor=[self colorByGivenName:[currentSeedingTool valueForKey:@"ObjectColor"]];
+				CGFloat r, g, b;
+				[currentSeedColor getRed:&r green:&g blue:&b alpha:0L];
+				
+				
+				
+				c.red =(short unsigned int) (r * 65535.);
+				c.green =(short unsigned int)( g * 65535.);
+				c.blue = (short unsigned int)(b * 65535.);
+				
+				[roi setColor:c];
+				
+	//			if([[currentSeedingTool valueForKey:@"UpdateInRealtime"] boolValue])
+//				{
+//					int roitype =[roi type];
+//					
+//					if(roitype==t2DPoint)
+//						[self notifyMeVisLabSeedsChanged];
+//					else if(roitype==tROI)
+//						[self notifyMeVisLabCSOChanged];
+//					//[self prepareOutputImages];
+//				}
+
+
+				updatingROI=NO;
 			}
 		}
 	}
@@ -788,25 +1045,32 @@
 {
 	id sender =[note object];
 	
-	
+	if(updatingROI)
+		return;
 	if( sender&&(CurrentToolID==1001))
 	{
-		if ([sender isEqual:inputImageView])
+		if ([sender isKindOfClass:[ROI class]])
 		{
 			
-			ROI * roi = [[note userInfo] objectForKey:@"ROI"];
-			if(roi)
+			ROI * roi = sender;
+			NSArray* curroilist=[[inputImageView dcmRoiList] objectAtIndex:[inputImageView curImage]];
+			if(roi&&[curroilist containsObject:roi])
 			{
-				int roitype =[roi type];
-				if(roitype!=t3Dpoint)
+				
+				if([[roi name ] isEqualToString:[currentSeedingTool valueForKey:@"ObjectName"]]&&[[currentSeedingTool valueForKey:@"UpdateInRealtime"] boolValue])
 				{
-					
-					if([[currentSeedingTool valueForKey:@"UpdateInRealtime"] boolValue])
-					{
+					int roitype =[roi type];
+					updatingROI=YES;
+					NSLog(@"OsriX: ROI changed");
+					if(roitype==t2DPoint)
 						[self notifyMeVisLabSeedsChanged];
-						[self prepareOutputImages];
-					}
+					else if(roitype==tROI)
+						[self notifyMeVisLabCSOChanged];
+					[self prepareOutputImages];
+					NSLog(@"OsriX: Output updated after ROI changed");
+					updatingROI=NO;
 				}
+				
 			}
 		}
 	}
@@ -878,22 +1142,30 @@
 {
 	int dimension[4]={0,0,0,0};
 	float spacing[4]={1.0,1.0,1.0,1.0};
-	float transformmatrix[16]={ 1,0,0,0,
-		0,1,0,0,
-		0,0,1,0,
-	0,0,0,1};
+	int i;
+	for(i=0;i<16;i++)
+		outputTransformmatrix[i]=0;
+	outputTransformmatrix[0]=1;
+	outputTransformmatrix[5]=1;
+	outputTransformmatrix[10]=1;
+	outputTransformmatrix[15]=1;
+	
+//	outputTransformmatrix[16]={ 1,0,0,0,
+//								0,1,0,0,
+//								0,0,1,0,
+//								0,0,0,1};
 	NSMutableArray  *inputPixList=[inputImageView dcmPixList];
 	NSArray  *inputDcmList=[inputImageView dcmFilesList];
 	NSMutableArray	*newPixList=[NSMutableArray arrayWithCapacity: 0];
 	NSMutableArray	*newDcmList=[NSMutableArray arrayWithCapacity: 0];
 	NSMutableArray	*newROIList=[NSMutableArray arrayWithCapacity: 0];
 	BOOL ifOutputImage1Available=NO;
-	BOOL ifOutputMask1Available=NO;
+	ifOutputMask1Available=NO;
 	
 	NSDictionary* outputImage1=[bridgeImportFromMeVisLab getImageFromLowerBridge:@"OutputImage0"];
 	if(outputImage1)
 	{
-		int i;
+
 		NSString* imgtypestr=[outputImage1 objectForKey:@"ImageType"];
 		if([imgtypestr isEqualToString:@"float"])
 		{
@@ -908,16 +1180,16 @@
 			
 			NSArray* matrix=[outputImage1 objectForKey:@"MatrixToPatientCo"];
 			for(i=0;i<16;i++)
-				transformmatrix[i]=[[matrix objectAtIndex:i] floatValue];
+				outputTransformmatrix[i]=[[matrix objectAtIndex:i] floatValue];
 			float vector[9];
 			for(i=0;i<3;i++)
 			{
-				vector[i]=transformmatrix[i*4]/spacing[0];
-				vector[i+3]=transformmatrix[i*4+1]/spacing[1];
-				vector[i+6]=transformmatrix[i*4+2]/spacing[2];
+				vector[i]=outputTransformmatrix[i*4]/spacing[0];
+				vector[i+3]=outputTransformmatrix[i*4+1]/spacing[1];
+				vector[i+6]=outputTransformmatrix[i*4+2]/spacing[2];
 			}
 			NSData	*newData = [outputImage1 objectForKey:@"Data"];
-			if(newData)
+			if(newData&&[newData length])
 			{
 				ifOutputImage1Available=YES;
 				float* newDataPtr=(float*)[newData bytes];
@@ -927,7 +1199,7 @@
 					float origin[3];
 					int j;
 					for(j=0;j<3;j++)
-						origin[j]=i*transformmatrix[j*4+2]+transformmatrix[j*4+3];
+						origin[j]=i*outputTransformmatrix[j*4+2]+outputTransformmatrix[j*4+3];
 					
 					[copyPix setPwidth: dimension[0]];
 					[copyPix setPheight: dimension[1]];
@@ -952,6 +1224,24 @@
 	}
 	if(ifOutputImage1Available==NO)
 	{
+		NSDictionary* outputImage1=[bridgeExportToMeVisLab prepareImageForUpperBridgeFromOsiriX:@"InputImage0"];
+		if(outputImage1)
+		{
+			
+				
+				NSArray* dimensionarray=[outputImage1 objectForKey:@"Dimension"];
+				for(i=0;i<4;i++)
+					dimension[i]=[[dimensionarray objectAtIndex:i] intValue];
+				
+				NSArray* spacingarray=[outputImage1 objectForKey:@"Spacing"];
+				for(i=0;i<4;i++)
+					spacing[i]=[[spacingarray objectAtIndex:i] floatValue];
+				
+				NSArray* matrix=[outputImage1 objectForKey:@"MatrixToPatientCo"];
+				for(i=0;i<16;i++)
+					outputTransformmatrix[i]=[[matrix objectAtIndex:i] floatValue];
+		}
+		
 		[newPixList addObjectsFromArray:inputPixList];
 		[newDcmList addObjectsFromArray:inputDcmList];
 		
@@ -978,17 +1268,50 @@
 	//Output Mask 1
 	NSDictionary* outputMask1=[bridgeImportFromMeVisLab getImageFromLowerBridge:@"OutputImage1"];
 	outputMaskResult=outputMask1;
+	[self initializeOutputViewBrushROI];
 	if(outputMask1)
 	{
 		ifOutputMask1Available=YES;
-		[self initializeOutputViewROI];
+		NSArray* dimensionarray=[outputMaskResult objectForKey:@"Dimension"];
+
+		for(i=0;i<4;i++)
+			if(dimension[i]!=[[dimensionarray objectAtIndex:i] intValue])
+			{
+								ifOutputMask1Available=NO;
+			}
+
+		
+		NSArray* matrix=[outputMaskResult objectForKey:@"MatrixToPatientCo"];
+		for(i=0;i<16;i++)
+			if(outputTransformmatrix[i]!=[[matrix objectAtIndex:i] floatValue])
+			{
+							ifOutputMask1Available=NO;
+			}
+		if(ifOutputMask1Available==NO)
+			NSRunAlertPanel(@"Failed", @"The mask's dimension is not equal to the output images' dimension." ,nil, nil, nil);
+
+		
+		
 	}
 
+
 	currentSychronizeMode=[self checkSynchronizeMode];
-	[outputImageSlider setIntValue:0];
-	[self scrollImageSynchronically:outputImageSlider];
+	//Synchronize the two view
+	[inputImageSlider setIntValue:[inputImageView curImage]];
+	[outputImageSlider setIntValue:[inputImageView curImage]];
+	[outputImageView setIndex: [inputImageView curImage]];
+
+	BOOL ifOuputCSOAvailable=NO;
+	NSDictionary* outputCSO1=[bridgeImportFromMeVisLab getImageFromLowerBridge:@"OutputImage2"];
+	if(outputCSO1)
+		
+	{
+		ifOuputCSOAvailable=YES;
+		[self updateOutputViewCSOROI:[outputCSO1 objectForKey:@"OverlayObjects"]];
+	}
+	[self scrollImageSynchronically:inputImageSlider];
 	
-	return (ifOutputMask1Available||ifOutputImage1Available);
+	return (ifOutputMask1Available||ifOutputImage1Available||ifOuputCSOAvailable);
 }
 -(IBAction)scrollImageSynchronically:(id)sender
 {
@@ -1015,7 +1338,64 @@
 	if(outputMaskResult)
 		[self updateMasksForOutputView:[sender intValue]];
 }
-- (void)initializeOutputViewROI
+- (void)updateOutputViewCSOROI:(NSDictionary*)overlayObjects
+{
+	float invertOutputTraslateMatrix[16];
+	[self invert4X4Matrix:invertOutputTraslateMatrix :outputTransformmatrix];
+	NSArray* outputViewROIList=[outputImageView dcmRoiList];
+	unsigned i;
+	//clean up all the old ROIs
+	for(i=0;i<[outputViewROIList count];i++)
+		[[outputViewROIList objectAtIndex:i] removeAllObjects];
+	//add new ROI objects to roi list
+	for(NSDictionary* anOverlayObject in overlayObjects)
+	{
+		int roitype=tOPolygon;
+		if([anOverlayObject objectForKey:@"IsColsed"])
+			roitype=tCPolygon;
+		
+		NSArray* points3D=[anOverlayObject objectForKey:@"Points"];
+		NSMutableArray* points2D=[NSMutableArray arrayWithCapacity:[points3D count]];
+		NSMutableArray* pointsZCoors=[NSMutableArray arrayWithCapacity:[points3D count]];
+		float meanzcoor=0.0;
+		for(NSDictionary* apoint3D in points3D)
+		{
+			float x,y,z,x0,y0,z0;
+			x0=[[apoint3D objectForKey:@"x"] floatValue];
+			y0=[[apoint3D objectForKey:@"y"] floatValue];
+			z0=[[apoint3D objectForKey:@"z"] floatValue];
+			x = invertOutputTraslateMatrix[0]*x0+invertOutputTraslateMatrix[1]*y0+invertOutputTraslateMatrix[2]*z0+invertOutputTraslateMatrix[3];
+			y = invertOutputTraslateMatrix[4]*x0+invertOutputTraslateMatrix[5]*y0+invertOutputTraslateMatrix[6]*z0+invertOutputTraslateMatrix[7];
+			z = invertOutputTraslateMatrix[8]*x0+invertOutputTraslateMatrix[9]*y0+invertOutputTraslateMatrix[10]*z0+invertOutputTraslateMatrix[11];
+			x-=0.5;
+			y-=0.5;
+			z-=0.5;
+			MyPoint* anew2dpoint = [[MyPoint alloc] initWithPoint:NSMakePoint(x, y)];
+			[points2D addObject:anew2dpoint];
+			[anew2dpoint release];
+			meanzcoor+=z;
+			[pointsZCoors addObject:[NSNumber numberWithFloat:z]];
+		}
+		meanzcoor/=[points3D count];
+		BOOL ifAllPointsInSamePlane=YES;
+		for(NSNumber* zcoor in pointsZCoors)
+		{
+			if(([zcoor floatValue]-meanzcoor)>=1||([zcoor floatValue]-meanzcoor)<=-1)
+				ifAllPointsInSamePlane=NO;
+		}
+		if(ifAllPointsInSamePlane)
+		{
+			DCMPix* curImage= [[outputImageView dcmPixList] objectAtIndex:(int)(meanzcoor+0.5)]; 
+			ROI* anewroi=[[ROI alloc] initWithType: roitype :[curImage pixelSpacingX] :[curImage pixelSpacingY] : NSMakePoint( [curImage originX], [curImage originY])];
+			[anewroi setPoints:points2D];
+			[[outputViewROIList objectAtIndex:(int)(meanzcoor+0.5)] addObject:anewroi];
+			[anewroi release];
+		}
+		
+		
+	}
+}
+- (void)initializeOutputViewBrushROI
 {
 	if(!resultROIListCorrespondingToSeedList)
 		resultROIListCorrespondingToSeedList=[[NSMutableArray alloc] initWithCapacity:0];
@@ -1086,36 +1466,38 @@
 
 -(void)updateMasksForOutputView:(int)index
 {
-	if(!resultROIListCorrespondingToSeedList ||[resultROIListCorrespondingToSeedList count]==0)
+	if(!ifOutputMask1Available)
 		return;
-	float dimension[4],spacing[4],transformmatrix[16],vector[9];
+	float dimension[4];
+
 	unsigned int i;
 	NSArray* dimensionarray=[outputMaskResult objectForKey:@"Dimension"];
 	for(i=0;i<4;i++)
 		dimension[i]=[[dimensionarray objectAtIndex:i] intValue];
-	
-	NSArray* spacingarray=[outputMaskResult objectForKey:@"Spacing"];
-	for(i=0;i<4;i++)
-		spacing[i]=[[spacingarray objectAtIndex:i] floatValue];
-	
-	NSArray* matrix=[outputMaskResult objectForKey:@"MatrixToPatientCo"];
-	for(i=0;i<16;i++)
-		transformmatrix[i]=[[matrix objectAtIndex:i] floatValue];
-
-	for(i=0;i<3;i++)
-	{
-		vector[i]=transformmatrix[i*4]/spacing[0];
-		vector[i+3]=transformmatrix[i*4+1]/spacing[1];
-		vector[i+6]=transformmatrix[i*4+2]/spacing[2];
-	}
+//	float spacing[4],outtransformmatrix[16],vector[9];	
+//	NSArray* spacingarray=[outputMaskResult objectForKey:@"Spacing"];
+//	for(i=0;i<4;i++)
+//		spacing[i]=[[spacingarray objectAtIndex:i] floatValue];
+//	
+//	NSArray* matrix=[outputMaskResult objectForKey:@"MatrixToPatientCo"];
+//	for(i=0;i<16;i++)
+//		outtransformmatrix[i]=[[matrix objectAtIndex:i] floatValue];
+//
+//	for(i=0;i<3;i++)
+//	{
+//		vector[i]=outtransformmatrix[i*4]/spacing[0];
+//		vector[i+3]=outtransformmatrix[i*4+1]/spacing[1];
+//		vector[i+6]=outtransformmatrix[i*4+2]/spacing[2];
+//	}
 	NSData	*newData = [outputMaskResult objectForKey:@"Data"];
-	if(newData)
+	if(newData&&[newData length])
 	{
 		unsigned char* maskDataPtr=(unsigned char*)[newData bytes];
-		if(currentSychronizeMode==SYNCMODE_ALLSAME)
+		//if(currentSychronizeMode==SYNCMODE_ALLSAME)
 		{
 			int imageSize=dimension[0]*dimension[1];
-			
+			if(index*imageSize+imageSize-1>[newData length])
+				return;
 			ROI* tempROI;
 			
 			int colorIndex,j;
@@ -1330,14 +1712,17 @@
 		default:
 			break;
 	}
+	changingParameters=YES;
 	NSMutableDictionary* parameters=[NSMutableDictionary dictionaryWithCapacity:0];
 	[parameters setObject:[NSNumber numberWithDouble:value] forKey:paraName];
+	NSLog(@"OsriX: Change Parameters");
 	[bridgeExportToMeVisLab passingOnNotificationsToUpperBridge:parameters];
+	changingParameters=NO;
 	if(![self prepareOutputImages])
 	{
 		NSRunAlertPanel(@"Failed", @"Cannot create output Images. Check MeVisLab log for more information" ,nil, nil, nil);
 	}
-	
+	NSLog(@"OsriX: Upated after Changed Parameters");
 }
 - (IBAction)changCurrentTool:(id)sender
 {
@@ -1367,6 +1752,11 @@
 			[inputImageView setCurrentTool:t2DPoint];
 			[outputImageView setCurrentTool:tWL];
 		}
+		else if([toolName isEqualToString:@"Rectangle"])
+		{
+			[inputImageView setCurrentTool:tROI];
+			[outputImageView setCurrentTool:tWL];
+		}
 		else
 		{
 			NSRunAlertPanel(@"NOT SUPPORT", @"This type tools is not supported in this version!" ,nil, nil, nil);
@@ -1377,14 +1767,14 @@
 }
 - (void)prepareInputMarkerImage
 {
-	NSMutableDictionary* inputImage5=[NSMutableDictionary dictionaryWithCapacity:0];
+	NSMutableDictionary* inputImage5=[[NSMutableDictionary alloc] initWithCapacity:0];
 	
 	[inputImage5 setObject:[NSString stringWithString:@"InputImage4"] forKey:@"Description"];
 	[inputImage5 setObject:[NSString stringWithString:@"overlay"] forKey:@"ImageType"];
-	[inputImage5 setObject:[NSString stringWithString:@"points"] forKey:@"OverlayType"];
+	
 	NSArray* roiList=[inputImageView dcmRoiList];
 	
-	NSMutableArray* markerPoints=[NSMutableArray arrayWithCapacity:0];
+	NSMutableArray* overlyObjects=[NSMutableArray arrayWithCapacity:0];
 	unsigned i,j,k;
 	for(i=0;i<[roiList count];i++)
 		for(j=0;j<[[roiList objectAtIndex:i] count];j++)
@@ -1392,38 +1782,257 @@
 			ROI* aROI=[[roiList objectAtIndex:i] objectAtIndex:j];
 			if([aROI type]==t2DPoint)
 			{
+				NSMutableDictionary* anOverlayObject=[NSMutableDictionary dictionaryWithCapacity:0];
+				[anOverlayObject setObject:[NSString stringWithString:@"points"] forKey:@"OverlayType"];
+				NSMutableArray* markerPoints=[NSMutableArray arrayWithCapacity:0];
 				NSString* roiName=[aROI name];
+				[anOverlayObject setObject:roiName	forKey:@"Name"];
 				for(k=0;k<[seedingToolsConfigList count];k++)
 					if([roiName isEqualToString:[[seedingToolsConfigList objectAtIndex:k] valueForKey:@"ObjectName"]])
 					{
 						NSRect roiRect=[aROI rect];
-						NSDictionary* a3DPoint=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:roiRect.origin.x],@"x",[NSNumber numberWithInt:roiRect.origin.y],@"y",[NSNumber numberWithInt:i],@"z",[NSNumber numberWithInt:k+1],@"value",nil];
+						float x,y,z,x0,y0,z0;
+						x0=roiRect.origin.x;
+						y0=roiRect.origin.y;
+						z0=i;
+						x0+=0.5;
+						y0+=0.5;
+						z0+=0.5;
+						x = transformmatrix[0]*x0+transformmatrix[1]*y0+transformmatrix[2]*z0+transformmatrix[3];
+						y = transformmatrix[4]*x0+transformmatrix[5]*y0+transformmatrix[6]*z0+transformmatrix[7];
+						z = transformmatrix[8]*x0+transformmatrix[9]*y0+transformmatrix[10]*z0+transformmatrix[11];
+						
+						NSDictionary* a3DPoint=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:x],@"x",[NSNumber numberWithFloat:y],@"y",[NSNumber numberWithFloat:z],@"z",[NSNumber numberWithInt:k+1],@"value",nil];
 						[markerPoints addObject:a3DPoint];
 						break;
 					}
-				
+				[anOverlayObject setObject:markerPoints forKey:@"Points"];
+				[overlyObjects addObject:anOverlayObject];
+			}
+			else if([aROI type]==tROI)
+			{
+				NSMutableDictionary* anOverlayObject=[NSMutableDictionary dictionaryWithCapacity:0];
+				[anOverlayObject setObject:[NSString stringWithString:@"polygon"] forKey:@"OverlayType"];
+				NSMutableArray* markerPoints=[NSMutableArray arrayWithCapacity:0];
+				NSString* roiName=[aROI name];
+				[anOverlayObject setObject:roiName	forKey:@"Name"];
+				for(k=0;k<[seedingToolsConfigList count];k++)
+					if([roiName isEqualToString:[[seedingToolsConfigList objectAtIndex:k] valueForKey:@"ObjectName"]])
+					{
+						NSMutableArray  *ptsarray = [aROI points];
+						for(MyPoint* apoint in ptsarray)
+						{
+							float x,y,z,x0,y0,z0;
+							x0=apoint.x;
+							y0=apoint.y;
+							z0=i;
+							x0+=0.5;
+							y0+=0.5;
+							z0+=0.5;
+							x = transformmatrix[0]*x0+transformmatrix[1]*y0+transformmatrix[2]*z0+transformmatrix[3];
+							y = transformmatrix[4]*x0+transformmatrix[5]*y0+transformmatrix[6]*z0+transformmatrix[7];
+							z = transformmatrix[8]*x0+transformmatrix[9]*y0+transformmatrix[10]*z0+transformmatrix[11];
+							
+							NSDictionary* a3DPoint=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:x],@"x",[NSNumber numberWithFloat:y],@"y",[NSNumber numberWithFloat:z],@"z",[NSNumber numberWithInt:k+1],@"value",nil];
+							[markerPoints addObject:a3DPoint];
+						}
+						break;
+					}
+				[anOverlayObject setObject:markerPoints forKey:@"Points"];
+				[anOverlayObject setObject:[NSNumber numberWithBool:YES] forKey:@"IsColsed"];
+				[overlyObjects addObject:anOverlayObject];
 			}
 			
+			
 		}
-	[inputImage5 setObject:markerPoints forKey:@"Points"];
+	
+	[inputImage5 setObject:overlyObjects forKey:@"OverlayObjects"];
 	[bridgeExportToMeVisLab initializeAnImageForSharing:inputImage5];
+	[inputImage5 release];
 	
 }
 - (void)notifyMeVisLabSeedsChanged
 {
 	[self prepareInputMarkerImage];
 	NSMutableDictionary* parameters=[NSMutableDictionary dictionaryWithCapacity:0];
-	[parameters setObject:[NSNumber numberWithBool:YES] forKey:@"MarkerUpdated"];
+	[parameters setObject:[NSNumber numberWithBool:YES] forKey:@"PointMarkerUpdated"];
 	[bridgeExportToMeVisLab passingOnNotificationsToUpperBridge:parameters];
+}
+- (void)notifyMeVisLabCSOChanged
+{
+	[self prepareInputMarkerImage];
+	NSMutableDictionary* parameters=[NSMutableDictionary dictionaryWithCapacity:0];
+	[parameters setObject:[NSNumber numberWithBool:YES] forKey:@"CSOMarkerUpdated"];
+	[bridgeExportToMeVisLab passingOnNotificationsToUpperBridge:parameters];
+	
 }
 - (IBAction)updateOutputImage:(id)sender;
 {
 	[self notifyMeVisLabSeedsChanged];
+	[self notifyMeVisLabCSOChanged];
 	[self prepareOutputImages];
+	
 }
 - (IBAction)closeCurrentWindow:(id)sender
 {
 	[[self window] setDelegate:self];
 	[[self window] performClose:sender];
 }
+- (void)handleMeVisLabNotification:(NSDictionary*) parameters
+{
+	if(isInitializing||updatingROI||changingParameters)
+		return;
+	NSLog(@"OsriX: Output updated after Notification");
+	if([[parameters objectForKey:@"NeedUpdateImage"] boolValue])
+		[self prepareOutputImages];
+	if([[parameters objectForKey:@"NeewShowSelfWindow"] boolValue])
+		[[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+}
+-(void)invert4X4Matrix:(float*)inElements: (float*) outElements
+{
+	// inverse( original_matrix, inverse_matrix )
+	// calculate the inverse of a 4x4 matrix
+	//
+	//     -1     
+	//     A  = ___1__ adjoint A
+	//         det A
+	//
+	
+	int i, j;
+	double det;
+	
+	// calculate the 4x4 determinent
+	// if the determinent is zero, 
+	// then the inverse matrix is not unique.
+	
+	[self matrixDeterminant:inElements];
+	if ( det == 0.0 ) 
+    {
+		return;
+    }
+	
+	// calculate the adjoint matrix
+	[self matrixAdjoint:inElements : outElements];
+	
+	// scale the adjoint matrix to get the inverse
+	for (i=0; i<4; i++)
+    {
+		for(j=0; j<4; j++)
+		{
+			*(outElements+i*4+j) = *(outElements+i*4+j) / det;
+		}
+    }
+}
+-(double) matrixDeterminant:(float*) elem
+{
+	
+	float a1, a2, a3, a4, b1, b2, b3, b4, c1, c2, c3, c4, d1, d2, d3, d4;
+	
+	
+	// assign to individual variable names to aid selecting
+	//  correct elements
+	
+	a1 = elem[0]; b1 = elem[1]; 
+	c1 = elem[2]; d1 = elem[3];
+	
+	a2 = elem[4]; b2 = elem[5]; 
+	c2 = elem[6]; d2 = elem[7];
+	
+	a3 = elem[8]; b3 = elem[9]; 
+	c3 = elem[10]; d3 = elem[11];
+	
+	a4 = elem[12]; b4 = elem[13]; 
+	c4 = elem[14]; d4 = elem[15];
+	
+	return a1 * [self matrixDeterminant3x3: b2: b3: b4: c2: c3: c4: d2: d3: d4]
+	- b1 * [self matrixDeterminant3x3: a2: a3: a4: c2: c3: c4: d2: d3: d4]
+	+ c1 * [self matrixDeterminant3x3: a2: a3: a4: b2: b3: b4: d2: d3: d4]
+	- d1 * [self matrixDeterminant3x3: a2: a3: a4: b2: b3: b4: c2: c3: c4];
+}
+
+//----------------------------------------------------------------------------
+-(void) matrixAdjoint: (float*) inElem: (float*) outElem
+{	
+	// 
+	//   adjoint( original_matrix, inverse_matrix )
+	// 
+	//     calculate the adjoint of a 4x4 matrix
+	//
+	//      Let  a   denote the minor determinant of matrix A obtained by
+	//           ij
+	//
+	//      deleting the ith row and jth column from A.
+	//
+	//                    i+j
+	//     Let  b   = (-1)    a
+	//          ij            ji
+	//
+	//    The matrix B = (b  ) is the adjoint of A
+	//                     ij
+	//
+	float a1, a2, a3, a4, b1, b2, b3, b4;
+	float c1, c2, c3, c4, d1, d2, d3, d4;
+	
+	// assign to individual variable names to aid
+	// selecting correct values
+	
+	a1 = inElem[0]; b1 = inElem[1]; 
+	c1 = inElem[2]; d1 = inElem[3];
+	
+	a2 = inElem[4]; b2 = inElem[5]; 
+	c2 = inElem[6]; d2 = inElem[7];
+	
+	a3 = inElem[8]; b3 = inElem[9];
+	c3 = inElem[10]; d3 = inElem[11];
+	
+	a4 = inElem[12]; b4 = inElem[13]; 
+	c4 = inElem[14]; d4 = inElem[15];
+	
+	
+	// row column labeling reversed since we transpose rows & columns
+	
+	outElem[0]  =   
+    [self matrixDeterminant3x3: b2: b3: b4: c2: c3: c4: d2: d3: d4];
+	outElem[4]  = 
+    - [self matrixDeterminant3x3: a2: a3: a4: c2: c3: c4: d2: d3: d4];
+	outElem[8]  =   
+    [self matrixDeterminant3x3: a2: a3: a4: b2: b3: b4: d2: d3: d4];
+	outElem[12]  = 
+    - [self matrixDeterminant3x3: a2: a3: a4: b2: b3: b4: c2: c3: c4];
+	
+	outElem[1]  = 
+    - [self matrixDeterminant3x3: b1: b3: b4: c1: c3: c4: d1: d3: d4];
+	outElem[5]  =   
+    [self matrixDeterminant3x3: a1: a3: a4: c1: c3: c4: d1: d3: d4];
+	outElem[9]  = 
+    - [self matrixDeterminant3x3: a1: a3: a4: b1: b3: b4: d1: d3: d4];
+	outElem[13]  =   
+    [self matrixDeterminant3x3: a1: a3: a4: b1: b3: b4: c1: c3: c4];
+	
+	outElem[2]  =   
+    [self matrixDeterminant3x3: b1: b2: b4: c1: c2: c4: d1: d2: d4];
+	outElem[6]  = 
+    - [self matrixDeterminant3x3: a1: a2: a4: c1: c2: c4: d1: d2: d4];
+	outElem[10]  =   
+    [self matrixDeterminant3x3: a1: a2: a4: b1: b2: b4: d1: d2: d4];
+	outElem[14]  = 
+    - [self matrixDeterminant3x3: a1: a2: a4: b1: b2: b4: c1: c2: c4];
+	
+	outElem[3]  = 
+    - [self matrixDeterminant3x3: b1: b2: b3: c1: c2: c3: d1: d2: d3];
+	outElem[7]  =   
+    [self matrixDeterminant3x3: a1: a2: a3: c1: c2: c3: d1: d2: d3];
+	outElem[11]  = 
+    - [self matrixDeterminant3x3: a1: a2: a3: b1: b2: b3: d1: d2: d3];
+	outElem[15]  =   
+    [self matrixDeterminant3x3: a1: a2: a3: b1: b2: b3: c1: c2: c3];
+}
+-(float) matrixDeterminant3x3:(float)c10:(float)c11:(float)c12:(float)c20:(float)c21:(float)c22:(float)c30:(float)c31:(float)c32
+                                     
+{
+	return c10*c21*c32 + c20*c31*c12 + c30*c11*c22 -
+	c10*c31*c22 - c20*c11*c32 - c30*c21*c12;
+}
+
+
 @end

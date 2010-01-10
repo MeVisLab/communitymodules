@@ -17,17 +17,20 @@
 	//common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
 	NSConnection *incomingConnection; 
 	NSString* incomingConnectionRegisteredName;
+
 	NSString* outgoingConnectionRegisteredName;
+
 	SharedImagesManager* imagesManager;
 	id remoteObjectProxy;
-
+	NSConnection* remoteConnection;
+	BOOL ifSupportMemorySharing;
 	
 	//different parts
 	ml::OsiriXImporter* importerML;
 	ml::OsiriXExporter* exporterML;
 }
 //common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
-- (id) initWithIncommingConnectionName:(NSString*)aname OutgoingConnection:(NSString*)bname;
+- (id) initWithIncommingConnectionName:(NSString*)aname;
 - (BOOL)registerIncomingConnectionWithName:(NSString*)aname;
 - (BOOL)connectToRemoteObjectRegisteredAs:(NSString*)registeredName;
 - (void) connectionDidDie: (NSNotification *)notification;
@@ -40,4 +43,5 @@
 - (void) setExporterML:(ml::OsiriXExporter*) aML;
 - (void) passingOnNotificationsToImporter:(NSDictionary*)parameters;
 - (NSDictionary*)prepareImageForUpperBridgeFromExporter:(NSString*)description;
+
 @end

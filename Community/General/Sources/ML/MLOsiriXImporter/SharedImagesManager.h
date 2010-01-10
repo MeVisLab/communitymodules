@@ -17,8 +17,9 @@
 - (id)initWithIDStringPrefix:(NSString*)astring;
 - (void)releaseAllImages;
 - (void)removeImage:(NSMutableDictionary*)anImage;
-- (BOOL)creatASharedImage:(NSMutableDictionary*)newImage ForDescription:(NSString*)description;
+- (BOOL)creatASharedImage:(NSMutableDictionary*)newImage ForDescription:(NSString*)description SupportSharedMem:(BOOL)ifSupportMemorySharing;
 - (void*)getMemoryPtrForImageDescription:(NSString*)description;
 - (NSMutableDictionary*)getImageForDescription:(NSString*)description;
 - (BOOL)allocMemoryBlock:(NSMutableDictionary*)anImage;
+- (BOOL)allocSharedMemoryBlock:(NSMutableDictionary*)anImage;
 @end

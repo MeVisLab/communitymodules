@@ -19,7 +19,9 @@
 
 // ML includes
 #include "mlOperatorIncludes.h"
-
+#define id Id
+#include <CSOBase/CSOModuleBase/CSOGenerator.h>
+#undef id
 @class MeVisLab2OsiriXTBridge;
 
 ML_START_NAMESPACE
@@ -36,8 +38,9 @@ public:
 
 	//MeVisLab2OsiriXTBridge
 	MeVisLab2OsiriXTBridge* bridgeToOsiriX;
-	void calcInputImageProps(NSMutableDictionary* anImage,int inIndex);
-	void calcInSubImage(NSMutableDictionary* anImage, int inIndex );
+	BOOL calcInputImageProps(NSMutableDictionary* anImage,int inIndex);
+	BOOL calcInSubImage(NSMutableDictionary* anImage, int inIndex );
+	BOOL prepareCSOForOsiriX(NSMutableDictionary* anImage);
 
   //! Handle field changes of the field field.
   virtual void handleNotification (Field *field);
@@ -54,7 +57,9 @@ private:
   //! \name Module field declarations
   //@{
   // ----------------------------------------------------------
-
+	//! CSO Marker input from OsiriX
+	BaseField*   _InputCSOListFld;
+	CSOList*     _InputCSOList;
   //! The name of this operation (should be unique on the system)
   StringField *_OperationNameFld;
 
