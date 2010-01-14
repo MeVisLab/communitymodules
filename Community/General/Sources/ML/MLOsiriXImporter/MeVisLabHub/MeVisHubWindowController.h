@@ -55,6 +55,7 @@
 	int currentSychronizeMode;
 	float transformmatrix[16];
 	float outputTransformmatrix[16];
+	int	 outputDimension[4];
 	BOOL updatingROI;
 	BOOL changingParameters;
 	BOOL ifOutputMask1Available;
@@ -73,6 +74,7 @@
 -(BOOL)prepareOutputImages;
 -(IBAction)scrollImageSynchronically:(id)sender;
 -(IBAction)changeParameter:(id)sender;
+-(IBAction)exportResultImages:(id)sender;
 
 - (IBAction)changCurrentTool:(id)sender;
 - (void) roiAdded: (NSNotification*) note;

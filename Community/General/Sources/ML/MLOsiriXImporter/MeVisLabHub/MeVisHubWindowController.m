@@ -7,6 +7,7 @@
 //
 
 #import "MeVisHubWindowController.h"
+#include <Accelerate/Accelerate.h>
 #define SYNCMODE_ALLSAME 1
 #define SYNCMODE_SAMEORIENTATION 2
 #define SYNCMODE_NOSUPPORT 0
@@ -97,7 +98,9 @@
 			[inputImageView becomeFirstResponder];
 			[self showWindow:self];
 			[self initializeToolsBar:operationConfigDict];
-			
+			outputDimension[0]=-1;
+			[outputImageView setDrawing:YES];
+			[outputImageView setDCM:[NSArray array]:[NSArray array] :[NSArray array] :0 :'i' :NO];
 			if(![self initializeParameters:operationConfigDict])
 			{
 				NSRunAlertPanel(@"Failed", @"Failed to intialize parameters in MeVisLab" ,nil, nil, nil);
@@ -137,6 +140,70 @@
 	
 	return;
 	
+}
+-(IBAction)exportResultImages:(id)sender
+{	
+	int dimension[3]; 
+	NSArray* pixList=[outputImageView dcmPixList];
+	DCMPix* curPix=[pixList objectAtIndex:0];
+	NSArray* resultROIList=[outputImageView dcmRoiList];
+	dimension[0] = [curPix pwidth];
+	dimension[1] = [curPix pheight];
+	dimension[2] = [pixList count];
+	long size=dimension[0]*dimension[1]*dimension[2]*sizeof(float);
+	void* volumePtr=malloc(size);
+	if(volumePtr)
+	{
+		void* outputVolumePtr=(void* ) [curPix fImage];
+		memcpy(volumePtr, outputVolumePtr, size);
+		NSData* volumeData=[[NSData alloc] initWithBytesNoCopy:volumePtr length:size freeWhenDone:YES];
+		ViewerController* new2DViewer=[ViewerController newWindow:[outputImageView dcmPixList] :[outputImageView dcmFilesList] :volumeData];
+		[volumeData release];
+		unsigned int i,j;
+		for(i=0;i<[pixList count];i++)
+		{
+			DCMPix* tempPix=[pixList objectAtIndex:i];
+			[tempPix setfImage:(float*)(volumePtr+i*dimension[0]*dimension[1]*sizeof(float))];
+
+		}
+		if(new2DViewer&&ifOutputMask1Available)
+		{
+			ROI* tempROI;
+			RGBColor	color;
+			NSString *roiName;
+			unsigned char *textureBuffer;
+			NSMutableArray      *roiList= [new2DViewer roiList];
+
+			for(i=0;i<[roiList count];i++)
+			{
+				[self updateMasksForOutputView: i];
+				for(j=0;j<[[resultROIList objectAtIndex: 0] count];j++)
+				{
+					
+					
+					tempROI = [[resultROIList objectAtIndex: 0] objectAtIndex:j];
+					roiName = [tempROI name];
+					textureBuffer=[tempROI textureBuffer];
+					color= [tempROI rgbcolor];
+					
+					ROI *newROI=[[ROI alloc] initWithTexture:textureBuffer textWidth:dimension[0] textHeight:dimension[0] textName:roiName positionX:0 positionY:0 spacingX:[curPix pixelSpacingY] spacingY:[curPix pixelSpacingY]  imageOrigin:NSMakePoint( [curPix originX], [curPix originY])];
+					textureBuffer=[newROI textureBuffer];
+					*textureBuffer=0x00;
+					*(textureBuffer+dimension[0]*dimension[1]-1)=0x00;	
+					[newROI reduceTextureIfPossible];
+					
+					[newROI setColor:color];
+					
+					[[roiList objectAtIndex: i] addObject: newROI];
+					[newROI release];
+				}
+			}
+			
+		}
+	}
+	else
+			NSRunAlertPanel(@"Failed", @"Failed to create new series, you may run out of memory." ,nil, nil, nil);
+	[self scrollImageSynchronically:outputImageSlider];
 }
 - (void)applicationWillResignActive:(NSNotification *)aNotification
 {
@@ -326,10 +393,12 @@
 	long size=dimension[0]*dimension[1]*dimension[2]*dimension[3]*sizeof(float);
 	NSData* volumeData=[osrixViewController volumeData];
 	[inputImage0 setObject:[NSNumber numberWithLong:size] forKey:@"MemSize"];
-	[inputImage0 setObject:volumeData forKey:@"Data"];
+	if(dimension[3]==1)
+		[inputImage0 setObject:volumeData forKey:@"Data"];
 
 	if(![bridgeExportToMeVisLab initializeAnImageForSharing:inputImage0])
 		return NO;
+		
 	[inputImage0 release];
 	//Update Input View
 	
@@ -337,6 +406,19 @@
 	if(newData)
 	{
 		float* newDataPtr=(float*)[newData bytes];
+		if(dimension[3]>1)
+		{
+			long size3d=dimension[0]*dimension[1]*dimension[2]*sizeof(float);
+			void* newVolumePt=(void*)newDataPtr;
+			for(i=0;i<dimension[3];i++)
+			{
+				
+			void* volumePt= [osrixViewController volumePtr: i];
+			memcpy(newVolumePt+i*size3d, volumePt, size3d);
+			}
+		}
+
+			
 		NSMutableArray	*newPixList = [NSMutableArray arrayWithCapacity: 0];
 		NSMutableArray	*newDcmList = [NSMutableArray arrayWithCapacity: 0];
 		NSMutableArray  *newROIList = [NSMutableArray arrayWithCapacity: 0];
@@ -1143,6 +1225,7 @@
 	int dimension[4]={0,0,0,0};
 	float spacing[4]={1.0,1.0,1.0,1.0};
 	int i;
+	BOOL isImageHasDifferentDimension=NO;
 	for(i=0;i<16;i++)
 		outputTransformmatrix[i]=0;
 	outputTransformmatrix[0]=1;
@@ -1155,12 +1238,15 @@
 //								0,0,1,0,
 //								0,0,0,1};
 	NSMutableArray  *inputPixList=[inputImageView dcmPixList];
+	
 	NSArray  *inputDcmList=[inputImageView dcmFilesList];
 	NSMutableArray	*newPixList=[NSMutableArray arrayWithCapacity: 0];
 	NSMutableArray	*newDcmList=[NSMutableArray arrayWithCapacity: 0];
 	NSMutableArray	*newROIList=[NSMutableArray arrayWithCapacity: 0];
 	BOOL ifOutputImage1Available=NO;
 	ifOutputMask1Available=NO;
+	
+	[outputImageView setDrawing:NO];
 	
 	NSDictionary* outputImage1=[bridgeImportFromMeVisLab getImageFromLowerBridge:@"OutputImage0"];
 	if(outputImage1)
@@ -1169,10 +1255,14 @@
 		NSString* imgtypestr=[outputImage1 objectForKey:@"ImageType"];
 		if([imgtypestr isEqualToString:@"float"])
 		{
-
+			
 			NSArray* dimensionarray=[outputImage1 objectForKey:@"Dimension"];
 			for(i=0;i<4;i++)
+			{
 				dimension[i]=[[dimensionarray objectAtIndex:i] intValue];
+				if(outputDimension[i]!=dimension[i])
+					isImageHasDifferentDimension=YES;
+			}
 			
 			NSArray* spacingarray=[outputImage1 objectForKey:@"Spacing"];
 			for(i=0;i<4;i++)
@@ -1189,33 +1279,68 @@
 				vector[i+6]=outputTransformmatrix[i*4+2]/spacing[2];
 			}
 			NSData	*newData = [outputImage1 objectForKey:@"Data"];
-			if(newData&&[newData length])
+			int memsize=dimension[0]*dimension[1]*dimension[2]*dimension[3]*sizeof(float);
+			if(newData&&[newData length]>=memsize)
 			{
-				ifOutputImage1Available=YES;
-				float* newDataPtr=(float*)[newData bytes];
-				for( i = 0 ; i < dimension[2]; i ++)
+				if(isImageHasDifferentDimension)
 				{
-					DCMPix	*copyPix = [[inputPixList objectAtIndex: 0] copy];
-					float origin[3];
-					int j;
-					for(j=0;j<3;j++)
-						origin[j]=i*outputTransformmatrix[j*4+2]+outputTransformmatrix[j*4+3];
-					
-					[copyPix setPwidth: dimension[0]];
-					[copyPix setPheight: dimension[1]];
-					[copyPix setPixelSpacingX:spacing[0]];
-					[copyPix setPixelSpacingY:spacing[1]];
-					[copyPix setOrigin:origin];
-					[copyPix setOrientation: vector];
-					[copyPix setfImage: (float*) (newDataPtr + dimension[0]* dimension[1]* i)];
-					[copyPix setTot: dimension[2]];
-					[copyPix setFrameNo: 0];
-					[copyPix setID: i];
-					
-					[newPixList addObject: copyPix];
-					[copyPix release];
-					[newDcmList addObject: [inputDcmList objectAtIndex: 0]];
+					ifOutputImage1Available=YES;
+					float* newDataPtr=(float*)[newData bytes];
+					for( i = 0 ; i < dimension[2]; i ++)
+					{
+						DCMPix	*copyPix = [[inputPixList objectAtIndex: 0] copy];
+						float origin[3];
+						int j;
+						for(j=0;j<3;j++)
+							origin[j]=i*outputTransformmatrix[j*4+2]+outputTransformmatrix[j*4+3];
+						
+						[copyPix setPwidth: dimension[0]];
+						[copyPix setPheight: dimension[1]];
+						[copyPix setPixelSpacingX:spacing[0]];
+						[copyPix setPixelSpacingY:spacing[1]];
+						[copyPix setOrigin:origin];
+						[copyPix setOrientation: vector];
+						[copyPix setfImage: (float*) (newDataPtr + dimension[0]* dimension[1]* i)];
+						[copyPix setTot: dimension[2]];
+						[copyPix setFrameNo: 0];
+						[copyPix setID: i];
+						
+						[newPixList addObject: copyPix];
+						[copyPix release];
+						[newDcmList addObject: [inputDcmList objectAtIndex: 0]];
+					}
+					for(i=0;i<4;i++)
+					{
+
+						outputDimension[i]=dimension[i];
+					}
 				}
+				else
+				{
+					ifOutputImage1Available=YES;
+					float* newDataPtr=(float*)[newData bytes];
+				
+					NSMutableArray  *outputPixList=[outputImageView dcmPixList];
+					for( i = 0 ; i < dimension[2]; i ++)
+					{
+						DCMPix	*copyPix = [outputPixList objectAtIndex: i];
+						float origin[3];
+						int j;
+						for(j=0;j<3;j++)
+							origin[j]=i*outputTransformmatrix[j*4+2]+outputTransformmatrix[j*4+3];
+						
+						[copyPix setPixelSpacingX:spacing[0]];
+						[copyPix setPixelSpacingY:spacing[1]];
+						[copyPix setOrigin:origin];
+						[copyPix setOrientation: vector];
+						[copyPix setfImage: (float*) (newDataPtr + dimension[0]* dimension[1]* i)];
+						
+						
+						
+					}
+					
+				}
+								
 			}
 			
 		}
@@ -1231,8 +1356,12 @@
 				
 				NSArray* dimensionarray=[outputImage1 objectForKey:@"Dimension"];
 				for(i=0;i<4;i++)
+				{
 					dimension[i]=[[dimensionarray objectAtIndex:i] intValue];
-				
+					outputDimension[i]=-1;
+						
+				}
+				isImageHasDifferentDimension=YES;
 				NSArray* spacingarray=[outputImage1 objectForKey:@"Spacing"];
 				for(i=0;i<4;i++)
 					spacing[i]=[[spacingarray objectAtIndex:i] floatValue];
@@ -1244,7 +1373,7 @@
 		
 		[newPixList addObjectsFromArray:inputPixList];
 		[newDcmList addObjectsFromArray:inputDcmList];
-		
+
 		
 	}
 	unsigned j;
@@ -1252,17 +1381,27 @@
 	{
 		[newROIList addObject:[NSMutableArray arrayWithCapacity:0]];
 	}
-	
-	[outputImageView setStringID: @"MeVisHubOutput"];
-	[outputImageView setDCM:newPixList :newDcmList :newROIList :0 :'i' :YES];
-	[outputImageView setDrawing:YES];
-	[outputImageSlider setNumberOfTickMarks:[newPixList count]];
-	[outputImageSlider setMaxValue:[newPixList count]-1];
-	[outputImageSlider setIntValue:[newPixList count]/2];
-	[outputImageView setIndexWithReset: [newPixList count]/2 :YES];
-	[outputImageView setOrigin: NSMakePoint(0,0)];
-	[outputImageView setCurrentTool:tWL];
-	[outputImageView scaleToFit];	
+	if( isImageHasDifferentDimension)
+	{
+		[outputImageView setStringID: @"MeVisHubOutput"];
+		[outputImageView setDCM:newPixList :newDcmList :newROIList :0 :'i' :YES];
+		[outputImageView setDrawing:YES];
+		[outputImageSlider setNumberOfTickMarks:[newPixList count]];
+		[outputImageSlider setMaxValue:[newPixList count]-1];
+		[outputImageSlider setIntValue:[newPixList count]/2];
+		[outputImageView setIndexWithReset: [newPixList count]/2 :YES];
+		[outputImageView setOrigin: NSMakePoint(0,0)];
+		[outputImageView setCurrentTool:tWL];
+		[outputImageView scaleToFit];	
+	}
+	else
+	{
+		float iwl, iww;
+		iww = [outputImageView curWW];
+		iwl = [outputImageView curWL];
+		[outputImageView setWLWW:iwl :iww];
+	}
+
 	
 	
 	//Output Mask 1
@@ -1295,12 +1434,6 @@
 	}
 
 
-	currentSychronizeMode=[self checkSynchronizeMode];
-	//Synchronize the two view
-	[inputImageSlider setIntValue:[inputImageView curImage]];
-	[outputImageSlider setIntValue:[inputImageView curImage]];
-	[outputImageView setIndex: [inputImageView curImage]];
-
 	BOOL ifOuputCSOAvailable=NO;
 	NSDictionary* outputCSO1=[bridgeImportFromMeVisLab getImageFromLowerBridge:@"OutputImage2"];
 	if(outputCSO1)
@@ -1309,7 +1442,11 @@
 		ifOuputCSOAvailable=YES;
 		[self updateOutputViewCSOROI:[outputCSO1 objectForKey:@"OverlayObjects"]];
 	}
+	
+	currentSychronizeMode=[self checkSynchronizeMode];
+	
 	[self scrollImageSynchronically:inputImageSlider];
+	[outputImageView setDrawing:YES];
 	
 	return (ifOutputMask1Available||ifOutputImage1Available||ifOuputCSOAvailable);
 }
@@ -1620,90 +1757,98 @@
 		case 0:
 			if(isInteger)
 			{
-				[para0Slider setIntValue:[sender intValue]];
-				[para0ValueTextField setIntValue:[sender intValue]];
-				value=[para0ValueTextField intValue];
+				value=[sender intValue];
+				[para0Slider setIntValue:value];
+				[para0ValueTextField setIntValue:value];
+				
 			}
 			else
 			{
-				[para0Slider setDoubleValue:[sender doubleValue]];
-				[para0ValueTextField setDoubleValue:[sender doubleValue]];
-				value=[para0ValueTextField doubleValue];
+				value=[sender doubleValue];
+				[para0Slider setDoubleValue:value];
+				[para0ValueTextField setDoubleValue:value];
+				
 			}
 			paraName=[para0NameTextField stringValue];
 			break;
 		case 1:
 			if(isInteger)
 			{
-				[para1Slider setIntValue:[sender intValue]];
-				[para1ValueTextField setIntValue:[sender intValue]];
-				value=[para1ValueTextField intValue];
+				value=[sender intValue];
+				[para1Slider setIntValue:value];
+				[para1ValueTextField setIntValue:value];
 			}
 			else
 			{
-				[para1Slider setDoubleValue:[sender doubleValue]];
-				[para1ValueTextField setDoubleValue:[sender doubleValue]];
-				value=[para1ValueTextField doubleValue];
+				value=[sender doubleValue];
+				[para1Slider setDoubleValue:value];
+				[para1ValueTextField setDoubleValue:value];
 			}
 			paraName=[para1NameTextField stringValue];
 			break;
 		case 2:
 			if(isInteger)
 			{
-				[para2Slider setIntValue:[sender intValue]];
-				[para2ValueTextField setIntValue:[sender intValue]];
-				value=[para2ValueTextField intValue];
+				value=[sender intValue];
+				[para2Slider setIntValue:value];
+				[para2ValueTextField setIntValue:value];
+				
 			}
 			else
 			{
-				[para2Slider setDoubleValue:[sender doubleValue]];
-				[para2ValueTextField setDoubleValue:[sender doubleValue]];
-				value=[para2ValueTextField doubleValue];
+				value=[sender doubleValue];
+				[para2Slider setDoubleValue:value];
+				[para2ValueTextField setDoubleValue:value];
+				
 			}
 			paraName=[para2NameTextField stringValue];
 			break;
 		case 3:
 			if(isInteger)
 			{
-				[para3Slider setIntValue:[sender intValue]];
-				[para3ValueTextField setIntValue:[sender intValue]];
-				value=[para3ValueTextField intValue];
+				value=[sender intValue];
+				[para3Slider setIntValue:value];
+				[para3ValueTextField setIntValue:value];
 			}
 			else
 			{
-				[para3Slider setDoubleValue:[sender doubleValue]];
-				[para3ValueTextField setDoubleValue:[sender doubleValue]];
-				value=[para3ValueTextField doubleValue];
+				value=[sender doubleValue];
+				[para3Slider setDoubleValue:value];
+				[para3ValueTextField setDoubleValue:value];
+				
 			}
 			paraName=[para3NameTextField stringValue];
 			break;
 		case 4:
 			if(isInteger)
 			{
-				[para4Slider setIntValue:[sender intValue]];
-				[para4ValueTextField setIntValue:[sender intValue]];
-				value=[para4ValueTextField intValue];
+				value=[sender intValue];
+				[para4Slider setIntValue:value];
+				[para4ValueTextField setIntValue:value];
+				
 			}
 			else
 			{
-				[para4Slider setDoubleValue:[sender doubleValue]];
-				[para4ValueTextField setDoubleValue:[sender doubleValue]];
-				value=[para4ValueTextField doubleValue];
+				value=[sender doubleValue];
+				[para4Slider setDoubleValue:value];
+				[para4ValueTextField setDoubleValue:value];
+				
 			}
 			paraName=[para4NameTextField stringValue];
 			break;
 		case 5:
 			if(isInteger)
 			{
-				[para5Slider setIntValue:[sender intValue]];
-				[para5ValueTextField setIntValue:[sender intValue]];
-				value=[para5ValueTextField intValue];
+				value=[sender intValue];
+				[para5Slider setIntValue:value];
+				[para5ValueTextField setIntValue:value];
 			}
 			else
 			{
-				[para5Slider setDoubleValue:[sender doubleValue]];
-				[para5ValueTextField setDoubleValue:[sender doubleValue]];
-				value=[para5ValueTextField doubleValue];
+				value=[sender doubleValue];
+				[para5Slider setDoubleValue:value];
+				[para5ValueTextField setDoubleValue:value];
+				
 			}
 			paraName=[para5NameTextField stringValue];
 			break;

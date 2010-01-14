@@ -24,7 +24,7 @@
 	id remoteObjectProxy;
 	NSConnection* remoteConnection;
 	BOOL ifSupportMemorySharing;
-	
+	NSAutoreleasePool *autoReleasePool;
 	//different parts
 	ml::OsiriXImporter* importerML;
 	ml::OsiriXExporter* exporterML;

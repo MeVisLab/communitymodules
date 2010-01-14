@@ -170,7 +170,13 @@
 	NSString* operation=[request objectForKey:@"Operation"];
 	if(operation)
 	{
-		if([operation isEqualToString:@"CallBack"])
+		if([operation isEqualToString:@"SendMeImage"])
+		{
+			NSMutableDictionary* parameters=[request objectForKey:@"Parameters"];
+			NSString* description=[parameters objectForKey:@"ImageDescription"];
+			[self prepareImageForUpperBridgeFromOsiriX:description];
+		}
+		else	if([operation isEqualToString:@"CallBack"])
 		{
 			NSMutableDictionary* parameters=[request objectForKey:@"Parameters"];
 			NSString* registeredName=[parameters objectForKey:@"RegisteredName"];
@@ -193,29 +199,44 @@
 
 	return ;
 }
-- (NSDictionary*)getImage:(NSString*)description
+//- (NSDictionary*)getImage:(NSString*)description
+//{
+//	
+//	NSLog([NSString stringWithFormat:@"OsiriX: MeVis is asking for:%@",  description] );
+//	return [self prepareImageForUpperBridgeFromOsiriX:description];
+//}
+- (void)setImage:(NSDictionary*)anImage ForDescription:(NSString*) description
 {
-	
-	NSLog([NSString stringWithFormat:@"OsiriX: MeVis is asking for:%@",  description] );
-	return [self prepareImageForUpperBridgeFromOsiriX:description];
+	if(anImage)
+	{
+		NSMutableDictionary*anNewImage=[anImage mutableCopy];
+		[imagesManager creatASharedImage:anNewImage ForDescription:description SupportSharedMem:ifSupportMemorySharing];
+		
+		
+		[anNewImage release];
+	}
+	NSLog([NSString stringWithFormat:@"OsiriX: %@ received",  description] );
 }
 #pragma mark-
 #pragma mark functions when works as a bridge between Importer and OsiriX.
 -(NSDictionary*)prepareImageForUpperBridgeFromOsiriX:(NSString*)description
 {
 
-	NSDictionary* savedImage=[imagesManager getImageForDescription: description];
-	NSMutableDictionary* matchedImage=nil;
-	if(savedImage)
+	NSDictionary* resultImage=[imagesManager getImageForDescription: description];
+	NSMutableDictionary* returnImage=nil;
+	if(resultImage)
 	{
-		matchedImage=[savedImage mutableCopy];
+		returnImage=[resultImage mutableCopy];
 		if(ifSupportMemorySharing)
-			[matchedImage removeObjectForKey:@"Data"];
-		[matchedImage autorelease];
+			[returnImage removeObjectForKey:@"Data"];
+		NSLog([NSString stringWithFormat:@"OsriX: OsiriX is returningg :%@",  description] );
+		[remoteObjectProxy setImage: returnImage ForDescription: description];
+		[returnImage release];
 	}
 	
-	NSLog([NSString stringWithFormat:@"OsriX: OsiriX is returningg :%@",  description] );
-	return matchedImage;
+	
+
+	return [imagesManager getImageForDescription: description];
 }
 -(void)passingOnNotificationsToUpperBridge:(NSDictionary*)parameters
 {
@@ -261,17 +282,23 @@
 	{
 		[imagesManager removeImage:[imagesManager getImageForDescription: description]];
 	}
-	NSDictionary* anImage=[remoteObjectProxy getImage:description];
-	
-	if(anImage)
+//	NSDictionary* anImage=[remoteObjectProxy getImage:description];
+	NSMutableDictionary* anoperation=[NSMutableDictionary dictionaryWithCapacity:0];
 	{
-		NSMutableDictionary*anNewImage=[anImage mutableCopy];
-		[imagesManager creatASharedImage:anNewImage ForDescription:description SupportSharedMem:ifSupportMemorySharing];
-
-
-		[anNewImage release];
+		NSString* operation=[NSString stringWithString:@"SendMeImage"];
+		NSMutableDictionary* parameters=[NSMutableDictionary dictionaryWithCapacity:0];
+		{
+			[parameters setObject:description forKey:@"ImageDescription"];
+		}
+		NSMutableArray* relatedImages=[NSMutableArray arrayWithCapacity:0];
+		
+		[anoperation setObject:operation forKey:@"Operation"];
+		[anoperation setObject:parameters forKey:@"Parameters"];
+		[anoperation setObject:relatedImages forKey:@"RelatedImages"];
 	}
-	NSLog([NSString stringWithFormat:@"OsiriX: %@ received",  description] );
+	
+	[remoteObjectProxy setOperation:anoperation];
+	
 	return [imagesManager getImageForDescription: description];
 	
 }

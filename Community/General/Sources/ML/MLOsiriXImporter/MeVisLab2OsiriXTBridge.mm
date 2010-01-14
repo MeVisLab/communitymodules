@@ -123,7 +123,7 @@
 	{
 	
 
-
+		//autoReleasePool = [[NSAutoreleasePool alloc] init];
 		outgoingConnectionRegisteredName=[registeredName copy];
 		[remoteObjectProxy setProtocolForProxy:@protocol(MeVisOsiriXProxyProtocol)];
 		
@@ -173,8 +173,10 @@
 	{
 		[remoteObjectProxy release];
 		remoteObjectProxy=nil;
+//		[autoReleasePool release];
 	}
 	remoteConnection=nil;
+	
 }
 #pragma mark-
 #pragma mark functions to interprete the operation request from OsiriX.
@@ -183,7 +185,13 @@
 	NSString* operation=[request objectForKey:@"Operation"];
 	if(operation)
 	{
-		if([operation isEqualToString:@"CallBack"])
+		if([operation isEqualToString:@"SendMeImage"])
+		{
+			NSMutableDictionary* parameters=[request objectForKey:@"Parameters"];
+			NSString* description=[parameters objectForKey:@"ImageDescription"];
+			[self prepareImageForUpperBridgeFromExporter:description];
+		}
+		else	if([operation isEqualToString:@"CallBack"])
 		{
 			NSMutableDictionary* parameters=[request objectForKey:@"Parameters"];
 			NSString* registeredName=[parameters objectForKey:@"RegisteredName"];
@@ -213,10 +221,22 @@
 	}
 	return;
 }
-- (NSDictionary*)getImage:(NSString*)description
+//- (NSDictionary*)getImage:(NSString*)description
+//{
+//	NSLog([NSString stringWithFormat:@"MeVisLab: OsiriX is asking for:%@",  description] );
+//	return [self prepareImageForUpperBridgeFromExporter:description];
+//}
+- (void)setImage:(NSDictionary*)anImage ForDescription:(NSString*) description
 {
-	NSLog([NSString stringWithFormat:@"MeVisLab: OsiriX is asking for:%@",  description] );
-	return [self prepareImageForUpperBridgeFromExporter:description];
+	if(anImage)
+	{
+		NSMutableDictionary*anNewImage=[anImage mutableCopy];
+		[imagesManager creatASharedImage:anNewImage ForDescription:description SupportSharedMem:ifSupportMemorySharing];
+		NSLog([NSString stringWithFormat:@"MeVisLab: %@ received",  description] );
+		[anNewImage release];
+		
+	}
+	
 }
 #pragma mark-
 #pragma mark functions when works as a bridge between Importer and OsiriX.
@@ -231,15 +251,23 @@
 		}
 	}
 	NSLog([NSString stringWithFormat:@"MeVisLab: MeVisLab is asking for:%@",  description] );
-	NSDictionary* anImage=[remoteObjectProxy getImage:description];
-	if(anImage)
+	//NSDictionary* anImage=[remoteObjectProxy getImage:description];
+	NSMutableDictionary* anoperation=[NSMutableDictionary dictionaryWithCapacity:0];
 	{
-		NSMutableDictionary*anNewImage=[anImage mutableCopy];
-		[imagesManager creatASharedImage:anNewImage ForDescription:description SupportSharedMem:ifSupportMemorySharing];
-	NSLog([NSString stringWithFormat:@"MeVisLab: %@ received",  description] );
-		[anNewImage release];
-
+		NSString* operation=[NSString stringWithString:@"SendMeImage"];
+		NSMutableDictionary* parameters=[NSMutableDictionary dictionaryWithCapacity:0];
+		{
+			[parameters setObject:description forKey:@"ImageDescription"];
+		}
+		NSMutableArray* relatedImages=[NSMutableArray arrayWithCapacity:0];
+		
+		[anoperation setObject:operation forKey:@"Operation"];
+		[anoperation setObject:parameters forKey:@"Parameters"];
+		[anoperation setObject:relatedImages forKey:@"RelatedImages"];
 	}
+	
+	[remoteObjectProxy setOperation:anoperation];
+	
 	return [imagesManager getImageForDescription: description];
 }
 -(void)passingOnNotificationsToImporter:(NSDictionary*)parameters
@@ -300,22 +328,31 @@
 			return nil;
 	}
 	NSMutableDictionary* savedImage=[imagesManager getImageForDescription: description];
-	
-	if((![description isEqualToString:@"OutputImage2"])&&savedImage&&[[savedImage objectForKey:@"MemSize"] longValue]==[[tempImage objectForKey:@"MemSize"] longValue])
+	if(![description isEqualToString:@"OutputImage2"])
 	{
-			[savedImage setObject:[tempImage objectForKey:@"Dimension"] forKey:@"Dimension"];
-			[savedImage setObject:[tempImage objectForKey:@"Spacing"] forKey:@"Spacing"];
-			[savedImage setObject:[tempImage objectForKey:@"MatrixToPatientCo"] forKey:@"MatrixToPatientCo"];
-			[savedImage setObject:[tempImage objectForKey:@"Maximum"] forKey:@"Maximum"];
-			[savedImage setObject:[tempImage objectForKey:@"Minimum"] forKey:@"Minimum"];
+		if(savedImage&&[[savedImage objectForKey:@"MemSize"] longValue]==[[tempImage objectForKey:@"MemSize"] longValue])
+		{
+				[savedImage setObject:[tempImage objectForKey:@"Dimension"] forKey:@"Dimension"];
+				[savedImage setObject:[tempImage objectForKey:@"Spacing"] forKey:@"Spacing"];
+				[savedImage setObject:[tempImage objectForKey:@"MatrixToPatientCo"] forKey:@"MatrixToPatientCo"];
+				[savedImage setObject:[tempImage objectForKey:@"Maximum"] forKey:@"Maximum"];
+				[savedImage setObject:[tempImage objectForKey:@"Minimum"] forKey:@"Minimum"];
 
-	}
-	else
-	{
-		[imagesManager creatASharedImage:tempImage ForDescription:description SupportSharedMem:ifSupportMemorySharing];
+		}
+		else
+		{
+			[savedImage removeObjectForKey:@"Data"];
+			if(![imagesManager creatASharedImage:tempImage ForDescription:description SupportSharedMem:ifSupportMemorySharing])
+			{
+				//here the error message should be sent back to osirix
+				[imagesManager removeImage:savedImage];
+			}
+									   
+		}
 	}
 	[tempImage release];
 	NSMutableDictionary* resultImage=[imagesManager getImageForDescription: description];
+	NSMutableDictionary* returnImage=nil;
 	if(resultImage)
 	{
 		if([description isEqualToString:@"OutputImage0"])
@@ -327,14 +364,19 @@
 			exporterML->calcInSubImage(resultImage, 1);
 		}
 
-		resultImage=[[resultImage mutableCopy] autorelease];
+		
+		
+		returnImage=[resultImage mutableCopy];
 		if(ifSupportMemorySharing)
-			[resultImage removeObjectForKey:@"Data"];
+			[returnImage removeObjectForKey:@"Data"];
+
+		[remoteObjectProxy setImage: returnImage ForDescription: description];
+		[returnImage release];
 
 	}
 	
 	NSLog([NSString stringWithFormat:@"MeVisLab: MeVisLab is sending:%@",  description] );
-	return resultImage;
+	return [imagesManager getImageForDescription: description];
 }
 -(void)passingOnNotificationsToUpperBridge:(NSDictionary*)parameters
 {

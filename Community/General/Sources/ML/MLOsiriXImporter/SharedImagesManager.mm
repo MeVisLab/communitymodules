@@ -165,7 +165,10 @@
 		[anImage setObject:[NSNumber numberWithBool:NO] forKey:@"NeedUnlink"];
 	}
 	else
+	{
+		NSLog(@"failed to allocate shared memory.");
 		return NO;
+	}
 	return YES;
 	
 }

@@ -217,8 +217,10 @@ void OsiriXImporter::notifyXMarkerListUpdated()
 	if([imagetype isEqualToString:@"overlay"])
 	{
 		NSArray* overlayObjects=[anImage objectForKey:@"OverlayObjects"];
+		int objID=0;
 		for( NSDictionary* anOverlayObject in overlayObjects)
 		{
+			objID++;
 			if([[anOverlayObject objectForKey:@"OverlayType"] isEqualToString:@"points"])
 			{
 				NSArray* points=[anOverlayObject objectForKey:@"Points"];
@@ -229,17 +231,21 @@ void OsiriXImporter::notifyXMarkerListUpdated()
 					// Fill marker with zeros.
 					XMarker outMarker(vec6(0),vec3(0),0);
 					NSDictionary* apoint=[points objectAtIndex:i];
-					outMarker.pos[0]=[[apoint objectForKey:@"x"] intValue];
-					outMarker.pos[1]=[[apoint objectForKey:@"y"] intValue];
-					outMarker.pos[2]=[[apoint objectForKey:@"z"] intValue];
+					outMarker.pos[0]=[[apoint objectForKey:@"x"] floatValue];
+					outMarker.pos[1]=[[apoint objectForKey:@"y"] floatValue];
+					outMarker.pos[2]=[[apoint objectForKey:@"z"] floatValue];
 					outMarker.type = [[apoint objectForKey:@"value"] intValue];
-							
+					outMarker.setId(objID);
+				//	char name[4];
+//					sprintf(name,"#%d", i);
+//					outMarker.setName(name);		
 					// Append XMarker to XMarkerList.
 					_outputXMarkerList.push_back(outMarker);
+					
 				}
 			}
 		}
-		
+		//_outputXMarkerList.selectItemAt(objID-1);
 	}
 	// Update local XMarkerList and set BaseValue of the output
 	_OutputXMarkerListField->setBaseValue(&_outputXMarkerList);
@@ -289,7 +295,7 @@ void OsiriXImporter::notifyCSOListUpdated()
 			for( NSDictionary* apoint in points)
 			{
 				vec3 newCSOPos;
-				newCSOPos = vec3([[apoint objectForKey:@"x"] intValue], [[apoint objectForKey:@"y"] intValue] , [[apoint objectForKey:@"z"] intValue]);
+				newCSOPos = vec3([[apoint objectForKey:@"x"] floatValue], [[apoint objectForKey:@"y"] floatValue] , [[apoint objectForKey:@"z"] floatValue]);
 				cso->appendSeedAndPathPoint(newCSOPos);
 				
 			}
@@ -432,7 +438,7 @@ void OsiriXImporter::calcOutImageProps (int outIndex)
 		}
 	}
 
-  getOutImg(outIndex)->setImgExt(Vector(dimension[0],dimension[1],dimension[2],dimension[3],1,1));
+  getOutImg(outIndex)->setImgExt(Vector(dimension[0],dimension[1],dimension[2],1,dimension[3],1));
   getOutImg(outIndex)->setMinVoxelValue(minvalue);
   getOutImg(outIndex)->setMaxVoxelValue(maxvalue);
   getOutImg(outIndex)->setVoxelSize(spacing[0],spacing[1],spacing[2]);
@@ -481,11 +487,11 @@ void OsiriXImporter::calcOutSubImage (TSubImg<T> *outSubImg, int outIndex
 			  switch (InputImageType[outIndex]) {
 				  case MLfloatType:
 					  for (; p.x <= rowEnd;  ++p.x, ++outVoxel)
-						  *outVoxel =(T)( *(floatImagePtr+p.c*dimension.x*dimension.y*dimension.z+p.z*dimension.x*dimension.y+p.y*dimension.x+p.x));;
+						  *outVoxel =(T)( *(floatImagePtr+p.t*dimension.x*dimension.y*dimension.z+p.z*dimension.x*dimension.y+p.y*dimension.x+p.x));;
 					  break;
 				  case MLuint8Type:
 					  for (; p.x <= rowEnd;  ++p.x, ++outVoxel)
-						  *outVoxel =(T)( *(bitImagePtr+p.c*dimension.x*dimension.y*dimension.z+p.z*dimension.x*dimension.y+p.y*dimension.x+p.x));;
+						  *outVoxel =(T)( *(bitImagePtr+p.t*dimension.x*dimension.y*dimension.z+p.z*dimension.x*dimension.y+p.y*dimension.x+p.x));;
 					  break;
 					  
 				  default:
