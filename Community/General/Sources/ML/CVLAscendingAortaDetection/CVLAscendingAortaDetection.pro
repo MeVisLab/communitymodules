@@ -4,6 +4,8 @@
 # project CVLAscendingAortaDetection.
 #
 
+TEMPLATE = lib
+
 TARGET  = CVLAscendingAortaDetection
 
 DESTDIR = ../../../lib

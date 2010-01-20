@@ -7,6 +7,8 @@
 # \date    05/2009
 # -----------------------------------------------------------------------------
 
+TEMPLATE = lib
+
 TARGET = MLWEMCommunityModules
 
 DESTDIR = ../../../lib

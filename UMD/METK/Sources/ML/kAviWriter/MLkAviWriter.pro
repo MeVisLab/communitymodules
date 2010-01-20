@@ -8,6 +8,8 @@
 # $Source$
 # --------------------------------------------------
 
+TEMPLATE = lib
+
 TARGET  = MLkAviWriter
 
 DESTDIR    = ../../../lib
