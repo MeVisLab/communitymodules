@@ -142,7 +142,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
 
   if (_inputCSOList!=NULL) {
     // Get list index value
-    int listIndex = max (-1, _listIndexFld->getIntValue());
+    int listIndex = mlMax (static_cast<MLint>(-1), _listIndexFld->getIntValue());
 
     // Get output options
     const bool outputNormals = _outputCSONormals->getBoolValue();
