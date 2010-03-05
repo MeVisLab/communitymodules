@@ -1,0 +1,791 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2D {
+  internal  {
+    frame = "325 213 88 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoView2D
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 0
+    keepSlicesInView = FALSE
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "2 2"
+    spacing = "4 4"
+    plane = "0 0 1 0"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = TRUE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = TRUE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    passHandledFlagToInventor = FALSE
+    reverseExtensionDrawingOrder = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    lutMode = LUT_BEST
+    useShaders = TRUE
+    applyLut = TRUE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    status = ""
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "245 65 152 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = scene
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = off
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "217 213 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoView2DPosition {
+  internal  {
+    frame = "205 289 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "114 175 470 665"
+        sizeHint = "470 665"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = pos
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 0.8667280077934265 0.2914040088653564"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "1 1 1"
+    firstSliceWorldPosition = "-1 -1 -1"
+    drawingModel = DRAWINGMODEL_CROSSHAIRS
+    drawingModelSize = -1
+    blendOnto = 1
+    blendOutside = 0
+    lineWidth = 1
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.1725489944219589 0.8862749934196472 0.01176500041037798"
+    axialColor = "0.007842999882996082 0.9529410004615784 0.9686269760131836"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = TRUE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module Increment {
+  internal  {
+    frame = "-7 473 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "740 846 151 85"
+        sizeHint = "151 85"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ArrowDown
+    currentValue = 0
+    applyMin = FALSE
+    applyMax = FALSE
+    minValue = 0
+    maxValue = 10
+    increment = -1
+  }
+  internalFields = ""
+}
+module Increment {
+  internal  {
+    frame = "-3 545 88 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "737 730 151 85"
+        sizeHint = "151 85"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ArrowUp
+    currentValue = 0
+    applyMin = FALSE
+    applyMax = FALSE
+    minValue = 0
+    maxValue = 10
+    increment = 1
+  }
+  internalFields = ""
+}
+module SoKeyGrabber {
+  internal  {
+    frame = "-167 517 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "688 345 380 226"
+        sizeHint = "380 226"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoKeyGrabber
+    on = TRUE
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    lastKey = ANY
+    key0 = UP_ARROW
+    key1 = DOWN_ARROW
+    key2 = ANY
+    key3 = ANY
+    key4 = ANY
+  }
+}
+module FieldBypass {
+  internal  {
+    frame = "149 517 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "441 656 190 280"
+        sizeHint = "190 280"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldBypass1
+    inputString0 = 0
+    inputString1 = 0
+    inputString2 = 0
+    inputString3 = ""
+    inputString4 = ""
+    inputNumber = -1
+    outputString = 0
+    noBypass = FALSE
+    onlyIfChanged = TRUE
+  }
+}
+module FieldSwitch {
+  internal  {
+    frame = "161 421 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "940 324 291 315"
+        sizeHint = "259 315"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldSwitch
+    currentInput = 0
+    currentOutput = 0
+    input0 = 0
+    input1 = ""
+    input2 = ""
+    input3 = ""
+    input4 = ""
+    input5 = ""
+    input6 = ""
+    input7 = ""
+    input8 = ""
+    input9 = ""
+    output0 = 0
+    output1 = ""
+    output2 = ""
+    output3 = ""
+    output4 = ""
+    output5 = ""
+    output6 = ""
+    output7 = ""
+    output8 = ""
+    output9 = ""
+  }
+  internalFields = ""
+}
+module FieldBypass {
+  internal  {
+    frame = "157 365 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "661 174 190 280"
+        sizeHint = "190 280"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldBypass
+    inputString0 = 0
+    inputString1 = 360
+    inputString2 = ""
+    inputString3 = ""
+    inputString4 = ""
+    inputNumber = 0
+    outputString = 0
+    noBypass = FALSE
+    onlyIfChanged = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "413 69 136 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = off
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = FALSE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 0
+    farDistance = 0
+    focalDistance = 0
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module Switch {
+  internal  {
+    frame = "297 365 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "356 371 199 66"
+        sizeHint = "199 66"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Switch
+    currentInput = 0
+    numberOfInputs = 5
+    maxInput = 4
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "421 217 120 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = invPostViewerIn
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "61 209 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = invPostLUTIn
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-355 361 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = invPreLUTIn
+  }
+}
+module PathToKeyFrame {
+  internal  {
+    frame = "305 573 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "51 97 350 495"
+        sizeHint = "470 495"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PathToKeyFrame
+    numSmoothes = 0
+    outputResolution = 0
+    autoPathDir = FALSE
+    allowReverseView = FALSE
+    numOutputKeys = 0
+    pathLength = 0
+    pathShift = "0 0 0"
+    projectionMode = Off
+    viewDir = "0 1 0"
+    viewLatitude = 0
+    viewLongitude = 0
+    projectPathAngle = 0
+    maxProjectionDistance = 0
+    pathPositionWorld = "0 0 0"
+    pathPositionRelative = 0
+    inputPathPositionWorld = "0 0 0"
+    inputPathPositionRelative = 0
+    inputPathLength = 0
+  }
+}
+module MPRPath {
+  internal  {
+    frame = "301 501 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "134 107 449 580"
+        sizeHint = "449 580"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MPRPath
+    rotation = "-0.997501603966892 0.0163167111006986 0.0687336527643707 1.57859108282801"
+    translation = "-27.9044 -198.011 0"
+    plane = "-0.0851343759417393 -0.00752636682328935 -0.996341051967373 3.86592710107502"
+    enablePlaneEdit = FALSE
+    fillValue = 0
+    fieldOfView = 30
+    outputSize = 256
+    outputDepth = 1
+    aspectRatio = 1
+    forceUpright = FALSE
+    inputSliceNo = 0
+    interpolation = Trilinear
+    memoryAccess = VirtualVolume
+    currentKeyFrame = 0
+    maxKeyFrame = 0
+    pathAngle = 0
+    curvedMprPlane = "0.052780131559947 -0.998601549849757 0.00303353756831747 197.229091801679"
+    alignAlongPath = FALSE
+    thicknessOfCurvedMPR = 1
+    showUpVectors = FALSE
+    showFrame = TRUE
+    upVectorColor = "1 1 1"
+    imageColor = "1 1 1"
+    borderColor = "1 1 1"
+    borderOn = TRUE
+    drawImageOn = TRUE
+    manipulatorOn = TRUE
+    clipPlaneOn = FALSE
+    flipClipPlane = FALSE
+    clipPlaneOffset = 0
+    axesOn = FALSE
+    alphaFactor = 1
+    zBuffer = TRUE
+    blendMode = BLEND_REPLACE
+  }
+}
+module View2DExtensions {
+  internal  {
+    frame = "-227 361 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "552 188 637 669"
+        sizeHint = "637 669"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "587 124 354 440"
+        sizeHint = "354 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ext
+    slicerOn = TRUE
+    zoomOn = TRUE
+    panOn = TRUE
+    autoCenterOn = TRUE
+    position = "-3.984270095825195 -7.729000091552734 32.68109893798828"
+    positionMode = Off
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutMouseButton1 = IGNORED
+    lutMouseButton2 = IGNORED
+    lutMouseButton3 = PRESSED
+    lutMouseShift = RELEASED
+    lutMouseCtrl = RELEASED
+    lutRangeMin = 0
+    lutRangeMax = 1
+    lutAlphaSync = TRUE
+    lutGreyCenter = 1
+    lutGreyWidth = 1
+    lutAlphaCenter = 1
+    lutAlphaWidth = 1
+    lutColorFactor = "1 1 1"
+    lutAlphaFactor = 1
+    lutAutoDefault = TRUE
+    lutSetInputMinMax = TRUE
+    lutUseTraceColors = FALSE
+    lutEnableNegWidth = FALSE
+    lutSetDefaultOnce = TRUE
+    lutTrCol0 = "1 1 1"
+    lutTrCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
+    lutTrCol2 = "0.8627449870109558 0 0.1725489944219589"
+    lutTrCol3 = "1 0.4627450108528137 0.4901959896087646"
+    lutTrCol4 = "0 0.8196079730987549 0.1607840061187744"
+    lutTrCol5 = "0.5607839822769165 1 0.4352940022945404"
+    lutTrCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
+    lutTrCol7 = "0.4901959896087646 0.5411760210990906 1"
+    lutTrCol8 = "0.6313729882240295 0 0.67843097448349"
+    lutTrCol9 = "0.8941180109977722 0.3803919851779938 1"
+    lutTrColA = "0 0.6823530197143555 0.756862998008728"
+    lutTrColB = "0.5019609928131104 1 0.9803919792175293"
+    lutTrColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
+    lutTrColD = "1 0.9764710068702698 0.3686270117759705"
+    lutTrColE = "1 1 1"
+    lutTrColF = "1 1 1"
+    annotationOn = TRUE
+    annoCoords = World
+    annoCTValue = AsIs
+    valueHighPrecision = FALSE
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationMode = ANNO_MODE_USER
+    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotUserTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(input02) GV"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "Slice: $(input09)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input07) / $(input08)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(input09)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annoInput03 = 1
+    annoInput04 = 1
+    annoInput05 = 1
+    annoInput06 = 1
+    annoInput07 = 1
+    annoInput08 = 1
+    annoInput09 = GV
+    annoMouseOn = TRUE
+    annoReadPixFloorPos = "1025 764 0"
+    annoReadPixVoxelPos = "1025.339965820312 764.1619873046875 0.5"
+    annoReadPixWorldPos = "1025.339965820312 764.1619873046875 0.5"
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    borderWidth = 1
+    borderEvaluateFocus = FALSE
+    borderFocusColor = "1 1 1"
+    borderFocusWidth = 2
+    mouseGrabberMode = FALSE
+  }
+  internalFields = ""
+}
+module SoMouseGrabber {
+  internal  {
+    frame = "-63 365 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "-49 125 477 449"
+        sizeHint = "477 449"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "768 153 366 744"
+        sizeHint = "303 440"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMouseGrabber
+    on = TRUE
+    normalized = FALSE
+    clamp = TRUE
+    button1 = RELEASED
+    button2 = PRESSED
+    button3 = RELEASED
+    button1Pressed = FALSE
+    button2Pressed = FALSE
+    button3Pressed = FALSE
+    shift = RELEASED
+    ctrl = RELEASED
+    alt = RELEASED
+    shiftPressed = FALSE
+    ctrlPressed = FALSE
+    altPressed = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    absX = 0
+    absY = 0
+    y = 0
+    x = 0.5
+    y = 0
+    xmin = 0
+    xmax = 1
+    ymin = 0
+    ymax = 0
+    cursorPresent = FALSE
+    checkCursorPresent = FALSE
+    maskValid = FALSE
+    setEventHandled = FALSE
+    setWheelEventHandled = FALSE
+    flipX = FALSE
+    flipY = FALSE
+    swapXY = FALSE
+    sensitivity = 1
+    wheelOverflow = FALSE
+    wheel = 0
+    wheelStep = 1
+    wheelMin = 0
+    wheelMax = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-195 205 152 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup1
+  }
+}
+module SyncFloat {
+  internal  {
+    frame = "-375 517 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "413 702 121 91"
+        sizeHint = "121 91"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncFloat1
+    float1 = 0
+    float2 = 0
+    epsilon = 9.999999747e-05
+  }
+  internalFields = ""
+}
+connections  {
+  SoView2D.image = Switch.output0
+  scene.children = "SoGroup1.self SoGroup.self SoView2D.self invPostViewerIn.self"
+  SoGroup.children = "invPostLUTIn.self pos.self"
+  pos.colorAxes = pos.colorBorder
+  ArrowDown.currentValue = MPRPath.currentKeyFrame
+  ArrowDown.update = SoKeyGrabber.key1Pressed
+  ArrowUp.currentValue = MPRPath.currentKeyFrame
+  ArrowUp.update = SoKeyGrabber.key0Pressed
+  FieldBypass1.inputString0 = MPRPath.currentKeyFrame
+  FieldBypass1.inputString1 = ArrowUp.currentValue
+  FieldBypass1.inputString2 = ArrowDown.currentValue
+  FieldSwitch.currentOutput = Switch.currentInput
+  FieldSwitch.input0 = SoMouseGrabber.y
+  FieldSwitch.output0 = FieldSwitch.input0
+  FieldBypass.inputString0 = MPRPath.maxKeyFrame
+  FieldBypass.inputNumber = Switch.currentInput
+  SoExaminerViewer.children = MPRPath.outputSlice
+  Switch.input0 = MPRPath.output0
+  Switch.input1 = MPRPath.output2
+  invPostViewerIn.children = ""
+  invPostLUTIn.children = ""
+  invPreLUTIn.children = ""
+  MPRPath.currentKeyFrame = FieldSwitch.output0
+  MPRPath.pathAngle = FieldSwitch.output1
+  ext.inLUT = MPRPath.output0
+  ext.annoInput09 = MPRPath.currentKeyFrame
+  SoMouseGrabber.y = SoMouseGrabber.wheel
+  SoMouseGrabber.ymax = FieldBypass.outputString
+  SoMouseGrabber.wheel = SyncFloat1.float2
+  SoMouseGrabber.wheelMax = FieldBypass.outputString
+  SoGroup1.children = "invPreLUTIn.self ext.outNode SoKeyGrabber.self SoMouseGrabber.self"
+  SyncFloat1.float1 = SoMouseGrabber.y
+  SyncFloat1.float2 = FieldBypass1.outputString
+}
+networkModel = ""

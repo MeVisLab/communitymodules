@@ -1,0 +1,109 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module TestPattern {
+  internal  {
+    frame = "217 501 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "220 519 248 401"
+        sizeHint = "248 401"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TestPattern
+    sizeX = 100
+    sizeY = 100
+    sizeZ = 10
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = vecf2
+    fillValue = "0 0"
+    autoApply = TRUE
+    pattern = VolumeRamp
+    fillValue2 = "10 10"
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+  }
+}
+module VectorFieldView {
+  internal  {
+    frame = "205 325 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "431 130 753 648"
+        sizeHint = "370 231"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "94 195 464 653"
+        sizeHint = "464 653"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VectorFieldView
+    startSlice = 6
+  }
+  internalFields  {
+    ViewMesh.on = TRUE
+    ShowVectorValue.on = TRUE
+    SoView2DDeformationGridView.gridColor = "0 0.6666666865348816 1"
+    SoView2DDeformationGridView.drawGridPoints = TRUE
+    SoView2DDeformationGridView.gridPointColor = "1 0 0"
+    SoView2DDeformationGridView.gridPointAbsoluteSize = FALSE
+    SoView2DDeformationGridView.gridPointSize = 0.5000000596
+    SoView2DDeformationGridView.gridPointSegments = 35
+    SoView2DDeformationGridView.stepWidth = 9
+    ViewVectors.on = TRUE
+    SoView2DVectorFieldView.vectorColor = "1 0 0"
+    SoView2DVectorFieldView.vectorWidth = 0.1000000015
+    SoView2DVectorFieldView.vectorLength = 1
+    SoView2DVectorFieldView.vectorAbsoluteSize = TRUE
+    SoView2DVectorFieldView.midpointColor = "1 1 0"
+    SoView2DVectorFieldView.midpointSize = 0.5
+    SoView2DVectorFieldView.midpointSegments = 35
+    SoView2DVectorFieldView.midpointAbsoluteSize = FALSE
+    SoView2DVectorFieldView.drawArrowTips = FALSE
+    SoView2DVectorFieldView.arrowTipColor = "0 1 0"
+    SoView2DVectorFieldView.arrowTipWidth = 0.4000000358
+    SoView2DVectorFieldView.arrowTipHeight = 0.4000000358
+    SoView2DVectorFieldView.stepWidth = 9
+    SoView2DVectorFieldView.normalizeVectors = FALSE
+    SoView2DVectorFieldView.useComps2And3 = FALSE
+    ShowMagnitude.whichChild = 0
+    View2D.view.drawImageData = TRUE
+    SoView2DOverlay.timePoint = 0
+    SoView2DOverlay.drawingOn = TRUE
+    SoView2DOverlay.useWorldCoords = FALSE
+    SoView2DOverlay.renderOnSlab = TRUE
+    SoView2DOverlay.cacheTextures = TRUE
+    SoView2DOverlay.isCheckerTiling = FALSE
+    SoView2DOverlay.checkerTileSize = 2
+    SoView2DOverlay.areCheckerTilesInverted = FALSE
+    SoView2DOverlay.inheritFilterMode = TRUE
+    SoView2DOverlay.filterMode = FILTER_LINEAR
+    SoView2DOverlay.blendMode = BLEND_BLEND
+    SoView2DOverlay.alphaFactor = 1
+    SoView2DOverlay.baseColor = "1 0 0"
+  }
+}
+connections  {
+  VectorFieldView.input0 = TestPattern.output0
+  VectorFieldView.input1 = TestPattern.output0
+}
+networkModel = ""

@@ -1,0 +1,253 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module nSyncViewer
+/*!
+// \file    nSyncViewer.script
+// \author  Reinhard Hameeteman
+// \date    2007-09-12
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs { 
+    Field input0     { internalName = In0.input0 }
+    Field invInput0  { type = sonode }
+    Field input1     { internalName = In1.input0 }
+    Field invInput1  { type = sonode }
+    Field input2     { internalName = In2.input0  hidden = yes }
+    Field invInput2  { type = sonode hidden = yes }
+    Field input3     { internalName = In3.input0  hidden = yes }
+    Field invInput3  { type = sonode hidden = yes }
+    Field input4     { internalName = In4.input0  hidden = yes }
+    Field invInput4  { type = sonode hidden = yes }
+    Field input5     { internalName = In5.input0  hidden = yes }
+    Field invInput5  { type = sonode hidden = yes }
+    Field input6     { internalName = In6.input0  hidden = yes }
+    Field invInput6  { type = sonode hidden = yes }
+    Field input7     { internalName = In7.input0  hidden = yes }
+    Field invInput7  { type = sonode hidden = yes }
+    Field input8     { internalName = In8.input0  hidden = yes }
+    Field invInput8  { type = sonode hidden = yes }
+    Field input9     { internalName = In9.input0  hidden = yes }
+    Field invInput9  { type = sonode hidden = yes }
+    Field input10    { internalName = In10.input0 hidden = yes }
+    Field invInput10 { type = sonode hidden = yes }
+    Field input11    { internalName = In11.input0 hidden = yes }
+    Field invInput11 { type = sonode hidden = yes }
+    Field input12    { internalName = In12.input0 hidden = yes }
+    Field invInput12 { type = sonode hidden = yes }
+    Field input13    { internalName = In13.input0 hidden = yes }
+    Field invInput13 { type = sonode hidden = yes }
+    Field input14    { internalName = In14.input0 hidden = yes }
+    Field invInput14 { type = sonode hidden = yes }
+    Field input15    { internalName = In15.input0 hidden = yes }
+    Field invInput15 { type = sonode hidden = yes }
+    Field input16    { internalName = In16.input0 hidden = yes }
+    Field invInput16 { type = sonode hidden = yes }
+    Field input17    { internalName = In17.input0 hidden = yes }
+    Field invInput17 { type = sonode hidden = yes }
+    Field input18    { internalName = In18.input0 hidden = yes }
+    Field invInput18 { type = sonode hidden = yes }
+    Field input19    { internalName = In19.input0 hidden = yes }
+    Field invInput19 { type = sonode hidden = yes }
+    Field globalInvInput   { internalName = SoGroup.child hidden = yes }
+ }
+  Outputs { }
+  Parameters {
+    Field numberOfInputs      { type = int    value = 2 }
+    Field showInventorInputs  { type = bool   value = false }
+    Field singleInvInput {
+      type = enum
+      items { 
+        item inInvPreLUT {} 
+        item inInvPostLUT {} 
+        item inInvPostViewer {} 
+      }
+    }
+    Field layout              { type = string value = "{1:[1,1],2:[1,2],3:[1,3],4:[2,2],5:[2,3]}"}
+    Field syncZoom            { type = bool   value = false }
+    Field unZoom              { type = trigger }
+    Field syncPanning         { type = bool   value = false }
+    Field syncLUT             { type = bool   value = false }
+    Field syncTimepoints      { type = bool   value = false }
+    Field reformat            { type = bool   value = False }
+    Field referenceGrid       { type = int    value = 0 }
+    Field worldPos            { internalName = OrthoView2D0.worldPosition }
+    Field coordSystem         { internalName = OrthoView2D0.ext.annoCoords }
+    Field interpolationMethod { internalName = Reformat0.interpolation }
+    Field cursorAlpha         { internalName = OrthoView2D0.pos.blendOnto }
+
+
+    //Field titleString         { type = string value = "input0,input1" }
+    //Field showTitleString     { type = string value = "False,False" }
+    //Field newTitle            { type = string value = "" }
+
+  }
+}
+
+Description {
+  Field numberOfInputs { min = 1 max = 20 }
+  Field cursorAlpha    { min = 0 max = 1  }
+  Field referenceGrid  { min = 0 max = 2 }
+}
+
+Commands {
+  source = $(LOCAL)/nSyncViewer.py
+  initCommand = Init
+  FieldListener syncZoom       { command = SyncZoom }
+  FieldListener unZoom         { command = UnZoom   }
+  FieldListener syncPanning    { command = SyncPanning }
+  FieldListener syncLUT        { command = SyncLUT  }
+  FieldListener syncTimepoints { command = SyncTimepoints }
+  FieldListener { 
+    listenField = reformat
+    listenField = referenceGrid
+    command = ApplyReformat 
+  }
+  FieldListener showInventorInputs { command = ShowInventorInputs }
+  ContextMenu {
+    MenuItem "Show Inventor inputs" { field = showInventorInputs }
+    MenuItem "Sync Zoom" { field = syncZoom }
+    MenuItem "Sync LUT" { field = syncLUT }
+    MenuItem "Sync Timepoints" { field = syncTimepoints }
+  }
+}
+
+Window Viewer {
+  name = mainWindow
+  style nSyncViewerPrivate_default { derive = BIGRStyle }
+  EventFilter {
+    filter = KeyPress
+    control = mainWindow
+    command = "*py:if args[0]['key']=='S' : ctx.showWindow('Settings')*"
+  }
+  EventFilter {
+    filter = KeyPress
+    control = mainWindow
+    command = "*py:if args[0]['key']=='Clear' : UnZoom() *"
+  }
+  Vertical {
+    name = viewerPanel
+    //w = 800
+    //h = 400
+    frameMargin = 0
+    style {
+      Prototype Label { expandY = No    }
+      Prototype Viewer { border = No popup = No  }
+      Prototype Table  { spacing = 0 margin = 0 }
+    }
+    DynamicFrame { name = ViewerFrame autoSize = Yes }
+  }
+  wakeupCommand = NumberOfInputChanged
+  FieldListener numberOfInputs { command = NumberOfInputChanged }
+  FieldListener singleInvInput { command = NumberOfInputChanged }
+}
+
+Window Settings {
+  name = settingsWindow
+  TabView {
+    TabViewItem "General" {
+      Box  {
+        Field numberOfInputs { step = 1}
+        Field layout { 
+          tooltip = 
+"*You can specify the layout in a Python dictionary form:
+{nInputs:[rows,cols],nInputs:[rows,cols]}, e.g. {5:[3,2],10:[2,5]}*"}
+        Field showInventorInputs {}
+        Field singleInvInput { dependsOn = showInventorInputs }
+        Horizontal {
+          alignX = Left
+          Field syncZoom { alignGroup = g1 }
+          Button unZoom { title = Reset }
+        }
+        Field syncPanning { alignGroup = g1 }
+        Field syncLUT { alignGroup = g1 }      
+        Field syncTimepoints { alignGroup = g1 } 
+        Field cursorAlpha { slider = Yes editField = No }
+        Field coordSystem {}
+        Horizontal {
+          Field referenceGrid { 
+            dependsOn = reformat
+            step = 1
+            title = "Reformat to input:" 
+            alignGroup = g1
+          }
+          CheckBox reformat { title = ""}
+        }
+        Field interpolationMethod { dependsOn = reformat }
+        Horizontal {
+          alignX = left
+          Label { title = "Annotation:" alignGroup = g1  }
+          Button {
+            title = "A"
+            command = ToggleAnnotation
+          }
+        }
+      } //
+
+      Box Info {
+        Label {
+          title = "You can press 'F' on every viewer to show the viewer settings"
+          textWrap = WordBreak
+        }
+      } // Info
+    } // General
+/*    TabViewItem Titles {
+      expandY = Yes
+      //DynamicFrame { name = SettingsFrame autoSize = Yes }
+      ListView {
+        name = titlesListCtrl
+        values = "Show,Input#,Title@,0,Input0@1,Input1"
+        rowSeparator = "@"
+        columnSeparator = ","
+        resizeMode = last
+        sortByColumn = 0
+        layout = "tl,l,l"
+        selectionMode = Single
+        expandY = Yes
+        checkListItemChangedCommand = UpdateTitleStrings
+      }
+      Field newTitle {}
+      tabSelectedCommand = UpdateSettingsGUI
+      FieldListener newTitle { command = SetNewTitle }
+    }*/
+  }  
+}
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
+//# owner: MeVis Internal Developer
+//# date: 2007-07-05T03:39:16
+//# hash: NZnpFvlIWb2UTMKyWzOuJEZzoHM/s9TlAdYpIMv062KgFHHoXp8DNyyPGqjQINHxx+W07/BC6aUcPMYZinaBFw==
+//# MeVis end
+

@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! nSyncViewer module definition
+/*!
+// \file    nSyncViewer.def
+// \author  Reinhard Hameeteman
+// \date    2010-02-16
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule nSyncViewer {
+  genre = View2D
+  group = BIGR
+  author = "Reinhard Hameeteman"
+  status = "work-in-progress"
+  comment = "Sync up to 20 viewers"
+  keywords = "sync synchro view resample simultaneous"
+  seeAlso = "SynchroView2D OrthoView2D"
+  exampleNetwork = $(LOCAL)/networks/nSyncViewerExample.mlab
+  externalDefinition = "$(LOCAL)/nSyncViewer.script"
+} // MacroModule nSyncViewer
+

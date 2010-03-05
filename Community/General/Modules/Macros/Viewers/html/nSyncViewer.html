@@ -1,0 +1,102 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;    <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a> <a href="#TipsAndTricks">Tips And Tricks</a>
+   
+<hr WIDTH="100%"></center>
+<h2>nSyncViewer</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>
+  This module can be used to synchronize up to 20 viewers and has an inventor input for each of them.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>
+  Set the numberOfInputs and connect the inputs. Use the mouse cursor to sync the different viewers.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>
+  This module creates a network containing a OrthoView2D module for each viewer and synchronizes the world positions of all viewers. Additionally the sliceZoom, the LUTSettings and the timepoints of all viewers can be synchroized. It is also possible to reformat all images to a selected reference input image. Pressing 'S' will show a window with all parameters.
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>
+  <ul>
+    <li>
+      <b>numberOfInputs</b>
+      The number of shown input connections
+    </li>
+    <li>
+      <b>showInventorInputs</b>
+      Show a inventor connection for eacht input
+    </li>
+    <li>
+      <b>singleInvInput</b>
+      The used inventor input of the internally used OrthoView2D modules, i.e. inInvPreLUT, inInvPostLUT or inInvPostViewer
+    </li>
+    <li>
+      <b>layout</b>
+      Layout string. This should have the format of a Python dictonary, i.e. {#Inputs:[#rows,#columns],#Inputs:[#rows,#columns]} where # indicates "numberOf". For example {5,[3,2]} will generate 3 rows and two columns when numberOfInputs = 5. The first and second row will have 2 viewers, the third will have one viewer and one grey area. The size of all viewers will be the same. If the layout for the current number of inputs is not specified, the module will try to make as many rows as columns
+    </li>
+    <li>
+      <b>syncZoom</b>
+      Synchronize the slice zoom
+    </li>
+    <li>
+      <b>syncLUT</b>
+      Synchronize the GreyCenter and GreyWidth
+    </li>
+    <li>
+      <b>syncTimepoints</b>
+      Synchronize the time points
+    </li>
+    <li>
+      <b>reformat</b>
+      Reformat all input images to a specified reference image
+    </li>
+    <li>
+      <b>referenceGrid</b>
+      The reference input for the reformat
+    </li>
+    <li>
+      <b>worldPos</b>
+      Current cursor position in world coordinates
+    </li>
+    <li>
+      <b>coordSystem</b>
+      Coordinate system of the shown coordinate, i.e. Voxel or World
+    </li>
+    <li>
+      <b>interpolationMethod</b>
+      Interpolation method for the reformat operatation
+    </li>
+    <li>
+      <b>cursorAlpha</b>
+      Alpha value of the shown cursor
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME=Example></a>Example</h3>
+<blockquote>
+  The example network show 2 images with two overlays simultaneously.
+</blockquote>
+
+
+<h3><a NAME=TipsAndTricks></a>Tips and Trics</h3>
+<blockquote>
+  Pressing 'S' on any viewer will show the global settings of the module. Pressing 'F' on a viewer will show the settings of that viewer.
+</blockquote>
+
+</body>
+</html>

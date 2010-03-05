@@ -1,0 +1,717 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SyncFields {
+  internal  {
+    frame = "89 257 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 201"
+        sizeHint = "183 201"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncPanning3
+    mode = Vector
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-39 257 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 201"
+        sizeHint = "183 201"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncPanning2
+    mode = Vector
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-175 257 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 201"
+        sizeHint = "183 201"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncPanning1
+    mode = Vector
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module Switch {
+  internal  {
+    frame = "165 525 472 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "543 484 199 66"
+        sizeHint = "199 66"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Switch
+    currentInput = 0
+    numberOfInputs = 20
+    maxInput = 19
+  }
+}
+module Bypass {
+  internal  {
+    frame = "165 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In12
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "237 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In13
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "309 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In14
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "381 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In15
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "453 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In16
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "525 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In17
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "597 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In18
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "669 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In19
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "93 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In11
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "21 745 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In10
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "669 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In9
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "597 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In8
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-171 337 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 194 365"
+        sizeHint = "194 365"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncTimepoints
+    mode = MultiFloat
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-167 505 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 387"
+        sizeHint = "183 387"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncLUTWidth
+    mode = MultiFloat
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-171 425 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 194 365"
+        sizeHint = "194 365"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncLUTCenter
+    mode = MultiFloat
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "785 749 80 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-159 649 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 387"
+        sizeHint = "183 387"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncZoom
+    mode = Float
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-159 577 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "618 170 183 201"
+        sizeHint = "183 201"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncPos
+    mode = Vector
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module Reformat {
+  internal  {
+    frame = "29 413 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "-44 218 456 602"
+        sizeHint = "456 602"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Reformat0
+    matrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useInventorComposition = FALSE
+    composeMatrix = TRUE
+    scale = "1 1 1"
+    rotationAngles = "0 0 0"
+    rotation = "0 0 1 0"
+    translation = "0 0 0"
+    center = "0 0 0"
+    fillValue = 0
+    interactive = TRUE
+    autoCenter = TRUE
+    interpolation = Trilinear
+    memoryAccess = Global
+    isVectorUpdateEnabled = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "525 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In7
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "453 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In6
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "381 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In5
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "309 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In4
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "237 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In3
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "165 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In2
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "93 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In1
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module Bypass {
+  internal  {
+    frame = "21 665 72 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = In0
+    ignoreNextNotify = FALSE
+    noBypass = FALSE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "-163 729 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = Dummy
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "29 341 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "968 229 292 440"
+        sizeHint = "292 440"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "28 28 400 431"
+        sizeHint = "400 431"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "461 298 365 473"
+        sizeHint = "365 473"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D0
+    inventorInputOn = TRUE
+    layout = LAYOUT_AXIAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = TRUE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    greyWidth = 1
+    greyCenter = 1
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = FALSE
+    annoCoords = Voxel
+    showCurrentPos = TRUE
+    worldPosition = "0 0 0"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  Switch.input0 = In0.output0
+  Switch.input1 = In1.output0
+  Switch.input2 = In2.output0
+  Switch.input3 = In3.output0
+  Switch.input4 = In4.output0
+  Switch.input5 = In5.output0
+  Switch.input6 = In6.output0
+  Switch.input7 = In7.output0
+  Switch.input8 = In8.output0
+  Switch.input9 = In9.output0
+  Switch.input10 = In10.output0
+  Switch.input11 = In11.output0
+  Switch.input12 = In12.output0
+  Switch.input13 = In13.output0
+  Switch.input14 = In14.output0
+  Switch.input15 = In15.output0
+  Switch.input16 = In16.output0
+  Switch.input17 = In17.output0
+  Switch.input18 = In18.output0
+  Switch.input19 = In19.output0
+  In12.noBypass = In11.noBypass
+  In13.noBypass = In12.noBypass
+  In14.noBypass = In13.noBypass
+  In15.noBypass = In14.noBypass
+  In16.noBypass = In15.noBypass
+  In17.noBypass = In16.noBypass
+  In18.noBypass = In17.noBypass
+  In19.noBypass = In18.noBypass
+  In11.noBypass = In10.noBypass
+  In10.noBypass = In9.noBypass
+  In9.noBypass = In8.noBypass
+  In8.noBypass = In7.noBypass
+  SoGroup.children = ""
+  In7.noBypass = In6.noBypass
+  In6.noBypass = In5.noBypass
+  In5.noBypass = In4.noBypass
+  In4.noBypass = In3.noBypass
+  In3.noBypass = In2.noBypass
+  In2.noBypass = In1.noBypass
+  In1.noBypass = In0.noBypass
+  Dummy.children = ""
+  OrthoView2D0.image = In0.output0
+  OrthoView2D0.worldPosition = SyncPos.vector2
+}
+networkModel = ""

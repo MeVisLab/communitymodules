@@ -1,0 +1,151 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;  <a href="#InputFields">Input</a>&nbsp;&nbsp;&nbsp;  <a href="#OutputFields">Output</a>&nbsp;&nbsp;&nbsp;  <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+   
+<hr WIDTH="100%"></center>
+<h2>View2DMPRPath</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>This module can be used to view MPR images. It mostly has the same functionality as the View2D module.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Connect the image to the first input and the path to the second input and select what you want to view.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>This module has the same functionality as the View2D module, but is able to show MPR frames or CMPR images defined along a given path. The shown image have the correct world matrix which makes them suitable for overlays and position selection like drawing CSOs or XMarkers.
+The connected path can be either a KeyFrameList or a XMarkerList. In the latter case the markers are converted to a KeyFrameList using the PathToKeyFrame module. The settings of this module can be specified in the Settings window. This window can also be accessed by pressing S when the cursor is in the viewing area. Note that only the fields listed below are persistent.
+Using the mouse wheel you scroll through the frames or change the path angle of the CMPR depending on the current shown content
+</blockquote>
+
+<h3><a NAME="InputFields"></a>Input</h3>
+<blockquote>    <ul>
+    <li>
+      <b>input0</b>
+      Image to be reformatted
+    </li>
+    <li>
+      <b>path</b>
+      Path defined by a XMarker or KeyFrame List
+    </li>
+    <li>
+      <b>inInvPreLUT</b>
+      Inventor input before LUT and viewer inventor input,
+e.g. for overlays independent of LUT settings
+    </li>
+    <li>
+      <b>inInvPostLUT</b>
+      Inventor input between LUT and viewer inventor input
+    </li>
+    <li>
+      <b>inInvPostViewer</b>
+      Inventor input behind viewer inventor input,
+e.g. for diagram overlays
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="OutputFields"></a>Output</h3>
+<blockquote>    <ul>
+    <li>
+      <b>mprSliceImage</b>
+      Selected MPR frame
+    </li>
+    <li>
+      <b>stack</b>
+      Stack of all MPR frames. Note that this stack contains an average world matrix, which mostly will be incorrect
+    </li>
+    <li>
+      <b>cmpr</b>
+      CMPR image along the selected angle
+    </li>
+    <li>
+      <b>self</b>
+      Shown image
+    </li>
+    <li>
+      <b>scene</b>
+      Inventor scene showing the selected frame
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>inventorInputOn</b>
+      Show the inventor input connectors
+    </li>
+    <li>
+      <b>showOutputs</b>
+      Show the output connectors
+    </li>
+    <li>
+      <b>timePoint</b>
+      Current shown time point
+    </li>
+    <li>
+      <b>currentFrame</b>
+      Selected MPR frame
+    </li>
+    <li>
+      <b>currentPlane</b>
+      Plane of the current MPR frame
+    </li>
+    <li>
+      <b>rotation</b>
+      Rotation of the current MPR frame
+    </li>
+    <li>
+      <b>translation</b>
+      Translation of the current MPR frame
+    </li>
+    <li>
+      <b>worldPosition</b>
+      World position of the cursor
+    </li>
+    <li>
+      <b>pathAngle</b>
+      Angle of the CMPR image
+    </li>
+    <li>
+      <b>fieldOfView</b>
+      Shown field of view
+    </li>
+    <li>
+      <b>outputSize</b>
+      Voxel size of the shown image
+    </li>
+    <li>
+      <b>cursorAlpha</b>
+      Alpha of the cursor
+    </li>
+    <li>
+      <b>viewContent</b>
+      Select MPRFrame, CMPR or Inventor scene to be shown in the viewer
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

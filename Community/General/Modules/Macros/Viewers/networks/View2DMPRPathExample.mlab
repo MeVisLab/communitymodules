@@ -1,0 +1,294 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module View2DMPRPath {
+  internal  {
+    frame = "581 149 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "655 338 300 300"
+        sizeHint = "300 300"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2DMPRPath1
+    inventorInputOn = FALSE
+    showOutputs = FALSE
+    timePoint = 0
+    currentFrame = 0
+    currentPlane = "-0.2347787754358897 -0.9658964647614622 0.1091922431591802 51.85249046026289"
+    rotation = "0.9928804057740473 -0.1189372979000129 -0.006512986888266765 3.032959676690475"
+    translation = "11.4271 -157.439 -893.236"
+    worldPosition = "1 1 1"
+    pathAngle = 0
+    fieldOfView = 80
+    outputSize = 256
+    cursorAlpha = 1
+    lutCenter = 772.1000366
+    lutWidth = 1947.000244
+    sliceZoom = 1
+    viewContent = CMPR
+  }
+  internalFields = ""
+}
+module PathToKeyFrame {
+  internal  {
+    frame = "593 269 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = PathToKeyFrame
+    numSmoothes = 8
+    outputResolution = 0
+    autoPathDir = FALSE
+    allowReverseView = FALSE
+    numOutputKeys = 33
+    pathLength = 302.4024963
+    pathShift = "0 0 0"
+    projectionMode = Off
+    viewDir = "0 1 0"
+    viewLatitude = 0
+    viewLongitude = 0
+    projectPathAngle = 0
+    maxProjectionDistance = 0
+    pathPositionWorld = "11.4271 -157.439 -893.236"
+    pathPositionRelative = 0
+    inputPathPositionWorld = "11.4271 -157.439 -893.236"
+    inputPathPositionRelative = 0
+    inputPathLength = 302.4024963
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "441 485 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "229 251 499 199"
+        sizeHint = "499 199"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Thorax1_CT.small.dcm
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Thorax1_CT.small.dcm"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "385 349 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "54 76 477 783"
+        sizeHint = "477 783"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 0 0.4980390071868896"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = TRUE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 4
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = TRUE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor
+    listString = "[(11.4271 -157.439 -893.236) #1, (20.6711 -134.329 -893.236) #2, (20.6711 -115.841 -893.236) #3, (20.6711 -115.841 -893.236) #4, (20.6711 -115.841 -897.858) #5, (20.6711 -115.841 -902.48) #6, (20.6711 -115.841 -907.102) #7, (20.6711 -111.219 -916.346) #8, (20.6711 -111.219 -925.59) #9, (20.6711 -111.219 -934.834) #10, (16.0491 -111.219 -944.078) #11, (20.6711 -115.841 -953.322) #12, (20.6711 -115.841 -962.566) #13, (16.0491 -120.463 -971.81) #14, (20.6711 -120.463 -981.054) #15, (16.0491 -120.463 -990.298) #16, (16.0491 -125.085 -999.542) #17, (16.0491 -125.085 -1008.79) #18, (16.0491 -125.085 -1018.03) #19, (20.6711 -125.085 -1031.9) #20, (16.0491 -129.707 -1041.14) #21, (16.0491 -129.707 -1050.38) #22, (20.6711 -134.329 -1059.63) #23, (16.0491 -134.329 -1073.49) #25, (11.4271 -134.329 -1078.12) #26, (16.0491 -134.329 -1087.36) #27, (20.6711 -134.329 -1096.6) #28, (16.0491 -143.573 -1101.23) #29, (16.0491 -148.195 -1110.47) #30, (16.0491 -148.195 -1119.71) #31, (16.0491 -152.817 -1128.96) #32, (11.4271 -152.817 -1138.2) #33, (6.80515 -162.061 -1147.45) #34, (11.4271 -162.061 -1156.69) #35]"
+    numItems = 34
+    index = 33
+    persistent = TRUE
+    listStringEnable = FALSE
+    ownsList = TRUE
+    applySelect = FALSE
+    id = 35
+    name = ""
+    newName = ""
+    actionClass = New
+    actionIndex = -1
+    actionId = -1
+    currentIndex = -1
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "11.4271 -162.061 -1156.69"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module View2D {
+  internal  {
+    frame = "229 137 120 64"
+    moduleGroupName = ""
+    windows  {
+      window Settings {
+        geometry = "154 176 291 367"
+        sizeHint = "291 367"
+        wasOpen = no
+        wasActive = no
+      }
+      window _default {
+        geometry = "23 128 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = path_definition
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 424
+    lutWidth = 1200
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 -1159"
+  }
+  internalFields = ""
+}
+module View2DMPRPath {
+  internal  {
+    frame = "441 149 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "655 338 300 300"
+        sizeHint = "300 300"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2DMPRPath
+    inventorInputOn = FALSE
+    showOutputs = FALSE
+    timePoint = 0
+    currentFrame = 0
+    currentPlane = "-0.3713906763541039 -0.9284766908852593 1.202549745912936e-16 141.9345233385182"
+    rotation = "0.9819563867314218 -0.1891075211549514 0 3.141592653589793"
+    translation = "11.4271 -157.439 -893.236"
+    worldPosition = "1 1 1"
+    pathAngle = 0
+    fieldOfView = 80
+    outputSize = 256
+    cursorAlpha = 1
+    lutCenter = 1008.000122
+    lutWidth = 2050.000244
+    sliceZoom = 1
+    viewContent = MPRSlice
+  }
+  internalFields = ""
+}
+connections  {
+  View2DMPRPath1.input0 = LocalImage.outImage
+  View2DMPRPath1.path = PathToKeyFrame.outputKeys
+  PathToKeyFrame.inputKeys = SoView2DMarkerEditor.outXMarkerList
+  path_definition.inImage = LocalImage.outImage
+  path_definition.inInvPreLUT = SoView2DMarkerEditor.self
+  View2DMPRPath.input0 = LocalImage.outImage
+  View2DMPRPath.path = SoView2DMarkerEditor.outXMarkerList
+}
+networkModel = ""

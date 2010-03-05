@@ -1,0 +1,204 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "405 309 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "780 343 460 359"
+        sizeHint = "460 359"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay1
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 1
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 0.3420000076
+    baseColor = "1 0 0"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 153
+    areCheckerTilesInverted = TRUE
+  }
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "261 309 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "281 386 460 359"
+        sizeHint = "460 359"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 4
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 1
+    baseColor = "0 1 0"
+    useWorldCoords = TRUE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 153
+    areCheckerTilesInverted = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "397 429 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "48 67 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage1
+    name = $(DemoDataPath)/Head3_dwi.small.dcm
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dwi.small.dcm"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "273 429 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "48 67 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Head3_dualecho.small.dcm
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dualecho.small.dcm"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module nSyncViewer {
+  internal  {
+    frame = "341 165 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "137 119 635 332"
+        sizeHint = "416 208"
+        wasOpen = yes
+        wasActive = no
+      }
+      window Settings {
+        geometry = "638 265 316 420"
+        sizeHint = "316 420"
+        wasOpen = no
+        wasActive = no
+      }
+      window _scriptconsole {
+        geometry = "482 732 256 192"
+        sizeHint = "256 192"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = nSyncViewer
+    numberOfInputs = 2
+    showInventorInputs = TRUE
+    layout = "{1:[1,1],2:[1,2],3:[1,3],4:[2,2],5:[2,3]}"
+    syncZoom = FALSE
+    syncLUT = FALSE
+    syncTimepoints = FALSE
+    reformat = FALSE
+    referenceGrid = 0
+    worldPos = "17.21723365783691 50.11992263793945 -4.453742504119873"
+    coordSystem = Voxel
+    interpolationMethod = Trilinear
+    cursorAlpha = 1
+    singleInvInput = inInvPostLUT
+  }
+  internalFields = ""
+}
+connections  {
+  SoView2DOverlay1.image = LocalImage.outImage
+  SoView2DOverlay.image = LocalImage1.outImage
+  nSyncViewer.input0 = LocalImage.outImage
+  nSyncViewer.invInput0 = SoView2DOverlay.self
+  nSyncViewer.input1 = LocalImage1.outImage
+  nSyncViewer.invInput1 = SoView2DOverlay1.self
+}
+networkModel = ""

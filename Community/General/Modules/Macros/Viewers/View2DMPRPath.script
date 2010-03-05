@@ -1,0 +1,172 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module View2DMPRPath
+/*!
+// \file    View2DMPRPath.script
+// \author  Reinhard Hameeteman
+// \date    2009-06-05
+//
+// Combine MPRPath and View2D with the common user interaction
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field input0 { internalName = MPRPath.input0    }
+    Field path   { type = mlbase deprecatedName = input1 }
+    Field inInvPreLUT {
+      internalName = invPreLUTIn.child
+      hidden = yes
+      comment = "Before LUT and viewer inventor input,
+e.g. for overlays independent of LUT settings"
+    }
+    Field inInvPostLUT {
+      internalName = invPostLUTIn.child
+      hidden = yes
+      comment = "Between LUT and viewer inventor input"
+    }
+    Field inInvPostViewer {
+      internalName = invPostViewerIn.child
+      hidden = yes
+      comment = "Behind viewer inventor input,
+e.g. for diagram overlays"
+    }
+  }
+  Outputs {
+    Field mprSliceImage { internalName = MPRPath.output0     hidden = Yes }
+    Field stack         { internalName = MPRPath.output1     hidden = Yes }
+    Field cmpr          { internalName = MPRPath.output2     hidden = Yes }
+    Field self          { internalName = scene.self          hidden = Yes }
+    Field scene         { internalName = MPRPath.outputSlice hidden = Yes }
+  }
+  Parameters {
+    Field inventorInputOn { type = Bool value = FALSE }
+    Field showOutputs     { type = bool value = False }
+    Field timePoint       { internalName = SoView2D.timePoint }
+    Field currentFrame    { internalName = MPRPath.currentKeyFrame }
+    Field currentPlane    { internalName = MPRPath.plane }
+    Field rotation        { internalName = MPRPath.rotation }
+    Field translation     { internalName = MPRPath.translation }
+    Field worldPosition   { internalName = pos.worldPosition }
+    Field pathAngle       { internalName = MPRPath.pathAngle }
+    Field fieldOfView     { internalName = MPRPath.fieldOfView }
+    Field outputSize      { internalName = MPRPath.outputSize }
+    Field cursorAlpha     { internalName = pos.blendOnto }
+    Field lutCenter       { internalName = ext.lutGreyCenter }
+    Field lutWidth        { internalName = ext.lutGreyWidth }
+    Field sliceZoom       { internalName = SoView2D.sliceZoom }
+    Field viewContent {
+      type = enum
+      items { 
+        item MPRSlice {}
+        item CMPR {}
+        item Scene {}
+      }
+    }
+  }
+}
+
+Description {
+  Field currentFrame { min = 0 max = MPRPath.maxKeyFrame }
+}
+
+
+Commands {
+  source = $(LOCAL)/View2DMPRPath.py
+  FieldListener inventorInputOn {
+    init = yes
+    command = inventorInputOnChanged
+  }
+  FieldListener showOutputs {
+    init = Yes
+    command = ShowOutputs
+  }
+  FieldListener viewContent { command = ChangeView }
+  ContextMenu {
+    MenuItem "Show Inventor Inputs" { field = inventorInputOn }
+    MenuItem "Show Outputs"         { field = showOutputs }
+  }
+  FieldListener  {
+    init = Yes
+    listenField = path
+    command = SetPathInput
+  }
+}
+
+Window Viewer {
+  name = Viewer
+  EventFilter {
+    filter = KeyPress
+    control = Viewer
+    command = keyPressed
+  }
+  Vertical {
+    w = 300
+    h = 300
+    expandY = Yes 
+    Field viewContent {expandY = No}
+    Viewer scene.self {
+      type = SoRenderArea
+      expandY = Yes
+      visibleOn = "*viewContent == /(MPRSlice|CMPR)/ *"
+    }
+    Vertical {
+      visibleOn = "*viewContent == "Scene" *"
+      expandY = Yes
+      Viewer SoExaminerViewer.self {
+        type = SoExaminerViewer
+      }
+      Horizontal {
+        Label {title = "Frame:" }
+        Slider currentFrame { }
+      }
+    }
+  }
+}
+
+Window Settings {
+  Vertical View2D {
+    Panel {
+      module = SoView2D
+    }
+  }
+  Vertical MPRPath {
+    Panel {
+      module = MPRPath
+    }
+  }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-02T15:35:43
+//# hash: b9dhCEj6R7DBo9oG1w0eWCayKtfHi5/5QZ+CWL5QOmSAImTzukH0NP2qs2KYVCnUPZ9f7p9NpDmNw5EUPTYPyQ==
+//# MeVis end

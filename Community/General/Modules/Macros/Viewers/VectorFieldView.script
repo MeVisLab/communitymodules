@@ -1,0 +1,173 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module VectorFieldView
+/*!
+// \file    VectorFieldView.script
+// \author  Reinhard Hameeteman
+// \date    2007-06-11
+//
+// Displays a deformation grid and/or vectors of a field
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field input0 { internalName = Scalar.input0 comment = "Scalar image" }
+    Field input1 { internalName = Vector.input0 comment = "Vector image" }
+  }
+  Outputs {
+    Field output0 { internalName = View2D.scene.self hidden = yes }
+  }
+  Parameters {
+    Field startSlice { internalName = View2D.startSlice }
+  }
+}
+Persistence {
+  fields = ViewMesh.on 
+  fields = ShowVectorValue.on
+  Module SoView2DDeformationGridView {
+    fields = gridColor
+    fields = drawGridPoints
+    fields = gridPointColor
+    fields = gridPointAbsoluteSize
+    fields = gridPointSize
+    fields = gridPointSegments
+    fields = stepWidth
+  }
+  fields = ViewVectors.on 
+  Module SoView2DVectorFieldView {
+    fields = vectorColor          
+    fields = vectorWidth
+    fields = vectorLength
+    fields = vectorAbsoluteSize
+    fields = midpointColor          
+    fields = midpointSize           
+    fields = midpointSegments       
+    fields = midpointAbsoluteSize  
+    fields = drawArrowTips        
+    fields = arrowTipColor         
+    fields = arrowTipWidth         
+    fields = arrowTipHeight        
+    fields = stepWidth             
+    fields = normalizeVectors     
+    fields = useComps2And3        
+  }
+  fields = ShowMagnitude.whichChild
+  fields = View2D.view.drawImageData 
+  Module SoView2DOverlay {
+    fields = timePoint 
+    fields = drawingOn 
+    fields = useWorldCoords
+    fields = renderOnSlab  
+    fields = cacheTextures 
+    fields = isCheckerTiling
+    fields = checkerTileSize
+    fields = areCheckerTilesInverted
+    fields = inheritFilterMode
+    fields = filterMode
+    fields = blendMode
+    fields = alphaFactor
+    fields = baseColor
+  }
+}
+
+Commands {
+}
+
+Window Viewer {
+  Vertical {
+    expandY = yes
+    Horizontal {
+      alignX = left
+      CheckBox ViewMesh.on    { title = Grid   dependsOn = !ShowMagnitude.whichChild }
+      CheckBox ViewVectors.on { title = Vector dependsOn = !ShowMagnitude.whichChild }
+      CheckBox ShowMagnitude.whichChild  { title = Magnitude }
+      Field SoView2DDeformationGridView.stepWidth { 
+        title = Step
+        step = 1 
+        stepStep = 5 
+        tooltip = "Step distance between shown grid lines." 
+      }
+      Button {
+        title = "Settings"
+        command = "py:ctx.showWindow('Settings', ctx.window() )"
+      }
+    }
+    Viewer View2D.self {
+      tooltip = "Use shift-right mouse button to change the LUT of the overlay image"
+      type = SoRenderArea
+    }
+  }
+}
+
+
+Window Settings {
+  TabView {
+    name = TabViewControl
+    TabViewItem General {
+      alignY = top
+      Box OverlayContents {
+        CheckBox View2D.view.drawImageData { title = "Show scalar input" }
+        CheckBox ShowVectorValue.on        { title = "Show cursor vector value" }
+        CheckBox ShowMagnitude.whichChild { title = "Use field magnitude as overlay" }
+        CheckBox ViewVectors.on { title = "Display vectors" }
+        CheckBox ViewMesh.on { title = "Display mesh" }
+      }
+    }
+    TabViewItem Magnitude {
+      name = MagnitudeTabControl
+      dependsOn = "* ShowMagnitude.whichChild == "1" *" 
+      Panel { module = SoView2DOverlay }
+    }
+    TabViewItem Vectors {
+      name = VectorsTabControl
+      dependsOn = ViewVectors.on
+      alignY = top
+      Panel { module = SoView2DVectorFieldView }
+    }
+    TabViewItem Mesh {
+      name = MeshTabControl
+      dependsOn = ViewMesh.on
+      Panel { module = SoView2DDeformationGridView }
+    }
+  }
+  FieldListener ShowMagnitude.whichChild { 
+    command = "*py: ctx.control('TabViewControl').setTabEnabled(1, ctx.field('ShowMagnitude.whichChild').value == 1 ); ctx.control('TabViewControl').setTabEnabled(2, not ctx.field('ShowMagnitude.whichChild').value == 1 ); ctx.control('TabViewControl').setTabEnabled(3, not ctx.field('ShowMagnitude.whichChild').value == 1 ); *"}
+  FieldListener ViewVectors.on { command = "*py: ctx.control('TabViewControl').setTabEnabled(2, ctx.field('ViewVectors.on').boolValue() ) *"}
+  FieldListener ViewMesh.on    { command = "*py: ctx.control('TabViewControl').setTabEnabled(3, ctx.field('ViewMesh.on').boolValue() ) *"}
+  wakeupCommand = "*py: ctx.field('ShowMagnitude.whichChild').touch();ctx.field('ViewVectors.on').touch();ctx.field('ViewMesh.on').touch(); *"
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-02T15:36:49
+//# hash: D/uPHzT2SJLYdvz7N4vHzd5NmVKgp7PXLhPhCzqlo0OD0FDfvHdMEoWNP/BAkcSuidQW9g9jC4jZ/cG5bw86bA==
+//# MeVis end
