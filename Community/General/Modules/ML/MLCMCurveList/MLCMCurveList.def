@@ -1,0 +1,117 @@
+//----------------------------------------------------------------------------------
+//! MLCMCurveList module definitions.
+/*!
+// \file    MLCMCurveList.def
+// \author  Reinhard Hameeteman
+// \date    2010-03-05
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule CurveFilter
+//----------------------------------------------------------------------------------
+MLModule CurveFilter {
+  DLL            = "MLCMCurveList"
+  group          = "BIGR"
+  genre          = "Diagram"
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Select a curve from the curveList or curveSet"
+  keywords       = "curveList curveData curve filter"
+  seeAlso        = "CurveArithmetic CatCurves"
+  documentation  = "$(LOCAL)/CurveFilter/CurveFilter.html"
+  exampleNetwork = "$(LOCAL)/CurveFilter/CurveFilterExample.mlab" 
+
+  Description {
+    Field minCurveSet { 
+      min = 0 
+      max = numberOfCurveSets 
+      deprecatedName = curveSet 
+      persistent = No 
+    }
+    Field maxCurveSet { 
+      min = 0 
+      max = numberOfCurveSets 
+      persistent = No 
+    }
+    Field minCurve { 
+      min = 0 
+      max = numberOfCurves 
+      deprecatedName = curve 
+    }
+    Field maxCurve { 
+      min = 0 
+      max = numberOfCurves 
+    }
+ }
+  Window {
+    Vertical {
+      Box Select {
+        Horizontal {
+          Label {title = Set labelAlignGroup = g0}
+          Field minCurveSet { title = "" }
+          IntervalSlider { 
+            expandX = true 
+            step = 1
+            snap = 0
+            lowerField = minCurveSet
+            upperField = maxCurveSet
+          }
+          Field maxCurveSet { title = "" }
+        }
+        Horizontal {
+          Label {title = Series labelAlignGroup = g0 }
+          Field minCurve { title = "" }
+          IntervalSlider { 
+            expandX = true 
+            step = 1
+            snap = 0
+            lowerField = minCurve
+            upperField = maxCurve
+          }
+          Field maxCurve { title = "" }
+        }
+      }
+      Box Crop {
+        CheckBox cropCurve {}
+        Field start { dependsOn = cropCurve }
+        Field end { dependsOn = cropCurve }
+      }
+      Box Update{
+        layout = Horizontal
+        Button update {}
+        CheckBox autoUpdate {}
+      }
+    }
+ }
+} // MLModule CurveFilter
+
+
+//----------------------------------------------------------------------------------
+// MLModule StringToCurve
+//----------------------------------------------------------------------------------
+MLModule StringToCurve {
+  DLL            = "MLCMCurveList"
+  group          = "BIGR"
+  genre          = Diagram
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Convert a string into a curve"
+  keywords       = "string curve convert curvelist curvedata"
+  seeAlso        = "PrintCurves"
+  documentation  = "$(LOCAL)/StringToCurve/StringToCurve.html"
+  exampleNetwork = "$(LOCAL)/StringToCurve/StringToCurveExample.mlab"
+
+Window {
+  Box {
+    Horizontal {
+      Field curveSeparator { title = curveSeparators }
+      Field valueSeparator { title = valueSeparators }
+    }
+    Field curveString {}
+    Field indexString {}
+  }
+}
+
+} // MLModule StringToCurve

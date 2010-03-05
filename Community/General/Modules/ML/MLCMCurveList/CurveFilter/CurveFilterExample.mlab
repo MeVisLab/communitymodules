@@ -1,0 +1,470 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "-119 -123 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "635 95 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 1
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_INDEX
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = 1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor
+    listString = ""
+    numItems = 10
+    index = 9
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = TRUE
+    applySelect = FALSE
+    id = 10
+    name = ""
+    newName = ""
+    actionClass = Modify
+    actionIndex = 9
+    actionId = 10
+    currentIndex = 9
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "-78.75 -69.94419860839844 7.032798767089844"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module View2D {
+  internal  {
+    frame = "-211 -227 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "75 239 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+      window Settings {
+        geometry = "29 51 265 290"
+        sizeHint = "265 290"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 5
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 242.2030945
+    lutWidth = 453.5469055
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 1 0 -69.94419860839844"
+  }
+  internalFields = ""
+}
+module Diagram2D {
+  internal  {
+    frame = "89 -299 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "246 265 458 405"
+        sizeHint = "458 405"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 0
+    maxX = 5
+    autoRangeX = TRUE
+    minY = -23
+    maxY = 41
+    autoRangeY = TRUE
+    axisColor = "1 1 1"
+    axisRotation = LeftBottom
+    drawDiagramTitle = FALSE
+    diagramTitleString = ""
+    borderH = 30
+    autoBorderH = TRUE
+    borderV = 25
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn]"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 0.709764 0.369494"
+    lineStyle = Solid
+    markerType = Square
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = 1.265059948
+    mousePosY = 17.40570068
+    mousePosValid = TRUE
+    curveSelection = Diagram
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = TRUE
+  }
+}
+module SoRenderArea {
+  internal  {
+    frame = "81 -363 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "796 119 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRenderArea
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 15
+    frameRateAvi = 7
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+  }
+}
+module DynaCurve {
+  internal  {
+    frame = "125 -123 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "224 243 334 326"
+        sizeHint = "334 326"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DynaCurve
+    displayPoints = TRUE
+    displayROIs = TRUE
+    ROIMode = All
+    ROIData = Mean
+    ROIStyle = ErrorBar
+    refTime = 0
+    refTimeEnable = TRUE
+    refTimeMode = Difference
+    timeUnit = Seconds
+    timeData = NonConstant
+    timeDataValid = FALSE
+    dataUnit = ""
+    dataSymbol = E
+    ImageLabel = ""
+  }
+}
+module StylePalette {
+  internal  {
+    frame = "-55 -19 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "26 59 632 433"
+        sizeHint = "632 433"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StylePalette
+    color1 = "1 1 0"
+    color2 = "1 0 0"
+    color3 = "0 0 1"
+    color4 = "0 1 0"
+    color5 = "1 0.5 0"
+    color6 = "1 0 1"
+    color7 = "0 1 1"
+    color8 = "0.5 1 0.5"
+    color9 = "1 0 0.5"
+    color10 = "0.5 1 0"
+    color11 = "0.5 0 1"
+    color12 = "0 1 0.5"
+    lineStyle1 = Solid
+    lineStyle2 = Solid
+    lineStyle3 = Solid
+    lineStyle4 = Solid
+    lineStyle5 = Solid
+    lineStyle6 = Solid
+    lineStyle7 = Solid
+    lineStyle8 = Solid
+    lineStyle9 = Solid
+    lineStyle10 = Solid
+    lineStyle11 = Solid
+    lineStyle12 = Solid
+    lineWidth1 = 1
+    lineWidth2 = 1
+    lineWidth3 = 1
+    lineWidth4 = 1
+    lineWidth5 = 1
+    lineWidth6 = 1
+    lineWidth7 = 1
+    lineWidth8 = 1
+    lineWidth9 = 1
+    lineWidth10 = 1
+    lineWidth11 = 1
+    lineWidth12 = 1
+    markerType1 = None
+    markerType2 = None
+    markerType3 = None
+    markerType4 = None
+    markerType5 = None
+    markerType6 = None
+    markerType7 = None
+    markerType8 = None
+    markerType9 = None
+    markerType10 = None
+    markerType11 = None
+    markerType12 = None
+    markerSize1 = 2
+    markerSize2 = 2
+    markerSize3 = 2
+    markerSize4 = 2
+    markerSize5 = 2
+    markerSize6 = 2
+    markerSize7 = 2
+    markerSize8 = 2
+    markerSize9 = 2
+    markerSize10 = 2
+    markerSize11 = 2
+    markerSize12 = 2
+    antiAlias1 = FALSE
+    antiAlias2 = FALSE
+    antiAlias3 = FALSE
+    antiAlias4 = FALSE
+    antiAlias5 = FALSE
+    antiAlias6 = FALSE
+    antiAlias7 = FALSE
+    antiAlias8 = FALSE
+    antiAlias9 = FALSE
+    antiAlias10 = FALSE
+    antiAlias11 = FALSE
+    antiAlias12 = FALSE
+    name1 = ""
+    name2 = ""
+    name3 = ""
+    name4 = ""
+    name5 = ""
+    name6 = ""
+    name7 = ""
+    name8 = ""
+    name9 = ""
+    name10 = ""
+    name11 = ""
+    name12 = ""
+    currentStyle = 0
+    currentColor = "1 1 1"
+    currentLineStyle = None
+    currentLineWidth = 1
+    currentMarkerType = None
+    currentMarkerSize = 4
+    currentAntiAlias = FALSE
+    currentName = ""
+    reservedEntries = 0
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-63 125 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "180 199 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/dmribreast.dcm
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.dcm"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module CurveFilter {
+  internal  {
+    frame = "137 -195 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "202 515 304 264"
+        sizeHint = "304 264"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CurveFilter
+    autoUpdate = TRUE
+    numberOfCurveSets = 9
+    minCurve = 0
+    maxCurve = 0
+    numberOfCurves = 0
+    cropCurve = FALSE
+    start = 0
+    end = 0
+  }
+}
+connections  {
+  SoView2DMarkerEditor.stylePalette = StylePalette.outStylePalette
+  View2D.inImage = LocalImage.outImage
+  View2D.inInvPreLUT = SoView2DMarkerEditor.self
+  Diagram2D.inStylePalette = StylePalette.outStylePalette
+  Diagram2D.inCurveList = CurveFilter.outCurveList
+  SoRenderArea.children = Diagram2D.outNode
+  DynaCurve.input0 = LocalImage.outImage
+  DynaCurve.inPointList = SoView2DMarkerEditor.outXMarkerList
+  CurveFilter.inCurveList = DynaCurve.outCurveList
+}
+networkModel = ""
