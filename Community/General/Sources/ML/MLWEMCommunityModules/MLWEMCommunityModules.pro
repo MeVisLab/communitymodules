@@ -35,11 +35,19 @@ HEADERS += \
     MLWEMCommunityModulesInit.h \
     MLWEMCommunityModulesSystem.h \
     WEMPlane/WEMMarchingCubes.h \
-    WEMPlane/WEMPlane.h
+    WEMPlane/WEMPlane.h \
+    WEMVolume/WEMVolume.h \
+    WEMCenterOfMass/WEMCenterOfMass.h \
+    WEMNodesToFile/WEMNodesToFile.h \
+    WEMSelectPatches/WEMSelectPatches.h
 
 SOURCES += \
     MLWEMCommunityModulesInit.cpp \
-    WEMPlane/WEMPlane.cpp
+    WEMPlane/WEMPlane.cpp \
+    WEMVolume/WEMVolume.cpp \
+    WEMCenterOfMass/WEMCenterOfMass.cpp \
+    WEMNodesToFile/WEMNodesToFile.cpp \
+    WEMSelectPatches/WEMSelectPatches.cpp
 
 RELATEDFILES += \
     ../../../Modules/ML/MLWEMCommunityModules/MLWEMCommunityModules.def 

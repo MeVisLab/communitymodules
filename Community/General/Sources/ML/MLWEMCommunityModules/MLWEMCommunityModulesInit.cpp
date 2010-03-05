@@ -13,6 +13,10 @@
 #include <mlLibraryInitMacros.h>
 
 #include "WEMPlane/WEMPlane.h"
+#include "WEMCenterOfMass/WEMCenterOfMass.h"
+#include "WEMVolume/WEMVolume.h"
+#include "WEMSelectPatches/WEMSelectPatches.h"
+#include "WEMNodesToFile/WEMNodesToFile.h"
 
 ML_START_NAMESPACE
 
@@ -23,6 +27,10 @@ int MLWEMCommunityModulesInit() {
   ML_TRACE_IN("MLWEMCommunityModulesInit()");
 
   WEMPlane::initClass();
+  WEMVolume::initClass();
+  WEMSelectPatches::initClass();
+  WEMNodesToFile::initClass();
+  WEMCenterOfMass::initClass();
 
   return 1;
 }
