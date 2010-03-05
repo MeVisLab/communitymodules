@@ -1,0 +1,24 @@
+//-----------------------------------------------------------------------------
+//! Group definitions
+/*!
+// \file    Groups.def
+// \author  Reinhard Hameeteman
+// \date    02/2010
+*/
+//-----------------------------------------------------------------------------
+
+MeVisAboutExtension = "*
+<h3>BIGR Package Installed</h3><p>
+<a href="http://www.bigr.nl/">BIGR</a><br>
+<em>Copyright &copy; 2010 Biomedical Imaging Group Rotterdam (BIGR)</em>,<br/> 
+Departments of Radiology and Medical Informatics, Erasmus MC,<br/>
+University Medical Center, Rotterdam, The Netherlands.
+*"
+
+ModuleGroup BIGR {
+  owner = "Biomedical Imaging Group Rotterdam, BIGR, Departments of Radiology and Medical Informatics, Erasmus MC University Medical Center, Rotterdam, The Netherlands"
+  title = "BIGR Modules"
+  comment = "Internally developed modules of BIGR"
+  type = std
+  shy = false
+}
