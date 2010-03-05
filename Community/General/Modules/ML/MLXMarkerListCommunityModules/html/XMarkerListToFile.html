@@ -1,0 +1,115 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;  <a href="#InputFields">Input</a>&nbsp;&nbsp;&nbsp;   <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+   
+<hr WIDTH="100%"></center>
+<h2>XMarkerListToFile</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>Exports an XMarkerList to a text file. Both world and voxel coordinate exports are supported.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Connect an XMarkerList and an input image (when exporting voxel coordinates), select elements to export and coordinate system and press save.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>Elements are written to the text file in the order they appear in the GUI. It's not possible to export them using other orderings.
+</blockquote>
+
+<h3><a NAME="InputFields"></a>Input</h3>
+<blockquote>    <ul>
+    <li>
+      <b>input0</b>
+      Input image needed to transform markers to voxel coordinates.
+    </li>
+    <li>
+      <b>inputXMarkerList</b>
+      Input XMarkerList to save.
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>filename</b>
+      Filename to save XMarkerList to
+    </li>
+    <li>
+      <b>outputCoordinateSystem</b>
+      Output coordinate system. Either world (markers are not changed), voxel (both the marker position and the marker vector are transformed to voxel coordinates before export) or pos:voxel, vec:world (only the marker position is converted to voxel coordinates before export).
+    </li>
+    <li>
+      <b>coordinateSeparator</b>
+      Separator between the elements in the text file.
+    </li>
+    <li>
+      <b>exportPositionX</b>
+      Enable/disable exporting x-coordinate of marker position.
+    </li>
+    <li>
+      <b>exportPositionY</b>
+      Enable/disable exporting y-coordinate of marker position.
+    </li>
+    <li>
+      <b>exportPositionZ</b>
+      Enable/disable exporting z-coordinate of marker position.
+    </li>
+    <li>
+      <b>exportPositionT</b>
+      Enable/disable exporting t-coordinate of marker position.
+    </li>
+    <li>
+      <b>exportVectorX</b>
+      Enable/disable exporting x-coordinate of marker vector.
+    </li>
+    <li>
+      <b>exportVectorY</b>
+      Enable/disable exporting y-coordinate of marker vector.
+    </li>
+    <li>
+      <b>exportVectorZ</b>
+      Enable/disable exporting z-coordinate of marker vector.
+    </li>
+    <li>
+      <b>exportType</b>
+      Enable/disable exporting type of marker.
+    </li>
+    <li>
+      <b>maxOneMarkerPerVoxel</b>
+      Allow only one marker per voxel in the exported list.
+    </li>
+    <li>
+      <b>elastixFormat</b>
+      Export in transformix format (1st line: point/index, 2nd line: number of points).
+    </li>
+    <li>
+      <b>save</b>
+      Start saving the XMarkerList.
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

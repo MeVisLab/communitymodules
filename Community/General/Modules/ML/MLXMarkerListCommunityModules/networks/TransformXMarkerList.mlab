@@ -1,0 +1,375 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "581 181 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "422 91 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = FALSE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 0"
+    selectionTolerance = 2
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 1
+    snapToVoxel = FALSE
+    snapToSlice = FALSE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = FALSE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor1
+    listString = ""
+    numItems = 5
+    index = -1
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = FALSE
+    applySelect = FALSE
+    id = -1
+    name = ""
+    newName = ""
+    actionClass = Select
+    actionIndex = 4
+    actionId = 5
+    currentIndex = 4
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "569 93 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoView2DMarkerEditor {
+  internal  {
+    frame = "537 365 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "426 193 435 831"
+        sizeHint = "435 831"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    depthVisibility = 1
+    snapToVoxel = TRUE
+    snapToSlice = TRUE
+    currentType = 0
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    alphaFactor = 1
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    useIconFile = FALSE
+    iconIdx = 0
+    selectingOn = TRUE
+    actOnReleaseOnly = FALSE
+    editorMode = EDIT_MARKER
+    colorMode = COLOR_BY_TYPE
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textFontSize = 12
+    showTextOnlyForSelectedMarker = FALSE
+    cutText = FALSE
+    maxNumberOfLines = 1
+    vectorArrow = VECTOR_END_ARROW
+    useAntiAlias = FALSE
+    currentStyleIndex = -1
+    depthVectorDrawMode = DRAW_NONE
+    drawMode = DRAW_MARKER
+    selectiveDrawing = FALSE
+    selectionBoxesForCurrentOnly = FALSE
+    cooperative = FALSE
+    busy = FALSE
+    instanceName = SoView2DMarkerEditor
+    listString = "[(59.5 158.5 0.5) #1, (111.5 137.5 0.5) #2, (122.5 82.5 0.5) #3, (86.5 54.5 0.5) #4, (136.5 203.5 0.5) #5]"
+    numItems = 5
+    index = 4
+    persistent = TRUE
+    listStringEnable = FALSE
+    ownsList = TRUE
+    applySelect = FALSE
+    id = 5
+    name = ""
+    newName = ""
+    actionClass = Modify
+    actionIndex = 4
+    actionId = 5
+    currentIndex = 4
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "136.5 203.5 0.5"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ConstantImage {
+  internal  {
+    frame = "381 365 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "534 411 219 246"
+        sizeHint = "219 246"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ConstantImage
+    sizeX = 256
+    sizeY = 256
+    sizeZ = 1
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = float
+    fillValue = 0
+    autoApply = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "565 13 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "552 247 432 458"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 0.5
+    lutWidth = 1
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
+  }
+  internalFields = ""
+}
+module Comment {
+  internal  {
+    frame = "773 181 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "792 564 256 209"
+        sizeHint = "256 209"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "TransformXMarkerList transforms the input XMarkerList with the given transformation matrix or the transformation matrix composed of the given elementary transforms."
+  }
+  internalFields = ""
+}
+module TransformXMarkerList {
+  internal  {
+    frame = "565 269 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "854 142 400 480"
+        sizeHint = "420 480"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TransformXMarkerList
+    transformEnabled = TRUE
+    center = "0 0 0"
+    scaleOrientation = "0 0 1 0"
+    scale = "1 1 1"
+    rotation = "0 0 0 0"
+    translation = "15 0 0"
+    useElementaryTransforms = TRUE
+    matrix = "1 0 0 15
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    divideByHomogeneousCoordinate = FALSE
+  }
+}
+connections  {
+  SoView2DMarkerEditor1.inXMarkerList = TransformXMarkerList.outputXMarkerList
+  SoGroup.children = "SoView2DMarkerEditor.self SoView2DMarkerEditor1.self"
+  View2D.inImage = ConstantImage.output0
+  View2D.inInvPreLUT = SoGroup.self
+  TransformXMarkerList.inputXMarkerList = SoView2DMarkerEditor.outXMarkerList
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 24
+        objectName = ""
+        parentUniqueId = 0
+        frame = "168 -65 258 181"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "Click markers in the View2D GUI and see how they are transformed with TransformXMarkerList.
+
+Changing the elementary transform fields will update the transformation matrix. Disabling the elementary transforms allows the definition of the transformation matrix directly."
+        titleText = Comment
+        isCollapsed = False
+      }
+    }
+  }
+}

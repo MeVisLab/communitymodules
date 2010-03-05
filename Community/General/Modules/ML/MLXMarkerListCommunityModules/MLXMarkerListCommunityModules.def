@@ -1,0 +1,132 @@
+//----------------------------------------------------------------------------------
+//! MLXMarkerListCommunityModules module definitions.
+/*!
+// \file    MLXMarkerListCommunityModules.def
+// \author  Coert Metz
+// \date    2010-03-05
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule LinearInterpolateXMarkerList
+//----------------------------------------------------------------------------------
+MLModule LinearInterpolateXMarkerList {
+  DLL            = "MLXMarkerListCommunityModules"
+
+  genre          = "BIGR-XMarkerList"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Linearly interpolate an XMarkerList"
+  keywords       = "XMarkerList Linear Interpolate Interpolation"
+  seeAlso        = "ResampleAndSmoothXMarkerList"
+  documentation  = "$(LOCAL)/html/LinearInterpolateXMarkerList.html"
+  exampleNetwork = "$(LOCAL)/networks/LinearInterpolateXMarkerListExample.mlab"
+  
+  Window {
+    Vertical {
+      margin = 3
+      Field sampleDistance {
+        tooltip = ""
+      }
+    }
+  }
+} // MLModule LinearInterpolateXMarkerList
+
+//----------------------------------------------------------------------------------
+// MLModule XMarkerListFromFile
+//----------------------------------------------------------------------------------
+MLModule XMarkerListFromFile {
+  DLL            = "MLXMarkerListCommunityModules"
+
+  genre          = "BIGR-XMarkerList"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Read XMarkerList from a text file"
+  keywords       = "XMarkerList XMarker file text load read import"
+  seeAlso        = "XMarkerListToFile"
+  documentation  = "$(LOCAL)/html/XMarkerListFromFile.html"
+  
+  Window {
+    mw=600
+    Vertical {
+      margin=3
+      Field filename { browseButton = true browseFilter = "Text files (*.txt);;All files (*.*)"}
+      Field importPositionX {}
+      Field importPositionY {}
+      Field importPositionZ {}
+      Field importPositionT {}
+      Field importVectorX {}
+      Field importVectorY {}
+      Field importVectorZ {}
+      Field importType { alignGroup=left }
+      Field numElementsToSkip {}
+      Field inputCoordinateSystem {}
+      Separator {}
+      Horizontal {
+        alignX = Left
+        Button update {}
+        Field autoUpdate {}
+      }
+    }
+  }
+} // MLModule XMarkerListFromFile
+
+//----------------------------------------------------------------------------------
+// MLModule XMarkerListFromFile
+//----------------------------------------------------------------------------------
+MLModule XMarkerListToFile {
+  DLL            = "MLXMarkerListCommunityModules"
+
+  genre          = "BIGR-XMarkerList"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Save XMarkerList to a text file"
+  keywords       = "XMarkerList XMarker file text save store export"
+  seeAlso        = "XMarkerListFromFile"
+  documentation  = "$(LOCAL)/html/XMarkerListToFile.html"
+  
+  Window {
+    mw=600
+    Vertical {
+      margin=3
+      Field filename { alignGroup=left browseButton = true browseMode = save browseFilter = "Text files (*.txt);;All files (*.*)"}
+      Field exportPositionX {}
+      Field exportPositionY {}
+      Field exportPositionZ {}
+      Field exportPositionT {}      
+      Field exportVectorX {}
+      Field exportVectorY {}
+      Field exportVectorZ {}
+      Field exportType { alignGroup=left }
+      Field coordinateSeparator { alignGroup=left }
+      Field outputCoordinateSystem { alignGroup=left }
+      Field elastixFormat { alignGroup = Left }
+      Field maxOneMarkerPerVoxel {}
+      Separator {}
+      Button save { }
+    }
+  }
+} // MLModule XMarkerListFromFile
+
+//----------------------------------------------------------------------------
+// MLModule TransformXMarkerList
+//----------------------------------------------------------------------------
+MLModule TransformXMarkerList {
+  DLL            = "MLXMarkerListCommunityModules"
+
+  genre          = "BIGR-XMarkerList"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Transform all XMarkers of an XMarkerList with the given matrix or elementary transforms"
+  keywords       = "xmarker xmarkerlist transform translate rotate rotation translation scale scaling"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/TransformXMarkerList.html"
+  exampleNetwork = "$(LOCAL)/networks/TransformXMarkerList.mlab"
+  externalDefinition = "$(LOCAL)/EMCTransformXMarkerList.script"
+
+} // MLModule TransformXMarkerList
