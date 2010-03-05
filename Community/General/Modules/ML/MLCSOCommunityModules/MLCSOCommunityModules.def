@@ -36,3 +36,124 @@ MLModule CSODistance {
   }
   
 }// MLModule CSODistance
+
+
+//----------------------------------------------------------------------------------
+// MLModule CSOSetProperties
+//----------------------------------------------------------------------------------
+MLModule CSOSetProperties {
+  DLL            = "MLCSOCommunityModules"
+  deprecatedName = CSOSetProps
+  genre          = "CSO"
+  group          = BIGR 
+  author         = "Reinhard Hameeteman, Olaf Konrad"
+  status         = "work-in-progress"
+  comment        = "Set the properties of CSOs or Groups in a CSOList to a specified value"
+  keywords       = "cso properties csolist "
+  seeAlso        = "CSOManager CSOInfo"
+  documentation  = "$(LOCAL)/CSOSetProperties/CSOSetProperties.html"
+  exampleNetwork = "$(LOCAL)/CSOSetProperties/CSOSetPropertiesExample.mlab"
+  externalDefinition = "$(LOCAL)/CSOSetProperties/CSOSetProperties.script"
+
+} // MLModule CSOSetProps
+
+
+//----------------------------------------------------------------------------------
+// MLModule CSOImageStatistics 
+//----------------------------------------------------------------------------------
+MLModule CSOImageStatistics {
+  DLL            = "MLCSOCommunityModules"
+  deprecatedName = CSOImageStats
+  group          = BIGR
+  genre          = "CSO"
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Calculate some image statistics along or within a cso"
+  keywords       = "CSO statistics"
+  seeAlso        = "ImageStatistics CSOConvertToImage"
+  exampleNetwork = $(LOCAL)/CSOImageStatistics/CSOImageStatisticsExample.mlab
+  documentation  = "$(LOCAL)/CSOImageStatistics/CSOImageStatistics.html"
+
+
+  Window {
+    Vertical "Main" {
+      Box "Input" {
+        Field inputCSOString { title = "CSO Ids:"  expandX = YES }
+        CheckBox useAllPointsInsideCSO {}
+        Field resolution {step = 0.01 dependsOn = useAllPointsInsideCSO }
+      } 
+      
+      Box "Output" {
+        Horizontal {
+          CheckBox addDescription { alignGroup = outputg1 }
+          LineEdit descriptionString { dependsOn = addDescription }
+        }
+        Horizontal {
+          CheckBox outputCurve   { title = Curve alignGroup = outputg1     }
+          CheckBox sumOutput     { title = sum dependsOn = outputCurve     }
+          CheckBox averageOutput { title = average dependsOn = outputCurve }
+        }
+      } 
+      
+      Box "Operation Mode" {
+        Field updateMode    { AlignGroupX = opg1 title = "Update mode:" }
+        Horizontal {
+          AlignGroupX = opg1
+          alignX = Left
+          FieldLabel apply  {  title = "Update:" }
+          Button apply      { title = "Update"  }
+        } // horizontal
+        CheckBox workDirectlyOnInputList { title = "Work On Input List"}
+      } 
+
+    }  // Vertical main
+
+    Vertical Statistics {
+      expandY = Yes
+      ListView statistics {
+        expandY = Yes
+        columnSeparator = ";"
+      }
+    } // Vertical Statistics
+    
+    Vertical Advanced {
+      Box "MPR options" {
+        Field interpolation { }
+        Field memoryAccess  { }
+      }
+      Box "Handle Notifications" {
+        CheckBox listenToFinishingNotifications { title = "Finishing" }
+        CheckBox listenToSelectionNotifications { title = "Selection" }
+      } 
+    }
+  } // window
+} // MLModule CSOImageStats
+
+
+//----------------------------------------------------------------------------------
+// MLModule CSOPointsToXMarkers
+//----------------------------------------------------------------------------------
+MLModule CSOPointsToXMarkers {
+  DLL            = "MLCSOCommunityModules"
+  genre          = "CSO"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = ""
+  keywords       = "CSO seedpoints pathpoints points XMarkerList marker markers XMarker XMarkers normals normal convert"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/CSOPointsToXMarkers/CSOPointsToXMarkers.html"
+  deprecatedName = "CSOSeedpointsToXMarkers"
+  exampleNetwork = "$(LOCAL)/CSOPointsToXMarkers/CSOPointsToXMarkersExample.mlab"
+  
+  Window {
+    Vertical {
+      margin = 3
+      Field listIndexFld { title = "CSO list-index:" }
+      CheckBox convertPathPoints {}
+      CheckBox outputCSONormals {}
+    } 
+  }
+
+} // MLModule CSOSeedpointsToXMarkers
+

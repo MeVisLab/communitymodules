@@ -38,14 +38,22 @@ HEADERS += \
     MinimalDistancePointClouds/MinimalDistancePointClouds.h \
     MinimalDistancePointClouds/TileSphere.h \
     MinimalDistancePointClouds/TileSphereHashTable.h \
-    CSODistance/CSODistance.h
-
+    CSODistance/CSODistance.h \
+    CSOImageStatistics/mlCSOImageStatistics.h \
+    CSOImageStatistics/MainAxisPCA.h \
+    CSOSetProperties/mlCSOSetProperties.h \
+    CSOPointsToXMarkers/mlCSOPointsToXMarkers.h
+    
 SOURCES += \
     MLCSOCommunityModulesInit.cpp \
     MinimalDistancePointClouds/MinimalDistancePointClouds.cpp \
     MinimalDistancePointClouds/TileSphere.cpp \
     MinimalDistancePointClouds/TileSphereHashTable.cpp \
-    CSODistance/CSODistance.cpp
+    CSODistance/CSODistance.cpp \
+    CSOImageStatistics/mlCSOImageStatistics.cpp \
+    CSOImageStatistics/MainAxisPCA.cpp \
+    CSOSetProperties/mlCSOSetProperties.cpp \
+    CSOPointsToXMarkers/mlCSOPointsToXMarkers.cpp \
 
 RELATEDFILES += \
     ../../../Modules/ML/MLCSOCommunityModules/MLCSOCommunityModules.def 

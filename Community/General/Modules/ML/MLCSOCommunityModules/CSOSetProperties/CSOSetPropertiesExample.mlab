@@ -1,0 +1,678 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module CSOInfo {
+  internal  {
+    frame = "-195 29 88 56"
+    moduleGroupName = "Set Group properties"
+    windows  {
+      window _default {
+        geometry = "584 174 522 581"
+        sizeHint = "347 581"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOInfo1
+    csoShowPrivateValues = TRUE
+    groupId = 1
+    groupUseShowState = FALSE
+    groupShowState = TRUE
+    groupUseVoxelizeState = FALSE
+    groupVoxelizeState = TRUE
+    groupUseEditableState = FALSE
+    groupEditableState = TRUE
+    shouldGenerateCSOStringOutput = TRUE
+    shouldGenerateCSOGroupStringOutput = FALSE
+    showCSOType = TRUE
+    showCSOSubType = TRUE
+    showCSOCreatorId = TRUE
+    showCSONumSeedPoints = TRUE
+    showCSONumPathPoints = TRUE
+    showCSOLength = FALSE
+    showCSOGrouping = TRUE
+    showCSOClosedState = TRUE
+    showCSOInPlane = TRUE
+    showGroupNumCSO = TRUE
+    showGroupCSOIds = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-295 405 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module View2D {
+  internal  {
+    frame = "-379 29 120 56"
+    moduleGroupName = "Set Group properties"
+    windows  {
+      window _default {
+        geometry = "188 481 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 42
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 42.5"
+  }
+  internalFields = ""
+}
+module SoView2DCSOEditor {
+  internal  {
+    frame = "-283 181 152 56"
+    moduleGroupName = "Set Group properties"
+    windows  {
+      window _default {
+        geometry = "-44 19 558 465"
+        sizeHint = "558 465"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DCSOEditor
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 24
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    shouldListenToRepaintEvents = TRUE
+    shouldListenToSelectionChangedEvents = TRUE
+    shouldListenToFinishedEvents = TRUE
+    generalInteractionMode = INTERACTION_MODE_EDIT
+    generalInteractionModeToggleKey = TOGGLE_MODE_ALT
+    useAntiAliasing = TRUE
+    useInterpolationTargetColor = TRUE
+    interpolationTargetColor = "1 0 0"
+    showBoundingBox = FALSE
+    boundingBoxAlpha = 0.5
+    boundingBoxColor = "1 1 1"
+    showOnlyParallelCSOs = FALSE
+    showParallelDotProductLimitRadian = 0.9998999834
+    shouldLevelCSO = FALSE
+    useStylePalette = FALSE
+    stylePaletteUseIndexAs = USE_INDEX_FOR_CSO
+    labelShowMode = LABEL_SHOW_GROUP_DESCRIPTION
+    labelAlignmentMode = LABEL_ALIGN_CENTER
+    labelUnitScale = LABEL_UNIT_SCALE_MM
+    showLabelUnits = TRUE
+    labelFontSize = 12
+    labelUseTextShadow = TRUE
+    labelMarginX = 2
+    labelMarginY = 2
+    ghostMode = GHOST_BOTH_SIDES
+    ghostUnitMode = GHOST_UNIT_SLICE
+    ghostStyleAlpha = TRUE
+    ghostStyleStipple = TRUE
+    ghostStyleLineWidth = FALSE
+    ghostStyleBrighten = FALSE
+    ghostDepth = 5
+    generalLabelColor = "1 1 1"
+    generalLabelAlpha = 1
+    labelColorMode = COLOR_GENERAL
+    useTesselation = FALSE
+    tesselationColorMode = COLOR_AS_CSO
+    tesselationColor = "0.8999999761581421 0.5 0.8999999761581421"
+    tesselationAlpha = 0.200000003
+    tesselationWindingRule = WR_ODD
+    selectGroupsParsProToto = TRUE
+    highlightSelectedGroups = FALSE
+    enableMouseOverHighlighting = TRUE
+    mouseOverColorMode = HIGHLIGHT_COLOR_MODE_FIXED
+    mouseOverColorBrightenValue = 0.8000000119
+    mouseOverColorColor = "1 1 1"
+    mouseOverLineWidthMode = HIGHLIGHT_LINE_WIDEN
+    mouseOverLineWidthWidenValue = 0
+    mouseOverLineWidthLineWidth = 1
+    useIconFile = FALSE
+    iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
+    internalIconFile = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    cutCopyKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    copyKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    pasteKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    undoKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    redoKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    deleteSeedPointKeyModifier = EDIT_OP_KEY_MOD_NONE
+    deleteCSOKeyModifier = EDIT_OP_KEY_MOD_SHIFT
+    multiSelectionKeyModifier = EDIT_OP_KEY_MOD_CONTROL
+    enableMultiSelection = TRUE
+    cutCopyKey = EDIT_OP_KEY_X
+    copyKey = EDIT_OP_KEY_C
+    pasteKey = EDIT_OP_KEY_V
+    undoKey = EDIT_OP_KEY_Z
+    redoKey = EDIT_OP_KEY_Y
+    deleteSeedPointKey = EDIT_OP_KEY_DELETE
+    deleteCSOKey = EDIT_OP_KEY_DELETE
+    nextInteractionStatus = INTERACTIVE_MODE_START_CSO
+    forceStartNewCSOKeyModifier = EDIT_OP_KEY_MOD_NONE
+    forceStartNewCSOKey = EDIT_OP_KEY_F
+  }
+}
+module CSOSetProperties {
+  internal  {
+    frame = "-271 269 144 56"
+    moduleGroupName = "Set Group properties"
+    windows  {
+      window _default {
+        geometry = "689 429 556 445"
+        sizeHint = "556 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOSetProperties1
+    inputCSOString = 2
+    inputMode = Group
+    inputGroupString = 1
+    workDirectlyOnInputList = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionNotifications = TRUE
+    autoUpdate = TRUE
+    CSOComputeNormal = FALSE
+    CSOLabel = "Selected CSO"
+    CSODescription = ""
+    CSOIsSelected = FALSE
+    CSOClearSelection = TRUE
+    CSOLineWidth = 5
+    CSOLineStyle = LineStyleDashed
+    CSOColor = "1 0 0"
+    CSOAlpha = 1
+    CSOTimePointIndex = 0
+    CSOVoxelWriteMode = VoxelWriteModeModule
+    CSOVoxelWriteValue = 1024
+    CSOShowState = TRUE
+    CSOVoxelizeState = TRUE
+    CSOEditableState = TRUE
+    CSOMarkerMode = MarkerModeRect
+    CSOMarkerColor = "0 1 0"
+    CSOMarkerAlpha = 1
+    CSOMarkerSize = 3
+    GroupLabel = ""
+    GroupDescription = Spine
+    GroupIsSelected = TRUE
+    GroupClearSelection = TRUE
+    GroupLineWidth = 1
+    GroupLineStyle = LineStyleSolid
+    GroupColor = "0.3333333333333333 0.6666666666666666 1"
+    GroupAlpha = 1
+    GroupTimePointIndex = 0
+    GroupVoxelWriteMode = VoxelWriteModeModule
+    GroupVoxelWriteValue = 1024
+    GroupShowState = TRUE
+    GroupVoxelizeState = TRUE
+    GroupEditableState = TRUE
+    GroupMarkerMode = MarkerModeRect
+    GroupMarkerColor = "1 1 0"
+    GroupMarkerAlpha = 1
+    GroupMarkerSize = 1
+    GroupUseVisuals = TRUE
+    GroupUseShowState = FALSE
+    GroupUseVoxelizeState = FALSE
+    GroupUseEditableState = FALSE
+    GroupUseVoxelWrite = FALSE
+    GroupUseTimePointIndex = FALSE
+    GroupUseMarkerSettings = FALSE
+    GroupMaximumNumCSOs = 0
+    GroupOverflowHandling = RemoveFirst
+    GroupRemoveFromGroupHandling = RemoveAlways
+    GroupDeleteGroupCSOHandling = RemoveAlways
+    setCSOComputeNormal = FALSE
+    setCSOLabel = FALSE
+    setCSODescription = FALSE
+    setCSOIsSelected = FALSE
+    setCSOLineWidth = FALSE
+    setCSOLineStyle = FALSE
+    setCSOColor = TRUE
+    setCSOAlpha = FALSE
+    setCSOTimePointIndex = FALSE
+    setCSOVoxelWriteMode = FALSE
+    setCSOVoxelWriteValue = FALSE
+    setCSOShowState = FALSE
+    setCSOVoxelizeState = FALSE
+    setCSOEditableState = FALSE
+    setCSOMarkerMode = FALSE
+    setCSOMarkerColor = FALSE
+    setCSOMarkerAlpha = FALSE
+    setCSOMarkerSize = FALSE
+    setGroupLabel = FALSE
+    setGroupDescription = TRUE
+    setGroupIsSelected = TRUE
+    setGroupLineWidth = FALSE
+    setGroupLineStyle = FALSE
+    setGroupColor = TRUE
+    setGroupAlpha = FALSE
+    setGroupTimePointIndex = FALSE
+    setGroupVoxelWriteMode = FALSE
+    setGroupVoxelWriteValue = FALSE
+    setGroupShowState = FALSE
+    setGroupVoxelizeState = FALSE
+    setGroupEditableState = FALSE
+    setGroupMarkerMode = FALSE
+    setGroupMarkerColor = FALSE
+    setGroupMarkerAlpha = FALSE
+    setGroupMarkerSize = FALSE
+    setGroupUseVisuals = TRUE
+    setGroupUseShowState = FALSE
+    setGroupUseVoxelizeState = FALSE
+    setGroupUseEditableState = FALSE
+    setGroupUseTimePointIndex = FALSE
+    setGroupUseVoxelWrite = FALSE
+    setGroupUseMarkerSettings = FALSE
+    setGroupMaximumNumCSOs = FALSE
+    setGroupOverflowHandling = FALSE
+    setGroupRemoveFromGroupHandling = FALSE
+    setGroupDeleteGroupCSOHandling = FALSE
+    settingsTabOn = FALSE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "-659 29 136 56"
+    moduleGroupName = "Set CSO properties"
+    windows  {
+      window _viewer {
+        geometry = "748 400 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7853981853
+    position = "48.2787971496582 -66.80094909667969 65.00568389892578"
+    orientation = "-0.9609075784683228 -0.0277070663869381 -0.2754796147346497 5.063461303710938"
+    nearDistance = 68.92014313
+    farDistance = 152.1751556
+    focalDistance = 110.506134
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoCSO3DVis {
+  internal  {
+    frame = "-651 125 104 56"
+    moduleGroupName = "Set CSO properties"
+    windows  {
+      window _default {
+        geometry = "514 385 258 298"
+        sizeHint = "258 298"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCSO3DVis
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    lineWidthOffset = 0
+    markerSizeScaling = 1
+    highlightSelectedGroups = TRUE
+    useRenderTimeDelay = FALSE
+    timerDelayMilliSeconds = 100
+    useStylePalette = FALSE
+    stylePaletteUseIndexAs = USE_INDEX_FOR_CSO
+    listenToRepaintNotifications = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+  }
+}
+module CSOInfo {
+  internal  {
+    frame = "-799 29 80 56"
+    moduleGroupName = "Set CSO properties"
+    windows  {
+      window _default {
+        geometry = "584 174 522 581"
+        sizeHint = "347 581"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOInfo
+    csoShowPrivateValues = TRUE
+    groupId = 2
+    groupUseShowState = FALSE
+    groupShowState = TRUE
+    groupUseVoxelizeState = FALSE
+    groupVoxelizeState = TRUE
+    groupUseEditableState = FALSE
+    groupEditableState = TRUE
+    shouldGenerateCSOStringOutput = TRUE
+    shouldGenerateCSOGroupStringOutput = FALSE
+    showCSOType = TRUE
+    showCSOSubType = TRUE
+    showCSOCreatorId = TRUE
+    showCSONumSeedPoints = TRUE
+    showCSONumPathPoints = TRUE
+    showCSOLength = FALSE
+    showCSOGrouping = TRUE
+    showCSOClosedState = TRUE
+    showCSOInPlane = TRUE
+    showGroupNumCSO = TRUE
+    showGroupCSOIds = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+  }
+}
+module LocalCSOLoad {
+  internal  {
+    frame = "-723 381 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "41 311 556 256"
+        sizeHint = "455 256"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalCSOLoad
+    name = $(MLAB_MeVisLab_Standard)/Modules/ML/MLCSO/CSOManager/twoGroupsCSOs.cso
+    autoApply = TRUE
+    status = "File loaded."
+    loadSuccess = TRUE
+  }
+  internalFields = ""
+}
+module CSOSetProperties {
+  internal  {
+    frame = "-731 253 136 56"
+    moduleGroupName = "Set CSO properties"
+    windows  {
+      window _default {
+        geometry = "104 461 556 445"
+        sizeHint = "556 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CSOSetProperties
+    inputCSOString = 2
+    inputMode = CSO
+    inputGroupString = 1
+    workDirectlyOnInputList = FALSE
+    listenToFinishingNotifications = TRUE
+    listenToSelectionNotifications = TRUE
+    autoUpdate = TRUE
+    CSOComputeNormal = FALSE
+    CSOLabel = "Selected CSO"
+    CSODescription = ""
+    CSOIsSelected = TRUE
+    CSOClearSelection = TRUE
+    CSOLineWidth = 5
+    CSOLineStyle = LineStyleDashed
+    CSOColor = "1 0 0"
+    CSOAlpha = 1
+    CSOTimePointIndex = 0
+    CSOVoxelWriteMode = VoxelWriteModeModule
+    CSOVoxelWriteValue = 1024
+    CSOShowState = TRUE
+    CSOVoxelizeState = TRUE
+    CSOEditableState = TRUE
+    CSOMarkerMode = MarkerModeRect
+    CSOMarkerColor = "0 1 0"
+    CSOMarkerAlpha = 1
+    CSOMarkerSize = 3
+    GroupLabel = ""
+    GroupDescription = ""
+    GroupIsSelected = FALSE
+    GroupClearSelection = TRUE
+    GroupLineWidth = 1
+    GroupLineStyle = LineStyleSolid
+    GroupColor = "1 1 1"
+    GroupAlpha = 1
+    GroupTimePointIndex = 0
+    GroupVoxelWriteMode = VoxelWriteModeModule
+    GroupVoxelWriteValue = 1024
+    GroupShowState = TRUE
+    GroupVoxelizeState = TRUE
+    GroupEditableState = TRUE
+    GroupMarkerMode = MarkerModeRect
+    GroupMarkerColor = "0 1 0"
+    GroupMarkerAlpha = 1
+    GroupMarkerSize = 3
+    GroupUseVisuals = FALSE
+    GroupUseShowState = FALSE
+    GroupUseVoxelizeState = FALSE
+    GroupUseEditableState = FALSE
+    GroupUseVoxelWrite = FALSE
+    GroupUseTimePointIndex = FALSE
+    GroupUseMarkerSettings = FALSE
+    GroupMaximumNumCSOs = 0
+    GroupOverflowHandling = RemoveFirst
+    GroupRemoveFromGroupHandling = RemoveAlways
+    GroupDeleteGroupCSOHandling = RemoveAlways
+    setCSOComputeNormal = FALSE
+    setCSOLabel = TRUE
+    setCSODescription = FALSE
+    setCSOIsSelected = TRUE
+    setCSOLineWidth = TRUE
+    setCSOLineStyle = TRUE
+    setCSOColor = TRUE
+    setCSOAlpha = FALSE
+    setCSOTimePointIndex = FALSE
+    setCSOVoxelWriteMode = FALSE
+    setCSOVoxelWriteValue = FALSE
+    setCSOShowState = FALSE
+    setCSOVoxelizeState = FALSE
+    setCSOEditableState = FALSE
+    setCSOMarkerMode = FALSE
+    setCSOMarkerColor = FALSE
+    setCSOMarkerAlpha = FALSE
+    setCSOMarkerSize = FALSE
+    setGroupLabel = FALSE
+    setGroupDescription = FALSE
+    setGroupIsSelected = FALSE
+    setGroupLineWidth = FALSE
+    setGroupLineStyle = FALSE
+    setGroupColor = FALSE
+    setGroupAlpha = FALSE
+    setGroupTimePointIndex = FALSE
+    setGroupVoxelWriteMode = FALSE
+    setGroupVoxelWriteValue = FALSE
+    setGroupShowState = FALSE
+    setGroupVoxelizeState = FALSE
+    setGroupEditableState = FALSE
+    setGroupMarkerMode = FALSE
+    setGroupMarkerColor = FALSE
+    setGroupMarkerAlpha = FALSE
+    setGroupMarkerSize = FALSE
+    setGroupUseVisuals = FALSE
+    setGroupUseShowState = FALSE
+    setGroupUseVoxelizeState = FALSE
+    setGroupUseEditableState = FALSE
+    setGroupUseTimePointIndex = FALSE
+    setGroupUseVoxelWrite = FALSE
+    setGroupUseMarkerSettings = FALSE
+    setGroupMaximumNumCSOs = FALSE
+    setGroupOverflowHandling = FALSE
+    setGroupRemoveFromGroupHandling = FALSE
+    setGroupDeleteGroupCSOHandling = FALSE
+    settingsTabOn = FALSE
+  }
+}
+connections  {
+  CSOInfo1.inCSOList = CSOSetProperties1.outputCSOList
+  View2D.inImage = LocalImage.outImage
+  View2D.inInvPreLUT = SoView2DCSOEditor.self
+  SoView2DCSOEditor.inCSOList = CSOSetProperties1.outputCSOList
+  CSOSetProperties1.inputCSOList = LocalCSOLoad.outCSOList
+  SoExaminerViewer.children = SoCSO3DVis.self
+  SoCSO3DVis.inCSOList = CSOSetProperties.outputCSOList
+  CSOInfo.inCSOList = CSOSetProperties.outputCSOList
+  CSOSetProperties.inputCSOList = LocalCSOLoad.outCSOList
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 29
+        objectName = "Set CSO properties"
+        parentUniqueId = 0
+        frame = "-824 -46 326 380"
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 50
+        objectName = "Set Group properties"
+        parentUniqueId = 0
+        frame = "-404 -46 322 396"
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;  <a href="#InputFields">Input</a>&nbsp;&nbsp;&nbsp;  <a href="#OutputFields">Output</a>&nbsp;&nbsp;&nbsp;  <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+ <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;   
+<hr WIDTH="100%"></center>
+<h2>CSOPointsToXMarkers</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>Output the points of a CSO in an XMarkerList. CSO normals can be computes as well and are then outputted in the vector element of the markers.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Connect CSOList, enter index of CSO to output and change settings.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>Normals are computed by computing the outer product of the plane normal in which the CSO lies and the vectors between the CSO points.
+</blockquote>
+
+<h3><a NAME="InputFields"></a>Input</h3>
+<blockquote>    <ul>
+    <li>
+      <b>inputCSOList</b>
+      Input CSOList
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="OutputFields"></a>Output</h3>
+<blockquote>    <ul>
+    <li>
+      <b>outputXMarkerList</b>
+      Output XMarkerList
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>listIndexFld</b>
+      Index of CSO in CSOList to convert (-1 = all)
+    </li>
+    <li>
+      <b>convertPathPoints</b>
+      Enable/disable conversion of pathpoints
+    </li>
+    <li>
+      <b>outputCSONormals</b>
+      Enable/disable computation and output of CSO normals in vector elements of XMarkerList
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+<h3><a NAME=Example></a>Example</h3>
+<blockquote>See example network.
+</blockquote>
+
+
+
+
+
+</body>
+</html>

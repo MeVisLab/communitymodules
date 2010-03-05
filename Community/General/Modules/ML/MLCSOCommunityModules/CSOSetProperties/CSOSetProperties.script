@@ -1,0 +1,214 @@
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//----------------------------------------------------------------------------------
+//! CSOSetProperties GUI definitions.
+/*!
+// \file    CSOSetProperties.script
+// \author  Reinhard Hameeteman
+// \date    2010-03-02
+*/
+//----------------------------------------------------------------------------------
+
+Interface {
+  Parameters {
+    Field settingsTabOn { type = bool value = false }
+  }
+}
+
+Description {
+    Field CSOAlpha                      { min = 0 max =  1 }    
+    Field CSOLineWidth                  { min = 1 max = 16 }
+    Field CSOMarkerAlpha                { min = 0 max =  1 }
+    Field GroupAlpha                    { min = 0 max =  1 }
+    Field GroupLineWidth                { min = 1 max = 16 }
+    Field GroupMarkerAlpha              { min = 0 max =  1 }
+
+} // description
+    
+Commands {
+  source = $(LOCAL)/CSOSetProperties.py
+}
+Window {
+  maxw   = 600
+  name = mainWindow
+  EventFilter {
+    command = SetEnableState
+    filter = MouseButtonDblClick
+    control = CSOTab
+    control = GroupTab
+    children = Yes
+    eatEvent = Yes
+    name = filter
+  }
+  TabView {
+    style { 
+      Prototype Vertical {expandY = yes} 
+      Prototype Horizontal {expandY = yes}
+      Prototype TabViewItem {expandY = yes}
+      Prototype Box {expandY = yes}
+    }
+    TabViewItem "Main" {
+      Box "Input" {
+        ButtonBar inputMode { show = Radio } 
+        tooltip = "Use -1 for all Ids"
+        Field inputCSOString   { title = "CSO   Ids:"  expandX = YES visibleOn = "*inputMode == "CSO"   *" }
+        Field inputGroupString { title = "Group Ids:"  expandX = YES visibleOn = "*inputMode == "Group" *" }
+      } 
+      
+      Box "Handle Notifications" {
+        CheckBox listenToFinishingNotifications { title = "Finishing" }
+        CheckBox listenToSelectionNotifications { title = "Selection" }
+      } 
+      
+      Box "Operation Mode" {
+        Horizontal {
+          alignX = Left
+          CheckBox autoUpdate {}
+          Button update  {}
+        } // horizontal
+        CheckBox workDirectlyOnInputList { title = "Work On Input List"}
+      } 
+      Box {
+        Label {
+          title = "The properties of the CSO's that need to be set, can be enabled in the CSO and Group tab by double clicking on the field."
+          textWrap = WordBreak
+        }
+      }
+
+    }  // Vertical main
+    TabViewItem CSO {
+      name = CSOTab
+      expandY = Yes
+      Horizontal {
+        Vertical {
+          tooltip = "Double click on a field to enable it"
+          expandX = No
+          Box "Common" {
+            Field    CSOLabel          { name = CSOLabelFld          dependsOn = setCSOLabel          title = "Label:"       alignGroupX = csog1 }
+            Field    CSODescription    { name = CSODescriptionFld    dependsOn = setCSODescription    title = "Description:" alignGroupX = csog1 }
+            Field    CSOTimePointIndex { name = CSOTimePointIndexFld dependsOn = setCSOTimePointIndex title = "Time Point:"  alignGroupX = csog1 step = 1 }
+            Horizontal {
+              CheckBox CSOIsSelected     { name = CSOIsSelectedFld     dependsOn = setCSOIsSelected    title = "Is selected" alignGroupX = csog1 }
+              CheckBox CSOClearSelection { name = CSOClearSelectionFld dependsOn = setCSOIsSelected    title = "Clear first" alignGroupX = csog2 }
+            }
+            Horizontal {
+              CheckBox CSOShowState     { name = CSOShowStateFld      dependsOn = setCSOShowState     title = "Show"        alignGroupX = csog1 }
+              CheckBox CSOEditableState { name = CSOEditableStateFld  dependsOn = setCSOEditableState title = "Editable"    alignGroupX = csog2 }  
+            }
+            Horizontal {
+              CheckBox CSOVoxelizeState  { name = CSOVoxelizeStateFld dependsOn = setCSOVoxelizeState title = "Voxelize"      alignGroupX = csog1 }
+              CheckBox CSOComputeNormal  { name = CSOComputeNormalFld dependsOn = setCSOComputeNormal title = recomputeNormal alignGroupX = csog2 }
+            }
+          }
+          Box "Voxelize" {
+            Field CSOVoxelWriteMode   { name = CSOVoxelWriteModeFld  dependsOn = setCSOVoxelWriteMode  title = "Voxel Write Mode:"  }
+            Field CSOVoxelWriteValue  { name = CSOVoxelWriteValueFld dependsOn = setCSOVoxelWriteValue title = "Voxel Write Value:" }
+          }
+        }
+        Vertical {
+          Box "Path Points" {
+            Field CSOLineStyle { name = CSOLineStyleFld dependsOn = setCSOLineStyle title = "Style:"}
+            Field CSOLineWidth { name = CSOLineWidthFld dependsOn = setCSOLineWidth title = "Width:"  step = 1 }
+            Field CSOColor     { name = CSOColorFld     dependsOn = setCSOColor     title = "Color: "}
+            Field CSOAlpha     { name = CSOAlphaFld     dependsOn = setCSOAlpha     title = "Alpha: " slider = YES step = 0.1 editField = NO }
+          }
+          Box "Markers" {                                                
+            Field CSOMarkerMode  { name = CSOMarkerModeFld  dependsOn = setCSOMarkerMode  title = "Mode:" }
+            Field CSOMarkerSize  { name = CSOMarkerSizeFld  dependsOn = setCSOMarkerSize  title = "Size:" step = 0.5 }
+            Field CSOMarkerColor { name = CSOMarkerColorFld dependsOn = setCSOMarkerColor title = "Color: " }
+            Field CSOMarkerAlpha { name = CSOMarkerAlphaFld dependsOn = setCSOMarkerAlpha title = "Alpha: " slider = YES step = 0.1 editField = NO }
+          }
+        }
+      } // Horizontal
+      Horizontal {}
+    } // CSO
+    TabViewItem Group {
+      expandY = Yes
+      name = GroupTab
+      tooltip = "Double click on a field to enable it"
+      Horizontal {
+        Vertical {
+          Box "Common" {
+            Field GroupLabel                  { name = GroupLabelFld             dependsOn = setGroupLabel             title = "Label:" }
+            Field GroupDescription            { name = GroupDescriptionFld       dependsOn = setGroupDescription       title = "Description:"}
+            Field GroupUseTimePointIndex      { name = GroupUseTimePointIndexFld dependsOn = setGroupUseTimePointIndex title = "Use Time Point Index" }
+            Field GroupTimePointIndex         { name = GroupTimePointIndexFld    dependsOn = setGroupTimePointIndex    title = "Time Point Index:" step = 1 }
+            Horizontal {
+              CheckBox GroupIsSelected        { name = GroupIsSelectedFld        dependsOn = setGroupIsSelected title = "Is selected" alignGroupX = gc1 }
+              CheckBox GroupClearSelection    { name = GroupClearSelectionFld    dependsOn = setGroupIsSelected title = "Clear first" alignGroupX = gc2 }
+            }
+            Horizontal { 
+              CheckBox GroupUseShowState      { name = GroupUseShowStateFld      dependsOn = setGroupUseShowState title = "Use Show State" alignGroupX = gc1 }
+              CheckBox GroupShowState         { name = GroupShowStateFld         dependsOn = setGroupShowState    title = "Show State"     alignGroupX = gc2 }
+            }
+            Horizontal {
+              CheckBox GroupUseVoxelizeState  { name = GroupUseVoxelizeStateFld  dependsOn = setGroupUseVoxelizeState title = "Use Voxelize State" alignGroupX = gc1  }
+              CheckBox GroupVoxelizeState     { name = GroupVoxelizeStateFld     dependsOn = setGroupVoxelizeState    title = "Voxelize State"     alignGroupX = gc2 }
+            }
+            Horizontal {
+              CheckBox GroupUseEditableState  { name = GroupUseEditableStateFld dependsOn = setGroupUseEditableState title = "Use Editable State"  alignGroupX = gc1 }
+              CheckBox GroupEditableState     { name = GroupEditableStateFld    dependsOn = setGroupEditableState    title = "Editable State"      alignGroupX = gc2 }
+            }
+          }
+          Box "Rules" {
+            Field GroupMaximumNumCSOs          { name = GroupMaximumNumCSOsFld          dependsOn = setGroupMaximumNumCSOs          title = "Maximum CSOs:"        }
+            Field GroupOverflowHandling        { name = GroupOverflowHandlingFld        dependsOn = setGroupOverflowHandling        title = "Overflow Handling:"   }
+            Field GroupRemoveFromGroupHandling { name = GroupRemoveFromGroupHandlingFld dependsOn = setGroupRemoveFromGroupHandling title = "Remove CSO Handling:" }
+            Field GroupDeleteGroupCSOHandling  { name = GroupDeleteGroupCSOHandlingFld  dependsOn = setGroupDeleteGroupCSOHandling  title = "Delete Group CSO Handling:" }
+          }
+        }
+        Vertical {
+          Box "Path Points" {
+            CheckBox GroupUseVisuals { name = GroupUseVisualsFld dependsOn = setGroupUseVisuals title = "Use Group Visuals" }
+            Field GroupLineStyle     { name = GroupLineStyleFld  dependsOn = setGroupLineStyle  title = "Style:"            }
+            Field GroupLineWidth     { name = GroupLineWidthFld  dependsOn = setGroupLineWidth  title = "Width:" step = 1   }
+            Field GroupColor         { name = GroupColorFld      dependsOn = setGroupColor      title = "Color:"            }
+            Field GroupAlpha         { name = GroupAlphaFld      dependsOn = setGroupAlpha      title = "Alpha:" slider = YES step = 0.1 editField = NO }
+          }
+          Box "Markers" {
+            CheckBox GroupUseMarkerSettings { name = GroupUseMarkerSettingsFld  dependsOn = setGroupUseMarkerSettings title = "Use Marker Settings" }
+            Field GroupMarkerMode           { name = GroupMarkerModeFld         dependsOn = setGroupMarkerMode        title = "Mode:" }
+            Field GroupMarkerSize           { name = GroupMarkerSizeFld         dependsOn = setGroupMarkerSize        title = "Size:" step = 0.5 }
+            Field GroupMarkerColor          { name = GroupMarkerColorFld        dependsOn = setGroupMarkerColor       title = "Color:" }
+            Field GroupMarkerAlpha          { name = GroupMarkerAlphaFld        dependsOn = setGroupMarkerAlpha       title = "Alpha:" slider = YES step = 0.1 editField = NO }
+          }
+          Box "Voxelize" {
+            CheckBox GroupUseVoxelWrite { name = GroupUseVoxelWriteFld   dependsOn = setGroupUseVoxelWrite   title = "Use Voxel Write"     }
+            Field GroupVoxelWriteMode   { name = GroupVoxelWriteModeFld  dependsOn = setGroupVoxelWriteMode  title = "Voxel Write Mode: "  }
+            Field GroupVoxelWriteValue  { name = GroupVoxelWriteValueFld dependsOn = setGroupVoxelWriteValue title = "Voxel Write Value: " }
+          }
+        }
+      }
+    }
+
+  } // TabView
+} // window
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-02T15:17:20
+//# hash: aFxR8EoZL6PrO7+efbM4PBaaqDjgJauJpXeDjviQ9PkNpyjnzWs5X8fep3v35fXFSqX9sSHw5aePJhCyVYLbpw==
+//# MeVis end
