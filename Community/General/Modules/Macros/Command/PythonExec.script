@@ -1,0 +1,120 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module PythonExec
+/*!
+// \file    PythonExec.script
+// \author  Reinhard Hameeteman
+// \date    2008-08-01
+//
+// Run a python exec command
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field command { type = string value = "nw = ctx.parent()" }
+    Field arg1    { type = string value = "" }
+    Field arg2    { type = string value = "" }
+    Field arg3    { type = string value = "" }  
+    Field run     { type = trigger }
+    Field onArgChange { type = bool value = false }
+    Field result1 { type = string value = "" }
+    Field result2 { type = string value = "" }
+    Field comString { type = string value = "" }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/PythonExec.py
+  FieldListener { 
+    listenField = run
+    listenField = arg1
+    listenField = arg2
+    listenField = arg3
+    command = Run 
+  }
+}
+
+Window {
+  Vertical {
+    expandY = Yes
+    expandY = Yes
+    TabView {
+      expandY = Yes
+      TabViewItem  Edit {
+        expandY = Yes
+        frameShape = NoFrame
+        frameShadow = Plain
+        TextView command { 
+          autoApply = Yes 
+          title = ""       
+          droppedObjectCommand = FieldDroped
+          syntaxHighlighting = Python
+          showLineNumbers = Yes
+          tooltip = "Drop any field on this window 
+and it will be added as nw.field(<fieldName>).value
+Trigger fields are added as nw.field(<fieldName>).touch()
+FieldIterator.newValue and FileIterator.newValue and will
+add a loop over all values of the iterator."
+        }
+      }
+      TabViewItem Args {
+        Field arg1 { title = "Arg1 ($1$):"}
+        Field arg2 { title = "Arg2 ($2$):"}
+        Field arg3 { title = "Arg3 ($3$):"}
+        Field result1 { title = "Result1 (%1%):" }
+        Field result2 { title = "Result2 (%2%):" }
+      }
+      TabViewItem Executed {
+        expandY = Yes
+        frameShape = NoFrame
+        frameShadow = Plain
+        TextView comString { edit = No title = "" }
+      }
+    }
+    Horizontal {
+      alignX = Left
+      FieldLabel run {}
+      Button run {}
+      CheckBox onArgChange { title = "Listen to Arg changes" }
+    }
+  } 
+}
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-02T15:44:14
+//# hash: gBsc339guXrCCCq3h0RrOrZoUGFuc3Bw1G6Fs/CzP2jvX5Egl3fedwHrYoZBpwtuHYttOu3p5j0b6OUbZeYNxg==
+//# MeVis end

@@ -1,0 +1,118 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;    <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+ <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;   
+<hr WIDTH="100%"></center>
+<h2>PythonExec</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>This macro enables you to run some python code from within the network. So you don't have to write a seperate script file. If you have more extensive code it's bad practice to use this module for that.
+
+
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>
+  Simply write the python code you want to execute in the box on the Edit tab and press Run.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>
+  On pressing Run this module wil call the Python exec() function with the specified command. 
+  It is possible to supply the command with several arguments. This is done by replacing the 
+  all occurences of $1$ in the given command by the string of the Arg1 field (and vice versa 
+  for $2$ and $3$), i.e. if Arg1 has the value 2.0 $1 will be replaced by '2.0' (including the 
+  quotes). So if you want the float value, you have to use float($1$).<br/><br/>
+  
+  Returning values is done in a similar maner: All occurences of %1% are returned to result1 and 
+  similar holds for %2%.<br/><br/>
+
+  If you add nw = ctx.parent() to the command, you can use it just like the network attached 
+  python file except that you have to use nw. in stead of ctx. So the following command:<br/><br/>
+  nw = ctx.parent() <br/>
+  print nw.field('PythonExec.command').value<br/>
+  <br/>
+  will print the command itself when Run is pressed. <br/>
+
+  Since you have access to all network fields from within the command, you can also directly get arguments from the network or modify fields, e.g. :<br/>
+  nw = ctx.parent()<br/>
+  nw.field('PythonExec.result1').value = 'Directly modified by PythonExec'<br/><br/>
+
+  To use a field from your network, you can simply drag and drop it on the command box. This will add a new line with the statement:<br/><br/>
+  nw.field([fieldName]).value<br/><br/>
+  Or if you drop a trigger field:<br/><br/>
+  nw.field([fieldName]).touch()<br/><br/>
+  If you drop the newValue field of a FieldIterator the following lines are added<br/><br/>
+  for i<ModuleName> in range( nw.field('[ModuleName].numValues').value  ) :<br/>
+  &#32;&#32;nw.field('[ModuleName].curIndex').value = i<ModuleName><br/>
+  &#32;&#32;print nw.field('[ModuleName].curValue').stringValue()<br/><br/>
+  This makes it easy to create a loop over all iterator values and perform some operations in between the iterations. This also
+  holds for the FileIterator module.
+</blockquote>
+
+
+
+
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>command</b>
+      The command(s) that should be executed
+    </li>
+    <li>
+      <b>arg1</b>
+      argument1
+    </li>
+    <li>
+      <b>arg2</b>
+      argument2
+    </li>
+    <li>
+      <b>arg3</b>
+      argument1
+    </li>
+    <li>
+      <b>run</b>
+      Execute the command
+    </li>
+    <li>
+      <b>onArgChange</b>
+      React to argument changes
+    </li>
+    <li>
+      <b>result1</b>
+      result1
+    </li>
+    <li>
+      <b>result2</b>
+      result2
+    </li>
+    <li>
+      <b>comString</b>
+      Command as it is executes after replacing the argument strings
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+<h3><a NAME=Example></a>Example</h3>
+<blockquote>The example shows how to get a string with all mean slice values of an image.
+</blockquote>
+
+
+
+
+
+</body>
+</html>
