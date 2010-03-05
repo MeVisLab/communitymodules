@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+  <meta name="Description" content="MeVisLab module help page template">
+  <title>Module Help Page</title>
+</head>
+
+<body>
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;
+<a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;&nbsp;
+<a href="#Outputs">Outputs</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="#EventInteract">Events&amp;Interaction</a>&nbsp;&nbsp;&nbsp; <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#KnownBugs">Known
+Bugs</a>
+<hr width="100%"></center>
+
+
+
+<h2>
+  CSOSetProperties
+</h2>
+
+
+
+<h3>
+<a name="Purpose"></a>Purpose</h3>
+
+
+
+<blockquote>This module can be used to modify the properties of some or all CSOs or Groups in a CSOList.</blockquote>
+
+
+
+<h3>
+<a name="Usage"></a>Usage</h3>
+
+<blockquote>
+  In the Input box select either CSO or Group mode and supply the Ids of the CSOs or Groups to be changed.
+  On the CSO or Group tab double click on the property that you want to set to enable it and set the desired value.
+</blockquote>
+
+<h3>
+<a name="Details"></a>Details</h3>
+
+<blockquote>
+  The supplied  <span style="font-weight: bold;">Ids</span> can be either CSO or Group Ids. Using -1 as Id selects all Ids. 
+  When <span style="font-weight: bold;">Auto Update</span> is selected the module reacts on all parameter and selection 
+  changes and on the selected CSOList <span style="font-weight: bold;">notifications</span> (Finishing /Selection).
+  When <span style="font-weight: bold;">Work On Input List</span> is selected, the CSOList attached to the module input is
+  changed and the output COSList is the same object as the input CSOList. The properties to be set can be selected by double 
+  clicking on the property field. This will enable the property and you can set the desired value. <br/>
+  Only the properties of the selected CSOs or Groups (Ids) are changed. All other CSOs or Groups are left unchanged. 
+  Thus if you set a CSO as selected it is added to the group of selected CSOs. The <span style="font-weight: bold;">Is selected</span> 
+  properties additionally allow you to clear the selection first. This way you can make sure only the selected CSOs or Groups 
+  are marked as selected.
+</blockquote>
+
+<h3>
+<a name="Inputs"></a>Inputs</h3>
+
+<blockquote>
+  The input needs to be a CSOList. The moduel can either work on the input CSOList or creat a new list at the output.
+</blockquote>
+
+
+<h3>
+  <a name="Outputs"></a>Outputs
+</h3>
+<blockquote>
+  Depending on the setting of <span style="font-weight: bold;">Work On Input List</span> this is either a new CSOList or the same 
+  object as connected to the module input.
+</blockquote>
+
+
+<h3>
+  <a name="Example"></a>Example
+</h3>
+
+
+<blockquote>
+  The example network shows how to set the properties of a single CSO (left part) and of a Group (right part).
+  
+  In the left part, the CSO with Id 2 is selected, given the label "Selected CSO" and its visuals are changed.
+  This can be inspected using the CSOInfo module and the examiner viewer.  
+  
+  In the right part, group 1 is selected, the Description is set to "Spine" and again some visuals are changed.
+</blockquote>
+
+
+
+<h3>
+<a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+
+<blockquote>Use -1 as Id to selects all Ids.</blockquote>
+
+
+
+<h3>
+<a name="KnownBugs"></a>Known Bugs</h3>
+
+
+
+<blockquote>
+  Notifications may need some synchronisation with the CSOManager.<br>
+</blockquote>
+
+
+
+</body>
+</html>

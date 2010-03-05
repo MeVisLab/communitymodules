@@ -1,0 +1,169 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;  <a href="#InputFields">Input</a>&nbsp;&nbsp;&nbsp;  <a href="#OutputFields">Output</a>&nbsp;&nbsp;&nbsp;  <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+<a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Events">Events</a>&nbsp;&nbsp;&nbsp;    
+<hr WIDTH="100%"></center>
+<h2>CSOImageStatistics</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>This module can be used to calculate statistics of an image on positions defined by a CSO. The CSO needs to be in a plane, i.e. the normal needs to be valid.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Connect the module to an image and assosiated CSOList. Select the Ids of the CSOs to be processed and press Update.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>Using -1 as CSO Id will result in using all CSOs from the CSOList.
+
+The Statistics are calculated at all CSO PathPoint posistions. The image plane is extracted from the input image using the MPRLight module. The interpolation and memory access method of this module can be set on the Advanced tab. The translation of the MPR is determind from the PCA center of the PathPoints of each CSO. The rotation is calculated from the CSO normal. Since the image needs to be reformatted when the CSO is not parallel to one of the main image axis, you can additionally specify a resolution on which the input image is reformatted. If you specify a negative value the shortest size of the of the input image voxels is used to determine the resolution. Because the needed image plane is extracted using the normal of the CSO, this module only works on CSOs the have a valid normal, i.e. the CSO must lay in a plane. If the CSO normal is not valid all statistics are set to zero.
+
+When "Use all points inside cso" is selected, the statistics are calculated on all points (of the reformatted image) inside the the contour.
+
+The XMarkerList output contains a list of all coordinates used for calculating the statistics. The type of the Marker is equal to the index of the corresponding CSO.
+
+When "Add description" is selected the Description string of each processed CSO is set according to the specified string. In the string %sum and %average are replaced by the calculated statistics.
+
+The Statistics Tab shows the calculated statistics in a nice table format.
+</blockquote>
+
+<h3><a NAME="InputFields"></a>Input</h3>
+<blockquote>    <ul>
+    <li>
+      <b>input0</b>
+      Input image
+    </li>
+    <li>
+      <b>inCSOList</b>
+      Input CSOList
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="OutputFields"></a>Output</h3>
+<blockquote>    <ul>
+    <li>
+      <b>outCSOList</b>
+      Output CSOList (if workDirectlyOnInput is not selected)
+    </li>
+    <li>
+      <b>outCurveList</b>
+      Curves of the calculated statistics
+    </li>
+    <li>
+      <b>outCoordinateList</b>
+      MarkerList of used image coordinates (the marker type = CSO index)
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>inputCSOString</b>
+      List of CSO Id's that will be processed.
+    </li>
+    <li>
+      <b>addDescription</b>
+      Add the statistics to the CSOs as a Description string.
+    </li>
+    <li>
+      <b>descriptionString</b>
+      String that is added to each CSO. The %sum and %average strings are replaced by their statistics.
+    </li>
+    <li>
+      <b>outputCurve</b>
+      Curve of the selected statistics of each CSO.
+    </li>
+    <li>
+      <b>workDirectlyOnInputList</b>
+      Work on the input CSOList.
+    </li>
+    <li>
+      <b>updateMode</b>
+      Auto Update.
+    </li>
+    <li>
+      <b>apply</b>
+      Update.
+    </li>
+    <li>
+      <b>useAllPointsInsideCSO</b>
+      Calculate the statistics based on all points inside the CSOs.
+    </li>
+    <li>
+      <b>averageOutput</b>
+      Output the average as curve.
+    </li>
+    <li>
+      <b>sumOutput</b>
+      Output the sum as curve.
+    </li>
+    <li>
+      <b>resolution</b>
+      Resolution of the sample points inside the CSO.
+    </li>
+    <li>
+      <b>useVoxelSize</b>
+      Scale the statistics by the voxel size (if appropriate).
+    </li>
+    <li>
+      <b>statistics</b>
+      String containing the statistics table.
+    </li>
+    <li>
+      <b>interpolation</b>
+      Interpolation mode used to extract the image values from the input image at the desired positions.
+    </li>
+    <li>
+      <b>memoryAccess</b>
+      The way the internally used MPRLight module handle the memory access. Unless you have very huge contours of very litle memory available, leave this to global.
+    </li>
+    <li>
+      <b>listenToFinishingNotifications</b>
+      React to Finishing notifications.
+    </li>
+    <li>
+      <b>listenToSelectionNotifications</b>
+      React on Selection changes.
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3>
+  <a name="Example"></a>Example
+</h3>
+
+
+<blockquote>
+  In the example network the statistics of the several CSO are calculated after pressing 
+  Update on the CSOImageStatistics GUI. The statistics are added as a description of the 
+  CSOs, which can be seen in the View2D module. The graph of the average image values 
+  within the CSOs is shown in the SoRenderArea. The SoExaminerViewer shows the CSOs in 
+  3D together with all points (from the XMarkerList) that are used for the calculation 
+  of the statistics.
+</blockquote>
+
+<h3><a NAME=Events></a>Events</h3>
+<blockquote>The module can handle Finishing or Selection notifications.
+</blockquote>
+
+
+
+
+
+
+
+</body>
+</html>
