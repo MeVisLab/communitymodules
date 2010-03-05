@@ -1,0 +1,199 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module AffineTransformation3d {
+  internal  {
+    frame = "441 285 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "513 422 427 286"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AffineTransformation3d
+    optParameters = "0 0 0 0 0 0.4 1 1 1 0 0 0 "
+    translationX = 0
+    translationY = 0
+    translationZ = 0
+    rotationX = 0
+    rotationY = 0
+    rotationZ = 0.4
+    shearingX = 0
+    shearingY = 0
+    shearingZ = 0
+    scalingX = 1
+    scalingY = 1
+    scalingZ = 1
+    matrix = "0.9210609940028851 0.3894183423086505 0 0
+-0.3894183423086505 0.9210609940028851 0 0
+0 0 1 0
+0 0 0 1"
+    transformationMode = Affine
+    isWorldTransformation = FALSE
+    worldVoxelTransformation = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "465 109 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "608 39 400 431"
+        sizeHint = "400 431"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D1
+    inventorInputOn = FALSE
+    layout = LAYOUT_AXIAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    greyWidth = 2095
+    greyCenter = 923.2999878
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = FALSE
+    annoCoords = Voxel
+    showCurrentPos = TRUE
+    worldPosition = "30.3631706237793 31.50894927978516 43.5"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+module OrthoView2D {
+  internal  {
+    frame = "237 109 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "135 37 400 431"
+        sizeHint = "400 431"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "513 422 260 224"
+        sizeHint = "260 224"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D
+    inventorInputOn = FALSE
+    layout = LAYOUT_AXIAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    greyWidth = 2095.000244
+    greyCenter = 923.3000488
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = FALSE
+    annoCoords = Voxel
+    showCurrentPos = TRUE
+    worldPosition = "30.3631706237793 31.50894927978516 43.5"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+module LocalImage {
+  internal  {
+    frame = "241 285 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "142 613 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module SyncFields {
+  internal  {
+    frame = "353 205 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "617 228 183 201"
+        sizeHint = "183 201"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncFields
+    mode = Vector
+    on = TRUE
+    precision = 0.001000000047497451
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "30.3631706237793 31.5089492797852 43.5 0 0 0"
+    vector1 = "30.3631706237793 31.5089492797852 43.5 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+connections  {
+  AffineTransformation3d.input0 = LocalImage.outImage
+  OrthoView2D1.image = AffineTransformation3d.output0
+  OrthoView2D1.worldPosition = OrthoView2D.worldPosition
+  OrthoView2D.image = LocalImage.outImage
+  OrthoView2D.worldPosition = SyncFields.vector1
+  SyncFields.vector0 = OrthoView2D1.worldPosition
+}
+networkModel = ""

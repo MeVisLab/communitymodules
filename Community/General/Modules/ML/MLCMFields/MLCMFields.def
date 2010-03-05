@@ -1,0 +1,73 @@
+//----------------------------------------------------------------------------------
+//! MLCMFields module definitions.
+/*! 
+// \file    MLCMFields.def
+// \author  Reinhard Hameeteman
+// \date    2010-03-05
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule SyncFields
+//----------------------------------------------------------------------------------
+MLModule SyncFields {
+  DLL            = "MLCMFields"
+  group          = BIGR
+  genre          = Fields
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Sync float or vector depending on difference criterium"
+  keywords       = "sync float vector loop break precision"
+  seeAlso        = "SyncFloat SyncVector"
+  documentation  = "$(LOCAL)/SyncFields/SyncFields.html"
+  exampleNetwork = "$(LOCAL)/SyncFields/SyncFieldsExample.mlab"
+  
+  Window {
+    expandY = No
+    Vertical {
+      name = MainWindow
+      expandY = No
+      style { 
+        Prototype Field { expandX = yes alignGroup = g1 }
+      }
+      Box "Mode" {
+        expandY = No
+        Field on   { alignX = Left }
+        Field mode { alignX = Left }
+        Field precision {}
+      }
+      Box Floats {
+        visibleOn = "*mode == "Float" || mode == "MultiFloat" *"
+        expandY = No
+        Field float0 {}
+        Field float1 {}
+        Field float2 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float3 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float4 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float5 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float6 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float7 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float8 { visibleOn = "* mode == "MultiFloat" *" }
+        Field float9 { visibleOn = "* mode == "MultiFloat" *" }
+      }
+      Box Vectors {
+        name = vectors
+        expandY = No
+        visibleOn = "*mode == "Vector" || mode == "MultiVector" *"
+        Field vector0 {}
+        Field vector1 {}
+        Field vector2 { visibleOn = "*mode == "MultiVector" *" }
+        Field vector3 { visibleOn = "*mode == "MultiVector" *" }
+        Field vector4 { visibleOn = "*mode == "MultiVector" *" }
+        Field vector5 { visibleOn = "*mode == "MultiVector" *" } 
+        Field vector6 { visibleOn = "*mode == "MultiVector" *" }
+        Field vector7 { visibleOn = "*mode == "MultiVector" *" }
+        Field vector8 { visibleOn = "*mode == "MultiVector" *" }
+        Field vector9 { visibleOn = "*mode == "MultiVector" *" }
+      }
+    }
+    FieldListener mode { command = "*py:ctx.control('MainWindow').updateLayout();ctx.window().updateFrame()*" }
+    //FieldListener mode { command = "*py:ctx.window().updateFrame()*" }
+  } // Window
+} // MLModule SyncFields
