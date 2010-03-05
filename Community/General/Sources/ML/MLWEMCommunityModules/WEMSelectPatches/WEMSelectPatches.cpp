@@ -40,7 +40,6 @@
 // Local includes
 #include "WEMSelectPatches.h"
 
-#include <windows.h>
 #include <algorithm>
 #include <functional>
 #include <fstream>
