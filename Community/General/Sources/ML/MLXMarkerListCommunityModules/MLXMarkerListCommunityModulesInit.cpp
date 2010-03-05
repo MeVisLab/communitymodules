@@ -15,10 +15,10 @@
 #include "mlLibraryInitMacros.h"
 
 // Include all module headers ...
-#include "mlLinearInterpolateXMarkerList.h"
-#include "mlTransformXMarkerList.h"
-#include "mlXMarkerListFromFile.h"
-#include "mlXMarkerListToFile.h"
+#include "InterpolateXMarkerList/mlLinearInterpolateXMarkerList.h"
+#include "TransformXMarkerList/mlTransformXMarkerList.h"
+#include "XMarkerListFile/mlXMarkerListFromFile.h"
+#include "XMarkerListFile/mlXMarkerListToFile.h"
 
 
 ML_START_NAMESPACE
