@@ -1,0 +1,460 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module FileIterator
+/*!
+// \file    FileIterator.script
+// \author  Reinhard Hameeteman
+// \date    2009-11-02
+//
+// Iterate over a file list
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {
+    Field outImage    { internalName = LoadAny.outImage    }
+    Field outBase     { internalName = LoadAny.outBase     }
+    Field outInventor { internalName = LoadAny.outInventor }
+  }
+
+  Parameters {
+    Field enableOutput      { internalName = Negation.inToggle }
+    
+    // File directory
+    Field rootPath          { internalName = FileDirectory.rootPath }
+    Field recursive         { internalName = FileDirectory.recursive }
+    Field maxRecursionDepth { internalName = FileDirectory.maxRecursionDepth }
+    Field fileType          { internalName = FileDirectory.fileType }
+    Field joinImagePairs    { internalName = FileDirectory.joinImagePairs }
+    Field include           { internalName = FileDirectory.include }
+    Field includeRegExp     { internalName = FileDirectory.includeRegExp }
+    Field predefined        { internalName = FileDirectory.predefined    }
+    Field exclude           { internalName = FileDirectory.exclude }
+    Field excludeRegExp     { internalName = FileDirectory.excludeRegExp }
+    Field ignoreCase        { internalName = FileDirectory.ignoreCase }
+    Field dirMode           { internalName = FileDirectory.dirMode }
+    Field update            { internalName = FileDirectory.update}
+    Field clear             { internalName = FileDirectory.clear }
+    
+    // Field Iterator
+    Field fieldNames        { internalName = FieldIterator.fieldNames }
+    Field fieldValues       { internalName = FieldIterator.fieldValues }
+    Field fileList          { internalName = FieldIterator.fieldValues }
+    Field externalList      { internalName = FileList.inputString1 }
+
+    Field numValues         { internalName = FieldIterator.numValues }
+    Field indexTranslation  { internalName = FieldIterator.indexTranslation}
+    Field curIndex          { internalName = FieldIterator.curIndex}
+    Field curValue          { internalName = FieldIterator.curValue}
+    Field firstValue        { internalName = FieldIterator.firstValue}
+    Field prevValue         { internalName = FieldIterator.prevValue }
+    Field nextValue         { internalName = FieldIterator.nextValue}
+    Field lastValue         { internalName = FieldIterator.lastValue}
+    Field reset             { internalName = FieldIterator.reset}
+    Field newValue          { internalName = FieldIterator.newValue}
+    Field newValueEnable    { internalName = FieldIterator.newValueEnable}
+    Field verbose           { internalName = FieldIterator.verbose}
+
+    Field start     { internalName = FieldIterator.start}
+    Field stop      { internalName = FieldIterator.stop }
+    Field delay     { internalName = FieldIterator.delay }
+    Field loop      { internalName = FieldIterator.loop}
+    Field running   { internalName = FieldIterator.running}
+    Field autoReset { internalName = FieldIterator.autoReset }
+     
+    // FileInformation
+    Field dirname   { internalName = FileInformation.dirname }
+    Field filename  { internalName = FileInformation.filename }
+    Field basename  { internalName = FileInformation.basename }
+    Field extension { internalName = FileInformation.extension }
+
+    // Make Name
+    Field outputTemplate { internalName = MakeName.outputTemplate }
+    Field outputName     { internalName = MakeName.outputName }
+    Field userStringS    { internalName = MakeName.userStringS }
+    Field userStringT    { internalName = MakeName.userStringT }
+    Field trimSpaces     { internalName = MakeName.DicomTags.trimSpaces }
+  }
+}
+
+
+Commands {
+  
+}
+
+Window {
+  style FileIterator_General { derive = BIGRStyle }
+  name = mainWindow
+  tooltip = "By pressing Ctrl-D you get the full interface to all the underlaying modules"
+  Vertical Iterate {
+    expandY = No
+    Horizontal {
+      expandX = Yes
+      expandY = No
+      Box "Selection" {
+        Horizontal {
+          alignX = Left
+          Button prevValue { title = "Previous" alignGroupX = buttonC1 }
+          Button nextValue { title = "Next"     alignGroupX = buttonC2 }
+        }
+        Horizontal {
+          alignX = Left
+          Button firstValue { title = "First" alignGroupX = buttonC1 }
+          Button lastValue  { title = "Last"  alignGroupX = buttonC2 }
+          Button reset { title = "Reset" alignGroupX = buttonC3 }
+        }
+        Horizontal {}
+      }
+      Box Auto {
+        Horizontal {
+          alignX = Left
+          Button start { }
+          Button stop { }
+        }
+        Horizontal { 
+          Field delay {
+            title = "Delay"
+            step = 0.1
+            format = "%.2f"
+          }
+          Label { title = sec }
+          Empty { width = 5 }
+        }
+        Horizontal {
+          CheckBox running { edit = no alignGroupX = autog1 }
+          CheckBox autoReset { dependsOn = !loop alignGroupX = autog1 }
+        }
+      }
+    }
+    Box "Current Selection" {
+      Horizontal {
+        alignX = left
+        instanceName = ListNavigation
+        Field curIndex {
+          alignGroupX = selectionC1 
+          title = "Current Index:"
+          step = 1
+        }
+        Field numValues { title = "Values:" edit = no }
+        CheckBox loop {}
+        CheckBox verbose {}
+      }
+
+      Field curValue {
+        title = "Current File:"
+        edit = no
+        expandX = Yes
+        editAlign = left
+        alignGroupX = selectionC1 
+      }
+
+      Horizontal { 
+        alignX = left
+        Field newValue {
+          title = "New Value"
+          editField = no
+          alignGroupX = selectionC1 
+        }
+        Label { title = "(Triggered on new value selection)" }
+        CheckBox newValueEnable { title = Enable }
+      }
+
+      Field dirname {
+        title = Directory:
+        edit = No
+        trim = Center
+      }
+      Field filename {
+        title = Filename:
+        edit = No
+      }
+      Field basename {
+        title = Basename:
+        edit = No
+      }
+      Field extension {
+        title = "File Extension:"
+        edit = No
+      }
+    }
+  } // Category Iterate
+  
+  
+  Vertical Selection {
+    Box "File Set Selection" { layout = Vertical
+      droppedFileCommand = "*js: ctx.field("rootPath").value = arguments[0]; *"
+      Field rootPath {
+        title = "Root Path:"
+        trim = center
+        browseButton = yes
+        browseMode = directory
+      }
+      Vertical { expandX = no
+        Horizontal {
+          CheckBox recursive { title = "Include Subdirectories" }
+          Field maxRecursionDepth {
+            title = "Maximum Search Depth (-1 for no limit):"
+            step = 1
+            tooltip = "Maximum subdirectory depth for the subdirectory inclusion. For unlimited depth, select a negative value."
+            dependsOn = recursive
+          }
+        }
+        CheckBox joinImagePairs { title = "Join Image Pairs" expandX = no }
+        Horizontal {
+          alignY = center
+          expandX = NO
+          Label { title = "File Type:" }
+          ButtonBar fileType {
+            show = radio
+            direction = horizontal
+            items {
+              item Files { title = "Plain Files" }
+              item Dirs { title = Directories }
+              item All { title = "All Entries" }
+            }
+          }
+        }
+      }
+    } // Box "File Set Selection"
+
+    Box "Filename Patterns" { layout = Vertical
+      margin = 0
+      expandX = yes
+      Horizontal {
+        Field include {
+        }
+        CheckBox includeRegExp {
+          title = "Regular expression"
+          expandX = no
+        }
+      }
+      Horizontal {
+        alignX = left
+        Label {
+          title = "Set Pattern:"
+          expandX = no
+        }
+        ButtonBar predefined {
+          expandX = no
+          show = All
+          direction = horizontal
+          items {
+            item All { title = "All Files" }
+            item Images {}
+            item Dicom {}
+          }
+        }
+      }
+      Horizontal {
+        Field exclude { alignGroup = ag1 }
+        CheckBox excludeRegExp {
+          title = "Regular Expression"
+          expandX = no
+        }
+      }
+      Horizontal {
+        CheckBox ignoreCase { title = "Ignore Case" }
+        Horizontal {
+          alignX = Right
+          Button FileDirectory.update {}
+        }
+      }
+    } // Box "Filename Patterns"
+  }
+  Vertical "List" {
+    tooltip = "You can also connect an external list to the Files label"
+    FieldLabel externalList { title = "Files:" }
+    TextView fileList {
+      tooltip = "Be carefull with the line numbers! Subtract 1 for the index number!"
+      title = ""
+      autoApply = Yes
+      showLineNumbers = Yes
+      vscroller = Auto
+      hscroller = Auto
+    }
+  }
+  Vertical Name {
+    Box "User String Template Variables" { 
+      layout = Vertical
+      Field userStringS { title = "User String $S:" alignGroupX = nameC1 }
+      Field userStringT { title = "User String $T:" alignGroupX = nameC1 }
+    }
+    Box "Output Template" { layout = Vertical
+      tooltip = "*
+          <table cellpadding=0 cellspacing=0 border=0>
+          <tr><td colspan=3><b>Output template variables:</b></td></tr>
+          <tr><td><tt>$n</tt></td><td>-</td><td>Complete input name</td></tr>
+          <tr><td><tt>$f</tt></td><td>-</td><td>Filename portion of input name</td></tr>
+          <tr><td><tt>$d</tt></td><td>-</td><td>Directory portion of input name</td></tr>
+          <tr><td><tt>$e</tt></td><td>-</td>
+            <td>Extension of input name, as defined in extensions field</td></tr>
+          <tr><td><tt>$b</tt></td><td>-</td>
+            <td>Basename portion of input name, i.e. filename without extension</td></tr>
+          <tr></tr>
+
+          <tr><td><tt>$S/T</tt></td><td>-</td><td>User string <tt>S/T</tt></td></tr>
+          <tr></tr>
+          <tr><td><tt>$#</tt></td><td>-</td><td>Filename counter value</td></tr>
+          <tr><td colspan=3><b>Filename counter formatting:</b></td></tr>
+          <tr><td>$n#</td><td>-</td><td>Use a minimum of n digits, padded with zeros.<br>
+          Counter is zero-based if n starts with 0, otherwise one-based.</td></tr>
+          </table>
+          <b>Directory Macros:</b><br>
+          Common ILAB directory macros can be used in both <b>Input Name</b> and
+          <b>Output Template</b> fields, e.g.<br>
+          <table cellpadding=0 cellspacing=0 border=0>
+          <tr><td><tt>$<b></b>(NETWORK)</tt></td><td>-</td>
+            <td>Directory containing the network document</td></tr>
+          <tr><td><tt>$<b></b>(HOME)</tt></td><td>-</td>
+            <td>User's home directory</td></tr>
+          </table>
+        *"
+      Field outputTemplate {
+        title = "Template:"
+        alignGroupX = nameC1 
+      }
+      Horizontal {
+        Field = MakeName.extensions {
+          alignGroupX = nameC1 
+        }
+        CheckBox MakeName.extRegExp {
+          expandX = no
+          title = "Regular Expression"
+        }
+      }
+      Horizontal {
+        alignX = left
+        Label {
+          expandX = no
+          title = "Set Pattern:"
+          alignGroupX = nameC1
+        }
+        ButtonBar MakeName.predefined {
+          expandX = no
+          show = all
+          direction = horizontal
+          items {
+            item All { title = "All Files" }
+            item Images {}
+            item Dicom {}
+          }
+        }
+        FieldListener MakeName.predefined { 
+          command = "*py:ctx.field("MakeName.extensions").value={'All':'.*','Images':'\\.di?co?m \\.dic \\.tiff? \\.hdr \\.img \\.ima \\.raw \\.p[gpn]m \\.png \\.jpe?g','Dicom':'.dcm .dic .dicom'}[ctx.field('MakeName.predefined').value] *"
+        }
+        FieldListener MakeName.predefined { 
+          command = "*py:ctx.field("MakeName.extRegExp").value={'All':False,'Images':True,'Dicom':False}[ctx.field('MakeName.predefined').value]*"
+        }
+      }
+    }
+    Box "Output Name" { 
+      layout = Horizontal
+      Field outputName { title = "Name:" alignGroupX = nameC1 }
+      Button MakeName.update {}
+    }
+  }
+  
+  Vertical Output {
+    CheckBox enableOutput {}
+    Vertical {
+      alignY = Top
+      dependsOn = enableOutput
+      CheckBox LoadAny.analyzeHeader{
+        title   = "Use Header Analysis"
+        tooltip = "Enables a heuristic to identify file formats correctly, e.g. if no or only a number is available as file extensions"
+      }          
+      CheckBox LoadAny.allowBioFormats {
+        title   = "Allow BioFormatsLoad"
+        tooltip = "If this flag is on and the module exists then the BioFormatsLoad module is also used for data loading"
+      }
+      Field LoadAny.loaderName {
+        title           = "Loader:"
+        tooltip         = "Module used to open the file"
+        edit            = No
+      }
+      Field LoadAny.writerNames {
+        title           = "Writers:"
+        tooltip         = "Module(s) which could be used to save the file"
+        edit            = No
+      }
+      Field LoadAny.formatInfo {
+        tooltip         = "Shows information about the format of the opened file"
+        edit            = No
+      }
+      Field LoadAny.shortFileHeader {
+        title           = "Short Header:"
+        tooltip         = "First 48 (or less if null-chars are found) characters from the file."
+        edit            = No
+      }
+      TextView LoadAny.status {
+        tooltip         = "Shows general information, notes, errors etc. about the load process"
+        edit            = No
+        console         = Yes
+        visibleRows     = 3
+        expandY         = Yes
+      }
+    }
+  }
+  EventFilter { 
+    filter = KeyPress
+    control = mainWindow
+    command =  "*py:if ( args[0]['key'] == 'D' and args[0]['ctrlKey']): ctx.showWindow('Debug')*"
+  }
+}
+
+Window Debug {
+  TabView {
+    TabViewItem FileDirectory {
+      Panel { module = FileDirectory }
+    }
+    TabViewItem FieldIterator {
+      Panel { module = FieldIterator }
+    }
+    TabViewItem FileInformation {
+      Panel { module = FileInformation }
+    }
+    TabViewItem MakeName {
+      Panel { module = MakeName }
+    }
+    TabViewItem LoadAny {
+      Panel { module = LoadAny }
+    }
+  }
+  
+}
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-02T15:45:26
+//# hash: AjNnlaLECriO9N+6KUWXSpSd3Zumzkz+0GuZrH5v9At2vtI3GMwGF4Fo21O0zzE7zIbQD0/hEIh+B17bHmUlbw==
+//# MeVis end

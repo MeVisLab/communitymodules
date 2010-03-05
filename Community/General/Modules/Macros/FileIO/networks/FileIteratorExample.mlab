@@ -1,0 +1,198 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module View2D {
+  internal  {
+    frame = "-55 -179 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "146 274 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 1
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 197.9167023
+    lutWidth = 495.0903015
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0.9973145127296448 -0.07323814928531647 -55.70792007446289"
+  }
+  internalFields = ""
+}
+module FileIterator {
+  internal  {
+    frame = "-51 -27 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "530 479 549 401"
+        sizeHint = "505 408"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileIterator
+    enableOutput = TRUE
+    rootPath = $(DemoDataPath)
+    recursive = FALSE
+    maxRecursionDepth = -1
+    fileType = Files
+    joinImagePairs = FALSE
+    include = ".*\\.di?co?m .*\\.dic .*\\.tiff? .*\\.hdr .*\\.img .*\\.ima .*\\.raw .*\\.p[gpn]m"
+    includeRegExp = TRUE
+    predefined = Images
+    exclude = ""
+    excludeRegExp = FALSE
+    ignoreCase = TRUE
+    dirMode = Absolute
+    fieldNames = ""
+    fieldValues = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Abdomen1_MRA.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Abdomen1_MRA.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Bone.tiff
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Carotid1_MRA.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Carotid1_MRA.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.contour.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.contour.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/DTISubImg.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/DTISubImg.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dualecho.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dualecho.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dwi.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dwi.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head4_t1.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head4_t1.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Leg1_MRA_fl3d_US.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Leg1_MRA_fl3d_US.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.tumorMask.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.tumorMask.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_LiverMask.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_LiverMask.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_MRT_venous.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_MRT_venous.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/LungNodule.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/LungNodule.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Lymphnode.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Lymphnode.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Pat6.jrjr.Segmente.tiff
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/PIDunknown.134x124x46.roi.ul.tiff
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture_tags.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture_tags.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Thorax1_CT.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Thorax1_CT.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Tumor1_Head_t1.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Tumor1_Head_t1.small.tif"
+    fileList = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Abdomen1_MRA.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Abdomen1_MRA.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Bone.tiff
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Carotid1_MRA.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Carotid1_MRA.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.contour.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.contour.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/dmribreast.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/DTISubImg.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/DTISubImg.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dualecho.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dualecho.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dwi.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dwi.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head4_t1.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head4_t1.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Leg1_MRA_fl3d_US.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Leg1_MRA_fl3d_US.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.tumorMask.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.tumorMask.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_LiverMask.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_LiverMask.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_MRT_venous.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Liver2_MRT_venous.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/LungNodule.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/LungNodule.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Lymphnode.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Lymphnode.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Pat6.jrjr.Segmente.tiff
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/PIDunknown.134x124x46.roi.ul.tiff
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture_tags.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Shoulder_Fracture_tags.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Thorax1_CT.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Thorax1_CT.small.tif
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Tumor1_Head_t1.small.dcm
+C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Tumor1_Head_t1.small.tif"
+    externalList = ""
+    numValues = 41
+    indexTranslation = 0
+    curIndex = 0
+    curValue = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Abdomen1_MRA.small.dcm"
+    newValueEnable = FALSE
+    verbose = FALSE
+    delay = 1
+    loop = FALSE
+    running = FALSE
+    autoReset = FALSE
+    dirname = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/"
+    filename = Abdomen1_MRA.small.dcm
+    basename = Abdomen1_MRA.small
+    extension = .dcm
+    outputTemplate = ""
+    outputName = ""
+    userStringS = ""
+    userStringT = ""
+    trimSpaces = TRUE
+  }
+  internalFields = ""
+}
+connections  {
+  View2D.inImage = FileIterator.outImage
+}
+networkModel = ""

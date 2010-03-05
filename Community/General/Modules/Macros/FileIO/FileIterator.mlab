@@ -1,0 +1,260 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Negation {
+  internal  {
+    frame = "721 317 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "409 439 468 190"
+        sizeHint = "468 190"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Negation
+    inToggle = FALSE
+    outToggle = TRUE
+    outToggleInt = 1
+    inInta = 0
+    outInta = 1
+    inIntb = -1
+    outIntb = 1
+    inIntc = -1
+    outIntc = 0
+    inIntd = 1
+    outIntd = -1
+    inFloat = 1
+    outFloat = -1
+  }
+  internalFields = ""
+}
+module FieldBypass {
+  internal  {
+    frame = "597 317 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "319 620 190 298"
+        sizeHint = "190 298"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldBypass1
+    inputString0 = ""
+    inputString1 = ""
+    inputString2 = ""
+    inputString3 = ""
+    inputString4 = ""
+    inputNumber = 0
+    outputString = ""
+    noBypass = TRUE
+    onlyIfChanged = TRUE
+  }
+}
+module LoadAny {
+  internal  {
+    frame = "597 149 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "785 250 482 605"
+        sizeHint = "482 605"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadAny
+    name = ""
+    trueName = ""
+    verbose = FALSE
+    analyzeHeader = TRUE
+    allowBioFormats = FALSE
+    textOut = ""
+    loaderName = ""
+    writerNames = ""
+    formatInfo = ""
+    shortFileHeader = ""
+    fileHeader = ""
+    status = ""
+  }
+  internalFields = ""
+}
+module FieldBypass {
+  internal  {
+    frame = "285 313 104 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "463 545 190 298"
+        sizeHint = "190 298"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileList
+    inputString0 = ""
+    inputString1 = ""
+    inputString2 = ""
+    inputString3 = ""
+    inputString4 = ""
+    inputNumber = -1
+    outputString = ""
+    noBypass = FALSE
+    onlyIfChanged = TRUE
+  }
+}
+module MakeName {
+  internal  {
+    frame = "593 397 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "536 279 507 508"
+        sizeHint = "507 508"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MakeName
+    inputName = ""
+    extensions = ".*"
+    extRegExp = FALSE
+    outputTemplate = ""
+    outputName = ""
+    predefined = void
+    dicomTagA = PatientsName
+    dicomTagB = PatientID
+    dicomTagC = InstitutionName
+    dicomTagD = Modality
+    dicomTagE = AcquisitionDate
+    dicomTagF = AcquisitionTime
+    dicomValueA = ""
+    dicomValueB = ""
+    dicomValueC = ""
+    dicomValueD = ""
+    dicomValueE = ""
+    dicomValueF = ""
+    userStringS = ""
+    userStringT = ""
+    trimSpaces = TRUE
+  }
+  internalFields = ""
+}
+module FileInformation {
+  internal  {
+    frame = "585 237 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "659 332 271 374"
+        sizeHint = "271 374"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileInformation
+    path = ""
+    dirname = ""
+    filename = ""
+    basename = ""
+    extension = ""
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
+    isDirectory = FALSE
+    isReadable = FALSE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module FileDirectory {
+  internal  {
+    frame = "149 317 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "4 111 509 575"
+        sizeHint = "509 583"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileDirectory
+    rootPath = ""
+    recursive = FALSE
+    maxRecursionDepth = -1
+    fileType = Files
+    joinImagePairs = FALSE
+    include = ""
+    includeRegExp = FALSE
+    predefined = void
+    exclude = ""
+    excludeRegExp = FALSE
+    ignoreCase = TRUE
+    fileList = ""
+    dirMode = Absolute
+  }
+  internalFields = ""
+}
+module FieldIterator {
+  internal  {
+    frame = "449 317 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "136 235 422 321"
+        sizeHint = "422 321"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldIterator
+    fieldNames = ""
+    fieldValues = ""
+    fieldSeparator = [,;]
+    valueSeparator = "\\n\\r|\\r\\n|[\\n\\r\\\\]"
+    valueHeader = FALSE
+    numValues = 0
+    indexTranslation = 0
+    curIndex = -1
+    curValue = ""
+    newValueEnable = FALSE
+    verbose = FALSE
+    delay = 1
+    loop = FALSE
+    running = FALSE
+    autoReset = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  FieldBypass1.inputString0 = FieldIterator.curValue
+  FieldBypass1.noBypass = Negation.outToggle
+  LoadAny.name = FieldBypass1.outputString
+  FileList.inputString0 = FileDirectory.fileList
+  MakeName.inputName = FieldIterator.curValue
+  FileInformation.path = FieldIterator.curValue
+  FieldIterator.fieldValues = FileList.outputString
+}
+networkModel = ""
