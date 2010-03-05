@@ -302,12 +302,12 @@ void BoxArithmetic::handleNotification (Field *field)
         if ( !box0.isEmpty() &&
              !box1.isEmpty() ){
           for (int index = 0; index < 6; ++index ){
-            newBox.v1[index] = min( box0.v1[index],
-                                    box1.v1[index]);
+            newBox.v1[index] = mlMin( box0.v1[index],
+                                      box1.v1[index]);
           }
           for (int index = 0; index < 6; ++index ){
-            newBox.v2[index] = max( box0.v2[index],
-                                    box1.v2[index]);
+            newBox.v2[index] = mlMax( box0.v2[index],
+                                      box1.v2[index]);
           }
         } else {
           if ( box0.isEmpty() ){
