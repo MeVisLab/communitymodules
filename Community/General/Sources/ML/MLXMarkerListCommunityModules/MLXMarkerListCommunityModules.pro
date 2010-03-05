@@ -30,18 +30,18 @@ DEFINES += MLXMARKERLISTCOMMUNITYMODULES_EXPORTS
 HEADERS += \
     MLXMarkerListCommunityModulesInit.h \
     MLXMarkerListCommunityModulesSystem.h \
-    mlTransformXMarkerlist.h \
-    mlLinearInterpolateXMarkerList.h \
-    mlXMarkerListFromFile.h \
-    mlXMarkerListToFile.h
+    TransformXMarkerList/mlTransformXMarkerlist.h \
+    InterpolateXMarkerList/mlLinearInterpolateXMarkerList.h \
+    XMarkerListFile/mlXMarkerListFromFile.h \
+    XMarkerListFile/mlXMarkerListToFile.h
     
 
 SOURCES += \
     MLXMarkerListCommunityModulesInit.cpp \
-    mlTransformXMarkerlist.cpp \
-    mlLinearInterpolateXMarkerList.cpp \
-    mlXMarkerListFromFile.cpp \
-    mlXMarkerListToFile.cpp
+    TransformXMarkerList/mlTransformXMarkerlist.cpp \
+    InterpolateXMarkerList/mlLinearInterpolateXMarkerList.cpp \
+    XMarkerListFile/mlXMarkerListFromFile.cpp \
+    XMarkerListFile/mlXMarkerListToFile.cpp
 
 # additional files that are NOT compiled
 RELATEDFILES += \
