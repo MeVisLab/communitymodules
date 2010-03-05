@@ -1,0 +1,396 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of BIGR nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! WorldInfo module definitions.
+/*!
+// \file    WorldInfo.script
+// \author  Reinhard Hameeteman
+// \date    2008-10-03
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  Field sizeX       { persistent = NO deprecatedName = "X"   }
+  Field sizeY       { persistent = NO deprecatedName = "Y"   }
+  Field sizeZ       { persistent = NO deprecatedName = "Z"   }
+  Field sizeC       { persistent = NO deprecatedName = "C"   }
+  Field sizeT       { persistent = NO deprecatedName = "T"   }
+  Field sizeU       { persistent = NO deprecatedName = "U"   }
+  Field size        { persistent = NO }
+
+  Field pageSizeX   { persistent = NO deprecatedName = "PX"  }
+  Field pageSizeY   { persistent = NO deprecatedName = "PY"  }
+  Field pageSizeZ   { persistent = NO deprecatedName = "PZ"  }
+  Field pageSizeC   { persistent = NO deprecatedName = "PC"  }
+  Field pageSizeT   { persistent = NO deprecatedName = "PT"  }
+  Field pageSizeU   { persistent = NO deprecatedName = "PU"  }
+  Field pageSize    { persistent = NO }
+
+  Field minValue    { persistent = NO deprecatedName = "Min" }
+  Field maxValue    { persistent = NO deprecatedName = "Max" }
+
+  Field voxelSizeX  { persistent = NO deprecatedName = "VX"  }
+  Field voxelSizeY  { persistent = NO deprecatedName = "VY"  }
+  Field voxelSizeZ  { persistent = NO deprecatedName = "VZ"  }
+  Field voxelSize   { persistent = NO }
+  
+  Field originX     { persistent = NO }
+  Field originY     { persistent = NO }
+  Field originZ     { persistent = NO }
+  Field origin      { persistent = NO }
+  
+  Field extentX     { persistent = NO }
+  Field extentY     { persistent = NO }
+  Field extentZ     { persistent = NO }
+  Field extent      { persistent = NO }
+
+  Field worldSizeX  { persistent = NO }
+  Field worldSizeY  { persistent = NO }
+  Field worldSizeZ  { persistent = NO }
+  Field worldSize   { persistent = NO }
+
+  Field centerX     { persistent = NO }
+  Field centerY     { persistent = NO }
+  Field centerZ     { persistent = NO }
+  Field center      { persistent = NO }
+  
+  Field box         { persistent = No }
+  Field voxelVolume { persistent = NO deprecatedName = "VoxelVol"  }
+  Field totalVolume { persistent = NO deprecatedName = "TotalVol"  }
+  Field megaVoxels  { persistent = NO deprecatedName = "MegaVoxel" }
+  Field dataType    { persistent = NO deprecatedName = "DataType"  }
+  Field typeInfo    { persistent = NO deprecatedName = "TypeInfo" persistent = NO }
+
+  Field a00         { persistent = NO deprecatedName = "x0"  }
+  Field a01         { persistent = NO deprecatedName = "y0"  }
+  Field a02         { persistent = NO deprecatedName = "z0"  }
+  Field a03         { persistent = NO deprecatedName = "a0"  }
+  Field a10         { persistent = NO deprecatedName = "x1"  }
+  Field a11         { persistent = NO deprecatedName = "y1"  }
+  Field a12         { persistent = NO deprecatedName = "z1"  }
+  Field a13         { persistent = NO deprecatedName = "a1"  }
+  Field a20         { persistent = NO deprecatedName = "x2"  }
+  Field a21         { persistent = NO deprecatedName = "y2"  }
+  Field a22         { persistent = NO deprecatedName = "z2"  }
+  Field a23         { persistent = NO deprecatedName = "a2"  }
+  Field a30         { persistent = NO deprecatedName = "x3"  }
+  Field a31         { persistent = NO deprecatedName = "y3"  }
+  Field a32         { persistent = NO deprecatedName = "z3"  }
+  Field a33         { persistent = NO deprecatedName = "a3"  }
+  Field worldMatrix { persistent = NO                        }
+
+  Field cDimInfo    { persistent = NO deprecatedName = "CDimInfo" }
+  Field tDimInfo    { persistent = NO deprecatedName = "TDimInfo" }
+  Field uDimInfo    { persistent = NO deprecatedName = "UDimInfo" }
+  Field tDimTable   { persistent = NO deprecatedName = "TDimTable" }
+
+  Field update          { deprecatedName = "Update" }
+  Field memoryImage     { deprecatedName = "MemoryImage" }
+  Field memoryImage2    { deprecatedName = "MemoryImage2" }
+  Field moduleName      { deprecatedName = "OperatorName" }
+  Field connectionValid { deprecatedName = "InputConnection" }
+  Field dataValid       { deprecatedName = "InputData" }
+}
+
+Window {
+
+  Category Main {
+    panelName = "Main"
+    expandY = Yes
+
+    style  {
+      Prototype InfoFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+      Prototype DimFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+      Prototype Box {
+        expandY = Yes
+      }
+    }
+
+    Box "Image Size" {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        DimFld sizeX { title = "X:" }
+        DimFld sizeY { title = "Y:" }
+        DimFld sizeZ { title = "Z:" }
+        DimFld sizeC { title = "C:" }
+        DimFld sizeT { title = "T:" }
+        DimFld sizeU { title = "U:" }
+      }
+      Field size { edit = No }
+    }
+    Box "Page Size" {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        DimFld pageSizeX { title = "X:" }
+        DimFld pageSizeY { title = "Y:" }
+        DimFld pageSizeZ { title = "Z:" }
+        DimFld pageSizeC { title = "C:" }
+        DimFld pageSizeT { title = "T:" }
+        DimFld pageSizeU { title = "U:" }
+      }
+      Field pageSize { edit = No }
+    }
+    Box "Image Data" { layout = Horizontal
+      InfoFld dataType { title = "Type:" }
+      InfoFld minValue { title = "Min:" format = %.3f }
+      InfoFld maxValue { title = "Max:" format = %.3f }
+    }
+    Box "Voxel Size" {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        InfoFld voxelSizeX { title = "X:" }
+        InfoFld voxelSizeY { title = "Y:" }
+        InfoFld voxelSizeZ { title = "Z:" }
+        Empty {} Empty {} Empty {}
+      }
+      Field voxelSize { edit = no expandX = Yes }
+    }
+    Box "Volume Info" { layout = Horizontal
+      InfoFld voxelVolume { format = "%.5f ml" minLength = 10 }
+      Empty { expandX = yes }
+      InfoFld totalVolume { format = "%.1f ml" minLength = 10 }
+      InfoFld megaVoxels { title = "=" format = "%.2f Mega Voxels" minLength = 18 }
+    }
+    Box "Image State" { layout = Horizontal
+      Field pagedImgInfo { title = "State:" minLength = 20 edit = no }
+    }
+  } // Category Main
+
+  Category Advanced {
+    panelName = "Advanced"
+
+    style  {
+      Prototype InfoFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+      Prototype MatFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+    }
+
+    Box "World Matrix" { layout = Vertical
+      Table  {
+        Row  {
+          MatFld a00 { title="a00:" }
+          MatFld a01 { title="a01:" }
+          MatFld a02 { title="a02:" }
+          MatFld a03 { title="a03:" }
+        }
+
+        Row  {
+          MatFld a10 { title="a10:" }
+          MatFld a11 { title="a11:" }
+          MatFld a12 { title="a12:" }
+          MatFld a13 { title="a13:" }
+        }
+
+        Row  {
+          MatFld a20 { title="a20:" }
+          MatFld a21 { title="a21:" }
+          MatFld a22 { title="a22:" }
+          MatFld a23 { title="a23:" }
+        }
+
+        Row  {
+          MatFld a30 { title="a30:" }
+          MatFld a31 { title="a31:" }
+          MatFld a32 { title="a32:" }
+          MatFld a33 { title="a33:" }
+        }
+      } // Table
+      TextView worldMatrix {
+        fh = 100
+        edit = NO
+      }
+    } // Box "World Matrix"
+    Box "C/T/U-Dim Info" {
+      Vertical  {
+        InfoFld cDimInfo { title = "C:" trim = right }
+        InfoFld tDimInfo { title = "T:" trim = right }
+        InfoFld uDimInfo { title = "U:" trim = right }
+      }
+    }
+  } // Category Advanced
+
+  Category World {
+    style  {
+      Prototype InfoFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+      Prototype DimFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+      Prototype VecField {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+    }
+    Box Mode {
+      layout = Horizontal
+      CheckBox alignToAxis {}
+      CheckBox useVoxelCenter { dependsOn = !includeAllVoxels}
+      CheckBox includeAllVoxels {}
+    }
+    Box Origin {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        InfoFld originX { title = "X:" }
+        InfoFld originY { title = "Y:" }
+        InfoFld originZ { title = "Z:" }
+        Empty {} Empty {} Empty {}
+      }
+      VecField origin {}
+    }
+    Box Extent {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        InfoFld extentX { title = "X:" }
+        InfoFld extentY { title = "Y:" }
+        InfoFld extentZ { title = "Z:" }
+        Empty {} Empty {} Empty {}
+      }
+      VecField extent {}
+    }
+    Box Size {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        InfoFld worldSizeX { title = "X:" }
+        InfoFld worldSizeY { title = "Y:" }
+        InfoFld worldSizeZ { title = "Z:" }
+        Empty {} Empty {} Empty {}
+      }
+      VecField worldSize {}
+    }
+    Box Center {
+      Horizontal { expandX = yes
+        childAlignGroup = "sizeBox"
+        InfoFld centerX { title = "X:" }
+        InfoFld centerY { title = "Y:" }
+        InfoFld centerZ { title = "Z:" }
+        Empty {} Empty {} Empty {}
+      }
+      VecField center {}
+    }
+    Box Box {
+      Horizontal {
+        Field box { edit = No }
+      }
+    }
+    Box Rotation {
+      Field rotation {}
+    }
+    
+  }
+  Category "Time" {
+    panelName = "TimePoints" //Vorsicht! Alter Name: Time Points
+    expandY = YES
+    ListView tDimTable {
+      header = YES
+    }
+  }
+
+  Category "Type" {
+    panelName = "TypeInformation" //Vorsicht! Alter Name: Type Information
+    expandY = YES
+    ListView typeInfo {
+      tooltip = "Shows current type information"
+      style = fixed
+      Header = No
+    }
+  }
+
+  // Maybe we want to activate this in future.
+  /*Category "Extended" {
+    panelName = "ExtendedImageProperties"
+    expandY = YES
+    ListView imgPropExt {
+      tooltip = "Shows information about extended image properties"
+      style   = fixed
+      Header  = No
+    }
+  }*/
+
+  Category "Internal" {
+    panelName = "Internal"
+
+    style  {
+      Prototype InfoFld {
+        parent  = Field
+        edit    = no
+        expandX = yes
+      }
+    }
+
+    Box "Input Connection" { layout = Vertical
+      Horizontal { expandX = no
+        CheckBox connectionValid {
+          title = "Connection valid"
+          edit = no
+        }
+        CheckBox dataValid {
+          title = "Data valid"
+          edit = no
+        }
+      }
+      InfoFld moduleName {}
+    }
+    Box "Memory Image Status" { layout = Vertical
+      InfoFld memoryImage { title = "" }
+      InfoFld memoryImage2 { title = "" }
+    }
+    Box "Other" { layout = Vertical
+      Field bypassIndex  { edit = no tooltip = "From which data is bypassed or -1 if disabled" }
+      Field inPlaceIndex { edit = no tooltip = "From which data is used inplace or -1 if disabled" }
+    }
+    Button update {}
+  } // Category Internal
+} // Window
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-02T15:19:50
+//# hash: VrEG1qzVvwdIhLN9pobpPugikWR+mmhuZRBWGa76viyvjNF0e7OneYraYGSxo4DiDCYLZ/wPTdelJA8UKCgsZQ==
+//# MeVis end

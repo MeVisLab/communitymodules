@@ -1,0 +1,44 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;   <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;    
+ <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;   
+<hr WIDTH="100%"></center>
+<h2></h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>This module is an extension of the Info module. It has an extra tab with information about the world dimensions of the input image and has some extra fields with sizes as vectors. This help file only explains the World tab, for the other tabs please take a look at the help of the Info module.
+</blockquote>
+
+
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>The different world coordinate parameters of the image can be determined as an axis aligned box or as a image aligned box. These two modes only differ if the VoxelToWorld matrix of the image has a rotation. If "UseVoxelCenter" is checked (0.5,0.5,0.5) is taken as origin otherwise (0,0,0) is used. Similarly for the extent (sizeX-0.5,sizeY-0.5,sizeZ-0.5) and (sizeX-1,sizeY-1,sizeZ-1) are used respectively. UseVoxelCenter may be of use for modules that use the voxel center as the origin of the image (ITK standard). If "IncludeAllVoxels" is checked the origin and extent are (0,0,0) and (sizeX,sizeY,sizeZ) respectively. This last option may be helpfull for visulasation of the image boundaries.<br/>
+
+Size = Extent-Origin<br/>
+Center = 0.5*(box.v1+box.v2)<br/>
+Box.v1 = Origin<br/>
+Box.v2 = Extent<br/>
+Rotation = rotation present in the VoxelToWorld matrix<br/>
+</blockquote>
+
+
+<h3><a NAME=Example></a>Example</h3>
+<blockquote>
+  The example network show a visualisation of the different world parameters.
+  Toggle IncludeAllVoxels and UseVoxelCenter to see their effect.
+</blockquote>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,767 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoRLAxis {
+  internal  {
+    frame = "-355 269 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "150 542 370 294"
+        sizeHint = "370 294"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRLAxis
+    autoAdjustSettings = FALSE
+    axisVolumeSize = "114 114 20"
+    axisOn = TRUE
+    axisFontNum = 0
+    axis1Visibility = TRUE
+    axis2Visibility = TRUE
+    axis3Visibility = TRUE
+    axisNumberingOn = TRUE
+    axisSubTickingOn = TRUE
+    multiAxisXY = FALSE
+    multiAxisXZ = FALSE
+    multiAxisYX = FALSE
+    multiAxisYZ = FALSE
+    multiAxisZX = FALSE
+    multiAxisZY = FALSE
+    axis1Text = X
+    axis2Text = Y
+    axis3Text = Z
+    axisNumBias = "0 0 0"
+    axisNumScale = "1 1 1"
+    axisStepSizes = "15 15 15"
+    axisOrigin = "0 0 0"
+    axisMinEnds = "0 0 0"
+    axisMaxEnds = "150 150 150"
+    axisMarkerLength = "7.5 7.5 7.5"
+    axisTicksMin = "0 0 0"
+    axisTicksMax = "150 150 150"
+    axis1Color = "1 1 0"
+    axis1Transparency = 1
+    axis2Color = "0.3333333432674408 1 0"
+    axis2Transparency = 1
+    axis3Color = "0.3333333432674408 0.6666666865348816 1"
+    axis3Transparency = 1
+    axisWingLength = "5 5 5"
+    axisOverScale = "1.100000023841858 1.100000023841858 1.100000023841858"
+    axisSubTickSteps = "0.2000000029802322 0.2000000029802322 0.2000000029802322"
+    axisSubTickScales = "0.25 0.25 0.25"
+    boxOn = FALSE
+    boxColor = "1 1 1"
+    boxTransparency = 1
+  }
+}
+module Negation {
+  internal  {
+    frame = "193 437 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "185 104 468 190"
+        sizeHint = "468 190"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Negation
+    inToggle = TRUE
+    outToggle = FALSE
+    outToggleInt = 0
+    inInta = 0
+    outInta = 1
+    inIntb = -1
+    outIntb = 1
+    inIntc = -1
+    outIntc = 0
+    inIntd = 1
+    outIntd = -1
+    inFloat = 1
+    outFloat = -1
+  }
+  internalFields = ""
+}
+module SoToggle {
+  internal  {
+    frame = "349 333 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "462 733 104 25"
+        sizeHint = "64 25"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoToggle
+    whichChild = -1
+    on = FALSE
+  }
+}
+module SoRotation {
+  internal  {
+    frame = "345 397 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "396 292 390 39"
+        sizeHint = "390 39"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoRotation
+    rotation = "-1 0 0 0.2094391137361526"
+  }
+}
+module SoText3 {
+  internal  {
+    frame = "-123 325 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "395 710 256 219"
+        sizeHint = "256 219"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoText31
+    string = "*"Extend"*"
+    spacing = 1
+    justification = LEFT
+    parts = FRONT
+  }
+}
+module SoText3 {
+  internal  {
+    frame = "121 325 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "395 710 256 219"
+        sizeHint = "256 219"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoText3
+    string = "*"Origin"*"
+    spacing = 1
+    justification = LEFT
+    parts = FRONT
+  }
+}
+module SoSphere {
+  internal  {
+    frame = "-127 269 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "543 484 119 35"
+        sizeHint = "119 35"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSphere1
+    radius = 6
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "-203 185 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "747 297 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = extend
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "-247 325 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "381 497 270 35"
+        sizeHint = "270 35"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation2
+    translation = "109.201530456543 136.6565093994141 94.54345703125"
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "-231 269 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _materialeditor {
+        geometry = "301 572 195 164"
+        sizeHint = "195 164"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMaterial2
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.333333 1 1"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "9 269 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _materialeditor {
+        geometry = "301 572 195 164"
+        sizeHint = "195 164"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMaterial1
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0 1 0"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "-7 325 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "700 478 270 35"
+        sizeHint = "270 35"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation1
+    translation = "-119.8205871582031 -114.3894500732422 -80.23210144042969"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "29 185 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "747 297 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Origin
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoSphere {
+  internal  {
+    frame = "109 269 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "543 484 119 35"
+        sizeHint = "119 35"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSphere
+    radius = 6
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "53 -35 184 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "9 125 587 552"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7853981853
+    position = "413.67431640625 296.9138793945312 282.0001220703125"
+    orientation = "-0.2527531385421753 -0.4799727499485016 -0.8400845527648926 3.890670299530029"
+    nearDistance = 299.2450562
+    farDistance = 775.7368164
+    focalDistance = 572.6383667
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoGVRVolumeRenderer {
+  internal  {
+    frame = "133 125 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "95 350 346 584"
+        sizeHint = "346 584"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGVRVolumeRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    on = TRUE
+    autoLoad = TRUE
+    interactiveQuality = 0.1000000015
+    staticQuality = 1
+    interactiveSamplingRate = 1
+    staticSamplingRate = 1
+    blendMode = Blend
+    octreeNodeSize = NODE_SIZE_32
+    octreeParentComputationMethod = Rank
+    octreeParentComputationRank = 4
+    currentTimePoint = 0
+    maxTimePoint = 1
+    force8bit = FALSE
+    filterVolumeData = FilterLinear
+    filterLut = TRUE
+    subVolumeStartX = 0
+    subVolumeStartY = 0
+    subVolumeStartZ = 0
+    subVolumeEndX = 114
+    subVolumeEndY = 114
+    subVolumeEndZ = 20
+    zbuffer = TRUE
+    permitClipping = TRUE
+    drawOnPlanes = TRUE
+    sizeOutputX = 114
+    sizeOutputY = 114
+    sizeOutputZ = 20
+    incrementalUpdate = TRUE
+    highQualityStaticUpdate = FALSE
+    staticRenderingAfterInteractionOnly = FALSE
+    adaptQualityToWindowSize = TRUE
+    renderMode = Direct
+    useImageCacheFile = FALSE
+    imageCacheFilename = ""
+    greyCenter = 0
+    greyWidth = 0.4110000134
+    greyInvert = FALSE
+    alphaCenter = 0.2469999939
+    alphaWidth = 1
+    alphaInvert = FALSE
+    colorFactor = "1 0 0"
+    alphaFactor = 1
+    enhancementAlphaMix = 0.25
+    boundaryEnhancement = FALSE
+    boundaryEnhancementFactor = 1
+    boundaryEnhancementExponent = 1
+    boundaryEnhancementGradientBias = 0
+    silhouetteEnhancement = FALSE
+    silhouetteEnhancementExponent = 1
+    silhouetteEnhancementFactor = 1
+    toneShading = FALSE
+    toneShadingWarmColor = "0.6745098233222961 0.5333333611488342 0.1411764770746231"
+    toneShadingColdColor = "0 0 0.4000000059604645"
+    toneShadingWarmDiffuse = 0.6000000238
+    toneShadingColdDiffuse = 0.200000003
+    toneShadingAngle = 45
+    materialAmbient = 0.6000000238
+    materialDiffuse = 1
+    materialSpecular = 1
+    materialSpecularity = 32
+    light1Enabled = TRUE
+    light1DiffuseIntensity = 1
+    light1SpecularIntensity = 1
+    light1Color = "1 0 0"
+    light1PolarPhi = 0
+    light1PolarRho = 0
+    light2Enabled = FALSE
+    light2DiffuseIntensity = 1
+    light2SpecularIntensity = 1
+    light2Color = "1 0 0"
+    light2PolarPhi = 45
+    light2PolarRho = 45
+    light3Enabled = FALSE
+    light3DiffuseIntensity = 1
+    light3SpecularIntensity = 1
+    light3Color = "1 0 0"
+    light3PolarPhi = -45
+    light3PolarRho = 0
+    gradientQuality = GradientQualityAutomatic
+    selectionAlphaThreshold = 0.200000003
+    selectedPoint1 = "-1 -1 -1"
+    selectedWorldPoint1 = "-1 -1 -1"
+    selectionActive = FALSE
+    useWorldCoords = TRUE
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "233 269 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _materialeditor {
+        geometry = "301 572 304 164"
+        sizeHint = "195 164"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMaterial
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.635294 0.635294 0.635294"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.11
+    transparency = 0.753
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "261 185 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "747 297 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBox
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "225 333 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "562 289 270 35"
+        sizeHint = "270 35"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoTranslation
+    translation = "-5.309526920318604 11.13352870941162 7.155678272247314"
+  }
+}
+module SoCube {
+  internal  {
+    frame = "345 269 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "668 446 117 97"
+        sizeHint = "117 97"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCube
+    width = 229.0221252
+    height = 251.0459595
+    depth = 174.7755585
+  }
+}
+module SoView2DPosition {
+  internal  {
+    frame = "549 333 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "52 182 470 665"
+        sizeHint = "470 665"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DPosition
+    drawingOn = TRUE
+    editingOn = FALSE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 0 0"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "-5.309526920318604 11.13352870941162 7.155678272247314"
+    firstSliceWorldPosition = "-1 -1 -1"
+    drawingModel = DRAWINGMODEL_CROSSHAIRS
+    drawingModelSize = 16
+    blendOnto = 1
+    blendOutside = 0
+    lineWidth = 2
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.1725490242242813 0.886274516582489 0.0117647061124444"
+    axialColor = "0.007843137718737125 0.9529411792755127 0.9686274528503418"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = FALSE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "517 -35 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "284 87 892 734"
+        sizeHint = "400 431"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D
+    inventorInputOn = TRUE
+    layout = LAYOUT_CUBE_EQUAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    greyWidth = 1277.099976
+    greyCenter = 725.6749878
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = FALSE
+    annoCoords = Voxel
+    showCurrentPos = FALSE
+    worldPosition = "-6.314009666442871 33.45923233032227 5.732810497283936"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+module WorldInfo {
+  internal  {
+    frame = "-3 437 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "605 126 564 555"
+        sizeHint = "564 555"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WorldInfo
+    pagedImgInfo = Ok
+    alignToAxis = TRUE
+    useVoxelCenter = FALSE
+    includeAllVoxels = TRUE
+    rotation = "-0.9999999999999992 0 0 0.2094395121631349"
+    memoryImage = "Invalid, (0,0,0,0,0,0)=0 Voxel at (0,0,0,0,0,0), "
+    memoryImage2 = "handled by host"
+    bypassIndex = -1
+    inPlaceIndex = -1
+    moduleName = ImgLoad
+    connectionValid = TRUE
+    dataValid = TRUE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "57 549 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "331 58 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Head3_dualecho.small.dcm
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Head3_dualecho.small.dcm"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+connections  {
+  SoRLAxis.inputImage = LocalImage.outImage
+  Negation.inToggle = WorldInfo.alignToAxis
+  SoToggle.on = Negation.outToggle
+  SoToggle.children = SoRotation.self
+  SoRotation.rotation = WorldInfo.rotation
+  extend.children = "SoMaterial2.self SoTranslation2.self SoText31.self SoSphere1.self"
+  SoTranslation2.translation = WorldInfo.extent
+  SoTranslation1.translation = WorldInfo.origin
+  Origin.children = "SoMaterial1.self SoTranslation1.self SoText3.self SoSphere.self"
+  SoExaminerViewer.children = "SoRLAxis.self extend.self Origin.self SoGVRVolumeRenderer.self BoundingBox.self"
+  SoGVRVolumeRenderer.image = LocalImage.outImage
+  BoundingBox.children = "SoMaterial.self SoTranslation.self SoToggle.self SoCube.self"
+  SoTranslation.translation = WorldInfo.center
+  SoCube.width = WorldInfo.worldSizeX
+  SoCube.height = WorldInfo.worldSizeY
+  SoCube.depth = WorldInfo.worldSizeZ
+  SoView2DPosition.worldPosition = WorldInfo.center
+  OrthoView2D.image = LocalImage.outImage
+  OrthoView2D.inInvPostLUT = SoView2DPosition.self
+  WorldInfo.input0 = LocalImage.outImage
+}
+networkModel = ""

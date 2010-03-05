@@ -1,0 +1,170 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module View2D {
+  internal  {
+    frame = "-87 -331 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "13 122 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = FALSE
+    view2DExtensionsOn = TRUE
+    startSlice = 0
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1000000015
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    valueHighPrecision = FALSE
+    plane = "0 0 1 0.5"
+  }
+  internalFields = ""
+}
+module SubImage {
+  internal  {
+    frame = "-155 -131 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "177 107 559 353"
+        sizeHint = "559 353"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SubImage
+    boxInput = "-10 -20 0 0 0 0 63.5 63.5 63.5 0 0 0"
+    autoApplyBox = TRUE
+    x = -10
+    sx = 63.5
+    modifyX = TRUE
+    y = -20
+    sy = 63.5
+    modifyY = TRUE
+    z = 0
+    sz = 63.5
+    modifyZ = TRUE
+    c = 0
+    sc = 0
+    modifyC = FALSE
+    t = 0
+    st = 0
+    modifyT = FALSE
+    u = 0
+    su = 0
+    modifyU = FALSE
+    fillValue = 0
+    mode = WorldStartEnd
+    autoApply = TRUE
+  }
+}
+module BoxArithmetic {
+  internal  {
+    frame = "-39 -131 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "635 123 424 636"
+        sizeHint = "530 636"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoxArithmetic
+    inputBox0 = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    inputBox1 = "0 0 0 0 0 0 -1 -1 -1 -1 -1 -1"
+    correctInput0 = FALSE
+    correctInput1 = TRUE
+    useVoxelCenter = TRUE
+    correctBox = FALSE
+    constant = 0
+    v1 = "40 40 40 0 0 0"
+    v2 = "-10 -20 0 0 0 0"
+    x1 = 0
+    y1 = 0
+    z1 = 0
+    c1 = 0
+    t1 = 0
+    u1 = 0
+    x2 = -1
+    y2 = -1
+    z2 = -1
+    c2 = -1
+    t2 = -1
+    u2 = -1
+    operationMode = Unify
+    inputMode0 = Input0
+    inputMode1 = Vectors
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-119 -3 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "573 556 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    trueName = "C:/Program Files/MeVisLab2.0VC9/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+connections  {
+  View2D.inImage = SubImage.output0
+  SubImage.input0 = LocalImage.outImage
+  SubImage.boxInput = BoxArithmetic.outputBox
+  BoxArithmetic.input0 = LocalImage.outImage
+}
+networkModel = ""

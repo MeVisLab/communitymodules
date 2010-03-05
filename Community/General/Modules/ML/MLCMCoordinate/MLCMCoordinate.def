@@ -1,0 +1,130 @@
+//----------------------------------------------------------------------------------
+//! MLCMCoordinate module definitions.
+/*!
+// \file    MLCMCoordinate.def
+// \author  Reinhard Hameeteman
+// \date    2010-03-05
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule WorldInfo
+//----------------------------------------------------------------------------------
+MLModule WorldInfo {
+  DLL            = "MLCMCoordinate"
+  group          = "BIGR"
+  genre          = "Info"
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Adds World dimensions image information to the Info module"
+  keywords       = "Info size world matrix voxel dimension extent"
+  seeAlso        = "Info"
+  documentation  = "$(LOCAL)/WorldInfo/WorldInfo.html"
+  exampleNetwork = "$(LOCAL)/WorldInfo/WorldInfoExample.mlab"
+  externalDefinition = "$(LOCAL)/WorldInfo/WorldInfo.script"
+} // MLModule WorldInfo
+
+
+//----------------------------------------------------------------------------------
+// MLModule BoxArithmetic
+//----------------------------------------------------------------------------------
+MLModule BoxArithmetic {
+  DLL            = "MLCMCoordinate"
+  group          = "BIGR"
+  genre          = "Geometry"
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Perform simple calculations on a (image) box"
+  keywords       = "box expand augment"
+  seeAlso        = "VecBoxConvert"
+  documentation  = "$(LOCAL)/BoxArithmetic/BoxArithmetic.html"
+  exampleNetwork = "$(LOCAL)/BoxArithmetic/BoxArithmeticExample.mlab"
+
+  Description {
+    Field outputBox    { persistent = No }
+    Field outputBox0   { persistent = No }
+    Field outputBox1   { persistent = No }
+    Field outputExtent { persistent = No }
+    Field outV1        { persistent = No }
+    Field outV2        { persistent = No }
+  }
+  Window {
+    Vertical {
+      Box Mode {
+        Horizontal {
+          Field operationMode {}
+          CheckBox useVoxelCenter { dependsOn = "* inputMode0 == "Input0" || inputMode1 == "Input1" *" }
+        }
+      }
+      Box "Input Selection" {
+        Horizontal { 
+          alignX = Left
+          Label { title = "Box0:" alignGroupX = c1 }
+          ButtonBar inputMode0    { show = Radio    }
+          CheckBox  correctInput0 { title = Correct }
+        }
+        Horizontal { 
+          alignX = Left
+          Label { title = "Box1:" alignGroupX = c1 }
+          ButtonBar inputMode1    { show = Radio    }
+          CheckBox  correctInput1 { title = Correct }
+        }
+      }
+      Box "Scalar Input" {
+        style { Prototype Field {parent = Field expandX = Yes} }
+        Vertical {
+          dependsOn = "* inputMode0 == "Scalars" || 
+                         inputMode1 == "Scalars" *"
+          Horizontal {
+            Field x1 {}
+            Field y1 {}
+            Field z1 {}
+            Field c1 {}
+            Field t1 {}
+            Field u1 {}
+          }
+          Horizontal {
+            Field x2 {}
+            Field y2 {}
+            Field z2 {}
+            Field c2 {}
+            Field t2 {}
+            Field u2 {}
+          }
+        }
+        Field constant { 
+          expandX = No 
+          dependsOn = "* operationMode == "ExpandScalar"  || 
+                         operationMode == "AddScalar"     *" 
+        }
+      }
+      Box "Vector Input" {
+        dependsOn = "* operationMode == "AddVector"      ||
+                       operationMode == "ExpandVector"   ||
+                       inputMode0    == "Vectors"        || 
+                       inputMode1    == "Vectors"        *"
+        Field v1 { alignGroupX = c1 }
+        Field v2 { alignGroupX = c1  dependsOn = "* inputMode0 == "Vectors" || inputMode1 == "Vectors"*"}
+      }
+      Box "Box Input" {
+        Field inputBox0 { title = "Box0:" alignGroupX = c1 dependsOn = "* inputMode0 == "Box"*" } 
+        Field inputBox1 { title = "Box1:" alignGroupX = c1 dependsOn = "* inputMode1 == "Box"*" }
+      }
+      Box  "Output" {
+        style { Prototype Field { parent = Field edit = No alignGroupX = oc1 } }
+        Field outputBox0 { title = Box0 }
+        Field outputBox1 { title = Box1 }
+        Horizontal {
+          Field outputBox    { title = Box: }
+          CheckBox correctBox { title = correct }
+        }
+        Field outputExtent { title = Size: }
+        Field outV1        { title = v1: }
+        Field outV2        { title = v2: }
+      }
+    }
+  }
+
+} // MLModule BoxArithmetic
+
