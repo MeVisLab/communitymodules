@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+//! FieldTrigger module definition
+/*!
+// \file    FieldTrigger.def
+// \author  Reinhard Hameeteman
+// \date    2007-05-01
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule FieldTrigger {
+  genre = "Fields"
+  author = "Reinhard Hameeteman"
+  group = BIGR
+  status = "work-in-progress"
+  comment = "Triggers trigger fields of a network in a user specified order"
+  keywords = "Trigger button push script touch"
+  seeAlso = ""
+   
+  externalDefinition = "$(LOCAL)/FieldTrigger.script"
+  scriptOnly = yes
+
+} // MacroModule FieldTrigger
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-03T14:51:36
+//# hash: ADkpvGoQSMQ0PCLQs6//i2ClVVJ25U2s6atAiBM3p4SmWGmu/8P2WH+jp60VrEJ2YpglD1oggz+B1xPFok9FoQ==
+//# MeVis end

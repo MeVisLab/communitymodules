@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------------
+//! FieldWriter module definition
+/*!
+// \file    FieldWriter.def
+// \author  Reinhard Hameeteman
+// \date    2007-02-28
+//
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule FieldWriter {
+    genre = Fields
+    author = "Reinhard Hameeteman"
+    group = BIGR
+    status = "work-in-progress"
+    comment = "Save the parameters of a field in the network to a .csv file"
+    keywords = "Field write save Excel CSV"
+    seeAlso = "SettingsManager"
+    documentation  = "$(LOCAL)/html/FieldWriter.html"
+    externalDefinition = "$(LOCAL)/FieldWriter.script"
+} // MacroModule FieldWriter
+
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-03-03T13:57:00
+//# hash: fh3AVNXiAVToLXQm0z+5bge2nX0m0PJ+rOyGBxex2CPXxcqTjYFrOFPnWr2OaiUGxnPlMCP41ri3pyZjuuOaCw==
+//# MeVis end

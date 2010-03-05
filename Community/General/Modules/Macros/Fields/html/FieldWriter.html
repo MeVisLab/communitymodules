@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+  <head>
+    <meta http-equiv="Content-Type"
+      content="text/html; charset=iso-8859-1">
+    <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+    <meta name="Description" content="TransposeMatrix module help file">
+    <title>MevisLab TransposeMatrix</title>
+  </head>
+  <body>
+    <center><a href="#Purpose">Purpose</a>&nbsp;&nbsp; <a href="#Usage">Usage</a>&nbsp;&nbsp;<a
+	href="#Details">Details</a>&nbsp;&nbsp; <a href="#Inputs">Inputs</a>&nbsp;&nbsp;<a
+	href="#Outputs">Outputs</a>&nbsp;&nbsp; <a href="#Parameters">Parameters</a>&nbsp;&nbsp;<a
+	href="#Example">Example</a>&nbsp;&nbsp; <a href="#Tips&amp;Tricks">Tips&amp;Tricks</a>&nbsp;&nbsp;<a
+	href="#KnownBugs">Known Bugs</a>
+      <hr width="100%"></center>
+
+    <h2>FieldWriter</h2>
+
+    <h3> <a name="Purpose"></a>Purpose</h3>
+
+    <blockquote>
+      <b>FieldWriter </b> Writes the field values of slected fields in a network to a text file.
+    </blockquote>
+    
+    <h3> <a name="Usage"></a>Usage</h3>
+
+    <blockquote>
+      <p>Drag the fields to the GUI to add them to the selected fields, supply a filename and a seperation character and press Save.
+    </blockquote>
+    
+    <h3> <a name="Details"></a>Details</h3>
+    
+    <blockquote>
+      The order of the selected fields can be changed by selecting a field and pressing Shift-Up or Shift-Down to move the field up
+      or down in the list. Double clicking on a field removes it from the list. If WriteHeader is enabled the first time the values 
+      are written to the file, also a line with the field names is written. If Append is selected the values are appended to the
+      file (and thus no header is writen). The seperation character that is written between the field values can be specified. Using
+      \n will add a newline after each value. Using the default comma, you can easily create comma seperated value files which can be
+      read in many other application (e.g. Excel).<br/>
+      The output can be inspected in the Output tab. The UserStrings tab offers the possibily to add user specified strings to the
+      output. Simpy add these fields to the selected fields.<br/>
+      Pressing Save with no fileName specified will show a File Dialog window which allows you to select an output file.
+    </blockquote>
+
+    <h3> <a name="Inputs"></a>Inputs</h3>
+
+    <blockquote>None</blockquote>
+
+    <h3> <a name="Outputs"></a>Outputs</h3>
+
+    <blockquote>None</blockquote>
+
+    <h3> <a name="Parameters"></a>Parameters</h3>
+
+    <dl>
+      <dl>
+	<dl>
+	  <li><b>File name:</b> Guess what.</li>
+    <li><b>Save:</b> Triggers a save action.</li>
+    <li><b>Write Header:</b>If checked the field names are written as a separate line the first time the file is written.</li>
+    <li><b>Append:</b>Appends the values to the file.</li>
+    <li><b>Separation Character:</b>Character(s) used to seperate field values. Using \n will add a newline</li>
+	</dl>
+      </dl>
+    </dl>
+
+    <h3> <a name="Example"></a>Example</h3>
+    <blockquote>None</blockquote>
+
+    <h3> <a name="Tips&amp;Tricks"></a>Tips &amp; Tricks</h3>
+    <blockquote>None</blockquote>
+
+    <h3> <a name="KnownBugs"></a>Known Bugs</h3>
+    <blockquote>None</blockquote>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module View2D {
+  internal  {
+    frame = "-39 -211 80 56"
+  }
+}
+module FieldTrigger {
+  internal  {
+    frame = "-39 -115 80 56"
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-47 -27 96 56"
+  }
+}
+connections = ""

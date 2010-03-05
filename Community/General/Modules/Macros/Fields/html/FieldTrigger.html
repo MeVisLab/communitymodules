@@ -1,0 +1,85 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;    <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+   
+<hr WIDTH="100%"></center>
+<h2>FieldTrigger</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>You can use this module to trigger fields in a specified order.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>
+  You can select the fields in the left tree view of all modules in the current network. Double clicking or pressing the right arrow will select the field and add it to the selected fields view in the right panel. You can also simply drag and drop a field on the GUI. Double clicking a field in the right panel or pressing the left arrow removes the field from the list. Using Shift-Up/Down you can move a selected field up and down in the list.<br/>
+  You can specify a sleep time in seconds, which is the time between each trigger (if AfterEachTrigger is selected) or between two repetitions.<br/>
+  After each trigger the following commands are issued:<br/>
+  MLAB.processEvents()<br/>
+  MLAB.processInventorQueue()<br/>
+  Triggering is done with a touch() on the selected fields.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>Pressing the round arrow will update the field tree in the left panel.
+</blockquote>
+
+
+
+
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>allFields</b>
+      Check to see a list off all fields in the network. If not checked only the trigger fields are listed.
+    </li>
+    <li>
+      <b>selectedFields</b>
+      List of selected fields.
+    </li>
+    <li>
+      <b>start</b>
+      Start triggering the selected fields.
+    </li>
+    <li>
+      <b>stop</b>
+      Stop the triggering.
+    </li>
+    <li>
+      <b>sleep</b>
+      Waiting time in seconds.
+    </li>
+    <li>
+      <b>sleepEachStep</b>
+      Wait after each trigger. If not checked wait after each sequence.
+    </li>
+    <li>
+      <b>repetition</b>
+      Repeate the trigger sequence.
+    </li>
+    <li>
+      <b>currentIteration</b>
+      Current iteration.
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

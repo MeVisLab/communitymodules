@@ -1,0 +1,27 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module FormatFloat {
+  internal  {
+    frame = "-47 -115 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "443 483 400 102"
+        sizeHint = "400 102"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FormatFloat
+    format = %06.2f
+    value = "1 2 3 4 5"
+    output = "001.00 002.00 003.00 004.00 005.00 "
+  }
+  internalFields = ""
+}
+connections = ""
+networkModel = ""
