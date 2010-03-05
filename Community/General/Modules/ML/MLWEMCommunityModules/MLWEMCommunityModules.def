@@ -47,3 +47,197 @@ MLModule WEMPlane {
     Execute = updateTabs
   }
 } // MLModule WEMPlane
+
+//----------------------------------------------------------------------------------
+// MLModule WEMVolume
+//----------------------------------------------------------------------------------
+MLModule WEMVolume {
+  DLL            = "MLWEMCommunityModules"
+
+  genre          = "BIGR-WEM"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "work-in-progress"
+  comment        = "Computes the volumes of the WEM patches"
+  keywords       = "WEM,volume"
+  documentation = "$(LOCAL)/WEMVolume/WEMVolume.html"
+  seeAlso        = ""
+  exampleNetwork = "$(LOCAL)/WEMVolume/WEMVolumeExample.mlab"
+    
+  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
+  
+    // put more commands in here if required
+  
+  }
+  
+  Description {
+  
+    // put the fields' description in here if required
+  
+  }
+
+  Window {
+    minimumWidth = 250
+
+    Category "Main" {
+
+      Field minVolume { 
+        expandX = True
+        edit = False
+      }
+      Field minVolumePatchIndex {
+        expandX = True
+        edit = False        
+      }
+      Field maxVolume {
+        expandX = True
+        edit = False        
+      }
+      Field maxVolumePatchIndex {
+        expandX = True
+        edit = False        
+      }
+      
+      //Separator { direction = horizontal }
+
+      //Horizontal {
+      //CheckBox autoApply { title = "Auto Apply" }
+      //Field apply        { title = "Apply"      }        
+      //}
+    }    
+  }
+} // MLModule WEMVolume
+
+//----------------------------------------------------------------------------------
+// MLModule WEMCenterOfMass
+//----------------------------------------------------------------------------------
+MLModule WEMCenterOfMass {
+  DLL            = "MLWEMCommunityModules"
+
+  genre          = "BIGR-WEM"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Computes the center of mass of the nodes of WEM object"
+  keywords       = "WEM,Center of Mass,Centroid"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMass.html"
+  exampleNetwork = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMassExample.mlab" 
+  
+  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
+  
+    // put more commands in here if required
+  
+  }
+
+  Description {
+  
+    // put the fields' description in here if required
+  
+  }
+
+  Window {
+
+    Category "Main" {
+
+      Field centerOfMass { 
+        expandX = True
+      }
+      
+      Field inverseCenterOfMass { 
+        expandX = True
+      }
+      
+      //Separator { direction = horizontal }
+
+      //Horizontal {
+        //CheckBox autoApply { title = "Auto Apply" }
+        //Field apply        { title = "Apply"      }        
+      //}
+    }    
+  }
+} // MLModule WEMCenterOfMass
+
+//----------------------------------------------------------------------------------
+// MLModule WEMSelectPatches
+//----------------------------------------------------------------------------------
+MLModule WEMSelectPatches {
+  DLL            = "MLWEMCommunityModules"
+
+  genre          = "BIGR-WEM"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Computes the center of mass of a WEM object"
+  keywords       = "WEM,Center of Mass,Centroid"
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/WEMSelectPatches/WEMSelectPatches.html"
+  exampleNetwork = "$(LOCAL)/WEMSelectPatches/WEMSelectPatchesExample.mlab"
+  deprecatedName = "WEMSelectPatch"
+  
+  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
+  
+    // put more commands in here if required
+  
+  }
+
+  Description {
+  
+    // put the fields' description in here if required
+  
+  }
+
+  Window {
+
+    Category "Main" {
+      Field patchStartIndex {}
+      Field patchEndIndex {}
+      CheckBox onePatch {}
+    }    
+  }
+} // MLModule WEMSelectPatches
+
+//----------------------------------------------------------------------------------
+// MLModule WEMNodesToFile
+//----------------------------------------------------------------------------------
+MLModule WEMNodesToFile {
+  documentation = "$(LOCAL)/WEMNodesToFile/WEMNodesToFile.html"
+  DLL            = "MLWEMCommunityModules"
+
+  genre          = "BIGR-WEM"
+  group          = "BIGR"
+  author         = "Coert Metz"
+  status         = "stable"
+  comment        = "Output WEM node coordinates to a text filed"
+  keywords       = "WEM,nodes,output,save,file"
+  seeAlso        = ""
+  
+  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
+  
+    // put more commands in here if required
+  
+  }
+
+  Description {
+  
+    // put the fields' description in here if required
+  
+  }
+
+  Window {
+    minimumWidth = 400
+
+    Vertical {
+      margin = 3
+      Field filename { 
+        expandX = True 
+        browseButton = True
+        browseMode = save
+      }
+      Field transformixCompatible {}
+      Separator {}
+      Button save {}
+    }    
+  }
+} // MLModule WEMCenterOfMass
+

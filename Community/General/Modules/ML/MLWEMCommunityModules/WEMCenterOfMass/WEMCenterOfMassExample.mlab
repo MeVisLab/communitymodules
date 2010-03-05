@@ -1,0 +1,117 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module WEMInitialize {
+  internal  {
+    frame = "653 429 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "482 339 322 391"
+        sizeHint = "322 391"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInitialize
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    initialPosition = "5 3 2"
+    initialDeformation = "1 1 1"
+    initModel = Dodecahedron
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    selectedTab = 0
+  }
+}
+module WEMCenterOfMass {
+  internal  {
+    frame = "633 333 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "506 237 341 66"
+        sizeHint = "341 66"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMCenterOfMass
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    centerOfMass = "5 3 2"
+    inverseCenterOfMass = "-5 -3 -2"
+  }
+}
+connections  {
+  WEMCenterOfMass.inWEM = WEMInitialize.outWEM
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 7
+        objectName = ""
+        parentUniqueId = 0
+        frame = "398 316 200 200"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "The center of mass of the input WEM is computed. Change the translation field in the WEMInitialize module to see changes in the centroid position."
+        titleText = Comment
+        isCollapsed = False
+      }
+    }
+  }
+}

@@ -1,0 +1,517 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module WEMModify {
+  internal  {
+    frame = "721 465 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "-38 185 562 625"
+        sizeHint = "562 625"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale1_35
+    isProcessing = FALSE
+    elapsedTime = 0.03099999949
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    modifyAttributes = FALSE
+    WEMs = "2@"
+    selectedWEMs = ""
+    modifyFieldsValid = TRUE
+    modifyAllPatches = TRUE
+    scale = "1.35 1.35 1.35"
+    translate = "0 0 0"
+    center = FALSE
+    rotation = "0 0 1 0"
+    transformMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useTransformMatrix = FALSE
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    closeBoundaries = FALSE
+    setNodeColor = FALSE
+    nodeColor = "1 1 1"
+    setNodeAlpha = FALSE
+    nodeAlpha = 1
+    nodeValueMode = None
+    nodeValue = 0
+    clampNodeMinValue = FALSE
+    minClampValue = 0
+    clampNodeMaxValue = FALSE
+    maxClampValue = 4095
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module WEMModify {
+  internal  {
+    frame = "673 465 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "-38 185 562 625"
+        sizeHint = "562 625"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale1_3
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    modifyAttributes = FALSE
+    WEMs = "2@"
+    selectedWEMs = ""
+    modifyFieldsValid = TRUE
+    modifyAllPatches = TRUE
+    scale = "1.3 1.3 1.3"
+    translate = "0 0 0"
+    center = FALSE
+    rotation = "0 0 1 0"
+    transformMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useTransformMatrix = FALSE
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    closeBoundaries = FALSE
+    setNodeColor = FALSE
+    nodeColor = "1 1 1"
+    setNodeAlpha = FALSE
+    nodeAlpha = 1
+    nodeValueMode = None
+    nodeValue = 0
+    clampNodeMinValue = FALSE
+    minClampValue = 0
+    clampNodeMaxValue = FALSE
+    maxClampValue = 4095
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module Diagram2D {
+  internal  {
+    frame = "625 221 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "207 189 444 576"
+        sizeHint = "444 576"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 0
+    maxX = 3
+    autoRangeX = TRUE
+    minY = 2.181694746
+    maxY = 7.363222599
+    autoRangeY = TRUE
+    axisColor = "1 1 1"
+    axisRotation = LeftBottom
+    drawDiagramTitle = FALSE
+    diagramTitleString = ""
+    borderH = 29
+    autoBorderH = TRUE
+    borderV = 25
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn]"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 1 1"
+    lineStyle = Solid
+    markerType = None
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = -0.235135138
+    mousePosY = 7.620158195
+    mousePosValid = TRUE
+    curveSelection = Diagram
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = TRUE
+  }
+}
+module WEMModify {
+  internal  {
+    frame = "601 465 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "518 236 562 625"
+        sizeHint = "562 625"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale1_5
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    modifyAttributes = FALSE
+    WEMs = "2@"
+    selectedWEMs = ""
+    modifyFieldsValid = TRUE
+    modifyAllPatches = TRUE
+    scale = "1.5 1.5 1.5"
+    translate = "0 0 0"
+    center = FALSE
+    rotation = "0 0 1 0"
+    transformMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    useTransformMatrix = FALSE
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    closeBoundaries = FALSE
+    setNodeColor = FALSE
+    nodeColor = "1 1 1"
+    setNodeAlpha = FALSE
+    nodeAlpha = 1
+    nodeValueMode = None
+    nodeValue = 0
+    clampNodeMinValue = FALSE
+    minClampValue = 0
+    clampNodeMaxValue = FALSE
+    maxClampValue = 4095
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module WEMMerge {
+  internal  {
+    frame = "609 389 144 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = WEMMerge
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    modifyAttributes = FALSE
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module WEMInitialize {
+  internal  {
+    frame = "581 549 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "482 339 322 391"
+        sizeHint = "322 391"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInitialize
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.2666670083999634 0.2666670083999634 0.2666670083999634"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.06666699796915054 0.06666699796915054 0.06666699796915054"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    initialPosition = "0 0 0"
+    initialDeformation = "1 1 1"
+    initModel = Dodecahedron
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    selectedTab = 0
+  }
+}
+module WEMVolume {
+  internal  {
+    frame = "629 309 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "666 189 250 112"
+        sizeHint = "250 112"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMVolume
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    minVolume = 2.181694746
+    maxVolume = 7.363222599
+    minVolumePatchIndex = 0
+    maxVolumePatchIndex = 1
+  }
+}
+connections  {
+  Scale1_35.inWEM = WEMInitialize.outWEM
+  Scale1_3.inWEM = WEMInitialize.outWEM
+  Diagram2D.inCurveList = WEMVolume.outputVolumeCurve
+  Scale1_5.inWEM = WEMInitialize.outWEM
+  WEMMerge.inWEM = WEMInitialize.outWEM
+  WEMMerge.inWEM1 = Scale1_5.outWEM
+  WEMMerge.inWEM2 = Scale1_3.outWEM
+  WEMMerge.inWEM3 = Scale1_35.outWEM
+  WEMVolume.inWEM = WEMMerge.outWEM
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 18
+        objectName = ""
+        parentUniqueId = 0
+        frame = "898 296 200 200"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "We merge some WEMs and subsequently compute the volume of the patches. Check the Diagram2D window for the volume curve."
+        titleText = Comment
+        isCollapsed = False
+      }
+    }
+  }
+}
