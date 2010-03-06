@@ -78,7 +78,7 @@ LinearInterpolateXMarkerList::LinearInterpolateXMarkerList ()
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field field.
 //----------------------------------------------------------------------------------
-void LinearInterpolateXMarkerList::handleNotification (Field *field)
+void LinearInterpolateXMarkerList::handleNotification (Field * /*field*/ )
 {
   ML_TRACE_IN("LinearInterpolateXMarkerList::handleNotification ()");
 
