@@ -191,7 +191,7 @@ void WEMSelectPatches::selectPatch()
       WEMTrianglePatch * inPatch = (WEMTrianglePatch*) _inWEM->getWEMPatchAt(index % numPatches);
 
       // Create new output patch
-      WEMTrianglePatch * outTrianglePatch;
+      WEMTrianglePatch * outTrianglePatch = NULL;
       ML_CHECK_NEW(outTrianglePatch, WEMTrianglePatch(*inPatch));
     
       _finish(outTrianglePatch);
