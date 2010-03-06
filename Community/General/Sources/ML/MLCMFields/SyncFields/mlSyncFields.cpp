@@ -196,7 +196,7 @@ bool SyncFields::DiffTest( const T first, const T last, const double precision )
 {
   unsigned int numComp = sizeof(first)/sizeof(first[0]);
   for (unsigned int iComp=0; iComp < numComp; ++iComp){
-    if ( abs(first[iComp] - last[iComp]) > precision) {
+    if ( MLAbs(first[iComp] - last[iComp]) > precision) {
       return true;
     }
   }
@@ -205,7 +205,7 @@ bool SyncFields::DiffTest( const T first, const T last, const double precision )
 bool SyncFields::DiffTest( const double first, const double last, const double precision ) 
 {
   
-  return (abs(first - last) > precision);
+  return (MLAbs(first - last) > precision);
 }
 ML_END_NAMESPACE
 

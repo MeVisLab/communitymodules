@@ -478,7 +478,7 @@ ML_START_NAMESPACE
         }
         float det =  rotationMatrix.det();
         // Set rotation field only if there is a valid rotation matrix defined
-        if ( abs(det - 1) < 0.0001 ){
+        if ( MLAbs(det - 1) < 0.0001 ){
           imageWorldRotation = Rotation(rotationMatrix);
         } else {
           imageWorldRotation =  Rotation();

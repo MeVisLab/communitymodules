@@ -131,7 +131,7 @@ BoxArithmetic::BoxArithmetic ()
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field field.
 //----------------------------------------------------------------------------------
-void BoxArithmetic::handleNotification (Field *field)
+void BoxArithmetic::handleNotification (Field * /*field*/)
 {
   ML_TRACE_IN("BoxArithmetic::handleNotification ()");
 

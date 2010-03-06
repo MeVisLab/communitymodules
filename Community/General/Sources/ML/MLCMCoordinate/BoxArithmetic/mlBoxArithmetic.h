@@ -58,7 +58,7 @@ public:
   BoxArithmetic ();
 
   //! Handle field changes of the field field.
-  virtual void handleNotification (Field *field);
+  virtual void handleNotification (Field * /*field*/);
 
 private:
 

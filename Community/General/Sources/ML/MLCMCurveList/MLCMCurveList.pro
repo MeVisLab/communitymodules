@@ -15,7 +15,7 @@ DLLDESTDIR = ../../../lib
 
 # add dependencies of this project here
 
-CONFIG += dll ML MLBase newmat nr EMCUtilities inventor MLOpenGL boost
+CONFIG += dll ML MLBase boost 
 
 # set high warn level (warn 4 on MSCV)
 WARN = HIGH

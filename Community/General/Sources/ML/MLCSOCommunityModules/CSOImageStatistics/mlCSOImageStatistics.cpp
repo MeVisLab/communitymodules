@@ -286,7 +286,7 @@ void CSOImageStatistics::AddCSOId(const std::string& idString)
   ML_TRACE_IN_TC("void CSOImageStats::_addCSOId(const std::string& idString)");
 
   if (m_OutCSOList != NULL){        
-    unsigned int currentId = 0;
+    int currentId = 0;
     std::stringstream strstream;
     strstream << idString;
     strstream >> currentId;
@@ -412,7 +412,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
     MLErrorCode libErr = MLLoadLibrary("MLResample1");
     mlModule* mpr = NULL;
     mpr = MLCreateModuleFromName("MPR");
-    if ( mpr == NULL ) {
+    if ( mpr == NULL || libErr != ML_RESULT_OK ) {
       mlDebug("Error creating module");
       return;
     }
@@ -433,9 +433,9 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
     if ( resolution < 0 ){
       vec3 voxelSize = getNonDummyUpdatedInImg(0)->getVoxelSize();
       double minVoxelSize = ML_MIN(ML_MIN(voxelSize[0],voxelSize[1]),voxelSize[2]);
-      outputSize = ceil(size/minVoxelSize);
+      outputSize = static_cast<int>( ceil(size/minVoxelSize) );
     } else {
-      outputSize = ceil(size/resolution);
+      outputSize = static_cast<int>( ceil(size/resolution) );
     }
     IntField* outputSizeField = static_cast<IntField*>( MLModuleGetField( mpr,"outputSize" ) );
     outputSizeField->setIntValue( outputSize );
@@ -471,6 +471,10 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
     OutputConnectorField *connectedOutput = inputModule->getOutField( inputNr );
     MLint32 connetionResult = MLFieldConnectFrom(mprInput,(mlField*)connectedOutput);
 
+    if ( connetionResult != 1 ) {
+      mlDebug("Error connecting mpr module");
+      return;
+    }
     MLFieldTouch( mprInput ); 
     MLFieldTouch( connectedOutput );
 
@@ -481,8 +485,14 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
     mat4 wTvMatrix = mat4(vMatrix);
     CSOBoundingBox csoBB = cso->getVoxelBoundingBox( wTvMatrix );
     const MLint t = cso->getTimePointIndex();
-    SubImgBox csoVoxelBox = SubImgBox( Vector(csoBB.v1[0],csoBB.v1[1],csoBB.v1[2],0,t,0),
-                                       Vector(csoBB.v2[0],csoBB.v2[1],csoBB.v2[2],0,t,0) );
+    const MLint x1 = csoBB.v1[0];
+    const MLint y1 = csoBB.v1[1];
+    const MLint z1 = csoBB.v1[2];
+    const MLint x2 = csoBB.v2[0];
+    const MLint y2 = csoBB.v2[1];
+    const MLint z2 = csoBB.v2[2];
+    SubImgBox csoVoxelBox = SubImgBox( Vector(x1,y1,z1,0,t,0),
+                                       Vector(x2,y2,z2,0,t,0) );
 
     // Allocate memory block and fill it with the mpr image.
     double* inputTile = NULL;
@@ -520,7 +530,10 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
       const Vector strideVector =  csoVoxelBox.getExt().getStrides();
       const int currentCSOIndex = cso->getCSOList()->getCSOIndex( cso );
       for ( unsigned int iPos = 0; iPos < contourPoints.size(); ++iPos){
-        const Vector currentPos( contourPoints[iPos][0], contourPoints[iPos][1], contourPoints[iPos][2],0,0,0 );
+        const MLint x0 = contourPoints[iPos][0];
+        const MLint y0 = contourPoints[iPos][1];
+        const MLint z0 = contourPoints[iPos][2];
+        const Vector currentPos( x0, y0,z0,0,0,0 );
         const Vector deltaPos = currentPos-csoVoxelBox.v1;
         const MLint offset = deltaPos.dot( strideVector);
         double* currentValue = inputTile+offset;

@@ -62,7 +62,7 @@ public:
   ~StringToCurve();
 
   //! Handle field changes of the field field.
-  virtual void handleNotification (Field *field);
+  virtual void handleNotification (Field * /*field*/);
   
   //! Ensure the output is up to date on copying the module
   virtual void activateAttachments();

@@ -99,7 +99,7 @@ void StringToCurve::activateAttachments()
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field field.
 //----------------------------------------------------------------------------------
-void StringToCurve::handleNotification (Field *field)
+void StringToCurve::handleNotification (Field * /*field*/)
 {
   ML_TRACE_IN("StringToCurve::handleNotification ()");
 
