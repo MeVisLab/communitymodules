@@ -151,7 +151,7 @@ MLModule CSOPointsToXMarkers {
       margin = 3
       Field listIndexFld { title = "CSO list-index:" }
       CheckBox convertPathPoints {}
-      CheckBox outputCSONormals {}
+      CheckBox outputCSONormals { title = "Output CSO normals" }
     } 
   }
 
