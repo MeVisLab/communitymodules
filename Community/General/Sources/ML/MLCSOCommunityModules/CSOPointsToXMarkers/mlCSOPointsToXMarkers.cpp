@@ -96,7 +96,7 @@ CSOPointsToXMarkers::~CSOPointsToXMarkers (void)
 //----------------------------------------------------------------------------------
 //! Handle notifications of CSOList
 //----------------------------------------------------------------------------------
-void CSOPointsToXMarkers::CSOListNotifyObserverCB(void* userData, int notificationFlag)
+void CSOPointsToXMarkers::CSOListNotifyObserverCB(void* userData, int /*notificationFlag*/)
 {
   ML_TRACE_IN("CSOPointsToXMarkers::_csoListNotifyObserverCB");
 
@@ -177,10 +177,10 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
         if (outputPathPoints) {
           std::list<vec3> points;
           // First collect all pathpoints
-          for (int i=0; i<cso->numPathPointLists(); ++i) {
+          for (unsigned int i=0; i<cso->numPathPointLists(); ++i) {
             CSOPathPoints* pathList=cso->getPathPointsAt(i);
-            int numOfPathPoints = pathList->numPathPoints();
-            for (int k=0; k<numOfPathPoints; k++)
+            const unsigned int numOfPathPoints = pathList->numPathPoints();
+            for (unsigned int k=0; k<numOfPathPoints; k++)
             {
               vec3 posPathPoint = pathList->getPosAt(k);
               if (points.back()!=posPathPoint) points.push_back(posPathPoint);
@@ -232,7 +232,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
             _outputXMarkerList.appendItem(markerPath);
           }
         } else{
-          for (int i=0; i<cso->numSeedPoints(); ++i) {
+          for (unsigned int i=0; i<cso->numSeedPoints(); ++i) {
             CSOSeedPoint * seedpoint = cso->getSeedPointAt(i);
             vec3 pos = seedpoint->worldPosition;
             XMarker marker (pos);
@@ -241,7 +241,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
             if (inPlane && outputNormals) {
               // Determine previous and next marker
               int iPrev = i-1;
-              int iNext = i+1;
+              unsigned int iNext = i+1;
               if (iPrev<0) {
                 if (cso->isClosed()) {
                   iPrev=cso->numSeedPoints()-1;

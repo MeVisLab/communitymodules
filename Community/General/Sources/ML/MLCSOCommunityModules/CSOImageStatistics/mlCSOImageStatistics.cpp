@@ -485,22 +485,23 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
     mat4 wTvMatrix = mat4(vMatrix);
     CSOBoundingBox csoBB = cso->getVoxelBoundingBox( wTvMatrix );
     const MLint t = cso->getTimePointIndex();
-    const MLint x1 = csoBB.v1[0];
-    const MLint y1 = csoBB.v1[1];
-    const MLint z1 = csoBB.v1[2];
-    const MLint x2 = csoBB.v2[0];
-    const MLint y2 = csoBB.v2[1];
-    const MLint z2 = csoBB.v2[2];
+    const MLint x1 = static_cast< MLint >(csoBB.v1[0]);
+    const MLint y1 = static_cast< MLint >(csoBB.v1[1]);
+    const MLint z1 = static_cast< MLint >(csoBB.v1[2]);
+    const MLint x2 = static_cast< MLint >(csoBB.v2[0]);
+    const MLint y2 = static_cast< MLint >(csoBB.v2[1]);
+    const MLint z2 = static_cast< MLint >(csoBB.v2[2]);
     SubImgBox csoVoxelBox = SubImgBox( Vector(x1,y1,z1,0,t,0),
                                        Vector(x2,y2,z2,0,t,0) );
 
     // Allocate memory block and fill it with the mpr image.
-    double* inputTile = NULL;
+    void* tile;
     MLErrorCode err = getTile( static_cast<BaseOp*>(mpr),
                                0, 
                                csoVoxelBox, 
                                MLdoubleType, 
-                               (void**)(&inputTile) );
+                               &tile );
+    double* inputTile = reinterpret_cast< double* >(tile);
 
     // Remove data on error to avoid memory leaks.
     if (inputTile && (err != ML_RESULT_OK)){
@@ -530,9 +531,9 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
       const Vector strideVector =  csoVoxelBox.getExt().getStrides();
       const int currentCSOIndex = cso->getCSOList()->getCSOIndex( cso );
       for ( unsigned int iPos = 0; iPos < contourPoints.size(); ++iPos){
-        const MLint x0 = contourPoints[iPos][0];
-        const MLint y0 = contourPoints[iPos][1];
-        const MLint z0 = contourPoints[iPos][2];
+        const MLint x0 = static_cast< MLint >(contourPoints[iPos][0]);
+        const MLint y0 = static_cast< MLint >(contourPoints[iPos][1]);
+        const MLint z0 = static_cast< MLint >(contourPoints[iPos][2]);
         const Vector currentPos( x0, y0,z0,0,0,0 );
         const Vector deltaPos = currentPos-csoVoxelBox.v1;
         const MLint offset = deltaPos.dot( strideVector);

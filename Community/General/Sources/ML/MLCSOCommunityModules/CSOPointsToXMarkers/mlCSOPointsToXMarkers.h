@@ -66,7 +66,7 @@ public:
   virtual void handleNotification (Field * /*field*/);
 
   //! Observer for CSO List
-  static void CSOListNotifyObserverCB(void* userData, int notificationFlag);
+  static void CSOListNotifyObserverCB(void* userData, int /*notificationFlag*/);
 
 private:
 

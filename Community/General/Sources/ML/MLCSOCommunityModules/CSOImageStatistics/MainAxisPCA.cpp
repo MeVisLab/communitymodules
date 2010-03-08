@@ -259,7 +259,7 @@ void MainAxisPCA::computeMainAxis(const std::vector<ml::vec3>& pointCloud)
     jacobi(covaMatrix, 3, eigenValues, jacobiMat, &nrot);
     
     // Calculate main axes
-    int counter=0;
+    unsigned int counter=0;
     for (counter = 0; counter < 3; counter++) {
         _xAxis[counter] = jacobiMat[counter + 1][1];
         _yAxis[counter] = jacobiMat[counter + 1][2];
@@ -271,7 +271,7 @@ void MainAxisPCA::computeMainAxis(const std::vector<ml::vec3>& pointCloud)
     float* newVertices  =  NULL;
     ML_CHECK_NEW(newVertices, float[size * 3]);
 
-    int counter2 = 0;
+    unsigned int counter2 = 0;
     for (counter = 0; counter < size; counter++) {
         
         newVertices[counter2++] = dotProduct(points, _xAxis); //tempPoint.dot(_xAxis);
