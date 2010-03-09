@@ -1,0 +1,95 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;   <a href="#OutputFields">Output</a>&nbsp;&nbsp;&nbsp;  <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+ <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;   
+<hr WIDTH="100%"></center>
+<h2>NewImageFromExpression</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>Generate an image where each voxels value is the result of evaluating an expression for that voxel.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Specify image dimension, page size and datatype for voxels. Also specify an expression (where you can use x, y and z as the voxel index values). Each voxels value will be the result of evaluating the expression for that voxel.
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>The expression does not handle unary minus. E.g. the following is not a valid expression:
+<p>-x
+<p>The following expression can be used as a substitute:
+<p>(0-1)*x
+<p>Expressions that can not be parsed will not give an output image.
+</blockquote>
+
+<blockquote>The expression parser recognizes the following tokens:
+<p>pi : the value of pi
+<p> e : the value of e
+<p>unary functions: sin, cos, tan, exp, log, erf, sqrt, atan, sign, asin, acos, floor, randomnumber
+<p>binary operators: ^, *, /, +, -
+<p>braces: ( ) to specify the argument of a unary functions, and to group subexpressions.
+<p>x, y, z, c, t, u: coordinates of voxel (for NewImageFromExpression)
+<p>x, y: input image voxels voor ExpressionParser1 (only x), and ExpressionParser2 (x and y)
+<p>The following expression can be used as a substitute:
+<p>(0-1)*x
+<p>Expressions that can not be parsed will not give an output image.
+</blockquote>
+
+
+<h3><a NAME="OutputFields"></a>Output</h3>
+<blockquote>    <ul>
+    <li>
+      <b>outputImage</b>
+      Image generated from the expression.
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>imageDimension</b>
+      The dimensions of the image, e.g. 10 20 30 1 1 1 for an image of 10x20x30 voxels.
+      Note that the dimension should contain 6 integers, and that each of the values should be larger than 0.
+    </li>
+    <li>
+      <b>pageSize</b>
+      Preferred page size of the image, notation similar to imageDimension.
+    </li>
+    <li>
+      <b>datatype</b>
+      Datatype of voxels.
+    </li>
+    <li>
+      <b>expression</b>
+      Expression to be parsed.
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+<h3><a NAME=Example></a>Example</h3>
+<blockquote>Example expressions:
+
+<ul><li>sin( (x-20)*(x-20) + (y-10)*(y-10) )
+<li>x*x + y
+<li>3
+</ul>
+</blockquote>
+
+
+
+
+
+</body>
+</html>

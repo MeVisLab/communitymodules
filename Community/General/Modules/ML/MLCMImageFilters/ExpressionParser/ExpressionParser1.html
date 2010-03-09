@@ -1,0 +1,78 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;  <a href="#Details">Details</a>&nbsp;&nbsp;&nbsp;  <a href="#InputFields">Input</a>&nbsp;&nbsp;&nbsp;  <a href="#OutputFields">Output</a>&nbsp;&nbsp;&nbsp;  <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+ <a href="#Example">Example</a>&nbsp;&nbsp;&nbsp;   
+<hr WIDTH="100%"></center>
+<h2>ExpressionParser1</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>Generate an image where the voxel value is the result of evaluating an expression for that voxel. Use x in the expression for the value of the corresponding input image voxel.
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Specify an expression (where you can use for x the input voxel value). 
+</blockquote>
+
+<h3><a NAME=Details></a>Details</h3>
+<blockquote>The expression does not handle unary minus. E.g. the following is not a valid expression:
+<p>-x
+<p>The following expression can be used as a substitute:
+<p>(0-1)*x
+<p>Expressions that can not be parsed will not give an output image.
+</blockquote>
+
+<h3><a NAME="InputFields"></a>Input</h3>
+<blockquote>    <ul>
+    <li>
+      <b>input0</b>
+      Input image.
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="OutputFields"></a>Output</h3>
+<blockquote>    <ul>
+    <li>
+      <b>output0</b>
+      Output image.
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>expression</b>
+      Expression to parse. x stands for the input image. See NewImageFromExpression for details on the expression syntax.
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+<h3><a NAME=Example></a>Example</h3>
+<blockquote>Example expressions:
+
+<ul><li>Add 10 to the image: x + 10
+<li>square the image: x*x
+<li>quadratic exponential decay: exp( (0-1)*(x*x) )
+</ul>
+</blockquote>
+
+
+
+
+
+</body>
+</html>

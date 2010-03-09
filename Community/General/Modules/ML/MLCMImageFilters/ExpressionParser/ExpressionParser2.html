@@ -1,0 +1,69 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;   <a href="#InputFields">Input</a>&nbsp;&nbsp;&nbsp;  <a href="#OutputFields">Output</a>&nbsp;&nbsp;&nbsp;  <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+   
+<hr WIDTH="100%"></center>
+<h2>ExpressionParser2</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>More generic Arithmetic2 (but a bit slower ...).
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>Connect 2 images, and specify the expression. In the expression, x refers to voxel value of first image, and y to voxel value of second image. Unary minus is not implemented, replace with e.g. (0-1)* instead of -.
+</blockquote>
+
+
+
+<h3><a NAME="InputFields"></a>Input</h3>
+<blockquote>    <ul>
+    <li>
+      <b>input0</b>
+      First input image (x in expression)
+    </li>
+    <li>
+      <b>input1</b>
+      Second input image (y in expression)
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="OutputFields"></a>Output</h3>
+<blockquote>    <ul>
+    <li>
+      <b>output0</b>
+      Result of evaluating expression for each voxel.
+    </li>
+    </ul>
+
+</blockquote>
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>expression</b>
+      Expression to parse.  x stands for the first input image, y for  the second input image. See NewImageFromExpression for details on the expression syntax.
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

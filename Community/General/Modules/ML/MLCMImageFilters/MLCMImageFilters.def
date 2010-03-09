@@ -1,0 +1,88 @@
+//----------------------------------------------------------------------------------
+//! MLCMImageFilters module definitions.
+/*!
+// \file    MLCMImageFilters.def
+// \author  Theo van Walsum
+// \date    2007-08-14
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule NewImageFromExpression
+//----------------------------------------------------------------------------------
+MLModule NewImageFromExpression {
+  DLL            = "MLCMImageFilters"
+  group          = "BIGR"
+  genre          = ""
+  author         = "Theo van Walsum"
+  status         = "stable"
+  comment        = "Fills a new image with values by evaluating an expression for each voxel"
+  keywords       = "New Image, Expression Parser"
+  seeAlso        = "ExpressionParser1, ExpressionParser2, TestPattern"
+  documentation  = "$(LOCAL)/ExpressionParser/NewImageFromExpression.html"
+  projectSource  = "$(MLAB_EMC_General)/Sources/ML/MLCMImageFilters"
+  exampleNetwork = "$(LOCAL)/ExpressionParser/ExpressionParserExample.mlab"
+  
+  Window {
+    Vertical {
+      Field expression {}
+      Field datatype {}
+      Field imageDimension {}
+      Field pageSize {}
+    }
+  }
+
+} // MLModule NewImageFromExpression
+
+//----------------------------------------------------------------------------------
+// MLModule ExpressionParser1
+//----------------------------------------------------------------------------------
+MLModule ExpressionParser1 {
+  DLL            = "MLCMImageFilters"
+  group          = "BIGR"
+  genre          = ""
+  author         = "Theo van Walsum"
+  status         = "stable"
+  comment        = "Parses expression on input images"
+  keywords       = "arithmetic expression parser"
+  seeAlso        = "NewImageFromExpression, ExpressionParser2, Arithmetic1"
+  documentation  = "$(LOCAL)/ExpressionParser/ExpressionParser1.html"
+  projectSource  = "$(MLAB_EMC_General)/Sources/ML/MLCMImageFilters"
+  exampleNetwork = "$(LOCAL)/ExpressionParser/ExpressionParserExample.mlab"
+  
+  Window {
+    w = 250
+    Vertical {
+      Field expression {}
+    }
+  }
+
+
+} // MLModule ExpressionParser1
+
+
+//----------------------------------------------------------------------------------
+// MLModule ExpressionParser2
+//----------------------------------------------------------------------------------
+MLModule ExpressionParser2 {
+  DLL            = "MLCMImageFilters"
+  group          = "BIGR"
+  genre          = ""
+  author         = "Theo van Walsum"
+  status         = "stable"
+  comment        = "Fills output image via expression on input images"
+  keywords       = "expression parser arithmetic"
+  seeAlso        = "NewImageFromExpression, ExpressionParser1, Arithmetic2"
+  documentation  = "$(LOCAL)/ExpressionParser/ExpressionParser2.html"
+  projectSource  = "$(MLAB_EMC_General)/Sources/ML/MLCMImageFilters"
+  exampleNetwork = "$(LOCAL)/ExpressionParser/ExpressionParserExample.mlab"
+  
+  Window {
+    w = 250
+    Vertical {
+      Field expression {}
+    }
+  }
+
+} // MLModule ExpressionParser2

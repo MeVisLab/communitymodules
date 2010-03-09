@@ -1,0 +1,268 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SynchroView2D {
+  internal  {
+    frame = "373 -11 120 56"
+    windows  {
+      window _default {
+        geometry = "241 334 804 400"
+        sizeHint = "804 400"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D
+    leftInventorInputOn = FALSE
+    rightInventorInputOn = FALSE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = FALSE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 0
+    slice2 = 0
+    lut1w = 2
+    lut1c = 1
+    lut2w = 2
+    lut2c = 1
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.9 0.9 0.9"
+    drawCurrentPos = TRUE
+  }
+  internalFields = ""
+}
+module ImgPropConvert {
+  internal  {
+    frame = "177 101 128 56"
+    windows  {
+      window _default {
+        geometry = "449 246 389 576"
+        sizeHint = "389 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgPropConvert1
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 1
+    a01 = 0
+    a02 = 0
+    a03 = 0
+    a10 = 0
+    a11 = 1
+    a12 = 0
+    a13 = 0
+    a20 = 0
+    a21 = 0
+    a22 = 1
+    a23 = 0
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    changeDatatype = FALSE
+    datatype = "unsigned int8"
+    changePageSize = FALSE
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGreyvalue = TRUE
+    minGreyvalue = -1
+    changeMaxGreyvalue = TRUE
+    maxGreyvalue = 1
+    changeWorldMatrix = FALSE
+    voxelSizeX = 1
+    voxelSizeY = 1
+    voxelSizeZ = 1
+    autoApply = TRUE
+  }
+}
+module NewImageFromExpression {
+  internal  {
+    frame = "245 409 184 64"
+    windows  {
+      window _default {
+        geometry = "138 683 373 255"
+        sizeHint = "204 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = NewImageFromExpressionY
+    imageDimension = "128 128 1 1 1 1"
+    pageSize = "128 128 1 1 1 1"
+    datatype = float
+    expression = y-30
+  }
+}
+module ExpressionParser1 {
+  internal  {
+    frame = "265 289 144 64"
+    windows  {
+      window _default {
+        geometry = "541 459 204 103"
+        sizeHint = "204 103"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ExpressionParser1Y
+    expression = "x*x"
+  }
+}
+module ExpressionParser2 {
+  internal  {
+    frame = "173 181 136 56"
+    windows  {
+      window _default {
+        geometry = "543 649 204 103"
+        sizeHint = "204 103"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ExpressionParser2
+    expression = "sin( (x+y)/100)"
+  }
+}
+module ExpressionParser1 {
+  internal  {
+    frame = "81 289 144 64"
+    windows  {
+      window _default {
+        geometry = "541 459 204 103"
+        sizeHint = "204 103"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ExpressionParser1X
+    expression = "x*x"
+  }
+}
+module NewImageFromExpression {
+  internal  {
+    frame = "61 409 184 64"
+    windows  {
+      window _default {
+        geometry = "101 554 373 255"
+        sizeHint = "204 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = NewImageFromExpressionX
+    imageDimension = "128 128 1 1 1 1"
+    pageSize = "128 128 1 1 1 1"
+    datatype = float
+    expression = x-10
+  }
+}
+module ImgPropConvert {
+  internal  {
+    frame = "525 317 120 56"
+    windows  {
+      window _default {
+        geometry = "449 246 389 576"
+        sizeHint = "389 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImgPropConvert
+    changeDimensionInfo = FALSE
+    cDimInfo = ""
+    tDimInfo = ""
+    uDimInfo = ""
+    a00 = 1
+    a01 = 0
+    a02 = 0
+    a03 = 0
+    a10 = 0
+    a11 = 1
+    a12 = 0
+    a13 = 0
+    a20 = 0
+    a21 = 0
+    a22 = 1
+    a23 = 0
+    a30 = 0
+    a31 = 0
+    a32 = 0
+    a33 = 1
+    changeDatatype = FALSE
+    datatype = "unsigned int8"
+    changePageSize = FALSE
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+    changeMinGreyvalue = TRUE
+    minGreyvalue = -1
+    changeMaxGreyvalue = TRUE
+    maxGreyvalue = 1
+    changeWorldMatrix = FALSE
+    voxelSizeX = 1
+    voxelSizeY = 1
+    voxelSizeZ = 1
+    autoApply = TRUE
+  }
+}
+module NewImageFromExpression {
+  internal  {
+    frame = "493 405 184 56"
+    windows  {
+      window _default {
+        geometry = "108 522 373 255"
+        sizeHint = "204 200"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = NewImageFromExpression1
+    imageDimension = "128 128 1 1 1 1"
+    pageSize = "128 128 1 1 1 1"
+    datatype = float
+    expression = "sin( ((x-10)*(x-10)+(y-30)*(y-30))/100 )"
+  }
+}
+connections  {
+  SynchroView2D.inImage1 = ImgPropConvert1.output0
+  SynchroView2D.inImage2 = ImgPropConvert.output0
+  ImgPropConvert1.input0 = ExpressionParser2.output0
+  ExpressionParser1Y.input0 = NewImageFromExpressionY.outputImage
+  ExpressionParser2.input0 = ExpressionParser1X.output0
+  ExpressionParser2.input1 = ExpressionParser1Y.output0
+  ExpressionParser1X.input0 = NewImageFromExpressionX.outputImage
+  ImgPropConvert.input0 = NewImageFromExpression1.outputImage
+}
