@@ -27,10 +27,6 @@
 
 #include "parser.h"
 
-// Include NR error function code
-#include "nr3.h"
-#include "erf.h"
-
 using namespace std;
 
 const double Parser::pi = 4.0*atan(1.0);
@@ -278,11 +274,10 @@ double randomnumber(double /* f */)
   return rand()*randfac;
 }
 
-double erf(double f)
-{
-  Erf erf;
-  return erf.erf(f);
-}
+//double erf(double f)
+//{
+//  erf(f);
+//}
 
 int Parser::IsFunction (const char* string, int length, UnaryFunction* f)
 {
@@ -314,11 +309,13 @@ int Parser::IsFunction (const char* string, int length, UnaryFunction* f)
           *f = log;
           return 1;
         }
+      /*
       if ( strncmp(string,"erf",3) == 0 )
         {
           *f = erf;
           return 1;
         }
+        */
     case 4:
       if ( strncmp(string,"sqrt",4) == 0 )
         {

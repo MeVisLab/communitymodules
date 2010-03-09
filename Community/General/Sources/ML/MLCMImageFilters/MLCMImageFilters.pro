@@ -21,9 +21,7 @@ CONFIG += dll ML nr
 WARN = HIGH
 
 
-MLAB_PACKAGES += EMC_General \
-                 EMC_ThirdParty \
-                 MeVisLab_Standard
+MLAB_PACKAGES += MeVisLab_Standard
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
 include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
