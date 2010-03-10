@@ -23,7 +23,7 @@ module Comment {
 }
 module SoWEMRenderer {
   internal  {
-    frame = "801 521 128 64"
+    frame = "801 513 128 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -86,7 +86,7 @@ module SoWEMRenderer {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "793 453 144 56"
+    frame = "793 445 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -320,7 +320,7 @@ module LocalImage {
   fields  {
     instanceName = LocalImage
     name = $(DemoDataPath)/Bone.tiff
-    trueName = "C:/Program Files/MeVisLab2.0aVC8/Packages/MeVisLab/Resources/DemoData/Bone.tiff"
+    trueName = ""
     autoLoad = TRUE
     status = "File open"
   }
@@ -928,7 +928,7 @@ module So3DXMarker {
     drawMode = DrawModeCorrect
     instanceName = So3DXMarker
     listString = ""
-    numItems = 30
+    numItems = 0
     index = 0
     persistent = FALSE
     listStringEnable = FALSE
@@ -987,7 +987,7 @@ OutputXMarkerList.vec= 10*[-sin(phi) cos(phi)];
 OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
 "
     useExternalScript = FALSE
-    matlabScriptPath = K:/Repository/MeVisResearch/Private/Modules/ML/MLMatlabModules/test.m
+    matlabScriptPath = ""
     inDataName0 = Input0
     inDataName1 = Input1
     inDataName2 = Input2

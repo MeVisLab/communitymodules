@@ -68,7 +68,8 @@ MLModule MatlabScriptWrapper {
         }
       }
       Horizontal {
-        CheckBox autoUpdate { title = "Auto-update on input data change" }
+        CheckBox autoUpdate { title = "Auto update" tooltip = "Update on input changes." }
+        CheckBox autoApply  { title = "Auto apply"  tooltip = "Update on field changes." }
         CheckBox showSessionWindow { title = "Show Matlab session window" }
         Button restartMatlab { alignX = Right title = "Restart Matlab" }
       }
