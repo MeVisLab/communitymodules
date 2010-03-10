@@ -67,10 +67,10 @@ public:
   // ----------------------------------------------------------
   //@{ \name Image processing methods.
   // ----------------------------------------------------------
-  
+
   //! Sets properties of the output image at output \c outIndex.
   virtual void calcOutImageProps (int outIndex);
-  
+
   //! Returns the input image region required to calculate a region of an output image.
   //! \param inIndex        The input of which the regions shall be calculated.
   //! \param outSubImageBox The region of the output image for which the required input region
@@ -79,20 +79,20 @@ public:
   //!                       shall be calculated.
   //! \return Region of input image needed to compute the region \c outSubImgBox on output \c outIndex.
   virtual SubImgBox calcInSubImageBox (int inIndex, const SubImgBox &outSubImgBox, int outIndex);
-  
+
   //! Request input image in basic datatypes according to user choice
   //! \param inIndex        The input of which the datatype shall be set.
   //! \param props          The properties of input image upon calling of method.
   //! \param outIndex       The index of the output image.
   virtual void calcInSubImageProps(int inIndex, InSubImageProps &/*props*/, int /*outIndex*/);
-  
+
   //! Calculates page \c outSubImg of output image with index \c outIndex by using \c inSubimgs.
   //! \param outSubImg The subimage of output image \c outIndex calculated from \c inSubImgs.
   //! \param outIndex  The index of the output the subimage is calculated for.
   //! \param inSubImgs Array of subimage(s) of the input(s) whose extents were specified
   //!                  by \c calcInSubImageBox. Array size is given by \c getInputNum().
   virtual void calcOutSubImage (SubImg *outSubImg, int outIndex, SubImg* /*inSubImgs*/);
-  
+
   //! Method template for type-specific page calculation. Called by \c calcOutSubImage().
   //! \param outSubImg The typed subimage of output image \c outIndex calculated from \c inSubImg?.
   //! \param outIndex  The index of the output the subimage is calculated for.
@@ -100,7 +100,7 @@ public:
   //  template <typename T>
   //  void calcOutSubImage (TSubImg<T> *outSubImg, int outIndex, TSubImg<T> *inSubImg1);
   //  virtual void calcOutSubImage (SubImg *outSubImg, int outIndex, SubImg *inSubImg);
-  
+
   //@}
 
 private:
@@ -168,12 +168,14 @@ private:
   StringField *_outXMarkerNameFld;
   //@}
 
-  //! If true, the module updates on field changes.
-  BoolField* _autoCalculationFld;
-  //! Status messages.
-  StringField* _statusFld;
   //! If pressed, the module updates.
   NotifyField* _calculateFld;
+  //! If true, the module updates on input changes.
+  BoolField* _autoCalculationFld;
+  //! If true, the module updates on parameter/field changes.
+  BoolField* _autoApplyFld;
+  //! Status messages.
+  StringField* _statusFld;
   //! Restart Matlab button.
   NotifyField* _restartMatlabFld;
 
@@ -204,5 +206,5 @@ private:
 
 ML_END_NAMESPACE
 
-#endif // __mlMatlabScriptWrapper_H
 
+#endif // __mlMatlabScriptWrapper_H

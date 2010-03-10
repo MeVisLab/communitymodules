@@ -90,6 +90,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 
   //! Create image data randomly.
   (_autoCalculationFld = fields->addBool("autoUpdate"))->setBoolValue(false);
+  (_autoApplyFld = fields->addBool("autoApply"))->setBoolValue(false);
   //! Add toggle to delete user set variables before new calculation.
   //(_deleteMatlabVarFld = fields->addBool("delMatlabVar"))->setBoolValue(false);
   //! Add update button.
@@ -227,7 +228,17 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
   // Update output on an update or if autoapply is enabled.
   if( (field == _calculateFld) ||
-      _autoCalculationFld->isOn() && ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))) ) {
+      (_autoCalculationFld->isOn() && ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))||
+                                       (field == _inXMarkerNameFld)) ) ||
+           (_autoApplyFld->isOn()  && ((field == _scalarFld[0])||(field == _scalarFld[1])||(field == _scalarFld[2])||
+                                       (field == _scalarFld[3])||(field == _scalarFld[4])||(field == _scalarFld[5])||
+                                       (field == _vectorFld[0])||(field == _vectorFld[1])||(field == _vectorFld[2])||
+                                       (field == _vectorFld[3])||(field == _vectorFld[4])||(field == _vectorFld[5])||
+                                       (field == _matrixFld[0])||(field == _matrixFld[1])||(field == _matrixFld[2])||
+                                       (field == _matrixFld[3])||(field == _matrixFld[4])||(field == _matrixFld[5])||
+                                       (field == _stringFld[0])||(field == _stringFld[1])||(field == _stringFld[2])||
+                                       (field == _stringFld[3])||(field == _stringFld[4])||(field == _stringFld[5])) )
+    ) {
     // Check if Matlab is started.
     if (!_checkMatlabIsStarted()) {
       _statusFld->setStringValue("Cannot find Matlab engine!");
@@ -655,9 +666,10 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
 
       // Get whole image.
       MLErrorCode localErr =
-        getTile(getInOp(i),getInOpIndex(i),
+        getTile(getInOp(i),
+                getInOpIndex(i),
                 SubImgBox(Vector(0, 0, 0, 0, 0, 0),
-                Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
+                          Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
                 inImg->getDataType(),
                 &data,
                 ScaleShiftData(1,0));
