@@ -15,7 +15,7 @@ DLLDESTDIR = ../../../lib
 
 # add dependencies of this project here
 
-CONFIG += dll ML nr
+CONFIG += dll ML
 
 # set high warn level (warn 4 on MSCV)
 WARN = HIGH
