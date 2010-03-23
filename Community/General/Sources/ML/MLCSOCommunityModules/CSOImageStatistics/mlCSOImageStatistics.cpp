@@ -412,7 +412,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
     MLErrorCode libErr = MLLoadLibrary("MLResample1");
     mlModule* mpr = NULL;
     mpr = MLCreateModuleFromName("MPR");
-    if ( mpr == NULL || libErr != ML_RESULT_OK ) {
+    if ( mpr == NULL || libErr != 1 ) {
       mlDebug("Error creating module");
       return;
     }
@@ -495,7 +495,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso, double &voxelCount, double &su
                                        Vector(x2,y2,z2,0,t,0) );
 
     // Allocate memory block and fill it with the mpr image.
-    void* tile;
+    void* tile = NULL;
     MLErrorCode err = getTile( static_cast<BaseOp*>(mpr),
                                0, 
                                csoVoxelBox, 
