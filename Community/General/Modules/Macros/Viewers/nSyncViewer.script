@@ -94,6 +94,23 @@ Interface {
       }
     }
     Field layout              { type = string value = "{1:[1,1],2:[1,2],3:[1,3],4:[2,2],5:[2,3]}"}
+    Field viewerLayout        { 
+      type = enum 
+      items {
+        item LAYOUT_AXIAL {
+          title = "Axial"
+        }
+        item LAYOUT_SAGITTAL {
+          title = "Sagittal"
+        }
+        item LAYOUT_CORONAL {
+          title = "Coronal"
+        }
+        item LAYOUT_CUBE_EQUAL {
+          title = "Cube equal"
+        }
+      }
+    }
     Field syncZoom            { type = bool   value = false }
     Field unZoom              { type = trigger }
     Field syncPanning         { type = bool   value = false }
@@ -105,7 +122,7 @@ Interface {
     Field coordSystem         { internalName = OrthoView2D0.ext.annoCoords }
     Field interpolationMethod { internalName = Reformat0.interpolation }
     Field cursorAlpha         { internalName = OrthoView2D0.pos.blendOnto }
-
+    Field useGlobalInputImages { type = bool value = True }
 
     //Field titleString         { type = string value = "input0,input1" }
     //Field showTitleString     { type = string value = "False,False" }
@@ -128,6 +145,8 @@ Commands {
   FieldListener syncPanning    { command = SyncPanning }
   FieldListener syncLUT        { command = SyncLUT  }
   FieldListener syncTimepoints { command = SyncTimepoints }
+  FieldListener useGlobalInputImages { command = NumberOfInputChanged }
+  FieldListener viewerLayout { command = NumberOfInputChanged }
   FieldListener { 
     listenField = reformat
     listenField = referenceGrid
@@ -139,6 +158,7 @@ Commands {
     MenuItem "Sync Zoom" { field = syncZoom }
     MenuItem "Sync LUT" { field = syncLUT }
     MenuItem "Sync Timepoints" { field = syncTimepoints }
+    MenuItem "Use global input images" { field = useGlobalInputImages }
   }
 }
 
@@ -182,6 +202,7 @@ Window Settings {
           tooltip = 
 "*You can specify the layout in a Python dictionary form:
 {nInputs:[rows,cols],nInputs:[rows,cols]}, e.g. {5:[3,2],10:[2,5]}*"}
+        Field viewerLayout {}
         Field showInventorInputs {}
         Field singleInvInput { dependsOn = showInventorInputs }
         Horizontal {
@@ -189,6 +210,7 @@ Window Settings {
           Field syncZoom { alignGroup = g1 }
           Button unZoom { title = Reset }
         }
+        Field useGlobalInputImages { alignGroup = g1 }
         Field syncPanning { alignGroup = g1 }
         Field syncLUT { alignGroup = g1 }      
         Field syncTimepoints { alignGroup = g1 } 

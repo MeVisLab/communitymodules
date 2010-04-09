@@ -90,6 +90,9 @@ def NumberOfInputChanged( field = None ) :
   ctx.field('In0.noBypass').value = True
   ctx.field('invInput0').disconnectOutputs()
   ctx.field( 'OrthoView2D0.'+ ctx.field('singleInvInput').stringValue() ).connectFrom(ctx.field('invInput0') )
+  # Set global input image option
+  ctx.field("OrthoView2D0.useGlobalInputImage").value = ctx.field("useGlobalInputImages").value
+  ctx.field("OrthoView2D0.layout").value = ctx.field("viewerLayout").value
   
   # create the appropriate modules
   for iInput in range(1,nInputs) :
@@ -106,11 +109,18 @@ def NumberOfInputChanged( field = None ) :
     ctx.field('invInput' + str(iInput)).disconnectOutputs()
     ctx.field( 'OrthoView2D'+ str( iInput ) + '.' + ctx.field('singleInvInput').stringValue() ).connectFrom(ctx.field('invInput' + str(iInput)))
     
+    # Set global input image option
+    globalOption = viewerModuleName + ".useGlobalInputImage"
+    ctx.field(globalOption).value = ctx.field("useGlobalInputImages").value
+    
+    # Set layout option
+    layoutOption = viewerModuleName + ".layout"
+    ctx.field(layoutOption).value = ctx.field("viewerLayout").value
+    
     # Sync several fields
     ctx.field( viewerModuleName+'.worldPosition' ).connectFrom( ctx.field('OrthoView2D'+str(iInput-1)+'.worldPosition' ))
     ctx.field( viewerModuleName+'.pos.blendOnto' ).connectFrom( ctx.field('OrthoView2D'+str(iInput-1)+'.pos.blendOnto' ))
     ctx.field( viewerModuleName+'.ext.annoCoords').connectFrom( ctx.field('OrthoView2D'+str(iInput-1)+'.ext.annoCoords'))
-    ctx.field( viewerModuleName+'.layout').value = 'LAYOUT_AXIAL'
     ctx.field( viewerModuleName+'.ext.borderOn').value = False 
     ctx.field( viewerModuleName+'.ext.annotVerticalRuler').value = False 
   ctx.field( 'SyncPos.vector0' ).connectFrom( ctx.field( 'OrthoView2D'+ str( nInputs-1 ) + '.worldPosition' ) )
