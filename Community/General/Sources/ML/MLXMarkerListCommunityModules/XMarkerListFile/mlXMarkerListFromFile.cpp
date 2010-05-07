@@ -111,7 +111,7 @@ void XMarkerListFromFile::handleNotification (Field *field)
 {
   ML_TRACE_IN("XMarkerListFromFile::handleNotification()")
 
-  if (field==_updateFld || _autoUpdateFld->getBoolValue()) {
+  if ( field==_updateFld || ( _autoUpdateFld->getBoolValue() && field != _outputXMarkerListFld ) ) {
     _outputXMarkerList.clear();
 
     // Check if an input image is connected when coordinate system is set to voxel
