@@ -33,7 +33,11 @@ macx {
   # If this does not work set MATLAB_INSTALL_DIR manually
   MATLAB_INSTALL_DIR = $$system(osascript -e \'tell application \"Finder\" to get POSIX path of \(application file id \"com.mathworks.StartMATLAB\" as string\)\' 2>/dev/null)
   
-  message ( MATLAB_INSTALL_DIR is $$MATLAB_INSTALL_DIR )
+  isEmpty(MATLAB_INSTALL_DIR) {
+    error( Automatic detection of MATLAB failed. Please add the location of the MATLAB bundle to the MATLAB_INSTALL_DIR variable in the .pro file )
+  } else {
+    message ( MATLAB_INSTALL_DIR is $$MATLAB_INSTALL_DIR )
+  }
 
 } else:linux {
 
