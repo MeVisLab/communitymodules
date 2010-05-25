@@ -26,11 +26,33 @@ include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
 
 
 # --------- CHANGE PATHS TO MATLAB FILES HERE ---------
-# path to the Matlab *.lib files 
-MATLAB_LIBDIR = "C:/Program Files/MATLAB/R2007b/extern/lib/win32/microsoft"
 
-# add path to the Matlab engine.h file
-INCLUDEPATH += "C:/Program Files/MATLAB/R2007b/extern/include"
+macx {
+
+  # Locate MATLAB bundle via its bundle id (Tested for MATLAB 2010a that yields: '/Applications/MATLAB_R2010a.app')
+  # If this does not work set MATLAB_INSTALL_DIR manually
+  MATLAB_INSTALL_DIR = $$system(osascript -e \'tell application \"Finder\" to get POSIX path of \(application file id \"com.mathworks.StartMATLAB\" as string\)\' 2>/dev/null)
+  
+  message ( MATLAB_INSTALL_DIR is $$MATLAB_INSTALL_DIR )
+
+} else:linux {
+
+  # add path to the Matlab engine.h file
+  INCLUDEPATH += 
+  
+  # path to the Matlab *.so files 
+  MATLAB_LIBDIR = 
+
+} else {
+
+  # add path to the Matlab engine.h file
+  INCLUDEPATH += "C:/Program Files/MATLAB/R2007b/extern/include"
+
+  # path to the Matlab *.lib files 
+  MATLAB_LIBDIR = "C:/Program Files/MATLAB/R2007b/extern/lib/win32/microsoft"
+
+} 
+
 # -----------------------------------------------------
 
 win64 {
@@ -55,17 +77,30 @@ else:win32 {
   LIBS += libmx.lib
 }
 else:macx {
-  LIBS += $${MATLAB_LIBDIR}/libeng.dylib
-  LIBS += $${MATLAB_LIBDIR}/libmx.dylib
-  LIBS += $${MATLAB_LIBDIR}/libut.dylib
-  LIBS += $${MATLAB_LIBDIR}/libmat.dylib
-  LIBS += $${MATLAB_LIBDIR}/libhdf5.0.dylib
-  LIBS += $${MATLAB_LIBDIR}/libicudata.dylib.36
-  LIBS += $${MATLAB_LIBDIR}/libicui18n.dylib.36
-  LIBS += $${MATLAB_LIBDIR}/libicuio.dylib.36
-  LIBS += $${MATLAB_LIBDIR}/libicuuc.dylib.36
-  LIBS += $${MATLAB_LIBDIR}/libxerces-c.27.dylib
-  LIBS += $${MATLAB_LIBDIR}/libz.1.dylib
+  MATLAB_INCDIR = $${MATLAB_INSTALL_DIR}/extern/include
+  64bit {
+    MATLAB_LIBDIR = $${MATLAB_INSTALL_DIR}/bin/maci64
+  } else {
+    MATLAB_LIBDIR = $${MATLAB_INSTALL_DIR}/bin/maci
+  }
+  
+  message ( MATLAB headers location is $$MATLAB_INCDIR )
+  message ( MATLAB libraries location is $$MATLAB_LIBDIR )
+
+  INCLUDEPATH  += $$MATLAB_INCDIR
+  QMAKE_LIBDIR += $$MATLAB_LIBDIR
+  
+  LIBS += -leng
+  LIBS += -lmx
+  
+  contains(MAKEFILE_GENERATOR,XCODE):message ( Execute the following commands in the Terminal: \
+            install_name_tool -change @loader_path/libeng.dylib $${MATLAB_LIBDIR}/libeng.dylib $${DESTDIR}/lib$${TARGET}$${d}.dylib ; \
+            install_name_tool -change @loader_path/libmx.dylib  $${MATLAB_LIBDIR}/libmx.dylib  $${DESTDIR}/lib$${TARGET}$${d}.dylib )
+  
+  # Due to a limitiation in qmake, this does not work in Xcode currently 
+  QMAKE_POST_LINK = \  
+      install_name_tool -change @loader_path/libeng.dylib $${MATLAB_LIBDIR}/libeng.dylib $${DESTDIR}/lib$${TARGET}$${d}.dylib && \
+      install_name_tool -change @loader_path/libmx.dylib  $${MATLAB_LIBDIR}/libmx.dylib  $${DESTDIR}/lib$${TARGET}$${d}.dylib
 }
 else:linux {
   QMAKE_LIBDIR += $${MATLAB_LIBDIR}

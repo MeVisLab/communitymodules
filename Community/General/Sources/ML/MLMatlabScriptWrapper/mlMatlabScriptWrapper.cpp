@@ -154,10 +154,15 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_matrixFld[2] = fields->addMatrix("matrix2"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
 
 #if defined(MACOS)
-  // Try to locate Matlab on Mac OS X
-  // std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.matlab");
+  // Try to locate Matlab on Mac OS X without relying on the PATH environment variable
+  std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.StartMATLAB");
+  if (! matlabBundle.empty()) {
+    std::string matlabExe = matlabBundle + "/bin/matlab";
+    
+    // use matlabExe.c_str() as a parameter to engOpen()
+  }
 #endif
-  
+
   m_pEngine = engOpen(NULL);
 
   if ( !_checkMatlabIsStarted() )
