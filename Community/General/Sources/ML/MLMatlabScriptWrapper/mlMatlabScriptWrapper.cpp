@@ -584,6 +584,12 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
 //! Check if Matlab is started.
 bool MatlabScriptWrapper::_checkMatlabIsStarted()
 {
+  // Is there an engine at all?
+  if(m_pEngine == NULL) {
+    return false;
+  }
+
+  // Check that it is working properly
   if(0 == engEvalString(m_pEngine, "mevTestIfMatlabIsRunning=3.14"))
   {
     engEvalString(m_pEngine, "clear mevTestIfMatlabIsRunning");
