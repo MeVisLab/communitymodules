@@ -14,7 +14,7 @@ DESTDIR    = ../../../lib
 DLLDESTDIR = ../../../lib
 
 # add dependencies of this project here
-CONFIG += dll ML MLBase
+CONFIG += dll ML MLBase MLMacOSSupport
 
 # set high warn level (warn 4 on MSCV)
 WARN = HIGH

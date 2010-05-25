@@ -37,6 +37,9 @@
 // Local includes
 #include "mlMatlabScriptWrapper.h"
 
+// SDK includes
+#include <macBundle.h>
+
 ML_START_NAMESPACE
 
 //! Implements code for the runtime type system of the ML
@@ -150,20 +153,25 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_matrixNameFld[2] = fields->addString("matrixName2"))->setStringValue("matrix2");
   (_matrixFld[2] = fields->addMatrix("matrix2"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
 
+#if defined(MACOS)
+  // Try to locate Matlab on Mac OS X
+  // std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.matlab");
+#endif
+  
   m_pEngine = engOpen(NULL);
 
   if ( !_checkMatlabIsStarted() )
   {
     std::cerr << "MatlabScriptWrapper::MatlabScriptWrapper():" << std::endl;
-    std::cerr << "Error: Matlab Engine not found. For this module to work, a matlab installation is required." << std::endl << std::endl;
+    std::cerr << "Error: Matlab Engine not found. For this module to work, a Matlab installation is required." << std::endl << std::endl;
     std::cerr << "Additional Hints: " << std::endl;
     std::cerr << " (1) On Windows, the matlab COM server must be registered. Execute " << std::endl;
     std::cerr << "       >> matlab /regserver " << std::endl;
     std::cerr << "     on a command line." << std::endl;
-    std::cerr << " (2) On MacOSX, it is currently required to start MeVisLab from a shell with" << std::endl;
+    std::cerr << " (2) On Mac OS X, it is currently required to start MeVisLab from a shell with" << std::endl;
     std::cerr << "     PATH set to " << std::endl;
     std::cerr << "     $PATH:/bin:/sbin:/usr/bin:/usr/sbin:/Applications/MATLAB_R2007b/bin" << std::endl;
-    std::cerr << " (3) When starting from XCode, ensure that the executable environment contains a variable"  << std::endl;
+    std::cerr << " (3) When starting from Xcode, ensure that the executable environment contains a variable"  << std::endl;
     std::cerr << "     PATH set to the above. Edit your 'current executable' settings accordingly."  << std::endl;
     std::cerr << "     DYLD_LIBRARY_PATH has to be extended to contain" << std::endl;
     std::cerr << "     /Applications/MATLAB_R2007b/bin/maci:/Applications/MATLAB_R2007b/sys/os/maci" << std::endl;
@@ -189,7 +197,7 @@ MatlabScriptWrapper::~MatlabScriptWrapper()
 {
   ML_TRACE_IN("MatlabScriptWrapper::~MatlabScriptWrapper()");
 
-  if (_checkMatlabIsStarted()) {
+  if (m_pEngine != NULL) {
     engClose(m_pEngine);
   }
 }
