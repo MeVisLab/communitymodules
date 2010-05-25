@@ -189,7 +189,7 @@ MatlabScriptWrapper::~MatlabScriptWrapper()
 {
   ML_TRACE_IN("MatlabScriptWrapper::~MatlabScriptWrapper()");
 
-  if (!_checkMatlabIsStarted()) {
+  if (_checkMatlabIsStarted()) {
     engClose(m_pEngine);
   }
 }
