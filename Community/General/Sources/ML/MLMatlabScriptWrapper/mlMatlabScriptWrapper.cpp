@@ -163,24 +163,28 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
     // Try to locate matlab binary in PATH environment
     const char *pathEnv = getenv("PATH");
     if (pathEnv) {
-      std::istringstream path(pathEnv);
-      while (! path.eof()) {
-        std::string test;
-        std::getline(path, test, ':');
-        test.append("/matlab");
+      std::istringstream pathList(pathEnv);
+      while (! pathList.eof()) {
+        std::string path;
+        std::getline(pathList, path, ':');
+        path.append("/matlab");
         struct stat info;
-        if (::stat(test.c_str(), &info) == 0) {
-          m_startCmd = test;
+        if (::stat(path.c_str(), &info) == 0) {
+          m_startCmd = path;
         }
       }
     }
   }
   
   if (m_startCmd.empty()) {
-    // Try to locate matlab binary on Mac OS X without relying on the PATH environment variable
+    // Try to locate matlab binary via its bundle id
     std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.StartMATLAB");
     if (! matlabBundle.empty()) {
-      m_startCmd = matlabBundle + "/bin/matlab";
+      std::string path = matlabBundle + "/bin/matlab";
+      struct stat info;
+      if (::stat(path.c_str(), &info) == 0) {
+        m_startCmd = path;
+      }
     }
   }
   
