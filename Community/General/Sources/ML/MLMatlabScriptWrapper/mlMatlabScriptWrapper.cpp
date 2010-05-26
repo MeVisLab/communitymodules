@@ -40,6 +40,11 @@
 // SDK includes
 #include <macBundle.h>
 
+// System includes
+#include <iostream>
+#include <sstream>
+#include <sys/stat.h>
+
 ML_START_NAMESPACE
 
 //! Implements code for the runtime type system of the ML
@@ -154,16 +159,37 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_matrixFld[2] = fields->addMatrix("matrix2"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
 
 #if defined(MACOS)
-  // Try to locate Matlab on Mac OS X without relying on the PATH environment variable
-  std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.StartMATLAB");
-  if (! matlabBundle.empty()) {
-    std::string matlabExe = matlabBundle + "/bin/matlab";
-    
-    // use matlabExe.c_str() as a parameter to engOpen()
+  if (m_startCmd.empty()) {
+    // Try to locate matlab binary in PATH environment
+    const char *pathEnv = getenv("PATH");
+    if (pathEnv) {
+      std::istringstream path(pathEnv);
+      while (! path.eof()) {
+        std::string test;
+        std::getline(path, test, ':');
+        test.append("/matlab");
+        struct stat info;
+        if (::stat(test.c_str(), &info) == 0) {
+          m_startCmd = test;
+        }
+      }
+    }
+  }
+  
+  if (m_startCmd.empty()) {
+    // Try to locate matlab binary on Mac OS X without relying on the PATH environment variable
+    std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.StartMATLAB");
+    if (! matlabBundle.empty()) {
+      m_startCmd = matlabBundle + "/bin/matlab";
+    }
+  }
+  
+  if (! m_startCmd.empty()) {
+    std::cout << "Found matlab binary at: " << m_startCmd.c_str() << std::endl;
   }
 #endif
 
-  m_pEngine = engOpen(NULL);
+  m_pEngine = engOpen( (m_startCmd.empty()) ? NULL : m_startCmd.c_str() );
 
   if ( !_checkMatlabIsStarted() )
   {
@@ -219,7 +245,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
   {
     if(!_checkMatlabIsStarted()) {
       // Start Matlab if it's not started.
-      m_pEngine = engOpen(NULL);
+      m_pEngine = engOpen( (m_startCmd.empty()) ? NULL : m_startCmd.c_str() );
       // If Matlab engine is started, make session window (in)visible
       if(_checkMatlabIsStarted()) {
         engSetVisible(m_pEngine,_showSessionWindowFld->getBoolValue());

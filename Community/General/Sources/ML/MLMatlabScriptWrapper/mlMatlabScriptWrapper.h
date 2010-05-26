@@ -40,8 +40,13 @@
 
 // Local includes
 #include "MLMatlabScriptWrapperSystem.h"
+
+// SDK includes
 #include <mlXMarkerList.h>
 #include <mlVersion.h>
+
+// System includes
+#include <string>
 
 // Include the Matlab engine. Note that the correct path to this
 // file must be set in the MLMatlabScriptWrapper.pro file.
@@ -204,6 +209,9 @@ private:
 
   //! Instance of the Matlab engine.
   ::Engine *m_pEngine;
+  
+  //! Engine start command
+  std::string m_startCmd;
 };
 
 
