@@ -26,7 +26,7 @@
 //! The ML module class MatlabScriptWrapper.
 /*!
 // \file    mlMatlabScriptWrapper.h
-// \author  Alexander Gryanik, Markus Harz, Ola Friman
+// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter
 // \date    2009-02-23
 //
 // Module for executing Matlab scripts in MeVisLab.
@@ -40,7 +40,8 @@
 
 // Local includes
 #include "MLMatlabScriptWrapperSystem.h"
-#include "mlXMarkerList.h"
+#include <mlXMarkerList.h>
+#include <mlVersion.h>
 
 // Include the Matlab engine. Note that the correct path to this
 // file must be set in the MLMatlabScriptWrapper.pro file.
@@ -80,11 +81,13 @@ public:
   //! \return Region of input image needed to compute the region \c outSubImgBox on output \c outIndex.
   virtual SubImgBox calcInSubImageBox (int inIndex, const SubImgBox &outSubImgBox, int outIndex);
 
+#if ML_MAJOR_VERSION < 2
   //! Request input image in basic datatypes according to user choice
   //! \param inIndex        The input of which the datatype shall be set.
   //! \param props          The properties of input image upon calling of method.
   //! \param outIndex       The index of the output image.
   virtual void calcInSubImageProps(int inIndex, InSubImageProps &/*props*/, int /*outIndex*/);
+#endif
 
   //! Calculates page \c outSubImg of output image with index \c outIndex by using \c inSubimgs.
   //! \param outSubImg The subimage of output image \c outIndex calculated from \c inSubImgs.

@@ -26,7 +26,7 @@
 //! The ML module class MatlabScriptWrapper.
 /*!
 // \file    mlMatlabScriptWrapper.cpp
-// \author  Alexander Gryanik, Markus Harz, Ola Friman 
+// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter
 // \date    2009-02-23
 //
 // Module for executing Matlab scripts in MeVisLab.
@@ -391,6 +391,14 @@ BaseOp::INPUT_HANDLE MatlabScriptWrapper::handleInput (int inIndex, INPUT_STATE 
   }
 }
 
+
+#if ML_MAJOR_VERSION >= 2
+# define __setInSubImageDataType(__t)  for(int __i=0;__i<3;++__i) {getOutImg(outIndex)->setInSubImageDataType(__i,__t);}
+#else
+# define __setInSubImageDataType(__t)
+#endif
+
+
 //----------------------------------------------------------------------------------
 //! Sets properties of the output image at output \c outIndex.
 //----------------------------------------------------------------------------------
@@ -402,6 +410,10 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
   if (!_checkMatlabIsStarted())
   {
     std::cerr << "calcOutImageProps(): Cannot find Matlab engine!" << std::endl << std::flush;
+#if ML_MAJOR_VERSION >= 2
+    getOutImg(outIndex)->setOutOfDate();
+    getOutImg(outIndex)->setStateInfo("Cannot find Matlab engine!", ML_BAD_DATA_TYPE);
+#endif
     return;
   }
 
@@ -429,14 +441,14 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     getOutImg(outIndex)->setImgExt(outExt);
     // Set output image datatype.
     switch (mxGetClassID(m_pImage)) {
-      case mxDOUBLE_CLASS: getOutImg(outIndex)->setDataType(MLdoubleType); break;
-      case mxSINGLE_CLASS: getOutImg(outIndex)->setDataType(MLfloatType);  break;
-      case mxINT8_CLASS:   getOutImg(outIndex)->setDataType(MLint8Type);   break;
-      case mxUINT8_CLASS:  getOutImg(outIndex)->setDataType(MLuint8Type);  break;
-      case mxINT16_CLASS:  getOutImg(outIndex)->setDataType(MLint16Type);  break;
-      case mxUINT16_CLASS: getOutImg(outIndex)->setDataType(MLuint16Type); break;
-      case mxINT32_CLASS:  getOutImg(outIndex)->setDataType(MLint32Type);  break;
-      case mxUINT32_CLASS: getOutImg(outIndex)->setDataType(MLuint32Type); break;
+      case mxDOUBLE_CLASS: getOutImg(outIndex)->setDataType(MLdoubleType); __setInSubImageDataType(MLdoubleType); break;
+      case mxSINGLE_CLASS: getOutImg(outIndex)->setDataType(MLfloatType);  __setInSubImageDataType(MLdoubleType); break;
+      case mxINT8_CLASS:   getOutImg(outIndex)->setDataType(MLint8Type);   __setInSubImageDataType(MLdoubleType); break;
+      case mxUINT8_CLASS:  getOutImg(outIndex)->setDataType(MLuint8Type);  __setInSubImageDataType(MLdoubleType); break;
+      case mxINT16_CLASS:  getOutImg(outIndex)->setDataType(MLint16Type);  __setInSubImageDataType(MLdoubleType); break;
+      case mxUINT16_CLASS: getOutImg(outIndex)->setDataType(MLuint16Type); __setInSubImageDataType(MLdoubleType); break;
+      case mxINT32_CLASS:  getOutImg(outIndex)->setDataType(MLint32Type);  __setInSubImageDataType(MLdoubleType); break;
+      case mxUINT32_CLASS: getOutImg(outIndex)->setDataType(MLuint32Type); __setInSubImageDataType(MLdoubleType); break;
       case mxINT64_CLASS: // Matlab does not support basic operations on this type
         //getOutImg(outIndex)->setDataType(MLint64Type);
         //break;
@@ -469,6 +481,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
   }
 }
 
+#if ML_MAJOR_VERSION < 2
 //----------------------------------------------------------------------------------
 //! Request input image in basic datatype.
 //----------------------------------------------------------------------------------
@@ -482,6 +495,7 @@ void MatlabScriptWrapper::calcInSubImageProps (int inIndex, InSubImageProps &pro
     props.inSubImgDType = MLdoubleType;
   }
 }
+#endif
 
 //----------------------------------------------------------------------------------
 //! Returns the input image region required to calculate a region of an output image.
