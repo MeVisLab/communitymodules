@@ -2,7 +2,7 @@
 # MLMatlabScriptWrapper project profile
 #
 # \file    MLMatlabScriptWrapper.pro
-# \author  Alexander Gryanik, Markus Harz, Ola Friman
+# \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter
 # \date    2009-02-23
 # -----------------------------------------------------------------------------
 
