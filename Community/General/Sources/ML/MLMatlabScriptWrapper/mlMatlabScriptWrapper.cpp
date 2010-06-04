@@ -190,6 +190,9 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   
   if (! m_startCmd.empty()) {
     std::cout << "Found matlab binary at: " << m_startCmd.c_str() << std::endl;
+    
+    // Show the MATLAB IDE
+    m_startCmd += " -desktop";
   }
 #endif
 
@@ -198,18 +201,14 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   if ( !_checkMatlabIsStarted() )
   {
     std::cerr << "MatlabScriptWrapper::MatlabScriptWrapper():" << std::endl;
-    std::cerr << "Error: Matlab Engine not found. For this module to work, a Matlab installation is required." << std::endl << std::endl;
+    std::cerr << "Error: MATLAB Engine not found. For this module to work, a MATLAB installation is required." << std::endl << std::endl;
     std::cerr << "Additional Hints: " << std::endl;
-    std::cerr << " (1) On Windows, the matlab COM server must be registered. Execute " << std::endl;
+    std::cerr << " (1) On Windows, the MATLAB COM server must be registered. Execute " << std::endl;
     std::cerr << "       >> matlab /regserver " << std::endl;
     std::cerr << "     on a command line." << std::endl;
-    std::cerr << " (2) On Mac OS X, it is currently required to start MeVisLab from a shell with" << std::endl;
-    std::cerr << "     PATH set to " << std::endl;
-    std::cerr << "     $PATH:/bin:/sbin:/usr/bin:/usr/sbin:/Applications/MATLAB_R2007b/bin" << std::endl;
-    std::cerr << " (3) When starting from Xcode, ensure that the executable environment contains a variable"  << std::endl;
-    std::cerr << "     PATH set to the above. Edit your 'current executable' settings accordingly."  << std::endl;
-    std::cerr << "     DYLD_LIBRARY_PATH has to be extended to contain" << std::endl;
-    std::cerr << "     /Applications/MATLAB_R2007b/bin/maci:/Applications/MATLAB_R2007b/sys/os/maci" << std::endl;
+    std::cerr << " (2) On Mac OS X, it is currently required to set the environment variable" << std::endl;
+    std::cerr << "     DYLD_LIBRARY_PATH to /Applications/MATLAB_R2010a.app/bin/maci64 before" << std::endl;
+    std::cerr << "     MeVisLab is started." << std::endl;
 
     (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(false);
     _statusFld->setStringValue("Cannot find Matlab engine!");
