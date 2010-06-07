@@ -1,0 +1,688 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalImage {
+  internal  {
+    frame = "421 389 104 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module SoLUTEditor {
+  internal  {
+    frame = "193 -47 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "192 369 545 442"
+        sizeHint = "553 442"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BackgroundLUT
+    currentColor = "1 1 1"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0.113725 0.137255 0.172549, 505.658 0.521569 0.670588 0.87451, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 505.658 1, 4095 1 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.800000011920929 0.800000011920929 0.800000011920929"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.400000005960464 0.400000005960464 0.400000005960464"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+    useAntiAliasing = TRUE
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "333 -43 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "465 -47 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "279 404 260 211"
+        sizeHint = "260 211"
+        wasOpen = no
+        wasActive = no
+      }
+      window _materialeditor {
+        geometry = "619 386 195 158"
+        sizeHint = "195 158"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Transparent_Cube
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.8 0.8 0.8"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0.1
+  }
+}
+module SoCalculator {
+  internal  {
+    frame = "1101 221 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "162 145 349 692"
+        sizeHint = "349 692"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCalculator
+    a = 64
+    b = 64
+    c = 64
+    d = 1
+    e = 1
+    f = 1
+    g = 0
+    h = 0
+    va = "0 0 0"
+    vb = "0 0 0"
+    vc = "0 0 0"
+    vd = "0 0 0"
+    ve = "0 0 0"
+    vf = "0 0 0"
+    vg = "0 0 0"
+    vh = "0 0 0"
+    oa = 64
+    ob = 64
+    oc = 64
+    od = 0
+    ova = "0 0 0"
+    ovb = "0 0 0"
+    ovc = "0 0 0"
+    ovd = "0 0 0"
+    expression = "oa=a*d;
+ob=b*e;
+oc=c*f;"
+  }
+}
+module SoLUTEditor {
+  internal  {
+    frame = "285 297 104 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "50 245 575 441"
+        sizeHint = "581 441"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VolRenLUT
+    currentColor = "0.862745106220245 0.309803932905197 0.160784319043159"
+    currentOpacity = 0.131034
+    currentPosition = 1377.83
+    currentIndex = 7
+    rangeMin = 0
+    rangeMax = 4095
+    viewMin = 0
+    viewMax = 4095
+    window = 1
+    level = 0.5
+    allowNewPoints = TRUE
+    colorIsValid = TRUE
+    opacityIsValid = TRUE
+    updateLutWhileDragging = TRUE
+    relativeLut = FALSE
+    rangeInfo = [0.00,4095.00]
+    viewRangeInfo = [0,4095]
+    colorInterpolation = InterpolateRGB
+    colorPoints = "[ 0 0 0 0, 0.004095 0 0 0, 101 1 1 1, 291 1 1 1, 480.852 1 1 1, 653 0 0 0, 1139.21 0 0 0, 1377.83 0.862745 0.309804 0.160784, 1539.47 0.972549 0.898039 0.45098, 1703 1 1 1, 1703 1 1 1, 4095 1 1 1 ]"
+    alphaPoints = "[ 0 0, 0.004095 0, 101 0, 291 0.008, 480.852 0.04, 653 0, 1139.21 0, 1377.83 0.131034, 1539.47 0.324138, 1703 0.941, 1703 0, 4095 0 ]"
+    alphaFactor = 1
+    newRangeMin = 0
+    newRangeMax = 4095
+    newRangeMode = ClipFormerLUT
+    colorEditorHeight = 24
+    showColorEditor = TRUE
+    showAlphaEditor = TRUE
+    markerRadius = 4
+    selectedMarkerRadius = 6
+    snapMarkerRadius = 10
+    alphaLineWidth = 2
+    backgroundColor = "0.800000011920929 0.800000011920929 0.800000011920929"
+    borderColor = "0 0 0"
+    alphaLineColor = "0 0 0"
+    histogramColor = "0.400000005960464 0.400000005960464 0.400000005960464"
+    drawColoredMarkers = TRUE
+    markerColor = "1 1 1"
+    selectedMarkerColor = "1 0.5 0.5"
+    selectedTriangleSize = 8
+    triangleSize = 6
+    useAntiAliasing = TRUE
+  }
+}
+module SoMLSampler1D {
+  internal  {
+    frame = "273 137 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "188 305 412 454"
+        sizeHint = "412 454"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = lut
+    name = lut
+    unit = 1
+    enableBorder = FALSE
+    borderColor = "0 0 0 0"
+    minFilter = LINEAR
+    magFilter = LINEAR
+    wrapS = CLAMP_TO_BORDER
+    use16BitFloat = TRUE
+    startT = 0
+    startU = 0
+    startY = 0
+    startZ = 0
+  }
+}
+module Info {
+  internal  {
+    frame = "1213 221 56 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "108 475 604 397"
+        sizeHint = "604 397"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Info
+    bypassIndex = -1
+    inPlaceIndex = -1
+  }
+}
+module Histogram {
+  internal  {
+    frame = "281 389 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "445 419 506 352"
+        sizeHint = "506 352"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Histogram
+    useMask = FALSE
+    xRange = "Static Min/Max"
+    maskMode = Weights
+    curveType = Line
+    curveStyle = 0
+    curveTitle = ""
+    updateMode = AutoUpdate
+    useStepFunction = FALSE
+    useBinSizeOneRepresentation = TRUE
+    useBackgroundValue = FALSE
+    backgroundValue = 0
+    binSize = 1
+  }
+}
+module SoShaderParameterMLImageProps {
+  internal  {
+    frame = "541 137 232 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "73 437 251 107"
+        sizeHint = "251 107"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = data_properties
+    name = data
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "581 -147 184 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "834 174 528 507"
+        sizeHint = "400 400"
+        wasOpen = yes
+        wasActive = no
+      }
+      window _default {
+        geometry = "62 233 591 474"
+        sizeHint = "591 474"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "695 399 529 433"
+        sizeHint = "529 433"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    autoUpdateML = FALSE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = TRUE
+    viewing = TRUE
+    autoClipping = TRUE
+    externalCamera = FALSE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539801
+    position = "-79.1226501464844 86.703857421875 79.9663619995117"
+    orientation = "-0.189089938998222 0.429181843996048 0.883203208446503 3.73977541923523"
+    nearDistance = 86.419075
+    farDistance = 197.47377
+    focalDistance = 142.02036
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = TRUE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = FALSE
+    enableHome = FALSE
+    enableViewAll = TRUE
+    enableSeek = FALSE
+    enableASC = TRUE
+    enableProjType = FALSE
+    enableDolly = TRUE
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "593 29 240 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module LUTToMLImage {
+  internal  {
+    frame = "273 221 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "158 233 284 236"
+        sizeHint = "284 236"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LUTToMLImage
+    minIndex = 0
+    maxIndex = 4095
+    autoIndexRange = TRUE
+    maxEntry = 255
+    height = 1
+    depth = 1
+    rescale = FALSE
+    rescaleWidth = 256
+  }
+}
+module Scale {
+  internal  {
+    frame = "441 261 64 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "26 59 439 248"
+        sizeHint = "439 248"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale
+    inputMin = 0
+    inputMax = 4095
+    updateMode = AutoUpdateMinMaxOn
+    useTrueRange = FALSE
+    typeSelect = UInt8
+    outputMin = 0
+    outputMax = 255
+  }
+}
+module SoCube {
+  internal  {
+    frame = "1193 137 80 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "695 178 118 94"
+        sizeHint = "118 94"
+        wasOpen = no
+        wasActive = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = proxy
+    width = 64
+    height = 64
+    depth = 64
+  }
+}
+module SoShaderProgram {
+  internal  {
+    frame = "1053 141 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "158 233 432 126"
+        sizeHint = "432 126"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoShaderProgram
+    shaderObject = "[  ]"
+    parameter = "[  ]"
+    geometryInputType = TRIANGLES_INPUT
+    geometryOutputType = TRIANGLE_STRIP_OUTPUT
+    maxEmittedGeometryVertices = 8
+  }
+}
+module SoVertexShader {
+  internal  {
+    frame = "777 141 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "20 182 741 439"
+        sizeHint = "422 346"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVertexShader
+    isActive = TRUE
+    sourceType = GLSL_PROGRAM
+    sourceProgram = "// simple volume ray-caster
+//
+// enable backface culling!
+
+uniform ivec3 data_size;
+uniform vec3 data_voxelSize;
+varying vec3 dataTextureCoord; 
+varying vec3 geomPos; 
+
+void main()
+{
+  gl_Position = ftransform(); 
+
+  geomPos = gl_Vertex.xyz;
+  // cube's coords go from -x/2 to +x/2
+  dataTextureCoord = gl_Vertex.xyz / (vec3(data_size)*data_voxelSize) + 0.5; 
+}
+"
+  }
+}
+module SoFragmentShader {
+  internal  {
+    frame = "905 141 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "467 521 1047 917"
+        sizeHint = "422 346"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoFragmentShader
+    isActive = TRUE
+    sourceType = GLSL_PROGRAM
+    sourceProgram = "// simple volume ray-caster
+
+uniform sampler3D data;
+uniform ivec3 data_size;
+uniform vec3 data_voxelSize;
+uniform vec2 data_range;
+uniform sampler1D lut;
+uniform vec4 oiv_ViewPosition;
+varying vec3 dataTextureCoord;
+varying vec3 geomPos;
+
+void main()
+{ 
+  vec3 lightColor = vec3(0.2,0.2,0.2);
+
+  vec4 lightDisplacement = vec4(0.1,0.2,0.6,0.);
+  vec3 Lpos = (normalize(oiv_ViewPosition) + lightDisplacement*gl_ModelViewMatrixInverse).xyz;
+
+  vec3 texMin = vec3(0.); 
+  vec3 texMax = vec3(1.);
+
+  vec3 cameraPos = gl_ModelViewMatrixInverse[3].xyz;
+ 
+  vec3 step = 0.1 / (vec3(data_size) * data_voxelSize);
+  
+  vec3 dataPos = dataTextureCoord;
+  vec3 geomDir = normalize(geomPos - cameraPos); 
+  vec3 dirStep = geomDir * step; 
+  vec4 fragColor = vec4(0.0); 
+  bool stop = false; 
+  
+  for (int i = 0; i < 4000; i++) {
+    // advance ray by step
+    dataPos = dataPos + dirStep;
+    // stop condition
+    stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
+    if (stop) break;
+    // data fetching and transfer function evaluation
+    float myIndex = texture3D(data, dataPos).r;
+    vec4 myColor = texture1D(lut, myIndex);
+    // opacity calculation
+    float prev_alpha = myColor.a - (myColor.a * fragColor.a);
+    fragColor.rgb = prev_alpha * myColor.rgb + fragColor.rgb; 
+    fragColor.a += prev_alpha; 
+    // Lambertian illumination
+    vec3 L = normalize(Lpos.xyz - normalize(dataPos));
+    float sampleL = texture3D(data, dataPos + step*L).r;
+    fragColor.rgb += 1.0 * lightColor * (myIndex - sampleL);
+  }
+  gl_FragColor = fragColor; 
+}
+"
+  }
+}
+module SoMLSampler3D {
+  internal  {
+    frame = "409 137 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "114 175 412 454"
+        sizeHint = "412 454"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "782 409 354 413"
+        sizeHint = "354 413"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = data
+    name = data
+    unit = 0
+    enableBorder = FALSE
+    borderColor = "0 0 0 0"
+    minFilter = LINEAR
+    magFilter = LINEAR
+    wrapS = REPEAT
+    use16BitFloat = TRUE
+    startT = 0
+    startU = 0
+    wrapT = REPEAT
+    wrapR = REPEAT
+  }
+}
+connections  {
+  SoCalculator.a = Info.sizeX
+  SoCalculator.b = Info.sizeY
+  SoCalculator.c = Info.sizeZ
+  SoCalculator.d = Info.voxelSizeX
+  SoCalculator.e = Info.voxelSizeY
+  SoCalculator.f = Info.voxelSizeZ
+  VolRenLUT.inHistogram = Histogram.outputHistogramCurve
+  lut.image = LUTToMLImage.output0
+  Info.input0 = Scale.output0
+  Histogram.input0 = LocalImage.outImage
+  SoCustomExaminerViewer.children = "BackgroundLUT.outInventorLUT SoBackground.self Transparent_Cube.self SoSeparator.self"
+  SoSeparator.children = "lut.self data.self data_properties.self SoVertexShader.self SoFragmentShader.self SoShaderProgram.self proxy.self"
+  LUTToMLImage.inLUT = VolRenLUT.outLUT
+  Scale.input0 = LocalImage.outImage
+  proxy.width = SoCalculator.oa
+  proxy.height = SoCalculator.ob
+  proxy.depth = SoCalculator.oc
+  data.image = Scale.output0
+}
+networkModel = ""
