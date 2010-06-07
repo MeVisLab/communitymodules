@@ -15,7 +15,7 @@
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER ''AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE 
+// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE
 // FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 // (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 // LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -26,7 +26,7 @@
 //! The ML module class MatlabScriptWrapper.
 /*!
 // \file    mlMatlabScriptWrapper.cpp
-// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter
+// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter, Alexander Broersen
 // \date    2009-02-23
 //
 // Module for executing Matlab scripts in MeVisLab.
@@ -157,6 +157,9 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_matrixFld[1] = fields->addMatrix("matrix1"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
   (_matrixNameFld[2] = fields->addString("matrixName2"))->setStringValue("matrix2");
   (_matrixFld[2] = fields->addMatrix("matrix2"))->setStringValue("1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1");
+
+  //! Add field to display Matlab output.
+  (_matlabOutputBufferFld = fields->addString("matlabOutput"))->setStringValue("");
 
 #if defined(MACOS)
   if (m_startCmd.empty()) {
@@ -319,11 +322,27 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
       // Insert at the end of the script variable to proof execution status
       // and run the script in Matlab
-      evaluateString += "\nmevmatscr=1";
+      evaluateString += "\nmevmatscr=1;";	// Added ';' to prevent unnecessary output
       _statusFld->setStringValue("Matlab script is executing....");
+    
+      // Buffer to capture Matlab output
+      #define BUFSIZE 5120
+      char buffer[BUFSIZE+1];
+      buffer[BUFSIZE] = '\0';
+      // Start logging Matlab output
+      engOutputBuffer(m_pEngine, buffer, BUFSIZE);
+
+      // and run the script in Matlab
       engEvalString(m_pEngine, evaluateString.c_str());
 
-      // If variable mevmatscr exist it means the whole matlab script was executed.
+      // Stop logging Matlab output
+      engOutputBuffer(m_pEngine, NULL, 0);
+      // Use rich text format in output for visibility
+      std::string output("<PRE>");
+      output.append(buffer);
+      _matlabOutputBufferFld->setStringValue(output);
+
+      // If variable mevmatscr exist it means the whole Matlab script was executed.
       mxArray *mtmp = engGetVariable(m_pEngine,"mevmatscr");
       if(mtmp!=NULL) {
         _statusFld->setStringValue("Execution successful!");
@@ -337,6 +356,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     // If the script string was not valid, clear all data so that
     // the user notes this.
     else {
+      _matlabOutputBufferFld->setStringValue("");
       _clearAllVariables();
     }
 
@@ -734,7 +754,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
                           Vector(imgSize.x-1, imgSize.y-1, imgSize.z-1,imgSize.c-1, imgSize.t-1, imgSize.u-1)),
                 inImg->getDataType(),
                 &data,
-                ScaleShiftData(1,0));
+                ScaleShiftData(1, 0));
 
       // Check and save error code if necessary.
       if (localErr != ML_RESULT_OK) {
@@ -1086,7 +1106,7 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
           std::cerr << "_getVectorsBackFromMatlab(): Incorrect vector size" << std::endl << std::flush;
         }
       } else {
-         std::cerr << "_getVectorsBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
+        std::cerr << "_getVectorsBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
       }
     }
   }
