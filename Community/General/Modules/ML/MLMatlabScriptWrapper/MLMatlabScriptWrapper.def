@@ -188,6 +188,14 @@ MLModule MatlabScriptWrapper {
       }
     }
   } // Category Strings
+  Category Output {
+    TextView matlabOutput {
+      autoApply = Yes
+      edit = False
+      visibleRows = 33
+      wrap = off
+    }
+  } // Category Output
   } // Window
 } // MLModule MatlabScriptWrapper
 

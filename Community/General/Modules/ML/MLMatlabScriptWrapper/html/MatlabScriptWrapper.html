@@ -41,13 +41,11 @@ Currently, three types of data structures can be transferred between MeVisLab an
     Up to three images can be used. Images are stored as up to six dimensional matrices in Matlab.
     Note that MeVisLab and Matlab use different coordinate systems, see below for further information.
     </li>
-    <br>
     <li><span style="font-weight: bold;">XMarkerLists:</span>
     An XMarker is an object that contains a point (up to 6-D), a vector (3-D) and a type variable (integer).
     An XMarkerList is an array of XMarker objects.
     In Matlab, an XMarkerList is represented as a struct with the following members:
     </li>
-    <br>
     <span style="font-style: italic;">&lt;variablename&gt;</span>.pos, where pos is an
     <span style="font-style: italic;">N</span>x2,
     <span style="font-style: italic;">N</span>x3,
@@ -62,12 +60,10 @@ Currently, three types of data structures can be transferred between MeVisLab an
     <br>
     <span style="font-style: italic;">&lt;variablename&gt;</span>.type, where type is an
     <span style="font-style: italic;">N</span>x1 vector of integers.<br>
-    <br>
     Important: the pos matrix determines the number of XMarkers
     <span style="font-style: italic;">N</span>. The vec and type matrices must have the same number of rows
     <span style="font-style: italic;">N</span>, otherwise will these values not be copied back to MeVisLab.
     See the example network for an example.<br>
-    <br>
     <li><span style="font-weight: bold;">Scalars:&nbsp;</span>
     Double precision. These can be used both as input and ouput variables.
     Field notifications will be sent in MeVisLab only if a scalar has changed its
@@ -95,12 +91,12 @@ The Matlab script can be written directly in the module GUI, or an external scri
 If you choose to use existing script, the script in script field will disappear and
 there is no posibility to edit a Matlab script file from MevisLab.
 <br>
-Push the "Update"-button to execute the Matlab script, or set Auto-Update on input data change.
+Push the "Update"-button to execute the Matlab script, set "Auto update" to update on input value change,
+or set "Auto apply" to update on parameter value change.
 <br>
 Use the "Show Matlab session window" checkbox to show or hide the session window.
 <br>
 The "Restart Matlab"-button can be used to restart a Matlab session once it is terminated externally.
-<br>
 </blockquote>
 
 
@@ -133,8 +129,7 @@ which swaps the x and y axes. See the example network for an example.<br>
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 Up to three input images and one XMarkerList can be attached to the module.
 Input to the module from MeVisLab is optional, the output can be generated entirely
-in Matlab without input from MeVisLab (see the example network for
-examples).
+in Matlab without input from MeVisLab (see the example network for examples).
 </blockquote>
 
 
@@ -162,10 +157,18 @@ Enables the possibility to use an external Matlab script file (.m).<br>
 
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
-<b>Auto-update on input data change</b>
+<b>Auto update</b>
 <br>
 Execute the script automatically on input change (only for input images
-and the XMarkerList, not for changes in the GUI).<br>
+and the XMarkerList, not for changes in the names).<br>
+</blockquote>
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+<b>Auto apply</b>
+<br>
+Execute the script automatically on parameter change (only for fields,
+not for changes in the names).<br>
 </blockquote>
 
 
@@ -194,6 +197,13 @@ This field gives information whether the Matlab script was executed correctly or
 <b>Update</b>
 <br>
 Execute the Matlab script.<br>
+</blockquote>
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+<b>Matlab Output</b>
+<br>
+Displays the output of executed Matlab script.<br>
 </blockquote>
 
 
