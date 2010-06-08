@@ -193,9 +193,6 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   
   if (! m_startCmd.empty()) {
     std::cout << "Found matlab binary at: " << m_startCmd.c_str() << std::endl;
-    
-    // Show the MATLAB IDE
-    m_startCmd += " -desktop";
   }
 #endif
 
