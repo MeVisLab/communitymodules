@@ -174,10 +174,10 @@ module SoLUTEditor {
   }
   fields  {
     instanceName = VolRenLUT
-    currentColor = "0.862745106220245 0.309803932905197 0.160784319043159"
-    currentOpacity = 0.131034
-    currentPosition = 1377.83
-    currentIndex = 7
+    currentColor = "1 1 1"
+    currentOpacity = 0
+    currentPosition = 0
+    currentIndex = 0
     rangeMin = 0
     rangeMax = 4095
     viewMin = 0
@@ -318,7 +318,7 @@ module SoCustomExaminerViewer {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "834 174 528 507"
+        geometry = "726 203 528 507"
         sizeHint = "400 400"
         wasOpen = yes
         wasActive = no
@@ -384,10 +384,10 @@ module SoCustomExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 0.78539801
-    position = "-79.1226501464844 86.703857421875 79.9663619995117"
-    orientation = "-0.189089938998222 0.429181843996048 0.883203208446503 3.73977541923523"
-    nearDistance = 86.419075
-    farDistance = 197.47377
+    position = "-89.5694122314453 94.9458541870117 59.2226638793945"
+    orientation = "0.221742615103722 -0.495839625597 -0.839626908302307 2.55545544624329"
+    nearDistance = 88.165863
+    farDistance = 198.22769
     focalDistance = 142.02036
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
@@ -565,9 +565,9 @@ module SoFragmentShader {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "467 521 1047 917"
+        geometry = "1314 345 1047 917"
         sizeHint = "422 346"
-        wasOpen = no
+        wasOpen = yes
         wasActive = no
       }
     }
@@ -607,23 +607,25 @@ void main()
   vec4 fragColor = vec4(0.0); 
   bool stop = false; 
   
-  for (int i = 0; i < 4000; i++) {
-    // advance ray by step
-    dataPos = dataPos + dirStep;
-    // stop condition
-    stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
-    if (stop) break;
-    // data fetching and transfer function evaluation
-    float myIndex = texture3D(data, dataPos).r;
-    vec4 myColor = texture1D(lut, myIndex);
-    // opacity calculation
-    float prev_alpha = myColor.a - (myColor.a * fragColor.a);
-    fragColor.rgb = prev_alpha * myColor.rgb + fragColor.rgb; 
-    fragColor.a += prev_alpha; 
-    // Lambertian illumination
-    vec3 L = normalize(Lpos.xyz - normalize(dataPos));
-    float sampleL = texture3D(data, dataPos + step*L).r;
-    fragColor.rgb += 1.0 * lightColor * (myIndex - sampleL);
+  for (int j = 0; j < 10; j++) {
+    for (int i = 0; i < 400; i++) {
+      // advance ray by step
+      dataPos = dataPos + dirStep;
+      // stop condition
+      stop = dot(sign(dataPos-texMin),sign(texMax-dataPos)) < 3.0;
+      if (stop) break;
+      // data fetching and transfer function evaluation
+      float myIndex = texture3D(data, dataPos).r;
+      vec4 myColor = texture1D(lut, myIndex);
+      // opacity calculation
+      float prev_alpha = myColor.a - (myColor.a * fragColor.a);
+      fragColor.rgb = prev_alpha * myColor.rgb + fragColor.rgb; 
+      fragColor.a += prev_alpha; 
+      // Lambertian illumination
+      vec3 L = normalize(Lpos.xyz - normalize(dataPos));
+      float sampleL = texture3D(data, dataPos + step*L).r;
+      fragColor.rgb += 1.0 * lightColor * (myIndex - sampleL);
+    }
   }
   gl_FragColor = fragColor; 
 }
