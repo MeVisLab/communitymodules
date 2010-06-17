@@ -6,7 +6,9 @@ Interface  {
   Outputs {}
   Parameters {
     Field automaticViewAll { internalName = SoExaminerViewer.automaticViewAll }
-    Field viewAll { internalName = SoExaminerViewer.viewAll }   
+    Field viewAll { internalName = SoExaminerViewer.viewAll }
+    Field initialCameraOrientation { internalName = SoExaminerViewer.initialCameraOrientation }
+    Field userCameraOrientation { internalName = SoExaminerViewer.userSettingOrientation }
     
     Field position { type = enum items { item = TopLeft item = BottomRight } value = TopLeft }
     Field margin { type = int value = 2 }
