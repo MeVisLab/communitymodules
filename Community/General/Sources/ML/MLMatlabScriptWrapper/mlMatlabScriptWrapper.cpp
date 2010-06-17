@@ -75,6 +75,10 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_inputXMarkerListFld = fields->addBase("inputXMarkerList"))->setBaseValue(NULL);
   _outputXMarkerListFld = fields->addBase("outputXMarkerList");
   _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
+  
+  ML_CHECK_NEW(_outWEM,WEM());
+  (_inputWEMFld = fields->addBase("inputWEM"))->setBaseValue(NULL);
+  (_outputWEMFld = fields->addBase("outputWEM"))->setBaseValue(_outWEM);
 
   //! Use matlab commands in text field.
   (_matlabScriptFld = fields->addString("matlabScript"))->setStringValue("Output0=Input0 % Type your matlab script here.");
@@ -95,6 +99,9 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   //! Set input and output XMarker names used in matlab.
   (_inXMarkerNameFld = fields->addString("inXMarkerName"))->setStringValue("inXMarker");
   (_outXMarkerNameFld = fields->addString("outXMarkerName"))->setStringValue("outXMarker");
+  //! Set input and output WEM names used in matlab.
+  (_inWEMNameFld = fields->addString("inWEMName"))->setStringValue("inWEM");
+  (_outWEMNameFld = fields->addString("outWEMName"))->setStringValue("outWEM");
 
   //! Create image data randomly.
   (_autoCalculationFld = fields->addBool("autoUpdate"))->setBoolValue(false);
@@ -234,6 +241,8 @@ MatlabScriptWrapper::~MatlabScriptWrapper()
   if (m_pEngine != NULL) {
     engClose(m_pEngine);
   }
+  
+  ML_DELETE(_outWEM);
 }
 
 
@@ -271,7 +280,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
   // Update output on an update or if autoapply is enabled.
   if( (field == _calculateFld) ||
       (_autoCalculationFld->isOn() && ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))||
-                                       (field == _inXMarkerNameFld)) ) ||
+                                       (field == _inputXMarkerListFld)) || (field== _inputWEMFld) ) ||
            (_autoApplyFld->isOn()  && ((field == _scalarFld[0])||(field == _scalarFld[1])||(field == _scalarFld[2])||
                                        (field == _scalarFld[3])||(field == _scalarFld[4])||(field == _scalarFld[5])||
                                        (field == _vectorFld[0])||(field == _vectorFld[1])||(field == _vectorFld[2])||
@@ -303,6 +312,13 @@ void MatlabScriptWrapper::handleNotification (Field* field)
         if( _inputXMarkerListFld->isValidValue() && ML_BASE_IS_A(_inputXMarkerListFld->getBaseValue(), XMarkerList) ) {
           // Copy input XMarkerList to Matlab.
           _copyInputXMarkerToMatlab();
+        }
+      }
+      if (_inputWEMFld->getBaseValue() != NULL) {
+        // Check if a valid WEM is attached to the input
+        if (_inputWEMFld->isValidValue() && ML_BASE_IS_A(_inputWEMFld->getBaseValue(), WEM)) {
+          // Copy input WEM to Matlab.
+          _copyInputWEMToMatlab();
         }
       }
 
@@ -359,6 +375,10 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
     // Get XMarkerList from Matlab and copy results into output XMarkerList
     _getXMarkerBackFromMatlab();
+    
+    // Get WEM from Matlab and copy results into output WEM
+    _getWEMBackFromMatlab();
+    
 
     // Get scalars back from matlab. First store the current scalars so that
     // we can check if they change. A notification is only sent upon change.
@@ -417,6 +437,16 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
     // Notify the XMarkerList output
     _outputXMarkerListFld->notifyAttachments();
+    
+    // Notify the WEM output
+    std::vector<WEMEventContainer>ecList;
+    WEMEventContainer ec; 
+    ec.notificationType = WEM_NOTIFICATION_FINISHED  |
+                          WEM_NOTIFICATION_SELECTION |
+                          WEM_NOTIFICATION_REPAINT;
+    ecList.push_back(ec);
+    
+    _outWEM->notifyObservers(ecList);    
   }
 }
 
@@ -708,7 +738,13 @@ void MatlabScriptWrapper::_clearAllVariables()
   clearString << _inXMarkerNameFld->getStringValue() << " ";
 
   // Clear output XMarker data
-  clearString << _outXMarkerNameFld->getStringValue();
+  clearString << _outXMarkerNameFld->getStringValue() << " ";
+  
+  // Clear input WEM data
+  clearString << _inWEMNameFld->getStringValue() << " ";
+  
+  // Clear output WEM data
+  clearString << _outWEMNameFld->getStringValue();
 
   // Evaluate the string in Matlab
   engEvalString(m_pEngine, clearString.str().c_str());
@@ -946,6 +982,169 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
       mxDestroyArray(m_type);
     }
   }
+}
+
+//! Copy input WEM to matlab.
+void MatlabScriptWrapper::_copyInputWEMToMatlab()
+{
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputWEMToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    return;
+  }
+  
+  // Get input list.
+  WEM *inputWEM = mlbase_cast<WEM*>(_inputWEMFld->getBaseValue());
+  
+  // Internal loop.
+  unsigned int i = 0, j = 0, k = 0, m = 0;
+  unsigned int totalNumNodes = 0, numTriangulatedNodes = 0;
+  WEMNode *node = NULL;
+  WEMFace *face = NULL;
+  Vector3 position = NULL_VEC;
+  Vector3 normal = NULL_VEC;
+  unsigned int entryNumber = 0;
+  
+  // Get input WEM name from GUI.
+  std::string inWEMStr = _inWEMNameFld->getStringValue();
+  
+  // Strings to evaluate.
+  std::ostringstream setNodes, setFaces, setNormals;
+  setNodes << inWEMStr.c_str() << ".nodes=[";
+  setFaces << inWEMStr.c_str() << ".faces=[";
+  setNormals << inWEMStr.c_str() << ".normals=[";
+  
+  // Loop over all patches -> flatten WEM
+  for (i = 0; i < inputWEM->getNumWEMPatches(); i ++) {
+    WEMPatch *wemPatch = inputWEM->getWEMPatchAt(i);
+  
+    // Loop over all nodes
+    const unsigned int numNodes = wemPatch->getNumNodes();
+    for (j = 0; j < numNodes; j ++) {
+      node = wemPatch->getNodeAt(j);
+      position = node->getPosition();
+      setNodes << std::dec << position[0] << "," << std::dec << position[1] << "," << std::dec << position[2] << ";";
+    }
+    numTriangulatedNodes = 0;
+    
+    // Loop over all faces
+    const unsigned int numFaces = wemPatch->getNumFaces();
+    for (j = 0; j < numFaces; j ++) {
+      face = wemPatch->getFaceAt(j);      
+      const unsigned int numFaceNodes = face->getNumNodes();
+      if (numFaceNodes == 3) {
+        for (k = 0; k < 3; k ++) {
+          entryNumber = totalNumNodes + face->getNodeAt(k)->getEntryNumber();        
+          setFaces << entryNumber << ",";
+        }
+        setFaces << ";";
+      } else {
+        position = face->getCentroid();
+        setNodes << std::dec << position[0] << "," << std::dec << position[1] << "," << std::dec << position[2] << ";";
+        numTriangulatedNodes ++;
+        
+        for (k = 0; k < numFaceNodes; k ++) {
+          for (m = 0; m < 2; m ++) {
+            entryNumber = totalNumNodes + face->getNodeAt((m + k) % numFaceNodes)->getEntryNumber();        
+            setFaces << entryNumber << ",";
+          }
+          setFaces << totalNumNodes + node->getEntryNumber();
+          setFaces << ";";
+        }
+        
+      }
+      normal = face->getNormal();
+      setNormals << std::dec << normal[0] << "," << std::dec << normal[1] << "," << std::dec << normal[2] << ";";
+    }
+    
+    totalNumNodes += numNodes + numTriangulatedNodes;
+  }
+  
+  setNodes << "]";
+  setFaces << "]";
+  setNormals << "]";
+  
+  // Put WEM into matlab structure.
+  engEvalString(m_pEngine, setNodes.str().c_str());
+  engEvalString(m_pEngine, setFaces.str().c_str());
+  engEvalString(m_pEngine, setNormals.str().c_str());
+}
+
+//! Gets WEM from Matlab and copies results into output WEM.
+void MatlabScriptWrapper::_getWEMBackFromMatlab()
+{
+  // Clear _outWEM.
+  _outWEM->removeAll();
+  
+  // Check if Matlab is started.
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_getWEMBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    return;
+  }
+  
+  // Get names from GUI.
+  std::string outWEMStr = _outWEMNameFld->getStringValue();
+  
+  // Variables
+  WEMTrianglePatch *triPatch = NULL;
+  WEMNode *node = NULL;
+  WEMTriangle *triangle = NULL;
+  unsigned int i = 0;
+  
+  std::ostringstream executeStr;
+  
+  // Get nodes
+  executeStr << "tmpOutWEMNodes=" << outWEMStr << ".nodes";
+  engEvalString(m_pEngine, executeStr.str().c_str());
+  mxArray *m_nodes = engGetVariable(m_pEngine, "tmpOutWEMNodes");
+  engEvalString(m_pEngine, "clear tmpOutWEMNodes");
+  executeStr.str("");
+  
+  // Get faces
+  executeStr << "tmpOutWEMFaces=" << outWEMStr << ".faces";
+  engEvalString(m_pEngine, executeStr.str().c_str());
+  mxArray *m_faces = engGetVariable(m_pEngine, "tmpOutWEMFaces");
+  engEvalString(m_pEngine, "clear tmpOutWEMFaces");
+  executeStr.str("");  
+  
+  // Get data from Matlab array.
+  if ((m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS) &&
+      (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS))
+  {
+    double *dataNodes = static_cast<double*>(mxGetPr(m_nodes));
+    double *dataFaces = static_cast<double*>(mxGetPr(m_faces));
+    
+    if (dataNodes != NULL) {
+      const size_t node_rows = mxGetM(m_nodes);
+      
+      ML_CHECK_NEW(triPatch, WEMTrianglePatch());
+      
+      for (i = 0; i < node_rows; i ++) {
+        node = triPatch->addNode();
+        node->setPosition(dataNodes[i], dataNodes[i + node_rows], dataNodes[i + 2 * node_rows]);
+      }
+      
+      const size_t face_rows = mxGetM(m_faces);
+      
+      for (i = 0; i < face_rows; i ++) {
+        triangle = triPatch->addTriangle();
+        node = triPatch->getNodeAt(dataFaces[i]);                 triangle->setNode(0,node); node->addFace(triangle);
+        node = triPatch->getNodeAt(dataFaces[i + face_rows]);     triangle->setNode(1,node); node->addFace(triangle);
+        node = triPatch->getNodeAt(dataFaces[i + 2 * face_rows]); triangle->setNode(2,node); node->addFace(triangle);
+      }
+      
+      triPatch->buildEdgeConnectivity();
+      triPatch->computeNormals();
+      
+      _outWEM->addWEMPatch(triPatch);
+      
+    }
+    
+  }
+  
+  mxDestroyArray(m_nodes);
+  mxDestroyArray(m_faces);
 }
 
 //! Copies scalar values to matlab.

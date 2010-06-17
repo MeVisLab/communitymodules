@@ -44,6 +44,7 @@
 // SDK includes
 #include <mlXMarkerList.h>
 #include <mlVersion.h>
+#include <WEMBase/WEM.h>
 
 // System includes
 #include <string>
@@ -128,6 +129,10 @@ private:
   void _copyInputXMarkerToMatlab();
   //! Copies XMarkerList from Matlab and copies results into output XMarkerList.
   void _getXMarkerBackFromMatlab();
+  //! Copies WEM to matlab.
+  void _copyInputWEMToMatlab();
+  //! Copies WEM from matlab.
+  void _getWEMBackFromMatlab();  
   //! Copies scalar values to matlab.
   void _copyInputScalarsToMatlab();
   //! Copies scalar values from matlab.
@@ -155,6 +160,13 @@ private:
   BaseField *_outputXMarkerListFld;
   //! The output list
   XMarkerList _outputXMarkerList;
+  
+  //! The WEM input field.
+  BaseField *_inputWEMFld;
+  //! The WEM output field.
+  BaseField *_outputWEMFld;
+  //! The output WEM.
+  WEM *_outWEM;
 
   //! Type a matlab script into this field.
   StringField* _matlabScriptFld;
@@ -174,6 +186,10 @@ private:
   //{@ Set matlab names for input and output XMarkerList.
   StringField *_inXMarkerNameFld;
   StringField *_outXMarkerNameFld;
+  //@}
+  //{@ Set matlab names for input and output WEM.
+  StringField *_inWEMNameFld;
+  StringField *_outWEMNameFld;
   //@}
 
   //! If pressed, the module updates.

@@ -62,9 +62,19 @@ MLModule MatlabScriptWrapper {
             }
           }
         }
-        Box "XMarker names" {
-          Field inXMarkerName {title = "Input name:" expandX = yes}
-          Field outXMarkerName {title = "Output name:" expandX = yes}
+        Horizontal {
+          Vertical {
+            Box "XMarker names" {
+              Field inXMarkerName {title = "Input name:" expandX = yes}
+              Field outXMarkerName {title = "Output name:" expandX = yes}
+            }
+          }
+          Vertical {
+            Box "WEM names" {
+              Field inWEMName {title = "Input name:" expandX = yes}
+              Field outWEMName {title = "Output name:" expandX = yes}
+            }
+          }
         }
       }
       Horizontal {
