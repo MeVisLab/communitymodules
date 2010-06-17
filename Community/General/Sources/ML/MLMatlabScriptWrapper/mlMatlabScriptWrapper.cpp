@@ -1109,11 +1109,9 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
   executeStr.str("");  
   
   // Get data from Matlab array.
-  if ((m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS) &&
-      (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS))
+  if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
   {
     double *dataNodes = static_cast<double*>(mxGetPr(m_nodes));
-    double *dataFaces = static_cast<double*>(mxGetPr(m_faces));
     
     if (dataNodes != NULL) {
       const size_t node_rows = mxGetM(m_nodes);
@@ -1125,22 +1123,27 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
         node->setPosition(dataNodes[i], dataNodes[i + node_rows], dataNodes[i + 2 * node_rows]);
       }
       
-      const size_t face_rows = mxGetM(m_faces);
-      
-      for (i = 0; i < face_rows; i ++) {
-        triangle = triPatch->addTriangle();
-        node = triPatch->getNodeAt(dataFaces[i]);                 triangle->setNode(0,node); node->addFace(triangle);
-        node = triPatch->getNodeAt(dataFaces[i + face_rows]);     triangle->setNode(1,node); node->addFace(triangle);
-        node = triPatch->getNodeAt(dataFaces[i + 2 * face_rows]); triangle->setNode(2,node); node->addFace(triangle);
+      if (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS)
+      {
+        double *dataFaces = static_cast<double*>(mxGetPr(m_faces));
+        
+        if (dataFaces != NULL) {
+          const size_t face_rows = mxGetM(m_faces);
+          
+          for (i = 0; i < face_rows; i ++) {
+            triangle = triPatch->addTriangle();
+            node = triPatch->getNodeAt(dataFaces[i]);                 triangle->setNode(0,node); node->addFace(triangle);
+            node = triPatch->getNodeAt(dataFaces[i + face_rows]);     triangle->setNode(1,node); node->addFace(triangle);
+            node = triPatch->getNodeAt(dataFaces[i + 2 * face_rows]); triangle->setNode(2,node); node->addFace(triangle);
+          }          
+        }
       }
       
       triPatch->buildEdgeConnectivity();
       triPatch->computeNormals();
       
       _outWEM->addWEMPatch(triPatch);
-      
-    }
-    
+    }    
   }
   
   mxDestroyArray(m_nodes);
