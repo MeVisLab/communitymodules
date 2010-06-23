@@ -2,115 +2,9 @@
 network  {
   watchlist = ""
 }
-module Comment {
-  internal  {
-    frame = "1081 277 96 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "912 589 256 208"
-        sizeHint = "256 208"
-        wasOpen = no
-        wasActive = yes
-      }
-    }
-  }
-  fields  {
-    instanceName = Comment4
-    comment = "This example creates a cube in Matlab and outputs it to MeVisLab as a WEM. Press the Update button in the MatlabScriptWrapper and see the result in the SoExaminerViewer."
-  }
-  internalFields = ""
-}
-module SoExaminerViewer {
-  internal  {
-    frame = "1205 213 152 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "26 59 489 362"
-        sizeHint = "489 362"
-        wasOpen = no
-        wasActive = no
-      }
-      window _viewer {
-        geometry = "1175 433 490 468"
-        sizeHint = "400 400"
-        wasOpen = no
-        wasActive = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoExaminerViewer2
-    renderCaching = AUTO
-    boundingBoxCaching = AUTO
-    renderCulling = AUTO
-    pickCulling = AUTO
-    border = FALSE
-    background = "0 0 0"
-    transparency = DELAYED_BLEND
-    antialiasing = FALSE
-    antialiasingNumPasses = 1
-    grabKeyFocus = TRUE
-    snapshotFormat = SNAPSHOT_RGB
-    outputAviFile = ""
-    autoRedrawWhenRecording = TRUE
-    frameRate = 7
-    frameRateAvi = 15
-    status = ready
-    outputSnapshotFile = none
-    outputSnapshotFileWritten = none
-    autoIncreaseFile = TRUE
-    autoUpdateML = FALSE
-    showSnapshotWithShell = FALSE
-    snapCount = 0
-    inputDevicesList = ""
-    headlight = TRUE
-    decoration = TRUE
-    popupMenuEnabled = FALSE
-    viewing = TRUE
-    autoClipping = TRUE
-    externalCamera = FALSE
-    drawStyle = VIEW_AS_IS
-    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
-    viewAllFlag = FALSE
-    initialCameraOrientation = CAMERA_KEEP_AS_IS
-    applyCameraOrientation = CAMERA_KEEP_AS_IS
-    cameraType = CAMERA_PERSPECTIVE
-    userSettingOrientation = "0 0 1 0"
-    automaticViewAll = FALSE
-    storeCurrentState = TRUE
-    saveCamera = TRUE
-    cursor = TRUE
-    isCameraStored = TRUE
-    perspective = TRUE
-    stereoViewing = FALSE
-    stereoOffset = 3
-    height = 0.78539801
-    position = "-1.55051124095917 1.04046010971069 1.21177983283997"
-    orientation = "0.635775923728943 0.228879645466805 -0.737158834934235 4.71452140808105"
-    nearDistance = 1.370454
-    farDistance = 3.0832441
-    focalDistance = 2.2259948
-    forceRedrawOnInteraction = FALSE
-    button1events = TO_VIEWER
-    button2events = TO_VIEWER
-    button3events = TO_VIEWER
-    keyEvents = TO_VIEWER
-    animationEnabled = FALSE
-    feedback = FALSE
-    feedbackSize = 32
-    mouseInteraction = ""
-    rotationAxis = "0 1 0"
-    rotationAngle = 360
-    rotationSteps = 80
-    rotationCurrentStep = 0
-    recordRotation = TRUE
-  }
-}
 module SoWEMRenderer {
   internal  {
-    frame = "1213 285 136 56"
+    frame = "885 173 136 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -172,134 +66,14 @@ module SoWEMRenderer {
     selectedTab = 0
   }
 }
-module MatlabScriptWrapper {
-  internal  {
-    frame = "1153 365 160 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "659 306 600 619"
-        sizeHint = "616 619"
-        wasOpen = no
-        wasActive = no
-      }
-    }
-  }
-  fields  {
-    instanceName = MatlabScriptWrapper4
-    matlabScript = "outWEM.nodes = [
-	-.5 .5 .5;
-	.5 .5 .5;
-	.5 -.5 .5;
-	-.5 -.5 .5;
-	-.5 .5 -.5;
-	.5 .5 -.5;
-	.5 -.5 -.5;
-	-.5 -.5 -.5
-	]
-outWEM.faces = [
-	1 5 4;
-	1 4 0;
-	2 6 5;
-	2 5 1;
-	3 7 6;
-	3 6 2;
-	4 7 3;
-	4 3 0;
-	3 2 1;
-	3 1 0;
-	5 6 7;
-	5 7 4
-	]"
-    useExternalScript = FALSE
-    matlabScriptPath = ""
-    inDataName0 = Input0
-    inDataName1 = Input1
-    inDataName2 = Input2
-    outDataName0 = Output0
-    outDataName1 = Output1
-    outDataName2 = Output2
-    inXMarkerName = inXMarker
-    outXMarkerName = outXMarker
-    inWEMName = inWEM
-    outWEMName = outWEM
-    autoUpdate = FALSE
-    autoApply = FALSE
-    status = "Execution successful!"
-    scalarName0 = scalar0
-    scalar0 = 0
-    scalarName1 = scalar1
-    scalar1 = 0
-    scalarName2 = scalar2
-    scalar2 = 0
-    scalarName3 = scalar3
-    scalar3 = 0
-    scalarName4 = scalar4
-    scalar4 = 0
-    scalarName5 = scalar5
-    scalar5 = 0
-    stringName0 = string0
-    string0 = ""
-    stringName1 = string1
-    string1 = ""
-    stringName2 = string2
-    string2 = ""
-    stringName3 = string3
-    string3 = ""
-    stringName4 = string4
-    string4 = ""
-    stringName5 = string5
-    string5 = ""
-    vectorName0 = vector0
-    vector0 = "0 0 0 0"
-    vectorName1 = vector1
-    vector1 = "0 0 0 0"
-    vectorName2 = vector2
-    vector2 = "0 0 0 0"
-    vectorName3 = vector3
-    vector3 = "0 0 0 0"
-    vectorName4 = vector4
-    vector4 = "0 0 0 0"
-    vectorName5 = vector5
-    vector5 = "0 0 0 0"
-    matrixName0 = matrix0
-    matrix0 = "1 0 0 0
-0 1 0 0
-0 0 1 0
-0 0 0 1"
-    matrixName1 = matrix1
-    matrix1 = "1 0 0 0
-0 1 0 0
-0 0 1 0
-0 0 0 1"
-    matrixName2 = matrix2
-    matrix2 = "1 0 0 0
-0 1 0 0
-0 0 1 0
-0 0 0 1"
-    matlabOutput = "<PRE>>> 
-outWEM = 
-
-    nodes: [8x3 double]
-
->> 
-outWEM = 
-
-    nodes: [8x3 double]
-    faces: [12x3 double]
-
-"
-    showSessionWindow = TRUE
-  }
-}
 module Comment {
   internal  {
-    frame = "953 589 96 56"
+    frame = "969 253 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "625 584 256 208"
-        sizeHint = "256 208"
+        geometry = "625 584 232 209"
+        sizeHint = "256 209"
         wasOpen = no
         wasActive = no
       }
@@ -307,13 +81,14 @@ module Comment {
   }
   fields  {
     instanceName = Comment3
-    comment = "This example creates and implict representation of a torus in Matlab and visualizes it in MeVisLab as an isosurface. Press the Update button in the MatlabScriptWrapper and see the result in the SoExaminerViewer."
+    comment = "This example creates and implict representation of a torus in Matlab and visualizes it in MeVisLab as an isosurface.
+It also creates a cube in Matlab and outputs it to MeVisLab as a WEM. Press the Update button in the MatlabScriptWrapper and see the result in the SoExaminerViewer."
   }
   internalFields = ""
 }
 module SoWEMRenderer {
   internal  {
-    frame = "801 513 128 64"
+    frame = "753 169 128 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -377,7 +152,7 @@ module SoWEMRenderer {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "789 445 152 56"
+    frame = "809 101 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -418,7 +193,6 @@ module SoExaminerViewer {
     autoUpdateML = FALSE
     showSnapshotWithShell = FALSE
     snapCount = 0
-    inputDevicesList = ""
     headlight = TRUE
     decoration = TRUE
     popupMenuEnabled = FALSE
@@ -440,12 +214,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 0.78539801
-    position = "48.9234848022461 94.9647216796875 145.518615722656"
-    orientation = "0.343631237745285 -0.276928246021271 -0.897345185279846 5.13705348968506"
-    nearDistance = 96.226913
-    farDistance = 141.02026
-    focalDistance = 118.60152
+    height = 0.7853980064
+    position = "48.92348480224609 94.9647216796875 145.5186157226562"
+    orientation = "0.343631237745285 -0.2769282460212708 -0.8973451852798462 5.137053489685059"
+    nearDistance = 96.22691345
+    farDistance = 141.0202637
+    focalDistance = 118.6015167
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -464,7 +238,7 @@ module SoExaminerViewer {
 }
 module WEMIsoSurface {
   internal  {
-    frame = "797 589 120 56"
+    frame = "749 245 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -530,7 +304,7 @@ module WEMIsoSurface {
 }
 module Comment {
   internal  {
-    frame = "1289 605 96 56"
+    frame = "905 549 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -549,7 +323,7 @@ module Comment {
 }
 module View2D {
   internal  {
-    frame = "1093 541 88 56"
+    frame = "713 485 80 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -592,21 +366,20 @@ module View2D {
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     valueHighPrecision = FALSE
-    maxPrecision = 4
     plane = "0 0 1 5.5"
   }
   internalFields = ""
 }
 module LocalImage {
   internal  {
-    frame = "1157 685 104 56"
+    frame = "777 629 96 56"
     moduleGroupName = ""
   }
   fields  {
@@ -619,7 +392,7 @@ module LocalImage {
 }
 module SubImage {
   internal  {
-    frame = "1189 605 88 56"
+    frame = "805 549 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -659,7 +432,7 @@ module SubImage {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "1185 533 160 56"
+    frame = "805 477 152 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -760,7 +533,7 @@ colormap gray"
 }
 module StylePalette {
   internal  {
-    frame = "45 621 104 56"
+    frame = "457 293 96 56"
     moduleGroupName = ""
   }
   fields  {
@@ -862,12 +635,12 @@ module StylePalette {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "809 661 160 56"
+    frame = "765 317 152 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "257 300 400 657"
-        sizeHint = "400 657"
+        geometry = "714 332 600 621"
+        sizeHint = "600 621"
         wasOpen = no
         wasActive = no
       }
@@ -875,10 +648,37 @@ module MatlabScriptWrapper {
   }
   fields  {
     instanceName = MatlabScriptWrapper2
-    matlabScript = "% The script lines below sets the output image to an implicit % function representation of a torus.
+    matlabScript = "% The script lines below sets the output image to an implicit
+% function representation of a torus.
 [x,y,z] = meshgrid(-10:0.25:10,-10:0.25:10,-10:0.25:10);
 R = 6;
-Output0 = (R-sqrt(x.^2+y.^2)).^2 + z.^2;"
+Output0 = (R-sqrt(x.^2+y.^2)).^2 + z.^2;
+
+% And constructs a WEM representation of a cube
+outWEM{1}.Vertices = [
+	30 50 50;
+	50 50 50;
+	50 30 50;
+	30 30 50;
+	30 50 30;
+	50 50 30;
+	50 30 30;
+	30 30 30
+	]
+outWEM{1}.Faces = [
+	2 6 5;
+	2 5 1;
+	3 7 6;
+	3 6 2;
+	4 8 7;
+	4 7 3;
+	5 8 4;
+	5 4 1;
+	4 3 2;
+	4 2 1;
+	6 7 8;
+	6 8 5
+	]"
     useExternalScript = FALSE
     matlabScriptPath = ""
     inDataName0 = Input0
@@ -1065,21 +865,20 @@ module View2D {
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     valueHighPrecision = FALSE
-    maxPrecision = 4
     plane = "0 0 1 0.5"
   }
   internalFields = ""
 }
 module TestPattern {
   internal  {
-    frame = "437 653 104 56"
+    frame = "441 653 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1102,10 +901,6 @@ module TestPattern {
     fillValue = 1
     autoApply = TRUE
     pattern = FilledMaxEllipsoid
-    voxelSize = "1 1 1"
-    gradient = "0 0 0"
-    eigenValues = "1 0 -1"
-    offDiagonalElements = "0 0 0"
     fillValue2 = 0
     pageSizeX = 32
     pageSizeY = 32
@@ -1117,7 +912,7 @@ module TestPattern {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "529 549 160 56"
+    frame = "533 549 152 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1219,7 +1014,7 @@ end
 }
 module Comment {
   internal  {
-    frame = "-11 501 88 56"
+    frame = "397 173 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1239,7 +1034,7 @@ module Comment {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "81 429 144 56"
+    frame = "493 101 136 56"
     moduleGroupName = ""
     windows  {
       window _viewer {
@@ -1274,7 +1069,6 @@ module SoExaminerViewer {
     autoUpdateML = FALSE
     showSnapshotWithShell = FALSE
     snapCount = 0
-    inputDevicesList = ""
     headlight = TRUE
     decoration = TRUE
     popupMenuEnabled = FALSE
@@ -1296,12 +1090,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 0.78539819
-    position = "1.46615374088287 -34.2523536682129 -22.5416316986084"
-    orientation = "-0.188540622591972 0.862696647644043 -0.469262212514877 3.30506730079651"
-    nearDistance = 31.739943
-    farDistance = 50.337395
-    focalDistance = 41.045261
+    height = 0.7853981853
+    position = "1.466153740882874 -34.25235366821289 -22.5416316986084"
+    orientation = "-0.1885405629873276 0.862696647644043 -0.4692620933055878 3.305067300796509"
+    nearDistance = 31.73994255
+    farDistance = 50.33739471
+    focalDistance = 41.04526138
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -1320,7 +1114,7 @@ module SoExaminerViewer {
 }
 module So3DXMarker {
   internal  {
-    frame = "101 501 120 56"
+    frame = "509 173 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1392,7 +1186,7 @@ module So3DXMarker {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "141 621 152 56"
+    frame = "553 293 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1488,10 +1282,9 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
   }
 }
 connections  {
-  SoExaminerViewer2.children = SoWEMRenderer1.self
-  SoWEMRenderer1.inWEM = MatlabScriptWrapper4.outputWEM
+  SoWEMRenderer1.inWEM = MatlabScriptWrapper2.outputWEM
   TorusRenderer.inWEM = WEMIsoSurface.outWEM
-  SoExaminerViewer1.children = TorusRenderer.self
+  SoExaminerViewer1.children = "TorusRenderer.self SoWEMRenderer1.self"
   WEMIsoSurface.input0 = MatlabScriptWrapper2.output0
   View2D1.inImage = SubImage.output0
   SubImage.input0 = LocalImage.outImage
