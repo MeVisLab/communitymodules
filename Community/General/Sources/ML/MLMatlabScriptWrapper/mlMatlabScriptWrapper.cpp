@@ -826,7 +826,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       // Copy data to Matlab array.
       memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
 
-      // Get input names from gui.
+      // Get input names from GUI.
       std::string inputName = _inDataNameFld[i]->getStringValue();
       // Write data to Matlab.
       engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
@@ -993,7 +993,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
     return;
   }
   
-  // Get input list.
+  // Get input WEM.
   WEM *inputWEM = mlbase_cast<WEM*>(_inputWEMFld->getBaseValue());
   
   // Internal loop.
@@ -1010,31 +1010,31 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   
   // Strings to evaluate.
   std::ostringstream setNodes, setFaces, setNormals;
-  setNodes << inWEMStr.c_str() << ".nodes=[";
-  setFaces << inWEMStr.c_str() << ".faces=[";
-  setNormals << inWEMStr.c_str() << ".normals=[";
+  setNodes << inWEMStr.c_str() << "{1}.Vertices=[";
+  setFaces << inWEMStr.c_str() << "{1}.Faces=[";
+  setNormals << inWEMStr.c_str() << "{1}.VertexNormals=[";
   
   // Loop over all patches -> flatten WEM
   for (i = 0; i < inputWEM->getNumWEMPatches(); i ++) {
-    WEMPatch *wemPatch = inputWEM->getWEMPatchAt(i);
+    WEMPatch *patch = inputWEM->getWEMPatchAt(i);
   
     // Loop over all nodes
-    const unsigned int numNodes = wemPatch->getNumNodes();
+    const unsigned int numNodes = patch->getNumNodes();
     for (j = 0; j < numNodes; j ++) {
-      node = wemPatch->getNodeAt(j);
+      node = patch->getNodeAt(j);
       position = node->getPosition();
       setNodes << std::dec << position[0] << "," << std::dec << position[1] << "," << std::dec << position[2] << ";";
     }
     numTriangulatedNodes = 0;
     
     // Loop over all faces
-    const unsigned int numFaces = wemPatch->getNumFaces();
+    const unsigned int numFaces = patch->getNumFaces();
     for (j = 0; j < numFaces; j ++) {
-      face = wemPatch->getFaceAt(j);      
+      face = patch->getFaceAt(j);
       const unsigned int numFaceNodes = face->getNumNodes();
       if (numFaceNodes == 3) {
         for (k = 0; k < 3; k ++) {
-          entryNumber = totalNumNodes + face->getNodeAt(k)->getEntryNumber();        
+          entryNumber = totalNumNodes + face->getNodeAt(k)->getEntryNumber();
           setFaces << entryNumber << ",";
         }
         setFaces << ";";
@@ -1045,7 +1045,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
         
         for (k = 0; k < numFaceNodes; k ++) {
           for (m = 0; m < 2; m ++) {
-            entryNumber = totalNumNodes + face->getNodeAt((m + k) % numFaceNodes)->getEntryNumber();        
+            entryNumber = totalNumNodes + face->getNodeAt((m + k) % numFaceNodes)->getEntryNumber();
             setFaces << entryNumber << ",";
           }
           setFaces << totalNumNodes + node->getEntryNumber();
@@ -1053,7 +1053,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
         }
         
       }
-      normal = face->getNormal();
+      normal = node->getNormal();
       setNormals << std::dec << normal[0] << "," << std::dec << normal[1] << "," << std::dec << normal[2] << ";";
     }
     
@@ -1061,7 +1061,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   }
   
   setNodes << "]";
-  setFaces << "]";
+  setFaces << "]+1";
   setNormals << "]";
   
   // Put WEM into matlab structure.
@@ -1070,7 +1070,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   engEvalString(m_pEngine, setNormals.str().c_str());
 }
 
-//! Gets WEM from Matlab and copies results into output WEM.
+//! Gets structure from Matlab and copies results into output WEM.
 void MatlabScriptWrapper::_getWEMBackFromMatlab()
 {
   // Clear _outWEM.
@@ -1092,62 +1092,69 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
   WEMTriangle *triangle = NULL;
   unsigned int i = 0;
   
-  std::ostringstream executeStr;
-  
-  // Get nodes
-  executeStr << "tmpOutWEMNodes=" << outWEMStr << ".nodes";
-  engEvalString(m_pEngine, executeStr.str().c_str());
-  mxArray *m_nodes = engGetVariable(m_pEngine, "tmpOutWEMNodes");
-  engEvalString(m_pEngine, "clear tmpOutWEMNodes");
-  executeStr.str("");
-  
-  // Get faces
-  executeStr << "tmpOutWEMFaces=" << outWEMStr << ".faces";
-  engEvalString(m_pEngine, executeStr.str().c_str());
-  mxArray *m_faces = engGetVariable(m_pEngine, "tmpOutWEMFaces");
-  engEvalString(m_pEngine, "clear tmpOutWEMFaces");
-  executeStr.str("");  
-  
-  // Get data from Matlab array.
-  if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
-  {
-    double *dataNodes = static_cast<double*>(mxGetPr(m_nodes));
-    
-    if (dataNodes != NULL) {
-      const size_t node_rows = mxGetM(m_nodes);
+  // Internal temp variable with the number of patches in Matlab.
+  mxArray *m_patchList = engGetVariable(m_pEngine, outWEMStr.c_str());
+  if(m_patchList!=NULL) {
+    const size_t patches = mxGetN(m_patchList); // Number of patches in Matlab variable
+    for(size_t j=1; j<=patches; j++) {
+      // Compose temp string to execute in Matlab.
+      std::ostringstream executeStr;
+
+      // Get nodes
+      executeStr << "tmpOutWEMNodes=" << outWEMStr << "{" << j << "}" << ".Vertices";
+      engEvalString(m_pEngine, executeStr.str().c_str());
+      mxArray *m_nodes = engGetVariable(m_pEngine, "tmpOutWEMNodes");
+      engEvalString(m_pEngine, "clear tmpOutWEMNodes");
+      executeStr.str("");
       
-      ML_CHECK_NEW(triPatch, WEMTrianglePatch());
+      // Get faces
+      executeStr << "tmpOutWEMFaces=" << outWEMStr << "{" << j << "}" << ".Faces-1";
+      engEvalString(m_pEngine, executeStr.str().c_str());
+      mxArray *m_faces = engGetVariable(m_pEngine, "tmpOutWEMFaces");
+      engEvalString(m_pEngine, "clear tmpOutWEMFaces");
+      executeStr.str("");  
       
-      for (i = 0; i < node_rows; i ++) {
-        node = triPatch->addNode();
-        node->setPosition(dataNodes[i], dataNodes[i + node_rows], dataNodes[i + 2 * node_rows]);
-      }
-      
-      if (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS)
+      // Get data from Matlab array.
+      if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
       {
-        double *dataFaces = static_cast<double*>(mxGetPr(m_faces));
+        double *dataNodes = static_cast<double*>(mxGetPr(m_nodes));
         
-        if (dataFaces != NULL) {
-          const size_t face_rows = mxGetM(m_faces);
+        if (dataNodes != NULL) {
+          const size_t node_rows = mxGetM(m_nodes);
           
-          for (i = 0; i < face_rows; i ++) {
-            triangle = triPatch->addTriangle();
-            node = triPatch->getNodeAt(dataFaces[i]);                 triangle->setNode(0,node); node->addFace(triangle);
-            node = triPatch->getNodeAt(dataFaces[i + face_rows]);     triangle->setNode(1,node); node->addFace(triangle);
-            node = triPatch->getNodeAt(dataFaces[i + 2 * face_rows]); triangle->setNode(2,node); node->addFace(triangle);
-          }          
-        }
+          ML_CHECK_NEW(triPatch, WEMTrianglePatch());
+          
+          for (i = 0; i < node_rows; i ++) {
+            node = triPatch->addNode();
+            node->setPosition(dataNodes[i], dataNodes[i + node_rows], dataNodes[i + 2 * node_rows]);
+          }
+          
+          if (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS)
+          {
+            double *dataFaces = static_cast<double*>(mxGetPr(m_faces));
+            
+            if (dataFaces != NULL) {
+              const size_t face_rows = mxGetM(m_faces);
+              
+              for (i = 0; i < face_rows; i ++) {
+                triangle = triPatch->addTriangle();
+                node = triPatch->getNodeAt(dataFaces[i]);                 triangle->setNode(0,node); node->addFace(triangle);
+                node = triPatch->getNodeAt(dataFaces[i + face_rows]);     triangle->setNode(1,node); node->addFace(triangle);
+                node = triPatch->getNodeAt(dataFaces[i + 2 * face_rows]); triangle->setNode(2,node); node->addFace(triangle);
+              }          
+            }
+          }
+          
+          triPatch->buildEdgeConnectivity();
+          triPatch->computeNormals();
+          
+          _outWEM->addWEMPatch(triPatch);
+        }    
       }
-      
-      triPatch->buildEdgeConnectivity();
-      triPatch->computeNormals();
-      
-      _outWEM->addWEMPatch(triPatch);
-    }    
+      mxDestroyArray(m_nodes);
+      mxDestroyArray(m_faces);
+    }
   }
-  
-  mxDestroyArray(m_nodes);
-  mxDestroyArray(m_faces);
 }
 
 //! Copies scalar values to matlab.
@@ -1197,8 +1204,7 @@ void MatlabScriptWrapper::_getScalarsBackFromMatlab()
       }
     }
   }
-  mxDestroyArray(temp);
-  temp = NULL;
+  mxDestroyArray(temp); temp = NULL;
 }
 
 //! Copies string values to matlab.
@@ -1250,8 +1256,7 @@ void MatlabScriptWrapper::_getStringsBackFromMatlab()
       ML_DELETE(fieldVal);
     }
   }
-  mxDestroyArray(temp);
-  temp = NULL;
+  mxDestroyArray(temp); temp = NULL;
 }
 
 //! Copy input vectors to matlab.
@@ -1309,8 +1314,7 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
       }
     }
   }
-  mxDestroyArray(temp);
-  temp = NULL;
+  mxDestroyArray(temp); temp = NULL;
 }
 
 //! Copy input matrices to matlab.
@@ -1374,8 +1378,7 @@ void MatlabScriptWrapper::_getMatricesBackFromMatlab()
       }
     }
   }
-  mxDestroyArray(temp);
-  temp = NULL;
+  mxDestroyArray(temp); temp = NULL;
 }
 
 ML_END_NAMESPACE
