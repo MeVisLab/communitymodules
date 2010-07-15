@@ -3,7 +3,7 @@
 # lines starting with "#" are ignored - please use this to comment
 # your changes!):
 #
-# What: What should be build. This must be either the directory 
+# What: What should be built. This must be either the directory 
 #       containing the "config.txt"-file or the configuration file
 #       itself. The path names must be relative to 
 #       $(PACKAGE_DIR)/Configuration/Installers.
@@ -66,4 +66,4 @@
 
 # The YourInstaller installer (this comment is used as title for the html installer pages)
 # YourInstaller/YourInstaller.mlinstall always                whoever   *
-
+SPLINE.mlinstall                        always            ruben.stein@mevis.fraunhofer.de *

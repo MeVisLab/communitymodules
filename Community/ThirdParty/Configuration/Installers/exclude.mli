@@ -1,0 +1,29 @@
+>- *.bak
+>- *.bck
+>- *.auto
+>- *.d
+>- */.*
+>- *<CVS>*
+>- *<.svn>*
+>- *<private>*
+>- *<tmp>*
+>- *<build>*
+>- *.pyc
+>- *.dsw
+>- *.dsp
+>- *.vcproj
+>- *.sln
+>- *.opt
+>- *.plg
+>- *.ncb
+>- *.stt
+>- *.WW
+>- *.o
+>- */*.vcproj.*.user
+>- *.xcodeproj
+>- *<.DS_STORE>*
+
+# moc files might be interesting for debugging Qt, so we keep them
+#>- */moc_*
+#>- */moc_*.*
+#>- */qrc_*.cpp

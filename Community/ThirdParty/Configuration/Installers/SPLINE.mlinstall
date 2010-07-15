@@ -1,0 +1,63 @@
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/Core/setup.mli
+INCLUDE $(MLAB_Community_ThirdParty)/Configuration/Installers/exclude.mli
+
+$LIBRARY_NAME SPLINE
+
+$ROOT_OUT $(OUTPUT)
+$TMP_OUT $(OUTPUT)/$(LIBRARY_NAME)
+
+<MKDIR $(OUTPUT)
+<MKDIR $(TMP_OUT)
+
+$INPUT $(MLAB_Community_ThirdParty)/Sources/$(LIBRARY_NAME)
+$OUTPUT $(TMP_OUT)/$(LIBRARY_NAME)
+
+##########################################################
+#  SPLINE
+##########################################################
+
++ *
+
+##########################################################
+# Libraries and DLLs
+##########################################################
+
+$INPUT $(MLAB_Community_ThirdParty)
+$OUTPUT $(TMP_OUT)/$(LIBRARY_NAME)
+
+MKDIR $(TMP_OUT)/$(LIBRARY_NAME)/lib
+
+IFDEF WIN32
+
++ lib/*$(LIBRARY_NAME)*.(lib|dll|pdb)
+
+ELIFDEF MACX
+
++ lib/*$(LIBRARY_NAME)*.(dylib|a|framework)
+
+ELIFDEF LINUX
+
++ lib/*$(LIBRARY_NAME)*.(so|a)
+
+ENDIF
+
+##########################################################
+# Build installer
+##########################################################
+
+$INPUT $(MLAB_Community_ThirdParty)
+$OUTPUT $(TMP_OUT)
+
+$INSTALLER_FILENAME $(LIBRARY_NAME).zip
+
+>EXECUTE pwd
+>CD "$(ROOT_OUT)"
+IFDEF WIN32
+>EXECUTE zip "$(INSTALLER_TARGET_DIR)\$(INSTALLER_FILENAME)" -r $(LIBRARY_NAME)
+ELSE
+>EXECUTE zip -y $(INSTALLER_TARGET_DIR)/$(INSTALLER_FILENAME) -r $(LIBRARY_NAME)
+ENDIF
+>EXECUTE pwd
+
+# print the result file, so that other tools can find out about the created installer
+PRINT **ResultFile**: $(INSTALLER_TARGET_DIR)/$(INSTALLER_FILENAME)

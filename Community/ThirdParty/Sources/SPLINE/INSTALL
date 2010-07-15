@@ -1,0 +1,29 @@
+Ruben Stein (ruben.stein@mevis.fraunhofer.de) - 2010-07-01
+Fraunhofer MEVIS
+
+This library provides the functionality of John Burkhardt's SPLINE library, modified to be linkable as shared library.
+
+Original SPLINE Sources:
+http://people.sc.fsu.edu/~jburkardt/cpp_src/spline/spline.html
+
+License: LGPLv3 (see COPYING and COPYING.LESSER)
+
+-----------------------------------------------------------------------------
+
+To code downloaded on 2010-06-28 was modified to make the library dynamically linkable. For this to work, some import/export macros had to be defined for windows interfaces. Furthermore some small compilation warnings were removed. See spline.h for a modification list.
+
+-----------------------------------------------------------------------------
+
+To build the library you may use the provided qmake-file "spline.pro". In order to set some special target settings for the library, a file called "IncludePackages.pri" is included. This file is available via the public MeVisLab installer found here: http://www.mevislab.de/download/
+
+Anyways, this line may not be necessary for your operating system. In that case, simply run:
+
+qmake spline.pro
+
+qmake is available via Qt (See http://qt.nokia.com)
+
+In case you installed the above mentioned MeVisLab installer, you may run:
+
+On Windows: spline.bat
+On Linux:   spline.sh
+On Mac:     simply double-click spline.pro
