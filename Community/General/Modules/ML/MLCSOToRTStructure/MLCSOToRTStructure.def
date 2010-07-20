@@ -1,0 +1,49 @@
+//----------------------------------------------------------------------------------
+//! MLCSOToRTStructure module definitions.
+/*!
+// \file    MLCSOToRTStructure.def
+// \author  linal
+// \date    2010-01-20
+*/
+//----------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------
+// MLModule CSOToRTStructure
+//----------------------------------------------------------------------------------
+MLModule CSOToRTStructure {
+  DLL            = "MLCSOToRTStructure"
+
+  genre          = ""
+  author         = "linal"
+  status         = "work-in-progress"
+  comment        = "Generte a RT Structure and save it in a file with input ReferenceImage and CSOList on the image"
+  keywords       = ""
+  seeAlso        = ""
+  documentation  = "$(LOCAL)/html/CSOToRTStructure.html"
+  exampleNetwork = "$(LOCAL)/networks/CSOToRTStructureExample.mlab"
+  
+ 
+
+Window {
+ Category "Main" {
+  Vertical {
+   Box "DCM file" {
+     Field rtStructFile {
+         title = "DCM File Name: " 
+         expandX = YES 
+         browseButton = yes 
+         browseMode = save
+        }
+     Horizontal { 
+     Checkbox valid { edit = no }
+     Button "apply" {
+      } // apply
+     } // Horizontal
+ } //Box
+} //Vertical
+} //Catgegory
+} // Window
+
+} // MLModule CSOToRTStructure
+
