@@ -2,6 +2,28 @@
 network  {
   watchlist = ""
 }
+module LocalImage {
+  internal  {
+    frame = "-95 357 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "356 562 458 242"
+        sizeHint = "458 242"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Liver1_CT_venous.small.dcm
+    trueName = "C:/Program Files (x86)/MeVisLab2.0rcVC8/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.dcm"
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
 module SoCSO3DVis {
   internal  {
     frame = "-51 -67 104 56"
@@ -144,44 +166,6 @@ module View3D {
     clip.rotation5 = "0.9999999403953552 0 0 1.570799946784973"
   }
 }
-module OpenImage {
-  internal  {
-    frame = "-251 345 120 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "367 249 937 737"
-        sizeHint = "937 737"
-        wasOpen = no
-        wasActive = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ReferenceImage
-    previewName = ""
-    imageName = ""
-    browserRootPath = "C:/Program Files (x86)/MeVisLab2.0VC8/data"
-    ok = TRUE
-    progress = 0
-    stdViewerExtOn = TRUE
-    hideImport = FALSE
-    hidePreferences = FALSE
-    hideCloseButtons = FALSE
-    settingsFile = ""
-    autoReload = SmartByDuration
-    reloadDurationLimit = 3
-    useInclude = FALSE
-    include = datasets,results
-    useExclude = TRUE
-    exclude = slices,html,autoimg
-    suffix = dcm
-    recursive = TRUE
-    sortBy = Patient
-    sortValues = Patient,Modality,Institution,Date,FlatDatasets,Device
-  }
-  internalFields = ""
-}
 module CSOFreehandProcessor {
   internal  {
     frame = "5 245 168 56"
@@ -300,7 +284,7 @@ module SoView2DCSOEditor {
     mouseOverLineWidthLineWidth = 1
     useIconFile = FALSE
     iconFile = $(MLAB_MeVisLab_Standard)/Modules/Resources/Images/markerIcons.tif
-    internalIconFile = "C:/Program Files (x86)/MeVisLab2.0VC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
+    internalIconFile = "C:/Program Files (x86)/MeVisLab2.0rcVC8/Packages/MeVisLab/Standard/Modules/Resources/Images/markerIcons.tif"
     cutCopyKeyModifier = EDIT_OP_KEY_MOD_CONTROL
     copyKeyModifier = EDIT_OP_KEY_MOD_CONTROL
     pasteKeyModifier = EDIT_OP_KEY_MOD_CONTROL
@@ -328,7 +312,7 @@ module CSOManager {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "281 437 1176 457"
+        geometry = "584 381 1173 457"
         sizeHint = "695 457"
         wasOpen = no
         wasActive = no
@@ -379,7 +363,7 @@ module CSOManager {
     groupDefaultRemoveFromGroupHandling = RemoveIfInNoGroup
     listSingleRemoveEmptyGroupHandling = RemoveAlways
     listDefaultRemoveEmptyGroupHandling = RemoveAlways
-    numUndos = 0
+    numUndos = 16
     numRedos = 0
     undoStackLimit = 16
     useSelectionCSONotification = FALSE
@@ -396,10 +380,10 @@ module CSOManager {
     enableRepaintNotification = TRUE
     csoTreeView = ""
     groupTreeView = ""
-    numCSOs = 0
-    numGroups = 0
+    numCSOs = 2
+    numGroups = 1
     numSelectedCSOs = 0
-    numSelectedGroups = 0
+    numSelectedGroups = 1
     selectedCSOsGroupIds = ""
     csoTabSelected = FALSE
     groupTabSelected = FALSE
@@ -426,7 +410,7 @@ module View2D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "-565 436 919 476"
+        geometry = "613 621 919 476"
         sizeHint = "400 400"
         wasOpen = no
         wasActive = no
@@ -437,7 +421,7 @@ module View2D {
     instanceName = View2D
     inventorInputOn = TRUE
     view2DExtensionsOn = TRUE
-    startSlice = -1
+    startSlice = 21
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -459,8 +443,8 @@ module View2D {
     baseColor = "1 1 1"
     margin = "2 2"
     sliceOrigin = "41.05004119873047 -8.941691398620605"
-    lutCenter = 1
-    lutWidth = 1
+    lutCenter = 2047.5
+    lutWidth = 3837
     lutUseTraceColors = FALSE
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
@@ -472,7 +456,7 @@ module View2D {
     borderOn = TRUE
     borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
     valueHighPrecision = FALSE
-    plane = "0 0 1 -90.60578918457031"
+    plane = "0 0 1 -164.2982482910156"
   }
   internalFields = ""
 }
@@ -490,21 +474,21 @@ module DicomTool {
     addStudyUIDDIR = FALSE
     addSeriesUIDDIR = FALSE
     allSlices = TRUE
-    minSlice = 0
-    maxSlice = 1
+    minSlice = 1
+    maxSlice = 61
     minUsedSlice = 0
-    maxUsedSlice = 0
+    maxUsedSlice = 61
     allTimepoints = TRUE
-    minTime = 0
+    minTime = 1
     maxTime = 1
     minUsedTime = 0
-    maxUsedTime = 0
+    maxUsedTime = 1
     displayMode1 = Input
     displayMode2 = All
     newStudyUID = FALSE
     newSeriesUID = TRUE
-    hasStudyUID = FALSE
-    hasSeriesUID = FALSE
+    hasStudyUID = TRUE
+    hasSeriesUID = TRUE
     restoreFrameSpecific = FALSE
     saveEnabled = TRUE
     storeTimeInfo = None
@@ -551,10 +535,10 @@ module DicomFrameSelect {
     zPos = 0
     tPos = 0
     uPos = 0
-    zMax = 0
+    zMax = 60
     tMax = 0
     uMax = 0
-    valid = FALSE
+    valid = TRUE
   }
 }
 module DicomTagViewer {
@@ -593,7 +577,7 @@ module DicomTagViewer {
     maxValueLen = 80
     showPrivateTags = FALSE
     tagListSubset = AllTags
-    dicomFile = ""
+    dicomFile = "C:/Program Files (x86)/MeVisLab2.0rcVC8/Packages/MeVisLab/Resources/DemoData/Liver1_CT_venous.small.dcm"
     trimSpaces = FALSE
   }
 }
@@ -601,11 +585,19 @@ module CSOToRTStructure {
   internal  {
     frame = "53 93 136 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "870 385 619 215"
+        sizeHint = "255 98"
+        wasOpen = no
+        wasActive = no
+      }
+    }
   }
   fields  {
     instanceName = CSOToRTStructure
-    rtStructFile = ""
-    valid = FALSE
+    rtStructFile = "c:\\testMine1.dcm"
+    valid = TRUE
   }
 }
 connections  {
@@ -617,7 +609,7 @@ connections  {
   DicomTool.inImage = CSOToRTStructure.output0
   DicomFrameSelect.input0 = CSOToRTStructure.output0
   DicomTagViewer.input0 = DicomFrameSelect.output0
-  CSOToRTStructure.input0 = ReferenceImage.outImage
+  CSOToRTStructure.input0 = LocalImage.outImage
   CSOToRTStructure.inCSOList = CSOManager.outCSOList
 }
 networkModel = ""
