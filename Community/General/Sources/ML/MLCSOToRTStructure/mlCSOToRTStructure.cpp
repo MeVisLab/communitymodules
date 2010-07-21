@@ -89,7 +89,10 @@ void CSOToRTStructure::handleNotification (Field *field) {
 			writeToDCMFile(_genTreePtr, _rtStructFileFld->getStringValue());
 	  }
 	}
-  }
+	}else {
+    ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "There is no DICOM header information in the provided input image. RTStructure file cannot be generated.");
+		return;
+	}
   setValid(this);
 }
 
@@ -187,6 +190,8 @@ void CSOToRTStructure::updateGenTreeHeader(PagedImg *img) {
     DicomTreeImagePropertyExtension* propertyExtension = reinterpret_cast<DicomTreeImagePropertyExtension*> 
 														   (propertyContainer.getFirstEntryOfType(runtimeType));  
 	DCMTree::Const_TreePtr           dicomTreePtr      = getDicomTreeFromImagePropertyExtension(propertyExtension);  	
+	if (dicomTreePtr == NULL)
+		return;
 	ml::Vector ext = img->getImgExt();
 	DCMTree::TreePtr                 childTreePtr(new DCMTree::Tree());
 	childTreePtr = dicomTreePtr->copy();
@@ -435,12 +440,12 @@ void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreeP
 //----------------------------------------------------------------------------------
 bool CSOToRTStructure::addCSOGroupTags(DCMTree::TagPtr csoGroupTag, std::string refFOfRef) {
 	if (_inputCSOs== NULL){
-		ML_PRINT_ERROR("mlRefImgCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
+		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOGroupTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
 		return false;
 	}
   unsigned int groupNum = _inputCSOs->numGroups();
   if (groupNum == 0) {
-		ML_PRINT_ERROR("mlRefImgCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "RT structure file cannot be generated because there are no CSO groups.");
+		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOGroupTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there are no CSO groups.");
 		return false;
 	}
 	for (unsigned int i=0; i < _inputCSOs->numGroups(); i++) {
@@ -465,7 +470,7 @@ bool CSOToRTStructure::addCSOGroupTags(DCMTree::TagPtr csoGroupTag, std::string 
 		  s << int(group->getId());
 		  label.append(s.str());
 
-		  ML_PRINT_WARNING("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "There is no CSO group label.Add default as group [number]");
+		  ML_PRINT_WARNING("mlCSOToRTStructure::addCSOGroupTags",ML_BAD_PARAMETER, "There is no CSO group label.Add default as group [number]");
 		}
 		itemTag3->addValue(label);
 		childTree->addTag(childInfo1.id(), itemTag1);
@@ -482,17 +487,17 @@ bool CSOToRTStructure::addCSOGroupTags(DCMTree::TagPtr csoGroupTag, std::string 
 //----------------------------------------------------------------------------------
 bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr contourTree) {
 	if (_inputCSOs== NULL){
-		ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
+		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
 		return false;
 	}
   unsigned int num = _inputCSOs->numCSO();
 	if (num == 0) {
-		ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
+		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
 		return false;
 	}
 	unsigned int groupNum = _inputCSOs->numGroups();
 	if (groupNum == 0) {
-		ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "RT structure file cannot be generated because there are no CSO groups.");
+		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there are no CSO groups.");
 		return false;
 	}
 	unsigned int seqSize = csoTag->sequenceItems().size();
@@ -503,7 +508,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr conto
 	for (unsigned int gInd = 0; gInd < groupNum; gInd ++) {
 		CSOGroup* group = _inputCSOs->getGroupAt(gInd);
 		if (group == NULL || group->numCSO() == 0){ 
-			ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "RT structure file cannot be generated because some groups donot contain any CSOs.");
+			ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because some groups donot contain any CSOs.");
 			return false;
 		}
 		DCMTree::TreePtr csoGTree(new DCMTree::Tree());
@@ -538,7 +543,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr conto
 				double z = sp->worldPosition[2];
 				string refUID = getRefUID(z);
 				if (refUID.empty()){ 
-				  ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "There are no matching slices for a CSO." + cso->getId());
+				  ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "There are no matching slices for a CSO." + cso->getId());
 				  return false;
 				}
 				DCMTree::TreePtr csoCTree(new DCMTree::Tree());
@@ -567,7 +572,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr conto
 				}
 				childGTag->addSequenceItem(csoCTree);
 			}else {
-				 ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "CSO must be in one plane to proceed.");
+				 ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "CSO must be in one plane to proceed.");
 				 return false;
 			 }
 		}
