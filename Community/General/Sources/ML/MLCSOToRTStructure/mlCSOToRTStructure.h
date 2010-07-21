@@ -29,9 +29,6 @@
 #include "DCMTree_Value.h"
 #include "DCMTree_Unicode.h"
 #include "DCMTree_Writer.h"
-#include <dcmtree_dicomtags.h> 
-#include <dcmtree_exception.h> 
-#include <dcmtree_message.h> 
 #include "RTStructure.h"
 
 
@@ -60,13 +57,13 @@ public:
   //! Configures (in)validation handling of inputs which are not connected or up to date.
   static std::map<std::string, std::string>  _modalitySOPClassUIDMap;
   void activateAttachments ();
-  void setValidFld(bool valid) {_validFld->setToggleValue(valid);}  
+  void setValidFld(bool valid) {_validFld->setToggleValue(valid);}
   static void setValid(CSOToRTStructure* obj);
   //! Locking variable...
   bool _isInNotificationCB;
    //! update generated Tree
   void updateGenTreeHeader(PagedImg *img);
-  
+
 private:
 
   BaseField			*_inListFld;
@@ -80,11 +77,11 @@ private:
 
   //map of SOPInstUIDs and position
   std::map< float, std::string>  _mSOPInstUIDs;
-  
+
    //! input DCM File name
   StringField		*_rtStructFileFld;
   float             _voxelSizeZ;
-  
+
   //! private functions
   //! combine general headers
   bool combineHeader();
@@ -110,8 +107,8 @@ private:
   void addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreePtr RTROIObSeq);
   //! set valid Field
   void setValidField();
- 
- 
+
+
 
    //! Can be notified from anywhere in the network.
   static void CSOListNotifyObserverCB(void* userData, int notificationFlag);
