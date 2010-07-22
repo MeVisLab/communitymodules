@@ -11,6 +11,8 @@ MatlabScriptWrapper yourself. The basic steps for doing this are explained below
   - Python 2.5 (Python 3.0 or higher will not work).
   - A local installation of Matlab. 
 
+  - Linux only: the C Shell csh
+  
   If you use Windows, the free Visual Studio Express version may be used
   as compiler.
   
@@ -42,8 +44,8 @@ required for Mac OS X or Linux.
    
    - That you started the Release mode of MeVisLab if you compiled in release mode,
      or in Debug mode if you compiled in debug mode.
-   - That the path to the Matlab DLL-files is known to the system. Under Windows, you may have to modify the
-     PATH environment variable manually (this has been reported with the Matlab 2009 versions). The Matlab
+   - That the path to the Matlab DLL-files is not known to the system. Under Windows, you may have to add the path
+     to the Matlab DLL-files to the PATH environment variable manually. The Matlab
      DLL files are found in a subdirectory in the $MATLABROOT$/bin/ directory, e.g., in
      C:\Program Files\MATLAB\R2007b\bin\win32
      Make sure that this directory is in the PATH environment variable and restart MeVisLab after the PATH variable
@@ -55,7 +57,6 @@ required for Mac OS X or Linux.
    On Linux this can be done with /usr/bin/ldd
    
 If you experience troubles, please search the MeVisLab forum http://www.mevis-research.de/cgi-bin/discus/discus.cgi
-
 
 
 General hints:
