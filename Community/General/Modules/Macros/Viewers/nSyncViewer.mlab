@@ -489,8 +489,8 @@ module Reformat {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "-44 218 456 602"
-        sizeHint = "456 602"
+        geometry = "232 190 414 550"
+        sizeHint = "414 550"
         wasOpen = no
         wasActive = no
       }
@@ -505,7 +505,6 @@ module Reformat {
     useInventorComposition = FALSE
     composeMatrix = TRUE
     scale = "1 1 1"
-    rotationAngles = "0 0 0"
     rotation = "0 0 1 0"
     translation = "0 0 0"
     center = "0 0 0"
@@ -514,7 +513,6 @@ module Reformat {
     autoCenter = TRUE
     interpolation = Trilinear
     memoryAccess = Global
-    isVectorUpdateEnabled = FALSE
   }
 }
 module Bypass {
@@ -654,8 +652,9 @@ module OrthoView2D {
     useGlobalInputImage = TRUE
     snapToCenter = FALSE
     alternCubeLayout = FALSE
+    timePoint = 0
     borderOn = TRUE
-    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     greyWidth = 1
     greyCenter = 1
     annotationOn = TRUE
@@ -702,7 +701,6 @@ connections  {
   In10.noBypass = In9.noBypass
   In9.noBypass = In8.noBypass
   In8.noBypass = In7.noBypass
-  SoGroup.children = ""
   In7.noBypass = In6.noBypass
   In6.noBypass = In5.noBypass
   In5.noBypass = In4.noBypass
@@ -710,7 +708,6 @@ connections  {
   In3.noBypass = In2.noBypass
   In2.noBypass = In1.noBypass
   In1.noBypass = In0.noBypass
-  Dummy.children = ""
   OrthoView2D0.image = In0.output0
   OrthoView2D0.worldPosition = SyncPos.vector2
 }

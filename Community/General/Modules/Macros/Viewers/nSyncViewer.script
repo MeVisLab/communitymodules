@@ -187,7 +187,7 @@ Window Viewer {
     }
     DynamicFrame { name = ViewerFrame autoSize = Yes }
   }
-  wakeupCommand = NumberOfInputChanged
+  Execute = NumberOfInputChanged
   FieldListener numberOfInputs { command = NumberOfInputChanged }
   FieldListener singleInvInput { command = NumberOfInputChanged }
 }
