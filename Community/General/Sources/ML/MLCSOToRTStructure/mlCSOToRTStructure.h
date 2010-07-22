@@ -15,13 +15,13 @@
 
 
 // Local includes
-#include <DCMTree_UIDGenerator.h>
+#include "DCMTree_UIDGenerator.h"
 #include "MLCSOToRTStructureSystem.h"
 #include <CSOBase/CSOList.h>
 
 // ML includes
 #include "mlOperatorIncludes.h"
-#include <DCMTree_Lib.h>
+#include "DCMTree_Lib.h"
 #include "DCMTree_IOParameter.h"
 #include "DCMTree_Reader.h"
 #include "DCMTree_Dict.h"
@@ -29,8 +29,10 @@
 #include "DCMTree_Value.h"
 #include "DCMTree_Unicode.h"
 #include "DCMTree_Writer.h"
+#include "DCMTree_Exception.h" 
+#include "DCMTree_Message.h" 
+#include "DCMTree_DicomTags.h" 
 #include "RTStructure.h"
-
 
 
 ML_START_NAMESPACE

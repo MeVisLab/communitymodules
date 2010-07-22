@@ -13,15 +13,6 @@
 #ifndef __mlRTStructure_H
 #define __mlRTStructure_H
 #include "MLCSOToRTStructureSystem.h"
-#include <DCMTree_Lib.h>
-#include "DCMTree_IOParameter.h"
-#include "DCMTree_Reader.h"
-#include "DCMTree_Dict.h"
-#include "DCMTree_Tag.h"
-#include "DCMTree_Value.h"
-#include "DCMTree_Unicode.h"
-#include "DCMTree_Writer.h"
-#include <CSOBase/CSOList.h>
 #include "mlBase.h"
 
 ML_START_NAMESPACE

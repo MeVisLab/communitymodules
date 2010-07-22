@@ -412,7 +412,7 @@ bool CSOToRTStructure::combineHeader()
 //----------------------------------------------------------------------------------
 void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreePtr /*RTROIObSeq*/) 
 {
-	unsigned int seqSize = RTROIObTag->sequenceItems().size();
+	size_t seqSize = RTROIObTag->sequenceItems().size();
 	if (seqSize != 0) {
 		RTROIObTag->sequenceItems().erase(RTROIObTag->sequenceItems().begin(), 
 		RTROIObTag->sequenceItems().end());
@@ -500,7 +500,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there are no CSO groups.");
 		return false;
 	}
-	unsigned int seqSize = csoTag->sequenceItems().size();
+	size_t seqSize = csoTag->sequenceItems().size();
 	if (seqSize != 0) {
 		csoTag->sequenceItems().erase(csoTag->sequenceItems().begin(), 
 		csoTag->sequenceItems().end());
@@ -527,7 +527,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 		DCMTree::TreePtr childGTree(new DCMTree::Tree());
 		addSequence(csoGTree, childGTree, DCMTree::TagId(0x3006,0x0040));
 		DCMTree::TagPtr childGTag = csoGTree->getTag_rw(DCMTree::TagId(0x3006, 0x0040));
-		unsigned int seqGSize = childGTag->sequenceItems().size();
+		size_t seqGSize = childGTag->sequenceItems().size();
 		if (seqGSize != 0) {
 			childGTag->sequenceItems().erase(childGTag->sequenceItems().begin(), 
 			childGTag->sequenceItems().end());
@@ -555,7 +555,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 				addTag(seqTree, DCMTree::TagId(0x0008,0x1150),_refSopClassUID, DCMTree::UI); 
 				addTag(seqTree, DCMTree::TagId(0x0008,0x1155),refUID, DCMTree::UI); 
 				addTag(csoCTree, DCMTree::TagId(0x3006,0x0042),"CLOSED_PLANAR", DCMTree::CS); 
-				unsigned int ptNum = 0;
+				size_t ptNum = 0;
 				for (unsigned int i = 0; i < cso->numPathPointLists(); i ++){
 				  ml::CSOPathPoints* pt = cso->getPathPointsAt(i);
 				  std::vector<vec3> vec;
