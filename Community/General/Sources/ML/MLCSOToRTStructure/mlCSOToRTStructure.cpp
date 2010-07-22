@@ -410,7 +410,7 @@ bool CSOToRTStructure::combineHeader()
 //----------------------------------------------------------------------------------
 //! Add the RTR IOB Tags in RT structure
 //----------------------------------------------------------------------------------
-void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreePtr RTROIObSeq) 
+void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreePtr /*RTROIObSeq*/) 
 {
 	unsigned int seqSize = RTROIObTag->sequenceItems().size();
 	if (seqSize != 0) {
@@ -485,7 +485,7 @@ bool CSOToRTStructure::addCSOGroupTags(DCMTree::TagPtr csoGroupTag, std::string 
 //----------------------------------------------------------------------------------
 //! add CSO Tags into RT structure
 //----------------------------------------------------------------------------------
-bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr contourTree) {
+bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*contourTree*/) {
 	if (_inputCSOs== NULL){
 		ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because there is no input CSOs.");
 		return false;

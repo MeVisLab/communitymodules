@@ -19,8 +19,7 @@ WARN = HIGH
 # add used projects here (see included pri files below for available projects)
 CONFIG += dll ML MLCSO MLDicomTree_OFFIS MLDicomTreeImagePropertyExtension
 
-MLAB_PACKAGES += STUMevisApp_General \
-                 MeVisLab_Standard
+MLAB_PACKAGES += MeVisLab_Standard
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
 include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)

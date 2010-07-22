@@ -21,9 +21,6 @@
 #include "DCMTree_Value.h"
 #include "DCMTree_Unicode.h"
 #include "DCMTree_Writer.h"
-#include <dcmtree_dicomtags.h> 
-#include <dcmtree_exception.h> 
-#include <dcmtree_message.h> 
 #include <CSOBase/CSOList.h>
 #include "mlBase.h"
 
