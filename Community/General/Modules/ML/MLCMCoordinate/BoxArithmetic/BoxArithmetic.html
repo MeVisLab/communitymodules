@@ -22,7 +22,8 @@
 </blockquote>
 
 <h3><a NAME=Details></a>Details</h3>
-<blockquote>Box0 and Box1 can be obtained form input0 and input1 respectively or from the scalar, vector or box fileds. If you select input0 or input1, UseVoxelCenter can be used to use (0.5,0.5,0.5) as origin of the image (seems to be needed when connecting the output box to a SubImage module).<br/>
+<blockquote>Box0 and Box1 can be obtained form input0 and input1 respectively or from the scalar, vector or box fileds. If you select input0 or input1, UseVoxelCenter can be used to use (0.5,0.5,0.5) as origin of the image (seems to be needed when connecting the output box to a SubImage module). After Box0 an Box1 are defined they can be converted from world to voxel or vice versa according to the matrix of the corresponding input image and they can be corrected, by checking the appropriate chekboxes.<br/>
+<br/>
 The following operations are available:
 <table>
 <tr><td>ExpandScalar:</td><td>Box.v1 = Box0.v1-Constant (applied to all components)</td></tr>

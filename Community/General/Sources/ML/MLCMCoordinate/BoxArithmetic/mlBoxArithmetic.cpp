@@ -69,6 +69,18 @@ BoxArithmetic::BoxArithmetic ()
   f_CorrectInput1 = fieldC->addBool( "correctInput1" );
   f_CorrectInput1->setBoolValue( false );
 
+  f_V2WInput0 = fieldC->addBool( "V2WInput0" );
+  f_V2WInput0->setBoolValue( false );
+
+  f_V2WInput1 = fieldC->addBool( "V2WInput1" );
+  f_V2WInput1->setBoolValue( false );
+
+  f_W2VInput0 = fieldC->addBool( "W2VInput0" );
+  f_W2VInput0->setBoolValue( false );
+
+  f_W2VInput1 = fieldC->addBool( "W2VInput1" );
+  f_W2VInput1->setBoolValue( false );
+
   f_UseVoxelCenter = fieldC->addBool( "useVoxelCenter" );
   f_UseVoxelCenter->setBoolValue( false );
 
@@ -131,12 +143,26 @@ BoxArithmetic::BoxArithmetic ()
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field field.
 //----------------------------------------------------------------------------------
-void BoxArithmetic::handleNotification (Field * /*field*/)
+void BoxArithmetic::handleNotification (Field *field)
 {
   ML_TRACE_IN("BoxArithmetic::handleNotification ()");
 
   if (m_LockUpdate) {return;}
   m_LockUpdate = true;
+
+  if ( field == f_W2VInput0 && f_W2VInput0->getBoolValue() ){
+    f_V2WInput0->setBoolValue( false );
+  }
+  if ( field == f_W2VInput1 && f_W2VInput1->getBoolValue() ){
+    f_V2WInput1->setBoolValue( false );
+  }
+
+  if ( field == f_V2WInput0 && f_V2WInput0->getBoolValue() ){
+    f_W2VInput0->setBoolValue( false );
+  }
+  if ( field == f_V2WInput1 && f_V2WInput1->getBoolValue() ){
+    f_W2VInput1->setBoolValue( false );
+  }
 
   SubImgBoxf newBox = SubImgBoxf();
   SubImgBoxf box0 = SubImgBoxf();
@@ -185,6 +211,32 @@ void BoxArithmetic::handleNotification (Field * /*field*/)
       break;
     default:
       break;
+  }
+  if ( f_W2VInput0->getBoolValue() ){
+    PagedImg *inImage0 = getNonDummyUpdatedInImg( 0 );
+    if ( inImage0 ){
+      const Vector3 v1 = inImage0->mapWorldToVoxel(Vector3(box0.v1[0],box0.v1[1],box0.v1[2]));
+      const Vector3 v2 = inImage0->mapWorldToVoxel(Vector3(box0.v2[0],box0.v2[1],box0.v2[2]));
+      box0.v1[0] = v1[0];
+      box0.v1[1] = v1[1];
+      box0.v1[2] = v1[2];
+      box0.v2[0] = v2[0];
+      box0.v2[1] = v2[1];
+      box0.v2[2] = v2[2];
+    }
+  }
+  if ( f_V2WInput0->getBoolValue() ){
+    PagedImg *inImage0 = getNonDummyUpdatedInImg( 0 );
+    if ( inImage0 ){
+      const Vector3 v1 = inImage0->mapVoxelToWorld(Vector3(box0.v1[0],box0.v1[1],box0.v1[2]));
+      const Vector3 v2 = inImage0->mapVoxelToWorld(Vector3(box0.v2[0],box0.v2[1],box0.v2[2]));
+      box0.v1[0] = v1[0];
+      box0.v1[1] = v1[1];
+      box0.v1[2] = v1[2];
+      box0.v2[0] = v2[0];
+      box0.v2[1] = v2[1];
+      box0.v2[2] = v2[2];
+    }
   }
   if ( f_CorrectInput0->getBoolValue() ){
     box0.correct();
@@ -236,6 +288,32 @@ void BoxArithmetic::handleNotification (Field * /*field*/)
       }
     default:
       break;
+  }
+  if ( f_W2VInput1->getBoolValue() ){
+    const PagedImg *inImage1 = getNonDummyUpdatedInImg( 0 );
+    if ( inImage1 ){
+      const Vector3 v1 = inImage1->mapWorldToVoxel(Vector3(box1.v1[0],box1.v1[1],box1.v1[2]));
+      const Vector3 v2 = inImage1->mapWorldToVoxel(Vector3(box1.v2[0],box1.v2[1],box1.v2[2]));
+      box1.v1[0] = v1[0];
+      box1.v1[1] = v1[1];
+      box1.v1[2] = v1[2];
+      box1.v2[0] = v2[0];
+      box1.v2[1] = v2[1];
+      box1.v2[2] = v2[2];
+    }
+  }
+  if ( f_V2WInput0->getBoolValue() ){
+    const PagedImg *inImage1 = getNonDummyUpdatedInImg( 1 );
+    if ( inImage1 ){
+      const Vector3 v1 = inImage1->mapVoxelToWorld(Vector3(box1.v1[0],box1.v1[1],box1.v1[2]));
+      const Vector3 v2 = inImage1->mapVoxelToWorld(Vector3(box1.v2[0],box1.v2[1],box1.v2[2]));
+      box1.v1[0] = v1[0];
+      box1.v1[1] = v1[1];
+      box1.v1[2] = v1[2];
+      box1.v2[0] = v2[0];
+      box1.v2[1] = v2[1];
+      box1.v2[2] = v2[2];
+    }
   }
   if ( f_CorrectInput1->getBoolValue() ){
     box1.correct();

@@ -63,12 +63,16 @@ MLModule BoxArithmetic {
           Label { title = "Box0:" alignGroupX = c1 }
           ButtonBar inputMode0    { show = Radio    }
           CheckBox  correctInput0 { title = Correct }
+          CheckBox  w2VInput0     { title = w2v }
+          CheckBox  v2WInput0     { title = v2w }
         }
         Horizontal { 
           alignX = Left
           Label { title = "Box1:" alignGroupX = c1 }
           ButtonBar inputMode1    { show = Radio    }
           CheckBox  correctInput1 { title = Correct }
+          CheckBox  w2VInput1     { title = w2v }
+          CheckBox  v2WInput1     { title = v2w }
         }
       }
       Box "Scalar Input" {
@@ -116,8 +120,14 @@ MLModule BoxArithmetic {
         Field outputBox0 { title = Box0 }
         Field outputBox1 { title = Box1 }
         Horizontal {
-          Field outputBox    { title = Box: }
-          CheckBox correctBox { title = correct }
+          Horizontal {
+            Field outputBox    { title = Box: }
+          }
+          Horizontal {
+            alignX = Right
+            expandX = No
+            CheckBox correctBox { title = correct }
+          }
         }
         Field outputExtent { title = Size: }
         Field outV1        { title = v1: }

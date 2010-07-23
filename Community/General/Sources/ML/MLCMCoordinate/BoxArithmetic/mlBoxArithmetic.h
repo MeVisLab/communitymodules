@@ -58,7 +58,7 @@ public:
   BoxArithmetic ();
 
   //! Handle field changes of the field field.
-  virtual void handleNotification (Field * /*field*/);
+  virtual void handleNotification (Field * field);
 
 private:
 
@@ -67,6 +67,10 @@ private:
   SubImgBoxfField *f_InBox1;
   BoolField       *f_CorrectInput0;
   BoolField       *f_CorrectInput1;
+  BoolField       *f_V2WInput0;
+  BoolField       *f_V2WInput1;
+  BoolField       *f_W2VInput0;
+  BoolField       *f_W2VInput1;
   BoolField       *f_UseVoxelCenter;
   SubImgBoxfField *f_OutBox;
   SubImgBoxfField *f_OutBox0;
