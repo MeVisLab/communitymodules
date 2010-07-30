@@ -34,6 +34,7 @@ AnalyzeHeader::AnalyzeHeader() : BaseOp(0, 0) {
 
   (_dimensionsFld = getFieldContainer()->addVec4f("dimensions"))->setVec4fValue(vec4(0.0f,0.0f,0.0f,0.0f));
   (_voxelSizeFld = getFieldContainer()->addVec4f("voxelSize"))->setVec4fValue(vec4(0.0f,0.0f,0.0f,0.0f));
+  (_originFld = getFieldContainer()->addVec3f("origin"))->setVec3fValue(vec3(0.0f,0.0f,0.0f));
         
   handleNotificationOn();
 }
@@ -169,6 +170,7 @@ void AnalyzeHeader::handleNotification (Field *field) {
     _funused3Fld->setFloatValue(funused3);
     _dimensionsFld->setVec4fValue(vec4(d[1],d[2],d[3],d[4]));
     _voxelSizeFld->setVec4fValue(vec4(pixdim[1],pixdim[2],pixdim[3],pixdim[4]));
+    _originFld->setVec3fValue(vec3(origin[0],origin[1],origin[2]));
 
   }
 

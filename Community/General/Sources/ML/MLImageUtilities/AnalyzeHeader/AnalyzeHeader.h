@@ -39,6 +39,7 @@ private:
 
   Vec4fField *_dimensionsFld;
   Vec4fField *_voxelSizeFld;
+  Vec3fField *_originFld;
 
   FloatField *_funused1Fld;
   FloatField *_funused2Fld;
