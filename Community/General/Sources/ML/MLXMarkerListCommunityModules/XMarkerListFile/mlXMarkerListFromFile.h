@@ -60,6 +60,8 @@ public:
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field *field);
 
+  virtual void activateAttachments();
+
 private:
   // ----------------------------------------------------------
   //@{ \name Module field declarations

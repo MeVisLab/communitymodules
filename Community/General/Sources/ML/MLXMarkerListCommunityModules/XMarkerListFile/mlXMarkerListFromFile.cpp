@@ -179,5 +179,9 @@ void XMarkerListFromFile::handleNotification (Field *field)
     _outputXMarkerListFld->notifyAttachments();
   }
 }
-
+void XMarkerListFromFile::activateAttachments()
+{
+  this->handleNotification( _filenameFld );
+  BaseOp::activateAttachments();
+}
 ML_END_NAMESPACE
