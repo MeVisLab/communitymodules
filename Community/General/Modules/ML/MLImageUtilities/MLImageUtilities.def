@@ -64,6 +64,7 @@ MLModule AnalyzeHeader {
       Separator { direction = Horizontal }
       Field dimensions { edit = NO minLength = 10 }
       Field voxelSize { edit = NO minLength = 10 }
+      Field origin { edit = NO minLength = 10 }
     }
   }
 } // MLModule AnalyzeHeader
