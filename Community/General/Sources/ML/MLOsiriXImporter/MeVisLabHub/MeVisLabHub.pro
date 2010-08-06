@@ -1,5 +1,7 @@
 # MeVisLabHub
 
+TEMPLATE = lib
+
 macx:release:!debug {
 
   # build the plugin using xcodebuild
