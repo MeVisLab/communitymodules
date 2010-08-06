@@ -11,7 +11,7 @@
 #include <Inventor/SbLinear.h>
 #include <Inventor/sensors/SoNodeSensor.h>
 
-#include <GL/gl.h>
+#include <mlOpenGL.h>
 
 SO_NODE_SOURCE(SoClearGLBuffers);
 

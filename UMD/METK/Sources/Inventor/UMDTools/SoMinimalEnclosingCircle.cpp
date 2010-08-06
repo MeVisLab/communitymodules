@@ -33,7 +33,7 @@
 
 #include "XVLeaveScope.h"
 
-#include <GL/gl.h>
+#include <mlOpenGL.h>
 
 SO_NODE_SOURCE(SoMinimalEnclosingCircle)
 

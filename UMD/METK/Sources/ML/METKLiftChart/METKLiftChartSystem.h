@@ -48,7 +48,6 @@
 #include <string>
 //#include <FLOAT.H>
 
-#include <GL/gl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
