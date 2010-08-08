@@ -1,6 +1,7 @@
 # MeVisLabHub
 
 TEMPLATE = lib
+CONFIG -= qt
 
 macx:release:!debug {
 
