@@ -2,6 +2,7 @@
 
 TEMPLATE = lib
 CONFIG -= qt
+LIBS += -framework CoreFoundation
 
 macx:release:!debug {
 
