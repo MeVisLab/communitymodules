@@ -1009,10 +1009,11 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   std::string inWEMStr = _inWEMNameFld->getStringValue();
   
   // Strings to evaluate.
-  std::ostringstream setNodes, setFaces, setNormals;
+  std::ostringstream setNodes, setFaces, setNormals, setLUT;
   setNodes << inWEMStr.c_str() << "{1}.Vertices=[";
   setFaces << inWEMStr.c_str() << "{1}.Faces=[";
   setNormals << inWEMStr.c_str() << "{1}.VertexNormals=[";
+  setLUT << inWEMStr.c_str() << "{1}.LUT=[";
   
   // Loop over all patches -> flatten WEM
   for (i = 0; i < inputWEM->getNumWEMPatches(); i ++) {
@@ -1057,17 +1058,29 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
       setNormals << std::dec << normal[0] << "," << std::dec << normal[1] << "," << std::dec << normal[2] << ";";
     }
     
+    // Get LUT primitive value list
+    WEMPrimitiveValueList *pvl = NULL;
+    pvl = patch->getPrimitiveValueList("LUT");
+    if (pvl->isValid()) {
+      const unsigned int numValues = pvl->getNumValues();
+      for (j = 0; j < numValues; j ++) {
+        setLUT << pvl->getValue(j) << ";";
+      }      
+    }
+    
     totalNumNodes += numNodes + numTriangulatedNodes;
   }
   
   setNodes << "]";
   setFaces << "]+1";
   setNormals << "]";
+  setLUT << "]";
   
   // Put WEM into matlab structure.
   engEvalString(m_pEngine, setNodes.str().c_str());
   engEvalString(m_pEngine, setFaces.str().c_str());
   engEvalString(m_pEngine, setNormals.str().c_str());
+  engEvalString(m_pEngine, setLUT.str().c_str());
 }
 
 //! Gets structure from Matlab and copies results into output WEM.
