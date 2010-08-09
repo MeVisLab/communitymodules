@@ -67,21 +67,6 @@ public:
   //! Sets properties of the output image at output outIndex.
   virtual void calcOutImageProps (int outIndex);
 
-  //! Returns the input image region required to calculate a region of an output image.
-  //! \param inIndex      The input of which the regions shall be calculated.
-  //! \param outSubImgBox The region of the output image for which the required input region
-  //!                     shall be calculated.
-  //! \param outIndex     The index of the output image for which the required input region
-  //!                     shall be calculated.
-  //! \return Region of input image needed to compute the region outSubImgBox on output outIndex.
-  virtual SubImgBox calcInSubImageBox (int inIndex, const SubImgBox &outSubImgBox, int outIndex);
-
-  //! Called to determine properties props of input image region (tile) of input inIndex
-  //! required to calculate an output image region (page) of output outIndex.
-  virtual void calcInSubImageProps (int inIndex,
-    InSubImageProps &props,
-    int outIndex);
-
   //! Calculates page outSubImg of output image with index outIndex by using inSubimgs.
   //! \param outSubImg The subimage of output image outIndex calculated from inSubImgs.
   //! \param outIndex  The index of the output the subimage is calculated for.

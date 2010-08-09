@@ -327,29 +327,6 @@ void METK2DLabeling::calcOutImageProps (int /*outIndex*/)
 }
 
 //----------------------------------------------------------------------------------
-//! Returns the input image region required to calculate a region of an output image.
-//----------------------------------------------------------------------------------
-SubImgBox METK2DLabeling::calcInSubImageBox (int /*inIndex*/, const SubImgBox &outSubImgBox, int /*outIndex*/)
-{
-  ML_TRACE_IN("METK2DLabeling::calcInSubImageBox ()");
-
-  // Return region of input image inIndex needed to compute region
-  // outSubImgBox of output image outIndex.
-  return outSubImgBox;
-}
-
-//----------------------------------------------------------------------------------
-//! Called to determine properties props of input image region (tile) of input inIndex
-//! required to calculate an output image region (page) of output outIndex.
-//----------------------------------------------------------------------------------
-void METK2DLabeling::calcInSubImageProps(int /*inIndex*/,
-                     InSubImageProps& /*props*/,
-                     int /*outIndex*/)
-{
-  ML_TRACE_IN("METK2DLabeling::calcInSubImageProps ()");
-}
-
-//----------------------------------------------------------------------------------
 //! Calls correctly typed (template) version of calcOutSubImage to calculate page
 //! outSubImg of output image with index outSubImg.
 //----------------------------------------------------------------------------------
