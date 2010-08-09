@@ -215,8 +215,8 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_W2VInput0->getBoolValue() ){
     PagedImg *inImage0 = getNonDummyUpdatedInImg( 0 );
     if ( inImage0 ){
-      const Vector3 v1 = inImage0->mapWorldToVoxel(Vector3(box0.v1[0],box0.v1[1],box0.v1[2]));
-      const Vector3 v2 = inImage0->mapWorldToVoxel(Vector3(box0.v2[0],box0.v2[1],box0.v2[2]));
+      const vec3 v1 = inImage0->mapWorldToVoxel(vec3(box0.v1[0],box0.v1[1],box0.v1[2]));
+      const vec3 v2 = inImage0->mapWorldToVoxel(vec3(box0.v2[0],box0.v2[1],box0.v2[2]));
       box0.v1[0] = v1[0];
       box0.v1[1] = v1[1];
       box0.v1[2] = v1[2];
@@ -228,8 +228,8 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_V2WInput0->getBoolValue() ){
     PagedImg *inImage0 = getNonDummyUpdatedInImg( 0 );
     if ( inImage0 ){
-      const Vector3 v1 = inImage0->mapVoxelToWorld(Vector3(box0.v1[0],box0.v1[1],box0.v1[2]));
-      const Vector3 v2 = inImage0->mapVoxelToWorld(Vector3(box0.v2[0],box0.v2[1],box0.v2[2]));
+      const vec3 v1 = inImage0->mapVoxelToWorld(vec3(box0.v1[0],box0.v1[1],box0.v1[2]));
+      const vec3 v2 = inImage0->mapVoxelToWorld(vec3(box0.v2[0],box0.v2[1],box0.v2[2]));
       box0.v1[0] = v1[0];
       box0.v1[1] = v1[1];
       box0.v1[2] = v1[2];
@@ -292,8 +292,8 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_W2VInput1->getBoolValue() ){
     const PagedImg *inImage1 = getNonDummyUpdatedInImg( 0 );
     if ( inImage1 ){
-      const Vector3 v1 = inImage1->mapWorldToVoxel(Vector3(box1.v1[0],box1.v1[1],box1.v1[2]));
-      const Vector3 v2 = inImage1->mapWorldToVoxel(Vector3(box1.v2[0],box1.v2[1],box1.v2[2]));
+      const vec3 v1 = inImage1->mapWorldToVoxel(vec3(box1.v1[0],box1.v1[1],box1.v1[2]));
+      const vec3 v2 = inImage1->mapWorldToVoxel(vec3(box1.v2[0],box1.v2[1],box1.v2[2]));
       box1.v1[0] = v1[0];
       box1.v1[1] = v1[1];
       box1.v1[2] = v1[2];
@@ -305,8 +305,8 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_V2WInput0->getBoolValue() ){
     const PagedImg *inImage1 = getNonDummyUpdatedInImg( 1 );
     if ( inImage1 ){
-      const Vector3 v1 = inImage1->mapVoxelToWorld(Vector3(box1.v1[0],box1.v1[1],box1.v1[2]));
-      const Vector3 v2 = inImage1->mapVoxelToWorld(Vector3(box1.v2[0],box1.v2[1],box1.v2[2]));
+      const vec3 v1 = inImage1->mapVoxelToWorld(vec3(box1.v1[0],box1.v1[1],box1.v1[2]));
+      const vec3 v2 = inImage1->mapVoxelToWorld(vec3(box1.v2[0],box1.v2[1],box1.v2[2]));
       box1.v1[0] = v1[0];
       box1.v1[1] = v1[1];
       box1.v1[2] = v1[2];
