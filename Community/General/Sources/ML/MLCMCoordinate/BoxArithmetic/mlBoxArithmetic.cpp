@@ -237,8 +237,16 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_V2WInput0->getBoolValue() ){
     PagedImg *inImage0 = getNonDummyUpdatedInImg( 0 );
     if ( inImage0 ){
+      #if ML_MAJOR_VERSION >= 2
+      // MeVisLab version >= MeVisLab2.1.
       const vec3 v1 = inImage0->mapVoxelToWorld(vec3(box0.v1[0],box0.v1[1],box0.v1[2]));
       const vec3 v2 = inImage0->mapVoxelToWorld(vec3(box0.v2[0],box0.v2[1],box0.v2[2]));
+      #else
+      // Old MeVisLab version < MeVisLab 2.1.
+      vec3 v1, v2;
+      inImage0->transformToWorldCoord(vec3(box0.v1[0],box0.v1[1],box0.v1[2]), v1);
+      inImage0->transformToWorldCoord(vec3(box0.v2[0],box0.v2[1],box0.v2[2]), v2);
+      #endif
       box0.v1[0] = v1[0];
       box0.v1[1] = v1[1];
       box0.v1[2] = v1[2];
