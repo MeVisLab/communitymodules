@@ -17,7 +17,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLCSO MLDicomTree_OFFIS MLDicomTreeImagePropertyExtension boost_filesystem
+CONFIG += dll ML MLCSO MLDicomTree_OFFIS MLDicomTreeImagePropertyExtension boost_filesystem dcmtk
 
 MLAB_PACKAGES += MeVisLab_Standard
 
