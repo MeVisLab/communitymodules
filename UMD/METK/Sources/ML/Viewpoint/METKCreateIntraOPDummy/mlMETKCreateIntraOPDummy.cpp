@@ -71,7 +71,7 @@ void METKCreateIntraOPDummy::handleNotification (Field *field)
 		usedValues = ";";
 		isCalculating = true;
 		voxelsPerValue.getTable()->clear();
-		processAllPages(-1,0);
+		processAllPages(-1);
 		std::cout << usedValues << std::endl;
 		createMETKObjects();
 		isCalculating = false;
