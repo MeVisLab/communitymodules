@@ -38,6 +38,7 @@
 
 // Local includes
 #include "mlBoxArithmetic.h"
+#include "mlVersion.h"
 
 ML_START_NAMESPACE
 
@@ -215,8 +216,16 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_W2VInput0->getBoolValue() ){
     PagedImg *inImage0 = getNonDummyUpdatedInImg( 0 );
     if ( inImage0 ){
+      #if ML_MAJOR_VERSION >= 2
+      // MeVisLab version >= MeVisLab2.1.
       const vec3 v1 = inImage0->mapWorldToVoxel(vec3(box0.v1[0],box0.v1[1],box0.v1[2]));
       const vec3 v2 = inImage0->mapWorldToVoxel(vec3(box0.v2[0],box0.v2[1],box0.v2[2]));
+      #else
+      // Old MeVisLab version < MeVisLab 2.1.
+      vec3 v1, v2;
+      inImage0->transformToVoxelCoord(vec3(box0.v1[0],box0.v1[1],box0.v1[2]), v1);
+      inImage0->transformToVoxelCoord(vec3(box0.v2[0],box0.v2[1],box0.v2[2]), v2);
+      #endif
       box0.v1[0] = v1[0];
       box0.v1[1] = v1[1];
       box0.v1[2] = v1[2];
@@ -292,8 +301,16 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_W2VInput1->getBoolValue() ){
     const PagedImg *inImage1 = getNonDummyUpdatedInImg( 0 );
     if ( inImage1 ){
+      #if ML_MAJOR_VERSION >= 2
+      // MeVisLab version >= MeVisLab2.1.
       const vec3 v1 = inImage1->mapWorldToVoxel(vec3(box1.v1[0],box1.v1[1],box1.v1[2]));
       const vec3 v2 = inImage1->mapWorldToVoxel(vec3(box1.v2[0],box1.v2[1],box1.v2[2]));
+      #else
+      // Old MeVisLab version < MeVisLab 2.1.
+      vec3 v1, v2;
+      inImage1->transformToVoxelCoord(vec3(box1.v1[0],box1.v1[1],box1.v1[2]), v1);
+      inImage1->transformToVoxelCoord(vec3(box1.v2[0],box1.v2[1],box1.v2[2]), v2);
+      #endif
       box1.v1[0] = v1[0];
       box1.v1[1] = v1[1];
       box1.v1[2] = v1[2];
@@ -305,8 +322,16 @@ void BoxArithmetic::handleNotification (Field *field)
   if ( f_V2WInput0->getBoolValue() ){
     const PagedImg *inImage1 = getNonDummyUpdatedInImg( 1 );
     if ( inImage1 ){
+      #if ML_MAJOR_VERSION >= 2
+      // MeVisLab version >= MeVisLab2.1.
       const vec3 v1 = inImage1->mapVoxelToWorld(vec3(box1.v1[0],box1.v1[1],box1.v1[2]));
       const vec3 v2 = inImage1->mapVoxelToWorld(vec3(box1.v2[0],box1.v2[1],box1.v2[2]));
+      #else
+      // Old MeVisLab version < MeVisLab 2.1.
+      vec3 v1, v2;
+      inImage1->transformToWorldCoord(vec3(box1.v1[0],box1.v1[1],box1.v1[2]), v1);
+      inImage1->transformToWorldCoord(vec3(box1.v2[0],box1.v2[1],box1.v2[2]), v2);
+      #endif
       box1.v1[0] = v1[0];
       box1.v1[1] = v1[1];
       box1.v1[2] = v1[2];
