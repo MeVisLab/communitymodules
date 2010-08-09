@@ -227,7 +227,7 @@ void SegmentationEvaluationMetric::_process()
 
 
 	// process all pages
-    MLErrorCode err = processAllPages(-1,0);
+    MLErrorCode err = processAllPages(-1);
   
 	if (err==ML_RESULT_OK) {
 		
