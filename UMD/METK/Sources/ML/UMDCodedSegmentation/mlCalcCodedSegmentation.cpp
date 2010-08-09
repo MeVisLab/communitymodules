@@ -117,7 +117,7 @@ void CalcCodedSegmentation::handleNotification (Field *field)
 		replaceValues->resize(MAX_SIZE,0);		
 		addImage();		
 		renewObjectValues();		
-		int error = processAllPages(0,-1);
+		int error = processAllPages(0);
 		if (error!=0) std::cout << "processAllPages Error (add) = " << MLGetErrorCodeDescription(error) << std::endl;
     } 
 	else if (field == _fld_Reset)
@@ -128,7 +128,7 @@ void CalcCodedSegmentation::handleNotification (Field *field)
 		clearOutputImage();	
 		getOutImg(0)->setOutOfDate();
 		
-		int error = processAllPages(0,-1);
+		int error = processAllPages(0);
 		if (error!=0) std::cout << "processAllPages Error (reset) = " << MLGetErrorCodeDescription(error) << std::endl; //Das mit dem invalidieren per setOutOfDate geht nicht
 		
 		_fld_ObjectValues->setStringValue("");
