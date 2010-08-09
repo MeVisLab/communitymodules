@@ -506,7 +506,7 @@ ML_START_NAMESPACE
       TSubImgCursor<DATATYPE> outSubImage(*outImg);
     #else
       // < MeVisLab 2.1
-      TSubImg<DATATYE> &outSubImage = *outImg;
+      TSubImg<DATATYPE> &outSubImage = *outImg;
     #endif
 
     if (_codeline==NULL) {
