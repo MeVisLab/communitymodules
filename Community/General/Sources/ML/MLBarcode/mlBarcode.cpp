@@ -36,6 +36,7 @@
 
 // Include your header.
 #include "mlBarcode.h"
+#include "mlVersion.h"
 
 ML_START_NAMESPACE
 
@@ -498,8 +499,15 @@ ML_START_NAMESPACE
     // Output image (barcode) is rotated for better use in mammogramms!
 
     Vector dim = outImg->getImgExt();
-    SubImgBox loc = outImg->getBox();
     DATATYPE temp_pixelvalue=0;
+
+    #if ML_MAJOR_VERSION >= 2
+      // >= MeVisLab 2.1
+      TSubImgCursor<DATATYPE> outSubImage(*outImg);
+    #else
+      // < MeVisLab 2.1
+      TSubImg<DATATYE> &outSubImage = *outImg;
+    #endif
 
     if (_codeline==NULL) {
       makeCodeLine();
@@ -512,10 +520,10 @@ ML_START_NAMESPACE
       v.y=0;
 
       temp_pixelvalue = (DATATYPE) (_codeline[v.x]);
-      outImg->setCursorSubImgPos(v);
+      outSubImage.setCursorSubImgPos(v);
       for (v.y=0; v.y<dim.y; v.y++) {
-        *(outImg->getCursorPos()) = temp_pixelvalue;
-        outImg->moveCursorY();
+        *(outSubImage.getCursorPos()) = temp_pixelvalue;
+        outSubImage.moveCursorY();
       }
     }
 
