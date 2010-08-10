@@ -1054,7 +1054,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
         }
         
       }
-      normal = node->getNormal();
+      normal = face->getNormal();
       setNormals << std::dec << normal[0] << "," << std::dec << normal[1] << "," << std::dec << normal[2] << ";";
     }
     
@@ -1076,11 +1076,29 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   setNormals << "]";
   setLUT << "]";
   
+  std::ostringstream all;
+  all << setNodes.str() << "\n" << setFaces.str() << "\n" << setNormals.str() << "\n" << setLUT.str() << "\n";
+  
+	mwSize mw_dims = mwSize(2);
+	mwSize* mw_sz = new mwSize[2];
+	mw_sz[0] = all.str().length()+1;
+	mw_sz[1] = 1;
+  
+	mxArray * m_X = mxCreateCharArray(mw_dims,mw_sz);
+	delete mw_sz;
+  
+	if (m_X) {
+		memcpy( mxGetData( m_X ),(void*)(all.str().c_str()), all.str().length()+1);
+    if (engPutVariable(m_pEngine, "copyInputWEMToMatlab", m_X) == 0) {
+      engEvalString(m_pEngine, "eval(copyInputWEMToMatlab); clear copyInputWEMToMatlab;");
+    }
+  }
+      
   // Put WEM into matlab structure.
-  engEvalString(m_pEngine, setNodes.str().c_str());
-  engEvalString(m_pEngine, setFaces.str().c_str());
-  engEvalString(m_pEngine, setNormals.str().c_str());
-  engEvalString(m_pEngine, setLUT.str().c_str());
+  //engEvalString(m_pEngine, setNodes.str().c_str()); std::cout << "nodes" << std::endl;
+  //engEvalString(m_pEngine, setFaces.str().c_str()); std::cout << "faces" << std::endl;
+  //engEvalString(m_pEngine, setNormals.str().c_str()); std::cout << "normals" << std::endl;
+  //engEvalString(m_pEngine, setLUT.str().c_str()); std::cout << "lut" << std::endl;
 }
 
 //! Gets structure from Matlab and copies results into output WEM.
