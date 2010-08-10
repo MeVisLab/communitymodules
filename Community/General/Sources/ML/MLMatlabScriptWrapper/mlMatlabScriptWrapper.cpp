@@ -80,13 +80,13 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_inputWEMFld = fields->addBase("inputWEM"))->setBaseValue(NULL);
   (_outputWEMFld = fields->addBase("outputWEM"))->setBaseValue(_outWEM);
 
-  //! Use matlab commands in text field.
+  //! Use Matlab commands in text field.
   (_matlabScriptFld = fields->addString("matlabScript"))->setStringValue("Output0=Input0 % Type your matlab script here.");
 
-  //! Use external matlab script.
+  //! Use external Matlab script.
   (_useExternalScriptFld = fields->addBool("useExternalScript"))->setBoolValue(false);
 
-  //! Where will matlab script be dumped.
+  //! Where will Matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
 
   //! Set input and output data names used in matlab.
@@ -380,7 +380,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     _getWEMBackFromMatlab();
     
 
-    // Get scalars back from matlab. First store the current scalars so that
+    // Get scalars back from Matlab. First store the current scalars so that
     // we can check if they change. A notification is only sent upon change.
     double tmpScalars[6];
     for(int k=0; k<6; ++k) {
@@ -392,7 +392,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
         _scalarFld[k]->notifyAttachments();
       }
     }
-    // Get strings back from matlab. First store the current strings so that
+    // Get strings back from Matlab. First store the current strings so that
     // we can check if they change. A notification is only sent upon change.
     std::string tmpstrings[6];
     for(int k=0; k<6; ++k) {
@@ -405,7 +405,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       }
     }
 
-    // Get vectors back from matlab. First store the current vectors so that
+    // Get vectors back from Matlab. First store the current vectors so that
     // we can check if they change. A notification is only sent upon change.
     for(int k=0; k<6; ++k) {
       tmpstrings[k] = _vectorFld[k]->getStringValue();
@@ -417,7 +417,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       }
     }
 
-    // Get matrices back from matlab. First store the current matrices so that
+    // Get matrices back from Matlab. First store the current matrices so that
     // we can check if they change. A notification is only sent upon change.
     for(int k=0; k<3; ++k) {
       tmpstrings[k] = _matrixFld[k]->getStringValue();
@@ -446,7 +446,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
                           WEM_NOTIFICATION_REPAINT;
     ecList.push_back(ec);
     
-    _outWEM->notifyObservers(ecList);    
+    _outWEM->notifyObservers(ecList);
   }
 }
 
@@ -902,12 +902,12 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
   size_t i=0, j=0;
   // Get names from GUI.
   std::string outXMarkerStr = _outXMarkerNameFld->getStringValue();
-  // Compose temp string to execute in matlab.
+  // Compose temp string to execute in Matlab.
   std::ostringstream executeStr;
-  // Internal temp variable will be used in matlab.
+  // Internal temp variable will be used in Matlab.
   executeStr << "tmpOutXMarkerListPos=" << outXMarkerStr << ".pos";
   engEvalString(m_pEngine, executeStr.str().c_str());
-  // Get array from matlab.
+  // Get array from Matlab.
   mxArray *m_pos = engGetVariable(m_pEngine, "tmpOutXMarkerListPos");
   // Delete temp data.
   engEvalString(m_pEngine, "clear tmpOutXMarkerListPos");
@@ -943,7 +943,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
       for(i=0; i<rows; i++)
       {
         // Fill marker with zeros.
-        XMarker outMarker(vec6(0),vec3(0),0);
+        XMarker outMarker(vec3(0));
 
         // Write matlab points to marker and prevent writing more than 6 dimensions
         for(j=0; j<cols && cols<=6; j++) {
@@ -970,7 +970,8 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
           }
         }
 
-        // Append XMarker to XMarkerList.
+        // Append XMarker to XMarkerList with new Id.
+        outMarker.setId(_outputXMarkerList.newId());
         _outputXMarkerList.push_back(outMarker);
       }
 
@@ -999,6 +1000,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   // Internal loop.
   unsigned int i = 0, j = 0, k = 0, m = 0;
   unsigned int totalNumNodes = 0, numTriangulatedNodes = 0;
+  WEMPatch *patch = NULL;
   WEMNode *node = NULL;
   WEMFace *face = NULL;
   Vector3 position = NULL_VEC;
@@ -1013,11 +1015,11 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   setNodes << inWEMStr.c_str() << "{1}.Vertices=[";
   setFaces << inWEMStr.c_str() << "{1}.Faces=[";
   setNormals << inWEMStr.c_str() << "{1}.VertexNormals=[";
-  setLUT << inWEMStr.c_str() << "{1}.LUT=[";
+  setLUT << inWEMStr.c_str() << "{1}.FaceVertexCData=[";
   
   // Loop over all patches -> flatten WEM
   for (i = 0; i < inputWEM->getNumWEMPatches(); i ++) {
-    WEMPatch *patch = inputWEM->getWEMPatchAt(i);
+    patch = inputWEM->getWEMPatchAt(i);
   
     // Loop over all nodes
     const unsigned int numNodes = patch->getNumNodes();
@@ -1065,7 +1067,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
       const unsigned int numValues = pvl->getNumValues();
       for (j = 0; j < numValues; j ++) {
         setLUT << pvl->getValue(j) << ";";
-      }      
+      }
     }
     
     totalNumNodes += numNodes + numTriangulatedNodes;
@@ -1094,7 +1096,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
     }
     mxDestroyArray(m_X);
   }
-      
+  
   // Put WEM into matlab structure.
   //engEvalString(m_pEngine, setNodes.str().c_str()); std::cout << "nodes" << std::endl;
   //engEvalString(m_pEngine, setFaces.str().c_str()); std::cout << "faces" << std::endl;
@@ -1202,16 +1204,16 @@ void MatlabScriptWrapper::_copyInputScalarsToMatlab()
   MLint i = 0;
   // Compose string that contains input scalars.
   std::ostringstream execute;
-  // Put only input scalars into matlab.
+  // Put only input scalars into Matlab.
   for(i=0; i<6; i++)
   {
     execute<<_scalarNameFld[i]->getStringValue()<<"="<<(_scalarFld[i]->getDoubleValue())<<"\n";
   }
-  // Execute string and write input scalars into matlab.
+  // Execute string and write input scalars into Matlab.
   engEvalString(m_pEngine, execute.str().c_str());
 }
 
-//! Copies scalar values from matlab.
+//! Copies scalar values from Matlab.
 void MatlabScriptWrapper::_getScalarsBackFromMatlab()
 {
   // Check if Matlab is started.
@@ -1239,7 +1241,7 @@ void MatlabScriptWrapper::_getScalarsBackFromMatlab()
   mxDestroyArray(temp); temp = NULL;
 }
 
-//! Copies string values to matlab.
+//! Copies string values to Matlab.
 void MatlabScriptWrapper::_copyInputStringsToMatlab()
 {
   // Check if Matlab is started.
@@ -1257,11 +1259,11 @@ void MatlabScriptWrapper::_copyInputStringsToMatlab()
   {
     execute<<_stringNameFld[i]->getStringValue()<<"='"<<(_stringFld[i]->getStringValue())<<"'\n";
   }
-  // Execute string and write input scalars into matlab.
+  // Execute string and write input scalars into Matlab.
   engEvalString(m_pEngine, execute.str().c_str());
 }
 
-//! Copies string values from matlab.
+//! Copies string values from Matlab.
 void MatlabScriptWrapper::_getStringsBackFromMatlab()
 {
   // Check if Matlab is started.
@@ -1291,7 +1293,7 @@ void MatlabScriptWrapper::_getStringsBackFromMatlab()
   mxDestroyArray(temp); temp = NULL;
 }
 
-//! Copy input vectors to matlab.
+//! Copy input vectors to Matlab.
 void MatlabScriptWrapper::_copyInputVectorsToMatlab()
 {
   // Proof if Matlab is started.
@@ -1304,7 +1306,7 @@ void MatlabScriptWrapper::_copyInputVectorsToMatlab()
   MLint i = 0;
   // Compose string that contains input vectors.
   std::ostringstream execute;
-  // Put only input vectors into matlab.
+  // Put only input vectors into Matlab.
   for(i=0; i<6; i++)
   {
     execute<<_vectorNameFld[i]->getStringValue()<<"=[";
@@ -1313,11 +1315,11 @@ void MatlabScriptWrapper::_copyInputVectorsToMatlab()
     execute<<vec[0]<<","<<vec[1]<<","<<vec[2]<<","<<vec[3];
     execute<<"];";
   }
-  // Execute string and write input vectors into matlab.
+  // Execute string and write input vectors into Matlab.
   engEvalString(m_pEngine, execute.str().c_str());
 }
 
-//! Copies vector values from matlab.
+//! Copies vector values from Matlab.
 void MatlabScriptWrapper::_getVectorsBackFromMatlab()
 {
   // Check if Matlab is started.
@@ -1349,7 +1351,7 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
   mxDestroyArray(temp); temp = NULL;
 }
 
-//! Copy input matrices to matlab.
+//! Copy input matrices to Matlab.
 void MatlabScriptWrapper::_copyInputMatricesToMatlab()
 {
   // Proof if Matlab is started.
@@ -1362,7 +1364,7 @@ void MatlabScriptWrapper::_copyInputMatricesToMatlab()
   MLint i = 0;
   // Compose string that contains input matrices.
   std::ostringstream execute;
-  // Put only input matrices into matlab.
+  // Put only input matrices into Matlab.
   for(i=0; i<3; i++)
   {
     execute<<_matrixNameFld[i]->getStringValue()<<"=[";
@@ -1374,11 +1376,11 @@ void MatlabScriptWrapper::_copyInputMatricesToMatlab()
     execute<<mat[3][0]<<","<<mat[3][1]<<","<<mat[3][2]<<","<<mat[3][3];
     execute<<"];";
   }
-  // Execute string and write input matrices into matlab.
+  // Execute string and write input matrices into Matlab.
   engEvalString(m_pEngine, execute.str().c_str());
 }
 
-//! Copies matrix values from matlab.
+//! Copies matrix values from Matlab.
 void MatlabScriptWrapper::_getMatricesBackFromMatlab()
 {
   // Check if Matlab is started.
