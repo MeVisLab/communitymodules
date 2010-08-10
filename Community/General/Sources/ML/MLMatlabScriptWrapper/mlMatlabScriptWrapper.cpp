@@ -1092,6 +1092,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
     if (engPutVariable(m_pEngine, "copyInputWEMToMatlab", m_X) == 0) {
       engEvalString(m_pEngine, "eval(copyInputWEMToMatlab); clear copyInputWEMToMatlab;");
     }
+    mxDestroyArray(m_X);
   }
       
   // Put WEM into matlab structure.
