@@ -170,7 +170,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 
 #if defined(MACOS)
   if (m_startCmd.empty()) {
-    // Try to locate matlab binary in PATH environment
+    // Try to locate Matlab binary in PATH environment
     const char *pathEnv = getenv("PATH");
     if (pathEnv) {
       std::istringstream pathList(pathEnv);
@@ -187,7 +187,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   }
   
   if (m_startCmd.empty()) {
-    // Try to locate matlab binary via its bundle id
+    // Try to locate Matlab binary via its bundle id
     std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.StartMATLAB");
     if (! matlabBundle.empty()) {
       std::string path = matlabBundle + "/bin/matlab";
@@ -719,6 +719,11 @@ void MatlabScriptWrapper::_clearAllVariables()
     clearString << _stringNameFld[i]->getStringValue() << " ";
   }
 
+  // Clear vectors
+  for(int i=0; i<6; i++) {
+    clearString << _vectorNameFld[i]->getStringValue() << " ";
+  }
+
   // Clear matrices
   for(int i=0; i<3; i++) {
     clearString << _matrixNameFld[i]->getStringValue() << " ";
@@ -750,7 +755,7 @@ void MatlabScriptWrapper::_clearAllVariables()
   engEvalString(m_pEngine, clearString.str().c_str());
 }
 
-//! Copy input image data to matlab.
+//! Copy input image data to Matlab.
 void MatlabScriptWrapper::_copyInputImageDataToMatlab()
 {
   if (!_checkMatlabIsStarted())
@@ -840,7 +845,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
   }
 }
 
-//! Copy input XMarkerList to matlab.
+//! Copy input XMarkerList to Matlab.
 void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
 {
   if (!_checkMatlabIsStarted())
@@ -985,7 +990,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
   }
 }
 
-//! Copy input WEM to matlab.
+//! Copy input WEM to Matlab.
 void MatlabScriptWrapper::_copyInputWEMToMatlab()
 {
   if (!_checkMatlabIsStarted())
@@ -1081,27 +1086,13 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   std::ostringstream all;
   all << setNodes.str() << "\n" << setFaces.str() << "\n" << setNormals.str() << "\n" << setLUT.str() << "\n";
   
-	mwSize mw_dims = mwSize(2);
-	mwSize* mw_sz = new mwSize[2];
-	mw_sz[0] = all.str().length()+1;
-	mw_sz[1] = 1;
-  
-	mxArray * m_X = mxCreateCharArray(mw_dims,mw_sz);
-	delete mw_sz;
-  
-	if (m_X) {
-		memcpy( mxGetData( m_X ),(void*)(all.str().c_str()), all.str().length()+1);
+  mxArray *m_X = mxCreateString(all.str().c_str());
+  if (m_X) {
     if (engPutVariable(m_pEngine, "copyInputWEMToMatlab", m_X) == 0) {
       engEvalString(m_pEngine, "eval(copyInputWEMToMatlab); clear copyInputWEMToMatlab;");
     }
-    mxDestroyArray(m_X);
   }
-  
-  // Put WEM into matlab structure.
-  //engEvalString(m_pEngine, setNodes.str().c_str()); std::cout << "nodes" << std::endl;
-  //engEvalString(m_pEngine, setFaces.str().c_str()); std::cout << "faces" << std::endl;
-  //engEvalString(m_pEngine, setNormals.str().c_str()); std::cout << "normals" << std::endl;
-  //engEvalString(m_pEngine, setLUT.str().c_str()); std::cout << "lut" << std::endl;
+  mxDestroyArray(m_X); m_X = NULL;
 }
 
 //! Gets structure from Matlab and copies results into output WEM.
@@ -1137,16 +1128,22 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       // Get nodes
       executeStr << "tmpOutWEMNodes=" << outWEMStr << "{" << j << "}" << ".Vertices";
       engEvalString(m_pEngine, executeStr.str().c_str());
+      // Get array from Matlab.
       mxArray *m_nodes = engGetVariable(m_pEngine, "tmpOutWEMNodes");
+      // Delete temp data.
       engEvalString(m_pEngine, "clear tmpOutWEMNodes");
+      // Clear temp string.
       executeStr.str("");
       
       // Get faces
       executeStr << "tmpOutWEMFaces=" << outWEMStr << "{" << j << "}" << ".Faces-1";
       engEvalString(m_pEngine, executeStr.str().c_str());
+      // Get faces from Matlab.
       mxArray *m_faces = engGetVariable(m_pEngine, "tmpOutWEMFaces");
+      // Delete temp data.
       engEvalString(m_pEngine, "clear tmpOutWEMFaces");
-      executeStr.str("");  
+      // Clear temp string.
+      executeStr.str("");
       
       // Get data from Matlab array.
       if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
@@ -1183,7 +1180,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
           triPatch->computeNormals();
           
           _outWEM->addWEMPatch(triPatch);
-        }    
+        }
       }
       mxDestroyArray(m_nodes);
       mxDestroyArray(m_faces);
