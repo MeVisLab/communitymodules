@@ -63,16 +63,16 @@ MLModule BoxArithmetic {
           Label { title = "Box0:" alignGroupX = c1 }
           ButtonBar inputMode0    { show = Radio    }
           CheckBox  correctInput0 { title = Correct }
-          CheckBox  w2VInput0     { title = w2v }
-          CheckBox  v2WInput0     { title = v2w }
+          CheckBox  W2VInput0     { title = w2v }
+          CheckBox  V2WInput0     { title = v2w }
         }
         Horizontal { 
           alignX = Left
           Label { title = "Box1:" alignGroupX = c1 }
           ButtonBar inputMode1    { show = Radio    }
           CheckBox  correctInput1 { title = Correct }
-          CheckBox  w2VInput1     { title = w2v }
-          CheckBox  v2WInput1     { title = v2w }
+          CheckBox  W2VInput1     { title = w2v }
+          CheckBox  V2WInput1     { title = v2w }
         }
       }
       Box "Scalar Input" {
