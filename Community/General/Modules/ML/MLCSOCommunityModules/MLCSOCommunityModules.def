@@ -74,6 +74,13 @@ MLModule CSOImageStatistics {
   exampleNetwork = $(LOCAL)/CSOImageStatistics/CSOImageStatisticsExample.mlab
   documentation  = "$(LOCAL)/CSOImageStatistics/CSOImageStatistics.html"
 
+  Description {
+    Field totalSum     { persistent = No }
+    Field totalAverage { persistent = No }
+    Field totalMin     { persistent = No }
+    Field totalMax     { persistent = No }
+    Field statistics   { persistent = No }
+  }
 
   Window {
     Vertical "Main" {
@@ -110,9 +117,23 @@ MLModule CSOImageStatistics {
 
     Vertical Statistics {
       expandY = Yes
-      ListView statistics {
+      Box Totals {
+        layout = Horizontal
+        Vertical {
+          Field totalSum { edit = No }
+          Field totalAverage { edit = No }
+        }
+        Vertical {
+          Field totalMin { edit = No }
+          Field totalMax { edit = No }
+        }
+      }
+      Box Table {
         expandY = Yes
-        columnSeparator = ";"
+        ListView statistics {
+          expandY = Yes
+          columnSeparator = ";"
+        }
       }
     } // Vertical Statistics
     

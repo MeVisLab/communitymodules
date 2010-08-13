@@ -88,7 +88,12 @@ private:
   void ProcessCSOList(bool shouldSetupInternalCSOList);
 
   //! Get image statistics of cso
-  void GetStatistics(CSO* cso, double &voxelCount, double &sum, double &average );
+  void GetStatistics( CSO* cso, 
+                      size_t &voxelCount, 
+                      double &sum, 
+                      double &average,
+                      double &minimum, 
+                      double &maximum);
 
   //! Get a list of all points inside the contour defined by the pathPoints
   //! The contour should be axis aligned
@@ -191,6 +196,11 @@ private:
 
   //! String containing all calculated statistics
   StringField *f_Statistics;
+
+  DoubleField *f_TotalSum;
+  DoubleField *f_TotalAverage;
+  DoubleField *f_TotalMin;
+  DoubleField *f_TotalMax;
 
   //! mode defines the resampling filter that is applied ("NearestNeighbor", "Trilinear" , "TrilinearSkipBorder")
   EnumField   *f_InterpolationMode;
