@@ -148,6 +148,13 @@ MLModule WEMCenterOfMass {
         expandX = True
       }
       
+      Field useSurface {
+        tooltip = 
+"If checked the centroid is calculated through a 
+weighted average of the centroids of all faces. Otherwise 
+the centroid is the average of the node positions"
+      }
+      
       //Separator { direction = horizontal }
 
       //Horizontal {

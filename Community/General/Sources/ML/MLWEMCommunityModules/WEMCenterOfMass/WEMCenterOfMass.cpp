@@ -65,6 +65,9 @@ WEMCenterOfMass::WEMCenterOfMass (std::string type)
   _inverseCenterOfMass = fieldC->addVec3f("inverseCenterOfMass");
   _inverseCenterOfMass->setVec3fValue(vec3(0.0,0.0,0.0));
 
+  _useSurface = fieldC->addBool("useSurface");
+  _useSurface->setBoolValue( false );
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -86,8 +89,9 @@ WEMCenterOfMass::~WEMCenterOfMass()
 //----------------------------------------------------------------------------------
 void WEMCenterOfMass::handleNotification (Field *field)
 {
-  ML_TRACE_IN("WEMCenterOfMass::handleNotification()")
+  ML_TRACE_IN("WEMCenterOfMass::handleNotification()");
 
+  if ( field == _useSurface ) { this->_process(); }
   // call parent class and handle apply/autoApply and in/outputs
   WEMInspector::handleNotification(field);
 }
@@ -136,23 +140,56 @@ void WEMCenterOfMass::ComputeCentroid()
     if (_inWEM != NULL){
       double sumX=0.0, sumY=0.0, sumZ=0.0;
       int num=0;
+      Vector3 centroid;
+      double totalArea=0.0;
       // Iterate over all nodes and compute sum of x, y and z-position
       for (unsigned int i = 0; i < _inWEM->getNumWEMPatches(); i++){
         WEMPatch* wemPatch = _inWEM->getWEMPatchAt(i);
         const unsigned int numNodesInPatch = wemPatch->getNumNodes();
-        for (unsigned int j = 0; j < numNodesInPatch; j++){
-          WEMNode* node = wemPatch->getNodeAt(j);
-          float x, y, z;
-          node->getPosition(x, y, z);
-          sumX+=x;
-          sumY+=y;
-          sumZ+=z;
-          ++num;
+        if ( _useSurface->getBoolValue() ){
+          WEMTrianglePatch * trianglePatch;
+          bool isTrangle = true;
+          if (_inWEM->getWEMPatchAt(i)->getPatchType() != WEM_PATCH_TRIANGLES ){
+            trianglePatch = new WEMTrianglePatch;
+            isTrangle = false;
+            wemPatch->triangulate(  trianglePatch, WEM_TRIANGULATION_CENTER );
+          } else {
+            trianglePatch = (WEMTrianglePatch*)_inWEM->getWEMPatchAt(i);
+          }
+          unsigned int nFaces = trianglePatch->getNumFaces();
+          for (unsigned int j = 0; j < nFaces; j++){
+            WEMFace* face = trianglePatch->getFaceAt(j);
+            double area = face->getArea();
+            Vector3 centroid = face->getCentroid();
+            sumX+=centroid[0]*area;
+            sumY+=centroid[1]*area;
+            sumZ+=centroid[2]*area;
+            totalArea += area;
+            ++num;
+          }
+          if (!isTrangle){
+            delete trianglePatch;
+          }
+        } else {
+          for (unsigned int j = 0; j < numNodesInPatch; j++){
+            WEMNode* node = wemPatch->getNodeAt(j);
+            float x, y, z;
+            node->getPosition(x, y, z);
+            sumX+=x;
+            sumY+=y;
+            sumZ+=z;
+            ++num;
+          }
         }
       }
       // Set output fields
-      _centerOfMass->setVec3fValue(vec3(sumX/double(num), sumY/double(num), sumZ/double(num)));
-      _inverseCenterOfMass->setVec3fValue(-vec3(sumX/double(num), sumY/double(num), sumZ/double(num)));
+      if ( _useSurface->getBoolValue() ){
+        _centerOfMass->setVec3fValue( vec3(sumX/totalArea, sumY/totalArea, sumZ/totalArea) );
+        _inverseCenterOfMass->setVec3fValue( -vec3(sumX/totalArea, sumY/totalArea, sumZ/totalArea) );
+      } else {
+        _centerOfMass->setVec3fValue(vec3(sumX/double(num), sumY/double(num), sumZ/double(num)));
+        _inverseCenterOfMass->setVec3fValue(-vec3(sumX/double(num), sumY/double(num), sumZ/double(num)));
+      }
     } else {
       // Reset output fields
       _centerOfMass->setVec3fValue(vec3());

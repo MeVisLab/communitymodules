@@ -63,6 +63,7 @@ public:
   //! Constructor.
   WEMCenterOfMass (std::string type="WEMCenterOfMass");
 
+
 protected:
 
   //! Destructor.
@@ -86,6 +87,8 @@ private:
   //! Center of mass (and its inverse) output field
   Vec3fField *_centerOfMass, *_inverseCenterOfMass;
 
+  //! Calculate the center of mass using the area of the face associated with the nodes
+  BoolField *_useSurface;
   //@}
 
   //! The main processing routine. Here, the own mesh algorithm can be implemented.
