@@ -140,9 +140,7 @@ void WEMCenterOfMass::ComputeCentroid()
     if (_inWEM != NULL){
       double sumX=0.0, sumY=0.0, sumZ=0.0;
       int num=0;
-      Vector3 centroid;
       double totalArea=0.0;
-      // Iterate over all nodes and compute sum of x, y and z-position
       for (unsigned int i = 0; i < _inWEM->getNumWEMPatches(); i++){
         WEMPatch* wemPatch = _inWEM->getWEMPatchAt(i);
         const unsigned int numNodesInPatch = wemPatch->getNumNodes();
@@ -165,12 +163,12 @@ void WEMCenterOfMass::ComputeCentroid()
             sumY+=centroid[1]*area;
             sumZ+=centroid[2]*area;
             totalArea += area;
-            ++num;
           }
           if (!isTrangle){
             delete trianglePatch;
           }
         } else {
+          // Iterate over all nodes and compute sum of x, y and z-position
           for (unsigned int j = 0; j < numNodesInPatch; j++){
             WEMNode* node = wemPatch->getNodeAt(j);
             float x, y, z;
