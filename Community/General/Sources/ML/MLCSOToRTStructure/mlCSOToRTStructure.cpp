@@ -89,9 +89,6 @@ void CSOToRTStructure::handleNotification (Field *field) {
 			writeToDCMFile(_genTreePtr, _rtStructFileFld->getStringValue());
 	  }
 	}
-	}else {
-    ML_PRINT_ERROR("mlCSOToRTStructure::_HandleNotification",ML_BAD_PARAMETER, "There is no DICOM header information in the provided input image. RTStructure file cannot be generated.");
-		return;
 	}
   setValid(this);
 }
