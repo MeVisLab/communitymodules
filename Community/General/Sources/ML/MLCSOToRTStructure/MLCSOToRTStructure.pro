@@ -29,13 +29,11 @@ DEFINES += MLCSOTORTSTRUCTURE_EXPORTS
 HEADERS += \
     MLCSOToRTStructureInit.h \
     MLCSOToRTStructureSystem.h \
-    mlCSOToRTStructure.h \
-    RTStructure.h
+    mlCSOToRTStructure.h 
     
 SOURCES += \
     MLCSOToRTStructureInit.cpp \
-    mlCSOToRTStructure.cpp \
-    RTStructure.cpp
+    mlCSOToRTStructure.cpp 
     
 # additional files that are NOT compiled
 RELATEDFILES += \

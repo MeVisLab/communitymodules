@@ -32,7 +32,7 @@
 #include "DCMTree_Exception.h" 
 #include "DCMTree_Message.h" 
 #include "DCMTree_DicomTags.h" 
-#include "RTStructure.h"
+
 
 
 ML_START_NAMESPACE
