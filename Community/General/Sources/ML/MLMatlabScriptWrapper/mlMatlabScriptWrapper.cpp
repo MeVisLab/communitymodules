@@ -885,10 +885,18 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
   setPos<<"]";
   setVec<<"]";
   setType<<"]";
-  // Put XMarkerList into matlab structure.
-  engEvalString(m_pEngine, setPos.str().c_str());
-  engEvalString(m_pEngine, setVec.str().c_str());
-  engEvalString(m_pEngine, setType.str().c_str());
+  
+  std::ostringstream all;
+  all << setPos.str() << "\n" << setVec.str() << "\n" << setType.str() << "\n";
+  
+  mxArray *m_X = mxCreateString(all.str().c_str());
+  if (m_X) {
+    if (engPutVariable(m_pEngine, "copyInputXMarkerToMatlab", m_X) == 0) {
+      engEvalString(m_pEngine, "eval(copyInputXMarkerToMatlab); clear copyInputXMarkerToMatlab;");
+    }
+  }
+  mxDestroyArray(m_X); m_X = NULL;
+  
 }
 
 //! Gets XMarkerList from Matlab and copies results into output XMarkerList.
