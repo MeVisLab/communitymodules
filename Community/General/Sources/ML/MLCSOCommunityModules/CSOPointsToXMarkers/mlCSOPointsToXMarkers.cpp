@@ -176,6 +176,8 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
 
         if (outputPathPoints) {
           std::list<vec3> points;
+          // Get time point
+          const int timepoint = cso->getTimePointIndex();
           // First collect all pathpoints
           for (unsigned int i=0; i<cso->numPathPointLists(); ++i) {
             CSOPathPoints* pathList=cso->getPathPointsAt(i);
@@ -192,6 +194,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
             // Create marker
             XMarker markerPath(*it);
             markerPath.type = j;
+            markerPath.pos[ 4 ] = timepoint;
             // Compute normal
             if (outputNormals && inPlane) {
               // Determine prev and next it
@@ -231,12 +234,14 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
             // Add marker to output list
             _outputXMarkerList.appendItem(markerPath);
           }
-        } else{
+        } else {
           for (unsigned int i=0; i<cso->numSeedPoints(); ++i) {
             CSOSeedPoint * seedpoint = cso->getSeedPointAt(i);
+            const int timepoint = cso->getTimePointIndex();
             vec3 pos = seedpoint->worldPosition;
             XMarker marker (pos);
             marker.type = j;
+            marker.pos[ 4 ] = timepoint;
 
             if (inPlane && outputNormals) {
               // Determine previous and next marker
