@@ -358,11 +358,11 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       // If variable mevmatscr exist it means the whole Matlab script was executed.
       mxArray *mtmp = engGetVariable(m_pEngine,"mevmatscr");
       if(mtmp!=NULL) {
-        _statusFld->setStringValue("Execution successful!");
+        _statusFld->setStringValue("Matlab execution successful!");
         engEvalString(m_pEngine, "clear mevmatscr");
       } else {
         _statusFld->setStringValue("Matlab script contains errors!");
-        _clearAllVariables();
+        //_clearAllVariables();
       }
       mxDestroyArray(mtmp); mtmp = NULL;
     }
@@ -551,9 +551,13 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     mxDestroyArray(minVal); minVal = NULL;
     mxDestroyArray(maxVal); maxVal = NULL;
     engEvalString(m_pEngine, "clear mevtmpminval mevtmpmaxval");
-  } else {
+  } 
+  else {
     getOutImg(outIndex)->setOutOfDate();
     getOutImg(outIndex)->setStateInfo("Cannot set output size, because variable could not be found in Matlab workspace.",ML_BAD_DATA_TYPE);
+    std::ostringstream msg;
+    msg << "Could not find the variable " << outname << " for output image number " << outIndex << " in the Matlab workspace.";
+    ML_PRINT_ERROR("MatlabScriptWrapper::calcOutImageProps", msg.str().c_str(), "Output will be invalid.");
   }
 }
 
@@ -598,9 +602,10 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg, int outIndex, SubI
   }
 
   // Get matlab image data.
-  mxArray *m_pImage = engGetVariable(m_pEngine, (_outDataNameFld[outIndex]->getStringValue()).c_str());
+  const std::string matlabVariableName = _outDataNameFld[outIndex]->getStringValue();
+  mxArray *m_pImage = engGetVariable(m_pEngine, matlabVariableName.c_str());
 
-  if ( (m_pImage != NULL) ) {
+  if ( m_pImage != NULL) {
     // Copy different types of images from Matlab.
     MLPhysicalDataType outputClass;
     switch (mxGetClassID(m_pImage)) {
@@ -621,13 +626,15 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg, int outIndex, SubI
     }
     SubImg subImgBuf(outSubImg->getBox(), outputClass, mxGetPr(m_pImage));
     outSubImg->copySubImage(subImgBuf);
-
     mxDestroyArray(m_pImage); m_pImage = NULL;
   }
   else
   {
-    // Throw error, if no data available.
-    ML_PRINT_ERROR("MatlabScriptWrapper::calcOutSubImage()", ML_BAD_INPUT_IMAGE_POINTER, "Cannot copy from Matlab data.");
+    // Throw error if the variable could not be found in the Matlab workspace.
+    // NOTE: This is also checked in calcOutSubImgProps() above, so execution should never enter here.
+    std::ostringstream msg;
+    msg << "Could not find the variable " << matlabVariableName << " for output number " << outIndex << " in the Matlab workspace.";
+    ML_PRINT_ERROR("MatlabScriptWrapper::calcOutSubImage()", msg.str().c_str(), "Output will be empty");
   }
 }
 
@@ -801,8 +808,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       }
 
       // Need also to have storage for complete output image.
-      //MLuint32 inDataSize = inImg->getBoxFromImgExt().getExt().getStrides().u;
-      const MLuint32 inDataSize = imgSize.x*imgSize.y*imgSize.z*imgSize.c*imgSize.t*imgSize.u;
+      const MLuint inDataSize = imgSize.x*imgSize.y*imgSize.z*imgSize.c*imgSize.t*imgSize.u;
 
       // Set Matlab image extent.
       const mwSize insizesArray[6] = {imgSize.x, imgSize.y, imgSize.z, imgSize.c, imgSize.t, imgSize.u};
@@ -825,19 +831,32 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
           elementSize = sizeof(double);
           std::cerr << "_copyInputImageDataToMatlab(): Output type from MeVisLab not supported" << std::endl << std::flush;
       }
+      
       // Create numeric array
       mxArray *m_pImage = mxCreateNumericArray(6, insizesArray, inputClass, mxREAL);
+      if(m_pImage == NULL) {
+        std::ostringstream msg;
+        msg << "Could not allocate matrix for input image " << i << " in Matlab.";
+        ML_PRINT_ERROR("MatlabScriptWrapper::copyInputImageDataToMatlab()", msg.str().c_str(), "Matrix will not be created in Matlab.");
+      }
+      else {
 
-      // Copy data to Matlab array.
-      memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
+        // Copy data to Matlab array.
+        memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
 
-      // Get input names from GUI.
-      std::string inputName = _inDataNameFld[i]->getStringValue();
-      // Write data to Matlab.
-      engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
+        // Get input names from GUI.
+        const std::string inputName = _inDataNameFld[i]->getStringValue();
+        
+        // Write data to Matlab.
+        int status = engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
+        if(status != 0) {
+          std::ostringstream msg;
+          msg << "Could not put data for image " << i << " in Matlab.";
+          ML_PRINT_ERROR("MatlabScriptWrapper::copyInputImageDataToMatlab()", msg.str().c_str(), "Matrix will not be created in Matlab.");
+        }
 
-      mxDestroyArray(m_pImage); m_pImage = NULL;
-
+        mxDestroyArray(m_pImage); m_pImage = NULL;
+      }
       // Free allocated memory for holding a slice.
       freeTile(data);
       data = NULL;
