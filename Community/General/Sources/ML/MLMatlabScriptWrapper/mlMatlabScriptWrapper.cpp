@@ -75,10 +75,13 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_inputXMarkerListFld = fields->addBase("inputXMarkerList"))->setBaseValue(NULL);
   _outputXMarkerListFld = fields->addBase("outputXMarkerList");
   _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
-  
+
   ML_CHECK_NEW(_outWEM,WEM());
   (_inputWEMFld = fields->addBase("inputWEM"))->setBaseValue(NULL);
   (_outputWEMFld = fields->addBase("outputWEM"))->setBaseValue(_outWEM);
+
+  (_inputCurveFld = fields->addBase("inputCurve"))->setBaseValue(NULL);
+  (_outputCurveListFld = fields->addBase("outputCurveList"))->setBaseValue(&_outputCurveList);
 
   //! Use Matlab commands in text field.
   (_matlabScriptFld = fields->addString("matlabScript"))->setStringValue("Output0=Input0 % Type your matlab script here.");
@@ -89,27 +92,31 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   //! Where will Matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
 
-  //! Set input and output data names used in matlab.
+  //! Set input and output data names used in Matlab.
   (_inDataNameFld[0] = fields->addString("inDataName0"))->setStringValue("Input0");
   (_inDataNameFld[1] = fields->addString("inDataName1"))->setStringValue("Input1");
   (_inDataNameFld[2] = fields->addString("inDataName2"))->setStringValue("Input2");
   (_outDataNameFld[0] = fields->addString("outDataName0"))->setStringValue("Output0");
   (_outDataNameFld[1] = fields->addString("outDataName1"))->setStringValue("Output1");
   (_outDataNameFld[2] = fields->addString("outDataName2"))->setStringValue("Output2");
-  //! Set input and output XMarker names used in matlab.
+  //! Set input and output XMarker names used in Matlab.
   (_inXMarkerNameFld = fields->addString("inXMarkerName"))->setStringValue("inXMarker");
   (_outXMarkerNameFld = fields->addString("outXMarkerName"))->setStringValue("outXMarker");
-  //! Set input and output WEM names used in matlab.
+  //! Set input and output WEM names used in Matlab.
   (_inWEMNameFld = fields->addString("inWEMName"))->setStringValue("inWEM");
   (_outWEMNameFld = fields->addString("outWEMName"))->setStringValue("outWEM");
+  //! Set input and output Curve names used in Matlab.
+  (_inCurveNameFld = fields->addString("inCurveName"))->setStringValue("inCurve");
+  (_outCurveNameFld = fields->addString("outCurveName"))->setStringValue("outCurve");
 
-  //! Create image data randomly.
-  (_autoCalculationFld = fields->addBool("autoUpdate"))->setBoolValue(false);
-  (_autoApplyFld = fields->addBool("autoApply"))->setBoolValue(false);
   //! Add toggle to delete user set variables before new calculation.
   //(_deleteMatlabVarFld = fields->addBool("delMatlabVar"))->setBoolValue(false);
   //! Add update button.
   _calculateFld = fields->addNotify("update");
+  //! Create image data randomly.
+  (_autoCalculationFld = fields->addBool("autoUpdate"))->setBoolValue(false);
+  //! Use automatic apply after change of a parameter/field.
+  (_autoApplyFld = fields->addBool("autoApply"))->setBoolValue(false);
   //! Add restart Matlab button.
   _restartMatlabFld = fields->addNotify("restartMatlab");
   // Error message.
@@ -185,7 +192,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
       }
     }
   }
-  
+
   if (m_startCmd.empty()) {
     // Try to locate Matlab binary via its bundle id
     std::string matlabBundle = macx::Bundle::getBundleDirectory("com.mathworks.StartMATLAB");
@@ -197,7 +204,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
       }
     }
   }
-  
+
   if (! m_startCmd.empty()) {
     std::cout << "Found matlab binary at: " << m_startCmd.c_str() << std::endl;
   }
@@ -205,8 +212,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 
   m_pEngine = engOpen( (m_startCmd.empty()) ? NULL : m_startCmd.c_str() );
 
-  if ( !_checkMatlabIsStarted() )
-  {
+  if ( !_checkMatlabIsStarted() ) {
     std::cerr << "MatlabScriptWrapper::MatlabScriptWrapper():" << std::endl;
     std::cerr << "Error: MATLAB Engine not found. For this module to work, a MATLAB installation is required." << std::endl << std::endl;
     std::cerr << "Additional Hints: " << std::endl;
@@ -241,7 +247,7 @@ MatlabScriptWrapper::~MatlabScriptWrapper()
   if (m_pEngine != NULL) {
     engClose(m_pEngine);
   }
-  
+
   ML_DELETE(_outWEM);
 }
 
@@ -280,7 +286,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
   // Update output on an update or if autoapply is enabled.
   if( (field == _calculateFld) ||
       (_autoCalculationFld->isOn() && ((field == getInField(0))||(field == getInField(1))||(field == getInField(2))||
-                                       (field == _inputXMarkerListFld)) || (field== _inputWEMFld) ) ||
+                                       (field == _inputXMarkerListFld) || (field== _inputWEMFld) || (field== _inputCurveFld)) ) ||
            (_autoApplyFld->isOn()  && ((field == _scalarFld[0])||(field == _scalarFld[1])||(field == _scalarFld[2])||
                                        (field == _scalarFld[3])||(field == _scalarFld[4])||(field == _scalarFld[5])||
                                        (field == _vectorFld[0])||(field == _vectorFld[1])||(field == _vectorFld[2])||
@@ -307,6 +313,13 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
     // Execute Matlab script only when the string is valid
     if(validScriptString) {
+      if (_inputCurveFld->getBaseValue() != NULL) {
+        // Check if a valid CurveData or CurveList is attached to the input
+        if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld,CurveData)||ML_BASE_IS_A(_inputCurveFld,CurveList)) ) {
+          // Copy input CurveData or CurveList to Matlab.
+          _copyInputWEMToMatlab();
+        }
+      }
       if( _inputXMarkerListFld->getBaseValue() != NULL ) {
         // Check if a valid XMarkerList is attached to the input.
         if( _inputXMarkerListFld->isValidValue() && ML_BASE_IS_A(_inputXMarkerListFld->getBaseValue(), XMarkerList) ) {
@@ -373,12 +386,14 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       _clearAllVariables();
     }
 
+    // Get CurveList from Matlab and copy results into output CurveList
+    _getCurveDataBackFromMatlab();
+    
     // Get XMarkerList from Matlab and copy results into output XMarkerList
     _getXMarkerBackFromMatlab();
     
     // Get WEM from Matlab and copy results into output WEM
     _getWEMBackFromMatlab();
-    
 
     // Get scalars back from Matlab. First store the current scalars so that
     // we can check if they change. A notification is only sent upon change.
@@ -437,7 +452,9 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 
     // Notify the XMarkerList output
     _outputXMarkerListFld->notifyAttachments();
-    
+    // Notify the CurveList output
+    _outputCurveListFld->notifyAttachments();
+
     // Notify the WEM output
     std::vector<WEMEventContainer>ecList;
     WEMEventContainer ec; 
@@ -449,6 +466,7 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     _outWEM->notifyObservers(ecList);
   }
 }
+
 
 //----------------------------------------------------------------------------------
 //! Configures (in)validation handling of inputs which are not connected or up to date.
@@ -467,13 +485,11 @@ BaseOp::INPUT_HANDLE MatlabScriptWrapper::handleInput (int inIndex, INPUT_STATE 
   }
 }
 
-
 #if ML_MAJOR_VERSION >= 2
 # define __setInSubImageDataType(__t)  for(int __i=0;__i<3;++__i) {getOutImg(outIndex)->setInSubImageDataType(__i,__t);}
 #else
 # define __setInSubImageDataType(__t)
 #endif
-
 
 //----------------------------------------------------------------------------------
 //! Sets properties of the output image at output \c outIndex.
@@ -506,8 +522,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
       return;
     }
     Vector outExt = Vector(1,1,1,1,1,1);
-    for (size_t i=0; i<m_numDims; i++)
-    {
+    for (size_t i=0; i<m_numDims; i++) {
       outExt[i] = static_cast<MLint>(mxGetDimensions(m_pImage)[i]);
     }
 
@@ -551,8 +566,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     mxDestroyArray(minVal); minVal = NULL;
     mxDestroyArray(maxVal); maxVal = NULL;
     engEvalString(m_pEngine, "clear mevtmpminval mevtmpmaxval");
-  } 
-  else {
+  } else {
     getOutImg(outIndex)->setOutOfDate();
     getOutImg(outIndex)->setStateInfo("Cannot set output size, because variable could not be found in Matlab workspace.",ML_BAD_DATA_TYPE);
     std::ostringstream msg;
@@ -627,9 +641,7 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg, int outIndex, SubI
     SubImg subImgBuf(outSubImg->getBox(), outputClass, mxGetPr(m_pImage));
     outSubImg->copySubImage(subImgBuf);
     mxDestroyArray(m_pImage); m_pImage = NULL;
-  }
-  else
-  {
+  } else {
     // Throw error if the variable could not be found in the Matlab workspace.
     // NOTE: This is also checked in calcOutSubImgProps() above, so execution should never enter here.
     std::ostringstream msg;
@@ -654,8 +666,7 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
   // Update script window if new script chosen.
   std::string pathString = _matlabScriptPathFld->getStringValue();
 
-  ML_TRY
-  {
+  ML_TRY {
     if(pathString.empty()) {
       _statusFld->setStringValue("Script path is empty.");
       return false;
@@ -673,8 +684,7 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
 
       // Read script line by line from file.
       std::string line;
-      while(!dat.eof())
-      {
+      while(!dat.eof()) {
         getline(dat, line);
         tmpString << line << "\n";
       }
@@ -704,9 +714,7 @@ bool MatlabScriptWrapper::_checkMatlabIsStarted()
   {
     engEvalString(m_pEngine, "clear mevTestIfMatlabIsRunning");
     return true;
-  }
-  else
-  {
+  } else {
     return false;
   }
 }
@@ -771,8 +779,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
     return;
   }
 
-  for(int i=0; i<3; i++)
-  {
+  for(int i=0; i<3; i++) {
     // Get a valid input if possible. Dummy input is considered invalid.
     PagedImg *inImg = getUpdatedInImg(i);
 
@@ -838,15 +845,13 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
         std::ostringstream msg;
         msg << "Could not allocate matrix for input image " << i << " in Matlab.";
         ML_PRINT_ERROR("MatlabScriptWrapper::copyInputImageDataToMatlab()", msg.str().c_str(), "Matrix will not be created in Matlab.");
-      }
-      else {
-
+      } else {
         // Copy data to Matlab array.
         memcpy((void*)mxGetPr(m_pImage), data, inDataSize*elementSize);
 
         // Get input names from GUI.
         const std::string inputName = _inDataNameFld[i]->getStringValue();
-        
+
         // Write data to Matlab.
         int status = engPutVariable(m_pEngine, inputName.c_str(), m_pImage);
         if(status != 0) {
@@ -862,6 +867,122 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       data = NULL;
     }
   }
+}
+
+//! Copy input CurveData or CurveList to Matlab.
+void MatlabScriptWrapper::_copyInputCurveToMatlab()
+{
+
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_copyInputCurveToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  CurveData* inputCurveData = NULL;
+  CurveList* inputCurveList = NULL;
+  std::size_t numCurves = -1;
+
+  // Get input data.
+  if( ML_BASE_IS_A(_inputCurveFld->getBaseValue(), CurveList) ) {
+    inputCurveList = mlbase_cast<CurveList*>(_inputCurveFld->getBaseValue());
+    numCurves = inputCurveList->getNumCurves();
+    if(numCurves) {
+      inputCurveData = inputCurveList->getCurveData(0);
+    }
+  } else {
+    inputCurveData = mlbase_cast<CurveData*>(_inputCurveFld->getBaseValue());
+    numCurves = 1;
+  }
+
+  mxArray *cellArray = mxCreateCellMatrix(1,numCurves);
+  mxArray *matArray;
+  for(size_t i=0; i<numCurves; i++) {
+    const std::size_t numPoints = inputCurveData->getPoints();
+    const std::size_t numSeries = inputCurveData->getNumSeries();
+    const mwSize dims[2] = {numPoints,numSeries+1};
+
+    // Create matrix with series and points for each curve-data in a cell
+    matArray = mxCreateNumericArray(2, dims, mxDOUBLE_CLASS, mxREAL);
+    // If both arrays are created
+    if(cellArray && matArray){
+      double *arrayPtr = (double *)mxGetData(matArray);
+      for(std::size_t k=0; k<numPoints; ++k) {
+        // The X - values
+        arrayPtr[k] = inputCurveData->getXValue(k);
+      }
+      for(std::size_t j=0; j<numSeries; ++j) {
+        for(std::size_t k=0; k<numPoints; ++k) {
+          // The Y - values for each series
+          arrayPtr[k+numPoints*(j+1)] = inputCurveData->getYValue(j,k);
+        }
+      }
+      // Put array in a cell
+      mxSetCell(cellArray, i, mxDuplicateArray(matArray));
+      if(inputCurveList) {
+        inputCurveData = inputCurveList->getCurveData(i+1);
+      }
+    }
+    mxDestroyArray(matArray); matArray = NULL;
+  }
+
+  // Write CurveData or CurveList into Matlab cell array with input name from GUI.
+  engPutVariable(m_pEngine, _inCurveNameFld->getStringValue().c_str(), cellArray);
+
+  mxDestroyArray(cellArray); cellArray = NULL;
+}
+
+//! Gets structure from Matlab and copies results into output CurveData.
+void MatlabScriptWrapper::_getCurveDataBackFromMatlab()
+{
+  if (!_checkMatlabIsStarted())
+  {
+    std::cerr << "_getCurveDataBackFromMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
+    return;
+  }
+
+  // Clear _outputCurveData and preserve curve properties.
+  _outputCurveList.clear();
+
+  // Get name from GUI.
+  std::string outCurveStr = _outCurveNameFld->getStringValue();
+  // Internal temp variable with the number of Curves in Matlab.
+  mxArray *m_curveList = engGetVariable(m_pEngine, outCurveStr.c_str());
+
+  if((m_curveList!=NULL && mxGetClassID(m_curveList)==mxCELL_CLASS)) {
+    CurveData* curve = NULL;
+    const size_t curves = mxGetN(m_curveList);  // Number of matrices in Matlab cell
+    for(size_t i=0; i<=curves; i++) {
+      ML_CHECK_NEW(curve,CurveData);
+
+      mxArray *m_curve = mxGetCell(m_curveList,i);
+      if((m_curve && !mxIsEmpty(m_curve) && mxGetClassID(m_curve)==mxDOUBLE_CLASS)) {
+        const size_t points = mxGetM(m_curve);  // Number of rows in Matlab matrix
+        const size_t series = mxGetN(m_curve);  // Number of columns in Matlab matrix
+        curve->resizeX(points);                 // Initialize the X - values with zeros
+        // Initialize the remaining columns with zeros as series of Y - values
+        for(size_t serie=0; serie<series-1; serie++) {
+          curve->resizeY(serie,points);
+        }
+        double *dataPoints = static_cast<double*>(mxGetPr(m_curve));
+        // For each point.
+        for(size_t point=0; point<points; point++) {
+          // Set the X - values
+          curve->setXValue(dataPoints[point], point);
+        }
+        // For each serie
+        for(size_t serie=0; serie<series-1; serie++) {
+          for(size_t point=0; point<points; point++) {
+            // Set the Y - values
+            curve->setYValue(dataPoints[point+points*(serie+1)], serie, point);
+          }
+        }
+      }
+      // Append CurveData to CurvList.
+      _outputCurveList.getCurveList().push_back(curve);
+    }
+  }
+  mxDestroyArray(m_curveList); m_curveList = NULL;
 }
 
 //! Copy input XMarkerList to Matlab.
@@ -907,18 +1028,17 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
   
   std::ostringstream all;
   all << setPos.str() << "\n" << setVec.str() << "\n" << setType.str() << "\n";
-  
+
   mxArray *m_X = mxCreateString(all.str().c_str());
   if (m_X) {
-    if (engPutVariable(m_pEngine, "copyInputXMarkerToMatlab", m_X) == 0) {
+    if(engPutVariable(m_pEngine, "copyInputXMarkerToMatlab", m_X) == 0) {
       engEvalString(m_pEngine, "eval(copyInputXMarkerToMatlab); clear copyInputXMarkerToMatlab;");
     }
   }
   mxDestroyArray(m_X); m_X = NULL;
-  
 }
 
-//! Gets XMarkerList from Matlab and copies results into output XMarkerList.
+//! Gets structure from Matlab and copies results into output XMarkerList.
 void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
 {
   // Clear _outputXMarkerList.
@@ -965,9 +1085,8 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
     double *dataVec = static_cast<double*>(mxGetPr(m_vec));
     double *dataType = static_cast<double*>(mxGetPr(m_type));
 
-    // Copy matlab data to xmarker if it's not empty.
-    if(dataPos!=NULL)
-    {
+    // Copy Matlab data to XMarker if it's not empty.
+    if(dataPos!=NULL) {
       // Get rows numbers.
       const size_t rows = mxGetM(m_pos);
       const size_t cols = mxGetN(m_pos);
@@ -1179,18 +1298,17 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
         
         if (dataNodes != NULL) {
           const size_t node_rows = mxGetM(m_nodes);
-          
+
           ML_CHECK_NEW(triPatch, WEMTrianglePatch());
           
           for (i = 0; i < node_rows; i ++) {
             node = triPatch->addNode();
             node->setPosition(dataNodes[i], dataNodes[i + node_rows], dataNodes[i + 2 * node_rows]);
           }
-          
-          if (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS)
-          {
+
+          if (m_faces && !mxIsEmpty(m_faces) && mxGetClassID(m_faces) == mxDOUBLE_CLASS) {
             double *dataFaces = static_cast<double*>(mxGetPr(m_faces));
-            
+
             if (dataFaces != NULL) {
               const size_t face_rows = mxGetM(m_faces);
               
@@ -1199,13 +1317,13 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
                 node = triPatch->getNodeAt(dataFaces[i]);                 triangle->setNode(0,node); node->addFace(triangle);
                 node = triPatch->getNodeAt(dataFaces[i + face_rows]);     triangle->setNode(1,node); node->addFace(triangle);
                 node = triPatch->getNodeAt(dataFaces[i + 2 * face_rows]); triangle->setNode(2,node); node->addFace(triangle);
-              }          
+              }
             }
           }
-          
+
           triPatch->buildEdgeConnectivity();
           triPatch->computeNormals();
-          
+
           _outWEM->addWEMPatch(triPatch);
         }
       }
@@ -1215,7 +1333,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
   }
 }
 
-//! Copies scalar values to matlab.
+//! Copies scalar values to Matlab.
 void MatlabScriptWrapper::_copyInputScalarsToMatlab()
 {
   // Check if Matlab is started.
@@ -1305,8 +1423,7 @@ void MatlabScriptWrapper::_getStringsBackFromMatlab()
   for(MLint i=0; i<6; i++)
   {
     temp = engGetVariable(m_pEngine, (_stringNameFld[i]->getStringValue()).c_str());
-    if(temp!=NULL)
-    {
+    if(temp!=NULL) {
       tempsize = mxGetN(temp)+1;
       ML_CHECK_NEW(fieldVal,char[tempsize]);
       mxGetString(temp,fieldVal,tempsize);
@@ -1392,7 +1509,7 @@ void MatlabScriptWrapper::_copyInputMatricesToMatlab()
   for(i=0; i<3; i++)
   {
     execute<<_matrixNameFld[i]->getStringValue()<<"=[";
-      
+
     mat4 mat = _matrixFld[i]->getMatrixValue();
     execute<<mat[0][0]<<","<<mat[0][1]<<","<<mat[0][2]<<","<<mat[0][3]<<";";
     execute<<mat[1][0]<<","<<mat[1][1]<<","<<mat[1][2]<<","<<mat[1][3]<<";";

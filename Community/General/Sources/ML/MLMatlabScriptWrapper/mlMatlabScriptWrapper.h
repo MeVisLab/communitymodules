@@ -26,7 +26,7 @@
 //! The ML module class MatlabScriptWrapper.
 /*!
 // \file    mlMatlabScriptWrapper.h
-// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter
+// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter, Alexander Broersen
 // \date    2009-02-23
 //
 // Module for executing Matlab scripts in MeVisLab.
@@ -42,8 +42,10 @@
 #include "MLMatlabScriptWrapperSystem.h"
 
 // SDK includes
-#include <mlXMarkerList.h>
 #include <mlVersion.h>
+#include "mlCurveData.h"
+#include "mlCurveList.h"
+#include <mlXMarkerList.h>
 #include <WEMBase/WEM.h>
 
 // System includes
@@ -123,16 +125,20 @@ private:
   //! Clear all variables that have been put in the Matlab workspace.
   void _clearAllVariables();
 
-  //! Copies input image data into Matlab.
+  //! Copies input image data to Matlab.
   void _copyInputImageDataToMatlab();
-  //! Copies input XMarkerList into Matlab.
+  //! Copies input CurveData or CurveList to Matlab.
+  void _copyInputCurveToMatlab();
+  //! Copies structure from Matlab and copies results into output CurveList.
+  void _getCurveDataBackFromMatlab();
+  //! Copies input XMarkerList to Matlab.
   void _copyInputXMarkerToMatlab();
   //! Copies XMarkerList from Matlab and copies results into output XMarkerList.
   void _getXMarkerBackFromMatlab();
-  //! Copies WEM to matlab.
+  //! Copies input WEM to Matlab.
   void _copyInputWEMToMatlab();
-  //! Copies WEM from matlab.
-  void _getWEMBackFromMatlab();  
+  //! Copies WEM from Matlab.
+  void _getWEMBackFromMatlab();
   //! Copies scalar values to matlab.
   void _copyInputScalarsToMatlab();
   //! Copies scalar values from matlab.
@@ -154,6 +160,12 @@ private:
   //@{ \name Module field declarations
   // ----------------------------------------------------------
 
+  //! The Curve input field.
+  BaseField *_inputCurveFld;
+  //! The CurveList output field.
+  BaseField *_outputCurveListFld;
+  //! The output list
+  CurveList _outputCurveList;
   //! The XMarkerList input field.
   BaseField *_inputXMarkerListFld;
   //! The XMarkerList output field.
@@ -168,7 +180,7 @@ private:
   //! The output WEM.
   WEM *_outWEM;
 
-  //! Type a matlab script into this field.
+  //! Type a Matlab script into this field.
   StringField* _matlabScriptFld;
   //! Use external script.
   BoolField* _useExternalScriptFld;
@@ -183,6 +195,10 @@ private:
   StringField *_inDataNameFld[3];
   StringField *_outDataNameFld[3];
   //@}
+  //{@ Set matlab names for input and output CurveList.
+  StringField *_inCurveNameFld;
+  StringField *_outCurveNameFld;
+  //@}
   //{@ Set matlab names for input and output XMarkerList.
   StringField *_inXMarkerNameFld;
   StringField *_outXMarkerNameFld;
@@ -194,10 +210,11 @@ private:
 
   //! If pressed, the module updates.
   NotifyField* _calculateFld;
-  //! If true, the module updates on input changes.
-  BoolField* _autoCalculationFld;
   //! If true, the module updates on parameter/field changes.
   BoolField* _autoApplyFld;
+   //! If true, the module updates on input changes.
+  BoolField* _autoCalculationFld;
+
   //! Status messages.
   StringField* _statusFld;
   //! Restart Matlab button.
