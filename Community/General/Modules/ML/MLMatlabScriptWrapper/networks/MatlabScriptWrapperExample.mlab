@@ -2,6 +2,70 @@
 network  {
   watchlist = ""
 }
+module Diagram2D {
+  internal  {
+    frame = "937 397 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "404 345 444 576"
+        sizeHint = "444 576"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Diagram2D
+    minX = 0
+    maxX = 1
+    autoRangeX = TRUE
+    minY = 0
+    maxY = 1
+    autoRangeY = TRUE
+    axisColor = "1 1 1"
+    axisRotation = LeftBottom
+    drawDiagramTitle = TRUE
+    diagramTitleString = "A random spline"
+    borderH = 0
+    autoBorderH = TRUE
+    borderV = 0
+    autoBorderV = TRUE
+    drawAxisX = TRUE
+    drawTicksX = TRUE
+    drawLabelsX = TRUE
+    drawAxisTitleX = FALSE
+    axisTitleStringX = "X [dn]"
+    drawAxisY = TRUE
+    drawTicksY = TRUE
+    drawLabelsY = TRUE
+    drawAxisTitleY = FALSE
+    axisTitleStringY = "Y [dn]"
+    curveColor = "1 1 0"
+    lineStyle = Solid
+    markerType = Circle
+    markerSize = 10
+    areaOpacity = 0.5
+    lineWidth = 1
+    antiAlias = FALSE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    alt = IGNORED
+    mousePosX = 0
+    mousePosY = 0
+    mousePosValid = FALSE
+    curveSelection = Diagram
+    selectionTolerance = 5
+    selectedCurve = -1
+    selectedSeries = -1
+    selectedSeriesGlobal = -1
+    selectedPoint = -1
+    maskValid = FALSE
+  }
+}
 module SoWEMRenderer {
   internal  {
     frame = "885 173 136 56"
@@ -36,9 +100,9 @@ module SoWEMRenderer {
     overwriteBoundingBoxParameters = FALSE
     colorMode = WEM_COLOR_LUT_VALUES
     drawFaces = TRUE
-    faceDiffuseColor = "0.760784327983856 0.756862759590149 0.752941191196442"
+    faceDiffuseColor = "0.7607843279838562 0.7568627595901489 0.7529411911964417"
     useFaceAmbientColor = TRUE
-    faceAmbientColor = "0.803921580314636 0.796078443527222 0.800000011920929"
+    faceAmbientColor = "0.8039215803146362 0.7960784435272217 0.800000011920929"
     useFaceSpecularColor = TRUE
     faceSpecularColor = "0 0 0"
     drawEdges = FALSE
@@ -60,7 +124,7 @@ module SoWEMRenderer {
     useEdgeColoringMode = FALSE
     nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
     boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
-    primitiveValueLists = LUT
+    primitiveValueLists = ""
     selectedPrimitiveValueList = LUT
     primitiveValueListValid = FALSE
     selectedTab = 0
@@ -122,7 +186,7 @@ module SoWEMRenderer {
     drawFaces = TRUE
     faceDiffuseColor = "1 1 0"
     useFaceAmbientColor = TRUE
-    faceAmbientColor = "1 0.333333343267441 0"
+    faceAmbientColor = "1 0.3333333432674408 0"
     useFaceSpecularColor = TRUE
     faceSpecularColor = "0 0 0"
     drawEdges = FALSE
@@ -144,7 +208,7 @@ module SoWEMRenderer {
     useEdgeColoringMode = FALSE
     nodeRenderingMode = WEM_NODE_RENDERING_NORMAL
     boundingBoxMode = WEM_BOUNDING_BOX_AXIS_ALIGNED
-    primitiveValueLists = ""
+    primitiveValueLists = LUT
     selectedPrimitiveValueList = LUT
     primitiveValueListValid = TRUE
     selectedTab = 0
@@ -251,6 +315,8 @@ module WEMIsoSurface {
   }
   fields  {
     instanceName = WEMIsoSurface
+    isProcessing = FALSE
+    elapsedTime = 0
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -304,7 +370,7 @@ module WEMIsoSurface {
 }
 module Comment {
   internal  {
-    frame = "905 549 96 56"
+    frame = "945 549 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -323,7 +389,7 @@ module Comment {
 }
 module View2D {
   internal  {
-    frame = "713 485 80 56"
+    frame = "777 477 80 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -351,7 +417,7 @@ module View2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1
+    cineSpeed = 0.1000000015
     snapToCenter = FALSE
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
@@ -379,12 +445,13 @@ module View2D {
 }
 module LocalImage {
   internal  {
-    frame = "777 629 96 56"
+    frame = "817 629 96 56"
     moduleGroupName = ""
   }
   fields  {
     instanceName = LocalImage
     name = $(DemoDataPath)/Bone.tiff
+    trueName = ""
     autoLoad = TRUE
     status = "File open"
   }
@@ -392,7 +459,7 @@ module LocalImage {
 }
 module SubImage {
   internal  {
-    frame = "805 549 88 56"
+    frame = "845 549 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -432,12 +499,12 @@ module SubImage {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "805 477 152 56"
+    frame = "861 477 168 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "233 303 400 650"
-        sizeHint = "400 650"
+        geometry = "233 303 600 621"
+        sizeHint = "600 621"
         wasOpen = no
         wasActive = no
       }
@@ -460,7 +527,13 @@ subplot(122)
 imagesc(permute(Input0,[2 1])), axis image
 title(sprintf('Plot of image from MeVisLab\\nafter permute(Input0,[2 1]) command'))
 
-colormap gray"
+colormap gray
+
+% Create a random spline as outputCurve
+n = 7
+ts = 1:1/10:n;
+outCurve{1}(:,1) = spline(1:n,rand(n,1),ts);
+outCurve{1}(:,2) = spline(1:n,rand(n,1),ts);"
     useExternalScript = FALSE
     matlabScriptPath = ""
     inDataName0 = Input0
@@ -473,6 +546,8 @@ colormap gray"
     outXMarkerName = outXMarker
     inWEMName = inWEM
     outWEMName = outWEM
+    inCurveName = inCurve
+    outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
     status = "Execution successful!"
@@ -635,7 +710,7 @@ module StylePalette {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "765 317 152 56"
+    frame = "781 317 168 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -691,6 +766,8 @@ outWEM{1}.Faces = [
     outXMarkerName = outXMarker
     inWEMName = inWEM
     outWEMName = outWEM
+    inCurveName = inCurve
+    outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
     status = "Execution successful!"
@@ -811,7 +888,7 @@ module SoView2DOverlay {
     maxTimePoint = 0
     filterMode = FILTER_LINEAR
     inheritFilterMode = TRUE
-    alphaFactor = 0.56199998
+    alphaFactor = 0.5619999766
     baseColor = "1 1 0"
     useWorldCoords = FALSE
     applyLut = TRUE
@@ -850,7 +927,7 @@ module View2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1
+    cineSpeed = 0.1000000015
     snapToCenter = FALSE
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
@@ -878,7 +955,7 @@ module View2D {
 }
 module TestPattern {
   internal  {
-    frame = "441 653 96 56"
+    frame = "449 629 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -912,7 +989,7 @@ module TestPattern {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "533 549 152 56"
+    frame = "549 557 168 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -954,6 +1031,8 @@ end
     outXMarkerName = outXMarker
     inWEMName = inWEM
     outWEMName = outWEM
+    inCurveName = inCurve
+    outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
     status = "Execution successful!"
@@ -1092,7 +1171,7 @@ module SoExaminerViewer {
     stereoOffset = 3
     height = 0.7853981853
     position = "1.466153740882874 -34.25235366821289 -22.5416316986084"
-    orientation = "-0.1885405629873276 0.862696647644043 -0.4692620933055878 3.305067300796509"
+    orientation = "-0.1885405629873276 0.862696647644043 -0.469262033700943 3.305067300796509"
     nearDistance = 31.73994255
     farDistance = 50.33739471
     focalDistance = 41.04526138
@@ -1131,8 +1210,8 @@ module So3DXMarker {
     renderCulling = AUTO
     pickCulling = AUTO
     scaleSize = 3
-    scaleLength = 0.1
-    color = "0.333333343267441 1 0"
+    scaleLength = 0.1000000015
+    color = "0.3333333432674408 1 0"
     validStylePalette = TRUE
     enableVector = FALSE
     drawingOn = TRUE
@@ -1186,7 +1265,7 @@ module So3DXMarker {
 }
 module MatlabScriptWrapper {
   internal  {
-    frame = "553 293 144 56"
+    frame = "549 293 168 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1223,6 +1302,8 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
     outXMarkerName = OutputXMarkerList
     inWEMName = inWEM
     outWEMName = outWEM
+    inCurveName = inCurve
+    outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
     status = "Execution successful!"
@@ -1282,6 +1363,7 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
   }
 }
 connections  {
+  Diagram2D.inCurveList = MatlabScriptWrapper3.outputCurveList
   SoWEMRenderer1.inWEM = MatlabScriptWrapper2.outputWEM
   TorusRenderer.inWEM = WEMIsoSurface.outWEM
   SoExaminerViewer1.children = "TorusRenderer.self SoWEMRenderer1.self"

@@ -41,10 +41,18 @@ Currently, three types of data structures can be transferred between MeVisLab an
     Up to three images can be used. Images are stored as up to six dimensional matrices in Matlab.
     Note that MeVisLab and Matlab use different coordinate systems, see below for further information.
     </li>
+    <li><span style="font-weight: bold;">CurveData (input only) and CurveLists:</span>
+    A CurveData is an object consisting of zero or one X- and any number of Y-data series. A CurveList
+    is an array of CurveData objects.
+    In Matlab, a CurveList is represented as a cell array with in each cell a matrix with the points of
+    each series of a curve. The first column in the matrix contains the X-values, the second column
+    contains the first serie of Y-values, the third column the second serie of Y-values etc..
+    </li>
     <li><span style="font-weight: bold;">XMarkerLists:</span>
     An XMarker is an object that contains a point (up to 6-D), a vector (3-D) and a type variable (integer).
     An XMarkerList is an array of XMarker objects.
-    In Matlab, an XMarkerList is represented as a struct with the following members:
+    In Matlab, an XMarkerList is represented as a struct with the following members (where
+    <span style="font-style: italic;">N</span> is the number of XMarkers):
     </li>
     <span style="font-style: italic;">&lt;variablename&gt;</span>.pos, where pos is an
     <span style="font-style: italic;">N</span>x2,
@@ -52,18 +60,25 @@ Currently, three types of data structures can be transferred between MeVisLab an
     <span style="font-style: italic;">N</span>x4,
     <span style="font-style: italic;">N</span>x5 or
     <span style="font-style: italic;">N</span>x6 matrix with the position coordinates.
-    <span style="font-style: italic;">N</span> is the number of XMarkers.
     <br>
     <span style="font-style: italic;">&lt;variablename&gt;</span>.vec, where vec is an
     <span style="font-style: italic;">N</span>x2 or
     <span style="font-style: italic;">N</span>x3 matrix of vectors.
     <br>
     <span style="font-style: italic;">&lt;variablename&gt;</span>.type, where type is an
-    <span style="font-style: italic;">N</span>x1 vector of integers.<br>
+    <span style="font-style: italic;">N</span>x1 vector of integers.
+    <br>
     Important: the pos matrix determines the number of XMarkers
     <span style="font-style: italic;">N</span>. The vec and type matrices must have the same number of rows
     <span style="font-style: italic;">N</span>, otherwise will these values not be copied back to MeVisLab.
     See the example network for an example.<br>
+    <li><span style="font-weight: bold;">WEMs:</span>
+    A Winged Edge Mesh (WEM) is an object that contains a representation of a surface. In Matlab,
+    a WEM is represented as a cell array of structures with nodes (markers of vertices), faces, edges,
+    normals. Optionally, if a WEM contains a Look Up Table (LUT), this data will be put into the CData field.
+    These structures can be exchanged directly with the Matlab Patch Properties. See the example network for
+    an example.
+    </li>
     <li><span style="font-weight: bold;">Scalars:&nbsp;</span>
     Double precision. These can be used both as input and ouput variables.
     Field notifications will be sent in MeVisLab only if a scalar has changed its
@@ -127,7 +142,7 @@ which swaps the x and y axes. See the example network for an example.<br>
 <h3><a name="Inputs"></a>Inputs</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
-Up to three input images and one XMarkerList can be attached to the module.
+Up to three input images and one CurveData, CurveList, XMarkerList , or WEM can be attached to the module.
 Input to the module from MeVisLab is optional, the output can be generated entirely
 in Matlab without input from MeVisLab (see the example network for examples).
 </blockquote>
@@ -136,7 +151,7 @@ in Matlab without input from MeVisLab (see the example network for examples).
 <h3><a name="Outputs"></a>Outputs</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
-Up to three output images and one XMarkerList.
+Up to three output images and one CurveList, one XMarkerList, or one WEM.
 </blockquote>
 
 
@@ -159,8 +174,8 @@ Enables the possibility to use an external Matlab script file (.m).<br>
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Auto update</b>
 <br>
-Execute the script automatically on input change (only for input images
-and the XMarkerList, not for changes in the names).<br>
+Execute the script automatically on input change (only for input images, CurveData, CurveList,
+XMarkerList, and WEM, not for changes in the names).<br>
 </blockquote>
 
 
@@ -209,7 +224,8 @@ Displays the output of executed Matlab script.<br>
 
 <br>
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
-<b>Input/Output image, XMarkerList, scalar, vector, matrix names and strings</b>
+<b>Input/Output image, Curve, Mat4, CSO, XMarker, WEM, scalar, vector, matrix names, and
+strings</b>
 <br>
 The variable names in the Matlab script of the input and output data structures.<br>
 </blockquote>

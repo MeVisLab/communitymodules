@@ -15,10 +15,10 @@
 MLModule MatlabScriptWrapper {
   DLL            = "MLMatlabScriptWrapper"
   genre          = "Other"
-  author         = "Alexander Gryanik, Ola Friman, Markus Harz"
+  author         = "Alexander Gryanik, Ola Friman, Markus Harz, Alexander Broersen"
   status         = "work-in-progress"
-  comment        = "Execute matlab script on an image to produce an output image."
-  keywords       = "matlab scripting wrapper"
+  comment        = "Execute Matlab script and/or exchange different data-structures."
+  keywords       = "Matlab scripting wrapper"
   seeAlso        = ""
   documentation  = "$(LOCAL)/html/MatlabScriptWrapper.html"
   exampleNetwork = "$(LOCAL)/networks/MatlabScriptWrapperExample.mlab"
@@ -34,11 +34,11 @@ MLModule MatlabScriptWrapper {
         showLineNumbers = Yes
       }
 
-      CheckBox useExternalScript {}
       Horizontal {
+        CheckBox useExternalScript {}
         Field matlabScriptPath {
           title = "Matlab Script:"
-          expandX = yes
+          expandX = Yes
           browseButton = ON
           browseMode = open
           browseFilter = "MATLAB M-files (*.m)"
@@ -73,6 +73,12 @@ MLModule MatlabScriptWrapper {
             Box "WEM names" {
               Field inWEMName {title = "Input name:" expandX = yes}
               Field outWEMName {title = "Output name:" expandX = yes}
+            }
+          }
+          Vertical {
+            Box "Curve names" {
+              Field inCurveName {title = "Input name:" expandX = yes}
+              Field outCurveName {title = "Output name:" expandX = yes}
             }
           }
         }
@@ -199,10 +205,10 @@ MLModule MatlabScriptWrapper {
     }
   } // Category Strings
   Category Output {
+    expandY = Yes
     TextView matlabOutput {
       autoApply = Yes
       edit = False
-      visibleRows = 33
       wrap = off
     }
   } // Category Output
