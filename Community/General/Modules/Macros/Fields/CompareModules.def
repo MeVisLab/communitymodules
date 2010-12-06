@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! CompareModules module definition
+/*!
+// \file    CompareModules.def
+// \author  Reinhard Hameeteman
+// \date    2010-12-06
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule CompareModules {
+  genre = "Fields"
+  author = "Reinhard Hameeteman"
+  status = "work-in-progress"
+  comment = "Compare the field values of two modules"
+  keywords = "compara parameters interface fields values"
+  seeAlso = ""
+  externalDefinition = "$(LOCAL)/CompareModules.script"
+  documentation = "$(LOCAL)/html/CompareModules.html"
+  scriptOnly = yes
+} // MacroModule CompareModules
+

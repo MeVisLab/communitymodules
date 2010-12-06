@@ -1,0 +1,99 @@
+//----------------------------------------------------------------------------------
+//! Macro module CompareModules
+/*!
+// \file    CompareModules.script
+// \author  Reinhard Hameeteman
+// \date    2010-12-06
+//
+// Compare the field values of two modules
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field moduleList { type = String value = "" }
+    Field module0    { type = string value = "" }
+    Field module1    { type = string value = "" }
+    Field fields0    { type = string value = "" }
+    Field fields1    { type = string value = "" }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/CompareModules.py
+}
+
+Window {
+  Vertical {
+    expandY = Yes
+    Box Update {
+      layout = Horizontal
+      expandX = Yes
+      Button { 
+        title = Compare 
+        command = Compare 
+        alignX = Left
+      }
+      Button { 
+        title = "Update module list" 
+        command = UpdateSelections 
+        alignX = Left
+      }
+    } // Update
+    
+    Box Fields {
+      layout = Horizontal
+      expandY = Yes
+      Splitter {
+        expandY = Yes
+        Vertical {
+          expandY = Yes
+          ComboBox module0 {
+            expandX = yes
+            name = moduleList0
+            editable = no
+            comboField = moduleList
+            comboSeparator = "@" 
+            activatedCommand = Compare
+          }
+          ListView fields0 {
+            rowSeparator = "@"
+            columnSeparator = "&"
+            selectionMode = NoSelection
+            richText = Yes
+          }
+        }
+        Vertical {
+          expandY = Yes
+          ComboBox module1 {
+            expandX = yes
+            name = moduleList1
+            editable = no
+            comboField = moduleList
+            comboSeparator = "@" 
+            activatedCommand = Compare
+          }
+          ListView fields1 {
+            rowSeparator = "@"
+            columnSeparator = "&"
+            richText = Yes
+            selectionMode = NoSelection
+          }
+        }
+      } // Splitter
+    } // Fields
+  }
+  Execute = UpdateSelections
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
+//# owner: EMC
+//# date: 2010-06-22T21:02:14
+//# hash: Y6g/HIpreauLUmNWg5upWR7/x/1Q8vafFEkI+JvruUzIUWoqQlg/uLr7Aufp9/yWvbF3USzuRbxCj+jjyrUQ+g==
+//# MeVis end
+
