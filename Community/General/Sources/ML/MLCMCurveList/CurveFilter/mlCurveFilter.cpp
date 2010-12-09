@@ -116,23 +116,18 @@ void CurveFilter::handleNotification (Field *field)
 
   if ( field == f_InCurveList ) {
     m_SingleCurveList.clear();
-    if ( f_InCurveList->getBaseValue() ) {
-      Base* inList = f_InCurveList->getBaseValue();
-      m_InCurveList = NULL;
-      if ( BASE_IS_A(inList, CurveData) ) {
-        // Input is a single curve
-        m_SingleCurveList.getCurveList().push_back( static_cast<CurveData*>( inList ) );
-        m_InCurveList = &m_SingleCurveList;
-      }
-      else if ( BASE_IS_A( inList, CurveList) ) {
-        // Input is not a CurveData object or a CurveList 
-        m_InCurveList = static_cast<CurveList*>( f_InCurveList->getBaseValue() );
-      }
+    m_InCurveList = NULL;
+    Base* baseInput = f_InCurveList->getBaseValue();
+    m_InCurveList = mlbase_cast<CurveList*>(baseInput);
+    CurveData* inCurve = mlbase_cast<CurveData*>( baseInput );
+    if (inCurve){
+      m_SingleCurveList.getCurveList().push_back( static_cast<CurveData*>( baseInput ) );
+      m_InCurveList = &m_SingleCurveList;
     }
-    SetMaxValues();
 
     if ( m_InCurveList != NULL ) {
       if ( f_AutoUpdate->getBoolValue() ){
+        SetMaxValues();
         SetOutputCurve(); 
         f_OutCurveList->notifyAttachments();
       }
