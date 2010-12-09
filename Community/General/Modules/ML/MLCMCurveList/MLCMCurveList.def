@@ -11,8 +11,9 @@
 //----------------------------------------------------------------------------------
 // MLModule CurveFilter
 //----------------------------------------------------------------------------------
-MLModule CurveFilter {
+MLModule CMCurveFilter {
   DLL            = "MLCMCurveList"
+  class          = "CurveFilter"
   group          = "BIGR"
   genre          = "Diagram"
   author         = "Reinhard Hameeteman"
