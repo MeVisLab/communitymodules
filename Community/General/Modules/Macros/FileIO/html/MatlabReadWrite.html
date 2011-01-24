@@ -1,0 +1,69 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="MeVisLab module help page template">
+   <title>Module Help Page</title>
+</head>
+<body>
+
+<center><a href="#Purpose">Purpose</a>&nbsp;&nbsp;&nbsp;  <a href="#Usage">Usage</a>&nbsp;&nbsp;&nbsp;     <a href="#Parameters">Parameters</a>&nbsp;&nbsp;&nbsp; 
+   
+<hr WIDTH="100%"></center>
+<h2>MatlabReadWrite</h2>
+
+<h3><a NAME=Purpose></a>Purpose</h3>
+<blockquote>You can use this module to convert some MeVisLab data structures to and from Matlab array and save or load them from a .mat file
+</blockquote>
+
+<h3><a NAME=Usage></a>Usage</h3>
+<blockquote>For saving:
+Connect the input, select the appropriate type, specify the file name and press save. The saved .mat file will contain an array with the default name Input0, InputXMarkerList, InputWem or InputCurveList, depending on the choosen type.
+
+For loading:
+Specify the file name, select the type and if necessary the variable name. You have to specify this name if you saved the array in Matlab with a differen name than the standard names: Input0, InputXMarkerList, InputWem or InputCurveList.
+</blockquote>
+
+
+
+
+
+
+
+<h3><a NAME="Parameters"></a>Parameters</h3>
+<blockquote>    <ul>
+    <li>
+      <b>type</b>
+      Select which data type should be saved or loaded
+    </li>
+    <li>
+      <b>fileName</b>
+      Full path to the file
+    </li>
+    <li>
+      <b>save</b>
+      Save the specified input to a .mat file
+    </li>
+    <li>
+      <b>load</b>
+      Load the specified input form a .mat file
+    </li>
+    <li>
+      <b>variableName</b>
+      Name of the variable in the .mat file that needs to be loaded. If you do not specify this value the default Input0, InputXMarkerList, InputWem or InputCurveList will be choosen
+    </li>
+    </ul>
+
+</blockquote>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

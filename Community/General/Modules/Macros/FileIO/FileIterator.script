@@ -209,7 +209,10 @@ Window {
   
   
   Vertical Selection {
-    Box "File Set Selection" { layout = Vertical
+    alignY = Top
+    Box "File Set Selection" { 
+      layout = Vertical
+      expandY = No
       droppedFileCommand = "*js: ctx.field("rootPath").value = arguments[0]; *"
       Field rootPath {
         title = "Root Path:"
@@ -245,7 +248,9 @@ Window {
       }
     } // Box "File Set Selection"
 
-    Box "Filename Patterns" { layout = Vertical
+    Box "Filename Patterns" { 
+      layout = Vertical
+      expandY = No
       margin = 0
       expandX = yes
       Horizontal {
@@ -302,6 +307,7 @@ Window {
     }
   }
   Vertical Name {
+    expandY = No
     Box "User String Template Variables" { 
       layout = Vertical
       Field userStringS { title = "User String $S:" alignGroupX = nameC1 }
