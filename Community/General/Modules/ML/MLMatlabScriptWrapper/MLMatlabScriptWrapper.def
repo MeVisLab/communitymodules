@@ -26,8 +26,10 @@ MLModule MatlabScriptWrapper {
   Window {
   width = 600
   Category Main {
+    expandY = Yes
     Vertical {
       margin = 4
+      expandY = Yes
       TextView matlabScript {
         dependsOn = !useExternalScript
         autoApply = Yes
