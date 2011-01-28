@@ -49,7 +49,7 @@ def WindowWakeup():
 def UpdateModuleList():
   '''Get a list of all modules in the network and filter out this module'''
   network = ctx.parent()
-  moduleList = filter( lambda x: x.find( ctx.field('instanceName').value ),network.modules() )
+  moduleList = filter( lambda x: ( x != ctx.field('instanceName').value ),network.modules() )
   ctx.field('moduleList').value = ','.join(moduleList)
   return
 
