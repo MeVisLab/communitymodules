@@ -78,6 +78,8 @@ CSOSetProperties::CSOSetProperties (void)
   (f_AutoUpdate = fieldC->addBool( "autoUpdate"))->setBoolValue( false );  
   f_Update = fieldC->addNotify("update");
 
+  f_GetPorperties = fieldC->addNotify("getProperties");
+
   m_IsInNotificationCB = false;
   m_IsNotifyingMyself  = false;
 
@@ -85,6 +87,7 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOComputeNormal   = fieldC->addBool  ("CSOComputeNormal");
   f_CSOLabel           = fieldC->addString("CSOLabel");
   f_CSODescription     = fieldC->addString("CSODescription");
+  f_CSOCreatorId       = fieldC->addInt   ("CSOCreatorId");
   f_CSOIsSelected      = fieldC->addBool  ("CSOIsSelected");
   f_CSOClearSelection  = fieldC->addBool  ("CSOClearSelection");
   f_CSOLineWidth       = fieldC->addFloat ("CSOLineWidth");
@@ -137,6 +140,7 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOComputeNormal->setBoolValue( false );
   f_CSOLabel->setStringValue("");
   f_CSODescription->setStringValue("");
+  f_CSOCreatorId->setIntValue( 0 );
   f_CSOIsSelected->setBoolValue( false );
   f_CSOClearSelection->setBoolValue( false );
   f_CSOLineWidth->setFloatValue(1.0f);
@@ -193,6 +197,7 @@ CSOSetProperties::CSOSetProperties (void)
   (f_SetCSOComputeNormal   = fieldC->addBool( "setCSOComputeNormal"   ))->setBoolValue( false );
   (f_SetCSOLabel           = fieldC->addBool( "setCSOLabel"           ))->setBoolValue( false );
   (f_SetCSODescription     = fieldC->addBool( "setCSODescription"     ))->setBoolValue( false );
+  (f_SetCSOCreatorId       = fieldC->addBool( "setCSOCreatorId"       ))->setBoolValue( false );
   (f_SetCSOIsSelected      = fieldC->addBool( "setCSOIsSelected"      ))->setBoolValue( false );
   (f_SetCSOLineWidth       = fieldC->addBool( "setCSOLineWidth"       ))->setBoolValue( false );
   (f_SetCSOLineStyle       = fieldC->addBool( "setCSOLineStyle"       ))->setBoolValue( false );
@@ -302,6 +307,10 @@ void CSOSetProperties::handleNotification (Field *field)
   // f_Update 
   if (field == f_Update || f_AutoUpdate->getBoolValue() ){
     SetProperties(true);
+  }
+  
+  if (field == f_GetPorperties ){
+    GetProperties();
   }
 }
 
@@ -462,6 +471,7 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList)
           // Common
           if ( f_SetCSOLabel->getBoolValue()          ) { currentCSO->setLabel(          f_CSOLabel->getStringValue()       ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
           if ( f_SetCSODescription->getBoolValue()    ) { currentCSO->setDescription(    f_CSODescription->getStringValue() ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
+          if ( f_SetCSOCreatorId->getBoolValue()      ) { currentCSO->setCreatorId(      f_CSOCreatorId->getIntValue()      ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
           if ( f_SetCSOTimePointIndex->getBoolValue() ) { currentCSO->setTimePointIndex( f_CSOTimePointIndex->getIntValue() ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
 
           if ( f_SetCSOIsSelected->getBoolValue()      ) { 
@@ -599,6 +609,42 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList)
     } else { 
       m_OutputCSOList->notifyObservers(notificationFlag);
     }
+  }
+}
+
+void CSOSetProperties::GetProperties()
+{
+  CSO* cso = m_InputCSOList->getSelectedCSOAt(0);
+
+  if ( !cso ) {
+    cso = m_InputCSOList->getCSOAt(0);
+  }
+  
+  if (cso) {
+    // Common
+   f_CSOLabel->setStringValue(       cso->getLabel()         );
+   f_CSODescription->setStringValue( cso->getDescription()   );
+   f_CSOCreatorId->setIntValue(      cso->getCreatorId()     );
+   f_CSOTimePointIndex->setIntValue( cso->getTimePointIndex());
+   f_CSOShowState->setBoolValue(     cso->getShowState()     );
+   f_CSOVoxelizeState->setBoolValue( cso->getVoxelizeState() );
+   f_CSOEditableState->setBoolValue( cso->getEditableState() );
+
+    // PathPoints
+    f_CSOLineStyle->setEnumValue(    cso->getLineStyle() );
+    f_CSOLineWidth->setFloatValue(   cso->getLineWidth() );
+    f_CSOColor->setVec3fValue(       cso->getColor()     );
+    f_CSOAlpha->setFloatValue(       cso->getAlpha()     );
+
+    // Markers
+    f_CSOMarkerMode->setEnumValue(   cso->getMarkerMode()  );
+    f_CSOMarkerColor->setVec3fValue( cso->getMarkerColor() );
+    f_CSOMarkerAlpha->setFloatValue( cso->getMarkerAlpha() );
+    f_CSOMarkerSize->setFloatValue(  cso->getMarkerSize()  );
+
+    // Voxelize
+    f_CSOVoxelWriteMode->setEnumValue(   cso->getVoxelWriteMode()  );
+    f_CSOVoxelWriteValue->setFloatValue( cso->getVoxelWriteValue() );
   }
 }
 

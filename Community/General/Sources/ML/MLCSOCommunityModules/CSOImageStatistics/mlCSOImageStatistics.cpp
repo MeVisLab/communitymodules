@@ -526,7 +526,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
     average = 0.0;
     voxelCount = 0;
     minimum = ML_DOUBLE_MAX;
-    maximum = ML_DOUBLE_MIN;
+    maximum = -ML_DOUBLE_MAX;
 
     // Remove data on error to avoid memory leaks.
     if (inputTile ) {
