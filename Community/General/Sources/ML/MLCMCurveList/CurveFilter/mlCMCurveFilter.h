@@ -26,9 +26,9 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //----------------------------------------------------------------------------------
-//! The ML module class CurveFilter.
+//! The ML module class CMCurveFilter.
 /*!
-// \file    mlCurveFilter.h
+// \file    mlCMCurveFilter.h
 // \author  Reinhard Hameeteman
 // \date    2008-03-03
 //
@@ -37,8 +37,8 @@
 //----------------------------------------------------------------------------------
 
 
-#ifndef __mlCurveFilter_H
-#define __mlCurveFilter_H
+#ifndef __mlCMCurveFilter_H
+#define __mlCMCurveFilter_H
 
 
 // Local includes
@@ -53,15 +53,15 @@ ML_START_NAMESPACE
 
 
 //! Select a curve from the curveList or curveSet
-class MLCMCURVELIST_EXPORT CurveFilter : public BaseOp
+class MLCMCURVELIST_EXPORT CMCurveFilter : public BaseOp
 {
 public:
 
   //! Constructor.
-  CurveFilter (void);
+  CMCurveFilter (void);
 
   //! Destructor
-  ~CurveFilter(void);
+  ~CMCurveFilter(void);
 
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field *field);
@@ -73,7 +73,7 @@ private:
 
 
   //! Implements interface for the runtime type system of the ML.
-  ML_BASEOP_CLASS_HEADER(CurveFilter);
+  ML_BASEOP_CLASS_HEADER(CMCurveFilter);
 
   //! Remove any existing output curves
   void ResetOutput();
@@ -118,6 +118,6 @@ private:
 
 ML_END_NAMESPACE
 
-#endif // __mlCurveFilter_H
+#endif // __mlCMCurveFilter_H
 
 

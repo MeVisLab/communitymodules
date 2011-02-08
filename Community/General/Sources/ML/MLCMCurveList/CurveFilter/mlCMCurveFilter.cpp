@@ -26,9 +26,9 @@
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //----------------------------------------------------------------------------------
-//! The ML module class CurveFilter.
+//! The ML module class CMCurveFilter.
 /*!
-// \file    mlCurveFilter.cpp
+// \file    mlCMCurveFilter.cpp
 // \author  Reinhard Hameeteman
 // \date    2008-03-03
 //
@@ -38,20 +38,20 @@
 
 
 // Local includes
-#include "mlCurveFilter.h"
+#include "mlCMCurveFilter.h"
 ML_START_NAMESPACE
 
 
 //! Implements code for the runtime type system of the ML
-ML_BASEOP_CLASS_SOURCE(CurveFilter, BaseOp);
+ML_BASEOP_CLASS_SOURCE(CMCurveFilter, BaseOp);
 
 //----------------------------------------------------------------------------------
 //! Constructor
 //----------------------------------------------------------------------------------
-CurveFilter::CurveFilter (void)
+CMCurveFilter::CMCurveFilter (void)
   : BaseOp(0, 0), m_InCurveList(0)
 {
-  ML_TRACE_IN("CurveFilter::CurveFilter()");
+  ML_TRACE_IN("CMCurveFilter::CMCurveFilter()");
 
   handleNotificationOff();
 
@@ -100,7 +100,7 @@ CurveFilter::CurveFilter (void)
 }
 
 
-CurveFilter::~CurveFilter(void)
+CMCurveFilter::~CMCurveFilter(void)
 {
   ResetOutput();
   delete m_OutCurveList;
@@ -110,9 +110,9 @@ CurveFilter::~CurveFilter(void)
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field \c field.
 //----------------------------------------------------------------------------------
-void CurveFilter::handleNotification (Field *field)
+void CMCurveFilter::handleNotification (Field *field)
 {
-  ML_TRACE_IN("CurveFilter::handleNotification()");
+  ML_TRACE_IN("CMCurveFilter::handleNotification()");
 
   if ( field == f_InCurveList ) {
     m_SingleCurveList.clear();
@@ -157,7 +157,7 @@ void CurveFilter::handleNotification (Field *field)
 }
 
 
-void CurveFilter::ResetOutput()
+void CMCurveFilter::ResetOutput()
 {
   while ( !m_OutCurveList->getCurveList().empty() ) {
     delete m_OutCurveList->getCurveList().back();
@@ -166,7 +166,7 @@ void CurveFilter::ResetOutput()
 }
 
 
-void CurveFilter::SetMaxValues()
+void CMCurveFilter::SetMaxValues()
 {
   int nCurveSets = 0;
   int nCurves = 0;
@@ -181,7 +181,7 @@ void CurveFilter::SetMaxValues()
 }
 
 
-void CurveFilter::SetOutputCurve(){
+void CMCurveFilter::SetOutputCurve(){
 
   ResetOutput();
 
