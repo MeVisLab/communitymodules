@@ -71,6 +71,7 @@ Window {
     }
     TabViewItem "Main" {
       Box "Input" {
+        expandY = No
         ButtonBar inputMode { show = Radio } 
         tooltip = "Use -1 for all Ids"
         Field inputCSOString   { title = "CSO   Ids:"  expandX = YES visibleOn = "*inputMode == "CSO"   *" }
@@ -78,17 +79,20 @@ Window {
       } 
       
       Box "Handle Notifications" {
+        expandY = No
         CheckBox listenToFinishingNotifications { title = "Finishing" }
         CheckBox listenToSelectionNotifications { title = "Selection" }
       } 
       
       Box "Operation Mode" {
+        expandY = No
         Horizontal {
           alignX = Left
           CheckBox autoUpdate {}
           Button update  {}
         } // horizontal
         CheckBox workDirectlyOnInputList { title = "Work On Input List"}
+        Button getProperties { title = "Get Properties" }
       } 
       Box {
         Label {
@@ -109,6 +113,7 @@ Window {
             Field    CSOLabel          { name = CSOLabelFld          dependsOn = setCSOLabel          title = "Label:"       alignGroupX = csog1 }
             Field    CSODescription    { name = CSODescriptionFld    dependsOn = setCSODescription    title = "Description:" alignGroupX = csog1 }
             Field    CSOTimePointIndex { name = CSOTimePointIndexFld dependsOn = setCSOTimePointIndex title = "Time Point:"  alignGroupX = csog1 step = 1 }
+            Field    CSOCreatorId      { name = CSOCreatorIdFld      dependsOn = setCSOCreatorId      title = "CreatorId:"   alignGroupX = csog1 step = 1 }
             Horizontal {
               CheckBox CSOIsSelected     { name = CSOIsSelectedFld     dependsOn = setCSOIsSelected    title = "Is selected" alignGroupX = csog1 }
               CheckBox CSOClearSelection { name = CSOClearSelectionFld dependsOn = setCSOIsSelected    title = "Clear first" alignGroupX = csog2 }

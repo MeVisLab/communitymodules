@@ -82,6 +82,9 @@ public:
 
   static void CSOListNotifyObserverCB(void* userData, int notificationFlag);
 
+  //! Get the properties of first selected or first CSO of the connected CSOList
+  void GetProperties();
+
 private:
 
 
@@ -122,6 +125,9 @@ private:
   //! Applies changes.
   NotifyField* f_Update;
 
+  //! Get the current properties.
+  NotifyField* f_GetPorperties;
+
   //! Locking variable for removing/adding a notification observer.
   bool m_IsInNotificationCB;
 
@@ -140,6 +146,7 @@ private:
   BoolField   *f_CSOComputeNormal;
   StringField *f_CSOLabel;
   StringField *f_CSODescription;
+  IntField    *f_CSOCreatorId;
   BoolField   *f_CSOIsSelected;
   BoolField   *f_CSOClearSelection;
   FloatField  *f_CSOLineWidth;
@@ -194,6 +201,7 @@ private:
   BoolField *f_SetCSOComputeNormal;
   BoolField *f_SetCSOLabel;
   BoolField *f_SetCSODescription;
+  BoolField *f_SetCSOCreatorId;
   BoolField *f_SetCSOIsSelected;
   BoolField *f_SetCSOLineWidth;
   BoolField *f_SetCSOLineStyle;
