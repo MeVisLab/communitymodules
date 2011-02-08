@@ -31,12 +31,12 @@ DEFINES += MLCMCURVELIST_EXPORTS
 HEADERS += \
     MLCMCurveListInit.h \
     MLCMCurveListSystem.h \
-    CurveFilter/mlCurveFilter.h \
+    CMCurveFilter/mlCMCurveFilter.h \
     StringToCurve/mlStringToCurve.h \
 
 SOURCES += \
     MLCMCurveListInit.cpp \
-    CurveFilter/mlCurveFilter.cpp \
+    CMCurveFilter/mlCMCurveFilter.cpp \
     StringToCurve/mlStringToCurve.cpp \
 
 # additional files that are NOT compiled

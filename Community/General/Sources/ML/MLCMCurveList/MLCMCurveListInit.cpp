@@ -17,7 +17,7 @@
 // Include all module headers ...
 
 
-#include "CurveFilter/mlCurveFilter.h"
+#include "CMCurveFilter/mlCMCurveFilter.h"
 #include "StringToCurve/mlStringToCurve.h"
 
 ML_START_NAMESPACE
@@ -32,7 +32,7 @@ int MLCMCurveListInit (void)
 
   // Add initClass calls from all other modules here...
 
-  CurveFilter::initClass();
+  CMCurveFilter::initClass();
   StringToCurve::initClass();
 
   return 1;
