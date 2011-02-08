@@ -117,6 +117,7 @@ MLModule CSOImageStatistics {
 
     Vertical Statistics {
       expandY = Yes
+      style { Prototype Field {expandX = Yes}}
       Box Totals {
         layout = Horizontal
         Vertical {

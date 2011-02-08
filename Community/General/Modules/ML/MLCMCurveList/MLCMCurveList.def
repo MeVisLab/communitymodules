@@ -9,11 +9,11 @@
 
 
 //----------------------------------------------------------------------------------
-// MLModule CurveFilter
+// MLModule CMCurveFilter
 //----------------------------------------------------------------------------------
 MLModule CMCurveFilter {
   DLL            = "MLCMCurveList"
-  class          = "CurveFilter"
+  class          = "CMCurveFilter"
   group          = "BIGR"
   genre          = "Diagram"
   author         = "Reinhard Hameeteman"
@@ -21,8 +21,8 @@ MLModule CMCurveFilter {
   comment        = "Select a curve from the curveList or curveSet"
   keywords       = "curveList curveData curve filter"
   seeAlso        = "CurveArithmetic CatCurves"
-  documentation  = "$(LOCAL)/CurveFilter/CurveFilter.html"
-  exampleNetwork = "$(LOCAL)/CurveFilter/CurveFilterExample.mlab" 
+  documentation  = "$(LOCAL)/CMCurveFilter/CMCurveFilter.html"
+  exampleNetwork = "$(LOCAL)/CMCurveFilter/CMCurveFilterExample.mlab" 
 
   Description {
     Field minCurveSet { 
@@ -86,7 +86,7 @@ MLModule CMCurveFilter {
       }
     }
  }
-} // MLModule CurveFilter
+} // MLModule CMCurveFilter
 
 
 //----------------------------------------------------------------------------------
