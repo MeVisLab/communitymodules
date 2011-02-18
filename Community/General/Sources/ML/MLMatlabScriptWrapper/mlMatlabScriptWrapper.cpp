@@ -76,6 +76,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   _outputXMarkerListFld = fields->addBase("outputXMarkerList");
   _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
 
+  _isInWEMNotificationCB = false;
   ML_CHECK_NEW(_outWEM,WEM());
   (_inputWEMFld = fields->addBase("inputWEM"))->setBaseValue(NULL);
   (_outputWEMFld = fields->addBase("outputWEM"))->setBaseValue(_outWEM);
@@ -88,7 +89,6 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
 
   //! Use external Matlab script.
   (_useExternalScriptFld = fields->addBool("useExternalScript"))->setBoolValue(false);
-
   //! Where will Matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
 
@@ -119,8 +119,8 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_autoApplyFld = fields->addBool("autoApply"))->setBoolValue(false);
   //! Add restart Matlab button.
   _restartMatlabFld = fields->addNotify("restartMatlab");
-  // Error message.
-  (_statusFld = fields->addString("status"))->setStringValue("Ready.");
+  //! Add status field.
+  (_stdReportFld = fields->addString("status"))->setStringValue("Ready.");
 
   // Set scalar name and value fields.
   (_scalarNameFld[0] = fields->addString("scalarName0"))->setStringValue("scalar0");
@@ -206,7 +206,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   }
 
   if (! m_startCmd.empty()) {
-    std::cout << "Found matlab binary at: " << m_startCmd.c_str() << std::endl;
+    std::cout << "Found Matlab binary at: " << m_startCmd.c_str() << std::endl;
   }
 #endif
 
@@ -224,7 +224,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
     std::cerr << "     MeVisLab is started." << std::endl;
 
     (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(false);
-    _statusFld->setStringValue("Cannot find Matlab engine!");
+    _stdReportFld->setStringValue("Cannot find Matlab engine!");
   } else {
     //! Show the Matlab session window.
     bool vis;
@@ -268,10 +268,10 @@ void MatlabScriptWrapper::handleNotification (Field* field)
       if(_checkMatlabIsStarted()) {
         engSetVisible(m_pEngine,_showSessionWindowFld->getBoolValue());
       } else {
-        _statusFld->setStringValue("Cannot find Matlab engine!");
+        _stdReportFld->setStringValue("Cannot find Matlab engine!");
       }
     } else {
-      _statusFld->setStringValue("Matlab is already started");
+      _stdReportFld->setStringValue("Matlab is already started");
     }
   }
 
@@ -296,175 +296,186 @@ void MatlabScriptWrapper::handleNotification (Field* field)
                                        (field == _stringFld[0])||(field == _stringFld[1])||(field == _stringFld[2])||
                                        (field == _stringFld[3])||(field == _stringFld[4])||(field == _stringFld[5])) )
     ) {
-    // Check if Matlab is started.
-    if (!_checkMatlabIsStarted()) {
-      _statusFld->setStringValue("Cannot find Matlab engine!");
-      return;
-    }
-
-    // Get script to evaluate
-    std::string evaluateString = "";
-    bool validScriptString = true;
-    if(_useExternalScriptFld->isOn()) { // Get script from .m-file
-      validScriptString = _loadMatlabScriptFromFile(evaluateString);
-    } else {
-      evaluateString = _matlabScriptFld->getStringValue();
-    }
-
-    // Execute Matlab script only when the string is valid
-    if(validScriptString) {
-      if (_inputCurveFld->getBaseValue() != NULL) {
-        // Check if a valid CurveData or CurveList is attached to the input
-        if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld,CurveData)||ML_BASE_IS_A(_inputCurveFld,CurveList)) ) {
-          // Copy input CurveData or CurveList to Matlab.
-          _copyInputWEMToMatlab();
-        }
-      }
-      if( _inputXMarkerListFld->getBaseValue() != NULL ) {
-        // Check if a valid XMarkerList is attached to the input.
-        if( _inputXMarkerListFld->isValidValue() && ML_BASE_IS_A(_inputXMarkerListFld->getBaseValue(), XMarkerList) ) {
-          // Copy input XMarkerList to Matlab.
-          _copyInputXMarkerToMatlab();
-        }
-      }
-      if (_inputWEMFld->getBaseValue() != NULL) {
-        // Check if a valid WEM is attached to the input
-        if (_inputWEMFld->isValidValue() && ML_BASE_IS_A(_inputWEMFld->getBaseValue(), WEM)) {
-          // Copy input WEM to Matlab.
-          _copyInputWEMToMatlab();
-        }
-      }
-
-      // Copy input image data to matlab.
-      _copyInputImageDataToMatlab();
-      // Copy scalar values to matlab.
-      _copyInputScalarsToMatlab();
-      // Copy string values to matlab.
-      _copyInputStringsToMatlab();
-      // Copy vector values to matlab.
-      _copyInputVectorsToMatlab();
-      // Copy matrix values to matlab.
-      _copyInputMatricesToMatlab();
-
-      // Insert at the end of the script variable to proof execution status
-      // and run the script in Matlab
-      evaluateString += "\nmevmatscr=1;";	// Added ';' to prevent unnecessary output
-      _statusFld->setStringValue("Matlab script is executing....");
-    
-      // Buffer to capture Matlab output
-      #define BUFSIZE 5120
-      char buffer[BUFSIZE+1];
-      buffer[BUFSIZE] = '\0';
-      // Start logging Matlab output
-      engOutputBuffer(m_pEngine, buffer, BUFSIZE);
-
-      // and run the script in Matlab
-      engEvalString(m_pEngine, evaluateString.c_str());
-
-      // Stop logging Matlab output
-      engOutputBuffer(m_pEngine, NULL, 0);
-      // Use rich text format in output for visibility
-      std::string output("<PRE>");
-      output.append(buffer);
-      _matlabOutputBufferFld->setStringValue(output);
-
-      // If variable mevmatscr exist it means the whole Matlab script was executed.
-      mxArray *mtmp = engGetVariable(m_pEngine,"mevmatscr");
-      if(mtmp!=NULL) {
-        _statusFld->setStringValue("Matlab execution successful!");
-        engEvalString(m_pEngine, "clear mevmatscr");
-      } else {
-        _statusFld->setStringValue("Matlab script contains errors!");
-        //_clearAllVariables();
-      }
-      mxDestroyArray(mtmp); mtmp = NULL;
-    }
-    // If the script string was not valid, clear all data so that
-    // the user notes this.
-    else {
-      _matlabOutputBufferFld->setStringValue("");
-      _clearAllVariables();
-    }
-
-    // Get CurveList from Matlab and copy results into output CurveList
-    _getCurveDataBackFromMatlab();
-    
-    // Get XMarkerList from Matlab and copy results into output XMarkerList
-    _getXMarkerBackFromMatlab();
-    
-    // Get WEM from Matlab and copy results into output WEM
-    _getWEMBackFromMatlab();
-
-    // Get scalars back from Matlab. First store the current scalars so that
-    // we can check if they change. A notification is only sent upon change.
-    double tmpScalars[6];
-    for(int k=0; k<6; ++k) {
-      tmpScalars[k] = _scalarFld[k]->getDoubleValue();
-    }
-    _getScalarsBackFromMatlab();
-    for(int k=0; k<6; ++k) {
-      if(tmpScalars[k] == _scalarFld[k]->getDoubleValue()) {
-        _scalarFld[k]->notifyAttachments();
-      }
-    }
-    // Get strings back from Matlab. First store the current strings so that
-    // we can check if they change. A notification is only sent upon change.
-    std::string tmpstrings[6];
-    for(int k=0; k<6; ++k) {
-      tmpstrings[k] = _stringFld[k]->getStringValue();
-    }
-    _getStringsBackFromMatlab();
-    for(int k=0; k<6; ++k) {
-      if(tmpstrings[k] == _stringFld[k]->getStringValue()) {
-        _stringFld[k]->notifyAttachments();
-      }
-    }
-
-    // Get vectors back from Matlab. First store the current vectors so that
-    // we can check if they change. A notification is only sent upon change.
-    for(int k=0; k<6; ++k) {
-      tmpstrings[k] = _vectorFld[k]->getStringValue();
-    }
-    _getVectorsBackFromMatlab();
-    for(int k=0; k<6; ++k) {
-      if(tmpstrings[k] == _vectorFld[k]->getStringValue()) {
-        _vectorFld[k]->notifyAttachments();
-      }
-    }
-
-    // Get matrices back from Matlab. First store the current matrices so that
-    // we can check if they change. A notification is only sent upon change.
-    for(int k=0; k<3; ++k) {
-      tmpstrings[k] = _matrixFld[k]->getStringValue();
-    }
-    _getMatricesBackFromMatlab();
-    for(int k=0; k<3; ++k) {
-      if(tmpstrings[k] == _matrixFld[k]->getStringValue()) {
-        _matrixFld[k]->notifyAttachments();
-      }
-    }
-
-    // Notify image attachments that are new images calculated so that they
-    // update themselves and call the calcOutSubImage()
-    getOutField(0)->notifyAttachments();
-    getOutField(1)->notifyAttachments();
-    getOutField(2)->notifyAttachments();
-
-    // Notify the XMarkerList output
-    _outputXMarkerListFld->notifyAttachments();
-    // Notify the CurveList output
-    _outputCurveListFld->notifyAttachments();
-
-    // Notify the WEM output
-    std::vector<WEMEventContainer>ecList;
-    WEMEventContainer ec; 
-    ec.notificationType = WEM_NOTIFICATION_FINISHED  |
-                          WEM_NOTIFICATION_SELECTION |
-                          WEM_NOTIFICATION_REPAINT;
-    ecList.push_back(ec);
-    
-    _outWEM->notifyObservers(ecList);
+    _process();
   }
+}
+
+
+//----------------------------------------------------------------------------------
+//! The process method is called by the parent class.
+//----------------------------------------------------------------------------------
+void MatlabScriptWrapper::_process()
+{
+  ML_TRACE_IN("MatlabScriptWrapper::process()")
+
+  // Check if Matlab is started.
+  if (!_checkMatlabIsStarted()) {
+    _stdReportFld->setStringValue("Cannot find Matlab engine!");
+    return;
+  }
+
+  // Get script to evaluate.
+  std::string evaluateString = "";
+  bool validScriptString = true;
+  if(_useExternalScriptFld->isOn()) { // Get script from .m-file
+    validScriptString = _loadMatlabScriptFromFile(evaluateString);
+  } else {
+    evaluateString = _matlabScriptFld->getStringValue();
+  }
+
+  // Execute Matlab script only when the string is valid
+  if(validScriptString) {
+    if (_inputCurveFld->getBaseValue() != NULL) {
+      // Check if a valid CurveData or CurveList is attached to the input
+      if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld,CurveData)||ML_BASE_IS_A(_inputCurveFld,CurveList)) ) {
+        // Copy input CurveData or CurveList to Matlab.
+        _copyInputWEMToMatlab();
+      }
+    }
+    if( _inputXMarkerListFld->getBaseValue() != NULL ) {
+      // Check if a valid XMarkerList is attached to the input.
+      if( _inputXMarkerListFld->isValidValue() && ML_BASE_IS_A(_inputXMarkerListFld->getBaseValue(), XMarkerList) ) {
+        // Copy input XMarkerList to Matlab.
+        _copyInputXMarkerToMatlab();
+      }
+    }
+    if (_inputWEMFld->getBaseValue() != NULL) {
+      // Check if a valid WEM is attached to the input
+      if (_inputWEMFld->isValidValue() && ML_BASE_IS_A(_inputWEMFld->getBaseValue(), WEM)) {
+        // Copy input WEM to Matlab.
+        _copyInputWEMToMatlab();
+      }
+    }
+
+    // Copy input image data to matlab.
+    _copyInputImageDataToMatlab();
+    // Copy scalar values to matlab.
+    _copyInputScalarsToMatlab();
+    // Copy string values to matlab.
+    _copyInputStringsToMatlab();
+    // Copy vector values to matlab.
+    _copyInputVectorsToMatlab();
+    // Copy matrix values to matlab.
+    _copyInputMatricesToMatlab();
+
+    // Insert at the end of the script variable to proof execution status
+    // and run the script in Matlab
+    evaluateString += "\nmevmatscr=1;";	// Added ';' to prevent unnecessary output
+    _stdReportFld->setStringValue("Matlab script is executing....");
+
+    // Buffer to capture Matlab output
+    #define BUFSIZE 5120
+    char buffer[BUFSIZE+1];
+    buffer[BUFSIZE] = '\0';
+    // Start logging Matlab output
+    engOutputBuffer(m_pEngine, buffer, BUFSIZE);
+
+    // and run the script in Matlab
+    engEvalString(m_pEngine, evaluateString.c_str());
+
+    // Stop logging Matlab output
+    engOutputBuffer(m_pEngine, NULL, 0);
+    // Use rich text format in output for visibility
+    std::string output("<PRE>");
+    output.append(buffer);
+    _matlabOutputBufferFld->setStringValue(output);
+
+    // If variable mevmatscr exist it means the whole Matlab script was executed.
+    mxArray *mtmp = engGetVariable(m_pEngine,"mevmatscr");
+    if(mtmp!=NULL) {
+      _stdReportFld->setStringValue("Matlab execution successful!");
+      engEvalString(m_pEngine, "clear mevmatscr");
+    } else {
+      _stdReportFld->setStringValue("Matlab script contains errors!");
+      //_clearAllVariables();
+    }
+    mxDestroyArray(mtmp); mtmp = NULL;
+  }
+  // If the script string was not valid, clear all data so that
+  // the user notes this.
+  else {
+    _matlabOutputBufferFld->setStringValue("");
+    _clearAllVariables();
+  }
+
+  // Get CurveList from Matlab and copy results into output CurveList
+  _getCurveDataBackFromMatlab();
+
+  // Get XMarkerList from Matlab and copy results into output XMarkerList
+  _getXMarkerBackFromMatlab();
+
+  // Get WEM from Matlab and copy results into output WEM
+  _getWEMBackFromMatlab();
+
+  // Get scalars back from Matlab. First store the current scalars so that
+  // we can check if they change. A notification is only sent upon change.
+  double tmpScalars[6];
+  for(int k=0; k<6; ++k) {
+    tmpScalars[k] = _scalarFld[k]->getDoubleValue();
+  }
+  _getScalarsBackFromMatlab();
+  for(int k=0; k<6; ++k) {
+    if(tmpScalars[k] != _scalarFld[k]->getDoubleValue()) {
+      _scalarFld[k]->notifyAttachments();
+    }
+  }
+  // Get strings back from Matlab. First store the current strings so that
+  // we can check if they change. A notification is only sent upon change.
+  std::string tmpstrings[6];
+  for(int k=0; k<6; ++k) {
+    tmpstrings[k] = _stringFld[k]->getStringValue();
+  }
+  _getStringsBackFromMatlab();
+  for(int k=0; k<6; ++k) {
+    if(tmpstrings[k] != _stringFld[k]->getStringValue()) {
+      _stringFld[k]->notifyAttachments();
+    }
+  }
+
+  // Get vectors back from Matlab. First store the current vectors so that
+  // we can check if they change. A notification is only sent upon change.
+  for(int k=0; k<6; ++k) {
+    tmpstrings[k] = _vectorFld[k]->getStringValue();
+  }
+  _getVectorsBackFromMatlab();
+  for(int k=0; k<6; ++k) {
+    if(tmpstrings[k] != _vectorFld[k]->getStringValue()) {
+      _vectorFld[k]->notifyAttachments();
+    }
+  }
+
+  // Get matrices back from Matlab. First store the current matrices so that
+  // we can check if they change. A notification is only sent upon change.
+  for(int k=0; k<3; ++k) {
+    tmpstrings[k] = _matrixFld[k]->getStringValue();
+  }
+  _getMatricesBackFromMatlab();
+  for(int k=0; k<3; ++k) {
+    if(tmpstrings[k] != _matrixFld[k]->getStringValue()) {
+      _matrixFld[k]->notifyAttachments();
+    }
+  }
+
+  // Notify image attachments that are new images calculated so that they
+  // update themselves and call the calcOutSubImage()
+  getOutField(0)->notifyAttachments();
+  getOutField(1)->notifyAttachments();
+  getOutField(2)->notifyAttachments();
+
+  // Notify the XMarkerList output
+  _outputXMarkerListFld->notifyAttachments();
+  // Notify the CurveList output
+  _outputCurveListFld->notifyAttachments();
+
+  // Notify the WEM output
+  std::vector<WEMEventContainer>ecList;
+  WEMEventContainer ec; 
+  ec.notificationType = WEM_NOTIFICATION_FINISHED  |
+                        WEM_NOTIFICATION_SELECTION |
+                        WEM_NOTIFICATION_REPAINT;
+  ecList.push_back(ec);
+
+  _outWEM->notifyObservers(ecList);
 }
 
 
@@ -499,8 +510,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
   ML_TRACE_IN("MatlabScriptWrapper::calcOutImageProps ()");
 
   // Proof if Matlab is started.
-  if (!_checkMatlabIsStarted())
-  {
+  if(!_checkMatlabIsStarted()) {
     std::cerr << "calcOutImageProps(): Cannot find Matlab engine!" << std::endl << std::flush;
 #if ML_MAJOR_VERSION >= 2
     getOutImg(outIndex)->setOutOfDate();
@@ -530,7 +540,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
     getOutImg(outIndex)->setPageExt(outExt);
     // Set output image size.
     getOutImg(outIndex)->setImgExt(outExt);
-    // Set output image datatype.
+    // Set output image datatypes.
     switch (mxGetClassID(m_pImage)) {
       case mxDOUBLE_CLASS: getOutImg(outIndex)->setDataType(MLdoubleType); __setInSubImageDataType(MLdoubleType); break;
       case mxSINGLE_CLASS: getOutImg(outIndex)->setDataType(MLfloatType);  __setInSubImageDataType(MLdoubleType); break;
@@ -654,6 +664,24 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg, int outIndex, SubI
 // Internal (private) methods.
 //////////////////////////////////////////////////////////////////////
 
+
+//! Callback the input WEM is changed.
+void MatlabScriptWrapper::_wemNeedsNotificationCB( void* userData, std::vector<WEMEventContainer> ecList )
+{
+  MatlabScriptWrapper* thisp = static_cast<MatlabScriptWrapper*>(userData);
+
+  thisp->_isInWEMNotificationCB = true;
+  WEMEventContainer wemEC = ecList.back();
+  if(wemEC.notificationType & WEM_NOTIFICATION_FINISHED) {
+    if(thisp->_autoCalculationFld->isOn()) {
+      thisp->handleNotificationOff();
+      thisp->_process();
+      thisp->handleNotificationOn();
+    }
+  }
+  thisp->_isInWEMNotificationCB = false;
+}
+
 //! Loads matlab script from a file, pastes it into script field and saves user written script.
 bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
 {
@@ -668,7 +696,7 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
 
   ML_TRY {
     if(pathString.empty()) {
-      _statusFld->setStringValue("Script path is empty.");
+      _stdReportFld->setStringValue("Script path is empty.");
       return false;
     }
     else
@@ -678,7 +706,7 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
       dat.open(pathString.c_str());
       if(dat.fail()) {
         // Throw error message if file couldn't be opened.
-        _statusFld->setStringValue("Cannot find .m-file!");
+        _stdReportFld->setStringValue("Cannot find .m-file!");
         return false;
       }
 
@@ -881,7 +909,7 @@ void MatlabScriptWrapper::_copyInputCurveToMatlab()
 
   CurveData* inputCurveData = NULL;
   CurveList* inputCurveList = NULL;
-  std::size_t numCurves = -1;
+  std::size_t numCurves = 0;
 
   // Get input data.
   if( ML_BASE_IS_A(_inputCurveFld->getBaseValue(), CurveList) ) {
@@ -952,11 +980,11 @@ void MatlabScriptWrapper::_getCurveDataBackFromMatlab()
   if((m_curveList!=NULL && mxGetClassID(m_curveList)==mxCELL_CLASS)) {
     CurveData* curve = NULL;
     const size_t curves = mxGetN(m_curveList);  // Number of matrices in Matlab cell
-    for(size_t i=0; i<=curves; i++) {
+    for(size_t i=0; i<curves; i++) {
       ML_CHECK_NEW(curve,CurveData);
 
       mxArray *m_curve = mxGetCell(m_curveList,i);
-      if((m_curve && !mxIsEmpty(m_curve) && mxGetClassID(m_curve)==mxDOUBLE_CLASS)) {
+      if(m_curve && !mxIsEmpty(m_curve) && mxGetClassID(m_curve)==mxDOUBLE_CLASS) {
         const size_t points = mxGetM(m_curve);  // Number of rows in Matlab matrix
         const size_t series = mxGetN(m_curve);  // Number of columns in Matlab matrix
         curve->resizeX(points);                 // Initialize the X - values with zeros
@@ -1026,6 +1054,7 @@ void MatlabScriptWrapper::_copyInputXMarkerToMatlab()
   setVec<<"]";
   setType<<"]";
   
+  // Put XMarkerList into Matlab structure.
   std::ostringstream all;
   all << setPos.str() << "\n" << setVec.str() << "\n" << setType.str() << "\n";
 
@@ -1076,6 +1105,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
   engEvalString(m_pEngine, executeStr.str().c_str());
   mxArray *m_type = engGetVariable(m_pEngine, "tmpOutXMarkerListType");
   engEvalString(m_pEngine, "clear tmpOutXMarkerListType");
+  executeStr.str("");
 
   // Get data from Matlab array.
   if((m_pos  && !mxIsEmpty(m_pos) && mxGetClassID(m_pos) ==mxDOUBLE_CLASS) &&
@@ -1144,10 +1174,16 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
     std::cerr << "_copyInputWEMToMatlab(): Cannot find Matlab engine!" << std::endl << std::flush;
     return;
   }
-  
+
+    if(!_isInWEMNotificationCB){
+    WEM::removeNotificationObserverFromAllWEMs(_wemNeedsNotificationCB, this);
+  }
   // Get input WEM.
   WEM *inputWEM = mlbase_cast<WEM*>(_inputWEMFld->getBaseValue());
-  
+  if(!_isInWEMNotificationCB) {
+    inputWEM->addNotificationObserver(_wemNeedsNotificationCB, this);
+  }
+
   // Internal loop.
   unsigned int i = 0, j = 0, k = 0, m = 0;
   unsigned int totalNumNodes = 0, numTriangulatedNodes = 0;
@@ -1171,7 +1207,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
   // Loop over all patches -> flatten WEM
   for (i = 0; i < inputWEM->getNumWEMPatches(); i ++) {
     patch = inputWEM->getWEMPatchAt(i);
-  
+
     // Loop over all nodes
     const unsigned int numNodes = patch->getNumNodes();
     for (j = 0; j < numNodes; j ++) {
@@ -1368,15 +1404,16 @@ void MatlabScriptWrapper::_getScalarsBackFromMatlab()
   // Internal loop.
   mxArray *temp = NULL;
   // Get only output scalars.
-  for(MLint i=0; i<6; i++)
-  {
+  for(MLint i=0; i<6; i++) {
     temp = engGetVariable(m_pEngine, (_scalarNameFld[i]->getStringValue()).c_str());
     if(temp!=NULL) {
       if(mxGetClassID(temp)==mxDOUBLE_CLASS) {
         double *fieldVal = static_cast<double*>(mxGetPr(temp));
+        _scalarFld[i]->disableNotifications();
         _scalarFld[i]->setDoubleValue(fieldVal[0]);
+        _scalarFld[i]->enableNotifications();
       } else {
-        std::cerr << "_getVectorsBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
+        std::cerr << "_getScalarsBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
       }
     }
   }
@@ -1396,9 +1433,8 @@ void MatlabScriptWrapper::_copyInputStringsToMatlab()
   MLint i = 0;
   // Compose string that contains input scalars.
   std::ostringstream execute;
-  // Put only input scalars into matlab.
-  for(i=0; i<6; i++)
-  {
+  // Put only input scalars into Matlab.
+  for(i=0; i<6; i++) {
     execute<<_stringNameFld[i]->getStringValue()<<"='"<<(_stringFld[i]->getStringValue())<<"'\n";
   }
   // Execute string and write input scalars into Matlab.
@@ -1424,10 +1460,12 @@ void MatlabScriptWrapper::_getStringsBackFromMatlab()
   {
     temp = engGetVariable(m_pEngine, (_stringNameFld[i]->getStringValue()).c_str());
     if(temp!=NULL) {
-      tempsize = mxGetN(temp)+1;
+      tempsize = (int)mxGetN(temp)+1;
       ML_CHECK_NEW(fieldVal,char[tempsize]);
       mxGetString(temp,fieldVal,tempsize);
+      _stringFld[i]->disableNotifications();
       _stringFld[i]->setStringValue(fieldVal);
+      _stringFld[i]->enableNotifications();
       ML_DELETE(fieldVal);
     }
   }
@@ -1480,7 +1518,9 @@ void MatlabScriptWrapper::_getVectorsBackFromMatlab()
       if(mxGetClassID(temp)==mxDOUBLE_CLASS) {
         double *fieldVal = static_cast<double*>(mxGetPr(temp));
         if(mxGetM(temp)==1 && mxGetN(temp)==4) {
+          _vectorFld[i]->disableNotifications();
           _vectorFld[i]->setVec4fValue(vec4(fieldVal[0],fieldVal[1],fieldVal[2],fieldVal[3]));
+          _vectorFld[i]->enableNotifications();
         } else {
           std::cerr << "_getVectorsBackFromMatlab(): Incorrect vector size" << std::endl << std::flush;
         }
@@ -1534,17 +1574,18 @@ void MatlabScriptWrapper::_getMatricesBackFromMatlab()
   // Internal loop.
   mxArray *temp = NULL;
   // Get only output matrices.
-  for(MLint i=0; i<3; i++)
-  {
+  for(MLint i=0; i<3; i++) {
     temp = engGetVariable(m_pEngine, (_matrixNameFld[i]->getStringValue()).c_str());
     if(temp!=NULL) {
       if(mxGetClassID(temp)==mxDOUBLE_CLASS) {
         double *fieldVal = static_cast<double*>(mxGetPr(temp));
         if(mxGetM(temp)==4 && mxGetN(temp)==4) {
+          _matrixFld[i]->disableNotifications();
           _matrixFld[i]->setMatrixValue(mat4(fieldVal[0],fieldVal[4], fieldVal[8],fieldVal[12],
                                              fieldVal[1],fieldVal[5], fieldVal[9],fieldVal[13],
                                              fieldVal[2],fieldVal[6],fieldVal[10],fieldVal[14],
                                              fieldVal[3],fieldVal[7],fieldVal[11],fieldVal[15]));
+          _matrixFld[i]->enableNotifications();
         } else {
           std::cerr << "_getMatricesBackFromMatlab(): Incorrect matrix size" << std::endl << std::flush;
         }

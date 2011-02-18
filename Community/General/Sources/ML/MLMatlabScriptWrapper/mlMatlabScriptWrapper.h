@@ -73,6 +73,9 @@ public:
   //! Configures (in)validation handling of inputs which are not connected or up to date.
   virtual INPUT_HANDLE handleInput(int inIndex, INPUT_STATE state) const;
 
+  //! Triggers the computation.
+  virtual void _process();
+
   // ----------------------------------------------------------
   //@{ \name Image processing methods.
   // ----------------------------------------------------------
@@ -115,6 +118,10 @@ public:
   //@}
 
 private:
+
+  //! Can be called by any WEM processing module to trigger a notification.
+  static void _wemNeedsNotificationCB(void* userData, std::vector<WEMEventContainer> ecList);
+
   // ----------------------------------------------------------
   //@{ \name Module internal methods declarations
   // ----------------------------------------------------------
@@ -175,6 +182,8 @@ private:
   
   //! The WEM input field.
   BaseField *_inputWEMFld;
+  //! Locking for observer, so that no adding or removing is done on an invalid observer list.
+  bool _isInWEMNotificationCB;
   //! The WEM output field.
   BaseField *_outputWEMFld;
   //! The output WEM.
@@ -216,7 +225,7 @@ private:
   BoolField* _autoCalculationFld;
 
   //! Status messages.
-  StringField* _statusFld;
+  StringField* _stdReportFld;
   //! Restart Matlab button.
   NotifyField* _restartMatlabFld;
 
