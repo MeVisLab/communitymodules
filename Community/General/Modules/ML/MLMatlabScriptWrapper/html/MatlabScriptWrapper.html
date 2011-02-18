@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,32 +8,33 @@
 <body>
 
 <center>
-<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp;
-<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp;
-<a href="#Details">Details</a> &nbsp;&nbsp;&nbsp;
-<a href="#Inputs">Inputs</a> &nbsp;&nbsp;&nbsp;
-<a href="#Outputs">Outputs</a> &nbsp;&nbsp;&nbsp;
-<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp;
-<a href="#Events%20And%20Interaction">Events And Interaction</a> &nbsp;&nbsp;&nbsp;
-<a href="#Example">Example</a> &nbsp;&nbsp;&nbsp;
-<a href="#Tips%20And%20Tricks">Tips And Tricks</a> &nbsp;&nbsp;&nbsp;
-<a href="#Known%20Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp;
+<a href="#purpose">Purpose</a> &nbsp;&nbsp;&nbsp;
+<a href="#usage">Usage</a> &nbsp;&nbsp;&nbsp;
+<a href="#details">Details</a> &nbsp;&nbsp;&nbsp;
+<a href="#inputs">Inputs</a> &nbsp;&nbsp;&nbsp;
+<a href="#outputs">Outputs</a> &nbsp;&nbsp;&nbsp;
+<a href="#parameters">Parameters</a> &nbsp;&nbsp;&nbsp;
+<a href="#events%20and%20interaction">Events And Interaction</a> &nbsp;&nbsp;&nbsp;
+<a href="#example">Example</a> &nbsp;&nbsp;&nbsp;
+<a href="#tips%20and%20tricks">Tips And Tricks</a> &nbsp;&nbsp;&nbsp;
+<a href="#known%20bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp;
 <hr width="100%">
 </center>
 
 <h2>MatlabScriptWrapper</h2>
 
 
-<h3><a name="Purpose"></a>Purpose</h3>
+<h3><a name="purpose"></a>Purpose</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
-The <b>MatlabScriptWrapper</b> module offers the possibility to execute Matlab scripts within
-MevisLab and establish a link to a Matlab console, for example to transfer data between MeVisLab
-and Matlab. Note that Matlab must be installed for this module to function.
+The <b>MatlabScriptWrapper</b> module offers the possibility to execute
+<a href="http://www.mathworks.com/products/matlab/">Matlab</a> scripts within MeVisLab and establish a link to a
+Matlab console, for example to transfer data between MeVisLab and Matlab. Note that Matlab must be
+installed for this module to function.
 </blockquote>
 
 
-<h3><a name="Usage"></a>Usage</h3>
+<h3><a name="usage"></a>Usage</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 Currently, three types of data structures can be transferred between MeVisLab and Matlab:<br>
@@ -42,11 +45,11 @@ Currently, three types of data structures can be transferred between MeVisLab an
     Note that MeVisLab and Matlab use different coordinate systems, see below for further information.
     </li>
     <li><span style="font-weight: bold;">CurveData (input only) and CurveLists:</span>
-    A CurveData is an object consisting of zero or one X- and any number of Y-data series. A CurveList
-    is an array of CurveData objects.
-    In Matlab, a CurveList is represented as a cell array with in each cell a matrix with the points of
-    each series of a curve. The first column in the matrix contains the X-values, the second column
-    contains the first serie of Y-values, the third column the second serie of Y-values etc..
+    A <a href="http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html">CurveData</a>
+    is an object consisting of zero or one X- and any number of Y-data series. A CurveList is an array
+    of CurveData objects. In Matlab, a CurveList is represented as a cell array with in each cell a matrix
+    with the points of each series of a curve. The first column in the matrix contains the X-values, the
+    second column contains the first serie of Y-values, the third column the second serie of Y-values etc..
     </li>
     <li><span style="font-weight: bold;">XMarkerLists:</span>
     An XMarker is an object that contains a point (up to 6-D), a vector (3-D) and a type variable (integer).
@@ -103,8 +106,8 @@ Currently, three types of data structures can be transferred between MeVisLab an
 The variable names for the above data structures in the Matlab workspace can be set.
 <br>
 The Matlab script can be written directly in the module GUI, or an external script file (.m) can be called.
-If you choose to use existing script, the script in script field will disappear and
-there is no posibility to edit a Matlab script file from MevisLab.
+If you choose to use an existing script, the script in script field will disappear and there is no
+posibility to edit a Matlab script file from MeVisLab.
 <br>
 Push the "Update"-button to execute the Matlab script, set "Auto update" to update on input value change,
 or set "Auto apply" to update on parameter value change.
@@ -115,7 +118,7 @@ The "Restart Matlab"-button can be used to restart a Matlab session once it is t
 </blockquote>
 
 
-<h3><a name="Details"></a>Details</h3>
+<h3><a name="details"></a>Details</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <span style="font-weight: bold;">Coordinate systems in MeVisLab and Matlab</span>
@@ -139,7 +142,7 @@ which swaps the x and y axes. See the example network for an example.<br>
 </blockquote>
 
 
-<h3><a name="Inputs"></a>Inputs</h3>
+<h3><a name="inputs"></a>Inputs</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 Up to three input images and one CurveData, CurveList, XMarkerList , or WEM can be attached to the module.
@@ -148,14 +151,14 @@ in Matlab without input from MeVisLab (see the example network for examples).
 </blockquote>
 
 
-<h3><a name="Outputs"></a>Outputs</h3>
+<h3><a name="outputs"></a>Outputs</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 Up to three output images and one CurveList, one XMarkerList, or one WEM.
 </blockquote>
 
 
-<h3><a name="Parameters"></a>Parameters</h3>
+<h3><a name="parameters"></a>Parameters</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Matlab Script</b>
@@ -170,7 +173,6 @@ A field where the Matlab script can be written.<br>
 Enables the possibility to use an external Matlab script file (.m).<br>
 </blockquote>
 
-
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Auto update</b>
 <br>
@@ -178,19 +180,11 @@ Execute the script automatically on input change (only for input images, CurveDa
 XMarkerList, and WEM, not for changes in the names).<br>
 </blockquote>
 
-
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Auto apply</b>
 <br>
 Execute the script automatically on parameter change (only for fields,
 not for changes in the names).<br>
-</blockquote>
-
-
-<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
-<b>Show Matlab session window</b>
-<br>
-Show or hide the Matlab session window.<br>
 </blockquote>
 
 
@@ -205,6 +199,13 @@ Restarts the Matlab engine.<br>
 <b>Status</b>
 <br>
 This field gives information whether the Matlab script was executed correctly or not.<br>
+</blockquote>
+
+
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+<b>Show Matlab session window</b>
+<br>
+Show or hide the Matlab session window.<br>
 </blockquote>
 
 
@@ -238,20 +239,20 @@ The variable names in the Matlab script of the input and output data structures.
 </blockquote>
 
 
-<h3><a name="Example"></a>Example</h3>
+<h3><a name="example"></a>Example</h3>
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 The example network shows a number of different uses of the <b>MatlabScriptWrapper</b> module.<br>
 </blockquote>
 
 
-<h3><a name="Tips And Tricks"></a>Tips And Tricks</h3>
+<h3><a name="tips%20and%20tricks"></a>Tips And Tricks</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <span style="color: rgb(0, 0, 0);">-</span>
 </blockquote>
 
 
-<h3><a name="Known Bugs"></a>Known Bugs</h3>
+<h3><a name="known%20bugs"></a>Known Bugs</h3>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <span style="color: rgb(0, 0, 0);">-</span>
