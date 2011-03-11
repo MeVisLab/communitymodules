@@ -21,6 +21,8 @@ module TypeArithmetic1 {
     parameterX = 0
     parameterY = 0
     value = -1
+    intList = ""
+    dblList = ""
   }
 }
 module Negation {
@@ -108,7 +110,7 @@ module View2DExtensions {
     zoomOn = TRUE
     panOn = TRUE
     autoCenterOn = TRUE
-    position = "-3.984270095825195 -7.729000091552734 32.68109893798828"
+    position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutOn = TRUE
     lutMouseOn = TRUE
@@ -118,46 +120,47 @@ module View2DExtensions {
     lutMouseShift = RELEASED
     lutMouseCtrl = RELEASED
     lutRangeMin = 0
-    lutRangeMax = 1
+    lutRangeMax = 255
     lutAlphaSync = TRUE
-    lutGreyCenter = 1
-    lutGreyWidth = 1
-    lutAlphaCenter = 1
-    lutAlphaWidth = 1
+    lutGreyCenter = 115.10001
+    lutGreyWidth = 135.40001
+    lutAlphaCenter = 115.10001
+    lutAlphaWidth = 135.40001
     lutColorFactor = "1 1 1"
     lutAlphaFactor = 1
-    lutAutoDefault = TRUE
+    lutAutoDefault = FALSE
     lutSetInputMinMax = TRUE
     lutUseTraceColors = FALSE
     lutEnableNegWidth = FALSE
     lutSetDefaultOnce = TRUE
     lutTrCol0 = "1 1 1"
-    lutTrCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
-    lutTrCol2 = "0.8627449870109558 0 0.1725489944219589"
-    lutTrCol3 = "1 0.4627450108528137 0.4901959896087646"
-    lutTrCol4 = "0 0.8196079730987549 0.1607840061187744"
-    lutTrCol5 = "0.5607839822769165 1 0.4352940022945404"
-    lutTrCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
-    lutTrCol7 = "0.4901959896087646 0.5411760210990906 1"
-    lutTrCol8 = "0.6313729882240295 0 0.67843097448349"
-    lutTrCol9 = "0.8941180109977722 0.3803919851779938 1"
-    lutTrColA = "0 0.6823530197143555 0.756862998008728"
-    lutTrColB = "0.5019609928131104 1 0.9803919792175293"
-    lutTrColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
-    lutTrColD = "1 0.9764710068702698 0.3686270117759705"
+    lutTrCol1 = "0.50196099281311 0.50196099281311 0.50196099281311"
+    lutTrCol2 = "0.862744987010956 0 0.172548994421959"
+    lutTrCol3 = "1 0.462745010852814 0.490195989608765"
+    lutTrCol4 = "0 0.819607973098755 0.160784006118774"
+    lutTrCol5 = "0.560783982276917 1 0.43529400229454"
+    lutTrCol6 = "0.184313997626305 0.23921599984169 0.929412007331848"
+    lutTrCol7 = "0.490195989608765 0.541176021099091 1"
+    lutTrCol8 = "0.63137298822403 0 0.67843097448349"
+    lutTrCol9 = "0.894118010997772 0.380391985177994 1"
+    lutTrColA = "0 0.682353019714355 0.756862998008728"
+    lutTrColB = "0.50196099281311 1 0.980391979217529"
+    lutTrColC = "0.615685999393463 0.600000023841858 0.19607800245285"
+    lutTrColD = "1 0.97647100687027 0.36862701177597"
     lutTrColE = "1 1 1"
     lutTrColF = "1 1 1"
     annotationOn = TRUE
     annoCoords = Voxel
     annoCTValue = AsIs
     valueHighPrecision = FALSE
+    maxPrecision = 4
     annotFontSize = ANNO_SIZE_AUTO
     annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
     annotVerticalRuler = TRUE
     annotHorizontalRuler = FALSE
-    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
     annotationMode = ANNO_MODE_AUTO
-    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotShowAnnot = ANNO_SHOW_HIDE
     annotUserTopLeft = "$(PatientsName)
 $(PatientID) $(PatientsSex)
 $(PatientsBirthDate)
@@ -179,19 +182,53 @@ LUT C/W: $(input03) / $(input04)"
     annotShortTopRight = $(Modality)
     annotShortBottomLeft = "Slice: $(slice)"
     annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
-    annoInput03 = 1
-    annoInput04 = 1
-    annoInput05 = 1
-    annoInput06 = 1
-    annoInput07 = 1
-    annoInput08 = 1
+    annotMRTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)):
+$(input01) GV"
+    annotMRTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotMRBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotMRBottomRight = "MR Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotCTTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(input02) $(input09)"
+    annotCTTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality) "
+    annotCTBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotCTBottomRight = "CT Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input07) / $(input08)"
+    annoInput03 = 115.1
+    annoInput04 = 135.4
+    annoInput05 = "00.85 00.53 "
+    annoInput06 = 135.400009155273
+    annoInput07 = 115.1
+    annoInput08 = 135.4
     annoInput09 = GV
     annoMouseOn = TRUE
-    annoReadPixFloorPos = "1025 764 0"
-    annoReadPixVoxelPos = "1025.339965820312 764.1619873046875 0.5"
-    annoReadPixWorldPos = "1025.339965820312 764.1619873046875 0.5"
+    annoReadPixFloorPos = "212 156 0"
+    annoReadPixVoxelPos = "212.339263916016 156.385467529297 0.5"
+    annoReadPixWorldPos = "45.6778450012207 33.6128044128418 77"
     borderOn = TRUE
-    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     borderWidth = 1
     borderEvaluateFocus = FALSE
     borderFocusColor = "1 1 1"
@@ -216,8 +253,8 @@ module FormatFloat {
   fields  {
     instanceName = FormatFloat
     format = %05.2f
-    value = ""
-    output = ""
+    value = "0.84535456 0.53420562"
+    output = "00.85 00.53 "
   }
   internalFields = ""
 }
@@ -238,7 +275,7 @@ module SoView2DPosition {
     instanceName = SoView2DPosition
     drawingOn = FALSE
     editingOn = TRUE
-    maskValid = FALSE
+    maskValid = TRUE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -258,17 +295,19 @@ module SoView2DPosition {
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    worldPosition = "-1 -1 -1"
-    firstSliceWorldPosition = "-1 -1 -1"
+    worldPosition = "40.018482208252 43.7289199829102 77"
+    firstSliceWorldPosition = "40.018482208252 43.7289199829102 77"
     drawingModel = DRAWINGMODEL_CROSSHAIRS
     drawingModelSize = -1
+    crossHairSpacing = 0
+    drawEditingRect = TRUE
     blendOnto = 1
     blendOutside = 0
     lineWidth = 1
     colorAxes = FALSE
     sagittalColor = "1 0 0"
-    coronalColor = "0.1725490242242813 0.886274516582489 0.0117647061124444"
-    axialColor = "0.007843137718737125 0.9529411792755127 0.9686274528503418"
+    coronalColor = "0.172549024224281 0.886274516582489 0.0117647061124444"
+    axialColor = "0.00784313771873713 0.952941179275513 0.968627452850342"
     updateOnPress = TRUE
     updateOnMotion = TRUE
     updateOnRelease = FALSE
@@ -296,6 +335,8 @@ module TypeArithmetic1 {
     parameterX = 0
     parameterY = 0
     value = 0
+    intList = ""
+    dblList = ""
   }
 }
 module SoGroup {
@@ -374,7 +415,7 @@ module SoView2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1000000015
+    cineSpeed = 0.1
     cineFullRangeZ = TRUE
     cineFullRangeT = TRUE
     cineAlwaysReset = TRUE
@@ -434,7 +475,7 @@ module GetVoxelValue {
   }
   fields  {
     instanceName = GetVoxelValue
-    position = "-1 -1 -1 0 0 0"
+    position = "40.018482208252 43.7289199829102 77 0 0 0"
     updateMode = AutoClear
     coordinateType = World
   }
@@ -485,8 +526,8 @@ module SoView2D {
     moduleGroupName = Vectors
     windows  {
       window _default {
-        geometry = "410 193 466 687"
-        sizeHint = "466 687"
+        geometry = "964 454 439 502"
+        sizeHint = "439 502"
         wasOpen = no
         wasActive = no
       }
@@ -505,11 +546,11 @@ module SoView2D {
     upperRight = "1 1"
     margin = "2 2"
     spacing = "4 4"
-    plane = "0 0 1 0"
-    sliceZoom = 1
-    sliceZoomSynchronized = 1
+    plane = "0 0 1 77"
+    sliceZoom = 2.6999996
+    sliceZoomSynchronized = 2.6999996
     minSliceZoomKeyboard = 1
-    sliceOrigin = "0 0"
+    sliceOrigin = "100.174102783203 89.9873275756836"
     viewingCenter = "0 0 0"
     enableViewingCenter = FALSE
     unzoomOnImageChange = FALSE
@@ -546,7 +587,7 @@ module SoView2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1000000015
+    cineSpeed = 0.1
     cineFullRangeZ = TRUE
     cineFullRangeT = TRUE
     cineAlwaysReset = TRUE
@@ -563,11 +604,19 @@ module SoToggle {
   internal  {
     frame = "189 153 104 64"
     moduleGroupName = Vectors
+    windows  {
+      window _default {
+        geometry = "939 618 116 22"
+        sizeHint = "56 22"
+        wasOpen = no
+        wasActive = no
+      }
+    }
   }
   fields  {
     instanceName = ViewVectors
-    whichChild = -1
-    on = FALSE
+    whichChild = -3
+    on = TRUE
   }
 }
 module SoToggle {
@@ -585,8 +634,8 @@ module SoToggle {
   }
   fields  {
     instanceName = ViewMesh
-    whichChild = -3
-    on = TRUE
+    whichChild = -1
+    on = FALSE
   }
 }
 module SoMouseGrabber {
@@ -626,9 +675,9 @@ module SoMouseGrabber {
     x = 1
     y = 1
     xmin = 0
-    xmax = 1
+    xmax = 255
     ymin = 0
-    ymax = 1
+    ymax = 255
     cursorPresent = FALSE
     checkCursorPresent = FALSE
     maskValid = FALSE
@@ -661,29 +710,29 @@ module SoRLLookUpTable {
   fields  {
     instanceName = overlayLut
     _channelEditorState = ""
-    alphaCenter = 1
-    alphaWidth = 1
-    greyCenter = 1
-    greyWidth = 1
-    redCenter = 0.5
-    redWidth = 1
-    blueCenter = 0.5
-    blueWidth = 1
+    alphaCenter = 131
+    alphaWidth = 143
+    greyCenter = 131
+    greyWidth = 143
+    redCenter = 131
+    redWidth = 143
+    blueCenter = 131
+    blueWidth = 143
     useColorRamps = FALSE
     invertGrey = FALSE
     invertAlpha = FALSE
     colorFactor = "1 1 1"
     alphaFactor = 1
-    autoSetDefaultRamp = TRUE
+    autoSetDefaultRamp = FALSE
     setDefaultRampOnce = TRUE
-    inputImageValid = FALSE
+    inputImageValid = TRUE
     rangeMin = 0
-    rangeMax = 1
+    rangeMax = 255
     widthMin = 0
     enableNegWidth = FALSE
-    widthMax = 1
-    rangeStep = 0.004999999888
-    rangeStepStep = 0.05000000075
+    widthMax = 255
+    rangeStep = 1.0000001
+    rangeStepStep = 10.000001
     selectorX = 0
     selectorY = 0
     setInputMinMax = TRUE
@@ -692,48 +741,48 @@ module SoRLLookUpTable {
     trCol0 = "1 1 1"
     trCol0Name = White
     trCol0Alpha = 1
-    trCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
+    trCol1 = "0.50196099281311 0.50196099281311 0.50196099281311"
     trCol1Name = Grey
     trCol1Alpha = 1
-    trCol2 = "0.8627449870109558 0 0.1725489944219589"
+    trCol2 = "0.862744987010956 0 0.172548994421959"
     trCol2Name = Red
     trCol2Alpha = 1
-    trCol3 = "1 0.4627450108528137 0.4901959896087646"
+    trCol3 = "1 0.462745010852814 0.490195989608765"
     trCol3Name = "Light Red"
     trCol3Alpha = 1
-    trCol4 = "0 0.8196079730987549 0.1607840061187744"
+    trCol4 = "0 0.819607973098755 0.160784006118774"
     trCol4Name = Green
     trCol4Alpha = 1
-    trCol5 = "0.5607839822769165 1 0.4352940022945404"
+    trCol5 = "0.560783982276917 1 0.43529400229454"
     trCol5Name = "Light Green"
     trCol5Alpha = 1
-    trCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
+    trCol6 = "0.184313997626305 0.23921599984169 0.929412007331848"
     trCol6Name = Blue
     trCol6Alpha = 1
-    trCol7 = "0.4901959896087646 0.5411760210990906 1"
+    trCol7 = "0.490195989608765 0.541176021099091 1"
     trCol7Name = "Light Blue"
     trCol7Alpha = 1
-    trCol8 = "0.6313729882240295 0 0.67843097448349"
+    trCol8 = "0.63137298822403 0 0.67843097448349"
     trCol8Name = "Dark Magenta"
     trCol8Alpha = 1
-    trCol9 = "0.8941180109977722 0.3803919851779938 1"
+    trCol9 = "0.894118010997772 0.380391985177994 1"
     trCol9Name = Magenta
     trCol9Alpha = 1
-    trColA = "0 0.6823530197143555 0.756862998008728"
+    trColA = "0 0.682353019714355 0.756862998008728"
     trColAName = "Dark Cyan"
     trColAAlpha = 1
-    trColB = "0.5019609928131104 1 0.9803919792175293"
+    trColB = "0.50196099281311 1 0.980391979217529"
     trColBName = Cyan
     trColBAlpha = 1
-    trColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
+    trColC = "0.615685999393463 0.600000023841858 0.19607800245285"
     trColCName = "Dark Yellow"
     trColCAlpha = 1
-    trColD = "1 0.9764710068702698 0.3686270117759705"
+    trColD = "1 0.97647100687027 0.36862701177597"
     trColDName = Yellow
     trColDAlpha = 1
     trColE = "1 1 1"
     trColEName = "Half Transparent"
-    trColEAlpha = 0.06274499744
+    trColEAlpha = 0.062744997
     trColF = "1 1 1"
     trColFName = Transparent
     trColFAlpha = 0
@@ -797,8 +846,8 @@ module SoView2DVectorFieldView {
     moduleGroupName = Vectors
     windows  {
       window _default {
-        geometry = "521 318 232 596"
-        sizeHint = "232 596"
+        geometry = "521 318 232 584"
+        sizeHint = "232 584"
         wasOpen = no
         wasActive = no
       }
@@ -808,7 +857,7 @@ module SoView2DVectorFieldView {
     instanceName = SoView2DVectorFieldView
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = FALSE
+    maskValid = TRUE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -828,20 +877,20 @@ module SoView2DVectorFieldView {
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    midpointSize = 0.05999999866
-    vectorWidth = 0.1000000015
-    vectorLength = 1
+    midpointSize = 0.059999999
+    vectorWidth = 0.1
+    vectorLength = 10
     vectorMinLength = 0
     midpointSegments = 10
     midpointAbsoluteSize = FALSE
     vectorAbsoluteSize = TRUE
-    vectorColor = "1 0 0"
+    vectorColor = "0.666666686534882 0 0"
     midpointColor = "1 1 0"
-    stepWidth = 10
+    stepWidth = 5
     drawArrowTips = FALSE
     arrowTipColor = "0 1 0"
-    arrowTipWidth = 0.200000003
-    arrowTipHeight = 0.200000003
+    arrowTipWidth = 1
+    arrowTipHeight = 1
     normalizeVectors = FALSE
     useComps2And3 = FALSE
   }
@@ -863,7 +912,7 @@ module SoView2DDeformationGridView {
     instanceName = SoView2DDeformationGridView
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = FALSE
+    maskValid = TRUE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -883,13 +932,13 @@ module SoView2DDeformationGridView {
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    stepWidth = 10
-    gridColor = "0 0.6666666865348816 1"
+    stepWidth = 5
+    gridColor = "0 0.666666686534882 1"
     gridPointColor = "1 1 1"
     drawGridPoints = FALSE
     gridPointSegments = 10
     gridPointAbsoluteSize = FALSE
-    gridPointSize = 0.05000000075
+    gridPointSize = 0.050000001
   }
 }
 module View2D {
@@ -909,13 +958,19 @@ module View2D {
         wasOpen = no
         wasActive = no
       }
+      window _automatic {
+        geometry = "1286 266 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+        wasActive = no
+      }
     }
   }
   fields  {
     instanceName = View2D
     inventorInputOn = TRUE
     view2DExtensionsOn = FALSE
-    startSlice = -1
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -928,29 +983,30 @@ module View2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1000000015
+    cineSpeed = 0.1
     snapToCenter = FALSE
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
-    sliceZoom = 1
-    sliceZoomSynced = 1
+    sliceZoom = 2.6999996
+    sliceZoomSynced = 2.6999996
     baseColor = "1 1 1"
     margin = "2 2"
-    sliceOrigin = "0 0"
-    lutCenter = 1
-    lutWidth = 1
+    sliceOrigin = "96.5273818969727 86.3406066894531"
+    lutCenter = 131
+    lutWidth = 143
     lutUseTraceColors = FALSE
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
     annotationFontSize = ANNO_SIZE_AUTO
     annoCoords = Voxel
     annoCTValue = AsIs
     borderOn = TRUE
-    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     valueHighPrecision = FALSE
-    plane = "0 0 1 0"
+    maxPrecision = 4
+    plane = "0 0 1 77"
   }
   internalFields = ""
 }
@@ -975,6 +1031,8 @@ connections  {
   ShowMagnitude.children = "SoGroup2.self SoSeparator2.self"
   SoView2D.image = Vector.output0
   SoView2D.startSlice = View2D.startSlice
+  SoView2D.sliceZoomSynchronized = View2D.sliceZoom
+  SoView2D.sliceOrigin = View2D.sliceOrigin
   SoView2D.timePoint = View2D.timePoint
   ViewVectors.children = SoView2DVectorFieldView.self
   ViewMesh.children = SoView2DDeformationGridView.self
