@@ -173,29 +173,73 @@ void WEMSelectPatches::selectPatch()
       _patchEndIndexFld->setIntValue(patchEndIndex);
     }
 
-    // Check if input patch is of right type
-    if (_inWEM->getWEMPatchAt(0)->getPatchType()!=WEM_PATCH_TRIANGLES) {
-      std::cout << "Input WEMPatch should be of type WEM_PATCH_TRIANGLES!" << std::endl;
-      return;
-    }
+    if ( _inWEM->getWEMPatchAt(0)->getPatchType() == WEM_PATCH_TRIANGLES ) 
+    {
+      // Output selected WEM patches
+      for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
+        int index = i;
+        // Circular behaviour
+        while (index<0) {
+          index = index + numPatches;
+        }
+        
+        // Get input patch
+        WEMTrianglePatch * inPatch = (WEMTrianglePatch*) _inWEM->getWEMPatchAt(index % numPatches);
 
-    // Output selected WEM patches
-    for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
-      int index = i;
-      // Circular behaviour
-      while (index<0) {
-        index = index + numPatches;
-      }
+        // Create new output patch
+        WEMTrianglePatch * outTrianglePatch = NULL;
+        ML_CHECK_NEW(outTrianglePatch, WEMTrianglePatch(*inPatch));
       
-      // Get input patch
-      WEMTrianglePatch * inPatch = (WEMTrianglePatch*) _inWEM->getWEMPatchAt(index % numPatches);
+        _finish(outTrianglePatch);
+        _addWEMPatch(outTrianglePatch);
+      }
+    }
+    else if ( _inWEM->getWEMPatchAt(0)->getPatchType() == WEM_PATCH_POLYGONS )
+    {
+      // Output selected WEM patches
+      for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
+        int index = i;
+        // Circular behaviour
+        while (index<0) {
+          index = index + numPatches;
+        }
 
-      // Create new output patch
-      WEMTrianglePatch * outTrianglePatch = NULL;
-      ML_CHECK_NEW(outTrianglePatch, WEMTrianglePatch(*inPatch));
-    
-      _finish(outTrianglePatch);
-      _addWEMPatch(outTrianglePatch);
+        // Get input patch
+        WEMPolygonPatch * inPatch = (WEMPolygonPatch*) _inWEM->getWEMPatchAt(index % numPatches);
+
+        // Create new output patch
+        WEMPolygonPatch * outTrianglePatch = NULL;
+        ML_CHECK_NEW(outTrianglePatch, WEMPolygonPatch(*inPatch));
+
+        _finish(outTrianglePatch);
+        _addWEMPatch(outTrianglePatch);
+      }
+    }
+    else if ( _inWEM->getWEMPatchAt(0)->getPatchType() == WEM_PATCH_QUADS )
+    {
+      // Output selected WEM patches
+      for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
+        int index = i;
+        // Circular behaviour
+        while (index<0) {
+          index = index + numPatches;
+        }
+
+        // Get input patch
+        WEMQuadPatch * inPatch = (WEMQuadPatch*) _inWEM->getWEMPatchAt(index % numPatches);
+
+        // Create new output patch
+        WEMQuadPatch * outTrianglePatch = NULL;
+        ML_CHECK_NEW(outTrianglePatch, WEMQuadPatch(*inPatch));
+
+        _finish(outTrianglePatch);
+        _addWEMPatch(outTrianglePatch);
+      }
+    }
+    else
+    {
+      std::cout << "Input WEMPatch type not supported!" << std::endl;
+      return;
     }
   }
 }
