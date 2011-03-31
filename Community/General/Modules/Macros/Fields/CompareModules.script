@@ -19,6 +19,7 @@ Interface {
     Field module1    { type = string value = "" }
     Field fields0    { type = string value = "" }
     Field fields1    { type = string value = "" }
+    Field reset      { type = Trigger }
   }
 }
 
@@ -40,7 +41,12 @@ Window {
       }
       Button { 
         title = "Update module list" 
-        command = UpdateSelections 
+        command = UpdateModuleList
+        alignX = Left
+      }
+      Button reset {
+        title = "Reset to defaults"
+        command = ResetToDefaults
         alignX = Left
       }
     } // Update
@@ -61,6 +67,7 @@ Window {
             activatedCommand = Compare
           }
           ListView fields0 {
+            name = listView0
             rowSeparator = "@"
             columnSeparator = "&"
             selectionMode = NoSelection
@@ -78,6 +85,7 @@ Window {
             activatedCommand = Compare
           }
           ListView fields1 {
+            name = listView1
             rowSeparator = "@"
             columnSeparator = "&"
             richText = Yes

@@ -112,6 +112,26 @@ def Compare():
   if selection1Default and module1: module1.remove()
   return 
 
+def ResetToDefaults():
+  selection0 = ctx.field("module0").value
+  selection1 = ctx.field("module1").value
+  selection0Default = (selection0 == "Defaults" )
+  selection1Default = (selection1 == "Defaults" )
+  if ( not( selection0Default ^ selection1Default)) : return
+  module = None
+  default = None
+  if not selection0Default : module = ctx.parent().module( selection0 )
+  if not selection1Default : module = ctx.parent().module( selection1 )
+  if module :
+    default = ctx.addModule( module.type() )
+    if default :
+      pars = module.parameters()
+      for par in pars :
+        if TestField( module.field(par) ) :
+          module.field(par).setStringValue( default.field(par).stringValue() )
+  Compare()
+  return
+
 #//# MeVis signature v1
 #//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
 #//# owner: EMC
