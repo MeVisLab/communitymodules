@@ -65,30 +65,46 @@ public:
 
   ~CSOImageStatistics();
 
-  
-  //! Handle field changes of the field \c field.
-  virtual void handleNotification (Field *field);
-  static void CsoListNotifyObserverCB(void* userData, int notificationFlag);
-
-private:
-
+  //! Enumerator for memory handling
   enum MemoryAccess {
     PAGES = 0,
     MEMIMAGE,
     VIRTUALVOLUME
   };
 
+  //! Enumerator for update mode
+  enum UpdateMode {
+    OFF = 0,
+    AUTOUPDATE
+  };
+
+  
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field *field);
+
+  //! Callback member for CSO notifications
+  static void CsoListNotifyObserverCB(void* userData, int notificationFlag);
+
+private:
+
   //! Implements interface for the runtime type system of the ML.
   ML_BASEOP_CLASS_HEADER(CSOImageStatistics);
 
 
+  //! Setup the internal CSOList: private list or pointer to input list
   void SetupInternalCSOList();
+
+  //! Parse the given Id string
   void ParseInputCSOString();
+
+  //! Add CSO Id to the list that needs to be processed
   void AddCSOId(const std::string& idString);
+
+  //! Process the determined Id list
   void ProcessCSOList(bool shouldSetupInternalCSOList);
 
   //! Get image statistics of cso
-  void GetStatistics( CSO* cso, 
+  void GetStatistics( CSO    *cso, 
                       size_t &voxelCount, 
                       double &sum, 
                       double &average,
@@ -102,7 +118,7 @@ private:
                                SubImgBox const           &voxelBB);
 
   //! Convert the coordinates in the list from wold to voxel coordinates using the supplied image
-  void ConvertCoorinateList( std::vector< vec3 > &coordinateList, mlField* image);
+  void ConvertCoorinateListToVoxel( std::vector< vec3 > &coordinateList, mlField* image);
 
   //! Set the output curves
   void SetCurves();
@@ -111,23 +127,16 @@ private:
   //! return the new string.
   std::string ReplaceString(std::string sourceString, std::string findString, std::string replaceString );
 
+  //! \name Module Fields
+  //@{
   //! The input CSOList.
   BaseField* f_InputCSOList;
 
   //! The output CSOList. This may contain additional description strings for each CSO
   BaseField* f_OutputCSOList;
 
-  //! A pointer to the input CSOList.
-  CSOList* m_InCSOList;
-
-  //! A pointer to the output CSOList.
-  CSOList* m_OutCSOList;
-
   //! Input string for determining the CSOs that are to be processed.
   StringField* f_InputCSOString;
-
-  //! The ids of the selected CSOs.
-  std::vector<unsigned int> m_SelectedCSOIds;
 
   //! Shall the module work directly on the input CSOList?
   //! Otherwise, it would work on a copy which is set at the output field.
@@ -145,24 +154,11 @@ private:
   //! Output curve field
   BaseField  *f_OutCurveList;
 
-  //! The actual curveList
-  CurveList  *m_OutCurveList;
-
-  //! The CurveData for the average
-  std::vector< float > m_AverageSeries;
-
-  //! The CurveData for the sum
-  std::vector< float > m_SumSeries;
-
   //! Select which statistics to add as curve
   BoolField *f_OutputAverage;
 
   //! Select which statistics to add as curve
   BoolField *f_OutputSum;
-
-  //! Output a MarkerList containing all positions that are used to calculate the statistics
-  //! The type of each marker is set to the corresponding CSO Id
-  XMarkerList *m_OutMarkerList;
 
   //! Output MarkerList field
   BaseField   *f_OutMarkerList;
@@ -179,12 +175,6 @@ private:
   //! Applies changes.
   NotifyField* f_Apply;
   
-  //! Locking variable for removing/adding a notification observer.
-  bool m_IsInNotificationCB;
-
-  //! Is this module notifying itself? Locking variable to avoid infinite loops.
-  bool m_IsNotifyingMyself;
-
   //! Calculate statistics on every point inside the CSO
   BoolField   *f_UseAllPointsInsideCSO;
 
@@ -208,7 +198,39 @@ private:
   //! defines how to access the input image, ("Paged", "Global" , "VirtualVolume")
   EnumField   *f_MemoryAccessMode;
 
+  //@}
 
+  //! \name module member variables
+  //@{
+  //! A pointer to the input CSOList.
+  CSOList* m_InCSOList;
+
+  //! A pointer to the output CSOList.
+  CSOList* m_OutCSOList;
+
+  //! The ids of the selected CSOs.
+  std::vector<unsigned int> m_SelectedCSOIds;
+
+  //! The actual curveList
+  CurveList  *m_OutCurveList;
+
+  //! The CurveData for the average
+  std::vector< float > m_AverageSeries;
+
+  //! The CurveData for the sum
+  std::vector< float > m_SumSeries;
+
+  //! Output a MarkerList containing all positions that are used to calculate the statistics
+  //! The type of each marker is set to the corresponding CSO Id
+  XMarkerList *m_OutMarkerList;
+
+  //! Locking variable for removing/adding a notification observer.
+  bool m_IsInNotificationCB;
+
+  //! Is this module notifying itself? Locking variable to avoid infinite loops.
+  bool m_IsNotifyingMyself;
+
+  //@}
   
 };
 

@@ -217,13 +217,13 @@ void CSOImageStatistics::handleNotification (Field *field)
       }
     }
   } else 
-  if (inputImageValid ||
-     ( field == f_Apply ||
-       field == f_AddDescription ||
-       field == f_DescriptionString ||
-       field == f_UseAllPointsInsideCSO ||
-       field == f_Resolution ||
-       field == f_UseVoxelSize ) ){
+  if ( (field == f_Apply || f_UpdateMode->getEnumValue() == AUTOUPDATE ) && 
+      (inputImageValid ||
+       ( field == f_AddDescription ||
+         field == f_DescriptionString ||
+         field == f_UseAllPointsInsideCSO ||
+         field == f_Resolution ||
+         field == f_UseVoxelSize ) ) ){
     ProcessCSOList(true);
   } else 
   if ( field == f_OutputAverage || field == f_OutputSum || field == f_OutputCurve ){
@@ -324,7 +324,7 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
 
   f_Statistics->setStringValue( "" );
   std::stringstream outputString;
-  outputString << "Id;Voxels;Sum;Average" << std::endl;
+  outputString << "Id;Voxels;Sum;Average;Min;Max" << std::endl;
 
   m_SumSeries.clear();
   m_AverageSeries.clear();
@@ -342,11 +342,11 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
 
     if (m_SelectedCSOIds.size() > 0){
 
-      double totalMin = ML_DOUBLE_MAX;
-      double totalMax = ML_DOUBLE_MIN;
+      double totalMin     = ML_DOUBLE_MAX;
+      double totalMax     = -ML_DOUBLE_MAX;
       double totalAverage = 0.0;
-      double totalSum = 0.0;
-      double totalArea = 0.0;
+      double totalSum     = 0.0;
+      double totalArea    = 0.0;
       for (unsigned int i = 0; i < m_SelectedCSOIds.size(); i++){
         const unsigned int currentId = m_SelectedCSOIds[i];
         CSO* currentCSO = m_OutCSOList->getCSOById(currentId);
@@ -354,7 +354,7 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
         double sum = 0.0;
         double average = 0.0;
         double minimum = ML_DOUBLE_MAX;
-        double maximum = ML_DOUBLE_MIN;
+        double maximum = -ML_DOUBLE_MAX;
         unsigned int iD = currentCSO->getId();
         size_t voxelCount;
         this->GetStatistics( currentCSO, voxelCount, sum, average, minimum, maximum  );
@@ -371,7 +371,7 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
         totalMin = ML_MIN(totalMin,minimum);
         totalMax = ML_MAX(totalMax,maximum);
 
-        outputString << iD << ";" << voxelCount << ";" << sum << ";" << average  << std::endl; 
+        outputString << iD << ";" << voxelCount << ";" << sum << ";" << average << ";" << minimum << ";" << maximum << std::endl; 
 
         m_SumSeries.push_back( sum );
         m_AverageSeries.push_back( average );
@@ -499,28 +499,13 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
 
     // Get the CSO voxel bounding box
     mlField* mprOutput = MLModuleGetField(mpr,"output0");
-    float vMatrix[16];
-    MLImageGetWorldToVoxelMatrix(mprOutput,vMatrix);
-    mat4 wTvMatrix = mat4(vMatrix);
-    CSOBoundingBox csoBB = cso->getVoxelBoundingBox( wTvMatrix );
-    const MLint t = cso->getTimePointIndex();
-    const MLint x1 = static_cast< MLint >(csoBB.v1[0]);
-    const MLint y1 = static_cast< MLint >(csoBB.v1[1]);
-    const MLint z1 = static_cast< MLint >(csoBB.v1[2]);
-    const MLint x2 = static_cast< MLint >(csoBB.v2[0]);
-    const MLint y2 = static_cast< MLint >(csoBB.v2[1]);
-    const MLint z2 = static_cast< MLint >(csoBB.v2[2]);
-    SubImgBox csoVoxelBox = SubImgBox( Vector(x1,y1,z1,0,t,0),
-                                       Vector(x2,y2,z2,0,t,0) );
 
-    // Allocate memory block and fill it with the mpr image.
     void* tile = NULL;
-    MLErrorCode err = getTile( static_cast<BaseOp*>(mpr),
-                               0, 
-                               csoVoxelBox, 
-                               MLdoubleType, 
-                               &tile );
+    int nx,ny,nz,nc,nt,nu;
+    MLImageGetSize6D( mprOutput,&nx,&ny,&nz,&nc,&nt,&nu);
+    MLErrorCode err = MLImageGetTile6D( mprOutput,&tile,0,0,0,0,0,0,nx,ny,nz,nc,nt,nu, MLdoubleType );
     double* inputTile = reinterpret_cast< double* >(tile);
+    SubImgBox csoVoxelBox = SubImgBox( Vector(0), Vector(nx-1,ny-1,nz-1,nc-1,nt-1,nu-1) );
 
     sum = 0.0;
     average = 0.0;
@@ -538,7 +523,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
         std::vector< vec3 > contourPoints;
 
         // Convert pathPoints to voxel coordinates
-        ConvertCoorinateList( pathPoints, mprOutput);
+        ConvertCoorinateListToVoxel( pathPoints, mprOutput);
         if ( f_UseAllPointsInsideCSO->getBoolValue() ){
           // Fill contourPoints with all points inside the contour
           GetPointsInsideContour( pathPoints, contourPoints, csoVoxelBox);
@@ -548,37 +533,37 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
         }
 
         voxelCount = contourPoints.size();
-        const Vector strideVector =  csoVoxelBox.getExt().getStrides();
+        Vector strideVector;
+        strideVector[0] = 1;
+        strideVector[1] = strideVector[0]*nx;
+        strideVector[2] = strideVector[1]*ny;
+        strideVector[3] = strideVector[2]*nz;
+        strideVector[4] = strideVector[3]*nc;
+        strideVector[5] = strideVector[4]*nt;
         const int currentCSOIndex = cso->getCSOList()->getCSOIndex( cso );
         for ( unsigned int iPos = 0; iPos < voxelCount; ++iPos){
-          const MLint x0 = static_cast< MLint >(contourPoints[iPos][0]);
-          const MLint y0 = static_cast< MLint >(contourPoints[iPos][1]);
-          const MLint z0 = static_cast< MLint >(contourPoints[iPos][2]);
-          const Vector currentPos( x0,y0,z0,0,0,0 );
-          const Vector deltaPos = currentPos-csoVoxelBox.v1;
-          const MLint offset = deltaPos.dot( strideVector);
-          double* currentValue = inputTile+offset;
-          sum += *currentValue;
-          minimum = ML_MIN(minimum, *currentValue );
-          maximum = ML_MAX(maximum, *currentValue );
+          Vector currentPos( static_cast< MLint >(contourPoints[iPos][0]),
+                             static_cast< MLint >(contourPoints[iPos][1]),
+                             static_cast< MLint >(contourPoints[iPos][2]),0,0,0 );
           float x,y,z;
           MLImageMapVoxelToWorld(mprOutput, currentPos[0]+0.5,currentPos[1]+0.5,currentPos[2]+0.5,&x,&y,&z);
           XMarker currentMarker( vec3(x,y,z) );
           currentMarker.type = currentCSOIndex;
           m_OutMarkerList->push_back( currentMarker );
+
+          currentPos -= csoVoxelBox.v1;
+          const MLint offset = currentPos.dot( strideVector );
+          double* currentValue = inputTile+offset;
+          sum += *currentValue;
+          minimum = ML_MIN(minimum, *currentValue );
+          maximum = ML_MAX(maximum, *currentValue );
         }
 
-
-        const double csoArea = cso->getArea();
-        const double csoLength = cso->getLength();
-        if (  csoLength != 0 && csoArea != 0){
-          if ( f_UseVoxelSize->getBoolValue() ){
-            average = sum/csoArea;
-          } else {
-            average = sum/csoLength;
-          }
+        const double csoArea = ( f_UseAllPointsInsideCSO->getBoolValue() ? cso->getArea():cso->getLength() );
+        if ( f_UseVoxelSize->getBoolValue() ){
+          average = (csoArea == 0 ? 0: sum/csoArea);
         } else {
-           average = 0;
+          average = (voxelCount == 0 ? 0 : sum/voxelCount);
         }
       }
       freeTile( inputTile );
@@ -612,23 +597,20 @@ void CSOImageStatistics::SetCurves()
 }
 
 
-void CSOImageStatistics::ConvertCoorinateList( std::vector< vec3 > &coordinateList, mlField* image)
+void CSOImageStatistics::ConvertCoorinateListToVoxel( std::vector< vec3 > &coordinateList, mlField* image)
 {
   std::vector< vec3 >::iterator it = coordinateList.begin();
   for (;it != coordinateList.end(); ++ it ) {
-    float x0 = (*it)[0];
-    float y0 = (*it)[1];
-    float z0 = (*it)[2];
     float x1,y1,z1;
-    MLImageMapWorldToVoxel(image, x0,y0,z0,&x1,&y1,&z1);
+    MLImageMapWorldToVoxel(image, (*it)[0], (*it)[1],(*it)[2], &x1,&y1,&z1);
     *it = vec3(x1,y1,z1);
   }
 }
 
 
 void CSOImageStatistics::GetPointsInsideContour( std::vector< vec3 > const &pathPoints, 
-                                            std::vector< vec3 >       &contourPoints,
-                                            SubImgBox const           &box)
+                                                 std::vector< vec3 >       &contourPoints,
+                                                 SubImgBox const           &box)
 {
   contourPoints.clear();
   // Traverse all voxels in box
@@ -637,10 +619,10 @@ void CSOImageStatistics::GetPointsInsideContour( std::vector< vec3 > const &path
     for (p.z = box.v1.z;  p.z <= box.v2.z; ++p.z) {
       for (p.y = box.v1.y;  p.y <= box.v2.y; ++p.y) {
         for (p.x = box.v1.x;  p.x <= box.v2.x; ++p.x) {
-          vec3 currentPos = vec3(p.x,p.y,p.z);
+          vec3 currentPos = vec3(p.x+0.5,p.y+0.5,p.z+0.5);
           // Since all points should be in a axis aligned plane we can use
-          // CSOMath::isPointInsidePolygon
-          if ( CSOMath::isPointInsidePolygon(pathPoints, currentPos ) ) {
+          // CSOGeometry::isPointInsidePolygon
+          if ( CSOGeometry::isPointInsidePolygon(pathPoints, currentPos ) ) {
             contourPoints.push_back( currentPos );
           }
         }
