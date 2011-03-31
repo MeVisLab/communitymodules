@@ -82,6 +82,7 @@ Window {
         expandY = No
         CheckBox listenToFinishingNotifications { title = "Finishing" }
         CheckBox listenToSelectionNotifications { title = "Selection" }
+        CheckBox passOnNotifications {}
       } 
       
       Box "Operation Mode" {

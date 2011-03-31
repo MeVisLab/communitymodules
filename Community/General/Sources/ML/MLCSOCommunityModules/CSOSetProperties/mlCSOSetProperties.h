@@ -64,6 +64,7 @@ public:
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field *field);
   void SetProperties(bool shouldSetupInternalCSOList);
+  void SetProperties(bool shouldSetupInternalCSOList, int notificationFlag);
 
   //! Sets up the internal pointer to the input CSOList.
   void SetupInternalCSOList();
@@ -118,6 +119,9 @@ private:
 
   //! Shall the module listen to selection change notifications?
   BoolField* f_ListenToSelectionNotifications;
+
+  //! Pass on incoming notifications
+  BoolField* f_PassOnNotifications;
 
   //! Auto update mode.
   BoolField* f_AutoUpdate;

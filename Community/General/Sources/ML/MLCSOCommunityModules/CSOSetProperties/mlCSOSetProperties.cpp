@@ -75,6 +75,8 @@ CSOSetProperties::CSOSetProperties (void)
   (f_ListenToFinishingNotifications = fieldC->addBool("listenToFinishingNotifications"))->setBoolValue(true);
   (f_ListenToSelectionNotifications = fieldC->addBool("listenToSelectionNotifications"))->setBoolValue(true);
 
+  (f_PassOnNotifications = fieldC->addBool("passOnNotifications"))->setBoolValue( false );
+
   (f_AutoUpdate = fieldC->addBool( "autoUpdate"))->setBoolValue( false );  
   f_Update = fieldC->addNotify("update");
 
@@ -444,16 +446,17 @@ void CSOSetProperties::AddGroupId(const std::string& idString)
   }
 }
 
-
-
 void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList)
+{
+  this->SetProperties(shouldSetupInternalCSOList, 0 );
+}
+
+void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notificationFlag)
 {
   if (shouldSetupInternalCSOList){
     SetupInternalCSOList();
   }
   if (m_OutputCSOList != NULL){
-
-    int notificationFlag = 0;
 
     switch ( f_InputMode->getEnumValue() ){
       case CSOINPUT:
@@ -515,6 +518,7 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList)
         }// m_selectedCSOIds loop
         break;
       } //CSOINPUT
+
       case GROUPINPUT:
       {
         ParseInputGroupString();
@@ -655,26 +659,23 @@ void CSOSetProperties::CSOListNotifyObserverCB(void* userData, int notificationF
   CSOSetProperties* thisp = static_cast<CSOSetProperties*>(userData);
 
   thisp->m_IsInNotificationCB = true;
+  int flags = (( thisp->f_PassOnNotifications->getBoolValue() && 
+               !thisp->f_WorkDirectlyOnInputList->getBoolValue() ) ? notificationFlag : 0);
 
   if (!thisp->m_IsNotifyingMyself){
     if ( thisp->f_AutoUpdate->getBoolValue() ){
-      if ((notificationFlag & CSOList::NOTIFICATION_CSO_FINISHED) ||
-        (notificationFlag & CSOList::NOTIFICATION_GROUP_FINISHED))
-      {
-        if (thisp->f_ListenToFinishingNotifications->getBoolValue() == true){            
-          thisp->SetProperties(true);
-        }
+      if ( thisp->f_ListenToFinishingNotifications->getBoolValue()     &&
+           ((notificationFlag & CSOList::NOTIFICATION_CSO_FINISHED)    ||
+            (notificationFlag & CSOList::NOTIFICATION_GROUP_FINISHED)) ){
+        thisp->SetProperties( true, flags );
       }
-      if ((notificationFlag & CSOList::NOTIFICATION_CSO_SELECTION) ||
-        (notificationFlag & CSOList::NOTIFICATION_GROUP_SELECTION))
-      {
-        if (thisp->f_ListenToSelectionNotifications->getBoolValue() == true){
-          thisp->SetProperties(true);
-        }
+      if ( thisp->f_ListenToSelectionNotifications->getBoolValue()      && 
+           ((notificationFlag & CSOList::NOTIFICATION_CSO_SELECTION)    ||
+            (notificationFlag & CSOList::NOTIFICATION_GROUP_SELECTION)) ){
+        thisp->SetProperties( true, flags );
       }
     }
   }
-
   thisp->m_IsInNotificationCB = false;
 }
 
