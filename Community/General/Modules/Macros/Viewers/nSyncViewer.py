@@ -48,16 +48,16 @@ lockUpdate = False
 m_win = None
 
 #layoutTable = {1:[1,1],2:[1,2],3:[1,3],4:[2,2],5:[2,3]}
-
+#Viewer CustomOrthoView2D%nr%.self { preferredWidth  = 400 preferredHeight = 400 border = No type = SoRenderArea expandY = Yes name = Viewer%nr%} \
 viewerUnit = '\
 Box { \
   expandY = Yes\
   %title% \
-  Viewer OrthoView2D%nr%.self { border = No type = SoRenderArea expandY = Yes name = Viewer%nr%} \
+  Panel { module = CustomOrthoView2D%nr% expandY = Yes name = Viewer%nr%} \
   EventFilter { \
     filter = KeyPress \
     control = Viewer%nr% \
-    command = @@py:if args[0][\'key\']==\'F\' : ctx.module(\'OrthoView2D%nr%\').showWindow(\'Settings\')@@ \
+    command = @@py:if args[0][\'key\']==\'F\' : ctx.module(\'CustomOrthoView2D%nr%\').showWindow(\'Settings\')@@ \
   } \
 } \
 '
@@ -73,8 +73,8 @@ Viewer Dummy.self { \
 def Init( arg = None ) :
   '''Because the numberOfInputs is presistent the GUI needs updating when the module is copied'''
   ctx.addMacroModuleFromString('Window{ Vertical {expandY = yes expandX = yes Vertical { Label { title = "" } } Box {pw = 400 ph = 400}}}')
-  ctx.field('OrthoView2D0.ext.borderOn').value = False
-  ctx.field('OrthoView2D0.ext.annotVerticalRuler').value = False
+  ctx.field('CustomOrthoView2D0.ext.borderOn').value = False
+  ctx.field('CustomOrthoView2D0.ext.annotVerticalRuler').value = False
   NumberOfInputChanged()
   return
 
@@ -89,17 +89,17 @@ def NumberOfInputChanged( field = None ) :
   # turn off viewers
   ctx.field('In0.noBypass').value = True
   ctx.field('invInput0').disconnectOutputs()
-  ctx.field( 'OrthoView2D0.'+ ctx.field('singleInvInput').stringValue() ).connectFrom(ctx.field('invInput0') )
+  ctx.field( 'CustomOrthoView2D0.'+ ctx.field('singleInvInput').stringValue() ).connectFrom(ctx.field('invInput0') )
   # Set global input image option
-  ctx.field("OrthoView2D0.useGlobalInputImage").value = ctx.field("useGlobalInputImages").value
-  ctx.field("OrthoView2D0.layout").value = ctx.field("viewerLayout").value
+  ctx.field("CustomOrthoView2D0.useGlobalInputImage").value = ctx.field("useGlobalInputImages").value
+  ctx.field("CustomOrthoView2D0.layout").value = ctx.field("viewerLayout").value
   
   # create the appropriate modules
   for iInput in range(1,nInputs) :
-    viewerModuleName = 'OrthoView2D'+str(iInput)
+    viewerModuleName = 'CustomOrthoView2D'+str(iInput)
     reformatModuleName = 'Reformat'+str(iInput)
     if ( not ctx.hasModule( viewerModuleName ) ) : 
-      newViewerModule = ctx.addModule( 'OrthoView2D' )
+      newViewerModule = ctx.addModule( 'CustomOrthoView2D' )
       newViewerModule.field('instanceName').value = viewerModuleName
     if ( not ctx.hasModule( reformatModuleName ) ) : 
       newReformatModule = ctx.addModule( 'Reformat' )
@@ -107,7 +107,7 @@ def NumberOfInputChanged( field = None ) :
     # Show the connectors and connect the Inventor inputs
     ctx.field( 'input'+str(iInput) ).setHidden( False )
     ctx.field('invInput' + str(iInput)).disconnectOutputs()
-    ctx.field( 'OrthoView2D'+ str( iInput ) + '.' + ctx.field('singleInvInput').stringValue() ).connectFrom(ctx.field('invInput' + str(iInput)))
+    ctx.field( 'CustomOrthoView2D'+ str( iInput ) + '.' + ctx.field('singleInvInput').stringValue() ).connectFrom(ctx.field('invInput' + str(iInput)))
     
     # Set global input image option
     globalOption = viewerModuleName + ".useGlobalInputImage"
@@ -118,13 +118,13 @@ def NumberOfInputChanged( field = None ) :
     ctx.field(layoutOption).value = ctx.field("viewerLayout").value
     
     # Sync several fields
-    ctx.field( viewerModuleName+'.worldPosition' ).connectFrom( ctx.field('OrthoView2D'+str(iInput-1)+'.worldPosition' ))
-    ctx.field( viewerModuleName+'.pos.blendOnto' ).connectFrom( ctx.field('OrthoView2D'+str(iInput-1)+'.pos.blendOnto' ))
-    ctx.field( viewerModuleName+'.ext.annoCoords').connectFrom( ctx.field('OrthoView2D'+str(iInput-1)+'.ext.annoCoords'))
+    ctx.field( viewerModuleName+'.worldPosition' ).connectFrom( ctx.field('CustomOrthoView2D'+str(iInput-1)+'.worldPosition' ))
+    ctx.field( viewerModuleName+'.pos.blendOnto' ).connectFrom( ctx.field('CustomOrthoView2D'+str(iInput-1)+'.pos.blendOnto' ))
+    ctx.field( viewerModuleName+'.ext.annoCoords').connectFrom( ctx.field('CustomOrthoView2D'+str(iInput-1)+'.ext.annoCoords'))
     ctx.field( viewerModuleName+'.ext.borderOn').value = False 
     ctx.field( viewerModuleName+'.ext.annotVerticalRuler').value = False 
-  ctx.field( 'SyncPos.vector0' ).connectFrom( ctx.field( 'OrthoView2D'+ str( nInputs-1 ) + '.worldPosition' ) )
-  ctx.field( 'OrthoView2D0.worldPosition' ).connectFrom( ctx.field( 'SyncPos.vector1' ) )
+  ctx.field( 'SyncPos.vector0' ).connectFrom( ctx.field( 'CustomOrthoView2D'+ str( nInputs-1 ) + '.worldPosition' ) )
+  ctx.field( 'CustomOrthoView2D0.worldPosition' ).connectFrom( ctx.field( 'SyncPos.vector1' ) )
     
   # remove unused modules and hide connections
   for iInput in range(nInputs,MaxInputs):
@@ -132,7 +132,7 @@ def NumberOfInputChanged( field = None ) :
     ctx.field( 'input'+str(iInput) ).setHidden( True )
     ctx.field( 'invInput'+str(iInput) ).disconnect()
     ctx.field( 'invInput'+str(iInput) ).setHidden( True )
-    mod = ctx.module( 'OrthoView2D'+ str( iInput ) )
+    mod = ctx.module( 'CustomOrthoView2D'+ str( iInput ) )
     if mod is not None :
       ctx.network().removeModule( mod )
     mod = ctx.module( 'Reformat'+ str( iInput )  )
@@ -160,6 +160,8 @@ def ShowInventorInputs():
   for iInput in range(20) :
     if (iInput >= nInputs ): hide = True
     ctx.field( 'invInput'+str(iInput) ).setHidden( hide )
+  #Not implemented yet
+  #ctx.field( 'globalInvInput').setHidden( hide )
   ctx.updateLayout()
   return
 
@@ -172,11 +174,11 @@ def ApplyReformat():
   for i in range(nInputs) :
     input = 'input' + str(i)
     if ctx.field('reformat').value :
-      ctx.field( 'OrthoView2D'+ str( i ) + '.image').connectFrom(ctx.field('Reformat'+str(i)+'.output0') )
+      ctx.field( 'CustomOrthoView2D'+ str( i ) + '.image').connectFrom(ctx.field('Reformat'+str(i)+'.output0') )
       ctx.field( 'Reformat'+str(i)+'.input1').connectFrom( ctx.field('Switch.output0') )
       ctx.field( 'Reformat'+str(i)+'.input0').connectFrom( ctx.field('In' + str(i) + '.output0') )
     else :
-      ctx.field( 'OrthoView2D'+ str( i ) + '.image').connectFrom(ctx.field('In' + str(i) + '.output0'))
+      ctx.field( 'CustomOrthoView2D'+ str( i ) + '.image').connectFrom(ctx.field('In' + str(i) + '.output0'))
   if ctx.field('reformat').value :
     ctx.field('Switch.currentInput').value = ctx.field("referenceGrid").value
   ctx.field('In0.noBypass').value = False
@@ -190,22 +192,22 @@ def SyncZoom( arg = None ) :
   nInputs = ctx.field('numberOfInputs').value
   for i in range(1,nInputs) :
     if ( syncZoom ) :
-      ctx.field( 'OrthoView2D'+ str( i )+'.view.sliceZoom' ).connectFrom( ctx.field('OrthoView2D'+ str( i-1 ) + '.view.sliceZoom') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceZoom' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.sliceZoom') )
     else :
-      ctx.field( 'OrthoView2D'+ str( i ) + '.view.sliceZoom').disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i ) + '.view.sliceZoom').disconnectAll()
   if syncZoom :
-    ctx.field( 'SyncZoom.float0' ).connectFrom(ctx.field('OrthoView2D'+ str( nInputs-1 ) + '.view.sliceZoom'))
-    ctx.field( 'OrthoView2D0.view.sliceZoom').connectFrom(  ctx.field('SyncZoom.float1') )
+    ctx.field( 'SyncZoom.float0' ).connectFrom(ctx.field('CustomOrthoView2D'+ str( nInputs-1 ) + '.view.sliceZoom'))
+    ctx.field( 'CustomOrthoView2D0.view.sliceZoom').connectFrom(  ctx.field('SyncZoom.float1') )
   else :
     ctx.field( 'SyncZoom.float0' ).disconnectAll()
-    ctx.field( 'OrthoView2D0.view.sliceZoom').disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.sliceZoom').disconnectAll()
   return
 
 
 def UnZoom():
   nInputs = ctx.field('numberOfInputs').value
   for i in range(nInputs) :
-    ctx.field( 'OrthoView2D'+ str( i )+'.view.unzoom'   ).touch()
+    ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.unzoom'   ).touch()
   return
 
 def SyncPanning( arg = None ) :
@@ -216,18 +218,18 @@ def SyncPanning( arg = None ) :
   for i in range(1,nInputs) :
     if ( syncZoom ) :
       for j in range(1,4) :
-        ctx.field( 'OrthoView2D'+ str( i )+'.view.viewingCenter' + str( j ) ).connectFrom( ctx.field('OrthoView2D'+ str( i-1 ) + '.view.viewingCenter' + str( j )) )
+        ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter' + str( j ) ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.viewingCenter' + str( j )) )
     else :
       for j in range(1,4) :
-        ctx.field( 'OrthoView2D'+ str( i ) + '.view.viewingCenter' + str( j ) ).disconnectAll()
+        ctx.field( 'CustomOrthoView2D'+ str( i ) + '.view.viewingCenter' + str( j ) ).disconnectAll()
   if syncZoom :
     for j in range(1,4) :
-      ctx.field( 'SyncPanning' + str( j  ) + '.vector0' ).connectFrom(ctx.field('OrthoView2D'+ str( nInputs-1 ) + '.view.viewingCenter' + str( j ) ))
-      ctx.field( 'OrthoView2D0.view.viewingCenter' + str( j )).connectFrom(  ctx.field('SyncPanning' +  str( j ) +'.vector1') )
+      ctx.field( 'SyncPanning' + str( j  ) + '.vector0' ).connectFrom(ctx.field('CustomOrthoView2D'+ str( nInputs-1 ) + '.view.viewingCenter' + str( j ) ))
+      ctx.field( 'CustomOrthoView2D0.view.viewingCenter' + str( j )).connectFrom(  ctx.field('SyncPanning' +  str( j ) +'.vector1') )
   else :
     for j in range(1,4) :
       ctx.field( 'SyncPanning' + str( j ) + '.vector0' ).disconnectAll()
-      ctx.field( 'OrthoView2D0.view.viewingCenter' + str( j ) ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D0.view.viewingCenter' + str( j ) ).disconnectAll()
   return
 
 
@@ -237,21 +239,21 @@ def SyncLUT( arg = None ) :
   nInputs = ctx.field('numberOfInputs').value
   for i in range(1, nInputs ) :
     if ( syncLUT ) :
-      ctx.field( 'OrthoView2D'+str(i)+'.greyCenter' ).connectFrom( ctx.field('OrthoView2D'+str(i-1)+'.greyCenter' ))
-      ctx.field( 'OrthoView2D'+str(i)+'.greyWidth'  ).connectFrom( ctx.field('OrthoView2D'+str(i-1)+'.greyWidth'  ))
+      ctx.field( 'CustomOrthoView2D'+str(i)+'.greyCenter' ).connectFrom( ctx.field('CustomOrthoView2D'+str(i-1)+'.greyCenter' ))
+      ctx.field( 'CustomOrthoView2D'+str(i)+'.greyWidth'  ).connectFrom( ctx.field('CustomOrthoView2D'+str(i-1)+'.greyWidth'  ))
     else :
-      ctx.field( 'OrthoView2D'+str(i)+'.greyCenter').disconnectAll()
-      ctx.field( 'OrthoView2D'+str(i)+'.greyWidth' ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+str(i)+'.greyCenter').disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+str(i)+'.greyWidth' ).disconnectAll()
   if syncLUT :
-    ctx.field( 'SyncLUTCenter.float0'    ).connectFrom( ctx.field('OrthoView2D'+str(nInputs-1)+'.greyCenter' ))
-    ctx.field( 'OrthoView2D0.greyCenter' ).connectFrom( ctx.field('SyncLUTCenter.float1'  ))
-    ctx.field( 'SyncLUTWidth.float0'     ).connectFrom( ctx.field('OrthoView2D'+str(nInputs-1)+'.greyWidth'  ))
-    ctx.field( 'OrthoView2D0.greyWidth'  ).connectFrom( ctx.field('SyncLUTWidth.float1' ))
+    ctx.field( 'SyncLUTCenter.float0'    ).connectFrom( ctx.field('CustomOrthoView2D'+str(nInputs-1)+'.greyCenter' ))
+    ctx.field( 'CustomOrthoView2D0.greyCenter' ).connectFrom( ctx.field('SyncLUTCenter.float1'  ))
+    ctx.field( 'SyncLUTWidth.float0'     ).connectFrom( ctx.field('CustomOrthoView2D'+str(nInputs-1)+'.greyWidth'  ))
+    ctx.field( 'CustomOrthoView2D0.greyWidth'  ).connectFrom( ctx.field('SyncLUTWidth.float1' ))
   else :
     ctx.field( 'SyncLUTCenter.float0'    ).disconnectAll()
-    ctx.field( 'OrthoView2D0.greyCenter' ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.greyCenter' ).disconnectAll()
     ctx.field( 'SyncLUTWidth.float0'     ).disconnectAll()
-    ctx.field( 'OrthoView2D0.greyWidth'  ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.greyWidth'  ).disconnectAll()
   return
   
 
@@ -261,15 +263,15 @@ def SyncTimepoints( arg = None ) :
   nInputs = ctx.field('numberOfInputs').value
   for i in range(1,nInputs) :
     if ( syncTimepoints ) :
-      ctx.field( 'OrthoView2D'+ str( i )+'.view.timePoint' ).connectFrom( ctx.field('OrthoView2D'+str(i-1)+'.view.timePoint') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.timePoint' ).connectFrom( ctx.field('CustomOrthoView2D'+str(i-1)+'.view.timePoint') )
     else :
-      ctx.field( 'OrthoView2D'+ str( i ) + '.view.timePoint').disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i ) + '.view.timePoint').disconnectAll()
   if ( syncTimepoints ) :
-    ctx.field( 'SyncTimepoints.float0' ).connectFrom( ctx.field('OrthoView2D'+str(nInputs-1)+'.view.timePoint') )
-    ctx.field( 'OrthoView2D0.view.timePoint').connectFrom(  ctx.field('SyncTimepoints.float1') )
+    ctx.field( 'SyncTimepoints.float0' ).connectFrom( ctx.field('CustomOrthoView2D'+str(nInputs-1)+'.view.timePoint') )
+    ctx.field( 'CustomOrthoView2D0.view.timePoint').connectFrom(  ctx.field('SyncTimepoints.float1') )
   else :
     ctx.field( 'SyncTimepoints.float0' ).disconnectAll()
-    ctx.field( 'OrthoView2D0.view.timePoint').disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.timePoint').disconnectAll()
   return
 
 
@@ -418,15 +420,15 @@ def ToggleAnnotation( arg = None ):
   '''Toggle all annotations on and off'''
   #MLAB.log('ToggleAnnotation()')
   nInputs = ctx.field('numberOfInputs').value
-  currentValue = ctx.field('OrthoView2D0.annotationSizeMode').value
-  values = list( ctx.field('OrthoView2D0.annotationSizeMode').items() )
+  currentValue = ctx.field('CustomOrthoView2D0.annotationSizeMode').value
+  values = list( ctx.field('CustomOrthoView2D0.annotationSizeMode').items() )
   newValue = ''
   if ( currentValue == values[-1] ) :
     newValue = values[0]
   else :
     newValue = values[ values.index( currentValue)+1 ]
   for  i in range( nInputs )  :
-    ctx.field('OrthoView2D' + str(i) + '.annotationSizeMode').value = newValue 
+    ctx.field('CustomOrthoView2D' + str(i) + '.annotationSizeMode').value = newValue 
   return
 
 # MeVis signature v1

@@ -2,6 +2,39 @@
 network  {
   watchlist = ""
 }
+module CustomOrthoView2D {
+  internal  {
+    frame = "21 341 152 56"
+    moduleGroupName = ""
+    localMacro = 1
+  }
+  fields  {
+    instanceName = CustomOrthoView2D0
+    inventorInputOn = FALSE
+    layout = LAYOUT_CUBE_EQUAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    timePoint = 0
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    greyWidth = 0.80250001
+    greyCenter = 0.39250001
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_SHORT
+    annotationFontSize = ANNO_SIZE_SMALL
+    valueHighPrecision = TRUE
+    annoCoords = World
+    showCurrentPos = TRUE
+    worldPosition = "0 0 0"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
 module SyncFields {
   internal  {
     frame = "89 257 112 64"
@@ -449,16 +482,16 @@ module SyncFields {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "618 170 183 201"
-        sizeHint = "183 201"
-        wasOpen = no
+        geometry = "455 147 183 434"
+        sizeHint = "183 434"
+        wasOpen = yes
         wasActive = no
       }
     }
   }
   fields  {
     instanceName = SyncPos
-    mode = Vector
+    mode = MultiVector
     on = TRUE
     precision = 0.001000000047
     float0 = 0
@@ -616,59 +649,8 @@ module SoSeparator {
     pickCulling = AUTO
   }
 }
-module OrthoView2D {
-  internal  {
-    frame = "29 341 120 56"
-    moduleGroupName = ""
-    windows  {
-      window _automatic {
-        geometry = "968 229 292 440"
-        sizeHint = "292 440"
-        wasOpen = no
-        wasActive = no
-      }
-      window _default {
-        geometry = "28 28 400 431"
-        sizeHint = "400 431"
-        wasOpen = no
-        wasActive = no
-      }
-      window Settings {
-        geometry = "461 298 365 473"
-        sizeHint = "365 473"
-        wasOpen = no
-        wasActive = no
-      }
-    }
-  }
-  fields  {
-    instanceName = OrthoView2D0
-    inventorInputOn = TRUE
-    layout = LAYOUT_AXIAL
-    filterMode = FILTER_LINEAR
-    synchronizeZoom = TRUE
-    synchronizePanning = TRUE
-    synchronizePosition = TRUE
-    useGlobalInputImage = TRUE
-    snapToCenter = FALSE
-    alternCubeLayout = FALSE
-    timePoint = 0
-    borderOn = TRUE
-    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
-    greyWidth = 1
-    greyCenter = 1
-    annotationOn = TRUE
-    annotationSizeMode = ANNO_SHOW_DETAILED
-    annotationFontSize = ANNO_SIZE_AUTO
-    valueHighPrecision = FALSE
-    annoCoords = Voxel
-    showCurrentPos = TRUE
-    worldPosition = "0 0 0"
-    coloredMode = FALSE
-  }
-  internalFields = ""
-}
 connections  {
+  CustomOrthoView2D0.worldPosition = SyncPos.vector1
   Switch.input0 = In0.output0
   Switch.input1 = In1.output0
   Switch.input2 = In2.output0
@@ -708,7 +690,5 @@ connections  {
   In3.noBypass = In2.noBypass
   In2.noBypass = In1.noBypass
   In1.noBypass = In0.noBypass
-  OrthoView2D0.image = In0.output0
-  OrthoView2D0.worldPosition = SyncPos.vector2
 }
 networkModel = ""

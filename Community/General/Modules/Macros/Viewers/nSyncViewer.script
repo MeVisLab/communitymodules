@@ -118,10 +118,10 @@ Interface {
     Field syncTimepoints      { type = bool   value = false }
     Field reformat            { type = bool   value = False }
     Field referenceGrid       { type = int    value = 0 }
-    Field worldPos            { internalName = OrthoView2D0.worldPosition }
-    Field coordSystem         { internalName = OrthoView2D0.ext.annoCoords }
+    Field worldPos            { internalName = CustomOrthoView2D0.worldPosition }
+    Field coordSystem         { internalName = CustomOrthoView2D0.ext.annoCoords }
     Field interpolationMethod { internalName = Reformat0.interpolation }
-    Field cursorAlpha         { internalName = OrthoView2D0.pos.blendOnto }
+    Field cursorAlpha         { internalName = CustomOrthoView2D0.pos.blendOnto }
     Field useGlobalInputImages { type = bool value = True }
 
     //Field titleString         { type = string value = "input0,input1" }
@@ -204,7 +204,8 @@ Window Settings {
 {nInputs:[rows,cols],nInputs:[rows,cols]}, e.g. {5:[3,2],10:[2,5]}*"}
         Field viewerLayout {}
         Field showInventorInputs {}
-        Field singleInvInput { dependsOn = showInventorInputs }
+        //Not implemented yet
+        //Field singleInvInput { dependsOn = showInventorInputs }
         Horizontal {
           alignX = Left
           Field syncZoom { alignGroup = g1 }

@@ -1,0 +1,707 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoToggle {
+  internal  {
+    frame = "313 -271 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "939 618 116 22"
+        sizeHint = "56 22"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ShowAnnotations
+    whichChild = -3
+    on = TRUE
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "417 -107 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1092 123 390 241"
+        sizeHint = "390 241"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic0
+    debugLevel = 0
+    arg1 = "0 0 0"
+    arg1X = 0
+    arg1XAsVec = FALSE
+    operation = Add
+    arg2 = "0 0 0"
+    arg2X = 0
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = %.3f
+    resultY = 0
+    resultZ = 0
+  }
+}
+module BoolString {
+  internal  {
+    frame = "437 -267 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "917 727 200 194"
+        sizeHint = "200 194"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoolString
+    boolValue = FALSE
+    stringValue = World
+    offValue = World
+    onValue = Voxel
+    defaultBool = Unchanged
+  }
+  internalFields = ""
+}
+module FieldBypass {
+  internal  {
+    frame = "557 -107 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "789 717 190 288"
+        sizeHint = "190 288"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldBypass
+    inputString0 = 0.000
+    inputString1 = "0 0 0"
+    inputString2 = ""
+    inputString3 = ""
+    inputString4 = ""
+    inputNumber = 0
+    outputString = 0.000
+    noBypass = FALSE
+    onlyIfChanged = TRUE
+  }
+}
+module WorldVoxelConvert {
+  internal  {
+    frame = "709 -203 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1384 430 414 234"
+        sizeHint = "414 234"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WorldVoxelConvert
+    voxelX = 0
+    voxelY = 0
+    voxelZ = 0
+    worldX = 0
+    worldY = 0
+    worldZ = 0
+    voxelPos = "0 0 0"
+    worldPos = "0 0 0"
+    voxelMode = FALSE
+    worldMode = TRUE
+    intVoxelCoords = TRUE
+    keepConstant = World
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "553 13 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1154 461 370 331"
+        sizeHint = "234 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils1
+    operationType = FormatFloat
+    string1 = 0
+    string2 = ""
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 3
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "557 -43 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1154 461 370 331"
+        sizeHint = "234 174"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils
+    operationType = FormatFloat
+    string1 = 0
+    string2 = ""
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 3
+    inPos2 = 0
+  }
+}
+module GetVoxelValue {
+  internal  {
+    frame = "729 -19 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "345 553 296 278"
+        sizeHint = "296 278"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GetVoxelValue
+    position = "0 0 0 0 0 0"
+    updateMode = AutoClear
+    coordinateType = World
+  }
+}
+module SoView2DAnnotation {
+  internal  {
+    frame = "301 -23 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "748 66 595 517"
+        sizeHint = "595 517"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Annotations
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "0.899999976158142 0.899999976158142 0.899999976158142"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    annotationMode = ANNO_MODE_AUTO
+    showOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    drawNegativeOrientation = TRUE
+    drawPositiveOrientation = FALSE
+    verticalRuler = TRUE
+    horizontalRuler = FALSE
+    verticalRulerMarginRight = 8
+    horizontalRulerMarginBottom = 8
+    showTechnicalInfo = FALSE
+    showAnnotation = ANNO_SHOW_SHORT
+    annotationFontSize = ANNO_SIZE_SMALL
+    minDetailFontSize = 10
+    maxDetailFontSize = 18
+    minShortFontSize = 8
+    maxShortFontSize = 12
+    userDetailFontSize = 12
+    userShortFontSize = 10
+    textShadow = TRUE
+    annotationUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01) GV"
+    annotationUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotationUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotationUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotationCTTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(input02) $(input09)"
+    annotationCTTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality) "
+    annotationCTBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotationCTBottomRight = "CT Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input05) / $(input06)"
+    annotationMRTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)):
+$(input01) GV"
+    annotationMRTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotationMRBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotationMRBottomRight = "MR Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    shortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    shortTopRight = $(Modality)
+    shortBottomLeft = "Slice: $(slice)"
+    shortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    abreviateChars = -1
+    abreviateShortChars = 16
+    input00 = 0.000
+    input01 = 0.000
+    input02 = 0.000
+    input03 = 1145.00012207
+    input04 = 3671.00024414
+    input05 = 1145.00012207
+    input06 = 3671.00024414
+    input07 = 1145.00012207
+    input08 = 3671.00024414
+    input09 = HU
+    fontWidthDummyString = ""
+    targetWidth = 0
+    targetHeight = 0
+    drawBackgroundBox = FALSE
+    backgroundColor = "0.200000002980232 0.200000002980232 0.699999988079071"
+    backgroundOpacity = 0.5
+    backgroundEdgeColor = "0.200000002980232 0.200000002980232 0.699999988079071"
+    backgroundEdgeOpacity = 0.5
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "717 -311 120 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = invPostViewerIn
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "181 -207 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = invPostLUTIn
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-43 -311 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = invPreLUTIn
+  }
+}
+module SoOrthoView2D {
+  internal  {
+    frame = "581 -271 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "789 321 357 616"
+        sizeHint = "357 616"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = view
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    worldPosition = "0 0 0"
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    lutMode = LUT_BEST
+    slab = 1
+    layoutMode = LAYOUT_CUBE_EQUAL
+    worldPosSticky = FALSE
+    snapToCenter = FALSE
+    drawImageData = TRUE
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    synchronizeZoom = TRUE
+    sliceZoom = 1
+    minSliceZoomKeyboard = 1
+    sliceOrigin1 = "0 0"
+    sliceOrigin2 = "0 0"
+    sliceOrigin3 = "0 0"
+    synchronizePanning = FALSE
+    keepSlicesInView = FALSE
+    viewingCenter = "-1 -1 -1"
+    viewingCenter1 = "0 0 0"
+    viewingCenter2 = "0 0 0"
+    viewingCenter3 = "0 0 0"
+    invertKeyPanningDirections = FALSE
+    extraViewSpace = TRUE
+    extraViewLowerLeft = "0 0.5"
+    extraViewUpperRight = "0.5 1"
+    extraViewSize = "0.666000008583069 0.666000008583069"
+    margin = "2 2"
+    alternCubeLayout = FALSE
+    cacheMode = SLICE_CACHING_OFF
+    timePoint = 0
+    maxTimePoint = 0
+    status = "Nothing active"
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    sliceStep1 = 1
+    sliceStep2 = 1
+    sliceStep3 = 1
+    numSlices1 = 1
+    numSlices2 = 1
+    numSlices3 = 1
+    numXSlices1 = 1
+    numXSlices2 = 1
+    numXSlices3 = 1
+    synchronizeFilterMode = TRUE
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    useGlobalInputImage = TRUE
+  }
+}
+module SoView2DPosition {
+  internal  {
+    frame = "405 -207 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "114 175 446 713"
+        sizeHint = "446 713"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = pos
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = FALSE
+    fixZOn = TRUE
+    color = "1 0.866728007793427 0.291404008865356"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    worldPosition = "0 0 0"
+    firstSliceWorldPosition = "-1 -1 -1"
+    drawingModel = DRAWINGMODEL_CROSSHAIRS
+    drawingModelSize = -1
+    crossHairSpacing = 0
+    drawEditingRect = TRUE
+    blendOnto = 1
+    blendOutside = 0
+    lineWidth = 1
+    colorAxes = FALSE
+    sagittalColor = "1 0 0"
+    coronalColor = "0.172548994421959 0.886274993419647 0.011765000410378"
+    axialColor = "0.00784299988299608 0.952941000461578 0.968626976013184"
+    updateOnPress = TRUE
+    updateOnMotion = TRUE
+    updateOnRelease = TRUE
+    cooperative = FALSE
+    colorBorder = FALSE
+    colorBorderWidth = 2
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "257 -415 240 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "92 146 848 598"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = scene
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module View2DExtensions {
+  internal  {
+    frame = "77 -271 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "92 146 666 711"
+        sizeHint = "666 711"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ext
+    slicerOn = TRUE
+    zoomOn = TRUE
+    panOn = TRUE
+    autoCenterOn = TRUE
+    position = "4.90752983093262 -60.5802993774414 30.5750999450684"
+    positionMode = Off
+    lutOn = TRUE
+    lutMouseOn = TRUE
+    lutMouseButton1 = RELEASED
+    lutMouseButton2 = RELEASED
+    lutMouseButton3 = PRESSED
+    lutMouseShift = RELEASED
+    lutMouseCtrl = RELEASED
+    lutRangeMin = 0
+    lutRangeMax = 1
+    lutAlphaSync = TRUE
+    lutGreyCenter = 0.39250001
+    lutGreyWidth = 0.80250001
+    lutAlphaCenter = 0.39250001
+    lutAlphaWidth = 0.80250001
+    lutColorFactor = "1 1 1"
+    lutAlphaFactor = 1
+    lutAutoDefault = TRUE
+    lutSetInputMinMax = TRUE
+    lutUseTraceColors = FALSE
+    lutEnableNegWidth = FALSE
+    lutSetDefaultOnce = TRUE
+    lutTrCol0 = "1 1 1"
+    lutTrCol1 = "0.50196099281311 0.50196099281311 0.50196099281311"
+    lutTrCol2 = "0.862744987010956 0 0.172548994421959"
+    lutTrCol3 = "1 0.462745010852814 0.490195989608765"
+    lutTrCol4 = "0 0.819607973098755 0.160784006118774"
+    lutTrCol5 = "0.560783982276917 1 0.43529400229454"
+    lutTrCol6 = "0.184313997626305 0.23921599984169 0.929412007331848"
+    lutTrCol7 = "0.490195989608765 0.541176021099091 1"
+    lutTrCol8 = "0.63137298822403 0 0.67843097448349"
+    lutTrCol9 = "0.894118010997772 0.380391985177994 1"
+    lutTrColA = "0 0.682353019714355 0.756862998008728"
+    lutTrColB = "0.50196099281311 1 0.980391979217529"
+    lutTrColC = "0.615685999393463 0.600000023841858 0.19607800245285"
+    lutTrColD = "1 0.97647100687027 0.36862701177597"
+    lutTrColE = "1 1 1"
+    lutTrColF = "1 1 1"
+    annotationOn = FALSE
+    annoCoords = World
+    annoCTValue = ToHounsfield
+    valueHighPrecision = TRUE
+    maxPrecision = 4
+    annotFontSize = ANNO_SIZE_AUTO
+    annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
+    annotVerticalRuler = TRUE
+    annotHorizontalRuler = FALSE
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationMode = ANNO_MODE_AUTO
+    annotShowAnnot = ANNO_SHOW_DETAILED
+    annotUserTopLeft = "$(PatientsName)
+$(PatientID) $(PatientsSex)
+$(PatientsBirthDate)
+($(input00)): $(input01) GV"
+    annotUserTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotUserBottomLeft = "slice:  $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)"
+    annotUserBottomRight = "User Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotShortTopLeft = "$(PatientsName)
+($(input00)):
+ $(input01) GV"
+    annotShortTopRight = $(Modality)
+    annotShortBottomLeft = "Slice: $(slice)"
+    annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annotMRTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)):
+$(input01) GV"
+    annotMRTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotMRBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotMRBottomRight = "MR Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotCTTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(input02) $(input09)"
+    annotCTTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality) "
+    annotCTBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotCTBottomRight = "CT Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input07) / $(input08)"
+    annoInput03 = 0.3925
+    annoInput04 = 0.8025
+    annoInput05 = 0.392500013113022
+    annoInput06 = 0.802500009536743
+    annoInput07 = 0.392500013113022
+    annoInput08 = 0.802500009536743
+    annoInput09 = HU
+    annoMouseOn = TRUE
+    annoReadPixFloorPos = "212 1 72"
+    annoReadPixVoxelPos = "122.371002197266 73.1424026489258 24.5"
+    annoReadPixWorldPos = "56.5396995544434 -53.665699005127 43.5141983032227"
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    borderWidth = 1
+    borderEvaluateFocus = FALSE
+    borderFocusColor = "1 1 1"
+    borderFocusWidth = 2
+    mouseGrabberMode = FALSE
+  }
+  internalFields = ""
+}
+connections  {
+  ShowAnnotations.children = Annotations.self
+  Arithmetic0.arg1 = pos.worldPosition
+  BoolString.stringValue = ext.annoCoords
+  FieldBypass.inputString0 = Arithmetic0.resultString
+  FieldBypass.inputString1 = WorldVoxelConvert.voxelPos
+  FieldBypass.inputNumber = BoolString.boolValue
+  WorldVoxelConvert.worldPos = pos.worldPosition
+  StringUtils1.string1 = GetVoxelValue.outputValue
+  StringUtils.string1 = GetVoxelValue.storedValue
+  GetVoxelValue.position = pos.worldPosition
+  Annotations.input00 = FieldBypass.outputString
+  Annotations.input01 = StringUtils.result
+  Annotations.input02 = StringUtils1.result
+  view.worldPosition = pos.worldPosition
+  pos.worldPosition = view.worldPosition
+  pos.colorAxes = pos.colorBorder
+  scene.children = "invPreLUTIn.self ext.outNode invPostLUTIn.self ShowAnnotations.self pos.self view.self invPostViewerIn.self"
+}
+networkModel = ""

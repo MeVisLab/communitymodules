@@ -1,0 +1,191 @@
+/*
+// -----------------------------------------------------------------------
+// 
+// Copyright (c) 2001-2010, MeVis Medical Solutions AG, Bremen, Germany
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of MeVis Medical Solutions AG nor the
+//       names of its contributors may be used to endorse or promote products
+//       derived from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY MEVIS MEDICAL SOLUTIONS AG ''AS IS'' AND ANY
+// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL MEVIS MEDICAL SOLUTIONS AG BE LIABLE FOR ANY
+// DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+//----------------------------------------------------------------------------------
+//! CustomOrthoView2D
+/*!
+// \file    CustomOrthoView2D.script
+// \author  Jan Rexilius, Reinhard Hameeteman
+// \date    04/2004
+*/
+//----------------------------------------------------------------------------------
+
+Interface  {
+  Inputs  {
+    Field image { internalName = view.inputImage }
+    Field image { internalName = ext.inLUT       }
+    Field image { internalName = GetVoxelValue.input0 }
+    Field image { internalName = WorldVoxelConvert.input0 }
+    Field inInvPreLUT {
+      internalName = invPreLUTIn.child
+      hidden = yes
+      comment = "Before LUT and viewer inventor input,
+e.g. for overlays independent of LUT settings"
+    }
+    Field inInvPostLUT {
+      internalName = invPostLUTIn.child
+      hidden = yes
+      comment = "Between LUT and viewer inventor input"
+    }
+    Field inInvPostViewer {
+      internalName = invPostViewerIn.child
+      hidden = yes
+      comment = "Behind viewer inventor input,
+e.g. for diagram overlays"
+    }
+  }
+  Outputs {
+    Field self { internalName = scene.self  hidden = yes }
+  }
+  Parameters  {
+    Field inventorInputOn     { type = bool value = false               }
+    Field layout              { internalName = view.layoutMode          }
+    Field filterMode          { internalName = view.filterMode          }
+    Field synchronizeZoom     { internalName = view.synchronizeZoom     }
+    Field synchronizePanning  { internalName = view.synchronizePanning  }
+    Field synchronizePosition { type = bool value = true }
+    Field useGlobalInputImage { internalName = view.useGlobalInputImage }
+    Field snapToCenter        { internalName = view.snapToCenter        }
+    Field alternCubeLayout    { internalName = view.alternCubeLayout    }
+    Field timePoint           { internalName = view.timePoint           }
+    
+    Field borderOn            { internalName = ext.borderOn             }
+    Field borderColor         { internalName = ext.borderColor          }
+    Field greyWidth           { internalName = ext.lutGreyWidth         }
+    Field greyCenter          { internalName = ext.lutGreyCenter        }
+    Field annotationOn        { internalName = ShowAnnotations.on         }
+    Field annotationSizeMode  { internalName = Annotations.showAnnotation       }
+    Field annotationFontSize  { internalName = Annotations.annotationFontSize        }
+    Field valueHighPrecision  { internalName = ext.valueHighPrecision   }
+    Field annoCoords          { internalName = ext.annoCoords           }
+    
+    Field unzoom              { internalName = view.unzoom              }
+    Field showCurrentPos      { internalName = pos.drawingOn            }
+    Field worldPosition       { internalName = pos.worldPosition        }
+    Field coloredMode         { internalName = pos.colorBorder          }
+  } // Parameters
+} // Interface
+
+Commands {
+  source = $(LOCAL)/CustomOrthoView2D.js
+
+  FieldListener inventorInputOn {
+    init = yes
+    command = inventorInputOnChanged
+  }
+
+  FieldListener synchronizePosition {
+    init = Yes
+    command = toggleSynchPosition
+  }
+
+  ContextMenu {
+    MenuItem "Show Inventor Inputs" { field = inventorInputOn }
+    MenuItem "Show Position Cursor" { field = showCurrentPos  }
+  } // context menu
+} // commands
+
+
+Window "Viewer" {
+  Vertical {
+    expandX = yes
+    expandY = yes
+    Viewer self {
+      border = No
+      type   = SoRenderArea
+      clone  = no
+    } // viewer
+  } // Vertical
+} // Window viewer
+
+Window "Settings" {
+  Category "Main" {
+    Box "Inventor Input" {
+      CheckBox inventorInputOn { title = "Inventor Input Fields" }
+    } // box inventor input
+    Box "Display" {
+      Field layout              { title = "Layout:"             }
+      CheckBox alternCubeLayout { title = "Altern. Cube Layout" }
+    } // box display
+    Box "Filter" {
+      Field filterMode { title = "Mode:" }
+    } // box filter
+    Box "LUT" {
+      Field greyCenter { title = "Center:" expandX = yes step = 16 }
+      Field greyWidth  { title = "Width:"  expandX = yes step = 16 }
+    } // box lut
+    Box "Synchronizing" {
+      Horizontal {
+        CheckBox synchronizeZoom     { title = "Zoom" }
+        CheckBox synchronizePanning  { title = "Pan." }
+        CheckBox synchronizePosition { title = "Pos." }
+      } // horizontal
+    } // box synchronizing
+    Box "Position" {
+      Field worldPosition     { title = "Pos.:"  }      
+      CheckBox showCurrentPos { title = "Show"  }
+      Field timePoint         { title = "Time Point:" step = 1 }
+      
+    } // box position
+  } // category main
+
+  Category "Misc." {
+    Box "Annotations" {
+      Horizontal {
+        alignX = left
+        expandX = NO
+        CheckBox annotationOn    { title = "On" }
+        Field annotationSizeMode { title = "Mode:" dependsOn = annotationOn }
+        Field annotationFontSize { title = "Size:" dependsOn = annotationOn }
+      } // horizontal
+      Field annoCoords { title = "Current Pos. in:" }
+    } // box annotations
+    Box "Border" {
+      Horizontal {
+        alignX = left
+        expandX = NO
+        CheckBox borderOn  { title = "On" }
+        Field borderColor  { title = "Color:" dependsOn = borderOn }
+      } // horizontal
+    } // box annotations
+    Box "Misc." {
+      CheckBox useGlobalInputImage { title = "Use Global Input Image" }
+      CheckBox snapToCenter        { title = "Snap To Center"         }
+      CheckBox coloredMode         { title = "Colored Mode"           }
+      CheckBox valueHighPrecision  { title = "Display value with high precision" }
+    } // box misc
+       
+  } // category misc
+} // window settings
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
+//# owner: MeVis
+//# date: 2010-06-22T21:02:14
+//# hash: kWgS+arVfhVsbcvyKgWj3kQhJrkM7w2Mq4g1h23eNg0Q4n7GAu0GIZHS6btBpzO1SRWzY+fGRHfVNiSWaZv90A==
+//# MeVis end
