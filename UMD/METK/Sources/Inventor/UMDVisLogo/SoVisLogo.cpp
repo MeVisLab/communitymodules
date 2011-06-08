@@ -28,7 +28,9 @@
 #include <GL/glew.h>
 #pragma warning( disable : 4611 )
 #include "png.h"
+#ifndef __APPLE__
 #include <malloc.h>
+#endif
 
 SO_NODE_SOURCE(SoVisLogo)
 

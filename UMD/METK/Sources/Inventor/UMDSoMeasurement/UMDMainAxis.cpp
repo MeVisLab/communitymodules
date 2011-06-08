@@ -6,8 +6,9 @@
 
 #include "UMDMainAxis.h"
 #include <stdlib.h>
+#ifndef __APPLE__
 #include <malloc.h>
-
+#endif
 
 #define JACOBI_ROTATE(a,i,j,k,l) g=a[i][j];\
   h=a[k][l];\
