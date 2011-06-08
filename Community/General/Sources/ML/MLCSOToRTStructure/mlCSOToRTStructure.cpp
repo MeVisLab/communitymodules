@@ -20,7 +20,7 @@
 #include <iostream>
 #include <time.h>
 
-using namespace boost::filesystem; 
+using namespace boost::filesystem;
 using namespace std;
 
 ML_START_NAMESPACE
@@ -46,15 +46,15 @@ CSOToRTStructure::CSOToRTStructure ()
   FieldContainer &fields = *getFieldContainer();
   getInField(0)->attachField(getOutField(0));
   _inputCSOs = NULL;
-  
+
   ML_CHECK(&fields);
 
   (_inListFld = fields.addBase("inCSOList"))->setBaseValue(NULL);
- 
+
   _rtStructFileFld = fields.addString("rtStructFile");
   _applyFld = fields.addNotify("apply");
-  _validFld = fields.addToggle("valid");
-  _validFld->setIntValue(false);
+  _validFld = fields.addBool("valid");
+  _validFld->setBoolValue(false);
   //_inListFld->attachField(_validFld);
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -65,21 +65,21 @@ CSOToRTStructure::CSOToRTStructure ()
 //----------------------------------------------------------------------------------
 void CSOToRTStructure::handleNotification (Field *field) {
   ML_TRACE_IN("CSOToRTStructure::handleNotification ()");
-  
+
   // Handle changes of module parameters and connectors here.
   // check input values
   if (field == _inListFld) {
-    if ( !_isInNotificationCB ) {  
-		CSOList::removeNotificationObserverFromAllCSOLists( CSOListNotifyObserverCB,  
-		this);  
-	} 
+    if ( !_isInNotificationCB ) {
+		CSOList::removeNotificationObserverFromAllCSOLists( CSOListNotifyObserverCB,
+		this);
+	}
     Base *csoListB = _inListFld->getBaseValue();
     _inputCSOs = mlbase_cast<CSOList*>(csoListB);
     if (_inputCSOs == NULL) {
 		return;
     }
-    if (!_isInNotificationCB) {  
-		_inputCSOs->addNotificationObserver(CSOListNotifyObserverCB, this);  
+    if (!_isInNotificationCB) {
+		_inputCSOs->addNotificationObserver(CSOListNotifyObserverCB, this);
     }
   }else if (field == _applyFld){
 	if (_treeHeaderPtr != NULL) {
@@ -96,34 +96,34 @@ void CSOToRTStructure::handleNotification (Field *field) {
 //----------------------------------------------------------------------------------
 //! Callback function for CSOList input field.
 //----------------------------------------------------------------------------------
-void CSOToRTStructure::CSOListNotifyObserverCB(void* userData, int notificationFlag) 
-{ 
-  CSOToRTStructure* myInst = static_cast<CSOToRTStructure*>(userData); 
-  myInst->_isInNotificationCB = true; 
-  if ( (notificationFlag & CSOList::NOTIFICATION_CSO_FINISHED   ) || 
-       (notificationFlag & CSOList::NOTIFICATION_GROUP_FINISHED ) || 
-       (notificationFlag & CSOList::NOTIFICATION_CSO_SELECTION  ) || 
-       (notificationFlag & CSOList::NOTIFICATION_GROUP_SELECTION) ){ 
-      // Do your notification handling here 
+void CSOToRTStructure::CSOListNotifyObserverCB(void* userData, int notificationFlag)
+{
+  CSOToRTStructure* myInst = static_cast<CSOToRTStructure*>(userData);
+  myInst->_isInNotificationCB = true;
+  if ( (notificationFlag & CSOList::NOTIFICATION_CSO_FINISHED   ) ||
+       (notificationFlag & CSOList::NOTIFICATION_GROUP_FINISHED ) ||
+       (notificationFlag & CSOList::NOTIFICATION_CSO_SELECTION  ) ||
+       (notificationFlag & CSOList::NOTIFICATION_GROUP_SELECTION) ){
+      // Do your notification handling here
     setValid(myInst);
-  } 
-  myInst->_isInNotificationCB = false; 
-} 
+  }
+  myInst->_isInNotificationCB = false;
+}
 
 //----------------------------------------------------------------------------------
 //! Set Valid field in UI. If TreeHeader and inputCSO are not NULL, valid is checked
 //----------------------------------------------------------------------------------
-void CSOToRTStructure::setValid(CSOToRTStructure* obj) 
+void CSOToRTStructure::setValid(CSOToRTStructure* obj)
 {
   if (obj->getTreeHeaderPtr() == NULL && obj->getUpdatedInImg(0) != NULL) {
     PagedImg *img = obj->getUpdatedInImg(0);
 	obj->updateGenTreeHeader(img);
   }
-  if (obj->getUpdatedInImg(0) == NULL || obj->getInputCSOs() == NULL) { 
+  if (obj->getUpdatedInImg(0) == NULL || obj->getInputCSOs() == NULL) {
 	obj->setValidFld(false);
-		  
+
   }else {
-	obj->setValidFld(true);  
+	obj->setValidFld(true);
   }
 }
 
@@ -148,7 +148,7 @@ BaseOp::INPUT_HANDLE CSOToRTStructure::handleInput(int /*inIndex*/, INPUT_STATE 
 {
   ML_TRACE_IN("ChamferMatching::handleInput ()")
 
-  return INVALIDATE; 
+  return INVALIDATE;
 }
 
 //----------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ bool CSOToRTStructure::combineSOPInstUID(DCMTree::TagPtr conImageTag, std::strin
 	conImageTag->addSequenceItem(childTree);
 	addTag(childTree, DCMTree::TagId(0x0008,0x1150), SOPCUID, DCMTree::UI);
 	addTag(childTree, DCMTree::TagId(0x0008,0x1155),it->second, DCMTree::UI);
-		
+
   }
   return true;
 }
@@ -180,27 +180,27 @@ void CSOToRTStructure::updateGenTreeHeader(PagedImg *img) {
 	isInitialized = true;
   }
 
-  const RuntimeType*               runtimeType       = DicomTreeImagePropertyExtension::getClassTypeId();  
-  ImagePropertyExtensionContainer& propertyContainer = img->getImagePropertyContainer(); 
-	  
-  if ( propertyContainer.getNumEntries() > 0 ){ 
-    DicomTreeImagePropertyExtension* propertyExtension = reinterpret_cast<DicomTreeImagePropertyExtension*> 
-														   (propertyContainer.getFirstEntryOfType(runtimeType));  
-	DCMTree::Const_TreePtr           dicomTreePtr      = getDicomTreeFromImagePropertyExtension(propertyExtension);  	
+  const RuntimeType*               runtimeType       = DicomTreeImagePropertyExtension::getClassTypeId();
+  ImagePropertyExtensionContainer& propertyContainer = img->getImagePropertyContainer();
+
+  if ( propertyContainer.getNumEntries() > 0 ){
+    DicomTreeImagePropertyExtension* propertyExtension = reinterpret_cast<DicomTreeImagePropertyExtension*>
+														   (propertyContainer.getFirstEntryOfType(runtimeType));
+	DCMTree::Const_TreePtr           dicomTreePtr      = getDicomTreeFromImagePropertyExtension(propertyExtension);
 	if (dicomTreePtr == NULL)
 		return;
 	ml::Vector ext = img->getImgExt();
 	DCMTree::TreePtr                 childTreePtr(new DCMTree::Tree());
 	childTreePtr = dicomTreePtr->copy();
-	DCMTree::StructuredMF structuredMF( childTreePtr, ext[2], ext[4], ext[5]);  
-	// Get the extent of the dicom tree.  
-	const DCMTree::StructuredMF::IndexVector& indices = structuredMF.getGridExtent();  
-	if ( indices.size() > 0 ) { 
+	DCMTree::StructuredMF structuredMF( childTreePtr, ext[2], ext[4], ext[5]);
+	// Get the extent of the dicom tree.
+	const DCMTree::StructuredMF::IndexVector& indices = structuredMF.getGridExtent();
+	if ( indices.size() > 0 ) {
 	  unsigned int num = indices[0];
-	  DCMTree::TagPtr tagTPtr = structuredMF.tagForGridPosition_rw( DCMTree::TagId(0x0008,0x0033), 0, 0); 
+	  DCMTree::TagPtr tagTPtr = structuredMF.tagForGridPosition_rw( DCMTree::TagId(0x0008,0x0033), 0, 0);
 	  std::string  tagTS=tagTPtr->toString();
-	  for (unsigned int z=0; z< num; ++z) {  
-		// Get the tag at slice z. 
+	  for (unsigned int z=0; z< num; ++z) {
+		// Get the tag at slice z.
 		DCMTree::TagInfo info(DCMTree::TagId(0x0008,0x0018), DCMTree::UI, DCMTree::TagValueMultiplicity(1,1));
 		DCMTree::TagPtr newTag(new DCMTree::Tag(info));
 		structuredMF.setTagForGridPosition(newTag, z, 0);
@@ -211,8 +211,8 @@ void CSOToRTStructure::updateGenTreeHeader(PagedImg *img) {
 		ml::vec3 vecWorld;
 		img->transformToWorldCoord(vec,vecWorld);
 		float worldPosZ = vecWorld[2];
-		_mSOPInstUIDs.insert(pair<float,std::string>(worldPosZ,SOPInstUID)); 
-	  }  
+		_mSOPInstUIDs.insert(pair<float,std::string>(worldPosZ,SOPInstUID));
+	  }
 	}
 	_treeHeaderPtr = childTreePtr;
   }
@@ -223,17 +223,17 @@ void CSOToRTStructure::updateGenTreeHeader(PagedImg *img) {
 //----------------------------------------------------------------------------------
 void  CSOToRTStructure::calcOutImageProps (int /*outIndex*/){
   ml::PagedImg* img = getOutImg();
-  if (img == NULL) 
+  if (img == NULL)
     return;
-	
+
   updateGenTreeHeader(img);
   if (_treeHeaderPtr == NULL) return;
-  const RuntimeType*               runtimeType       = DicomTreeImagePropertyExtension::getClassTypeId();  
-  ImagePropertyExtensionContainer& outPropertyContainer = getOutImg(0)->getImagePropertyContainer(); 
-  DicomTreeImagePropertyExtension* outPropertyExtension = reinterpret_cast<DicomTreeImagePropertyExtension*> 
-													   (outPropertyContainer.getFirstEntryOfType(runtimeType));  
+  const RuntimeType*               runtimeType       = DicomTreeImagePropertyExtension::getClassTypeId();
+  ImagePropertyExtensionContainer& outPropertyContainer = getOutImg(0)->getImagePropertyContainer();
+  DicomTreeImagePropertyExtension* outPropertyExtension = reinterpret_cast<DicomTreeImagePropertyExtension*>
+													   (outPropertyContainer.getFirstEntryOfType(runtimeType));
   if (outPropertyExtension!= NULL)
-    outPropertyExtension->setDicomTagTree(_treeHeaderPtr); 					
+    outPropertyExtension->setDicomTagTree(_treeHeaderPtr);
 }
 
 CALC_OUTSUBIMAGE1(CSOToRTStructure);
@@ -253,10 +253,10 @@ std::string  CSOToRTStructure::getRefUID(double z)
   if (key != 0) {
 	std::map<float,std::string>::const_iterator rt = _mSOPInstUIDs.find(key);
 	return rt->second;
-  } else 
+  } else
 	return "";
 }
-	
+
 //----------------------------------------------------------------------------------
 //! add a Sequence tree
 //----------------------------------------------------------------------------------
@@ -277,11 +277,11 @@ void CSOToRTStructure::addSequenceTag(DCMTree::TreePtr &parent, DCMTree::TagId t
   parent->addTag(tagId, newTag);
 }
 
- 
+
 //----------------------------------------------------------------------------------
-//! add a Tag with tagId and value into a tree  
+//! add a Tag with tagId and value into a tree
 //----------------------------------------------------------------------------------
-void CSOToRTStructure::addTag(DCMTree::TreePtr &parent, DCMTree::TagId tagId, std::string value, DCMTree::Vr vr) 
+void CSOToRTStructure::addTag(DCMTree::TreePtr &parent, DCMTree::TagId tagId, std::string value, DCMTree::Vr vr)
 {
   DCMTree::TagInfo info(tagId, vr, DCMTree::TagValueMultiplicity(1,1));
   DCMTree::TagPtr newTag(new DCMTree::Tag(info));
@@ -290,9 +290,9 @@ void CSOToRTStructure::addTag(DCMTree::TreePtr &parent, DCMTree::TagId tagId, st
 }
 
 //----------------------------------------------------------------------------------
-//! generates the RT structure file. It combine some common headers from Input Image file and from input CSO 
+//! generates the RT structure file. It combine some common headers from Input Image file and from input CSO
 //----------------------------------------------------------------------------------
-bool CSOToRTStructure::combineHeader() 
+bool CSOToRTStructure::combineHeader()
 {
   _genTreePtr->addTag(DCMTree::TagId(0x0002,0x0000), _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0002,0x0000)));
   _genTreePtr->addTag(DCMTree::TagId(0x0002,0x0001), _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0002,0x0001)));
@@ -309,7 +309,7 @@ bool CSOToRTStructure::combineHeader()
 	time(&now);
   timeinfo = localtime(&now);
 	strftime(buffer, 10, "%H%M%S",timeinfo);
-  strftime(buffer1, 10, "%Y%m%d",timeinfo);	
+  strftime(buffer1, 10, "%Y%m%d",timeinfo);
 	addTag(_genTreePtr, DCMTree::TagId(0x0008, 0x0012), buffer1, DCMTree::DA);
 	addTag(_genTreePtr, DCMTree::TagId(0x0008, 0x0013), buffer, DCMTree::TM);
 
@@ -324,7 +324,7 @@ bool CSOToRTStructure::combineHeader()
 	DCMTree::TagPtr modTagPtr = _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0008,0x0060));
 	string modality = modTagPtr->toString();
 	addTag(_genTreePtr, DCMTree::TagId(0x0008,0x0060),"RTSTRUCT", DCMTree::CS);
-    
+
 	_genTreePtr->addTag(DCMTree::TagId(0x0008,0x0070), _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0008,0x0070)));
 	_genTreePtr->addTag(DCMTree::TagId(0x0008,0x0090), _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0008,0x0090)));
 	//hard code "Mevis" here, need to find how to get machine name
@@ -353,30 +353,30 @@ bool CSOToRTStructure::combineHeader()
 	addTag(_genTreePtr, DCMTree::TagId(0x3006,0x0002), label, DCMTree::SH);
 	addTag(_genTreePtr, DCMTree::TagId(0x3006,0x0008),"",DCMTree::DA);
 	addTag(_genTreePtr,DCMTree::TagId(0x3006,0x0009),"",DCMTree::TM);
-    
+
 	DCMTree::TreePtr embeddedTree(new DCMTree::Tree());
 	addSequence(_genTreePtr, embeddedTree, DCMTree::TagId(0x3006,0x0010));
-	
+
 
 	embeddedTree->addTag(DCMTree::TagId(0x0020,0x0052), _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0020,0x0052)));
 	std::string frameofReferencedFrameUID = embeddedTree->getTag(DCMTree::TagId(0x0020,0x0052))->toString();
 
 	DCMTree::TreePtr refStudySeq(new DCMTree::Tree());
 	addSequence(embeddedTree, refStudySeq, DCMTree::TagId(0x3006,0x0012));
-	
+
 	_refSopClassUID = _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0002,0x0002))->toString();
 	addTag(refStudySeq,DCMTree::TagId(0x0008,0x1150), _refSopClassUID, DCMTree::UI);
 
-  string SOPInsUID = _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0020,0x0052))->toString(); 
-	addTag(refStudySeq,DCMTree::TagId(0x0008,0x1155),SOPInsUID.substr(0, SOPInsUID.find_last_of(".")), DCMTree::UI); 
-    
+  string SOPInsUID = _treeHeaderPtr->getTag_rw(DCMTree::TagId(0x0020,0x0052))->toString();
+	addTag(refStudySeq,DCMTree::TagId(0x0008,0x1155),SOPInsUID.substr(0, SOPInsUID.find_last_of(".")), DCMTree::UI);
+
 	DCMTree::TreePtr refSeriesSeq(new DCMTree::Tree());
 	addSequence(refStudySeq, refSeriesSeq, DCMTree::TagId(0x3006,0x0014));
 
   addTag(refSeriesSeq,DCMTree::TagId(0x0020,0x000e),seriesInstUID,DCMTree::UI);
 	addSequenceTag(refSeriesSeq,DCMTree::TagId(0x3006, 0x0016));
 	DCMTree::TagPtr conImageTag = refSeriesSeq->getTag_rw(DCMTree::TagId(0x3006, 0x0016));
-	
+
 	std::string refSOPClassUID = _treeHeaderPtr->getTag(DCMTree::TagId(0x0008,0x0016))->toString();
 	if (combineSOPInstUID(conImageTag, refSOPClassUID) == false) {
 		return false;
@@ -389,16 +389,16 @@ bool CSOToRTStructure::combineHeader()
 	}
 	DCMTree::TreePtr ROIContourSeq(new DCMTree::Tree());
   addSequence(_genTreePtr, ROIContourSeq, DCMTree::TagId(0x3006,0x0039));
-	
+
 	DCMTree::TagPtr csoTag = _genTreePtr->getTag_rw(DCMTree::TagId(0x3006, 0x0039));
 	if (addCSOTags(csoTag, ROIContourSeq) == false) {
 		return false;
 	}
 
-  // The following tags are not necessary in RT structure file 
+  // The following tags are not necessary in RT structure file
   DCMTree::TreePtr RTROIObSeq(new DCMTree::Tree());
   addSequence(_genTreePtr, RTROIObSeq, DCMTree::TagId(0x3006,0x0080));
-	
+
 	DCMTree::TagPtr RTROIObTag = _genTreePtr->getTag_rw(DCMTree::TagId(0x3006, 0x0080));
 	addRTROIObTags(RTROIObTag, RTROIObSeq);
 	return true;
@@ -407,11 +407,11 @@ bool CSOToRTStructure::combineHeader()
 //----------------------------------------------------------------------------------
 //! Add the RTR IOB Tags in RT structure
 //----------------------------------------------------------------------------------
-void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreePtr /*RTROIObSeq*/) 
+void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreePtr /*RTROIObSeq*/)
 {
 	size_t seqSize = RTROIObTag->sequenceItems().size();
 	if (seqSize != 0) {
-		RTROIObTag->sequenceItems().erase(RTROIObTag->sequenceItems().begin(), 
+		RTROIObTag->sequenceItems().erase(RTROIObTag->sequenceItems().begin(),
 		RTROIObTag->sequenceItems().end());
 	}
 	unsigned int groups = _inputCSOs->numGroups();
@@ -423,8 +423,8 @@ void CSOToRTStructure::addRTROIObTags(DCMTree::TagPtr RTROIObTag, DCMTree::TreeP
 	  s << int(i+1);
     std::stringstream sId;
 	  sId << int(group->getId());
-    addTag(childTree, DCMTree::TagId(0x3006,0x0082),s.str(), DCMTree::IS); 
-		addTag(childTree, DCMTree::TagId(0x3006,0x0084),sId.str(), DCMTree::IS); 
+    addTag(childTree, DCMTree::TagId(0x3006,0x0082),s.str(), DCMTree::IS);
+		addTag(childTree, DCMTree::TagId(0x3006,0x0084),sId.str(), DCMTree::IS);
 		addTag(childTree, DCMTree::TagId(0x3006,0x0085), group->getLabel(), DCMTree::SH);
 		// hard code here
     addTag(childTree, DCMTree::TagId(0x3006,0x00a4), "ORGAN", DCMTree::CS);
@@ -448,10 +448,10 @@ bool CSOToRTStructure::addCSOGroupTags(DCMTree::TagPtr csoGroupTag, std::string 
 	for (unsigned int i=0; i < _inputCSOs->numGroups(); i++) {
 	  CSOGroup* group = _inputCSOs->getGroupAt(i);
 		DCMTree::TreePtr childTree(new DCMTree::Tree());
-		DCMTree::TagInfo childInfo1(DCMTree::TagId(0x3006,0x0022),DCMTree::IS,DCMTree::TagValueMultiplicity(1,1)); 
-		DCMTree::TagInfo childInfo2(DCMTree::TagId(0x3006,0x0024),DCMTree::UI,DCMTree::TagValueMultiplicity(1,1)); 
-		DCMTree::TagInfo childInfo3(DCMTree::TagId(0x3006,0x0026),DCMTree::LO,DCMTree::TagValueMultiplicity(1,1)); 
-		DCMTree::TagInfo childInfo4(DCMTree::TagId(0x3006,0x0036),DCMTree::CS,DCMTree::TagValueMultiplicity(1,1)); 
+		DCMTree::TagInfo childInfo1(DCMTree::TagId(0x3006,0x0022),DCMTree::IS,DCMTree::TagValueMultiplicity(1,1));
+		DCMTree::TagInfo childInfo2(DCMTree::TagId(0x3006,0x0024),DCMTree::UI,DCMTree::TagValueMultiplicity(1,1));
+		DCMTree::TagInfo childInfo3(DCMTree::TagId(0x3006,0x0026),DCMTree::LO,DCMTree::TagValueMultiplicity(1,1));
+		DCMTree::TagInfo childInfo4(DCMTree::TagId(0x3006,0x0036),DCMTree::CS,DCMTree::TagValueMultiplicity(1,1));
 		DCMTree::TagPtr itemTag1(new DCMTree::Tag(childInfo1));
 		DCMTree::TagPtr itemTag2(new DCMTree::Tag(childInfo2));
 		DCMTree::TagPtr itemTag3(new DCMTree::Tag(childInfo3));
@@ -499,20 +499,20 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 	}
 	size_t seqSize = csoTag->sequenceItems().size();
 	if (seqSize != 0) {
-		csoTag->sequenceItems().erase(csoTag->sequenceItems().begin(), 
+		csoTag->sequenceItems().erase(csoTag->sequenceItems().begin(),
 		csoTag->sequenceItems().end());
 	}
 	for (unsigned int gInd = 0; gInd < groupNum; gInd ++) {
 		CSOGroup* group = _inputCSOs->getGroupAt(gInd);
-		if (group == NULL || group->numCSO() == 0){ 
+		if (group == NULL || group->numCSO() == 0){
 			ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "RT structure file cannot be generated because some groups donot contain any CSOs.");
 			return false;
 		}
 		DCMTree::TreePtr csoGTree(new DCMTree::Tree());
-	
+
 		ml::vec3 color = group->getColor();
 		string strColor[3];
-		DCMTree::TagInfo info(DCMTree::TagId(0x3006,0x002a), DCMTree::IS,DCMTree::TagValueMultiplicity(1,1)); 
+		DCMTree::TagInfo info(DCMTree::TagId(0x3006,0x002a), DCMTree::IS,DCMTree::TagValueMultiplicity(1,1));
 		DCMTree::TagPtr newTag(new DCMTree::Tag(info));
 		csoGTree->addTag(DCMTree::TagId(0x3006,0x002a), newTag);
 		for (int i = 0; i < 3; i++) {
@@ -520,16 +520,16 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 			s << int(color[i]*255);
 			strColor[i].assign(s.str());
 			newTag->addValue(strColor[i]);
-		}	      
+		}
 		DCMTree::TreePtr childGTree(new DCMTree::Tree());
 		addSequence(csoGTree, childGTree, DCMTree::TagId(0x3006,0x0040));
 		DCMTree::TagPtr childGTag = csoGTree->getTag_rw(DCMTree::TagId(0x3006, 0x0040));
 		size_t seqGSize = childGTag->sequenceItems().size();
 		if (seqGSize != 0) {
-			childGTag->sequenceItems().erase(childGTag->sequenceItems().begin(), 
+			childGTag->sequenceItems().erase(childGTag->sequenceItems().begin(),
 			childGTag->sequenceItems().end());
 		}
-            
+
 		unsigned int csoNum = group->numCSO();
 		bool colorAdded = false;
     for (unsigned int in = 0; in < csoNum; in++) {
@@ -539,7 +539,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 				CSOSeedPoint *sp = cso->getFirstSeedPoint();
 				double z = sp->worldPosition[2];
 				string refUID = getRefUID(z);
-				if (refUID.empty()){ 
+				if (refUID.empty()){
 				  ML_PRINT_ERROR("mlCSOToRTStructure::addCSOTags",ML_BAD_PARAMETER, "There are no matching slices for a CSO." + cso->getId());
 				  return false;
 				}
@@ -549,9 +549,9 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 				addSequence(csoCTree, seqTree, DCMTree::TagId(0x3006,0x0016));
 				DCMTree::TagPtr UIDs = csoCTree->getTag_rw(DCMTree::TagId(0x3006,0x0016));
 
-				addTag(seqTree, DCMTree::TagId(0x0008,0x1150),_refSopClassUID, DCMTree::UI); 
-				addTag(seqTree, DCMTree::TagId(0x0008,0x1155),refUID, DCMTree::UI); 
-				addTag(csoCTree, DCMTree::TagId(0x3006,0x0042),"CLOSED_PLANAR", DCMTree::CS); 
+				addTag(seqTree, DCMTree::TagId(0x0008,0x1150),_refSopClassUID, DCMTree::UI);
+				addTag(seqTree, DCMTree::TagId(0x0008,0x1155),refUID, DCMTree::UI);
+				addTag(csoCTree, DCMTree::TagId(0x3006,0x0042),"CLOSED_PLANAR", DCMTree::CS);
 				size_t ptNum = 0;
 				for (unsigned int i = 0; i < cso->numPathPointLists(); i ++){
 				  ml::CSOPathPoints* pt = cso->getPathPointsAt(i);
@@ -561,7 +561,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
 				}
 				std::stringstream s;
 				s << int(ptNum);
-				addTag(csoCTree, DCMTree::TagId(0x3006,0x0046), s.str(), DCMTree::IS); 
+				addTag(csoCTree, DCMTree::TagId(0x3006,0x0046), s.str(), DCMTree::IS);
 				addCSOPathPoint(csoCTree, DCMTree::TagId(0x3006,0x0050), DCMTree::DS, cso);
 				if (colorAdded == false) {
 				  csoTag->addSequenceItem(csoGTree);
@@ -576,7 +576,7 @@ bool CSOToRTStructure::addCSOTags(DCMTree::TagPtr csoTag, DCMTree::TreePtr /*con
     if(colorAdded == true) {
 			std::stringstream sg;
 			sg << int(group->getId());
-			addTag(csoGTree, DCMTree::TagId(0x3006,0x0084), sg.str(), DCMTree::IS); 
+			addTag(csoGTree, DCMTree::TagId(0x3006,0x0084), sg.str(), DCMTree::IS);
 		}
 	}
   return true;
@@ -601,7 +601,7 @@ void CSOToRTStructure::addCSOPathPoint(DCMTree::TreePtr childTree, DCMTree::TagI
 			newTag->addValue(s.str());
 		}
 	  for (unsigned int j = 0; j < vec.size(); j ++){
-			for (int coordInd = 0; coordInd < 3; coordInd++) { 
+			for (int coordInd = 0; coordInd < 3; coordInd++) {
 				std::stringstream s;
 				s << vec[j][coordInd];
 				std::string m = s.str();
@@ -609,7 +609,7 @@ void CSOToRTStructure::addCSOPathPoint(DCMTree::TreePtr childTree, DCMTree::TagI
 			}
 		}
 	}
-	childTree->addTag(tagId, newTag);  
+	childTree->addTag(tagId, newTag);
 }
 
 //----------------------------------------------------------------------------------
@@ -617,16 +617,16 @@ void CSOToRTStructure::addCSOPathPoint(DCMTree::TreePtr childTree, DCMTree::TagI
 //----------------------------------------------------------------------------------
 void CSOToRTStructure::writeToDCMFile(DCMTree::TreePtr tree, std::string dest) {
 
-	DCMTree::MessagePtr messagePtr = DCMTree::MessagePtr( 
-    new DCMTree::Message(DCMTree_Unicode::UTF8CharacterSet(), DCMTree::IMPLICIT_LITTLE_ENDIAN)); 
-  messagePtr->setTags(tree); 
+	DCMTree::MessagePtr messagePtr = DCMTree::MessagePtr(
+    new DCMTree::Message(DCMTree_Unicode::UTF8CharacterSet(), DCMTree::IMPLICIT_LITTLE_ENDIAN));
+  messagePtr->setTags(tree);
 
-  // Create writer object 
-	DCMTree::WriterPtr writer = DCMTree::Writer::create(DCMTree::Dict::singleton()); 
- 
-  // Write message 
-	DCMTree::IOParameterPtr param(DCMTree::IOParameter::create(dest)); 
-  writer->write(param, messagePtr); 
+  // Create writer object
+	DCMTree::WriterPtr writer = DCMTree::Writer::create(DCMTree::Dict::singleton());
+
+  // Write message
+	DCMTree::IOParameterPtr param(DCMTree::IOParameter::create(dest));
+  writer->write(param, messagePtr);
 }
 
 ML_END_NAMESPACE

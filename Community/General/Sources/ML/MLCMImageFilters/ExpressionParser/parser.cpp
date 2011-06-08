@@ -1,7 +1,7 @@
 // Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR),
 // Departments of Radiology and Medical Informatics, Erasmus MC. All
 // rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //     * Redistributions of source code must retain the above copyright
@@ -12,7 +12,7 @@
 //     * Neither the name of BIGR nor the names of its contributors
 //       may be used to endorse or promote products derived from this software
 //       without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -28,6 +28,8 @@
 #include "parser.h"
 
 #include <math.h>
+#include <string.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -382,13 +384,13 @@ int Parser::IsFunction (const char* string, int length, UnaryFunction* f)
           *f = log;
           return 1;
         }
-      
+
       if ( strncmp(string,"erf",3) == 0 )
         {
           *f = erf;
           return 1;
         }
-        
+
     case 4:
       if ( strncmp(string,"sqrt",4) == 0 )
         {

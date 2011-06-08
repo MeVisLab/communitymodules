@@ -15,7 +15,7 @@
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER ''AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE 
+// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE
 // FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 // (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 // LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -27,7 +27,7 @@
 //! Implementation of an example operator for adding
 /*!
 // \file    mlBarcode.cpp
-// \author  Dominik Boehm  
+// \author  Dominik Boehm
 // \date    8/2003
 */
 //--------------------------------------------------------------------------------
@@ -89,27 +89,27 @@ ML_START_NAMESPACE
     handleNotificationOff();
     _lockNotification = 1;
 
-    _qFld = getFieldContainer()->addInt("margin", &_q);
+    _qFld = getFieldContainer()->addInt("margin");
     _qFld->setIntValue(200);
 
-    _xFld = getFieldContainer()->addInt("barWidth", &_x);
+    _xFld = getFieldContainer()->addInt("barWidth");
     _xFld->setIntValue(8);
 
-    _ratioFld = getFieldContainer()->addFloat("ratio", &_ratio);
+    _ratioFld = getFieldContainer()->addFloat("ratio");
     _ratioFld->setFloatValue(2.0);
 
-    _iFld = getFieldContainer()->addInt("interval", &_i);
+    _iFld = getFieldContainer()->addInt("interval");
     _iFld->setIntValue(8);
 
     //! Pixelvalue for lightbars
-    _foregroundFld = getFieldContainer()->addInt("background", &_background);
+    _foregroundFld = getFieldContainer()->addInt("background");
     _foregroundFld->setIntValue(4095);
 
     //! Pixelvalue for darkbars
-    _backgroundFld = getFieldContainer()->addInt("foreground", &_foreground);
+    _backgroundFld = getFieldContainer()->addInt("foreground");
     _backgroundFld->setIntValue(0);
 
-    _ysizeFld = getFieldContainer()->addInt("height", &_ysize);
+    _ysizeFld = getFieldContainer()->addInt("height");
     _ysizeFld->setIntValue(300);
 
     _textFld = getFieldContainer()->addString("text");
@@ -121,8 +121,8 @@ ML_START_NAMESPACE
 
     _apply->attachField(getOutField());
 
-    _autoApplyFld = getFieldContainer()->addToggle("autoApply");
-    _autoApplyFld->setIntValue(true);
+    _autoApplyFld = getFieldContainer()->addBool("autoApply");
+    _autoApplyFld->setBoolValue(true);
 
 
     _lockNotification = 0;
@@ -201,7 +201,9 @@ ML_START_NAMESPACE
 
 
     // Set value for color.
-    _color = _background;
+    const MLint backgroundVal = _foregroundFld->getIntValue();
+    const MLint foregroundVal = _backgroundFld->getIntValue();
+    _color = backgroundVal;
 
 
     // Number of chars to be coded (plus 2 chars for the '*' at the beginning and the end
@@ -209,7 +211,11 @@ ML_START_NAMESPACE
 
 
     // Calculate the size of the codeline in pixel
-    _xsize = (int)((_numofchars+2)*(6*_x + 3*_ratio*_x) + (_numofchars+1) * _i + 2*_q);
+    const MLint qVal     = _qFld->getIntValue();
+    const MLint xVal     = _xFld->getIntValue();
+    const MLint iVal     = _iFld->getIntValue();
+    const float ratioVal = _ratioFld->getFloatValue();
+    _xsize = (int)((_numofchars+2)*(6*xVal + 3*ratioVal*xVal) + (_numofchars+1) * iVal + 2*qVal);
 
     // Check, if an old codeline exists and remove this.
     if (_codeline!=NULL) {
@@ -223,7 +229,7 @@ ML_START_NAMESPACE
     }
     // Initialize new codeline, set all pixels to white
     for (x=0; x<_xsize; x++) {
-      _codeline[x]=_background;
+      _codeline[x]=backgroundVal;
     }
 
     // Allocate memory for the complete text (including 2x'*')
@@ -240,12 +246,12 @@ ML_START_NAMESPACE
 
 
     // Light area at the beginning
-    for(x=0; x<_q; x++) {
-      _codeline[x]=_background;
+    for(x=0; x<qVal; x++) {
+      _codeline[x]=backgroundVal;
     }
 
     // Now we can start to build the bars for each character
-    _color = _background;
+    _color = backgroundVal;
 
 
     // Loop through the complete text
@@ -260,21 +266,21 @@ ML_START_NAMESPACE
       for (n=0; n < 9; n++)
       {
         // change color
-        if (_color == _background) {
-          _color = _foreground;
+        if (_color == backgroundVal) {
+          _color = foregroundVal;
         }
         else {
-          _color = _background;
+          _color = backgroundVal;
         }
 
 
         switch (_stripcode[n])
         {
           // small bar
-        case '0': 
+        case '0':
           {
             // fill with color
-            for(dx=0;dx<_x;dx++)
+            for(dx=0;dx<xVal;dx++)
             {
               _codeline[x]=_color;
               x++;
@@ -285,7 +291,7 @@ ML_START_NAMESPACE
         case '1':  // large bar
           {
             // fill with color
-            for(dx=0;dx<(int) (_ratio * _x);dx++)
+            for(dx=0;dx<(int) (ratioVal * xVal);dx++)
             {
               _codeline[x]=_color;
               x++;
@@ -300,12 +306,12 @@ ML_START_NAMESPACE
       } // end code loop
 
       // interval between two chars
-      _color = _background;
+      _color = backgroundVal;
 
       //fill the interval with color, but not for the last one
       if(i3+1<strlen(_barcodefull)) {
 
-        for(dx=0;dx<_i;dx++)
+        for(dx=0;dx<iVal;dx++)
         {
           _codeline[x]=_color;
           x++;
@@ -316,19 +322,19 @@ ML_START_NAMESPACE
 
 
     // After all this the light space at the end of the codeline should be left or
-    // in other words: _xsize - x == _q
+    // in other words: _xsize - x == qVal
 
 
     //Light area at the end
     while (x<_xsize ) {
-      _codeline[x]=_background;
+      _codeline[x]=backgroundVal;
       x++;
     }
 
 
     delete [] _barcodefull;
 
-  } 
+  }
 
   //-----------------------------------------------------------------------------
   // Returns the Code 3 of 9 value for a given ASCII character.
@@ -338,45 +344,45 @@ ML_START_NAMESPACE
     switch (Asc)
     {
     case ' ':
-      return "011000100";     
+      return "011000100";
     case '$':
-      return "010101000";             
+      return "010101000";
     case '%':
-      return "000101010"; 
+      return "000101010";
     case '*':
       return "010010100"; // * Start/Stop
     case '+':
-      return "010001010"; 
+      return "010001010";
     case '|':
-      return "010000101"; 
+      return "010000101";
     case '.':
-      return "110000100"; 
+      return "110000100";
     case '/':
-      return "010100010"; 
+      return "010100010";
     case '0':
-      return "000110100"; 
+      return "000110100";
     case '1':
-      return "100100001"; 
+      return "100100001";
     case '2':
-      return "001100001"; 
+      return "001100001";
     case '3':
-      return "101100000"; 
+      return "101100000";
     case '4':
-      return "000110001"; 
+      return "000110001";
     case '5':
-      return "100110000"; 
+      return "100110000";
     case '6':
-      return "001110000"; 
+      return "001110000";
     case '7':
-      return "000100101"; 
+      return "000100101";
     case '8':
-      return "100100100"; 
+      return "100100100";
     case '9':
-      return "001100100"; 
+      return "001100100";
     case 'A':
-      return "100001001"; 
+      return "100001001";
     case 'B':
-      return "001001001"; 
+      return "001001001";
     case 'C':
       return "101001000";
     case 'D':
@@ -426,7 +432,7 @@ ML_START_NAMESPACE
     case 'Z':
       return "011010000";
     default:
-      return "011000100"; 
+      return "011000100";
     }
   }
 
@@ -463,12 +469,12 @@ ML_START_NAMESPACE
 
     // Output image (barcode) is rotated for better use in mammogramms!
 
-    getOutImg()->setImgExt  ( Vector(_xsize, _ysize, 1, 1, 1, 1));
-    getOutImg()->setPageExt ( Vector(_xsize, _ysize, 1, 1, 1, 1));
+    getOutImg()->setImgExt  ( Vector(_xsize, _ysizeFld->getIntValue(), 1, 1, 1, 1));
+    getOutImg()->setPageExt ( Vector(_xsize, _ysizeFld->getIntValue(), 1, 1, 1, 1));
 
     // Determine new min/max range.
-    long double min = _foreground;
-    long double max = _background;
+    long double min = _backgroundFld->getIntValue();
+    long double max = _foregroundFld->getIntValue();
     getOutImg()->setMinVoxelValue( min );
     getOutImg()->setMaxVoxelValue( max );
 
@@ -482,7 +488,7 @@ ML_START_NAMESPACE
   }
 
   //--------------------------------------------------------------------------------
-  //! Calls correctly typed (template) version of calcOutSubImage to calculate page 
+  //! Calls correctly typed (template) version of calcOutSubImage to calculate page
   //! outSubImg of output image with index outSubImg.
   //--------------------------------------------------------------------------------
   CALC_OUTSUBIMAGE0_CPP(Barcode);
@@ -490,7 +496,7 @@ ML_START_NAMESPACE
   //--------------------------------------------------------------------------------
   //! Method template for type-specific page calculation. Called by calcOutSubImage().
   //! \param outSubImg   The typed subimage of output image outIndex loaded form file.
-  //! Parameter outIndex is the index of the output the subimage is calculated for and 
+  //! Parameter outIndex is the index of the output the subimage is calculated for and
   //!                    is not used here.
   //--------------------------------------------------------------------------------
   template <typename DATATYPE>

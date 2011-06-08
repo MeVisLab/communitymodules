@@ -1,6 +1,6 @@
-// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR), 
+// Copyright (c) 2010, Biomedical Imaging Group Rotterdam (BIGR),
 // Departments of Radiology and Medical Informatics, Erasmus MC. All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //     * Redistributions of source code must retain the above copyright
@@ -8,19 +8,19 @@
 //     * Redistributions in binary form must reproduce the above copyright
 //       notice, this list of conditions and the following disclaimer in the
 //       documentation and/or other materials provided with the distribution.
-//     * Neither the name of BIGR nor the names of its contributors 
-//       may be used to endorse or promote products derived from this software 
+//     * Neither the name of BIGR nor the names of its contributors
+//       may be used to endorse or promote products derived from this software
 //       without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT, 
-// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// DISCLAIMED. IN NO EVENT SHALL BIGR BE LIABLE FOR ANY DIRECT, INDIRECT,
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 // LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 // ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //----------------------------------------------------------------------------------
 //! The ML module class CSOSetProperties.
@@ -36,6 +36,11 @@
 
 // Local includes
 #include "mlCSOSetProperties.h"
+
+// Small hack to determine whether we have MeVisLab2.2
+#if defined (ML_LIBRARY_EXPORT_ATTRIBUTE) || defined (ML_LIBRARY_IMPORT_ATTRIBUTE)
+  #define IS_MEVISLAB_2_2_OR_HIGHER
+#endif
 
 ML_START_NAMESPACE
 
@@ -54,7 +59,7 @@ CSOSetProperties::CSOSetProperties (void)
   handleNotificationOff();
   FieldContainer* fieldC = getFieldContainer();
   ML_CHECK(fieldC);
-  
+
   m_InputCSOList = NULL;
   f_InputCSOList = fieldC->addBase("inputCSOList");
   f_InputCSOList->setBaseValue(m_InputCSOList);
@@ -77,7 +82,7 @@ CSOSetProperties::CSOSetProperties (void)
 
   (f_PassOnNotifications = fieldC->addBool("passOnNotifications"))->setBoolValue( false );
 
-  (f_AutoUpdate = fieldC->addBool( "autoUpdate"))->setBoolValue( false );  
+  (f_AutoUpdate = fieldC->addBool( "autoUpdate"))->setBoolValue( false );
   f_Update = fieldC->addNotify("update");
 
   f_GetPorperties = fieldC->addNotify("getProperties");
@@ -102,7 +107,11 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOShowState       = fieldC->addBool ("CSOShowState");
   f_CSOVoxelizeState   = fieldC->addBool ("CSOVoxelizeState");
   f_CSOEditableState   = fieldC->addBool ("CSOEditableState");
+#if defined(IS_MEVISLAB_2_2_OR_HIGHER)
+  f_CSOMarkerMode      = fieldC->addEnum ("CSOMarkerMode", CSOList::sSeedPointStyleStrings, 3);
+#else
   f_CSOMarkerMode      = fieldC->addEnum ("CSOMarkerMode", CSOList::sMarkerModeStrings, 3);
+#endif
   f_CSOMarkerColor     = fieldC->addColor("CSOMarkerColor");
   f_CSOMarkerAlpha     = fieldC->addFloat("CSOMarkerAlpha");
   f_CSOMarkerSize      = fieldC->addFloat("CSOMarkerSize");
@@ -122,7 +131,11 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupShowState         = fieldC->addBool  ("GroupShowState");
   f_GroupVoxelizeState     = fieldC->addBool  ("GroupVoxelizeState");
   f_GroupEditableState     = fieldC->addBool  ("GroupEditableState");
+#if defined(IS_MEVISLAB_2_2_OR_HIGHER)
+  f_GroupMarkerMode        = fieldC->addEnum  ("GroupMarkerMode", CSOList::sSeedPointStyleStrings, 3);
+#else
   f_GroupMarkerMode        = fieldC->addEnum  ("GroupMarkerMode", CSOList::sMarkerModeStrings, 3);
+#endif
   f_GroupMarkerColor       = fieldC->addColor ("GroupMarkerColor");
   f_GroupMarkerAlpha       = fieldC->addFloat ("GroupMarkerAlpha");
   f_GroupMarkerSize        = fieldC->addFloat ("GroupMarkerSize");
@@ -151,7 +164,7 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOAlpha->setFloatValue(1);
   f_CSOAlpha->setFloatMinValue(0);
   f_CSOAlpha->setFloatMaxValue(1);
-  f_CSOTimePointIndex->setIntValue(0);    
+  f_CSOTimePointIndex->setIntValue(0);
   f_CSOVoxelWriteMode->setEnumValue(VOXEL_VALUE_MODULE);
   f_CSOVoxelWriteValue->setFloatValue(1024);
   f_CSOShowState->setBoolValue(true);
@@ -163,16 +176,16 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOMarkerSize->setFloatValue(3);
 
   f_GroupLabel->setStringValue("");
-  f_GroupDescription->setStringValue("");    
+  f_GroupDescription->setStringValue("");
   f_GroupIsSelected->setBoolValue( false );
   f_GroupClearSelection->setBoolValue( false );
-  f_GroupLineWidth->setFloatValue(1.0f);    
+  f_GroupLineWidth->setFloatValue(1.0f);
   f_GroupLineStyle->setEnumValue(LINE_STYLE_SOLID);
   f_GroupColor->setColorValue(1,1,1);
   f_GroupAlpha->setFloatValue(1);
   f_GroupAlpha->setFloatMinValue(0);
   f_GroupAlpha->setFloatMaxValue(1);
-  f_GroupTimePointIndex->setIntValue(0);    
+  f_GroupTimePointIndex->setIntValue(0);
   f_GroupVoxelWriteMode->setEnumValue(VOXEL_VALUE_MODULE);
   f_GroupVoxelWriteValue->setFloatValue(1024);
   f_GroupShowState->setBoolValue(true);
@@ -186,7 +199,7 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupUseShowState->setBoolValue(false);
   f_GroupUseVoxelizeState->setBoolValue(false);
   f_GroupUseEditableState->setBoolValue(false);
-  f_GroupUseVoxelWrite->setBoolValue(false);    
+  f_GroupUseVoxelWrite->setBoolValue(false);
   f_GroupUseTimePointIndex ->setBoolValue(false);
   f_GroupUseMarkerSettings ->setBoolValue(false);
   f_GroupMaximumNumCSOs->setIntValue(0);
@@ -194,7 +207,7 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupRemoveFromGroupHandling->setEnumValue( CSOGroupRules::getDefaultRemoveFromGroupHandling() );
   f_GroupDeleteGroupCSOHandling->setEnumValue( CSOGroupRules::getDefaultDeleteGroupCSOHandling() );
 
-  
+
   //! Property selection
   (f_SetCSOComputeNormal   = fieldC->addBool( "setCSOComputeNormal"   ))->setBoolValue( false );
   (f_SetCSOLabel           = fieldC->addBool( "setCSOLabel"           ))->setBoolValue( false );
@@ -249,7 +262,7 @@ CSOSetProperties::CSOSetProperties (void)
 
 }
 CSOSetProperties::~CSOSetProperties()
-{   
+{
   ML_TRACE_IN("CSOSetProperties::~CSOSetProperties()");
 
   if (m_InputCSOList != NULL){
@@ -268,12 +281,12 @@ void CSOSetProperties::handleNotification (Field *field)
 {
   ML_TRACE_IN("CSOSetProperties::handleNotification()");
 
-  // f_InputCSOList 
+  // f_InputCSOList
   if ( field == f_InputCSOList ){
     if ( f_AutoUpdate->getBoolValue() ){
       SetProperties(true);
     }
-  } else 
+  } else
 
   // f_InputCSOString
   if (field == f_InputCSOString){
@@ -290,27 +303,27 @@ void CSOSetProperties::handleNotification (Field *field)
         if (hasChangedToOn){
           ML_DELETE(m_OutputCSOList);
           m_OutputCSOList = m_InputCSOList;
-        } else {                
+        } else {
           ML_CHECK_NEW(m_OutputCSOList, CSOList(*m_InputCSOList));
         }
-      } else { // no input, nothing to put out 
+      } else { // no input, nothing to put out
         if (hasChangedToOn){
           if (m_OutputCSOList != NULL){
             ML_DELETE(m_OutputCSOList);
           }
         }
         m_OutputCSOList = NULL;
-      }   
+      }
       f_OutputCSOList->setBaseValue(m_OutputCSOList);
       SetProperties(false);
     }
-  } else 
+  } else
 
-  // f_Update 
+  // f_Update
   if (field == f_Update || f_AutoUpdate->getBoolValue() ){
     SetProperties(true);
   }
-  
+
   if (field == f_GetPorperties ){
     GetProperties();
   }
@@ -337,15 +350,15 @@ void CSOSetProperties::SetupInternalCSOList()
     }
   }
   if (m_InputCSOList != NULL){
-    if (!workDirectlyOnInputCSOList){ // make copy            
+    if (!workDirectlyOnInputCSOList){ // make copy
       ML_DELETE(m_OutputCSOList);
       ML_CHECK_NEW(m_OutputCSOList, CSOList(*m_InputCSOList));
     } else { // use pointer
       m_OutputCSOList = m_InputCSOList;
-    }            
+    }
     if (!m_IsInNotificationCB) { m_InputCSOList->addNotificationObserver(CSOListNotifyObserverCB, this); }
-  }        
-  f_OutputCSOList->setBaseValue(m_OutputCSOList);    
+  }
+  f_OutputCSOList->setBaseValue(m_OutputCSOList);
 }
 
 
@@ -358,11 +371,11 @@ void CSOSetProperties::ParseInputCSOString()
 
   if (m_OutputCSOList != NULL){
     std::string inputString = f_InputCSOString->getStringValue();
-    if (inputString.length() > 0){        
+    if (inputString.length() > 0){
       int spaceSeparatorIndex = static_cast<int>(inputString.find(" "));
 
       while (spaceSeparatorIndex != static_cast<int>(std::string::npos)){
-        std::string currentItem = inputString.substr(0, spaceSeparatorIndex);       
+        std::string currentItem = inputString.substr(0, spaceSeparatorIndex);
         inputString = inputString.substr(spaceSeparatorIndex+1, inputString.length()-spaceSeparatorIndex);
         spaceSeparatorIndex = static_cast<int>(inputString.find(" "));
         AddCSOId(currentItem);
@@ -381,11 +394,11 @@ void CSOSetProperties::ParseInputGroupString()
 
   if (m_OutputCSOList != NULL){
     std::string inputString = f_InputGroupString->getStringValue();
-    if (inputString.length() > 0){        
+    if (inputString.length() > 0){
       int spaceSeparatorIndex = static_cast<int>(inputString.find(" "));
 
       while (spaceSeparatorIndex != static_cast<int>(std::string::npos)){
-        std::string currentItem = inputString.substr(0, spaceSeparatorIndex);       
+        std::string currentItem = inputString.substr(0, spaceSeparatorIndex);
         inputString = inputString.substr(spaceSeparatorIndex+1, inputString.length()-spaceSeparatorIndex);
         spaceSeparatorIndex = static_cast<int>(inputString.find(" "));
         AddGroupId(currentItem);
@@ -401,7 +414,7 @@ void CSOSetProperties::AddCSOId(const std::string& idString)
 {
   ML_TRACE_IN_TC("void CSOSetProperties::AddCSOId(const std::string& idString)");
 
-  if (m_OutputCSOList != NULL){        
+  if (m_OutputCSOList != NULL){
     int currentId = 0;
     std::stringstream strstream;
     strstream << idString;
@@ -426,7 +439,7 @@ void CSOSetProperties::AddGroupId(const std::string& idString)
 {
   ML_TRACE_IN_TC("void CSOSetProperties::AddGroupId(const std::string& idString)");
 
-  if (m_OutputCSOList != NULL){        
+  if (m_OutputCSOList != NULL){
     int currentId = 0;
     std::stringstream strstream;
     strstream << idString;
@@ -477,7 +490,7 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
           if ( f_SetCSOCreatorId->getBoolValue()      ) { currentCSO->setCreatorId(      f_CSOCreatorId->getIntValue()      ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
           if ( f_SetCSOTimePointIndex->getBoolValue() ) { currentCSO->setTimePointIndex( f_CSOTimePointIndex->getIntValue() ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
 
-          if ( f_SetCSOIsSelected->getBoolValue()      ) { 
+          if ( f_SetCSOIsSelected->getBoolValue()      ) {
             CSOList *currentList = currentCSO->getCSOList();
             if (currentList->isSelected(currentCSO) != f_CSOIsSelected->getBoolValue() ){
               notificationFlag |= CSOList::NOTIFICATION_CSO_SELECTION;
@@ -493,11 +506,11 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
           if ( f_SetCSOEditableState->getBoolValue() ) { currentCSO->setEditableState( f_CSOEditableState->getBoolValue() ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
 
           if ( f_SetCSOComputeNormal->getBoolValue() &&
-            f_CSOComputeNormal->getBoolValue()    ){ 
+            f_CSOComputeNormal->getBoolValue()    ){
               currentCSO->pathChanged();
               currentCSO->invalidatePlaneNormal();
               currentCSO->computePlaneNormal();
-              notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; 
+              notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED;
           }
 
           // PathPoints
@@ -535,8 +548,8 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
 
           if ( f_SetGroupLabel->getBoolValue()       ) { currentGroup->setLabel(       f_GroupLabel->getStringValue()       ); notificationFlag |= CSOList::NOTIFICATION_GROUP_FINISHED; }
           if ( f_SetGroupDescription->getBoolValue() ) { currentGroup->setDescription( f_GroupDescription->getStringValue() ); notificationFlag |= CSOList::NOTIFICATION_GROUP_FINISHED; }
-          
-          if ( f_SetGroupIsSelected->getBoolValue()      ) { 
+
+          if ( f_SetGroupIsSelected->getBoolValue()      ) {
             CSOList *currentList = currentGroup->getCSOList();
             if (currentList->isSelected(currentGroup) != f_GroupIsSelected->getBoolValue() ){
               notificationFlag |= CSOList::NOTIFICATION_GROUP_SELECTION;
@@ -578,24 +591,24 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
           if ( f_SetGroupVoxelWriteValue->getBoolValue() ) { currentGroup->setVoxelWriteValue( f_GroupVoxelWriteValue->getFloatValue() ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
 
           // Rules
-          if ( f_SetGroupMaximumNumCSOs->getBoolValue() ) { 
-            currentGroup->getRules().setNumMaximumCSOs( f_GroupMaximumNumCSOs->getIntValue() ); 
-            currentGroup->getRules().applyTo(*currentGroup); 
+          if ( f_SetGroupMaximumNumCSOs->getBoolValue() ) {
+            currentGroup->getRules().setNumMaximumCSOs( f_GroupMaximumNumCSOs->getIntValue() );
+            currentGroup->getRules().applyTo(*currentGroup);
             notificationFlag |= (CSOList::NOTIFICATION_CSO_FINISHED | CSOList::NOTIFICATION_GROUP_FINISHED);
           }
-          if ( f_SetGroupOverflowHandling->getBoolValue() ) { 
+          if ( f_SetGroupOverflowHandling->getBoolValue() ) {
             currentGroup->getRules().setOverflowHandling( static_cast<CSOGroupOverflowHandling>( f_GroupOverflowHandling->getEnumValue()) );
-            currentGroup->getRules().applyTo(*currentGroup); 
+            currentGroup->getRules().applyTo(*currentGroup);
             notificationFlag |= (CSOList::NOTIFICATION_CSO_FINISHED | CSOList::NOTIFICATION_GROUP_FINISHED);
           }
-          if ( f_SetGroupRemoveFromGroupHandling->getBoolValue() ) { 
+          if ( f_SetGroupRemoveFromGroupHandling->getBoolValue() ) {
             currentGroup->getRules().setRemoveFromGroupHandling( static_cast<CSORemoveHandling>(f_GroupRemoveFromGroupHandling->getEnumValue()) );
-            currentGroup->getRules().applyTo(*currentGroup); 
+            currentGroup->getRules().applyTo(*currentGroup);
             notificationFlag |= (CSOList::NOTIFICATION_CSO_FINISHED | CSOList::NOTIFICATION_GROUP_FINISHED);
           }
-          if ( f_SetGroupDeleteGroupCSOHandling->getBoolValue() ) { 
+          if ( f_SetGroupDeleteGroupCSOHandling->getBoolValue() ) {
             currentGroup->getRules().setDeleteGroupCSOHandling( static_cast<CSORemoveHandling>(f_GroupDeleteGroupCSOHandling->getEnumValue()) );
-            currentGroup->getRules().applyDeletionRule(*currentGroup); 
+            currentGroup->getRules().applyDeletionRule(*currentGroup);
             notificationFlag |= (CSOList::NOTIFICATION_CSO_FINISHED | CSOList::NOTIFICATION_GROUP_FINISHED);
           }
         }
@@ -606,11 +619,11 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
     }
 
     // Send notifications
-    if (f_WorkDirectlyOnInputList->getBoolValue() == true){        
+    if (f_WorkDirectlyOnInputList->getBoolValue() == true){
       m_IsNotifyingMyself = true;
       m_InputCSOList->notifyObservers(notificationFlag);
       m_IsNotifyingMyself = false;
-    } else { 
+    } else {
       m_OutputCSOList->notifyObservers(notificationFlag);
     }
   }
@@ -623,7 +636,7 @@ void CSOSetProperties::GetProperties()
   if ( !cso ) {
     cso = m_InputCSOList->getCSOAt(0);
   }
-  
+
   if (cso) {
     // Common
    f_CSOLabel->setStringValue(       cso->getLabel()         );
@@ -659,7 +672,7 @@ void CSOSetProperties::CSOListNotifyObserverCB(void* userData, int notificationF
   CSOSetProperties* thisp = static_cast<CSOSetProperties*>(userData);
 
   thisp->m_IsInNotificationCB = true;
-  int flags = (( thisp->f_PassOnNotifications->getBoolValue() && 
+  int flags = (( thisp->f_PassOnNotifications->getBoolValue() &&
                !thisp->f_WorkDirectlyOnInputList->getBoolValue() ) ? notificationFlag : 0);
 
   if (!thisp->m_IsNotifyingMyself){
@@ -669,7 +682,7 @@ void CSOSetProperties::CSOListNotifyObserverCB(void* userData, int notificationF
             (notificationFlag & CSOList::NOTIFICATION_GROUP_FINISHED)) ){
         thisp->SetProperties( true, flags );
       }
-      if ( thisp->f_ListenToSelectionNotifications->getBoolValue()      && 
+      if ( thisp->f_ListenToSelectionNotifications->getBoolValue()      &&
            ((notificationFlag & CSOList::NOTIFICATION_CSO_SELECTION)    ||
             (notificationFlag & CSOList::NOTIFICATION_GROUP_SELECTION)) ){
         thisp->SetProperties( true, flags );

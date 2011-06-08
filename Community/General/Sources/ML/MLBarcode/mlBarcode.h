@@ -15,7 +15,7 @@
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER ''AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE 
+// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE
 // FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 // (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 // LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -53,7 +53,7 @@ ML_START_NAMESPACE
 
     //! Constructor:
     Barcode();
-    
+
     //! Destructor.
     ~Barcode();
 
@@ -76,24 +76,19 @@ ML_START_NAMESPACE
     IntField* _foregroundFld;
     //! Field for image background value.
     IntField* _backgroundFld;
-    
+
     //! Field to manage the apply button.
-    NotifyField*  _apply;  
-     
+    NotifyField*  _apply;
+
     //! Field to manage the auto apply toggle.
-    ToggleField*  _autoApplyFld;  
+    BoolField*  _autoApplyFld;
     //@}
 
   private:
-    //! Pixelvalue for background
-    MLint _background;
-    //! Pixelvalue for foreground
-    MLint _foreground;
-     
+
     int _lockNotification;
 
-    MLint _q, _x, _i, _ysize, _xsize;
-    float _ratio;
+    MLint _xsize;
 
     //! Pointer to a memory buffer for a code line.
     int* _codeline;
@@ -124,7 +119,7 @@ ML_START_NAMESPACE
 
     //! Method template for type-specific page calculation. Called by calcOutSubImage().
     //! \param outSubImg   The typed subimage of output image outIndex loaded form file.
-    //! Parameter outIndex is the index of the output the subimage is calculated for and 
+    //! Parameter outIndex is the index of the output the subimage is calculated for and
     //!                    is not used here.
     template <typename DATATYPE>
     void calcOutSubImage(TSubImg<DATATYPE> *outImg, int /*outIndex*/);

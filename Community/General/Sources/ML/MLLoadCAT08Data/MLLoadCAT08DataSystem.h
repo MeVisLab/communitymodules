@@ -15,7 +15,7 @@
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER ''AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE 
+// DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR THE COPYRIGHT HOLDER BE LIABLE
 // FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 // (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 // LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -37,20 +37,31 @@
 
 
 // DLL export macro definition
-#ifdef WIN32
-#ifdef MLLOADCAT08DATA_EXPORTS
-// Use the MLLOADCAT08DATA_EXPORT macro to export classes and functions
-#define MLLOADCAT08DATA_EXPORT __declspec(dllexport)
+#if defined (ML_LIBRARY_EXPORT_ATTRIBUTE) || defined (ML_LIBRARY_IMPORT_ATTRIBUTE)
+  // Make use of the new style and platform independent import/export definitions.
+  #ifdef MLLOADCAT08DATA_EXPORTS
+    // Export library symbols.
+    #define MLLOADCAT08DATA_EXPORT   ML_LIBRARY_EXPORT_ATTRIBUTE
+  #else
+    // If included by external modules, exported symbols are declared as import symbols
+    #define MLLOADCAT08DATA_EXPORT   ML_LIBRARY_IMPORT_ATTRIBUTE
+  #endif
 #else
-// If included by external modules, exported symbols are declared as import symbols
-#define MLLOADCAT08DATA_EXPORT __declspec(dllimport)
-#endif
+  // Only for backward compatibility to versions < MeVisLab2.2.
+  #ifdef WIN32
+  #ifdef MLLOADCAT08DATA_EXPORTS
+  // Use the MLLOADCAT08DATA_EXPORT macro to export classes and functions
+  #define MLLOADCAT08DATA_EXPORT __declspec(dllexport)
+  #else
+  // If included by external modules, exported symbols are declared as import symbols
+  #define MLLOADCAT08DATA_EXPORT __declspec(dllimport)
+  #endif
 
-#else
-// No export declarations are necessary for non-Windows systems
-#define MLLOADCAT08DATA_EXPORT
+  #else
+  // No export declarations are necessary for non-Windows systems
+  #define MLLOADCAT08DATA_EXPORT
+  #endif
 #endif
-
 
 #endif // __MLLoadCAT08DataSystem_H
 
