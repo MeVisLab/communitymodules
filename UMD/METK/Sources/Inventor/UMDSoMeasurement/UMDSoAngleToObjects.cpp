@@ -9,16 +9,9 @@
 #include "UMDSoAngleLines.h"
 #include "UMDSoDistanceLine.h"
 
-//Poting ILAB4 - new field names
-#ifndef ILAB5
-#define inObject1Node inputObject
-#define inObject2Node inputObject2
-#endif
-
-
 SO_NODE_SOURCE(UMDSoAngleToObjects);
 
-void UMDSoAngleToObjects::initClass() { 
+void UMDSoAngleToObjects::initClass() {
   // muss zur Initialisierung der Klasse einmal explizit aufgerufen werden
   SO_NODE_INIT_CLASS(UMDSoAngleToObjects, UMDSoAutoMeasureTool, "UMDSoAutoMeasureTool");
 }
@@ -30,16 +23,16 @@ UMDSoAngleToObjects::UMDSoAngleToObjects() {
   SO_NODE_ADD_FIELD(angleDegree, (FALSE));
 
   SO_NODE_ADD_FIELD(inObject2Node, (NULL));
-  
+
   SO_NODE_ADD_FIELD(startPos, (0, 0, 0));
   SO_NODE_ADD_FIELD(endPos, (0, 0, 0));
   SO_NODE_ADD_FIELD(connectPos, (0, 0, 0));
-  
+
   // AngleLines einhängen
   _angleLines = new UMDSoAngleLines;
   _angleLines->ref();
   _toolSep->addChild(_angleLines);
-  
+
   // Felder für AngleLines initialisieren
   startPos.connectFrom(&_angleLines->startPos);
   endPos.connectFrom(&_angleLines->endPos);
@@ -102,14 +95,14 @@ bool UMDSoAngleToObjects::_calculate() {
     bool valid1 = getLargestMainAxis(_inputSep1,  vec[0], vec[1]);
     bool valid2 = getLargestMainAxis(_inputSep2, vec[2], vec[3]);
     if (valid1 && valid2) {
-      
+
       // am nächsten zusammenliegende Punkte suchen
       float *length = new float[4];
       length[0] = (vec[0] - vec[2]).length();
       length[1] = (vec[0] - vec[3]).length();
       length[2] = (vec[1] - vec[2]).length();
       length[3] = (vec[1] - vec[3]).length();
-      
+
       int closestVec1 = 0, closestVec2 = 0;
       if (length[0] < length[1]) {
         if (length[2] < length[3]) {
@@ -155,7 +148,7 @@ bool UMDSoAngleToObjects::_calculate() {
           }
         }
       }
-      
+
       // Punkte in eine Ebene legen
       // bzw. Punkte von 4 auf 3 reduzieren
       SbVec3f versatz = (vec[closestVec1] - vec[closestVec2]) / 2;
@@ -163,7 +156,7 @@ bool UMDSoAngleToObjects::_calculate() {
       vec[1] -= versatz;
       vec[2] += versatz;
       vec[3] += versatz;
-      
+
       // _angleLines auf die Punkte setzen
       _angleLines->connectPos.setValue(vec[closestVec1]);
       if (closestVec1 == 0)
@@ -174,7 +167,7 @@ bool UMDSoAngleToObjects::_calculate() {
         _angleLines->endPos.setValue(vec[3]);
       else
         _angleLines->endPos.setValue(vec[2]);
-      
+
       delete[] length;
       delete[] vec;
       // Ergebnisse wieder ok
@@ -191,9 +184,9 @@ void UMDSoAngleToObjects::inputCB(void* userData, SoSensor*) {
 
   // Eingang hat sich geändert, Ergebnisse nicht ok
   obj->resultsValid.setValue(FALSE);
-  
+
   obj->_inputSep2->removeAllChildren();
-  
+
   // Inhalte einfügen, wenn vorhanden
   if (obj->inObject2Node.getValue() != NULL)
     obj->_inputSep2->addChild(obj->inObject2Node.getValue());

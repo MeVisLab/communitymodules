@@ -67,11 +67,7 @@ public:
   SoSFBool setColor;
 
   //! input image
-#ifdef ILAB5
   SoSFMLImage inImage;
-#else
-  SoSFMLImage image;
-#endif
 
   //! direct access on the extracted point set
   //! is empty if \c rootInput contains no valid scenegraph

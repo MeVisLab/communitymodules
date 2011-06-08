@@ -62,11 +62,7 @@ public:
   SoSFBool autoCompute;
 
   //! contain the second object
-#ifdef ILAB5
   SoSFNode inObject2Node;
-#else
-  SoSFNode inputObject2;
-#endif
 
   //! the selected point in \c inputObject
   SoSFVec3f startPos;

@@ -21,6 +21,7 @@
 
 #include <list>
 #include <iostream>
+#include <algorithm>
 
 SO_NODE_SOURCE(SoQHull3D)
 
@@ -135,13 +136,13 @@ void SoQHull3D::collectPrimitives()
 void SoQHull3D::callQHull()
 {
 		int dim = 3;  	            // dimension of points
-		boolT ismalloc = 1;         // True if qhull should free points in qh_freeqhull() or reallocation 
+		boolT ismalloc = 1;         // True if qhull should free points in qh_freeqhull() or reallocation
 		char flags[]= "qhull Qt ";  // option flags for qhull, see qh_opt.htm
 		int exitcode;               // 0 if no error from qhull
 		vertexT *vertex, **vertexp; // set by FORALLvertices
 		facetT *facet;							// set by FORALLfacets
 		facetT *neighbor, **neighborp; // set by FOREACHneighbor_
-		int curlong, totlong;	      // memory remaining after qh_memfreeshort		
+		int curlong, totlong;	      // memory remaining after qh_memfreeshort
 		unsigned int i = 0;
 
 		//for vertex normals
@@ -171,7 +172,7 @@ void SoQHull3D::callQHull()
 			qh_triangulate();
 
 			//call qhull macro to get all POINTS of the convex hull
-			FORALLvertices {				
+			FORALLvertices {
 				convexHullPoints.push_back(SbVec3f(vertex->point[0], vertex->point[1], vertex->point[2]));
 				convexHullIndexLUT.push_back(vertex->id);
 
@@ -182,7 +183,7 @@ void SoQHull3D::callQHull()
 				}
 				//all normals just once
 				normalList.unique();
-				
+
 				//get the average normals as vertex normal
 				for ( iN = normalList.begin(); iN != normalList.end(); iN++) tmp_normal += *iN;
 				tmp_normal /= normalList.size();
@@ -190,7 +191,7 @@ void SoQHull3D::callQHull()
 
 				//add vertex normal to vector
 				convexHullVertexNormals.push_back(tmp_normal);
-				
+
 				//clear tmps
 				normalList.clear();
 				tmp_normal = SbVec3f(0, 0, 0);
@@ -212,12 +213,12 @@ void SoQHull3D::callQHull()
 				convexHullFaceNormals.push_back(SbVec3f(facet->normal[0], facet->normal[1], facet->normal[2]));
 
 				//add indices for actual face
-				FOREACHvertex_(facet->vertices){					
+				FOREACHvertex_(facet->vertices){
 					convexHullFaceIndexList.push_back(lut[vertex->id]);
 				}
 				//add end index for actual face
-				convexHullFaceIndexList.push_back(SO_END_FACE_INDEX);				
-				
+				convexHullFaceIndexList.push_back(SO_END_FACE_INDEX);
+
 			}
 
 
@@ -241,7 +242,7 @@ void SoQHull3D::callQHull()
 		}
 
 		//cleanup
-		qh_freeqhull(!qh_ALL);  
+		qh_freeqhull(!qh_ALL);
 		qh_memfreeshort (&curlong, &totlong);
 		if (curlong || totlong)	fprintf (stderr, "qhull internal warning (main): did not free %d bytes of long memory (%d pieces)\n", totlong, curlong);
 
@@ -255,7 +256,7 @@ void SoQHull3D::drawPoints()
 {
 	//clear separator from old stuff
 	chPoints->removeAllChildren();
-	
+
 	//enough points?
 	if (convexHullPoints.size() >= 1 && showPoints.getValue()){
 
@@ -263,7 +264,7 @@ void SoQHull3D::drawPoints()
 		PointVector::iterator iP;
 		SbVec3f* points         = new SbVec3f[numPoints];
 		SoVertexProperty *vProp = new SoVertexProperty();
-		SoPointSet *pointSet    = new SoPointSet();	
+		SoPointSet *pointSet    = new SoPointSet();
 
 		//rewrite points
 		for (iP = convexHullPoints.begin(), i=0; iP != convexHullPoints.end(); iP++, i++)	points[i] = *iP;
@@ -320,12 +321,12 @@ void SoQHull3D::drawFaces()
 
 		//rewrite points
 		for (iP = convexHullPoints.begin(), i=0; iP != convexHullPoints.end(); iP++, i++)	points[i] = *iP;
-		
+
 		//rewrite normals
 		for (iP = convexHullFaceNormals.begin(), i=0; iP != convexHullFaceNormals.end(); iP++, i++)	faceNormals[i] = *iP;
 		for (iP = convexHullVertexNormals.begin(), i=0; iP != convexHullVertexNormals.end(); iP++, i++)	vertexNormals[i] = *iP;
 
-		//rewrite indices		
+		//rewrite indices
 		for (iV = convexHullFaceIndexList.begin(), i=0; iV != convexHullFaceIndexList.end(); iV++, i++)	indices[i] = *iV;
 
 		//set up vertex property
@@ -333,7 +334,7 @@ void SoQHull3D::drawFaces()
 
 		//set up normals
 		if (useFaceNormals.getValue()){
-			vProp->normal.setValues(0, numFaceNormals, faceNormals);		
+			vProp->normal.setValues(0, numFaceNormals, faceNormals);
 			vProp->normalBinding.setValue(SoVertexProperty::PER_FACE);
 		} else {
 			vProp->normal.setValues(0, numVertexNormals, vertexNormals);
@@ -342,14 +343,14 @@ void SoQHull3D::drawFaces()
 
 		//rewrite colors
 		if (useColors.getValue()) {
-			
+
 			uint32_t *colors = new uint32_t[numPoints];
 			SbColor col;
 			SoMFUInt32 colorField;
 
 			for (i=0; i<numPoints; i++){
 				 col       = faceColor.getValue();
-				 colors[i] = col.getPackedValue(0.0f);         
+				 colors[i] = col.getPackedValue(0.0f);
 			}
 
 			colorField.setValues(0, numPoints, colors);
@@ -359,7 +360,7 @@ void SoQHull3D::drawFaces()
 			delete[] colors; colors = NULL;
 		}
 
-		
+
 		//set up face set
 		faceSet->vertexProperty = vProp;
 		faceSet->coordIndex.setValues(0, numIndices, indices);
@@ -372,9 +373,9 @@ void SoQHull3D::drawFaces()
 		delete[] faceNormals;   faceNormals   = NULL;
 		delete[] vertexNormals; vertexNormals = NULL;
 		delete[] indices;       indices       = NULL;
-	
+
 	} else {
-		if (debug) std::cout << "not enough points to render faces or input scene disconnected" << std::endl;	
+		if (debug) std::cout << "not enough points to render faces or input scene disconnected" << std::endl;
 	}
 }
 
@@ -427,9 +428,9 @@ void SoQHull3D::drawNormals()
 			}
 
 			//set up vertex property
-			vProp->vertex.setValues(0, numFaceNormals, faceNorm_points);		
+			vProp->vertex.setValues(0, numFaceNormals, faceNorm_points);
 			//set up line set
-			lineSet->coordIndex.setValues(0, numFaceIndices, faceIndices);	
+			lineSet->coordIndex.setValues(0, numFaceIndices, faceIndices);
 
 
 
@@ -448,12 +449,12 @@ void SoQHull3D::drawNormals()
 			}
 
 			//set up vertex property
-			vProp->vertex.setValues(0, numVertexNormals, vertexNorm_points);		
+			vProp->vertex.setValues(0, numVertexNormals, vertexNorm_points);
 			//set up line set
-			lineSet->coordIndex.setValues(0, numVertexIndices, vertexIndices);				
+			lineSet->coordIndex.setValues(0, numVertexIndices, vertexIndices);
 		}
 
-		
+
 		//add vertex property and line set to scene
 		lineSet->vertexProperty = vProp;
 		chNormals->addChild(lineSet);
@@ -464,9 +465,9 @@ void SoQHull3D::drawNormals()
 		delete[] vertexIndices;     vertexIndices     = NULL;
 		delete[] faceNorm_points;   faceNorm_points   = NULL;
 		delete[] vertexNorm_points; vertexNorm_points = NULL;
-	
+
 	} else {
-		if (debug) std::cout << "not enough points to render normals or input scene disconnected" << std::endl;	
+		if (debug) std::cout << "not enough points to render normals or input scene disconnected" << std::endl;
 	}
 
 }
@@ -476,11 +477,11 @@ void SoQHull3D::drawNormals()
 ///////////////////////////////////////////////////////////////////////////
 // PRE CALLBACK
 ///////////////////////////////////////////////////////////////////////////
-SoCallbackAction::Response SoQHull3D::preCB(void *userData, SoCallbackAction *action, const SoNode*) 
+SoCallbackAction::Response SoQHull3D::preCB(void *userData, SoCallbackAction *action, const SoNode*)
 {
-    SoQHull3D *helpMe = (SoQHull3D*) userData;   
+    SoQHull3D *helpMe = (SoQHull3D*) userData;
 
-    // set world transformation matrix in object to 
+    // set world transformation matrix in object to
     // transform collected vertices correctly
     helpMe->transMatrix = action->getModelMatrix();
 
@@ -496,10 +497,10 @@ void SoQHull3D::pointCB(void *userData, SoCallbackAction *action, const SoPrimit
 
 		// get the position of the point
 		SbVec3f p(v->getPoint());
-		
+
 		//apply transformation matrix
 		helpMe->transMatrix.multVecMatrix(p,p);
-		
+
 		//add to vector for QHull
 		inputPointList.push_back(p[0]);
 		inputPointList.push_back(p[1]);
@@ -519,11 +520,11 @@ void SoQHull3D::lineSegmentCB(void *userData, SoCallbackAction *action, const So
 		// get the position of the point
 		SbVec3f p1(v1->getPoint());
 		SbVec3f p2(v2->getPoint());
-		
+
 		//apply transformation matrix
 		helpMe->transMatrix.multVecMatrix(p1,p1);
 		helpMe->transMatrix.multVecMatrix(p2,p2);
-		
+
 		//add to vector for QHull
 		//QHull automaticly removes duplicates - so there is
 		//no need to ged rid of them
@@ -548,7 +549,7 @@ void SoQHull3D::triangleCB(void *userData,
 {
 
     SoQHull3D *helpMe = (SoQHull3D*)userData;
-		
+
 	  // get the positions of the primitive vertices
     SbVec3f p1(v1->getPoint());
     SbVec3f p2(v2->getPoint());
@@ -596,7 +597,7 @@ void SoQHull3D::nodeChanged(SoNodeSensor* sensor)
 
 
 	if (field == 0 && node != NULL){
-		
+
 		chPoints->removeAllChildren();
 		chFaces->removeAllChildren();
 		chNormals->removeAllChildren();
@@ -621,7 +622,7 @@ void SoQHull3D::nodeChanged(SoNodeSensor* sensor)
 
 			//do we have a hull?
 			if (convexHullFound){
-			
+
 				//set statistical information
 				numInput.setValue(inputPointList.size()/3);
 				numOutput.setValue(convexHullPoints.size());
@@ -637,7 +638,7 @@ void SoQHull3D::nodeChanged(SoNodeSensor* sensor)
 			} else {
 				state.setValue("no convex hull found");
 				if (debug) std::cout << " no convex hull found" << std::endl;
-			}		
+			}
 
 		//no input
 		} else {
@@ -666,11 +667,11 @@ void SoQHull3D::nodeChanged(SoNodeSensor* sensor)
 
 	//'hidden' fields in automatic panel
 	if (field == &showNormals){
-		drawNormals();	
+		drawNormals();
 	}
 	if (field == &useFaceNormals){
 		drawFaces();
-		drawNormals();	
+		drawNormals();
 	}
 }
 

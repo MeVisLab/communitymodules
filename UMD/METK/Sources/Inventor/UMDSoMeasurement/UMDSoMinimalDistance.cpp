@@ -10,16 +10,10 @@
 #include "UMDSoShapeToPointSet.h"
 #include "UMDSoMinimalDistance.h"
 
-//Poting ILAB4 - new field names
-#ifndef ILAB5
-#define inObject1Node inputObject
-#define inObject2Node inputObject2
-#endif
-
 
 SO_NODE_SOURCE(UMDSoMinimalDistance);
 
-void UMDSoMinimalDistance::initClass() { 
+void UMDSoMinimalDistance::initClass() {
   // muss zur Initialisierung der Klasse einmal explizit aufgerufen werden
   SO_NODE_INIT_CLASS(UMDSoMinimalDistance, UMDSoAutoMeasureTool, "UMDSoAutoMeasureTool");
 }
@@ -27,12 +21,12 @@ void UMDSoMinimalDistance::initClass() {
 
 UMDSoMinimalDistance::UMDSoMinimalDistance() {
   SO_NODE_CONSTRUCTOR(UMDSoMinimalDistance);
-  
+
   SO_NODE_ADD_FIELD(computeMinimalDistance, ());
   SO_NODE_ADD_FIELD(autoCompute, (FALSE));
 
   SO_NODE_ADD_FIELD(inObject2Node, (NULL));
-  
+
   SO_NODE_ADD_FIELD(startPos, (0, 0, 0));
   SO_NODE_ADD_FIELD(endPos, (0, 0, 0));
   SO_NODE_ADD_FIELD(distance, (0));
@@ -67,7 +61,7 @@ UMDSoMinimalDistance::UMDSoMinimalDistance() {
   _distanceLine = new UMDSoDistanceLine;
   _distanceLine->ref();
   _toolSep->addChild(_distanceLine);
-  
+
   // Felder für DistanceLine initialisieren
   startPos.connectFrom(&_distanceLine->startPos);
   endPos.connectFrom(&_distanceLine->endPos);
@@ -80,7 +74,7 @@ UMDSoMinimalDistance::UMDSoMinimalDistance() {
   color.setValue(_distanceLine->color.getValue());
   _distanceLine->color.connectFrom(&color);
   _distanceLine->scaleLine.connectFrom(&scaleLine);
-  
+
   SoMaterial* mat = new SoMaterial;
   addChild(mat);
   mat->transparency = 0.9f;
@@ -130,10 +124,10 @@ bool UMDSoMinimalDistance::_computeMinimalDistance() {
       minimalDistance->setNumEntries(autoEntries.getValue());
     else
       minimalDistance->setParams(manEntries.getValue(), manPartition.getValue());
-    
+
     minimalDistance->verbose(verbose.getValue() == TRUE);
     minimalDistance->displaySpheres(displaySpheres.getValue() == TRUE);
-    
+
     minimalDistance->computeDistance(point1, point2);
 
     _distanceLine->startPos.setValue(point1);
@@ -147,7 +141,7 @@ bool UMDSoMinimalDistance::_computeMinimalDistance() {
       _spheres->addChild(minimalDistance->_tileSphere1);
       _spheres->addChild(minimalDistance->_tileSphere2);
     }
-    
+
     // clean up memory
     delete minimalDistance;
     resultsValid.setValue(TRUE);
@@ -173,8 +167,8 @@ bool UMDSoMinimalDistance::_calculate() {
     sizeOfPointSet2.setValue(_size2);
   }
 
-  if (inObject1Node.getValue() != NULL && 
-      inObject2Node.getValue() != NULL && 
+  if (inObject1Node.getValue() != NULL &&
+      inObject2Node.getValue() != NULL &&
       autoCompute.getValue() == TRUE) {
     return _computeMinimalDistance();
   }
@@ -189,13 +183,13 @@ void UMDSoMinimalDistance::display() {
 
 void UMDSoMinimalDistance::inputCB(void* userData, SoSensor*) {
   UMDSoMinimalDistance* obj = (UMDSoMinimalDistance*) userData;
-  
+
   // Eingang hat sich geändert, Ergebnisse nicht ok
   obj->resultsValid.setValue(FALSE);
   obj->minDistance.setValue(0);
-  
+
   obj->_inputSep2->removeAllChildren();
-  
+
   // Inhalte einfügen, wenn vorhanden
   if (obj->inObject2Node.getValue() != NULL) {
     obj->_inputSep2->addChild(obj->inObject2Node.getValue());

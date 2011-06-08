@@ -10,14 +10,9 @@
 
 #include <iostream>
 
-//Poting ILAB4 - new field names
-#ifndef ILAB5
-#define inObject1Node inputObject
-#endif
-
 SO_NODE_SOURCE(UMDSoAutoMeasureTool);
 
-void UMDSoAutoMeasureTool::initClass() { 
+void UMDSoAutoMeasureTool::initClass() {
   // muss zur Initialisierung der Klasse einmal explizit aufgerufen werden
   SO_NODE_INIT_CLASS(UMDSoAutoMeasureTool, SoSeparator, "SoSeparator");
 }
@@ -25,13 +20,13 @@ void UMDSoAutoMeasureTool::initClass() {
 
 UMDSoAutoMeasureTool::UMDSoAutoMeasureTool() {
   SO_NODE_CONSTRUCTOR(UMDSoAutoMeasureTool);
-  
+
   SO_NODE_ADD_FIELD(resultsValid, (FALSE));
-  
+
   SO_NODE_ADD_FIELD(color, (0, 1, 0));
-  
+
   SO_NODE_ADD_FIELD(inObject1Node, (NULL));
-  
+
   SO_NODE_ADD_FIELD(displayToolMeasure, (TRUE));
   SO_NODE_ADD_FIELD(displayUnit, (TRUE));
   SO_NODE_ADD_FIELD(displayName, (FALSE));
@@ -46,21 +41,21 @@ UMDSoAutoMeasureTool::UMDSoAutoMeasureTool() {
   _displayInputSwitch->whichChild.setValue(0);
   SoGroup* group = new SoGroup();
   _displayInputSwitch->addChild(group);
-  
+
   _inputSep1 = new SoSeparator;
   group->addChild(_inputSep1);
   _inputSep2 = new SoSeparator;
   group->addChild(_inputSep2);
-  
+
   // hier kommen Hauptachsen und/oder BoundingBox rein
   _toolSep = new SoSeparator;
   addChild(_toolSep);
-  
+
   _displayToolOnlyOnValidSensor = new SoFieldSensor(outputChangedCB, this);
   _displayToolOnlyOnValidSensor->attach(&displayToolOnlyOnValid);
   _displayInputSensor = new SoFieldSensor(outputChangedCB, this);
   _displayInputSensor->attach(&displayInput);
-  
+
   _inputObjectSensor = new SoFieldSensor(inputChangedCB, this);
   _inputObjectSensor->attach(&inObject1Node);
 }
@@ -79,14 +74,14 @@ void UMDSoAutoMeasureTool::inputChangedCB(void* userData, SoSensor*) {
   ((UMDSoAutoMeasureTool*) userData)->inputChanged();
 }
 void UMDSoAutoMeasureTool::inputChanged() {
-  
+
   resultsValid.setValue(FALSE);
 
   _inputSep1->removeAllChildren();
 
   if (inObject1Node.getValue() != NULL) {
     // Inhalt einhängen, wenn vorhanden
-    _inputSep1->addChild(inObject1Node.getValue());   
+    _inputSep1->addChild(inObject1Node.getValue());
   }
   if(calculate()) {
     resultsValid.setValue(TRUE);
@@ -103,7 +98,7 @@ void UMDSoAutoMeasureTool::outputChanged() {
 
   _toolSep->removeAllChildren();
 
-  
+
   if (displayInput.getValue() == TRUE)
     _displayInputSwitch->whichChild.setValue(0);
   else
@@ -119,7 +114,7 @@ void UMDSoAutoMeasureTool::outputChanged() {
 
 
 void UMDSoAutoMeasureTool::getPointSet(SoGroup* inputGroup, float* &pointSet, long &size) {
-  
+
   // Punktmenge für beide Eingänge einlesen
   if (inputGroup->getNumChildren() != 0) {
     UMDSoShapeToPointSet* shapeToPointSet = new UMDSoShapeToPointSet;

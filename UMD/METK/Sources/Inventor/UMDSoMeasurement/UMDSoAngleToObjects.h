@@ -54,11 +54,7 @@ public:
   // ######## Fields ##############
 
   //! the second input object
-#ifdef ILAB5
   SoSFNode inObject2Node;
-#else
-  SoSFNode inputObject2;
-#endif
 
   //! the angle between the axes
   SoSFFloat angleDegree;

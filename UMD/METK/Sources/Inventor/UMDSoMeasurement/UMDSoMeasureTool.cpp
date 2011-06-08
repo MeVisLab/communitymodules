@@ -13,7 +13,7 @@ SO_NODE_SOURCE(UMDSoMeasureTool);
 UMDSoMeasureTool* UMDSoMeasureTool::_currentTool = NULL;
 int UMDSoMeasureTool::_colorCounter = 0;
 
-void UMDSoMeasureTool::initClass() { 
+void UMDSoMeasureTool::initClass() {
   // muss zur Initialisierung der Klasse einmal explizit aufgerufen werden
   SO_NODE_INIT_CLASS(UMDSoMeasureTool, SoSeparator, "SoSeparator");
 }
@@ -28,90 +28,85 @@ UMDSoMeasureTool::UMDSoMeasureTool() {
 UMDSoMeasureTool::~UMDSoMeasureTool() {
   // ein bischen aufraeumen
   if (_root) { _root->unref(); _root = NULL; }
-  
+
   if (_startPosSens) { delete _startPosSens; _startPosSens = NULL; }
 
   if (_toolNameFlagSens) { delete _toolNameFlagSens; _toolNameFlagSens = NULL; }
   if (_toolNameSens) { delete _toolNameSens; _toolNameSens = NULL; }
-  
+
   if (_unitFlagSens) { delete _unitFlagSens; _unitFlagSens = NULL; }
   if (_unitSens) { delete _unitSens; _unitSens = NULL; }
-  
+
   if (_interactionModeSens) { delete _interactionModeSens; _interactionModeSens = NULL; }
 
   if (_scaleSens) { delete _scaleSens; _scaleSens = NULL; }
 }
 
 
-void UMDSoMeasureTool::initMeasureTool() { 
+void UMDSoMeasureTool::initMeasureTool() {
   // #### Die Felder initialisieren: #########
-  
+
   // Start- und Endposition der Linie
   SO_NODE_ADD_FIELD(startPos, (0, 0, 0));
-  
+
   // Farbe des Objektes
   SO_NODE_ADD_FIELD(color, (1, 1, 1));
 
   // Name des Tools
   SO_NODE_ADD_FIELD(toolNameFlag, (FALSE));
   SO_NODE_ADD_FIELD(toolName, (""));
-  
+
   // Gr�e der Verschiebung bei Cursorsteuerung
   SO_NODE_ADD_FIELD(keyboardIncrement, (0.01f));
-  
+
   // ein Flag fuer das Anzeigen einer Einheit
   SO_NODE_ADD_FIELD(unitFlag, (FALSE));
 
   SO_NODE_ADD_FIELD(scale, (1));
-  
+
   // Auswahl der verschiedenen Modi zum bewegen des Werkzeugs
-#ifdef ILAB5
   SO_NODE_ADD_FIELD(interactionMode,(INTERACTION_DIRECT_SELECT));
   SO_NODE_DEFINE_ENUM_VALUE(MeasureTool_InteractionMode, INTERACTION_DIRECT_SELECT);
-#else
-  SO_NODE_ADD_FIELD(interactionMode,(directSelect));
-  SO_NODE_DEFINE_ENUM_VALUE(MeasureTool_InteractionMode, directSelect);
-#endif
   SO_NODE_SET_SF_ENUM_TYPE(interactionMode, MeasureTool_InteractionMode);
-  
+
 
   // Die Feld-Sensoren initialisieren
   initMeasureToolFieldSensors();
-  
+
   // ######## Die restlichen Instanz-Variablen: #########
-  
+
   _unitFactor = new SoSFInt32;
   _unitFactor->setValue(1);
-  
-  // An die Basisklasse (SoSeparator) wird ein Separator-Knoten 
+
+  // An die Basisklasse (SoSeparator) wird ein Separator-Knoten
   // angehaengt, der das Objekt enthaelt
   _root = new SoSeparator;
   _root->ref();
   addChild(_root);
   _root->setName("UMDSoMeasureTool_root");
-  
+
   getObject();
 }
 
 
 void UMDSoMeasureTool::initMeasureToolFieldSensors() {
-  // Initialisierung der Feld-Sensoren und Zuweisen der 
+  // Initialisierung der Feld-Sensoren und Zuweisen der
   // entsprechenden Callback-Funktionen
   _startPosSens = new SoFieldSensor(startChangedCB, this);
   _startPosSens->attach(&startPos);
-  
+
   _toolNameFlagSens = new SoFieldSensor(unitChangedCB, this);
   _toolNameFlagSens->attach(&toolNameFlag);
-  
+
   _toolNameSens = new SoFieldSensor(unitChangedCB, this);
   _toolNameSens->attach(&toolName);
-  
+
   _unitFlagSens = new SoFieldSensor(unitChangedCB, this);
   _unitFlagSens->attach(&unitFlag);
-  
+
   _unitSens = new SoFieldSensor(unitChangedCB, this);
   _unitSens->attach(&unit);
-  
+
   _interactionModeSens = new SoFieldSensor(interactionModeChangedCB, this);
   _interactionModeSens->attach(&interactionMode);
 
@@ -126,29 +121,29 @@ void UMDSoMeasureTool::getObject() {
   _root->addChild(eventCB);
   eventCB->addEventCallback(SoMouseButtonEvent::getClassTypeId(), mousePressedCB, this);
   eventCB->addEventCallback(SoKeyboardEvent::getClassTypeId(), cursorPressCB, this);
-  
-  
+
+
   // hier wird ein LevelOfDetail-Knoten angehaengt,
   // der fuer die Font-Groesse verantwortlich ist
   SoLevelOfDetail* lod = (SoLevelOfDetail*) getLOD();
   _root->addChild(lod);
-  
+
   // Das Material und die Linienstaerke
   _objectMaterial = new SoMaterial;
   _root->addChild(_objectMaterial);
   _objectMaterial->diffuseColor.connectFrom(&color);
-  
+
   // Switch-Knoten, der die Dragger enthaelt
   _switchDragger = new SoSwitch;
   _root->addChild(_switchDragger);
-  
+
   // der Inhaber aller LocateHighlight-Knoten
   _highlightSep = new SoSeparator;
   _root->addChild(_highlightSep);
-  
+
   _textSep = new SoAnnotation;
   _root->addChild(_textSep);
-  
+
   // der Text soll zwar sichtbar, aber nicht
   // selektierbar sein
   SoPickStyle* pickstyle = new SoPickStyle;
@@ -162,16 +157,16 @@ SoLevelOfDetail* UMDSoMeasureTool::getLOD() {
   // dieser beinhaltet drei Kinder mit jeweils verschiedener Font-Groesse;
   // ausserdem wird ein unsichtbarer Wuerfel in den jeweiligen Kinderknoten eingehaengt,
   // der dafuer verantwortlich ist, wann welcher Kinderknoten verwendet wird (zur Bestimmung
-  // der screenArea) 
+  // der screenArea)
   SoLevelOfDetail* lod = new SoLevelOfDetail;
   lod->ref();
-  
+
   float areas[2] = {4000, 2000};
   lod->screenArea.setValues(0, 2, areas);
-  
+
   SoSeparator* sphereSep = new SoSeparator;
   sphereSep->ref();
-  
+
   // der Wrfel wird immer zusammen mit dem Text bewegt
   _textTrafo = new SoTransform;
   sphereSep->addChild(_textTrafo);
@@ -180,19 +175,19 @@ SoLevelOfDetail* UMDSoMeasureTool::getLOD() {
   SoDrawStyle* style = new SoDrawStyle;
   sphereSep->addChild(style);
   style->style.setValue(SoDrawStyle::INVISIBLE);
-  
+
   // der Wrfel darf nicht selektierbar sein
   SoPickStyle* pickstyle = new SoPickStyle;
   sphereSep->addChild(pickstyle);
   pickstyle->style.setValue(SoPickStyle::UNPICKABLE);
-  
+
   _sphere = new SoSphere;
   _sphere->ref();
   sphereSep->addChild(_sphere);
   _sphere->radius = 10*scale.getValue();
   //cube->height = 10*90;
   //cube->depth = 10*90;
-  
+
   // es folgen die einzelnen Kinder vom LevelOfDetail-Knoten,
   // die die unterschiedlichen Font-Groessen beinhalten
   SoGroup* group1 = new SoGroup;
@@ -202,7 +197,7 @@ SoLevelOfDetail* UMDSoMeasureTool::getLOD() {
   font1->size = 18;
   font1->name.setValue("Helvetica"); // Arial
   group1->addChild(sphereSep);
-  
+
   SoGroup* group2 = new SoGroup;
   lod->addChild(group2);
   SoFont* font2 = new SoFont;
@@ -210,7 +205,7 @@ SoLevelOfDetail* UMDSoMeasureTool::getLOD() {
   font2->size = 12;
   font2->name.setValue("Helvetica");
   group2->addChild(sphereSep);
-  
+
   SoGroup* group3 = new SoGroup;
   lod->addChild(group3);
   SoFont* font3 = new SoFont;
@@ -218,7 +213,7 @@ SoLevelOfDetail* UMDSoMeasureTool::getLOD() {
   font3->size = 10;
   font3->name.setValue("Helvetica");
   group3->addChild(sphereSep);
-  
+
   // ab einer gewissen Entfernung werden die Werkzeuge
   // einfach als Linie dargestellt;
   // so bleiben sie auf jeden Fall sichtbar
@@ -226,7 +221,7 @@ SoLevelOfDetail* UMDSoMeasureTool::getLOD() {
   group3->addChild(lineStyle);
   lineStyle->style.setValue(SoDrawStyle::LINES);
   lineStyle->lineWidth.setValue(1);
-  
+
   sphereSep->unref();
   lod->unrefNoDelete();
   return lod;
@@ -294,7 +289,7 @@ void UMDSoMeasureTool::mousePressedCB(void* userData, SoEventCallback* eventCB) 
   // getPickedObject wird von der Unterklasse separat implementiert
   const SoEvent* event = eventCB->getEvent();
   UMDSoMeasureTool* obj = (UMDSoMeasureTool*) userData;
-  
+
   // linke Maustaste
   if (SO_MOUSE_PRESS_EVENT(event, BUTTON1)) {
 
@@ -320,10 +315,10 @@ void UMDSoMeasureTool::cursorPressCB(void* /*userData*/, SoEventCallback* eventC
     if (!eventCB->isHandled()){
       if (event->wasShiftDown())
         zusatzTaste = shift;
-      
+
       if (event->wasCtrlDown())
         zusatzTaste = control;
-      
+
       /*
       if (SO_KEY_PRESS_EVENT(event, SPACE)) {
         if (_currentTool != NULL) {
@@ -333,36 +328,36 @@ void UMDSoMeasureTool::cursorPressCB(void* /*userData*/, SoEventCallback* eventC
             _currentTool->interactionMode.setValue(directSelect);
           eventCB->setHandled();
         }
-      } 
-      else 
+      }
+      else
       */
         if (SO_KEY_PRESS_EVENT(event, UP_ARROW)) {
-          if (_currentTool->cursorUpPressed(zusatzTaste)) 
+          if (_currentTool->cursorUpPressed(zusatzTaste))
             eventCB->setHandled();
-        } 
-        else 
+        }
+        else
           if (SO_KEY_PRESS_EVENT(event, DOWN_ARROW)) {
-            if (_currentTool->cursorDownPressed(zusatzTaste)) 
+            if (_currentTool->cursorDownPressed(zusatzTaste))
               eventCB->setHandled();
           }
-          else 
+          else
             if (SO_KEY_PRESS_EVENT(event, LEFT_ARROW)) {
-              if (_currentTool->cursorLeftPressed(zusatzTaste)) 
+              if (_currentTool->cursorLeftPressed(zusatzTaste))
                 eventCB->setHandled();
             }
-            else 
+            else
               if (SO_KEY_PRESS_EVENT(event, RIGHT_ARROW)) {
-                if (_currentTool->cursorRightPressed(zusatzTaste)) 
+                if (_currentTool->cursorRightPressed(zusatzTaste))
                   eventCB->setHandled();
               }
-              else 
+              else
                 if (SO_KEY_PRESS_EVENT(event, PAGE_UP)) {
-                  if (_currentTool->pageUpPressed(zusatzTaste)) 
+                  if (_currentTool->pageUpPressed(zusatzTaste))
                     eventCB->setHandled();
                 }
-                else 
+                else
                   if (SO_KEY_PRESS_EVENT(event, PAGE_DOWN)) {
-                    if (_currentTool->pageDownPressed(zusatzTaste)) 
+                    if (_currentTool->pageDownPressed(zusatzTaste))
                       eventCB->setHandled();
                   }
     }
@@ -425,7 +420,7 @@ void UMDSoMeasureTool::unitChangedCB(void* userData, SoSensor*) {
     obj->_unitFactor->setValue(0);
     break;
   }
-  obj->getTextString(); 
+  obj->getTextString();
 }
 
 

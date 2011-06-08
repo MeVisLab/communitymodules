@@ -4,7 +4,7 @@
 // \author  Konrad Mühler
 // \date    2005-07-06
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -191,16 +191,16 @@ void kCamera::splitOrientation(const SbRotation orientation, SbVec3f& upVec, SbV
 {
 	// Extrahieren der lookDir aus der aktuellen orientation
 	lookDir.setValue(0.0, 0.0, -1.0); //! init to default lookat direction (DIRECTION!)
-    orientation.multVec(lookDir, lookDir); 
-	lookDir.normalize();	
+    orientation.multVec(lookDir, lookDir);
+	lookDir.normalize();
 
 	// Extrahieren des upVectors aus der aktuellen orientation
-	upVec.setValue(0.0, 1.0, 0.0); // init to default up vector direction 
+	upVec.setValue(0.0, 1.0, 0.0); // init to default up vector direction
 	orientation.multVec(upVec, upVec);
 	upVec.normalize();
 
 	// Ermitteln des perfekten upVectors (upVector ohne zusätzliche Drehung um die Sichtachse)
-	SbVec3f perfectUpVec;		
+	SbVec3f perfectUpVec;
 	if (fabs(lookDir.dot(NormPlump))>(1.0-epsilon)) //! wenn lookDir und perfectUpVec parallel, dann gleich setzen (Vermeidung von Berechnungsfehlern
 		perfectUpVec = upVec;
 	else
@@ -208,7 +208,7 @@ void kCamera::splitOrientation(const SbRotation orientation, SbVec3f& upVec, SbV
 
 	perfectUpVec.normalize();
 
-	// a dot b = |a|*|b|+cos(a,b)	
+	// a dot b = |a|*|b|+cos(a,b)
 	double tempDot = upVec.dot(perfectUpVec); //! Es gab Fälle, in denen war .dot minimal größer als 1.0 -> acos = 1.#IND
 	if (tempDot>1.0) tempDot = 1.0;	if (tempDot<-1.0) tempDot = -1.0;
 	upVecAngle = acos(tempDot); //! 1.0 = Produkt der beiden Längen ... sind aber normalisiert
@@ -217,7 +217,7 @@ void kCamera::splitOrientation(const SbRotation orientation, SbVec3f& upVec, SbV
 	// Ermittlung der Drehrichtung des Winkels und ggf. Erhöhung um 180Grad
 	// Im R3 gibt es zuerst einmal keine positiven und negativen drehwinkel.
 	// Erst wenn man die Ebene, die die beiden Vektoren definieren, orientiert, geht das.
-	// Man kann also festlegen, dass der Winkel positiv ist, wenn Hesse-Normalenvektor der Ebene und Kreuzprodukt in dieselbe Richtung zeigen. 
+	// Man kann also festlegen, dass der Winkel positiv ist, wenn Hesse-Normalenvektor der Ebene und Kreuzprodukt in dieselbe Richtung zeigen.
 	if (getUpVecAngleDir(lookDir,upVec)>epsilon && (upVecAngle<(kBasics::PI-epsilon)))
 		upVecAngle = kBasics::PI + (kBasics::PI - upVecAngle);
 
@@ -239,8 +239,8 @@ void kCamera::splitOrientation(const SbRotation orientation, SbVec3f& upVec, SbV
  */
 SbVec3f kCamera::calcUpVector(const SbVec3f lookDir, const SbVec3f plump)
 {
-	SbVec3f upVec;	
-	upVec = calcPerfectUpVector(lookDir, plump);	
+	SbVec3f upVec;
+	upVec = calcPerfectUpVector(lookDir, plump);
 	upVec.normalize();
 	rotateVector(upVec,lookDir,currentUpVecAngle);
 	upVec.normalize();
@@ -256,7 +256,7 @@ SbVec3f kCamera::calcUpVector(const SbVec3f lookDir, const SbVec3f plump)
  */
 SbVec3f kCamera::calcPerfectUpVector(const SbVec3f lookDir, const SbVec3f plump)
 {
-	return lookDir.cross(plump.cross(lookDir));	
+	return lookDir.cross(plump.cross(lookDir));
 }
 
 
@@ -277,7 +277,7 @@ float kCamera::getUpVecAngleDir(const SbVec3f lookDir, const SbVec3f upVec)
 	crossproduct.normalize();
 
 	float dotproduct = crossproduct.dot(lookDir);
-	
+
 	//SoDebugError::postInfo("_____________________     MASTER-WINKEL: ",kBasics::FloatToString(angleDiff).c_str());
 
 	return dotproduct;
@@ -308,65 +308,65 @@ void kCamera::rotateVector(SbVec3f& vect, const SbVec3f axis, const double angle
 SbRotation kCamera::calcOrientation(const SbVec3f upVec, const SbVec3f dir)
 {
 	// from comp.graphics.api.inventor ... "Setting SoCamera orientation"
-	SbVec3f z = -dir; 
-	SbVec3f y = upVec; 
-	z.normalize(); 
-	y.normalize(); 
-	SbVec3f x = y.cross(z); 
+	SbVec3f z = -dir;
+	SbVec3f y = upVec;
+	z.normalize();
+	y.normalize();
+	SbVec3f x = y.cross(z);
 
-	// recompute y to create a valid coordinate system 
-	y	= z.cross(x); 
+	// recompute y to create a valid coordinate system
+	y	= z.cross(x);
 
-	// create a rotation matrix 
-	SbMatrix rot = SbMatrix::identity(); 
-	rot[0][0] = x[0]; 
-	rot[0][1] = x[1]; 
-	rot[0][2] = x[2]; 
+	// create a rotation matrix
+	SbMatrix rot = SbMatrix::identity();
+	rot[0][0] = x[0];
+	rot[0][1] = x[1];
+	rot[0][2] = x[2];
 
-	rot[1][0] = y[0]; 
-	rot[1][1] = y[1]; 
-	rot[1][2] = y[2]; 
+	rot[1][0] = y[0];
+	rot[1][1] = y[1];
+	rot[1][2] = y[2];
 
-	rot[2][0] = z[0]; 
-	rot[2][1] = z[1]; 
-	rot[2][2] = z[2]; 
+	rot[2][0] = z[0];
+	rot[2][1] = z[1];
+	rot[2][2] = z[2];
 
-	// convert matrix into rotation 
-	return SbRotation(rot); 
+	// convert matrix into rotation
+	return SbRotation(rot);
 }
 
 
 
 //! Sets new position and calcs the upVector and orientation
 /*! \param position
- *  \param lookAt 
+ *  \param lookAt
  */
 void kCamera::setCamPosition(const SbVec3f& position, const SbVec3f& lookAt)
 {
 	currentLookAt = lookAt;
 	currentPosition = position;
-	
+
 	currentLookDir = currentLookAt-currentPosition;
 	currentLookDir.normalize();
-		
+
 	currentUpVec = calcUpVector(currentLookDir,NormPlump); //! Neuen UpVec ausrechnen - Rotation wird schon in calcUpVector vollzogen
 	currentUpVec.normalize();
 
 	currentOrientation = calcOrientation(currentUpVec,currentLookDir); //! Berechnet neue orientation
 
 //	writeOrientation(currentOrientation); //! Schreibt orientation in ObjMgr
-//	writePosition(currentPosition); //! Schreibt position in ObjMgr	
+//	writePosition(currentPosition); //! Schreibt position in ObjMgr
 }
 
 
 
 //! Rotate the current position around an axis with an angle
 /*! \param rotAxis
- *  \param rotAngle 
+ *  \param rotAngle
  */
 void kCamera::rotatePosition(SbVec3f rotAxis, double rotAngle, SbVec3f axisPoint)
-{	
-	//Error20051017: Er rotierte immer nur um eine Achse, ohne diese zu verschieben (in den LookAt-Punkt).	
+{
+	//Error20051017: Er rotierte immer nur um eine Achse, ohne diese zu verschieben (in den LookAt-Punkt).
 	//Daher zunächst eine Translation der aktuellen Position um den Rotationspunkt und anschließend wieder zurück
 
 	SbVec3f tempPos = currentPosition - axisPoint; //Error20051017
@@ -377,7 +377,7 @@ void kCamera::rotatePosition(SbVec3f rotAxis, double rotAngle, SbVec3f axisPoint
 	//pointRotation.multVec(currentPosition, currentPosition);
 	pointRotation.multVec(tempPos, tempPos); //Error20051017
 	currentPosition = tempPos + axisPoint; //Error20051017
-	
+
 	currentLookDir = currentLookAt-currentPosition;
 	currentLookDir.normalize();
 
@@ -387,7 +387,7 @@ void kCamera::rotatePosition(SbVec3f rotAxis, double rotAngle, SbVec3f axisPoint
 	currentOrientation = calcOrientation(currentUpVec,currentLookDir); //! Berechnet neue orientation
 
 //	writeOrientation(currentOrientation); //! Schreibt orientation in ObjMgr
-//	writePosition(currentPosition); //! Schreibt position in ObjMgr	
+//	writePosition(currentPosition); //! Schreibt position in ObjMgr
 }
 
 
@@ -395,19 +395,19 @@ void kCamera::rotatePosition(SbVec3f rotAxis, double rotAngle, SbVec3f axisPoint
 //! Rotate the cam around the lookDirection
 /*! \param angle */
 void kCamera::rotateCam(double angle)
-{		
+{
 	// UpVec rotieren - bisher nur um die Sichtachse, also kein Kippen gegenüber der Sichtrichtung
 	// Bei anderen Rotationen müssten dann sowohl UpVec wie auch lookDir gedreht werden
-	
+
 	currentUpVecAngle = currentUpVecAngle + angle;
 
 	SbVec3f perfectUpVec = calcPerfectUpVector(currentLookDir,NormPlump);
 	perfectUpVec.normalize();
-	rotateVector(perfectUpVec,currentLookDir, currentUpVecAngle);	
+	rotateVector(perfectUpVec,currentLookDir, currentUpVecAngle);
 	currentUpVec = perfectUpVec;
 
 	currentOrientation = calcOrientation(currentUpVec,currentLookDir); //! Berechnet neue orientation
-	//writeOrientation(currentOrientation); //! Schreibt orientation in ObjMgr		
+	//writeOrientation(currentOrientation); //! Schreibt orientation in ObjMgr
 }
 
 
@@ -416,7 +416,7 @@ void kCamera::rotateCam(double angle)
 {
 	//positiver z-Halbraum --> look-z = neg --> NormPlump-y = pos
 	//negativer z-Halbraum --> look-z = pos --> NormPlump-y = neg
-	/*SoDebugError::postInfo("NNNNNNNNNNNNNNNNormPlump: ",Vec3fToString(NormPlump).c_str());
+	//SoDebugError::postInfo("NNNNNNNNNNNNNNNNormPlump: ",Vec3fToString(NormPlump).c_str());
 	SoDebugError::postInfo("lookDir[2]: ",kBasics::FloatToString(lookDir[2]).c_str());
 	SbVec3f oldNormPump = NormPlump;
 	if (lookDir[2]<0.0)
@@ -425,7 +425,7 @@ void kCamera::rotateCam(double angle)
 		NormPlump[1] = -fabs(NormPlump[1]);
 	SoDebugError::postInfo("NNNNNNNNNNNNNNNNormPlump: ",Vec3fToString(NormPlump).c_str());
 
-	
+
 	//if (oldNormPump[1]!=NormPlump[1]) return true;
 	//SoDebugError::postInfo("return false","");
 	return false;

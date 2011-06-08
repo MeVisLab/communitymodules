@@ -26,9 +26,34 @@
 #include <GL/glew.h>
 #include <mlOpenGL.h>
 
+
+#if defined (ML_LIBRARY_EXPORT_ATTRIBUTE) || defined (ML_LIBRARY_IMPORT_ATTRIBUTE)
+  // Make use of the new style and platform independent import/export definitions.
+  #ifdef UMDSOMEASUREMENT_EXPORTS
+    // Export library symbols.
+    #define SO_MEASUREMENT_CLASS_SPEC   ML_LIBRARY_EXPORT_ATTRIBUTE
+  #else
+    // If included by external modules, exported symbols are declared as import symbols
+    #define SO_MEASUREMENT_CLASS_SPEC   ML_LIBRARY_IMPORT_ATTRIBUTE
+  #endif
+#else
+  // Only for backward compatibility to versions < MeVisLab2.2.
+  //! Define a class export specifier needed to make the class
+  //! exportable in window dll's.
+  #ifdef WIN32
+    #ifdef UMDSOMEASUREMENT_EXPORTS
+    #define SO_MEASUREMENT_CLASS_SPEC __declspec(dllexport)
+    #else
+    #define SO_MEASUREMENT_CLASS_SPEC __declspec(dllimport)
+    #endif
+  #else
+    #define SO_MEASUREMENT_CLASS_SPEC
+  #endif
+#endif
+
 #ifdef WIN32
 
-//Unterdr"uckt die Warnung warning C4275: class 'SoCoordinate4' ist keine DLL-Schnittstelle 
+//Unterdr"uckt die Warnung warning C4275: class 'SoCoordinate4' ist keine DLL-Schnittstelle
 //und wurde als Basisklasse fuer die DLL-Schnittstelle class '...' verwendet
 #pragma warning (disable : 4275)
 
@@ -45,14 +70,14 @@
 // Disable warning for release mode: Warning C4710: '__thiscall XXX::YYY(ZZZ)' ist keine Inline-Funktion
 #pragma warning(disable : 4710 )
 
-// disable warning: Keine Definitionen fuer die Inline-Funktion 
+// disable warning: Keine Definitionen fuer die Inline-Funktion
 #pragma warning (disable : 4506)
 
 // disable warning:std::reverse_iterator<void (__cdecl**)(void *,char const *,ml::ErrorOutputInfos const &),void (__cdecl*)(void *,char const *,ml::ErrorOutputInfos const &),void (__cdecl*&)(void *,char const *,ml::ErrorOutputInfos const &),void (__cdecl**)(void *,char const *,ml::ErrorOutputInfos const &),int>' : Bezeichner wurde auf '255' Zeichen in den Debug-Informationen reduziert
 #pragma warning (disable : 4786)
 
 // Include often used libraries automatically and disable its warnings
-// to be able to compile the ml in highest warning level. 
+// to be able to compile the ml in highest warning level.
 
 #pragma warning (disable: 4018)
 
@@ -73,20 +98,11 @@ typedef __int64 int64_t;
 //#include <iostream.h> //störte beim einbinden des headers in andere projekte
 #include <iostream>
 #include <memory.h>
-#include <vector> 
+#include <vector>
 #include <math.h>
 #include <FLOAT.H>
 #include <assert.h>
 #pragma warning( pop )
-
-
-//! Define a class export specifier needed to make the class
-//! exportable in window dll's.
-#ifdef UMDSOMEASUREMENT_EXPORTS
-#define SO_MEASUREMENT_CLASS_SPEC __declspec(dllexport)
-#else
-#define SO_MEASUREMENT_CLASS_SPEC __declspec(dllimport)
-#endif
 
 #elif linux
 #include <stdint.h>
@@ -95,8 +111,6 @@ typedef __int64 int64_t;
 #include <sstream>
 #include <iostream>
 #include <assert.h>
-
-#define SO_MEASUREMENT_CLASS_SPEC
 
 #else
 
@@ -107,10 +121,8 @@ typedef __int64 int64_t;
 #include <stdlib.h>
 #include <iostream.h>
 #include <memory.h>
-#include <vector> 
+#include <vector>
 #include <math.h>
-
-#define SO_MEASUREMENT_CLASS_SPEC
 
 #endif
 
@@ -194,6 +206,6 @@ typedef __int64 int64_t;
 
 #ifdef WIN32
 #pragma warning ( pop )
-#endif 
+#endif
 
 #endif

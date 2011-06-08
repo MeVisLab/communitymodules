@@ -5,6 +5,8 @@
 // #########################################
 
 #include "UMDMainAxis.h"
+#include <stdlib.h>
+#include <malloc.h>
 
 
 #define JACOBI_ROTATE(a,i,j,k,l) g=a[i][j];\
@@ -37,9 +39,9 @@ float *vL_vector(long nl, long nh)
   // malloc -> Anfordern von Speicherplatz;
   // Rückgabewert ist Anfangsadresse des neu angelegten Speicherblocks
   float *v = (float *) malloc((size_t)((nh-nl+1+NR_END)*sizeof(float)));
-  
+
   if (!v) nrerror("allocation failure in vector()");
-  
+
   return v+NR_END-nl;
 }
 
@@ -61,28 +63,28 @@ float **matrix(long nrl, long nrh, long ncl, long nch)
 {
   // r -> row: Zeile
   // c -> column: Spalte
-  
+
   long i;
   long nrow, ncol;
   float **m;
-  
+
   nrow = nrh-nrl+1;
   ncol = nch-ncl+1;
-  
+
   // Allocate pointers to rows
   m=(float **) malloc((size_t)((nrow+NR_END)*sizeof(float*)));
   if (!m) nrerror("allocation failure 1 in matrix()");
   m += NR_END;
   m -= nrl;
-  
+
   // Allocate rows and set pointers to them
   m[nrl]=(float *) malloc((size_t)((nrow*ncol+NR_END)*sizeof(float)));
   if (!m[nrl]) nrerror("allocation failure 2 in matrix()");
   m[nrl] += NR_END;
   m[nrl] -= ncl;
-  
+
   for(i=nrl+1;i<=nrh;i++) m[i]=m[i-1]+ncol;
-  
+
   // Return pointer to array of pointers to rows.
   return m;
 }
@@ -108,71 +110,71 @@ void jacobi(float **a, int n, float d[], float **v, int *nrot)
 {
   int j,iq,ip,i;
   float tresh,theta,tau,t,sm,s,h,g,c,*b,*z;
-  
+
   b = vL_vector(1,n);
   z = vL_vector(1,n);
-  
+
   // Make v be a unit Matrix.
-  for (ip=1;ip<=n;ip++) 
+  for (ip=1;ip<=n;ip++)
   {
-    for (iq=1;iq<=n;iq++) 
+    for (iq=1;iq<=n;iq++)
       v[ip][iq]=0.0;
-    
+
     v[ip][ip]=1.0;
   }
-  
-  for (ip=1;ip<=n;ip++) 
+
+  for (ip=1;ip<=n;ip++)
   {
     b[ip]=d[ip]=a[ip][ip];
     z[ip]=0.0;
   }
-  
+
   *nrot=0;
-  
-  for (i=1;i<=50;i++) 
+
+  for (i=1;i<=50;i++)
   {
     sm=0.0;
-    for (ip=1;ip<=n-1;ip++) 
+    for (ip=1;ip<=n-1;ip++)
     {
       for (iq=ip+1;iq<=n;iq++)
         sm += fabs(a[ip][iq]);
     }
-    
-    if (sm == 0.0) 
+
+    if (sm == 0.0)
     {
       free_vector(z,1,n);
       free_vector(b,1,n);
       return;
     }
-    
+
     if (i < 4)
       tresh=0.2*sm/(n*n);
     else
       tresh=0.0;
-    
-    for (ip=1;ip<=n-1;ip++) 
+
+    for (ip=1;ip<=n-1;ip++)
     {
-      for (iq=ip+1;iq<=n;iq++) 
+      for (iq=ip+1;iq<=n;iq++)
       {
         g=100.0*fabs(a[ip][iq]);
-        
+
         if (i > 4 && (float)(fabs(d[ip])+g) == (float)fabs(d[ip])
           && (float)(fabs(d[iq])+g) == (float)fabs(d[iq]))
           a[ip][iq]=0.0;
-        
-        else if (fabs(a[ip][iq]) > tresh) 
+
+        else if (fabs(a[ip][iq]) > tresh)
         {
           h=d[iq]-d[ip];
           if ((float)(fabs(h)+g) == (float)fabs(h))
             t=(a[ip][iq])/h;
-          
-          else 
+
+          else
           {
             theta=0.5*h/(a[ip][iq]);
             t=1.0/(fabs(theta)+sqrt(1.0+theta*theta));
             if (theta < 0.0) t = -t;
           }
-          
+
           c=1.0/sqrt(1+t*t);
           s=t*c;
           tau=s/(1.0+c);
@@ -182,33 +184,33 @@ void jacobi(float **a, int n, float d[], float **v, int *nrot)
           d[ip] -= h;
           d[iq] += h;
           a[ip][iq]=0.0;
-          
+
           for (j=1;j<=ip-1;j++)
-          { 
+          {
             JACOBI_ROTATE(a,j,ip,j,iq)
           }
-          
-          for (j=ip+1;j<=iq-1;j++) 
+
+          for (j=ip+1;j<=iq-1;j++)
           {
             JACOBI_ROTATE(a,ip,j,j,iq)
           }
-          
-          for (j=iq+1;j<=n;j++) 
+
+          for (j=iq+1;j<=n;j++)
           {
             JACOBI_ROTATE(a,ip,j,iq,j)
           }
-          
-          for (j=1;j<=n;j++) 
+
+          for (j=1;j<=n;j++)
           {
             JACOBI_ROTATE(v,j,ip,j,iq)
           }
-          
+
           ++(*nrot);
         }
       }
     }
-    
-    for (ip=1;ip<=n;ip++) 
+
+    for (ip=1;ip<=n;ip++)
     {
       b[ip] += z[ip];
       d[ip]=b[ip];
@@ -245,19 +247,19 @@ UMDMainAxis::~UMDMainAxis() {
 void UMDMainAxis::getInverseMatrix(float **aMatrix, float **invMatrix) {
   // Die inverse Matrix berechnen (nur fuer 3x3 Matrizen)
   // zunaechst die Determinante D bestimmen und anschliessend 1/D
-  
+
   float det = aMatrix[1][1] * aMatrix[2][2] * aMatrix[3][3]
     + aMatrix[1][2] * aMatrix[2][3] * aMatrix[3][1]
     + aMatrix[1][3] * aMatrix[2][1] * aMatrix[3][2]
     - aMatrix[1][3] * aMatrix[2][2] * aMatrix[3][1]
     - aMatrix[1][1] * aMatrix[2][3] * aMatrix[3][2]
     - aMatrix[1][2] * aMatrix[2][1] * aMatrix[3][3];
-  
+
   if (det != 0) det = 1.0/det;
-  
-  // nun die Adjunkte Matrix bilden, diese transponieren und 
+
+  // nun die Adjunkte Matrix bilden, diese transponieren und
   // anschliessend mal D
-  
+
   invMatrix[1][1] =  det * (aMatrix[2][2] * aMatrix[3][3] - aMatrix[2][3] * aMatrix[3][2]);
   invMatrix[2][1] = -det * (aMatrix[2][1] * aMatrix[3][3] - aMatrix[2][3] * aMatrix[3][1]);
   invMatrix[3][1] =  det * (aMatrix[2][1] * aMatrix[3][2] - aMatrix[2][2] * aMatrix[3][1]);
@@ -278,7 +280,7 @@ float* UMDMainAxis::calcBaryCenter(const float* vertices, int size) {
     meanVec[0] = 0;
     meanVec[1] = 0;
     meanVec[2] = 0;
-    
+
     for (int counter = 0; counter < size; counter++) {
       meanVec[0] += *vertices++;
       meanVec[1] += *vertices++;
@@ -288,17 +290,17 @@ float* UMDMainAxis::calcBaryCenter(const float* vertices, int size) {
     meanVec[0] /= size;
     meanVec[1] /= size;
     meanVec[2] /= size;
-    
+
     return meanVec;
-  } 
+  }
   else return 0;
 } // calcMeanVec
 
 
 float UMDMainAxis::dotProduct(const float* vec1, const float* vec2) {
-  return 
-    (* vec1     ) * (* vec2     ) + 
-    (*(vec1 + 1)) * (*(vec2 + 1)) + 
+  return
+    (* vec1     ) * (* vec2     ) +
+    (*(vec1 + 1)) * (*(vec2 + 1)) +
     (*(vec1 + 2)) * (*(vec2 + 2));
 }
 
@@ -329,7 +331,7 @@ void UMDMainAxis::getCovarianceMatrix(const float* vertices, const long size, fl
   // Berechnung der Kovarianz-Matrix aus einer Punktmenge;
   // uebergeben wird die Punktmenge sowie eine Matrix, in der
   // am Ende die Kovarianz-Matrix steht.
-  
+
   // den Schwerpunkt von den Punkten abziehen
   float* difPoints = new float[size * 3];
   int i,j;
@@ -342,38 +344,38 @@ void UMDMainAxis::getCovarianceMatrix(const float* vertices, const long size, fl
     difPoints[counter2] = vertices[counter2] - meanVec[2];
     counter2++;
   }
-  
+
   // Erstellen der Kovarianz-Matrix (ist symmetrisch -> doppelte
   // Werte nur einmal berechnen)
-  
+
   // Loeschen der Kovarianz-Matrix.
-  covaMatrix[1][1] = 0; covaMatrix[1][2] = 0; covaMatrix[1][3] = 0; 
-  covaMatrix[2][1] = 0; covaMatrix[2][2] = 0; covaMatrix[2][3] = 0; 
-  covaMatrix[3][1] = 0; covaMatrix[3][2] = 0; covaMatrix[3][3] = 0; 
-  
+  covaMatrix[1][1] = 0; covaMatrix[1][2] = 0; covaMatrix[1][3] = 0;
+  covaMatrix[2][1] = 0; covaMatrix[2][2] = 0; covaMatrix[2][3] = 0;
+  covaMatrix[3][1] = 0; covaMatrix[3][2] = 0; covaMatrix[3][3] = 0;
+
   for (counter = 0 ; counter < size; counter++) {
     covaMatrix[1][1] += difPoints[counter * 3    ] * difPoints[counter * 3    ];
     covaMatrix[1][2] += difPoints[counter * 3    ] * difPoints[counter * 3 + 1];
     covaMatrix[1][3] += difPoints[counter * 3    ] * difPoints[counter * 3 + 2];
-    
+
     covaMatrix[2][2] += difPoints[counter * 3 + 1] * difPoints[counter * 3 + 1];
     covaMatrix[2][3] += difPoints[counter * 3 + 1] * difPoints[counter * 3 + 2];
-    
+
     covaMatrix[3][3] += difPoints[counter * 3 + 2] * difPoints[counter * 3 + 2];
   }
-  
+
   delete[] difPoints;
 
   // doppelte Werte kopieren
   covaMatrix[2][1] = covaMatrix[1][2];
   covaMatrix[3][1] = covaMatrix[1][3];
   covaMatrix[3][2] = covaMatrix[2][3];
-  
+
   // alle Matrix-Elemente durch Anzahl der Punkte teilen
   for (j = 1; j < 4; j++)
     for (i = 1; i < 4; i++)
-      covaMatrix[j][i] /= size;    
-    
+      covaMatrix[j][i] /= size;
+
 } //getCovarianceMatrix
 
 
@@ -383,7 +385,7 @@ void UMDMainAxis::computeMainAxis(const float* vertices, long size) {
   float** jacobiMat  = matrix(1,3,1,3);
   float** invMatrix  = matrix(1,3,1,3);
   float*  eigenValues = vL_vector(1,3);
-  
+
   // Schwerpunkt des Objektes bestimmen
   if (_baryCenter) { delete[] _baryCenter; _baryCenter = NULL; }
   _baryCenter = calcBaryCenter(vertices, size);
@@ -391,7 +393,7 @@ void UMDMainAxis::computeMainAxis(const float* vertices, long size) {
   // Berechnen der Kovarianz-Matrix, die dann der Jacobi-Matrix-
   // Berechnung uebergeben wird
   getCovarianceMatrix(vertices, size, covaMatrix, _baryCenter);
-  
+
   // Jacobi-Matrix berechnen
   int nrot; // dummy variable
   jacobi(covaMatrix, 3, eigenValues, jacobiMat, &nrot);
@@ -403,50 +405,50 @@ void UMDMainAxis::computeMainAxis(const float* vertices, long size) {
     _yAxis[counter] = jacobiMat[counter + 1][2];
     _zAxis[counter] = jacobiMat[counter + 1][3];
   }
-    
-  // Punkte des Objektes mit den Eigenvektoren der 
+
+  // Punkte des Objektes mit den Eigenvektoren der
   // Jacobi-Matrix multiplizieren (virtuelle Rotation des
   // neuen Hauptachsen-Koordinatensystems in Weltkoordinaten)
   const float* points = vertices;
   float* newVertices = new float[size * 3];
   int counter2 = 0;
   for (counter = 0; counter < size; counter++) {
-    
+
     newVertices[counter2++] = dotProduct(points, _xAxis); //tempPoint.dot(_xAxis);
     newVertices[counter2++] = dotProduct(points, _yAxis); //tempPoint.dot(_yAxis);
     newVertices[counter2++] = dotProduct(points, _zAxis); //tempPoint.dot(_zAxis);
     points += 3;
   }
-  
+
   // Ausmaße der objekt-orientierten Bounding Box besorgen
   float minX, maxX, minY, maxY, minZ, maxZ;
   getBoundingBox(newVertices, size, minX, maxX, minY, maxY, minZ, maxZ);
-  
+
   // Durchmesser der objekt-orientierten Bounding Box
   _xDiameter = maxX - minX;
   _yDiameter = maxY - minY;
   _zDiameter = maxZ - minZ;
-  
+
   // Die Haelfte der Ausdehnung der Bounding-Box in x-,y- und z-Richtung
   float half_x = _xDiameter / 2.;
   float half_y = _yDiameter / 2.;
   float half_z = _zDiameter / 2.;
-  
+
   // Um das vorruebergehend "rotierte" Objekt wieder in seine
   // Ausgangslage zu bringen, ist die inverse Jacobi-Matrix
   // von noeten.
   getInverseMatrix(jacobiMat, invMatrix);
-  
+
   // Anschliessend brauchen aber nur die mich interessierenden
   // Punkte wieder zuruecktransformiert werden
-  float* tmp = stretchVector(_xAxis, half_x);  
-  for (counter = 0; counter < 3; counter++) {  
-    _midPoint[counter] =  
-       minX           * invMatrix[1][counter + 1] + 
-      (minY + half_y) * invMatrix[2][counter + 1] + 
+  float* tmp = stretchVector(_xAxis, half_x);
+  for (counter = 0; counter < 3; counter++) {
+    _midPoint[counter] =
+       minX           * invMatrix[1][counter + 1] +
+      (minY + half_y) * invMatrix[2][counter + 1] +
       (minZ + half_z) * invMatrix[3][counter + 1] + tmp[counter];
   }
-  
+
   // Ordnung muss sein
   delete[] tmp;
   delete[] newVertices;

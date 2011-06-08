@@ -46,15 +46,11 @@ public:
   SoSFBool resultsValid;
 
   //! object, for which the calculations will be done
-#ifdef ILAB5
   SoSFNode inObject1Node;
-#else
-  SoSFNode inputObject;
-#endif
 
   //! the color of the tool(s), which describe the results
   SoSFColor color;
-  //! decides whether the \c inputObject will be displayed or not
+  //! decides whether the \c inObject1Node will be displayed or not
   SoSFBool displayInput;
   //! decides whether the unit of the tool measure will be displayed or not
   SoSFBool displayToolMeasure;
@@ -68,7 +64,7 @@ public:
   //! display the tool only if \c resultsValid is true
   SoSFBool displayToolOnlyOnValid;
 
-  //! indicates that \c inputObject contains a scene graph which contains every point only one time
+  //! indicates that \c inObject1Node contains a scene graph which contains every point only one time
   //! this adjustment will save computation time
   //! Attention!: this feature is only given by special pointsets! shapes contain every point six times,
   //! because the points belong to several triangles

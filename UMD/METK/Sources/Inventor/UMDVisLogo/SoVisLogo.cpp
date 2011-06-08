@@ -5,7 +5,7 @@
 // \author  Konrad Mühler
 // \date    2007-06-12
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -28,6 +28,7 @@
 #include <GL/glew.h>
 #pragma warning( disable : 4611 )
 #include "png.h"
+#include <malloc.h>
 
 SO_NODE_SOURCE(SoVisLogo)
 
@@ -49,10 +50,10 @@ SoVisLogo::SoVisLogo()
 
 	// Execute inventor internal stuff for node construction.
 	SO_NODE_CONSTRUCTOR(SoVisLogo);
-	
+
 	SO_NODE_ADD_FIELD(fldLocalPath, (""));
-		
-	SO_NODE_ADD_FIELD(fldFilename, (vislogo));	
+
+	SO_NODE_ADD_FIELD(fldFilename, (vislogo));
 	SO_NODE_DEFINE_ENUM_VALUE(logoNames, vislogo);
 	SO_NODE_DEFINE_ENUM_VALUE(logoNames, otto);
 	SO_NODE_DEFINE_ENUM_VALUE(logoNames, otto2);
@@ -60,7 +61,7 @@ SoVisLogo::SoVisLogo()
 	SO_NODE_DEFINE_ENUM_VALUE(logoNames, neck);
 	SO_NODE_SET_SF_ENUM_TYPE(fldFilename, logoNames);
 
-	SO_NODE_ADD_FIELD(fldCorner, (topright));	
+	SO_NODE_ADD_FIELD(fldCorner, (topright));
 	SO_NODE_DEFINE_ENUM_VALUE(corners, topright);
 	SO_NODE_DEFINE_ENUM_VALUE(corners, topleft);
 	SO_NODE_DEFINE_ENUM_VALUE(corners, bottomright);
@@ -75,7 +76,7 @@ SoVisLogo::SoVisLogo()
 	_nodeSensor->attach(this);
 
 	filenameSensor = new SoFieldSensor(filenameChangedCB, this);
-	filenameSensor->setPriority(0);   
+	filenameSensor->setPriority(0);
     filenameSensor->attach(&fldLocalPath);
 	localPathSensor = new SoFieldSensor(filenameChangedCB, this);
 	localPathSensor->setPriority(0);
@@ -120,7 +121,7 @@ void SoVisLogo::nodeChanged(SoNodeSensor* /*sensor*/)
 //! called whenever the scene is rendered
 void SoVisLogo::GLRender(SoGLRenderAction *action)
 {
-	SO_TRACE_IN("SoVisLogo::GLRender")		
+	SO_TRACE_IN("SoVisLogo::GLRender")
 
 	// Save the current transformation and attribute state of OpenGL.
 	glMatrixMode (GL_PROJECTION);
@@ -132,7 +133,7 @@ void SoVisLogo::GLRender(SoGLRenderAction *action)
 
 	SoState * state = action->getState();
 	const SbViewportRegion & vp = SoViewportRegionElement::get(state);
-		
+
 	glDisable(GL_DEPTH_TEST);
 
 	glMatrixMode (GL_MODELVIEW);
@@ -147,15 +148,15 @@ void SoVisLogo::GLRender(SoGLRenderAction *action)
 		//glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
 		GLuint textureID;
-		glGenTextures( 1, &textureID ); 
+		glGenTextures( 1, &textureID );
 		glBindTexture( GL_TEXTURE_2D, textureID );
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img_width, img_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, png_image);
-		
-		glBegin(GL_POLYGON);	
+
+		glBegin(GL_POLYGON);
 		float border = 10.0;
 		float scale = 1.0;
 		if (fldCorner.getValue()==bottomleft)
@@ -163,28 +164,28 @@ void SoVisLogo::GLRender(SoGLRenderAction *action)
 			glTexCoord2f(0.0, 0.0);glVertex2f(-1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[0], -1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[1]);
 			glTexCoord2f(1.0, 0.0);glVertex2f(-1.0f + 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], -1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[1]);
 			glTexCoord2f(1.0, 1.0);glVertex2f(-1.0f + 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], -1.0f+2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
-			glTexCoord2f(0.0, 1.0);glVertex2f(-1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[0],-1.0f + 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);						
+			glTexCoord2f(0.0, 1.0);glVertex2f(-1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[0],-1.0f + 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
 		}
 		else if (fldCorner.getValue()==bottomright)
 		{
 			glTexCoord2f(0.0, 0.0);glVertex2f(1.0f - 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], -1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[1]);
-			glTexCoord2f(1.0, 0.0);glVertex2f(1.0f - (float)(border)/(float)vp.getWindowSize()[0], -1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[1]);			
+			glTexCoord2f(1.0, 0.0);glVertex2f(1.0f - (float)(border)/(float)vp.getWindowSize()[0], -1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[1]);
 			glTexCoord2f(1.0, 1.0);glVertex2f(1.0f - (float)(border)/(float)vp.getWindowSize()[0], -1.0f + 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
-			glTexCoord2f(0.0, 1.0);glVertex2f(1.0f - 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0],-1.0f + 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);			
+			glTexCoord2f(0.0, 1.0);glVertex2f(1.0f - 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0],-1.0f + 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
 		}
 		else if (fldCorner.getValue()==topright)
 		{
 			glTexCoord2f(0.0, 0.0);glVertex2f(1.0f - 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
-			glTexCoord2f(1.0, 0.0);glVertex2f(1.0f - (float)(border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);			
+			glTexCoord2f(1.0, 0.0);glVertex2f(1.0f - (float)(border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
 			glTexCoord2f(1.0, 1.0);glVertex2f(1.0f - (float)(border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(border)/(float)vp.getWindowSize()[1]);
-			glTexCoord2f(0.0, 1.0);glVertex2f(1.0f - 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)border/(float)vp.getWindowSize()[1]);			
+			glTexCoord2f(0.0, 1.0);glVertex2f(1.0f - 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)border/(float)vp.getWindowSize()[1]);
 		}
 		else if (fldCorner.getValue()==topleft)
 		{
 			glTexCoord2f(0.0, 0.0);glVertex2f(-1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
 			glTexCoord2f(1.0, 0.0);glVertex2f(-1.0f + 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(img_height*scale+border)/(float)vp.getWindowSize()[1]);
 			glTexCoord2f(1.0, 1.0);glVertex2f(-1.0f + 2.0f*(float)(img_width*scale+border)/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)(border)/(float)vp.getWindowSize()[1]);
-			glTexCoord2f(0.0, 1.0);glVertex2f(-1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)border/(float)vp.getWindowSize()[1]);						
+			glTexCoord2f(0.0, 1.0);glVertex2f(-1.0f + 2.0f*(float)border/(float)vp.getWindowSize()[0], 1.0f - 2.0f*(float)border/(float)vp.getWindowSize()[1]);
 		}
 		//std::cout << "img_w:" << img_width << "   windowSize[0]" << vp.getWindowSize()[0] << std::endl;
 		//std::cout << "x:" << -1.0f+2.0f*(float)img_width/(float)vp.getWindowSize()[0] << "  y:" << -1.0f+2.0f*(float)img_height/(float)vp.getWindowSize()[1] << std::endl;
@@ -247,8 +248,8 @@ int SoVisLogo::pngLoad(const char *file, unsigned long &pwidth, unsigned long &p
    int           bit_depth;
    int           color_type;
 
-   unsigned long width;            /* PNG image width in pixels */
-   unsigned long height;           /* PNG image height in pixels */
+   png_uint_32 width;            /* PNG image width in pixels */
+   png_uint_32 height;           /* PNG image height in pixels */
    unsigned int rowbytes;         /* raw bytes at row n in image */
 
    image_data = NULL;
@@ -261,7 +262,7 @@ int SoVisLogo::pngLoad(const char *file, unsigned long &pwidth, unsigned long &p
    /*
     * 		13.3 readpng_init()
     */
-	
+
    /* Check for the 8-byte signature */
    fread(sig, 1, 8, infile);
 
@@ -269,26 +270,26 @@ int SoVisLogo::pngLoad(const char *file, unsigned long &pwidth, unsigned long &p
       fclose(infile);
       return 0;
    }
- 
-   /* 
-    * Set up the PNG structs 
+
+   /*
+    * Set up the PNG structs
     */
    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
    if (!png_ptr) {
       fclose(infile);
       return 4;    /* out of memory */
    }
- 
+
    info_ptr = png_create_info_struct(png_ptr);
    if (!info_ptr) {
       png_destroy_read_struct(&png_ptr, (png_infopp) NULL, (png_infopp) NULL);
       fclose(infile);
       return 4;    /* out of memory */
    }
-   
-  
+
+
   /*
-   * block to handle libpng errors, 
+   * block to handle libpng errors,
    * then check whether the PNG file had a bKGD chunk
    */
    if (setjmp(png_jmpbuf(png_ptr))) {
@@ -297,37 +298,37 @@ int SoVisLogo::pngLoad(const char *file, unsigned long &pwidth, unsigned long &p
       return 0;
    }
 
-  /* 
-   * takes our file stream pointer (infile) and 
+  /*
+   * takes our file stream pointer (infile) and
    * stores it in the png_ptr struct for later use.
    */
    /* png_ptr->io_ptr = (png_voidp)infile;*/
    png_init_io(png_ptr, infile);
-   
+
   /*
-   * lets libpng know that we already checked the 8 
-   * signature bytes, so it should not expect to find 
+   * lets libpng know that we already checked the 8
+   * signature bytes, so it should not expect to find
    * them at the current file pointer location
    */
    png_set_sig_bytes(png_ptr, 8);
-   
+
    /* Read the image info.*/
 
   /*
-   * reads and processes not only the PNG file's IHDR chunk 
-   * but also any other chunks up to the first IDAT 
+   * reads and processes not only the PNG file's IHDR chunk
+   * but also any other chunks up to the first IDAT
    * (i.e., everything before the image data).
    */
 
    /* read all the info up to the image data  */
    png_read_info(png_ptr, info_ptr);
 
-   png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, 
+   png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth,
 	&color_type, NULL, NULL, NULL);
 
    pwidth = width;
    pheight = height;
-   
+
    /* Set up some transforms. */
    if (color_type & PNG_COLOR_MASK_ALPHA) {
 //	   std::cout << "ALPHA1" << std::endl;
@@ -346,7 +347,7 @@ int SoVisLogo::pngLoad(const char *file, unsigned long &pwidth, unsigned long &p
       png_set_palette_to_rgb(png_ptr);
 //	  std::cout << "PALETTE" << std::endl;
    }
-   
+
    /* Update the png info struct.*/
    png_read_update_info(png_ptr, info_ptr);
 

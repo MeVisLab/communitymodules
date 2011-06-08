@@ -14,15 +14,32 @@
 
 
 // DLL export macro definition
-#ifdef WIN32
-#ifdef UMDQHULL3D_EXPORTS
-// Use the UMDQHULL3D_EXPORT macro to export classes and functions
-#define UMDQHULL3D_EXPORT __declspec(dllexport)
+#if defined (ML_LIBRARY_EXPORT_ATTRIBUTE) || defined (ML_LIBRARY_IMPORT_ATTRIBUTE)
+  // Make use of the new style and platform independent import/export definitions.
+  #ifdef UMDQHULL3D_EXPORTS
+    // Export library symbols.
+    #define UMDQHULL3D_EXPORT   ML_LIBRARY_EXPORT_ATTRIBUTE
+  #else
+    // If included by external modules, exported symbols are declared as import symbols
+    #define UMDQHULL3D_EXPORT   ML_LIBRARY_IMPORT_ATTRIBUTE
+  #endif
 #else
-// If included by external modules, exported symbols are declared as import symbols
-#define UMDQHULL3D_EXPORT __declspec(dllimport)
+  // Only for backward compatibility to versions < MeVisLab2.2.
+  #ifdef WIN32
+    #ifdef UMDQHULL3D_EXPORTS
+      // Use the UMDQHULL3D_EXPORT macro to export classes and functions
+      #define UMDQHULL3D_EXPORT __declspec(dllexport)
+    #else
+      // If included by external modules, exported symbols are declared as import symbols
+      #define UMDQHULL3D_EXPORT __declspec(dllimport)
+    #endif
+  #else
+    // No export declarations are necessary for non-Windows systems
+    #define UMDQHULL3D_EXPORT
+  #endif
 #endif
 
+#ifdef WIN32
 #include <vector>
 #include <list>
 #include <stdio.h>
@@ -32,10 +49,6 @@
 #include <algorithm>
 
 using namespace std;
-
-#else
-// No export declarations are necessary for non-Windows systems
-#define UMDQHULL3D_EXPORT
 #endif
 
 

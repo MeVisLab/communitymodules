@@ -5,7 +5,7 @@
 // \author  Christian Tietjen
 // \date    2004-12-23
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -134,13 +134,13 @@ const SbVec3f SoMinimalEnclosingCircle::getScreenPos(const SbVec3f &vertex) {
 
 
 void SoMinimalEnclosingCircle::GLRenderBelowPath(SoGLRenderAction* action)
-{ 
+{
    SoGroup::GLRenderBelowPath(action);
 }
 
 
 void SoMinimalEnclosingCircle::GLRender(SoGLRenderAction* action)
-{ 
+{
    if (_size3D > 2) {
       compute(action);
    }
@@ -170,7 +170,7 @@ void SoMinimalEnclosingCircle::compute(SoGLRenderAction* action) {
    }
 
    // iniatilize the raster
-   for (counter = 0; counter < _winSize[0] * _winSize[1]; counter++) 
+   for (counter = 0; counter < _winSize[0] * _winSize[1]; counter++)
       _pixelMatrix[counter] = false;
 
    SbVec3f temp;
@@ -228,10 +228,10 @@ void SoMinimalEnclosingCircle::rasterizeAndSort() {
       pointSetY = _pointSet2D[counter][1];
 
       // point is visible?
-      if (abs(pointSetX) < 1.0 && abs(pointSetY) < 1.0) {
+      if (fabs(pointSetX) < 1.0 && fabs(pointSetY) < 1.0) {
          // convert 2D coords in 1D coords
-         int coord = 
-            (int)((pointSetX + 1) * 0.5f * _winSize[0]) + 
+         int coord =
+            (int)((pointSetX + 1) * 0.5f * _winSize[0]) +
             (int)((pointSetY + 1) * 0.5f * _winSize[1]) * _winSize[0];
          // if the pixel is not already set, set it and don't forget, that there is one point more
          if (!_pixelMatrix[coord]) {
@@ -248,7 +248,7 @@ void SoMinimalEnclosingCircle::rasterizeAndSort() {
    // walk through the array until all points are found
    for (counter = 0; counter < _sizeRaster; counter++) {
       // walk to the next point
-      while (_pixelMatrix[pRaster] == false) 
+      while (_pixelMatrix[pRaster] == false)
          ++pRaster;
       // convert 1D coords in 2D coords
       // transform them to the interval -1..0..1
@@ -263,7 +263,7 @@ void SoMinimalEnclosingCircle::rasterizeAndSort() {
 void SoMinimalEnclosingCircle::screenSpaceBoundingBox() {
    SbVec2f minBBox2, maxBBox2;
    minBBox2 = maxBBox2 = _pointSetRaster[0];
-   
+
    for (int counter = 0; counter < _sizeRaster; counter++) {
       if (minBBox2[0] > _pointSetRaster[counter][0]) minBBox2[0] = _pointSetRaster[counter][0];
       if (minBBox2[1] > _pointSetRaster[counter][1]) minBBox2[1] = _pointSetRaster[counter][1];

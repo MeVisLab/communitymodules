@@ -7,7 +7,7 @@
 
 
 // Local includes
-#ifndef __UMDInventorPointerSystem_H
+#ifndef __METKSURFACEDISTANCE_H
 #include "METKSurfaceDistanceSystem.h"
 #endif
 

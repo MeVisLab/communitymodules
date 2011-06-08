@@ -15,14 +15,30 @@
 
 
 #pragma warning(disable:4251)
-#ifdef WIN32
-#ifndef common_EXPORTS
-#define __COMMON_IMPORTEXPORT __declspec(dllimport)
+
+// DLL export macro definition
+#if defined (ML_LIBRARY_EXPORT_ATTRIBUTE) || defined (ML_LIBRARY_IMPORT_ATTRIBUTE)
+  // Make use of the new style and platform independent import/export definitions.
+  #if !defined(__COMMON_IMPORTEXPORT)
+    #ifdef common_EXPORTS
+      // Export library symbols.
+      #define __COMMON_IMPORTEXPORT   ML_LIBRARY_EXPORT_ATTRIBUTE
+    #else
+      // If included by external modules, exported symbols are declared as import symbols
+      #define __COMMON_IMPORTEXPORT   ML_LIBRARY_IMPORT_ATTRIBUTE
+    #endif
+  #endif
 #else
-#define __COMMON_IMPORTEXPORT __declspec(dllexport)
-#endif
-#else
-#define __COMMON_IMPORTEXPORT
+  // Only for backward compatibility to versions < MeVisLab2.2.
+  #ifdef WIN32
+  #ifndef common_EXPORTS
+  #define __COMMON_IMPORTEXPORT __declspec(dllimport)
+  #else
+  #define __COMMON_IMPORTEXPORT __declspec(dllexport)
+  #endif
+  #else
+  #define __COMMON_IMPORTEXPORT
+  #endif
 #endif
 
 // ML includes

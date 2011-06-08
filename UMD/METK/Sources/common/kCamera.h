@@ -4,7 +4,7 @@
 // \author  Konrad Mühler
 // \date    2005-07-06
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -14,20 +14,35 @@
 
 
 #pragma warning(disable:4251)
-#ifdef WIN32
-#ifndef common_EXPORTS
-#define __COMMON_IMPORTEXPORT __declspec(dllimport)
+// DLL export macro definition
+#if defined (ML_LIBRARY_EXPORT_ATTRIBUTE) || defined (ML_LIBRARY_IMPORT_ATTRIBUTE)
+  // Make use of the new style and platform independent import/export definitions.
+  #if !defined(__COMMON_IMPORTEXPORT)
+    #ifdef common_EXPORTS
+      // Export library symbols.
+      #define __COMMON_IMPORTEXPORT   ML_LIBRARY_EXPORT_ATTRIBUTE
+    #else
+      // If included by external modules, exported symbols are declared as import symbols
+      #define __COMMON_IMPORTEXPORT   ML_LIBRARY_IMPORT_ATTRIBUTE
+    #endif
+  #endif
 #else
-#define __COMMON_IMPORTEXPORT __declspec(dllexport) 
-#endif
-#else
-#define __COMMON_IMPORTEXPORT
+  // Only for backward compatibility to versions < MeVisLab2.2.
+  #ifdef WIN32
+  #ifndef common_EXPORTS
+  #define __COMMON_IMPORTEXPORT __declspec(dllimport)
+  #else
+  #define __COMMON_IMPORTEXPORT __declspec(dllexport)
+  #endif
+  #else
+  #define __COMMON_IMPORTEXPORT
+  #endif
 #endif
 
 #include <iostream>
-#include <iomanip> 
+#include <iomanip>
 #include <string>
-#include <sstream> 
+#include <sstream>
 #pragma warning(disable:4786)
 #include <list>
 #include <vector>
@@ -70,9 +85,9 @@ public:
 	void setOrientation(SbRotation value);
 	SbRotation getOrientation();
 	void setHeight(double value);
-	double getHeight();	
+	double getHeight();
 	void setFocalDistance(double value);
-	double getFocalDistance();	
+	double getFocalDistance();
 
 
 	SbVec3f calcUpVector(const SbVec3f lookDir, const SbVec3f normPlump);
@@ -85,13 +100,13 @@ public:
 	void setCamPosition(const SbVec3f& position, const SbVec3f& lookAt);
 	void rotatePosition(SbVec3f rotAxis, double rotAngle, SbVec3f axisPoint);
 	void rotateCam(double angle);
-	
+
 	//bool setNormPlump(const SbVec3f lookDir);
 
 private:
-	
+
 	double epsilon; //!< error size
-	
+
 	SbVec3f currentLookAt; //!< point to look at
 	SbVec3f currentLookDir; //!< look direction
 	SbVec3f currentUpVec; //!< up vector
