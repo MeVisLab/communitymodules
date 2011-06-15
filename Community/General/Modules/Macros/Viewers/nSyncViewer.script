@@ -109,6 +109,9 @@ Interface {
         item LAYOUT_CUBE_EQUAL {
           title = "Cube equal"
         }
+        item LAYOUT_ROW_EQUAL {
+          title = "Row equal"
+        }
       }
     }
     Field syncZoom            { type = bool   value = false }

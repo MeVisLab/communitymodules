@@ -193,14 +193,36 @@ def SyncZoom( arg = None ) :
   for i in range(1,nInputs) :
     if ( syncZoom ) :
       ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceZoom' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.sliceZoom') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceOrigin1' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.sliceOrigin1') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceOrigin2' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.sliceOrigin2') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceOrigin3' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.sliceOrigin3') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter1' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.viewingCenter1') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter2' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.viewingCenter2') )
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter3' ).connectFrom( ctx.field('CustomOrthoView2D'+ str( i-1 ) + '.view.viewingCenter3') )
     else :
       ctx.field( 'CustomOrthoView2D'+ str( i ) + '.view.sliceZoom').disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceOrigin1' ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceOrigin2' ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.sliceOrigin3' ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter1' ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter2' ).disconnectAll()
+      ctx.field( 'CustomOrthoView2D'+ str( i )+'.view.viewingCenter3' ).disconnectAll()
   if syncZoom :
     ctx.field( 'SyncZoom.float0' ).connectFrom(ctx.field('CustomOrthoView2D'+ str( nInputs-1 ) + '.view.sliceZoom'))
     ctx.field( 'CustomOrthoView2D0.view.sliceZoom').connectFrom(  ctx.field('SyncZoom.float1') )
+    ctx.field( 'CustomOrthoView2D0.view.sliceOrigin3' ).connectFrom( ctx.field('SyncSliceOrigin.float1') )
+    ctx.field( 'CustomOrthoView2D0.view.viewingCenter1' ).connectFrom( ctx.field('SyncViewingCenter.float1') )
   else :
     ctx.field( 'SyncZoom.float0' ).disconnectAll()
+    ctx.field( 'SyncSliceOrigin.float0' ).disconnectAll()
+    ctx.field( 'SyncViewingCenter.float0' ).disconnectAll()
     ctx.field( 'CustomOrthoView2D0.view.sliceZoom').disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.sliceOrigin1' ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.sliceOrigin2' ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.sliceOrigin3' ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.viewingCenter1' ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.viewingCenter2' ).disconnectAll()
+    ctx.field( 'CustomOrthoView2D0.view.viewingCenter3' ).disconnectAll()
   return
 
 

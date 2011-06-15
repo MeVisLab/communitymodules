@@ -2,6 +2,86 @@
 network  {
   watchlist = ""
 }
+module SyncFields {
+  internal  {
+    frame = "-179 793 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 387"
+        sizeHint = "183 387"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncViewingCenter
+    mode = Float
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
+module SyncFields {
+  internal  {
+    frame = "-171 721 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "399 397 183 387"
+        sizeHint = "183 387"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SyncSliceOrigin
+    mode = Float
+    on = TRUE
+    precision = 0.001000000047
+    float0 = 0
+    float1 = 0
+    float2 = 0
+    float3 = 0
+    float4 = 0
+    float5 = 0
+    float6 = 0
+    float7 = 0
+    float8 = 0
+    float9 = 0
+    vector0 = "0 0 0 0 0 0"
+    vector1 = "0 0 0 0 0 0"
+    vector2 = "0 0 0 0 0 0"
+    vector3 = "0 0 0 0 0 0"
+    vector4 = "0 0 0 0 0 0"
+    vector5 = "0 0 0 0 0 0"
+    vector6 = "0 0 0 0 0 0"
+    vector7 = "0 0 0 0 0 0"
+    vector8 = "0 0 0 0 0 0"
+    vector9 = "0 0 0 0 0 0"
+  }
+}
 module CustomOrthoView2D {
   internal  {
     frame = "21 341 152 56"
@@ -484,7 +564,7 @@ module SyncFields {
       window _default {
         geometry = "455 147 183 434"
         sizeHint = "183 434"
-        wasOpen = yes
+        wasOpen = no
         wasActive = no
       }
     }
@@ -638,7 +718,7 @@ module Bypass {
 }
 module SoSeparator {
   internal  {
-    frame = "-163 729 104 64"
+    frame = "-171 865 104 64"
     moduleGroupName = ""
   }
   fields  {
