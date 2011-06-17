@@ -19,6 +19,7 @@
 
 #include "CMCurveFilter/mlCMCurveFilter.h"
 #include "StringToCurve/mlStringToCurve.h"
+#include "CurveToString/mlCurveToString.h"
 
 ML_START_NAMESPACE
 
@@ -34,6 +35,7 @@ int MLCMCurveListInit (void)
 
   CMCurveFilter::initClass();
   StringToCurve::initClass();
+  CurveToString::initClass();
 
   return 1;
 }

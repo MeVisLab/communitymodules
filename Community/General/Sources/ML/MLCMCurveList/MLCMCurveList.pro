@@ -33,11 +33,13 @@ HEADERS += \
     MLCMCurveListSystem.h \
     CMCurveFilter/mlCMCurveFilter.h \
     StringToCurve/mlStringToCurve.h \
+    CurveToString/mlCurveToString.h
 
 SOURCES += \
     MLCMCurveListInit.cpp \
     CMCurveFilter/mlCMCurveFilter.cpp \
     StringToCurve/mlStringToCurve.cpp \
+    CurveToString/mlCurveToString.cpp
 
 # additional files that are NOT compiled
 RELATEDFILES += \
