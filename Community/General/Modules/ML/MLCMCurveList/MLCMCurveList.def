@@ -100,7 +100,7 @@ MLModule StringToCurve {
   status         = "work-in-progress"
   comment        = "Convert a string into a curve"
   keywords       = "string curve convert curvelist curvedata"
-  seeAlso        = "PrintCurves"
+  seeAlso        = "PrintCurves CurveToString"
   documentation  = "$(LOCAL)/StringToCurve/StringToCurve.html"
   exampleNetwork = "$(LOCAL)/StringToCurve/StringToCurveExample.mlab"
 
@@ -116,3 +116,33 @@ Window {
 }
 
 } // MLModule StringToCurve
+
+
+//----------------------------------------------------------------------------------
+// MLModule CurveToString
+//----------------------------------------------------------------------------------
+MLModule CurveToString {
+  DLL            = "MLCMCurveList"
+  group          = "BIGR"
+  genre          = Diagram
+  author         = "Reinhard Hameeteman"
+  status         = "work-in-progress"
+  comment        = "Convert a curve into a string"
+  keywords       = "string curve convert curvelist curvedata"
+  seeAlso        = "PrintCurves StringToCurve"
+  documentation  = "$(LOCAL)/CurveToString/CurveToString.html"
+  exampleNetwork = "$(LOCAL)/CurveToString/CurveToStringExample.mlab"
+
+Window {
+  expandY = Yes
+  Box {
+    expandY = Yes
+    Horizontal {
+      Field curveSeparator { title = curveSeparators }
+      Field valueSeparator { title = valueSeparators }
+    }
+    TextView curveString {  expandY = Yes }
+  }
+}
+
+} // MLModule CurveToString
