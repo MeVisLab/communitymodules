@@ -41,7 +41,7 @@ module FieldBypass {
       window _default {
         geometry = "319 620 190 298"
         sizeHint = "190 298"
-        wasOpen = yes
+        wasOpen = no
         wasActive = no
       }
     }
@@ -180,7 +180,7 @@ module FileInformation {
     exists = FALSE
     isDirectory = FALSE
     isReadable = FALSE
-    isWritable = TRUE
+    isWritable = FALSE
   }
   internalFields = ""
 }
@@ -221,8 +221,8 @@ module FieldIterator {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "136 235 422 321"
-        sizeHint = "422 321"
+        geometry = "136 235 415 317"
+        sizeHint = "415 317"
         wasOpen = no
         wasActive = no
       }
@@ -233,7 +233,7 @@ module FieldIterator {
     fieldNames = ""
     fieldValues = ""
     fieldSeparator = [,;]
-    valueSeparator = "\\n\\r|\\r\\n|[\\n\\r\\\\]"
+    valueSeparator = "\\n"
     valueHeader = FALSE
     numValues = 0
     indexTranslation = 0

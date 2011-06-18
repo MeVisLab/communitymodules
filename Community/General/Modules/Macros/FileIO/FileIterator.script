@@ -89,6 +89,9 @@ Interface {
     Field loop      { internalName = FieldIterator.loop}
     Field running   { internalName = FieldIterator.running}
     Field autoReset { internalName = FieldIterator.autoReset }
+    
+    // File list
+    Field showText { type = Bool value = False }
      
     // FileInformation
     Field dirname   { internalName = FileInformation.dirname }
@@ -296,14 +299,24 @@ Window {
   }
   Vertical "List" {
     tooltip = "You can also connect an external list to the Files label"
-    FieldLabel externalList { title = "Files:" }
+    Horizontal {
+      expandY = No
+      FieldLabel externalList { title = "Files:" }
+      Field showText { title = text alignX = Right }
+    }
     TextView fileList {
+      visibleOn = showText
       tooltip = "Be carefull with the line numbers! Subtract 1 for the index number!"
       title = ""
       autoApply = Yes
       showLineNumbers = Yes
       vscroller = Auto
       hscroller = Auto
+    }
+    ListBox fileList {
+      visibleOn = "*!showText*"
+      rowSeparator = "\\n"
+      doubleClickedCommand = "*py:ctx.field('curIndex').value=args[0]*"
     }
   }
   Vertical Name {
