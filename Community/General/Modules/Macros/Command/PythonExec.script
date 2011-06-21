@@ -66,6 +66,8 @@ Commands {
 }
 
 Window {
+  name = WindowCtrl
+  wakeupCommand = SetWindowSize
   Vertical {
     expandY = Yes
     expandY = Yes
@@ -81,6 +83,7 @@ Window {
           droppedObjectCommand = FieldDroped
           syntaxHighlighting = Python
           showLineNumbers = Yes
+          hscroller = On
           tooltip = "Drop any field on this window 
 and it will be added as nw.field(<fieldName>).value
 Trigger fields are added as nw.field(<fieldName>).touch()
@@ -109,6 +112,8 @@ add a loop over all values of the iterator."
       CheckBox onArgChange { title = "Listen to Arg changes" }
     }
   } 
+  shouldCloseCommand = SaveWindowSize
+  Execute = SetWindowSize
 }
 
 

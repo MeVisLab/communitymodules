@@ -37,6 +37,26 @@
 #----------------------------------------------------------------------------------
 
 from mevis import *
+from math import log
+width = 800
+height = 200
+
+def SaveWindowSize(arg=None):
+  global width,height
+  width = ctx.control("WindowCtrl").width()
+  height= ctx.control("WindowCtrl").height()
+  return
+
+def SetWindowSize():
+  global width,height
+  #ctx.callLater(3, 'SetSize' )
+  return
+
+def SetSize():
+  ctx.control("WindowCtrl").setWidth( width )
+  ctx.control("WindowCtrl").setHeight( height )
+  ctx.control("WindowCtrl").updateFrame()
+  return
 
 def Run( field = None):
   if ( field != ctx.field("run") and not ctx.field('onArgChange').boolValue() ) : return
@@ -69,19 +89,21 @@ def Run( field = None):
 
 def FieldDroped( object ) :
   command  = ctx.field("command").value
+  lastLine = command.split('\n')[-1]
+  spaces = len(lastLine)-len(lastLine.lstrip())
   if ( ( object.owner().fullName().find( 'FieldIterator' ) != -1 or
          object.owner().fullName().find( 'FileIterator' ) != -1 ) and
        object.name == 'newValue' ) :
     moduleName = object.owner().name
-    command += "\nfor i"+moduleName+" in range( nw.field('" + moduleName+".numValues').value  ) :"
-    command += "\n  if MLAB.shouldStop() : break"    
-    command += "\n  nw.field('"+moduleName+".curIndex').value = i"+moduleName
-    command += "\n  print nw.field('"+moduleName+".curValue').stringValue()"
+    command += "\n"+spaces*" "+"for i"+moduleName+" in range( nw.field('" + moduleName+".numValues').value  ) :"
+    command += "\n"+spaces*" "+"  if MLAB.shouldStop() : break"    
+    command += "\n"+spaces*" "+"  nw.field('"+moduleName+".curIndex').value = i"+moduleName
+    command += "\n"+spaces*" "+"  print nw.field('"+moduleName+".curValue').stringValue()"
   else: 
     if object.getType() == 'Trigger' :
-      command +=  "\nnw.field('" + object.fullName() + "').touch()"
+      command +=  "\n"+spaces*" "+"nw.field('" + object.fullName() + "').touch()"
     else :
-      command +=  "\nnw.field('" + object.fullName() + "').value"
+      command +=  "\n"+spaces*" "+"nw.field('" + object.fullName() + "').value"
   ctx.field("command").value = command
   return
 
