@@ -112,18 +112,18 @@ Window  {
         expandX = no
         Button { 
           tooltip = "Update the module list" 
-          image = $(MLAB_MeVisLab_Standard)/Modules/IDE/images/refresh.png 
+          image = $(MLAB_MeVisLab_IDE)/Modules/IDE/images/refresh.png 
           command = BuildModuleTreeView 
         }
         Button { 
           tooltip = "Add field to trigger list"
-          image="$(MLAB_MeVisLab_Standard)/Modules/IDE/images/connectRightOff.png"
+          image="$(MLAB_MeVisLab_IDE)/Modules/IDE/images/connectRightOff.png"
           command = AddFields 
         }
         Button { 
           tooltip = "Remove field from trigger list"
           command = DeleteFields 
-          image="$(MLAB_MeVisLab_Standard)/Modules/IDE/images/connectLeftOn.png"
+          image="$(MLAB_MeVisLab_IDE)/Modules/IDE/images/connectLeftOn.png"
           style { 
             colors { buttonText = red } 
             titleFont { weight = Bold } 
