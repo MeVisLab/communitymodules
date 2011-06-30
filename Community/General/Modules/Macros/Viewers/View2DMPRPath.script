@@ -71,6 +71,7 @@ e.g. for diagram overlays"
     Field showOutputs     { type = bool value = False }
     Field timePoint       { internalName = SoView2D.timePoint }
     Field currentFrame    { internalName = MPRPath.currentKeyFrame }
+    Field maxFrames       { internalName = MPRPath.maxKeyFrame }
     Field currentPlane    { internalName = MPRPath.plane }
     Field rotation        { internalName = MPRPath.rotation }
     Field translation     { internalName = MPRPath.translation }
