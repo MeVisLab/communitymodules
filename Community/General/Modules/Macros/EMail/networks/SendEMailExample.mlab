@@ -1,0 +1,60 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Comment {
+  internal  {
+    frame = "-163 -27 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "245 191 256 205"
+        sizeHint = "256 205"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "Warning:
+
+Sending through a gmail account does not work from within the UMC Utrecht network (port 587 is blocked)
+
+Sending through a UMC Utrecht account does not work from outside the UMC Utrecht network (authentication fails)"
+  }
+  internalFields = ""
+}
+module SendEMail {
+  internal  {
+    frame = "-47 -27 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "709 186 500 442"
+        sizeHint = "264 442"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SendEMail
+    serverSettings = UMCUtrecht
+    serverAddress = mail.umcutrecht.nl
+    serverPort = 25
+    serverAuthentication = None
+    serverUsername = mstrale2
+    toAddress = "marijn@isi.uu.nl"
+    fromAddress = "m.vanstralen-2@umcutrecht.nl"
+    subject = "A test"
+    body = "This is a test message.
+Marijn
+
+"
+    attachment = ""
+  }
+  internalFields = ""
+}
+connections = ""
+networkModel = ""

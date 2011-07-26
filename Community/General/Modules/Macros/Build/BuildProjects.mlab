@@ -1,0 +1,340 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module FileDirectory {
+  internal  {
+    frame = "493 377 104 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "296 463 501 558"
+        sizeHint = "501 566"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = proFiles
+    rootPath = D:/Documents/Mevislab/Packages/ISI/Cardiac
+    recursive = TRUE
+    maxRecursionDepth = -1
+    fileType = Files
+    joinImagePairs = FALSE
+    include = "**.pro*"
+    includeRegExp = FALSE
+    predefined = void
+    exclude = ""
+    excludeRegExp = FALSE
+    ignoreCase = TRUE
+    fileList = "D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISILeftVentricleRemoveMitralRing/ISILeftVentricleRemoveMitralRing.pro
+D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro"
+    dirMode = Absolute
+  }
+  internalFields = ""
+}
+module StringUtils {
+  internal  {
+    frame = "333 165 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "190 690 983 331"
+        sizeHint = "370 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils
+    operationType = Concatenate
+    string1 = /
+    string2 = Build
+    string3 = " release "
+    string4 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = TRUE
+    toggle4 = TRUE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module CallApplication {
+  internal  {
+    frame = "481 161 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "255 275 1110 364"
+        sizeHint = "277 364"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = buildRelease
+    executable = "C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe"
+    arguments = "/Rebuild debug D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj"
+    workingDirectory = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    outputToLogWindow = FALSE
+    logWindow = ""
+  }
+  internalFields = ""
+}
+module StringUtils {
+  internal  {
+    frame = "329 317 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "299 280 1076 331"
+        sizeHint = "234 204"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils1
+    operationType = Replace
+    string1 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    string2 = .pro
+    string3 = .vcproj
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "329 229 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "235 600 1076 331"
+        sizeHint = "234 204"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils2
+    operationType = Replace
+    string1 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    string2 = .pro
+    string3 = .bat
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module FieldIterator {
+  internal  {
+    frame = "497 313 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "948 286 415 317"
+        sizeHint = "415 317"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = projectIter
+    fieldNames = ""
+    fieldValues = "D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISILeftVentricleRemoveMitralRing/ISILeftVentricleRemoveMitralRing.pro
+D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro"
+    fieldSeparator = [,;]
+    valueSeparator = "\\n\\r|\\r\\n|[\\n\\r\\\\]"
+    valueHeader = FALSE
+    numValues = 2
+    indexTranslation = 0
+    curIndex = 1
+    curValue = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    newValueEnable = FALSE
+    verbose = FALSE
+    delay = 1
+    loop = FALSE
+    running = FALSE
+    autoReset = FALSE
+  }
+  internalFields = ""
+}
+module FileInformation {
+  internal  {
+    frame = "665 317 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "601 237 655 306"
+        sizeHint = "236 306"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileInformation
+    path = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    dirname = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    filename = ISIPointTrackingDP2DT.pro
+    basename = ISIPointTrackingDP2DT
+    extension = .pro
+    type = File
+    size = 1576
+    createDate = 2010-09-24T15:54:11
+    exists = TRUE
+    isDirectory = FALSE
+    isReadable = TRUE
+    isWritable = TRUE
+  }
+  internalFields = ""
+}
+module CallApplication {
+  internal  {
+    frame = "481 97 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "200 217 1057 364"
+        sizeHint = "277 364"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = buildDebug
+    executable = "C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe"
+    arguments = "/Rebuild debug D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj"
+    workingDirectory = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    outputToLogWindow = FALSE
+    logWindow = ""
+  }
+  internalFields = ""
+}
+module StringUtils {
+  internal  {
+    frame = "329 101 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "193 246 1075 331"
+        sizeHint = "370 331"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils3
+    operationType = Concatenate
+    string1 = /
+    string2 = Rebuild
+    string3 = " debug "
+    string4 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj
+    string5 = "*"*"
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = TRUE
+    toggle4 = TRUE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module CallApplication {
+  internal  {
+    frame = "481 225 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "939 406 717 364"
+        sizeHint = "277 364"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = callBAT
+    executable = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.bat
+    arguments = ""
+    workingDirectory = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    outputToLogWindow = FALSE
+    logWindow = ""
+  }
+  internalFields = ""
+}
+connections  {
+  StringUtils.string4 = StringUtils1.result
+  buildRelease.arguments = StringUtils.result
+  buildRelease.workingDirectory = FileInformation.dirname
+  StringUtils1.string1 = projectIter.curValue
+  StringUtils2.string1 = projectIter.curValue
+  projectIter.fieldValues = proFiles.fileList
+  FileInformation.path = projectIter.curValue
+  buildDebug.arguments = StringUtils3.result
+  buildDebug.workingDirectory = FileInformation.dirname
+  StringUtils3.string4 = StringUtils1.result
+  callBAT.executable = StringUtils2.result
+  callBAT.workingDirectory = FileInformation.dirname
+}
+networkModel = ""

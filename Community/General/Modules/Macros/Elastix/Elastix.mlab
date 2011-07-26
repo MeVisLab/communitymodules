@@ -1,0 +1,230 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module itkImageFileReader {
+  internal  {
+    frame = "945 165 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "756 465 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader3
+    fileDataType = matf3
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = "Invalid path"
+    unresolvedFileName = ""
+  }
+}
+module CallElastix {
+  internal  {
+    frame = "653 237 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "696 176 310 756"
+        sizeHint = "310 756"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CallElastix
+    elastixEXE = elastix.exe
+    transformixEXE = transformix.exe
+    movingImage = C:/Temp/moving.mhd
+    fixedImage = C:/Temp/fixed.mhd
+    movingMask = ""
+    fixedMask = ""
+    outputDirectory = C:/Temp/
+    parameterFile1 = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastix/networks/ExampleParameters.txt
+    parameterFile2 = ""
+    parameterFile3 = ""
+    otherArguments = ""
+    SubProcessOutput = ""
+    numberOfThreads = 2
+    initialTransformationFile = ""
+    sendOutputToLogWindow = TRUE
+    createDeformationImage = TRUE
+    createJacobianImage = TRUE
+    createJacobianMatrixImage = TRUE
+    status = initialized
+    transformParameterFile = C:/Temp/TransformParameters.0.txt
+  }
+  internalFields = ""
+}
+module itkImageFileReader {
+  internal  {
+    frame = "793 165 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "756 465 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader2
+    fileDataType = float
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = "Invalid path"
+    unresolvedFileName = ""
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "481 165 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "600 651 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "704 361 691 600"
+        sizeHint = "260 223"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader1
+    fileDataType = float
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = "Invalid path"
+    unresolvedFileName = ""
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "797 309 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "519 238 267 382"
+        sizeHint = "267 382"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter3
+    useCompression = TRUE
+    correctSubVoxelShift = FALSE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = ""
+    unresolvedFileName = C:/Temp/movingmask.mhd
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "693 309 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "519 238 267 382"
+        sizeHint = "267 382"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter2
+    useCompression = TRUE
+    correctSubVoxelShift = FALSE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = ""
+    unresolvedFileName = C:/Temp/fixedmask.mhd
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "589 309 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "519 238 267 382"
+        sizeHint = "267 382"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter1
+    useCompression = TRUE
+    correctSubVoxelShift = FALSE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = ""
+    unresolvedFileName = C:/Temp/moving.mhd
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "497 309 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "519 238 267 382"
+        sizeHint = "267 382"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter
+    useCompression = TRUE
+    correctSubVoxelShift = FALSE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = ""
+    unresolvedFileName = C:/Temp/fixed.mhd
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "645 165 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "744 453 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = vecf3
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = "Invalid path"
+    unresolvedFileName = ""
+  }
+}
+connections = ""
+networkModel = ""

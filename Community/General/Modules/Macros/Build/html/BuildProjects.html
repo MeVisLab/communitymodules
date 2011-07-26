@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Known Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp; 
+  <hr width="100%">
+</center>
+<h2>BuildProjects
+</h2>
+<h3><a name="Purpose"></a>Purpose</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Automatically (re)create project files and compile and link projects for a complete set of MeVisLab packages.  <br>
+<b>Warning:</b> Only implemented for use on Windows with Visual Studio 2005. With some small changes, it can be used for other compilers in Windows as well. No support for Linux and Mac OS. <br>
+</blockquote>
+<h3><a name="Usage"></a>Usage</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Select the root directory of the packages that you would like to build. Make sure that the compiler executable is set correctly and configure the way you would like to (re) build your projects. 
+<b>Warning:</b> It does not check project dependencies. </blockquote>
+<h3><a name="Parameters"></a>Parameters</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+The builds can be configured globally, for all projects.</blockquote>
+<a name="directory"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Directory</b>
+ <br>
+The root directory of the packages to build.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>D:/Documents/Mevislab/Packages/ISI</b>.
+</blockquote>
+  
+<a name="includeSubDirectories"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Include Sub Directories</b>
+ <br>
+Toggle inclusion of subdirectories on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="recursionDepth"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Recursion Depth</b>
+ <br>
+Set the depth of the subdirectory recursion, if applicable.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>-1</b>.
+</blockquote>
+  
+<a name="numberOfProjects"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Number Of Projects</b>
+ <br>
+Shows the total number of projects that was found under the root directory.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>83</b>.
+</blockquote>
+  
+<a name="projectList"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>(No Title)</b>
+ <br>
+Shows the list of projects to be build.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISILeftVentricleRemoveMitralRing/ISILeftVentricleRemoveMitralRing.pro
+D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISILoadTomTecBeutel/ISILoadTomTecBeutel.pro
+D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+D:/Documents/Mevislab/Packages/ISI/Classification/Sources/ML/ISIcvFaceDetection/ISIcvFaceDetection.pro
+D:/Documents/Mevislab/Packages/ISI/Classification/Sources/ML/ISIkNN/ISIkNN.pro
+D:/Documents/Mevislab/Packages/ISI/Examples/Sources/ML/ISIAddImages/ISIAddImages.pro
+D:/Documents/Mevislab/Packages/ISI/Examples/Sources/ML/ISICreateBarcode/ISICreateBarcode.pro
+D:/Documents/Mevislab/Packages/ISI/Examples/Sources/ML/ISIMultiThreadSimpleAverage/ISIMultiThreadSimpleAverage.pro
+D:/Documents/Mevislab/Packages/ISI/Examples/Sources/ML/ISISubtractMeanExample/ISISubtractMeanExample.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIAreaUnderTheCurve/ISIAreaUnderTheCurve.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIBiasFieldCorrection/ISIBiasFieldCorrection.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIcvSaveAVI/ISIcvSaveAVI.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIDiceSimilarityIndex/ISIDiceSimilarityIndex.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIDynamicProgrammingPath/ISIDynamicProgrammingPath.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIEvaluateMetric/ISIEvaluateMetric.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIImageTo1DImage/ISIImageTo1DImage.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIISIParRecLoad/ISIISIParRecLoad.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIITKPhilipsRecParLoad/ISIITKPhilipsRecParLoad.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISILogValue/ISILogValue.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIMaxFlow/ISIMaxFlow.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIMergeQuadrants2D/ISIMergeQuadrants2D.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISINormalizeCurves/ISINormalizeCurves.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIOneDimensionalStatistics/ISIOneDimensionalStatistics.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIPIP/ISIPIP.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIRadiograph/ISIRadiograph.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIShiftImageForShiftedInterpolation/ISIShiftImageForShiftedInterpolation.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISISIFTnD/ISISIFTnD.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISITextureMatching1D/ISITextureMatching1D.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKArrayArithmetic/ISIVTKArrayArithmetic.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKArrayToMLArray/ISIVTKArrayToMLArray.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKIterativeClosestPointTransform/ISIVTKIterativeClosestPointTransform.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKLandmarkTransform/ISIVTKLandmarkTransform.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKPointSetReplacePoints/ISIVTKPointSetReplacePoints.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKPointSetToXMarkerList/ISIVTKPointSetToXMarkerList.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKPointToPointDistance/ISIVTKPointToPointDistance.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKPolyDataMean/ISIVTKPolyDataMean.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKPolyDataReplacePoints/ISIVTKPolyDataReplacePoints.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIVTKSimpleObjWriter/ISIVTKSimpleObjWriter.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIXMarkerListSave/ISIXMarkerListSave.pro
+D:/Documents/Mevislab/Packages/ISI/General/Sources/ML/ISIXMarkerListToVtkPolyData/ISIXMarkerListToVtkPolyData.pro
+D:/Documents/Mevislab/Packages/ISI/Hifu/Sources/ML/ISIFUSDriver/ISIFUSDriver.pro
+D:/Documents/Mevislab/Packages/ISI/Hifu/Sources/ML/ISINeoptixClient/ISINeoptixClient.pro
+D:/Documents/Mevislab/Packages/ISI/Hifu/Sources/ML/ISIPFRTemperatureMap/ISIPFRTemperatureMap.pro
+D:/Documents/Mevislab/Packages/ISI/Hifu/Sources/ML/ISIRealTIClient/ISIRealTIClient.pro
+D:/Documents/Mevislab/Packages/ISI/Neuro/Sources/ML/ISIFANNSegmentation/ISIFANNSegmentation.pro
+D:/Documents/Mevislab/Packages/ISI/Neuro/Sources/ML/ISIStealthLinkWrapper/ISIStealthLinkWrapper.pro
+D:/Documents/Mevislab/Packages/ISI/Neuro/Sources/ML/ISITemporalMeanSquaredDifferenceFilter/ISITemporalMeanSquaredDifferenceFilter.pro
+D:/Documents/Mevislab/Packages/ISI/Neuro/Sources/ML/ISITIPSFilter/ISITIPSFilter.pro
+D:/Documents/Mevislab/Packages/ISI/Registration/Sources/ML/ISIApplyDeformationField/ISIApplyDeformationField.pro
+D:/Documents/Mevislab/Packages/ISI/Registration/Sources/ML/ISIApplyDeformationFieldToPolyData/ISIApplyDeformationFieldToPolyData.pro
+D:/Documents/Mevislab/Packages/ISI/Registration/Sources/ML/ISIInvertDeformationField/ISIInvertDeformationField.pro
+D:/Documents/Mevislab/Packages/ISI/Registration/Sources/ML/ISIVectorFieldToVTKPolyData/ISIVectorFieldToVTKPolyData.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIAAMPoseArrayToMatrix/ISIAAMPoseArrayToMatrix.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIAAMSampleANNLabelArray/ISIAAMSampleANNLabelArray.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIAAMSampleANNPointArray/ISIAAMSampleANNPointArray.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIBuildTextureLookupImage/ISIBuildTextureLookupImage.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIComputeCostsHierarchicalPCAStatisticalShapeModel/ISIComputeCostsHierarchicalPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIComputeCumCostsHierarchicalPCAStatisticalShapeModel/ISIComputeCumCostsHierarchicalPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISICreateAppearance/ISICreateAppearance.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISICreateDeformationFieldWithPolyDatas/ISICreateDeformationFieldWithPolyDatas.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIDecorateHierarchicalPCAStatisticalShapeModel/ISIDecorateHierarchicalPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIGraphCutShapeMatch/ISIGraphCutShapeMatch.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPCAStatisticalShapeModel/ISIHierarchicalPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPCAStatisticalShapeModelToPolyData/ISIHierarchicalPCAStatisticalShapeModelToPolyData.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPolyDataFilter/ISIHierarchicalPolyDataFilter.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIImageToVTKPolyData/ISIImageToVTKPolyData.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIMatrixMultiplicationOfImages/ISIMatrixMultiplicationOfImages.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIPCAStatisticalShapeModel/ISIPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIProcrustesAlignmentFilter/ISIProcrustesAlignmentFilter.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIProjectPointsOnVTKPolyData/ISIProjectPointsOnVTKPolyData.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIRegularizeHierarchicalPCAStatisticalShapeModel/ISIRegularizeHierarchicalPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISISample1DTextureAtSurfacePoints/ISISample1DTextureAtSurfacePoints.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISISampleTextureWithLookup/ISISampleTextureWithLookup.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISITransformHierarchicalPCAStatisticalShapeModel/ISITransformHierarchicalPCAStatisticalShapeModel.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIVTKArrayVTKPolyDataVV/ISIVTKArrayVTKPolyDataVV.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataAddWhiskers/ISIVTKPolyDataAddWhiskers.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataRemoveWhiskers/ISIVTKPolyDataRemoveWhiskers.pro
+D:/Documents/Mevislab/Packages/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataToImage/ISIVTKPolyDataToImage.pro
+D:/Documents/Mevislab/Packages/ISI/ThirdParty/Sources/ann_1.1.2/ANN.pro
+D:/Documents/Mevislab/Packages/ISI/ThirdParty/Sources/fann-2.1.0/fann.pro
+D:/Documents/Mevislab/Packages/ISI/ThirdParty/Sources/gpc/gpc.pro
+D:/Documents/Mevislab/Packages/ISI/ThirdParty/Sources/StealthLinkLibrary/StealthLinkLibrary.pro</b>.
+</blockquote>
+  
+<a name="devenvExecutable"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Devenv Executable</b>
+ <br>
+The compiler executable. For VS2005 it is devenv.exe, for other compilers it might be a different name.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe</b>.
+</blockquote>
+  
+<a name="run"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Run</b>
+ <br>
+Start building the projects.</blockquote>
+<a name="projectFiles"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Project Files</b>
+ <br>
+Choose the mode for project file generation:<br>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<b>Skip:</b> Do not create project files.<br>
+<b>Create:</b> Create the project file(s) only if they do not extist yet.<br>
+<b>Recreate:</b> Alsways (re)create the project file(s).
+</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>Create</b>.
+</blockquote>
+  
+<a name="debug"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Debug</b>
+ <br>
+Choose the mode for the debug version:<br>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<b>Skip:</b> Do not build the debug vesrion.<br>
+<b>Build:</b> Build the debug version only if it is out-of-date or unexisting.<br>
+<b>Rebuild:</b> Alsways (re)build the debug version.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>Build</b>.
+</blockquote>
+  
+<a name="release"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Release</b>
+ <br>
+Choose the mode for the release version:<br>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<b>Skip:</b> Do not build the release vesrion.<br>
+<b>Build:</b> Build the release version only if it is out-of-date or unexisting.<br>
+<b>Rebuild:</b> Alsways (re)build the release version.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>Build</b>.
+</blockquote>
+  
+<a name="progress"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Progress</b>
+ <br>
+Shows the progress of the total build task.</blockquote>
+<h3><a name="Known Bugs"></a>Known Bugs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None</blockquote>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

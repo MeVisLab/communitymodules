@@ -1,0 +1,135 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2011, Image Sciences Institute, UMC Utrecht.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of ISI nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL ISI BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Elastix module definition
+/*!
+// \file    Elastix.def
+// \author  Marijn van Stralen
+// \date    2009-10-15
+*/
+//----------------------------------------------------------------------------------
+
+Interface  {
+  Inputs  {
+    Field fixedImage {
+      //internalName = mhdSave.input0
+      internalName = itkImageFileWriter.input0
+    }
+    Field movingImage {
+      //internalName = mhdSave1.input0
+      internalName = itkImageFileWriter1.input0
+    }
+    Field fixedMask {
+      //internalName = mhdSave2.input0
+      internalName = itkImageFileWriter2.input0
+    }
+    Field movingMask {
+      //internalName = mhdSave3.input0
+      internalName = itkImageFileWriter3.input0
+    }    
+  }
+  Outputs  {
+    Field transformedImage { internalName = itkImageFileReader1.output0 }
+    //Field output1 { internalName = mhdVectorLoad.output0 }
+    Field deformationImage { internalName = itkImageFileReader.output0 }
+    Field jacobianImage { internalName = itkImageFileReader2.output0 }
+    Field jacobianMatrixImage { internalName = itkImageFileReader3.output0 }
+  }
+  Parameters {
+    Field temporaryDirectory { type = string }
+    Field update { type = trigger }
+    Field clear { internalName = CallElastix.clearLog }
+    Field parameterFile1 { internalName = CallElastix.parameterFile1 }
+    Field parameterFile2 { internalName = CallElastix.parameterFile2 }
+    Field parameterFile3 { internalName = CallElastix.parameterFile3 }
+    Field otherArguments { internalName = CallElastix.otherArguments }
+    Field status { type = string value = "initialized" }
+    Field elastixExecutable { internalName = CallElastix.elastixEXE }
+    Field transformixExecutable { internalName = CallElastix.transformixEXE }
+    Field elastixOutput { internalName = CallElastix.SubProcessOutput }
+    Field removeIntermediateFiles {type = bool value = True}
+    Field sendOutputToLogWindowTo { internalName = CallElastix.sendOutputToLogWindow value = True}
+    Field createDeformationField { internalName = CallElastix.createDeformationImage value = True }
+    Field createJacobianImage { internalName = CallElastix.createJacobianImage value = True }
+    Field createJacobianMatrixImage { internalName = CallElastix.createJacobianMatrixImage value = True }
+    Field numberOfThreads { internalName = CallElastix.numberOfThreads }
+    Field initialTransformationFile { internalName = CallElastix.initialTransformationFile }
+    Field resultingTransformationFile {internalName = CallElastix.resultingTransformationFile persistent = No}
+    Field outputImageDataType {internalName = itkImageFileReader1.fileDataType value = "float"}
+    Field succeeded { internalName = CallElastix.succeeded persistent = No}
+  }
+
+}
+
+Commands {
+  source = "$(LOCAL)/Elastix.py"
+  initCommand = initialize
+  FieldListener update { command = runElastix }
+  FieldListener temporaryDirectory { command = checkTemporaryDirectory }
+}
+
+Window {
+  Vertical {
+    expandX = True
+    expandY = True
+    Field elastixExecutable {browseButton = True browseFilter = "\*.exe" expandX = True}
+    Field transformixExecutable {browseButton = True browseFilter = "\*.exe" expandX = True}
+    Field temporaryDirectory { browseButton = True browseMode = directory expandX = True}
+    Field parameterFile1 { browseButton = True browseFilter = "\*.txt" browseMode = open expandX = True}
+    Field parameterFile2 { browseButton = True browseFilter = "\*.txt" browseMode = open expandX = True}
+    Field parameterFile3 { browseButton = True browseFilter = "\*.txt" browseMode = open expandX = True}
+    Field initialTransformationFile { browseButton = True browseFilter = "\*.txt" browseMode = open expandX = True}
+    Field resultingTransformationFile { edit = False expandX = True}
+    Field numberOfThreads { expandX = 1}
+    Field otherArguments { expandX = True}
+    Field outputImageDataType { expandX = 1}
+    Field removeIntermediateFiles {}
+    Field createDeformationField {}
+    Field createJacobianImage {}
+    Field createJacobianMatrixImage {}
+    Field sendOutputToLogWindowTo {}
+    Field succeeded { edit = False}
+    Horizontal {
+      Field update { }
+      Field clear {}
+    }
+    
+    TextView elastixOutput {  
+      //preferredWidth = 800
+      //preferredheight = 400
+      title = "<b><font>Program Messages</font></b>"
+      wrap = off
+      textFormat = Plain
+      console = on
+      edit = False
+      expandx = True
+      expandy = True 
+    }
+    //Field status { edit = False }
+  }
+}

@@ -1,0 +1,152 @@
+ML_DOC_VERSION = 1.0
+ML_DOC_MODULE_NAME = Transformix
+ML_DOC_NUM_SECTIONS = 26
+ML_DOC_SECTION  {
+  NAME = Purpose
+  TYPE = Text
+  DESC = "This module creates a command line call to the Transformix image transformation executable. The input image is saved to the temporary directory. Transformix is called to work on those files, and writes its results in a subdirectory './Transformix'. Consequently, this module reads the Transformix transformation results.
+Please refer to the Elastix website (http://elastix.isi.uu.nl) for the documentation of the Transformix program and all its parameters."
+}
+ML_DOC_SECTION  {
+  NAME = Usage
+  TYPE = Text
+  DESC = "Provide the transformix executable, a working directory and a transformation file. Input a a moving image and press 'Update' to start Transformix. Use any of the other parameters to deviate from default behaviour.<br>
+<br>
+<b>Make sure that if you use multiple instances of this module, that they all have their own working directory!</b>"
+}
+ML_DOC_SECTION  {
+  NAME = Details
+  TYPE = Text
+  DESC = "For detailed documentation of the Transformix parameters, visit http://elastix.isi.uu.nl."
+}
+ML_DOC_SECTION  {
+  NAME = Inputs
+  TYPE = Text
+  DESC = "Elastix has one mandatory input."
+}
+ML_DOC_SECTION  {
+  NAME = input0
+  TYPE = Input
+  SHOW_INFO_LINE = FALSE
+  DESC = "The input image that will be transformed. "
+}
+ML_DOC_SECTION  {
+  NAME = Outputs
+  TYPE = Text
+  DESC = "Transformix has one mandatory output, and three optional outputs."
+}
+ML_DOC_SECTION  {
+  NAME = outputImage
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "The transformed image, defined in the fixed image domain, as defined by the transformation file."
+}
+ML_DOC_SECTION  {
+  NAME = outputDeformationField
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "A vector image, defined in the fixed image domain, that for each voxel at position <b>p</b>_f contains a relative position vector <b>v</b> in world coordinates pointing to the corresponding position in the moving image (<b>p</b>_m):<br>
+<b>p</b>_m = <b>p</b>_f + <b>v</b>"
+}
+ML_DOC_SECTION  {
+  NAME = outputJacobian
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "A float image, defined in the fixed image domain, that contains the determinant of the Jacobian of the transformation. Values smaller than 1 indicate local compression, values larger than 1 indicate local expansion, and 1 means volume preservation. Generation of this image can be enabled or disabled."
+}
+ML_DOC_SECTION  {
+  NAME = outputFullJacobian
+  TYPE = Output
+  DESC = "A matrix image, defined in the fixed image domain, that contains the spatial Jacobian of the transformation.  Generation of this image can be enabled or disabled."
+}
+ML_DOC_SECTION  {
+  NAME = Parameters
+  TYPE = Text
+  DESC = "The parameters for the transformation itself should be provided through a parameter file, that can be generated using Elastix."
+}
+ML_DOC_SECTION  {
+  NAME = instanceName
+  TYPE = Parameter
+  ON = FALSE
+  SHOW_INFO_LINE = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = tranformixExecutable
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The Transformix executable. It can be downloaded from http://www.isi.uu.nl. <br>
+If the directory that contains Transformix has been added to the path, just the transformix executable filename suffices."
+}
+ML_DOC_SECTION  {
+  NAME = workingDirectory
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The directory in which the input and output images, and the transformix log and parameter files will be saved."
+}
+ML_DOC_SECTION  {
+  NAME = transformationFile
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The parameterization of the transformation. Typical use of this module links the 'Resulting transformation file' of an Elastix module to this field."
+}
+ML_DOC_SECTION  {
+  NAME = autoUpdateTransformationFile
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "On change of the working directory, the transformation file will be automatically searched. "
+}
+ML_DOC_SECTION  {
+  NAME = createImage
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creation of the transformed output image on/off."
+}
+ML_DOC_SECTION  {
+  NAME = createDeformationField
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creating the defrmation field output on/off."
+}
+ML_DOC_SECTION  {
+  NAME = createJacobianField
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creating the Jacobian image output on/off."
+}
+ML_DOC_SECTION  {
+  NAME = createJacobianMatrixField
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creating the Jacobian matrix image output on/off."
+}
+ML_DOC_SECTION  {
+  NAME = update
+  TYPE = Parameter
+  DESC = "Call transformix (command line call)."
+}
+ML_DOC_SECTION  {
+  NAME = deleteFiles
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Experimental. Delete intermediate files generated by Transformix and this module."
+}
+ML_DOC_SECTION  {
+  NAME = "Events And Interaction"
+  TYPE = Text
+  DESC = "This module may be used together with the ElastixParameterFile and Elastix modules."
+}
+ML_DOC_SECTION  {
+  NAME = Example
+  TYPE = Text
+  DESC = "See the example network."
+}
+ML_DOC_SECTION  {
+  NAME = "Tips And Tricks"
+  TYPE = Text
+  DESC = "Use multiple instances of this module by defining a separate working directory for each instance."
+}
+ML_DOC_SECTION  {
+  NAME = "Known Bugs"
+  TYPE = Text
+  DESC = "None. Transformix bugs will not be enumerated here ;-)"
+}

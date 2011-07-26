@@ -1,0 +1,144 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2011, Image Sciences Institute, UMC Utrecht.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of ISI nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL ISI BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module CallElastix
+/*!
+// \file    CallElastix.script
+// \author  Marijn van Stralen
+// \date    2009-10-15
+//
+// Calls elastix using command line interface
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface  {
+   Inputs {     
+   }
+   Outputs = ""
+   Parameters {
+     Field elastixEXE { internalName = elastix.executable value = "elastix.exe"}
+     Field transformixEXE { internalName = transformix.executable value = "transformix.exe"}
+     Field movingImage { type = string value = "//isis/user/mevis/Data/C60.mhd"}
+     Field fixedImage { type = string value = "//isis/user/mevis/Data/C60-rotated.mhd"}
+     Field movingMask { type = string value = ""}
+     Field fixedMask { type = string value = ""}
+     Field outputDirectory { internalName = elastix.workingDirectory value = "C:/Temp"}
+     Field parameterFile1 { type = string value = "$(LOCAL)/networks/parameters_Rigid.txt"}
+     Field parameterFile2 { type = string value = ""}
+     Field parameterFile3 { type = string value = ""}
+     Field otherArguments { type = string value = ""}
+     Field SubProcessOutput{ internalName = elastix.logWindow}
+     Field numberOfThreads { type = Enum values = "Default, 1, 2, 3, 4"}
+     Field initialTransformationFile {type = String value = ""}
+     Field resultingTransformationFile {type = String value = "" persistent = No}
+         
+     //Field test { type = trigger }
+     Field callElastix { type = trigger }
+     //Field killSubProcess { type = trigger }
+     Field clearLog { internalName = elastix.clear }
+     Field sendOutputToLogWindow { internalName = elastix.outputToLogWindow value = true }
+
+     Field createDeformationImage { type = bool  value = true }
+     Field createJacobianImage { type = bool  value = true }
+     Field createJacobianMatrixImage { type = bool  value = true }
+          
+     Field status { type = string value = "initialized" }
+     Field succeeded { type = Bool value = False persistent = No}
+     
+     Field transformParameterFile { type = string }
+   }
+}
+
+Commands {
+   source = $(LOCAL)/CallElastix.py
+  
+  //FieldListener test {
+  //  command = testButton
+  //}
+  FieldListener callElastix {
+    command = callElastix
+  }
+  //FieldListener killSubProcess {
+  //  command = killSubProcess
+  //}
+  FieldListener clearLog {
+    command = clearLog
+  }
+  FieldListener outputDirectory { command = checkTemporaryDirectory }
+}
+
+Window {
+   Vertical Elastix {
+     Field elastixEXE { browseButton = True browseMode = open browseFilter = "\*.exe" }
+     Field transformixEXE { browseButton = True browseMode = open browseFilter = "\*.exe" }
+     Field fixedImage { browseButton = True browseMode = open browseFilter = "\*.mhd" }
+     Field movingImage { browseButton = True browseMode = open browseFilter = "\*.mhd" }
+     Field fixedMask { browseButton = True browseMode = open browseFilter = "\*.mhd" }
+     Field movingMask { browseButton = True browseMode = open browseFilter = "\*.mhd" }
+     Field outputDirectory { browseButton = True browseMode = directory }
+     Field parameterFile1 { browseButton = True browseMode = open browseFilter = "\*.txt" }
+     Field parameterFile2 { browseButton = True browseMode = open browseFilter = "\*.txt" }
+     Field parameterFile3 { browseButton = True browseMode = open browseFilter = "\*.txt" }
+     //Horizontal { alignGroupX = parameterFile3 Label  { title = "Number of threads:"} ButtonBar numberOfThreads {     } }
+     Field initialTransformationFile { browseButton = True browseFilter = "\*.txt" browseMode = open expandX = True}
+     Field resultingTransformationFile { edit = False expandX = True}
+     Field numberOfThreads { expandX = 1}
+     Field otherArguments { expandY = True }
+     Field createDeformationImage { enabled = True }
+     Field createJacobianImage { enabled = True }          
+     Field createJacobianMatrixImage { enabled = True }          
+     Horizontal {
+       //Field test { }
+       Field callElastix { }
+       //Field killSubProcess { }  
+       Field clearLog {}
+     }
+     Field sendOutputToLogWindow {  }
+     TextView SubProcessOutput {
+       //preferredWidth = 800
+       //preferredheight = 400
+       title = "<b><font>Program Messages</font></b>"
+       wrap = off
+       textFormat = Plain
+       console = on
+       edit = False
+       expandy = Expanding
+     }
+     Field succeeded { edit = False }
+     Field status { edit = False }
+   }
+
+}
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
+//# owner: MeVis
+//# date: 2009-06-10T03:33:37
+//# hash: OJEV63NkIpl7wX2nwpNoLpXoODIa92JETZ3j1NpI2O+ptbhbjvTaWYjh4XOeCM/8Gra7QaTkLl9e9+hQn9kMEg==
+//# MeVis end
+

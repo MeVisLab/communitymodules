@@ -1,0 +1,60 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ISICallElastix {
+  internal  {
+    frame = "557 333 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "757 182 681 642"
+        sizeHint = "681 642"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ISICallElastix
+    elastixEXE = elastix.exe
+    movingImage = "//isis/user/mevis/Data/C60.mhd"
+    fixedImage = "//isis/user/mevis/Data/C60-rotated.mhd"
+    movingMask = ""
+    fixedMask = ""
+    outputDirectory = C:/Temp
+    parameterFile1 = D:/Documents/Mevislab/ISI/General/Modules/Macros/ISIISICallElastix/networks/parameters_Rigid.txt
+    parameterFile2 = ""
+    parameterFile3 = ""
+    otherArguments = ""
+    SubProcessOutput = ""
+    sendOutputToLogWindow = TRUE
+    status = Done
+  }
+  internalFields = ""
+}
+module Comment {
+  internal  {
+    frame = "261 309 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "281 453 256 209"
+        sizeHint = "256 209"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Comment
+    comment = "1. Please check whether the directory containing 'elastix.exe' is in your PATH.
+2. Browse to an example fixed and moving image.
+3. Add masks if needed.
+4. Browse to a parameter file
+5. Press 'Call Elastix'"
+  }
+  internalFields = ""
+}
+connections = ""
+networkModel = ""

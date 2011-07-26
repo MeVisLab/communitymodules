@@ -22,3 +22,11 @@ ModuleGroup BIGR {
   type = std
   shy = false
 }
+
+ModuleGroup ISI {
+  owner = "Image Sciences Institute, ISI, Imaging Division, University Medical Center, Utrecht, The Netherlands"
+  title = "ISI Modules"
+  comment = "Internally developed modules of ISI"
+  type = std
+  shy = false
+}

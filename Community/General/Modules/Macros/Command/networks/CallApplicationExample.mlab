@@ -1,0 +1,29 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module CallApplication {
+  internal  {
+    frame = "577 341 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "890 219 533 370"
+        sizeHint = "277 370"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CallApplication
+    executable = ipconfig
+    arguments = /all
+    workingDirectory = ""
+    outputToLogWindow = TRUE
+    logWindow = ""
+  }
+  internalFields = ""
+}
+connections = ""
+networkModel = ""

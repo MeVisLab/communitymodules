@@ -1,0 +1,242 @@
+ML_DOC_VERSION = 1.0
+ML_DOC_MODULE_NAME = Elastix
+ML_DOC_NUM_SECTIONS = 40
+ML_DOC_SECTION  {
+  NAME = Purpose
+  TYPE = Text
+  DESC = "This module creates a command line call to the Elastix and Transformix image registration executables. Input images are saved to the temporary directory. Elastix is called to work on those files, and writes its results also in that directory. Consequently, this module reads the Elastix registration results.
+Please refer to the Elastix website (http://elastix.isi.uu.nl) for the documentation of that program and all its parameters."
+}
+ML_DOC_SECTION  {
+  NAME = Usage
+  TYPE = Text
+  DESC = "Provide the elastix and transformix executable, a temporary directory and a parameter file. Input a fixed and a moving image and press 'Update' to start Elastix. Use any of the other parameters to deviate from default behaviour.<br>
+<br>
+<b>Make sure that if you use multiple instances of this module, that they all have their own temporary directory!</b>"
+}
+ML_DOC_SECTION  {
+  NAME = Details
+  TYPE = Text
+  DESC = "For detailed documentation of the Elastix parameters, visit http://elastix.isi.uu.nl."
+}
+ML_DOC_SECTION  {
+  NAME = Inputs
+  TYPE = Text
+  DESC = "Elastix has two mandatory, and two optional inputs."
+}
+ML_DOC_SECTION  {
+  NAME = fixedImage
+  TYPE = Input
+  SHOW_INFO_LINE = FALSE
+  DESC = "The fixed, template, target image. Or whatever terminology you would like to use for this unchanged image. "
+}
+ML_DOC_SECTION  {
+  NAME = movingImage
+  TYPE = Input
+  SHOW_INFO_LINE = FALSE
+  DESC = "The moving, floating, source image. Or whatever terminology you would like to use for this changing image. The moving image will be optimally matched to the fixed image. "
+}
+ML_DOC_SECTION  {
+  NAME = fixedMask
+  TYPE = Input
+  SHOW_INFO_LINE = FALSE
+  DESC = "Optinal binary mask for the fixed image. Voxel values of 0 denote voxels outside the mask, anything larger is inside the mask."
+}
+ML_DOC_SECTION  {
+  NAME = movingMask
+  TYPE = Input
+  SHOW_INFO_LINE = FALSE
+  DESC = "Optional binary mask for the mocing image. Voxel values of 0 denote voxels outside the mask, anything larger is inside the mask."
+}
+ML_DOC_SECTION  {
+  NAME = Outputs
+  TYPE = Text
+  DESC = "Elastix has one mandatory output, and three optional outputs."
+}
+ML_DOC_SECTION  {
+  NAME = transformedImage
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "The transformed moving image, defined in the fixed image domain."
+}
+ML_DOC_SECTION  {
+  NAME = deformationImage
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "A vector image, defined in the fixed image domain, that for each voxel at position <b>p</b>_f contains a relative position vector <b>v</b> in world coordinates pointing to the corresponding position in the moving image (<b>p</b>_m):<br>
+<b>p</b>_m = <b>p</b>_f + <b>v</b>"
+}
+ML_DOC_SECTION  {
+  NAME = jacobianImage
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "A float image, defined in the fixed image domain, that contains the determinant of the Jacobian of the transformation. Values smaller than 1 indicate local compression, values larger than 1 indicate local expansion, and 1 means volume preservation. Generation of this image can be enabled or disabled."
+}
+ML_DOC_SECTION  {
+  NAME = jacobianMatrixImage
+  TYPE = Output
+  SHOW_INFO_LINE = FALSE
+  DESC = "A matrix image, defined in the fixed image domain, that contains the spatial Jacobian of the transformation.  Generation of this image can be enabled or disabled."
+}
+ML_DOC_SECTION  {
+  NAME = Parameters
+  TYPE = Text
+  DESC = "The parameters for the Elastix registration itself should be provided through a parameter file, that can be generated using the ElastixParameterFile module."
+}
+ML_DOC_SECTION  {
+  NAME = instanceName
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = temporaryDirectory
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The directory in which the input and output images, and the elastix log and parameter files will be saved."
+}
+ML_DOC_SECTION  {
+  NAME = update
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Call elastix (command line call)."
+}
+ML_DOC_SECTION  {
+  NAME = clear
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Clear the program messages window."
+}
+ML_DOC_SECTION  {
+  NAME = parameterFile1
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The first elastix parameter file. Multiple parameter files can be assigned. If more than one, Elastix will run multiple registrations, each registration starts with the resulting transformation of the previous registration as its initial transformation.<br>
+If you would like to concatenate more than three registrations, add more Elastix modules to your network and connect the 'Resulting transformation file' field to the 'Initial transformation file' field of the next Elastix module instance."
+}
+ML_DOC_SECTION  {
+  NAME = parameterFile2
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Optional second parameter file."
+}
+ML_DOC_SECTION  {
+  NAME = parameterFile3
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Optional third parameter file."
+}
+ML_DOC_SECTION  {
+  NAME = otherArguments
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Add any other command line configuration options in this field. "
+}
+ML_DOC_SECTION  {
+  NAME = status
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = elastixExecutable
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The Elastix executable. It can be downloaded from http://www.isi.uu.nl. <br>
+If the directory that contains Elastix has been added to the path, just the elastix executable filename suffices."
+}
+ML_DOC_SECTION  {
+  NAME = transformixExecutable
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The Transformix executable. It can be downloaded from http://www.isi.uu.nl. <br>
+If the directory that contains Transformix has been added to the path, just the transformix executable filename suffices."
+}
+ML_DOC_SECTION  {
+  NAME = elastixOutput
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Command line output of the Elastix executable. <br>
+<b>Warning:</b> Processing of this output is slow! If you don't need the output, disable printing of the elastix output to this window by disabling 'Send output to log window'. It may slow down your registration. "
+}
+ML_DOC_SECTION  {
+  NAME = removeIntermediateFiles
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Experimental. Tries to remove any generated files during registration, that are not necessary to do any further processing. Disable this option if find any problems usnig this module."
+}
+ML_DOC_SECTION  {
+  NAME = sendOutputToLogWindowTo
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle writing the elastix output to the program messages window. 
+<b>Warning:</b> Processing of this output is slow! If you don't need the output, disable printing of the elastix output to this window by disabling 'Send output to log window'. It may slow down your registration. "
+}
+ML_DOC_SECTION  {
+  NAME = createDeformationField
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creating the defrmation field output on/off."
+}
+ML_DOC_SECTION  {
+  NAME = createJacobianImage
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creating the Jacobian image output on/off."
+}
+ML_DOC_SECTION  {
+  NAME = createJacobianMatrixImage
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle creating the Jacobian matrix image output on/off."
+}
+ML_DOC_SECTION  {
+  NAME = numberOfThreads
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Define the maximum number of threads used by Elastix and Transformix."
+}
+ML_DOC_SECTION  {
+  NAME = initialTransformationFile
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Optional. Provide a transformation file that defines the transforamtion from which the registration will start. This can be the output of a previous Elastix registration."
+}
+ML_DOC_SECTION  {
+  NAME = resultingTransformationFile
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The parameterization of the resulting final transformation computed by Elastix. "
+}
+ML_DOC_SECTION  {
+  NAME = outputImageDataType
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Defines the data type of the itkImageFileReader that reads the result image. It is not automatically adapted to the output type that is written by Elastix."
+}
+ML_DOC_SECTION  {
+  NAME = succeeded
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Indicates whether the registration was successfully ended. This is just a check on the resulting elastix log file. It is in no way a check on the qualitative result of the image registration."
+}
+ML_DOC_SECTION  {
+  NAME = "Events And Interaction"
+  TYPE = Text
+  SHOW_INFO_LINE = FALSE
+  DESC = "This module may be used together with the ElastixParameterFile and Transformix modules."
+}
+ML_DOC_SECTION  {
+  NAME = Example
+  TYPE = Text
+  DESC = "See the example network."
+}
+ML_DOC_SECTION  {
+  NAME = "Tips And Tricks"
+  TYPE = Text
+  SHOW_INFO_LINE = FALSE
+  DESC = "Use multiple instances of this module by defining a separate temporary directory for each instance."
+}
+ML_DOC_SECTION  {
+  NAME = "Known Bugs"
+  TYPE = Text
+  DESC = "None. Elastix bugs will not be enumerated here ;-)"
+}

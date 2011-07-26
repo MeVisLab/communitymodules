@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Details">Details</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Inputs">Inputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Outputs">Outputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Events And Interaction">Events And Interaction</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Example">Example</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Tips And Tricks">Tips And Tricks</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Known Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp; 
+  <hr width="100%">
+</center>
+<h2>CallElastix
+</h2>
+<h3><a name="Purpose"></a>Purpose</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+This module creates a command line call to the Elastix and Transformix image registration executables. 
+Please refer to the Elastix website (http://elastix.isi.uu.nl) for the documentation of that program and all its parameters.</blockquote>
+<h3><a name="Usage"></a>Usage</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Provide the elastix and transformix executable, two input images, an output directory and a parameter file. Input a fixed and a moving image and press 'Update' to start Elastix. Use any of the other parameters to deviate from default behaviour.<br>
+<br>
+<b>Make sure that if you use multiple instances of this module, that they all have their own temporary directory!</b></blockquote>
+<h3><a name="Details"></a>Details</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+For detailed documentation of the Elastix parameters, visit http://elastix.isi.uu.nl.</blockquote>
+<h3><a name="Inputs"></a>Inputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None. The module reads images from disk. Use the Elastix module if you would like streamline the writing and reading of images.</blockquote>
+<h3><a name="Outputs"></a>Outputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None. Use the Elastix module if you would like streamline the writing and reading of images.</blockquote>
+<h3><a name="Parameters"></a>Parameters</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+The parameters for the Elastix registration itself should be provided through a parameter file, that can be generated using the ElastixParameterFile module.</blockquote>
+<a name="elastixEXE"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Elastix EXE</b>
+ <br>
+The Elastix executable. It can be downloaded from http://www.isi.uu.nl. <br>
+If the directory that contains Elastix has been added to the path, just the elastix executable filename suffices.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>elastix.exe</b>.
+</blockquote>
+  
+<a name="transformixEXE"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Transformix EXE</b>
+ <br>
+The Transformix executable. It can be downloaded from http://www.isi.uu.nl. <br>
+If the directory that contains Transformix has been added to the path, just the transformix executable filename suffices.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>transformix.exe</b>.
+</blockquote>
+  
+<a name="movingImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Moving Image</b>
+ <br>
+The moving, floating, source image. Or whatever terminology you would like to use for this changing image. The moving image will be optimally matched to the fixed image. </blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>//isis/user/mevis/Data/C60.mhd</b>.
+</blockquote>
+  
+<a name="fixedImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Fixed Image</b>
+ <br>
+The fixed, template, target image. Or whatever terminology you would like to use for this unchanged image. </blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>//isis/user/mevis/Data/C60-rotated.mhd</b>.
+</blockquote>
+  
+<a name="movingMask"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Moving Mask</b>
+ <br>
+Optional binary mask for the mocing image. Voxel values of 0 denote voxels outside the mask, anything larger is inside the mask.</blockquote>
+<a name="fixedMask"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Fixed Mask</b>
+ <br>
+Optinal binary mask for the fixed image. Voxel values of 0 denote voxels outside the mask, anything larger is inside the mask.</blockquote>
+<a name="outputDirectory"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Output Directory</b>
+ <br>
+The directory in which the output images, and the elastix log and parameter files will be saved.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>C:/Temp</b>.
+</blockquote>
+  
+<a name="parameterFile1"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Parameter File1</b>
+ <br>
+The first elastix parameter file. Multiple parameter files can be assigned. If more than one, Elastix will run multiple registrations, each registration starts with the resulting transformation of the previous registration as its initial transformation.<br>
+If you would like to concatenate more than three registrations, add more Elastix modules to your network and connect the 'Resulting transformation file' field to the 'Initial transformation file' field of the next Elastix module instance.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISICallElastix/networks/parameters_Rigid.txt</b>.
+</blockquote>
+  
+<a name="parameterFile2"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Parameter File2</b>
+ <br>
+Optional second parameter file.</blockquote>
+<a name="parameterFile3"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Parameter File3</b>
+ <br>
+Optional third parameter file.</blockquote>
+<a name="otherArguments"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Other Arguments</b>
+ <br>
+The internal name is <b>otherArguments</b>, the type is a macro <b>String</b>.<br>
+Add any other command line configuration options in this field. </blockquote>
+<a name="numberOfThreads"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Number Of Threads</b>
+ <br>
+Define the maximum number of threads used by Elastix and Transformix.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>Default</b>.
+</blockquote>
+  
+<a name="initialTransformationFile"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Initial Transformation File</b>
+ <br>
+The internal name is <b>initialTransformationFile</b>, the type is a macro <b>String</b>.<br>
+Optional. Provide a transformation file that defines the transforamtion from which the registration will start. This can be the output of a previous Elastix registration.</blockquote>
+<a name="resultingTransformationFile"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Resulting Transformation File</b>
+ <br>
+The internal name is <b>resultingTransformationFile</b>, the type is a macro <b>String</b>.<br>
+The parameterization of the resulting final transformation computed by Elastix.</blockquote>
+<a name="callElastix"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Call Elastix</b>
+ <br>
+The internal name is <b>callElastix</b>, the type is a macro <b>Trigger</b>.<br>
+Call elastix (command line call).</blockquote>
+<a name="clearLog"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Clear Log</b>
+ <br>
+The internal name is <b>clearLog</b>, the type is a macro <b>Trigger</b>.<br>
+Clear the program messages window.</blockquote>
+<a name="sendOutputToLogWindow"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Send Output To Log Window</b>
+ <br>
+The internal name is <b>sendOutputToLogWindow</b>, the type is a macro <b>Bool</b>.<br>
+Toggle writing the elastix output to the program messages window. 
+<b>Warning:</b> Processing of this output is slow! If you don't need the output, disable printing of the elastix output to this window by disabling 'Send output to log window'. It may slow down your registration.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="createDeformationImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Deformation Image</b>
+ <br>
+The internal name is <b>createDeformationImage</b>, the type is a macro <b>Bool</b>.<br>
+Toggle creating the defrmation field output on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="createJacobianImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Jacobian Image</b>
+ <br>
+The internal name is <b>createJacobianImage</b>, the type is a macro <b>Bool</b>.<br>
+Toggle creating the Jacobian image output on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="createJacobianMatrixImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Jacobian Matrix Image</b>
+ <br>
+The internal name is <b>createJacobianMatrixImage</b>, the type is a macro <b>Bool</b>.<br>
+Toggle creating the Jacobian matrix image output on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="succeeded"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Succeeded</b>
+ <br>
+The internal name is <b>succeeded</b>, the type is a macro <b>Bool</b>.<br>
+Indicates whether the registration was successfully ended. This is just a check on the resulting elastix log file. It is in no way a check on the qualitative result of the image registration.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>FALSE</b>.
+</blockquote>
+  
+<a name="transformParameterFile"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+<span style="color: rgb(100, 110, 90);">  <b>Transform Parameter File</b>
+ </span>
+<br>
+The internal name is <b>transformParameterFile</b>, the type is a macro <b>String</b>, and the field is only internally used.<br>
+The parameterization of the resulting final transformation computed by Elastix.</blockquote>
+<h3><a name="Events And Interaction"></a>Events And Interaction</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+This module may be used together with the ElastixParameterFile and Transformix modules.</blockquote>
+<h3><a name="Example"></a>Example</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+This module is encapsulated in the Elastix macro module.</blockquote>
+<h3><a name="Tips And Tricks"></a>Tips And Tricks</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Use multiple instances of this module by defining a separate output directory for each instance.</blockquote>
+<h3><a name="Known Bugs"></a>Known Bugs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None. Elastix bugs will not be enumerated here ;-)</blockquote>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

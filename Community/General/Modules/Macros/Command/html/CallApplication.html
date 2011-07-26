@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Details">Details</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Inputs">Inputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Outputs">Outputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Example">Example</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Known Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp; 
+  <hr width="100%">
+</center>
+<h2>CallApplication
+</h2>
+<h3><a name="Purpose"></a>Purpose</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+To create a commandline call to an application</blockquote>
+<h3><a name="Usage"></a>Usage</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Select an executable, optionally provide command line parameters and a working directory and press 'Call' to execute. optionally print command line output in the log window.</blockquote>
+<h3><a name="Details"></a>Details</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Only tested for Windows.
+Many thanks to developers from BIGR (http://www.bigr.nl) for the initial version of this module.</blockquote>
+<h3><a name="Inputs"></a>Inputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None.</blockquote>
+<h3><a name="Outputs"></a>Outputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None.</blockquote>
+<h3><a name="Parameters"></a>Parameters</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+The only required parameter is the executable.</blockquote>
+<a name="executable"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Executable</b>
+ <br>
+The internal name is <b>executable</b>, the type is a macro <b>String</b>.<br>
+The application to be called.</blockquote>
+<a name="arguments"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Arguments</b>
+ <br>
+Optional command line arguments for the application.</blockquote>
+<a name="workingDirectory"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Working Directory</b>
+ <br>
+The temporary directory to work in.</blockquote>
+<a name="outputToLogWindow"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Output To Log Window</b>
+ <br>
+Output command line program messages to the log window.<br>
+<b>Warning:</b> The log window processing is really slow for large messages. Disable this feature is not necessary.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="call"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Call</b>
+ <br>
+Execute the command line call.</blockquote>
+<a name="logWindow"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Log Window</b>
+ <br>
+Prints program messages if activated by 'output to log log window'.</blockquote>
+<a name="clear"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Clear</b>
+ <br>
+Clear the log window.</blockquote>
+<a name="callSucceeded"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Call Succeeded</b>
+ <br>
+Indicator that shows whether the call was successful. If the executable does not exists, or if anything else fails it will be False.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>FALSE</b>.
+</blockquote>
+  
+<h3><a name="Example"></a>Example</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+See the example network</blockquote>
+<h3><a name="Known Bugs"></a>Known Bugs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None.</blockquote>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

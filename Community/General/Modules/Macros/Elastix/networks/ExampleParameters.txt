@@ -1,0 +1,69 @@
+// Parameter file created by ElastixParameterFile module
+
+// Registration parameters
+(Registration "MultiResolutionRegistration")
+(FixedImageDimension 3)
+(MovingImageDimension 3)
+(FixedInternalImagePixelType "float")
+(MovingInternalImagePixelType "float")
+(UseDirectionCosines "true")
+(NumberOfResolutions 1)
+(ErodeFixedMask "false")
+(ErodeMovingMask "false")
+
+// Transform parameters
+(Transform "BSplineTransform")
+(HowToCombineTransforms "Compose")
+(FinalGridSpacingInPhysicalUnits 4 4 4)
+(GridSpacingSchedule 1 1 1)
+(PassiveEdgeWidth 0)
+(BSplineTransformSplineOrder 3)
+(UseCyclicTransform "false")
+
+// Metric parameters
+(Metric "AdvancedMeanSquares")
+(ShowExactMetricValues "false")
+(CheckNumberOfSamples "true")
+(RequiredRatioOfValidSamples 0.25)
+(UseNormalization "false")
+
+// Optimizer parameters
+(Optimizer "AdaptiveStochasticGradientDescent")
+(NewSamplesEveryIteration "true")
+(MaximumNumberOfIterations 500)
+(MaximumNumberOfSamplingAttempts 0)
+(AutomaticParameterEstimation "true")
+(SigmoidInitialTime 0)
+(UseAdaptiveStepSizes "true")
+(NumberOfSamplesForExactGradient 100000)
+
+// Interpolator parameters
+(Interpolator "BSplineInterpolator")
+(BSplineInterpolationOrder 1)
+
+// ResampleInterpolator parameters
+(ResampleInterpolator "FinalBSplineInterpolator")
+(FinalBSplineInterpolationOrder 3)
+
+// ImageSampler parameters
+(ImageSampler "RandomCoordinate")
+(NumberOfSpatialSamples 2048)
+(UseRandomSampleRegion "false")
+(FixedImageBSplineInterpolationOrder 1)
+
+// FixedImagePyramid parameters
+(FixedImagePyramid "FixedSmoothingImagePyramid")
+
+// MovingImagePyramid parameters
+(MovingImagePyramid "MovingSmoothingImagePyramid")
+
+(WritePyramidImagesAfterEachResolution "false")
+
+// Resampler parameters
+(Resampler "DefaultResampler")
+(WriteResultImage "true")
+(CompressResultImage "false")
+(ResultImageFormat "mhd")
+(ResultImagePixelType "float")
+(WriteResultImageAfterEachResolution "false")
+

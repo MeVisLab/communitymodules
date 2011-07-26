@@ -1,0 +1,99 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2011, Image Sciences Institute, UMC Utrecht.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of ISI nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL ISI BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! SendEMail module definition
+/*!
+// \file    SendEMail.def
+// \author  Marijn van Stralen
+// \date    2011-06-20
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface  {
+  Inputs = ""
+  Outputs = ""
+  Parameters {
+    Field serverSettings {type = Enum values = "Other, UMCUtrecht, GMail"}
+    Field serverAddress { type = String value = mail.umcutrecht.nl }
+    Field serverPort { type = Int value = 25}
+    Field serverAuthentication { type = Enum values = "None, TLS, SSL" }
+    Field serverUsername { type = String }
+    Field serverPassword { type = String persistent = False }
+    Field toAddress { type = String }    
+    Field fromAddress { type = String }
+    Field subject { type = String }
+    Field body { type = String }
+    Field attachment { type = String }
+    Field send { type = Trigger }
+    Field status { type = String}
+  }
+}
+
+Commands {
+  source = $(LOCAL)/SendMail.py
+  initCommand = serverSettingsChanged
+  FieldListener serverSettings { command = serverSettingsChanged }
+  FieldListener send { command = sendEmail }
+}
+
+Window {
+  Vertical {
+    expandX = 1
+    expandY = 1
+    Box Server {
+      Field serverSettings { expandX = 1}
+      Horizontal {
+        dependsOn = "* serverSettings == /(Other)/ *"
+        //visibleOn = "* serverSettings == /(Other)/ *"
+        Field serverAddress { }
+        Field serverPort {}
+      }
+      Field serverAuthentication { expandX = 1 visibleOn = "* serverSettings == /(Other)/ *"}
+      Horizontal {
+        dependsOn = "* serverAuthentication != /(None)/ *"
+        Field serverUsername {}
+        Label {title = "Password:"}
+        LineEdit serverPassword { editMode = password }
+      }      
+    }
+    Box Message {
+      expandY = 1
+      Field fromAddress { title = "From:"  }
+      Field toAddress { title = "To:" }    
+      Field subject {  }
+      TextView body { height = 10 autoApply = True expandY = 1}
+      Field attachment { browseMode = open browseButton = True}
+    }
+    Box Send {
+      Field send {}
+      Field status { edit = False expandX = 1}
+    }
+  }
+}
+

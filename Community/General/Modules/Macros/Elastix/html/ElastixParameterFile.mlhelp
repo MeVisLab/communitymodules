@@ -1,0 +1,901 @@
+ML_DOC_VERSION = 1.0
+ML_DOC_MODULE_NAME = ElastixParameterFile
+ML_DOC_NUM_SECTIONS = 177
+ML_DOC_SECTION  {
+  NAME = Purpose
+  TYPE = Text
+  DESC = "This module reads and writes parameter file for the Elastix registration program. Please refer to the Elastix website (http://elastix.isi.uu.nl) for the documentation of that program and all its parameters.
+
+
+
+"
+}
+ML_DOC_SECTION  {
+  NAME = Usage
+  TYPE = Text
+  DESC = "Load an existing parameter file to start with parameter settings in that file, or just start configuring your parameters from scratch from the default parameter settings of this module. Once all parameters have been configured, save the file by assigning the output parameter filename and pressing 'Save'.<br>
+The main components of the registration framework can be selected in the 'Main' group. To configure each of these components, use the tabs below."
+}
+ML_DOC_SECTION  {
+  NAME = Details
+  TYPE = Text
+  DESC = "For detailed documentation o the Elastix parameters, visit http://elastix.isi.uu.nl."
+}
+ML_DOC_SECTION  {
+  NAME = Inputs
+  TYPE = Text
+  DESC = none
+}
+ML_DOC_SECTION  {
+  NAME = Outputs
+  TYPE = Text
+  DESC = none
+}
+ML_DOC_SECTION  {
+  NAME = Parameters
+  TYPE = Text
+  DESC = "Many, see http://elastix.isi.uu.nl!
+"
+}
+ML_DOC_SECTION  {
+  NAME = instanceName
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = templateFile
+  TYPE = Parameter
+  ON = FALSE
+  DESC = Depricated
+}
+ML_DOC_SECTION  {
+  NAME = template
+  TYPE = Parameter
+  ON = FALSE
+  DESC = Depricated
+}
+ML_DOC_SECTION  {
+  NAME = loadTemplate
+  TYPE = Parameter
+  ON = FALSE
+  DESC = Depricated
+}
+ML_DOC_SECTION  {
+  NAME = paramFile
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The parameter file to write the current parameter settings to."
+}
+ML_DOC_SECTION  {
+  NAME = write
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "(Over)Write the output parameter file with the current parameter settings."
+}
+ML_DOC_SECTION  {
+  NAME = paramFileIn
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The parameter file to read the parameter settings from."
+}
+ML_DOC_SECTION  {
+  NAME = read
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Update the parameter configuration with the settings defined in the input parameter file."
+}
+ML_DOC_SECTION  {
+  NAME = FixedInternalImagePixelType
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingInternalImagePixelType
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedImageDimension
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingImageDimension
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Registration
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedImagePyramid
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingImagePyramid
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Interpolator
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ResampleInterpolator
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Resampler
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Optimizer
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Transform
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Metric
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseDirectionCosines
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = AutomaticScalesEstimation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = AutomaticTransformInitialization
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = CenterOfRotation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfResolutions
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ResultImagePixelType
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ErodeMask
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = HowToCombineTransforms
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfSpatialSamples
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NewSamplesEveryIteration
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ImageSampler
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfHistogramBins
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfFixedHistogramBins
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfMovingHistogramBins
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = BSplineInterpolationOrder
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FinalBSplineInterpolationOrder
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefaultPixelValue
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MaximumNumberOfIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DisableAutomaticParameterEstimation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = AutomaticParameterEstimation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SP_a
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SP_capa
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SP_alpha
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FinalGridSpacingInVoxelsOn
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FinalGridSpacingInVoxels
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FinalGridSpacingInPhysicalUnitsOn
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FinalGridSpacingInPhysicalUnits
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = GridSpacingSchedule
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = BSplineTransformSplineOrder
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseCyclicTransform
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixTransform
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixMetric
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixInterpolator
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixResampleInterpolator
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixImageSampler
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixFixedImagePyramid
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixMovingImagePyramid
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixRegistration
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixOptimizer
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ElastixResampler
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SP_c
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SP_gamma
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ShowMetricValues
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Scales
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = PassiveEdgeWidth
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = AdvancedKappaStatisticUseComplement
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = AdvancedKappaStatisticForeGroundvalue
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedKernelBSplineOrder
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingKernelBSplineOrder
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedLimitRangeRatio
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingLimitRangeRatio
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseFastAndLowMemoryVersion
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseNormalization
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SubtractMean
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SampleLastDimensionRandomly
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumSamplesLastDimension
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingImageDerivativeScales
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SampleGridSpacing
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseRandomSampleRegion
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SampleRegionSize
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedImageBSplineInterpolationOrder
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SplineKernelType
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SplineRelaxationFactor
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SplinePoissonRatio
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NormalizeCombinationWeights
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SubTransforms
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineFixedImagePyramidSchedule
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedImagePyramidSchedule
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineMovingImagePyramidSchedule
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingImagePyramidSchedule
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Metric0Weight
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Metric1Weight
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Metric0Use
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Metric1Use
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Metric1
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ErodeFixedMask
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ErodeMovingMask
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MaximumNumberOfSamplingAttempts
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseAdaptiveStepSizes
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineMaximumStepLength
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MaximumStepLength
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SigmoidMin
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SigmoidMax
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SigmoidScale
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = SigmoidInitialTime
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineNumberOfGradientMeasurements
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfGradientMeasurements
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineNumberOfJacobianMeasurements
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfJacobianMeasurements
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfSamplesForExactGradient
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = GenerateLineSearchIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MaximumNumberOfLineSearchIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = StepLength
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = LineSearchValueTolerance
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = LineSearchGradientTolerance
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ValueTolerance
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = GradientMagnitudeTolerance
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ConjugateGradientType
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = StopIfWolfeNotSatisfied
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = PositionToleranceMin
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = PositionToleranceMax
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineMinimumDeviation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineMaximumDeviation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MinimumDeviation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MaximumDeviation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = PopulationSize
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfParents
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseDecayingSigma
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseCovarianceMatrixAdaptation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = RecombinationWeightsPreset
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UpdateBDPeriod
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = LineSearchStepTolerance
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FullSearchSpace
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = LBFGSUpdateAccuracy
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MinimumGradientMagnitude
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineMinimumStepLength
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MinimumStepLength
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = RSGDMaximumStepLength
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = RelaxationFactor
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfPerturbations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = WriteResultImage
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ResultImageFormat
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = CompressResultImage
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefineCenterOfRotation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ShowExactMetricValues
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = CheckNumberOfSamples
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = RequiredRatioOfValidSamples
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = WritePyramidImagesAfterEachResolution
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = WriteResultImageAfterEachResolution
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UpsampleGridOption
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FilterPattern
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DiffusionEachNIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = AfterIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = HowManyIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = NumberOfDiffusionIterations
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Radius
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ThresholdBool
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = ThresholdHU
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = WriteDiffusionFiles
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = GrayValueImageAlsoBasedOnFixedImage
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseFixedSegmentation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = FixedSegmentationFileName
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = UseMovingSegmentation
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = MovingSegmentationFileName
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = DefaultPixelValueForGVI
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = PrintText
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = "Events And Interaction"
+  TYPE = Text
+  DESC = "The parameter file field can be linked to the input parameter field(s) of the Elastix module, to run elastix directly from within MeVisLab. Additionally, use the Transformix module to employ the resulting transformation."
+}
+ML_DOC_SECTION  {
+  NAME = Example
+  TYPE = Text
+  DESC = "See the example network."
+}
+ML_DOC_SECTION  {
+  NAME = "Tips And Tricks"
+  TYPE = Text
+  DESC = "Use some network level scripting to easily test parameter settings for a certain application."
+}
+ML_DOC_SECTION  {
+  NAME = "Known Bugs"
+  TYPE = Text
+  DESC = none
+}

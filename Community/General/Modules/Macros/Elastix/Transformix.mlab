@@ -1,0 +1,579 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module FileDirectory {
+  internal  {
+    frame = "1245 485 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "853 467 455 508"
+        sizeHint = "455 516"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FileDirectory
+    rootPath = C:/temp/
+    recursive = FALSE
+    maxRecursionDepth = -1
+    fileType = Files
+    joinImagePairs = FALSE
+    include = "**TransformParameters.*.txt*"
+    includeRegExp = FALSE
+    predefined = void
+    exclude = ""
+    excludeRegExp = FALSE
+    ignoreCase = TRUE
+    fileList = C:/temp/TransformParameters.0.txt
+    dirMode = Absolute
+  }
+  internalFields = ""
+}
+module CallApplication {
+  internal  {
+    frame = "1073 485 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "158 99 455 344"
+        sizeHint = "256 344"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CallApplication
+    executable = transformix.exe
+    arguments = "-tp C:/temp/TransformParameters.0.txt -in C:/temp/TransformixIn.mhd -out . -def all -jac all -jacmat all"
+    workingDirectory = C:/temp/
+    outputToLogWindow = TRUE
+    logWindow = "*
+transformix is started at Mon Apr 18 14:40:36 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/Temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/Temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/Temp/TransformParameters.0.txt
+-def      unspecified, so no input points transformed
+-jac      unspecified, so no det(dT/dx) computed
+-jacmat   unspecified, so no dT/dx computed
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The command-line option "-def" is not used, so no points are transformed
+  Transforming points done, it took 0 s
+Compute determinant of spatial Jacobian ...
+  The command-line option "-jac" is not used, so no det(dT/dx) computed.
+  Computing determinant of spatial Jacobian done, it took 0 s
+Compute spatial Jacobian (full matrix)...
+  The command-line option "-jacmat" is not used, so no dT/dx computed.
+  Computing spatial Jacobian done, it took 0 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 0 s
+
+Transformix has finished at Mon Apr 18 14:40:36 2011.
+Elapsed time: 0 Seconds.
+
+
+transformix is started at Mon Apr 18 14:40:51 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/Temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/Temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/Temp/TransformParameters.0.txt
+-def      unspecified, so no input points transformed
+-jac      unspecified, so no det(dT/dx) computed
+-jacmat   unspecified, so no dT/dx computed
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The command-line option "-def" is not used, so no points are transformed
+  Transforming points done, it took 0 s
+Compute determinant of spatial Jacobian ...
+  The command-line option "-jac" is not used, so no det(dT/dx) computed.
+  Computing determinant of spatial Jacobian done, it took 0 s
+Compute spatial Jacobian (full matrix)...
+  The command-line option "-jacmat" is not used, so no dT/dx computed.
+  Computing spatial Jacobian done, it took 0 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 1 s
+
+Transformix has finished at Mon Apr 18 14:40:52 2011.
+Elapsed time: 1 Seconds.
+
+
+transformix is started at Mon Apr 18 14:44:33 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/Temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/Temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/Temp/TransformParameters.0.txt
+-def      all
+-jac      unspecified, so no det(dT/dx) computed
+-jacmat   unspecified, so no dT/dx computed
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The transform is evaluated on all points. The result is a deformation field.
+  Computing and writing the deformation field ...
+  Transforming points done, it took 1 s
+Compute determinant of spatial Jacobian ...
+  The command-line option "-jac" is not used, so no det(dT/dx) computed.
+  Computing determinant of spatial Jacobian done, it took 0 s
+Compute spatial Jacobian (full matrix)...
+  The command-line option "-jacmat" is not used, so no dT/dx computed.
+  Computing spatial Jacobian done, it took 0 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 0 s
+
+Transformix has finished at Mon Apr 18 14:44:34 2011.
+Elapsed time: 1 Seconds.
+
+
+transformix is started at Mon Apr 18 14:46:11 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/Temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/Temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/Temp/TransformParameters.0.txt
+-def      all
+-jac      all
+-jacmat   all
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The transform is evaluated on all points. The result is a deformation field.
+  Computing and writing the deformation field ...
+  Transforming points done, it took 0 s
+Compute determinant of spatial Jacobian ...
+  Computing and writing the spatial Jacobian determinant...
+  Computing determinant of spatial Jacobian done, it took 1 s
+Compute spatial Jacobian (full matrix)...
+  Computing and writing the spatial Jacobian...
+  Computing spatial Jacobian done, it took 1 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 0 s
+
+Transformix has finished at Mon Apr 18 14:46:13 2011.
+Elapsed time: 2 Seconds.
+
+
+transformix is started at Wed Apr 20 15:08:00 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/temp/TransformParameters.0.txt
+-def      all
+-jac      all
+-jacmat   all
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The transform is evaluated on all points. The result is a deformation field.
+  Computing and writing the deformation field ...
+  Transforming points done, it took 0 s
+Compute determinant of spatial Jacobian ...
+  Computing and writing the spatial Jacobian determinant...
+  Computing determinant of spatial Jacobian done, it took 0 s
+Compute spatial Jacobian (full matrix)...
+  Computing and writing the spatial Jacobian...
+  Computing spatial Jacobian done, it took 1 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 1 s
+
+Transformix has finished at Wed Apr 20 15:08:02 2011.
+Elapsed time: 2 Seconds.
+
+
+transformix is started at Wed Apr 20 15:12:57 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/temp/TransformParameters.0.txt
+-def      all
+-jac      all
+-jacmat   all
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The transform is evaluated on all points. The result is a deformation field.
+  Computing and writing the deformation field ...
+  Transforming points done, it took 0 s
+Compute determinant of spatial Jacobian ...
+  Computing and writing the spatial Jacobian determinant...
+  Computing determinant of spatial Jacobian done, it took 1 s
+Compute spatial Jacobian (full matrix)...
+  Computing and writing the spatial Jacobian...
+  Computing spatial Jacobian done, it took 1 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 0 s
+
+Transformix has finished at Wed Apr 20 15:12:59 2011.
+Elapsed time: 2 Seconds.
+
+
+transformix is started at Wed Apr 20 15:13:56 2011.
+
+transformix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+Running transformix with parameter file "C:/temp/TransformParameters.0.txt".
+
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-in       C:/temp/TransformixIn.mhd
+-out      ./
+-threads  unspecified, so all available threads are used
+-tp       C:/temp/TransformParameters.0.txt
+-def      all
+-jac      all
+-jacmat   all
+
+Reading input image ...
+  Reading input image took 0 s
+Calling all ReadFromFile()'s ...
+  Calling all ReadFromFile()'s took 0 s
+Transforming points ...
+  The transform is evaluated on all points. The result is a deformation field.
+  Computing and writing the deformation field ...
+  Transforming points done, it took 0 s
+Compute determinant of spatial Jacobian ...
+  Computing and writing the spatial Jacobian determinant...
+  Computing determinant of spatial Jacobian done, it took 0 s
+Compute spatial Jacobian (full matrix)...
+  Computing and writing the spatial Jacobian...
+  Computing spatial Jacobian done, it took 1 s
+Resampling image and writing to disk ...
+
+  Writing image ...
+  Resampling took 0 s
+
+Transformix has finished at Wed Apr 20 15:13:57 2011.
+Elapsed time: 1 Seconds.
+
+*"
+  }
+  internalFields = ""
+}
+module StringUtils {
+  internal  {
+    frame = "973 557 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "927 423 686 287"
+        sizeHint = "322 287"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils
+    operationType = Concatenate
+    string1 = C:/temp/
+    string2 = TransformixIn.mhd
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module itkImageFileWriter {
+  internal  {
+    frame = "1073 557 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "378 135 267 382"
+        sizeHint = "267 382"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileWriter
+    useCompression = TRUE
+    correctSubVoxelShift = FALSE
+    forceDirectionCosineWrite = TRUE
+    outputVoxelType = Automatic
+    info = ""
+    unresolvedFileName = C:/temp/TransformixIn.mhd
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "813 341 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1053 544 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader
+    fileDataType = float
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = " Could not create IO object for file C:/temp/Result.mhd
+The file doesn't exist. 
+Filename = C:/temp/Result.mhd
+ Loaded data may be undefined."
+    unresolvedFileName = C:/temp/Result.mhd
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "969 485 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "940 232 686 287"
+        sizeHint = "322 287"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils2
+    operationType = Concatenate
+    string1 = "-tp "
+    string2 = C:/temp/TransformParameters.0.txt
+    string3 = " -in "
+    string4 = C:/temp/TransformixIn.mhd
+    string5 = " -out ./Transformix/"
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = TRUE
+    toggle4 = TRUE
+    toggle5 = TRUE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "953 341 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1053 544 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader1
+    fileDataType = vecf3
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = " Could not create IO object for file C:/temp/deformationField.mhd
+The file doesn't exist. 
+Filename = C:/temp/deformationField.mhd
+ Loaded data may be undefined."
+    unresolvedFileName = C:/temp/deformationField.mhd
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "1105 341 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "572 544 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader2
+    fileDataType = float
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = " Could not create IO object for file C:/temp/spatialJacobian.mhd
+The file doesn't exist. 
+Filename = C:/temp/spatialJacobian.mhd
+ Loaded data may be undefined."
+    unresolvedFileName = C:/temp/spatialJacobian.mhd
+  }
+}
+module itkImageFileReader {
+  internal  {
+    frame = "1257 341 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "652 544 241 178"
+        sizeHint = "241 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = itkImageFileReader3
+    fileDataType = matf3
+    correctSubVoxelShift = FALSE
+    fileDimension = 3
+    info = " Could not create IO object for file C:/temp/fullSpatialJacobian.mhd
+The file doesn't exist. 
+Filename = C:/temp/fullSpatialJacobian.mhd
+ Loaded data may be undefined."
+    unresolvedFileName = C:/temp/fullSpatialJacobian.mhd
+  }
+}
+connections  {
+  FileDirectory.rootPath = CallApplication.workingDirectory
+  StringUtils.string1 = CallApplication.workingDirectory
+  itkImageFileWriter.unresolvedFileName = StringUtils.result
+  StringUtils2.string4 = itkImageFileWriter.fileName
+}
+networkModel = ""

@@ -1,0 +1,143 @@
+ML_DOC_VERSION = 1.0
+ML_DOC_MODULE_NAME = BuildProjects
+ML_DOC_NUM_SECTIONS = 22
+ML_DOC_SECTION  {
+  NAME = Purpose
+  TYPE = Text
+  DESC = "Automatically (re)create project files and compile and link projects for a complete set of MeVisLab packages.  <br>
+<b>Warning:</b> Only implemented for use on Windows with Visual Studio 2005. With some small changes, it can be used for other compilers in Windows as well. No support for Linux and Mac OS. <br>
+"
+}
+ML_DOC_SECTION  {
+  NAME = Usage
+  TYPE = Text
+  DESC = "Select the root directory of the packages that you would like to build. Make sure that the compiler executable is set correctly and configure the way you would like to (re) build your projects. 
+<b>Warning:</b> It does not check project dependencies. "
+}
+ML_DOC_SECTION  {
+  NAME = Details
+  TYPE = Text
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Inputs
+  TYPE = Text
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Outputs
+  TYPE = Text
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Parameters
+  TYPE = Text
+  DESC = "The builds can be configured globally, for all projects."
+}
+ML_DOC_SECTION  {
+  NAME = instanceName
+  TYPE = Parameter
+  ON = FALSE
+  SHOW_INFO_LINE = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = directory
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The root directory of the packages to build."
+}
+ML_DOC_SECTION  {
+  NAME = includeSubDirectories
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Toggle inclusion of subdirectories on/off."
+}
+ML_DOC_SECTION  {
+  NAME = recursionDepth
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Set the depth of the subdirectory recursion, if applicable."
+}
+ML_DOC_SECTION  {
+  NAME = numberOfProjects
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Shows the total number of projects that was found under the root directory."
+}
+ML_DOC_SECTION  {
+  NAME = projectList
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Shows the list of projects to be build."
+}
+ML_DOC_SECTION  {
+  NAME = devenvExecutable
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The compiler executable. For VS2005 it is devenv.exe, for other compilers it might be a different name."
+}
+ML_DOC_SECTION  {
+  NAME = run
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Start building the projects."
+}
+ML_DOC_SECTION  {
+  NAME = projectFiles
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Choose the mode for project file generation:<br>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<b>Skip:</b> Do not create project files.<br>
+<b>Create:</b> Create the project file(s) only if they do not extist yet.<br>
+<b>Recreate:</b> Alsways (re)create the project file(s).
+"
+}
+ML_DOC_SECTION  {
+  NAME = debug
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Choose the mode for the debug version:<br>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<b>Skip:</b> Do not build the debug vesrion.<br>
+<b>Build:</b> Build the debug version only if it is out-of-date or unexisting.<br>
+<b>Rebuild:</b> Alsways (re)build the debug version."
+}
+ML_DOC_SECTION  {
+  NAME = release
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Choose the mode for the release version:<br>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<b>Skip:</b> Do not build the release vesrion.<br>
+<b>Build:</b> Build the release version only if it is out-of-date or unexisting.<br>
+<b>Rebuild:</b> Alsways (re)build the release version."
+}
+ML_DOC_SECTION  {
+  NAME = progress
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  ADD_DEFAULT = FALSE
+  DESC = "Shows the progress of the total build task."
+}
+ML_DOC_SECTION  {
+  NAME = "Events And Interaction"
+  TYPE = Text
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Example
+  TYPE = Text
+  ON = FALSE
+  DESC = "See example network"
+}
+ML_DOC_SECTION  {
+  NAME = "Tips And Tricks"
+  TYPE = Text
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = "Known Bugs"
+  TYPE = Text
+  DESC = None
+}

@@ -1,0 +1,7 @@
+module BuildProjects {
+  fields  {
+    instanceName = BuildProjects
+  }
+
+}
+

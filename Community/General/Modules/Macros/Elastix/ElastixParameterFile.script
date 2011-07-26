@@ -1,0 +1,1142 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2011, Image Sciences Institute, UMC Utrecht.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of ISI nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL ISI BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module ElastixParameterFile
+/*!
+// \file    ElastixParameterFile.script
+// \author  Marijn van Stralen
+// \date    2009-10-20
+//
+// Create a parameter file for elastix
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    Field templateFile { type = string value = "$(LOCAL)/parameters_Template.txt" }
+    Field template { type = string value = ""}
+    Field loadTemplate { type = trigger }
+
+    Field paramFile { type = string value = ""}
+    Field write { type = trigger }
+    
+    Field paramFileIn { type = string value = ""}
+    Field read { type = trigger }
+    
+    Field FixedInternalImagePixelType {type = string value = "float"}
+    Field MovingInternalImagePixelType {type = string value = "float"}
+    Field FixedImageDimension {type = integer value = 3}
+    Field MovingImageDimension {type = integer value = 3}
+    Field Registration {type = string value = "MultiResolutionRegistration"}
+    Field FixedImagePyramid  {type = string value = "FixedRecursiveImagePyramid"}
+    Field MovingImagePyramid {type = string value = "MovingRecursiveImagePyramid"}
+    Field Interpolator {type = string value = "BSplineInterpolator"}
+    Field ResampleInterpolator {type = string value = "FinalBSplineInterpolator"}
+    Field Resampler {type = string value = "DefaultResampler"}
+    Field Optimizer {type = string value = "AdaptiveStochasticGradientDescent"}
+    Field Transform {type = string value = "EulerTransform"}
+    Field Metric {type = string value = "AdvancedMattesMutualInformation"}
+    Field UseDirectionCosines { type = Bool value = True }
+    Field AutomaticScalesEstimation {type = bool value = True}
+    Field AutomaticTransformInitialization {type = bool value = True}
+    Field CenterOfRotation {type = String value = "10.0 10.0 10.0"}
+    Field NumberOfResolutions {type = integer value = 3}
+    Field ResultImagePixelType {type = string value = "float"}
+    Field ErodeMask {type = bool value = False}
+    Field HowToCombineTransforms {type = Enum values = "Compose, Add"}
+    Field NumberOfSpatialSamples {type = String value = "2048 2048 4096 4096"}
+    Field NewSamplesEveryIteration {type = bool value = True}
+    Field ImageSampler {type = string value = "Random"}
+    Field NumberOfHistogramBins {type = String value = "32"}
+    Field NumberOfFixedHistogramBins {type = String value = "32"}
+    Field NumberOfMovingHistogramBins {type = String value = "32"}
+    Field BSplineInterpolationOrder {type = String value = "1"}
+    Field FinalBSplineInterpolationOrder {type = int value = 3}
+    Field DefaultPixelValue {type = double value = 0.0}
+    Field MaximumNumberOfIterations {type = String value = "500"}
+    Field DisableAutomaticParameterEstimation { type = bool value = False }
+    Field AutomaticParameterEstimation { type = bool value = True }
+    Field SP_a {type = String value = "3200 3200 3200"}
+    Field SP_capa {type = String value = "20.0 20.0 20.0"}
+    Field SP_alpha {type = String value = "1.0 1.0 1.0"}
+    Field FinalGridSpacingInVoxelsOn { type = Bool value = False}
+    Field FinalGridSpacingInVoxels {type = String value = "16 16 16"}
+    Field FinalGridSpacingInPhysicalUnitsOn { type = Bool value = True }
+    Field FinalGridSpacingInPhysicalUnits { type = String value = "16 16 16" }
+    Field GridSpacingSchedule { type = string value = "4 4 4 2 2 2 1 1 1" }
+    Field BSplineTransformSplineOrder { type = Int value = 3 }
+    Field UseCyclicTransform { type = Bool value = False }
+    
+    //Field ElastixTransform { type = Enum values = "TranslationTransform, EulerTransform, SimilarityTransform, AffineTransform, AffineDTITransform, BSplineTransform, BSplineTransformWithDiffusion, DeformationFieldTransform" }
+    Field ElastixTransform { type = Enum values = "TranslationTransform, EulerTransform, SimilarityTransform, AffineTransform, AffineDTITransform, BSplineTransform, BSplineStackTransform, BSplineTransformWithDiffusion, SplineKernelTransform, WeightedCombinationTransform" value = AffineTransform}
+    Field ElastixMetric { type = Enum values = "AdvancedKappaStatistic, AdvancedMattesMutualInformation, AdvancedMeanSquares, AdvancedNormalizedCorrelation, NormalizedMutualInformation, VarianceOverLastDimensionMetric" value = NormalizedMutualInformation}
+    Field ElastixInterpolator { type = Enum values = "NearestNeighborInterpolator, LinearInterpolator, BSplineInterpolator, BSplineInterpolatorFloat, ReducedDimensionBSplineInterpolator" value = BSplineInterpolator}
+    Field ElastixResampleInterpolator { type = Enum values = "FinalNearestNeighborInterpolator, FinalLinearInterpolator, FinalBSplineInterpolator, FinalBSplineInterpolatorFloat" value = FinalBSplineInterpolator}
+    Field ElastixImageSampler { type = Enum values = "Full, Grid, Random, RandomSparseMask, RandomCoordinate, MultiInputRandomCoordinate" value = RandomCoordinate}
+    Field ElastixFixedImagePyramid { type = Enum values = "FixedRecursiveImagePyramid, FixedShrinkingImagePyramid, FixedSmoothingImagePyramid" value = FixedRecursiveImagePyramid}
+    Field ElastixMovingImagePyramid { type = Enum values = "AsFixed, MovingRecursiveImagePyramid, MovingShrinkingImagePyramid, MovingSmoothingImagePyramid" value = AsFixed}
+    Field ElastixRegistration { type = Enum values = "MultiResolutionRegistration, MultiMetricMultiResolutionRegistration, MultiResolutionRegistrationWithFeatures"  value = MultiResolutionRegistration}
+    Field ElastixOptimizer { type = Enum  values = "AdaptiveStochasticGradientDescent, CMAEvolutionStrategy, ConjugateGradient, ConjugateGradientFRPR, FiniteDifferenceGradientDescent, FullSearch, QuasiNewtonLBFGS, RegularStepGradientDescent, RSGDEachParameterApart, SimultaneousPerturbation, StandardGradientDescent" value = AdaptiveStochasticGradientDescent}
+    Field ElastixResampler { type = Enum values = "DefaultResampler, CUDAResampler" value = DefaultResampler}
+    Field SP_c { type = String value = "0" }
+    Field SP_gamma { type = String value = "0" }
+    Field ShowMetricValues { type = Bool value = False }
+    Field Scales { type = String values = "0 0 0 0 0 0 0 0 0 0 0 0" }
+    Field PassiveEdgeWidth {type = String value = "0" } 
+    
+    Field AdvancedKappaStatisticUseComplement { type = Bool value = true }
+    Field AdvancedKappaStatisticForeGroundvalue { type = Double value = 1.0 }
+    
+    Field FixedKernelBSplineOrder {type = String value = "0"}
+    Field MovingKernelBSplineOrder {type = String value = "3"}
+    Field FixedLimitRangeRatio {type = String value = "0.01"}
+    Field MovingLimitRangeRatio {type = String value = "0.01"}
+    Field UseFastAndLowMemoryVersion { type = Bool value = True}
+    Field UseNormalization { type = Bool value = False}
+    Field SubtractMean { type = Bool value = True}
+    Field SampleLastDimensionRandomly {type = Bool value = False}
+    Field NumSamplesLastDimension {type = Int value = 10}
+    Field MovingImageDerivativeScales { type = String value = "1.0 1.0 1.0 0.0" }
+    Field SampleGridSpacing {type = String value = "2 2 2"}
+    Field UseRandomSampleRegion { type = Bool value = False }
+    Field SampleRegionSize {type = String value = "50.0 50.0 50.0"}
+    Field FixedImageBSplineInterpolationOrder {type = String value = "1"}
+    
+    Field SplineKernelType { type = Enum values = "ThinPlateSpline, ThinPlateR2LogRSpline, VolumeSpline, ElasticBodySpline, ElasticBodyReciprocalSpline"}
+    Field SplineRelaxationFactor {type = Double value = 0.0}
+    Field SplinePoissonRatio {type = Double value = 0.3}
+    
+    Field NormalizeCombinationWeights { type = Bool value = False}
+    Field SubTransforms { type = String value = ""}
+    Field DefineFixedImagePyramidSchedule { type = Bool value = False }
+    Field FixedImagePyramidSchedule { type = String value = "4 4 4 2 2 2 1 1 1" }
+    Field DefineMovingImagePyramidSchedule { type = Bool value = False }
+    Field MovingImagePyramidSchedule { type = String value = "4 4 4 2 2 2 1 1 1" }
+    Field Metric0Weight { type = String value = "0.5"}
+    Field Metric1Weight { type = String value = "0.5"}
+    Field Metric0Use { type = Bool value = True}
+    Field Metric1Use { type = Bool value = True}
+    Field Metric1 { type = Enum values = "AdvancedKappaStatistic, AdvancedMattesMutualInformation, AdvancedMeanSquares, AdvancedNormalizedCorrelation, NormalizedMutualInformation, VarianceOverLastDimensionMetric" }
+    Field ErodeFixedMask { type = Bool value = False}
+    Field ErodeMovingMask { type = Bool value = False}
+    Field MaximumNumberOfSamplingAttempts { type = String value = "0" }
+    
+    Field UseAdaptiveStepSizes { type = Bool value = True}
+    Field DefineMaximumStepLength {type = Bool value = False}
+    Field MaximumStepLength {type = Double value = 1.0}
+    Field SigmoidMin {type = Double value = -0.8}
+    Field SigmoidMax {type = Double value = 1.0}
+    Field SigmoidScale {type = Double value = 0.00000001}      
+    Field SigmoidInitialTime {type = String value = "0"}
+    Field DefineNumberOfGradientMeasurements { type = Bool value = False}
+    Field NumberOfGradientMeasurements { type = Int value = 10}
+    Field DefineNumberOfJacobianMeasurements { type = Bool value = False}
+    Field NumberOfJacobianMeasurements { type = String value = "5000 10000 20000"}
+    Field NumberOfSamplesForExactGradient { type = Int value = 100000}
+    
+    Field GenerateLineSearchIterations {type = Bool value = False}
+    Field MaximumNumberOfLineSearchIterations {type = String value = "10"}
+    Field StepLength {type = String value = "1.0"}
+    Field LineSearchValueTolerance {type = String value = "0.0001"}
+    Field LineSearchGradientTolerance {type = String value = "0.9"}
+    Field ValueTolerance {type = String value = "0.00001"}
+    Field GradientMagnitudeTolerance {type = String value = "0.000001"}
+    Field ConjugateGradientType { type = Enum values = "SteepestDescent,FletcherReeves,PolakRibiere,DaiYuan,HestenesStiefel,DaiYuanHestenesStiefel" value = "DaiYuanHestenesStiefel"}
+    Field StopIfWolfeNotSatisfied  { type = Bool value = True}
+    
+    Field PositionToleranceMin {type = Vector4 value = "0.00000001"}
+    Field PositionToleranceMax {type = Vector4 value = "100000000"}
+    Field DefineMinimumDeviation {type = Bool value = False}
+    Field DefineMaximumDeviation {type = Bool value = False}
+    Field MinimumDeviation {type = Vector4 value = "0"}
+    Field MaximumDeviation {type = Vector4 value = "1000000000"}
+    Field PopulationSize  {type = Vector4 value = "0"}
+    Field NumberOfParents  {type = Vector4 value = "0"}
+    Field UseDecayingSigma {type = Bool value = False}
+    Field UseCovarianceMatrixAdaptation {type = Bool value = True}
+    Field RecombinationWeightsPreset {type =Enum values = "equal, linear, superlinear" value = "superlinear"}
+    Field UpdateBDPeriod {type = Bool value = "0"}
+    
+    Field LineSearchStepTolerance {type = String value = "0.00001"}
+    Field FullSearchSpace {type = String value = "( FullSearchSpace0 \"translation_x\" 2 -4.0 3.0 1.0 \"rotation_y\" 3 -1.0 1.0 0.5 )"}
+    
+    Field LBFGSUpdateAccuracy {type = String value = "5"}
+    
+    Field MinimumGradientMagnitude {type = String value = "0.00000001"}
+    Field DefineMinimumStepLength {type = Bool value = False}
+    //Field DefineMaximumStepLength {type = Bool value = False}
+    Field MinimumStepLength {type = String value = "2.0 1.0 0.5 0.1"}
+    Field RSGDMaximumStepLength {type = String value = "32 16 8 4"}
+    Field RelaxationFactor {type = String value = "0.5 0.5 0.5 0.5"}
+    
+    Field NumberOfPerturbations { type = String value = "1" }
+    Field WriteResultImage { type = Bool value = True }   
+    Field ResultImageFormat { type = String value = "mhd"}    
+    Field CompressResultImage { type = Bool value = False }
+    
+    Field DefineCenterOfRotation {type = Bool value = False}
+    
+    Field ShowExactMetricValues {type = Bool values = False}
+    Field CheckNumberOfSamples {type = Bool values = True}
+    Field RequiredRatioOfValidSamples {type = Double value = 0.25}
+    Field WritePyramidImagesAfterEachResolution  {type = Bool value = False}
+    Field WriteResultImageAfterEachResolution { type = Bool value = False }
+    
+    Field UpsampleGridOption  { type = Bool value = True}
+    Field FilterPattern {type = Enum values = "1,2" value = 1}
+    Field DiffusionEachNIterations {type = Int value = 1}
+    Field AfterIterations  {type = Vector2 value = "50 100"}
+    Field HowManyIterations { type = Vector3 value = "1 5 10"}
+    Field NumberOfDiffusionIterations  {type = Int value = 1}
+    Field Radius {type = Double value = 1}
+    Field ThresholdBool  {type = Bool value = True}
+    Field ThresholdHU  {type = Double value = 150}
+    Field WriteDiffusionFiles  {type = Bool value = False}
+    Field GrayValueImageAlsoBasedOnFixedImage { type = Bool value = True}
+    Field UseFixedSegmentation {type = Bool value = True}
+    Field FixedSegmentationFileName {type = String value = ""}
+    Field UseMovingSegmentation {type = Bool value = True}
+    Field MovingSegmentationFileName {type = String value = ""}
+    Field DefaultPixelValueForGVI {type = Double value = 0}
+    
+    
+    Field PrintText {type = Trigger}    
+    
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/ElastixParameterFile.py
+  
+  FieldListener loadTemplate { command = readTemplate }
+  //FieldListener write { command = write } // moved to Window definition
+  FieldListener ErodeMask {
+    command = "*js: ctx.field("ErodeFixedMask").value = ctx.field("ErodeMask").value; ctx.field("ErodeMovingMask").value = ctx.field("ErodeMask").value; *"
+  }
+  FieldListener DisableAutomaticParameterEstimation {
+    command = "*js: ctx.field("AutomaticParameterEstimation").value = ! ctx.field("DisableAutomaticParameterEstimation").value; *"
+  }
+  FieldListener AutomaticParameterEstimation {
+    command = "*js: ctx.field("DisableAutomaticParameterEstimation").value = ! ctx.field("AutomaticParameterEstimation").value; *"
+  }
+  FieldListener FinalGridSpacingInPhysicalUnitsOn {
+    command = "*js: ctx.field("FinalGridSpacingInVoxelsOn").value = ! ctx.field("FinalGridSpacingInPhysicalUnitsOn").value; *"
+  }
+  FieldListener FinalGridSpacingInVoxelsOn {
+    command = "*js: ctx.field("FinalGridSpacingInPhysicalUnitsOn").value = ! ctx.field("FinalGridSpacingInVoxelsOn").value; *"
+  }
+  FieldListener NumberOfHistogramBins {
+    command = "*js: ctx.field("NumberOfFixedHistogramBins").value = ctx.field("NumberOfHistogramBins").value; ctx.field("NumberOfMovingHistogramBins").value = ctx.field("NumberOfHistogramBins").value;*"
+  }
+}
+
+Window Main {
+  Horizontal {    
+    Vertical {
+      expandX = True
+      Box "Input file" {
+        Horizontal {
+          Field paramFileIn { title = "Input parameter filename:" browseMode = open browseButton = True browseFilter = "\*.txt"}
+          Button read { title = "Load" command = readElastixParameterFile }
+        }
+      }
+      Box "Output file" {
+        //Button PrintText { command = createElastixParameterFileText }
+        Horizontal {
+          Field paramFile { title = "Output parameter filename:" browseMode = save browseButton = True browseFilter = "\*.txt"}
+          Button write { title = "Save" command = writeElastixParameterFile }
+        }
+      }
+      Box Main {
+        expandX = True
+        expandY = False
+        Horizontal {
+          Vertical {
+            Field ElastixRegistration { title = "Registration:" expandX = True}
+            Field ElastixTransform { title = "Transform:" expandX = True }
+            Field ElastixMetric { title = "Metric:" expandX = True}
+            Field ElastixOptimizer { title = "Optimizer:" expandX = True }
+            Field ElastixInterpolator { title = "Interpolator:" expandX = True}
+          }
+          Vertical {
+            Field ElastixResampleInterpolator { title = "ResampleInterpolator:" expandX = True}
+            Field ElastixImageSampler {title = "ImageSampler:" expandX = True}
+            Field ElastixFixedImagePyramid { title = "FixedImagePyramid:" expandX = True }
+            Field ElastixMovingImagePyramid { title = "MovingImagePyramid:" expandX = True }
+            Field ElastixResampler { title = "Resampler:" expandX = True }
+          }
+        }
+        
+        
+      }
+      TabView {
+        expandX = True
+        expandY = True    
+        TabViewItem Registration {
+          Panel {
+            window = RegistrationParametersWindow
+          }
+          //Label {title = "Note: if you would like to use the old version of the interface, open the 'OldMain' window of this module"}
+        } 
+        TabViewItem Transform {
+          Panel {
+            window = TransformParametersWindow
+          }
+        } 
+        TabViewItem Metric {
+          Panel {
+            window = MetricParametersWindow
+          }
+        }
+        TabViewItem Optimizer {
+          Panel {
+            window = OptimizerParametersWindow
+          }
+        }
+        TabViewItem Interpolator {
+          Panel {
+            window = InterpolatorParametersWindow
+          }
+        }
+        TabViewItem ResampleInterpolator {
+          Panel {
+            window = ResampleInterpolatorParametersWindow
+          }
+        }
+        TabViewItem ImageSampler {
+          Panel {
+            window = ImageSamplerParametersWindow
+          }
+        }
+        TabViewItem ImagePyramid {
+          Panel {
+            window = ImagePyramidParametersWindow
+          }
+        }
+        TabViewItem Resampler {
+          Panel {
+            window = ResamplerParametersWindow
+          }          
+        }
+      }
+      
+    }
+  }
+}
+
+Window TransformParametersWindow{
+  alignY = Top
+  expandY = True
+  Vertical {
+    Box GeneralParameters {
+      Field HowToCombineTransforms {}
+    }
+    Box TranslationParameters { // Translation
+      expandX = True
+      visibleOn = "* ElastixTransform == /(TranslationTransform)/ *"
+      Field AutomaticScalesEstimation { expandX = True alignGroupX = Parameters}
+      Field Scales { expandX = True  dependsOn = "*AutomaticScalesEstimation != "True" *"}
+      Field AutomaticTransformInitialization { expandX = True alignGroupX = Parameters}
+    }
+    Box EulerParameters { // Euler
+      expandX = True
+      visibleOn = "* ElastixTransform == /(EulerTransform)/ *"
+      Field AutomaticScalesEstimation { expandX = True alignGroupX = Parameters}
+      Field Scales { expandX = True  dependsOn = "*AutomaticScalesEstimation != "True" *" alignGroupX = Parameters}
+      Field AutomaticTransformInitialization { expandX = True alignGroupX = Parameters}
+      Horizontal {
+        alignGroupX = EulerParameters
+        alignX = Left
+        Field DefineCenterOfRotation {title = ""}
+        Field CenterOfRotation { expandX = True alignGroupX = Parameters dependsOn = DefineCenterOfRotation}
+      }      
+    }
+    Box AffineParameters { // Affine
+      expandX = True
+      visibleOn = "* ElastixTransform == /(AffineTransform)/ *"
+      Field AutomaticScalesEstimation { expandX = True alignGroupX = Parameters}
+      Field Scales { expandX = True  dependsOn = "*AutomaticScalesEstimation != "True" *"}
+      Field AutomaticTransformInitialization { expandX = True alignGroupX = Parameters}
+      Horizontal {
+        alignGroupX = AffineParameters
+        alignX = Left
+        Field DefineCenterOfRotation {title = ""}
+        Field CenterOfRotation { expandX = True alignGroupX = Parameters dependsOn = DefineCenterOfRotation}
+      } 
+    }
+    Box AffineDTITransformParameters { // AffineDTITransform
+      expandX = True
+      visibleOn = "* ElastixTransform == /(AffineDTITransform)/ *"
+      Field AutomaticScalesEstimation { expandX = True alignGroupX = Parameters}
+      Field Scales { expandX = True  dependsOn = "*AutomaticScalesEstimation != "True" *"}
+      Field AutomaticTransformInitialization { expandX = True alignGroupX = Parameters}
+      Horizontal {
+        alignGroupX = AffineDTITransformParameters
+        alignX = Left
+        Field DefineCenterOfRotation {title = ""}
+        Field CenterOfRotation { expandX = True alignGroupX = Parameters dependsOn = DefineCenterOfRotation}
+      } 
+    }
+    Box SimilarityParameters { // Similarity
+      expandX = True
+      visibleOn = "* ElastixTransform == "SimilarityTransform" *"
+      Field AutomaticScalesEstimation { expandX = True alignGroupX = Parameters}
+      Field Scales { expandX = True  dependsOn = "*AutomaticScalesEstimation != "True" *"}
+      Field AutomaticTransformInitialization { expandX = True alignGroupX = Parameters}
+      Horizontal {
+        alignGroupX = SimilarityParameters
+        alignX = Left
+        Field DefineCenterOfRotation {title = ""}
+        Field CenterOfRotation { expandX = True alignGroupX = Parameters dependsOn = DefineCenterOfRotation}
+      }        
+    }
+    Box BSplineParameters { // BSpline
+      expandX = True
+      visibleOn = "* ElastixTransform == /^(BSplineTransform)$/ *"
+      Horizontal {
+        //alignGroupX = BSplineParameters
+        //alignX = Left
+        expandX = True
+        Field FinalGridSpacingInVoxels { expandX = True dependsOn = FinalGridSpacingInVoxelsOn alignGroupX = BSplineParameters}
+        Field FinalGridSpacingInVoxelsOn { title = "" expandX = True alignGroupX = BSplineParameters}
+      } 
+      Horizontal {
+        //alignGroupX = BSplineParameters
+        //alignX = Left
+        expandX = True
+        Field FinalGridSpacingInPhysicalUnits { expandX = True dependsOn = FinalGridSpacingInPhysicalUnitsOn alignGroupX = BSplineParameters}
+        Field FinalGridSpacingInPhysicalUnitsOn { title = "" expandX = True alignGroupX = BSplineParameters}        
+      }        
+      Field GridSpacingSchedule {expandX = True alignGroupX = BSplineParameters}
+      Field PassiveEdgeWidth { expandX = True alignGroupX = BSplineParameters}
+      Field BSplineTransformSplineOrder { expandX = True alignGroupX = BSplineParameters}
+      Field UseCyclicTransform {expandX = True alignGroupX = BSplineParameters}
+    }
+    Box BSplineStackParameters { // BSpline
+      expandX = True
+      visibleOn = "* ElastixTransform == /(BSplineStackTransform)/ *"
+      Horizontal {
+        alignGroupX = BSplineStackParameters
+        alignX = Left
+        Field FinalGridSpacingInVoxelsOn { title = ""}
+        Field FinalGridSpacingInVoxels { expandX = True dependsOn = FinalGridSpacingInVoxelsOn}
+      } 
+      Horizontal {
+        alignGroupX = BSplineStackParameters
+        alignX = Left
+        Field FinalGridSpacingInPhysicalUnitsOn { title = "" }
+        Field FinalGridSpacingInPhysicalUnits { expandX = True dependsOn = FinalGridSpacingInPhysicalUnitsOn }
+      }        
+      Field GridSpacingSchedule {expandX = True alignGroupX = BSplineStackParameters}
+      Field PassiveEdgeWidth { expandX = True alignGroupX = BSplineStackParameters}
+    }
+    Box BSplineTransformWithDiffusionParameters { // BSpline
+      expandX = True
+      visibleOn = "* ElastixTransform == /(BSplineTransformWithDiffusion)/ *"
+      Field FinalGridSpacingInVoxels { expandX = True alignGroupX = BSplineStackParameters }
+      Field UpsampleGridOption  { expandX = True alignGroupX = BSplineStackParameters}
+      Field FilterPattern {expandX = True alignGroupX = BSplineStackParameters}
+      Field DiffusionEachNIterations {expandX = True alignGroupX = BSplineStackParameters dependsOn = "* FilterPattern == "1" *"}
+      Field AfterIterations  {expandX = True alignGroupX = BSplineStackParameters dependsOn = "* FilterPattern == "2" *"}
+      Field HowManyIterations {expandX = True alignGroupX = BSplineStackParameters dependsOn = "* FilterPattern == "2" *"}
+      Field NumberOfDiffusionIterations  {expandX = True alignGroupX = BSplineStackParameters}
+      Field Radius {expandX = True alignGroupX = BSplineStackParameters}
+      Field ThresholdBool  {expandX = True alignGroupX = BSplineStackParameters}
+      Field ThresholdHU  {expandX = True alignGroupX = BSplineStackParameters dependsOn = ThresholdBool}
+      Field WriteDiffusionFiles  {expandX = True alignGroupX = BSplineStackParameters}
+      Field GrayValueImageAlsoBasedOnFixedImage {expandX = True alignGroupX = BSplineStackParameters}
+      Field UseFixedSegmentation {expandX = True alignGroupX = BSplineStackParameters dependsOn = !ThresholdBool}
+      Field FixedSegmentationFileName {expandX = True alignGroupX = BSplineStackParameters dependsOn = UseFixedSegmentation}
+      Field UseMovingSegmentation {expandX = True alignGroupX = BSplineStackParameters dependsOn = !ThresholdBool}
+      Field MovingSegmentationFileName {expandX = True alignGroupX = BSplineStackParameters  dependsOn = UseMovingSegmentation}
+      Field DefaultPixelValueForGVI {expandX = True alignGroupX = BSplineStackParameters}
+    }
+    Box SplineKernelTransformParameters { 
+      expandX = True
+      visibleOn = "* ElastixTransform == /(SplineKernelTransform)/ *"
+      Field SplineKernelType { expandX = True  alignGroupX = SplineKernelTransformParameters}
+      Field SplineRelaxationFactor { expandX = True  alignGroupX = SplineKernelTransformParameters}
+      Field SplinePoissonRatio { expandX = True  alignGroupX = SplineKernelTransformParameters}      
+      Label {title="Note: this transform requires a point set as input for placing the spline control points"}
+    }
+    Box WeightedCombinationTransformParameters { 
+      expandX = True
+      visibleOn = "* ElastixTransform == /(WeightedCombinationTransform)/ *"
+      Field NormalizeCombinationWeights { expandX = True  alignGroupX = WeightedCombinationTransformParameters}
+      Field SubTransforms { expandX = True  alignGroupX = WeightedCombinationTransformParameters }
+      Field AutomaticScalesEstimation {expandX = True  alignGroupX = WeightedCombinationTransformParameters}
+      Field Scales {expandX = True  alignGroupX = WeightedCombinationTransformParameters dependsOn = "* AutomaticScalesEstimation != "True" *"}
+    }
+    
+  }
+}
+
+Window MetricParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {
+    Box GeneralParameters {
+      Field ShowExactMetricValues {expandX = true alignGroupX = GeneralParameters}
+      Field CheckNumberOfSamples {expandX = true alignGroupX = GeneralParameters}
+      Field RequiredRatioOfValidSamples {expandX = true alignGroupX = GeneralParameters}
+    }
+    Box AdvancedKappaStatisticParameters { 
+      expandX = True
+      visibleOn = "* ElastixMetric == /(AdvancedKappaStatistic)/ *"
+      Field AdvancedKappaStatisticUseComplement { expandX = true alignGroupX = AdvancedKappaStatisticParameters title = "Use Complement:"}
+      Field AdvancedKappaStatisticForeGroundvalue { expandX = true alignGroupX = AdvancedKappaStatisticParameters title = "Foreground Value:"}
+    }
+    Box AdvancedMattesMutualInformationParameters { 
+      expandX = True
+      visibleOn = "* ElastixMetric == /(AdvancedMattesMutualInformation)/ *"
+      Field NumberOfHistogramBins { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}
+      Field NumberOfFixedHistogramBins { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}
+      Field FixedKernelBSplineOrder { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}      
+      Field FixedLimitRangeRatio { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}      
+      Field NumberOfMovingHistogramBins { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}
+      Field MovingKernelBSplineOrder { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}      
+      Field MovingLimitRangeRatio { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}      
+      Field UseFastAndLowMemoryVersion { expandX = true alignGroupX = AdvancedMattesMutualInformationParameters}      
+    }
+    Box AdvancedMeanSquaresParameters { 
+      expandX = True
+      visibleOn = "* ElastixMetric == /(AdvancedMeanSquares)/ *"
+      Field UseNormalization { expandX = true alignGroupX = AdvancedMeanSquaresParameters}      
+    }
+    Box AdvancedNormalizedCorrelationParameters { 
+      expandX = True
+      visibleOn = "* ElastixMetric == /(AdvancedNormalizedCorrelation)/ *"
+      Field SubtractMean { expandX = true alignGroupX = AdvancedNormalizedCorrelationParameters}      
+    }
+    Box NormalizedMutualInformationParameters { 
+      expandX = True
+      visibleOn = "* ElastixMetric == /(NormalizedMutualInformation)/ *"
+      Field NumberOfHistogramBins { expandX = true alignGroupX = NormalizedMutualInformationParameters}
+      Field NumberOfFixedHistogramBins { expandX = true alignGroupX = NormalizedMutualInformationParameters}
+      Field FixedKernelBSplineOrder { expandX = true alignGroupX = NormalizedMutualInformationParameters}      
+      Field FixedLimitRangeRatio { expandX = true alignGroupX = NormalizedMutualInformationParameters}      
+      Field NumberOfMovingHistogramBins { expandX = true alignGroupX = NormalizedMutualInformationParameters}
+      Field MovingKernelBSplineOrder { expandX = true alignGroupX = NormalizedMutualInformationParameters}      
+      Field MovingLimitRangeRatio { expandX = true alignGroupX = NormalizedMutualInformationParameters}      
+      Field UseFastAndLowMemoryVersion { expandX = true alignGroupX = NormalizedMutualInformationParameters}      
+    }
+    Box VarianceOverLastDimensionParameters { 
+      expandX = True
+      visibleOn = "* ElastixMetric == /(VarianceOverLastDimensionMetric)/ *"
+      Field SampleLastDimensionRandomly { expandX = True alignGroupX = VarianceOverLastDimensionParameters}
+      Field NumSamplesLastDimension { expandX = True alignGroupX = VarianceOverLastDimensionParameters}
+      Field SubtractMean { expandX = True alignGroupX = VarianceOverLastDimensionParameters}
+      Field MovingImageDerivativeScales { expandX = True alignGroupX = VarianceOverLastDimensionParameters}
+    }        
+  }
+}
+
+Window InterpolatorParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box NearestNeighborInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixInterpolator == /(NearestNeighborInterpolator)/ *"
+      Label {title="no parameters"}
+    }
+    Box LinearInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixInterpolator == /(LinearInterpolator)/ *"
+      Label {title="no parameters"}
+    }
+    Box BSplineInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixInterpolator == /^(BSplineInterpolator)$/ *"
+      Field BSplineInterpolationOrder { expandX = true alignGroupX = BSplineInterpolatorParameters}
+    }
+    Box BSplineInterpolatorFloatParameters { 
+      expandX = True
+      visibleOn = "* ElastixInterpolator == /(BSplineInterpolatorFloat)/ *"
+      Field BSplineInterpolationOrder { expandX = true alignGroupX = BSplineInterpolatorFloatParameters}
+    }
+    Box ReducedDimensionBSplineInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixInterpolator == /(ReducedDimensionBSplineInterpolator)/ *"
+      Field BSplineInterpolationOrder { expandX = true alignGroupX = ReducedDimensionBSplineInterpolatorParameters}
+      Label {title="Note: only first order BSpline interpolation is currently supported"}
+    }    
+  }
+}
+
+Window ResampleInterpolatorParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box FinalNearestNeighborInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixInterpolator == /(FinalNearestNeighborInterpolator)/ *"
+      Label {title="no parameters"}
+    }
+    Box FinalLinearInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixResampleInterpolator == /(FinalLinearInterpolator)/ *"
+      Label {title="no parameters"}
+    }
+    Box FinalBSplineInterpolatorParameters { 
+      expandX = True
+      visibleOn = "* ElastixResampleInterpolator == /(FinalBSplineInterpolator)/ *"
+      Field FinalBSplineInterpolationOrder { expandX = true alignGroupX = FinalBSplineInterpolatorParameters}
+    }
+    Box FinalBSplineInterpolatorFloatParameters { 
+      expandX = True
+      visibleOn = "* ElastixResampleInterpolator == /(FinalBSplineInterpolatorFloat)/ *"
+      Field FinalBSplineInterpolationOrder { expandX = true alignGroupX = FinalBSplineInterpolatorFloatParameters}
+    }
+    
+  }
+}
+
+Window ImageSamplerParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box FullParameters { 
+      expandX = True
+      visibleOn = "* ElastixImageSampler == /(Full)/ *"
+      Label {title="no parameters"}
+    }
+    Box GridParameters { 
+      expandX = True
+      visibleOn = "* ElastixImageSampler == /(Grid)/ *"
+      Field SampleGridSpacing { expandX = true alignGroupX = GridParameters}
+    }
+    Box MultiInputRandomCoordinateParameters { 
+      expandX = True
+      visibleOn = "* ElastixImageSampler == /(MultiInputRandomCoordinate)/ *"
+      Field NumberOfSpatialSamples { expandX = true alignGroupX = MultiInputRandomCoordinateParameters}
+      Field UseRandomSampleRegion { expandX = true alignGroupX = MultiInputRandomCoordinateParameters}
+      Field SampleRegionSize {expandX = true alignGroupX = MultiInputRandomCoordinateParameters dependsOn = UseRandomSampleRegion}
+      Field FixedImageBSplineInterpolationOrder {expandX = true alignGroupX = MultiInputRandomCoordinateParameters}
+    }
+    Box RandomCoordinateParameters { 
+      expandX = True
+      visibleOn = "* ElastixImageSampler == /(RandomCoordinate)/ *"
+      Field NumberOfSpatialSamples { expandX = true alignGroupX = RandomCoordinateParameters}
+      Field UseRandomSampleRegion { expandX = true alignGroupX = RandomCoordinateParameters}
+      Field SampleRegionSize {expandX = true alignGroupX = RandomCoordinateParameters dependsOn = UseRandomSampleRegion}
+      Field FixedImageBSplineInterpolationOrder {expandX = true alignGroupX = RandomCoordinateParameters}
+    }
+    Box RandomParameters { 
+      expandX = True
+      visibleOn = "* ElastixImageSampler == /^(Random)$/ *"
+      Field NumberOfSpatialSamples { expandX = true alignGroupX = RandomParameters}
+    }
+    Box RandomSparseMaskParameters { 
+      expandX = True
+      visibleOn = "* ElastixImageSampler == /(RandomSparseMask)/ *"
+      Field NumberOfSpatialSamples { expandX = true alignGroupX = RandomSparseMaskParameters}
+    }    
+  }
+}
+
+Window ImagePyramidParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box GeneralParameters {
+      Field WritePyramidImagesAfterEachResolution {expandX = true alignGroupX = GeneralParameters}
+    }
+    expandX = True
+    Box FixedRecursiveImagePyramidParameters { 
+      expandX = True
+      visibleOn = "* ElastixFixedImagePyramid == /(FixedRecursiveImagePyramid)/ *"
+      Field DefineFixedImagePyramidSchedule {expandX = true alignGroupX = FixedRecursiveImagePyramidParameters}
+      Field FixedImagePyramidSchedule {expandX = true alignGroupX = FixedRecursiveImagePyramidParameters dependsOn = DefineFixedImagePyramidSchedule}
+    }
+    Box FixedSmoothingImagePyramidParameters { 
+      expandX = True
+      visibleOn = "* ElastixFixedImagePyramid == /(FixedSmoothingImagePyramid)/ *"
+      Field DefineFixedImagePyramidSchedule {expandX = true alignGroupX = FixedSmoothingImagePyramidParameters}
+      Field FixedImagePyramidSchedule {expandX = true alignGroupX = FixedSmoothingImagePyramidParameters dependsOn = DefineFixedImagePyramidSchedule}
+    }
+    Box FixedShrinkingImagePyramidParameters { 
+      expandX = True
+      visibleOn = "* ElastixFixedImagePyramid == /(FixedShrinkingImagePyramid)/ *"
+      Field DefineFixedImagePyramidSchedule {expandX = true alignGroupX = FixedShrinkingImagePyramidParameters}
+      Field FixedImagePyramidSchedule {expandX = true alignGroupX = FixedShrinkingImagePyramidParameters dependsOn = DefineFixedImagePyramidSchedule}
+    }
+    Box MovingRecursiveImagePyramidParameters { 
+      expandX = True
+      visibleOn = "* ElastixMovingImagePyramid == /(MovingRecursiveImagePyramid)/ *"
+      Field DefineMovingImagePyramidSchedule {expandX = true alignGroupX = MovingRecursiveImagePyramidParameters}
+      Field MovingImagePyramidSchedule {expandX = true alignGroupX = MovingRecursiveImagePyramidParameters dependsOn = DefineMovingImagePyramidSchedule}
+    }
+    Box MovingSmoothingImagePyramidParameters { 
+      expandX = True
+      visibleOn = "* ElastixMovingImagePyramid == /(MovingSmoothingImagePyramid)/ *"
+      Field DefineMovingImagePyramidSchedule {expandX = true alignGroupX = MovingSmoothingImagePyramidParameters}
+      Field MovingImagePyramidSchedule {expandX = true alignGroupX = MovingSmoothingImagePyramidParameters dependsOn = DefineMovingImagePyramidSchedule}
+    }
+    Box MovingShrinkingImagePyramidParameters { 
+      expandX = True
+      visibleOn = "* ElastixMovingImagePyramid == /(MovingShrinkingImagePyramid)/ *"
+      Field DefineMovingImagePyramidSchedule {expandX = true alignGroupX = MovingShrinkingImagePyramidParameters}
+      Field MovingImagePyramidSchedule {expandX = true alignGroupX = MovingShrinkingImagePyramidParameters dependsOn = DefineMovingImagePyramidSchedule}
+    }
+  }
+}
+
+Window RegistrationParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box GeneralParameters {
+      Field FixedImageDimension {expandX = True alignGroupX = GeneralParameters}
+      Field MovingImageDimension {expandX = True alignGroupX = GeneralParameters}
+      Field FixedInternalImagePixelType {expandX = True alignGroupX = GeneralParameters}
+      Field MovingInternalImagePixelType {expandX = True alignGroupX = GeneralParameters}
+      Field UseDirectionCosines {expandX = True alignGroupX = GeneralParameters}
+    }
+    Box MultiMetricMultiResolutionRegistrationParameters { 
+      expandX = True
+      visibleOn = "* ElastixRegistration == /^(MultiMetricMultiResolutionRegistration)$/ *"
+      Field NumberOfResolutions { expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }    
+      Field ErodeMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }   
+      Field ErodeFixedMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }   
+      Field ErodeMovingMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }
+      Field ElastixMetric { title = "Metric0:" expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }
+      Field Metric1 { expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }
+      Field Metric0Weight {expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }
+      Field Metric0Use {expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }
+      Field Metric1Weight {expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }
+      Field Metric1Use {expandX = True alignGroupX = MultiMetricMultiResolutionRegistrationParameters }
+    }
+    Box MultiResolutionRegistrationParameters { 
+      expandX = True
+      visibleOn = "* ElastixRegistration == /^(MultiResolutionRegistration)$/ *"
+      Field NumberOfResolutions { expandX = True alignGroupX = MultiResolutionRegistrationParameters }      
+      Field ErodeMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }   
+      Field ErodeFixedMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }   
+      Field ErodeMovingMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }
+    }
+    Box MultiResolutionRegistrationWithFeaturesParameters { 
+      expandX = True
+      visibleOn = "* ElastixRegistration == /^(MultiResolutionRegistrationWithFeatures$)/ *"
+      Field NumberOfResolutions { expandX = True alignGroupX = MultiResolutionRegistrationWithFeaturesParameters }    
+      Field ErodeMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }   
+      Field ErodeFixedMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }   
+      Field ErodeMovingMask { expandX = True alignGroupX = MultiResolutionRegistrationParameters }
+      Field Metric0Weight {expandX = True alignGroupX = MultiResolutionRegistrationWithFeaturesParameters }
+      Field Metric1Weight {expandX = True alignGroupX = MultiResolutionRegistrationWithFeaturesParameters }      
+    }    
+  }
+}
+
+Window OptimizerParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box GeneralParameters {
+      Field NewSamplesEveryIteration { expandX = True alignGroupX = GeneralParameters }      
+    }
+    Box AdaptiveStochasticGradientDescentParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(AdaptiveStochasticGradientDescent)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters }    
+      Field MaximumNumberOfSamplingAttempts { expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters }    
+      Field AutomaticParameterEstimation { expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters } 
+      
+      Horizontal {
+        alignGroupX = AdaptiveStochasticGradientDescentParameters
+        alignX = Left
+        expandX = True
+        dependsOn = AutomaticParameterEstimation
+        Field DefineNumberOfGradientMeasurements {}
+        Field NumberOfGradientMeasurements { dependsOn = DefineNumberOfGradientMeasurements}
+      }
+      Horizontal {
+        alignGroupX = AdaptiveStochasticGradientDescentParameters
+        alignX = Left
+        expandX = True
+        dependsOn = AutomaticParameterEstimation
+        Field DefineNumberOfJacobianMeasurements {}
+        Field NumberOfJacobianMeasurements { dependsOn = DefineNumberOfJacobianMeasurements}
+      }
+      Field SP_a { expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = "* AutomaticParameterEstimation != "True" *"}
+      Field SP_capa {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = "* AutomaticParameterEstimation != "True" *"}
+      Field SP_alpha {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = "* AutomaticParameterEstimation != "True" *"}   
+      Field SigmoidMin {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = "* AutomaticParameterEstimation != "True" *"}
+      Field SigmoidMax {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = "* AutomaticParameterEstimation != "True" *"}
+      Field SigmoidScale {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = "* AutomaticParameterEstimation != "True" *"}
+      Field SigmoidInitialTime {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+      Field UseAdaptiveStepSizes { expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters }    
+      Horizontal {
+        alignGroupX = AdaptiveStochasticGradientDescentParameters
+        alignX = Left
+        expandX = True
+        Field DefineMaximumStepLength {}
+        Field MaximumStepLength { dependsOn = DefineMaximumStepLength}
+      }
+      Field NumberOfSamplesForExactGradient { expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters }
+    }
+    
+    Box CMAEvolutionStrategyParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(CMAEvolutionStrategy)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = CMAEvolutionStrategyParameters }    
+      Field StepLength {expandX = True alignGroupX = CMAEvolutionStrategyParameters}
+      Field ValueTolerance {expandX = True alignGroupX = CMAEvolutionStrategyParameters}
+      Field PositionToleranceMin {expandX = True alignGroupX = CMAEvolutionStrategyParameters}
+      Field PositionToleranceMax {expandX = True alignGroupX = CMAEvolutionStrategyParameters}
+      Horizontal {
+        alignGroupX = CMAEvolutionStrategyParameters
+        alignX = Left
+        expandX = True
+        Field DefineMinimumDeviation {}
+        Field MinimumDeviation { dependsOn = DefineMinimumDeviation}
+      }
+      Horizontal {
+        alignGroupX = CMAEvolutionStrategyParameters
+        alignX = Left
+        expandX = True
+        Field DefineMaximumDeviation {}
+        Field MaximumDeviation { dependsOn = DefineMaximumDeviation}
+      }
+      Field PopulationSize  {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+      Field NumberOfParents  {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+      Field UseDecayingSigma {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+      Field SP_capa {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = UseDecayingSigma}
+      Field SP_alpha {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters dependsOn = UseDecayingSigma}   
+      
+      Field UseCovarianceMatrixAdaptation {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+      Field RecombinationWeightsPreset {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+      Field UpdateBDPeriod {expandX = True alignGroupX = AdaptiveStochasticGradientDescentParameters}
+    }
+    Box ConjugateGradientParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /^(ConjugateGradient)$/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = ConjugateGradientParameters }    
+      Field GenerateLineSearchIterations {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field MaximumNumberOfLineSearchIterations {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field StepLength {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field LineSearchValueTolerance {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field LineSearchGradientTolerance {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field ValueTolerance {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field GradientMagnitudeTolerance {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field ConjugateGradientType {expandX = True alignGroupX = ConjugateGradientParameters}
+      Field StopIfWolfeNotSatisfied  {expandX = True alignGroupX = ConjugateGradientParameters}
+    }
+    Box ConjugateGradientFRPRParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /^(ConjugateGradientFRPR)$/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = ConjugateGradientFRPRParameters }    
+      Field MaximumNumberOfLineSearchIterations {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field StepLength {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field ValueTolerance {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field LineSearchStepTolerance {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+    }
+    Box FiniteDifferenceGradientDescentParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(FiniteDifferenceGradientDescent)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = ConjugateGradientFRPRParameters }    
+      Field SP_a {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field SP_capa {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field SP_alpha {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field SP_c {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field SP_gamma {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+      Field ShowMetricValues {expandX = True alignGroupX = ConjugateGradientFRPRParameters}
+    }
+    Box FullSearchParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(FullSearch)/ *"
+      TextView FullSearchSpace { expandX = True alignGroupX = ConjugateGradientFRPRParameters autoApply = True}          
+    }
+    Box QuasiNewtonLBFGSParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(QuasiNewtonLBFGS)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = QuasiNewtonLBFGSParameters }    
+      Field GenerateLineSearchIterations {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field MaximumNumberOfLineSearchIterations {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field StepLength {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field LineSearchValueTolerance {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field LineSearchGradientTolerance {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field ValueTolerance {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field GradientMagnitudeTolerance {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field LBFGSUpdateAccuracy {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+      Field StopIfWolfeNotSatisfied  {expandX = True alignGroupX = QuasiNewtonLBFGSParameters}
+    }
+    Box RegularStepGradientDescentParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(RegularStepGradientDescent)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = RegularStepGradientDescentParameters }
+      Field MinimumGradientMagnitude { expandX = True alignGroupX = RegularStepGradientDescentParameters }
+      Horizontal {
+        alignGroupX = RegularStepGradientDescentParameters
+        alignX = Left
+        expandX = True
+        Field DefineMinimumStepLength {}
+        Field MinimumStepLength { dependsOn = DefineMinimumStepLength}
+      }
+      Horizontal {
+        alignGroupX = RegularStepGradientDescentParameters
+        alignX = Left
+        expandX = True
+        Field DefineMaximumStepLength {}
+        Field RSGDMaximumStepLength { dependsOn = DefineMaximumStepLength}
+      }
+      Field RelaxationFactor { expandX = True alignGroupX = RegularStepGradientDescentParameters }
+    }  
+    Box RSGDEachParameterApartParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(RSGDEachParameterApart)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = RSGDEachParameterApartParameters }
+      Field MinimumGradientMagnitude { expandX = True alignGroupX = RSGDEachParameterApartParameters }
+      Horizontal {
+        alignGroupX = RSGDEachParameterApartParameters
+        alignX = Left
+        expandX = True
+        Field DefineMinimumStepLength {}
+        Field MinimumStepLength { dependsOn = DefineMinimumStepLength}
+      }
+      Horizontal {
+        alignGroupX = RSGDEachParameterApartParameters
+        alignX = Left
+        expandX = True
+        Field DefineMaximumStepLength {}
+        Field MaximumStepLength { dependsOn = DefineMaximumStepLength}
+      }
+    }
+    Box SimultaneousPerturbationParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(SimultaneousPerturbation)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = SimultaneousPerturbationParameters }    
+      Field NumberOfPerturbations { expandX = True alignGroupX = SimultaneousPerturbationParameters }
+      Field SP_a {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field SP_capa {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field SP_alpha {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field SP_c {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field SP_gamma {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field ShowMetricValues {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+    }
+    Box StandardGradientDescentParameters { 
+      expandX = True
+      visibleOn = "* ElastixOptimizer == /(StandardGradientDescent)/ *"
+      Field MaximumNumberOfIterations { expandX = True alignGroupX = StandardGradientDescentParameters }
+      Field MaximumNumberOfSamplingAttempts {expandX = True alignGroupX = StandardGradientDescentParameters}
+      Field SP_a {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field SP_capa {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      Field SP_alpha {expandX = True alignGroupX = SimultaneousPerturbationParameters}
+      
+    }
+  }
+}
+
+Window ResamplerParametersWindow {
+  alignY = Top
+  expandY = True
+  Vertical {    
+    Box DefaultResamplerParameters { 
+      expandX = True
+      //visibleOn = "* ElastixResampler == /(DefaultResampler)/ *"
+      Field WriteResultImage { expandX = True alignGroupX = DefaultResamplerParameters }   
+      Field CompressResultImage { expandX = True alignGroupX = DefaultResamplerParameters }
+      Field ResultImageFormat { expandX = True alignGroupX = DefaultResamplerParameters }    
+      Field ResultImagePixelType { expandX = True alignGroupX = DefaultResamplerParameters }
+      Field WriteResultImageAfterEachResolution { expandX = True alignGroupX = DefaultResamplerParameters }
+      Label { title="Note: changing these parameters might cause the MeVisLab implementation of Elastix to fail" }
+    }
+  }
+}    
+  
+Window OldMain {
+  expandY = Yes
+  Category File {
+    expandY = Yes
+    Box Create {
+      Field paramFile { browseMode = save browseButton = True browseFilter = "\*.txt" }
+      Button write { command = write }
+    }
+    Box Template {
+      expandY = Yes
+    
+      Vertical {
+        expandY = Yes
+        expandX = Yes
+        Field templateFile { browseMode = open browseButton = True browseFilter = "\*.txt" }
+        Button loadTemplate {}
+        TextView template {
+          title = "<b><font>Template parameter file</font></b>"
+          wrap = off
+          textFormat = Plain
+          console = on
+          edit = False
+          expandy = Expanding
+          expandX = Yes
+        }
+      }
+    }
+  }
+  Category Parameters {
+    expandY = Yes  
+    Horizontal {
+      Vertical { 
+        Box RegistrationGeneral {
+          Horizontal { alignGroupX = RegistrationGeneral Label Registration {  }
+            ComboBox Registration { items {
+                item { title = "MultiResolutionRegistrationWithFeatures" }       
+                item { title = "MultiMetricMultiResolutionRegistration" }       
+                item { title = "MultiResolutionRegistration" } } }  }
+          Horizontal { alignGroupX = RegistrationGeneral Label FixedImagePyramid {  }
+            ComboBox FixedImagePyramid { items {
+                item { title = "FixedSmoothingImagePyramid" }       
+                item { title = "FixedRecursiveImagePyramid" } } }   }
+          Horizontal { alignGroupX = RegistrationGeneral Label MovingImagePyramid {  }
+            ComboBox MovingImagePyramid { items {
+                item { title = "MovingSmoothingImagePyramid" }       
+                item { title = "MovingRecursiveImagePyramid" } } }   }
+          Horizontal { alignGroupX = RegistrationGeneral Label Optimizer {  }
+            ComboBox Optimizer { items {
+                item { title = "FullSearch" }       
+                item { title = "QuasiNewtonLBFGS" }       
+                item { title = "CMAEvolutionStrategy" }       
+                item { title = "ConjugateGradient" }       
+                item { title = "ConjugateGradientFRPR" }       
+                item { title = "SimultaneousPerturbation" }       
+                item { title = "FiniteDifferenceGradientDescent" }       
+                item { title = "RSGDEachParameterApart" }       
+                item { title = "RegularStepGradientDescent" }       
+                item { title = "StandardGradientDescent" }       
+                item { title = "AdaptiveStochasticGradientDescent" } } }   }
+          Horizontal { alignGroupX = RegistrationGeneral Label Transform {  }
+            ComboBox Transform { items {
+                item { title = "TranslationTransform" }       
+                item { title = "EulerTransform" }       
+                item { title = "AffineTransform" }       
+                item { title = "WeightedCombinationTransform" }       
+                item { title = "DeformationFieldTransform" }       
+                item { title = "SplineKernelTransform" }       
+                item { title = "BSplineTransformWithDiffusion" }       
+                item { title = "BSplineTransform" } } } }  
+          Horizontal { alignGroupX = RegistrationGeneral Label Metric {  }
+            ComboBox Metric { items {
+                item { title = "TransformRigidityPenalty" }       
+                item { title = "TransformBendingEnergyPenalty" }       
+                item { title = "DisplacementMagnitudePenalty" }       
+                item { title = "KNNGraphAlphaMutualInformation" }       
+                item { title = "AdvancedKappaStatistic" }       
+                item { title = "AdvancedMeanSquares" }       
+                item { title = "AdvancedNormalizedCorrelation" }       
+                item { title = "ViolaWellsMutualInformation" }       
+                item { title = "NormalizedMutualInformation" }       
+                item { title = "MutualInformationHistogram" }       
+                item { title = "MattesMutualInformationWithRigidityPenalty" }       
+                item { title = "AdvancedMattesMutualInformation" } } }  } 
+          Field NumberOfResolutions { expandX = True alignX = Auto alignGroupX = RegistrationGeneral }
+        }
+        Box RegistrationParameters {
+          Field MaximumNumberOfIterations { expandX = True alignX = Auto  }
+          Field DisableAutomaticParameterEstimation { expandX = True alignX = Auto }
+          Field SP_a { title = "SP_a:" expandX = True alignX = Auto dependsOn = DisableAutomaticParameterEstimation }
+          Field SP_capa { title = "SP_A:" expandX = True alignX = Auto dependsOn = DisableAutomaticParameterEstimation}
+          Field SP_alpha { title = "SP_alpha:" expandX = True alignX = Auto dependsOn = DisableAutomaticParameterEstimation}
+          Field AutomaticScalesEstimation {expandX = True alignX = Auto }
+          Field AutomaticTransformInitialization {expandX = True alignX = Auto }          
+        }    
+        Box RegistrationMisc {
+          Field FinalGridSpacingInVoxels {alignGroupX = RegistrationMisc expandX = True alignX = Auto }
+          Field CenterOfRotation { alignGroupX = RegistrationMisc enabled = Off expandX = True alignX = Auto }
+          Field ErodeMask {alignGroupX = RegistrationMisc expandX = True alignX = Auto }
+          Horizontal { alignGroupX = RegistrationMisc Label HowToCombineTransforms {  }
+            ComboBox HowToCombineTransforms { items {
+                //item { title = "short" }       
+                //item { title = "float" }       
+                item { title = "Compose" } } }   }
+        } 
+      }
+      Vertical {
+        Box ImageProperties {
+          Horizontal { alignGroupX = ImageProperties Label FixedInternalImagePixelType {  }
+            ComboBox FixedInternalImagePixelType { items {
+                item { title = "short" }       
+                item { title = "float" }       
+                item { title = "double" } } }   }
+          Horizontal { alignGroupX = ImageProperties Label MovingInternalImagePixelType {  }
+            ComboBox MovingInternalImagePixelType { items {
+                item { title = "short" }       
+                item { title = "float" }       
+                item { title = "double" } } }   }
+          Horizontal { alignGroupX = ImageProperties Label ResultImagePixelType {  }
+            ComboBox ResultImagePixelType { items {
+                item { title = "short" }       
+                item { title = "float" }       
+                item { title = "double" } } } } 
+          Field FixedImageDimension {alignGroupX = ImageProperties expandX = True alignX = Auto }
+          Field MovingImageDimension {alignGroupX = ImageProperties expandX = True alignX = Auto }
+          Field DefaultPixelValue {alignGroupX = ImageProperties expandX = True alignX = Auto }
+        }
+        Box InterpolationAndSampling {
+          Horizontal { alignGroupX = InterpolationAndSampling Label Interpolator {  }
+            ComboBox Interpolator { items {
+                item { title = "NearestNeighborInterpolator" }       
+                item { title = "LinearInterpolator" }       
+                item { title = "BSplineInterpolatorFloat" }       
+                item { title = "BSplineInterpolator" } } }  } 
+          Horizontal { alignGroupX = InterpolationAndSampling Label ResampleInterpolator {  }
+            ComboBox ResampleInterpolator { items {
+                item { title = "FinalNearestNeighborInterpolator" }       
+                item { title = "FinalLinearInterpolator" }       
+                item { title = "FinalBSplineInterpolatorFloat" }       
+                item { title = "FinalBSplineInterpolator" } } }  } 
+          Horizontal { alignGroupX = InterpolationAndSampling Label Resampler {  }
+            ComboBox Resampler { items {
+                //item { title = "DefaultResampler" }       
+                item { title = "DefaultResampler" } } }  } 
+          Field NumberOfHistogramBins {expandX = True alignX = Auto }
+          Field NumberOfSpatialSamples {expandX = True alignX = Auto }
+          Field NewSamplesEveryIteration {expandX = True alignX = Auto }
+          Horizontal { alignGroupX = InterpolationAndSampling Label ImageSampler {  }
+            ComboBox ImageSampler { items {
+                item { title = "MultiInputRandomCoordinate" }       
+                item { title = "RandomCoordinate" }       
+                item { title = "Full" }       
+                item { title = "Random" } } } }  
+          Field BSplineInterpolationOrder {expandX = True alignX = Auto }
+          Field FinalBSplineInterpolationOrder {expandX = True alignX = Auto }    
+        }    
+      }
+    }
+  }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
+//# owner: MeVis
+//# date: 2009-06-10T03:33:37
+//# hash: OJEV63NkIpl7wX2nwpNoLpXoODIa92JETZ3j1NpI2O+ptbhbjvTaWYjh4XOeCM/8Gra7QaTkLl9e9+hQn9kMEg==
+//# MeVis end
+

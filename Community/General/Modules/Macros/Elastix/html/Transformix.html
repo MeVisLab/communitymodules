@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Details">Details</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Inputs">Inputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Outputs">Outputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Events And Interaction">Events And Interaction</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Example">Example</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Tips And Tricks">Tips And Tricks</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Known Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp; 
+  <hr width="100%">
+</center>
+<h2>Transformix
+</h2>
+<h3><a name="Purpose"></a>Purpose</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+This module creates a command line call to the Transformix image transformation executable. The input image is saved to the temporary directory. Transformix is called to work on those files, and writes its results in a subdirectory './Transformix'. Consequently, this module reads the Transformix transformation results.
+Please refer to the Elastix website (http://elastix.isi.uu.nl) for the documentation of the Transformix program and all its parameters.</blockquote>
+<h3><a name="Usage"></a>Usage</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Provide the transformix executable, a working directory and a transformation file. Input a a moving image and press 'Update' to start Transformix. Use any of the other parameters to deviate from default behaviour.<br>
+<br>
+<b>Make sure that if you use multiple instances of this module, that they all have their own working directory!</b></blockquote>
+<h3><a name="Details"></a>Details</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+For detailed documentation of the Transformix parameters, visit http://elastix.isi.uu.nl.</blockquote>
+<h3><a name="Inputs"></a>Inputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Elastix has one mandatory input.</blockquote>
+<a name="input0"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>input0</b>
+ <br>
+The input image that will be transformed. </blockquote>
+<h3><a name="Outputs"></a>Outputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Transformix has one mandatory output, and three optional outputs.</blockquote>
+<a name="outputImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>outputImage</b>
+ <br>
+The transformed image, defined in the fixed image domain, as defined by the transformation file.</blockquote>
+<a name="outputDeformationField"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>outputDeformationField</b>
+ <br>
+A vector image, defined in the fixed image domain, that for each voxel at position <b>p</b>_f contains a relative position vector <b>v</b> in world coordinates pointing to the corresponding position in the moving image (<b>p</b>_m):<br>
+<b>p</b>_m = <b>p</b>_f + <b>v</b></blockquote>
+<a name="outputJacobian"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>outputJacobian</b>
+ <br>
+A float image, defined in the fixed image domain, that contains the determinant of the Jacobian of the transformation. Values smaller than 1 indicate local compression, values larger than 1 indicate local expansion, and 1 means volume preservation. Generation of this image can be enabled or disabled.</blockquote>
+<a name="outputFullJacobian"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>outputFullJacobian</b>
+ <br>
+The internal name is <b>outputFullJacobian</b>, the type is a macro <b>Image</b>.<br>
+A matrix image, defined in the fixed image domain, that contains the spatial Jacobian of the transformation.  Generation of this image can be enabled or disabled.</blockquote>
+<h3><a name="Parameters"></a>Parameters</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+The parameters for the transformation itself should be provided through a parameter file, that can be generated using Elastix.</blockquote>
+<a name="tranformixExecutable"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Tranformix Executable</b>
+ <br>
+The Transformix executable. It can be downloaded from http://www.isi.uu.nl. <br>
+If the directory that contains Transformix has been added to the path, just the transformix executable filename suffices.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>transformix.exe</b>.
+</blockquote>
+  
+<a name="workingDirectory"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Working Directory</b>
+ <br>
+The directory in which the input and output images, and the transformix log and parameter files will be saved.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>C:/temp/</b>.
+</blockquote>
+  
+<a name="transformationFile"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Transformation File</b>
+ <br>
+The parameterization of the transformation. Typical use of this module links the 'Resulting transformation file' of an Elastix module to this field.</blockquote>
+<a name="autoUpdateTransformationFile"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Auto Update Transformation File</b>
+ <br>
+On change of the working directory, the transformation file will be automatically searched. </blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>FALSE</b>.
+</blockquote>
+  
+<a name="createImage"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Image</b>
+ <br>
+Toggle creation of the transformed output image on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>TRUE</b>.
+</blockquote>
+  
+<a name="createDeformationField"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Deformation Field</b>
+ <br>
+Toggle creating the defrmation field output on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>FALSE</b>.
+</blockquote>
+  
+<a name="createJacobianField"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Jacobian Field</b>
+ <br>
+Toggle creating the Jacobian image output on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>FALSE</b>.
+</blockquote>
+  
+<a name="createJacobianMatrixField"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Create Jacobian Matrix Field</b>
+ <br>
+Toggle creating the Jacobian matrix image output on/off.</blockquote>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Default is <b>FALSE</b>.
+</blockquote>
+  
+<a name="update"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Update</b>
+ <br>
+The internal name is <b>update</b>, the type is a macro <b>Trigger</b>.<br>
+Call transformix (command line call).</blockquote>
+<a name="deleteFiles"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Delete Files</b>
+ <br>
+Experimental. Delete intermediate files generated by Transformix and this module.</blockquote>
+<h3><a name="Events And Interaction"></a>Events And Interaction</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+This module may be used together with the ElastixParameterFile and Elastix modules.</blockquote>
+<h3><a name="Example"></a>Example</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+See the example network.</blockquote>
+<h3><a name="Tips And Tricks"></a>Tips And Tricks</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Use multiple instances of this module by defining a separate working directory for each instance.</blockquote>
+<h3><a name="Known Bugs"></a>Known Bugs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+None. Transformix bugs will not be enumerated here ;-)</blockquote>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

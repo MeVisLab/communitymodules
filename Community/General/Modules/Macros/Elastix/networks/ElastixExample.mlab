@@ -1,0 +1,1918 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Calculator {
+  internal  {
+    frame = "677 845 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "112 261 525 566"
+        sizeHint = "525 566"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Calculator
+    statusBar = ""
+    exp1 = 5/max(f1,f2)
+    exp2 = ""
+    exp3 = ""
+    exp4 = ""
+    exp5 = ""
+    exp6 = ""
+    exp7 = ""
+    exp8 = ""
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    f1 = -851.44476
+    f2 = 735.87677
+    f3 = 0
+    f4 = 0
+    f5 = 0
+    f6 = 0
+    ld1 = 0
+    ld2 = 0
+    ld3 = 0
+    ld4 = 0
+    ld5 = 0
+    ld6 = 0
+    v1 = "0 0 0"
+    v2 = "0 0 0"
+    v3 = "0 0 0"
+    v4 = "0 0 0"
+    v5 = "0 0 0"
+    v6 = "0 0 0"
+    applyMode = AutoApply
+    exp1Comment = ""
+    exp2Comment = ""
+    exp3Comment = ""
+    exp4Comment = ""
+    exp5Comment = ""
+    exp6Comment = ""
+    exp7Comment = ""
+    exp8Comment = ""
+    scalarVariablesComment = ""
+    vectorVariablesComment = ""
+    resultVector1_x = 0
+    resultVector1_y = 0
+    resultVector1_z = 0
+    resultVector2_x = 0
+    resultVector2_y = 0
+    resultVector2_z = 0
+    resultVector3_x = 0
+    resultVector3_y = 0
+    resultVector3_z = 0
+    resultVector4_x = 0
+    resultVector4_y = 0
+    resultVector4_z = 0
+    resultVector5_x = 0
+    resultVector5_y = 0
+    resultVector5_z = 0
+    resultVector6_x = 0
+    resultVector6_y = 0
+    resultVector6_z = 0
+    resultVector7_x = 0
+    resultVector7_y = 0
+    resultVector7_z = 0
+    resultVector8_x = 0
+    resultVector8_y = 0
+    resultVector8_z = 0
+  }
+}
+module MinMaxScan {
+  internal  {
+    frame = "665 909 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "780 237 401 223"
+        sizeHint = "401 223"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MinMaxScan2
+    updateMode = AutoUpdate
+    typeSelect = "Proposed Data Type"
+    preferUnsigned = TRUE
+  }
+}
+module View2D {
+  internal  {
+    frame = "709 213 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1260 379 300 300"
+        sizeHint = "300 300"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D1
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 1
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 1.6508759
+    lutWidth = 2.9526405
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    maxPrecision = 4
+    plane = "0 0 1 1.5"
+  }
+  internalFields = ""
+}
+module SynchroView2D {
+  internal  {
+    frame = "449 213 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "532 638 603 300"
+        sizeHint = "603 300"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "648 487 398 135"
+        sizeHint = "398 135"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D2
+    leftInventorInputOn = FALSE
+    rightInventorInputOn = FALSE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = TRUE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 0
+    slice2 = 0
+    timepoint1 = 0
+    timepoint2 = 0
+    lut1w = 1770
+    lut1c = 1628.0001
+    lut2w = 1770
+    lut2c = 1628.0001
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    drawCurrentPos = FALSE
+    background = "0 0 0"
+    borderOn = FALSE
+    showCurrentPos = FALSE
+    worldPosition = "-8.59580993652344 14.0424690246582 85.9715423583984"
+  }
+  internalFields = ""
+}
+module View2D {
+  internal  {
+    frame = "837 213 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1260 379 300 300"
+        sizeHint = "300 300"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 48
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = -0.46569014
+    lutWidth = 5.1429505
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    maxPrecision = 4
+    plane = "0 0 1 48.5"
+  }
+  internalFields = ""
+}
+module SoView2DDeformationGridView {
+  internal  {
+    frame = "825 301 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "753 427 189 254"
+        sizeHint = "189 254"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DDeformationGridView2
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    stepWidth = 2
+    gridColor = "1 1 1"
+    gridPointColor = "1 0 0"
+    drawGridPoints = TRUE
+    gridPointSegments = 10
+    gridPointAbsoluteSize = FALSE
+    gridPointSize = 0.5
+  }
+}
+module TensorArithmetic2 {
+  internal  {
+    frame = "809 365 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "636 542 422 24"
+        sizeHint = "422 24"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TensorArithmetic2
+    operation = "Vec or Mat Component-wise Minus Vec or Mat To Vec or Mat"
+  }
+}
+module TensorArithmetic1 {
+  internal  {
+    frame = "597 581 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "702 539 334 56"
+        sizeHint = "334 56"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TensorArithmetic12
+    operation = CompScale
+    parameterX = 0
+    parameterY = 0
+    value = -1
+    intList = ""
+    dblList = ""
+  }
+}
+module GaussSmoothing {
+  internal  {
+    frame = "529 701 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "756 448 183 212"
+        sizeHint = "183 212"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GaussSmoothing
+    sigma = 2
+    unit = mm
+    xDim = TRUE
+    yDim = TRUE
+    zDim = TRUE
+    cDim = FALSE
+    tDim = FALSE
+    uDim = FALSE
+    useApprox = TRUE
+    autoUpdate = TRUE
+  }
+}
+module TensorArithmetic1 {
+  internal  {
+    frame = "525 773 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "729 633 334 56"
+        sizeHint = "334 56"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TensorArithmetic11
+    operation = CompScale
+    parameterX = 0
+    parameterY = 0
+    value = 0.00679461611434817
+    intList = ""
+    dblList = "2 2 2 "
+  }
+}
+module SynchroView2D {
+  internal  {
+    frame = "577 213 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "836 552 603 300"
+        sizeHint = "603 300"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "648 487 398 135"
+        sizeHint = "398 135"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D1
+    leftInventorInputOn = TRUE
+    rightInventorInputOn = TRUE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = FALSE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 0
+    slice2 = 0
+    timepoint1 = 0
+    timepoint2 = 0
+    lut1w = 10.240001
+    lut1c = 119.7
+    lut2w = 5.1429505
+    lut2c = 2.1057851
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    drawCurrentPos = FALSE
+    background = "0 0 0"
+    borderOn = FALSE
+    showCurrentPos = FALSE
+    worldPosition = "35.2989654541016 46.2955284118652 63.5"
+  }
+  internalFields = ""
+}
+module SoView2DDeformationGridView {
+  internal  {
+    frame = "617 301 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "753 427 189 254"
+        sizeHint = "189 254"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DDeformationGridView1
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    stepWidth = 4
+    gridColor = "1 1 1"
+    gridPointColor = "1 0 0"
+    drawGridPoints = TRUE
+    gridPointSegments = 10
+    gridPointAbsoluteSize = FALSE
+    gridPointSize = 0.5
+  }
+}
+module SoView2DDeformationGridView {
+  internal  {
+    frame = "457 301 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "583 423 189 254"
+        sizeHint = "189 254"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DDeformationGridView
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = FALSE
+    wantsKeyEvents = FALSE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = FALSE
+    clipToSlice = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    stepWidth = 4
+    gridColor = "1 1 1"
+    gridPointColor = "1 0 0"
+    drawGridPoints = TRUE
+    gridPointSegments = 10
+    gridPointAbsoluteSize = FALSE
+    gridPointSize = 0.50000006
+  }
+}
+module SynchroView2D {
+  internal  {
+    frame = "349 213 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "532 638 603 300"
+        sizeHint = "603 300"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "648 487 398 135"
+        sizeHint = "398 135"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D
+    leftInventorInputOn = FALSE
+    rightInventorInputOn = FALSE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = TRUE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 6
+    slice2 = 6
+    timepoint1 = 0
+    timepoint2 = 0
+    lut1w = 2237.0002
+    lut1c = 1628.0001
+    lut2w = 2237.0002
+    lut2c = 1628.0001
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    drawCurrentPos = FALSE
+    background = "0 0 0"
+    borderOn = FALSE
+    showCurrentPos = FALSE
+    worldPosition = "-8.59580993652344 14.0424690246582 85.9715423583984"
+  }
+  internalFields = ""
+}
+module ImageWarp {
+  internal  {
+    frame = "505 581 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "754 513 186 82"
+        sizeHint = "186 82"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageWarp
+    coordinateSystem = World
+    displacementLimit = 30
+    autoUpdate = TRUE
+  }
+}
+module GaussGradient {
+  internal  {
+    frame = "521 957 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "756 465 183 178"
+        sizeHint = "183 178"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GaussGradient
+    sigma = 1
+    unit = voxel
+    calc2D = FALSE
+    calcMagnitude = FALSE
+    autoUpdate = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "497 397 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "526 193 402 139"
+        sizeHint = "402 139"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(NETWORK)/ExampleParameters.txt
+  }
+  internalFields = ""
+}
+module Arithmetic {
+  internal  {
+    frame = "161 365 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "597 280 500 548"
+        sizeHint = "500 548"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic1
+    expression = "abs(1.0*a-b)"
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    f1 = 0
+    f2 = 0
+    f3 = 0
+    f4 = 0
+    f5 = 0
+    f6 = 0
+    ld1 = 0
+    ld2 = 0
+    ld3 = 0
+    ld4 = 0
+    ld5 = 0
+    ld6 = 0
+    minValue = 0
+    maxValue = 1
+    setMinMaxValues = FALSE
+    statusBar = ""
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    numberOfInputs = 2
+    expressionComment = ""
+    scalarVariablesComment = ""
+  }
+}
+module MinMaxScan {
+  internal  {
+    frame = "153 285 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = MinMaxScan1
+    updateMode = AutoUpdate
+    typeSelect = "Proposed Data Type"
+    preferUnsigned = TRUE
+  }
+}
+module OrthoView2D {
+  internal  {
+    frame = "153 213 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "579 88 300 327"
+        sizeHint = "300 327"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "301 313 352 481"
+        sizeHint = "352 481"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D1
+    inventorInputOn = FALSE
+    layout = LAYOUT_CUBE_EQUAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    timePoint = 0
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    greyWidth = 9
+    greyCenter = 9
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = TRUE
+    annoCoords = Voxel
+    showCurrentPos = TRUE
+    worldPosition = "32.5 39.5 35.5"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+module OrthoView2D {
+  internal  {
+    frame = "245 213 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "947 91 300 327"
+        sizeHint = "300 327"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "671 314 352 481"
+        sizeHint = "352 481"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OrthoView2D
+    inventorInputOn = FALSE
+    layout = LAYOUT_CUBE_EQUAL
+    filterMode = FILTER_LINEAR
+    synchronizeZoom = TRUE
+    synchronizePanning = FALSE
+    synchronizePosition = TRUE
+    useGlobalInputImage = TRUE
+    snapToCenter = FALSE
+    alternCubeLayout = FALSE
+    timePoint = 0
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    greyWidth = 1301.0001
+    greyCenter = 9
+    annotationOn = TRUE
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationFontSize = ANNO_SIZE_AUTO
+    valueHighPrecision = TRUE
+    annoCoords = Voxel
+    showCurrentPos = TRUE
+    worldPosition = "32.5 39.5 35.5"
+    coloredMode = FALSE
+  }
+  internalFields = ""
+}
+module MinMaxScan {
+  internal  {
+    frame = "245 285 104 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = MinMaxScan
+    updateMode = AutoUpdate
+    typeSelect = "Proposed Data Type"
+    preferUnsigned = TRUE
+  }
+}
+module Arithmetic {
+  internal  {
+    frame = "253 365 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "597 280 500 548"
+        sizeHint = "500 548"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic
+    expression = abs(a-b)
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    f1 = 0
+    f2 = 0
+    f3 = 0
+    f4 = 0
+    f5 = 0
+    f6 = 0
+    ld1 = 0
+    ld2 = 0
+    ld3 = 0
+    ld4 = 0
+    ld5 = 0
+    ld6 = 0
+    minValue = 0
+    maxValue = 1
+    setMinMaxValues = FALSE
+    statusBar = ""
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    numberOfInputs = 2
+    expressionComment = ""
+    scalarVariablesComment = ""
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "305 1037 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "635 437 424 235"
+        sizeHint = "424 235"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module Elastix {
+  internal  {
+    frame = "373 453 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "956 119 359 686"
+        sizeHint = "359 686"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Elastix
+    temporaryDirectory = C:/Temp/
+    parameterFile1 = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastix/networks/ExampleParameters.txt
+    parameterFile2 = ""
+    parameterFile3 = ""
+    otherArguments = ""
+    status = initialized
+    elastixExecutable = elastix.exe
+    transformixExecutable = transformix.exe
+    elastixOutput = "*
+elastix is started at Mon May 23 14:36:47 2011.
+
+elastix runs at: marijn2
+  Windows Vista (x64), Service Pack 1 (Build 7601)
+  with 8125 MB memory, and 4 cores @ 2826 MHz.
+-------------------------------------------------------------------------
+
+Running elastix with parameter file 0: "D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastix/networks/ExampleParameters.txt".
+
+Current time: Mon May 23 14:36:47 2011.
+Reading the elastix parameters from file ...
+
+Installing all components.
+InstallingComponents was successful.
+
+ELASTIX version: 4.400
+Command line options from ElastixBase:
+-f        C:/Temp/fixed.mhd
+-m        C:/Temp/moving.mhd
+-fMask    unspecified, so no fixed mask used
+-mMask    unspecified, so no moving mask used
+-out      C:/Temp/
+-p        D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastix/networks/ExampleParameters.txt
+-priority unspecified, so NORMAL process priority
+-threads  2
+Command line options from TransformBase:
+-t0       unspecified, so no initial transform used
+
+Reading images...
+Reading images took 14 ms.
+
+WARNING: the fixed pyramid schedule is not fully specified!
+  A default pyramid schedule is used.
+WARNING: the moving pyramid schedule is not fully specified!
+  A default pyramid schedule is used.
+Initialization of all components (before registration) took: 1 ms.
+Preparation of the image pyramids took: 31 ms.
+
+Resolution: 0
+WARNING: The parameter "ShowExactMetricValue", requested at entry number 0, does not exist at all.
+  The default value "false" is used instead.
+Setting the fixed masks took: 0 ms.
+Setting the moving masks took: 0 ms.
+WARNING: The parameter "NumberOfSamplesForSelfHessian", requested at entry number 0, does not exist at all.
+  The default value "100000" is used instead.
+WARNING: The parameter "SelfHessianSmoothingSigma", requested at entry number 0, does not exist at all.
+  The default value "1" is used instead.
+WARNING: The parameter "SelfHessianNoiseRange", requested at entry number 0, does not exist at all.
+  The default value "1" is used instead.
+WARNING: The parameter "SP_A", requested at entry number 0, does not exist at all.
+  The default value "20" is used instead.
+WARNING: The parameter "MaxBandCovSize", requested at entry number 0, does not exist at all.
+  The default value "192" is used instead.
+WARNING: The parameter "NumberOfBandStructureSamples", requested at entry number 0, does not exist at all.
+  The default value "10" is used instead.
+WARNING: The parameter "MaximumStepLength", requested at entry number 0, does not exist at all.
+  The default value "1" is used instead.
+WARNING: The parameter "NumberOfGradientMeasurements", requested at entry number 0, does not exist at all.
+  The default value "0" is used instead.
+WARNING: The parameter "NumberOfJacobianMeasurements", requested at entry number 0, does not exist at all.
+  The default value "20577" is used instead.
+Elastix initialization of all components (for this resolution) took: 2 ms.
+Initialization of AdvancedMeanSquares metric took: 13 ms.
+Starting automatic parameter estimation for AdaptiveStochasticGradientDescent ...
+  Computing JacobianTerms ...
+  Estimated band size covariance matrix: 858
+  Used band size covariance matrix: 192
+  Progress: 100%  Computing the Jacobian terms took 22 Seconds
+  NumberOfGradientMeasurements to estimate sigma_i: 2
+  Sampling gradients ...
+  Progress: 100%  Sampling the gradients took 5 Seconds
+Automatic parameter estimation took 27 Seconds
+1:ItNr	2:Metric	3a:Time	3b:StepSize	4:||Gradient||	Time[ms]
+0	13474.509964	0.000000	0.035859	850.384098	27183
+1	9757.316696	0.000000	0.035859	953.239802	24
+2	7870.045972	0.000000	0.035859	771.142501	24
+3	6840.061370	1.000000	0.034229	591.617912	23
+4	5845.255053	2.000000	0.032741	633.970493	22
+5	11628.769777	3.000000	0.031376	949.791312	23
+6	3359.380295	4.000000	0.030121	385.283824	23
+7	8682.832425	5.000000	0.028963	482.111054	23
+8	7379.847038	4.413817	0.029631	467.447543	23
+9	7161.680287	3.827623	0.030330	748.918342	24
+10	3563.234695	4.827623	0.029156	276.947905	23
+11	3191.207467	5.827623	0.028069	568.654205	23
+12	6161.317690	6.666655	0.027218	723.160790	23
+13	5025.951966	7.660271	0.026274	287.396684	22
+14	3161.581657	8.660271	0.025389	445.115975	22
+15	3720.211679	9.636957	0.024579	277.599956	23
+16	4262.418716	10.636957	0.023802	347.231068	23
+17	4433.157823	11.138613	0.023431	427.314872	22
+18	6207.493815	10.552420	0.023866	725.512837	23
+19	3483.115661	11.552420	0.023133	389.419702	23
+20	5860.397451	10.966297	0.023557	168.903820	23
+21	3366.203756	11.914651	0.022878	454.639024	23
+22	3499.092122	12.236592	0.022657	269.656806	23
+23	5732.848507	13.236591	0.021995	478.826132	24
+24	6407.613796	14.025782	0.021499	504.083286	23
+25	2705.858124	15.025767	0.020903	204.711482	23
+26	2608.702429	16.025446	0.020338	504.532690	22
+27	5761.344624	15.439376	0.020665	700.253669	22
+28	9738.591159	16.439376	0.020113	612.575689	23
+29	4385.294038	17.439376	0.019590	415.569037	22
+30	6081.924709	16.853182	0.019893	493.440421	22
+31	2588.402681	17.853182	0.019381	253.442633	23
+32	3372.018183	17.308840	0.019657	686.094668	23
+33	3325.624854	16.722781	0.019962	316.281050	23
+34	2727.881609	16.745398	0.019950	325.480802	23
+35	3745.798451	17.745359	0.019435	354.630985	23
+36	4456.644062	17.713487	0.019451	475.198312	23
+37	4345.585059	17.127294	0.019750	380.799247	23
+38	3838.851151	18.127283	0.019246	599.640225	23
+39	3083.765814	19.127283	0.018766	300.291300	23
+40	2422.681664	20.127283	0.018310	266.452617	23
+41	3631.463925	19.542102	0.018574	676.285898	23
+42	2124.405396	20.542102	0.018127	254.317727	23
+43	2528.608220	20.189630	0.018282	285.723773	24
+44	2290.022681	20.961443	0.017946	163.798384	23
+45	2778.163250	20.444359	0.018170	281.832189	23
+46	2534.530706	19.858185	0.018430	475.820171	23
+47	3630.094444	20.858185	0.017990	391.095709	23
+48	2604.562665	21.857987	0.017570	515.456298	23
+49	2137.324828	22.846911	0.017174	237.148587	24
+50	4140.205364	23.175366	0.017046	651.148629	24
+51	2390.273414	22.605612	0.017269	135.620990	23
+52	2190.026194	22.106980	0.017469	139.050134	24
+53	2487.515150	22.454736	0.017329	177.943570	23
+54	2904.126219	22.305737	0.017389	274.334665	23
+55	1753.943139	23.305698	0.016996	115.027385	23
+56	2937.002408	22.948681	0.017134	261.357187	23
+57	1377.865497	22.980515	0.017122	215.101016	23
+58	1854.766099	23.980513	0.016741	158.814649	23
+59	1837.455666	23.394910	0.016962	140.619951	24
+60	2033.884094	22.861629	0.017168	218.909496	23
+61	1951.789543	22.590717	0.017275	110.631956	24
+62	2782.788116	23.398101	0.016961	337.603527	23
+63	1866.195846	23.252061	0.017017	141.105584	24
+64	2234.842281	24.144846	0.016680	155.615817	24
+65	1840.601361	24.836158	0.016429	278.385393	23
+66	1996.171301	24.916306	0.016400	130.894647	24
+67	2228.865483	25.427018	0.016220	324.215745	23
+68	2818.887432	26.367967	0.015897	250.169611	24
+69	2076.185567	27.367967	0.015569	226.889637	23
+70	1748.855310	28.367967	0.015253	105.783667	23
+71	2677.044890	29.200856	0.015000	300.818473	23
+72	2018.381485	29.886074	0.014798	259.174183	23
+73	2190.675250	29.299881	0.014971	328.138076	23
+74	2572.185706	30.299849	0.014679	377.460609	23
+75	2706.662913	31.299849	0.014398	546.194110	24
+76	2528.442177	32.298973	0.014128	281.135853	23
+77	1879.284900	33.298973	0.013868	125.352770	23
+78	2156.592022	32.838209	0.013987	139.110409	24
+79	1439.088365	32.627803	0.014042	133.754074	23
+80	2350.925898	32.092853	0.014183	156.842407	23
+81	2535.686793	32.977624	0.013951	202.802418	24
+82	1823.555608	33.048555	0.013933	134.373493	23
+83	2840.615377	32.493283	0.014077	484.314376	23
+84	2479.378152	31.939839	0.014224	202.590178	23
+85	1968.968663	32.939839	0.013961	178.918549	23
+86	1697.591023	33.939741	0.013707	287.356149	23
+87	1435.918348	33.477262	0.013823	172.168491	23
+88	1544.323249	34.467493	0.013576	106.466814	24
+89	1883.451090	35.255836	0.013386	203.129069	24
+90	2130.414497	35.331800	0.013368	203.446883	23
+91	2243.971819	35.446711	0.013341	232.515472	23
+92	2517.660409	36.446122	0.013108	239.136616	23
+93	2794.159404	37.446122	0.012884	352.300843	23
+94	1397.033348	36.931721	0.012999	95.706454	23
+95	2621.149825	37.872783	0.012791	307.661212	22
+96	1682.901887	37.491571	0.012874	174.959773	23
+97	1887.044661	38.491571	0.012658	180.754396	22
+98	1570.271451	37.908421	0.012783	177.996661	23
+99	2297.610260	37.793545	0.012808	444.830595	22
+100	1944.742348	38.789464	0.012595	345.674573	22
+101	1667.172114	39.789464	0.012388	214.765392	23
+102	2832.429795	40.789464	0.012187	592.068151	23
+103	2069.623609	41.789464	0.011993	308.755262	23
+104	2207.120381	42.789464	0.011805	357.516737	22
+105	1549.400464	42.203271	0.011914	96.579867	22
+106	2035.935042	43.178106	0.011733	122.096864	23
+107	1761.767306	43.100541	0.011748	131.355938	24
+108	1910.583401	43.081064	0.011751	191.220597	23
+109	1838.588698	44.028498	0.011580	138.938153	24
+110	2151.139641	44.561012	0.011486	281.726766	23
+111	1783.635900	44.024600	0.011581	183.583241	23
+112	1557.246675	45.024599	0.011405	133.815013	23
+113	1472.607960	45.761145	0.011279	126.992072	23
+114	1367.158741	46.273119	0.011194	125.996552	23
+115	1613.655129	45.747178	0.011282	139.481085	23
+116	2500.413654	46.353152	0.011180	149.415148	24
+117	1506.011199	47.336402	0.011019	180.417181	23
+118	1999.719793	46.934886	0.011085	168.368261	22
+119	1534.514297	46.722011	0.011119	93.072545	23
+120	2377.425437	46.730029	0.011118	127.103636	23
+121	2376.805088	46.761138	0.011113	143.983479	23
+122	2238.369056	46.331557	0.011184	278.116757	23
+123	1677.332407	47.331557	0.011020	173.455727	23
+124	1837.950271	48.330531	0.010861	88.392486	23
+125	1746.718211	48.085250	0.010900	126.662324	23
+126	1762.547273	48.315835	0.010864	255.140346	23
+127	1529.849463	49.281233	0.010715	155.972054	23
+128	2177.290085	50.281115	0.010564	149.494480	23
+129	1979.585813	50.346064	0.010555	149.060348	23
+130	1395.759205	50.393529	0.010548	181.522553	23
+131	1779.208783	51.391034	0.010402	161.531612	24
+132	2125.286069	51.297905	0.010416	141.268699	23
+133	1485.821041	52.295787	0.010274	100.808036	23
+134	1917.298452	53.058412	0.010168	107.075724	23
+135	2414.308799	53.299245	0.010135	158.728249	23
+136	1688.973427	54.073132	0.010031	96.202272	23
+137	1515.952235	54.028717	0.010037	191.036146	22
+138	988.671596	54.072080	0.010031	118.439303	23
+139	2218.487141	55.033972	0.009904	145.411850	23
+140	1764.040361	55.166941	0.009887	131.699672	23
+141	1158.936652	54.615012	0.009959	119.634057	24
+142	1920.300451	55.134730	0.009891	173.008903	22
+143	1877.832515	55.511865	0.009842	178.202220	23
+144	1595.307310	56.378120	0.009732	167.273172	23
+145	1448.908446	55.792709	0.009806	115.465566	23
+146	2460.803065	55.610497	0.009829	119.788197	23
+147	2283.268324	56.343603	0.009736	315.705680	23
+148	1398.593820	55.758491	0.009810	129.275907	23
+149	1423.275684	56.130822	0.009763	76.186548	23
+150	1886.277960	56.279720	0.009744	194.984320	23
+151	1749.681057	56.556329	0.009709	91.657157	23
+152	1511.967761	56.112646	0.009765	122.716249	22
+153	1962.208984	56.831443	0.009675	142.810499	23
+154	1132.284226	56.820672	0.009677	151.205020	23
+155	1800.126025	57.815690	0.009554	89.953674	23
+156	1641.123421	58.234514	0.009504	110.594578	22
+157	1872.088984	58.580245	0.009463	213.761381	23
+158	1640.259015	59.580220	0.009345	141.108232	22
+159	1924.753892	60.546554	0.009234	103.690283	23
+160	1624.079494	60.560238	0.009233	99.227817	23
+161	1450.307360	60.692428	0.009218	97.390288	23
+162	1222.850180	60.361552	0.009255	193.559278	23
+163	2188.225864	60.769609	0.009209	185.326129	23
+164	1711.514671	61.160172	0.009165	104.917807	23
+165	1446.556329	62.049960	0.009067	139.153380	23
+166	1689.281645	61.910437	0.009082	116.687700	22
+167	1421.306444	61.373522	0.009142	102.287670	23
+168	1206.481324	61.794508	0.009095	136.437005	23
+169	2047.050154	61.835142	0.009091	117.405299	23
+170	1640.315148	61.456597	0.009132	101.311242	23
+171	1508.756016	61.881728	0.009086	176.672433	23
+172	1807.467005	61.339342	0.009145	159.803654	23
+173	1500.540264	62.338477	0.009036	120.307021	23
+174	1761.701279	62.017212	0.009071	117.349593	23
+175	2619.451665	62.682936	0.008999	95.256764	23
+176	1503.260373	62.758630	0.008991	69.995988	22
+177	2173.493123	62.612524	0.009006	204.647366	23
+178	2159.632168	62.477595	0.009021	142.275603	24
+179	767.497332	63.476978	0.008914	84.220807	23
+180	1002.300061	63.527101	0.008909	143.355673	22
+181	2238.633805	63.462513	0.008916	98.589327	23
+182	1704.170867	63.167281	0.008947	103.349282	23
+183	1862.803971	63.241904	0.008939	107.342619	23
+184	2449.321349	62.932567	0.008972	157.234876	23
+185	1593.875536	63.650657	0.008896	205.102596	23
+186	1432.578967	63.711489	0.008889	158.700041	22
+187	1357.888957	64.711489	0.008786	67.503148	22
+188	2276.982330	64.626846	0.008794	90.252389	23
+189	1474.482501	64.603942	0.008797	88.122960	23
+190	1352.219414	64.716631	0.008785	93.775422	23
+191	1651.020139	64.636408	0.008793	122.103956	23
+192	2099.140378	64.447751	0.008813	145.086529	23
+193	802.573843	65.235205	0.008732	87.317309	23
+194	1230.180866	64.744202	0.008782	66.775681	23
+195	1809.013738	64.746072	0.008782	178.932705	23
+196	1612.028388	64.899614	0.008766	69.545740	23
+197	1703.524672	65.113920	0.008745	99.414943	23
+198	1867.877177	65.103773	0.008746	125.752933	24
+199	1932.580735	64.549287	0.008802	166.184968	23
+200	1875.920907	64.866368	0.008770	120.112995	22
+201	1188.637355	65.589514	0.008697	82.021558	22
+202	1844.573918	65.869110	0.008669	113.151880	23
+203	2285.391130	65.967601	0.008659	157.168809	23
+204	2148.134495	65.701298	0.008685	181.562025	22
+205	1177.450071	66.697416	0.008587	68.945931	23
+206	1694.288172	67.016509	0.008556	141.873395	22
+207	1379.329523	67.204720	0.008537	118.827846	23
+208	1541.776484	67.131570	0.008544	114.776087	23
+209	1783.844436	68.124242	0.008449	156.284802	24
+210	1292.564089	67.660234	0.008493	161.715020	22
+211	1937.137185	68.657380	0.008399	189.432175	23
+212	1981.458692	69.032257	0.008364	175.894174	23
+213	1456.270563	70.029953	0.008272	113.182164	23
+214	2181.908031	69.938015	0.008281	198.134072	23
+215	2125.453994	70.540445	0.008226	132.175043	23
+216	2001.265344	70.179863	0.008259	128.751417	23
+217	1017.217216	69.747012	0.008298	94.300035	24
+218	1987.424430	69.775464	0.008296	101.136252	37
+219	1321.088060	69.689538	0.008303	124.497699	39
+220	1576.178754	69.472970	0.008323	85.939094	36
+221	1754.529560	68.946051	0.008372	187.416076	36
+222	1471.196547	68.857468	0.008380	116.630995	30
+223	2446.756851	69.720934	0.008301	147.671721	23
+224	1613.883879	70.068402	0.008269	89.368555	23
+225	1326.778203	70.929144	0.008191	90.485052	23
+226	1882.164660	70.973816	0.008187	146.706737	23
+227	1922.133440	71.087242	0.008177	177.878566	23
+228	2335.510216	72.085439	0.008090	117.037040	23
+229	2401.665898	72.885168	0.008021	206.003051	22
+230	2194.445658	73.498223	0.007969	218.188151	23
+231	2033.592865	73.996260	0.007927	87.029801	23
+232	1277.366103	74.915149	0.007851	161.916797	23
+233	1043.557997	74.393301	0.007894	79.114405	23
+234	1616.078420	74.417167	0.007892	93.717569	23
+235	1659.340769	74.509393	0.007884	78.354125	23
+236	1459.407247	74.524837	0.007883	95.094092	24
+237	1663.776554	74.417766	0.007892	76.421749	23
+238	1957.543355	74.422583	0.007892	200.127964	23
+239	2100.316753	74.190761	0.007911	119.656978	23
+240	1983.230177	74.162100	0.007913	172.813597	23
+241	2886.563487	73.607920	0.007960	157.561730	23
+242	1845.637296	74.607641	0.007876	173.281778	23
+243	2049.247103	75.431754	0.007809	135.166812	23
+244	1952.141601	75.665711	0.007790	97.385963	23
+245	1626.973306	75.674003	0.007789	155.759603	23
+246	1478.766985	75.450168	0.007807	153.991766	23
+247	1463.415488	75.276963	0.007822	137.457682	23
+248	2037.288477	76.272427	0.007741	139.142112	23
+249	908.208693	77.039144	0.007681	91.193454	22
+250	1890.178292	77.423736	0.007651	225.065852	23
+251	2462.930471	77.137556	0.007673	108.482971	23
+252	2129.245716	77.425918	0.007651	119.524293	23
+253	1749.545313	77.309248	0.007660	98.646754	23
+254	864.405083	77.408571	0.007652	160.659948	22
+255	1598.395875	76.957377	0.007687	118.856335	23
+256	1656.352291	77.556021	0.007641	265.777821	23
+257	1401.787545	78.534477	0.007566	87.814311	23
+258	2586.173457	78.720898	0.007551	73.107675	23
+259	2374.114422	78.731526	0.007551	189.430382	23
+260	1366.068087	78.878538	0.007539	57.522901	23
+261	1628.620531	79.135952	0.007520	170.101557	22
+262	1783.867769	79.471342	0.007495	106.608362	24
+263	1067.106611	80.464270	0.007422	108.426654	24
+264	1350.019590	80.975840	0.007384	73.914913	24
+265	1734.413672	81.214572	0.007367	123.170523	30
+266	1601.562987	81.112708	0.007375	123.392744	36
+267	1580.393417	80.716120	0.007403	75.506467	37
+268	1572.720524	80.393975	0.007427	145.792484	35
+269	1856.763643	80.240466	0.007438	232.938345	33
+270	1619.645861	81.046279	0.007379	146.376522	27
+271	1352.966056	80.553467	0.007415	134.547885	24
+272	1550.768688	81.341459	0.007358	193.249796	23
+273	1699.940690	80.795381	0.007398	180.122790	23
+274	1268.786467	81.791879	0.007326	139.835765	23
+275	1287.947765	82.783208	0.007256	107.146365	23
+276	1518.200859	82.355416	0.007286	92.885545	23
+277	1399.632414	83.217714	0.007226	161.306027	23
+278	2090.986335	82.767344	0.007257	105.825017	23
+279	1701.192990	83.725226	0.007191	84.352268	24
+280	1381.906089	83.742102	0.007189	62.362704	23
+281	1689.512658	83.778405	0.007187	121.019811	23
+282	1537.354645	83.813798	0.007184	116.114774	23
+283	1408.028695	84.097677	0.007165	80.065861	23
+284	1590.116084	84.005786	0.007171	99.738776	23
+285	1375.738328	83.877881	0.007180	119.780330	24
+286	1174.969270	84.602017	0.007131	114.653942	23
+287	1639.939340	85.010031	0.007103	84.127569	23
+288	1928.429179	85.616062	0.007063	176.125865	24
+289	1079.438897	86.189170	0.007025	129.121556	23
+290	1875.133295	87.084394	0.006967	164.870254	24
+291	1372.522974	87.325003	0.006952	142.997603	23
+292	1301.857614	88.267119	0.006892	111.459935	24
+293	968.231219	88.459481	0.006880	74.719343	24
+294	1264.835587	88.534563	0.006875	115.742539	23
+295	1463.048487	88.479971	0.006878	83.701958	23
+296	2157.523155	87.969651	0.006910	141.266874	24
+297	1368.777623	87.845242	0.006918	91.853869	23
+298	2030.985768	88.232470	0.006894	93.281135	23
+299	1263.102863	88.137840	0.006900	66.519329	23
+300	1221.904020	88.478750	0.006878	133.519235	24
+301	1410.245924	88.459275	0.006880	84.162296	22
+302	1402.629231	89.054316	0.006842	112.972263	22
+303	1807.314723	89.652385	0.006805	157.997283	23
+304	1501.582169	89.756061	0.006799	82.315161	23
+305	1427.587229	90.359436	0.006762	78.072328	23
+306	1698.210742	90.346642	0.006763	152.284224	23
+307	1692.029907	90.363694	0.006762	231.016429	23
+308	1791.795553	91.363504	0.006702	149.199535	23
+309	1211.091933	90.958742	0.006726	104.120396	23
+310	2339.397487	90.936938	0.006727	78.075231	23
+311	1846.345688	91.024771	0.006722	102.300488	24
+312	1498.417339	91.270439	0.006707	90.654830	23
+313	1022.414872	91.524341	0.006692	134.201941	34
+314	1504.074957	91.038846	0.006721	122.473009	35
+315	1885.453397	91.480547	0.006695	115.327862	34
+316	1969.270963	92.235584	0.006650	132.947226	34
+317	1580.888666	92.090676	0.006659	201.282310	32
+318	1416.135568	91.631748	0.006686	123.690874	23
+319	1794.087910	92.611091	0.006628	84.379255	22
+320	2236.705444	92.409270	0.006640	148.550636	23
+321	1512.422439	91.877164	0.006671	106.826480	23
+322	1573.983998	91.841308	0.006673	92.705552	23
+323	2542.564580	91.512023	0.006693	126.748174	24
+324	1835.072408	92.326636	0.006645	129.210636	23
+325	1277.740404	92.011285	0.006663	85.769046	24
+326	1988.364497	91.597372	0.006688	86.611411	23
+327	1750.727963	91.541923	0.006691	75.884204	22
+328	1421.469554	91.338001	0.006703	145.198549	22
+329	1711.093734	92.022791	0.006663	70.978186	23
+330	1301.565165	91.836783	0.006674	114.193459	23
+331	1073.047801	92.087958	0.006659	68.870807	23
+332	919.857423	92.357509	0.006643	127.538505	24
+333	2412.935057	92.080579	0.006659	130.526559	23
+334	1254.152417	92.949384	0.006608	72.699124	23
+335	1477.764845	93.094107	0.006600	174.886024	23
+336	2015.032097	92.737153	0.006621	133.491476	23
+337	1299.786063	93.737147	0.006563	78.749705	23
+338	1448.599850	93.811813	0.006559	88.652930	23
+339	1695.312493	93.875892	0.006555	71.604143	23
+340	1882.393436	93.817826	0.006558	120.950093	22
+341	2366.547589	93.868035	0.006556	130.456808	22
+342	1544.487346	94.519062	0.006519	85.740075	22
+343	2565.653464	94.912678	0.006497	185.400628	22
+344	1705.420495	95.107608	0.006486	72.847651	22
+345	2366.530886	95.373447	0.006471	146.179219	23
+346	1398.274401	95.168276	0.006482	121.587629	22
+347	1865.120909	95.773109	0.006449	96.642030	22
+348	1038.013926	96.095499	0.006431	98.073868	23
+349	1545.006221	96.380752	0.006415	283.595256	23
+350	1262.662509	97.331871	0.006364	78.410649	23
+351	1571.880203	98.198598	0.006317	226.066375	23
+352	2085.637085	98.422789	0.006306	134.745609	22
+353	1423.357358	99.421941	0.006253	109.867884	22
+354	1589.235952	99.124584	0.006269	180.013529	24
+355	1685.994298	98.658873	0.006293	86.878615	23
+356	2211.875521	99.653470	0.006241	77.375675	23
+357	1831.373480	99.708789	0.006238	178.515182	22
+358	2593.623728	99.756997	0.006236	153.826994	23
+359	1753.933740	100.738404	0.006186	107.394120	22
+360	1704.720967	100.738217	0.006186	117.819070	23
+361	1312.944061	101.558582	0.006144	99.225331	30
+362	1991.019446	101.802388	0.006132	113.196746	34
+363	1823.858396	102.393304	0.006103	64.920628	33
+364	1491.050345	102.383915	0.006103	191.051254	34
+365	1079.866777	102.354364	0.006105	80.015169	34
+366	1279.259691	102.665158	0.006089	137.318549	27
+367	1148.285222	102.994975	0.006073	104.794198	22
+368	1395.054384	102.654011	0.006090	65.126376	22
+369	2318.742560	102.383360	0.006103	163.558665	22
+370	1807.365568	102.372765	0.006104	126.011285	23
+371	1211.734827	101.787435	0.006133	125.096565	22
+372	1241.859171	101.786482	0.006133	89.670834	22
+373	2586.758344	102.347182	0.006105	365.692579	23
+374	1364.982385	103.318806	0.006057	89.601211	23
+375	1488.371517	103.781299	0.006035	154.195760	23
+376	1662.604606	104.723164	0.005990	81.753603	23
+377	1939.174324	104.922573	0.005980	101.657327	23
+378	1797.601224	104.896907	0.005981	116.623777	23
+379	1773.560392	104.745484	0.005989	134.623312	23
+380	1500.800555	105.154815	0.005969	75.590977	23
+381	1686.750615	105.114504	0.005971	130.915006	23
+382	1522.444700	105.067857	0.005973	70.975862	23
+383	1757.978174	105.042021	0.005974	174.144753	23
+384	1424.888940	104.888557	0.005982	131.736341	23
+385	1615.133287	104.514245	0.006000	113.867645	23
+386	1799.099693	104.997337	0.005977	198.076012	23
+387	1394.091937	104.565757	0.005997	84.317595	23
+388	1554.138988	104.523142	0.005999	76.641986	23
+389	2445.388440	104.458107	0.006002	74.020975	23
+390	1643.728961	104.397106	0.006005	114.643429	23
+391	1148.776846	104.425710	0.006004	164.138842	23
+392	1257.107187	104.520907	0.005999	106.917708	23
+393	1863.182254	105.210569	0.005966	148.162572	22
+394	1821.174693	105.237096	0.005965	169.251393	23
+395	1446.445629	105.736886	0.005942	111.407789	22
+396	1399.483603	105.287003	0.005963	134.474534	22
+397	1168.344636	105.647909	0.005946	86.425786	22
+398	1618.941848	105.517720	0.005952	99.478145	22
+399	1661.780797	105.088367	0.005972	138.035879	23
+400	1618.163984	105.036404	0.005975	97.672466	23
+401	1526.126146	105.733335	0.005942	113.906159	23
+402	1276.760774	106.645681	0.005899	105.969946	23
+403	1308.441298	106.901061	0.005888	87.919863	23
+404	2326.639252	106.889627	0.005888	145.336268	23
+405	1479.190084	106.863648	0.005889	93.505431	23
+406	2082.089607	107.166012	0.005875	140.289389	23
+407	1487.497870	107.347843	0.005867	93.141661	22
+408	1467.635185	107.463404	0.005862	133.123928	24
+409	1784.614249	107.546925	0.005858	98.695645	23
+410	1255.795155	108.524451	0.005814	100.931433	30
+411	1483.939526	108.275310	0.005825	145.663894	34
+412	1526.548116	109.224516	0.005783	104.968805	33
+413	1704.046798	108.995714	0.005793	93.234729	34
+414	2007.682137	108.855709	0.005799	86.259641	34
+415	1868.761452	109.286534	0.005780	66.851229	23
+416	1345.706806	109.398331	0.005775	122.000436	23
+417	1609.424472	110.001677	0.005748	90.409459	23
+418	1936.154001	110.056985	0.005746	161.844043	23
+419	2054.929782	109.479501	0.005771	130.601507	24
+420	762.524207	110.446600	0.005729	81.766037	23
+421	1034.253192	110.362131	0.005732	63.468941	22
+422	2114.267614	110.421308	0.005730	107.170702	22
+423	916.874207	110.376798	0.005732	140.810011	23
+424	1369.051214	110.200311	0.005740	98.632593	23
+425	1243.867573	110.670246	0.005719	82.962992	23
+426	1825.259451	110.724607	0.005717	111.485182	23
+427	1624.183363	110.977771	0.005706	65.598246	22
+428	2050.853320	111.356087	0.005689	93.573056	22
+429	2083.145734	111.522796	0.005682	99.770194	23
+430	1876.302457	111.634963	0.005677	110.562068	23
+431	892.119781	111.711292	0.005674	112.920622	23
+432	1160.794208	112.143844	0.005656	127.018332	22
+433	1931.216419	112.815122	0.005627	153.295686	23
+434	1954.962472	113.597267	0.005595	152.816122	23
+435	1759.570563	114.324583	0.005565	167.982689	23
+436	1466.254215	115.316803	0.005524	92.828261	23
+437	1181.907214	114.992890	0.005537	87.436892	23
+438	1612.213203	115.013182	0.005536	88.322325	22
+439	2105.353872	114.935685	0.005540	119.772939	23
+440	1872.407383	114.948087	0.005539	106.011929	23
+441	1204.802570	115.055588	0.005535	94.420246	22
+442	1137.869898	114.761628	0.005547	99.124227	22
+443	1666.178129	115.027075	0.005536	74.848286	22
+444	1393.719105	115.052830	0.005535	86.977277	22
+445	1430.219170	115.150434	0.005531	93.904278	22
+446	2094.266641	115.700797	0.005509	86.690636	22
+447	1645.671599	115.980941	0.005497	75.611259	22
+448	1411.751907	115.793012	0.005505	183.837513	23
+449	1896.896450	116.050880	0.005495	85.260502	23
+450	2150.119792	116.859220	0.005462	85.582412	23
+451	1152.794017	116.933666	0.005459	158.379940	22
+452	1440.769775	116.353123	0.005482	70.965042	22
+453	1279.165122	116.623356	0.005472	75.764628	23
+454	1432.219357	116.661899	0.005470	64.973688	23
+455	2612.025299	116.514309	0.005476	93.456444	23
+456	1433.446156	116.481383	0.005477	92.130103	23
+457	1960.825935	116.585297	0.005473	86.112714	23
+458	1762.574188	116.409737	0.005480	113.007477	23
+459	1178.552964	116.334168	0.005483	91.274880	23
+460	1208.189071	116.365126	0.005482	105.950247	23
+461	1476.002318	116.770943	0.005466	89.646694	22
+462	1484.673951	116.923737	0.005460	112.345310	22
+463	2196.560765	116.809735	0.005464	105.271381	24
+464	1886.545589	116.714899	0.005468	165.430687	23
+465	1788.605463	117.290484	0.005445	90.480657	23
+466	1271.241211	117.403070	0.005441	116.595507	23
+467	2305.470539	118.001294	0.005417	105.802031	22
+468	2721.288482	118.117896	0.005413	112.844697	23
+469	1291.742377	118.576153	0.005395	79.432578	24
+470	1953.652533	118.531937	0.005397	99.059161	24
+471	1813.962348	118.471663	0.005399	95.873680	24
+472	1556.394282	118.948034	0.005381	129.226932	24
+473	824.060907	118.625451	0.005393	82.287072	23
+474	1652.609471	118.870284	0.005384	74.097292	23
+475	1001.168831	119.179717	0.005372	72.778051	23
+476	1856.566035	118.890387	0.005383	139.227260	23
+477	1722.296353	118.991488	0.005379	84.363118	23
+478	2020.693516	119.911578	0.005344	139.529934	23
+479	2016.619357	119.717216	0.005351	93.768984	24
+480	1049.731992	120.399560	0.005326	108.476217	23
+481	1293.167962	120.692714	0.005315	126.985071	23
+482	1758.800038	120.486845	0.005322	75.851188	24
+483	798.727446	121.258061	0.005293	64.083958	23
+484	1564.731141	121.314572	0.005291	91.827392	24
+485	1999.828740	121.334372	0.005291	135.698458	24
+486	1877.449388	122.214502	0.005258	74.416892	24
+487	1587.563833	122.701819	0.005240	113.471259	23
+488	863.391680	122.395212	0.005251	92.437561	24
+489	1583.424739	122.583051	0.005245	237.437589	23
+490	1212.845383	121.997724	0.005266	200.740981	23
+491	1820.366235	122.997723	0.005229	192.835765	23
+492	1145.948060	123.964738	0.005195	98.654642	22
+493	1703.624798	124.395679	0.005179	83.292493	22
+494	1395.987476	124.607793	0.005172	75.360430	22
+495	1017.877501	124.482662	0.005176	73.121687	24
+496	1591.672325	124.744750	0.005167	61.163314	22
+497	1662.815565	124.731837	0.005167	119.792746	23
+498	1612.595761	124.751160	0.005167	81.954746	24
+499	1805.165840	124.977981	0.005159	76.515185	23
+Time spent in resolution 0 (ITK initialisation and iterating): 39.039 s.
+Stopping condition: Maximum number of iterations has been reached.
+Settings of AdaptiveStochasticGradientDescent in resolution 0:
+( SP_a 0.753032 )
+( SP_A 20.000000 )
+( SP_alpha 1.000000 )
+( SigmoidMax 1.000000 )
+( SigmoidMin -0.586193 )
+( SigmoidScale 1122.642411 )
+
+
+
+Applying final transform ...
+
+  Writing image ...
+  Applying final transform took 0 s.
+
+Final metric value  = 1805.165840
+Settings of AdaptiveStochasticGradientDescent for all resolutions:
+( SP_a 0.753032 )
+( SP_A 20.000000 )
+( SP_alpha 1.000000 )
+( SigmoidMax 1.000000 )
+( SigmoidMin -0.586193 )
+( SigmoidScale 1122.642411 )
+
+Time spent on saving the results, applying the final transform etc.: 866 ms.
+Running elastix with parameter file 0: "D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastix/networks/ExampleParameters.txt", has finished.
+
+
+Current time: Mon May 23 14:37:27 2011.
+Time used for running elastix with this parameter file: 40 Seconds.
+
+-------------------------------------------------------------------------
+
+Total time elapsed: 40 Seconds.
+
+*"
+    removeIntermediateFiles = FALSE
+    sendOutputToLogWindowTo = TRUE
+    createDeformationField = TRUE
+    createJacobianImage = TRUE
+    createJacobianMatrixImage = TRUE
+    numberOfThreads = 2
+    initialTransformationFile = ""
+    outputImageDataType = float
+  }
+  internalFields = ""
+}
+module ElastixParameterFile {
+  internal  {
+    frame = "497 453 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "573 297 643 705"
+        sizeHint = "643 705"
+        wasOpen = no
+        wasActive = no
+      }
+      window Test {
+        geometry = "204 38 784 969"
+        sizeHint = "784 969"
+        wasOpen = no
+        wasActive = no
+      }
+      window Main {
+        geometry = "402 252 891 604"
+        sizeHint = "891 604"
+        wasOpen = no
+        wasActive = no
+      }
+      window RegistrationParametersWindow {
+        geometry = "688 492 319 125"
+        sizeHint = "319 125"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ElastixParameterFile
+    templateFile = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastixParameterFile/parameters_Template.txt
+    template = "*// Example parameter file for rigid registration
+// C-style comments: //
+
+// The internal pixel type, used for computations
+// Leave to float in general
+(FixedInternalImagePixelType "P_FixedInternalImagePixelType")
+(MovingInternalImagePixelType "P_MovingInternalImagePixelType")
+
+// The dimensions of the fixed and moving image
+(FixedImageDimension P_FixedImageDimension)
+(MovingImageDimension P_MovingImageDimension)
+
+//Components
+
+// The following components should be left as they are:
+(Registration "P_Registration")
+(FixedImagePyramid "P_FixedImagePyramid")
+(MovingImagePyramid "P_MovingImagePyramid")
+(Interpolator "P_Interpolator")
+(ResampleInterpolator "P_ResampleInterpolator")
+(Resampler "P_Resampler")
+
+// You may change these:
+// The optimizer StandardGradientDescent works quite ok 
+// in general. The Transform and Metric are important and
+// need to be chosen careful for each application.
+(Optimizer "P_Optimizer")
+(Transform "P_Transform")
+(Metric "P_Metric")
+
+// Scales the rotations compared to the translations, to make
+// sure they are in the same range. The higher this parameter,
+// the smaller the changes in rotation angle in each iteration.
+// If you have the feeling that rotations are not found by elastix,
+// decrease it; if elastix crashes after a few iterations, with
+// the message that all samples map outside the moving image 
+// buffer, you may have to increase this parameter.
+//(Scales 50000.0)
+// Better use automatic scales estimation!:
+(AutomaticScalesEstimation P_AutomaticScalesEstimation)
+
+// Automatically guess an initial translation
+// We already did a translation optimization in this example,
+// so this is not needed/recommended here.
+(AutomaticTransformInitialization P_AutomaticTransformInitialization)
+
+// Choose another center of rotation for the EulerTransform, if you like
+// Uncomment if you want that. Otherwise the center of the image is used.
+//(CenterOfRotation P_CenterOfRotation)
+
+// The number of resolutions. 1 Is only enough if the expected
+// deformations are small. 3 or 4 mostly works fine.
+(NumberOfResolutions P_NumberOfResolutions)
+
+// The pixel type of the resulting image
+(ResultImagePixelType "P_ResultImagePixelType")
+
+// If you use a mask, this option is important. You can 
+// set it for each resolution differently.
+// If the mask serves as region of interest, set it to false.
+// If the mask indicates which pixels are valid, then set it to true.
+// If you do not use a mask, the option doesn't matter.
+(ErodeMask P_ErodeMask)
+
+// Whether transforms are combined by composition or by addition.
+// In generally, Compose is the best option in most cases.
+// It does not influence the results very much.
+(HowToCombineTransforms "P_HowToCombineTransforms")
+
+// This is an important option. It defines the complexity of
+// the deformation field.
+// Final spacing of B-Spline grid (unit = size of 1 voxel)
+// You can give it for each dimension differently, or for 
+// all dimensions the same.
+(FinalGridSpacingInVoxels P_FinalGridSpacingInVoxels )
+
+// You may also give the B-spline grid spacing in mm, like this:
+//(FinalGridSpacingInPhysicalUnits P_FinalGridSpacingInPhysicalUnits )
+
+// Number of spatial samples used to compute the mutual
+// information in each resolution level.
+// With a StandardGradientDescent optimizer, in combination with
+// the two options below, around 2000 samples may already suffice.
+(NumberOfSpatialSamples P_NumberOfSpatialSamples)
+
+// Refresh these spatial samples in every iteration, and select
+// them randomly.
+(NewSamplesEveryIteration P_NewSamplesEveryIteration)
+(ImageSampler "P_ImageSampler")
+
+//Number of grey level bins in each resolution level,
+// for the mutual information. 16 or 32 usually works fine.
+(NumberOfHistogramBins P_NumberOfHistogramBins)
+
+//Order of B-Spline interpolation used in each resolution level:
+// It may improve accuracy if you set this to 3. Never use 0.
+(BSplineInterpolationOrder P_BSplineInterpolationOrder)
+
+//Order of B-Spline interpolation used for applying the final
+// deformation.
+// 3 gives good accuracy.
+// 1 gives worse accuracy (linear interpolation)
+// 0 gives worst accuracy, but may be appropriate for 
+// binary images; this would be equivalent to nearest neighbor
+// interpolation.
+(FinalBSplineInterpolationOrder P_FinalBSplineInterpolationOrder)
+
+//Default pixel value for pixels that come from outside the picture:
+(DefaultPixelValue P_DefaultPixelValue)
+
+// The following parameters are for the StandardGradientDescent
+// optimizer. They determine the step size.
+// Especially SP_a needs to be tuned for each specific application.
+// The number of iterations is also important.
+
+//Maximum number of iterations in each resolution level:
+// 100-500 works usually fine.
+(MaximumNumberOfIterations P_MaximumNumberOfIterations)
+
+// AutomaticParameterEstimation: When this parameter is set to "true",
+// many other parameters are calculated automatically: SP_a, SP_alpha,
+// SigmoidMax, SigmoidMin, and SigmoidScale. In the elastix.log file 
+// the actually chosen values for these parameters can be found. 
+// example: (AutomaticParameterEstimation "true")
+// Default/recommended value: "true". The parameter can be specified or 
+// each resolution, or for all resolutions at once.
+(AutomaticParameterEstimation P_AutomaticParameterEstimation)
+
+//SP: Param_a in each resolution level. a_k = a/(A+k+1)^alpha
+// If you have the feeling that the registration is 'too careful'
+// and progress towards the solution is made very slowly, you may
+// have to increase this parameters. If elastix crashes after a
+// few iterations, with the message that all samples map outside
+// the moving image buffer, you may have to decrease this parameter.
+// It means that the optimisation was performed too 'agressive'.
+// Think in orders of magnitude. 3200.0 or 3210.0 will not matter.
+// 3200.0 vs 6400.0 starts to be interesting.
+(SP_a P_SP_a_)
+
+//SP: Param_A in each resolution level. a_k = a/(A+k+1)^alpha
+// Usually 50.0 or 100.0 works fine.
+(SP_A P_SP_A)
+
+//SP: Param_alpha in each resolution level. a_k = a/(A+k+1)^alpha
+// usually 0.602 works fine.
+(SP_alpha P_SP_alpha)
+
+
+
+*"
+    paramFile = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastix/networks/ExampleParameters.txt
+    FixedInternalImagePixelType = float
+    MovingInternalImagePixelType = float
+    FixedImageDimension = 3
+    MovingImageDimension = 3
+    Registration = MultiResolutionRegistration
+    FixedImagePyramid = FixedRecursiveImagePyramid
+    MovingImagePyramid = MovingRecursiveImagePyramid
+    Interpolator = BSplineInterpolator
+    ResampleInterpolator = FinalBSplineInterpolator
+    Resampler = DefaultResampler
+    Optimizer = AdaptiveStochasticGradientDescent
+    Transform = EulerTransform
+    Metric = AdvancedMattesMutualInformation
+    UseDirectionCosines = TRUE
+    AutomaticScalesEstimation = TRUE
+    AutomaticTransformInitialization = TRUE
+    CenterOfRotation = "10 10 10"
+    NumberOfResolutions = 1
+    ResultImagePixelType = float
+    ErodeMask = FALSE
+    HowToCombineTransforms = Compose
+    NumberOfSpatialSamples = 2048
+    NewSamplesEveryIteration = TRUE
+    ImageSampler = Random
+    NumberOfHistogramBins = "32 32 64 64"
+    NumberOfFixedHistogramBins = "32 32 64 64"
+    NumberOfMovingHistogramBins = "32 32 64 64"
+    BSplineInterpolationOrder = 1
+    FinalBSplineInterpolationOrder = 3
+    DefaultPixelValue = 0
+    MaximumNumberOfIterations = 500
+    DisableAutomaticParameterEstimation = FALSE
+    AutomaticParameterEstimation = TRUE
+    SP_a = "3200 3200 3200 3200"
+    SP_capa = "50 50 50 50"
+    SP_alpha = "0.602 0.602 0.602 0.602"
+    FinalGridSpacingInVoxelsOn = FALSE
+    FinalGridSpacingInVoxels = "16 16 16"
+    FinalGridSpacingInPhysicalUnitsOn = TRUE
+    FinalGridSpacingInPhysicalUnits = "4 4 4"
+    GridSpacingSchedule = "1 1 1"
+    BSplineTransformSplineOrder = 3
+    UseCyclicTransform = FALSE
+    ElastixTransform = BSplineTransform
+    ElastixMetric = AdvancedMeanSquares
+    ElastixInterpolator = BSplineInterpolator
+    ElastixResampleInterpolator = FinalBSplineInterpolator
+    ElastixImageSampler = RandomCoordinate
+    ElastixFixedImagePyramid = FixedSmoothingImagePyramid
+    ElastixMovingImagePyramid = AsFixed
+    ElastixRegistration = MultiResolutionRegistration
+    ElastixOptimizer = AdaptiveStochasticGradientDescent
+    ElastixResampler = DefaultResampler
+    SP_c = "0 0 0 0"
+    SP_gamma = "0 0 0 0"
+    ShowMetricValues = FALSE
+    Scales = ""
+    PassiveEdgeWidth = 0
+    AdvancedKappaStatisticUseComplement = TRUE
+    AdvancedKappaStatisticForeGroundvalue = 1
+    FixedKernelBSplineOrder = "0 0 0 0"
+    MovingKernelBSplineOrder = "0 0 0 0"
+    FixedLimitRangeRatio = "0.01 0.01 0.01 0.01"
+    MovingLimitRangeRatio = "0.01 0.01 0.01 0.01"
+    UseFastAndLowMemoryVersion = TRUE
+    UseNormalization = FALSE
+    SubtractMean = TRUE
+    SampleLastDimensionRandomly = FALSE
+    NumSamplesLastDimension = 10
+    MovingImageDerivativeScales = "1.0 1.0 1.0 0.0"
+    SampleGridSpacing = "2 2 2 2"
+    UseRandomSampleRegion = FALSE
+    SampleRegionSize = "50.0 50.0 50.0"
+    FixedImageBSplineInterpolationOrder = "1 1 1 1"
+    SplineKernelType = ThinPlateSpline
+    SplineRelaxationFactor = 0
+    SplinePoissonRatio = 0.3
+    NormalizeCombinationWeights = FALSE
+    SubTransforms = blabla
+    DefineFixedImagePyramidSchedule = FALSE
+    FixedImagePyramidSchedule = "4 4 4 2 2 2 1 1 1"
+    DefineMovingImagePyramidSchedule = FALSE
+    MovingImagePyramidSchedule = "4 4 4 2 2 2 1 1 1"
+    Metric0Weight = "0.5 0.5 0.5 0"
+    Metric1Weight = "0.5 0.5 0.5 0"
+    Metric0Use = TRUE
+    Metric1Use = TRUE
+    Metric1 = AdvancedKappaStatistic
+    ErodeFixedMask = FALSE
+    ErodeMovingMask = FALSE
+    MaximumNumberOfSamplingAttempts = 0
+    UseAdaptiveStepSizes = TRUE
+    DefineMaximumStepLength = FALSE
+    MaximumStepLength = 1
+    SigmoidMin = -0.8
+    SigmoidMax = 1
+    SigmoidScale = 1e-08
+    SigmoidInitialTime = 0
+    DefineNumberOfGradientMeasurements = FALSE
+    NumberOfGradientMeasurements = 10
+    DefineNumberOfJacobianMeasurements = FALSE
+    NumberOfJacobianMeasurements = "5000 10000 20000 0"
+    NumberOfSamplesForExactGradient = 100000
+    GenerateLineSearchIterations = FALSE
+    MaximumNumberOfLineSearchIterations = "10 10 10 10"
+    StepLength = "1 1 1 1"
+    LineSearchValueTolerance = "0.0001 0.0001 0.0001 0.0001"
+    LineSearchGradientTolerance = "0.9 0.9 0.9 0.9"
+    ValueTolerance = "1e-05 1e-05 1e-05 1e-05"
+    GradientMagnitudeTolerance = "1e-06 1e-06 1e-06 1e-06"
+    ConjugateGradientType = DaiYuanHestenesStiefel
+    StopIfWolfeNotSatisfied = TRUE
+    PositionToleranceMin = "1e-08 1e-08 1e-08 1e-08"
+    PositionToleranceMax = "100000000 100000000 100000000 100000000"
+    DefineMinimumDeviation = TRUE
+    DefineMaximumDeviation = TRUE
+    MinimumDeviation = "0 0 0 0"
+    MaximumDeviation = "1000000000 1000000000 1000000000 1000000000"
+    PopulationSize = "0 0 0 0"
+    NumberOfParents = "0 0 0 0"
+    UseDecayingSigma = FALSE
+    UseCovarianceMatrixAdaptation = TRUE
+    RecombinationWeightsPreset = superlinear
+    UpdateBDPeriod = FALSE
+    LineSearchStepTolerance = "1e-05 1e-05 1e-05 1e-05"
+    FullSearchSpace = "*( FullSearchSpace0 "translation_x" 2 -4.0 3.0 1.0 "rotation_y" 3 -1.0 1.0 0.5 )*"
+    LBFGSUpdateAccuracy = "5 5 5 5"
+    MinimumGradientMagnitude = "1e-08 1e-08 1e-08 1e-08"
+    DefineMinimumStepLength = FALSE
+    MinimumStepLength = "2 1 0.5 0.1"
+    RSGDMaximumStepLength = "32 16 8 4"
+    RelaxationFactor = "0.5 0.5 0.5 0.5"
+    NumberOfPerturbations = "1 1 1 1"
+    WriteResultImage = TRUE
+    ResultImageFormat = mhd
+    CompressResultImage = FALSE
+    DefineCenterOfRotation = FALSE
+    ShowExactMetricValues = FALSE
+    CheckNumberOfSamples = TRUE
+    RequiredRatioOfValidSamples = 0.25
+    WritePyramidImagesAfterEachResolution = FALSE
+    WriteResultImageAfterEachResolution = FALSE
+    UpsampleGridOption = TRUE
+    FilterPattern = 1
+    DiffusionEachNIterations = 2
+    AfterIterations = "50 100"
+    HowManyIterations = "1 5 10"
+    NumberOfDiffusionIterations = 1
+    Radius = 1
+    ThresholdBool = TRUE
+    ThresholdHU = 150
+    WriteDiffusionFiles = FALSE
+    GrayValueImageAlsoBasedOnFixedImage = TRUE
+    UseFixedSegmentation = FALSE
+    FixedSegmentationFileName = ""
+    UseMovingSegmentation = FALSE
+    MovingSegmentationFileName = ""
+    DefaultPixelValueForGVI = 0
+  }
+  internalFields = ""
+}
+connections  {
+  Calculator.f1 = MinMaxScan2.trueMinValue
+  Calculator.f2 = MinMaxScan2.trueMaxValue
+  MinMaxScan2.input0 = GaussGradient.output0
+  View2D1.inImage = Elastix.jacobianImage
+  SynchroView2D2.inImage1 = LocalImage.outImage
+  SynchroView2D2.inImage2 = Elastix.transformedImage
+  View2D.inImage = TensorArithmetic2.output0
+  View2D.inInvPostLUT = SoView2DDeformationGridView2.self
+  TensorArithmetic2.input0 = Elastix.deformationImage
+  TensorArithmetic2.input1 = TensorArithmetic12.output0
+  TensorArithmetic12.input0 = GaussSmoothing.output0
+  GaussSmoothing.input0 = TensorArithmetic11.output0
+  TensorArithmetic11.input0 = GaussGradient.output0
+  TensorArithmetic11.value = Calculator.resultScalar1
+  SynchroView2D1.inImage1 = TensorArithmetic12.output0
+  SynchroView2D1.inImage2 = Elastix.deformationImage
+  SynchroView2D1.leftExtensions = SoView2DDeformationGridView.self
+  SynchroView2D1.rightExtensions = SoView2DDeformationGridView1.self
+  SynchroView2D.inImage1 = LocalImage.outImage
+  SynchroView2D.inImage2 = ImageWarp.output0
+  ImageWarp.input0 = LocalImage.outImage
+  ImageWarp.input1 = GaussSmoothing.output0
+  GaussGradient.input0 = LocalImage.outImage
+  Arithmetic1.input0 = LocalImage.outImage
+  Arithmetic1.input1 = ImageWarp.output0
+  MinMaxScan1.input0 = Arithmetic1.output0
+  OrthoView2D1.image = MinMaxScan1.output0
+  OrthoView2D1.greyWidth = OrthoView2D.greyWidth
+  OrthoView2D1.worldPosition = OrthoView2D.worldPosition
+  OrthoView2D.image = MinMaxScan.output0
+  OrthoView2D.greyCenter = OrthoView2D1.greyCenter
+  OrthoView2D.worldPosition = OrthoView2D1.worldPosition
+  MinMaxScan.input0 = Arithmetic.output0
+  Arithmetic.input0 = LocalImage.outImage
+  Arithmetic.input1 = Elastix.transformedImage
+  Elastix.fixedImage = LocalImage.outImage
+  Elastix.movingImage = ImageWarp.output0
+  Elastix.parameterFile1 = ElastixParameterFile.paramFile
+  ElastixParameterFile.paramFile = LocalFileName.trueName
+}
+networkModel = ""

@@ -1,0 +1,7 @@
+module ElastixParameterFile {
+  fields  {
+    instanceName = ElastixParameterFile
+  }
+
+}
+

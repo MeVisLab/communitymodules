@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<a href="#Purpose">Purpose</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Usage">Usage</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Details">Details</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Inputs">Inputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Outputs">Outputs</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Parameters">Parameters</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Events And Interaction">Events And Interaction</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Example">Example</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Tips And Tricks">Tips And Tricks</a> &nbsp;&nbsp;&nbsp; 
+<a href="#Known Bugs">Known Bugs</a> &nbsp;&nbsp;&nbsp; 
+  <hr width="100%">
+</center>
+<h2>ElastixParameterFile
+</h2>
+<h3><a name="Purpose"></a>Purpose</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+This module reads and writes parameter file for the Elastix registration program. Please refer to the Elastix website (http://elastix.isi.uu.nl) for the documentation of that program and all its parameters.
+
+
+
+</blockquote>
+<h3><a name="Usage"></a>Usage</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Load an existing parameter file to start with parameter settings in that file, or just start configuring your parameters from scratch from the default parameter settings of this module. Once all parameters have been configured, save the file by assigning the output parameter filename and pressing 'Save'.<br>
+The main components of the registration framework can be selected in the 'Main' group. To configure each of these components, use the tabs below.</blockquote>
+<h3><a name="Details"></a>Details</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+For detailed documentation o the Elastix parameters, visit http://elastix.isi.uu.nl.</blockquote>
+<h3><a name="Inputs"></a>Inputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+none</blockquote>
+<h3><a name="Outputs"></a>Outputs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+none</blockquote>
+<h3><a name="Parameters"></a>Parameters</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Many, see http://elastix.isi.uu.nl!
+</blockquote>
+<a name="paramFile"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Output parameter filename:</b>
+ <br>
+The parameter file to write the current parameter settings to.</blockquote>
+<a name="write"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Save</b>
+ <br>
+(Over)Write the output parameter file with the current parameter settings.</blockquote>
+<a name="paramFileIn"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Input parameter filename:</b>
+ <br>
+The parameter file to read the parameter settings from.</blockquote>
+<a name="read"></a><blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+<br>
+ <b>Load</b>
+ <br>
+Update the parameter configuration with the settings defined in the input parameter file.</blockquote>
+<h3><a name="Events And Interaction"></a>Events And Interaction</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+The parameter file field can be linked to the input parameter field(s) of the Elastix module, to run elastix directly from within MeVisLab. Additionally, use the Transformix module to employ the resulting transformation.</blockquote>
+<h3><a name="Example"></a>Example</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+See the example network.</blockquote>
+<h3><a name="Tips And Tricks"></a>Tips And Tricks</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+Use some network level scripting to easily test parameter settings for a certain application.</blockquote>
+<h3><a name="Known Bugs"></a>Known Bugs</h3>
+<blockquote style='margin-top:2.0pt;margin-bottom:2.0pt'>
+none</blockquote>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

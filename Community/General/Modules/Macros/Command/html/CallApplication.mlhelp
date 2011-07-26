@@ -1,0 +1,111 @@
+ML_DOC_VERSION = 1.0
+ML_DOC_MODULE_NAME = CallApplication
+ML_DOC_NUM_SECTIONS = 19
+ML_DOC_SECTION  {
+  NAME = Purpose
+  TYPE = Text
+  DESC = "To create a commandline call to an application"
+}
+ML_DOC_SECTION  {
+  NAME = Usage
+  TYPE = Text
+  SHOW_INFO_LINE = FALSE
+  DESC = "Select an executable, optionally provide command line parameters and a working directory and press 'Call' to execute. optionally print command line output in the log window."
+}
+ML_DOC_SECTION  {
+  NAME = Details
+  TYPE = Text
+  DESC = "Only tested for Windows.
+Many thanks to developers from BIGR (http://www.bigr.nl) for the initial version of this module."
+}
+ML_DOC_SECTION  {
+  NAME = Inputs
+  TYPE = Text
+  DESC = None.
+}
+ML_DOC_SECTION  {
+  NAME = Outputs
+  TYPE = Text
+  DESC = None.
+}
+ML_DOC_SECTION  {
+  NAME = Parameters
+  TYPE = Text
+  SHOW_INFO_LINE = FALSE
+  DESC = "The only required parameter is the executable."
+}
+ML_DOC_SECTION  {
+  NAME = instanceName
+  TYPE = Parameter
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = executable
+  TYPE = Parameter
+  DESC = "The application to be called."
+}
+ML_DOC_SECTION  {
+  NAME = arguments
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Optional command line arguments for the application."
+}
+ML_DOC_SECTION  {
+  NAME = workingDirectory
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "The temporary directory to work in."
+}
+ML_DOC_SECTION  {
+  NAME = outputToLogWindow
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Output command line program messages to the log window.<br>
+<b>Warning:</b> The log window processing is really slow for large messages. Disable this feature is not necessary."
+}
+ML_DOC_SECTION  {
+  NAME = call
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Execute the command line call."
+}
+ML_DOC_SECTION  {
+  NAME = logWindow
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Prints program messages if activated by 'output to log log window'."
+}
+ML_DOC_SECTION  {
+  NAME = clear
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Clear the log window."
+}
+ML_DOC_SECTION  {
+  NAME = callSucceeded
+  TYPE = Parameter
+  SHOW_INFO_LINE = FALSE
+  DESC = "Indicator that shows whether the call was successful. If the executable does not exists, or if anything else fails it will be False."
+}
+ML_DOC_SECTION  {
+  NAME = "Events And Interaction"
+  TYPE = Text
+  ON = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = Example
+  TYPE = Text
+  SHOW_INFO_LINE = FALSE
+  DESC = "See the example network"
+}
+ML_DOC_SECTION  {
+  NAME = "Tips And Tricks"
+  TYPE = Text
+  ON = FALSE
+  SHOW_INFO_LINE = FALSE
+}
+ML_DOC_SECTION  {
+  NAME = "Known Bugs"
+  TYPE = Text
+  DESC = None.
+}

@@ -1,0 +1,916 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoView2DOverlay {
+  internal  {
+    frame = "581 349 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "655 404 385 300"
+        sizeHint = "385 300"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DOverlay
+    drawingOn = TRUE
+    editingOn = TRUE
+    maskValid = TRUE
+    fixZOn = TRUE
+    color = "1 1 1"
+    selectionTolerance = 4
+    needsValidVoxel = TRUE
+    button1 = IGNORED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    control = IGNORED
+    alt = IGNORED
+    wantsAllEvents = TRUE
+    wantsKeyEvents = TRUE
+    wantsMouseWheelEvents = FALSE
+    setEventHandled = FALSE
+    ignoreHandledEvents = FALSE
+    createNewMode = FALSE
+    renderOnSlab = TRUE
+    clipToSlice = TRUE
+    cursorShape = UNDEFINED_CURSOR
+    cacheTextures = TRUE
+    blendMode = BLEND_BLEND
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    inheritFilterMode = TRUE
+    alphaFactor = 1
+    baseColor = "1 0.333333343267441 0"
+    useWorldCoords = FALSE
+    applyLut = TRUE
+    isCheckerTiling = FALSE
+    checkerTileSize = 2
+    areCheckerTilesInverted = FALSE
+  }
+}
+module Draw2D {
+  internal  {
+    frame = "837 637 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 197 524 229"
+        sizeHint = "524 229"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Draw2D0
+    drawMode = FreeContourClosed
+    SizeMode = UserDefined
+    button1 = PRESSED
+    button2 = IGNORED
+    button3 = IGNORED
+    shift = IGNORED
+    ctrl = IGNORED
+    VoxelSizeX = 1
+    VoxelSizeY = 1
+    Size = 100
+    minContourLength = 8
+    distanceToStart = 10
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "761 557 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "200 225 400 402"
+        sizeHint = "400 402"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroup0
+  }
+}
+module View2D {
+  internal  {
+    frame = "685 477 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "703 206 438 539"
+        sizeHint = "300 300"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "114 133 384 445"
+        sizeHint = "384 445"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = View2D
+    inventorInputOn = TRUE
+    view2DExtensionsOn = TRUE
+    startSlice = 4
+    numSlices = 1
+    numXSlices = 1
+    sliceStep = 1
+    slab = 1
+    blendMode = BLEND_REPLACE
+    timePoint = 0
+    maxTimePoint = 0
+    filterMode = FILTER_LINEAR
+    standardKeys = TRUE
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    snapToCenter = FALSE
+    zoomMode = VIEW2D_AUTO_ZOOM
+    unzoomOnImageChange = FALSE
+    sliceZoom = 1
+    sliceZoomSynced = 1
+    baseColor = "1 1 1"
+    margin = "2 2"
+    sliceOrigin = "0 0"
+    lutCenter = 2047.5
+    lutWidth = 4095
+    lutUseTraceColors = FALSE
+    annotationOn = TRUE
+    annotationMode = ANNO_MODE_AUTO
+    annotationSizeMode = ANNO_SHOW_DETAILED
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
+    annotationFontSize = ANNO_SIZE_AUTO
+    annoCoords = Voxel
+    annoCTValue = AsIs
+    borderOn = TRUE
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    valueHighPrecision = TRUE
+    maxPrecision = 4
+    plane = "0 0 1 4.5"
+  }
+  internalFields = ""
+}
+module ContourManager {
+  internal  {
+    frame = "713 709 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "614 279 467 550"
+        sizeHint = "467 550"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ContourManager
+    fill = FALSE
+    fillAdditive = FALSE
+    fillNotAdditiveInclContours = FALSE
+    fillLines3D = FALSE
+    keepContours = FALSE
+    ignoreMatrix = FALSE
+    filename = ""
+    ignoreTimePointForLoading = FALSE
+    ignoreImageSizeForLoading = FALSE
+    colorCurrent = "0.159999996423721 0.330000013113022 0.959999978542328"
+    colorFillCurrent = "0.159999996423721 0.330000013113022 0.959999978542328"
+    colorFillCurrentAlpha = 0.5
+    colorContour = "0.100000001490116 0.529999971389771 0.959999978542328"
+    colorFill = "0.100000001490116 0.529999971389771 0.959999978542328"
+    colorFillAlpha = 0.5
+    colorSeeds = "0.100000001490116 0.910000026226044 0.959999978542328"
+    colorLastPath = "0.939999997615814 0.0500000007450581 0.100000001490116"
+    contourWidthAuto = TRUE
+    contourWidth = 1
+    bigSeeds = FALSE
+    drawSeeds = TRUE
+    label = unknown
+    drawLabelToContour = FALSE
+    labelFontSize = 16
+    labelDistanceX = 2
+    labelDistanceY = -2
+    creator = FreeContourClosed
+    creatorIdx = 0
+    group = 0
+    defaultGroup = 0
+    numberOfGroups = 1
+    setUniqueGroup = FALSE
+    groupIndexForMask = 0
+    setGroupIndexForMask = FALSE
+    useGroupForPalette = FALSE
+    groupToSearchFor = 0
+    sliceOfGroup = 0
+    timePointOfGroup = 0
+    emphasizeCurrentContourWithPalette = FALSE
+    actionMode = "New Contour"
+    interpolCounter = 1
+    seedDistanceMin = 8
+    interpolateOnlyOpenLines = TRUE
+    closeInterpolatedLines = FALSE
+    checkLineDirection = TRUE
+    clockwise = FALSE
+    drawBezier = FALSE
+    piecewise = FALSE
+    bezierError = 5
+    setBackgrdToZero = TRUE
+    useShiftForSelection = FALSE
+    currentContourIndex = 0
+    numberOfContours = 1
+    localGlobalCurrent = TRUE
+    currentContourIndexGlobal = 1
+    numberOfContoursGlobal = 2
+    sliceOfCurrentGlobal = 4
+    sizeOfReticle = 3
+    ignoreTimePoint = TRUE
+  }
+}
+module Transformix {
+  internal  {
+    frame = "557 557 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "943 289 298 345"
+        sizeHint = "298 345"
+        wasOpen = yes
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Transformix
+    tranformixExecutable = transformix.exe
+    workingDirectory = C:/temp/
+    transformationFile = C:/temp/TransformParameters.0.txt
+    autoUpdateTransformationFile = TRUE
+    createImage = TRUE
+    createDeformationField = TRUE
+    createJacobianField = TRUE
+    createJacobianMatrixField = TRUE
+  }
+  internalFields = ""
+}
+module Arithmetic {
+  internal  {
+    frame = "481 373 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "651 305 393 498"
+        sizeHint = "393 498"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic2
+    expression = "abs(1.0*a-b)"
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    f1 = 0
+    f2 = 0
+    f3 = 0
+    f4 = 0
+    f5 = 0
+    f6 = 0
+    ld1 = 0
+    ld2 = 0
+    ld3 = 0
+    ld4 = 0
+    ld5 = 0
+    ld6 = 0
+    minValue = 0
+    maxValue = 1
+    setMinMaxValues = FALSE
+    statusBar = ""
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    numberOfInputs = 2
+    expressionComment = ""
+    scalarVariablesComment = ""
+  }
+}
+module MinMaxScan {
+  internal  {
+    frame = "473 301 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "647 443 401 223"
+        sizeHint = "401 223"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MinMaxScan1
+    updateMode = AutoUpdate
+    typeSelect = "Proposed Data Type"
+    preferUnsigned = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "145 557 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "646 485 755 139"
+        sizeHint = "402 139"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = "$(NETWORK)\\ParameterFile.txt"
+  }
+  internalFields = ""
+}
+module ElastixParameterFile {
+  internal  {
+    frame = "265 557 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "878 191 655 693"
+        sizeHint = "655 693"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ElastixParameterFile
+    templateFile = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISIElastixParameterFile/parameters_Template.txt
+    template = ""
+    paramFile = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISITransformix/networks/ParameterFile.txt
+    FixedInternalImagePixelType = float
+    MovingInternalImagePixelType = float
+    FixedImageDimension = 3
+    MovingImageDimension = 3
+    Registration = MultiResolutionRegistration
+    FixedImagePyramid = FixedRecursiveImagePyramid
+    MovingImagePyramid = MovingRecursiveImagePyramid
+    Interpolator = BSplineInterpolator
+    ResampleInterpolator = FinalBSplineInterpolator
+    Resampler = DefaultResampler
+    Optimizer = AdaptiveStochasticGradientDescent
+    Transform = EulerTransform
+    Metric = AdvancedMattesMutualInformation
+    AutomaticScalesEstimation = TRUE
+    AutomaticTransformInitialization = TRUE
+    CenterOfRotation = "10 10 10"
+    NumberOfResolutions = 3
+    ResultImagePixelType = float
+    ErodeMask = FALSE
+    HowToCombineTransforms = Compose
+    NumberOfSpatialSamples = "2048 2048 4096 4096"
+    NewSamplesEveryIteration = TRUE
+    ImageSampler = Random
+    NumberOfHistogramBins = "32 32 64 64"
+    NumberOfFixedHistogramBins = "32 32 64 64"
+    NumberOfMovingHistogramBins = "32 32 64 64"
+    BSplineInterpolationOrder = "1 1 1 1"
+    FinalBSplineInterpolationOrder = 3
+    DefaultPixelValue = 0
+    MaximumNumberOfIterations = "200 200 200 200"
+    DisableAutomaticParameterEstimation = FALSE
+    AutomaticParameterEstimation = TRUE
+    SP_a = "3200 3200 3200 3200"
+    SP_capa = "50 50 50 50"
+    SP_alpha = "0.602 0.602 0.602 0.602"
+    FinalGridSpacingInVoxelsOn = FALSE
+    FinalGridSpacingInVoxels = "16 16 16"
+    FinalGridSpacingInPhysicalUnitsOn = TRUE
+    FinalGridSpacingInPhysicalUnits = "4 4 4"
+    GridSpacingSchedule = "4 4 4 2 2 2 1 1 1"
+    ElastixTransform = BSplineTransform
+    ElastixMetric = AdvancedMeanSquares
+    ElastixInterpolator = LinearInterpolator
+    ElastixResampleInterpolator = FinalBSplineInterpolatorFloat
+    ElastixImageSampler = RandomCoordinate
+    ElastixFixedImagePyramid = FixedRecursiveImagePyramid
+    ElastixMovingImagePyramid = AsFixed
+    ElastixRegistration = MultiResolutionRegistration
+    ElastixOptimizer = AdaptiveStochasticGradientDescent
+    ElastixResampler = DefaultResampler
+    SP_c = "0 0 0 0"
+    SP_gamma = "0 0 0 0"
+    ShowMetricValues = FALSE
+    Scales = ""
+    PassiveEdgeWidth = "0 0 0 0"
+    AdvancedKappaStatisticUseComplement = TRUE
+    AdvancedKappaStatisticForeGroundvalue = 1
+    FixedKernelBSplineOrder = "0 0 0 0"
+    MovingKernelBSplineOrder = "3 3 3 3"
+    FixedLimitRangeRatio = "0.01 0.01 0.01 0.01"
+    MovingLimitRangeRatio = "0.01 0.01 0.01 0.01"
+    UseFastAndLowMemoryVersion = TRUE
+    UseNormalization = FALSE
+    SubtractMean = TRUE
+    SampleLastDimensionRandomly = FALSE
+    NumSamplesLastDimension = 10
+    SampleGridSpacing = "2 2 2 2"
+    UseRandomSampleRegion = FALSE
+    SampleRegionSize = "50.0 50.0 50.0"
+    FixedImageBSplineInterpolationOrder = "1 1 1 1"
+    SplineKernelType = ThinPlateSpline
+    SplineRelaxationFactor = 0
+    SplinePoissonRatio = 0.3
+    NormalizeCombinationWeights = FALSE
+    SubTransforms = ""
+    DefineFixedImagePyramidSchedule = FALSE
+    FixedImagePyramidSchedule = "4 4 4 2 2 2 1 1 1"
+    DefineMovingImagePyramidSchedule = FALSE
+    MovingImagePyramidSchedule = "4 4 4 2 2 2 1 1 1"
+    Metric0Weight = "0.5 0.5 0.5 0"
+    Metric1Weight = "0.5 0.5 0.5 0"
+    Metric0Use = TRUE
+    Metric1Use = TRUE
+    Metric1 = AdvancedKappaStatistic
+    ErodeFixedMask = FALSE
+    ErodeMovingMask = FALSE
+    MaximumNumberOfSamplingAttempts = "0 0 0 0"
+    UseAdaptiveStepSizes = TRUE
+    DefineMaximumStepLength = FALSE
+    MaximumStepLength = 1
+    SigmoidMin = -0.8
+    SigmoidMax = 1
+    SigmoidScale = 1e-08
+    SigmoidInitialTime = "0 0 0 0"
+    DefineNumberOfGradientMeasurements = FALSE
+    NumberOfGradientMeasurements = 10
+    DefineNumberOfJacobianMeasurements = FALSE
+    NumberOfJacobianMeasurements = "5000 10000 20000 0"
+    NumberOfSamplesForExactGradient = 100000
+    GenerateLineSearchIterations = FALSE
+    MaximumNumberOfLineSearchIterations = "10 10 10 10"
+    StepLength = "1 1 1 1"
+    LineSearchValueTolerance = "0.0001 0.0001 0.0001 0.0001"
+    LineSearchGradientTolerance = "0.9 0.9 0.9 0.9"
+    ValueTolerance = "1e-05 1e-05 1e-05 1e-05"
+    GradientMagnitudeTolerance = "1e-06 1e-06 1e-06 1e-06"
+    ConjugateGradientType = DaiYuanHestenesStiefel
+    StopIfWolfeNotSatisfied = TRUE
+    PositionToleranceMin = "1e-08 1e-08 1e-08 1e-08"
+    PositionToleranceMax = "100000000 100000000 100000000 100000000"
+    DefineMinimumDeviation = FALSE
+    DefineMaximumDeviation = FALSE
+    MinimumDeviation = "0 0 0 0"
+    MaximumDeviation = "1000000000 1000000000 1000000000 1000000000"
+    PopulationSize = "0 0 0 0"
+    NumberOfParents = "0 0 0 0"
+    UseDecayingSigma = FALSE
+    UseCovarianceMatrixAdaptation = TRUE
+    RecombinationWeightsPreset = superlinear
+    UpdateBDPeriod = "0 0 0 0"
+    LineSearchStepTolerance = "1e-05 1e-05 1e-05 1e-05"
+    FullSearchSpace = "*( FullSearchSpace0 "translation_x" 2 -4.0 3.0 1.0 "rotation_y" 3 -1.0 1.0 0.5 )*"
+    LBFGSUpdateAccuracy = "5 5 5 5"
+    MinimumGradientMagnitude = "1e-08 1e-08 1e-08 1e-08"
+    DefineMinimumStepLength = FALSE
+    MinimumStepLength = "2 1 0.5 0.1"
+    RSGDMaximumStepLength = "32 16 8 4"
+    RelaxationFactor = "0.5 0.5 0.5 0.5"
+    NumberOfPerturbations = "1 1 1 1"
+    WriteResultImage = TRUE
+    ResultImageFormat = mhd
+    CompressResultImage = FALSE
+    DefineCenterOfRotation = FALSE
+    ShowExactMetricValues = FALSE
+    CheckNumberOfSamples = FALSE
+    RequiredRatioOfValidSamples = 0.25
+    WritePyramidImagesAfterEachResolution = FALSE
+    WriteResultImageAfterEachResolution = FALSE
+    UpsampleGridOption = TRUE
+    FilterPattern = 1
+    DiffusionEachNIterations = 1
+    AfterIterations = "50 100"
+    HowManyIterations = "1 5 10"
+    NumberOfDiffusionIterations = 1
+    Radius = 1
+    ThresholdBool = TRUE
+    ThresholdHU = 150
+    WriteDiffusionFiles = FALSE
+    GrayValueImageAlsoBasedOnFixedImage = TRUE
+    UseFixedSegmentation = TRUE
+    FixedSegmentationFileName = ""
+    UseMovingSegmentation = TRUE
+    MovingSegmentationFileName = ""
+    DefaultPixelValueForGVI = 0
+  }
+  internalFields = ""
+}
+module MinMaxScan {
+  internal  {
+    frame = "277 301 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "647 443 401 223"
+        sizeHint = "401 223"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MinMaxScan
+    updateMode = AutoUpdate
+    typeSelect = "Proposed Data Type"
+    preferUnsigned = TRUE
+  }
+}
+module Arithmetic {
+  internal  {
+    frame = "281 373 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "651 305 393 498"
+        sizeHint = "393 498"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic1
+    expression = "abs(1.0*a-b)"
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    f1 = 0
+    f2 = 0
+    f3 = 0
+    f4 = 0
+    f5 = 0
+    f6 = 0
+    ld1 = 0
+    ld2 = 0
+    ld3 = 0
+    ld4 = 0
+    ld5 = 0
+    ld6 = 0
+    minValue = 0
+    maxValue = 1
+    setMinMaxValues = FALSE
+    statusBar = ""
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    numberOfInputs = 2
+    expressionComment = ""
+    scalarVariablesComment = ""
+  }
+}
+module SynchroView2D {
+  internal  {
+    frame = "417 205 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "325 465 603 300"
+        sizeHint = "603 300"
+        wasOpen = no
+        wasActive = no
+      }
+      window Settings {
+        geometry = "648 487 398 135"
+        sizeHint = "398 135"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D1
+    leftInventorInputOn = TRUE
+    rightInventorInputOn = FALSE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = FALSE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 0
+    slice2 = 0
+    timepoint1 = 0
+    timepoint2 = 0
+    lut1w = 1770
+    lut1c = 1054.0001
+    lut2w = 1509.0001
+    lut2c = 391.29996
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    drawCurrentPos = FALSE
+    background = "0 0 0"
+    borderOn = FALSE
+    showCurrentPos = FALSE
+    worldPosition = "33.979377746582 41.0171775817871 53.5"
+  }
+  internalFields = ""
+}
+module SynchroView2D {
+  internal  {
+    frame = "205 205 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "546 404 603 300"
+        sizeHint = "603 300"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SynchroView2D
+    leftInventorInputOn = FALSE
+    rightInventorInputOn = FALSE
+    synchSlicing = TRUE
+    synchZooming = TRUE
+    synchTiming = TRUE
+    synchLUTs = FALSE
+    disconnectOnHide = TRUE
+    snapToCenter1 = FALSE
+    snapToCenter2 = FALSE
+    slice1 = 26
+    slice2 = 0
+    timepoint1 = 0
+    timepoint2 = 0
+    lut1w = 1039
+    lut1c = 243.20004
+    lut2w = 1770
+    lut2c = 214.50002
+    filterMode = FILTER_LINEAR
+    annotationColor = "0.899999976158142 0.899999976158142 0.899999976158142"
+    drawCurrentPos = FALSE
+    background = "0 0 0"
+    borderOn = FALSE
+    showCurrentPos = FALSE
+    worldPosition = "-8.59580993652344 14.0424690246582 85.9715423583984"
+  }
+  internalFields = ""
+}
+module GaussSmoothing {
+  internal  {
+    frame = "425 845 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "756 448 183 212"
+        sizeHint = "183 212"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GaussSmoothing
+    sigma = 6
+    unit = voxel
+    xDim = TRUE
+    yDim = TRUE
+    zDim = TRUE
+    cDim = FALSE
+    tDim = FALSE
+    uDim = FALSE
+    useApprox = TRUE
+    autoUpdate = TRUE
+  }
+}
+module Arithmetic {
+  internal  {
+    frame = "549 845 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "651 305 393 498"
+        sizeHint = "393 498"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic
+    expression = "a*0"
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    f1 = 0
+    f2 = 0
+    f3 = 0
+    f4 = 0
+    f5 = 0
+    f6 = 0
+    ld1 = 0
+    ld2 = 0
+    ld3 = 0
+    ld4 = 0
+    ld5 = 0
+    ld6 = 0
+    minValue = 0
+    maxValue = 1
+    setMinMaxValues = FALSE
+    statusBar = ""
+    updateMode = AutoUpdate
+    applyMode = AutoApply
+    numberOfInputs = 1
+    expressionComment = ""
+    scalarVariablesComment = ""
+  }
+}
+module TypeComposer {
+  internal  {
+    frame = "461 765 168 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "510 542 433 24"
+        sizeHint = "191 24"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TypeComposer
+    outputType = vecf3
+  }
+}
+module ImageWarp {
+  internal  {
+    frame = "417 669 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "754 513 186 82"
+        sizeHint = "186 82"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageWarp
+    coordinateSystem = World
+    displacementLimit = 30
+    autoUpdate = FALSE
+  }
+}
+module TestPattern {
+  internal  {
+    frame = "441 925 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "854 375 233 366"
+        sizeHint = "233 366"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TestPattern
+    sizeX = 64
+    sizeY = 64
+    sizeZ = 64
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = float
+    fillValue = 8
+    autoApply = FALSE
+    pattern = FilledMaxEllipsoid
+    voxelSize = "1 1 1"
+    gradient = "0 0 0"
+    eigenValues = "1 0 -1"
+    offDiagonalElements = "0 0 0"
+    fillValue2 = 0
+    pageSizeX = 32
+    pageSizeY = 32
+    pageSizeZ = 1
+    pageSizeC = 1
+    pageSizeT = 1
+    pageSizeU = 1
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "337 797 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "649 460 396 188"
+        sizeHint = "396 188"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/Bone.tiff
+    autoLoad = TRUE
+    status = "File open"
+  }
+  internalFields = ""
+}
+module Elastix {
+  internal  {
+    frame = "413 557 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "112 409 322 560"
+        sizeHint = "322 560"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Elastix
+    temporaryDirectory = C:/temp/
+    parameterFile1 = D:/Documents/Mevislab/Packages/ISI/Registration/Modules/Macros/ISITransformix/networks/ParameterFile.txt
+    parameterFile2 = ""
+    parameterFile3 = ""
+    otherArguments = ""
+    status = initialized
+    elastixExecutable = elastix.exe
+    transformixExecutable = transformix.exe
+    elastixOutput = ""
+    removeIntermediateFiles = FALSE
+    sendOutputToLogWindowTo = FALSE
+    createDeformationField = TRUE
+    createJacobianImage = FALSE
+    numberOfThreads = 2
+  }
+  internalFields = ""
+}
+connections  {
+  SoView2DOverlay.image = Transformix.outputImage
+  Draw2D0.inputBaseContourManager = ContourManager.outputBaseThis
+  SoGroup0.children = "ContourManager.outputInv Draw2D0.outputInv"
+  View2D.inImage = ImageWarp.output0
+  View2D.inInvPreLUT = SoGroup0.self
+  ContourManager.input0 = ImageWarp.output0
+  Transformix.input0 = ContourManager.output0
+  Transformix.tranformixExecutable = Elastix.transformixExecutable
+  Transformix.workingDirectory = Elastix.temporaryDirectory
+  Arithmetic2.input0 = LocalImage.outImage
+  Arithmetic2.input1 = Transformix.outputImage
+  MinMaxScan1.input0 = Arithmetic2.output0
+  ElastixParameterFile.paramFile = LocalFileName.trueName
+  MinMaxScan.input0 = Arithmetic1.output0
+  Arithmetic1.input0 = LocalImage.outImage
+  Arithmetic1.input1 = ImageWarp.output0
+  SynchroView2D1.inImage1 = LocalImage.outImage
+  SynchroView2D1.inImage2 = MinMaxScan1.output0
+  SynchroView2D1.leftExtensions = SoView2DOverlay.self
+  SynchroView2D.inImage1 = LocalImage.outImage
+  SynchroView2D.inImage2 = MinMaxScan.output0
+  GaussSmoothing.input0 = TestPattern.output0
+  Arithmetic.input0 = TestPattern.output0
+  TypeComposer.input0 = GaussSmoothing.output0
+  TypeComposer.input1 = Arithmetic.output0
+  TypeComposer.input2 = Arithmetic.output0
+  ImageWarp.input0 = LocalImage.outImage
+  ImageWarp.input1 = TypeComposer.output0
+  Elastix.fixedImage = LocalImage.outImage
+  Elastix.movingImage = ImageWarp.output0
+  Elastix.parameterFile1 = ElastixParameterFile.paramFile
+}
+networkModel = ""

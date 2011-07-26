@@ -1,0 +1,54 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module CallApplication {
+  internal  {
+    frame = "545 281 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "885 312 277 370"
+        sizeHint = "277 370"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = transformix
+    executable = transformix.exe
+    arguments = ""
+    workingDirectory = C:/Temp
+    outputToLogWindow = FALSE
+    logWindow = ""
+    callSucceeded = FALSE
+  }
+  internalFields = ""
+}
+module CallApplication {
+  internal  {
+    frame = "417 281 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "516 244 516 370"
+        sizeHint = "277 370"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = elastix
+    executable = elastix.exe
+    arguments = "-f C:/Temp/fixed.mhd -m C:/Temp/moving.mhd -out C:/Temp -p D:/Desktop/TestParameterFile.txt -threads 2"
+    workingDirectory = C:/Temp
+    outputToLogWindow = TRUE
+    logWindow = ""
+    callSucceeded = FALSE
+  }
+  internalFields = ""
+}
+connections = ""
+networkModel = ""

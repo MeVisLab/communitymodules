@@ -1,0 +1,113 @@
+//
+// Copyright (c) 2011, Image Sciences Institute, UMC Utrecht.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of ISI nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL ISI BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Transformix module definition
+/*!
+// \file    Transformix.def
+// \author  Marijn van Stralen
+// \date    2011-04-18
+*/
+//----------------------------------------------------------------------------------
+
+Interface  {
+  Inputs  {
+    Field input0 {
+      internalName = itkImageFileWriter.input0
+    }
+  }
+  Outputs  {
+    Field outputImage {
+      internalName = itkImageFileReader.output0
+    }
+    Field outputDeformationField {
+      internalName = itkImageFileReader1.output0
+    }
+    Field outputJacobian {
+      internalName = itkImageFileReader2.output0
+    }
+    Field outputFullJacobian {
+      internalName = itkImageFileReader3.output0
+    }
+  }
+  Parameters  {
+    Field tranformixExecutable {
+      internalName = CallApplication.executable
+    }
+    Field workingDirectory {
+      internalName = CallApplication.workingDirectory
+    }
+    Field transformationFile {
+      type = String values = ""
+    }
+    Field autoUpdateTransformationFile {
+      type = Bool values = True
+    }
+    Field createImage { type = Bool value = True } // dummy field, always true
+    Field createDeformationField { type = Bool value = False }
+    Field createJacobianField { type = Bool value = False }
+    Field createJacobianMatrixField { type = Bool value = False }
+    Field update { type = Trigger }
+    Field deleteFiles { type = Trigger }
+  }
+}
+
+Commands {
+  source = $(LOCAL)/Transformix.py
+  FieldListener workingDirectory {
+    command = updateTransformationFile
+  }
+  FieldListener update {
+    command = updateModule
+  }
+  FieldListener deleteFiles {
+    command = deleteFiles
+  }
+}
+
+Window {
+  Vertical {
+    Box Transformix {
+      Field tranformixExecutable { browseMode = open browseButton = On}
+      Separator {}
+      Field workingDirectory { browseMode = directory browseButton = On}
+      Field autoUpdateTransformationFile {}
+    }
+    Box Input {
+      Field transformationFile { browseButton = On browseMode = open browseFilter = "\*.txt"}      
+    }
+    Box Output {
+      Field createImage { edit = False}
+      Field createDeformationField {}
+      Field createJacobianField {}
+      Field createJacobianMatrixField {}
+    }
+    Box {
+      Field update {}
+      Field deleteFiles {}
+    }
+  }
+}

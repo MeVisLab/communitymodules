@@ -1,0 +1,89 @@
+//----------------------------------------------------------------------------------
+//
+// Copyright (c) 2011, Image Sciences Institute, UMC Utrecht.
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of ISI nor the names of its contributors 
+//       may be used to endorse or promote products derived from this software 
+//       without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL ISI BE LIABLE FOR ANY DIRECT, INDIRECT, 
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+// OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+// OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//----------------------------------------------------------------------------------
+//! Macro module CallApplication
+/*!
+// \file    CallApplication.script
+// \author  Marijn van Stralen
+// \date    2009-10-19
+//
+// Calls an application using a command line call
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {}
+  Outputs {}
+  Parameters {
+    // The executable file to be called
+    Field executable { type = string value = "" }
+    // The program arguments
+    Field arguments { type = string value = "" }
+    // The working diectory for the application
+    Field workingDirectory { type = string value = "" }
+    
+    Field outputToLogWindow { type = bool value = True }
+    Field call { type = trigger }
+    Field logWindow { type = string value = ""}
+    Field clear {type = trigger}
+    Field callSucceeded {type = Bool value = False}
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/CallApplication.py
+  FieldListener call {
+    command = call
+  }
+  FieldListener clear {
+    command = clear
+  }
+}
+
+Window {  
+  Vertical {
+    expandY = 1
+    Field executable { browseButton = True browseMode = open browseFilter = "\*.exe" }
+    Field arguments {}
+    Field workingDirectory { browseButton = True browseMode = directory }
+    Field outputToLogWindow {}
+    Field callSucceeded { edit = False}
+    Horizontal { Field call {} Field clear{} }
+    TextView logWindow { console = True edit = False expandY = 1 }
+  }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
+//# owner: MeVis
+//# date: 2009-06-10T03:33:37
+//# hash: OJEV63NkIpl7wX2nwpNoLpXoODIa92JETZ3j1NpI2O+ptbhbjvTaWYjh4XOeCM/8Gra7QaTkLl9e9+hQn9kMEg==
+//# MeVis end
+
