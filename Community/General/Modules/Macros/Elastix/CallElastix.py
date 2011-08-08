@@ -163,6 +163,7 @@ def callElastix():
         callTransformix(ctx.field("createDeformationImage").value, ctx.field("createJacobianImage").value, ctx.field("createJacobianMatrixImage").value);  
     else :
       print "elastix failed";
+      ctx.field("succeeded").value = False;
   else :
     ctx.field("succeeded").value = False;
   
