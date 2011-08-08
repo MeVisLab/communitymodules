@@ -11,13 +11,12 @@ module FileDirectory {
         geometry = "296 463 501 558"
         sizeHint = "501 566"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = proFiles
-    rootPath = D:/Documents/Mevislab/Packages/ISI/Cardiac
+    rootPath = D:/Documents/Mevislab/Packages22/ISI/ThirdParty
     recursive = TRUE
     maxRecursionDepth = -1
     fileType = Files
@@ -28,11 +27,12 @@ module FileDirectory {
     exclude = ""
     excludeRegExp = FALSE
     ignoreCase = TRUE
-    fileList = "D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISILeftVentricleRemoveMitralRing/ISILeftVentricleRemoveMitralRing.pro
-D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro"
+    fileList = "D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/ann_1.1.2/ANN.pro
+D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/fann-2.1.0/fann.pro
+D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/gpc/gpc.pro
+D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/StealthLinkLibrary/StealthLinkLibrary.pro"
     dirMode = Absolute
   }
-  internalFields = ""
 }
 module StringUtils {
   internal  {
@@ -43,7 +43,6 @@ module StringUtils {
         geometry = "190 690 983 331"
         sizeHint = "370 331"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -53,7 +52,7 @@ module StringUtils {
     string1 = /
     string2 = Build
     string3 = " release "
-    string4 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj
+    string4 = ""
     string5 = ""
     string6 = ""
     stringPrefix = [
@@ -82,19 +81,18 @@ module CallApplication {
         geometry = "255 275 1110 364"
         sizeHint = "277 364"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = buildRelease
     executable = "C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe"
-    arguments = "/Rebuild debug D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj"
-    workingDirectory = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    arguments = "/Build release "
+    workingDirectory = ""
     outputToLogWindow = FALSE
     logWindow = ""
+    callSucceeded = TRUE
   }
-  internalFields = ""
 }
 module StringUtils {
   internal  {
@@ -105,14 +103,13 @@ module StringUtils {
         geometry = "299 280 1076 331"
         sizeHint = "234 204"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = StringUtils1
     operationType = Replace
-    string1 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    string1 = ""
     string2 = .pro
     string3 = .vcproj
     string4 = ""
@@ -144,14 +141,13 @@ module StringUtils {
         geometry = "235 600 1076 331"
         sizeHint = "234 204"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = StringUtils2
     operationType = Replace
-    string1 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    string1 = ""
     string2 = .pro
     string3 = .bat
     string4 = ""
@@ -180,25 +176,26 @@ module FieldIterator {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "948 286 415 317"
-        sizeHint = "415 317"
+        geometry = "948 286 408 299"
+        sizeHint = "408 299"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = projectIter
     fieldNames = ""
-    fieldValues = "D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISILeftVentricleRemoveMitralRing/ISILeftVentricleRemoveMitralRing.pro
-D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro"
+    fieldValues = "D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/ann_1.1.2/ANN.pro
+D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/fann-2.1.0/fann.pro
+D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/gpc/gpc.pro
+D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/StealthLinkLibrary/StealthLinkLibrary.pro"
     fieldSeparator = [,;]
-    valueSeparator = "\\n\\r|\\r\\n|[\\n\\r\\\\]"
+    valueSeparator = "\\n"
     valueHeader = FALSE
-    numValues = 2
+    numValues = 4
     indexTranslation = 0
-    curIndex = 1
-    curValue = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
+    curIndex = -1
+    curValue = ""
     newValueEnable = FALSE
     verbose = FALSE
     delay = 1
@@ -206,7 +203,6 @@ D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIP
     running = FALSE
     autoReset = FALSE
   }
-  internalFields = ""
 }
 module FileInformation {
   internal  {
@@ -217,26 +213,24 @@ module FileInformation {
         geometry = "601 237 655 306"
         sizeHint = "236 306"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = FileInformation
-    path = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.pro
-    dirname = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
-    filename = ISIPointTrackingDP2DT.pro
-    basename = ISIPointTrackingDP2DT
-    extension = .pro
-    type = File
-    size = 1576
-    createDate = 2010-09-24T15:54:11
-    exists = TRUE
+    path = ""
+    dirname = ""
+    filename = ""
+    basename = ""
+    extension = ""
+    type = ""
+    size = 0
+    createDate = ""
+    exists = FALSE
     isDirectory = FALSE
-    isReadable = TRUE
-    isWritable = TRUE
+    isReadable = FALSE
+    isWritable = FALSE
   }
-  internalFields = ""
 }
 module CallApplication {
   internal  {
@@ -247,19 +241,18 @@ module CallApplication {
         geometry = "200 217 1057 364"
         sizeHint = "277 364"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = buildDebug
     executable = "C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe"
-    arguments = "/Rebuild debug D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj"
-    workingDirectory = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    arguments = "/Build debug "
+    workingDirectory = ""
     outputToLogWindow = FALSE
     logWindow = ""
+    callSucceeded = TRUE
   }
-  internalFields = ""
 }
 module StringUtils {
   internal  {
@@ -270,7 +263,6 @@ module StringUtils {
         geometry = "193 246 1075 331"
         sizeHint = "370 331"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -278,9 +270,9 @@ module StringUtils {
     instanceName = StringUtils3
     operationType = Concatenate
     string1 = /
-    string2 = Rebuild
+    string2 = Build
     string3 = " debug "
-    string4 = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.vcproj
+    string4 = ""
     string5 = "*"*"
     string6 = ""
     stringPrefix = [
@@ -309,19 +301,18 @@ module CallApplication {
         geometry = "939 406 717 364"
         sizeHint = "277 364"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = callBAT
-    executable = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/ISIPointTrackingDP2DT.bat
+    executable = ""
     arguments = ""
-    workingDirectory = D:/Documents/Mevislab/Packages/ISI/Cardiac/Sources/ML/ISIPointTrackingDP2DT/
+    workingDirectory = ""
     outputToLogWindow = FALSE
     logWindow = ""
+    callSucceeded = FALSE
   }
-  internalFields = ""
 }
 connections  {
   StringUtils.string4 = StringUtils1.result
