@@ -15,7 +15,7 @@
 #include "WEMPlane/WEMPlane.h"
 #include "WEMCenterOfMass/WEMCenterOfMass.h"
 #include "WEMVolume/WEMVolume.h"
-#include "WEMSelectPatches/WEMSelectPatches.h"
+#include "WEMCMSelectPatches/WEMCMSelectPatches.h"
 #include "WEMNodesToFile/WEMNodesToFile.h"
 
 ML_START_NAMESPACE
@@ -28,7 +28,7 @@ int MLWEMCommunityModulesInit() {
 
   WEMPlane::initClass();
   WEMVolume::initClass();
-  WEMSelectPatches::initClass();
+  WEMCMSelectPatches::initClass();
   WEMNodesToFile::initClass();
   WEMCenterOfMass::initClass();
 
