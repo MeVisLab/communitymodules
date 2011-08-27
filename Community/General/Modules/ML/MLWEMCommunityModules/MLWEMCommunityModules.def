@@ -166,9 +166,9 @@ the centroid is the average of the node positions"
 } // MLModule WEMCenterOfMass
 
 //----------------------------------------------------------------------------------
-// MLModule WEMSelectPatches
+// MLModule WEMCMSelectPatches
 //----------------------------------------------------------------------------------
-MLModule WEMSelectPatches {
+MLModule WEMCMSelectPatches {
   DLL            = "MLWEMCommunityModules"
 
   genre          = "BIGR-WEM"
@@ -178,9 +178,9 @@ MLModule WEMSelectPatches {
   comment        = "Computes the center of mass of a WEM object"
   keywords       = "WEM,Center of Mass,Centroid"
   seeAlso        = ""
-  documentation  = "$(LOCAL)/WEMSelectPatches/WEMSelectPatches.html"
-  exampleNetwork = "$(LOCAL)/WEMSelectPatches/WEMSelectPatchesExample.mlab"
-  deprecatedName = "WEMSelectPatch"
+  documentation  = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatches.html"
+  exampleNetwork = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatchesExample.mlab"
+  deprecatedName = "WEMSelectPatch;WEMSelectPatches"
   
   Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
   
@@ -202,7 +202,7 @@ MLModule WEMSelectPatches {
       CheckBox onePatch {}
     }    
   }
-} // MLModule WEMSelectPatches
+} // MLModule WEMCMSelectPatches
 
 //----------------------------------------------------------------------------------
 // MLModule WEMNodesToFile
