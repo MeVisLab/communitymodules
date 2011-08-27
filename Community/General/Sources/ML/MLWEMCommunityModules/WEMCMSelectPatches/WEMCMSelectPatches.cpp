@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-//! The ML module class WEMSelectPatches.
+//! The ML module class WEMCMSelectPatches.
 /*!
-// \file    WEMSelectPatches.cpp
+// \file    WEMCMSelectPatches.cpp
 // \author  Coert Metz
 // \date    2009-02-10
 //
@@ -38,7 +38,7 @@
   =================================================================================*/
 
 // Local includes
-#include "WEMSelectPatches.h"
+#include "WEMCMSelectPatches.h"
 
 #include <algorithm>
 #include <functional>
@@ -47,15 +47,15 @@
 ML_START_NAMESPACE
 
 //! Implements code for the runtime type system of the ML
-ML_BASEOP_CLASS_SOURCE(WEMSelectPatches, WEMProcessor);
+ML_BASEOP_CLASS_SOURCE(WEMCMSelectPatches, WEMProcessor);
 
 //----------------------------------------------------------------------------------
 //! Constructor
 //----------------------------------------------------------------------------------
-WEMSelectPatches::WEMSelectPatches (std::string type)
+WEMCMSelectPatches::WEMCMSelectPatches (std::string type)
   : WEMProcessor(type, false)
 {
-  ML_TRACE_IN("WEMSelectPatches::WEMSelectPatches()")
+  ML_TRACE_IN("WEMCMSelectPatches::WEMCMSelectPatches()")
 
   FieldContainer *fields = getFieldContainer();
   ML_CHECK(fields);
@@ -87,18 +87,18 @@ WEMSelectPatches::WEMSelectPatches (std::string type)
 //----------------------------------------------------------------------------------
 //! Destructor
 //----------------------------------------------------------------------------------
-WEMSelectPatches::~WEMSelectPatches()
+WEMCMSelectPatches::~WEMCMSelectPatches()
 {
-  ML_TRACE_IN("WEMSelectPatches::~WEMSelectPatches()")
+  ML_TRACE_IN("WEMCMSelectPatches::~WEMCMSelectPatches()")
 }
 
 
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field \c field.
 //----------------------------------------------------------------------------------
-void WEMSelectPatches::handleNotification (Field *field)
+void WEMCMSelectPatches::handleNotification (Field *field)
 {
-  ML_TRACE_IN("WEMSelectPatches::handleNotification()")
+  ML_TRACE_IN("WEMCMSelectPatches::handleNotification()")
 
   if (field==_patchStartIndexFld || field==_patchEndIndexFld || field==_onePatchFld) {
     if (_autoApplyFld->getBoolValue()) {
@@ -113,9 +113,9 @@ void WEMSelectPatches::handleNotification (Field *field)
 //----------------------------------------------------------------------------------
 //! Code below is performed after module and network initialization.
 //----------------------------------------------------------------------------------
-void WEMSelectPatches::activateAttachments()
+void WEMCMSelectPatches::activateAttachments()
 {
-    ML_TRACE_IN("WEMSelectPatches::activateAttachments()")
+    ML_TRACE_IN("WEMCMSelectPatches::activateAttachments()")
 
     // call parent class
     WEMProcessor::activateAttachments();
@@ -125,9 +125,9 @@ void WEMSelectPatches::activateAttachments()
 //----------------------------------------------------------------------------------
 //! The process method is called by the parent class.
 //----------------------------------------------------------------------------------
-void WEMSelectPatches::_process()
+void WEMCMSelectPatches::_process()
 {
-    ML_TRACE_IN("WEMSelectPatches::process()")
+    ML_TRACE_IN("WEMCMSelectPatches::process()")
 
     // for time measurement and mouse cursor setting.
     _startProcessing();
@@ -151,9 +151,9 @@ void WEMSelectPatches::_process()
 //----------------------------------------------------------------------------------
 //! The main processing routine. Implement your algorithm here.
 //----------------------------------------------------------------------------------
-void WEMSelectPatches::selectPatch()
+void WEMCMSelectPatches::selectPatch()
 {
-  ML_TRACE_IN("WEMSelectPatches::selectPatch()")
+  ML_TRACE_IN("WEMCMSelectPatches::selectPatch()")
 
   // Get number of input WEM patches
   const int numPatches = _inWEM->getNumWEMPatches();

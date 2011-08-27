@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-//! The ML module class WEMSelectPatches.
+//! The ML module class WEMCMSelectPatches.
 /*!
-// \file    WEMSelectPatches.h
+// \file    WEMCMSelectPatches.h
 // \author  Coert Metz
 // \date    2009-02-10
 //
@@ -37,8 +37,8 @@
   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   =================================================================================*/
 
-#ifndef __WEMSelectPatches_H
-#define __WEMSelectPatches_H
+#ifndef __WEMCMSelectPatches_H
+#define __WEMCMSelectPatches_H
 
 
 // Local includes
@@ -53,20 +53,20 @@
 ML_START_NAMESPACE
 
 //! Select a subset of patches from a WEM
-class MLWEMCOMMUNITYMODULES_EXPORT WEMSelectPatches : public WEMProcessor
+class MLWEMCOMMUNITYMODULES_EXPORT WEMCMSelectPatches : public WEMProcessor
 {
   //! Implements interface for the runtime type system of the ML.
-  ML_BASEOP_CLASS_HEADER(WEMSelectPatches)
+  ML_BASEOP_CLASS_HEADER(WEMCMSelectPatches)
 
 public:
 
   //! Constructor.
-  WEMSelectPatches (std::string type="WEMSelectPatches");
+  WEMCMSelectPatches (std::string type="WEMCMSelectPatches");
 
 protected:
 
   //! Destructor.
-  virtual ~WEMSelectPatches();
+  virtual ~WEMCMSelectPatches();
 
   //! Initialize module after loading.
   virtual void activateAttachments();
@@ -101,6 +101,6 @@ private:
 
 ML_END_NAMESPACE
 
-#endif // __mlWEMSelectPatches_H
+#endif // __mlWEMCMSelectPatches_H
 
 

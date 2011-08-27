@@ -39,7 +39,7 @@ HEADERS += \
     WEMVolume/WEMVolume.h \
     WEMCenterOfMass/WEMCenterOfMass.h \
     WEMNodesToFile/WEMNodesToFile.h \
-    WEMSelectPatches/WEMSelectPatches.h
+    WEMCMSelectPatches/WEMCMSelectPatches.h
 
 SOURCES += \
     MLWEMCommunityModulesInit.cpp \
@@ -47,7 +47,7 @@ SOURCES += \
     WEMVolume/WEMVolume.cpp \
     WEMCenterOfMass/WEMCenterOfMass.cpp \
     WEMNodesToFile/WEMNodesToFile.cpp \
-    WEMSelectPatches/WEMSelectPatches.cpp
+    WEMCMSelectPatches/WEMCMSelectPatches.cpp
 
 RELATEDFILES += \
     ../../../Modules/ML/MLWEMCommunityModules/MLWEMCommunityModules.def 
