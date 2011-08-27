@@ -180,7 +180,7 @@ MLModule WEMCMSelectPatches {
   seeAlso        = ""
   documentation  = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatches.html"
   exampleNetwork = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatchesExample.mlab"
-  deprecatedName = "WEMSelectPatch;WEMSelectPatches"
+  deprecatedName = "WEMSelectPatch"
   
   Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
   
