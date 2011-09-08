@@ -35,11 +35,17 @@ Interface  {
     Field numberOfProjects { internalName = projectIter.numValues }
     Field projectList {internalName = projectIter.fieldValues }
     Field devenvExecutable { type = String }
+    Field xcodeGeneratorExecutable { internalName = createXCodeProject.executable }
+    Field xcodeBuildExecutable { internalName = buildXCodeProject.executable }
     Field run { type = Trigger }
+    Field runXCode { type = Trigger }
     
     Field projectFiles { type = Enum values = "Skip, Create, Recreate"}
     Field debug {type = Enum values = "Skip, Build, Rebuild, Clean"}
     Field release {type = Enum values = "Skip, Build, Rebuild, Clean"}
+    Field projectFilesXCode { type = Enum values = "Skip, Create"}
+    Field debugXCode {type = Enum values = "Skip, Build"}
+    Field releaseXCode {type = Enum values = "Skip, Build"}
     
     Field progress { type = float value = 0 }
   }
@@ -59,9 +65,13 @@ Commands {
   FieldListener recursionDepth {
     command = directoryChanged
   }
-  FieldListener run {
-    command = runBatch
+  //FieldListener run {
+  //  command = runBatch
+  //}
+  FieldListener runXCode {
+    command = runBatchXCode
   }
+  
 }
 
 Window {
@@ -76,16 +86,40 @@ Window {
         Field recursionDepth { step = 1 dependsOn = includeSubDirectories }        
       }
     }
-    Box "Build settings" {
-      Horizontal {
-        Field projectFiles {  }
-        Field debug {  }
-        Field release {  }
+    TabView {
+      TabViewItem "Visual Studio 2005" {
+        Horizontal {
+          Field projectFiles {  }
+          Field debug {  }
+          Field release {  }
+        }
+        Field devenvExecutable { browseButton = Yes browseMode = open browseFilter = "\*.exe" }
+        Button run { expandX = Yes command = runBatch2005 }
+        ProgressBar progress {}
       }
-      Field devenvExecutable { browseButton = Yes browseMode = open browseFilter = "\*.exe" }
-      Button run { expandX = Yes }
-      ProgressBar progress {}
+      TabViewItem "Visual Studio 2010" {
+        Horizontal {
+          Field projectFiles {  }
+          Field debug {  }
+          Field release {  }
+        }
+        Field devenvExecutable { browseButton = Yes browseMode = open browseFilter = "\*.exe" }
+        Button run { expandX = Yes command = runBatch2010 }
+        ProgressBar progress {}
+      }
+      TabViewItem "XCode" {
+        Horizontal {
+          Field projectFilesXCode {  }
+          Field debugXCode {  }
+          Field releaseXCode {  }
+        }
+        Field xcodeGeneratorExecutable { browseButton = Yes browseMode = open }
+        Field xcodeBuildExecutable { browseButton = Yes browseMode = open }
+        Button runXCode { expandX = Yes  title = "Run"}
+        ProgressBar progress {}
+      }
     }
+    
     Box "Projects" {
       expandY = Yes
       Field numberOfProjects { edit = No} 

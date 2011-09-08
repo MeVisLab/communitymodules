@@ -2,21 +2,242 @@
 network  {
   watchlist = ""
 }
+module StringUtils {
+  internal  {
+    frame = "974 -171 104 56"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "930 353 622 250"
+        sizeHint = "268 214"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils7
+    operationType = Replace
+    string1 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+    string2 = .pro
+    string3 = _debug.xcodeproj
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "974 -111 104 56"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "158 894 927 324"
+        sizeHint = "409 324"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils6
+    operationType = Concatenate
+    string1 = "-project "
+    string2 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse_debug.xcodeproj
+    string3 = " -alltargets"
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = TRUE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module CallApplication {
+  internal  {
+    frame = "761 -143 176 64"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "1038 722 888 431"
+        sizeHint = "284 431"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = buildXCodeProjectDebug
+    executable = /Developer/usr/bin/xcodebuild
+    arguments = "-project /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse_debug.xcodeproj -alltargets"
+    workingDirectory = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
+    outputToLogWindow = FALSE
+    logWindow = ""
+    callSucceeded = TRUE
+    macOSXMode = TRUE
+  }
+}
+module CallApplication {
+  internal  {
+    frame = "769 -47 144 64"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "1038 722 888 431"
+        sizeHint = "284 431"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = buildXCodeProject
+    executable = /Developer/usr/bin/xcodebuild
+    arguments = "-project /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.xcodeproj -alltargets"
+    workingDirectory = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
+    outputToLogWindow = FALSE
+    logWindow = ""
+    callSucceeded = TRUE
+    macOSXMode = TRUE
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "965 37 104 56"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "474 588 622 250"
+        sizeHint = "268 214"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils5
+    operationType = Replace
+    string1 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+    string2 = .pro
+    string3 = .xcodeproj
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "966 -43 104 56"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "161 703 409 324"
+        sizeHint = "409 324"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils4
+    operationType = Concatenate
+    string1 = "-project "
+    string2 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.xcodeproj
+    string3 = " -alltargets"
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = TRUE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module CallApplication {
+  internal  {
+    frame = "769 25 144 64"
+    moduleGroupName = XCode
+    windows  {
+      window _default {
+        geometry = "73 653 315 431"
+        sizeHint = "284 431"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = createXCodeProject
+    executable = /Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator
+    arguments = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+    workingDirectory = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
+    outputToLogWindow = FALSE
+    logWindow = ""
+    callSucceeded = TRUE
+    macOSXMode = TRUE
+  }
+}
 module FileDirectory {
   internal  {
-    frame = "493 377 104 64"
+    frame = "489 377 112 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "296 463 501 558"
-        sizeHint = "501 566"
+        geometry = "1034 483 972 586"
+        sizeHint = "540 586"
         wasOpen = no
       }
     }
   }
   fields  {
     instanceName = proFiles
-    rootPath = D:/Documents/Mevislab/Packages22/ISI/ThirdParty
+    rootPath = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML
     recursive = TRUE
     maxRecursionDepth = -1
     fileType = Files
@@ -27,21 +248,43 @@ module FileDirectory {
     exclude = ""
     excludeRegExp = FALSE
     ignoreCase = TRUE
-    fileList = "D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/ann_1.1.2/ANN.pro
-D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/fann-2.1.0/fann.pro
-D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/gpc/gpc.pro
-D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/StealthLinkLibrary/StealthLinkLibrary.pro"
+    fileList = "/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIAAMPoseArrayToMatrix/ISIAAMPoseArrayToMatrix.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIAAMSampleANNLabelArray/ISIAAMSampleANNLabelArray.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIAAMSampleANNPointArray/ISIAAMSampleANNPointArray.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIBuildTextureLookupImage/ISIBuildTextureLookupImage.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIComputeCostsHierarchicalPCAStatisticalShapeModel/ISIComputeCostsHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIComputeCumCostsHierarchicalPCAStatisticalShapeModel/ISIComputeCumCostsHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISICreateAppearance/ISICreateAppearance.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIDecorateHierarchicalPCAStatisticalShapeModel/ISIDecorateHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIGraphCutShapeMatch/ISIGraphCutShapeMatch.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPCAStatisticalShapeModel/ISIHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPCAStatisticalShapeModelToPolyData/ISIHierarchicalPCAStatisticalShapeModelToPolyData.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPolyDataFilter/ISIHierarchicalPolyDataFilter.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageToVTKPolyData/ISIImageToVTKPolyData.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIMatrixMultiplicationOfImages/ISIMatrixMultiplicationOfImages.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIPCAStatisticalShapeModel/ISIPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIProcrustesAlignmentFilter/ISIProcrustesAlignmentFilter.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIProjectPointsOnVTKPolyData/ISIProjectPointsOnVTKPolyData.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIRegularizeHierarchicalPCAStatisticalShapeModel/ISIRegularizeHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISISample1DTextureAtSurfacePoints/ISISample1DTextureAtSurfacePoints.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISISampleTextureWithLookup/ISISampleTextureWithLookup.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISITransformHierarchicalPCAStatisticalShapeModel/ISITransformHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKArrayVTKPolyDataVV/ISIVTKArrayVTKPolyDataVV.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataAddWhiskers/ISIVTKPolyDataAddWhiskers.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataRemoveWhiskers/ISIVTKPolyDataRemoveWhiskers.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataToImage/ISIVTKPolyDataToImage.pro"
     dirMode = Absolute
   }
 }
 module StringUtils {
   internal  {
-    frame = "333 165 88 56"
-    moduleGroupName = ""
+    frame = "273 21 96 56"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
-        geometry = "190 690 983 331"
-        sizeHint = "370 331"
+        geometry = "190 690 834 324"
+        sizeHint = "409 324"
         wasOpen = no
       }
     }
@@ -52,7 +295,7 @@ module StringUtils {
     string1 = /
     string2 = Build
     string3 = " release "
-    string4 = ""
+    string4 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.vcproj
     string5 = ""
     string6 = ""
     stringPrefix = [
@@ -74,8 +317,8 @@ module StringUtils {
 }
 module CallApplication {
   internal  {
-    frame = "481 161 112 64"
-    moduleGroupName = ""
+    frame = "421 17 120 64"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
         geometry = "255 275 1110 364"
@@ -86,22 +329,22 @@ module CallApplication {
   }
   fields  {
     instanceName = buildRelease
-    executable = "C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe"
-    arguments = "/Build release "
-    workingDirectory = ""
+    executable = ""
+    arguments = "/Build release /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.vcproj"
+    workingDirectory = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
     outputToLogWindow = FALSE
     logWindow = ""
-    callSucceeded = TRUE
+    callSucceeded = FALSE
   }
 }
 module StringUtils {
   internal  {
-    frame = "329 317 96 56"
-    moduleGroupName = ""
+    frame = "349 157 104 56"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
-        geometry = "299 280 1076 331"
-        sizeHint = "234 204"
+        geometry = "299 280 320 247"
+        sizeHint = "268 214"
         wasOpen = no
       }
     }
@@ -109,7 +352,7 @@ module StringUtils {
   fields  {
     instanceName = StringUtils1
     operationType = Replace
-    string1 = ""
+    string1 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
     string2 = .pro
     string3 = .vcproj
     string4 = ""
@@ -134,12 +377,12 @@ module StringUtils {
 }
 module StringUtils {
   internal  {
-    frame = "329 229 96 56"
-    moduleGroupName = ""
+    frame = "269 85 104 56"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
-        geometry = "235 600 1076 331"
-        sizeHint = "234 204"
+        geometry = "235 600 268 214"
+        sizeHint = "268 214"
         wasOpen = no
       }
     }
@@ -147,7 +390,7 @@ module StringUtils {
   fields  {
     instanceName = StringUtils2
     operationType = Replace
-    string1 = ""
+    string1 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
     string2 = .pro
     string3 = .bat
     string4 = ""
@@ -172,30 +415,52 @@ module StringUtils {
 }
 module FieldIterator {
   internal  {
-    frame = "497 313 96 64"
+    frame = "495 316 104 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "948 286 408 299"
-        sizeHint = "408 299"
-        wasOpen = no
+        geometry = "1301 187 995 311"
+        sizeHint = "418 311"
+        wasOpen = yes
       }
     }
   }
   fields  {
     instanceName = projectIter
     fieldNames = ""
-    fieldValues = "D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/ann_1.1.2/ANN.pro
-D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/fann-2.1.0/fann.pro
-D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/gpc/gpc.pro
-D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/StealthLinkLibrary/StealthLinkLibrary.pro"
+    fieldValues = "/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIAAMPoseArrayToMatrix/ISIAAMPoseArrayToMatrix.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIAAMSampleANNLabelArray/ISIAAMSampleANNLabelArray.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIAAMSampleANNPointArray/ISIAAMSampleANNPointArray.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIBuildTextureLookupImage/ISIBuildTextureLookupImage.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIComputeCostsHierarchicalPCAStatisticalShapeModel/ISIComputeCostsHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIComputeCumCostsHierarchicalPCAStatisticalShapeModel/ISIComputeCumCostsHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISICreateAppearance/ISICreateAppearance.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIDecorateHierarchicalPCAStatisticalShapeModel/ISIDecorateHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIGraphCutShapeMatch/ISIGraphCutShapeMatch.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPCAStatisticalShapeModel/ISIHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPCAStatisticalShapeModelToPolyData/ISIHierarchicalPCAStatisticalShapeModelToPolyData.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIHierarchicalPolyDataFilter/ISIHierarchicalPolyDataFilter.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageToVTKPolyData/ISIImageToVTKPolyData.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIMatrixMultiplicationOfImages/ISIMatrixMultiplicationOfImages.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIPCAStatisticalShapeModel/ISIPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIProcrustesAlignmentFilter/ISIProcrustesAlignmentFilter.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIProjectPointsOnVTKPolyData/ISIProjectPointsOnVTKPolyData.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIRegularizeHierarchicalPCAStatisticalShapeModel/ISIRegularizeHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISISample1DTextureAtSurfacePoints/ISISample1DTextureAtSurfacePoints.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISISampleTextureWithLookup/ISISampleTextureWithLookup.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISITransformHierarchicalPCAStatisticalShapeModel/ISITransformHierarchicalPCAStatisticalShapeModel.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKArrayVTKPolyDataVV/ISIVTKArrayVTKPolyDataVV.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataAddWhiskers/ISIVTKPolyDataAddWhiskers.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataRemoveWhiskers/ISIVTKPolyDataRemoveWhiskers.pro
+/Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIVTKPolyDataToImage/ISIVTKPolyDataToImage.pro"
     fieldSeparator = [,;]
     valueSeparator = "\\n"
     valueHeader = FALSE
-    numValues = 4
+    numValues = 26
     indexTranslation = 0
-    curIndex = -1
-    curValue = ""
+    curIndex = 12
+    curValue = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
     newValueEnable = FALSE
     verbose = FALSE
     delay = 1
@@ -206,36 +471,36 @@ D:\\Documents\\Mevislab\\Packages22\\ISI\\ThirdParty/Sources/StealthLinkLibrary/
 }
 module FileInformation {
   internal  {
-    frame = "665 317 112 56"
+    frame = "662 318 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "601 237 655 306"
-        sizeHint = "236 306"
+        geometry = "422 230 534 402"
+        sizeHint = "309 402"
         wasOpen = no
       }
     }
   }
   fields  {
     instanceName = FileInformation
-    path = ""
-    dirname = ""
-    filename = ""
-    basename = ""
-    extension = ""
-    type = ""
-    size = 0
-    createDate = ""
-    exists = FALSE
+    path = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.pro
+    dirname = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
+    filename = ISIImageMatrixInverse.pro
+    basename = ISIImageMatrixInverse
+    extension = .pro
+    type = File
+    size = 1417
+    createDate = 2011-08-17T11:26:23
+    exists = TRUE
     isDirectory = FALSE
-    isReadable = FALSE
-    isWritable = FALSE
+    isReadable = TRUE
+    isWritable = TRUE
   }
 }
 module CallApplication {
   internal  {
-    frame = "481 97 112 64"
-    moduleGroupName = ""
+    frame = "421 -47 120 64"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
         geometry = "200 217 1057 364"
@@ -246,18 +511,18 @@ module CallApplication {
   }
   fields  {
     instanceName = buildDebug
-    executable = "C:/Program Files (x86)/Microsoft Visual Studio 8/Common7/IDE/devenv.exe"
-    arguments = "/Build debug "
-    workingDirectory = ""
+    executable = ""
+    arguments = "/Rebuild debug /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.vcproj"
+    workingDirectory = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
     outputToLogWindow = FALSE
     logWindow = ""
-    callSucceeded = TRUE
+    callSucceeded = FALSE
   }
 }
 module StringUtils {
   internal  {
-    frame = "329 101 96 56"
-    moduleGroupName = ""
+    frame = "269 -43 104 56"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
         geometry = "193 246 1075 331"
@@ -270,9 +535,9 @@ module StringUtils {
     instanceName = StringUtils3
     operationType = Concatenate
     string1 = /
-    string2 = Build
+    string2 = Rebuild
     string3 = " debug "
-    string4 = ""
+    string4 = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.vcproj
     string5 = "*"*"
     string6 = ""
     stringPrefix = [
@@ -294,27 +559,36 @@ module StringUtils {
 }
 module CallApplication {
   internal  {
-    frame = "481 225 112 64"
-    moduleGroupName = ""
+    frame = "421 81 120 64"
+    moduleGroupName = VisualStudio
     windows  {
       window _default {
-        geometry = "939 406 717 364"
-        sizeHint = "277 364"
+        geometry = "495 755 1047 404"
+        sizeHint = "284 404"
         wasOpen = no
       }
     }
   }
   fields  {
     instanceName = callBAT
-    executable = ""
+    executable = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/ISIImageMatrixInverse.bat
     arguments = ""
-    workingDirectory = ""
+    workingDirectory = /Users/admin/Documents/MeVisLab/Packages22/ISI/StatisticalModeling/Sources/ML/ISIImageMatrixInverse/
     outputToLogWindow = FALSE
     logWindow = ""
     callSucceeded = FALSE
   }
 }
 connections  {
+  StringUtils7.string1 = projectIter.curValue
+  StringUtils6.string2 = StringUtils7.result
+  buildXCodeProjectDebug.arguments = StringUtils6.result
+  buildXCodeProject.arguments = StringUtils4.result
+  buildXCodeProject.workingDirectory = FileInformation.dirname
+  StringUtils5.string1 = projectIter.curValue
+  StringUtils4.string2 = StringUtils5.result
+  createXCodeProject.arguments = projectIter.curValue
+  createXCodeProject.workingDirectory = FileInformation.dirname
   StringUtils.string4 = StringUtils1.result
   buildRelease.arguments = StringUtils.result
   buildRelease.workingDirectory = FileInformation.dirname
@@ -328,4 +602,34 @@ connections  {
   callBAT.executable = StringUtils2.result
   callBAT.workingDirectory = FileInformation.dirname
 }
-networkModel = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 34
+        objectName = VisualStudio
+        parentUniqueId = 0
+        frame = "244 -122 322 360"
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 58
+        objectName = XCode
+        parentUniqueId = 0
+        frame = "736 -246 367 364"
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}
+
