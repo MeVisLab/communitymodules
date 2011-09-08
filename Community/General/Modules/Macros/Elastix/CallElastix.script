@@ -72,6 +72,7 @@ Interface  {
      Field succeeded { type = Bool value = False persistent = No}
      
      Field transformParameterFile { type = string }
+     Field saveResultingTransformationFile { type = Trigger }
    }
 }
 
@@ -91,6 +92,7 @@ Commands {
     command = clearLog
   }
   FieldListener outputDirectory { command = checkTemporaryDirectory }
+  FieldListener saveResultingTransformationFile { command = saveResultingTransformationFileAs }
 }
 
 Window {
@@ -107,7 +109,10 @@ Window {
      Field parameterFile3 { browseButton = True browseMode = open browseFilter = "\*.txt" }
      //Horizontal { alignGroupX = parameterFile3 Label  { title = "Number of threads:"} ButtonBar numberOfThreads {     } }
      Field initialTransformationFile { browseButton = True browseFilter = "\*.txt" browseMode = open expandX = True}
-     Field resultingTransformationFile { edit = False expandX = True}
+     Horizontal {
+       Field resultingTransformationFile { edit = False expandX = True}
+       Button saveResultingTransformationFile { title = "Save as..."}
+     }    
      Field numberOfThreads { expandX = 1}
      Field otherArguments { expandY = True }
      Field createDeformationImage { enabled = True }

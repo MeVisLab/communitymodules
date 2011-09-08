@@ -232,6 +232,73 @@ def checkTemporaryDirectory():
     print "Error: path contains spaces!";
   if (len(ctx.field("outputDirectory").value) > 0 and ctx.field("outputDirectory").value[-1] != '/'):
     ctx.field("outputDirectory").value += '/';
+    
+def saveResultingTransformationFileAs():
+  origFn = ctx.field("resultingTransformationFile").value;
+  if len(origFn)>0:
+    if MLABFileManager.exists(origFn):
+      newFn = MLABFileDialog.getSaveFileName("", "*.txt", "Save transformation file as...");
+      saveTransformationFileAs(origFn, newFn);
+    else :
+      print "Error: file does not exist (anymore).";
+  else :
+    print "Nothing to save!";
+  
+def saveTransformationFileAs(origFn, newFn):
+  # collect initial transform parameter files recursively
+  initFiles = [];
+  initFn = getInitialTransformParameters(origFn);
+  while len(initFn) >0:
+    initFiles += [initFn];
+    initFn = getInitialTransformParameters(initFn);   
+  parentFile = newFn;  
+  # save transformation file
+  MLABFileManager.copy(origFn, newFn);
+  # save initial transformation files with numbering [0,...> in order of application
+  parentFn = newFn;
+  for i in range(len(initFiles)):
+    newExt = "." + str(len(initFiles)-i-1) + ".txt";
+    newInitFn = newFn.replace(".txt", newExt);
+    MLABFileManager.copy(initFiles[i], newInitFn); 
+    fileStringReplace(parentFn, initFiles[i], newInitFn);
+    parentFn = newInitFn;
+  # save transformation file, also with consistent numbering
+  newExt = "." + str(len(initFiles)) + ".txt";
+  MLABFileManager.copy(newFn, newFn.replace(".txt", newExt));  
+      
+  
+# look for initial transform parameters, like (InitialTransformParametersFileName "C:/Temp/reg3/TransformParameters.0.txt")
+def getInitialTransformParameters(fn):
+  if MLABFileManager.exists(fn):
+    with open(fn) as f:
+      for l in f:
+        if l.find("InitialTransformParametersFileName") >=0:
+          #print l;
+          t = l.replace("(", "");
+          t = t.replace(")", "");
+          parts = t.split();
+          #print "File = " + parts[1];
+          tf = parts[1].replace("\"", ""); #remove quotes
+          if tf != "NoInitialTransform":
+            return tf;
+          else :
+            return "";
+    return "";
+  else :
+    print "Error: could not open transformation file " + fn;
+    return "";
+
+def fileStringReplace(fn, src, dst):
+  if MLABFileManager.exists(fn):
+    lines = [];
+    with open(fn, 'r') as f:
+      for l in f:
+        lines += [l.replace(src, dst)];
+    with open(fn, 'w') as f:
+      for l in lines:
+        f.write(l);
+  else :
+    print "Error: could not open file for replacement, " + fn;
 
 #//# MeVis signature v1
 #//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
