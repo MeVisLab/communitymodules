@@ -92,3 +92,23 @@ def deleteMhd(fn):
   MLABFileManager.remove( raw );  
   MLABFileManager.remove( zraw );
   
+def inputChanged():
+  if ctx.field("updateImageDimension").value:
+    if ctx.field("input0").isValid():
+      if ctx.field("input0").sizeU() > 1:
+        ctx.field("imageDimension").value = 6;
+      elif ctx.field("input0").sizeT() > 1:
+        ctx.field("imageDimension").value = 6;
+      elif ctx.field("input0").sizeC() > 1:
+        ctx.field("imageDimension").value = 4;
+      elif ctx.field("input0").sizeZ() > 1:
+        ctx.field("imageDimension").value = 3;
+      else :
+        ctx.field("imageDimension").value = 2;
+
+def imageDimensionChanged():
+  ctx.field("itkImageFileReader.fileDimension").value = ctx.field("imageDimension").value;
+  ctx.field("itkImageFileReader1.fileDimension").value = ctx.field("imageDimension").value;
+  ctx.field("itkImageFileReader2.fileDimension").value = ctx.field("imageDimension").value;
+  ctx.field("itkImageFileReader3.fileDimension").value = ctx.field("imageDimension").value;
+        

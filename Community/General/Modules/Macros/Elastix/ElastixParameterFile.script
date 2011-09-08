@@ -152,9 +152,9 @@ Interface {
     Field UseAdaptiveStepSizes { type = Bool value = True}
     Field DefineMaximumStepLength {type = Bool value = False}
     Field MaximumStepLength {type = Double value = 1.0}
-    Field SigmoidMin {type = Double value = -0.8}
-    Field SigmoidMax {type = Double value = 1.0}
-    Field SigmoidScale {type = Double value = 0.00000001}      
+    Field SigmoidMin {type = String value = "-0.8"}
+    Field SigmoidMax {type = String value = "1.0"}
+    Field SigmoidScale {type = String value = "0.00000001"}      
     Field SigmoidInitialTime {type = String value = "0"}
     Field DefineNumberOfGradientMeasurements { type = Bool value = False}
     Field NumberOfGradientMeasurements { type = Int value = 10}

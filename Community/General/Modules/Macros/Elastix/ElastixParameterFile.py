@@ -651,9 +651,9 @@ def readOptimizer(lines):
       readArrayParameter(lines, ctx.field("SP_a"));
       readArrayParameter(lines, ctx.field("SP_capa"), "SP_A");
       readArrayParameter(lines, ctx.field("SP_alpha"));
-      readFloatParameter(lines, ctx.field("SigmoidMin"));
-      readFloatParameter(ctx.field("SigmoidMax"));
-      readFloatParameter(ctx.field("SigmoidScale"));
+      readArrayParameter(lines, ctx.field("SigmoidMin"));
+      readArrayParameter(ctx.field("SigmoidMax"));
+      readArrayParameter(ctx.field("SigmoidScale"));
     readArrayParameter(lines, ctx.field("SigmoidInitialTime"));
     readBoolParameter(lines, ctx.field("UseAdaptiveStepSizes"));
     ctx.field("DefineMinimumStepLength").value = readArrayParameter(lines, ctx.field("MaximumStepLength"));
@@ -758,9 +758,9 @@ def writeOptimizer():
       text += arrayParameterToString(ctx.field("SP_a"), numRes);
       text += arrayParameterToString(ctx.field("SP_capa"), numRes, "SP_A");
       text += arrayParameterToString(ctx.field("SP_alpha"), numRes);
-      text += parameterToString(ctx.field("SigmoidMin"));
-      text += parameterToString(ctx.field("SigmoidMax"));
-      text += parameterToString(ctx.field("SigmoidScale"));
+      text += arrayParameterToString(ctx.field("SigmoidMin"), numRes);
+      text += arrayParameterToString(ctx.field("SigmoidMax"), numRes);
+      text += arrayParameterToString(ctx.field("SigmoidScale"), numRes);
     text += arrayParameterToString(ctx.field("SigmoidInitialTime"), numRes);
     text += boolParameterToString(ctx.field("UseAdaptiveStepSizes"));
     if ctx.field("DefineMinimumStepLength").value:

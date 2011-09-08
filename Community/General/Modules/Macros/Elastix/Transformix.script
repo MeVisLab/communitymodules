@@ -72,6 +72,8 @@ Interface  {
     Field createJacobianMatrixField { type = Bool value = False }
     Field update { type = Trigger }
     Field deleteFiles { type = Trigger }
+    Field imageDimension { type = Enum values = "2, 3, 4, 6" }
+    Field updateImageDimension { type = Bool value = True }
   }
 }
 
@@ -86,20 +88,27 @@ Commands {
   FieldListener deleteFiles {
     command = deleteFiles
   }
+  FieldListener input0 {
+    command = inputChanged
+  }
 }
 
 Window {
   Vertical {
     Box Transformix {
       Field tranformixExecutable { browseMode = open browseButton = On}
-      Separator {}
-      Field workingDirectory { browseMode = directory browseButton = On}
-      Field autoUpdateTransformationFile {}
+      Field workingDirectory { browseMode = directory browseButton = On}      
     }
     Box Input {
-      Field transformationFile { browseButton = On browseMode = open browseFilter = "\*.txt"}      
+      Field autoUpdateTransformationFile { title = "Auto update from working directory:"}
+      Field transformationFile { browseButton = On browseMode = open browseFilter = "\*.txt"}            
     }
     Box Output {
+      Horizontal {
+        alignX = Left
+        Field imageDimension {  }
+        Field updateImageDimension { title = "Auto update from input image:" }
+      }
       Field createImage { edit = False}
       Field createDeformationField {}
       Field createJacobianField {}
