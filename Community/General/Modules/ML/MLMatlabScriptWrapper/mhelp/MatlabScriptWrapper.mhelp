@@ -1,0 +1,724 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/MLMatlabScriptWrapper.def
+    moduleName = MatlabScriptWrapper
+    moduleType = MLModule
+    author = "Alexander Gryanik, Ola Friman, Markus Harz, Alexander Broersen"
+    DLL = MLMatlabScriptWrapper
+    genre = Other
+    keywords = "Matlab scripting wrapper"
+    status = work-in-progress
+    seeAlso = ""
+    package = mlMatlab
+    packageGroup = MeVisLabLKEB
+  }
+  Purpose  {
+    text = "The **MatlabScriptWrapper** module offers the possibility to execute `Matlab <http://www.mathworks.com/products/matlab/>`_ scripts within `MeVisLab <http://www.mevislab.de>`_ and establish a link to a Matlab console, for example to transfer data between MeVisLab and Matlab. Note that Matlab must be installed for this module to function."
+  }
+  Usage  {
+    text = "Currently, three types of data structures can be transferred between MeVisLab and Matlab:
+
+- **Images:**
+  Up to three images can be used. Images are stored as up to six dimensional matrices in Matlab.
+  Note that MeVisLab and Matlab use different coordinate systems, see below for further information.
+
+- **CurveData (input only) and CurveLists:**
+  A `CurveData <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html>`_
+  is an object consisting of zero or one X- and any number of Y-data series. A CurveList is an array
+  of CurveData objects. In Matlab, a CurveList is represented as a cell array with in each cell a matrix
+  with the points of each series of a curve. The first column in the matrix contains the X-values, the
+  second column contains the first serie of Y-values, the third column the second serie of Y-values etc..
+
+- **XMarkerLists:**
+  An `XMarker <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html>`_
+  is an object that contains a point (up to 6-D), a vector (3-D), a type variable (integer) and a name
+  (string). An XMarkerList is an array of XMarker objects. In Matlab, an XMarkerList is represented as
+  a struct with the following members (where *N* is the number of XMarkers):
+  
+    *<variablename>*.pos, where pos is an *N* x2, *N* x3, *N* x4, *N* x5 or *N* x6 matrix with the
+    position coordinates.
+
+    *<variablename>*.vec, where vec is an *N* x2 or *N* x3 matrix of vectors.
+
+    *<variablename>*.type, where type is an *N* x1 vector of integers.
+
+    *<variablename>*.name, where name is an *N* x1 cell array of strings.
+
+    .. note::
+      
+      **Important:** the pos matrix determines the number of XMarkers *N*. The vec, type and name arrays must
+      have the same number of *N* rows, otherwise will these values not be copied to MeVisLab. See the example
+      network for an example.
+
+- **WEMs:**
+  A Winged Edge Mesh (`WEM <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/WEMPage.html>`_)
+  is an object that contains a representation of a surface. In Matlab, a WEM is represented as a cell array
+  of structures with nodes (markers of vertices with a color, size, and style), faces (with a diffuse color
+  and alpha), edges (with a color, size, and style), a description (`Tag <http://www.mathworks.com/help/techdoc/ref/patch_props.html#Tag>`_)
+  and a label (`DisplayName <http://www.mathworks.com/help/techdoc/ref/patch_props.html#DisplayName>`_).
+  Optionally, if a WEM contains a Look Up Table (`LUT <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLLUTPage.html>`_),
+  this data will be put into the `CData <http://www.mathworks.com/help/techdoc/ref/patch_props.html#CData>`_
+  field. These structures can be exchanged directly with the `Matlab Patch Properties <http://www.mathworks.com/help/techdoc/ref/patch_props.html>`_.
+  See the example network for an example.
+
+- **Mat4Lists (input only):**
+  A `Mat4List <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/mlLinearAlgebraPage.html>`_
+  is an object that contains a list of 4x4 matrices. In Matlab, a Mat4List is represented as a cell array
+  with in each cell a 4x4 integer matrix.
+
+- **CSOLists (input only):**
+  A Contour Segmentation Object (`CSO <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/CSOPage.html>`_)List
+  is an object that contains a list of CSOs. In Matlab, a CSOList is represented as a cell array with in
+  each cell an *N* x3 integer matrix with the position coordinates of one CSO.
+
+- **Scalars:**
+  Double precision. These can be used both as input and ouput variables. Field notifications will be sent
+  in MeVisLab only if a scalar has changed its value after the Matlab script execution.
+
+- **Vectors:**
+  Double precision 4-D integer point. These can be used both as input and ouput variables. Field notifications
+  will be sent in MeVisLab only if a vector has changed its value after the Matlab script execution.
+
+- **Matrices:**
+  Double precision 4x4 integer matrix. These can be used both as input and ouput variables. Field notifications
+  will be sent in MeVisLab only if a matrix has changed its value after the Matlab script execution.
+
+- **Strings:**
+  These can be used both as input and ouput variables. Field notifications will be sent in MeVisLab only if a
+  string has changed its value after the Matlab script execution.
+
+The variable names for the above data structures in the Matlab workspace can be set.
+
+The Matlab script can be written directly in the module GUI, or an external script file (`.m`) can be called.
+If you choose to use an existing script, the script in :field:`matlabScript` will disappear and there is no
+posibility to edit a Matlab script file from MeVisLab.
+
+Push the :field:`update` button to execute the Matlab script, set :field:`autoUpdate` to update on input
+value change, or set :field:`autoApply` to update on parameter value change.
+
+Use the :field:`showSessionWindow` checkbox to show or hide the session window.
+
+The :field:`restartMatlab` button can be used to restart a Matlab session once it is terminated externally."
+  }
+  Details  {
+    text = "***Coordinate systems in MeVisLab and Matlab**
+
+In the context of this module, the only coordinate system that is considered is the discrete voxel index coordinate system, i.e., images are considered as multidimensional matrices. Both MeVisLab and Matlab have the origin in the upper left corner and a y-axis that points "downwards". However, note that MeVisLab starts counting a 0, whereas Matlab starts counting a 1, i.e., the upper left voxel has the coordinate ``(0,0)`` in MeVisLab and ``(1,1)`` in Matlab. The major difference between MeVisLab and Matlab is the indexing order: MeVisLab uses ``[x,y]`` while Matlab uses ``[y,x]`` (i.e., row-column into a matrix). Thus, an image will appear flipped when exported from MeVisLab and visualized in Matlab or vice-versa. To correct for this, one can use the *permute* command in Matlab, for example::
+
+   >> permute(Input0,[2 1])
+
+which swaps the x and y axes. See the example network for an example.*"
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = "Up to three input images and one CurveData, CurveList, XMarkerList , or WEM can be attached to the module. Input to the module from MeVisLab is optional, the output can be generated entirely in Matlab without input from MeVisLab (see the example network for examples)."
+    Field input0 {
+      type = Image
+      text = ""
+    }
+    Field input1 {
+      type = Image
+      text = ""
+    }
+    Field input2 {
+      type = Image
+      text = ""
+    }
+    Field inputXMarkerList {
+      type = MLBase
+      text = ""
+    }
+    Field inputWEM {
+      type = MLBase
+      text = ""
+    }
+    Field inputCurve {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = "Up to three output images and one CurveList, one XMarkerList, or one WEM."
+    Field output0 {
+      type = Image
+      text = ""
+    }
+    Field output1 {
+      type = Image
+      text = ""
+    }
+    Field output2 {
+      type = Image
+      text = ""
+    }
+    Field outputXMarkerList {
+      type = MLBase
+      text = ""
+    }
+    Field outputWEM {
+      type = MLBase
+      text = ""
+    }
+    Field outputCurveList {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = MatlabScriptWrapper
+    }
+    Field matlabScript {
+      type = String
+      text = "A field where the Matlab script can be written."
+      title = "Matlab Script"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "Output0=Input0 % Type your matlab script here."
+    }
+    Field useExternalScript {
+      type = Bool
+      text = "Enables the possibility to use an external Matlab script file (.m)."
+      title = "Use External Script"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field matlabScriptPath {
+      type = String
+      text = ""
+      title = "Matlab Script"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field inDataName0 {
+      type = String
+      text = ""
+      title = "Input0 name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Input0
+    }
+    Field inDataName1 {
+      type = String
+      text = ""
+      title = "Input1 name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Input1
+    }
+    Field inDataName2 {
+      type = String
+      text = ""
+      title = "Input2 name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Input2
+    }
+    Field outDataName0 {
+      type = String
+      text = ""
+      title = "Output0 name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Output0
+    }
+    Field outDataName1 {
+      type = String
+      text = ""
+      title = "Output1 name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Output1
+    }
+    Field outDataName2 {
+      type = String
+      text = ""
+      title = "Output2 name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Output2
+    }
+    Field inXMarkerName {
+      type = String
+      text = ""
+      title = "Input name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = inXMarker
+    }
+    Field outXMarkerName {
+      type = String
+      text = ""
+      title = "Output name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = outXMarker
+    }
+    Field inWEMName {
+      type = String
+      text = ""
+      title = "Input name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = inWEM
+    }
+    Field outWEMName {
+      type = String
+      text = ""
+      title = "Output name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = outWEM
+    }
+    Field inCurveName {
+      type = String
+      text = ""
+      title = "Input name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = inCurve
+    }
+    Field outCurveName {
+      type = String
+      text = ""
+      title = "Output name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = outCurve
+    }
+    Field update {
+      type = Trigger
+      text = "Execute the Matlab script."
+      title = Update
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoUpdate {
+      type = Bool
+      text = "Execute the script automatically on input change (only for input images, CurveData, CurveList, XMarkerList, and WEM, not for changes in the names)."
+      title = "Auto update"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field autoApply {
+      type = Bool
+      text = "Execute the script automatically on parameter change (only for fields, not for changes in the names)."
+      title = "Auto apply"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field restartMatlab {
+      type = Trigger
+      text = "Restarts the Matlab engine."
+      title = "Restart Matlab"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field status {
+      type = String
+      text = "This field gives information whether the Matlab script was executed correctly or not."
+      title = Status
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Ready.
+    }
+    Field scalarName0 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = scalar0
+    }
+    Field scalar0 {
+      type = Double
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field scalarName1 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = scalar1
+    }
+    Field scalar1 {
+      type = Double
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field scalarName2 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = scalar2
+    }
+    Field scalar2 {
+      type = Double
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field scalarName3 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = scalar3
+    }
+    Field scalar3 {
+      type = Double
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field scalarName4 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = scalar4
+    }
+    Field scalar4 {
+      type = Double
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field scalarName5 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = scalar5
+    }
+    Field scalar5 {
+      type = Double
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field stringName0 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = string0
+    }
+    Field string0 {
+      type = String
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field stringName1 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = string1
+    }
+    Field string1 {
+      type = String
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field stringName2 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = string2
+    }
+    Field string2 {
+      type = String
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field stringName3 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = string3
+    }
+    Field string3 {
+      type = String
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field stringName4 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = string4
+    }
+    Field string4 {
+      type = String
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field stringName5 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = string5
+    }
+    Field string5 {
+      type = String
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field vectorName0 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = vector0
+    }
+    Field vector0 {
+      type = Vector4
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0 0"
+    }
+    Field vectorName1 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = vector1
+    }
+    Field vector1 {
+      type = Vector4
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0 0"
+    }
+    Field vectorName2 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = vector2
+    }
+    Field vector2 {
+      type = Vector4
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0 0"
+    }
+    Field vectorName3 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = vector3
+    }
+    Field vector3 {
+      type = Vector4
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0 0"
+    }
+    Field vectorName4 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = vector4
+    }
+    Field vector4 {
+      type = Vector4
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0 0"
+    }
+    Field vectorName5 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = vector5
+    }
+    Field vector5 {
+      type = Vector4
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0 0"
+    }
+    Field matrixName0 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = matrix0
+    }
+    Field matrix0 {
+      type = Matrix
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    }
+    Field matrixName1 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = matrix1
+    }
+    Field matrix1 {
+      type = Matrix
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    }
+    Field matrixName2 {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = matrix2
+    }
+    Field matrix2 {
+      type = Matrix
+      text = ""
+      title = Value
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    }
+    Field matlabOutput {
+      type = String
+      text = "Displays the output of executed Matlab script."
+      title = "Matlab Output"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field showSessionWindow {
+      type = Bool
+      text = "Show or hide the Matlab session window."
+      title = "Show Matlab session window"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    text = ""
+  }
+}
