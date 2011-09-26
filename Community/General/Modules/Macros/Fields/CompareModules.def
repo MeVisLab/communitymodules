@@ -12,7 +12,7 @@ MacroModule CompareModules {
   author = "Reinhard Hameeteman"
   status = "work-in-progress"
   comment = "Compare the field values of two modules"
-  keywords = "compara parameters interface fields values"
+  keywords = "compare parameters interface fields values"
   seeAlso = ""
   externalDefinition = "$(LOCAL)/CompareModules.script"
   documentation = "$(LOCAL)/html/CompareModules.html"
