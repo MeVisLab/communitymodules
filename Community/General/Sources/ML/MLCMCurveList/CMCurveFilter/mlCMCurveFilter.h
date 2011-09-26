@@ -112,6 +112,7 @@ private:
   BoolField  *f_CropCurve;
   FloatField *f_XStart;
   FloatField *f_XEnd;
+  BoolField  *f_XEndMax;
 
 };
 

@@ -129,11 +129,11 @@ void CMCurveFilter::handleNotification (Field *field)
       if ( f_AutoUpdate->getBoolValue() ){
         SetMaxValues();
         SetOutputCurve(); 
-        f_OutCurveList->notifyAttachments();
+        f_OutCurveList->touch();
       }
     } else {
       ResetOutput();
-      f_OutCurveList->notifyAttachments();
+      f_OutCurveList->touch();
     }
 
   } else 
@@ -149,8 +149,9 @@ void CMCurveFilter::handleNotification (Field *field)
           ))){
       if ( m_InCurveList != NULL ){
         if ( m_InCurveList->getNumCurves() > 0 ){
+          SetMaxValues();
           SetOutputCurve();
-          f_OutCurveList->notifyAttachments();
+          f_OutCurveList->touch();
         }
       }
     }
@@ -168,12 +169,12 @@ void CMCurveFilter::ResetOutput()
 
 void CMCurveFilter::SetMaxValues()
 {
-  int nCurveSets = 0;
-  int nCurves = 0;
+  MLssize_t nCurveSets = 0;
+  MLssize_t nCurves = 0;
   if ( m_InCurveList != NULL ){
     nCurveSets = m_InCurveList->getNumCurves();
     for (int iSet = 0; iSet < nCurveSets; ++iSet ) {
-      nCurves = mlMax( static_cast<MLssize_t>(nCurves), m_InCurveList->getCurveData( iSet )->getNumSeries() );
+      nCurves = mlMax( nCurves, m_InCurveList->getCurveData( iSet )->getNumSeries() );
     }
   }
   f_NumberOfCurveSets->setIntValue( nCurveSets-1 );
@@ -187,33 +188,34 @@ void CMCurveFilter::SetOutputCurve(){
 
   // Check for valid field values
   // Curves are numbered from 0
-  int nCurveSets = m_InCurveList->getNumCurves();
+  size_t nCurveSets = m_InCurveList->getNumCurves();
   if ( nCurveSets == 0 ) {return;}
-  int minSet = mlMax( static_cast<MLint>(0), f_MinCurveSet->getIntValue() );
-  int maxSet = mlMax( static_cast<MLint>(minSet), f_MaxCurveSet->getIntValue() );
+  size_t minSet = mlMax( static_cast<size_t>(0), static_cast<size_t>(f_MinCurveSet->getIntValue() ) );
+  size_t maxSet = mlMax( minSet, static_cast<size_t>( f_MaxCurveSet->getIntValue() ) );
   maxSet = mlMin( maxSet, nCurveSets-1 );
-  for (int iSet = minSet; iSet <= maxSet; ++iSet ) {
+  for (size_t iSet = minSet; iSet <= maxSet; ++iSet ) {
 
-    int nCurves = m_InCurveList->getCurveData( iSet )->getNumSeries();
+    size_t nCurves = m_InCurveList->getCurveData( iSet )->getNumSeries();
     if (nCurves == 0 ) {continue;}
-    int minCurve = mlMax(static_cast<MLint>(0),f_MinCurve->getIntValue() );
-    int maxCurve = mlMax(static_cast<MLint>(minCurve), f_MaxCurve->getIntValue() );
+    size_t minCurve = mlMax(static_cast<size_t>(0), static_cast<size_t>(f_MinCurve->getIntValue()) );
+    size_t maxCurve = mlMax(minCurve, static_cast<size_t>(f_MaxCurve->getIntValue()) );
     maxCurve = mlMin(maxCurve, nCurves-1 );
-    for (int iCurve = minCurve; iCurve <= maxCurve; ++iCurve ) {
+    for (size_t iCurve = minCurve; iCurve <= maxCurve; ++iCurve ) {
       
       CurveData *curveSet = m_InCurveList->getCurveData( iSet );
       CurveData *outputCurve = new CurveData( *curveSet );
       outputCurve->clearData();
-      std::vector< float > xSeries;
-      std::vector< float > ySeries;
+      std::vector< double > xSeries;
+      std::vector< double > ySeries;
 
       // Copy/Crop curve values
-      bool crop = f_CropCurve->getBoolValue();
-      float minX = f_XStart->getFloatValue();
-      float maxX = f_XEnd->getFloatValue();
-      minX = mlMin(minX,maxX);
-      for (int iX = 0; iX < curveSet->getPoints(); ++iX ){
-        float xValue = curveSet->getXValue( iX );
+      const bool crop = f_CropCurve->getBoolValue();
+      const double maxX = ( f_XEnd->getFloatValue() < 0 ? 
+                             curveSet->getXValue( curveSet->getPoints()-1 ) - f_XEnd->getFloatValue() :
+                             f_XEnd->getFloatValue() );
+      const double minX = (f_XStart->getFloatValue() < maxX ? f_XStart->getFloatValue(): maxX) ;
+      for (MLssize_t iX = 0; iX < curveSet->getPoints(); ++iX ){
+        const double xValue = curveSet->getXValue( iX );
         if ( !crop || ( (minX<=xValue) && (xValue <= maxX)) ) {
           ySeries.push_back( curveSet->getYValue( minCurve, iX) );
           xSeries.push_back( xValue );
