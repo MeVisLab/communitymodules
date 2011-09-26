@@ -78,12 +78,17 @@ Window {
         frameShape = NoFrame
         frameShadow = Plain
         TextView command { 
-          autoApply = Yes 
-          title = ""       
+          autoApply            = Yes 
+          title                = ""       
           droppedObjectCommand = FieldDroped
-          syntaxHighlighting = Python
-          showLineNumbers = Yes
-          hscroller = On
+          syntaxHighlighting   = Python
+          showLineNumbers      = Yes
+          hscroller            = On
+          wrap                 = off
+          tabStopWidth         = 20
+          console              = yes
+          style                = monospacedTextView           
+          textFormat           = Plain
           tooltip = "Drop any field on this window 
 and it will be added as nw.field(<fieldName>).value
 Trigger fields are added as nw.field(<fieldName>).touch()
