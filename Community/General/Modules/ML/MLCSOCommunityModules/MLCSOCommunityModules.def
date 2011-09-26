@@ -13,7 +13,7 @@ MLModule CSODistance {
   documentation  = "$(LOCAL)/CSODistance/CSODistance.html"
   
   Window {
-    Category {
+    Category Totals {
       Field minimumDistance { edit = NO minLength = 10 }
       Separator { direction = Horizontal }
       Field minimumDistancePoint1 { minLength = 10 }
@@ -27,10 +27,23 @@ MLModule CSODistance {
       
       Separator { direction = Horizontal }
       
+      RadioButtonGroup mode {}
+      Horizontal {
+        alignX = Left
+        Label {title = "Curve statistic:" }
+        ButtonBar curveStatistic { show = One }
+      }
       Horizontal { 
         alignX = Right
         CheckBox = autoApply
         Button = apply
+      }
+    }
+    Category Distances {
+      expandY = Yes  
+      ListView distances {
+        expandY = Yes
+        columnSeparator = "," 
       }
     }
   }
