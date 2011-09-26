@@ -107,9 +107,12 @@ private:
   void GetStatistics( CSO    *cso, 
                       size_t &voxelCount, 
                       double &sum, 
-                      double &average,
+                      double &mean,
+                      double &absMean,
                       double &minimum, 
-                      double &maximum);
+                      double &absMin,
+                      double &maximum,
+                      double &absMax);
 
   //! Get a list of all points inside the contour defined by the pathPoints
   //! The contour should be axis aligned
@@ -215,10 +218,10 @@ private:
   CurveList  *m_OutCurveList;
 
   //! The CurveData for the average
-  std::vector< float > m_AverageSeries;
+  std::vector< double > m_AverageSeries;
 
   //! The CurveData for the sum
-  std::vector< float > m_SumSeries;
+  std::vector< double > m_SumSeries;
 
   //! Output a MarkerList containing all positions that are used to calculate the statistics
   //! The type of each marker is set to the corresponding CSO Id

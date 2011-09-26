@@ -111,7 +111,7 @@ CSOImageStatistics::CSOImageStatistics (void)
   f_UseVoxelSize->setBoolValue( true );
 
   f_Statistics = fieldC->addString("statistics");
-  f_Statistics->setStringValue( "Id;Voxels;Sum;Average" );
+  f_Statistics->setStringValue( "Id;Voxels;Sum;Average;Min;Max;AbsAverage;AbsMin;AbsMax" );
 
   f_TotalSum = fieldC->addDouble( "totalSum" );
   f_TotalSum->setDoubleValue( 0.0 );
@@ -324,7 +324,7 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
 
   f_Statistics->setStringValue( "" );
   std::stringstream outputString;
-  outputString << "Id;Voxels;Sum;Average;Min;Max" << std::endl;
+  outputString << "Id;Voxels;Sum;Average;Min;Max;AbsAverage;Absmin;AbsMax" << std::endl;
 
   m_SumSeries.clear();
   m_AverageSeries.clear();
@@ -352,12 +352,15 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
         CSO* currentCSO = m_OutCSOList->getCSOById(currentId);
         if ( !currentCSO->isClosed() ){ continue; }
         double sum = 0.0;
-        double average = 0.0;
+        double mean = 0.0;
+        double absMean = 0.0;
         double minimum = ML_DOUBLE_MAX;
+        double absMin  = ML_DOUBLE_MAX;
         double maximum = -ML_DOUBLE_MAX;
+        double absMax  = 0.0;
         unsigned int iD = currentCSO->getId();
         size_t voxelCount;
-        this->GetStatistics( currentCSO, voxelCount, sum, average, minimum, maximum  );
+        this->GetStatistics( currentCSO, voxelCount, sum, mean, absMean, minimum, absMin, maximum, absMax  );
 
         totalSum += sum;
         double currentArea = 0.0;
@@ -366,15 +369,23 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
         } else {
           currentArea = currentCSO->getLength();
         }
-        totalAverage += average*currentArea;
+        totalAverage += mean*currentArea;
         totalArea += currentArea;
         totalMin = ML_MIN(totalMin,minimum);
         totalMax = ML_MAX(totalMax,maximum);
 
-        outputString << iD << ";" << voxelCount << ";" << sum << ";" << average << ";" << minimum << ";" << maximum << std::endl; 
+        outputString << iD << ";" 
+                     << voxelCount << ";" 
+                     << sum << ";" 
+                     << mean << ";" 
+                     << minimum << ";" 
+                     << maximum << ";"
+                     << absMean << ";" 
+                     << absMin << ";" 
+                     << absMax <<  std::endl; 
 
         m_SumSeries.push_back( sum );
-        m_AverageSeries.push_back( average );
+        m_AverageSeries.push_back( mean );
 
         if ( f_AddDescription->getBoolValue() ) {
           std::string descriptionString = f_DescriptionString->getStringValue();
@@ -382,7 +393,7 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
           ss << sum;
           descriptionString = ReplaceString(descriptionString, "%sum", ss.str() );
           ss.str("");
-          ss << average;
+          ss << mean;
           descriptionString = ReplaceString(descriptionString, "%average", ss.str() );
           ss.str("");
           currentCSO->setDescription( descriptionString );
@@ -421,9 +432,12 @@ void CSOImageStatistics::ProcessCSOList(bool shouldSetupInternalCSOList)
 void CSOImageStatistics::GetStatistics( CSO* cso, 
                                         size_t &voxelCount, 
                                         double &sum, 
-                                        double &average, 
+                                        double &mean, 
+                                        double &absMean,
                                         double &minimum, 
-                                        double &maximum )
+                                        double &absMin,
+                                        double &maximum,
+                                        double &absMax)
 {
   if ( cso && getNonDummyUpdatedInImg(0) && cso->isInPlane() ){
     
@@ -444,7 +458,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
     // Set FoV
     const double size = maPCA.getLargestExtension();
     FloatField* fOVField = static_cast< FloatField* >( MLModuleGetField (mpr, "fieldOfView") );
-    fOVField->setFloatValue( size );
+    fOVField->setFloatValue( static_cast< float>(size) );
 
     // Set output size
     const float resolution = f_Resolution->getFloatValue();
@@ -508,10 +522,14 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
     SubImgBox csoVoxelBox = SubImgBox( Vector(0), Vector(nx-1,ny-1,nz-1,nc-1,nt-1,nu-1) );
 
     sum = 0.0;
-    average = 0.0;
+    double absSum = 0.0;
+    mean = 0.0;
+    absMean = 0.0;
     voxelCount = 0;
     minimum = ML_DOUBLE_MAX;
+    absMin =  ML_DOUBLE_MAX;
     maximum = -ML_DOUBLE_MAX;
+    absMax = 0.0;
 
     // Remove data on error to avoid memory leaks.
     if (inputTile ) {
@@ -546,7 +564,7 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
                              static_cast< MLint >(contourPoints[iPos][1]),
                              static_cast< MLint >(contourPoints[iPos][2]),0,0,0 );
           float x,y,z;
-          MLImageMapVoxelToWorld(mprOutput, currentPos[0]+0.5,currentPos[1]+0.5,currentPos[2]+0.5,&x,&y,&z);
+          MLImageMapVoxelToWorld(mprOutput, currentPos[0]+0.5f,currentPos[1]+0.5f,currentPos[2]+0.5f,&x,&y,&z);
           XMarker currentMarker( vec3(x,y,z) );
           currentMarker.type = currentCSOIndex;
           m_OutMarkerList->push_back( currentMarker );
@@ -555,15 +573,20 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
           const MLint offset = currentPos.dot( strideVector );
           double* currentValue = inputTile+offset;
           sum += *currentValue;
+          absSum += abs(*currentValue);
           minimum = ML_MIN(minimum, *currentValue );
+          absMin  = ML_MIN(minimum, abs(*currentValue) );
           maximum = ML_MAX(maximum, *currentValue );
+          absMax  = ML_MAX(maximum, abs(*currentValue) );
         }
 
         const double csoArea = ( f_UseAllPointsInsideCSO->getBoolValue() ? cso->getArea():cso->getLength() );
         if ( f_UseVoxelSize->getBoolValue() ){
-          average = (csoArea == 0 ? 0: sum/csoArea);
+          mean = (csoArea == 0 ? 0: sum/csoArea);
+          absMean = (csoArea == 0 ? 0: absSum/csoArea);
         } else {
-          average = (voxelCount == 0 ? 0 : sum/voxelCount);
+          mean = (voxelCount == 0 ? 0 : sum/voxelCount);
+          absMean = (voxelCount == 0 ? 0 : absSum/voxelCount);
         }
       }
       freeTile( inputTile );
@@ -602,7 +625,11 @@ void CSOImageStatistics::ConvertCoorinateListToVoxel( std::vector< vec3 > &coord
   std::vector< vec3 >::iterator it = coordinateList.begin();
   for (;it != coordinateList.end(); ++ it ) {
     float x1,y1,z1;
-    MLImageMapWorldToVoxel(image, (*it)[0], (*it)[1],(*it)[2], &x1,&y1,&z1);
+    MLImageMapWorldToVoxel( image, 
+                            static_cast<float>( (*it)[0] ), 
+                            static_cast<float>( (*it)[1] ),
+                            static_cast<float>( (*it)[2] ), 
+                            &x1,&y1,&z1 );
     *it = vec3(x1,y1,z1);
   }
 }
