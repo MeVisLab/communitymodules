@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! WEMDistances module definition
+/*!
+// \file    WEMDistances.def
+// \author  Reinhard
+// \date    2011-10-03
+*/
+//----------------------------------------------------------------------------------
+
+MacroModule WEMDistances {
+  genre = ""
+  author = "Reinhard"
+  status = "work-in-progress"
+  comment = "Calculate some distance measures on WEMs"
+  keywords = "WEM distance surface node symmetric hausdorff"
+  seeAlso = "WEMSurfaceDistance WEMNotdeTonodeDistance"
+  exampleNetwork = "$(LOCAL)/networks/WEMDistancesExample.mlab"
+   
+  externalDefinition = "$(LOCAL)/WEMDistances.script"
+
+} // MacroModule WEMDistances

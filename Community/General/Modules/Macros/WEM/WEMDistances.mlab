@@ -1,0 +1,345 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module WEMInfo {
+  internal  {
+    frame = "645 245 88 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = WEMInfo1
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = ""
+    selectedWEMs = ""
+    informationFieldsValid = FALSE
+    globalInformationFieldsValid = FALSE
+    globalNumNodes = 0
+    globalNumEdges = 0
+    globalNumFaces = 0
+    globalSurfaceArea = 0
+    globalSurfaceVolume = 0
+    globalCenter = "0 0 0"
+    globalMinimum = "3.40282346638529e+38 3.40282346638529e+38 3.40282346638529e+38"
+    globalMaximum = "-3.40282346638529e+38 -3.40282346638529e+38 -3.40282346638529e+38"
+    globalSize = "0 0 0"
+    globalRadius = 0
+    numNodes = 0
+    numEdges = 0
+    numFaces = 0
+    uniqueId = -1
+    patchType = Unknown
+    hasEdges = FALSE
+    surfaceArea = 0
+    surfaceVolume = 0
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBox = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    center = "0 0 0"
+    minimum = "0 0 0"
+    maximum = "0 0 0"
+    size = "0 0 0"
+    radius = 0
+    mainAxisCenter = "0 0 0"
+    xMainAxis = "0 0 0"
+    yMainAxis = "0 0 0"
+    zMainAxis = "0 0 0"
+    xExt = 0
+    yExt = 0
+    zExt = 0
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = ""
+    primitiveValueListValid = FALSE
+    minPrimitiveValueList = 0
+    maxPrimitiveValueList = 0
+    meanPrimitiveValueList = 0
+    stdPrimitiveValueList = 0
+    rmsdPrimitiveValueList = 0
+    primitiveValueListUnits = ""
+    edgeLengthUnits = mm
+    faceAreaUnits = mm2
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "477 245 88 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = WEMInfo
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = ""
+    selectedWEMs = ""
+    informationFieldsValid = FALSE
+    globalInformationFieldsValid = FALSE
+    globalNumNodes = 0
+    globalNumEdges = 0
+    globalNumFaces = 0
+    globalSurfaceArea = 0
+    globalSurfaceVolume = 0
+    globalCenter = "0 0 0"
+    globalMinimum = "3.40282346638529e+38 3.40282346638529e+38 3.40282346638529e+38"
+    globalMaximum = "-3.40282346638529e+38 -3.40282346638529e+38 -3.40282346638529e+38"
+    globalSize = "0 0 0"
+    globalRadius = 0
+    numNodes = 0
+    numEdges = 0
+    numFaces = 0
+    uniqueId = -1
+    patchType = Unknown
+    hasEdges = FALSE
+    surfaceArea = 0
+    surfaceVolume = 0
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBox = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    center = "0 0 0"
+    minimum = "0 0 0"
+    maximum = "0 0 0"
+    size = "0 0 0"
+    radius = 0
+    mainAxisCenter = "0 0 0"
+    xMainAxis = "0 0 0"
+    yMainAxis = "0 0 0"
+    zMainAxis = "0 0 0"
+    xExt = 0
+    yExt = 0
+    zExt = 0
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = ""
+    primitiveValueListValid = FALSE
+    minPrimitiveValueList = 0
+    maxPrimitiveValueList = 0
+    meanPrimitiveValueList = 0
+    stdPrimitiveValueList = 0
+    rmsdPrimitiveValueList = 0
+    primitiveValueListUnits = ""
+    edgeLengthUnits = mm
+    faceAreaUnits = mm2
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module WEMSurfaceDistance {
+  internal  {
+    frame = "609 349 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "947 420 316 482"
+        sizeHint = "316 482"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMSurfaceDistance1
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    progress = 0
+    triangulationMode = Strip
+    modifyAttributes = FALSE
+    relativeError = 0
+    numEntries = 200
+    shouldComputeSignedDistances = FALSE
+    addEdgesToNearestNodes = FALSE
+    shouldNormalizeDist = FALSE
+    useLUTPrimitiveValueList = TRUE
+    customPrimitiveValueList = "Surface Distance"
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+module WEMSurfaceDistance {
+  internal  {
+    frame = "445 349 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "184 374 316 482"
+        sizeHint = "316 482"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMSurfaceDistance
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    show = TRUE
+    editable = TRUE
+    colorMode = "General "
+    drawFaces = TRUE
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceDiffuseColor = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    drawFaceNormals = FALSE
+    faceNormalsColor = "1 1 1"
+    faceNormalsScale = 1
+    drawEdges = FALSE
+    edgeColor = "0 0 0"
+    usePolygonOffset = FALSE
+    lineWidth = 1
+    useEdgeColoringMode = FALSE
+    drawNodes = FALSE
+    nodeColor = "1 1 1"
+    drawNodeNormals = FALSE
+    nodeNormalsColor = "1 1 1"
+    nodeNormalsScale = 1
+    pointSize = 1
+    nodeRenderingMode = Normal
+    drawBoundingBoxes = FALSE
+    boundingBoxMode = "Axis Aligned"
+    boundingBoxColor = "1 1 1"
+    copyInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    progress = 0
+    triangulationMode = Strip
+    modifyAttributes = FALSE
+    relativeError = 0
+    numEntries = 200
+    shouldComputeSignedDistances = FALSE
+    addEdgesToNearestNodes = FALSE
+    shouldNormalizeDist = FALSE
+    useLUTPrimitiveValueList = TRUE
+    customPrimitiveValueList = "Surface Distance"
+    selectedTab = 0
+    outputTabSelected = TRUE
+  }
+}
+connections  {
+  WEMInfo1.inWEM = WEMSurfaceDistance1.outWEM
+  WEMInfo.inWEM = WEMSurfaceDistance.outWEM
+  WEMSurfaceDistance1.shouldComputeSignedDistances = WEMSurfaceDistance.shouldComputeSignedDistances
+  WEMSurfaceDistance1.shouldNormalizeDist = WEMSurfaceDistance.shouldNormalizeDist
+}
+networkModel = ""

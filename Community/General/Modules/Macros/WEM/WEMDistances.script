@@ -1,0 +1,97 @@
+//----------------------------------------------------------------------------------
+//! Macro module WEMDistances
+/*!
+// \file    WEMDistances.script
+// \author  Reinhard
+// \date    2011-10-03
+//
+// Calculate some distance measures on WEMs
+*/
+//----------------------------------------------------------------------------------
+
+
+Interface {
+  Inputs {
+    Field WEM0 { internalName = WEMSurfaceDistance.inWEM   }
+    Field WEM0 { internalName = WEMSurfaceDistance1.inWEM2 }
+    Field WEM1 { internalName = WEMSurfaceDistance.inWEM2  }
+    Field WEM1 { internalName = WEMSurfaceDistance1.inWEM  }
+  }
+  Outputs {
+    Field outWEM0 { internalName = WEMSurfaceDistance.outWEM }
+    Field outWEM1 { internalName = WEMSurfaceDistance1.outWEM }
+  }
+  Parameters {
+    Field signed { internalName = WEMSurfaceDistance.shouldComputeSignedDistances }
+    field normalize { internalName = WEMSurfaceDistance.shouldNormalizeDist }
+    Field min01  { internalName = WEMInfo.minPrimitiveValueList   }
+    Field mean01 { internalName = WEMInfo.meanPrimitiveValueList  }
+    Field max01  { internalName = WEMInfo.maxPrimitiveValueList   }
+    Field min10  { internalName = WEMInfo1.minPrimitiveValueList  }
+    Field mean10 { internalName = WEMInfo1.meanPrimitiveValueList }
+    Field max10  { internalName = WEMInfo1.maxPrimitiveValueList  }
+    Field symmetricMin  { type = Float value = 0 }
+    Field symmetricMean { type = Float value = 0 }
+    Field symmetricMax  { type = Float value = 0 }
+    Field hausdorff     { type = Float value = 0 }
+  }
+}
+
+Description {
+  Field min01 { persistent = No }
+  Field mean01 { persistent = No }
+  Field max01  { persistent = No }
+  Field min10  { persistent = No }
+  Field mean10 { persistent = No }
+  Field max10  { persistent = No }
+  Field symmetricMin  { persistent = No }
+  Field symmetricMean { persistent = No }
+  Field symmetricMax  { persistent = No }
+  Field hausdorff     { persistent = No }
+}
+
+Commands {
+  source = $(LOCAL)/WEMDistances.py
+  FieldListener {
+    listenField = WEM0
+    listenField = WEM1
+    listenField = signed
+    listenField = normalize
+    command = Update
+  }
+}
+
+Window {
+  Vertical {
+    Box {
+      layout = Horizontal
+      CheckBox signed {}
+      CheckBox normalize {}
+    }
+    style { Prototype Field { expandX = Yes edit = No alignGroupX = c1 } }
+    Box "WEM0 --> WEM1" {
+      Field min01  { title = min  }
+      Field mean01 { title = mean }
+      Field max01  { title = max  }
+    }
+    Box "WEM1 --> WEM0" {
+      Field min10  { title = min  }
+      Field mean10 { title = mean }
+      Field max10  { title = max  }
+    }
+    Box "Symmetric" {
+      Field symmetricMin  { title = min  }
+      Field symmetricMean { title = mean }
+      Field symmetricMax  { title = max  }
+      Field hausdorff     { title = hausdorff }
+    }
+    
+  }
+}
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
+//# owner: MeVis
+//# date: 2011-09-03T10:18:33
+//# hash: DJ++WqFnx+m4YKzWvUkzzten5tz31tpZejKHtt4x0Ygmxmfz8s2RBn9n8P0DWCNrOKo2VgDOkXKOrjT1voTjgQ==
+//# MeVis end
