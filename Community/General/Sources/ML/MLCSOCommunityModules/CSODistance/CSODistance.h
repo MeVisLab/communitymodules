@@ -24,7 +24,7 @@ public:
   //! Standard constructor.
   CSODistance();
 
-  enum {FIRST2=0, INPLANE, TWOINPUTS, LASTMODE};
+  enum {FIRST2=0, INPLANE, INDEX, LASTMODE};
 
 protected:
 

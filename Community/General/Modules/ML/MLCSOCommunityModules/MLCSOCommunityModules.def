@@ -12,6 +12,12 @@ MLModule CSODistance {
   exampleNetwork = "$(LOCAL)/CSODistance/CSODistanceExample.mlab"
   documentation  = "$(LOCAL)/CSODistance/CSODistance.html"
   
+  Description {
+    Field minimumDistance { persistent = No }
+    Field minimumDistancePoint1 { persistent = No }
+    Field minimumDistancePoint2 { persistent = No }
+  }
+
   Window {
     Category Totals {
       Field minimumDistance { edit = NO minLength = 10 }

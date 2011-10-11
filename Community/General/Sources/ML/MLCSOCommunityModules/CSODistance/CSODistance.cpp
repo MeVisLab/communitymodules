@@ -29,8 +29,8 @@ CSODistance::CSODistance() : BaseOp(0, 0)
 
   char* distanceModes[LASTMODE];
   distanceModes[ FIRST2 ] = "First 2 CSOs";
-  distanceModes[ INPLANE ] = "Match in plane CSOs";
-  distanceModes[ TWOINPUTS ] = "Match index of two CSOLists";
+  distanceModes[ INPLANE ] = "Match in plane";
+  distanceModes[ INDEX ] = "Match index";
   _modeFld = fieldC->addEnum("mode",distanceModes,LASTMODE);
   _modeFld->setEnumValue( FIRST2 );
 
@@ -240,6 +240,7 @@ void CSODistance::_process()
         break;
       }
       case INPLANE:
+      case INDEX:
       {
         CurveData *outputCurve = new CurveData;
         double    *yValues     = new double[ nCSOs ];
@@ -381,7 +382,7 @@ CSO* CSODistance::_findMatchingCSO(int findCSO)
 {
   CSO* matchingCSO = NULL;
 
-  if ( _modeFld->getEnumValue() == TWOINPUTS && _csoList0 != NULL && _csoList1 != NULL) {
+  if ( _modeFld->getEnumValue() == INDEX && _csoList0 != NULL && _csoList1 != NULL) {
     if (findCSO < static_cast<int>( _csoList1->numCSO()) ){
       matchingCSO = _csoList1->getCSOAt( findCSO );
     }
