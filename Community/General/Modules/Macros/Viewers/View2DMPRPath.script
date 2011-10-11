@@ -40,6 +40,7 @@
 Interface {
   Inputs {
     Field input0 { internalName = MPRPath.input0    }
+    Field input0 { internalName = WorldVoxelConvert.input0 }
     Field path   { type = mlbase deprecatedName = input1 }
     Field inInvPreLUT {
       internalName = invPreLUTIn.child
@@ -71,6 +72,8 @@ e.g. for diagram overlays"
     Field showOutputs     { type = bool value = False }
     Field timePoint       { internalName = SoView2D.timePoint }
     Field currentFrame    { internalName = MPRPath.currentKeyFrame }
+    Field showImageSlice  { internalName = ShowCurrentImageSlice.boolValue }
+    Field imageSlice      { internalName = WorldVoxelConvert.voxelZ }
     Field maxFrames       { internalName = MPRPath.maxKeyFrame }
     Field currentPlane    { internalName = MPRPath.plane }
     Field rotation        { internalName = MPRPath.rotation }
@@ -79,6 +82,7 @@ e.g. for diagram overlays"
     Field pathAngle       { internalName = MPRPath.pathAngle }
     Field fieldOfView     { internalName = MPRPath.fieldOfView }
     Field outputSize      { internalName = MPRPath.outputSize }
+    Field showCursor      { internalName = pos.drawingOn }
     Field cursorAlpha     { internalName = pos.blendOnto }
     Field lutCenter       { internalName = ext.lutGreyCenter }
     Field lutWidth        { internalName = ext.lutGreyWidth }
@@ -133,12 +137,17 @@ Window Viewer {
     h = 300
     expandY = Yes 
     Field viewContent {expandY = No}
-    Viewer scene.self {
-      type = SoRenderArea
+    Vertical {
+      panelName = view2D
       expandY = Yes
-      visibleOn = "*viewContent == /(MPRSlice|CMPR)/ *"
+      Viewer scene.self {
+        type      = SoRenderArea
+        expandY   = Yes
+        visibleOn = "*viewContent == /(MPRSlice|CMPR)/ *"
+      }
     }
     Vertical {
+      panelName = view3D
       visibleOn = "*viewContent == "Scene" *"
       expandY = Yes
       Viewer SoExaminerViewer.self {

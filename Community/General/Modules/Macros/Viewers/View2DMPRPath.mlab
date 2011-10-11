@@ -2,6 +2,81 @@
 network  {
   watchlist = ""
 }
+module BoolInt {
+  internal  {
+    frame = "-251 441 168 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "995 698 262 218"
+        sizeHint = "200 218"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ShowCurrentImageSlice
+    boolValue = TRUE
+    invBoolValue = FALSE
+    intValue = 1
+    offValue = 0
+    onValue = 1
+    defaultBool = Unchanged
+  }
+}
+module FieldBypass {
+  internal  {
+    frame = "-59 421 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "661 174 173 323"
+        sizeHint = "173 323"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = FieldBypass2
+    inputString0 = 0
+    inputString1 = 1
+    inputString2 = ""
+    inputString3 = ""
+    inputString4 = ""
+    inputNumber = 1
+    outputString = 1
+    noBypass = FALSE
+    onlyIfChanged = TRUE
+  }
+}
+module WorldVoxelConvert {
+  internal  {
+    frame = "453 501 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1007 321 414 234"
+        sizeHint = "414 234"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = WorldVoxelConvert
+    voxelX = 0
+    voxelY = 0
+    voxelZ = 1
+    worldX = 0.5
+    worldY = 0.5
+    worldZ = 1.5
+    voxelPos = "0 0 1"
+    worldPos = "0.5 0.5 1.5"
+    voxelMode = FALSE
+    worldMode = TRUE
+    intVoxelCoords = TRUE
+    keepConstant = World
+  }
+}
 module SoView2D {
   internal  {
     frame = "325 213 88 56"
@@ -23,6 +98,7 @@ module SoView2D {
     plane = "0 0 1 0"
     sliceZoom = 1
     sliceZoomSynchronized = 1
+    zoomCenter = "0.5 0.5"
     minSliceZoomKeyboard = 1
     sliceOrigin = "0 0"
     viewingCenter = "0 0 0"
@@ -61,7 +137,7 @@ module SoView2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1000000015
+    cineSpeed = 0.1
     cineFullRangeZ = TRUE
     cineFullRangeT = TRUE
     cineAlwaysReset = TRUE
@@ -103,6 +179,7 @@ module SoRenderArea {
     autoUpdateML = FALSE
     showSnapshotWithShell = FALSE
     snapCount = 0
+    inputDevicesList = ""
   }
 }
 module SoGroup {
@@ -120,10 +197,9 @@ module SoView2DPosition {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "114 175 470 665"
-        sizeHint = "470 665"
+        geometry = "114 175 446 713"
+        sizeHint = "446 713"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -133,7 +209,7 @@ module SoView2DPosition {
     editingOn = TRUE
     maskValid = FALSE
     fixZOn = TRUE
-    color = "1 0.8667280077934265 0.2914040088653564"
+    color = "1 0.866728007793427 0.291404008865356"
     selectionTolerance = 4
     needsValidVoxel = TRUE
     button1 = PRESSED
@@ -155,13 +231,15 @@ module SoView2DPosition {
     firstSliceWorldPosition = "-1 -1 -1"
     drawingModel = DRAWINGMODEL_CROSSHAIRS
     drawingModelSize = -1
+    crossHairSpacing = 0
+    drawEditingRect = FALSE
     blendOnto = 1
     blendOutside = 0
     lineWidth = 1
     colorAxes = FALSE
     sagittalColor = "1 0 0"
-    coronalColor = "0.1725489944219589 0.8862749934196472 0.01176500041037798"
-    axialColor = "0.007842999882996082 0.9529410004615784 0.9686269760131836"
+    coronalColor = "0.172548994421959 0.886274993419647 0.011765000410378"
+    axialColor = "0.00784299988299608 0.952941000461578 0.968626976013184"
     updateOnPress = TRUE
     updateOnMotion = TRUE
     updateOnRelease = TRUE
@@ -179,7 +257,6 @@ module Increment {
         geometry = "740 846 151 85"
         sizeHint = "151 85"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -191,8 +268,8 @@ module Increment {
     minValue = 0
     maxValue = 10
     increment = -1
+    fields = ""
   }
-  internalFields = ""
 }
 module Increment {
   internal  {
@@ -203,7 +280,6 @@ module Increment {
         geometry = "737 730 151 85"
         sizeHint = "151 85"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -215,8 +291,8 @@ module Increment {
     minValue = 0
     maxValue = 10
     increment = 1
+    fields = ""
   }
-  internalFields = ""
 }
 module SoKeyGrabber {
   internal  {
@@ -227,7 +303,6 @@ module SoKeyGrabber {
         geometry = "688 345 380 226"
         sizeHint = "380 226"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -254,7 +329,6 @@ module FieldBypass {
         geometry = "441 656 190 280"
         sizeHint = "190 280"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -280,7 +354,6 @@ module FieldSwitch {
         geometry = "940 324 291 315"
         sizeHint = "259 315"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -309,7 +382,6 @@ module FieldSwitch {
     output8 = ""
     output9 = ""
   }
-  internalFields = ""
 }
 module FieldBypass {
   internal  {
@@ -317,10 +389,9 @@ module FieldBypass {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "661 174 190 280"
-        sizeHint = "190 280"
+        geometry = "661 174 173 323"
+        sizeHint = "173 323"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -366,18 +437,19 @@ module SoExaminerViewer {
     autoUpdateML = FALSE
     showSnapshotWithShell = FALSE
     snapCount = 0
+    inputDevicesList = ""
     headlight = TRUE
     decoration = TRUE
     popupMenuEnabled = FALSE
     viewing = TRUE
     autoClipping = TRUE
-    externalCamera = FALSE
     drawStyle = VIEW_AS_IS
     interactiveDrawStyle = VIEW_LOW_COMPLEXITY
     viewAllFlag = FALSE
     initialCameraOrientation = CAMERA_KEEP_AS_IS
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
     userSettingOrientation = "0 0 1 0"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
@@ -415,10 +487,9 @@ module Switch {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "356 371 199 66"
-        sizeHint = "199 66"
-        wasOpen = no
-        wasActive = no
+        geometry = "356 371 200 64"
+        sizeHint = "200 64"
+        wasOpen = yes
       }
     }
   }
@@ -426,7 +497,6 @@ module Switch {
     instanceName = Switch
     currentInput = 0
     numberOfInputs = 5
-    maxInput = 4
   }
 }
 module SoGroup {
@@ -465,7 +535,6 @@ module PathToKeyFrame {
         geometry = "51 97 350 495"
         sizeHint = "470 495"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -497,18 +566,17 @@ module MPRPath {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "134 107 449 580"
-        sizeHint = "449 580"
-        wasOpen = no
-        wasActive = no
+        geometry = "134 107 433 586"
+        sizeHint = "426 586"
+        wasOpen = yes
       }
     }
   }
   fields  {
     instanceName = MPRPath
-    rotation = "-0.997501603966892 0.0163167111006986 0.0687336527643707 1.57859108282801"
-    translation = "-27.9044 -198.011 0"
-    plane = "-0.0851343759417393 -0.00752636682328935 -0.996341051967373 3.86592710107502"
+    rotation = "0 0 0 0"
+    translation = "0 0 0"
+    plane = "0 1 0 0"
     enablePlaneEdit = FALSE
     fillValue = 0
     fieldOfView = 30
@@ -551,13 +619,11 @@ module View2DExtensions {
         geometry = "552 188 637 669"
         sizeHint = "637 669"
         wasOpen = no
-        wasActive = no
       }
       window _automatic {
         geometry = "587 124 354 440"
         sizeHint = "354 440"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -567,7 +633,7 @@ module View2DExtensions {
     zoomOn = TRUE
     panOn = TRUE
     autoCenterOn = TRUE
-    position = "-3.984270095825195 -7.729000091552734 32.68109893798828"
+    position = "-3.9842700958252 -7.72900009155273 32.6810989379883"
     positionMode = Off
     lutOn = TRUE
     lutMouseOn = TRUE
@@ -591,30 +657,31 @@ module View2DExtensions {
     lutEnableNegWidth = FALSE
     lutSetDefaultOnce = TRUE
     lutTrCol0 = "1 1 1"
-    lutTrCol1 = "0.5019609928131104 0.5019609928131104 0.5019609928131104"
-    lutTrCol2 = "0.8627449870109558 0 0.1725489944219589"
-    lutTrCol3 = "1 0.4627450108528137 0.4901959896087646"
-    lutTrCol4 = "0 0.8196079730987549 0.1607840061187744"
-    lutTrCol5 = "0.5607839822769165 1 0.4352940022945404"
-    lutTrCol6 = "0.1843139976263046 0.2392159998416901 0.9294120073318481"
-    lutTrCol7 = "0.4901959896087646 0.5411760210990906 1"
-    lutTrCol8 = "0.6313729882240295 0 0.67843097448349"
-    lutTrCol9 = "0.8941180109977722 0.3803919851779938 1"
-    lutTrColA = "0 0.6823530197143555 0.756862998008728"
-    lutTrColB = "0.5019609928131104 1 0.9803919792175293"
-    lutTrColC = "0.6156859993934631 0.6000000238418579 0.1960780024528503"
-    lutTrColD = "1 0.9764710068702698 0.3686270117759705"
+    lutTrCol1 = "0.50196099281311 0.50196099281311 0.50196099281311"
+    lutTrCol2 = "0.862744987010956 0 0.172548994421959"
+    lutTrCol3 = "1 0.462745010852814 0.490195989608765"
+    lutTrCol4 = "0 0.819607973098755 0.160784006118774"
+    lutTrCol5 = "0.560783982276917 1 0.43529400229454"
+    lutTrCol6 = "0.184313997626305 0.23921599984169 0.929412007331848"
+    lutTrCol7 = "0.490195989608765 0.541176021099091 1"
+    lutTrCol8 = "0.63137298822403 0 0.67843097448349"
+    lutTrCol9 = "0.894118010997772 0.380391985177994 1"
+    lutTrColA = "0 0.682353019714355 0.756862998008728"
+    lutTrColB = "0.50196099281311 1 0.980391979217529"
+    lutTrColC = "0.615685999393463 0.600000023841858 0.19607800245285"
+    lutTrColD = "1 0.97647100687027 0.36862701177597"
     lutTrColE = "1 1 1"
     lutTrColF = "1 1 1"
     annotationOn = TRUE
     annoCoords = World
     annoCTValue = AsIs
     valueHighPrecision = FALSE
+    maxPrecision = 4
     annotFontSize = ANNO_SIZE_AUTO
     annotShowOrientation = ANNO_ORIENTATION_SIZE_WEIGHTED
     annotVerticalRuler = TRUE
     annotHorizontalRuler = FALSE
-    annotationCol = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    annotationCol = "0.899999976158142 0.899999976158142 0.899999976158142"
     annotationMode = ANNO_MODE_USER
     annotShowAnnot = ANNO_SHOW_DETAILED
     annotUserTopLeft = "$(PatientsName)
@@ -640,26 +707,59 @@ LUT C/W: $(input07) / $(input08)"
     annotShortTopRight = $(Modality)
     annotShortBottomLeft = "Slice: $(input09)"
     annotShortBottomRight = "LUT C/W: $(input03) / $(input04)"
+    annotMRTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)):
+$(input01) GV"
+    annotMRTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality)"
+    annotMRBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotMRBottomRight = "MR Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input03) / $(input04)"
+    annotCTTopLeft = "$(PatientsName)
+$(PatientsBirthDate)  $(PatientsSex)
+$(PatientID)
+($(input00)): 
+$(input02) $(input09)"
+    annotCTTopRight = "$(InstitutionName)
+$(ManufacturersModelName)
+$(Modality) "
+    annotCTBottomLeft = "Slice: $(slice)
+Timepoint: $(timepoint)
+$(sizex),$(sizey),$(sizez),$(sizec),$(sizet)
+$(voxelx),$(voxely),$(voxelz)
+$(SeriesDescription)
+$(ImageComments)"
+    annotCTBottomRight = "CT Mode
+Scan: $(AcquisitionDate)
+LUT C/W: $(input07) / $(input08)"
     annoInput03 = 1
     annoInput04 = 1
     annoInput05 = 1
     annoInput06 = 1
     annoInput07 = 1
     annoInput08 = 1
-    annoInput09 = GV
+    annoInput09 = 1
     annoMouseOn = TRUE
     annoReadPixFloorPos = "1025 764 0"
-    annoReadPixVoxelPos = "1025.339965820312 764.1619873046875 0.5"
-    annoReadPixWorldPos = "1025.339965820312 764.1619873046875 0.5"
+    annoReadPixVoxelPos = "1025.33996582031 764.161987304688 0.5"
+    annoReadPixWorldPos = "1025.33996582031 764.161987304688 0.5"
     borderOn = TRUE
-    borderColor = "0.8999999761581421 0.8999999761581421 0.8999999761581421"
+    borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     borderWidth = 1
     borderEvaluateFocus = FALSE
     borderFocusColor = "1 1 1"
     borderFocusWidth = 2
     mouseGrabberMode = FALSE
   }
-  internalFields = ""
 }
 module SoMouseGrabber {
   internal  {
@@ -670,13 +770,11 @@ module SoMouseGrabber {
         geometry = "-49 125 477 449"
         sizeHint = "477 449"
         wasOpen = no
-        wasActive = no
       }
       window _automatic {
         geometry = "768 153 366 744"
         sizeHint = "303 440"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -700,7 +798,6 @@ module SoMouseGrabber {
     cursorShape = UNDEFINED_CURSOR
     absX = 0
     absY = 0
-    y = 0
     x = 0.5
     y = 0
     xmin = 0
@@ -741,7 +838,6 @@ module SyncFloat {
         geometry = "413 702 121 91"
         sizeHint = "121 91"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -749,11 +845,14 @@ module SyncFloat {
     instanceName = SyncFloat1
     float1 = 0
     float2 = 0
-    epsilon = 9.999999747e-05
+    epsilon = 9.9999997e-05
   }
-  internalFields = ""
 }
 connections  {
+  FieldBypass2.inputString0 = MPRPath.currentKeyFrame
+  FieldBypass2.inputString1 = WorldVoxelConvert.voxelZ
+  FieldBypass2.inputNumber = ShowCurrentImageSlice.intValue
+  WorldVoxelConvert.worldPos = MPRPath.translation
   SoView2D.image = Switch.output0
   scene.children = "SoGroup1.self SoGroup.self SoView2D.self invPostViewerIn.self"
   SoGroup.children = "invPostLUTIn.self pos.self"
@@ -773,13 +872,10 @@ connections  {
   SoExaminerViewer.children = MPRPath.outputSlice
   Switch.input0 = MPRPath.output0
   Switch.input1 = MPRPath.output2
-  invPostViewerIn.children = ""
-  invPostLUTIn.children = ""
-  invPreLUTIn.children = ""
   MPRPath.currentKeyFrame = FieldSwitch.output0
   MPRPath.pathAngle = FieldSwitch.output1
   ext.inLUT = MPRPath.output0
-  ext.annoInput09 = MPRPath.currentKeyFrame
+  ext.annoInput09 = FieldBypass2.outputString
   SoMouseGrabber.y = SoMouseGrabber.wheel
   SoMouseGrabber.ymax = FieldBypass.outputString
   SoMouseGrabber.wheel = SyncFloat1.float2
