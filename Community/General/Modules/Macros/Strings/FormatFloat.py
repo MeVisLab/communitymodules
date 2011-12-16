@@ -43,10 +43,14 @@ def format(arg=None):
   stringList = stringValue.split()
   outString = ''
   format = ctx.field("format").stringValue()
+  first = True
   for string in stringList :
     try:
       value = float(string)
-      outString +=  format % value + ' '
+      outString += format % value
+      if not first:
+        outString += ' '
+      first = False
     except :
       outString += ' '
   ctx.field("output").setStringValue( outString )
