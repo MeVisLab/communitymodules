@@ -21,6 +21,9 @@ MLModule CSODistance {
   Window {
     Category Totals {
       Field minimumDistance { edit = NO minLength = 10 }
+      Field averageMinimumDistance { edit = NO minLength = 10 }
+      Field averageMeanDistance { edit = NO minLength = 10 }
+      Field averageMaximumDistance { edit = NO minLength = 10 }
       Separator { direction = Horizontal }
       Field minimumDistancePoint1 { minLength = 10 }
       Field minimumDistancePoint2 { minLength = 10 }
@@ -50,6 +53,7 @@ MLModule CSODistance {
       ListView distances {
         expandY = Yes
         columnSeparator = "," 
+        //sortByColumn = 0
       }
     }
   }

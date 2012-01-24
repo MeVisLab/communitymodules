@@ -41,6 +41,10 @@ CSODistance::CSODistance() : BaseOp(0, 0)
   (_minimumDistancePoint2Fld = fieldC->addVec3f("minimumDistancePoint2"))->setVec3fValue(vec3(0.0,0.0,0.0));
   _distancesFld = addString("distances",_tableHeader );
 
+  _AverageMinimumDistanceFld = addFloat("averageMinimumDistance", 0.0f );
+  _AverageMeanDistanceFld    = addFloat("averageMeanDistance", 0.0f );
+  _AverageMaxDistanceFld     = addFloat("averageMaximumDistance", 0.0f );
+
   //////////////////////////////////////////////////////////////////////////
 
   _tolleranceFld = addDouble("tollerance", 0.0001 );
@@ -248,6 +252,9 @@ void CSODistance::_process()
         double minDist = ML_DOUBLE_MAX;
         vec3 point1;
         vec3 point2;
+        float averageMinDistance = 0.0f;
+        float averageMeanDistance = 0.0f;
+        float averageMaxDistance = 0.0f;
         for ( int iCSO = 0; iCSO<nCSOs; ++iCSO ){
           CSO* currentCSO = _csoList0->getCSOAt( iCSO );
           CSO* matchingCSO = _findMatchingCSO(iCSO);
@@ -263,6 +270,10 @@ void CSODistance::_process()
           _getDistances( pointSet1, pointSet2,
                          minDistance,maxDistance,avgDistance,stdDevDistance,
                          minPoint1,minPoint2,maxPoint1,maxPoint2);
+
+          averageMinDistance  += minDistance;
+          averageMeanDistance += avgDistance;
+          averageMaxDistance  += maxDistance;
 
           distances << currentCSO->getId()  << "," 
                     << matchingCSO->getId() << "," 
@@ -299,6 +310,10 @@ void CSODistance::_process()
               break;
           } 
         } // iCSO
+        averageMinDistance  /= (nCSOs != 0 ? nCSOs : 1.0);
+        averageMeanDistance /= (nCSOs != 0 ? nCSOs : 1.0);
+        averageMaxDistance  /= (nCSOs != 0 ? nCSOs : 1.0);
+
         outputCurve->setY( nCSOs, yValues);
         delete[] yValues;
         _outputCurveList->getCurveList().push_back( outputCurve );
@@ -306,6 +321,13 @@ void CSODistance::_process()
         _minimumDistancePoint1Fld->setVec3fValue(point1);
         _minimumDistancePoint2Fld->setVec3fValue(point2);
         _minimumDistanceFld->setFloatValue( static_cast<float>(minDistance) );
+
+        _AverageMinimumDistanceFld->setFloatValue( averageMinDistance  );
+        _AverageMeanDistanceFld->setFloatValue(    averageMeanDistance );
+        _AverageMaxDistanceFld->setFloatValue(     averageMaxDistance  );
+
+
+
         break;
       }
     default:
