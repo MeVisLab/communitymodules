@@ -1,3 +1,4 @@
+// MDL v1 latin1
 ModuleHelp  {
   MetaInformation  {
     definition = Modules/MLMatlabScriptWrapper.def
@@ -53,23 +54,11 @@ ModuleHelp  {
 - **WEMs:**
   A Winged Edge Mesh (`WEM <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/WEMPage.html>`_)
   is an object that contains a representation of a surface. In Matlab, a WEM is represented as a cell array
-  of structures with nodes (markers of vertices with a color, size, and style), faces (with a diffuse color
-  and alpha), edges (with a color, size, and style), a description (`Tag <http://www.mathworks.com/help/techdoc/ref/patch_props.html#Tag>`_)
-  and a label (`DisplayName <http://www.mathworks.com/help/techdoc/ref/patch_props.html#DisplayName>`_).
+  of structures with nodes (markers of vertices), faces, and edges.
   Optionally, if a WEM contains a Look Up Table (`LUT <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLLUTPage.html>`_),
-  this data will be put into the `CData <http://www.mathworks.com/help/techdoc/ref/patch_props.html#CData>`_
+  this data will be put into the `FaceVertexCData <http://www.mathworks.com/help/techdoc/ref/patch_props.html#FaceVertexCData>`_
   field. These structures can be exchanged directly with the `Matlab Patch Properties <http://www.mathworks.com/help/techdoc/ref/patch_props.html>`_.
   See the example network for an example.
-
-- **Mat4Lists (input only):**
-  A `Mat4List <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/mlLinearAlgebraPage.html>`_
-  is an object that contains a list of 4x4 matrices. In Matlab, a Mat4List is represented as a cell array
-  with in each cell a 4x4 integer matrix.
-
-- **CSOLists (input only):**
-  A Contour Segmentation Object (`CSO <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/CSOPage.html>`_)List
-  is an object that contains a list of CSOs. In Matlab, a CSOList is represented as a cell array with in
-  each cell an *N* x3 integer matrix with the position coordinates of one CSO.
 
 - **Scalars:**
   Double precision. These can be used both as input and ouput variables. Field notifications will be sent
@@ -113,20 +102,20 @@ which swaps the x and y axes. See the example network for an example.*"
     text = ""
   }
   Tips  {
-    text = ""
+    text = "The example network shows a number of different uses of the :module:`MatlabScriptWrapper` module."
   }
   Windows  {
     text = ""
     Window _default {
-      title = ""
+      title = "The default panel of the MatlabScriptWrapper."
       text = ".. screenshot:: _default"
     }
   }
   Inputs  {
-    text = "Up to three input images and one CurveData, CurveList, XMarkerList , or WEM can be attached to the module. Input to the module from MeVisLab is optional, the output can be generated entirely in Matlab without input from MeVisLab (see the example network for examples)."
+    text = "Up to three input Images and one CurveData, CurveList, XMarkerList , or WEM can be attached to the module. Input to the module from MeVisLab is optional, the output can be generated entirely in Matlab without input from MeVisLab (see the example network for examples)."
     Field input0 {
       type = Image
-      text = ""
+      text = "The input image."
     }
     Field input1 {
       type = Image
@@ -150,10 +139,10 @@ which swaps the x and y axes. See the example network for an example.*"
     }
   }
   Outputs  {
-    text = "Up to three output images and one CurveList, one XMarkerList, or one WEM."
+    text = "Up to three output Images and one CurveList, one XMarkerList, or one WEM."
     Field output0 {
       type = Image
-      text = ""
+      text = "The output Image."
     }
     Field output1 {
       type = Image
@@ -196,7 +185,7 @@ which swaps the x and y axes. See the example network for an example.*"
     }
     Field useExternalScript {
       type = Bool
-      text = "Enables the possibility to use an external Matlab script file (.m)."
+      text = "Enables the possibility to use an external Matlab script file (`.m`)."
       title = "Use External Script"
       visibleInGUI = Yes
       persistent = Yes
@@ -204,7 +193,7 @@ which swaps the x and y axes. See the example network for an example.*"
     }
     Field matlabScriptPath {
       type = String
-      text = ""
+      text = "The path and the name of the external Matlab script file (`.m`)."
       title = "Matlab Script"
       visibleInGUI = Yes
       persistent = Yes
@@ -316,7 +305,7 @@ which swaps the x and y axes. See the example network for an example.*"
     }
     Field autoUpdate {
       type = Bool
-      text = "Execute the script automatically on input change (only for input images, CurveData, CurveList, XMarkerList, and WEM, not for changes in the names)."
+      text = "Execute the script automatically on input change (only for input Images, CurveData, CurveList, XMarkerList, and WEM, not for changes in the names)."
       title = "Auto update"
       visibleInGUI = Yes
       persistent = Yes
@@ -343,8 +332,8 @@ which swaps the x and y axes. See the example network for an example.*"
       text = "This field gives information whether the Matlab script was executed correctly or not."
       title = Status
       visibleInGUI = Yes
-      persistent = Yes
-      default = Ready.
+      persistent = No
+      default = ""
     }
     Field scalarName0 {
       type = String
@@ -708,7 +697,7 @@ which swaps the x and y axes. See the example network for an example.*"
       text = "Displays the output of executed Matlab script."
       title = "Matlab Output"
       visibleInGUI = Yes
-      persistent = Yes
+      persistent = No
       default = ""
     }
     Field showSessionWindow {

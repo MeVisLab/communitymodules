@@ -23,6 +23,11 @@ MLModule MatlabScriptWrapper {
   documentation  = "$(LOCAL)/html/MatlabScriptWrapper.html"
   exampleNetwork = "$(LOCAL)/networks/MatlabScriptWrapperExample.mlab"
 
+  Description {
+    Field status           { persistent = No }
+    Field matlabOutput     { persistent = No }
+  }
+
   Window {
   width = 600
   Category Main {
