@@ -122,7 +122,8 @@ DEFINES += MLMATLABSCRIPTWRAPPER_EXPORTS
 HEADERS += \
     MLMatlabScriptWrapperInit.h \
     MLMatlabScriptWrapperSystem.h \
-    mlMatlabScriptWrapper.h
+    mlMatlabScriptWrapper.h \
+    mlMatlabScriptWrapperOutputData.h
 
 SOURCES += \
     MLMatlabScriptWrapperInit.cpp \
@@ -131,5 +132,4 @@ SOURCES += \
 # additional files that are NOT compiled
 RELATEDFILES += \
     ../../../Modules/ML/MLMatlabScriptWrapper/MLMatlabScriptWrapper.def
-   
 

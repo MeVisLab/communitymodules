@@ -26,7 +26,7 @@
 //! The ML module class MatlabScriptWrapper.
 /*!
 // \file    mlMatlabScriptWrapper.h
-// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter, Alexander Broersen
+// \author  Alexander Gryanik, Markus Harz, Ola Friman, Felix Ritter, Alexander Broersen, Jens Kaftan
 // \date    2009-02-23
 //
 // Module for executing Matlab scripts in MeVisLab.
@@ -40,6 +40,7 @@
 
 // Local includes
 #include "MLMatlabScriptWrapperSystem.h"
+#include "mlMatlabScriptWrapperOutputData.h"
 
 // SDK includes
 #include <mlVersion.h>
@@ -50,10 +51,6 @@
 
 // System includes
 #include <string>
-
-// Include the Matlab engine. Note that the correct path to this
-// file must be set in the MLMatlabScriptWrapper.pro file.
-#include "engine.h"
 
 ML_START_NAMESPACE
 
@@ -134,6 +131,9 @@ private:
 
   //! Copies input image data to Matlab.
   void _copyInputImageDataToMatlab();
+  //! Copies output image from Matlab.
+  void _getOutputImageDataBackFromMatlab();
+
   //! Copies input CurveData or CurveList to Matlab.
   void _copyInputCurveToMatlab();
   //! Copies structure from Matlab and copies results into output CurveList.
@@ -204,6 +204,10 @@ private:
   StringField *_inDataNameFld[3];
   StringField *_outDataNameFld[3];
   //@}
+  //{@ The interal variables with the temporary output images.
+  MatlabScriptWrapperOutputData *_outDataArray[3];
+  //@}
+
   //{@ Set matlab names for input and output CurveList.
   StringField *_inCurveNameFld;
   StringField *_outCurveNameFld;
