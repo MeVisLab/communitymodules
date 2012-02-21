@@ -1,5 +1,10 @@
 
 In this file known issues of the MeVisLab Community Builds are listed.
+It is located in the Community sources repository under 
+
+  https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/Community/General/Documentation/Sources/KnownIssues.txt
+
+and can be changed by all people with permissions to change contents of the Community Sources.
 
 1) MeVisLab2.2.1-Release
 Project .../Packages/Community/General/Sources/ML/MLCSOToRTStructure
