@@ -7,18 +7,18 @@ It is located in the Community sources repository under
 and can be changed by all people with permissions to change contents of the Community Sources.
 
 1) MeVisLab2.2.1-Release
-Project .../Packages/Community/General/Sources/ML/MLCSOToRTStructure
+Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/Community/General/Sources/ML/MLCSOToRTStructure
 According to a bug in the the windows installers of the MeVislab2.2.1 release 
 the library files oslog.lib and oflog_d.lib are missing. Since these files 
 are not needed by this project its link statement was manually removed
-from the windows Packages\MeVis\ThirdParty\Configuration\MeVis_ThirdParty.pri 
+from the windows <MeVisLabInstallPath>\Packages\MeVis\ThirdParty\Configuration\MeVis_ThirdParty.pri 
 files in the installed MeVisLab versions. In this way this project can also 
 be compiled if you check out this project on your own.
 
 2) MeVisLab2.2.1-Release, VC10-64:
 The projects 
-Project .../Packages/UMD/METK/Sources/common,
-Project .../Packages/UMD/METK/Sources/ML/METKLiftChart
+Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/UMD/METK/Sources/common/,
+Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/UMD/METK/Sources/ML/METKLiftChart
 and some other (dependent) projects fail due to a complex linker symbol 
 problem in the MLObjMgr project in the VC10-64 release of MeVisLab2.2.1. 
 This will be fixed in the MeVisLab2.3 release.
