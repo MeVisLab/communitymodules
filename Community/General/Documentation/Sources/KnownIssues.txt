@@ -10,7 +10,7 @@ and can be changed by all people with permissions to change contents of the Comm
    The project 
      https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/Community/General/Sources/ML/MLCSOToRTStructure
    According to a bug in the windows installers of the MeVislab2.2.1 release 
-   the library files oslog.lib and oflog_d.lib are missing. Since these files 
+   the library files oflog.lib and oflog_d.lib are missing. Since these files 
    are not needed by this project its link statement was manually removed
    from the windows <MeVisLabInstallPath>\Packages\MeVis\ThirdParty\Configuration\MeVis_ThirdParty.pri 
    files in the installed MeVisLab versions. In this way this project can also 
