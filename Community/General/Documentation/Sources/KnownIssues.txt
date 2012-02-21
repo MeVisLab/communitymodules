@@ -7,26 +7,29 @@ It is located in the Community sources repository under
 and can be changed by all people with permissions to change contents of the Community Sources.
 
 1) MeVisLab2.2.1-Release
-  The project 
-    https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/Community/General/Sources/ML/MLCSOToRTStructure
-  According to a bug in the windows installers of the MeVislab2.2.1 release 
-  the library files oslog.lib and oflog_d.lib are missing. Since these files 
-  are not needed by this project its link statement was manually removed
-  from the windows <MeVisLabInstallPath>\Packages\MeVis\ThirdParty\Configuration\MeVis_ThirdParty.pri 
-  files in the installed MeVisLab versions. In this way this project can also 
-  be compiled if you check out this project on your own.
+   The project 
+     https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/Community/General/Sources/ML/MLCSOToRTStructure
+   According to a bug in the windows installers of the MeVislab2.2.1 release 
+   the library files oslog.lib and oflog_d.lib are missing. Since these files 
+   are not needed by this project its link statement was manually removed
+   from the windows <MeVisLabInstallPath>\Packages\MeVis\ThirdParty\Configuration\MeVis_ThirdParty.pri 
+   files in the installed MeVisLab versions. In this way this project can also 
+   be compiled if you check out this project on your own.
 
 2) MeVisLab2.2.1-Release, VC10-64:
-  The projects 
-    Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/UMD/METK/Sources/common/,
-    Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/UMD/METK/Sources/ML/METKLiftChart
-  and some other (dependent) projects fail due to a complex linker symbol 
-  problem in the MLObjMgr project in the VC10-64 release of MeVisLab2.2.1. 
-  This will be correctly fixed in the MeVisLab2.3 release, in the current VC10-64-setup it is done with a workaround
-  in the file 
-    https://svn-mms.mt.mevis.lokal/dev/branches/mevislab/integration/MeVisLab/Standard/Configuration/MeVisLab_Standard.pri
-  by adding a linker flag allowing multiple linker symbols in the MLObjMgr project settings (l. 285):
-    contains(QMAKE_COMPILER_DEFINES, _MSC_VER=1600) {
-      win32:QMAKE_LFLAGS +=  /FORCE:MULTIPLE
-    }
+   The projects 
+     Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/UMD/METK/Sources/common/,
+     Project https://mevislabmodules.svn.sourceforge.net/svnroot/mevislabmodules/trunk/UMD/METK/Sources/ML/METKLiftChart
+   and some other (dependent) projects fail due to a complex linker symbol 
+   problem in the MLObjMgr project in the VC10-64 release of MeVisLab2.2.1. 
+   This will be correctly fixed in the MeVisLab2.3 release, in the current VC10-64-setup it is done with a workaround
+   in the file 
+     https://svn-mms.mt.mevis.lokal/dev/branches/mevislab/integration/MeVisLab/Standard/Configuration/MeVisLab_Standard.pri
+   by adding a linker flag allowing multiple linker symbols in the MLObjMgr project settings (l. 285):
+     contains(QMAKE_COMPILER_DEFINES, _MSC_VER=1600) {
+       win32:QMAKE_LFLAGS +=  /FORCE:MULTIPLE
+     }
 
+3) Although the ToolRunner of MeVisLab2.2.1 requires an NSIS version 2.36 or higher it must be a version 2.43 or 
+   higher if you build your own installers against the release MeVisLab2.2.1 versions. An appropriate NSIS version 
+   is installed on the CommunityBuild server.
