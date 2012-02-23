@@ -424,8 +424,8 @@ CSO* CSODistance::_findMatchingCSO(int findCSO)
       vec3 normal = cso->getPlaneNormal();
       normal.normalize();
       const vec3 matchingPoint = cso->getFirstSeedPoint()->worldPosition;
-      const double angleError = 1- abs( currentNormal.dot( normal ));
-      const double distanceError = abs(currentNormal.dot( matchingPoint - currentPoint ));
+      const double angleError = 1- fabs( currentNormal.dot( normal ));
+      const double distanceError = fabs(currentNormal.dot( matchingPoint - currentPoint ));
       const double currentError =  angleError + distanceError; 
       if (  currentError < minError && angleError < tollerance && distanceError < 10*tollerance ) {
         minError = currentError;
