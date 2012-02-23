@@ -144,12 +144,15 @@ CSOImageStatistics::~CSOImageStatistics()
 {
   ML_TRACE_IN("CSOImageStatistics::~CSOImageStatistics()");
 
-  // Remove calback function
+  // Remove callback function
   if (m_InCSOList != NULL){
     m_InCSOList->removeNotificationObserver(CsoListNotifyObserverCB, this);
   }
   if (!f_WorkDirectlyOnInputList->getBoolValue()){
+#if MEVISLAB_VERSION < 203
     ML_DELETE(m_OutCSOList);
+#endif
+    m_OutCSOList = NULL;
   }
 
   // Remove any existing curves
@@ -198,7 +201,11 @@ void CSOImageStatistics::handleNotification (Field *field)
       bool hasChangedToOn = f_WorkDirectlyOnInputList->getBoolValue();
       if (m_InCSOList != NULL){
         if (hasChangedToOn){
+#if MEVISLAB_VERSION < 203
           ML_DELETE(m_OutCSOList);
+#endif
+          m_OutCSOList = NULL;
+
           m_OutCSOList = m_InCSOList;
         } else {                
           ML_CHECK_NEW(m_OutCSOList, CSOList(*m_InCSOList));
@@ -206,12 +213,19 @@ void CSOImageStatistics::handleNotification (Field *field)
       } else { // no input, nothing to put out 
         if (hasChangedToOn){
           if (m_OutCSOList != NULL){
+#if MEVISLAB_VERSION < 203
             ML_DELETE(m_OutCSOList);
+#endif
+            m_OutCSOList = NULL;
           }
         }
         m_OutCSOList = NULL;
       }   
+#if MEVISLAB_VERSION < 203
       f_OutputCSOList->setBaseValue(m_OutCSOList);
+#else
+      f_OutputCSOList->setBaseValue(m_OutCSOList.get());
+#endif
       if ( inputImageValid ){
         ProcessCSOList(false);
       }
@@ -249,14 +263,19 @@ void CSOImageStatistics::SetupInternalCSOList()
     if (workDirectlyOnInputCSOList){
       m_OutCSOList = NULL;
     } else {
+#if MEVISLAB_VERSION < 203
       ML_DELETE(m_OutCSOList);
+#endif
       m_OutCSOList = NULL;
     }
   }
 
   if (m_InCSOList != NULL){
     if (!workDirectlyOnInputCSOList){ // make copy            
+#if MEVISLAB_VERSION < 203
       ML_DELETE(m_OutCSOList);
+#endif
+      m_OutCSOList = NULL;
       ML_CHECK_NEW(m_OutCSOList, CSOList(*m_InCSOList));
     } else { // use pointer
       m_OutCSOList = m_InCSOList;
@@ -266,7 +285,11 @@ void CSOImageStatistics::SetupInternalCSOList()
       m_InCSOList->addNotificationObserver(CsoListNotifyObserverCB, this); 
     }
   }        
+#if MEVISLAB_VERSION < 203
   f_OutputCSOList->setBaseValue(m_OutCSOList);    
+#else
+  f_OutputCSOList->setBaseValue(m_OutCSOList.get());    
+#endif
 }
 
 
@@ -573,11 +596,11 @@ void CSOImageStatistics::GetStatistics( CSO* cso,
           const MLint offset = currentPos.dot( strideVector );
           double* currentValue = inputTile+offset;
           sum += *currentValue;
-          absSum += abs(*currentValue);
+          absSum += fabs(*currentValue);
           minimum = ML_MIN(minimum, *currentValue );
-          absMin  = ML_MIN(minimum, abs(*currentValue) );
+          absMin  = ML_MIN(minimum, fabs(*currentValue) );
           maximum = ML_MAX(maximum, *currentValue );
-          absMax  = ML_MAX(maximum, abs(*currentValue) );
+          absMax  = ML_MAX(maximum, fabs(*currentValue) );
         }
 
         const double csoArea = ( f_UseAllPointsInsideCSO->getBoolValue() ? cso->getArea():cso->getLength() );
@@ -607,12 +630,12 @@ void CSOImageStatistics::SetCurves()
   if ( f_OutputCurve->getBoolValue() ) {
     if ( f_OutputSum->getBoolValue() ) {
       CurveData *outputCurve = new CurveData;
-      outputCurve->setY( m_SumSeries.size(), &m_SumSeries[0], 1 );
+      outputCurve->setY( static_cast<MLssize_t>(m_SumSeries.size()), &m_SumSeries[0], static_cast<MLssize_t>(1) );
       m_OutCurveList->getCurveList().push_back( outputCurve );
     }
     if ( f_OutputAverage->getBoolValue() ) {
       CurveData *outputCurve = new CurveData;
-      outputCurve->setY( m_AverageSeries.size(), &m_AverageSeries[0], 1 );
+      outputCurve->setY(  static_cast<MLssize_t>(m_AverageSeries.size()), &m_AverageSeries[0], static_cast<MLssize_t>(1) );
       m_OutCurveList->getCurveList().push_back( outputCurve );
     }
   }

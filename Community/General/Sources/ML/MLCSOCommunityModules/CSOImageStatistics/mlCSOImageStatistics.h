@@ -209,7 +209,11 @@ private:
   CSOList* m_InCSOList;
 
   //! A pointer to the output CSOList.
+#if MEVISLAB_VERSION < 203
   CSOList* m_OutCSOList;
+#else
+  CSOListPtr m_OutCSOList;
+#endif
 
   //! The ids of the selected CSOs.
   std::vector<unsigned int> m_SelectedCSOIds;
