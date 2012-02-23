@@ -221,8 +221,8 @@ void CMCurveFilter::SetOutputCurve(){
           xSeries.push_back( xValue );
         }
       }
-      outputCurve->setX( xSeries.size(),&xSeries[0], 1 );
-      outputCurve->setY( ySeries.size(),&ySeries[0], 1 );
+      outputCurve->setX( static_cast<MLssize_t>(xSeries.size()),&xSeries[0], static_cast<MLssize_t>(1) );
+      outputCurve->setY( static_cast<MLssize_t>(ySeries.size()),&ySeries[0], static_cast<MLssize_t>(1) );
 
       m_OutCurveList->getCurveList().push_back( outputCurve );
     }
