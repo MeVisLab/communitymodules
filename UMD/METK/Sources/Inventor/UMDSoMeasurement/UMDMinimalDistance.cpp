@@ -1,5 +1,6 @@
 
 #include "UMDMinimalDistance.h"
+#include <assert.h>
 
 // #########################################
 // #####
