@@ -93,8 +93,7 @@ void UMDViewerTriggerInit();
 
 #else
 
-#include <mstring.h>
-#include <windows.h>
+// For example MacOS:
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
