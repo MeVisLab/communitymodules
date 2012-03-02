@@ -114,8 +114,7 @@ typedef __int64 int64_t;
 
 #else
 
-#include <mstring.h>
-#include <windows.h>
+// For example Mac OS X
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
