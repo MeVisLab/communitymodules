@@ -27,4 +27,5 @@ Sources/ML/MLMatlabScriptWrapper/MLMatlabScriptWrapper.pro
 
 
 # Mac OS X only projects
-Sources/ML/MLOsiriXImporter/*       windows,linux
+Sources/ML/MLOsiriXImporter/*                               windows,linux
+Sources/ML/MLOsiriXImporter/MLOsiriXImporter/MeVisLabHub/*  windows,linux,mac
