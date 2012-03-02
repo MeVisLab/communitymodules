@@ -269,7 +269,10 @@ CSOSetProperties::~CSOSetProperties()
     m_InputCSOList->removeNotificationObserver(CSOListNotifyObserverCB, this);
   }
   if (!f_WorkDirectlyOnInputList->getBoolValue()){
+#if MEVISLAB_VERSION < 203
     ML_DELETE(m_OutputCSOList);
+#endif
+    m_OutputCSOList = NULL;
   }
 }
 
@@ -301,7 +304,10 @@ void CSOSetProperties::handleNotification (Field *field)
       bool hasChangedToOn = f_WorkDirectlyOnInputList->getBoolValue();
       if (m_InputCSOList != NULL){
         if (hasChangedToOn){
+#if MEVISLAB_VERSION < 203
           ML_DELETE(m_OutputCSOList);
+#endif
+          m_OutputCSOList = NULL;
           m_OutputCSOList = m_InputCSOList;
         } else {
           ML_CHECK_NEW(m_OutputCSOList, CSOList(*m_InputCSOList));
@@ -309,7 +315,10 @@ void CSOSetProperties::handleNotification (Field *field)
       } else { // no input, nothing to put out
         if (hasChangedToOn){
           if (m_OutputCSOList != NULL){
+#if MEVISLAB_VERSION < 203
             ML_DELETE(m_OutputCSOList);
+#endif
+            m_OutputCSOList = NULL;
           }
         }
         m_OutputCSOList = NULL;
@@ -345,13 +354,18 @@ void CSOSetProperties::SetupInternalCSOList()
     if (workDirectlyOnInputCSOList){
       m_OutputCSOList = NULL;
     } else {
+#if MEVISLAB_VERSION < 203
       ML_DELETE(m_OutputCSOList);
+#endif
       m_OutputCSOList = NULL;
     }
   }
   if (m_InputCSOList != NULL){
     if (!workDirectlyOnInputCSOList){ // make copy
+#if MEVISLAB_VERSION < 203
       ML_DELETE(m_OutputCSOList);
+#endif
+      m_OutputCSOList = NULL;
       ML_CHECK_NEW(m_OutputCSOList, CSOList(*m_InputCSOList));
     } else { // use pointer
       m_OutputCSOList = m_InputCSOList;
