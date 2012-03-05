@@ -105,8 +105,12 @@ void SegmentationEvaluationMetric::handleNotification (Field *field)
 {
   ML_TRACE_IN("SegmentationEvaluationMetric::handleNotification ()");
 
-  if (getUpdatedInImg(0) && getUpdatedInImg(1) && (_isAutoApplyFld->isOn() || (field == _applyFld))) {
-	  _process();
+  if (_isAutoApplyFld->isOn() || (field == _applyFld)) {
+    if (getUpdatedInImg(0) && getUpdatedInImg(1) ) {
+	    _process();
+    } else {
+      _reset();
+    }
   }
 }
 
@@ -119,6 +123,7 @@ void SegmentationEvaluationMetric::activateAttachments ()
 
   // Update members to new field state here.
   // Call super class functionality to enable notification handling again.
+  handleNotification(NULL);
   BaseOp::activateAttachments ();
 }
 
@@ -290,6 +295,25 @@ void SegmentationEvaluationMetric::_process()
 	_levelOfTestFld->setDoubleValue(levelOfTest);
 	_diceSimilarityCoefficientFld->setDoubleValue(dsc);
 	_cFactorFld->setDoubleValue(cFactor);
+}
+
+//----------------------------------------------------------------------------------
+//! Reset parameters
+//----------------------------------------------------------------------------------
+void SegmentationEvaluationMetric::_reset()
+{
+  ML_TRACE_IN("SegmentationEvaluationMetric::_reset()");
+
+  _truePositiveFld->setIntValue(0);
+  _trueNegativeFld->setIntValue(0);
+  _falsePositiveFld->setIntValue(0);
+  _falseNegativeFld->setIntValue(0);
+  _sensitivityFld->setDoubleValue(0.0);
+  _specificityFld->setDoubleValue(0.0);
+  _prevalenceFld->setDoubleValue(0.0);
+  _levelOfTestFld->setDoubleValue(0.0);
+  _diceSimilarityCoefficientFld->setDoubleValue(0.0);
+  _cFactorFld->setDoubleValue(0.0);
 }
 
 ML_END_NAMESPACE

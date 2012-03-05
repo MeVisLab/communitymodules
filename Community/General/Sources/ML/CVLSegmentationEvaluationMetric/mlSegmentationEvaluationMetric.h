@@ -65,6 +65,9 @@ private:
   //! Main routine.
   void _process();
 
+  //! reset parameters on empty input
+  void _reset();
+
   //! Number of true positives.
   unsigned int _numTruePositive;
   //! Number of true negatives.
