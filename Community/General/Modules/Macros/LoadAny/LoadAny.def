@@ -7,7 +7,7 @@
 // \date    08/09
 */
 //----------------------------------------------------------------------------------
-
+/*
 MacroModule LoadAny {
   genre              = File
   externalDefinition = $(LOCAL)/LoadAny.script
@@ -19,3 +19,4 @@ MacroModule LoadAny {
   documentation      = $(LOCAL)/html/LoadAny.html
   examplenetwork     = $(LOCAL)/networks/LoadAny.mlab
 }
+*/
