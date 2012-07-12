@@ -1,6 +1,13 @@
-//! The ML module class PlaneClip to intersect an image with a plane.
-//! \file   AnalyzeHeader.h
-//! \author Bart De Dobbelaer
+//----------------------------------------------------------------------------------
+//! The ML module class PlaneClip.
+/*!
+// \file    mlPlaneClip.h
+// \author  Bart De Dobbelaer, Hugo Kuijf
+// \date    2012-07-11
+//
+// 
+*/
+//----------------------------------------------------------------------------------
 /*
         This program is written by:
 
@@ -16,41 +23,80 @@
         Email: Bart.DeDobbelaer@uz.kuleuven.ac.be
 */
 
-////////////////////////////////////////////////////////////////////////
+#ifndef __mlPlaneClip_H
+#define __mlPlaneClip_H
 
-#ifndef __mlPlaneClip_H__
-#define __mlPlaneClip_H__
 
+// Local includes
 #include "../MLImageUtilitiesSystem.h"
-#include "mlOperatorIncludes.h"
 
-#include "mlPlaneField.h"
+// ML includes
+#include <mlModuleIncludes.h>
 
 ML_START_NAMESPACE
 
-////////////////////////////////////////////////////////////////////////
 
-//! The ML module class PlaneClip to intersect an image with a plane.
-class MLIMAGEUTILITIES_EXPORT PlaneClip : public BaseOp {
+//! Clips an image with the given plane.
+class MLIMAGEUTILITIES_EXPORT PlaneClip : public Module
+{
 public:
-  PlaneClip();
+
+  //! Constructor.
+  PlaneClip ();
+
+  //! Handles field changes of the field \p field.
   virtual void handleNotification (Field *field);
-  virtual void activateAttachments();
-  virtual void calcOutImageProps (int outIndex);
-  virtual SubImgBox calcInSubImageBox (int inIndex, const SubImgBox &outSubImgBox, int outIndex);
-  virtual void calcOutSubImage (SubImg *outSubImg, int outIndex, SubImg *inSubImgs);
-  template <typename T>
-  void calcOutSubImage (TSubImg<T> *outSubImg, int outIndex,
-                        TSubImg<T> *inSubImg);
+
+  // ----------------------------------------------------------
+  //! \name Image processing methods.
+  //@{
+  // ----------------------------------------------------------
+
+  //! Sets properties of the output image at output \p outputIndex.
+  virtual void calculateOutputImageProperties (int outputIndex, PagedImage* outputImage);
+
+  //! Creates the PlaneClipHandler for the given output image whenever calculateOutputImageProperties()
+  //! is called and the outputImage is valid.
+  virtual CalculateOutputImageHandler* createCalculateOutputImageHandler(PagedImage* outputImage);
+
 private:
+
+  // ----------------------------------------------------------
+  //! \name Module field declarations
+  //@{
+  // ----------------------------------------------------------
+
+  //! Plane
   PlaneField *_planeFld;
+  //! Auto apply changes
   BoolField *_autoApplyFld;
+  //! Apply changes when auto-apply is Off
   NotifyField *_applyFld;
-  ML_BASEOP_CLASS_HEADER(PlaneClip)
+  //! 
+  EnumField *_intersectionModeFld;
+  //!
+  DoubleField *_volumeThresholdFld;
+  //!
+  BoolField *_useGlobalSubsampleFld;
+  //!
+  IntField *_globalSubsampleFld;
+  //!
+  IntField *_xSubsampleFld;
+  //!
+  IntField *_ySubsampleFld;
+  //!
+  IntField *_zSubsampleFld;
+  //@}
+
+  // Make the handler a friend so that it can access the private data
+  // in its constructor.
+  friend class PlaneClipHandler;
+
+  // Implements interface for the runtime type system of the ML.
+  ML_MODULE_CLASS_HEADER(PlaneClip)
 };
 
-////////////////////////////////////////////////////////////////////////
 
 ML_END_NAMESPACE
 
-#endif
+#endif // __mlPlaneClip_H

@@ -1,0 +1,173 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLImageUtilities/MLImageUtilities.def
+    moduleName = PlaneClip
+    moduleType = MLModule
+    author = "Bart De Dobbelaer"
+    DLL = MLImageUtilities
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "Splits an image in two parts by a plane."
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = "Depending on the chosen Intersection Mode, the output value of voxels intersecting with the plane will differ."
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field input0 {
+      type = Image
+      text = "Input image"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field output0 {
+      type = Image
+      text = "Part of the image that lies in the halfspace of the plane into which the normal of the plane points."
+    }
+    Field output1 {
+      type = Image
+      text = "Other half."
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = PlaneClip
+    }
+    Field plane {
+      type = Plane
+      text = "Input plane. Should be in the world-coordinates of the input image."
+      title = Plane
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 1 0"
+    }
+    Field autoApply {
+      type = Bool
+      text = "Auto-apply any changes to the input image or parameters."
+      title = "Auto Apply"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field apply {
+      type = Trigger
+      text = "Apply changes. Note that disconnecting the image is always applied automatically."
+      title = Apply
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field intersectionMode {
+      type = Enum
+      text = "Determines what to do with voxel that intersect with the plane."
+      title = "Intersection Mode"
+      visibleInGUI = Yes
+      items  {
+        item IntersectionModeMidpoint {
+          title = Midpoint
+          text = "Use the midpoint of the voxel to determine to which side this voxel belongs (default)."
+          deprecatedName = ""
+        }
+        item IntersectionModeVolume {
+          title = Volume
+          text = "Use the percentage of volume to determine on which side this voxel belongs. Estimation of the volume is performed by subsampling the voxel."
+          deprecatedName = ""
+        }
+        item IntersectionModeAntiAliasing {
+          title = "Anti Aliasing"
+          text = "Anti-alias the voxel by subsampling and weighting the voxel-value."
+          deprecatedName = ""
+        }
+      }
+      persistent = Yes
+      default = IntersectionModeMidpoint
+    }
+    Field volumeThreshold {
+      type = Double
+      text = "Volume threshold for :field:`IntersectionModeVolume`"
+      title = "Volume Threshold"
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 0.5
+    }
+    Field useGlobalSubsample {
+      type = Bool
+      text = "Use the global subsample value."
+      title = "Use Global Subsample"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field globalSubsample {
+      type = Integer
+      text = "Global subsample value. Each voxel is subsampled with this value in the x, y, and z directions."
+      title = Subsample
+      visibleInGUI = Yes
+      min = 1
+      max = 6
+      persistent = Yes
+      default = 4
+    }
+    Field xSubsample {
+      type = Integer
+      text = "Specific subsample for the x-direction."
+      title = X
+      visibleInGUI = Yes
+      min = 1
+      max = 6
+      persistent = Yes
+      default = 4
+    }
+    Field ySubsample {
+      type = Integer
+      text = "Specific subsample for the y-direction."
+      title = Y
+      visibleInGUI = Yes
+      min = 1
+      max = 6
+      persistent = Yes
+      default = 4
+    }
+    Field zSubsample {
+      type = Integer
+      text = "Specific subsample for the z-direction."
+      title = Z
+      visibleInGUI = Yes
+      min = 1
+      max = 6
+      persistent = Yes
+      default = 4
+    }
+    text = ""
+  }
+}

@@ -6,6 +6,10 @@ TARGET = MLImageUtilities
 DESTDIR    = ../../../lib
 DLLDESTDIR = ../../../lib
 
+# Set high warn level (warn 4 on MSVC)
+WARN = HIGH
+
+# Add used projects here (see included pri files below for available projects)
 CONFIG += dll ML MLTools
 
 MLAB_PACKAGES += MeVisLab_Standard 
@@ -15,6 +19,9 @@ include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
 
 
 DEFINES += MLIMAGEUTILITIES_EXPORTS
+
+# Enable ML deprecated API warnings. To completely disable the deprecated API, change WARN to DISABLE.
+DEFINES += ML_WARN_DEPRECATED
 
 MSVC_USE_SUBDIRS = 1
 
@@ -31,6 +38,7 @@ SOURCES += \
 	PlaneClip/PlaneClip.cpp \
 	AnalyzeHeader/AnalyzeHeader.cpp \
 	MIP/MIP.cpp
-        
+     
+# additional files that are NOT compiled   
 RELATEDFILES += \
-  ../../MLabModules/MLImageUtilities/MLImageUtilities.def 
+  ../../../Modules/ML/MLImageUtilities/MLImageUtilities.def 
