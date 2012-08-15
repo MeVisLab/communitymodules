@@ -81,6 +81,11 @@ XMarkerListFromFile::XMarkerListFromFile (void)
   _vectorZFld->setBoolValue(false);
   _typeFld = fields->addBool("importType");
   _typeFld->setBoolValue(false);
+
+  _keepVectorInputAsIsFld = fields->addBool("keepVecInputAsIs");
+  _keepVectorInputAsIsFld->setBoolValue(false);
+  _isVoxelFld = fields->addBool("isVoxel");
+  _isVoxelFld->setBoolValue(false);
   
   // Add input coordinate system field
   const char *_inputCoordinateSystemFldValues[] = { "world", "voxel" };
@@ -113,6 +118,14 @@ void XMarkerListFromFile::handleNotification (Field *field)
 
   if ( field==_updateFld || ( _autoUpdateFld->getBoolValue() && field != _outputXMarkerListFld ) ) {
     _outputXMarkerList.clear();
+
+    // Check for the display of keepVecInputAsIs
+    if (_inputCoordinateSystemFld->getEnumValue()) {
+        _isVoxelFld->setBoolValue(true);
+    }
+    else {
+        _isVoxelFld->setBoolValue(false);
+    }
 
     // Check if an input image is connected when coordinate system is set to voxel
     if (_inputCoordinateSystemFld->getEnumValue()==1 && !getUpdatedInImg(0)) {
@@ -147,6 +160,7 @@ void XMarkerListFromFile::handleNotification (Field *field)
           if (_vectorZFld->getBoolValue()) if ( !(file_op >> tokens[6]) ) break;
           if (_typeFld->getBoolValue()) if ( !(file_op >> tokens[7]) ) break;
           vec3 voxel (atof (tokens[0].c_str()), atof(tokens[1].c_str()), atof(tokens[2].c_str()));
+          
           // When coordinates in file are in world coordinates, we are done
           vec3 world = voxel;
           vec3 vec;
@@ -154,13 +168,17 @@ void XMarkerListFromFile::handleNotification (Field *field)
           vec[1] = atof (tokens[5].c_str());
           vec[2] = atof (tokens[6].c_str());
           int type = atoi (tokens[7].c_str());
+          
           // When coordinates in file are in voxel coordinates, we need to convert both the
           // position and the vector to world coordinates
           if (_inputCoordinateSystemFld->getEnumValue()) {
             getUpdatedInImg(0)->transformToWorldCoord(voxel+vec3(0.5, 0.5, 0.5), world);
             vec3 vecWOrld;
-            getUpdatedInImg(0)->transformToWorldCoord(voxel+vec+vec3(0.5, 0.5, 0.5), vecWOrld);
-            vec = vecWOrld - world;
+            if (!_keepVectorInputAsIsFld->getBoolValue())
+            {
+                getUpdatedInImg(0)->transformToWorldCoord(voxel+vec+vec3(0.5, 0.5, 0.5), vecWOrld);
+                vec = vecWOrld - world;
+            }
           }
           marker.pos[0] = world[0];
           marker.pos[1] = world[1];

@@ -86,6 +86,9 @@ private:
   BoolField *_vectorYFld;
   BoolField *_vectorZFld;
   BoolField *_typeFld;
+
+  BoolField *_keepVectorInputAsIsFld;
+  BoolField    *_isVoxelFld;
   
   // Skip a certain number of line at the start of the file
   IntField *_skipElementsFld;

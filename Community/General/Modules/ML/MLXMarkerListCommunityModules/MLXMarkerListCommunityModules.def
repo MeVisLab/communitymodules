@@ -54,13 +54,20 @@ MLModule XMarkerListFromFile {
     Vertical {
       margin=3
       Field filename { browseButton = true browseFilter = "Text files (*.txt);;All files (*.*)"}
-      Field importPositionX {}
-      Field importPositionY {}
-      Field importPositionZ {}
-      Field importPositionT {}
-      Field importVectorX {}
-      Field importVectorY {}
-      Field importVectorZ {}
+      Horizontal {
+        Box Position {
+          Field importPositionX {}
+          Field importPositionY {}
+          Field importPositionZ {}
+          Field importPositionT {}
+        }
+        Box Vector {
+          Field importVectorX {}
+          Field importVectorY {}
+          Field importVectorZ {}
+          Field keepVecInputAsIs { dependsOn = isVoxel}
+        }
+      }
       Field importType { alignGroup=left }
       Field numElementsToSkip {}
       Field inputCoordinateSystem {}
