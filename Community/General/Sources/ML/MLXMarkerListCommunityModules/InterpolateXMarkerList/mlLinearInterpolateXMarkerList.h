@@ -73,12 +73,16 @@ private:
   // ----------------------------------------------------------
 
   //! Input and output XMarkerList fields
-  BaseField *_inputXMarkerListFld;
-  BaseField *_outputXMarkerListFld;
+  BaseField * _inputXMarkerListFld;
+  BaseField * _outputXMarkerListFld;
   XMarkerList _outputXMarkerList;
 
   //! Sample distance output XMarkerList
-  FloatField *_sampleDistanceFld;
+  EnumField * _modeFld;
+  FloatField * _sampleDistanceFld;
+  IntField * _numIntermediatePointsFld;
+  StringField * _absoluteMarkerIndicesFld;
+  IntField * _numTotalPointsFld;
 
   //@}
 
