@@ -60,7 +60,7 @@ WEMCMSelectPatches::WEMCMSelectPatches (std::string type)
   FieldContainer *fields = getFieldContainer();
   ML_CHECK(fields);
 
-  // Suppress calls of handleNotification on field changes.
+  // Suppress calls of hanbdleNotification on field changes.
   handleNotificationOff();
 
   // WEM Patch start and end index field
@@ -77,6 +77,7 @@ WEMCMSelectPatches::WEMCMSelectPatches (std::string type)
   _autoClearFld->setBoolValue(true);
   _autoApplyFld->setBoolValue(true);
   _autoUpdateFld->setBoolValue(true);
+  _copyInputWEMsFld->setBoolValue(true);
 
   _notifyFld = fields->addNotify("notify");
  
@@ -91,7 +92,6 @@ WEMCMSelectPatches::~WEMCMSelectPatches()
 {
   ML_TRACE_IN("WEMCMSelectPatches::~WEMCMSelectPatches()")
 }
-
 
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field \c field.
@@ -121,7 +121,6 @@ void WEMCMSelectPatches::activateAttachments()
     WEMProcessor::activateAttachments();
 }
 
-
 //----------------------------------------------------------------------------------
 //! The process method is called by the parent class.
 //----------------------------------------------------------------------------------
@@ -137,6 +136,7 @@ void WEMCMSelectPatches::_process()
     // Now call the own processing routine.
     if (_inWEM!=NULL) {
       selectPatch();
+      //std::cout<<"Process"<<std::endl;
     }
 
     // stop time measurement and mouse cursor resetting.
@@ -177,11 +177,7 @@ void WEMCMSelectPatches::selectPatch()
     {
       // Output selected WEM patches
       for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
-        int index = i;
-        // Circular behaviour
-        while (index<0) {
-          index = index + numPatches;
-        }
+        const int index = ( i + numPatches ) % numPatches;
         
         // Get input patch
         WEMTrianglePatch * inPatch = (WEMTrianglePatch*) _inWEM->getWEMPatchAt(index % numPatches);
@@ -198,11 +194,7 @@ void WEMCMSelectPatches::selectPatch()
     {
       // Output selected WEM patches
       for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
-        int index = i;
-        // Circular behaviour
-        while (index<0) {
-          index = index + numPatches;
-        }
+        const int index = ( i + numPatches ) % numPatches;
 
         // Get input patch
         WEMPolygonPatch * inPatch = (WEMPolygonPatch*) _inWEM->getWEMPatchAt(index % numPatches);
@@ -219,11 +211,7 @@ void WEMCMSelectPatches::selectPatch()
     {
       // Output selected WEM patches
       for (int i=patchStartIndex; i<=patchEndIndex; ++i) {
-        int index = i;
-        // Circular behaviour
-        while (index<0) {
-          index = index + numPatches;
-        }
+        const int index = ( i + numPatches ) % numPatches;
 
         // Get input patch
         WEMQuadPatch * inPatch = (WEMQuadPatch*) _inWEM->getWEMPatchAt(index % numPatches);

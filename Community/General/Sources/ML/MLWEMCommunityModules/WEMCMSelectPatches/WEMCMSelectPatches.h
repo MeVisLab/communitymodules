@@ -96,6 +96,8 @@ private:
 
   //! The main processing routine which selects the patches.
   void selectPatch();
+
+  FieldSensor* _wemSensor;
 };
 
 
