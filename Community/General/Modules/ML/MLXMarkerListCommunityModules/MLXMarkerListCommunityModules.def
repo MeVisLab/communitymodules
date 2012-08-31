@@ -27,8 +27,18 @@ MLModule LinearInterpolateXMarkerList {
   Window {
     Vertical {
       margin = 3
+      Field mode {}
       Field sampleDistance {
-        tooltip = ""
+        dependsOn = "* mode == "Equidistant" *"
+      }
+      Field numberIntermediatePoints {
+        dependsOn = "* mode == "Intermediate points" *"
+      }
+      Field absoluteMarkerIndices {
+        dependsOn = "* mode == "Absolute marker indices" *"
+      }
+      Field numberTotalPoints {
+        dependsOn = "* mode == "Equidistant marker indices" *"
       }
     }
   }
