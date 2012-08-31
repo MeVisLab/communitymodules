@@ -90,6 +90,7 @@ CSOPointsToXMarkers::~CSOPointsToXMarkers (void)
 {
   if (_inputCSOList != NULL) {
     _inputCSOList->removeNotificationObserver(CSOListNotifyObserverCB, this);
+    _inputCSOList=NULL;
   }
 }
 
@@ -114,11 +115,13 @@ void CSOPointsToXMarkers::handleNotification (Field * field)
 
   // Get CSO list if changed
   if (field==_inputCSOListFld) {
-    if (_inputCSOList!=NULL) {
+    CSOList::removeNotificationObserverFromAllCSOLists(CSOListNotifyObserverCB, this);
+    
+    //if (_inputCSOList!=NULL) {
       // Remove old notification observer
-      _inputCSOList->removeNotificationObserver(CSOListNotifyObserverCB, this);
-      _inputCSOList=NULL;
-    }
+    //  _inputCSOList->removeNotificationObserver(CSOListNotifyObserverCB, this);
+    _inputCSOList=NULL;
+    //}
 
     // Get input CSO list
     Base *baseValue = _inputCSOListFld->getBaseValue();
@@ -127,9 +130,13 @@ void CSOPointsToXMarkers::handleNotification (Field * field)
       // Add new notification observer
       _inputCSOList->addNotificationObserver(CSOListNotifyObserverCB, this);
     }
-  }
 
-  convertCSOToXMarkerList();
+    convertCSOToXMarkerList();
+  } 
+  else if (field==_convertPathPoints || field==_listIndexFld || field==_outputCSONormals)
+  {
+    convertCSOToXMarkerList();
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -154,6 +161,9 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
     } 
     else 
     {
+      // Disable output notifications
+      _outputXMarkerListFld->setBaseValue(NULL);
+
       // If listIndex = -1, all CSOs in the list are exported;
       // determine start index and number of CSOs to export.
       int numOfLoops;
@@ -281,8 +291,9 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
         }
 
         // Notify attached modules
-        _outputXMarkerListFld->notifyAttachments();
+        //_outputXMarkerListFld->notifyAttachments();
       }
+      _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
     }
   }
 }
