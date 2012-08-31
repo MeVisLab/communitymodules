@@ -110,13 +110,13 @@ def SaveFields( arg ):
       file.write( header )
     fieldList = ctx.field('selectedFields').value.split(',')
     file.write( GetValues() )
-    if ( ctx.field('append').value == True ):
-      file.write( '\n' )
+    #if ( ctx.field('append').value == True ):
+    #  file.write( '\n' )
     file.close()
   return 
 
 def GetValues( arg=None):
-  selectedFields = ctx.field('selectedFields').stringValue().lstrip('Module.Field,')
+  selectedFields = ctx.field('selectedFields').stringValue()[13:]
   outputString = ''
   if len(selectedFields) > 0:
     fieldList = selectedFields.split(',')
@@ -136,7 +136,7 @@ def GetValues( arg=None):
   return outputString
 
 def GetOutput( arg = None ):
-  selectedFields = ctx.field('selectedFields').stringValue().lstrip('Module.Field,')
+  selectedFields = ctx.field('selectedFields').stringValue()[13:]
   outputString = ''
   if ( ctx.field("writeHeader").boolValue() and not ctx.field("append").boolValue() ) :
     outputString = selectedFields + '\n' 
