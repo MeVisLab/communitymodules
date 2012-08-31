@@ -41,6 +41,7 @@ Interface {
   Inputs {
     Field input0 { internalName = Scalar.input0 comment = "Scalar image" }
     Field input1 { internalName = Vector.input0 comment = "Vector image" }
+    Field inventorInput { internalName = InventorInput.child }
   }
   Outputs {
     Field output0 { internalName = View2D.scene.self hidden = yes }
