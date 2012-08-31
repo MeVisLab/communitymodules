@@ -2,16 +2,24 @@
 network  {
   watchlist = ""
 }
+module SoGroup {
+  internal  {
+    frame = "589 -103 104 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = InventorInput
+  }
+}
 module TypeArithmetic1 {
   internal  {
-    frame = "-11 213 120 56"
+    frame = "-35 213 120 56"
     moduleGroupName = Mesh
     windows  {
       window _default {
         geometry = "474 484 366 66"
         sizeHint = "366 66"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -34,7 +42,6 @@ module Negation {
         geometry = "406 576 468 190"
         sizeHint = "468 190"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -54,7 +61,6 @@ module Negation {
     inFloat = 1
     outFloat = -1
   }
-  internalFields = ""
 }
 module Bypass {
   internal  {
@@ -71,6 +77,13 @@ module Bypass {
   internal  {
     frame = "461 473 72 64"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "912 619 116 20"
+        sizeHint = "111 20"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = Scalar
@@ -100,7 +113,6 @@ module View2DExtensions {
         geometry = "528 153 660 669"
         sizeHint = "660 669"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -122,10 +134,10 @@ module View2DExtensions {
     lutRangeMin = 0
     lutRangeMax = 255
     lutAlphaSync = TRUE
-    lutGreyCenter = 115.10001
-    lutGreyWidth = 135.40001
-    lutAlphaCenter = 115.10001
-    lutAlphaWidth = 135.40001
+    lutGreyCenter = 155.50002
+    lutGreyWidth = 68.849983
+    lutAlphaCenter = 155.50002
+    lutAlphaWidth = 68.849983
     lutColorFactor = "1 1 1"
     lutAlphaFactor = 1
     lutAutoDefault = FALSE
@@ -216,17 +228,17 @@ $(ImageComments)"
     annotCTBottomRight = "CT Mode
 Scan: $(AcquisitionDate)
 LUT C/W: $(input07) / $(input08)"
-    annoInput03 = 115.1
-    annoInput04 = 135.4
-    annoInput05 = "00.85 00.53 "
-    annoInput06 = 135.400009155273
-    annoInput07 = 115.1
-    annoInput08 = 135.4
+    annoInput03 = 155.5
+    annoInput04 = 68.85
+    annoInput05 = 155.500015258789
+    annoInput06 = 68.849983215332
+    annoInput07 = 155.5
+    annoInput08 = 68.85
     annoInput09 = GV
     annoMouseOn = TRUE
-    annoReadPixFloorPos = "212 156 0"
-    annoReadPixVoxelPos = "212.339263916016 156.385467529297 0.5"
-    annoReadPixWorldPos = "45.6778450012207 33.6128044128418 77"
+    annoReadPixFloorPos = "125 39 0"
+    annoReadPixVoxelPos = "125.29468536377 39.0338172912598 0.5"
+    annoReadPixWorldPos = "93.2946853637695 7.03381729125977 0.5"
     borderOn = TRUE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     borderWidth = 1
@@ -235,7 +247,6 @@ LUT C/W: $(input07) / $(input08)"
     borderFocusWidth = 2
     mouseGrabberMode = FALSE
   }
-  internalFields = ""
 }
 module FormatFloat {
   internal  {
@@ -246,17 +257,15 @@ module FormatFloat {
         geometry = "203 457 400 102"
         sizeHint = "400 102"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = FormatFloat
     format = %05.2f
-    value = "0.84535456 0.53420562"
-    output = "00.85 00.53 "
+    value = "-4.6304874420166 -6.39335346221924 0"
+    output = "-4.63-6.39 00.00 "
   }
-  internalFields = ""
 }
 module SoView2DPosition {
   internal  {
@@ -267,7 +276,6 @@ module SoView2DPosition {
         geometry = "687 169 470 665"
         sizeHint = "470 665"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -295,8 +303,8 @@ module SoView2DPosition {
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    worldPosition = "40.018482208252 43.7289199829102 77"
-    firstSliceWorldPosition = "40.018482208252 43.7289199829102 77"
+    worldPosition = "-6.23797416687012 -22.116455078125 0.5"
+    firstSliceWorldPosition = "-6.23797416687012 -22.116455078125 0.5"
     drawingModel = DRAWINGMODEL_CROSSHAIRS
     drawingModelSize = -1
     crossHairSpacing = 0
@@ -325,7 +333,6 @@ module TypeArithmetic1 {
         geometry = "474 484 366 35"
         sizeHint = "366 35"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -350,14 +357,13 @@ module SoGroup {
 }
 module SoView2D {
   internal  {
-    frame = "1 141 96 56"
+    frame = "-23 141 96 56"
     moduleGroupName = Mesh
     windows  {
       window _default {
-        geometry = "183 338 447 513"
-        sizeHint = "447 513"
+        geometry = "129 524 696 502"
+        sizeHint = "439 502"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -367,16 +373,17 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 5
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
     upperRight = "1 1"
     margin = "2 2"
     spacing = "4 4"
-    plane = "0 0 1 0"
+    plane = "0 0 1 0.5"
     sliceZoom = 1
     sliceZoomSynchronized = 1
+    zoomCenter = "0.5 0.5"
     minSliceZoomKeyboard = 1
     sliceOrigin = "0 0"
     viewingCenter = "0 0 0"
@@ -430,7 +437,7 @@ module SoView2D {
 }
 module SoSeparator {
   internal  {
-    frame = "-55 61 112 56"
+    frame = "-79 61 112 56"
     moduleGroupName = Mesh
   }
   fields  {
@@ -450,7 +457,6 @@ module SoToggle {
         geometry = "543 459 104 25"
         sizeHint = "64 25"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -469,20 +475,19 @@ module GetVoxelValue {
         geometry = "513 502 296 290"
         sizeHint = "296 290"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = GetVoxelValue
-    position = "40.018482208252 43.7289199829102 77 0 0 0"
+    position = "-6.23797416687012 -22.116455078125 0.5 0 0 0"
     updateMode = AutoClear
     coordinateType = World
   }
 }
 module SoGroup {
   internal  {
-    frame = "473 -203 96 56"
+    frame = "469 -219 152 56"
     moduleGroupName = ""
   }
   fields  {
@@ -504,14 +509,13 @@ module SoSeparator {
 }
 module SoSwitch {
   internal  {
-    frame = "357 -103 120 64"
+    frame = "461 -103 120 64"
     moduleGroupName = ""
     windows  {
       window _default {
         geometry = "642 474 173 90"
         sizeHint = "173 90"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -526,10 +530,14 @@ module SoView2D {
     moduleGroupName = Vectors
     windows  {
       window _default {
-        geometry = "964 454 439 502"
+        geometry = "92 456 439 502"
         sizeHint = "439 502"
         wasOpen = no
-        wasActive = no
+      }
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
       }
     }
   }
@@ -539,18 +547,19 @@ module SoView2D {
     sliceStep = 1
     numSlices = 1
     numXSlices = 1
-    maxSlice = 0
+    maxSlice = 5
     keepSlicesInView = FALSE
     slab = 1
     lowerLeft = "0 0"
     upperRight = "1 1"
     margin = "2 2"
     spacing = "4 4"
-    plane = "0 0 1 77"
-    sliceZoom = 2.6999996
-    sliceZoomSynchronized = 2.6999996
+    plane = "0 0 1 0.5"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    zoomCenter = "0.5 0.5"
     minSliceZoomKeyboard = 1
-    sliceOrigin = "100.174102783203 89.9873275756836"
+    sliceOrigin = "0 0"
     viewingCenter = "0 0 0"
     enableViewingCenter = FALSE
     unzoomOnImageChange = FALSE
@@ -609,33 +618,31 @@ module SoToggle {
         geometry = "939 618 116 22"
         sizeHint = "56 22"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = ViewVectors
-    whichChild = -3
-    on = TRUE
+    whichChild = -1
+    on = FALSE
   }
 }
 module SoToggle {
   internal  {
-    frame = "-99 145 88 64"
+    frame = "-123 145 88 64"
     moduleGroupName = Mesh
     windows  {
       window _default {
         geometry = "543 459 104 25"
         sizeHint = "63 25"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = ViewMesh
-    whichChild = -1
-    on = FALSE
+    whichChild = -3
+    on = TRUE
   }
 }
 module SoMouseGrabber {
@@ -647,7 +654,6 @@ module SoMouseGrabber {
         geometry = "140 234 477 515"
         sizeHint = "477 515"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -671,13 +677,12 @@ module SoMouseGrabber {
     cursorShape = UNDEFINED_CURSOR
     absX = 0
     absY = 0
-    y = 1
     x = 1
     y = 1
     xmin = 0
-    xmax = 255
-    ymin = 0
-    ymax = 255
+    xmax = 15.686558
+    ymin = -7.7616234
+    ymax = 7.9249339
     cursorPresent = FALSE
     checkCursorPresent = FALSE
     maskValid = FALSE
@@ -703,21 +708,20 @@ module SoRLLookUpTable {
         geometry = "632 337 612 532"
         sizeHint = "612 532"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = overlayLut
     _channelEditorState = ""
-    alphaCenter = 131
-    alphaWidth = 143
-    greyCenter = 131
-    greyWidth = 143
-    redCenter = 131
-    redWidth = 143
-    blueCenter = 131
-    blueWidth = 143
+    alphaCenter = 1
+    alphaWidth = 1
+    greyCenter = 1
+    greyWidth = 1
+    redCenter = 7.9250002
+    redWidth = 15.690001
+    blueCenter = 7.9250002
+    blueWidth = 15.690001
     useColorRamps = FALSE
     invertGrey = FALSE
     invertAlpha = FALSE
@@ -726,13 +730,13 @@ module SoRLLookUpTable {
     autoSetDefaultRamp = FALSE
     setDefaultRampOnce = TRUE
     inputImageValid = TRUE
-    rangeMin = 0
-    rangeMax = 255
+    rangeMin = -7.7616234
+    rangeMax = 7.9249339
     widthMin = 0
     enableNegWidth = FALSE
-    widthMax = 255
-    rangeStep = 1.0000001
-    rangeStepStep = 10.000001
+    widthMax = 15.686558
+    rangeStep = 0.050000001
+    rangeStepStep = 0.5
     selectorX = 0
     selectorY = 0
     setInputMinMax = TRUE
@@ -797,7 +801,6 @@ module SoView2DOverlay {
         geometry = "402 360 473 349"
         sizeHint = "473 349"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -849,7 +852,6 @@ module SoView2DVectorFieldView {
         geometry = "521 318 232 584"
         sizeHint = "232 584"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -878,33 +880,32 @@ module SoView2DVectorFieldView {
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
     midpointSize = 0.059999999
-    vectorWidth = 0.1
-    vectorLength = 10
+    vectorWidth = 0.19000003
+    vectorLength = 2
     vectorMinLength = 0
     midpointSegments = 10
     midpointAbsoluteSize = FALSE
-    vectorAbsoluteSize = TRUE
+    vectorAbsoluteSize = FALSE
     vectorColor = "0.666666686534882 0 0"
     midpointColor = "1 1 0"
-    stepWidth = 5
-    drawArrowTips = FALSE
+    stepWidth = 3
+    drawArrowTips = TRUE
     arrowTipColor = "0 1 0"
-    arrowTipWidth = 1
-    arrowTipHeight = 1
+    arrowTipWidth = 0.70000029
+    arrowTipHeight = 0.70000029
     normalizeVectors = FALSE
     useComps2And3 = FALSE
   }
 }
 module SoView2DDeformationGridView {
   internal  {
-    frame = "-167 277 208 56"
+    frame = "-191 277 208 56"
     moduleGroupName = Mesh
     windows  {
       window _default {
         geometry = "204 416 222 297"
         sizeHint = "222 297"
         wasOpen = no
-        wasActive = no
       }
     }
   }
@@ -932,7 +933,7 @@ module SoView2DDeformationGridView {
     renderOnSlab = FALSE
     clipToSlice = FALSE
     cursorShape = UNDEFINED_CURSOR
-    stepWidth = 5
+    stepWidth = 2
     gridColor = "0 0.666666686534882 1"
     gridPointColor = "1 1 1"
     drawGridPoints = FALSE
@@ -947,28 +948,26 @@ module View2D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "725 219 200 200"
-        sizeHint = "200 200"
+        geometry = "349 726 400 400"
+        sizeHint = "400 400"
         wasOpen = no
-        wasActive = no
       }
       window Settings {
-        geometry = "56 258 278 378"
-        sizeHint = "278 378"
-        wasOpen = no
-        wasActive = no
+        geometry = "1071 936 635 508"
+        sizeHint = "246 508"
+        wasOpen = yes
       }
       window _automatic {
         geometry = "1286 266 500 600"
         sizeHint = "260 223"
         wasOpen = no
-        wasActive = no
       }
     }
   }
   fields  {
     instanceName = View2D
     inventorInputOn = TRUE
+    inventorOutputOn = FALSE
     view2DExtensionsOn = FALSE
     startSlice = 0
     numSlices = 1
@@ -986,14 +985,14 @@ module View2D {
     cineSpeed = 0.1
     snapToCenter = FALSE
     zoomMode = VIEW2D_AUTO_ZOOM
-    unzoomOnImageChange = FALSE
-    sliceZoom = 2.6999996
-    sliceZoomSynced = 2.6999996
+    unzoomOnImageChange = TRUE
+    sliceZoom = 1
+    sliceZoomSynced = 1
     baseColor = "1 1 1"
     margin = "2 2"
-    sliceOrigin = "96.5273818969727 86.3406066894531"
-    lutCenter = 131
-    lutWidth = 143
+    sliceOrigin = "0 0"
+    lutCenter = 127.5
+    lutWidth = 255
     lutUseTraceColors = FALSE
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
@@ -1006,9 +1005,9 @@ module View2D {
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     valueHighPrecision = FALSE
     maxPrecision = 4
-    plane = "0 0 1 77"
+    enableSlicing = TRUE
+    plane = "0 0 1 0.5"
   }
-  internalFields = ""
 }
 connections  {
   TypeArithmetic1.input0 = Vector.output0
@@ -1020,19 +1019,22 @@ connections  {
   SoGroup2.children = "SoSeparator1.self SoSeparator.self"
   SoView2D1.image = TypeArithmetic1.output0
   SoView2D1.startSlice = View2D.startSlice
+  SoView2D1.sliceZoomSynchronized = View2D.sliceZoom
+  SoView2D1.sliceOrigin = View2D.sliceOrigin
   SoView2D1.timePoint = View2D.timePoint
   SoSeparator1.children = "ViewMesh.self SoView2D1.self"
   ShowVectorValue.on = Negation.inToggle
   ShowVectorValue.children = View2DExtensions.outNode
   GetVoxelValue.input0 = Vector.output0
   GetVoxelValue.position = SoView2DPosition.worldPosition
-  SoGroup1.children = "ShowMagnitude.self ShowVectorValue.self"
+  SoGroup1.children = "ShowMagnitude.self ShowVectorValue.self InventorInput.self ShowVectorValue.self"
   SoSeparator.children = "ViewVectors.self SoView2D.self"
   ShowMagnitude.children = "SoGroup2.self SoSeparator2.self"
   SoView2D.image = Vector.output0
   SoView2D.startSlice = View2D.startSlice
   SoView2D.sliceZoomSynchronized = View2D.sliceZoom
   SoView2D.sliceOrigin = View2D.sliceOrigin
+  SoView2D.unzoom = View2D.unzoom
   SoView2D.timePoint = View2D.timePoint
   ViewVectors.children = SoView2DVectorFieldView.self
   ViewMesh.children = SoView2DDeformationGridView.self
@@ -1048,8 +1050,8 @@ connections  {
   SoView2DOverlay.image = VectorLength.output0
   SoView2DVectorFieldView.stepWidth = SoView2DDeformationGridView.stepWidth
   View2D.inImage = Scalar.output0
-  View2D.inInvPreLUT = SoGroup1.self
-  View2D.inInvPostLUT = SoView2DPosition.self
+  View2D.inInvPostLUT = ShowVectorValue.self
+  View2D.inInvPostViewer = SoGroup1.self
   View2D.view2DExtensionsOn = Negation.outToggle
 }
 networkModel  {
@@ -1083,7 +1085,7 @@ networkModel  {
         uniqueId = 169
         objectName = Mesh
         parentUniqueId = 0
-        frame = "-192 -14 326 372"
+        frame = "-216 -14 326 372"
         color  {
           r = 85
           g = 170
