@@ -98,6 +98,7 @@ private:
 
   //! Field to enable homogeneous coordinates
   BoolField *_homogeneousFld;
+  BoolField *_homogeneous2DFld;
 
   //@}
 

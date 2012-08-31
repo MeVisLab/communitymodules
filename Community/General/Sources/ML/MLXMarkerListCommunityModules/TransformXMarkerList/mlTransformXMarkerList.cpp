@@ -93,6 +93,9 @@ TransformXMarkerList::TransformXMarkerList (void)
   _homogeneousFld = fields->addBool("divideByHomogeneousCoordinate");
   _homogeneousFld->setBoolValue(false);
 
+  _homogeneous2DFld = fields->addBool("divideByZCoordinate");
+  _homogeneous2DFld->setBoolValue(false);
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -131,12 +134,13 @@ void TransformXMarkerList::handleNotification (Field * /*field*/)
   if (!_transformEnabled->getBoolValue())
     matrix = mat4::getIdentity();
 
+  // Clear output list
+  _outXMarkerList.clearList();
+
   // Transform XMarkers
   Base *baseValue = _inputXMarkerList->getBaseValue();
   if (baseValue && BASE_IS_A(baseValue,XMarkerList)) {
     XMarkerList *inXMarkerList = (XMarkerList *) baseValue; 
-    // Clear output list
-    _outXMarkerList.clearList();
     for (int i=0; i<int(inXMarkerList->getSize()); ++i) {
       // Get marker position and transform it
       XMarker marker = inXMarkerList->at (i);
@@ -152,13 +156,19 @@ void TransformXMarkerList::handleNotification (Field * /*field*/)
         marker.y() = vMarker[1];
         marker.z() = vMarker[2];
       }
+      if (_homogeneous2DFld->getBoolValue() && marker.z() != 0.0)
+      {
+        marker.pos[0] = marker.pos[0] / marker.pos[2];
+        marker.pos[1] = marker.pos[1] / marker.pos[2];
+        marker.pos[2] = 1.0;
+      }
       // Add marker to output list
       _outXMarkerList.appendItem (marker);
     }
     // Select XMarker which is selected in input list and notify attachments
     _outXMarkerList.doSelectItem(inXMarkerList->getCurrentIndex());
-    _outputXMarkerList->notifyAttachments();
   }
+  _outputXMarkerList->notifyAttachments();
 }
 
 ML_END_NAMESPACE
