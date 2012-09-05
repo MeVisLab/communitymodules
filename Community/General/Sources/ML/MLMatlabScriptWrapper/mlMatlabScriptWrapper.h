@@ -187,7 +187,7 @@ private:
   //! The WEM output field.
   BaseField *_outputWEMFld;
   //! The output WEM.
-  WEM *_outWEM;
+  WEMPtr _outWEM;
 
   //! Type a Matlab script into this field.
   StringField* _matlabScriptFld;

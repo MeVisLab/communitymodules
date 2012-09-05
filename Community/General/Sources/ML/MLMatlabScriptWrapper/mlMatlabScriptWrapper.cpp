@@ -38,7 +38,7 @@
 #include "mlMatlabScriptWrapper.h"
 
 // SDK includes
-#include <macBundle.h>
+//#include <macBundle.h>
 
 // System includes
 #include <iostream>
@@ -260,7 +260,7 @@ MatlabScriptWrapper::~MatlabScriptWrapper()
     engClose(m_pEngine);
   }
 
-  ML_DELETE(_outWEM);
+  _outWEM = NULL;
 }
 
 
