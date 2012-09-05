@@ -473,8 +473,8 @@ ML_START_NAMESPACE
     getOutImg()->setPageExt ( Vector(_xsize, _ysizeFld->getIntValue(), 1, 1, 1, 1));
 
     // Determine new min/max range.
-    long double min = _backgroundFld->getIntValue();
-    long double max = _foregroundFld->getIntValue();
+    MLdouble min = _backgroundFld->getIntValue();
+    MLdouble max = _foregroundFld->getIntValue();
     getOutImg()->setMinVoxelValue( min );
     getOutImg()->setMaxVoxelValue( max );
 
