@@ -38,7 +38,9 @@
 #include "mlMatlabScriptWrapper.h"
 
 // SDK includes
-//#include <macBundle.h>
+#if defined(MACOS)
+# include <macBundle.h>
+#endif
 
 // System includes
 #include <iostream>
