@@ -63,9 +63,9 @@ LinearInterpolateXMarkerList::LinearInterpolateXMarkerList ()
 
   // Add fields to the module and set their values.
   _inputXMarkerListFld = fields.addBase("inputXMarkerList");
-  _inputXMarkerListFld->setBaseValue(NULL);
+  _inputXMarkerListFld->addAllowedType<XMarkerList>();
   _outputXMarkerListFld = fields.addBase("outputXMarkerList");
-  _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
+  _outputXMarkerListFld->setBaseValueAndAddAllowedType(&_outputXMarkerList);
 
   // Mode field: equidistant or add intermediate points
   std::vector< std::string > modes( 4 );

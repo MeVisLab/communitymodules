@@ -98,7 +98,7 @@ XMarkerListFromFile::XMarkerListFromFile (void)
 
   // Output XMarkerList
   _outputXMarkerListFld = fields->addBase("outputXMarkerList");
-  _outputXMarkerListFld->setBaseValue(&_outputXMarkerList);
+  _outputXMarkerListFld->setBaseValueAndAddAllowedType(&_outputXMarkerList);
 
   // Update fields
   _updateFld = fields->addNotify("update");

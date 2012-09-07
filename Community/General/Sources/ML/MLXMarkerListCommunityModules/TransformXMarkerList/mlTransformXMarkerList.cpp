@@ -63,8 +63,10 @@ TransformXMarkerList::TransformXMarkerList (void)
 
   // Input and output XMarkerList
   _inputXMarkerList = fields->addBase("inputXMarkerList");
+  _inputXMarkerList->addAllowedType<XMarkerList>();
+
   _outputXMarkerList = fields->addBase("outputXMarkerList");
-  _outputXMarkerList->setBaseValue(&_outXMarkerList);
+  _outputXMarkerList->setBaseValueAndAddAllowedType(&_outXMarkerList);
   
   // Bool field to enable/disable transformation
   _transformEnabled = fields->addBool("transformEnabled");

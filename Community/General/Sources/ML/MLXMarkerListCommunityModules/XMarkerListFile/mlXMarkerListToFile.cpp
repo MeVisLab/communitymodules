@@ -80,7 +80,7 @@ XMarkerListToFile::XMarkerListToFile (void)
 
   // Add input XMarkerList field containing the markers to write to file
   _inputXMarkerListFld = fields->addBase("inputXMarkerList");
-  _inputXMarkerListFld->setBaseValue(NULL);
+  _inputXMarkerListFld->addAllowedType<XMarkerList>();
 
   // Add bools to select elements for the export
   _positionXFld = fields->addBool("exportPositionX");
