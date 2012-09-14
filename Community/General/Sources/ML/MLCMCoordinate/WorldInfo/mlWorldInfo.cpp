@@ -295,9 +295,9 @@ ML_START_NAMESPACE
     vec3   imageWorldCenter(0,0,0);
     SubImgBoxf imageWorldBox = SubImgBoxf();
     Rotation imageWorldRotation = Rotation();
-    float  voxelvol  = 0;
-    float  totalvol  = 0;
-    float  megavoxel = 0;
+    double  voxelvol  = 0;
+    double  totalvol  = 0;
+    double  megavoxel = 0;
     MLDataType dType = MLuint16Type;
     std::string pImgInfo = "No Connection";
     mat4 zeroMat=mat4::getMat(0.0);   /// TB 16.8.2001
@@ -476,7 +476,7 @@ ML_START_NAMESPACE
             }
           }
         }
-        float det =  rotationMatrix.det();
+        double det =  rotationMatrix.det();
         // Set rotation field only if there is a valid rotation matrix defined
         if ( MLAbs(det - 1) < 0.0001 ){
           imageWorldRotation = Rotation(rotationMatrix);

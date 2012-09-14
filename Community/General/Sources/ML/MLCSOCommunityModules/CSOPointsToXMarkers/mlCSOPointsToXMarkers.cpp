@@ -149,7 +149,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
 
   if (_inputCSOList!=NULL) {
     // Get list index value
-    int listIndex = mlMax (static_cast<MLint>(-1), _listIndexFld->getIntValue());
+    MLint listIndex = mlMax (static_cast<MLint>(-1), _listIndexFld->getIntValue());
 
     // Get output options
     const bool outputNormals = _outputCSONormals->getBoolValue();
@@ -173,7 +173,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
         currentIndex = 0;
       } else {
         numOfLoops = 1;
-        currentIndex = listIndex;
+        currentIndex = static_cast<int>(listIndex);
       }
       for (int j=currentIndex; j<currentIndex + numOfLoops; j++) {
         // Get CSO at listIndex

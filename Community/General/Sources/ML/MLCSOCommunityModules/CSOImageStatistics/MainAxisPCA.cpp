@@ -72,7 +72,7 @@ void MainAxisPCA::getInverseMatrix(float **aMatrix, float **invMatrix)
         - aMatrix[1][1] * aMatrix[2][3] * aMatrix[3][2]
         - aMatrix[1][2] * aMatrix[2][1] * aMatrix[3][3];
     
-    if (det != 0){ det = 1.0/det; }
+    if (det != 0){ det = 1.0f/det; }
     
     // Compute adjacent matrix, transpose it and multiply with D
     
@@ -229,7 +229,7 @@ void MainAxisPCA::computeMainAxis(const std::vector<ml::vec3>& pointCloud)
     float** invMatrix  = matrix(1,3,1,3);
     float*  eigenValues = vL_vector(1,3);
     
-    const unsigned int size = pointCloud.size();
+    const int size = static_cast<int>( pointCloud.size() );
     
     // copy positions to vertices
     float* vertices = NULL;
@@ -252,7 +252,7 @@ void MainAxisPCA::computeMainAxis(const std::vector<ml::vec3>& pointCloud)
     _baryCenter = calcBaryCenter(vertices, size);
     
     // Compute covariant matrix, so the Jacobian matrix can be computed
-    getCovarianceMatrix(vertices, size, covaMatrix, _baryCenter);
+    getCovarianceMatrix(vertices, static_cast<long int>(size), covaMatrix, _baryCenter);
     
     // Compute the Jacobian matrix
     int nrot=0; // dummy variable
@@ -282,7 +282,7 @@ void MainAxisPCA::computeMainAxis(const std::vector<ml::vec3>& pointCloud)
     
     // Get extends of the bounding box
     float minX=0, maxX=0, minY=0, maxY=0, minZ=0, maxZ=0;
-    getBoundingBox(newVertices, size, minX, maxX, minY, maxY, minZ, maxZ);
+    getBoundingBox(newVertices, static_cast<long int>(size), minX, maxX, minY, maxY, minZ, maxZ);
     
     // Extends of the object aligned bounding box
     _xDiameter = maxX - minX;
@@ -290,9 +290,9 @@ void MainAxisPCA::computeMainAxis(const std::vector<ml::vec3>& pointCloud)
     _zDiameter = maxZ - minZ;
     
     // Half the extend...
-    float half_x = _xDiameter / 2.0;
-    float half_y = _yDiameter / 2.0;
-    float half_z = _zDiameter / 2.0;
+    float half_x = _xDiameter / 2.0f;
+    float half_y = _yDiameter / 2.0f;
+    float half_z = _zDiameter / 2.0f;
     
     // Rotate all points back by multiplying them with the inverse Jacobian matrix.
     getInverseMatrix(jacobiMat, invMatrix);

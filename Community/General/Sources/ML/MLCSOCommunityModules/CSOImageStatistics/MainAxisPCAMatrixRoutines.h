@@ -147,16 +147,16 @@ void jacobi(float **a, int n, float d[], float **v, int *nrot)
         }
         
         if (i < 4) {
-            tresh=0.2*sm/(n*n);
+            tresh=0.2f*sm/(n*n);
         } else {
-            tresh=0.0;
+            tresh=0.0f;
         }
         
         for (ip=1;ip<=n-1;ip++) {
             
             for (iq=ip+1;iq<=n;iq++) {
                 
-                g=100.0*fabs(a[ip][iq]);
+                g=100.0f*fabs(a[ip][iq]);
                 
                 if ((i > 4) && ((float)(fabs(d[ip])+g) == (float)fabs(d[ip]))
                             && ((float)(fabs(d[iq])+g) == (float)fabs(d[iq]))){
@@ -169,14 +169,14 @@ void jacobi(float **a, int n, float d[], float **v, int *nrot)
                     if ((float)(fabs(h)+g) == (float)fabs(h)){
                         t=(a[ip][iq])/h;
                     } else {
-                        theta=0.5*h/(a[ip][iq]);
-                        t=1.0/(fabs(theta)+sqrt(1.0+theta*theta));
+                        theta=0.5f*h/(a[ip][iq]);
+                        t=1.0f/(fabs(theta)+static_cast<float>(sqrt(1.0f+theta*theta)));
                         if (theta < 0.0) { t = -t; }
                     }
                     
-                    c=1.0/sqrt(1+t*t);
+                    c=1.0f/sqrt(1+t*t);
                     s=t*c;
-                    tau=s/(1.0+c);
+                    tau=s/(1.0f+c);
                     h=t*a[ip][iq];
                     z[ip] -= h;
                     z[iq] += h;

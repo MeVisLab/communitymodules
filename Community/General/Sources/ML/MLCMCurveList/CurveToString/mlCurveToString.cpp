@@ -103,14 +103,15 @@ void CurveToString::UpdateString()
 {
 
   std::stringstream curveString;
+  std::stringstream indexString;
   std::string vSep = f_ValueSeparator->getStringValue();
   std::string cSep = f_CurveSeparator->getStringValue();
-  int nCurveSets = m_InCurveList->getNumCurves();
+  size_t nCurveSets = m_InCurveList->getNumCurves();
   if ( nCurveSets == 0 ) {return;}
 
   for (int iSet = 0; iSet < nCurveSets; ++iSet ) {
 
-    int nCurves = m_InCurveList->getCurveData( iSet )->getNumSeries();
+    size_t nCurves = m_InCurveList->getCurveData( iSet )->getNumSeries();
     if (nCurves == 0 ) {continue;}
 
     for (int iCurve = 0; iCurve < nCurves; ++iCurve ) {
@@ -118,9 +119,12 @@ void CurveToString::UpdateString()
       CurveData *curveSet = m_InCurveList->getCurveData( iSet );
 
       for (int iX = 0; iX < curveSet->getPoints(); ++iX ){
-        float xValue = curveSet->getXValue( iX );
-        float yValue = curveSet->getYValue( iCurve,iX );
+        const double yValue = curveSet->getYValue( iCurve,iX );
         curveString << yValue << vSep;
+        if ( iCurve == 0 ){
+          const double xValue = curveSet->getXValue( iX );
+          indexString << xValue << vSep;
+        }
       }
       char dummy;
       curveString >> dummy;
@@ -128,7 +132,9 @@ void CurveToString::UpdateString()
     }
   }
   f_CurveString->setStringValue( curveString.str() );
-
+  char dummy;
+  indexString >> dummy;
+  f_IndexString->setStringValue( indexString.str() );
 }
 
 ML_END_NAMESPACE

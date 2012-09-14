@@ -69,9 +69,9 @@ private:
   //! Field for holding the distances per cso
   StringField* _distancesFld;
 
-  FloatField* _AverageMinimumDistanceFld;
-  FloatField* _AverageMeanDistanceFld;
-  FloatField* _AverageMaxDistanceFld;
+  DoubleField* _AverageMinimumDistanceFld;
+  DoubleField* _AverageMeanDistanceFld;
+  DoubleField* _AverageMaxDistanceFld;
 
   //! Apply field
   NotifyField* _applyFld;

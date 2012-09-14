@@ -501,8 +501,8 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
           // Common
           if ( f_SetCSOLabel->getBoolValue()          ) { currentCSO->setLabel(          f_CSOLabel->getStringValue()       ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
           if ( f_SetCSODescription->getBoolValue()    ) { currentCSO->setDescription(    f_CSODescription->getStringValue() ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
-          if ( f_SetCSOCreatorId->getBoolValue()      ) { currentCSO->setCreatorId(      f_CSOCreatorId->getIntValue()      ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
-          if ( f_SetCSOTimePointIndex->getBoolValue() ) { currentCSO->setTimePointIndex( f_CSOTimePointIndex->getIntValue() ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
+          if ( f_SetCSOCreatorId->getBoolValue()      ) { currentCSO->setCreatorId(      static_cast<int>(f_CSOCreatorId->getIntValue())      ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
+          if ( f_SetCSOTimePointIndex->getBoolValue() ) { currentCSO->setTimePointIndex( static_cast<int>(f_CSOTimePointIndex->getIntValue()) ); notificationFlag |= CSOList::NOTIFICATION_CSO_FINISHED; }
 
           if ( f_SetCSOIsSelected->getBoolValue()      ) {
             CSOList *currentList = currentCSO->getCSOList();
@@ -576,7 +576,7 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
           }
 
           if ( f_SetGroupUseTimePointIndex->getBoolValue() ){ currentGroup->setUseTimePointIndex( f_GroupUseTimePointIndex->getBoolValue() ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
-          if ( f_SetGroupTimePointIndex->getBoolValue()    ){ currentGroup->setTimePointIndex(    f_GroupTimePointIndex->getIntValue()     ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
+          if ( f_SetGroupTimePointIndex->getBoolValue()    ){ currentGroup->setTimePointIndex(    static_cast<int>(f_GroupTimePointIndex->getIntValue())     ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
 
           if ( f_SetGroupUseShowState->getBoolValue()     ) { currentGroup->setUseShowState(     f_GroupUseShowState->getBoolValue()     ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
           if ( f_SetGroupShowState->getBoolValue()        ) { currentGroup->setShowState(        f_GroupShowState->getBoolValue()        ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
@@ -606,7 +606,7 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
 
           // Rules
           if ( f_SetGroupMaximumNumCSOs->getBoolValue() ) {
-            currentGroup->getRules().setNumMaximumCSOs( f_GroupMaximumNumCSOs->getIntValue() );
+            currentGroup->getRules().setNumMaximumCSOs( static_cast<int>(f_GroupMaximumNumCSOs->getIntValue()) );
             currentGroup->getRules().applyTo(*currentGroup);
             notificationFlag |= (CSOList::NOTIFICATION_CSO_FINISHED | CSOList::NOTIFICATION_GROUP_FINISHED);
           }

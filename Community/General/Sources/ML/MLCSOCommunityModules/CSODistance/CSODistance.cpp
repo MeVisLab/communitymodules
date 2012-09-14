@@ -41,9 +41,9 @@ CSODistance::CSODistance() : BaseOp(0, 0)
   (_minimumDistancePoint2Fld = fieldC->addVec3f("minimumDistancePoint2"))->setVec3fValue(vec3(0.0,0.0,0.0));
   _distancesFld = addString("distances",_tableHeader );
 
-  _AverageMinimumDistanceFld = addFloat("averageMinimumDistance", 0.0f );
-  _AverageMeanDistanceFld    = addFloat("averageMeanDistance", 0.0f );
-  _AverageMaxDistanceFld     = addFloat("averageMaximumDistance", 0.0f );
+  _AverageMinimumDistanceFld = addDouble("averageMinimumDistance", 0.0 );
+  _AverageMeanDistanceFld    = addDouble("averageMeanDistance", 0.0 );
+  _AverageMaxDistanceFld     = addDouble("averageMaximumDistance", 0.0 );
 
   //////////////////////////////////////////////////////////////////////////
 
@@ -252,9 +252,9 @@ void CSODistance::_process()
         double minDist = ML_DOUBLE_MAX;
         vec3 point1;
         vec3 point2;
-        float averageMinDistance = 0.0f;
-        float averageMeanDistance = 0.0f;
-        float averageMaxDistance = 0.0f;
+        double averageMinDistance = 0.0;
+        double averageMeanDistance = 0.0;
+        double averageMaxDistance = 0.0;
         for ( int iCSO = 0; iCSO<nCSOs; ++iCSO ){
           CSO* currentCSO = _csoList0->getCSOAt( iCSO );
           CSO* matchingCSO = _findMatchingCSO(iCSO);
@@ -322,9 +322,9 @@ void CSODistance::_process()
         _minimumDistancePoint2Fld->setVec3fValue(point2);
         _minimumDistanceFld->setFloatValue( static_cast<float>(minDistance) );
 
-        _AverageMinimumDistanceFld->setFloatValue( averageMinDistance  );
-        _AverageMeanDistanceFld->setFloatValue(    averageMeanDistance );
-        _AverageMaxDistanceFld->setFloatValue(     averageMaxDistance  );
+        _AverageMinimumDistanceFld->setDoubleValue( averageMinDistance  );
+        _AverageMeanDistanceFld->setDoubleValue(    averageMeanDistance );
+        _AverageMaxDistanceFld->setDoubleValue(     averageMaxDistance  );
 
 
 
