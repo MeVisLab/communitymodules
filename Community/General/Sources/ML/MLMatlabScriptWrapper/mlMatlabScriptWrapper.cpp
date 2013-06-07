@@ -93,6 +93,8 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   (_useExternalScriptFld = fields->addBool("useExternalScript"))->setBoolValue(false);
   //! Where will Matlab script be dumped.
   (_matlabScriptPathFld = fields->addString("matlabScriptPath"))->setStringValue("");
+  //! Add open Matlab file trigger.
+  _openMatlabFileFld = fields->addNotify("openMatlabFile");
 
   //! Set input and output data names used in Matlab.
   (_inDataNameFld[0] = fields->addString("inDataName0"))->setStringValue("Input0");
@@ -287,6 +289,19 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     } else {
       _stdReportFld->setStringValue("Matlab is already started");
     }
+  }
+
+  if(field == _openMatlabFileFld) {
+    std::string pathString = _matlabScriptPathFld->getStringValue();
+    ML_TRY {
+      std::string openFileLink("opentoline('");
+      if(pathString.compare(0,openFileLink.length(),openFileLink) == 0) {
+        engEvalString(m_pEngine, pathString.c_str());
+      } else {
+        engEvalString(m_pEngine, (openFileLink+pathString+"',0,0)").c_str());
+      }
+    }
+    ML_CATCH_RETHROW;
   }
 
   if( (field == _showSessionWindowFld) && _checkMatlabIsStarted() ) {
@@ -1132,7 +1147,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
     // Copy Matlab data to XMarker if it's not empty.
     if(dataPos!=NULL) {
       // Get rows numbers.
-      const size_t rows = mxGetM(m_pos);
+      const size_t rows = mxGetM(m_pos);    // Number of markers
       const size_t cols = mxGetN(m_pos);
 
       for(i=0; i<rows; i++)
@@ -1330,7 +1345,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       engEvalString(m_pEngine, "clear tmpOutWEMNodes");
       // Clear temp string.
       executeStr.str("");
-      
+
       // Get faces
       executeStr << "tmpOutWEMFaces=" << outWEMStr << "{" << j << "}" << ".Faces-1";
       engEvalString(m_pEngine, executeStr.str().c_str());
@@ -1340,7 +1355,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       engEvalString(m_pEngine, "clear tmpOutWEMFaces");
       // Clear temp string.
       executeStr.str("");
-      
+
       // Get data from Matlab array.
       if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
       {

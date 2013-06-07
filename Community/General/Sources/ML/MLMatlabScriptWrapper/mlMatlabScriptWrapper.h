@@ -187,7 +187,7 @@ private:
   //! The WEM output field.
   BaseField *_outputWEMFld;
   //! The output WEM.
-  WEMPtr _outWEM;
+  WEM *_outWEM;
 
   //! Type a Matlab script into this field.
   StringField* _matlabScriptFld;
@@ -232,6 +232,8 @@ private:
   StringField* _stdReportFld;
   //! Restart Matlab button.
   NotifyField* _restartMatlabFld;
+  //! Open file button.
+  NotifyField* _openMatlabFileFld;
 
   //{@ Scalar float values.
   DoubleField *_scalarFld[6];

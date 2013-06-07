@@ -73,7 +73,6 @@ win64 {
 else:win32 {
   QMAKE_LIBDIR += $${MATLAB_LIBDIR}
 
-  LIBS += libdflapack.lib
   LIBS += libeng.lib
   LIBS += libmat.lib
   LIBS += libmex.lib
