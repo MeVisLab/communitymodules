@@ -61,26 +61,26 @@ ModuleHelp  {
   See the example network for an example.
 
 - **Scalars:**
-  Double precision. These can be used both as input and ouput variables. Field notifications will be sent
+  Double precision. These can be used both as input and output variables. Field notifications will be sent
   in MeVisLab only if a scalar has changed its value after the Matlab script execution.
 
 - **Vectors:**
-  Double precision 4-D integer point. These can be used both as input and ouput variables. Field notifications
+  Double precision 4-D integer point. These can be used both as input and output variables. Field notifications
   will be sent in MeVisLab only if a vector has changed its value after the Matlab script execution.
 
 - **Matrices:**
-  Double precision 4x4 integer matrix. These can be used both as input and ouput variables. Field notifications
+  Double precision 4x4 integer matrix. These can be used both as input and output variables. Field notifications
   will be sent in MeVisLab only if a matrix has changed its value after the Matlab script execution.
 
 - **Strings:**
-  These can be used both as input and ouput variables. Field notifications will be sent in MeVisLab only if a
+  These can be used both as input and output variables. Field notifications will be sent in MeVisLab only if a
   string has changed its value after the Matlab script execution.
 
 The variable names for the above data structures in the Matlab workspace can be set.
 
 The Matlab script can be written directly in the module GUI, or an external script file (`.m`) can be called.
 If you choose to use an existing script, the script in :field:`matlabScript` will disappear and there is no
-posibility to edit a Matlab script file from MeVisLab.
+possibility to edit a Matlab script file from MeVisLab.
 
 Push the :field:`update` button to execute the Matlab script, set :field:`autoUpdate` to update on input
 value change, or set :field:`autoApply` to update on parameter value change.
@@ -92,7 +92,7 @@ The :field:`restartMatlab` button can be used to restart a Matlab session once i
   Details  {
     text = "***Coordinate systems in MeVisLab and Matlab**
 
-In the context of this module, the only coordinate system that is considered is the discrete voxel index coordinate system, i.e., images are considered as multidimensional matrices. Both MeVisLab and Matlab have the origin in the upper left corner and a y-axis that points "downwards". However, note that MeVisLab starts counting a 0, whereas Matlab starts counting a 1, i.e., the upper left voxel has the coordinate ``(0,0)`` in MeVisLab and ``(1,1)`` in Matlab. The major difference between MeVisLab and Matlab is the indexing order: MeVisLab uses ``[x,y]`` while Matlab uses ``[y,x]`` (i.e., row-column into a matrix). Thus, an image will appear flipped when exported from MeVisLab and visualized in Matlab or vice-versa. To correct for this, one can use the *permute* command in Matlab, for example::
+In the context of this module, the only coordinate system that is considered is the discrete voxel index coordinate system, i.e., images are considered as multidimensional matrices. Both MeVisLab and Matlab have the origin in the upper left corner and a y-axis that points "downwards". However, note that MeVisLab starts counting from 0, whereas Matlab starts counting from 1, i.e., the upper left voxel has the coordinate ``(0,0)`` in MeVisLab and ``(1,1)`` in Matlab. The major difference between MeVisLab and Matlab is the indexing order: MeVisLab uses ``[x,y]`` while Matlab uses ``[y,x]`` (i.e., row-column into a matrix). Thus, an image will appear flipped when exported from MeVisLab and visualized in Matlab or vice-versa. To correct for this, one can use the *permute* command in Matlab, for example::
 
    >> permute(Input0,[2 1])
 
@@ -154,15 +154,15 @@ which swaps the x and y axes. See the example network for an example.*"
     }
     Field outputXMarkerList {
       type = MLBase
-      text = ""
+      text = "The output of a XMarkerList."
     }
     Field outputWEM {
       type = MLBase
-      text = ""
+      text = "The output of a WEM."
     }
     Field outputCurveList {
       type = MLBase
-      text = ""
+      text = "The output of a CurveList."
     }
   }
   Parameters  {
@@ -194,7 +194,15 @@ which swaps the x and y axes. See the example network for an example.*"
     Field matlabScriptPath {
       type = String
       text = "The path and the name of the external Matlab script file (`.m`)."
-      title = "Matlab Script"
+      title = "Matlab Script Path"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field openMatlabFile {
+      type = Trigger
+      text = "Open the Matlab script in :field:`matlabScriptPath` in the internal Matlab editor."
+      title = Open
       visibleInGUI = Yes
       persistent = Yes
       default = ""

@@ -29,7 +29,7 @@ MLModule MatlabScriptWrapper {
   }
 
   Window {
-  width = 600
+  width = 544
   Category Main {
     expandY = Yes
     Vertical {
@@ -42,53 +42,16 @@ MLModule MatlabScriptWrapper {
       }
 
       Horizontal {
-        CheckBox useExternalScript {}
+        CheckBox useExternalScript { expandX = False }
         Field matlabScriptPath {
-          title = "Matlab Script:"
+          title = ""
           expandX = Yes
           browseButton = ON
           browseMode = open
           browseFilter = "MATLAB M-files (*.m)"
           dependsOn = useExternalScript
         }
-      }
-      Vertical {
-        Horizontal {
-          Vertical {
-            Box "Input image names" {
-              Field inDataName0 {title = "Input0 name:" expandX = yes}
-              Field inDataName1 {title = "Input1 name:" expandX = yes}
-              Field inDataName2 {title = "Input2 name:" expandX = yes}
-            }
-          }
-          Vertical {
-            Box "Output image names" {
-              Field outDataName0 {title = "Output0 name:" expandX = yes}
-              Field outDataName1 {title = "Output1 name:" expandX = yes}
-              Field outDataName2 {title = "Output2 name:" expandX = yes}
-            }
-          }
-        }
-        Horizontal {
-          Vertical {
-            Box "XMarker names" {
-              Field inXMarkerName {title = "Input name:" expandX = yes}
-              Field outXMarkerName {title = "Output name:" expandX = yes}
-            }
-          }
-          Vertical {
-            Box "WEM names" {
-              Field inWEMName {title = "Input name:" expandX = yes}
-              Field outWEMName {title = "Output name:" expandX = yes}
-            }
-          }
-          Vertical {
-            Box "Curve names" {
-              Field inCurveName {title = "Input name:" expandX = yes}
-              Field outCurveName {title = "Output name:" expandX = yes}
-            }
-          }
-        }
+        Button openMatlabFile { title = "Open" dependsOn = useExternalScript }
       }
       Horizontal {
         CheckBox autoUpdate { title = "Auto update" tooltip = "Update on input changes." }
@@ -96,118 +59,141 @@ MLModule MatlabScriptWrapper {
         CheckBox showSessionWindow { title = "Show Matlab session window" }
         Button restartMatlab { alignX = Right title = "Restart Matlab" }
       }
-      Field status { title = "Status:" edit = No }
-      Button update { alignX = Left title = "Update" }
+      Horizontal {
+        Field status { edit = No }
+        Button update { title = "Update" }
+      }
     }
   } // Category Main
+  Category "I/O" {
+    Vertical {
+      Horizontal {
+        Vertical {
+          Box "Input image names" {
+            Field inDataName0 {title = "Input0 name:"}
+            Field inDataName1 {title = "Input1 name:"}
+            Field inDataName2 {title = "Input2 name:"}
+            }
+        }
+        Vertical {
+          Box "Output image names" {
+            Field outDataName0 {title = "Output0 name:"}
+            Field outDataName1 {title = "Output1 name:"}
+            Field outDataName2 {title = "Output2 name:"}
+          }
+        }
+      }
+      Box "XMarker names" {
+        Field inXMarkerName {title = "Input name:"}
+        Field outXMarkerName {title = "Output name:"}
+      }
+      Box "WEM names" {
+        Field inWEMName {title = "Input name:"}
+        Field outWEMName {title = "Output name:"}
+      }
+      Box "Curve names" {
+        Field inCurveName {title = "Input name:"}
+        Field outCurveName {title = "Output name:"}
+      }
+        }
+  } // Category IO
   Category Scalars {
-    Horizontal {
-      Vertical {
-        Horizontal {
-          Field scalarName0 {title = "Name:" expandX = yes}
-          Field scalar0 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field scalarName1 {title = "Name:" expandX = yes}
-          Field scalar1 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field scalarName2 {title = "Name:" expandX = yes}
-          Field scalar2 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field scalarName3 {title = "Name:" expandX = yes}
-          Field scalar3 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field scalarName4 {title = "Name:" expandX = yes}
-          Field scalar4 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field scalarName5 {title = "Name:" expandX = yes}
-          Field scalar5 {title = "Value:" expandX = yes}
-        }
+    Table {
+      Row {
+        Field scalarName0 {title = "Name:"}
+        Field scalar0 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field scalarName1 {title = "Name:"}
+        Field scalar1 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field scalarName2 {title = "Name:"}
+        Field scalar2 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field scalarName3 {title = "Name:"}
+        Field scalar3 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field scalarName4 {title = "Name:"}
+        Field scalar4 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field scalarName5 {title = "Name:"}
+        Field scalar5 {title = "Value:" expandX = yes}
       }
     }
   } // Category Scalars
   Category Vectors {
-    Horizontal {
-      Vertical {
-        Horizontal {
-          Field vectorName0 {title = "Name:" expandX = yes}
-          Field vector0 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName1 {title = "Name:" expandX = yes}
-          Field vector1 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName2 {title = "Name:" expandX = yes}
-          Field vector2 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName3 {title = "Name:" expandX = yes}
-          Field vector3 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName4 {title = "Name:" expandX = yes}
-          Field vector4 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field vectorName5 {title = "Name:" expandX = yes}
-          Field vector5 {title = "Value:" expandX = yes}
-        }
+    Table {
+      Row {
+        Field vectorName0 {title = "Name:"}
+        Field vector0 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field vectorName1 {title = "Name:"}
+        Field vector1 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field vectorName2 {title = "Name:"}
+        Field vector2 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field vectorName3 {title = "Name:"}
+        Field vector3 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field vectorName4 {title = "Name:"}
+        Field vector4 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field vectorName5 {title = "Name:"}
+        Field vector5 {title = "Value:" expandX = yes}
       }
     }
   } // Category Vectors
   Category Matrices {
-    Horizontal {
-      Vertical {
-        Vertical {
-          //Field matrixName0 { title = "Name:" alignY = Top visibleOn = numberOfMatrices }
-          //TextView matrix0 { title = "Value:" maxh = 93 autoApply = Yes visibleOn = numberOfMatrices }
-          
-          Field matrixName0 {title = "Name:" expandX = yes}
-          TextView matrix0 {title = "Value:" maxh = 93 expandX = yes autoApply = Yes}
-        }
-        Vertical {
-          Field matrixName1 {title = "Name:" expandX = yes}
-          TextView matrix1 {title = "Value:" maxh = 93 expandX = yes autoApply = Yes}
-        }
-        Vertical {
-          Field matrixName2 {title = "Name:" expandX = yes}
-          TextView matrix2 {title = "Value:" maxh = 93 expandX = yes autoApply = Yes}
-        }
+    Table {
+      Row {
+        Field matrixName0 {title = "Name:" alignY = Top}
+        TextView matrix0 {title = "Value:" maxh = 93 autoApply = Yes}
+      }
+      Row {
+        Field matrixName1 {title = "Name:" alignY = Top}
+        TextView matrix1 {title = "Value:" maxh = 93 autoApply = Yes}
+      }
+      Row {
+        Field matrixName2 {title = "Name:" alignY = Top}
+        TextView matrix2 {title = "Value:" maxh = 93 autoApply = Yes}
       }
     }
   } // Category Matrices
   Category Strings {
-    Horizontal {
-      Vertical {
-        Horizontal {
-          Field stringName0 {title = "Name:" expandX = yes}
-          Field string0 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field stringName1 {title = "Name:" expandX = yes}
-          Field string1 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field stringName2 {title = "Name:" expandX = yes}
-          Field string2 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field stringName3 {title = "Name:" expandX = yes}
-          Field string3 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field stringName4 {title = "Name:" expandX = yes}
-          Field string4 {title = "Value:" expandX = yes}
-        }
-        Horizontal {
-          Field stringName5 {title = "Name:" expandX = yes}
-          Field string5 {title = "Value:" expandX = yes}
-        }
+    Table {
+      Row {
+        Field stringName0 {title = "Name:"}
+        Field string0 {title = "Value:" expandX = yes}
+      }
+      Row {
+        Field stringName1 {title = "Name:"}
+        Field string1 {title = "Value:"}
+      }
+      Row {
+        Field stringName2 {title = "Name:"}
+        Field string2 {title = "Value:"}
+      }
+      Row {
+        Field stringName3 {title = "Name:"}
+        Field string3 {title = "Value:"}
+      }
+      Row {
+        Field stringName4 {title = "Name:"}
+        Field string4 {title = "Value:"}
+      }
+      Row {
+        Field stringName5 {title = "Name:"}
+        Field string5 {title = "Value:"}
       }
     }
   } // Category Strings
