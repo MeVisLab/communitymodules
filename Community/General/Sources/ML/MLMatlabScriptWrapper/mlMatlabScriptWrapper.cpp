@@ -356,9 +356,9 @@ void MatlabScriptWrapper::_process()
   if(validScriptString) {
     if (_inputCurveFld->getBaseValue() != NULL) {
       // Check if a valid CurveData or CurveList is attached to the input
-      if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld,CurveData)||ML_BASE_IS_A(_inputCurveFld,CurveList)) ) {
+		if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld->getBaseValue(),CurveData)||ML_BASE_IS_A(_inputCurveFld->getBaseValue(),CurveList)) ) {
         // Copy input CurveData or CurveList to Matlab.
-        _copyInputWEMToMatlab();
+		_copyInputCurveToMatlab();
       }
     }
     if( _inputXMarkerListFld->getBaseValue() != NULL ) {
