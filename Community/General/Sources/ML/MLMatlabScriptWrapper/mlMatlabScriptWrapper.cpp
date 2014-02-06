@@ -356,9 +356,9 @@ void MatlabScriptWrapper::_process()
   if(validScriptString) {
     if (_inputCurveFld->getBaseValue() != NULL) {
       // Check if a valid CurveData or CurveList is attached to the input
-		if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld->getBaseValue(),CurveData)||ML_BASE_IS_A(_inputCurveFld->getBaseValue(),CurveList)) ) {
+      if (_inputCurveFld->isValidValue() && (ML_BASE_IS_A(_inputCurveFld->getBaseValue(),CurveData)||ML_BASE_IS_A(_inputCurveFld->getBaseValue(),CurveList)) ) {
         // Copy input CurveData or CurveList to Matlab.
-		_copyInputCurveToMatlab();
+        _copyInputCurveToMatlab();
       }
     }
     if( _inputXMarkerListFld->getBaseValue() != NULL ) {
@@ -1136,46 +1136,40 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
   engEvalString(m_pEngine, "clear tmpOutXMarkerListType");
   executeStr.str("");
 
-  // Get data from Matlab array.
-  if((m_pos  && !mxIsEmpty(m_pos) && mxGetClassID(m_pos) ==mxDOUBLE_CLASS) &&
-     (m_vec  && !mxIsEmpty(m_vec) && mxGetClassID(m_vec) ==mxDOUBLE_CLASS) &&
-     (m_type && !mxIsEmpty(m_type)&& mxGetClassID(m_type)==mxDOUBLE_CLASS)) {
-    double *dataPos = static_cast<double*>(mxGetPr(m_pos));
-    double *dataVec = static_cast<double*>(mxGetPr(m_vec));
-    double *dataType = static_cast<double*>(mxGetPr(m_type));
+  // Get data from Matlab array in which the positions have to be present.
+  if(m_pos && !mxIsEmpty(m_pos) && mxGetClassID(m_pos)==mxDOUBLE_CLASS) {
+    double *dataPos  = static_cast<double*>(mxGetPr(m_pos));
 
     // Copy Matlab data to XMarker if it's not empty.
     if(dataPos!=NULL) {
       // Get rows numbers.
       const size_t rows = mxGetM(m_pos);    // Number of markers
-      const size_t cols = mxGetN(m_pos);
+      const size_t cols = mxGetN(m_pos);    // Number of dimensions (max 6)
 
-      for(i=0; i<rows; i++)
-      {
+      for(i=0; i<rows; i++) {
         // Fill marker with zeros.
         XMarker outMarker(vec3(0));
 
-        // Write matlab points to marker and prevent writing more than 6 dimensions
+        // Write Matlab points to marker and prevent writing more than 6 dimensions.
         for(j=0; j<cols && cols<=6; j++) {
           outMarker.pos[j] = dataPos[i + j*rows];
         }
-
-        // Write matlab vector to marker and prevent writing more than 3 dimensions
-        if(dataVec!=NULL) {
-          if(rows==mxGetM(m_vec)) {
+        // Optionally, get vector data from Matlab array
+        if(m_vec && !mxIsEmpty(m_vec) && mxGetClassID(m_vec)==mxDOUBLE_CLASS) {
+          double *dataVec = static_cast<double*>(mxGetPr(m_vec));
+          // Write Matlab vector to marker only if number of vectors are equal to points.
+          if(dataVec!=NULL && rows==mxGetM(m_vec)) {
+            // Prevent writing more than 3 dimensions.
             for(j=0; j<mxGetN(m_vec) && mxGetN(m_vec)<=3; j++) {
               outMarker.vec[j] = dataVec[i + j*rows];
             }
           }
         }
-
-        // Write matlab type vec to marker.
-        if(dataType!=NULL)
-        {
-          // Set type only if number points and types equal otherwise zero.
-          if(rows==mxGetM(m_type))
-          {
-            // Write type to XMarker.
+        // Optionally, get type data from Matlab array
+        if(m_type && !mxIsEmpty(m_type) && mxGetClassID(m_type)==mxDOUBLE_CLASS) {
+          double *dataType = static_cast<double*>(mxGetPr(m_type));
+          // Write Matlab type vec to marker only if number of vectors are equal to points.
+          if(dataType!=NULL && rows==mxGetM(m_type)) {
             outMarker.type = static_cast<MLint>(dataType[i]);
           }
         }
