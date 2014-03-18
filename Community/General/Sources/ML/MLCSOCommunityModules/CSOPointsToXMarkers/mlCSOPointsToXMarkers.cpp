@@ -195,7 +195,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
             for (unsigned int k=0; k<numOfPathPoints; k++)
             {
               vec3 posPathPoint = pathList->getPosAt(k);
-              if (points.back()!=posPathPoint) points.push_back(posPathPoint);
+              if (points.empty() == true || points.back()!=posPathPoint) points.push_back(posPathPoint);
             }
           }
 
