@@ -68,7 +68,7 @@ module Diagram2D {
 }
 module SoWEMRenderer {
   internal  {
-    frame = "885 173 136 56"
+    frame = "889 173 128 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -80,7 +80,7 @@ module SoWEMRenderer {
     }
   }
   fields  {
-    instanceName = SoWEMRenderer1
+    instanceName = SoWEMRenderer
     renderCaching = AUTO
     boundingBoxCaching = AUTO
     renderCulling = AUTO
@@ -130,14 +130,32 @@ module SoWEMRenderer {
     selectedTab = 0
   }
 }
+module LocalFileName {
+  internal  {
+    frame = "609 357 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "369 569 467 184"
+        sizeHint = "467 184"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(NETWORK)/testExample.m
+    checkIfFileExists = TRUE
+  }
+}
 module Comment {
   internal  {
     frame = "969 253 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "625 584 232 209"
-        sizeHint = "256 209"
+        geometry = "625 584 256 208"
+        sizeHint = "256 208"
         wasOpen = no
         wasActive = no
       }
@@ -222,12 +240,6 @@ module SoExaminerViewer {
       window _default {
         geometry = "26 59 489 362"
         sizeHint = "489 362"
-        wasOpen = no
-        wasActive = no
-      }
-      window _viewer {
-        geometry = "1175 433 400 400"
-        sizeHint = "400 400"
         wasOpen = no
         wasActive = no
       }
@@ -550,7 +562,6 @@ outCurve{1}(:,2) = spline(1:n,rand(n,1),ts);"
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
-    status = "Execution successful!"
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -770,7 +781,6 @@ outWEM{1}.Faces = [
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
-    status = "Execution successful!"
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -899,7 +909,7 @@ module SoView2DOverlay {
 }
 module View2D {
   internal  {
-    frame = "469 389 120 56"
+    frame = "469 405 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -927,7 +937,7 @@ module View2D {
     cineMode = CINE_Z
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
-    cineSpeed = 0.1000000015
+    cineSpeed = 0.1
     snapToCenter = FALSE
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
@@ -1035,7 +1045,6 @@ end
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
-    status = "Execution successful!"
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -1097,8 +1106,8 @@ module Comment {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "373 492 256 209"
-        sizeHint = "256 209"
+        geometry = "178 298 295 190"
+        sizeHint = "256 208"
         wasOpen = no
         wasActive = no
       }
@@ -1107,7 +1116,7 @@ module Comment {
   fields  {
     instanceName = Comment
     comment = "This example creates an XMarkerList with Matlab and displays the points in 3D in MeVisLab. Press Update in the MatlabScriptWrapper and see the result in the SoExaminerViewer. The StylePalette module sets the color according to the type-feature set in the Matlab-script.
-"
+The example external script contains the same code and can be selected by the checkbox. The example script can be opened for editing in Matlab with the Open button."
   }
   internalFields = ""
 }
@@ -1306,7 +1315,6 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
-    status = "Execution successful!"
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -1364,9 +1372,9 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
 }
 connections  {
   Diagram2D.inCurveList = MatlabScriptWrapper3.outputCurveList
-  SoWEMRenderer1.inWEM = MatlabScriptWrapper2.outputWEM
+  SoWEMRenderer.inWEM = MatlabScriptWrapper2.outputWEM
   TorusRenderer.inWEM = WEMIsoSurface.outWEM
-  SoExaminerViewer1.children = "TorusRenderer.self SoWEMRenderer1.self"
+  SoExaminerViewer1.children = "TorusRenderer.self SoWEMRenderer.self"
   WEMIsoSurface.input0 = MatlabScriptWrapper2.output0
   View2D1.inImage = SubImage.output0
   SubImage.input0 = LocalImage.outImage
@@ -1378,5 +1386,6 @@ connections  {
   SoExaminerViewer.children = So3DXMarker.self
   So3DXMarker.stylePalette = StylePalette.outStylePalette
   So3DXMarker.inXMarkerList = MatlabScriptWrapper.outputXMarkerList
+  MatlabScriptWrapper.matlabScriptPath = LocalFileName.trueName
 }
 networkModel = ""
