@@ -86,6 +86,9 @@ private:
   //! Option to compute and output CSO normals as well
   BoolField *_outputCSONormals;
 
+  //! Option to store CSOId in MarkerType (instead of index)
+  BoolField *_setIdInMarkerTypeFld;
+
   //@}
 
   // Output XMarkerList

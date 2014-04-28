@@ -79,6 +79,11 @@ CSOPointsToXMarkers::CSOPointsToXMarkers (void)
   _outputCSONormals = fields->addBool("outputCSONormals");
   _outputCSONormals->setBoolValue(false);
 
+  // Bool, if checked the cso id is put in the marker type
+  // (instead of the conventional index)
+  _setIdInMarkerTypeFld = fields->addBool("setIdInMarkerType");
+  _setIdInMarkerTypeFld->setBoolValue(false);
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -133,7 +138,10 @@ void CSOPointsToXMarkers::handleNotification (Field * field)
 
     convertCSOToXMarkerList();
   } 
-  else if (field==_convertPathPoints || field==_listIndexFld || field==_outputCSONormals)
+  else if ( field==_convertPathPoints || 
+            field==_listIndexFld || 
+            field==_outputCSONormals ||
+            field==_setIdInMarkerTypeFld )
   {
     convertCSOToXMarkerList();
   }
@@ -146,6 +154,8 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
 {
   // Empty output XMarkerList
   _outputXMarkerList.clear();
+
+  bool setIdInMarkerType = _setIdInMarkerTypeFld->getBoolValue();
 
   if (_inputCSOList!=NULL) {
     // Get list index value
@@ -179,6 +189,11 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
         // Get CSO at listIndex
         CSO * cso = _inputCSOList->getCSOAt(j);
 
+        // const int CSOId = cso->getId();
+        int markerType = j; // normally, the listIndex is stored in the markerType
+        // if setIdInMarkerType is set, the CSOId is stored instead.
+        if (setIdInMarkerType) markerType = cso->getId();
+
         // Compute plane normal
         cso->computePlaneNormal();
         const bool inPlane = cso->isInPlane();
@@ -203,7 +218,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
           for (std::list<vec3>::const_iterator it = points.begin(); it != points.end(); ++it) {
             // Create marker
             XMarker markerPath(*it);
-            markerPath.type = j;
+            markerPath.type = markerType;
             markerPath.pos[ 4 ] = timepoint;
             // Compute normal
             if (outputNormals && inPlane) {
@@ -250,7 +265,7 @@ void CSOPointsToXMarkers::convertCSOToXMarkerList()
             const int timepoint = cso->getTimePointIndex();
             vec3 pos = seedpoint->worldPosition;
             XMarker marker (pos);
-            marker.type = j;
+            marker.type = markerType;
             marker.pos[ 4 ] = timepoint;
 
             if (inPlane && outputNormals) {

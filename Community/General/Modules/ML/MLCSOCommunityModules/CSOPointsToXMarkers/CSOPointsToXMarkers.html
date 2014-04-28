@@ -14,7 +14,7 @@
 <h2>CSOPointsToXMarkers</h2>
 
 <h3><a NAME=Purpose></a>Purpose</h3>
-<blockquote>Output the points of a CSO in an XMarkerList. CSO normals can be computes as well and are then outputted in the vector element of the markers.
+<blockquote>Output the points of a CSO in an XMarkerList. CSO normals can be computes as well and are then outputted in the vector element of the markers. The marker type field is filled with the CSOListIndex, unless setIdInMarkerType is checked, in which case the marker type field is filled with the CSOId.
 </blockquote>
 
 <h3><a NAME=Usage></a>Usage</h3>
@@ -58,6 +58,10 @@
     <li>
       <b>outputCSONormals</b>
       Enable/disable computation and output of CSO normals in vector elements of XMarkerList
+    </li>
+    <li>
+      <b>setIdInMarkerType</b>
+      Checking this will make the CSOId appear in the marker type field (instead of the default CSOListIndex).
     </li>
     </ul>
 
