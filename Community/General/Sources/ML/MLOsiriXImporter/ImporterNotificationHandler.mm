@@ -12,29 +12,29 @@
 @implementation ImporterNotificationHandler
 - (id) initWithImporterML:(ml::OsiriXImporter*) aML
 {
-	if ((self = [super init])) {
-		
-		importerML=aML;
+  if ((self = [super init])) {
+    
+    importerML=aML;
 
-		[self registerSelfToNSNotificationCenter];
+    [self registerSelfToNSNotificationCenter];
 
-		
-	}
-	return self;
-	
+    
+  }
+  return self;
+  
 }
 -(void)registerSelfToNSNotificationCenter
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exporterIsAdded:) name:@"AnOsiriXExporterAdded" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exporterIsAdded:) name:@"AnOsiriXExporterAdded" object:nil];
 }
 -(void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver: self];
-	[super dealloc];
+  [[NSNotificationCenter defaultCenter] removeObserver: self];
+  [super dealloc];
 }
 - (void) exporterIsAdded: (NSNotification *)notification
 {
-	importerML->setBridgeToOsiriX([notification object]);
-	[[NSNotificationCenter defaultCenter] removeObserver: self];
+  importerML->setBridgeToOsiriX([notification object]);
+  [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 @end

@@ -39,19 +39,19 @@ public:
   OsiriXImporter ();
   ~OsiriXImporter ();
 
-	
-	//MeVisLab2OsiriXTBridge
-	MeVisLab2OsiriXTBridge* bridgeToOsiriX;
-	void notifyInputImagesUpdated();
-	void notifyXMarkerListUpdated();
-	void notifyCSOListUpdated();
-	void updateParameters(NSDictionary* parameters);
+  
+  //MeVisLab2OsiriXTBridge
+  MeVisLab2OsiriXTBridge* bridgeToOsiriX;
+  void notifyInputImagesUpdated();
+  void notifyXMarkerListUpdated();
+  void notifyCSOListUpdated();
+  void updateParameters(NSDictionary* parameters);
  
   //! Handle field changes of the field field.
   virtual void handleNotification (Field *field);
-	
-	//! Update internal module state after load or clone and enable notification handling again.
-	virtual void activateAttachments ();
+  
+  //! Update internal module state after load or clone and enable notification handling again.
+  virtual void activateAttachments ();
 
   // ----------------------------------------------------------
   //! \name Image processing methods.
@@ -82,7 +82,7 @@ private:
   // ----------------------------------------------------------
 
     //! The name of this operation (should be unique on the system)
-	StringField *_OperationNameFld;
+  StringField *_OperationNameFld;
 
 
   //! if it is true, the caching data should be recaculated.
@@ -90,78 +90,78 @@ private:
 
   //! When triggered, OsiriXImporter should free all memory. And set export port to empty.
   NotifyField *_ReleaseFld;
-  //! Point marker input from OsiriX	
+  //! Point marker input from OsiriX  
   BaseField *_OutputXMarkerListField;
-	XMarkerList _outputXMarkerList;
-	//! CSO Marker input from OsiriX
-	BaseField*   _OuputCSOListFld;
-	CSOList     _outputCSOList;
-	
+  XMarkerList _outputXMarkerList;
+  //! CSO Marker input from OsiriX
+  BaseField*   _OuputCSOListFld;
+  CSOList     _outputCSOList;
+  
     //! If set true, MeVisLab will be activated from background
-	BoolField *_ShowMeVisLabWindowFld;
-	
-	//! The name of parameter0
-	StringField *_ParaName0Fld;
-	
-	//! The value of parameter0 if it is integer
-//	IntField *_Parameter0IntValueFld;
-	
-	//! The value of parameter0 if it is double
-	DoubleField *_Parameter0DoubleValueFld;
-	
-	//! The value of parameter0 if it is string
-//	StringField *_Parameter0StringValueFld;
-	
-	//! The name of parameter1
-	StringField *_ParaName1Fld;
-	
-	//! The value of parameter1 if it is integer
-//	IntField *_Parameter1IntValueFld;
-	
-	//! The value of parameter1 if it is double
-	DoubleField *_Parameter1DoubleValueFld;
-	
-	//! The value of parameter1 if it is string
-//	StringField *_Parameter1StringValueFld;
-	
-	//! The name of parameter2
-	StringField *_ParaName2Fld;
-	
-	//! The value of parameter2 if it is integer
-//	IntField *_Parameter2IntValueFld;
-	
-	//! The value of parameter2 if it is double
-	DoubleField *_Parameter2DoubleValueFld;
-	
-	//! The value of parameter2 if it is string
-//	StringField *_Parameter2StringValueFld;
-	
-	//! The name of parameter3
-	StringField *_ParaName3Fld;
-	
-	//! The value of parameter3 if it is integer
-//	IntField *_Parameter3IntValueFld;
-	
-	//! The value of parameter3 if it is double
-	DoubleField *_Parameter3DoubleValueFld;
-	
-	//! The value of parameter3 if it is string
-//	StringField *_Parameter3StringValueFld;
-	
+  BoolField *_ShowMeVisLabWindowFld;
+  
+  //! The name of parameter0
+  StringField *_ParaName0Fld;
+  
+  //! The value of parameter0 if it is integer
+//  IntField *_Parameter0IntValueFld;
+  
+  //! The value of parameter0 if it is double
+  DoubleField *_Parameter0DoubleValueFld;
+  
+  //! The value of parameter0 if it is string
+//  StringField *_Parameter0StringValueFld;
+  
+  //! The name of parameter1
+  StringField *_ParaName1Fld;
+  
+  //! The value of parameter1 if it is integer
+//  IntField *_Parameter1IntValueFld;
+  
+  //! The value of parameter1 if it is double
+  DoubleField *_Parameter1DoubleValueFld;
+  
+  //! The value of parameter1 if it is string
+//  StringField *_Parameter1StringValueFld;
+  
+  //! The name of parameter2
+  StringField *_ParaName2Fld;
+  
+  //! The value of parameter2 if it is integer
+//  IntField *_Parameter2IntValueFld;
+  
+  //! The value of parameter2 if it is double
+  DoubleField *_Parameter2DoubleValueFld;
+  
+  //! The value of parameter2 if it is string
+//  StringField *_Parameter2StringValueFld;
+  
+  //! The name of parameter3
+  StringField *_ParaName3Fld;
+  
+  //! The value of parameter3 if it is integer
+//  IntField *_Parameter3IntValueFld;
+  
+  //! The value of parameter3 if it is double
+  DoubleField *_Parameter3DoubleValueFld;
+  
+  //! The value of parameter3 if it is string
+//  StringField *_Parameter3StringValueFld;
+  
    //......
-	StringField *_ParaName4Fld;
-	DoubleField *_Parameter4DoubleValueFld;
-	StringField *_ParaName5Fld;
-	DoubleField *_Parameter5DoubleValueFld;
-	
-	//! The Series UID of the images on which the operation is performing. This can be used as a uniqe filename for saving intermediate result in MeVisLab
-	StringField *_DICOM_Series_UIDFld;
-	  
+  StringField *_ParaName4Fld;
+  DoubleField *_Parameter4DoubleValueFld;
+  StringField *_ParaName5Fld;
+  DoubleField *_Parameter5DoubleValueFld;
+  
+  //! The Series UID of the images on which the operation is performing. This can be used as a uniqe filename for saving intermediate result in MeVisLab
+  StringField *_DICOM_Series_UIDFld;
+    
  
-	
+  
   //@}
-	void* InputImagePtr[OUTPUTPORTNUMBER];
-	int InputImageType[OUTPUTPORTNUMBER];
+  void* InputImagePtr[OUTPUTPORTNUMBER];
+  int InputImageType[OUTPUTPORTNUMBER];
   //! Implements interface for the runtime type system of the ML.
   ML_BASEOP_CLASS_HEADER(OsiriXImporter)
 };

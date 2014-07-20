@@ -12,10 +12,10 @@
 
 @interface MevisProxyForOsiriX : NSObject
 {
-	ml::OsiriXImporter* importerML;
-	NSConnection *outgoingConnection; 
-	NSMutableArray* sharedMemoryArray;
-	id osirixMevisPluginProxy;
+  ml::OsiriXImporter* importerML;
+  NSConnection *outgoingConnection; 
+  NSMutableArray* sharedMemoryArray;
+  id osirixMevisPluginProxy;
 }
 - (id) initWithImporterML:(ml::OsiriXImporter*) aML;
 - (void) connectionDidDie: (NSNotification *)notification;

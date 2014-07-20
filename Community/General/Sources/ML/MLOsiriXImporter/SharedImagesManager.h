@@ -10,9 +10,9 @@
 
 
 @interface SharedImagesManager : NSObject {
-	NSMutableArray* allocatedImages;
-	long uniqueIndex;
-	NSString* uniqueMemoryIDStringPrefix;
+  NSMutableArray* allocatedImages;
+  long uniqueIndex;
+  NSString* uniqueMemoryIDStringPrefix;
 }
 - (id)initWithIDStringPrefix:(NSString*)astring;
 - (void)releaseAllImages;

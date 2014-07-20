@@ -36,11 +36,11 @@ public:
   OsiriXExporter ();
   ~OsiriXExporter ();
 
-	//MeVisLab2OsiriXTBridge
-	MeVisLab2OsiriXTBridge* bridgeToOsiriX;
-	BOOL calcInputImageProps(NSMutableDictionary* anImage,int inIndex);
-	BOOL calcInSubImage(NSMutableDictionary* anImage, int inIndex );
-	BOOL prepareCSOForOsiriX(NSMutableDictionary* anImage);
+  //MeVisLab2OsiriXTBridge
+  MeVisLab2OsiriXTBridge* bridgeToOsiriX;
+  BOOL calcInputImageProps(NSMutableDictionary* anImage,int inIndex);
+  BOOL calcInSubImage(NSMutableDictionary* anImage, int inIndex );
+  BOOL prepareCSOForOsiriX(NSMutableDictionary* anImage);
 
   //! Handle field changes of the field field.
   virtual void handleNotification (Field *field);
@@ -57,9 +57,9 @@ private:
   //! \name Module field declarations
   //@{
   // ----------------------------------------------------------
-	//! CSO Marker input from OsiriX
-	BaseField*   _InputCSOListFld;
-	CSOList*     _InputCSOList;
+  //! CSO Marker input from OsiriX
+  BaseField*   _InputCSOListFld;
+  CSOList*     _InputCSOList;
   //! The name of this operation (should be unique on the system)
   StringField *_OperationNameFld;
 

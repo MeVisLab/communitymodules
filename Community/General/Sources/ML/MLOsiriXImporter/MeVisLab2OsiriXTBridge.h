@@ -14,20 +14,20 @@
 
 @interface MeVisLab2OsiriXTBridge : NSObject <MeVisOsiriXProxyProtocol>
 {
-	//common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
-	NSConnection *incomingConnection; 
-	NSString* incomingConnectionRegisteredName;
+  //common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
+  NSConnection *incomingConnection; 
+  NSString* incomingConnectionRegisteredName;
 
-	NSString* outgoingConnectionRegisteredName;
+  NSString* outgoingConnectionRegisteredName;
 
-	SharedImagesManager* imagesManager;
-	id remoteObjectProxy;
-	NSConnection* remoteConnection;
-	BOOL ifSupportMemorySharing;
-	NSAutoreleasePool *autoReleasePool;
-	//different parts
-	ml::OsiriXImporter* importerML;
-	ml::OsiriXExporter* exporterML;
+  SharedImagesManager* imagesManager;
+  id remoteObjectProxy;
+  NSConnection* remoteConnection;
+  BOOL ifSupportMemorySharing;
+  NSAutoreleasePool *autoReleasePool;
+  //different parts
+  ml::OsiriXImporter* importerML;
+  ml::OsiriXExporter* exporterML;
 }
 //common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
 - (id) initWithIncommingConnectionName:(NSString*)aname;
@@ -38,7 +38,7 @@
 - (NSDictionary*)getImageFromLowerBridge:(NSString*)description;
 - (void) passingOnNotificationsToUpperBridge:(NSDictionary*)parameters;
 - (void)prepareToDealloc;
-	//different parts
+  //different parts
 - (void) setImporterML:(ml::OsiriXImporter*) aML;
 - (void) setExporterML:(ml::OsiriXExporter*) aML;
 - (void) passingOnNotificationsToImporter:(NSDictionary*)parameters;

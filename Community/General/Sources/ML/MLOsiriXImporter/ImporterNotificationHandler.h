@@ -10,7 +10,7 @@
 #import "mlOsiriXImporter.h"
 
 @interface ImporterNotificationHandler : NSObject {
-	ml::OsiriXImporter* importerML;
+  ml::OsiriXImporter* importerML;
 }
 - (id) initWithImporterML:(ml::OsiriXImporter*) aML;
 - (void) registerSelfToNSNotificationCenter;
