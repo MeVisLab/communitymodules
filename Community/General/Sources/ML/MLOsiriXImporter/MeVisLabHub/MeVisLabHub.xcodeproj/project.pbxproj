@@ -23,6 +23,7 @@
 		B7350C0A1042F3F900705C92 /* MeVisLabScriptingBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B7350C081042F3F900705C92 /* MeVisLabScriptingBridge.m */; };
 		B7350C151042F77700705C92 /* MeVisLab.h in Headers */ = {isa = PBXBuildFile; fileRef = B7350C141042F77700705C92 /* MeVisLab.h */; };
 		B7F964F6197BEE4600AB3FAD /* OsiriXAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F964F5197BEE4600AB3FAD /* OsiriXAPI.framework */; };
+		B7F964F8197BF00900AB3FAD /* MeVisLabHub.osirixplugin in Install Plugin */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* MeVisLabHub.osirixplugin */; };
 		B9146099103359E4005BDFCF /* Length.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608C103359E3005BDFCF /* Length.tiff */; };
 		B914609A103359E4005BDFCF /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B914608D103359E3005BDFCF /* logo.jpg */; };
 		B914609B103359E4005BDFCF /* 3DRotate.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608E103359E3005BDFCF /* 3DRotate.tiff */; };
@@ -57,11 +58,22 @@
 		B70FD4F2103989E10094B238 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = ../../../../../../bin/PlugIns;
-			dstSubfolderSpec = 16;
+			dstPath = "$(PROJECT_DIR)/../../../../bin/PlugIns";
+			dstSubfolderSpec = 0;
 			files = (
 				B70FD53410398B300094B238 /* MeVisLabHub.osirixplugin in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7F964F7197BEFD700AB3FAD /* Install Plugin */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(USER_LIBRARY_DIR)/Application Support/OsiriX/Plugins";
+			dstSubfolderSpec = 0;
+			files = (
+				B7F964F8197BF00900AB3FAD /* MeVisLabHub.osirixplugin in Install Plugin */,
+			);
+			name = "Install Plugin";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -319,6 +331,7 @@
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 				8D5B49B5048680CD000E48DA /* Rez */,
 				B70FD4F2103989E10094B238 /* CopyFiles */,
+				B7F964F7197BEFD700AB3FAD /* Install Plugin */,
 			);
 			buildRules = (
 			);
