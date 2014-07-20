@@ -59,7 +59,7 @@ private:
   // ----------------------------------------------------------
   //! CSO Marker input from OsiriX
   BaseField*   _InputCSOListFld;
-  CSOList*     _InputCSOList;
+  CSOListPtr   _InputCSOList;
   //! The name of this operation (should be unique on the system)
   StringField *_OperationNameFld;
 

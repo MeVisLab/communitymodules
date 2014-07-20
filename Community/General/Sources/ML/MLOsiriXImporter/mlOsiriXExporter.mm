@@ -46,10 +46,10 @@ OsiriXExporter::OsiriXExporter ()
       getInField(inIdx)->attachField(getOutField(outIdx));
     }
   }
+
   //CSO based Marker export
-  _InputCSOListFld=NULL;
-  _InputCSOListFld  = fields.addBase ("inputCSOList");
-  _InputCSOListFld->setBaseValue(_InputCSOList);
+  _InputCSOListFld = fields.addBase ("inputCSOList");
+  _InputCSOListFld->setBaseValueAndAddAllowedType(_InputCSOList);
   
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -205,7 +205,7 @@ BOOL OsiriXExporter::prepareCSOForOsiriX(NSMutableDictionary* anImage)
   {
 
     NSMutableArray* overlayObjects=[NSMutableArray arrayWithCapacity:0];
-    _InputCSOList=static_cast<CSOList*>(_InputCSOListFld->getBaseValue());
+    _InputCSOList=mlbase_cast<CSOList *>(_InputCSOListFld->getBaseValue());
     if(!_InputCSOList)
       return NO;
     int numberofCSO=_InputCSOList->numCSO();
@@ -215,7 +215,7 @@ BOOL OsiriXExporter::prepareCSOForOsiriX(NSMutableDictionary* anImage)
       CSO* aCSO=_InputCSOList->getCSOAt(i);
       std::string csoname= aCSO->getGroupAt(0)->getLabel();
       NSMutableDictionary* anOverlayObject=[NSMutableDictionary dictionaryWithCapacity:0];
-      [anOverlayObject setObject:[NSString stringWithUTF8String:csoname.c_str() forKey:@"Name"]];
+      [anOverlayObject setObject:[NSString stringWithUTF8String:csoname.c_str()] forKey:@"Name"];
       NSMutableArray* points3D=[NSMutableArray arrayWithCapacity:0];
       int numberofPathLists=aCSO->numPathPointLists();
       int j;

@@ -95,7 +95,7 @@ private:
   XMarkerList _outputXMarkerList;
   //! CSO Marker input from OsiriX
   BaseField*   _OuputCSOListFld;
-  CSOList     _outputCSOList;
+  CSOListPtr  _outputCSOList;
   
     //! If set true, MeVisLab will be activated from background
   BoolField *_ShowMeVisLabWindowFld;

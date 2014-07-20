@@ -110,10 +110,11 @@ OsiriXImporter::OsiriXImporter ()
 
   //Points Marker export
   _OutputXMarkerListField = fields.addBase("outputXMarkerList");
-  _OutputXMarkerListField->setBaseValue(&_outputXMarkerList);
+  _OutputXMarkerListField->setBaseValueAndAddAllowedType(&_outputXMarkerList);
   //CSO based Marker export
   _OuputCSOListFld  = fields.addBase ("outputCSOList");
-  _OuputCSOListFld->setBaseValue(&_outputCSOList);
+  _outputCSOList = new CSOList;
+  _OuputCSOListFld->setBaseValueAndAddAllowedType(_outputCSOList);
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
@@ -161,7 +162,8 @@ OsiriXImporter::~OsiriXImporter()
     [bridgeToOsiriX prepareToDealloc];
     [bridgeToOsiriX release];
   }
-  
+
+  _outputCSOList = NULL;
 }
 //----------------------------------------------------------------------------------
 //! Handle field changes of the field field.
@@ -260,7 +262,7 @@ void OsiriXImporter::notifyCSOListUpdated()
   if(!anImage)
     return;
   // Clear _outputCSOList.
-  _outputCSOList.removeAllCSO();
+  _outputCSOList->removeAllCSO();
   if([[anImage objectForKey:@"ImageType"] isEqualToString:@"overlay"])
   {
     NSArray* overlayObjects=[anImage objectForKey:@"OverlayObjects"];
@@ -280,11 +282,11 @@ void OsiriXImporter::notifyCSOListUpdated()
       std::string groupLabel = [[anOverlayObject valueForKey:@"Name"] UTF8String];
       
       
-      CSO* cso = _outputCSOList.addCSO(false);
-      CSOGroup * agroup=_outputCSOList.getGroupByLabel(groupLabel);
+      CSO* cso = _outputCSOList->addCSO(false);
+      CSOGroup * agroup=_outputCSOList->getGroupByLabel(groupLabel);
       if(!agroup)
       {
-        agroup=_outputCSOList.addGroup(false);
+        agroup=_outputCSOList->addGroup(false);
         agroup->setLabel(groupLabel);
         
       }
@@ -343,7 +345,7 @@ void OsiriXImporter::notifyCSOListUpdated()
     
   }
   // Update local CSOList and set BaseValue of the output
-  _OuputCSOListFld->setBaseValue(&_outputCSOList);;
+  _OuputCSOListFld->setBaseValue(_outputCSOList);
   // Notify the CSOList output
     _OuputCSOListFld->notifyAttachments();
 }

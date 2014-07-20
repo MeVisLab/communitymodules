@@ -31,7 +31,7 @@
       [incomingConnection setRequestTimeout:5];
       [incomingConnection setReplyTimeout:30];
       if ([[NSSocketPortNameServer sharedInstance] registerPort:port1 name:aname] == YES) {
-        std::cout << "Successfully registere service as " << [aname  UTF8String] << std::endl;
+        std::cout << "Successfully registered service as " << [aname  UTF8String] << std::endl;
         incomingConnectionRegisteredName=[aname copy];
       }
       else {
@@ -93,7 +93,7 @@
 - (BOOL)registerIncomingConnectionWithName:(NSString*)aname
 {
   if ([[NSSocketPortNameServer sharedInstance] registerPort:[incomingConnection receivePort] name:aname]  == YES) {
-    std::cout << "Successfully registere service as " << [aname  UTF8String] << std::endl;
+    std::cout << "Successfully registered service as " << [aname  UTF8String] << std::endl;
     if(incomingConnectionRegisteredName)
     {
       [[NSSocketPortNameServer sharedInstance] removePortForName:incomingConnectionRegisteredName];

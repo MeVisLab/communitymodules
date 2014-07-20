@@ -12,7 +12,7 @@
 #import "SharedImagesManager.h"
 #import "MeVisOsiriXProxyProtocol.h"
 
-@interface MeVisLab2OsiriXTBridge : NSObject <MeVisOsiriXProxyProtocol>
+@interface MeVisLab2OsiriXTBridge : NSObject <MeVisOsiriXProxyProtocol, NSConnectionDelegate>
 {
   //common parts for OsiriX2MeVisLab and MeVisLab2OsiriX
   NSConnection *incomingConnection; 
