@@ -331,9 +331,15 @@
 /* Begin PBXProject section */
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = CE6A9A9408AC841300D0C1EE /* Build configuration list for PBXProject "MeVisLabHub" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 089C166AFE841209C02AAC07 /* Duplicate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -412,7 +418,7 @@
 		CE6A9A9108AC841300D0C1EE /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -437,8 +443,8 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = MeVisLabHub;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
