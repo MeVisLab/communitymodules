@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PluginFilter.h"
+#import <OsiriXAPI/PluginFilter.h>
 #import "MeVisHubWindowController.h"
 
 @interface MeVisLabHub : PluginFilter {

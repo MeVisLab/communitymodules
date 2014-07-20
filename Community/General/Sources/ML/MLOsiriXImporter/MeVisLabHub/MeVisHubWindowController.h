@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ConfigCoreDataDelegate.h"
-#import "PluginFilter.h"
+#import <OsiriXAPI/PluginFilter.h>
 #import "OsiriX2MeVisLabTBridge.h"
 #import "CMIVDCMView.h"
 

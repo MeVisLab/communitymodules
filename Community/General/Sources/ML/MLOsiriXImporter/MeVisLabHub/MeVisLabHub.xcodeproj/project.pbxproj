@@ -22,6 +22,7 @@
 		B7350C091042F3F900705C92 /* MeVisLabScriptingBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = B7350C071042F3F900705C92 /* MeVisLabScriptingBridge.h */; };
 		B7350C0A1042F3F900705C92 /* MeVisLabScriptingBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B7350C081042F3F900705C92 /* MeVisLabScriptingBridge.m */; };
 		B7350C151042F77700705C92 /* MeVisLab.h in Headers */ = {isa = PBXBuildFile; fileRef = B7350C141042F77700705C92 /* MeVisLab.h */; };
+		B7F964F6197BEE4600AB3FAD /* OsiriXAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F964F5197BEE4600AB3FAD /* OsiriXAPI.framework */; };
 		B9146099103359E4005BDFCF /* Length.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608C103359E3005BDFCF /* Length.tiff */; };
 		B914609A103359E4005BDFCF /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B914608D103359E3005BDFCF /* logo.jpg */; };
 		B914609B103359E4005BDFCF /* 3DRotate.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B914608E103359E3005BDFCF /* 3DRotate.tiff */; };
@@ -84,6 +85,7 @@
 		B7350C071042F3F900705C92 /* MeVisLabScriptingBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeVisLabScriptingBridge.h; sourceTree = "<group>"; };
 		B7350C081042F3F900705C92 /* MeVisLabScriptingBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeVisLabScriptingBridge.m; sourceTree = "<group>"; };
 		B7350C141042F77700705C92 /* MeVisLab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeVisLab.h; sourceTree = "<group>"; };
+		B7F964F5197BEE4600AB3FAD /* OsiriXAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OsiriXAPI.framework; sourceTree = "<group>"; };
 		B914608C103359E3005BDFCF /* Length.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Length.tiff; sourceTree = "<group>"; };
 		B914608D103359E3005BDFCF /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		B914608E103359E3005BDFCF /* 3DRotate.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = 3DRotate.tiff; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+				B7F964F6197BEE4600AB3FAD /* OsiriXAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +174,7 @@
 		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7F964F5197BEE4600AB3FAD /* OsiriXAPI.framework */,
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -421,7 +425,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
