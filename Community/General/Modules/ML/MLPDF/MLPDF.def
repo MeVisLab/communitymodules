@@ -1,0 +1,20 @@
+//----------------------------------------------------------------------------------
+//! MLPDF module definitions.
+/*!
+// \file    MLPDF.def
+// \author  Axel Newe
+// \date    2014-02-06
+*/
+//----------------------------------------------------------------------------------
+
+MLModule SaveU3D {
+  DLL                = "MLPDF"
+
+  genre              = "FileMain"
+  author             = "Axel Newe"
+  comment            = "Creates U3D file from WEMs and XMarkerLists"
+  keywords           = "PDF U3D WEM XMarker Fiber"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D"
+  exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
+  externalDefinition = $(LOCAL)/SaveU3D.script
+}

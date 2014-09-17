@@ -15,6 +15,7 @@ isEmpty(Community_General_PRI_INCLUDED) {
 # Projects:
 
 # MLCSOCommunityModules - CSO community modules
+# MLPDF                 - PDF and 3D-PDF creation (Axel Newe)
 # MLBaseListExtensions  - IndexPair[List[Container]], ColoredMarker[List[Container]] (Axel Newe)
 
 
@@ -56,6 +57,13 @@ MLCSOCommunityModules {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLCSOCommunityModules/MinimalDistancePointClouds
   win32:LIBS += MLCSOCommunityModules$${d}.lib
   unix:LIBS += -lMLCSOCommunityModules$${d}
+}
+
+MLPDF {
+  CONFIG_FOUND += MLPDF
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF
+  win32:LIBS += MLPDF$${d}.lib
+  unix:LIBS  += -lMLPDF$${d}
 }
 
 MLBaseListExtensions {

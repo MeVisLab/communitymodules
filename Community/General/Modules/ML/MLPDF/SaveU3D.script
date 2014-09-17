@@ -1,0 +1,400 @@
+//----------------------------------------------------------------------------------
+//! ML module SaveU3D definition
+/*!
+// \file    SaveU3D.script
+// \author  Axel Newe
+// \date    2014-08-30
+*/
+//----------------------------------------------------------------------------------
+
+Interface {
+  Parameters {
+    Field newSpecificationType { type = enum 
+      items { 
+        item SPECTYPE_POINTCLOUD { title = "Point Cloud" } 
+        item SPECTYPE_LINESET { title = "Line Set" } 
+        item SPECTYPE_MESH { title = "Mesh" } 
+        item SPECTYPE_METADATA { title = "Meta Data" } 
+      } 
+    }
+    Field newSpecificationObjectName       { type = String }
+    Field newSpecificationGroupPath        { type = String }
+    
+    Field newSpecificationUseDefaultColor          { type = Bool value = True }    
+    Field newSpecificationUseDefaultSpecularColor  { type = Bool value = True }    
+    
+    Field newSpecificationColor             { type = Color value = "0.651 0.651 0.651" }
+    Field newSpecificationColorAlpha        { type = Float min = 0 max = 1 value = 1 }
+    Field newSpecificationSpecularColor     { type = Color value = "0.75 0.75 0.75" }
+    
+    Field newSpecificationModelVisibility { type = enum 
+      items { 
+        item VISIBILITY_NOTVISIBLE { title = "Not Visible" } 
+        item SPECTYPE_FRONTVISIBLE { title = "Front Visible" } 
+        item SPECTYPE_BACKVISIBLE { title = "Back Visible" } 
+        item SPECTYPE_FRONTANDBACKVISIBLE { title = "Front & Back Visible" } 
+      } 
+      value = "SPECTYPE_FRONTANDBACKVISIBLE" 
+    }
+    
+    Field newSpecificationWEMLabel        { type = String }
+    Field newSpecificationPositionTypes   { type = String }
+    Field newSpecificationConnectionTypes { type = String }
+    
+    Field newSpecificationMetaDataKey     { type = String }
+    Field newSpecificationMetaDataValue   { type = String }
+    
+    Field newSpecification            { type = String }
+    Field newSpecificationOutputValid { type = Bool value = False }
+    Field newSpecificationAdd         { type = Trigger }
+    
+    Field selectedTab { type = int value = 0 min = 0 max = 3 }
+  }
+}
+
+Description {
+  Field progress { persistent = NO }
+  Field defaultLightIntensity { min = 0 max = 1 }
+  field defaultMaterialAlpha { min = 0 max = 1 }
+}
+
+
+Commands {
+  source = $(LOCAL)/SaveU3D.py
+  
+  initCommand = InitModule
+  droppedFileCommand = @@py: ctx.field("fileName").value = args[0] @@
+  
+  FieldListener {
+    listenField = newSpecificationType
+    listenField = newSpecificationObjectName
+    listenField = newSpecificationGroupPath
+    listenField = newSpecificationUseDefaultColor
+    listenField = newSpecificationUseDefaultSpecularColor
+    listenField = newSpecificationColor
+    listenField = newSpecificationColorAlpha
+    listenField = newSpecificationSpecularColor
+    listenField = newSpecificationModelVisibility
+    listenField = newSpecificationMetaDataKey
+    listenField = newSpecificationMetaDataValue
+    listenField = newSpecificationWEMLabel
+    listenField = newSpecificationPositionTypes
+    listenField = newSpecificationConnectionTypes
+    command = UpdateNewSpecification    
+  }
+
+  FieldListener newSpecificationAdd { command = AddNewSpecification }
+}
+
+
+Window "Main Panel" {  
+  
+  Category { expandY = Yes
+    
+    minimumWidth = 850
+    
+    Box { title = Specification layout = Vertical expandY = Yes
+    
+      TabView ObjectTypes {
+      
+        minimumHeight = 400
+        expandY       = Yes
+        
+    
+        TabViewItem "Point Clouds" {
+      
+          expandY = Yes
+          
+          CheckBox simpleModePointSet { title = "Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
+ 
+          Field modelPrefixPointClouds { title = "Prefix for Point Clouds Without Name:" }
+
+          //Field useXMarkerInput {}
+        
+          TextView pointCloudSpecification {
+            dependsOn       = !simpleModePointSet
+            expandY         = Yes
+            title           = "Point Cloud Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        
+        }
+
+        TabViewItem "Line Sets" {
+      
+          expandY = Yes
+
+          CheckBox simpleModeLineSet { title = "Enble Simple Mode (collect all positions from input field and assemble one line set with default settings)."}
+          
+          Field modelPrefixLineSets { title = "Prefix for Line Sets Without Name:" }
+
+          //Field useFiberInput {}
+        
+          TextView lineSetSpecification { 
+            dependsOn       = !simpleModeLineSet
+            expandY         = Yes
+            title           = "Line Set Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+
+        }
+
+        TabViewItem Meshes {
+      
+          expandY = Yes
+
+          CheckBox simpleModeMesh { title = "Enble Simple Mode (add all patches from input wem and parse WEM description for details)."}
+
+          Field modelPrefixMeshes { title = "Prefix for Meshes Without Name:" }
+
+          //CheckBox overrideWEMDescription {title = "Override WEM description" }
+
+          TextView meshSpecification { 
+            dependsOn       = !simpleModeMesh
+            expandY         = Yes
+            title           = "Mesh Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        
+        }
+
+        /*
+        TabViewItem Glyphs {
+      
+          expandY = Yes
+
+          Field modelPrefixGlyphs { title = "Prefix for Glyphs w/o Name:" }
+
+          TextView glyphSpecification {
+            expandY         = Yes
+            title           = "Glyph Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        
+        }
+        */
+        
+        /*  For futire releases.        
+        TabViewItem "Lights" { 
+          
+          expandY = Yes
+
+          CheckBox addDefaultLightNode { title = "Add default Light Node" }
+          
+          TextView lightsSpecification {
+            enabled         = No
+            expandY         = Yes
+            title           = "Lights Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+      
+          Button  { title = "Add From Import Field" width = 160  enabled = No }
+
+        }
+        */
+        
+        /* For futire releases. 
+        TabViewItem "Views" {
+
+          expandY = Yes
+
+          CheckBox addDefaultViewNode { title = "Add default View Node" }
+
+          TextView viewsSpecification {
+            enabled         = No
+            expandY         = Yes
+            title           = "Views Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+          
+          Button  { title = "Add From Import Field" width = 160  enabled = No }
+
+        }
+        */
+        
+        TabViewItem "Meta Data" {
+        
+          expandY = Yes
+
+          CheckBox defaultBoundingBoxMetaData { title = "Add default bounding box meta data" }
+        
+          TextView metaDataSpecification {
+            expandY         = Yes
+            title           = "Meta Data Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        }
+      
+        TabViewItem "Default Settings" {
+      
+          expandY = Yes
+          alignY = Top
+
+          Box "Default Material Settings" { layout = Vertical
+            expandY = No
+            alignY  = Top
+            
+            Grid {
+              Field defaultMaterialDiffuseColor  { title = "Default Material Color:" fixedWidth = 300 x = 0 y = 0 alignGroupX = 1 }
+              Field defaultMaterialAlpha         { slider = On alignX = Left x = 1 y = 0 }                    
+              Field defaultMaterialSpecularColor { x = 0 y = 1 }
+              Field defaultMaterialEmissiveColor { x = 0 y = 2 }
+              Field defaultMaterialAmbientColor  { x = 0 y = 3 }
+              Empty { x = 3 y = 0 expandX = Yes }
+            }
+
+          }  // Box 
+        
+          Box "Default Light Settings" { layout = Vertical
+            expandY = No
+            alignY  = Top
+            
+            Grid { 
+              CheckBox addDefaultLightNode { x = 0 y = 0 x2 = 1 title = "Add default Light Node" }
+              Field defaultLightName { x = 0 y = 1 x2 = 1 }
+              Field defaultLightColor { title = "Default Light Color:" fixedWidth = 300 x = 0 y = 2 alignGroupX = 1 }
+              Field defaultLightIntensity { slider = On alignX = Left x = 1 y = 2 }                                  
+              Empty { x = 3 y = 2 expandX = Yes }
+            }
+
+          }  // Box 
+
+          Box "Default View Settings" { layout = Vertical
+            expandY = No
+            alignY  = Top
+            
+            Grid { 
+              CheckBox addDefaultViewNode { x = 0 y = 0 x2 = 1 title = "Add default View Node" }
+              Field defaultViewName { x = 0 y = 1 x2 = 1 }
+            }
+
+          }  // Box 
+          
+          
+          
+        }
+
+      }  // TabView ObjectTypes
+    
+    }
+    
+    Box { title = File layout = Vertical alignY = Bottom
+      
+      Box "" { layout = Vertical
+        Horizontal {
+          droppedFileCommand = "*py: ctx.field("fileName").value = args[0] *"
+          Field filename {
+            browseButton = ON
+            browseMode   = Save
+            mw           = 450
+          }
+        }
+      }
+      Horizontal {
+        alignX = Right
+
+        CheckBox autoUpdate { enabled = No }
+        CheckBox autoApply  { enabled = No }
+
+        Button save {
+          title = "Save"
+        }
+      }
+      Separator { direction = Horizontal }
+      Field status { edit = No }
+      Separator { direction = Horizontal }
+      ProgressBar progress {}
+      
+    }  // Box
+    
+  }  // Category
+}
+
+
+Window "Specification Generator Panel"
+{ 
+  Category  {
+    
+    Field newSpecificationType              { title = "Object Type:" }
+
+    TabView { name = TypeTabView mode = invisible currentIndexField = selectedTab
+      
+      TabViewItem PointCloud {
+        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationPositionTypes     { title = "Position Types:" }
+      }
+      
+      TabViewItem LineSet {
+        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationPositionTypes     { title = "Position Types:"  }
+        Field newSpecificationConnectionTypes   { title = "Connection Types:" }
+      }
+      
+      TabViewItem Mesh {
+        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationWEMLabel          { title = "WEM Label:" }
+      }
+      
+      TabViewItem MetaData {
+        Field newSpecificationMetaDataKey       { title = "Meta Data Key:" }
+        Field newSpecificationMetaDataValue     { title = "Meta Data Value:"  }
+      }
+      
+    }
+    
+    Box "Color && Visibility" {
+      dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@
+      Field newSpecificationModelVisibility            { title = "Model Visibility:" }
+      CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType != "SPECTYPE_POINTCLOUD" @@ }
+      Field newSpecificationColor                      { title = "Object Color" dependsOn = @@ newSpecificationType != "SPECTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
+      Field newSpecificationColorAlpha                 { title = "Object Alpha:" slider = On dependsOn = @@ newSpecificationType != "SPECTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
+      CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" dependsOn = @@ newSpecificationType == "SPECTYPE_MESH" @@ }
+      Field newSpecificationSpecularColor              { title = "Specular Color:" dependsOn = @@ newSpecificationType == "SPECTYPE_MESH" && !newSpecificationUseDefaultSpecularColor @@ }
+    }
+    
+    Empty { height = 10 }
+    
+    TextView newSpecification { edit = No visibleRows = 8 }
+    Button newSpecificationAdd { title = "Add" dependsOn = newSpecificationOutputValid }
+        
+  }
+
+}
