@@ -1,0 +1,222 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module StringListContainer {
+  internal  {
+    frame = "1117 469 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "635 366 720 377"
+        sizeHint = "424 377"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringListContainer
+    listString = "[#1 :String 1, #2 :String 2]"
+    numItems = 2
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    ownsList = TRUE
+    applySelect = FALSE
+    id = 1
+    name = "String 1"
+    newName = ""
+    actionClass = New
+    actionIndex = -1
+    actionId = -1
+    currentIndex = -1
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+  }
+}
+module BaseSwitch {
+  internal  {
+    frame = "769 277 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "198 422 250 64"
+        sizeHint = "171 64"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = BaseSwitch
+    currentInput = 0
+    currentOutput = 0
+  }
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "929 465 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 351 1011 557"
+        sizeHint = "424 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = EdgesList
+    listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8]"
+    numItems = 8
+    index = 4
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 5
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 4
+    index2 = 5
+    type = 1
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "517 465 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "429 491 858 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsList
+    listString = "[(-1 -1 -1) 1 #3, (-0.45 0.76 0.7) 1 #4, (0 -0.64 -0.7) 1 #5, (0 -0.64 0.7) 1 #6, (0 0.76 -0.7) 1 #7, (0 0.76 0.7) 1 #8, (-0.84 -0.1 -0.54) 2 #9, (-0.84 -0.1 0.96) 2 #10, (-0.84 0.64 -0.54) 2 #11, (-0.84 0.64 0.96) 2 #12, (0.31 -0.1 -0.54) 2 #13, (1 1 1) 2 #14]"
+    numItems = 12
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 3
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-1 -1 -1"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ColoredMarkerListContainer {
+  internal  {
+    frame = "701 465 184 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "314 437 1039 505"
+        sizeHint = "504 505"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ColoredPositionsList
+    listString = "[(-4.45 -3.64 -1.7)(1 0 0 1) 1, (-4.45 -3.64 1.7)(1 0 0 1) 1, (-4.45 2.76 -1.7)(1 0 0 1) 2, (-4.45 2.76 1.7)(1 0 0 1) 2, (6 -3.64 -1.7)(1 0 0 1) 3, (6 -3.64 1.7)(1 0 0 1) 3, (6 2.76 -1.7)(1 0 0 1) 6, (6 2.76 1.7)(1 0 0 1) 6, (-2.84 -1.1 -4.54)(1 1 0 1) 9, (-2.84 -1.1 5.96)(1 1 0 1) 9, (-2.84 2.64 -4.54)(1 1 0 1) 12, (-2.84 2.64 5.96)(1 1 0 1) 12, (2.31 -1.1 -4.54)(1 1 0 1) 10, (2.31 -1.1 5.96)(1 1 0 1) 10, (2.31 2.64 -4.54)(1 1 0 1) 10, (2.31 2.64 5.96)(1 1 0 1) 10]"
+    numItems = 16
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 0
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    color = "1 0 0"
+    alpha = 1
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newColor = "0 0 0"
+    newAlpha = 1
+    newType = 0
+  }
+}
+module ListInfo {
+  internal  {
+    frame = "765 149 72 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "739 173 321 192"
+        sizeHint = "308 192"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "851 150 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ListInfo
+  }
+}
+connections  {
+  BaseSwitch.inputBaseObject0 = PositionsList.outXMarkerList
+  BaseSwitch.inputBaseObject1 = ColoredPositionsList.outColoredMarkerList
+  BaseSwitch.inputBaseObject2 = EdgesList.outIndexPairList
+  BaseSwitch.inputBaseObject3 = StringListContainer.outStringList
+  ListInfo.inList1 = BaseSwitch.outputBaseObject0
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 13
+        objectName = ""
+        parentUniqueId = 0
+        frame = "468 173 236 110"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This example networks show the usage of ListInfo.  Change the value of BaseSwitch/InputIndex to scroll through infos for the predefined lists."
+        titleText = "ListInfo Example"
+        isCollapsed = False
+        titleFrame = "473 178 226 22"
+      }
+    }
+  }
+}

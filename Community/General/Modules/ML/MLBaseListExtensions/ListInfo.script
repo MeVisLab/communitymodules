@@ -1,0 +1,32 @@
+//----------------------------------------------------------------------------------
+//! ML module ListInfo definition.
+/*!
+// \file    ListInfo.script
+// \author  Axel Newe
+// \date    2014-09-02
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  Field listType          { editable = No }
+  Field listLength        { editable = No }
+  Field typeMinValue      { editable = No }
+  Field typeMaxValue      { editable = No }
+  Field numDifferentTypes { editable = No }
+  Field boundingBoxMin    { editable = No }
+  Field boundingBoxMax    { editable = No }  
+}
+
+Window {
+  Vertical {
+    margin = 3
+
+    Field listType          { editAlign = Left }
+    Field listLength        { editAlign = Left dependsOn = @@ listType != "(undefined)" @@ }
+    Field typeMinValue      { editAlign = Left dependsOn = @@ listType == "XMarkerList" || listType == "ColoredMarkerList" || listType == "IndexPairList" @@ }
+    Field typeMaxValue      { editAlign = Left dependsOn = @@ listType == "XMarkerList" || listType == "ColoredMarkerList" || listType == "IndexPairList" @@ }
+    Field numDifferentTypes { editAlign = Left dependsOn = @@ listType == "XMarkerList" || listType == "ColoredMarkerList" || listType == "IndexPairList" @@ }
+    Field boundingBoxMin    { dependsOn = @@ listType == "XMarkerList" || listType == "ColoredMarkerList" @@ }
+    Field boundingBoxMax    { dependsOn = @@ listType == "XMarkerList" || listType == "ColoredMarkerList" @@ }
+  }
+}

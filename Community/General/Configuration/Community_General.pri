@@ -8,10 +8,15 @@ isEmpty(Community_General_PRI_INCLUDED) {
 # \file    Community_General.pri
 # \author  MeVisLab Community
 # \date    2009-05-19
-#
 # 
 #
 # -----------------------------------------------------------------------------
+
+# Projects:
+
+# MLCSOCommunityModules - CSO community modules
+# MLBaseListExtensions  - IndexPair[List[Container]], ColoredMarker[List[Container]] (Axel Newe)
+
 
 # include guard against multiple inclusion
 isEmpty(Community_General_PRI_INCLUDED) {
@@ -51,6 +56,15 @@ MLCSOCommunityModules {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLCSOCommunityModules/MinimalDistancePointClouds
   win32:LIBS += MLCSOCommunityModules$${d}.lib
   unix:LIBS += -lMLCSOCommunityModules$${d}
+}
+
+MLBaseListExtensions {
+  CONFIG_FOUND += MLBaseListExtensions
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/ColoredMarkerList
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/IndexPairList
+  win32:LIBS += MLBaseListExtensions$${d}.lib
+  unix:LIBS  += -lMLBaseListExtensions$${d}
 }
 
 # -- Inventor Projects -------------------------------------------------------

@@ -1,0 +1,173 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module MarkerListInspector {
+  internal  {
+    frame = "473 321 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "187 535 293 184"
+        sizeHint = "293 264"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = InListInspector
+    textViewer = "[(-4.45 -3.64 -1.7) 1 #1 :Group 1
+(-4.45 -3.64 1.7) 1 #2 :Group 1
+(-4.45 2.76 -1.7) 2 #3 :Group 1
+(-4.45 2.76 1.7) 2 #4 :Group 1
+(6 -3.64 -1.7) 3 #5 :Group 2
+(6 -3.64 1.7) 3 #6 :Group 2
+(6 2.76 -1.7) 4 #7 :Group 2
+(6 2.76 1.7) 4 #8 :Group 2]"
+    updateMode = AutoUpdate
+    showIndices3D = FALSE
+    scaleSize = 4.5
+    useDecoration = FALSE
+    autoViewAll = TRUE
+    showBackground = FALSE
+    showBoundingBox = TRUE
+    drawMode = DrawModeFast
+    useFastMode = TRUE
+    hide3DView = TRUE
+    numMarkers = 8
+    markerPosition = "-4.45 -3.64 -1.7"
+    markerVector = "0 0 0"
+    currentMarker = 0
+    currentType = 1
+    detail = FALSE
+    tabbar = shortinfo
+  }
+}
+module MarkerListInspector {
+  internal  {
+    frame = "961 97 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "851 290 293 175"
+        sizeHint = "293 264"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = OutListInspector
+    textViewer = "[(6 -3.64 -1.7) 3 #1 :Group 2
+(6 -3.64 1.7) 3 #2 :Group 2]"
+    updateMode = AutoUpdate
+    showIndices3D = FALSE
+    scaleSize = 4.5
+    useDecoration = FALSE
+    autoViewAll = TRUE
+    showBackground = FALSE
+    showBoundingBox = TRUE
+    drawMode = DrawModeFast
+    useFastMode = TRUE
+    hide3DView = TRUE
+    numMarkers = 2
+    markerPosition = "6 -3.64 -1.7"
+    markerVector = "0 0 0"
+    currentMarker = 0
+    currentType = 3
+    detail = FALSE
+    tabbar = shortinfo
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "741 561 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "600 472 858 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsList
+    listString = "[(-4.45 -3.64 -1.7) 1 #1 :Group 1, (-4.45 -3.64 1.7) 1 #2 :Group 1, (-4.45 2.76 -1.7) 2 #3 :Group 1, (-4.45 2.76 1.7) 2 #4 :Group 1, (6 -3.64 -1.7) 3 #5 :Group 2, (6 -3.64 1.7) 3 #6 :Group 2, (6 2.76 -1.7) 4 #7 :Group 2, (6 2.76 1.7) 4 #8 :Group 2]"
+    numItems = 8
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 1
+    name = "Group 1"
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ListFilter {
+  internal  {
+    frame = "889 309 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "186 183 385 99"
+        sizeHint = "370 99"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "821 259 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ListFilter
+    updateMode = AutoUpdate
+    allowedTypes = 1,3
+    allowedNames = "Group 2"
+  }
+}
+connections  {
+  InListInspector.inMarkerList = PositionsList.outXMarkerList
+  OutListInspector.inMarkerList = ListFilter.outList
+  ListFilter.inList = PositionsList.outXMarkerList
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 9
+        objectName = ""
+        parentUniqueId = 0
+        frame = "1016 476 244 148"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "*This example networks filters an input XMarkerList based on some of its properties.
+
+Only entries with a marker type of (1 OR 3) AND a marker name of "Group 2" are passed to the output list.*"
+        titleText = "ListFilter Example"
+        isCollapsed = False
+        titleFrame = "1021 481 234 22"
+      }
+    }
+  }
+}

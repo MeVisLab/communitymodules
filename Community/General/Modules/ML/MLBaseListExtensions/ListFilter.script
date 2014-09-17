@@ -1,0 +1,32 @@
+//----------------------------------------------------------------------------------
+//! ML module ListFilter definition.
+/*!
+// \file    ListFilter.script
+// \author  Axel Newe
+// \date    2014-09-02
+*/
+//----------------------------------------------------------------------------------
+
+
+Commands {
+  wakeupCommand = @@py: ctx.field("update").touch() @@  
+}
+
+Window {
+  Vertical {
+    margin = 3
+
+    Field allowedTypes {}
+    Field allowedNames {}
+    
+    Separator {}
+    
+    Horizontal { alignX = Right
+      Field updateMode {}
+    
+      Button update {}
+      Button clear {}
+    }
+
+  }
+}

@@ -1,0 +1,149 @@
+//----------------------------------------------------------------------------------
+//! ML module IndexPairListContainer definition
+/*!
+// \file    IndexPairListContainer.script
+// \author  Axel Newe
+// \date    2014-09-01
+*/
+//----------------------------------------------------------------------------------
+
+
+Description {
+  Field upToDate      { editable = NO }
+  Field actionClass   { editable = NO }
+  Field actionIndex   { editable = NO }
+  Field actionId      { editable = NO }
+  Field ownsList      { editable = NO }
+  Field currentIndex  { editable = NO }
+}
+
+Window {
+  Category Main {
+    Box "List Properties" { layout = Table
+      Row {
+        Field numItems {
+          title = "List Size:"
+          edit = NO
+          expandX = yes
+          labelAlignGroup = lag1
+        }
+        CheckBox persistent {
+          dependsOn = ownsList
+        }
+        CheckBox ownsList {
+          title = "Owner"
+        }
+        Button deleteAll {}
+      }
+      Row {
+        Field listString {
+          dependsOn = listStringEnable
+          labelAlignGroup = lag1
+          colspan = 2
+        }
+        CheckBox listStringEnable { title = Enable }
+        Button update {}
+      }
+      Row {
+        Field maxSize {
+          title = "Max. Size:"
+          step = 1
+          alignGroup = ag1
+        }
+        Horizontal {
+          colspan = 3
+          alignX = right
+          Field overflowMode {}
+        }
+      }
+    }
+
+    Box "Index Pair Items" {
+      Box "Template" {
+        Table { expandX = no
+          Row {
+            Field newName { title = "New Name:" minimumWidth = 300 }
+          }
+          Row {
+            Field newIndex1 { title = "New Index 1:" }
+          }
+          Row {
+            Field newIndex2 { title = "New Index 2:" }
+          }
+          Row {
+            Field newType { title = "New Type:" }
+          }
+        }
+        Horizontal {
+          Button copyTemplateToItem { title = "Copy to Item" }
+          Button copyItemToTemplate { title = "Copy from Item" }
+          CheckBox useInsertTemplate { title = "Use Template for Add/Insert" }
+        }
+      }
+      Table {
+        Row {
+          Field index {
+            title = "Item Index:"
+            step = 1
+            alignGroup = ag1
+          }
+          CheckBox applySelect {
+            title = Select
+            expandX = yes
+          }
+          Empty {}
+          Button insert {}
+          Button add {}
+        }
+        Row {
+          Horizontal {colspan = 3
+            Field id {
+              title = "Item ID:"
+              edit = no
+              labelAlignGroup = lag1
+            }
+            Field name {}
+          }
+          Button clear {}
+          Button delete {}
+        }
+      }
+      Table { expandX = no
+        Row {
+          Field index1 { title = "Index 1: " }
+        }
+        Row {
+          Field index2 { title = "Index 2: " }
+        }
+        Row {
+          Field type {}
+        }
+      }
+    } // Box "Index Pair Items"
+
+    Box Status {
+      Horizontal {
+        CheckBox upToDate {
+          title = "Up To Date"
+        }
+        HSpacer { }
+      }
+      Horizontal { expandX = no
+        Field actionClass {
+          title = Action:
+        }
+
+        Field actionIndex {
+          title = Index:
+        }
+        Field actionId {
+          title = Id:
+        }
+        Field currentIndex {
+          title = Current:
+        }
+      }
+    }
+  }
+}
+

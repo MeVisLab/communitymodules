@@ -1,0 +1,138 @@
+//----------------------------------------------------------------------------------
+//! ML module ColoredMarkerListContainer definition
+/*!
+// \file    ColoredMarkerListContainer.script
+// \author  Axel Newe
+// \date    2014-09-01
+*/
+//----------------------------------------------------------------------------------
+
+
+Description {
+  Field upToDate         { editable = NO }
+  Field actionClass      { editable = NO }
+  Field actionIndex      { editable = NO }
+  Field actionId         { editable = NO }
+  Field ownsList         { editable = NO }
+  Field currentIndex     { editable = NO }
+  Field alpha            { min = 0 max = 1 }
+  Field newAlpha         { min = 0 max = 1 }
+}
+
+Window {
+  Category Main {
+    Box "List Properties" { layout = Table
+      Row {
+        Field numItems {
+          title           = "List Size:"
+          edit            = NO
+          expandX         = yes
+          labelAlignGroup = lag1
+        }
+        CheckBox persistent {
+          dependsOn = ownsList
+        }
+        CheckBox ownsList {
+          title = "Owner"
+        }
+        Button deleteAll {}
+      }
+      Row {
+        Field listString {
+          dependsOn       = listStringEnable
+          labelAlignGroup = lag1
+          colspan         = 2
+        }
+        CheckBox listStringEnable { title = Enable }
+        Button update {}
+      }
+      Row {
+        Field maxSize {
+          title      = "Max. Size:"
+          step       = 1
+          alignGroup = ag1
+        }
+        Horizontal {
+          colspan = 3
+          alignX  = right
+          Field overflowMode {}
+        }
+      }
+    }
+
+    Box "Colored Marker Items" {
+      Box "Template" {
+        Horizontal {
+          Field newName { title = Name: }
+        }
+        Horizontal { alignX = Left
+          Field newPosXYZ { title = "Position: " }
+          Field newPosC { title = c }
+          Field newPosT { title = t }
+          Field newPosU { title = u }
+        }
+        Horizontal { alignX = Left
+          Field newColor  { title = "Color: " }
+          Field newAlpha  { title = "Alpha: " slider = On }
+          Field newType   { title = "Type: " }
+        }        
+        Horizontal { alignX = Left
+          Button copyTemplateToItem { title = "Copy to Item" }
+          Button copyItemToTemplate { title = "Copy from Item" }
+          CheckBox useInsertTemplate { title = "Use Template for Add/Insert" }
+        }
+      }
+      Horizontal  {
+        Field index          { title = "Item Index:" step = 1 }
+        CheckBox applySelect { title = Select }
+        Empty                {  }
+        Button insert        {  }
+        Button add           {  }
+      }
+      Horizontal {
+        Field id             { title = "Item ID:" edit = no }
+        Field name           {  }
+        Button clear         {  }
+        Button delete        {  }        
+      }
+      
+      Horizontal { alignX = Left
+        Field posXYZ { title = "Position:" }
+        Field posC   { title = c }
+        Field posT   { title = t }
+        Field posU   { title = u }
+      }
+      Horizontal { alignX = Left
+        Field color   {}
+        Field alpha   {  slider = On }
+        Field type    {}
+      }
+      
+    } // Box "Colored Marker Items"
+
+    Box Status {
+      Horizontal {
+        CheckBox upToDate {
+          title = "Up To Date"
+        }
+        HSpacer { }
+      }
+      Horizontal { expandX = no
+        Field actionClass {
+          title = Action:
+        }
+
+        Field actionIndex {
+          title = Index:
+        }
+        Field actionId {
+          title = Id:
+        }
+        Field currentIndex {
+          title = Current:
+        }
+      }
+    }
+  }
+}
+

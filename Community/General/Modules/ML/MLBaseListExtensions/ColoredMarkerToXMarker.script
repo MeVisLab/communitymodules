@@ -1,0 +1,18 @@
+//----------------------------------------------------------------------------------
+//! ML module ColoredMarkerToXMarker definition.
+/*!
+// \file    ColoredMarkerToXMarker.script
+// \author  Axel Newe
+// \date    2014-09-02
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  Vertical {
+    margin = 3
+    alignX = Center
+    alignY = Center
+    Label { title = "This module needs no parameters." }
+  }
+}

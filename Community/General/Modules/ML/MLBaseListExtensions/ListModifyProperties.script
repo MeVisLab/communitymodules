@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+//! ML module ListModifyProperties definition.
+/*!
+// \file    ListModifyProperties.script
+// \author  Axel Newe
+// \date    2014-09-02
+*/
+//----------------------------------------------------------------------------------
+
+
+Commands {
+  wakeupCommand = @@py: ctx.field("update").touch() @@  
+}
+
+Window {
+  Vertical {
+    margin = 3
+
+    Field changeTypeValue { step = 1 stepstep = 10 }
+    
+    Separator {}
+    
+    Horizontal { alignX = Right
+      Field updateMode {}
+    
+      Button update {}
+      Button clear {}
+    }
+
+  }
+}

@@ -1,0 +1,22 @@
+//----------------------------------------------------------------------------------
+//! ML module XMarkerToColoredMarker definition.
+/*!
+// \file    XMarkerToColoredMarker.script
+// \author  Axel Newe
+// \date    2014-09-02
+*/
+//----------------------------------------------------------------------------------
+
+Description { 
+  Field defaultAlpha { min = 0 max = 1 }  
+}
+
+Window {
+  Vertical {
+    margin = 3
+    
+    Field writeDefaultColor {  }
+    Field defaultColor { dependsOn = writeDefaultColor }
+    Field defaultAlpha { dependsOn = writeDefaultColor slider = On }
+  }
+}

@@ -1,0 +1,84 @@
+//----------------------------------------------------------------------------------
+//! MLBaseListExtensions module definitions.
+/*!
+// \file    MLBaseListExtensions.def
+// \author  Axel Newe
+// \date    2014-09-01
+*/
+//----------------------------------------------------------------------------------
+
+MLModule IndexPairListContainer {
+  genre              = Marker
+  DLL                = MLBaseListExtensions
+  author             = "Axel Newe"
+  comment            = "Container for a IndexPair list object."
+  keywords           = "Vector ListBase XMarker"
+  seeAlso            = "StringListContainer SoView2DMarkerEditor XMarkerListContainer"
+  externalDefinition = $(LOCAL)/IndexPairListContainer.script
+}
+
+MLModule ColoredMarkerListContainer {
+  DLL                = MLBaseListExtensions
+  genre              = "Marker"
+  author             = "Axel Newe"
+  comment            = "Container for a ColoredMarker list object."
+  keywords           = "ListBase XMarker ColoredMarker"
+  seeAlso            = "StringListContainer SoView2DMarkerEditor XMarkerListContainer"
+  externalDefinition = $(LOCAL)/ColoredMarkerListContainer.script
+}
+
+MLModule XMarkerToColoredMarker {
+  DLL                = MLBaseListExtensions
+  genre              = "Marker"
+  author             = "Axel Newe"
+  comment            = "Converts XMarkerList to ColoredMarkerList"
+  keywords           = "ListBase XMarker ColoredMarker"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer"
+  externalDefinition = $(LOCAL)/XMarkerToColoredMarker.script
+  exampleNetwork     = $(LOCAL)/networks/XMarkerToColoredMarkerExample.mlab
+}  
+
+MLModule ColoredMarkerToXMarker {
+  DLL                = MLBaseListExtensions
+  genre              = "Marker"
+  author             = "Axel Newe"
+  comment            = "Converts ColoredMarkerList to XMarkerList"
+  keywords           = "ListBase XMarker ColoredMarker"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer"
+  externalDefinition = $(LOCAL)/ColoredMarkerToXMarker.script
+  exampleNetwork     = $(LOCAL)/networks/ColoredMarkerToXMarkerExample.mlab
+}  
+
+MLModule ListFilter {
+  DLL                = MLBaseListExtensions
+  genre              = "Fields"
+  author             = "Axel Newe"
+  comment            = "Filters a BaseList derived list"
+  keywords           = "ListBase XMarker ColoredMarker IndexPair"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer IndexPairListContainer"
+  externalDefinition = $(LOCAL)/ListFilter.script
+  exampleNetwork     = $(LOCAL)/networks/ListFilterExample.mlab
+}  
+
+MLModule ListInfo {
+  DLL                = MLBaseListExtensions
+  genre              = "Fields"
+  author             = "Axel Newe"
+  comment            = "Provides info about a BaseList derived list"
+  keywords           = "ListBase XMarker ColoredMarker IndexPair"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer IndexPairListContainer"
+  externalDefinition = $(LOCAL)/ListInfo.script
+  exampleNetwork     = $(LOCAL)/networks/ListInfoExample.mlab
+}  
+
+MLModule ListModifyProperties {
+  DLL                = MLBaseListExtensions
+  genre              = "Fields"
+  author             = "Axel Newe"
+  comment            = "Allows to modify properties of a BaseList derived list"
+  keywords           = "ListBase XMarker ColoredMarker IndexPair"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer IndexPairListContainer"
+  externalDefinition = $(LOCAL)/ListModifyProperties.script
+  exampleNetwork     = $(LOCAL)/networks/ListModifyPropertiesExample.mlab
+}  
+

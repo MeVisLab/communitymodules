@@ -1,0 +1,128 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ColoredMarkerListContainer {
+  internal  {
+    frame = "253 437 184 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "767 455 789 505"
+        sizeHint = "504 505"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ColoredMarkerListContainer
+    listString = "[(-4.45 -3.64 -1.7)(1 0 0 0) 1, (-4.45 -3.64 1.7)(0.333333 0.333333 0.498039 0) 1, (-4.45 2.76 -1.7)(1 0.333333 1 0) 1, (-4.45 2.76 1.7)(0.666667 0.666667 0 0) 1, (6 -3.64 -1.7)(0 0.333333 0 0) 1, (6 -3.64 1.7)(1 0.666667 0 0) 1, (6 2.76 -1.7)(0 1 1 0) 1, (6 2.76 1.7)(0 0 1 0) 1, (-2.84 -1.1 -4.54) 2, (-2.84 -1.1 5.96) 2, (-2.84 2.64 -4.54) 2, (-2.84 2.64 5.96) 2, (2.31 -1.1 -4.54) 2, (2.31 -1.1 5.96) 2, (2.31 2.64 -4.54) 2, (2.31 2.64 5.96) 2]"
+    numItems = 16
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 0
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    color = "1 0 0"
+    alpha = 0
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newColor = "0 0 0"
+    newAlpha = 1
+    newType = 0
+  }
+}
+module ColoredMarkerToXMarker {
+  internal  {
+    frame = "257 277 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "844 551 206 22"
+        sizeHint = "206 22"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ColoredMarkerToXMarker
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "269 125 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "762 47 793 497"
+        sizeHint = "500 497"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = XMarkerListContainer
+    listString = ""
+    numItems = 16
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 0
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+connections  {
+  ColoredMarkerToXMarker.inColoredMarkerList = ColoredMarkerListContainer.outColoredMarkerList
+  XMarkerListContainer.inXMarkerList = ColoredMarkerToXMarker.outXMarkerList
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 7
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-104 84 295 113"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This example networks converts a ColoredMarkerList to an XMarkerList."
+        titleText = "ColoredMarkerToXMarker Example"
+        isCollapsed = False
+        titleFrame = "-99 89 285 22"
+      }
+    }
+  }
+}

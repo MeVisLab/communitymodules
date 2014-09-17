@@ -1,0 +1,176 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module MarkerListInspector {
+  internal  {
+    frame = "897 81 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "777 121 293 264"
+        sizeHint = "293 264"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = OutListInspector
+    textViewer = "[(-4.45 -3.64 -1.7) 11 #1 :Group 1
+(-4.45 -3.64 1.7) 11 #2 :Group 1
+(-4.45 2.76 -1.7) 12 #3 :Group 1
+(-4.45 2.76 1.7) 12 #4 :Group 1
+(6 -3.64 -1.7) 13 #5 :Group 2
+(6 -3.64 1.7) 13 #6 :Group 2
+(6 2.76 -1.7) 14 #7 :Group 2
+(6 2.76 1.7) 14 #8 :Group 2]"
+    updateMode = AutoUpdate
+    showIndices3D = FALSE
+    scaleSize = 4.5
+    useDecoration = FALSE
+    autoViewAll = TRUE
+    showBackground = FALSE
+    showBoundingBox = TRUE
+    drawMode = DrawModeFast
+    useFastMode = TRUE
+    hide3DView = TRUE
+    numMarkers = 8
+    markerPosition = "-4.45 -3.64 -1.7"
+    markerVector = "0 0 0"
+    currentMarker = 0
+    currentType = 11
+    detail = FALSE
+    tabbar = shortinfo
+  }
+}
+module MarkerListInspector {
+  internal  {
+    frame = "249 329 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "198 443 293 264"
+        sizeHint = "293 264"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = InListInspector
+    textViewer = "[(-4.45 -3.64 -1.7) 1 #1 :Group 1
+(-4.45 -3.64 1.7) 1 #2 :Group 1
+(-4.45 2.76 -1.7) 2 #3 :Group 1
+(-4.45 2.76 1.7) 2 #4 :Group 1
+(6 -3.64 -1.7) 3 #5 :Group 2
+(6 -3.64 1.7) 3 #6 :Group 2
+(6 2.76 -1.7) 4 #7 :Group 2
+(6 2.76 1.7) 4 #8 :Group 2]"
+    updateMode = AutoUpdate
+    showIndices3D = FALSE
+    scaleSize = 4.5
+    useDecoration = FALSE
+    autoViewAll = TRUE
+    showBackground = FALSE
+    showBoundingBox = TRUE
+    drawMode = DrawModeFast
+    useFastMode = TRUE
+    hide3DView = TRUE
+    numMarkers = 8
+    markerPosition = "-4.45 -3.64 -1.7"
+    markerVector = "0 0 0"
+    currentMarker = 0
+    currentType = 1
+    detail = FALSE
+    tabbar = shortinfo
+  }
+}
+module ListModifyProperties {
+  internal  {
+    frame = "681 301 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "206 235 370 69"
+        sizeHint = "370 69"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "177 157 500 204"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ListModifyProperties
+    updateMode = AutoUpdate
+    changeTypeValue = 10
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "677 473 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "647 540 858 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsList
+    listString = "[(-4.45 -3.64 -1.7) 1 #1 :Group 1, (-4.45 -3.64 1.7) 1 #2 :Group 1, (-4.45 2.76 -1.7) 2 #3 :Group 1, (-4.45 2.76 1.7) 2 #4 :Group 1, (6 -3.64 -1.7) 3 #5 :Group 2, (6 -3.64 1.7) 3 #6 :Group 2, (6 2.76 -1.7) 4 #7 :Group 2, (6 2.76 1.7) 4 #8 :Group 2]"
+    numItems = 8
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 1
+    name = "Group 1"
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+connections  {
+  OutListInspector.inMarkerList = ListModifyProperties.outList
+  InListInspector.inMarkerList = PositionsList.outXMarkerList
+  ListModifyProperties.inList = PositionsList.outXMarkerList
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 10
+        objectName = ""
+        parentUniqueId = 0
+        frame = "860 346 265 110"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This example networks takes an XMakerList input and adds an integer value (10 by default) to the input marker type values."
+        titleText = "ListModifyProperties Example"
+        isCollapsed = False
+        titleFrame = "865 351 255 22"
+      }
+    }
+  }
+}
