@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=latin1" />
+    
+    <title>MarkerListImport &mdash; MeVisLab  documentation</title>
+    <link rel="stylesheet" href="_static/MeVisLab.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/MeVisLab.ico"/>
+    <link rel="top" title="MeVisLab  documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="markerlistimport">
+<h1>MarkerListImport<a class="headerlink" href="#markerlistimport" title="Permalink to this headline">¶</a></h1>
+<dl class="module">
+<dt id="mlabmodule-MarkerListImport">
+<tt class="descname">MLModule</tt><a class="headerlink" href="#mlabmodule-MarkerListImport" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+<tr><td>genre</td>
+<td><a class="reference internal" href="genre.html#Fields" title="Fields"><tt class="xref mlab mlab-genre docutils literal"><span class="pre">Fields</span></tt></a></td>
+</tr>
+<tr><td>author</td>
+<td><a class="reference internal" href="author.html# Newe, Axel" title="Newe, Axel"><tt class="xref mlab mlab-author docutils literal"><span class="pre">Axel</span> <span class="pre">Newe</span></tt></a></td>
+</tr>
+<tr><td>package</td>
+<td><a class="reference internal" href="index.html#top" title="Community/General"><tt class="xref mlab mlab-package docutils literal"><span class="pre">Community/General</span></tt></a></td>
+</tr>
+<tr><td>dll</td>
+<td><a class="reference internal" href="dll.html#MLBaseListExtensions" title="MLBaseListExtensions"><tt class="xref mlab mlab-dll docutils literal"><span class="pre">MLBaseListExtensions</span></tt></a></td>
+</tr>
+<tr><td>definition</td>
+<td><a class="reference external" href="../../../Modules/ML/MLBaseListExtensions/MLBaseListExtensions.def">MLBaseListExtensions.def</a></td>
+</tr>
+<tr><td>see also</td>
+<td><a class="reference internal" href="../../../../../MeVisLab/Standard/Documentation/Publish/ModuleReference/XMarkerListContainer.html#XMarkerListContainer" title="XMarkerListContainer"><tt class="xref mlab mlab-module docutils literal"><span class="pre">XMarkerListContainer</span></tt></a>, <a class="reference internal" href="ColoredMarkerListContainer.html#ColoredMarkerListContainer" title="ColoredMarkerListContainer"><tt class="xref mlab mlab-module docutils literal"><span class="pre">ColoredMarkerListContainer</span></tt></a></td>
+</tr>
+<tr><td>keywords</td>
+<td><a class="reference internal" href="keyword.html#listbase" title="ListBase"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">ListBase</span></tt></a>, <a class="reference internal" href="keyword.html#xmarker" title="XMarker"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">XMarker</span></tt></a>, <a class="reference internal" href="keyword.html#coloredmarker" title="ColoredMarker"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">ColoredMarker</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="purpose">
+<h1>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h1>
+<p>This module imports XMarkers from text files.</p>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>Specify a file name, delimiter/separator characters and a filter (if applicable) and hit the &quot;Load&quot; button. The loaded XMarker list will then be provided at the output connector.</p>
+</div>
+<div class="section" id="details">
+<h1>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h1>
+<p>This module can be used to import XMarkers from text files, e.g. CSV files.</p>
+<p>The coordinates must consist of 3 numbers (x, y, z coordinate) that are separated by a character that can be specified by means of the <a class="reference internal" href="#mlabfield-numberdelimiter" title="Number Delimiter"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Number</span> <span class="pre">Delimiter</span></tt></a> field (or the <a class="reference internal" href="#mlabfield-numberdelimiterspace" title="Use space character as delimiter"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">space</span> <span class="pre">character</span> <span class="pre">as</span> <span class="pre">delimiter</span></tt></a> field, respectively). The decimal separator of each coordinate can be specified by means of the <a class="reference internal" href="#mlabfield-decimalseparator" title="Decimal Separator"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Decimal</span> <span class="pre">Separator</span></tt></a> field. Negative coordinate values must start with a minus sign ('-').</p>
+<p>The XMarkers can be grouped by a preceding line that must be formatted like &lt;Filter Tag&gt; &lt;Type #&gt;, e.g.: 'PointSet 1'
+The &lt;Filter Tag&gt; allows for filtering the input file. Only groups with the &lt;Filter Tag&gt; specified in the <a class="reference internal" href="#mlabfield-filter" title="Filter"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Filter</span></tt></a> field will be loaded.
+The &lt;Type #&gt; allows for setting the type property of the XMarker. The &lt;Type #&gt; must be an integer and is applied to all XMarkers of the respective group.</p>
+<p>Warning: if no filter is applied, only the &lt;Type #&gt; will be evaluated. Therefore, XMarkers in groups with different &lt;Filter Tag&gt; but the same &lt;Type #&gt; will get the same Type property if no filter is specified!</p>
+<p>See the example network (ReadRawFile module) for an example input file with ';' as delimiter and ',' as decimal separator.</p>
+</div>
+<div class="section" id="windows">
+<h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="default-panel">
+<h2>Default Panel<a class="headerlink" href="#default-panel" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Modules/ML/MLBaseListExtensions/mhelp/Images/Screenshots/MarkerListImport._default.png" src="../../../Modules/ML/MLBaseListExtensions/mhelp/Images/Screenshots/MarkerListImport._default.png" />
+</div>
+</div>
+<div class="section" id="output-fields">
+<span id="id1"></span><h1>Output Fields<a class="headerlink" href="#output-fields" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="outmarkerlist">
+<span id="mlabfield-outmarkerlist"></span><span id="id2"></span><h2>outMarkerList<a class="headerlink" href="#outmarkerlist" title="Permalink to this headline">¶</a></h2>
+<dl class="field">
+<dt id="mlabfieldname-outMarkerList">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">outMarkerList</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">MLBase</tt><a class="headerlink" href="#mlabfieldname-outMarkerList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="parameter-fields">
+<span id="id3"></span><h1>Parameter Fields<a class="headerlink" href="#parameter-fields" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="field-index">
+<h2>Field Index<a class="headerlink" href="#field-index" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="parameter-fields-index docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#mlabfield-autoload" title="Auto Load"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Auto</span> <span class="pre">Load</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-decimalseparator" title="Decimal Separator"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Decimal</span> <span class="pre">Separator</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-filename" title="Filename"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Filename</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-filter" title="Filter"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Filter</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-load" title="Load"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Load</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-numberdelimiter" title="Number Delimiter"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Number</span> <span class="pre">Delimiter</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-unload" title="Unload"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Unload</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-numberdelimiterspace" title="Use space character as delimiter"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">space</span> <span class="pre">character</span> <span class="pre">as</span> <span class="pre">delimiter</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="visible-fields">
+<h2>Visible Fields<a class="headerlink" href="#visible-fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="filename">
+<span id="mlabfield-filename"></span><span id="id4"></span><h3>Filename<a class="headerlink" href="#filename" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-filename">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">filename</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="filter">
+<span id="mlabfield-filter"></span><span id="id5"></span><h3>Filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-filter">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">filter</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-filter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="number-delimiter">
+<span id="numberdelimiter"></span><span id="mlabfield-numberdelimiter"></span><h3>Number Delimiter<a class="headerlink" href="#number-delimiter" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-numberDelimiter">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">numberDelimiter</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">;</tt><a class="headerlink" href="#mlabfieldname-numberDelimiter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="use-space-character-as-delimiter">
+<span id="numberdelimiterspace"></span><span id="mlabfield-numberdelimiterspace"></span><h3>Use space character as delimiter<a class="headerlink" href="#use-space-character-as-delimiter" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-numberDelimiterSpace">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">numberDelimiterSpace</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-numberDelimiterSpace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="decimal-separator">
+<span id="decimalseparator"></span><span id="mlabfield-decimalseparator"></span><h3>Decimal Separator<a class="headerlink" href="#decimal-separator" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-decimalSeparator">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">decimalSeparator</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">.</tt><a class="headerlink" href="#mlabfieldname-decimalSeparator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="load">
+<span id="mlabfield-load"></span><span id="id6"></span><h3>Load<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-load">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">load</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="unload">
+<span id="mlabfield-unload"></span><span id="id7"></span><h3>Unload<a class="headerlink" href="#unload" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-unload">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">unload</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-unload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="auto-load">
+<span id="autoload"></span><span id="mlabfield-autoload"></span><h3>Auto Load<a class="headerlink" href="#auto-load" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-autoLoad">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">autoLoad</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-autoLoad" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MarkerListImport</a></li>
+<li><a class="reference internal" href="#purpose">Purpose</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#details">Details</a></li>
+<li><a class="reference internal" href="#windows">Windows</a><ul>
+<li><a class="reference internal" href="#default-panel">Default Panel</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#output-fields">Output Fields</a><ul>
+<li><a class="reference internal" href="#outmarkerlist">outMarkerList</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameter-fields">Parameter Fields</a><ul>
+<li><a class="reference internal" href="#field-index">Field Index</a></li>
+<li><a class="reference internal" href="#visible-fields">Visible Fields</a><ul>
+<li><a class="reference internal" href="#filename">Filename</a></li>
+<li><a class="reference internal" href="#filter">Filter</a></li>
+<li><a class="reference internal" href="#number-delimiter">Number Delimiter</a></li>
+<li><a class="reference internal" href="#use-space-character-as-delimiter">Use space character as delimiter</a></li>
+<li><a class="reference internal" href="#decimal-separator">Decimal Separator</a></li>
+<li><a class="reference internal" href="#load">Load</a></li>
+<li><a class="reference internal" href="#unload">Unload</a></li>
+<li><a class="reference internal" href="#auto-load">Auto Load</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul> 
+      </ul>
+    </div>
+    <div class="footer">
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>

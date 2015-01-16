@@ -2,6 +2,46 @@
 network  {
   watchlist = ""
 }
+module LocalFileName {
+  internal  {
+    frame = "429 505 168 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "198 819 1354 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalMarkerListFileName
+    localName = $(NETWORK)/SaveU3DExampleMarkerList.txt
+    checkIfFileExists = TRUE
+  }
+}
+module MarkerListImport {
+  internal  {
+    frame = "669 505 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "647 502 400 104"
+        sizeHint = "400 104"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsLoad
+    filename = D:/MeVisLab/Packages/Axel/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
+    filter = PointSet
+    numberDelimiter = ;
+    numberDelimiterSpace = TRUE
+    decimalSeparator = .
+    autoLoad = TRUE
+  }
+}
 module BaseSwitch {
   internal  {
     frame = "697 197 144 56"
@@ -62,46 +102,6 @@ module ColoredMarkerListContainer {
     newType = 0
   }
 }
-module XMarkerListContainer {
-  internal  {
-    frame = "613 297 152 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "414 605 858 497"
-        sizeHint = "500 497"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = PositionsList
-    listString = "[(-4.45 -3.64 -1.7) 1 #1, (-4.45 -3.64 1.7) 1 #2, (-4.45 2.76 -1.7) 1 #3, (-4.45 2.76 1.7) 1 #4, (6 -3.64 -1.7) 1 #5, (6 -3.64 1.7) 1 #6, (6 2.76 -1.7) 1 #7, (6 2.76 1.7) 1 #8, (-2.84 -1.1 -4.54) 2 #9, (-2.84 -1.1 5.96) 2 #10, (-2.84 2.64 -4.54) 2 #11, (-2.84 2.64 5.96) 2 #12, (2.31 -1.1 -4.54) 2 #13, (2.31 -1.1 5.96) 2 #14, (2.31 2.64 -4.54) 2 #15, (2.31 2.64 5.96) 2 #16]"
-    numItems = 16
-    index = 0
-    persistent = TRUE
-    listStringEnable = TRUE
-    applySelect = FALSE
-    id = 1
-    name = ""
-    newName = ""
-    overflowMode = None
-    maxSize = 0
-    useInsertTemplate = FALSE
-    posXYZ = "-4.45 -3.64 -1.7"
-    posC = 0
-    posT = 0
-    posU = 0
-    vecXYZ = "0 0 0"
-    type = 1
-    newPosXYZ = "0 0 0"
-    newPosC = 0
-    newPosT = 0
-    newPosU = 0
-    newVecXYZ = "0 0 0"
-    newType = 0
-  }
-}
 module IndexPairListContainer {
   internal  {
     frame = "873 281 160 64"
@@ -138,7 +138,7 @@ module IndexPairListContainer {
 }
 module LocalFileName {
   internal  {
-    frame = "393 45 112 56"
+    frame = "421 41 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -149,7 +149,7 @@ module LocalFileName {
     }
   }
   fields  {
-    instanceName = LocalFileName
+    instanceName = LocalOutputFileName
     localName = $(HOME)/SaveU3DExample.u3d
     checkIfFileExists = TRUE
   }
@@ -257,7 +257,7 @@ module SaveU3D {
     defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
-    filename = ""
+    filename = C:/Users/z002zrcd/SaveU3DExample.u3d
     status = Idle.
     newSpecificationType = SPECTYPE_POINTCLOUD
     newSpecificationObjectName = ""
@@ -283,7 +283,7 @@ module SaveU3D {
 }
 module LocalWEMLoad {
   internal  {
-    frame = "513 425 128 64"
+    frame = "513 421 128 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -316,7 +316,7 @@ module LocalWEMLoad {
 }
 module ComposeWEMDescriptionForU3D {
   internal  {
-    frame = "177 449 224 64"
+    frame = "225 421 224 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -414,7 +414,7 @@ module LocalWEMLoad {
 }
 module ComposeWEMDescriptionForU3D {
   internal  {
-    frame = "133 345 216 64"
+    frame = "133 321 216 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -442,13 +442,14 @@ module ComposeWEMDescriptionForU3D {
   }
 }
 connections  {
-  BaseSwitch.inputBaseObject0 = PositionsList.outXMarkerList
+  PositionsLoad.filename = LocalMarkerListFileName.trueName
+  BaseSwitch.inputBaseObject0 = PositionsLoad.outMarkerList
   BaseSwitch.inputBaseObject1 = ColoredPositionsList.outColoredMarkerList
   SaveU3D.inWEM = WEMMerge.outWEM
   SaveU3D.inPointPositions = BaseSwitch.outputBaseObject0
   SaveU3D.inLinePositions = BaseSwitch.outputBaseObject0
   SaveU3D.inLineConnections = EdgesList.outIndexPairList
-  SaveU3D.filename = LocalFileName.trueName
+  SaveU3D.filename = LocalOutputFileName.trueName
   LoadVenusMesh.label = ComposeWEMDescriptionForVenus.WEMLabel
   LoadVenusMesh.description = ComposeWEMDescriptionForVenus.WEMDescription
   WEMMerge.inWEM = LoadCowMesh.outWEM
