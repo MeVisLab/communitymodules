@@ -22,7 +22,7 @@
 #include "ListTools/ListInfo.h"
 #include "ListTools/ListFilter.h"
 #include "ListTools/ListModifyProperties.h"
-
+#include "MarkerListImport/MarkerListImport.h"
 
 ML_START_NAMESPACE
 
@@ -46,6 +46,8 @@ ML_START_NAMESPACE
     ListInfo                   ::initClass();
     ListFilter                 ::initClass();
     ListModifyProperties       ::initClass();
+
+    MarkerListImport           ::initClass();
 
     return 1;
   }

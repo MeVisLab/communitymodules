@@ -34,7 +34,7 @@ HEADERS += \
     MLBaseListExtensionsInit.h \
     MLBaseListExtensionsSystem.h \
     shared/MLBaseListExtensions_DataTypes.h \
-    sharedMLBaseListExtensions_Tools.h \
+    shared/MLBaseListExtensions_Tools.h \
     IndexPairList/IndexPairList.h \
     ColoredMarkerList/ColoredMarkerList.h \
     ColoredMarkerList/XMarkerToColoredMarker.h \
@@ -42,6 +42,7 @@ HEADERS += \
     ListTools/ListInfo.h \
     ListTools/ListFilter.h \
     ListTools/ListModifyProperties.h \
+    MarkerListImport/MarkerListImport.h \
 
 
 SOURCES += \
@@ -54,3 +55,4 @@ SOURCES += \
     ListTools/ListInfo.cpp \
     ListTools/ListFilter.cpp \
     ListTools/ListModifyProperties.cpp \
+    MarkerListImport/MarkerListImport.cpp \

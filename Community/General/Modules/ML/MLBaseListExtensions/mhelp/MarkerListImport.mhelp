@@ -1,0 +1,132 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLBaseListExtensions/MLBaseListExtensions.def
+    moduleName = MarkerListImport
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLBaseListExtensions
+    genre = Fields
+    keywords = "ListBase XMarker ColoredMarker"
+    seeAlso = "XMarkerListContainer ColoredMarkerListContainer"
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module imports XMarkers from text files."
+  }
+  Usage  {
+    text = "*Specify a file name, delimiter/separator characters and a filter (if applicable) and hit the "Load" button. The loaded XMarker list will then be provided at the output connector.*"
+  }
+  Details  {
+    text = "This module can be used to import XMarkers from text files, e.g. CSV files.
+
+The coordinates must consist of 3 numbers (x, y, z coordinate) that are separated by a character that can be specified by means of the :field:`numberDelimiter` field (or the :field:`numberDelimiterSpace` field, respectively). The decimal separator of each coordinate can be specified by means of the :field:`decimalSeparator` field. Negative coordinate values must start with a minus sign ('-').
+
+The XMarkers can be grouped by a preceding line that must be formatted like <Filter Tag> <Type #>, e.g.: 'PointSet 1'
+The <Filter Tag> allows for filtering the input file. Only groups with the <Filter Tag> specified in the :field:`filter` field will be loaded.
+The <Type #> allows for setting the type property of the XMarker. The <Type #> must be an integer and is applied to all XMarkers of the respective group.
+
+Warning: if no filter is applied, only the <Type #> will be evaluated. Therefore, XMarkers in groups with different <Filter Tag> but the same <Type #> will get the same Type property if no filter is specified!
+
+See the example network (ReadRawFile module) for an example input file with ';' as delimiter and ',' as decimal separator."
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text  {
+      title = ""
+      text = ""
+    }
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outMarkerList {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = MarkerListImport
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field filter {
+      type = String
+      text = ""
+      title = Filter
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field numberDelimiter {
+      type = String
+      text = ""
+      title = "Number Delimiter"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ;
+    }
+    Field numberDelimiterSpace {
+      type = Bool
+      text = ""
+      title = "Use space character as delimiter"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field decimalSeparator {
+      type = String
+      text = ""
+      title = "Decimal Separator"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = .
+    }
+    Field load {
+      type = Trigger
+      text = ""
+      title = Load
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field unload {
+      type = Trigger
+      text = ""
+      title = Unload
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoLoad {
+      type = Bool
+      text = ""
+      title = "Auto Load"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}
