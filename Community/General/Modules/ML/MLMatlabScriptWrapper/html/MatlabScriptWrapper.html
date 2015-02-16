@@ -28,9 +28,10 @@
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 The <b>MatlabScriptWrapper</b> module offers the possibility to execute
-<a href="http://www.mathworks.com/products/matlab/">Matlab</a> scripts within MeVisLab and establish a link to a
-Matlab console, for example to transfer data between MeVisLab and Matlab. Note that Matlab must be
-installed for this module to function.
+<a href="http://www.mathworks.com/products/matlab/">Matlab</a> scripts within <a href="http://www.mevislab.de">MeVisLab</a>
+and establish a link to a <a href="href="http://mathworks.com/help/matlab/matlab_external/introducing-matlab-engine.html">
+Matlab engine</a>, for example to transfer data between MeVisLab and Matlab.
+Note that Matlab must be installed for this module to function.
 </blockquote>
 
 
@@ -83,23 +84,20 @@ Currently, three types of data structures can be transferred between MeVisLab an
     an example.
     </li>
     <li><span style="font-weight: bold;">Scalars:&nbsp;</span>
-    Double precision. These can be used both as input and ouput variables.
-    Field notifications will be sent in MeVisLab only if a scalar has changed its
-    value after the Matlab script execution.
+    Double precision. These can be used both as input and ouput variables. Field notifications will be sent
+    in MeVisLab only if a scalar has changed its value after the Matlab script execution.
     </li>
     <li><span style="font-weight: bold;">Vectors:&nbsp;</span>
-    Double precision 4-D integer point. These can be used both as input and ouput
-    variables. Field notifications will be sent in MeVisLab only if a
-    vector has changed its value after the Matlab script execution.
+    Double precision 4-D integer point. These can be used both as input and ouput variables. Field notifications
+    will be sent in MeVisLab only if a vector has changed its value after the Matlab script execution.
     </li>
     <li><span style="font-weight: bold;">Matrices:&nbsp;</span>
-    Double precision 4x4 integer matrix. These can be used both as input and ouput
-    variables. Field notifications will be sent in MeVisLab only if a
-    matrix has changed its value after the Matlab script execution.
+    Double precision 4x4 integer matrix. These can be used both as input and ouput variables. Field notifications
+    will be sent in MeVisLab only if a matrix has changed its value after the Matlab script execution.
     </li>
     <li><span style="font-weight: bold;">Strings:&nbsp;</span>
-    These can be used both as input and ouput variables. Field notifications will be
-    sent in MeVisLab only if a string has changed its value after the Matlab script execution.
+    These can be used both as input and ouput variables. Field notifications will be sent in MeVisLab only if a
+    string has changed its value after the Matlab script execution.
     </li>
 </ul>
 
@@ -107,7 +105,7 @@ The variable names for the above data structures in the Matlab workspace can be 
 <br>
 The Matlab script can be written directly in the module GUI, or an external script file (.m) can be called.
 If you choose to use an existing script, the script in script field will disappear and there is no
-posibility to edit a Matlab script file from MeVisLab.
+possibility to edit a Matlab script file from MeVisLab.
 <br>
 Push the "Update"-button to execute the Matlab script, set "Auto update" to update on input value change,
 or set "Auto apply" to update on parameter value change.
@@ -166,7 +164,6 @@ Up to three output images and one CurveList, one XMarkerList, or one WEM.
 A field where the Matlab script can be written.<br>
 </blockquote>
 
-
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Use External Script</b>
 <br>
@@ -183,17 +180,20 @@ XMarkerList, and WEM, not for changes in the names).<br>
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Auto apply</b>
 <br>
-Execute the script automatically on parameter change (only for fields,
-not for changes in the names).<br>
+Execute the script automatically on parameter change (only for fields, not for changes in the names).<br>
 </blockquote>
 
+<blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
+<b>Shared use</b>
+<br>
+Share the Matlab session among multiple modules. Becomes active after a restart of the session.<br>
+</blockquote>
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Restart Matlab</b>
 <br>
-Restarts the Matlab engine.<br>
+Starts the Matlab session engine and restarts if "Show" is hidden.<br>
 </blockquote>
-
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Status</b>
@@ -201,13 +201,11 @@ Restarts the Matlab engine.<br>
 This field gives information whether the Matlab script was executed correctly or not.<br>
 </blockquote>
 
-
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Show Matlab session window</b>
 <br>
 Show or hide the Matlab session window.<br>
 </blockquote>
-
 
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Update</b>
@@ -215,13 +213,11 @@ Show or hide the Matlab session window.<br>
 Execute the Matlab script.<br>
 </blockquote>
 
-
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">
 <b>Matlab Output</b>
 <br>
 Displays the output of executed Matlab script.<br>
 </blockquote>
-
 
 <br>
 <blockquote style="margin-top: 5pt; margin-bottom: 5pt;">

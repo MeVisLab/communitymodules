@@ -159,10 +159,15 @@ which swaps the x and y axes. See the example network for an example.*"
     Field outputWEM {
       type = MLBase
       text = "The output of a WEM."
+      fieldIsRemoved = Yes
     }
     Field outputCurveList {
       type = MLBase
       text = "The output of a CurveList."
+    }
+    Field outWEM0 {
+      type = MLBase
+      text = "The output of a WEM."
     }
   }
   Parameters  {
@@ -327,10 +332,18 @@ which swaps the x and y axes. See the example network for an example.*"
       persistent = Yes
       default = FALSE
     }
+    Field sharedUse {
+      type = Bool
+      text = "Share Matlab session among modules after restart."
+      title = Shared
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
     Field restartMatlab {
       type = Trigger
       text = "Restarts the Matlab engine."
-      title = "Restart Matlab"
+      title = (Re)Start
       visibleInGUI = Yes
       persistent = Yes
       default = ""
@@ -708,10 +721,10 @@ which swaps the x and y axes. See the example network for an example.*"
       persistent = No
       default = ""
     }
-    Field showSessionWindow {
+    Field showSession {
       type = Bool
       text = "Show or hide the Matlab session window."
-      title = "Show Matlab session window"
+      title = Show
       visibleInGUI = Yes
       persistent = Yes
       default = TRUE

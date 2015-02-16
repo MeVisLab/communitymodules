@@ -562,6 +562,7 @@ outCurve{1}(:,2) = spline(1:n,rand(n,1),ts);"
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
+    sharedUse = TRUE
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -614,7 +615,7 @@ outCurve{1}(:,2) = spline(1:n,rand(n,1),ts);"
 0 0 1 0
 0 0 0 1"
     matlabOutput = ""
-    showSessionWindow = TRUE
+    showSession = TRUE
   }
 }
 module StylePalette {
@@ -781,6 +782,7 @@ outWEM{1}.Faces = [
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
+    sharedUse = TRUE
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -833,7 +835,7 @@ outWEM{1}.Faces = [
 0 0 1 0
 0 0 0 1"
     matlabOutput = ""
-    showSessionWindow = TRUE
+    showSession = TRUE
   }
 }
 module Comment {
@@ -1045,6 +1047,7 @@ end
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
+    sharedUse = TRUE
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -1097,7 +1100,7 @@ end
 0 0 1 0
 0 0 0 1"
     matlabOutput = ""
-    showSessionWindow = TRUE
+    showSession = TRUE
   }
 }
 module Comment {
@@ -1315,6 +1318,7 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
     outCurveName = outCurve
     autoUpdate = FALSE
     autoApply = FALSE
+    sharedUse = TRUE
     scalarName0 = scalar0
     scalar0 = 0
     scalarName1 = scalar1
@@ -1367,12 +1371,12 @@ OutputXMarkerList.type = [1:size(OutputXMarkerList.pos,1)]';
 0 0 1 0
 0 0 0 1"
     matlabOutput = ""
-    showSessionWindow = TRUE
+    showSession = TRUE
   }
 }
 connections  {
   Diagram2D.inCurveList = MatlabScriptWrapper3.outputCurveList
-  SoWEMRenderer.inWEM = MatlabScriptWrapper2.outputWEM
+  SoWEMRenderer.inWEM = MatlabScriptWrapper2.outWEM0
   TorusRenderer.inWEM = WEMIsoSurface.outWEM
   SoExaminerViewer1.children = "TorusRenderer.self SoWEMRenderer.self"
   WEMIsoSurface.input0 = MatlabScriptWrapper2.output0

@@ -24,6 +24,7 @@ MLModule MatlabScriptWrapper {
   exampleNetwork = "$(LOCAL)/networks/MatlabScriptWrapperExample.mlab"
 
   Description {
+    Field showSession      { deprecatedName = showSessionWindow }
     Field status           { persistent = No }
     Field matlabOutput     { persistent = No }
   }
@@ -54,10 +55,18 @@ MLModule MatlabScriptWrapper {
         Button openMatlabFile { title = "Open" dependsOn = useExternalScript }
       }
       Horizontal {
-        CheckBox autoUpdate { title = "Auto update" tooltip = "Update on input changes." }
-        CheckBox autoApply  { title = "Auto apply"  tooltip = "Update on field changes." }
-        CheckBox showSessionWindow { title = "Show Matlab session window" }
-        Button restartMatlab { alignX = Right title = "Restart Matlab" }
+        Horizontal {
+          alignX = Left
+          CheckBox autoUpdate { title = "Auto update" tooltip = "Update on input changes." }
+          CheckBox autoApply  { title = "Auto apply"  tooltip = "Update on field changes." }
+        }
+        Horizontal {
+          alignX = Right
+          Label { title = "Session:" }
+          CheckBox showSession { title = "Show"       tooltip = "Show Matlab session console. Not showing will force restart." }
+          CheckBox sharedUse   { title = "Shared"     tooltip = "Share Matlab session among modules after restart." }
+          Button restartMatlab { title = "(Re)Start"  tooltip = "If the session window is not shown, it will be restarted." }
+        }
       }
       Horizontal {
         Field status { edit = No }
@@ -95,7 +104,7 @@ MLModule MatlabScriptWrapper {
         Field inCurveName {title = "Input name:"}
         Field outCurveName {title = "Output name:"}
       }
-        }
+    }
   } // Category IO
   Category Scalars {
     Table {
