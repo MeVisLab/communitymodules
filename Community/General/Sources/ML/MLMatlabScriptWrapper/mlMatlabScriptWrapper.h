@@ -122,7 +122,10 @@ private:
   // ----------------------------------------------------------
   //@{ \name Module internal methods declarations
   // ----------------------------------------------------------
-  //! Loads matlab script from a file, pastes it into script field and saves user written script. 
+
+  //! Start the Matlab COM server session.
+  void _startMatlab();
+  //! Loads Matlab script from a file, pastes it into script field and saves user written script.
   bool _loadMatlabScriptFromFile(std::string& evaluateString);
   //! Check if Matlab is started.
   bool _checkMatlabIsStarted();
@@ -179,13 +182,13 @@ private:
   BaseField *_outputXMarkerListFld;
   //! The output list
   XMarkerList _outputXMarkerList;
-  
+
   //! The WEM input field.
   BaseField *_inputWEMFld;
   //! Locking for observer, so that no adding or removing is done on an invalid observer list.
   bool _isInWEMNotificationCB;
   //! The WEM output field.
-  BaseField *_outputWEMFld;
+  BaseField *_outWEMFld;
   //! The output WEM.
   WEM *_outWEM;
 
@@ -194,11 +197,11 @@ private:
   //! Use external script.
   BoolField* _useExternalScriptFld;
 
-  //! Name of file where matlab script will be dumped.
+  //! Name and path of the external Matlab file.
   StringField *_matlabScriptPathFld;
 
   //! Show the Matlab session window.
-  BoolField* _showSessionWindowFld;
+  BoolField* _showSessionFld;
 
   //{@ Set matlab names for input and output images.
   StringField *_inDataNameFld[3];
@@ -223,15 +226,20 @@ private:
 
   //! If pressed, the module updates.
   NotifyField* _calculateFld;
+  //! Auto update field.
+  //! If true, the module updates whenever the input changes.
+  BoolField* _autoCalculationFld;
+  //! Auto apply field.
   //! If true, the module updates on parameter/field changes.
   BoolField* _autoApplyFld;
-   //! If true, the module updates on input changes.
-  BoolField* _autoCalculationFld;
-
-  //! Status messages.
-  StringField* _stdReportFld;
+  //! Share the Matlab session
+  //! If this is enabled, the Matlab environment is shared among modules.
+  BoolField* _sharedUseFld;
   //! Restart Matlab button.
   NotifyField* _restartMatlabFld;
+  //! Status messages.
+  StringField* _stdReportFld;
+
   //! Open file button.
   NotifyField* _openMatlabFileFld;
 

@@ -81,7 +81,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   _isInWEMNotificationCB = false;
   ML_CHECK_NEW(_outWEM,WEM());
   (_inputWEMFld = fields->addBase("inputWEM"))->setBaseValue(NULL);
-  (_outputWEMFld = fields->addBase("outputWEM"))->setBaseValue(_outWEM);
+  (_outWEMFld = fields->addBase("outWEM0"))->setBaseValue(_outWEM);
 
   (_inputCurveFld = fields->addBase("inputCurve"))->setBaseValue(NULL);
   (_outputCurveListFld = fields->addBase("outputCurveList"))->setBaseValue(&_outputCurveList);
@@ -122,10 +122,12 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   //(_deleteMatlabVarFld = fields->addBool("delMatlabVar"))->setBoolValue(false);
   //! Add update button.
   _calculateFld = fields->addNotify("update");
-  //! Create image data randomly.
+  //! Use automatic update after change of an input.
   (_autoCalculationFld = fields->addBool("autoUpdate"))->setBoolValue(false);
   //! Use automatic apply after change of a parameter/field.
   (_autoApplyFld = fields->addBool("autoApply"))->setBoolValue(false);
+  //! Share the Matlab environment.
+  (_sharedUseFld = fields->addBool("sharedUse"))->setBoolValue(true);
   //! Add restart Matlab button.
   _restartMatlabFld = fields->addNotify("restartMatlab");
   //! Add status field.
@@ -219,7 +221,7 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
   }
 #endif
 
-  m_pEngine = engOpen( (m_startCmd.empty()) ? NULL : m_startCmd.c_str() );
+  _startMatlab();
 
   if ( !_checkMatlabIsStarted() ) {
     std::cerr << "MatlabScriptWrapper::MatlabScriptWrapper():" << std::endl;
@@ -232,13 +234,13 @@ MatlabScriptWrapper::MatlabScriptWrapper (void)
     std::cerr << "     DYLD_LIBRARY_PATH to /Applications/MATLAB_R2010a.app/bin/maci64 before" << std::endl;
     std::cerr << "     MeVisLab is started." << std::endl;
 
-    (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(false);
+    (_showSessionFld = fields->addBool("showSession"))->setBoolValue(false);
     _stdReportFld->setStringValue("Cannot find Matlab engine!");
   } else {
     //! Show the Matlab session window.
     bool vis;
     engGetVisible(m_pEngine, &vis);
-    (_showSessionWindowFld = fields->addBool("showSessionWindow"))->setBoolValue(vis);
+    (_showSessionFld = fields->addBool("showSession"))->setBoolValue(vis);
   }
 
   //! Reactivate calls of handleNotification on field changes.
@@ -275,19 +277,30 @@ void MatlabScriptWrapper::handleNotification (Field* field)
 {
   ML_TRACE_IN("MatlabScriptWrapper::handleNotification()");
 
-  if(field == _restartMatlabFld)
-  {
-    if(!_checkMatlabIsStarted()) {
-      // Start Matlab if it's not started.
-      m_pEngine = engOpen( (m_startCmd.empty()) ? NULL : m_startCmd.c_str() );
-      // If Matlab engine is started, make session window (in)visible
+  if(field == _sharedUseFld) {
+    return;
+  }
+  if(field == _restartMatlabFld) {
+    if(_checkMatlabIsStarted() && _showSessionFld->isOn()) {
+        _stdReportFld->setStringValue("Matlab is already started.");
+    } else {
+      // (Re)Start Matlab
+      if(!_showSessionFld->isOn()) {
+        // Force closing Matlab
+        engEvalString(m_pEngine, "quit");
+        if(engClose(m_pEngine)) {
+          _stdReportFld->setStringValue("Successfully closed and");
+        }
+      }
+      // Start Matlab
+      _startMatlab();
+      // If Matlab engine is started, make session window (in)visible.
       if(_checkMatlabIsStarted()) {
-        engSetVisible(m_pEngine,_showSessionWindowFld->getBoolValue());
+        engSetVisible(m_pEngine,_showSessionFld->getBoolValue());
+        _stdReportFld->setStringValue(_stdReportFld->getStringValue()+" started.");
       } else {
         _stdReportFld->setStringValue("Cannot find Matlab engine!");
       }
-    } else {
-      _stdReportFld->setStringValue("Matlab is already started");
     }
   }
 
@@ -304,8 +317,8 @@ void MatlabScriptWrapper::handleNotification (Field* field)
     ML_CATCH_RETHROW;
   }
 
-  if( (field == _showSessionWindowFld) && _checkMatlabIsStarted() ) {
-    if(_showSessionWindowFld->isOn()) {
+  if( (field == _showSessionFld) && _checkMatlabIsStarted() ) {
+    if(_showSessionFld->isOn()) {
       engSetVisible(m_pEngine, true);
     } else {
       engSetVisible(m_pEngine, false);
@@ -387,10 +400,10 @@ void MatlabScriptWrapper::_process()
     // Copy matrix values to matlab.
     _copyInputMatricesToMatlab();
 
+    _stdReportFld->setStringValue("Matlab script is executing....");
     // Insert at the end of the script variable to proof execution status
     // and run the script in Matlab
     evaluateString += "\nmevmatscr=1;";	// Added ';' to prevent unnecessary output
-    _stdReportFld->setStringValue("Matlab script is executing....");
 
     // Buffer to capture Matlab output
     #define BUFSIZE 5120
@@ -690,6 +703,21 @@ bool MatlabScriptWrapper::_loadMatlabScriptFromFile(std::string& evaluateString)
   return true;
 }
 
+//! Start the Matlab COM server session.
+void MatlabScriptWrapper::_startMatlab()
+{
+  int returnStatus = 0;
+  if(_sharedUseFld->isOn()) {
+    m_pEngine = engOpen(          (m_startCmd.empty()) ? NULL : m_startCmd.c_str() );
+  } else {
+    //  0 = success, -2 = error: second argument must be NULL, -3 = error: engOpenSingleUse failed
+    m_pEngine = engOpenSingleUse( (m_startCmd.empty()) ? NULL : m_startCmd.c_str(), NULL, &returnStatus );
+    if(!returnStatus) {
+      _stdReportFld->setStringValue("Unshared Matlab");
+    }
+  }
+}
+
 //! Check if Matlab is started.
 bool MatlabScriptWrapper::_checkMatlabIsStarted()
 {
@@ -842,8 +870,7 @@ void MatlabScriptWrapper::_copyInputImageDataToMatlab()
       mxDestroyArray(m_pImage); m_pImage = NULL;
 
       // Free allocated memory for holding a slice.
-      freeTile(data);
-      data = NULL;
+      freeTile(data); data = NULL;
     }
   }
 }
@@ -1138,7 +1165,7 @@ void MatlabScriptWrapper::_getXMarkerBackFromMatlab()
 
   // Get data from Matlab array in which the positions have to be present.
   if(m_pos && !mxIsEmpty(m_pos) && mxGetClassID(m_pos)==mxDOUBLE_CLASS) {
-    double *dataPos  = static_cast<double*>(mxGetPr(m_pos));
+    double *dataPos = static_cast<double*>(mxGetPr(m_pos));
 
     // Copy Matlab data to XMarker if it's not empty.
     if(dataPos!=NULL) {
