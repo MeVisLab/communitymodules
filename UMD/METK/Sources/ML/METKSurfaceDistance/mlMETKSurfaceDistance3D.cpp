@@ -309,9 +309,9 @@ float METKSurfaceDistance3D::getImageValue(const SbVec3f* vertex) {
       nodeVPos.y = pos[1];
       nodeVPos.z = pos[2];
       if (_intersectBB.contains(nodeVPos)){
-         imgVal = _subImageMemory[ (int)floor ((nodeVPos.x - _intersectBB.v1.x))            + 
-            (int)floor(((nodeVPos.y - _intersectBB.v1.y) * _yStride)) + 
-            (int)floor(((nodeVPos.z - _intersectBB.v1.z) * _zStride)) ];        
+         imgVal = _subImageMemory[ (int)std::floor ((nodeVPos.x - _intersectBB.v1.x))            + 
+         (int)std::floor(((nodeVPos.y - _intersectBB.v1.y) * _yStride)) +
+         (int)std::floor(((nodeVPos.z - _intersectBB.v1.z) * _zStride))];
       }
    }
    return imgVal;

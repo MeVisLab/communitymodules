@@ -55,9 +55,9 @@ void AnimationExecuter::commandClip(vector<string>* tempEntryParams, kScriptFram
 		//Scale
 		//Scale nimmt sowieso nachher bei der ClipBox den größten der 3 werte
 		SbVec3f tempScale;
-		tempScale[0] = abs(MasterBB.BB_max[0]-MasterBB.BB_min[0])/2;
-		tempScale[1] = abs(MasterBB.BB_max[1]-MasterBB.BB_min[1])/2;
-		tempScale[2] = abs(MasterBB.BB_max[2]-MasterBB.BB_min[2])/2;
+		tempScale[0] = std::abs(MasterBB.BB_max[0]-MasterBB.BB_min[0])/2;
+		tempScale[1] = std::abs(MasterBB.BB_max[1]-MasterBB.BB_min[1])/2;
+		tempScale[2] = std::abs(MasterBB.BB_max[2]-MasterBB.BB_min[2])/2;
 		myObjMgr->setObjAttribute(O_CLIPPING,L_GLOBAL,INF_CLIPPING_SCALE,new vec3(tempScale[0],tempScale[1],tempScale[2]),omINFOTYPE_VEC3,true,true);
 
 		//Parameter 3: percent

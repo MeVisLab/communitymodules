@@ -310,8 +310,8 @@ void METK2DLabeling::calcOutImageProps (int /*outIndex*/)
   getOutImg()->setPageExt ( getInImg(0)->getPageExt() );
 
   // Determine new min/max range.
-  long double min = -1000;
-  long double max = 1000;
+  double min = -1000;
+  double max = 1000;
   getOutImg()->setMinVoxelValue( min );
   getOutImg()->setMaxVoxelValue( max );
 
@@ -1216,7 +1216,7 @@ void METK2DLabeling::calcTextPos()
         iterations++;
         if (minPos!=-1)
         {
-          _components[i].labelPoint.y = floor(minPos / tempField->getSizeX());
+          _components[i].labelPoint.y = std::floor(minPos / tempField->getSizeX());
           _components[i].labelPoint.x = minPos - (_components[i].labelPoint.y*tempField->getSizeX());
 
           kBasics::POINT labelPoint = _components[i].labelPoint;
@@ -1293,7 +1293,7 @@ void METK2DLabeling::transferLabelsToInventor()
       }
       else _boxColorFld->getColorValue(tempBoxColor[0],tempBoxColor[1],tempBoxColor[2]);
 
-      _2dLabelsNode->addLabel(_components[i].anchorPoint, _components[i].labelPoint, _components[i].lineEndPoint, tempGroupType, _components[i].labelText, _borderDistanceFld->getIntValue(), _optFactor, _components[i].voxelCount*_optFactor*_optFactor<=_encircleSizeFld->getIntValue(),2*sqrt(_components[i].voxelCount*_optFactor*_optFactor),tempTextColor, tempBoxColor, _boxTransparencyFld->getDoubleValue(), tempBorderColor, tempLineColor, _components[i].objectID);
+      _2dLabelsNode->addLabel(_components[i].anchorPoint, _components[i].labelPoint, _components[i].lineEndPoint, tempGroupType, _components[i].labelText, _borderDistanceFld->getIntValue(), _optFactor, _components[i].voxelCount*_optFactor*_optFactor<=_encircleSizeFld->getIntValue(),2*std::sqrt(_components[i].voxelCount*_optFactor*_optFactor),tempTextColor, tempBoxColor, _boxTransparencyFld->getDoubleValue(), tempBorderColor, tempLineColor, _components[i].objectID);
     }
   }
   _2dLabelsNode->touch();

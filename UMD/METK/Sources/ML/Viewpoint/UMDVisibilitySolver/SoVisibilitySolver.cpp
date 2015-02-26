@@ -475,13 +475,13 @@ void SoVisibilitySolver::_analyzeCurrentViewpoint ( )
 
 					
 					//Bildraum-Center-Wert für Pixel berechnen					
-					yPos = floor(iIter/xSize);
+					yPos = std::floor(iIter/xSize);
 					xPos = iIter - (yPos*xSize);
 					
-					xPos = abs( xPos - (xSize/2) );
-					yPos = abs( yPos - (ySize/2) );
+					xPos = std::abs( xPos - (xSize/2) );
+					yPos = std::abs( yPos - (ySize/2) );
 
-					pixelValue = 1.0 -  ( sqrt(xPos*xPos+yPos*yPos) / sqrt(xSize*xSize/4 + ySize*ySize/4) );
+					pixelValue = 1.0 -  ( std::sqrt(xPos*xPos+yPos*yPos) / std::sqrt(xSize*xSize/4 + ySize*ySize/4) );
 
 					m_fResultMatrix[m_iCurrentViewpoint][i][m_iNrOfObjects+PARAM_CENTERVALUE]+=pixelValue;
 				}
