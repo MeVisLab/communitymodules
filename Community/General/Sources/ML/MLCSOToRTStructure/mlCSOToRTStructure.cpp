@@ -197,7 +197,7 @@ void CSOToRTStructure::updateGenTreeHeader(PagedImg *img) {
 	const DCMTree::StructuredMF::IndexVector& indices = structuredMF.getGridExtent();
 	if ( indices.size() > 0 ) {
 	  unsigned int num = indices[0];
-	  DCMTree::TagPtr tagTPtr = structuredMF.tagForGridPosition_rw( DCMTree::TagId(0x0008,0x0033), 0, 0);
+	  DCMTree::Const_TagPtr tagTPtr = structuredMF.tagForGridPosition( DCMTree::TagId(0x0008,0x0033), 0, 0);
 	  std::string  tagTS=tagTPtr->toString();
 	  for (unsigned int z=0; z< num; ++z) {
 		// Get the tag at slice z.
@@ -245,8 +245,8 @@ std::string  CSOToRTStructure::getRefUID(double z)
   float key = 0;
   float minDist = _voxelSizeZ/2 + 0.0002;
   for(std::map<float,std::string>::const_iterator it = _mSOPInstUIDs.begin(); it != _mSOPInstUIDs.end(); ++it) {
-    if (minDist > abs(it->first - z)) {
-	  minDist = abs(it->first - z);
+    if (minDist > std::abs(it->first - z)) {
+      minDist = std::abs(it->first - z);
 	  key = it->first;
 	}
   }

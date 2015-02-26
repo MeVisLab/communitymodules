@@ -259,7 +259,7 @@ void SoTextureMaskedArea::draw(View2DSliceList *dsl, View2DSlice *dslice, int /*
                // we share the lut mode of the View2D
                //if (chooseTexture.getValue() == 0) dsl->getOwner()->updateLutData(_lutFunction, _lutData, &inTexture);
                //else dsl->getOwner()->updateLutData(_lutFunction, _lutData, &inMask);
-               dsl->getOwner()->updateLutData(_lutFunction, _lutData, &inTexture);
+               dsl->getOwner()->updateLutData(_lutFunction, _lutData, &inTexture, View2DLutPrecision::VIEW2D_LUT_AUTO);
                
                //_lutFunction = new ml::LUTFunction(ml::LUT_RGB, true);
                //_lutFunction->renderRescaled(_lutData, 0x00, 0xFF);
