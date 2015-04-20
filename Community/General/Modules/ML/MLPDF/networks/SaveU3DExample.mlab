@@ -34,7 +34,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = PositionsLoad
-    filename = ""
+    filename = D:/MeVisLab/Packages/Axel/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
     filter = PointSet
     numberDelimiter = ;
     numberDelimiterSpace = TRUE
@@ -257,7 +257,7 @@ module SaveU3D {
     defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
-    filename = ""
+    filename = C:/Users/z002zrcd/SaveU3DExample.u3d
     status = Idle.
     newSpecificationType = SPECTYPE_POINTCLOUD
     newSpecificationObjectName = ""

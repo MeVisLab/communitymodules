@@ -9,7 +9,7 @@ ModuleHelp  {
     keywords = "PDF U3D WEM XMarker Fiber"
     seeAlso = "WEMSaveAsU3D ComposeWEMDescriptionForU3D"
     package = General
-    packageGroup = Community
+    packageGroup = Axel
   }
   Purpose  {
     text = "This module creates Universal 3D (U3D) files that can be imported into Portable Document Format (PDF) files for creating 3D annotations."

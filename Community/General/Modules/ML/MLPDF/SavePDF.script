@@ -1,0 +1,16 @@
+//----------------------------------------------------------------------------------
+//! ML module SavePDF definition
+/*!
+// \file    SavePDF.script
+// \author  Axel Newe
+// \date    2014-02-06
+*/
+//----------------------------------------------------------------------------------
+
+
+Window {
+  Vertical {
+    margin = 10
+    Label { title = "Module is not functional yet." }
+  }
+}

@@ -1,0 +1,38 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SavePDF {
+  internal  {
+    frame = "637 157 88 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SavePDF
+  }
+}
+connections = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "204 95 316 136"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This network shows how to use the SavePDF module.
+
+For details regarding the parameters take a look at the documentation."
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "209 100 306 22"
+      }
+    }
+  }
+}

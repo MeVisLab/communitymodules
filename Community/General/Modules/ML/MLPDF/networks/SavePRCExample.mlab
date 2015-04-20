@@ -1,0 +1,463 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ComposeWEMDescriptionForU3D {
+  internal  {
+    frame = "37 345 216 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "111 207 627 302"
+        sizeHint = "529 302"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ComposeWEMDescriptionForCow
+    WEMLabel = Cow
+    WEMDescription = "U3DColor=1.0 0.667 0.0 0.479;U3DSpecularColor=0.0 0.667 1.0"
+    U3DObjectName = Cow
+    U3DGroupName = ""
+    U3DModelName = ""
+    U3DColor = "1 0.666666666666667 0"
+    U3DSpecularColor = "0 0.666666666666667 1"
+    U3DGroupColor = "1 1 0"
+    U3DColorTransparency = 0.479
+    U3DGroupColorTransparency = 0
+    UseU3DColor = TRUE
+    UseU3DGroupColor = FALSE
+    UseU3DSpecularColor = TRUE
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "317 321 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 94 1110 445"
+        sizeHint = "328 445"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "877 153 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadCowMesh
+    name = $(DemoDataPath)/vtkCow.obj
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = Cow
+    description = "U3DColor=1.0 0.667 0.0 0.479;U3DSpecularColor=0.0 0.667 1.0"
+    selectedTab = 0
+  }
+}
+module WEMMerge {
+  internal  {
+    frame = "433 181 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "697 489 300 131"
+        sizeHint = "300 131"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMMerge
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+  }
+}
+module ComposeWEMDescriptionForU3D {
+  internal  {
+    frame = "81 449 224 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "127 849 653 302"
+        sizeHint = "529 302"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ComposeWEMDescriptionForVenus
+    WEMLabel = Venus
+    WEMDescription = "U3DColor=0.0 0.0 1.0 0.0"
+    U3DObjectName = Venus
+    U3DGroupName = ""
+    U3DModelName = ""
+    U3DColor = "0 0 1"
+    U3DSpecularColor = "0 0.666666666666667 1"
+    U3DGroupColor = "1 1 0"
+    U3DColorTransparency = 0
+    U3DGroupColorTransparency = 0
+    UseU3DColor = TRUE
+    UseU3DGroupColor = FALSE
+    UseU3DSpecularColor = FALSE
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "417 425 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 94 1110 445"
+        sizeHint = "328 445"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "136 219 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadVenusMesh
+    name = $(DemoDataPath)/venus.off
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = Venus
+    description = "U3DColor=0.0 0.0 1.0 0.0"
+    selectedTab = 0
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "297 45 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "796 170 868 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(HOME)/SavePRCExample.prc
+    checkIfFileExists = TRUE
+  }
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "777 281 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 351 1011 557"
+        sizeHint = "424 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = EdgesList
+    listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8, (0 4) 1 #9, (1 5) 1 #10, (2 6) 1 #11, (3 7) 1 #12]"
+    numItems = 12
+    index = 4
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 5
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 4
+    index2 = 5
+    type = 1
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "517 297 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "414 605 858 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsList
+    listString = "[(-4.45 -3.64 -1.7) 1 #1, (-4.45 -3.64 1.7) 1 #2, (-4.45 2.76 -1.7) 1 #3, (-4.45 2.76 1.7) 1 #4, (6 -3.64 -1.7) 1 #5, (6 -3.64 1.7) 1 #6, (6 2.76 -1.7) 1 #7, (6 2.76 1.7) 1 #8, (-2.84 -1.1 -4.54) 2 #9, (-2.84 -1.1 5.96) 2 #10, (-2.84 2.64 -4.54) 2 #11, (-2.84 2.64 5.96) 2 #12, (2.31 -1.1 -4.54) 2 #13, (2.31 -1.1 5.96) 2 #14, (2.31 2.64 -4.54) 2 #15, (2.31 2.64 5.96) 2 #16]"
+    numItems = 16
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ColoredMarkerListContainer {
+  internal  {
+    frame = "653 369 184 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "351 474 1039 505"
+        sizeHint = "504 505"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ColoredPositionsList
+    listString = "[(-4.45 -3.64 -1.7)(1 0 0 1) 1, (-4.45 -3.64 1.7)(1 0 0 1) 1, (-4.45 2.76 -1.7)(1 0 0 1) 1, (-4.45 2.76 1.7)(1 0 0 1) 1, (6 -3.64 -1.7)(1 0 0 1) 1, (6 -3.64 1.7)(1 0 0 1) 1, (6 2.76 -1.7)(1 0 0 1) 1, (6 2.76 1.7)(1 0 0 1) 1, (-2.84 -1.1 -4.54)(1 1 0 1) 2, (-2.84 -1.1 5.96)(1 1 0 1) 2, (-2.84 2.64 -4.54)(1 1 0 1) 2, (-2.84 2.64 5.96)(1 1 0 1) 2, (2.31 -1.1 -4.54)(1 1 0 1) 2, (2.31 -1.1 5.96)(1 1 0 1) 2, (2.31 2.64 -4.54)(1 1 0 1) 2, (2.31 2.64 5.96)(1 1 0 1) 2]"
+    numItems = 16
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 0
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    color = "1 0 0"
+    alpha = 1
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newColor = "0 0 0"
+    newAlpha = 1
+    newType = 0
+  }
+}
+module BaseSwitch {
+  internal  {
+    frame = "601 197 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "273 394 171 64"
+        sizeHint = "171 64"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = BaseSwitch
+    currentInput = 1
+    currentOutput = 0
+  }
+}
+module SavePRC {
+  internal  {
+    frame = "565 21 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "762 60 850 602"
+        sizeHint = "850 602"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SavePRC
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    simpleModePointSet = FALSE
+    simpleModeLineSet = FALSE
+    simpleModeMesh = FALSE
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    pointCloudSpecification = "<PointSet>
+<PositionTypes>1</PositionTypes>
+<ObjectName>Point Set Cow</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<PointSize>3</PointSize>
+
+<PointSet>
+<PositionTypes>2</PositionTypes>
+<ObjectName>Point Set Venus</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<PointSize>4</PointSize>
+
+<PointSet>
+<PositionTypes>1,2</PositionTypes>
+<ObjectName>All Points</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<Color>0 0 1</Color>
+<PointSize>3</PointSize>
+"
+    lineSetSpecification = "<LineSet>
+<PositionTypes>1</PositionTypes>
+<ConnectionTypes>1</ConnectionTypes>
+<ObjectName>Line Set Bounding Box</ObjectName>
+<GroupPath>/Test Model/Primitives/Line Sets/</GroupPath>
+<Color>1 0.667 0 1</Color>
+<PointSize>3</PointSize>
+<LineWidth>2</LineWidth>
+"
+    meshSpecification = "<Mesh>
+<WEMLabel>Cow</WEMLabel>
+<ObjectName>Cow Mesh red</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>1.000 0.000 0.000 0.2</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+
+<Mesh>
+<WEMLabel>Cow</WEMLabel>
+<ObjectName>Cow Mesh green</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>0.000 1.000 0.000</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+
+<Mesh>
+<WEMLabel>Venus</WEMLabel>
+<ObjectName>Venus Mesh</ObjectName>
+<GroupPath>/Test Model 2/Meshes/</GroupPath>
+<Color>0.000 0.000 1.000 0.75</Color>
+
+"
+    filename = C:/Users/neweal/SavePRCExample.prc
+    status = Idle.
+    newSpecificationType = SPECTYPE_POINTCLOUD
+    newSpecificationObjectName = ""
+    newSpecificationGroupPath = ""
+    newSpecificationUseDefaultColor = TRUE
+    newSpecificationUseDefaultSpecularColor = TRUE
+    newSpecificationColor = "0.651 0.651 0.651"
+    newSpecificationColorAlpha = 1
+    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    newSpecificationModelVisibility = SPECTYPE_FRONTANDBACKVISIBLE
+    newSpecificationWEMLabel = ""
+    newSpecificationPositionTypes = ""
+    newSpecificationConnectionTypes = ""
+    newSpecificationMetaDataKey = ""
+    newSpecificationMetaDataValue = ""
+    newSpecification = "<PointSet>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    newSpecificationOutputValid = TRUE
+    selectedTab = 0
+  }
+}
+connections  {
+  LoadCowMesh.label = ComposeWEMDescriptionForCow.WEMLabel
+  LoadCowMesh.description = ComposeWEMDescriptionForCow.WEMDescription
+  WEMMerge.inWEM = LoadCowMesh.outWEM
+  WEMMerge.inWEM1 = LoadVenusMesh.outWEM
+  LoadVenusMesh.label = ComposeWEMDescriptionForVenus.WEMLabel
+  LoadVenusMesh.description = ComposeWEMDescriptionForVenus.WEMDescription
+  BaseSwitch.inputBaseObject0 = PositionsList.outXMarkerList
+  BaseSwitch.inputBaseObject1 = ColoredPositionsList.outColoredMarkerList
+  SavePRC.inWEM = WEMMerge.outWEM
+  SavePRC.inPointPositions = BaseSwitch.outputBaseObject0
+  SavePRC.inLinePositions = BaseSwitch.outputBaseObject0
+  SavePRC.inLineConnections = EdgesList.outIndexPairList
+  SavePRC.filename = LocalFileName.trueName
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-90 1 348 155"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "*This network shows how to use the SavePRC module.
+
+Simply click the "Save" button in the SaveU3D panel. This should create a PRC file in your user home directory.
+
+For details regarding the parameters take a look at the documentation.*"
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "-85 6 338 22"
+      }
+    }
+  }
+}

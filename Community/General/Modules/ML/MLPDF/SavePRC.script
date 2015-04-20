@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-//! ML module SaveU3D definition
+//! ML module SavePRC definition
 /*!
-// \file    SaveU3D.script
+// \file    SavePRC.script
 // \author  Axel Newe
 // \date    2014-08-30
 */
@@ -54,13 +54,12 @@ Interface {
 
 Description {
   Field progress { persistent = NO }
-  Field defaultLightIntensity { min = 0 max = 1 }
-  field defaultMaterialAlpha { min = 0 max = 1 }
+  //Field defaultLightIntensity { min = 0 max = 1 }
 }
 
 
 Commands {
-  source = $(LOCAL)/SaveU3D.py
+  source = $(LOCAL)/SavePRC.py
   
   initCommand = InitModule
   droppedFileCommand = @@py: ctx.field("fileName").value = args[0] @@
@@ -242,6 +241,7 @@ Window "Main Panel" {
         }
         */
         
+        /*
         TabViewItem "Meta Data" {
         
           expandY = Yes
@@ -259,7 +259,9 @@ Window "Main Panel" {
             textFormat      = Plain
           }
         }
-      
+        */
+        
+        /*
         TabViewItem "Default Settings" {
       
           expandY = Yes
@@ -270,11 +272,11 @@ Window "Main Panel" {
             alignY  = Top
             
             Grid {
-              Field defaultMaterialDiffuseColor  { title = "Default Material Color:" fixedWidth = 300 x = 0 y = 0 alignGroupX = 1 }
-              Field defaultMaterialAlpha         { slider = On alignX = Left x = 1 y = 0 }                    
+              Field defaultMaterialDiffuseColor { title = "Default Material Color:" fixedWidth = 300 x = 0 y = 0 alignGroupX = 1 }
+              Field defaultMaterialAlpha { slider = On alignX = Left x = 1 y = 0 }                    
               Field defaultMaterialSpecularColor { x = 0 y = 1 }
               Field defaultMaterialEmissiveColor { x = 0 y = 2 }
-              Field defaultMaterialAmbientColor  { x = 0 y = 3 }
+              Field defaultMaterialAmbientColor { x = 0 y = 3 }
               Empty { x = 3 y = 0 expandX = Yes }
             }
 
@@ -308,7 +310,8 @@ Window "Main Panel" {
           
           
         }
-
+        */
+        
       }  // TabView ObjectTypes
     
     }
@@ -350,11 +353,9 @@ Window "Specification Generator Panel"
 { 
   Category  {
     
-    expandY = Yes 
-    
     Field newSpecificationType              { title = "Object Type:" }
 
-    TabView { name = TypeTabView mode = invisible currentIndexField = selectedTab alignY = Top
+    TabView { name = TypeTabView mode = invisible currentIndexField = selectedTab
       
       TabViewItem PointCloud {
         Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
@@ -394,7 +395,7 @@ Window "Specification Generator Panel"
     
     Empty { height = 10 }
     
-    TextView newSpecification { edit = No visibleRows = 8 expandY = Yes }
+    TextView newSpecification { edit = No visibleRows = 8 }
     Button newSpecificationAdd { title = "Add" dependsOn = newSpecificationOutputValid }
         
   }

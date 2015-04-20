@@ -7,6 +7,20 @@
 */
 //----------------------------------------------------------------------------------
 
+/*
+MLModule SavePDF {
+  DLL                = "MLPDF"
+
+  genre              = "FileMain"
+  author             = "Axel Newe"
+  comment            = "Creates PDF file"
+  keywords           = "PDF U3D PRC"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC"
+  exampleNetwork     = "$(LOCAL)/networks/SavePDFExample.mlab"
+  externalDefinition = $(LOCAL)/SavePDF.script
+}  
+*/
+
 MLModule SaveU3D {
   DLL                = "MLPDF"
 
@@ -18,3 +32,17 @@ MLModule SaveU3D {
   exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
   externalDefinition = $(LOCAL)/SaveU3D.script
 }
+
+/*
+MLModule SavePRC {
+  DLL                = "MLPDF"
+
+  genre              = "FileMain"
+  author             = "Axel Newe"
+  comment            = "Creates PRC file from WEMs, FiberSets and XMarkers"
+  keywords           = "PDF PRC WEM XMarker Fiber"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D"
+  exampleNetwork     = "$(LOCAL)/networks/SavePRCExample.mlab"
+  externalDefinition = $(LOCAL)/SavePRC.script
+}
+*/

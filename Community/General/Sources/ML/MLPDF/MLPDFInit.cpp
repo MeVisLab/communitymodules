@@ -15,7 +15,9 @@
 #include "mlLibraryInitMacros.h"
 
 // Include all module headers ...
+#include "SavePDF/SavePDF.h"
 #include "SaveU3D/SaveU3D.h"
+#include "SavePRC/SavePRC.h"
 
 ML_START_NAMESPACE
 
@@ -25,7 +27,10 @@ ML_START_NAMESPACE
 //----------------------------------------------------------------------------------
 int MLPDFInit()
 {
+  SavePDF::initClass();
   SaveU3D::initClass();
+  SavePRC::initClass();
+  // Add initClass calls from all other modules here.
 
   return 1;
 }
