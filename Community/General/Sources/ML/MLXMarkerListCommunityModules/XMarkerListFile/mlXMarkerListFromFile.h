@@ -86,6 +86,7 @@ private:
   BoolField *_vectorYFld;
   BoolField *_vectorZFld;
   BoolField *_typeFld;
+  BoolField *_nameFld;
 
   BoolField *_keepVectorInputAsIsFld;
   BoolField    *_isVoxelFld;

@@ -99,6 +99,8 @@ XMarkerListToFile::XMarkerListToFile (void)
   _vectorZFld->setBoolValue(false);
   _typeFld = fields->addBool("exportType");
   _typeFld->setBoolValue(false);
+  _nameFld = fields->addBool("exportName");
+  _nameFld->setBoolValue(false);
 
   // Add field to enable/disable output of only one marker per voxel
   _maxOneMarkerPerVoxelFld = fields->addBool("maxOneMarkerPerVoxel");
@@ -176,6 +178,7 @@ void XMarkerListToFile::handleNotification (Field *field)
       const bool vecY = _vectorYFld->getBoolValue();
       const bool vecZ = _vectorZFld->getBoolValue();
       const bool type = _typeFld->getBoolValue();
+	    const bool name = _nameFld->getBoolValue();
 
       // Vector storing occupied voxel position
       std::set<vec3> voxelsOccupied;
@@ -222,49 +225,55 @@ void XMarkerListToFile::handleNotification (Field *field)
         if(allowInsert) {
           if (posX) {
             file_op << voxel[0];
-            if (posT || posY || posZ || vecX || vecY || vecZ || type) {
+            if (posT || posY || posZ || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (posY) {
             file_op << voxel[1];
-            if (posT || posZ || vecX || vecY || vecZ || type) {
+            if (posT || posZ || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (posZ) {
             file_op << voxel[2];
-            if (posT || vecX || vecY || vecZ || type) {
+            if (posT || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (posT) {
             file_op << marker.pos[4];
-            if (vecX || vecY || vecZ || type) {
+            if (vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (vecX) {
             file_op << vec[0];
-            if (vecY || vecZ || type) {
+            if (vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (vecY) {
             file_op << vec[1];
-            if (vecZ || type) {
+            if (vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (vecZ) {
             file_op << vec[2];
-            if (vecZ || type) {
+            if (type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (type) {
-            file_op << marker.type;
+            file_op << marker.type << " ";
+            if (name) {
+              file_op << coordinateSeparator.str();
+            }
           }
+          if (name) {
+			      file_op << marker.name();
+		      }
           file_op << std::endl;
         }
       }

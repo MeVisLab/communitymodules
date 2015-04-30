@@ -94,6 +94,7 @@ private:
   BoolField *_vectorYFld;
   BoolField *_vectorZFld;
   BoolField *_typeFld;
+  BoolField *_nameFld;
 
   //! Bool field for transformix format (first line: number of points, second line: point or index)
   BoolField *_transformixFormatFld;

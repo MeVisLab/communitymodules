@@ -1,0 +1,211 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLXMarkerListCommunityModules/MLXMarkerListCommunityModules.def
+    moduleName = XMarkerListToFile
+    moduleType = MLModule
+    author = "Coert Metz"
+    DLL = MLXMarkerListCommunityModules
+    genre = BIGR-XMarkerList
+    keywords = "XMarkerList XMarker file text save store export"
+    seeAlso = XMarkerListFromFile
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "Exports an XMarkerList to a text file. Both world and voxel coordinate exports are supported. "
+  }
+  Usage  {
+    text = "Connect an XMarkerList and an input image (when exporting voxel coordinates), select elements to export and coordinate system and press save. "
+  }
+  Details  {
+    text = "Elements are written to the text file in the order they appear in the GUI. It's not possible to export them using other orderings. There will be one XMarker per line. If the name is written, it will be exported as the last element of the line. Any text (starting with non-white-space) remaining on the line after having read all previous elements is assumed to be the name. Currently, there is a maximum size of the name of around 2000 characters."
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text  {
+      title = ""
+      text = ""
+    }
+    Window _default {
+      title = ""
+      text = ""
+    }
+  }
+  Inputs  {
+    text = ""
+    Field input0 {
+      type = Image
+      text = " Input image needed to transform markers to voxel coordinates. "
+    }
+    Field inputXMarkerList {
+      type = MLBase
+      text = " Input XMarkerList to save. "
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = XMarkerListToFile
+    }
+    Field filename {
+      type = String
+      text = "ame to save XMarkerList to "
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field outputCoordinateSystem {
+      type = Enum
+      text = " Output coordinate system. Either world (markers are not changed), voxel (both the marker position and the marker vector are transformed to voxel coordinates before export) or pos:voxel, vec:world (only the marker position is converted to voxel coordinates before export). "
+      title = "Output Coordinate System"
+      visibleInGUI = Yes
+      items  {
+        item world {
+          title = world
+          text = ""
+          deprecatedName = ""
+        }
+        item voxel {
+          title = voxel
+          text = ""
+          deprecatedName = ""
+        }
+        item "pos:voxel, vec:world" {
+          title = "pos:voxel, vec:world"
+          text = ""
+          deprecatedName = ""
+        }
+      }
+      persistent = Yes
+      default = voxel
+    }
+    Field coordinateSeparator {
+      type = Enum
+      text = "Separator between the elements in the text file. Note that using a newline may conflict with exporting the name (exporting will be ok, but subsequent reading with XMarkerListFromFile may fail)."
+      title = "Coordinate Separator"
+      visibleInGUI = Yes
+      items  {
+        item space {
+          title = space
+          text = ""
+          deprecatedName = ""
+        }
+        item newline {
+          title = newline
+          text = ""
+          deprecatedName = ""
+        }
+      }
+      persistent = Yes
+      default = space
+    }
+    Field exportPositionX {
+      type = Bool
+      text = " Enable/disable exporting x-coordinate of marker position. "
+      title = "Export Position X"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field exportPositionY {
+      type = Bool
+      text = "Enable/disable exporting y-coordinate of marker position. "
+      title = "Export Position Y"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field exportPositionZ {
+      type = Bool
+      text = " Enable/disable exporting z-coordinate of marker position. "
+      title = "Export Position Z"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field exportPositionT {
+      type = Bool
+      text = " Enable/disable exporting t-coordinate of marker position. "
+      title = "Export Position T"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field exportVectorX {
+      type = Bool
+      text = " Enable/disable exporting x-coordinate of marker vector. "
+      title = "Export Vector X"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field exportVectorY {
+      type = Bool
+      text = "Enable/disable exporting y-coordinate of marker vector. "
+      title = "Export Vector Y"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field exportVectorZ {
+      type = Bool
+      text = " Enable/disable exporting z-coordinate of marker vector. "
+      title = "Export Vector Z"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field exportType {
+      type = Bool
+      text = "Enable/disable exporting type of marker. "
+      title = "Export Type"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field exportName {
+      type = Bool
+      text = "Enable/disable exporting name of marker (see also comments above on saving the name). "
+      title = "Export Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field maxOneMarkerPerVoxel {
+      type = Bool
+      text = " Allow only one marker per voxel in the exported list. "
+      title = "Max One Marker Per Voxel"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field elastixFormat {
+      type = Bool
+      text = " Export in transformix format (1st line: point/index, 2nd line: number of points). "
+      title = "Elastix Format"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field save {
+      type = Trigger
+      text = " Start saving the XMarkerList. "
+      title = Save
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

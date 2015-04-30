@@ -1,0 +1,205 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLXMarkerListCommunityModules/MLXMarkerListCommunityModules.def
+    moduleName = XMarkerListFromFile
+    moduleType = MLModule
+    author = "Coert Metz"
+    DLL = MLXMarkerListCommunityModules
+    genre = BIGR-XMarkerList
+    keywords = "XMarkerList XMarker file text load read import"
+    seeAlso = XMarkerListToFile
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "Load an XMarkerList from a plain text file. "
+  }
+  Usage  {
+    text = "Choose filename, select elements of the XMarkers to load, select coordinate system and press load. "
+  }
+  Details  {
+    text = "Elements are read in the order they are presented in the GUI. So position-x is read before position-y, etc. Random ordening of the elements in the text file is therefore not possible. When the voxel coordinate system is selected an input image need to be connected. Elements are read based on any white space separation. Other separators are not supported. 
+When importing the name of an XMarker (which can be any string), the reading starts directly after reading the previous element. All white-space characters (spaces and tabs) are skipped, and any remaining characters (including spaces and tabs) up till the end-of-line character will be included in the name. Make sure that your input format is consistent with these assumptions. Generally, a file written with XMarkerListToFile can be read with this module."
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ""
+    }
+  }
+  Inputs  {
+    text = ""
+    Field input0 {
+      type = Image
+      text = " Input image needed for voxel to world matrix when the input coordinate system is set to voxel. "
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outputXMarkerList {
+      type = MLBase
+      text = " The loaded XMarkerList "
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = XMarkerListFromFile
+    }
+    Field filename {
+      type = String
+      text = " Filename of text file to read. "
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field importPositionX {
+      type = Bool
+      text = "Import position x-coordinate. "
+      title = "Import Position X"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field importPositionY {
+      type = Bool
+      text = "Import position y-coordinate. "
+      title = "Import Position Y"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field importPositionZ {
+      type = Bool
+      text = "Import position z-coordinate. "
+      title = "Import Position Z"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field importPositionT {
+      type = Bool
+      text = "Import position t-coordinate. "
+      title = "Import Position T"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field importVectorX {
+      type = Bool
+      text = "Import vector x-coordinate. "
+      title = "Import Vector X"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field importVectorY {
+      type = Bool
+      text = "Import vector y-coordinate. "
+      title = "Import Vector Y"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field importVectorZ {
+      type = Bool
+      text = "Import vector z-coordinate. "
+      title = "Import Vector Z"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field importType {
+      type = Bool
+      text = "Import type attribute."
+      title = "Import Type"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field importName {
+      type = Bool
+      text = "Import name attribute (see also comments above)."
+      title = "Import Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field keepVecInputAsIs {
+      type = Bool
+      text = "If set, the vector will not be transformed from image to world if the XMarker coordinates are transformed."
+      title = "Keep Vec Input As Is"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field isVoxel {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field inputCoordinateSystem {
+      type = Enum
+      text = " Coordinate system of input file. "
+      title = "Input Coordinate System"
+      visibleInGUI = Yes
+      items  {
+        item world {
+          title = world
+          text = ""
+          deprecatedName = ""
+        }
+        item voxel {
+          title = voxel
+          text = ""
+          deprecatedName = ""
+        }
+      }
+      persistent = Yes
+      default = voxel
+    }
+    Field numElementsToSkip {
+      type = Integer
+      text = " Number of elements to skip at beginning of file. "
+      title = "Num Elements To Skip"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field update {
+      type = Trigger
+      text = " Start loading XMarkerList. "
+      title = Update
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoUpdate {
+      type = Bool
+      text = " Automatically load XMarkerList on any field changes. "
+      title = "Auto Update"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}

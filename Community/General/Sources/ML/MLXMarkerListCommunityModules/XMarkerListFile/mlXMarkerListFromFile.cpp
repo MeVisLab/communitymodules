@@ -81,6 +81,8 @@ XMarkerListFromFile::XMarkerListFromFile (void)
   _vectorZFld->setBoolValue(false);
   _typeFld = fields->addBool("importType");
   _typeFld->setBoolValue(false);
+  _nameFld = fields->addBool("importName");
+  _nameFld->setBoolValue(false);
 
   _keepVectorInputAsIsFld = fields->addBool("keepVecInputAsIs");
   _keepVectorInputAsIsFld->setBoolValue(false);
@@ -146,7 +148,9 @@ void XMarkerListFromFile::handleNotification (Field *field)
           std::string dummy;
           file_op >> dummy;
         }
-        
+
+        const int MAX_NAME_SIZE = 2048;
+		    char name[MAX_NAME_SIZE] = "";
         // Read XMarkers from text file
         while (true) {
           XMarker marker;
@@ -159,6 +163,8 @@ void XMarkerListFromFile::handleNotification (Field *field)
           if (_vectorYFld->getBoolValue()) if ( !(file_op >> tokens[5]) ) break;
           if (_vectorZFld->getBoolValue()) if ( !(file_op >> tokens[6]) ) break;
           if (_typeFld->getBoolValue()) if ( !(file_op >> tokens[7]) ) break;
+		      if (_nameFld->getBoolValue()) if (!(file_op.getline(name, 1024, '\n'))) break;
+
           vec3 voxel (atof (tokens[0].c_str()), atof(tokens[1].c_str()), atof(tokens[2].c_str()));
           
           // When coordinates in file are in world coordinates, we are done
@@ -186,6 +192,11 @@ void XMarkerListFromFile::handleNotification (Field *field)
           marker.pos[4] = atof(tokens[3].c_str());
           marker.vec = vec;
           marker.type = type;
+          // strip spaces
+          const char *strippedName = name;
+          while ( ( (*strippedName == ' ') || (*strippedName == '\t') ) &&
+                  (name - strippedName < MAX_NAME_SIZE-1) ) ++strippedName;
+		      marker.setName(strippedName);
           // Add marker to output list
           _outputXMarkerList.appendItem(marker);
         }

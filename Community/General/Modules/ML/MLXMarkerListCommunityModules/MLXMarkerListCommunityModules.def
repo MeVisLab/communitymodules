@@ -57,7 +57,7 @@ MLModule XMarkerListFromFile {
   comment        = "Read XMarkerList from a text file"
   keywords       = "XMarkerList XMarker file text load read import"
   seeAlso        = "XMarkerListToFile"
-  documentation  = "$(LOCAL)/html/XMarkerListFromFile.html"
+  documentation  = "$(LOCAL)/mhelp/XMarkerListFromFile.mhelp"
   
   Window {
     mw=600
@@ -79,6 +79,7 @@ MLModule XMarkerListFromFile {
         }
       }
       Field importType { alignGroup=left }
+      Field importName { alignGroup=left }
       Field numElementsToSkip {}
       Field inputCoordinateSystem {}
       Separator {}
@@ -104,7 +105,7 @@ MLModule XMarkerListToFile {
   comment        = "Save XMarkerList to a text file"
   keywords       = "XMarkerList XMarker file text save store export"
   seeAlso        = "XMarkerListFromFile"
-  documentation  = "$(LOCAL)/html/XMarkerListToFile.html"
+  documentation  = "$(LOCAL)/mhelp/XMarkerListToFile.mhelp"
   
   Window {
     mw=600
@@ -119,6 +120,7 @@ MLModule XMarkerListToFile {
       Field exportVectorY {}
       Field exportVectorZ {}
       Field exportType { alignGroup=left }
+      Field exportName { alignGroup=left }
       Field coordinateSeparator { alignGroup=left }
       Field outputCoordinateSystem { alignGroup=left }
       Field elastixFormat { alignGroup = Left }
