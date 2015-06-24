@@ -8,9 +8,9 @@
       location = "group:MLOsiriXServices/MLOsiriXServices_debug.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:MLOsiriXBridgeModule/MLOsiriXBridge_debug.xcodeproj">
+      location = "group:MLOsiriXBridge/MLOsiriXBridge_debug.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:OsiriXPlugIn/OsiriXMeVisLabBridge.xcodeproj">
+      location = "group:OsiriXPlugIn/OsiriXPlugIn.xcodeproj">
    </FileRef>
 </Workspace>

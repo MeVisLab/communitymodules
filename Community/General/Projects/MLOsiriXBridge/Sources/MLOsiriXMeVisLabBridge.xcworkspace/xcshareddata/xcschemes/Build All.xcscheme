@@ -30,7 +30,7 @@
                BlueprintIdentifier = "BCB147FF0E875701921E494D"
                BuildableName = "libMLOsiriXBridge_debug.dylib"
                BlueprintName = "libMLOsiriXBridge_debug"
-               ReferencedContainer = "container:MLOsiriXBridgeModule/MLOsiriXBridge_debug.xcodeproj">
+               ReferencedContainer = "container:MLOsiriXBridge/MLOsiriXBridge_debug.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -58,7 +58,7 @@
                BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
                BuildableName = "OsiriXMeVisLabBridge.osirixplugin"
                BlueprintName = "OsiriXMeVisLabBridge"
-               ReferencedContainer = "container:OsiriXPlugIn/OsiriXMeVisLabBridge.xcodeproj">
+               ReferencedContainer = "container:OsiriXPlugIn/OsiriXPlugIn.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
