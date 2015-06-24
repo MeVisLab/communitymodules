@@ -21,10 +21,10 @@ INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVis
 #---------------------------------------------------------------------
 
 # Collecting files for AddOn:
-SWITCH_PACKAGE FMEwork/ReleaseMeVis
+SWITCH_PACKAGE Community/General
 + Package.def
-+ Projects/MLOsiriXBridge/Modules/ML/MLOsiriXBridge
++ Projects/MLOsiriXBridge/Modules/
 + bin/PlugIns/OsiriXMeVisLabBridge.osirixplugin
 + Documentation/Publish/OsiriXMeVisLabBridge.pdf
-+ Documentation/Publish/OsiriXMeVisLabBridge.qch
 + Documentation/Publish/OsiriXMeVisLabBridge
++? Documentation/Publish/OsiriXMeVisLabBridge.qch
