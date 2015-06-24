@@ -9,4 +9,4 @@ files = OsiriXMeVisLabBridge.xml
 buildType = html,qthelp
 
 [docbook-variables]
-mevis.footer.copyright = Fraunhofer MEVIS
+mevis.footer.copyright = MeVisLab Community
