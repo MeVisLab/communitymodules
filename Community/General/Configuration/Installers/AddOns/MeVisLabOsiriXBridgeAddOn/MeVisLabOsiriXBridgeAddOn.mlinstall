@@ -1,0 +1,30 @@
+#---------------------------------------------------------------------
+# OsiriXBridge AddOn Installer
+#---------------------------------------------------------------------
+
+$PRODUCT OsiriXBridgeAddOn
+
+$DEBUG   1
+$RELEASE 1
+
+# enable detecting of dependend Dlls and copying of *.dll to installer
+$MODULEDATABASETOOL 1
+
+# ignore dependend Dlls of certain packages
+$MODULEDATABASETOOL_USRARGS --ignorePackage MeVis/ThirdParty --ignorePackage MeVis/Foundation --ignorePackage MeVisLab/Standard
+
+# change the default license text
+$INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/MeVisLabCommunityAddOnLicense.txt
+
+#---------------------------------------------------------------------
+INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
+#---------------------------------------------------------------------
+
+# Collecting files for AddOn:
+SWITCH_PACKAGE FMEwork/ReleaseMeVis
++ Package.def
++ Projects/MLOsiriXBridge/Modules/ML/MLOsiriXBridge
++ bin/PlugIns/OsiriXMeVisLabBridge.osirixplugin
++ Documentation/Publish/OsiriXMeVisLabBridge.pdf
++ Documentation/Publish/OsiriXMeVisLabBridge.qch
++ Documentation/Publish/OsiriXMeVisLabBridge
