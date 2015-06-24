@@ -17,6 +17,7 @@ isEmpty(Community_General_PRI_INCLUDED) {
 # MLCSOCommunityModules - CSO community modules
 # MLPDF                 - PDF and 3D-PDF creation (Axel Newe)
 # MLBaseListExtensions  - IndexPair[List[Container]], ColoredMarker[List[Container]] (Axel Newe)
+# MLOsiriXServices      - OsiriX interface
 
 
 # include guard against multiple inclusion
@@ -30,8 +31,9 @@ include( $(MLAB_MeVis_Foundation)/Configuration/SystemInit.pri )
 
 # -- Define local PACKAGE variables -------------------------------------
 
-PACKAGE_ROOT    = $$(MLAB_Community_General)
-PACKAGE_SOURCES = "$$(MLAB_Community_General)"/Sources
+PACKAGE_ROOT     = $$(MLAB_Community_General)
+PACKAGE_SOURCES  = "$$(MLAB_Community_General)"/Sources
+PACKAGE_PROJECTS = "$$(MLAB_Community_General)"/Projects
 
 # Add package library path
 LIBS          += -L"$${PACKAGE_ROOT}"/lib
@@ -80,6 +82,14 @@ MLBaseListExtensions {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/thirdparty
   win32:LIBS += MLBaseListExtensions$${d}.lib
   unix:LIBS  += -lMLBaseListExtensions$${d}
+}
+
+MLOsiriXServices {
+  CONFIG_FOUND += MLOsiriXServices
+  macx {
+    INCLUDEPATH += $${PACKAGE_PROJECTS}/MLOsiriXBridge/Sources/MLOsiriXServices
+    LIBS        += -lMLOsiriXServices$${d}
+  }
 }
 
 # -- Inventor Projects -------------------------------------------------------
