@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
                BuildableName = "OsiriXMeVisLabBridge.osirixplugin"
                BlueprintName = "OsiriXMeVisLabBridge"
-               ReferencedContainer = "container:OsiriXMeVisLabBridge.xcodeproj">
+               ReferencedContainer = "container:OsiriXPlugIn.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
