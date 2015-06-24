@@ -84,6 +84,7 @@ isEmpty(PACKAGE_SETUP_INCLUDED) {
                                            FMEwork_VTK \
                                            FMEwork_ITK \
                                            FMEwork_ThirdParty \
+                                           FMEwork_ReleaseMeVis \
                                            FMEstable_ReleaseMeVis \
                                            MeVisLab_Standard \
                                            MeVisLab_IDE
