@@ -76,7 +76,7 @@
 		B75093BE15BC4ADB001B4E5F /* IndeterminatedProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndeterminatedProgressController.h; sourceTree = "<group>"; };
 		B75093BF15BC4ADB001B4E5F /* IndeterminatedProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndeterminatedProgressController.m; sourceTree = "<group>"; };
 		B75093C215BC4AE2001B4E5F /* IndeterminatedProgressWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndeterminatedProgressWindow.xib; sourceTree = "<group>"; };
-		B75FB631112BD0D100D58216 /* mlMeVisLabServicesProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mlMeVisLabServicesProtocol.h; path = ../MLOsiriXBridgeModule/mlMeVisLabServicesProtocol.h; sourceTree = SOURCE_ROOT; };
+		B75FB631112BD0D100D58216 /* mlMeVisLabServicesProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mlMeVisLabServicesProtocol.h; path = ../MLOsiriXBridge/mlMeVisLabServicesProtocol.h; sourceTree = SOURCE_ROOT; };
 		B7AB82C3137FF5E600A79F31 /* SendToMeVisLab-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SendToMeVisLab-gray.png"; sourceTree = "<group>"; };
 		B7AB82C4137FF5E600A79F31 /* SendToMeVisLab-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SendToMeVisLab-red.png"; sourceTree = "<group>"; };
 		B7BE9B32137FE61100325DF6 /* ToolPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolPopUpButton.h; sourceTree = "<group>"; };
