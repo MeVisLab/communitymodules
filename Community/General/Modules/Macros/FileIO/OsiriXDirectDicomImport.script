@@ -1,0 +1,44 @@
+// **InsertLicense** code
+
+
+Interface {
+  Inputs {
+    Field inputFilterPlugin     { internalName = DirectDicomImport.inputFilterPlugin }
+  }
+  Outputs {
+    Field output0               { internalName = DirectDicomImport.output0 }
+    Field outputAccessConnector { internalName = DirectDicomImport.outputAccessConnector }
+  }
+  Parameters {
+    Field targetName            { internalName = OsiriXBridge.alternativeTargetName }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/OsiriXDirectDicomImport.py
+  
+  wakeupCommand = init
+}
+
+
+Window {
+  Vertical { 
+    margin = 5
+    Box "Module Identifier in OsiriX" { 
+      layout=Vertical
+      HyperLabel {
+        title = "Configure the name of this module in the target pop-up menu of the <em>Send to MeVisLab</em> toolbar icon in OsiriX. The name will initially be set to the instance name of this module."
+      }
+      Field targetName {
+        title = "Target Name:"
+      }
+    }
+    Box "DirectDicomImport Settings" {
+      Panel {
+        module = DirectDicomImport
+        window = _default
+      }
+    }
+  }
+}

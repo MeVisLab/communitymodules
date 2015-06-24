@@ -1,0 +1,11 @@
+// **InsertLicense** code
+
+MacroModule OsiriXDirectDicomImport {
+  genre              = "DICOM"
+  author             = "Felix Ritter"
+  comment            = "OsiriX file import"
+  keywords           = "OsiriX"
+  seeAlso            = "OsiriXBridge"
+  exampleNetwork     = "$(LOCAL)/networks/OsiriXDirectDicomImportExample.mlab"   
+  externalDefinition = "$(LOCAL)/OsiriXDirectDicomImport.script"
+}

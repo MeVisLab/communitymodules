@@ -1,0 +1,70 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/Macros/FileHandling/OsiriXDirectDicomImport.def
+    moduleName = OsiriXDirectDicomImport
+    moduleType = MacroModule
+    author = "Felix Ritter"
+    dll = ""
+    genre = DICOM
+    keywords = OsiriX
+    seeAlso = OsiriXBridge
+    package = ReleaseMeVis
+    packageGroup = FMEwork
+  }
+  Purpose  {
+    text = "The OsiriXDirectDicomImport module uses an :module:`OsiriXBridge` module to feed DICOM images sent from OsiriX to the :module:`DirectDicomImport` module. The images are imported automatically from the OsiriX database and provided at the :field:`output0` image output connector."
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text  {
+      title = ""
+      text = ""
+    }
+    Window _default {
+      title = ""
+      text = ""
+      needsDocumentation = No
+    }
+  }
+  Outputs  {
+    text = ""
+    Field output0 {
+      type = Image
+      text = ""
+    }
+    Field outputAccessConnector {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = OsiriXDirectDicomImport
+    }
+    Field targetName {
+      type = String
+      text = ""
+      title = "Target Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+  }
+}
