@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D5B49AE048680CD000E48DA /* OsiriXMeVisLabBridge_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF630370AF2F00C91783 /* OsiriXMeVisLabBridge_Prefix.pch */; };
+		8D5B49AE048680CD000E48DA /* OsiriXPlugIn_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF630370AF2F00C91783 /* OsiriXPlugIn_Prefix.pch */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		B7089B820F9F3F00002412A6 /* OsiriXMeVisLabBridge.osirixplugin in Copy PlugIn to bin */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */; };
 		B7115E0613B1F79200438105 /* SendToMeVisLab-notarget.png in Resources */ = {isa = PBXBuildFile; fileRef = B7115E0513B1F79200438105 /* SendToMeVisLab-notarget.png */; };
@@ -62,7 +62,7 @@
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		32DBCF630370AF2F00C91783 /* OsiriXMeVisLabBridge_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsiriXMeVisLabBridge_Prefix.pch; sourceTree = "<group>"; };
+		32DBCF630370AF2F00C91783 /* OsiriXPlugIn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsiriXPlugIn_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsiriXMeVisLabBridge.osirixplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7115E0513B1F79200438105 /* SendToMeVisLab-notarget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SendToMeVisLab-notarget.png"; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		32C88E010371C26100C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF630370AF2F00C91783 /* OsiriXMeVisLabBridge_Prefix.pch */,
+				32DBCF630370AF2F00C91783 /* OsiriXPlugIn_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D5B49AE048680CD000E48DA /* OsiriXMeVisLabBridge_Prefix.pch in Headers */,
+				8D5B49AE048680CD000E48DA /* OsiriXPlugIn_Prefix.pch in Headers */,
 				B719E0C0112B232900FCD349 /* mlOsiriXServicesProtocol.h in Headers */,
 				B75FB632112BD0D100D58216 /* mlMeVisLabServicesProtocol.h in Headers */,
 				B7F66C4811B97EF1008E890B /* OsiriXMeVisLabBridgePlugin.h in Headers */,
@@ -314,7 +314,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = OsiriXMeVisLabBridge_Prefix.pch;
+				GCC_PREFIX_HEADER = OsiriXPlugIn_Prefix.pch;
 				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -372,7 +372,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = OsiriXMeVisLabBridge_Prefix.pch;
+				GCC_PREFIX_HEADER = OsiriXPlugIn_Prefix.pch;
 				GCC_VERSION = "";
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
