@@ -17,10 +17,11 @@ set -x
 for f in $PROJECTS
 do
   pushd ${f}
-  $PROJGEN ${f}.pro
+  $PROJGEN ${f}.pro && \
   make -f Makefile.${f} clean && \
   make -j $NUMJOBS -f Makefile.${f} && \
   make -f Makefile.${f}_debug clean && \
-  make -j $NUMJOBS -f Makefile.${f}_debug
+  make -j $NUMJOBS -f Makefile.${f}_debug || \
+  { read -p "Press any key to close window"; exit; }
   popd
 done
