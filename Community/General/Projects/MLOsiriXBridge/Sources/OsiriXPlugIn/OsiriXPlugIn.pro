@@ -1,4 +1,4 @@
-# MeVisLab OsiriX bridge
+# OsiriX plugin
 
 TEMPLATE = lib
 
