@@ -4,7 +4,7 @@ set -x
 
 PROJECTS="\
 MLOsiriXServices/MLOsiriXServices \
-MLOsiriXBridgeModule/MLOsiriXBridge \
+MLOsiriXBridge/MLOsiriXBridge \
 MLABOsiriXBridgeControl/MLABOsiriXBridgeControl \
 "
 
