@@ -87,7 +87,7 @@ MLBaseListExtensions {
 MLOsiriXServices {
   CONFIG_FOUND += MLOsiriXServices
   macx {
-    INCLUDEPATH += $${PACKAGE_PROJECTS}/MLOsiriXBridge/Sources/MLOsiriXServices
+    INCLUDEPATH += $${PACKAGE_PROJECTS}/OsiriXMeVisLabBridge/Sources/MLOsiriXServices
     LIBS        += -lMLOsiriXServices$${d}
   }
 }
