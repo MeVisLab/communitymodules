@@ -1,6 +1,5 @@
 // **InsertLicense** code
 
-
 MLModule OsiriXBridge {
   DLL                = "MLOsiriXBridge"
   genre              = "DICOM"
@@ -9,9 +8,8 @@ MLModule OsiriXBridge {
   keywords           = "OsiriX DICOM files ImageLoad ImageSave"
   seeAlso            = "ImageLoad ImageSave DicomTool DicomBrowser DicomImport DirectDicomImport"
   exampleNetwork     = "$(LOCAL)/networks/OsiriXBridge-EatDicom-FilterChain.mlab"
-  externalDefinition = $(LOCAL)/OsiriXBridge.script
+  externalDefinition = $(LOCAL)/MLOsiriXBridge.script
 }
-
 
 WidgetControl OsiriXBridge
 {
