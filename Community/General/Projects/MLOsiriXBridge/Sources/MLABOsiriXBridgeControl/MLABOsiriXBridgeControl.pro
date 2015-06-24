@@ -6,17 +6,17 @@
 #  This code is in the public domain.
 #
 
-MEVIS_MAINTAINER = fritter
-
 TEMPLATE = lib
 
 TARGET = MLABOsiriXBridgeControl
+
+# add dependencies of this project here
 
 CONFIG += dll MLABBase MLABGUICore MLABFields MLABNetwork MLUtilitiesHeader MLOSXSupport
 CONFIG += MLOsiriXServices
 
 # make sure to set CONFIG and non-default MLAB_PACKAGES before the following line
-include ($(MLAB_FMEwork_ReleaseMeVis)/Configuration/DefaultProjectSetup.pri)
+include ($(MLAB_Community_General)/Configuration/DefaultProjectSetup.pri)
 
 CONFIG += qt
 DEFINES += UNICODE _UNICODE

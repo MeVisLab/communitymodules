@@ -1,7 +1,5 @@
 # MeVisLab OsiriX bridge
 
-MEVIS_MAINTAINER = fritter
-
 TEMPLATE = lib
 
 # Create Info.plist file from template file given in MLAB_INFO_PLIST_TEMPLATE

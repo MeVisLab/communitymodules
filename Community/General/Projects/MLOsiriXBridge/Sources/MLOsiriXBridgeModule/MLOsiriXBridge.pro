@@ -6,8 +6,6 @@
 #  This code is in the public domain.
 #
 
-MEVIS_MAINTAINER = fritter
-
 TEMPLATE = lib
 
 TARGET = MLOsiriXBridge
@@ -18,7 +16,7 @@ CONFIG += dll ML MLTools MLOSXSupport
 CONFIG += MLOsiriXServices
 
 # make sure to set CONFIG and non-default MLAB_PACKAGES before the following line
-include ($(MLAB_FMEwork_ReleaseMeVis)/Configuration/DefaultProjectSetup.pri)
+include ($(MLAB_Community_General)/Configuration/DefaultProjectSetup.pri)
 
 DEFINES += MLOSIRIXBRIDGE_EXPORTS ML_DISABLE_DEPRECATED
 
