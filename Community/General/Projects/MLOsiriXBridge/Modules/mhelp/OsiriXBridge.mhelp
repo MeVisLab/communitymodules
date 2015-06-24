@@ -1,0 +1,149 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLOsiriXBridge/MLOsiriXBridge.def
+    moduleName = OsiriXBridge
+    moduleType = MLModule
+    author = "Felix Ritter"
+    DLL = MLOsiriXBridge
+    genre = DICOM
+    keywords = "OsiriX DICOM files ImageLoad ImageSave"
+    seeAlso = "ImageLoad ImageSave DicomTool DicomBrowser DicomImport DirectDicomImport"
+    package = ReleaseMeVis
+    packageGroup = FMEwork
+  }
+  Purpose  {
+    text = "**Note: The OsiriX MeVisLab bridge is discussed in detail in the* :cross-ref:`OsiriXMeVisLabBridge` *guide.*
+
+The OsiriXBridge is part of a bridge between MeVisLab and the `OsiriX Advanced PACS Viewer <http://www.osirix-viewer.com/>`_ consisting of the OsiriXMeVisLabBridge plugin for OsiriX 3.3 or later and this module. MeVisLab and OsiriX must be running on the same computer.*"
+  }
+  Usage  {
+    text = "Enable the *Convert original DICOM slices ...* option and connect the :field:`filename` field of the :module:`OsiriXBridge` module to the filename field an :module:`ImageLoad` module. Install the OsiriXMeVisLabBridge plugin for OsiriX, place the *Send to MeVisLab* icon onto the toolbar, and send a selected series from the database window in OsiriX to MeVisLab by clicking the *Send to MeVisLab* toolbar icon in OsiriX. The converted dataset will be loaded by the :module:`ImageLoad` module.
+
+If you want to store a processed dataset into the OsiriX database use the :module:`DicomTool` macro module and save the dataset slice by slice to the Incoming folder of the OsiriX database. The path to this folder can be obtained from the :field:`osirixIncomingDir` field of the :module:`OsiriXBridge` module. Simply, connect the :field:`osirixIncomingDir` field to the exportBaseDir field of the :module:`DicomTool` macro module and trigger the saveSlices field.
+
+Installation of the PlugIn
+==========================
+
+Installation of the PlugIn is supported via the *OsiriX Setup* tab. Activate the *Install OsiriX PlugIn* button to hand the PlugIn to OsiriX for installation. OsiriX must be already running to perform the installation. If you would like to manually install the PlugIn, the *Show OsiriX PlugIn* button will reveal the PlugIn's location in Finder.
+"
+  }
+  Details  {
+    text = "The OsiriXBridge uses Objective-C distributed objects to establish a bidirectional communication between OsiriX and MeVisLab. OsiriX sends the filenames of all slices of the current dataset which are then converted by the EatDicom utility of MeVisLab depending on the state of the :field:`useEatDicom` field. The resulting filename is passed to the :field:`filename` field of the :module:`OsiriXBridge` module.
+
+The import of the DICOM slices sent by OsiriX is performed by the EatDicom import tool, a command line utility that can also be used independently of MeVisLab (e.g. as a background process). A number of command line parameters are available to fine-tune the import process, a list of these parameters is displayed by clicking the Help button in the Advanced Conversion Setup tab."
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = "The module logs some run-time information to the console (using NSLog()) that might be useful in detecting abnormal behavior.
+
+Currently, the following limitations are known:
+
+- the dataset sent from OsiriX is always converted even if the dataset has already been sent to MeVisLab"
+  }
+  Windows  {
+    text  {
+      title = ""
+      text = ""
+    }
+    Window _default {
+      title = ""
+      text = ""
+      needsDocumentation = No
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = "The :field:`instanceName` field specifies the default target name of this module in the target pop-up menu of the *Send to MeVisLab* toolbar icon in OsiriX if the :field:`alternativeTargetName` field is empty. The target name must be unique.
+"
+      title = ""
+      needsDocumentation = Yes
+      visibleInGUI = No
+      persistent = Yes
+      default = OsiriXBridge
+    }
+    Field alternativeTargetName {
+      type = String
+      text = "An alternative name for this module in the target pop-up menu of the *Send to MeVisLab* toolbar icon in OsiriX. The name will take precedence over the :field:`instanceName` field of the module if set (non-empty). The target name must be unique."
+      title = "Alternative target name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field osirixIncomingDir {
+      type = String
+      text = "The standard DICOM images put into the Incoming folder of the OsiriX database will be imported into the OsiriX database automatically. OsiriX will check that folder every few seconds. At module creation, the OsiriXBridge module tries to connect to OsiriX to retrieve the location of this Incoming folder. You may update the information presented in this field by triggering the :field:`osirixIncomingDirUpdate` field"
+      title = "OsiriX incoming folder"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field osirixIncomingDirUpdate {
+      type = Trigger
+      text = "Forces an update of the information presented in the :field:`osirixIncomingDir` field."
+      title = Update
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field osirixIncomingDirAutoUpdate {
+      type = Bool
+      text = "Automatically update the incoming folder field if a new dataset arrives. This field gets updated right before the filename field."
+      title = "Automatically update the incoming folder field if a new dataset arrives"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field slicesFileList {
+      type = String
+      text = "A list of DICOM filenames received from OsiriX. The slices list may be used with the :module:`DirectDicomImport` module."
+      title = "DICOM slices file list"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field useEatDicom {
+      type = Bool
+      text = "Convert original DICOM slices into the DICOM/TIFF MeVisLab format suitable for use with the :module:`ImageLoad` module."
+      title = "Convert original DICOM slices into a MeVisLab DICOM dataset"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field dataStoreDir {
+      type = String
+      text = "The directory into which the converted DICOM/TIFF MeVisLab datasets will be stored (User's temporary directory if empty)."
+      title = "DICOM storage directory"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field eatDicomOptions {
+      type = String
+      text = "Additional options to the eatDicom import tool. Activate the *Defaults* button to apply the default options as defined via the EatDicomOptions preferences variable of MeVisLab. To display all available eatDicom options use the *Help* button."
+      title = "DICOM processing options"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = $(EatDicomOptions)
+    }
+    Field eatDicomOutput {
+      type = String
+      text = "Present the standard and error output of the eatDicom import tool. This helps to identify import problems."
+      title = "Eat Dicom Output"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field filename {
+      type = String
+      text = "Read-only field that refers to the converted DICOM/TIFF MeVisLab dataset received from OsiriX."
+      title = "Converted DICOM dataset filename"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    text = ""
+  }
+}

@@ -1,0 +1,24 @@
+# MeVisLab OsiriX bridge
+
+MEVIS_MAINTAINER = fritter
+
+TEMPLATE = lib
+
+# Create Info.plist file from template file given in MLAB_INFO_PLIST_TEMPLATE
+MLAB_INFO_PLIST_TEMPLATE = $$PWD/Info-template.plist
+include ( $$(MLAB_MeVisLab_IDE)/Configuration/CreateInfoPListFromTemplate.pri )
+system(mv -f \"$$QMAKE_INFO_PLIST\" \"$$PWD/Info.plist\")
+  
+macx:release:!debug {
+
+  # detect compiler
+  include ($(MLAB_MeVis_BuildSystem)/Configuration/System.pri)
+  
+  # build the plugin using xcodebuild
+  clang {
+    system(xcodebuild -configuration Release GCC_VERSION=com.apple.compilers.llvm.clang.1_0 SDKROOT=macosx$$QMAKE_MACOSX_DEPLOYMENT_TARGET clean build)
+  } else {
+    system(xcodebuild -configuration Release GCC_VERSION=com.apple.compilers.llvmgcc42 clean build)
+  }
+
+}

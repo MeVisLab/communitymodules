@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>allowToolbarIcon</key>
+	<string>YES</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>OsiriXMeVisLabBridge</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>@MEVISLAB_SHORT_VERSION@</string>
+	<key>MenuTitles</key>
+	<array>
+		<string>Send to MeVisLab</string>
+	</array>
+	<key>NSPrincipalClass</key>
+	<string>OsiriXMeVisLabBridgePlugin</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>pluginType</key>
+	<string>Database</string>
+	<key>ToolbarIcon</key>
+	<string>SendToMeVisLab-gray.tiff</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © @MEVISLAB_YEAR@ Fraunhofer MEVIS</string>
+</dict>
+</plist>

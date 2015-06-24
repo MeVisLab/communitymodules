@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+
+<!-- Begin Document Specific Declarations -->
+
+<?Fm Validation Off?>
+
+<!ENTITY MeVisLabVer "2.7">
+
+<!-- End Document Specific Declarations -->
+
+]>
+<?xml-stylesheet href="/C:/Programme/Adobe/FrameMaker9/structure/xml/xdocbook/app/xdocbook.css" type="text/css"?>
+<book><bookinfo><title>OsiriX MeVisLab Bridge &MeVisLabVer;</title>
+<author><firstname>Felix</firstname><surname>Ritter</surname>
+<affiliation><orgname><inlinegraphic
+    fileref = "figures/FhG-MEVIS-logo-bw.png" width = "1.230in"
+    depth = "0.425in" align = "center" condition = "0"
+    role = "1.230in 0.425in"/></orgname></affiliation></author></bookinfo>
+<preface><title>Introduction</title>
+<para>To facilitate the integration of the MeVisLab OS X edition
+into the clinical workflow, you may use the <ulink
+    url = "http://www.osirix-viewer.com/"><?FM MARKER [Hypertext] message URL http://www.osirix-viewer.com/?>OsiriX</ulink> Advanced
+DICOM PACS workstation to retrieve and store medical image datasets.
+The solution introduced in this document enables a bidirectional
+communication between MeVisLab and OsiriX version 3.3 or later.
+Images may not only be sent from OsiriX to MeVisLab for processing,
+but furthermore, images can be sent back to OsiriX for PACS storage
+as well.</para></preface>
+<chapter><title>Integrating MeVisLab with OsiriX</title>
+<para>The following sections explain the setup and adoption of the
+OsiriX MeVisLab bridge for your MeVisLab installation.</para>
+<sect1><title>Installation of the OsiriX plugin</title>
+<para>The bridge between MeVisLab and OsiriX consists of the OsiriX
+plugin OsiriXMeVisLabBridge and the MeVisLab module OsiriXBridge. Currently,
+MeVisLab and OsiriX must be running on the same computer.</para>
+<para>To install the OsiriX plugin, start MeVisLab, place the module
+OsiriXBridge onto the network window and open its panel by double-clicking the
+module. The <guilabel>OsiriX Setup</guilabel> tab features an <guibutton>Install
+OsiriX PlugIn</guibutton> button, that will hand the plugin to OsiriX
+for installation (<xref linkend = "Fig_OsiriXPluginInstallation"
+    role = "Figure"/>).</para>
+<figure id = "Fig_OsiriXPluginInstallation"><title>Installation
+of the OsiriX plugin via the MeVisLab module OsiriXBridge</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "2.842in" align = "center"
+    fileref = "figures/OsiriXPluginInstallation.png" condition = "0"
+    role = "4.333in 2.856in"/></imageobject></mediaobject></figure>
+<para>After the OsiriXMeVisLabBridge plugin has been loaded by OsiriX, customize
+the OsiriX toolbar by selecting <guimenuitem>Customize Toolbar&hellip;</guimenuitem> from the <guimenu>Format</guimenu> menu
+in OsiriX. Then simply drag and drop the <guiicon>Send to MeVisLab</guiicon> icon
+into the toolbar (<xref linkend = "Fig_OsiriXToolbarConfig"
+    role = "Figure"/>).</para>
+<figure id = "Fig_OsiriXToolbarConfig"><title>Adding a <guibutton>Send
+to MeVisLab</guibutton> icon to the OsiriX toolbar</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "2.737in" align = "center"
+    fileref = "figures/OsiriXToolbarConfig.png" condition = "0"
+    role = "5.343in 2.737in"/></imageobject></mediaobject></figure></sect1>
+<sect1><title>Sending image series from OsiriX to MeVisLab</title>
+<para>All interaction with the OsiriXMeVisLabBridge plugin is performed via
+the <guiicon>Send to MeVisLab</guiicon> toolbar icon. The icon&rsquo;s
+appearance and tooltip indicate the current state of the connection
+between OsiriX and MeVisLab. If OsiriX does not detect any MeVisLab
+modules which are able to receive data, the arrow in the icon will
+be translucent (<xref linkend = "CACDDEHF" role = "Figure"/>).</para>
+<figure id = "CACDDEHF"><title>OsiriX could not detect any OsiriXBridge
+modules</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "1.354in" align = "center"
+    fileref = "figures/OsiriX_NoTargetsAvailable.png" condition = "0"
+    role = "2.792in 1.354in"/></imageobject></mediaobject></figure>
+<para>If at least one target module could be detected, the arrow
+will be shown fully opaque (<xref linkend = "CACEEHDI" role = "Figure"/>).</para>
+<figure id = "CACEEHDI"><title>At least one OsiriXBridge module
+is available</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "1.354in" align = "center"
+    fileref = "figures/OsiriX_TargetsAvailable.png" condition = "0"
+    role = "2.792in 1.354in"/></imageobject></mediaobject></figure>
+<para>To send a specific set of images to MeVisLab select the name
+of the series you would like to send in the patient and study list.
+Then click on the <guiicon>Send to MeVisLab</guiicon> icon in the
+toolbar. A pop-up menu will open and allow the user to select one
+of the detected targets (<xref linkend = "CACCCHCC" role = "Figure"/>).</para>
+<figure id = "CACCCHCC"><title>Sending a selected series via the
+target pop-up to MeVisLab</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "2.021in" align = "center"
+    fileref = "figures/OsiriX_MovingImage.png" condition = "0"
+    role = "6.194in 2.021in"/></imageobject></mediaobject></figure>
+<para>Each target represents one OsiriXBridge module or macro module
+that employs an OsiriXBridge module. The target name can be set
+in the module&rsquo;s panel <guilabel>OsiriX Setup</guilabel> tab
+in MeVisLab (<xref linkend = "CACBEJDB" role = "Figure"/>). Initially
+the instance name of the OsiriXBridge module is used as the target
+name but you are free to change that name to better reflect the
+targets meaning. Target names must be unique. If a target name has
+already been registered with OsiriX, the name is suffixed by a counting
+number.</para>
+<figure id = "CACBEJDB"><title>Setup of the name of the target pop-up
+menu item in OsiriX</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "2.250in" align = "center"
+    fileref = "figures/MLAB_OsiriXBridge_OsiriXSetup.png"
+    condition = "0" role = "3.611in 2.250in"/></imageobject></mediaobject></figure></sect1>
+<sect1><title>Using MeVisLab to process images sent from OsiriX</title>
+<sect2><title id = "DicomOrConversion"><?FM MARKER [Cross-Ref] 28791: Head3: Direct Dicom Import or Conversion??>Direct Dicom Import or Conversion?</title>
+<para>MeVisLab supports two approaches to load DICOM data. The first, traditional
+approach, loads DICOM data after a conversion step performed by
+the EatDicom tool. EatDicom analyses and sorts the DICOM slices,
+builds series and finally creates two files per series, a DICOM
+header file and a 3D-TIFF file. Both files can be loaded by passing
+the DICOM header file to an ImageLoad module.</para>
+<para>The second, more modern approach, reads the DICOM slices directly without
+writing an explicit intermediate format file. Using a DirectDicomImport
+module, the DICOM slices are analyzed and sorted. Multiple volumes
+can be provided sequentially or in parallel. You may query the module
+for the properties of the loaded series. See the module help for
+further information.</para></sect2>
+<sect2><title>EatDicom</title>
+<para>The DICOM images sent by OsiriX are automatically converted
+by the OsiriXBridge module into a dataset that can be loaded by
+the ImageLoad module of MeVisLab. By connecting the filename field
+of the OsiriXBridge module to the filename field of an ImageLoad
+module, the converted dataset will be loaded by the ImageLoad module
+as soon as it becomes available.</para>
+<para>The EatDicom mode of the OsiriXBridge module is determined
+by the boolean state of the useEatDicom field (<xref
+    linkend = "BEIJFCHJ" role = "Figure"/>).</para>
+<figure id = "BEIJFCHJ"><title>Example network of the OsiriXBridge
+module using an ImageLoad module to load DICOM data that have been
+converted by the EatDicom tool</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "3.522in" align = "center"
+    fileref = "figures/MLAB_OsiriXBridge_ExampleNetwork_Conversion.png"
+    condition = "0" role = "4.710in 3.523in"/></imageobject></mediaobject></figure></sect2>
+<sect2><title>DirectDicomImport</title>
+<para>To interface the OsiriXBridge module with the DirectDicomImport module,
+first connect the OsiriXBridge.slicesFileList field to the DirectDicomImport.inputFileList
+field. Second, connect the DirectDicomImport.inputFileList field
+to the DirectDicomImport.dplImport field. This will automatically
+trigger the import process if a list of files has been passed to
+DirectDicomImport. As a convenience to the user, the OsiriXDirectDicomImport
+macro module already provides this configuration.</para>
+<para>The DirectDicomImport mode does not require the conversion
+step outlined in the Direct Dicom Import or Conversion? section.
+Starting with MeVisLab 2.2 the conversion if off by default in the
+OsiriXBridge module panel (<xref linkend = "CACDFJIE" role = "Figure"/>).</para>
+<figure id = "CACDFJIE"><title>Example network of the OsiriXBridge
+module using a DirectDicomImport module to load the DICOM data directly
+from the OsiriX database</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "2.355in" align = "center"
+    fileref = "figures/MLAB_OsiriXBridge_ExampleNetwork_DirectDicom.png"
+    condition = "0" role = "4.710in 2.355in"/></imageobject></mediaobject></figure></sect2>
+<sect2><title>Sending images back to OsiriX</title>
+<para>If you want to store a processed dataset into the OsiriX database,
+use the DicomTool macro module and save the dataset slice by slice
+to the Incoming folder of the OsiriX database. The path to this
+folder can be obtained from the osirixIncomingDir field of the OsiriXBridge
+module. Simply connect the osirixIncomingDir field to the exportBaseDir field
+of the DicomTool macro module and trigger the saveSlices field.</para>
+<para>The shown example networks of the OsiriXBridge module use
+the MeVisLab-OsiriX bridge to pipe a series sent by OsiriX through
+a MeVisLab filter chain. The filtered dataset is sent back to OsiriX (<xref
+    linkend = "BEIJFCHJ" role = "Figure"/> &amp; <xref
+    linkend = "CACDFJIE" role = "Figure"/>).</para></sect2></sect1>
+<sect1><title>Operation details</title>
+<para>The OsiriXBridge uses Objective-C distributed objects to establish
+a bidirectional communication between OsiriX and MeVisLab. OsiriX sends
+the filenames of all slices of the current dataset which are then converted
+by the EatDicom utility of MeVisLab depending on the state of the
+useEatDicom field. The resulting filename is passed to the filename
+field of the OsiriXBridge module.</para>
+<para>The import of the DICOM slices sent by OsiriX is performed
+by the EatDicom import tool, a command line utility that can also
+be used independently of MeVisLab (e.g. as a background process).
+A number of command line parameters are available to fine-tune the
+import process, a list of these parameters is displayed by clicking
+the <guibutton>Help</guibutton> button in the <guilabel>Advanced
+Conversion Setup</guilabel> tab of the OsiriXBridge module panel
+(<xref linkend = "Fig_OsiriXBridgeExampleNetwork" role = "Figure"/>).</para>
+<figure id = "Fig_OsiriXBridgeExampleNetwork"><title>Setup and output
+of the DICOM import process</title>
+<mediaobject><imageobject>
+<imagedata width = "6.299in" depth = "3.805in" align = "center"
+    fileref = "figures/MLAB_OsiriXBridge_AdvancedSetupPanel.png"
+    condition = "0" role = "4.095in 3.805in"/></imageobject></mediaobject></figure></sect1>
+<sect1><title>Troubleshooting</title>
+<para>If the import of DICOM images sent by OsiriX fails using the
+conversion approach, you may be required to customize the process.
+See the help page of the EatDicom tool available by clicking the
+Help button in the <guilabel>Advanced Conversion Setup</guilabel> tab
+of the OsiriXBridge module panel for tuning options.</para>
+<para>In addition, the standard and error output of the EatDicom
+import tool are displayed in the <guilabel>Advanced Conversion Setup</guilabel> tab.
+This may help to identify import issues (<xref
+    linkend = "Fig_OsiriXBridgeExampleNetwork" role = "Figure"/>).</para></sect1>
+<sect1><title>XML-RPC support</title>
+<para>OsiriX integrates an HTTP server with XML-RPC protocol support. The
+OsiriX MeVisLab Bridge extends the callable methods by the following:</para>
+<informaltable frame = "all" colsep = "0" rowsep = "0">
+<tgroup cols = "2" tgroupstyle = "XMLRPCMethodDescription" colsep = "0"
+    rowsep = "0">
+<colspec colnum = "1" colname = "1" colwidth = "0.967in" colsep = "0"/>
+<colspec colnum = "2" colname = "2" colwidth = "3.757in" colsep = "0"/>
+<tbody>
+<row rowsep = "0">
+<entry colname = "1">Method:</entry>
+<entry colname = "2">SendSelectedSeriesToMeVisLab</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Parameters:</entry>
+<entry colname = "2">&lcub;target: "OsiriXBridge"&rcub;;
+name of the target</entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">Response:</entry>
+<entry colname = "2">&lcub;error: "0"&rcub;; -1: service
+not found, -2: service transmission exception, -3: communication
+protocol mismatch, -4: unknown target name</entry>
+</row>
+</tbody>
+</tgroup></informaltable></sect1>
+<sect1><title>Obtaining the source code</title>
+<para>The source codes of both the OsiriX plugin and the MeVisLab
+module are included in the MeVisLab SDK <filename>FMEwork&sol;ReleaseMeVis</filename> package.</para></sect1></chapter>
+<appendix><title>Document Revision History</title>
+<informaltable frame = "all" colsep = "0" rowsep = "1">
+<tgroup cols = "2" tgroupstyle = "RevisionTable" colsep = "0"
+    rowsep = "1">
+<colspec colnum = "1" colname = "1" colwidth = "0.986in" colsep = "0"/>
+<colspec colnum = "2" colname = "2" colwidth = "3.738in" colsep = "0"/>
+<thead>
+<row rowsep = "1">
+<entry colname = "1">Date</entry>
+<entry colname = "2">Notes</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep = "1">
+<entry colname = "1">2012-07-24</entry>
+<entry colname = "2"><simplelist><member>Sending image series from
+OsiriX to MeVisLab updated</member>
+<member>XML-RPC support updated</member>
+<member>Obtaining the source code updated</member></simplelist></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">2011-08-02</entry>
+<entry colname = "2"><simplelist><member>Sending image series from
+OsiriX to MeVisLab added</member>
+<member>Using MeVisLab to process images sent from OsiriX updated</member></simplelist></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">2011-05-16</entry>
+<entry colname = "2"><simplelist><member>Installation of the OsiriX
+plugin updated</member>
+<member>XML-RPC support updated</member>
+<member>Obtaining the source code updated</member></simplelist></entry>
+</row>
+<row rowsep = "1">
+<entry colname = "1">2009-12-21</entry>
+<entry colname = "2"><simplelist><member>Installation of the OsiriX
+plugin updated</member>
+<member>XML-RPC support added</member></simplelist></entry>
+</row>
+<row rowsep = "0">
+<entry colname = "1">2009-04-22</entry>
+<entry colname = "2"><simplelist><member>New document that introduces
+the OsiriX MeVisLab Bridge</member></simplelist></entry>
+</row>
+</tbody>
+</tgroup></informaltable></appendix></book>

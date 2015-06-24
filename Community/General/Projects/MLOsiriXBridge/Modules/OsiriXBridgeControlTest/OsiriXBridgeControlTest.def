@@ -1,0 +1,8 @@
+// **InsertLicense** code
+
+
+MacroModule OsiriXBridgeControlTest {
+  author             = "Felix Ritter"
+  group              = test
+  externalDefinition = $(LOCAL)/OsiriXBridgeControlTest.script
+}

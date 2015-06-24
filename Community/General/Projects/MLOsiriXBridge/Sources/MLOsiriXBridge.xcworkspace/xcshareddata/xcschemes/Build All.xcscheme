@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.8">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BF8BB67ABA4C482471B68FED"
+               BuildableName = "libMLABOsiriXBridgeControl_debug.dylib"
+               BlueprintName = "libMLABOsiriXBridgeControl_debug"
+               ReferencedContainer = "container:MLABOsiriXBridgeControl/MLABOsiriXBridgeControl_debug.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BCB147FF0E875701921E494D"
+               BuildableName = "libMLOsiriXBridge_debug.dylib"
+               BlueprintName = "libMLOsiriXBridge_debug"
+               ReferencedContainer = "container:MLOsiriXBridgeModule/MLOsiriXBridge_debug.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9B469186C68B556501BFA9EC"
+               BuildableName = "libMLOsiriXServices_debug.dylib"
+               BlueprintName = "libMLOsiriXServices_debug"
+               ReferencedContainer = "container:MLOsiriXServices/MLOsiriXServices_debug.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
+               BuildableName = "OsiriXMeVisLabBridge.osirixplugin"
+               BlueprintName = "OsiriXMeVisLabBridge"
+               ReferencedContainer = "container:OsiriXPlugIn/OsiriXMeVisLabBridge.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <Testables>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      displayScaleIsEnabled = "NO"
+      displayScale = "1.00"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      ignoresPersistentStateOnLaunch = "YES"
+      debugDocumentVersioning = "YES"
+      allowLocationSimulation = "YES">
+      <PathRunnable
+         FilePath = "/Users/ritter/Applications/MeVisLab.app/Contents/MacOS/MeVisLabCore_debug">
+      </PathRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-quick"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "DYLD_LIBRARY_PATH"
+            value = "/System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources:/Users/ritter/Developer/MeVis/BuildSystem/lib:/Users/ritter/Developer/MeVis/Foundation/lib:/Users/ritter/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib:/Users/ritter/Developer/MeVisLab/Examples/lib:/Users/ritter/Developer/MeVisLab/IDE/lib:/Users/ritter/Developer/MeVisLab/Private/lib:/Users/ritter/Developer/MeVisLab/Resources/lib:/Users/ritter/Developer/MeVisLab/Standard/lib:/Users/ritter/Developer/FMEstable/ThirdParty/lib:/Users/ritter/Developer/FMEstable/Foundation/lib:/Users/ritter/Developer/FMEstable/Release/lib:/Users/ritter/Developer/FMEstable/ReleaseMeVis/lib:/Users/ritter/Developer/FMEstable/General/lib:/Users/ritter/Developer/FMEstable/Internal/lib:/Users/ritter/Developer/FMEstable/MMS/lib:/Users/ritter/Developer/FMEwork/ThirdParty/lib:/Users/ritter/Developer/FMEwork/Release/lib:/Users/ritter/Developer/FMEwork/ReleaseMeVis/lib:/Users/ritter/Developer/FMEwork/General/lib:/Users/ritter/Developer/FMEwork/ITK/lib:/Users/ritter/Developer/FMEwork/VTK/lib:/Users/ritter/Developer/FMEwork/Personal/lib:/Users/ritter/Developer/FMEwork/Students/lib:/Users/ritter/Developer/FMEwork/Internal/lib:/Users/ritter/Developer/FMEwork/External/lib:/Users/ritter/Developer/FMEwork/MMS/lib"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "DYLD_FRAMEWORK_PATH"
+            value = "/Users/ritter/Developer/MeVis/BuildSystem/lib:/Users/ritter/Developer/MeVis/Foundation/lib:/Users/ritter/Applications/MeVisLab.app/Contents/Packages/MeVis/ThirdParty/lib:/Users/ritter/Developer/MeVisLab/Examples/lib:/Users/ritter/Developer/MeVisLab/IDE/lib:/Users/ritter/Developer/MeVisLab/Private/lib:/Users/ritter/Developer/MeVisLab/Resources/lib:/Users/ritter/Developer/MeVisLab/Standard/lib:/Users/ritter/Developer/FMEstable/ThirdParty/lib:/Users/ritter/Developer/FMEstable/Foundation/lib:/Users/ritter/Developer/FMEstable/Release/lib:/Users/ritter/Developer/FMEstable/General/lib:/Users/ritter/Developer/FMEstable/Internal/lib:/Users/ritter/Developer/FMEstable/MMS/lib:/Users/ritter/Developer/FMEwork/ThirdParty/lib:/Users/ritter/Developer/FMEwork/Release/lib:/Users/ritter/Developer/FMEwork/General/lib:/Users/ritter/Developer/FMEwork/ITK/lib:/Users/ritter/Developer/FMEwork/VTK/lib:/Users/ritter/Developer/FMEwork/Personal/lib:/Users/ritter/Developer/FMEwork/Students/lib:/Users/ritter/Developer/FMEwork/Internal/lib:/Users/ritter/Developer/FMEwork/External/lib:/Users/ritter/Developer/FMEwork/MMS/lib:/Users/ritter/Applications/MeVisLab.app/Contents/Frameworks"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      displayScaleIsEnabled = "NO"
+      displayScale = "1.00"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

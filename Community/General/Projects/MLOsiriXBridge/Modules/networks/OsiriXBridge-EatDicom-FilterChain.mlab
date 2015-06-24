@@ -1,0 +1,290 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Scale {
+  internal  {
+    frame = "377 -123 64 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1458 710 447 247"
+        sizeHint = "447 247"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale
+    inputMin = 0
+    inputMax = 1
+    updateMode = AutoUpdateMinMaxOn
+    useTrueRange = TRUE
+    typeSelect = UInt16
+    outputMin = 0
+    outputMax = 4095
+  }
+}
+module Convolution {
+  internal  {
+    frame = "365 109 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "202 221 340 173"
+        sizeHint = "340 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Convolution
+    borderHandling = PadSrcClamp
+    fillValue = 0
+    referenceExtentMode = Overlap
+    intervalMinOfFilteredVoxels = 0
+    intervalMaxOfFilteredVoxels = 1024
+    useIntervalOfFilteredVoxels = FALSE
+    externalKernel = ""
+    kernelInfo = "Invalid input, 9 elems, 3x3x1x1x1x1"
+    kernelOutput = "(0,0,0,0,0,0):0.111111
+(1,0,0,0,0,0):0.111111
+(2,0,0,0,0,0):0.111111
+(0,1,0,0,0,0):0.111111
+(1,1,0,0,0,0):0.111111
+(2,1,0,0,0,0):0.111111
+(0,2,0,0,0,0):0.111111
+(1,2,0,0,0,0):0.111111
+(2,2,0,0,0,0):0.111111
+"
+    predefKernel = "3x3 Average Kernel"
+  }
+}
+module Morphology {
+  internal  {
+    frame = "277 29 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "224 243 340 487"
+        sizeHint = "340 487"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Morphology
+    borderHandling = PadSrcClamp
+    fillValue = 0
+    referenceExtentMode = Overlap
+    filterMode = Dilation
+    kernelX = 4
+    kernelY = 3
+    kernelZ = 1
+    kernelC = 1
+    kernelT = 1
+    kernelU = 1
+    makeSpherical = FALSE
+    intervalMinOfFilteredVoxels = 0
+    intervalMaxOfFilteredVoxels = 1024
+    useIntervalOfFilteredVoxels = FALSE
+    intervalMinOfVoxelsForFiltering = 0
+    intervalMaxOfVoxelsForFiltering = 1024
+    useIntervalOfVoxelsForFiltering = FALSE
+    externalKernel = ""
+    useExternalKernel = FALSE
+    kernelInfo = "12 elems, 4x3x1x1x1x1"
+    numKernelElements = 12
+    kernelElementsSum = 0
+  }
+}
+module Arithmetic2 {
+  internal  {
+    frame = "357 -51 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "246 265 246 95"
+        sizeHint = "246 95"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic2
+    function = Subtract
+    constant = 0
+    autoReplicate = FALSE
+  }
+}
+module DicomTool {
+  internal  {
+    frame = "361 -207 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1272 203 650 436"
+        sizeHint = "759 436"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "949 403 360 427"
+        sizeHint = "360 427"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageSave
+    exportDir = ""
+    exportBaseDir = ""
+    exportNameTemplate = $S/export$T.dcm
+    addPatNameDir = FALSE
+    addStudyUIDDIR = FALSE
+    addSeriesUIDDIR = FALSE
+    allSlices = TRUE
+    minSlice = 0
+    maxSlice = 1
+    minUsedSlice = 0
+    maxUsedSlice = 0
+    allTimepoints = TRUE
+    minTime = 0
+    maxTime = 1
+    minUsedTime = 0
+    maxUsedTime = 0
+    displayMode1 = Input
+    displayMode2 = All
+    newStudyUID = FALSE
+    newSeriesUID = TRUE
+    hasStudyUID = FALSE
+    hasSeriesUID = FALSE
+    restoreFrameSpecific = FALSE
+    saveEnabled = TRUE
+    storeTimeInfo = None
+    dicomComment = MeVisLab
+    canCancel = FALSE
+    progress = 0
+    status = "Saved 0 DICOM images to /Users/ritter/Documents/OsiriX Data/INCOMING.noindex"
+    dicomConsole = ""
+    consoleAutoClear = TRUE
+    dicomOutput = ""
+    echoVerbose = TRUE
+    echoDebug = FALSE
+    storeVerbose = TRUE
+    storeDebug = FALSE
+    dicomConfigList = OsiriX
+    currentConfigSet = OsiriX
+    dicomName = OsiriX
+    dicomType = PACS
+    dicomCalledAET = OsiriX
+    dicomCallingAET = MeVisLab
+    dicomHostname = rohrpostix.mevis.lan
+    dicomPort = 11112
+    autoLoadConfig = TRUE
+    exportAsDerived = TRUE
+    tagModifierTagName0 = ""
+    tagModifierTagValue0 = ""
+    tagModifierRemoveTag0 = FALSE
+    tagModifierTagName1 = ""
+    tagModifierTagValue1 = ""
+    tagModifierRemoveTag1 = FALSE
+    tagModifierTagName2 = ""
+    tagModifierTagValue2 = ""
+    tagModifierRemoveTag2 = FALSE
+    tagModifierTagName3 = ""
+    tagModifierTagValue3 = ""
+    tagModifierRemoveTag3 = FALSE
+    tagModifierTagName4 = ""
+    tagModifierTagValue4 = ""
+    tagModifierRemoveTag4 = FALSE
+    tagModifierTagName5 = ""
+    tagModifierTagValue5 = ""
+    tagModifierRemoveTag5 = FALSE
+    tagModifierTrimSpaces = TRUE
+    tagModifierAutoApply = TRUE
+  }
+}
+module ImageLoad {
+  internal  {
+    frame = "369 189 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "566 280 307 370"
+        sizeHint = "307 370"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageLoad
+    filename = ""
+    autoLoad = TRUE
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+  }
+}
+module OsiriXBridge {
+  internal  {
+    frame = "93 21 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "11 159 520 691"
+        sizeHint = "520 691"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OsiriXBridge
+    osirixIncomingDirAutoUpdate = TRUE
+    useEatDicom = TRUE
+    dataStoreDir = ""
+    eatDicomOptions = "-r -v1"
+  }
+}
+connections  {
+  Scale.input0 = Arithmetic2.output0
+  Convolution.input0 = ImageLoad.output0
+  Morphology.input0 = Convolution.output0
+  Arithmetic2.input0 = Morphology.output0
+  Arithmetic2.input1 = Convolution.output0
+  ImageSave.inImage = Scale.output0
+  ImageSave.exportBaseDir = OsiriXBridge.osirixIncomingDir
+  ImageSave.saveSlices = ImageLoad.filename
+  ImageLoad.filename = OsiriXBridge.filename
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-4 -322 261 170"
+        backgroundColor  {
+          r = 252
+          g = 240
+          b = 145
+          a = 255
+        }
+        text = "Install the OsiriXMeVisLabBridge plugin for OsiriX, select a serie in the database window of OsiriX, and send the data via the Send to MeVisLab toolbar icon to the OsiriXBridge target. The processed dataset will be sent back to OsiriX and can be displayed there."
+        titleText = ReadMe
+        isCollapsed = False
+      }
+    }
+  }
+}

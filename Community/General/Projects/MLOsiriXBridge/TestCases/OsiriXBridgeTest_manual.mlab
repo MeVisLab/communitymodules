@@ -1,0 +1,576 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module DirectDicomImport {
+  internal  {
+    frame = "353 189 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "833 38 604 798"
+        sizeHint = "260 211"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "208 166 1022 599"
+        sizeHint = "1022 599"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DirectDicomImport
+    fullPath = ""
+    fullUserSrcPaths = ""
+    fullTargetPath = ""
+    cacheFileName = DDICacheFile
+    outVolume = 0
+    clearAfterImport = TRUE
+    progress = 0
+    progressInfo = ""
+    maxCachedMBs = 250
+    useResultCaching = FALSE
+    numVolumes = 0
+    totalSlices = 0
+    totalTimePoints = 0
+    totalSlicesMultTimePoints = 0
+    totalVoxels = 0
+    extX = 0
+    extY = 0
+    extZ = 0
+    extC = 0
+    extT = 0
+    extU = 0
+    numVolVoxels = 0
+    tagDumpSize = 10000
+    volumeInfoDump = ""
+    suppressedFilesAndSuffixes = ".txt .mlab .db .log .lst .xml .rar .zip .exe .inf .raw .svn-base entries all-wcprops"
+    explicitFileTypes = ".png .pnm .pgm .jpg .jpeg .bmp .lsm .nhdr .ppm .tif .tiff .mlimage"
+    inputFileList = ""
+    sortMode = NumVoxels
+    sortUpwards = TRUE
+    idxSortTagValue = ""
+    useNumericTagValueSorting = FALSE
+    thumbNailsExt = 40
+    userColumnTag0 = ""
+    userColumnTag1 = ""
+    userColumnTag2 = ""
+    iconBuildMode = UseMiddleSlice
+    index = TRUE
+    icon = FALSE
+    studyID = TRUE
+    patientID = TRUE
+    patientsName = TRUE
+    patientSex = TRUE
+    modality = TRUE
+    userTag0 = FALSE
+    userTag1 = FALSE
+    userTag2 = FALSE
+    validImage = TRUE
+    hasIssues = TRUE
+    importTime = FALSE
+    fileType = TRUE
+    voxelType = TRUE
+    imgExt = TRUE
+    voxelExtent = FALSE
+    numVoxels = TRUE
+    numSlices = TRUE
+    colorImage = FALSE
+    numTimePoints = TRUE
+    numSrcFiles = TRUE
+    firstOrigFile = FALSE
+    outFileName = FALSE
+    inputFilterLabel = FALSE
+    acquisitionDate = FALSE
+    acquisitionMatrix = FALSE
+    acquisitionNumber = FALSE
+    acquisitionTime = FALSE
+    aCR_NEMA_AcquisitionsInSeries = FALSE
+    aCR_NEMA_ImageOrientation = FALSE
+    bitsAllocated = FALSE
+    bitsStored = FALSE
+    columns = FALSE
+    contentDate = FALSE
+    contentTime = FALSE
+    convolutionKernel = FALSE
+    echoTime = FALSE
+    echoTrainLength = FALSE
+    flipAngle = FALSE
+    frameOfReferenceUID = FALSE
+    gantryAngle = FALSE
+    gantryAngleTolerance = FALSE
+    gantryDetectorSlew = FALSE
+    gantryDetectorTilt = FALSE
+    gantryRotationDirection = FALSE
+    mRAcquisitionType = FALSE
+    highBit = FALSE
+    imageOrientationPatient = FALSE
+    imageType = FALSE
+    imagingFrequency = FALSE
+    instanceNumber = FALSE
+    inversionTime = FALSE
+    largestImagePixelValue = FALSE
+    numberOfAverages = FALSE
+    numberOfFrames = FALSE
+    numberOfPhaseEncodingSteps = FALSE
+    patientsAge = FALSE
+    patientOrientation = FALSE
+    percentSampling = FALSE
+    photometricInterpretation = FALSE
+    pixelSpacing = FALSE
+    repetitionTime = FALSE
+    rows = FALSE
+    sAR = FALSE
+    scanningSequence = FALSE
+    scanOptions = FALSE
+    sequenceName = FALSE
+    seriesDate = FALSE
+    seriesDescription = FALSE
+    seriesNumber = FALSE
+    seriesTime = FALSE
+    sliceThickness = FALSE
+    smallestImagePixelValue = FALSE
+    spacingBetweenSlices = FALSE
+    studyDate = FALSE
+    studyDescription = FALSE
+    studyInstanceUID = FALSE
+    studyTime = FALSE
+    dplCalcMinMax = Automatic
+    dplAnon = FALSE
+    dplVerbose = 0
+    minimumNumFramesInVolume = 9
+    dplConfigString0 = "*(
+  {Element = (0008,0060); Name = Modality; Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX"; }
+)
+*"
+    dplConfigString1 = "*(
+  {Element = (0008,0060); Name = Modality; Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX"; }
+)
+*"
+    dplConfigString2 = "*(
+  {Element = (0008,0060); Name = Modality; Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0008,0030); Name = StudyTime; Sort = 1; Part = 0; },
+  {Element = (0020,0052); Name = FrameOfReferenceUID; Sort = 1; Part = 0; },
+  {Element = (0008,0008); Name = ImageType; Sort = 1; Part = 0; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0037); Name = ImageOrientationPatient; Sort = 1; Part = 0; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX"; }
+)
+*"
+    dplConfigString3 = "*(
+  {Element = (0008,0060); Name = Modality; Sort = 1; Part = 1; },
+  {Element = (0008,0020); Name = StudyDate; Sort = 1; Part = 1; },
+  {Element = (0008,0030); Name = StudyTime; Sort = 0; Part = 0; },
+  {Element = (0020,0052); Name = FrameOfReferenceUID; Sort = 0; Part = 0; },
+  {Element = (0008,0008); Name = ImageType; Sort = 0; Part = 0; },
+  {Element = (0020,0011); Name = SeriesNumber; Sort = 1; Part = 0; },
+  {Element = (0008,0021); Name = SeriesDate; Sort = 1; Part = 0; },
+  {Element = (0008,0031); Name = SeriesTime; Sort = 1; Part = 0; },
+  {Element = (0018,0081); Name = EchoTime; Sort = 1; Part = 0; },
+  {Element = (0018,0024); Name = SequenceName; Sort = 1; Part = 0; },
+  {Element = (0018,1030); Name = ProtocolName; Sort = 1; Part = 1; },
+  {Element = (0018,0050); Name = SliceThickness; Sort = 1; Part = 1; },
+  {Element = (0018,0080); Name = RepetitionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0082); Name = InversionTime; Sort = 1; Part = 1; },
+  {Element = (0018,0091); Name = EchoTrainLength; Sort = 1; Part = 1; },
+  {Element = (0018,1210); Name = ConvolutionKernel; Sort = 1; Part = 1; },
+  {Element = (0018,1314); Name = FlipAngle; Sort = 1; Part = 1; },
+  {Element = (0018,0015); Name = BodyPartExamined; Sort = 1; Part = 1; },
+  {Element = (0028,0010); Name = Rows; Sort = 1; Part = 1; },
+  {Element = (0028,0011); Name = Columns; Sort = 1; Part = 1; },
+  {Element = (0020,0037); Name = ImageOrientationPatient; Sort = 0; Part = 0; },
+  {Element = (0020,0013); Name = InstanceNumber; Sort = 1; Part = 0; },
+  {Element = (0020,0012); Name = AcquisitionNumber; Sort = 1; Part = 0; },
+  {Element = (0018,0020); Name = ScanningSequence; Sort = 1; Part = 1; },
+  {Element = (0018,0023); Name = MRAcquisitionType; Sort = 1; Part = 1; },
+  {Element = (0008,0022); Name = AcquisitionDate; Sort = 1; Part = 0; },
+  {Element = (0008,0032); Name = AcquisitionTime; Sort = 1; Part = 0; },
+  {Element = (0008,0023); Name = ContentDate; Sort = 1; Part = 0; },
+  {Element = (0008,0033); Name = ContentTime; Sort = 1; Part = 0; },
+  {Element = (0020,0032); Name = ImagePositionPatient; Sort = 1; Part = 0; },
+  {Element = (0028,0030); Name = PixelSpacing; Sort = 1; Part = 1; },
+  {Element = (0054,0010); Name = EnergyWindowVector; Sort = 1; Part = 1; },
+  {Element = (0054,0020); Name = DetectorVector; Sort = 1; Part = 0; },
+  {Element = (0054,0030); Name = PhaseVector; Sort = 1; Part = 1; },
+  {Element = (0054,0100); Name = TimeSliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0060); Name = RRIntervalVector; Sort = 1; Part = 1; },
+  {Element = (0054,0070); Name = TimeSlotVector; Sort = 1; Part = 0; },
+  {Element = (0054,0050); Name = RotationVector; Sort = 1; Part = 1; },
+  {Element = (0054,0080); Name = SliceVector; Sort = 1; Part = 0; },
+  {Element = (0054,0090); Name = AngularViewVector; Sort = 1; Part = 0; },
+  {Element = (0008,0018); Name = SOPInstanceUID; Sort = 1; Part = 1; PartCondition = "Modality = CR | Modality = DR | Modality = MG | Modality = MX"; }
+)
+*"
+    dplUsedConfig = DefaultConfig
+    relativeDistanceTolerance = 0.25
+    absoluteDistanceTolerance = 0.02
+    positionToleranceMM = 0.0999
+    seriesBasedPreprocessingCondition = FALSE
+    force2DPlusTCondition = "Modality == XA | Modality == US | Modality == RF"
+    logPartingAndSortingInformation = FALSE
+    dplScanRecursively = TRUE
+    dplHardOverwriteTagOn0 = FALSE
+    dplHardOverwriteTagId0 = ""
+    dplHardOverwriteTagStr0 = ""
+    dplHardOverwriteTagOn1 = FALSE
+    dplHardOverwriteTagId1 = ""
+    dplHardOverwriteTagStr1 = ""
+    dplHardOverwriteTagOn2 = FALSE
+    dplHardOverwriteTagId2 = ""
+    dplHardOverwriteTagStr2 = ""
+    dplHardOverwriteTagOn3 = FALSE
+    dplHardOverwriteTagId3 = ""
+    dplHardOverwriteTagStr3 = ""
+    composeOtherFilesMode = Single
+    source = ""
+    guiCachePath = ""
+  }
+}
+module Scale {
+  internal  {
+    frame = "377 -123 64 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1458 710 447 247"
+        sizeHint = "447 247"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scale
+    inputMin = 0
+    inputMax = 1
+    updateMode = AutoUpdateMinMaxOn
+    useTrueRange = TRUE
+    typeSelect = UInt16
+    outputMin = 0
+    outputMax = 4095
+  }
+}
+module Convolution {
+  internal  {
+    frame = "365 109 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "202 221 340 173"
+        sizeHint = "340 173"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Convolution
+    borderHandling = PadSrcClamp
+    fillValue = 0
+    referenceExtentMode = Overlap
+    intervalMinOfFilteredVoxels = 0
+    intervalMaxOfFilteredVoxels = 1024
+    useIntervalOfFilteredVoxels = FALSE
+    externalKernel = ""
+    kernelInfo = "Invalid input, 9 elems, 3x3x1x1x1x1"
+    kernelOutput = "(0,0,0,0,0,0):0.111111
+(1,0,0,0,0,0):0.111111
+(2,0,0,0,0,0):0.111111
+(0,1,0,0,0,0):0.111111
+(1,1,0,0,0,0):0.111111
+(2,1,0,0,0,0):0.111111
+(0,2,0,0,0,0):0.111111
+(1,2,0,0,0,0):0.111111
+(2,2,0,0,0,0):0.111111
+"
+    predefKernel = "3x3 Average Kernel"
+  }
+}
+module Morphology {
+  internal  {
+    frame = "277 29 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "224 243 340 487"
+        sizeHint = "340 487"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Morphology
+    borderHandling = PadSrcClamp
+    fillValue = 0
+    referenceExtentMode = Overlap
+    filterMode = Dilation
+    kernelX = 4
+    kernelY = 3
+    kernelZ = 1
+    kernelC = 1
+    kernelT = 1
+    kernelU = 1
+    makeSpherical = FALSE
+    intervalMinOfFilteredVoxels = 0
+    intervalMaxOfFilteredVoxels = 1024
+    useIntervalOfFilteredVoxels = FALSE
+    intervalMinOfVoxelsForFiltering = 0
+    intervalMaxOfVoxelsForFiltering = 1024
+    useIntervalOfVoxelsForFiltering = FALSE
+    externalKernel = ""
+    useExternalKernel = FALSE
+    kernelInfo = "12 elems, 4x3x1x1x1x1"
+    numKernelElements = 12
+    kernelElementsSum = 0
+  }
+}
+module Arithmetic2 {
+  internal  {
+    frame = "357 -51 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "246 265 246 95"
+        sizeHint = "246 95"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic2
+    function = Subtract
+    constant = 0
+    autoReplicate = FALSE
+  }
+}
+module DicomTool {
+  internal  {
+    frame = "361 -207 96 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "80 165 650 436"
+        sizeHint = "650 436"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "284 193 438 412"
+        sizeHint = "260 211"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageSave
+    exportDir = ""
+    exportBaseDir = ""
+    exportNameTemplate = $S/export$T.dcm
+    addPatNameDir = FALSE
+    addStudyUIDDIR = FALSE
+    addSeriesUIDDIR = FALSE
+    allSlices = TRUE
+    minSlice = 0
+    maxSlice = 1
+    minUsedSlice = 0
+    maxUsedSlice = 0
+    allTimepoints = TRUE
+    minTime = 0
+    maxTime = 1
+    minUsedTime = 0
+    maxUsedTime = 0
+    displayMode1 = Input
+    displayMode2 = All
+    newStudyUID = FALSE
+    newSeriesUID = TRUE
+    hasStudyUID = FALSE
+    hasSeriesUID = FALSE
+    restoreFrameSpecific = FALSE
+    saveEnabled = TRUE
+    storeTimeInfo = None
+    dicomComment = MeVisLab
+    canCancel = FALSE
+    progress = 0
+    status = "Saved 0 DICOM images to /Users/ritter/Documents/OsiriX Data/INCOMING.noindex"
+    dicomConsole = ""
+    consoleAutoClear = TRUE
+    dicomOutput = ""
+    echoVerbose = TRUE
+    echoDebug = FALSE
+    storeVerbose = TRUE
+    storeDebug = FALSE
+    dicomConfigList = OsiriX
+    currentConfigSet = OsiriX
+    dicomName = OsiriX
+    dicomType = PACS
+    dicomCalledAET = OsiriX
+    dicomCallingAET = MeVisLab
+    dicomHostname = rohrpostix.mevis.lan
+    dicomPort = 11112
+    autoLoadConfig = TRUE
+    exportAsDerived = TRUE
+    tagModifierTagName0 = ""
+    tagModifierTagValue0 = ""
+    tagModifierRemoveTag0 = FALSE
+    tagModifierTagName1 = ""
+    tagModifierTagValue1 = ""
+    tagModifierRemoveTag1 = FALSE
+    tagModifierTagName2 = ""
+    tagModifierTagValue2 = ""
+    tagModifierRemoveTag2 = FALSE
+    tagModifierTagName3 = ""
+    tagModifierTagValue3 = ""
+    tagModifierRemoveTag3 = FALSE
+    tagModifierTagName4 = ""
+    tagModifierTagValue4 = ""
+    tagModifierRemoveTag4 = FALSE
+    tagModifierTagName5 = ""
+    tagModifierTagValue5 = ""
+    tagModifierRemoveTag5 = FALSE
+    tagModifierTrimSpaces = TRUE
+    tagModifierAutoApply = TRUE
+  }
+}
+module OsiriXBridge {
+  internal  {
+    frame = "95 21 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "204 458 505 459"
+        sizeHint = "505 459"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "752 157 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OsiriXBridge
+    alternativeTargetName = TestTarget
+    osirixIncomingDirAutoUpdate = TRUE
+    useEatDicom = FALSE
+    dataStoreDir = ""
+    eatDicomOptions = "-r -v1"
+  }
+}
+connections  {
+  DirectDicomImport.dplImport = DirectDicomImport.inputFileList
+  DirectDicomImport.inputFileList = OsiriXBridge.slicesFileList
+  Scale.input0 = Arithmetic2.output0
+  Convolution.input0 = DirectDicomImport.output0
+  Morphology.input0 = Convolution.output0
+  Arithmetic2.input0 = Morphology.output0
+  Arithmetic2.input1 = Convolution.output0
+  ImageSave.inImage = Scale.output0
+  ImageSave.exportBaseDir = OsiriXBridge.osirixIncomingDir
+  ImageSave.saveSlices = DirectDicomImport.dplImport
+}
+networkModel = ""

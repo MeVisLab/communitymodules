@@ -1,0 +1,12 @@
+[general]
+type = docbook
+
+[document]
+name = OsiriXMeVisLabBridge
+
+[docbook]
+files = OsiriXMeVisLabBridge.xml
+buildType = html,qthelp
+
+[docbook-variables]
+mevis.footer.copyright = Fraunhofer MEVIS

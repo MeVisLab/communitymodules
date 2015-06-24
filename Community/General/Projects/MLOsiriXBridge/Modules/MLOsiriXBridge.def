@@ -1,0 +1,29 @@
+// **InsertLicense** code
+
+
+MLModule OsiriXBridge {
+  DLL                = "MLOsiriXBridge"
+  genre              = "DICOM"
+  author             = "Felix Ritter"
+  comment            = "Exchange DICOM images with the OsiriX PACS Viewer"
+  keywords           = "OsiriX DICOM files ImageLoad ImageSave"
+  seeAlso            = "ImageLoad ImageSave DicomTool DicomBrowser DicomImport DirectDicomImport"
+  exampleNetwork     = "$(LOCAL)/networks/OsiriXBridge-EatDicom-FilterChain.mlab"
+  externalDefinition = $(LOCAL)/OsiriXBridge.script
+}
+
+
+WidgetControl OsiriXBridge
+{
+  author = "Felix Ritter"
+  DLL    = MLABOsiriXBridgeControl
+  validator {
+    Group OsiriXBridge {
+      allow = _Control
+      allowTags {
+        droppedSeriesCommand = SCRIPT
+        windowFilePathField  = FIELD
+      }
+    }
+  }
+}

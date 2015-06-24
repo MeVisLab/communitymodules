@@ -1,0 +1,50 @@
+// **InsertLicense** code
+
+
+Commands {
+  source      = "$(LOCAL)/OsiriXBridgeControlTest.py"
+  initCommand = init
+}
+
+
+Window _default {
+  minimumWidth  = 500
+  minimumHeight = 500
+  
+  OsiriXBridge { 
+    name                 = bridge
+    droppedSeriesCommand = seriesDropped
+  }
+  
+  Vertical { 
+    expandY = Yes 
+    margin  = 3
+    Slider view2d.startSlice {
+      pageStep  = 1
+      tickmarks = Yes
+    }
+    Viewer viewer.self {
+    }
+  }
+}
+
+Window settings {
+  Vertical { margin = 5
+    Box "Import Result Caching" {
+      CheckBox import.useResultCaching {}
+      Field import.guiCachePath {
+        title        = "Cache Path:"
+        browseButton = Yes
+        browseMode   = directory
+        dependsOn    = import.useResultCaching
+        expandX      = Yes
+      }
+      Field import.fullCachePath {
+        title     = "Full Cache Path:"
+        expandX   = Yes
+        edit      = No
+        dependsOn = import.useResultCaching
+      }
+    }
+  }
+}

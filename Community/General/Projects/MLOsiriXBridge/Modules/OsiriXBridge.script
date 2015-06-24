@@ -1,0 +1,161 @@
+// **InsertLicense** code
+
+
+  
+Description {
+  Field slicesFileList    { persistent = no }
+  Field filename          { persistent = no }
+  Field osirixIncomingDir { persistent = no }
+  Field eatDicomOutput    { persistent = no }
+  
+  Field eatDicomOptions {
+    value = "$(EatDicomOptions)"
+  }
+}
+
+    
+Commands {
+  source = $(LOCAL)/MLOsiriXBridge.py
+}
+
+Window {
+  DefineStyle HelpText {
+    derive = _default
+    
+    colors {
+      fg = #808080
+      link = #808080
+      linkVisited = #808080
+    }
+  }
+
+  TabView {
+    TabViewItem "OsiriX Setup" {
+      Box "Module Identifier in OsiriX" { layout=Vertical
+        HyperLabel { scale = -1 style = HelpText
+          title = "An alternative name for this module in the target pop-up menu of the <em>Send to MeVisLab</em> toolbar icon in <a href='http://www.osirix-viewer.com/'>OsiriX</a>. The name will take precedence over the instance name of the module if set."
+        }
+        Field alternativeTargetName {
+          title = "Alternative target name:"
+        }
+      }
+      Box "OsiriX PlugIn" { layout=Vertical
+        HyperLabel { scale = -1 style = HelpText
+          title = "To send DICOM data from OsiriX to MeVisLab you need to install the OsiriXMeVisLabBridge plugin for OsiriX."
+        }
+        Horizontal {
+          Button {
+            title   = "Install OsiriX PlugIn"
+            command = "installPlugin"
+          }
+          Button {
+            title   = "Show OsiriX PlugIn"
+            command = "showPlugin"
+          }
+        }
+      }
+    }
+    TabViewItem "Data Exchange" {
+      Box "From OsiriX to MeVisLab" { layout=Vertical
+        Box "Original DICOM Slices File List" { layout=Vertical
+          HyperLabel { scale = -1 style = HelpText
+            title = "A list of filenames received from OsiriX. You may directly connect this field to the inputFileList field of a DirectDicomImport module."
+          }
+          Field slicesFileList {
+            title = "DICOM slices file list:"
+            edit  = no
+            trim  = left
+          }
+        }
+        Box "DICOM Conversion Settings" { layout=Vertical
+          HyperLabel { scale = -1 style = HelpText
+            title = "Convert original DICOM slices into a format suitable for use with the ImageLoad module (not required for DirectDicomImport)."
+          }
+          CheckBox useEatDicom {
+            title = "Convert original DICOM slices into a MeVisLab DICOM dataset"
+          }
+          Box "Dataset Storage Location" { layout=Vertical visibleOn=useEatDicom
+            HyperLabel { scale = -1 style = HelpText
+              title = "The directory into which the converted MeVisLab datasets will be stored (user's temporary directory if empty)."
+            }
+            Field dataStoreDir {
+              title        = "DICOM storage directory:"
+              browseButton = on
+              browseMode   = directory
+            }
+          }
+          Box "Dataset Filename" { layout=Vertical visibleOn=useEatDicom
+            HyperLabel { scale = -1 style = HelpText
+              title = "The filename of the converted DICOM dataset received from OsiriX. You may directly connect this field to the filename field of an ImageLoad module."
+            }
+            Field filename {
+              title = "Converted DICOM dataset filename:"
+              edit  = no
+              trim  = left
+            }
+          }
+        }
+      }
+      Box "From MeVisLab to OsiriX" { layout=Vertical
+        HyperLabel { scale = -1 style = HelpText
+          title = "The standard DICOM images put into this folder will be imported into the OsiriX database automatically. OsiriX will check that folder frequently."
+        }
+        Horizontal {
+          Field osirixIncomingDir {
+            title = "OsiriX incoming folder:"
+            edit  = no
+            trim  = left
+          }
+          Button osirixIncomingDirUpdate {
+            title = "Update"
+          }
+        }
+        CheckBox osirixIncomingDirAutoUpdate {
+          title = "Automatically update the incoming folder field if a new dataset arrives"
+        }
+      }
+    }
+    TabViewItem "Advanced Conversion Setup" { expandY=Yes
+      Vertical { margin = 0 expandY=Yes visibleOn=useEatDicom
+        Box "DICOM import" { layout=Vertical
+          Horizontal { scale = -1
+            HyperLabel { alignY = Center style = HelpText
+              title = "A number of command line parameters are available to fine-tune the DICOM import process into MeVisLab, a list of these parameters is displayed upon clicking the Help button."
+            }
+            Vertical { expandX = No
+              Button {
+                title   = Help
+                command = ShowEatDicomOptions
+                tooltip = "Display help on all available eatDicom options."
+              }
+              Button {
+                title   = Defaults
+                command = SetDefaultEatDicomOptions
+                tooltip = "Set default options as defined in the EatDicomOptions preferences variable."
+              }
+            }
+          }
+          Field eatDicomOptions {
+            title = "DICOM processing options:"
+          }
+        }
+        Box "DICOM processing output" { layout=Vertical expandY=Yes
+          TextView eatDicomOutput {
+            title      = ""
+            edit       = no
+            style      = monospacedTextView
+            textFormat = Plain
+            w          = 400
+            h          = 150
+            expandY    = Yes
+          }
+        }
+      }
+      Vertical { margin = 0 expandY=Yes visibleOn="!useEatDicom"
+        HyperLabel {
+          title = "Advanced conversion settings are only available if conversion of DICOM slices into a MeVisLab DICOM dataset is enabled."
+        }
+      }
+    }
+  }
+}

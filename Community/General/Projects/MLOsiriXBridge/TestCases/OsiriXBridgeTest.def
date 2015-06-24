@@ -1,0 +1,15 @@
+// **InsertLicense** code
+//----------------------------------------------------------------------------------
+/*!
+// \file    OsiriXBridgeTest.def
+// \author  Felix Ritter
+// \date    08/03/11
+*/
+//----------------------------------------------------------------------------------
+
+FunctionalTestCase OsiriXBridgeTest {
+  author  = "Felix Ritter"
+  comment = "Tests the OsiriX MeVisLab Bridge"
+  timeout = 600
+  scriptFile = $(LOCAL)/OsiriXBridgeTest.py
+}

@@ -4,4 +4,4 @@ type = package
 [public]
 files = 
   CommunitySourcesDocumentation.mldoc
-
+  OsiriXMeVisLabBridge/OsiriXMeVisLabBridge.mldoc

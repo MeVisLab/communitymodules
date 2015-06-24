@@ -1,0 +1,55 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLOsiriXBridge/OsiriXBridgeControlTest/OsiriXBridgeControlTest.def
+    moduleName = OsiriXBridgeControlTest
+    moduleType = MacroModule
+    author = "Felix Ritter"
+    dll = ""
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = ReleaseMeVis
+    packageGroup = FMEwork
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text  {
+      title = ""
+      text = ""
+    }
+    Window _default {
+      title = ""
+      text = ""
+    }
+    Window settings {
+      title = ""
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = OsiriXBridgeControlTest
+    }
+    text = ""
+  }
+}
