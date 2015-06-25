@@ -17,7 +17,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>@MEVISLAB_SHORT_VERSION@</string>
+	<string>@BUILDVERSION@</string>
 	<key>MenuTitles</key>
 	<array>
 		<string>Send to MeVisLab</string>
@@ -31,6 +31,6 @@
 	<key>ToolbarIcon</key>
 	<string>SendToMeVisLab-gray.tiff</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © @MEVISLAB_YEAR@ Fraunhofer MEVIS</string>
+	<string>Copyright © @BUILD_YEAR@ MeVisLab Community</string>
 </dict>
 </plist>

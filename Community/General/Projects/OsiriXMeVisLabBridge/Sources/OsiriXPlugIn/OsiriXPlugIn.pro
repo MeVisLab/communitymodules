@@ -3,8 +3,8 @@
 TEMPLATE = lib
 
 # Create Info.plist file from template file given in MLAB_INFO_PLIST_TEMPLATE
-MLAB_INFO_PLIST_TEMPLATE = $$PWD/Info-template.plist
-include ( $$(MLAB_MeVisLab_IDE)/Configuration/CreateInfoPListFromTemplate.pri )
+ML_INFO_PLIST_TEMPLATE = $$PWD/Info-template.plist
+include ( $$(MLAB_MeVis_Foundation)/Configuration/CreateInfoPListFromTemplate.pri )
 system(mv -f \"$$QMAKE_INFO_PLIST\" \"$$PWD/Info.plist\")
   
 macx:release:!debug {
