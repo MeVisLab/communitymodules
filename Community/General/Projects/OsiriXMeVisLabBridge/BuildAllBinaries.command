@@ -1,6 +1,6 @@
 #! /bin/bash
 
-cd `dirname $0`
+cd "`dirname $0`/Sources"
 
 if [ -d "$HOME/Applications/MeVisLab.app" ]; then
   PROJGEN="$HOME/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
