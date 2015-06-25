@@ -1,13 +1,21 @@
 #! /bin/bash
 
-cd "`dirname $0`/Sources"
+CURRENTDIR=`dirname $0`
+
+SOURCESDIR="$CURRENTDIR/Sources"
+DOCSDIR="$CURRENTDIR/../../Documentation"
+INSTALLDESCDIR="$CURRENTDIR/../../Configuration/Installers/AddOns/OsiriXMeVisLabBridgeAddOn"
 
 if [ -d "$HOME/Applications/MeVisLab.app" ]; then
-  PROJGEN="$HOME/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
+  MEVISLABAPP="$HOME/Applications/MeVisLab.app"
 else
-  PROJGEN="/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
+  MEVISLABAPP="/Applications/MeVisLab.app"
 fi
+
+PROJGEN="$MEVISLABAPP/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
 NUMJOBS=`/usr/sbin/sysctl -n hw.ncpu`
+
+cd "$SOURCESDIR"
 
 PROJECTS="\
 MLOsiriXServices \
@@ -29,3 +37,14 @@ do
   { read -p "Press any key to close window"; exit; }
   popd
 done
+
+# the following scripts requires MLAB_ROOT
+export MLAB_ROOT="$MEVISLABAPP/Contents/Packages"
+
+cd "$DOCSDIR" && \
+"$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/DocTools/Scripts/generateDocs.py" -o "$DOCSDIR/Publish" "$DOCSDIR/Sources/OsiriXMeVisLabBridge/OsiriXMeVisLabBridge.mldoc" || \
+{ read -p "Press any key to close window"; exit; }
+
+cd "$INSTALLDESCDIR" && \
+"$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" || \
+{ read -p "Press any key to close window"; exit; }
