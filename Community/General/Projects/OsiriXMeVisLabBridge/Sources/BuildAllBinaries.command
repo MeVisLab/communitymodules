@@ -2,7 +2,11 @@
 
 cd `dirname $0`
 
-PROJGEN="$HOME/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
+if [ -d "$HOME/Applications/MeVisLab.app" ]; then
+  PROJGEN="$HOME/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
+else
+  PROJGEN="/Applications/MeVisLab.app/Contents/Support/MeVisLabProjectGenerator.app/Contents/MacOS/MeVisLabProjectGenerator -no-xcode"
+fi
 NUMJOBS=`/usr/sbin/sysctl -n hw.ncpu`
 
 PROJECTS="\
