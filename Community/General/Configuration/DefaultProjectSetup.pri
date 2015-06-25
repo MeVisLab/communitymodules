@@ -101,6 +101,5 @@ isEmpty(PACKAGE_SETUP_INCLUDED) {
   }
   
   include($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
-  include($(MLAB_FMEstable_Foundation)/Configuration/FMEstable_WarningToErrorSettings_Prepare.pri)
 
 }
