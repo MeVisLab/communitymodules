@@ -26,6 +26,7 @@ MLABOsiriXBridgeControl \
 
 set -x
 
+# build all binaries
 for f in $PROJECTS
 do
   pushd ${f}
@@ -38,13 +39,19 @@ do
   popd
 done
 
-# the following scripts requires MLAB_ROOT
+# the following scripts require MLAB_ROOT
 export MLAB_ROOT="$MEVISLABAPP/Contents/Packages"
 
-cd "$DOCSDIR" && \
-"$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/DocTools/Scripts/generateDocs.py" -o "$DOCSDIR/Publish" "$DOCSDIR/Sources/OsiriXMeVisLabBridge/OsiriXMeVisLabBridge.mldoc" || \
-{ read -p "Press any key to close window"; exit; }
+# build html documentation
+if [ -f "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/DocTools/Scripts/generateDocs.py" ]; then
+  cd "$DOCSDIR" && \
+  "$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/DocTools/Scripts/generateDocs.py" -o "$DOCSDIR/Publish" "$DOCSDIR/Sources/OsiriXMeVisLabBridge/OsiriXMeVisLabBridge.mldoc" || \
+  { read -p "Press any key to close window"; exit; }
 
-cd "$INSTALLDESCDIR" && \
-"$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" "$RUNDIR" || \
-{ read -p "Press any key to close window"; exit; }
+  # build add-on installer
+  if [ -f "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" ]; then
+    cd "$INSTALLDESCDIR" && \
+    "$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" "$RUNDIR" || \
+    { read -p "Press any key to close window"; exit; }
+  fi
+fi
