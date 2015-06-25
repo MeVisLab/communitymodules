@@ -1,10 +1,10 @@
 #! /bin/bash
 
-CURRENTDIR=`dirname $0`
+RUNDIR=`dirname $0`
 
-SOURCESDIR="$CURRENTDIR/Sources"
-DOCSDIR="$CURRENTDIR/../../Documentation"
-INSTALLDESCDIR="$CURRENTDIR/../../Configuration/Installers/AddOns/OsiriXMeVisLabBridgeAddOn"
+SOURCESDIR="$RUNDIR/Sources"
+DOCSDIR="$RUNDIR/../../Documentation"
+INSTALLDESCDIR="$RUNDIR/../../Configuration/Installers/AddOns/OsiriXMeVisLabBridgeAddOn"
 
 if [ -d "$HOME/Applications/MeVisLab.app" ]; then
   MEVISLABAPP="$HOME/Applications/MeVisLab.app"
@@ -46,5 +46,5 @@ cd "$DOCSDIR" && \
 { read -p "Press any key to close window"; exit; }
 
 cd "$INSTALLDESCDIR" && \
-"$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" || \
+"$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" "$RUNDIR" || \
 { read -p "Press any key to close window"; exit; }
