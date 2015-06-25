@@ -8,8 +8,8 @@ NUMJOBS=`/usr/sbin/sysctl -n hw.ncpu`
 PROJECTS="\
 MLOsiriXServices \
 MLOsiriXBridge \
-MLABOsiriXBridgeControl \
 OsiriXPlugIn \
+MLABOsiriXBridgeControl \
 "
 
 set -x
