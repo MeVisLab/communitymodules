@@ -3,7 +3,7 @@
 /*!
 // \file    SavePDF.cpp
 // \author  Axel Newe
-// \date    2014-02-06
+// \date    2015-08-01
 //
 // Creates PDF file.
 */

@@ -3,89 +3,53 @@
 /*!
 // \file    SavePRC.script
 // \author  Axel Newe
-// \date    2014-08-30
+// \date    2015-08-01
 */
 //----------------------------------------------------------------------------------
 
-Interface {
-  Parameters {
-    Field newSpecificationType { type = enum 
-      items { 
-        item SPECTYPE_POINTCLOUD { title = "Point Cloud" } 
-        item SPECTYPE_LINESET { title = "Line Set" } 
-        item SPECTYPE_MESH { title = "Mesh" } 
-        item SPECTYPE_METADATA { title = "Meta Data" } 
-      } 
+Description {
+  
+  Field newSpecificationType {
+    items {
+      item OBJECTTYPE_POINTCLOUD { title = "Point Cloud" }
+      item OBJECTTYPE_LINESET    { title = "Line Set" }
+      item OBJECTTYPE_MESH       { title = "Mesh" }
+      item OBJECTTYPE_METADATA   { title = "Meta Data" }
     }
-    Field newSpecificationObjectName       { type = String }
-    Field newSpecificationGroupPath        { type = String }
-    
-    Field newSpecificationUseDefaultColor          { type = Bool value = True }    
-    Field newSpecificationUseDefaultSpecularColor  { type = Bool value = True }    
-    
-    Field newSpecificationColor             { type = Color value = "0.651 0.651 0.651" }
-    Field newSpecificationColorAlpha        { type = Float min = 0 max = 1 value = 1 }
-    Field newSpecificationSpecularColor     { type = Color value = "0.75 0.75 0.75" }
-    
-    Field newSpecificationModelVisibility { type = enum 
-      items { 
-        item VISIBILITY_NOTVISIBLE { title = "Not Visible" } 
-        item SPECTYPE_FRONTVISIBLE { title = "Front Visible" } 
-        item SPECTYPE_BACKVISIBLE { title = "Back Visible" } 
-        item SPECTYPE_FRONTANDBACKVISIBLE { title = "Front & Back Visible" } 
-      } 
-      value = "SPECTYPE_FRONTANDBACKVISIBLE" 
-    }
-    
-    Field newSpecificationWEMLabel        { type = String }
-    Field newSpecificationPositionTypes   { type = String }
-    Field newSpecificationConnectionTypes { type = String }
-    
-    Field newSpecificationMetaDataKey     { type = String }
-    Field newSpecificationMetaDataValue   { type = String }
-    
-    Field newSpecification            { type = String }
-    Field newSpecificationOutputValid { type = Bool value = False }
-    Field newSpecificationAdd         { type = Trigger }
-    
-    Field selectedTab { type = int value = 0 min = 0 max = 3 }
   }
+  
+  Field newSpecificationModelVisibility {
+    items {
+      item MODELVISIBILITY_NOTVISIBLE          { title = "Not Visible" }
+      item MODELVISIBILITY_FRONTVISIBLE        { title = "Front Visible" }
+      item MODELVISIBILITY_BACKVISIBLE         { title = "Back Visible" }
+      item MODELVISIBILITY_FRONTANDBACKVISIBLE { title = "Front & Back Visible" }
+    }
+  }  
+  
+  Field newSpecificationColorAlpha { min = 0 max = 1 }
+  
+  Field progress { persistent = NO }
+  
 }
 
-Description {
-  Field progress { persistent = NO }
-  //Field defaultLightIntensity { min = 0 max = 1 }
-}
+
+Interface { }
 
 
 Commands {
-  source = $(LOCAL)/SavePRC.py
-  
-  initCommand = InitModule
-  droppedFileCommand = @@py: ctx.field("fileName").value = args[0] @@
-  
-  FieldListener {
-    listenField = newSpecificationType
-    listenField = newSpecificationObjectName
-    listenField = newSpecificationGroupPath
-    listenField = newSpecificationUseDefaultColor
-    listenField = newSpecificationUseDefaultSpecularColor
-    listenField = newSpecificationColor
-    listenField = newSpecificationColorAlpha
-    listenField = newSpecificationSpecularColor
-    listenField = newSpecificationModelVisibility
-    listenField = newSpecificationMetaDataKey
-    listenField = newSpecificationMetaDataValue
-    listenField = newSpecificationWEMLabel
-    listenField = newSpecificationPositionTypes
-    listenField = newSpecificationConnectionTypes
-    command = UpdateNewSpecification    
-  }
-
-  FieldListener newSpecificationAdd { command = AddNewSpecification }
+  initCommand = @@js: ctx.field("status").value = "Idle."; ctx.field("progress").value = 0; ctx.field("newSpecificationType").touch(); @@ 
 }
 
 
+Window "Module is not yet functional" {
+  Vertical {
+    margin = 3
+    Label { title = "Module not yet functional" }
+  }
+}
+
+/*
 Window "Main Panel" {  
   
   Category { expandY = Yes
@@ -171,147 +135,7 @@ Window "Main Panel" {
           }
         
         }
-
-        /*
-        TabViewItem Glyphs {
-      
-          expandY = Yes
-
-          Field modelPrefixGlyphs { title = "Prefix for Glyphs w/o Name:" }
-
-          TextView glyphSpecification {
-            expandY         = Yes
-            title           = "Glyph Specification:"
-            wrap            = off
-            autoApply       = yes
-            console         = yes
-            style           = monospacedTextView
-            showLineNumbers = No
-            textFormat      = Plain
-          }
-        
-        }
-        */
-        
-        /*  For futire releases.        
-        TabViewItem "Lights" { 
-          
-          expandY = Yes
-
-          CheckBox addDefaultLightNode { title = "Add default Light Node" }
-          
-          TextView lightsSpecification {
-            enabled         = No
-            expandY         = Yes
-            title           = "Lights Specification:"
-            wrap            = off
-            autoApply       = yes
-            console         = yes
-            style           = monospacedTextView
-            showLineNumbers = No
-            textFormat      = Plain
-          }
-      
-          Button  { title = "Add From Import Field" width = 160  enabled = No }
-
-        }
-        */
-        
-        /* For futire releases. 
-        TabViewItem "Views" {
-
-          expandY = Yes
-
-          CheckBox addDefaultViewNode { title = "Add default View Node" }
-
-          TextView viewsSpecification {
-            enabled         = No
-            expandY         = Yes
-            title           = "Views Specification:"
-            wrap            = off
-            autoApply       = yes
-            console         = yes
-            style           = monospacedTextView
-            showLineNumbers = No
-            textFormat      = Plain
-          }
-          
-          Button  { title = "Add From Import Field" width = 160  enabled = No }
-
-        }
-        */
-        
-        /*
-        TabViewItem "Meta Data" {
-        
-          expandY = Yes
-
-          CheckBox defaultBoundingBoxMetaData { title = "Add default bounding box meta data" }
-        
-          TextView metaDataSpecification {
-            expandY         = Yes
-            title           = "Meta Data Specification:"
-            wrap            = off
-            autoApply       = yes
-            console         = yes
-            style           = monospacedTextView
-            showLineNumbers = No
-            textFormat      = Plain
-          }
-        }
-        */
-        
-        /*
-        TabViewItem "Default Settings" {
-      
-          expandY = Yes
-          alignY = Top
-
-          Box "Default Material Settings" { layout = Vertical
-            expandY = No
-            alignY  = Top
-            
-            Grid {
-              Field defaultMaterialDiffuseColor { title = "Default Material Color:" fixedWidth = 300 x = 0 y = 0 alignGroupX = 1 }
-              Field defaultMaterialAlpha { slider = On alignX = Left x = 1 y = 0 }                    
-              Field defaultMaterialSpecularColor { x = 0 y = 1 }
-              Field defaultMaterialEmissiveColor { x = 0 y = 2 }
-              Field defaultMaterialAmbientColor { x = 0 y = 3 }
-              Empty { x = 3 y = 0 expandX = Yes }
-            }
-
-          }  // Box 
-        
-          Box "Default Light Settings" { layout = Vertical
-            expandY = No
-            alignY  = Top
-            
-            Grid { 
-              CheckBox addDefaultLightNode { x = 0 y = 0 x2 = 1 title = "Add default Light Node" }
-              Field defaultLightName { x = 0 y = 1 x2 = 1 }
-              Field defaultLightColor { title = "Default Light Color:" fixedWidth = 300 x = 0 y = 2 alignGroupX = 1 }
-              Field defaultLightIntensity { slider = On alignX = Left x = 1 y = 2 }                                  
-              Empty { x = 3 y = 2 expandX = Yes }
-            }
-
-          }  // Box 
-
-          Box "Default View Settings" { layout = Vertical
-            expandY = No
-            alignY  = Top
-            
-            Grid { 
-              CheckBox addDefaultViewNode { x = 0 y = 0 x2 = 1 title = "Add default View Node" }
-              Field defaultViewName { x = 0 y = 1 x2 = 1 }
-            }
-
-          }  // Box 
-          
-          
-          
-        }
-        */
-        
+             
       }  // TabView ObjectTypes
     
     }
@@ -347,8 +171,9 @@ Window "Main Panel" {
     
   }  // Category
 }
+*/
 
-
+/*
 Window "Specification Generator Panel"
 { 
   Category  {
@@ -401,3 +226,4 @@ Window "Specification Generator Panel"
   }
 
 }
+*/

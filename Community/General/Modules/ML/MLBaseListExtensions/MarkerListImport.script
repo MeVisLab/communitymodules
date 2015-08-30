@@ -10,11 +10,6 @@
 Description {
 }
 
-Commands {
-  source = $(LOCAL)/MarkerListImport.py
-  initCommand = InitModule
-}
-
 Window {
   
   minimumWidth = 400

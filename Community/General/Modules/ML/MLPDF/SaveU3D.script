@@ -7,83 +7,40 @@
 */
 //----------------------------------------------------------------------------------
 
-Interface {
-  Parameters {
-    Field newSpecificationType { type = enum 
-      items { 
-        item SPECTYPE_POINTCLOUD { title = "Point Cloud" } 
-        item SPECTYPE_LINESET { title = "Line Set" } 
-        item SPECTYPE_MESH { title = "Mesh" } 
-        item SPECTYPE_METADATA { title = "Meta Data" } 
-      } 
-    }
-    Field newSpecificationObjectName       { type = String }
-    Field newSpecificationGroupPath        { type = String }
-    
-    Field newSpecificationUseDefaultColor          { type = Bool value = True }    
-    Field newSpecificationUseDefaultSpecularColor  { type = Bool value = True }    
-    
-    Field newSpecificationColor             { type = Color value = "0.651 0.651 0.651" }
-    Field newSpecificationColorAlpha        { type = Float min = 0 max = 1 value = 1 }
-    Field newSpecificationSpecularColor     { type = Color value = "0.75 0.75 0.75" }
-    
-    Field newSpecificationModelVisibility { type = enum 
-      items { 
-        item VISIBILITY_NOTVISIBLE { title = "Not Visible" } 
-        item SPECTYPE_FRONTVISIBLE { title = "Front Visible" } 
-        item SPECTYPE_BACKVISIBLE { title = "Back Visible" } 
-        item SPECTYPE_FRONTANDBACKVISIBLE { title = "Front & Back Visible" } 
-      } 
-      value = "SPECTYPE_FRONTANDBACKVISIBLE" 
-    }
-    
-    Field newSpecificationWEMLabel        { type = String }
-    Field newSpecificationPositionTypes   { type = String }
-    Field newSpecificationConnectionTypes { type = String }
-    
-    Field newSpecificationMetaDataKey     { type = String }
-    Field newSpecificationMetaDataValue   { type = String }
-    
-    Field newSpecification            { type = String }
-    Field newSpecificationOutputValid { type = Bool value = False }
-    Field newSpecificationAdd         { type = Trigger }
-    
-    Field selectedTab { type = int value = 0 min = 0 max = 3 }
-  }
-}
-
 Description {
+  
+  Field newSpecificationType {
+    items {
+      item OBJECTTYPE_POINTCLOUD { title = "Point Cloud" }
+      item OBJECTTYPE_LINESET    { title = "Line Set" }
+      item OBJECTTYPE_MESH       { title = "Mesh" }
+      item OBJECTTYPE_METADATA   { title = "Meta Data" }
+    }
+  }
+  
+  Field newSpecificationModelVisibility {
+    items {
+      item MODELVISIBILITY_NOTVISIBLE          { title = "Not Visible" }
+      item MODELVISIBILITY_FRONTVISIBLE        { title = "Front Visible" }
+      item MODELVISIBILITY_BACKVISIBLE         { title = "Back Visible" }
+      item MODELVISIBILITY_FRONTANDBACKVISIBLE { title = "Front & Back Visible" }
+    }
+  }  
+  
+  Field newSpecificationColorAlpha { min = 0 max = 1 }
+  
   Field progress { persistent = NO }
   Field defaultLightIntensity { min = 0 max = 1 }
   field defaultMaterialAlpha { min = 0 max = 1 }
+  
 }
 
 
-Commands {
-  source = $(LOCAL)/SaveU3D.py
-  
-  initCommand = InitModule
-  droppedFileCommand = @@py: ctx.field("fileName").value = args[0] @@
-  
-  FieldListener {
-    listenField = newSpecificationType
-    listenField = newSpecificationObjectName
-    listenField = newSpecificationGroupPath
-    listenField = newSpecificationUseDefaultColor
-    listenField = newSpecificationUseDefaultSpecularColor
-    listenField = newSpecificationColor
-    listenField = newSpecificationColorAlpha
-    listenField = newSpecificationSpecularColor
-    listenField = newSpecificationModelVisibility
-    listenField = newSpecificationMetaDataKey
-    listenField = newSpecificationMetaDataValue
-    listenField = newSpecificationWEMLabel
-    listenField = newSpecificationPositionTypes
-    listenField = newSpecificationConnectionTypes
-    command = UpdateNewSpecification    
-  }
+Interface { }
 
-  FieldListener newSpecificationAdd { command = AddNewSpecification }
+
+Commands {
+  initCommand = @@js: ctx.field("status").value = "Idle."; ctx.field("progress").value = 0; ctx.field("newSpecificationType").touch(); @@ 
 }
 
 
@@ -317,7 +274,7 @@ Window "Main Panel" {
       
       Box "" { layout = Vertical
         Horizontal {
-          droppedFileCommand = "*py: ctx.field("fileName").value = args[0] *"
+          droppedFileCommand = "*py: ctx.field("filename").value = args[0] *"
           Field filename {
             browseButton = ON
             browseMode   = Save
@@ -357,21 +314,21 @@ Window "Specification Generator Panel"
     TabView { name = TypeTabView mode = invisible currentIndexField = selectedTab alignY = Top
       
       TabViewItem PointCloud {
-        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
-        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@ }
+        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@ }
         Field newSpecificationPositionTypes     { title = "Position Types:" }
       }
       
       TabViewItem LineSet {
-        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
-        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@ }
+        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@ }
         Field newSpecificationPositionTypes     { title = "Position Types:"  }
         Field newSpecificationConnectionTypes   { title = "Connection Types:" }
       }
       
       TabViewItem Mesh {
-        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
-        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@ }
+        Field newSpecificationObjectName        { title = "Object Name:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@ }
+        Field newSpecificationGroupPath         { title = "Object Group Path:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@ }
         Field newSpecificationWEMLabel          { title = "WEM Label:" }
       }
       
@@ -383,13 +340,13 @@ Window "Specification Generator Panel"
     }
     
     Box "Color && Visibility" {
-      dependsOn = @@ newSpecificationType != "SPECTYPE_METADATA" @@
+      dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@
       Field newSpecificationModelVisibility            { title = "Model Visibility:" }
-      CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType != "SPECTYPE_POINTCLOUD" @@ }
-      Field newSpecificationColor                      { title = "Object Color" dependsOn = @@ newSpecificationType != "SPECTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
-      Field newSpecificationColorAlpha                 { title = "Object Alpha:" slider = On dependsOn = @@ newSpecificationType != "SPECTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
-      CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" dependsOn = @@ newSpecificationType == "SPECTYPE_MESH" @@ }
-      Field newSpecificationSpecularColor              { title = "Specular Color:" dependsOn = @@ newSpecificationType == "SPECTYPE_MESH" && !newSpecificationUseDefaultSpecularColor @@ }
+      CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" @@ }
+      Field newSpecificationColor                      { title = "Object Color" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
+      Field newSpecificationColorAlpha                 { title = "Object Alpha:" slider = On dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
+      CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
+      Field newSpecificationSpecularColor              { title = "Specular Color:" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" && !newSpecificationUseDefaultSpecularColor @@ }
     }
     
     Empty { height = 10 }

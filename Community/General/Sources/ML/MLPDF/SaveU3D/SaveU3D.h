@@ -116,6 +116,25 @@ private:
   //! Progress bar.
   ProgressField *_progressFld;
 
+  //! Field for Specification Generator
+  StringField   *_newSpecificationFld;
+  IntField      *_newSpecificationSelectedTabFld;
+  BoolField     *_newSpecificationOutputValidFld;
+  NotifyField   *_newSpecificationAddFld;
+  EnumField     *_newSpecificationTypeFld;
+  StringField   *_newSpecificationObjectNameFld;
+  StringField   *_newSpecificationGroupPathFld;
+  BoolField     *_newSpecificationUseDefaultColorFld;
+  BoolField     *_newSpecificationUseDefaultSpecularColorFld;
+  ColorField    *_newSpecificationColorFld;
+  FloatField    *_newSpecificationColorAlphaFld;
+  ColorField    *_newSpecificationSpecularColorFld;
+  EnumField     *_newSpecificationModelVisibilityFld;
+  StringField   *_newSpecificationMetaDataKeyFld;
+  StringField   *_newSpecificationMetaDataValueFld;
+  StringField   *_newSpecificationWEMLabelFld;
+  StringField   *_newSpecificationPositionTypesFld;
+  StringField   *_newSpecificationConnectionTypesFld;
 
   //! The XMarkerList input for point positions of point clouds
 	ml::XMarkerList _inPointPositions;  
@@ -238,6 +257,11 @@ private:
   U3DDataBlockWriter CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, U3DMeshInfoStruct meshInfo) const;  
   //U3DDataBlockWriter CreateCLODProgressiveMeshContinuationBlock(WEMPtr saveWEM, U3DMeshInfoStruct meshInfo) const;  
 
+  // Specification Generator methods =========================================
+
+  void UpdateObjectTypeTabView();
+  void AddNewSpecification();
+  void UpdateNewSpecification();
 
   // Tool methods ============================================================
 

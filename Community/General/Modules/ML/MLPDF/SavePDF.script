@@ -3,14 +3,14 @@
 /*!
 // \file    SavePDF.script
 // \author  Axel Newe
-// \date    2014-02-06
+// \date    2015-08-01
 */
 //----------------------------------------------------------------------------------
 
 
-Window {
+Window "Module is not yet functional" {
   Vertical {
-    margin = 10
-    Label { title = "Module is not functional yet." }
+    margin = 3
+    Label { title = "Module not yet functional" }
   }
 }

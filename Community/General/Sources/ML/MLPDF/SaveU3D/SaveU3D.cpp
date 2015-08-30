@@ -12,6 +12,7 @@
 
 // Local includes
 #include "SaveU3D.h"
+#include "SpecificationGenerator/MLPDF_SpecificationGenerator.h"
 #include "U3DFileFormat/U3D_Tools.h"
 #include "U3DFileFormat/U3D_Constants.h"
 #include "U3DFileFormat/U3D_DataBlockWriter.h"
@@ -87,6 +88,46 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
 
   (_statusFld     = addString("status"))    ->setStringValue("Idle.");
   (_progressFld   = addProgress("progress"))->setFloatValue(0.0f);
+
+  //-------------------------------------------------------------------
+  //! Strings for enum field: specification type 
+  //-------------------------------------------------------------------
+  const char* const NEW_SPECIFICATION_OBJECTTYPE_STRINGS[SpecificationGenerator::NUM_OBJECTTYPES] = {
+    "OBJECTTYPE_POINTCLOUD",
+    "OBJECTTYPE_LINESET",
+    "OBJECTTYPE_MESH",
+    "OBJECTTYPE_METADATA"
+  };
+
+  //-------------------------------------------------------------------
+  //! Strings for enum field: model visibility 
+  //-------------------------------------------------------------------
+  const char* const NEW_SPECIFICATION_MODELVISIBILITY_STRINGS[SpecificationGenerator::NUM_MODELVISIBILITY] = {
+    "MODELVISIBILITY_NOTVISIBLE",
+    "MODELVISIBILITY_FRONTVISIBLE",
+    "MODELVISIBILITY_BACKVISIBLE",
+    "MODELVISIBILITY_FRONTANDBACKVISIBLE"
+  };
+
+  //! Add fields for Specification Generator
+  (_newSpecificationFld                        = addString("newSpecification"))->setStringValue("");
+  (_newSpecificationSelectedTabFld             = addInt("selectedTab"))->setIntValue(0);
+  (_newSpecificationOutputValidFld             = addBool("newSpecificationOutputValid"))->setBoolValue(false);
+  _newSpecificationAddFld                      = addNotify("newSpecificationAdd");
+  (_newSpecificationTypeFld                    = addEnum("newSpecificationType", NEW_SPECIFICATION_OBJECTTYPE_STRINGS, SpecificationGenerator::NUM_OBJECTTYPES))->setEnumValue(SpecificationGenerator::OBJECTTYPE_MESH);
+  (_newSpecificationObjectNameFld              = addString("newSpecificationObjectName"))->setStringValue("");
+  (_newSpecificationGroupPathFld               = addString("newSpecificationGroupPath"))->setStringValue("");
+  (_newSpecificationUseDefaultColorFld         = addBool("newSpecificationUseDefaultColor"))->setBoolValue(true);
+  (_newSpecificationUseDefaultSpecularColorFld = addBool("newSpecificationUseDefaultSpecularColor"))->setBoolValue(true);
+  (_newSpecificationColorFld                   = addColor("newSpecificationColor"))->setVector3Value(Vector3(0.651f,0.651f,0.651f));
+  (_newSpecificationColorAlphaFld              = addFloat("newSpecificationColorAlpha"))->setFloatValue(1.0f);
+  (_newSpecificationSpecularColorFld           = addColor("newSpecificationSpecularColor"))->setVector3Value(Vector3(0.75f,0.75f,0.75f));
+  (_newSpecificationModelVisibilityFld         = addEnum("newSpecificationModelVisibility", NEW_SPECIFICATION_MODELVISIBILITY_STRINGS, SpecificationGenerator::NUM_MODELVISIBILITY))->setEnumValue(SpecificationGenerator::MODELVISIBILITY_FRONTANDBACKVISIBLE);
+  (_newSpecificationMetaDataKeyFld             = addString("newSpecificationMetaDataKey"))->setStringValue("");
+  (_newSpecificationMetaDataValueFld           = addString("newSpecificationMetaDataValue"))->setStringValue("");
+  (_newSpecificationWEMLabelFld                = addString("newSpecificationWEMLabel"))->setStringValue("");
+  (_newSpecificationPositionTypesFld           = addString("newSpecificationPositionTypes"))->setStringValue("");
+  (_newSpecificationConnectionTypesFld         = addString("newSpecificationConnectionTypes"))->setStringValue("");
 
   // Turn off the automatic saving on all notifications
   _listenToFinishingNotificationsFld       ->setBoolValue(false);
@@ -181,6 +222,35 @@ void SaveU3D::handleNotification (Field* field)
       _inLineConnections.clear();
     }
 
+  }
+
+  if (field == _newSpecificationAddFld)
+  {
+    AddNewSpecification();
+  }
+
+  if (field == _newSpecificationTypeFld)
+  {
+    UpdateObjectTypeTabView();
+  }
+
+  if ( (field == _newSpecificationTypeFld) ||
+       (field == _newSpecificationObjectNameFld) ||
+       (field == _newSpecificationGroupPathFld) ||
+       (field == _newSpecificationUseDefaultColorFld) ||
+       (field == _newSpecificationUseDefaultSpecularColorFld) ||
+       (field == _newSpecificationColorFld) ||
+       (field == _newSpecificationColorAlphaFld) ||
+       (field == _newSpecificationSpecularColorFld) ||
+       (field == _newSpecificationModelVisibilityFld) ||
+       (field == _newSpecificationMetaDataKeyFld) ||
+       (field == _newSpecificationMetaDataValueFld) ||
+       (field == _newSpecificationWEMLabelFld) ||
+       (field == _newSpecificationPositionTypesFld) ||
+       (field == _newSpecificationConnectionTypesFld)  
+     )
+  {
+    UpdateNewSpecification();
   }
 
   // call parent class and handle apply/autoApply and in/outputs
@@ -350,7 +420,7 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
     metaDataPair.value = VersionString;
     metaData.push_back(metaDataPair);  
 
-	  outU3DFile->addStandardBlock_PriorityUpdate((MLuint32)0x00000001);
+    outU3DFile->addStandardBlock_PriorityUpdate((MLuint32)0x00000001);
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++
     //
@@ -363,13 +433,13 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
     // Add default view node ===================================================================
     addDefaultViewNode();
 
-	  // Add all group nodes =====================================================================
+    // Add all group nodes =====================================================================
     GroupNodeVector groupNodes = assembleU3DGroupNodeInfo(_u3dObjectInfoVector);
     makeGroupPathNamesUnique(groupNodes, _u3dObjectInfoVector);
-	  addAllGroupNodes(groupNodes);   
+    addAllGroupNodes(groupNodes);   
 
     // Add a model node for each U3D object ====================================================
-	  addU3DModelNodes();
+    addU3DModelNodes();
     
     // Add default light node ==================================================================
     addDefaultLightNode();
@@ -380,17 +450,17 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
     //
     // +++++++++++++++++++++++++++++++++++++++++++++++++
 
-	  // Add point sets ==========================================================================
+    // Add point sets ==========================================================================
 
     // Add a point set modifier chain for each point set
-	  AddAllPointSetModifierChains(U3DPointSetInfoVector);
-	 
-	  // Add line sets ===========================================================================
+    AddAllPointSetModifierChains(U3DPointSetInfoVector);
+   
+    // Add line sets ===========================================================================
 
     // Add a line set modifier chain for each line set
     AddAllLineSetModifierChains(U3DLineSetInfoVector);
 
-	  // Add meshes ==============================================================================
+    // Add meshes ==============================================================================
 
     // Add a CLOD mesh declaration modifier chain for each mesh 
     AddAllCLODMeshModifierChains(meshInfoVector, saveWEM);
@@ -406,7 +476,7 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
     // Add shader & material resource for each U3D object ======================================
     addShaderAndMaterialResources();
 
-	  // Add light resources =====================================================================
+    // Add light resources =====================================================================
     addLightResources();
 
     // Add view resources ======================================================================
@@ -442,6 +512,120 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
 //***********************************************************************************
 
 
+void SaveU3D::UpdateObjectTypeTabView()
+{
+  int newSpecificationType = _newSpecificationTypeFld->getEnumValue();
+
+  if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
+  {
+    _newSpecificationSelectedTabFld->setIntValue(0);
+  }
+  else if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_LINESET)
+  {
+    _newSpecificationSelectedTabFld->setIntValue(1);
+  }
+  else if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_MESH)
+  {
+    _newSpecificationSelectedTabFld->setIntValue(2);
+  }
+  else if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_METADATA)
+  {
+    _newSpecificationSelectedTabFld->setIntValue(3);
+  }
+}
+
+
+//***********************************************************************************
+
+
+void SaveU3D::AddNewSpecification()
+{
+  int newSpecificationObjectType = _newSpecificationTypeFld->getEnumValue();
+
+  if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
+  {
+    _pointCloudSpecificationFld->setStringValue(_pointCloudSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
+  }
+  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_LINESET)
+  {
+    _lineSetSpecificationFld->setStringValue(_lineSetSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
+  }
+  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_MESH)
+  {
+    _meshSpecificationFld->setStringValue(_meshSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
+    }
+  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_METADATA)
+  {
+    _metaDataSpecificationFld->setStringValue(_metaDataSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
+  }
+}
+
+
+//***********************************************************************************
+
+
+void SaveU3D::UpdateNewSpecification()
+{
+  std::string newSpecificationString = "";
+  int newSpecificationObjectType = _newSpecificationTypeFld->getEnumValue();
+  
+//  if (callingField == ctx.field("newSpecificationType")):
+//    UpdateTabView()
+  
+  if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
+  {
+    newSpecificationString = "<PointSet>\n";
+    newSpecificationString += SpecificationGenerator::GetPositionTypes(_newSpecificationPositionTypesFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += "\n";
+    _newSpecificationOutputValidFld->setBoolValue(true);
+  }
+  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_LINESET)
+  {
+    newSpecificationString = "<LineSet>\n";
+    newSpecificationString += SpecificationGenerator::GetPositionTypes(_newSpecificationPositionTypesFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetConnectionTypes(_newSpecificationConnectionTypesFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += "\n";
+//    ctx.field("selectedTab").value = 1;
+    _newSpecificationOutputValidFld->setBoolValue(true);
+  }
+  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_MESH)
+  {
+    newSpecificationString = "<Mesh>\n";
+    newSpecificationString += SpecificationGenerator::GetWEMLabel(_newSpecificationWEMLabelFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += SpecificationGenerator::GetSpecularColor(_newSpecificationSpecularColorFld->getColorValue(), _newSpecificationUseDefaultSpecularColorFld->getBoolValue());
+    newSpecificationString += SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += "\n";
+//    ctx.field("selectedTab").value = 2;
+    _newSpecificationOutputValidFld->setBoolValue(true);
+  }
+  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_METADATA)
+  {
+    newSpecificationString = "<MetaData>\n";
+    newSpecificationString += SpecificationGenerator::GetMetaDataKey(_newSpecificationMetaDataKeyFld->getStringValue());
+    newSpecificationString += SpecificationGenerator::GetMetaDataValue(_newSpecificationMetaDataValueFld->getStringValue());
+    newSpecificationString += "\n";
+//    ctx.field("selectedTab").value = 3;
+    _newSpecificationOutputValidFld->setBoolValue(true);
+  }
+
+  _newSpecificationFld->setStringValue(newSpecificationString);
+  
+  return;
+
+}
+
+
+//***********************************************************************************
 
 
 ML_END_NAMESPACE

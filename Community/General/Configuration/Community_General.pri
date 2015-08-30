@@ -67,7 +67,9 @@ MLPDF {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePDF
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SaveU3D
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePRC
-  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared  
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/include
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/win32/include
   win32:LIBS += MLPDF$${d}.lib
   unix:LIBS  += -lMLPDF$${d}
 }
@@ -79,7 +81,7 @@ MLBaseListExtensions {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/IndexPairList
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/ListTools
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/MarkerListImport
-  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/thirdparty
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/shared  
   win32:LIBS += MLBaseListExtensions$${d}.lib
   unix:LIBS  += -lMLBaseListExtensions$${d}
 }

@@ -3,7 +3,7 @@
 /*!
 // \file    SavePRC.h
 // \author  Axel Newe
-// \date    2014-02-06
+// \date    2015-08-01
 //
 // Creates PRC file from WEMs, Linesets and XMarkers
 */
@@ -113,6 +113,25 @@ private:
   //! Progress bar.
   ProgressField *_progressFld;
 
+  //! Field for Specification Generator
+  StringField   *_newSpecificationFld;
+  IntField      *_newSpecificationSelectedTabFld;
+  BoolField     *_newSpecificationOutputValidFld;
+  NotifyField   *_newSpecificationAddFld;
+  EnumField     *_newSpecificationTypeFld;
+  StringField   *_newSpecificationObjectNameFld;
+  StringField   *_newSpecificationGroupPathFld;
+  BoolField     *_newSpecificationUseDefaultColorFld;
+  BoolField     *_newSpecificationUseDefaultSpecularColorFld;
+  ColorField    *_newSpecificationColorFld;
+  FloatField    *_newSpecificationColorAlphaFld;
+  ColorField    *_newSpecificationSpecularColorFld;
+  EnumField     *_newSpecificationModelVisibilityFld;
+  StringField   *_newSpecificationMetaDataKeyFld;
+  StringField   *_newSpecificationMetaDataValueFld;
+  StringField   *_newSpecificationWEMLabelFld;
+  StringField   *_newSpecificationPositionTypesFld;
+  StringField   *_newSpecificationConnectionTypesFld;
 
   //! The XMarkerList input for point positions of point clouds
 	ml::ColoredMarkerList _inPointPositions;  
@@ -191,6 +210,12 @@ private:
 
   // Write all meshes of a model tree node to PRC file
   void WriteMeshDataToPRCFile(PRCFile &outPRCFile, MLint modelTreeNode);
+
+  // Specification Generator methods =========================================
+
+  void UpdateObjectTypeTabView();
+  void AddNewSpecification();
+  void UpdateNewSpecification();
 
   // Tool methods ============================================================
 

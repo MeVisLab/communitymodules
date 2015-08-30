@@ -4,7 +4,7 @@
 //
 // \file    PRC_BitStream.cpp
 // \author  Axel Newe
-// \date    2014-09-01
+// \date    2015-08-01
 */
 
 
