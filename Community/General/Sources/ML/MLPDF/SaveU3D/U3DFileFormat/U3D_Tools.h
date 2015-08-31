@@ -17,7 +17,7 @@
 #include "U3D_Constants.h"
 #include "U3D_DataTypes.h"
 #include "U3D_FileWriter.h"
-#include "shared/MLPDF_DataTypes.h"
+#include "MLPDF_DataTypes.h"
 
 
 ML_START_NAMESPACE

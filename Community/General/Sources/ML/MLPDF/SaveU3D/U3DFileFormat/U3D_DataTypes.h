@@ -10,7 +10,7 @@
 #ifndef _U3D_DataTypes_H
 #define _U3D_DataTypes_H
 
-#include "shared/MLPDF_DataTypes.h"
+#include "MLPDF_DataTypes.h"
 
 
 ML_START_NAMESPACE

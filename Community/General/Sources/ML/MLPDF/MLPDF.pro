@@ -22,6 +22,7 @@ CONFIG += dll ML MLBase MLWEM zlib png MLBaseListExtensions
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General
 
+INCLUDEPATH += ./shared/
 INCLUDEPATH += ./thirdparty/libHaru/RELEASE/include/
 INCLUDEPATH += ./thirdparty/libHaru/RELEASE/win32/include/
 
@@ -175,4 +176,3 @@ SOURCES += \
   SavePRC/PRCFileFormat/PRC_Write.cpp \
   SavePRC/PRCFileFormat/PRC_File.cpp \
   SavePRC/PRCFileFormat/PRC_Tools.cpp \
-  

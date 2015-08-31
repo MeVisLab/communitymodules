@@ -10,13 +10,12 @@
 
 
 // Local includes
-//#include "U3DSystem.h"
 #include "U3D_Tools.h"
 #include "U3D_Constants.h"
 #include "U3D_DataTypes.h"
 #include "U3D_DataBlock.h"
 #include "U3D_FileWriter.h"
-#include "shared/MLPDF_Tools.h"
+#include "MLPDF_Tools.h"
 
 
 
