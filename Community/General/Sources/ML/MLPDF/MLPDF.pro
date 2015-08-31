@@ -18,12 +18,12 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLWEM zlib png MLBaseListExtensions MLPDF
+CONFIG += dll ML MLBase MLWEM zlib png MLBaseListExtensions
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General
 
-#INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/include
-#INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/win32/include
+INCLUDEPATH += ./thirdparty/libHaru/RELEASE/include/
+INCLUDEPATH += ./thirdparty/libHaru/RELEASE/win32/include/
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
 include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
