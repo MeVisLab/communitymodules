@@ -34,7 +34,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = PositionsLoad
-    filename = D:/MeVisLab/Packages/Axel/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
+    filename = J:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
     filter = PointSet
     numberDelimiter = ;
     numberDelimiterSpace = TRUE
@@ -58,6 +58,8 @@ module BaseSwitch {
     instanceName = BaseSwitch
     currentInput = 0
     currentOutput = 0
+    numberOfInputs = 5
+    numberOfOutputs = 5
   }
 }
 module ColoredMarkerListContainer {
@@ -75,12 +77,10 @@ module ColoredMarkerListContainer {
   fields  {
     instanceName = ColoredPositionsList
     listString = "[(-4.45 -3.64 -1.7)(1 0 0 1) 1, (-4.45 -3.64 1.7)(1 0 0 1) 1, (-4.45 2.76 -1.7)(1 0 0 1) 1, (-4.45 2.76 1.7)(1 0 0 1) 1, (6 -3.64 -1.7)(1 0 0 1) 1, (6 -3.64 1.7)(1 0 0 1) 1, (6 2.76 -1.7)(1 0 0 1) 1, (6 2.76 1.7)(1 0 0 1) 1, (-2.84 -1.1 -4.54)(1 1 0 1) 2, (-2.84 -1.1 5.96)(1 1 0 1) 2, (-2.84 2.64 -4.54)(1 1 0 1) 2, (-2.84 2.64 5.96)(1 1 0 1) 2, (2.31 -1.1 -4.54)(1 1 0 1) 2, (2.31 -1.1 5.96)(1 1 0 1) 2, (2.31 2.64 -4.54)(1 1 0 1) 2, (2.31 2.64 5.96)(1 1 0 1) 2]"
-    numItems = 16
     index = 0
     persistent = TRUE
     listStringEnable = TRUE
     applySelect = FALSE
-    id = 0
     name = ""
     newName = ""
     overflowMode = None
@@ -117,12 +117,10 @@ module IndexPairListContainer {
   fields  {
     instanceName = EdgesList
     listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8, (0 4) 1 #9, (1 5) 1 #10, (2 6) 1 #11, (3 7) 1 #12]"
-    numItems = 12
     index = 4
     persistent = TRUE
     listStringEnable = TRUE
     applySelect = FALSE
-    id = 5
     name = ""
     newName = ""
     overflowMode = None
@@ -178,8 +176,6 @@ module SaveU3D {
   }
   fields  {
     instanceName = SaveU3D
-    isProcessing = FALSE
-    elapsedTime = 0.662
     autoApply = FALSE
     autoUpdate = FALSE
     autoClear = TRUE
@@ -257,9 +253,15 @@ module SaveU3D {
     defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
-    filename = C:/Users/z002zrcd/SaveU3DExample.u3d
+    filename = C:/Users/Axel/SaveU3DExample.u3d
     status = Idle.
-    newSpecificationType = SPECTYPE_POINTCLOUD
+    newSpecification = "<PointSet>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    selectedTab = 0
+    newSpecificationOutputValid = TRUE
+    newSpecificationType = OBJECTTYPE_MESH
     newSpecificationObjectName = ""
     newSpecificationGroupPath = ""
     newSpecificationUseDefaultColor = TRUE
@@ -267,18 +269,12 @@ module SaveU3D {
     newSpecificationColor = "0.651 0.651 0.651"
     newSpecificationColorAlpha = 1
     newSpecificationSpecularColor = "0.75 0.75 0.75"
-    newSpecificationModelVisibility = SPECTYPE_FRONTANDBACKVISIBLE
+    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
+    newSpecificationMetaDataKey = ""
+    newSpecificationMetaDataValue = ""
     newSpecificationWEMLabel = ""
     newSpecificationPositionTypes = ""
     newSpecificationConnectionTypes = ""
-    newSpecificationMetaDataKey = ""
-    newSpecificationMetaDataValue = ""
-    newSpecification = "<PointSet>
-<ModelVisibility>3</ModelVisibility>
-
-"
-    newSpecificationOutputValid = TRUE
-    selectedTab = 0
   }
 }
 module LocalWEMLoad {
@@ -328,8 +324,6 @@ module ComposeWEMDescriptionForU3D {
   }
   fields  {
     instanceName = ComposeWEMDescriptionForVenus
-    WEMLabel = Venus
-    WEMDescription = "U3DColor=0.0 0.0 1.0 0.0"
     U3DObjectName = Venus
     U3DGroupName = ""
     U3DModelName = ""
@@ -370,6 +364,7 @@ module WEMMerge {
     overwriteLabelDescription = FALSE
     label = ""
     description = ""
+    shouldComputeNormals = TRUE
     copyInputWEMs = TRUE
     listenToFinishNotifications = TRUE
     listenToRepaintNotifications = TRUE
@@ -426,8 +421,6 @@ module ComposeWEMDescriptionForU3D {
   }
   fields  {
     instanceName = ComposeWEMDescriptionForCow
-    WEMLabel = Cow
-    WEMDescription = "U3DColor=1.0 0.667 0.0 0.479;U3DSpecularColor=0.0 0.667 1.0"
     U3DObjectName = Cow
     U3DGroupName = ""
     U3DModelName = ""
