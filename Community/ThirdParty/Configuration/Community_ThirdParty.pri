@@ -42,11 +42,17 @@ LIBS          += -L"$${PACKAGE_ROOT}"/lib
 #  unix:LIBS += -lMLMyProject$${d}
 #}
 
-# -- ML Projects -------------------------------------------------------------
+# -- ThirdParty Projects ---------------------------------------------------------
 
-# -- Inventor Projects -------------------------------------------------------
-
-# -- Shared Projects ---------------------------------------------------------
+libhpdf {
+  CONFIG_FOUND += libhpdf
+  CONFIG += zlib png
+  INCLUDEPATH += $${PACKAGE_SOURCES}/libhpdf
+  INCLUDEPATH += $${PACKAGE_SOURCES}/libhpdf/src
+  INCLUDEPATH += $${PACKAGE_SOURCES}/libhpdf/include
+  win32:LIBS += libhpdf$${d}.lib
+  unix:LIBS += -l$${LIB_NAME_PREFIX}libhpdf$${d}
+}
 
 # End of projects ------------------------------------------------------------
 
