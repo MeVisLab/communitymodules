@@ -30,7 +30,6 @@ int MLPDFInit()
   SavePDF::initClass();
   SaveU3D::initClass();
   SavePRC::initClass();
-  // Add initClass calls from all other modules here.
 
   return 1;
 }

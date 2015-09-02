@@ -12,6 +12,13 @@
 // Local includes
 #include "SavePDF.h"
 
+// ThirdParty includes
+#include "hpdf.h"
+#include "hpdf_u3d.h"
+
+// ML includes
+#include "mlVersion.h"
+#include "mlUnicode.h"
 
 ML_START_NAMESPACE
 
@@ -26,6 +33,22 @@ SavePDF::SavePDF() : Module(0, 0)
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
+
+  (_mlFileNameFld = addString("filename"))->setStringValue("");
+
+  _saveFld = addNotify("save");
+
+  (_statusFld     = addString("status"))    ->setStringValue("Idle.");
+  (_progressFld   = addProgress("progress"))->setFloatValue(0.0f);
+
+
+  (_pdfAttrTitleFld     = addString("pdfAttrTitle"))    ->setStringValue("");
+  (_pdfAttrAuthorFld    = addString("pdfAttrAuthor"))   ->setStringValue("");
+  (_pdfAttrSubjectFld   = addString("pdfAttrSubject"))  ->setStringValue("");
+  (_pdfAttrKeywordsFld  = addString("pdfAttrKeywords")) ->setStringValue("");
+
+
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
@@ -33,7 +56,7 @@ SavePDF::SavePDF() : Module(0, 0)
   // Activate inplace data buffers for output outputIndex and input inputIndex.
   // setOutputImageInplace(outputIndex, inputIndex);
 
-  // Activate page data bypass from input inputIndex to output outputIndex.
+  // Activate pdfPage data bypass from input inputIndex to output outputIndex.
   // Note that the module must still be able to calculate the output image.
   // setBypass(outputIndex, inputIndex);
 
@@ -41,12 +64,20 @@ SavePDF::SavePDF() : Module(0, 0)
 
 //----------------------------------------------------------------------------------
 
+SavePDF::~SavePDF()
+{
+  // Destroy own dynamic data structures here
+}
+
+//----------------------------------------------------------------------------------
+
 void SavePDF::handleNotification(Field* field)
 {
-  // Handle changes of module parameters and input image fields here.
-
-  // Avoid warning
-  if (field == NULL) {}
+  if (field == _saveFld) 
+  {
+    // Call the save routine.
+    saveButtonClicked();
+  } 
 }
 
 //----------------------------------------------------------------------------------
@@ -57,5 +88,117 @@ void SavePDF::activateAttachments()
   // Call super class functionality to enable notification handling again.
   Module::activateAttachments();
 }
+
+//----------------------------------------------------------------------------------
+
+void SavePDF::saveButtonClicked()
+{
+  std::string filename = _mlFileNameFld->getStringValue();
+  if (filename == "") 
+  {
+    _statusFld->setStringValue("No filename specified.");
+    return;
+  }
+
+  const unsigned int filenameLength = static_cast<unsigned int>(filename.length());
+
+  std::string last4 = "";
+
+  if (filenameLength > 4) 
+  { 
+    last4 = filename.substr(filenameLength-4, 4); 
+
+    if (last4 != ".pdf") 
+    { 
+      filename.append(".pdf"); 
+      _mlFileNameFld->setStringValue(filename);
+    }
+  }
+
+  savePDFFile(filename);
+}
+
+//----------------------------------------------------------------------------------
+
+void SavePDF::savePDFFile(std::string filename)
+{
+  _progressFld->setFloatValue(0.0f);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    HPDF_Doc  pdfDocument;
+    HPDF_Page pdfPage;
+    HPDF_Font pdfFont;
+
+    pdfDocument = HPDF_New (NULL, NULL);
+    if (!pdfDocument) 
+    {
+        printf ("error: cannot create PdfDoc object\n");
+        return;
+    }
+
+    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_TITLE, _pdfAttrTitleFld->getStringValue().c_str());
+    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_AUTHOR, _pdfAttrAuthorFld->getStringValue().c_str());
+    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_SUBJECT, _pdfAttrSubjectFld->getStringValue().c_str());
+    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_KEYWORDS, _pdfAttrKeywordsFld->getStringValue().c_str());
+
+    std::string VersionString = "MeVisLab ( ML version  )"; 
+    VersionString.insert(22,ML_VERSION_STRING);
+
+    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_CREATOR, VersionString.c_str());
+    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_PRODUCER, "MeVisLab SavePDF module by Axel Newe (axel.newe@fau.de)");
+
+    /* use Times-Roman pdfFont. */
+    pdfFont = HPDF_GetFont (pdfDocument, "Times-Roman", "WinAnsiEncoding");
+
+    pdfPage = HPDF_AddPage (pdfDocument);
+
+    HPDF_Page_SetWidth (pdfPage, 400);
+    HPDF_Page_SetHeight (pdfPage, 500);
+
+    HPDF_Page_BeginText (pdfPage);
+    HPDF_Page_SetFontAndSize (pdfPage, pdfFont, 16);
+    HPDF_Page_MoveTextPos (pdfPage, 130, 450);
+    HPDF_Page_ShowText (pdfPage, "3D Annotation Test");
+    HPDF_Page_EndText (pdfPage);
+
+
+
+
+    HPDF_U3D u3dModel;
+    HPDF_Annotation u3dAnnot;
+
+    HPDF_Rect rect1 = { 50, 250, 350, 400 };
+
+    u3dModel = HPDF_LoadU3DFromFile (pdfDocument, "D:\\MeVisLab\\Packages\\Community\\General\\Modules\\ML\\MLPDF\\networks\\SavePDFExample.u3d");
+    u3dAnnot = HPDF_Page_Create3DAnnot (pdfPage, rect1, u3dModel); 
+    HPDF_Dict view = HPDF_Page_Create3DView(pdfPage, u3dModel, u3dAnnot, "View Name");
+    HPDF_3DView_SetBackgroundColor(view, 0.5, 0.5, 0.5);
+    //HPDF_STATUS stat = HPDF_Annot_Set3DView (mmgr, annot, u3dAnnot, view);
+
+
+
+    /* save the document to a file */
+    HPDF_SaveToFile (pdfDocument, filename.c_str());
+
+    /* clean up */
+    HPDF_Free (pdfDocument);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  _progressFld->setFloatValue(1.0f);
+
+}
+
+//----------------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------------
+
 
 ML_END_NAMESPACE

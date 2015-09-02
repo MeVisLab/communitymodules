@@ -22,17 +22,16 @@ SWITCH_PACKAGE Community/General
 + Package.def
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/LibDll/typicalPackage.mli
 + Modules
-+ Documentation/Publish
-+? bin/PlugIns/OsiriXMeVisLabBridge.osirixplugin
++ Documentation\Publish
 
 SWITCH_PACKAGE UMD/METK
 + Package.def
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/LibDll/typicalPackage.mli
 + Modules
-+ Documentation/Publish
++ Documentation\Publish
 
 SWITCH_PACKAGE Community/ThirdParty
 + Package.def
 INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/LibDll/typicalPackage.mli
 #+ Modules
-#+ Documentation/Publish
+#+ Documentation\Publish

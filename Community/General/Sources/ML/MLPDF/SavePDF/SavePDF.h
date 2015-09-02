@@ -31,14 +31,47 @@ public:
   //! Constructor.
   SavePDF();
 
-  //! Handles field changes of the field \p field.
-  virtual void handleNotification (Field* field);
+protected:
 
-  //! Updates the internal module state after loading or cloning the module,
-  //! and enables notification handling again.
+  //! Destructor.
+  virtual ~SavePDF();
+
+  //! Initialize module after loading.
   virtual void activateAttachments();
 
+  //! Handle field changes of the field \c field.
+  virtual void handleNotification (Field* field);
+
 private:
+
+  /* FIELDS */
+
+  //! Field - Filename
+  StringField   *_mlFileNameFld;
+
+  //! Field - Save notification
+  NotifyField   *_saveFld;
+
+  //! Status message
+  StringField   *_statusFld;
+
+  //! Progress bar.
+  ProgressField *_progressFld;
+
+
+  //! PDF file property fields
+  StringField   *_pdfAttrTitleFld;
+  StringField   *_pdfAttrAuthorFld;
+  StringField   *_pdfAttrSubjectFld;
+  StringField   *_pdfAttrKeywordsFld;
+
+
+  // Methods ============================================================
+
+  void saveButtonClicked();
+  void savePDFFile(std::string filename);
+
+
 
 
   // Implements interface for the runtime type system of the ML.

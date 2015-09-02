@@ -11,6 +11,8 @@
 Window "Module is not yet functional" {
   Vertical {
     margin = 3
-    Label { title = "Module not yet functional" }
+    Field filename { browseButton = On browseMode = save }
+    Separator { }
+    Button save { title = "Test" alignX = Left }
   }
 }

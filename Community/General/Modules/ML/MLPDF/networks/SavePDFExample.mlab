@@ -6,9 +6,28 @@ module SavePDF {
   internal  {
     frame = "637 157 88 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "482 567 548 73"
+        sizeHint = "206 73"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "247 183 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = SavePDF
+    filename = "D:\\test.pdf"
+    status = Idle.
+    progress = 1
+    pdfAttrTitle = Title
+    pdfAttrAuthor = Author
+    pdfAttrSubject = Subject
+    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
   }
 }
 connections = ""
