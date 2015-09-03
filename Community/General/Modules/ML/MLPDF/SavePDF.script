@@ -8,7 +8,17 @@
 //----------------------------------------------------------------------------------
 
 
-Window "Module is not yet functional" {
+Description {
+  Field mevislabVersion { editable = No }
+}
+
+
+Commands {
+  initCommand = @@js: ctx.field("mevislabVersion").value = MLAB.variable("Version"); @@
+}
+
+
+Window {
   Vertical {
     margin = 3
     Field filename { browseButton = On browseMode = save }

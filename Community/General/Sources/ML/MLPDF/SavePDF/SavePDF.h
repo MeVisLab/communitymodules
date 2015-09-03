@@ -58,6 +58,9 @@ private:
   //! Progress bar.
   ProgressField *_progressFld;
 
+  //! MeVisLab Program version (must be set via Python scripting, because the full version number is not available in C++)
+  StringField * _mevislabVersionFld;
+
 
   //! PDF file property fields
   StringField   *_pdfAttrTitleFld;

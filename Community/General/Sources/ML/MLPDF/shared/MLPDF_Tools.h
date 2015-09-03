@@ -90,6 +90,9 @@ StringVector stringSplit(const std::string& stringToSplit, const std::string& de
 // Convert String to lower case
 void stringLower(std::string &sourceString);
 
+// Convert MeVisLab version number into string
+std::string getMeVisLabVersionNumberString();
+
 //***********************************************************************************
 
 // Parses a string and try to get color values from it.

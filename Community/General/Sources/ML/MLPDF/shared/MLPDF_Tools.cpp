@@ -17,6 +17,7 @@
 #include <ColoredMarkerList.h>
 
 #include "mlModuleIncludes.h"
+#include "mlApplicationProperties.h"
 
 ML_START_NAMESPACE
 
@@ -258,6 +259,30 @@ void stringLower(std::string &sourceString)
   {
     sourceString[loop] = (char)std::tolower(sourceString[loop]);
   }
+}
+
+
+//***********************************************************************************
+
+std::string getMeVisLabVersionNumberString()
+{
+  /*
+  std::string MeVisLabVersionString = intToString(MEVISLAB_VERSION); // Preprocessor define must be parsed
+
+  std::string MeVisLabMajorVersionString = MeVisLabVersionString.substr(0,MeVisLabVersionString.length()-2);
+  std::string MeVisLabMinorVersionString = MeVisLabVersionString.substr(MeVisLabVersionString.length()-2,2);
+
+  if (MeVisLabMinorVersionString[0] == '0')
+  {
+    MeVisLabMinorVersionString = MeVisLabMinorVersionString.substr(1,1);
+  }
+
+  MeVisLabVersionString = MeVisLabMajorVersionString + "." + MeVisLabMinorVersionString;
+
+  return MeVisLabVersionString;
+  */
+
+  return ml::ApplicationProperties::getString("Version");
 }
 
 //***********************************************************************************

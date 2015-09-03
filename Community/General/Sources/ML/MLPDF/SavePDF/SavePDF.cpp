@@ -11,14 +11,15 @@
 
 // Local includes
 #include "SavePDF.h"
+#include "../shared/MLPDF_Tools.h"
 
 // ThirdParty includes
 #include "hpdf.h"
 #include "hpdf_u3d.h"
 
 // ML includes
-#include "mlVersion.h"
 #include "mlUnicode.h"
+
 
 ML_START_NAMESPACE
 
@@ -41,6 +42,7 @@ SavePDF::SavePDF() : Module(0, 0)
   (_statusFld     = addString("status"))    ->setStringValue("Idle.");
   (_progressFld   = addProgress("progress"))->setFloatValue(0.0f);
 
+  (_mevislabVersionFld = addString("mevislabVersion"))->setStringValue("");
 
   (_pdfAttrTitleFld     = addString("pdfAttrTitle"))    ->setStringValue("");
   (_pdfAttrAuthorFld    = addString("pdfAttrAuthor"))   ->setStringValue("");
@@ -126,25 +128,22 @@ void SavePDF::savePDFFile(std::string filename)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    HPDF_Doc  pdfDocument;
+  HPDF_Doc  pdfDocument;
+  pdfDocument = HPDF_New (NULL, NULL);
+
+  if (pdfDocument)
+  {
     HPDF_Page pdfPage;
     HPDF_Font pdfFont;
 
-    pdfDocument = HPDF_New (NULL, NULL);
-    if (!pdfDocument) 
-    {
-        printf ("error: cannot create PdfDoc object\n");
-        return;
-    }
+    pdfDocument->pdf_version = HPDF_VER_16;  // 3D models are allowed from v1.6 on
 
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_TITLE, _pdfAttrTitleFld->getStringValue().c_str());
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_AUTHOR, _pdfAttrAuthorFld->getStringValue().c_str());
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_SUBJECT, _pdfAttrSubjectFld->getStringValue().c_str());
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_KEYWORDS, _pdfAttrKeywordsFld->getStringValue().c_str());
 
-    std::string VersionString = "MeVisLab ( ML version  )"; 
-    VersionString.insert(22,ML_VERSION_STRING);
-
+    std::string VersionString = "MeVisLab " + getMeVisLabVersionNumberString();
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_CREATOR, VersionString.c_str());
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_PRODUCER, "MeVisLab SavePDF module by Axel Newe (axel.newe@fau.de)");
 
@@ -184,10 +183,17 @@ void SavePDF::savePDFFile(std::string filename)
     /* clean up */
     HPDF_Free (pdfDocument);
 
+    _progressFld->setFloatValue(1.0f);
+  }
+  else
+  {
+    _statusFld->setStringValue("Unable to create PDF document '" + filename + "'.");
+  }
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  _progressFld->setFloatValue(1.0f);
-
+  return;
 }
 
 //----------------------------------------------------------------------------------
