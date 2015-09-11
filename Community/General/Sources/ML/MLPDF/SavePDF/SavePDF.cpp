@@ -162,6 +162,9 @@ void SavePDF::savePDFFile(std::string filename)
     HPDF_Page_EndText (pdfPage);
 
 
+    // **********************************************
+    // Idee: Noch ein Poster-Image hinzufügen
+    // **********************************************
 
 
     HPDF_U3D u3dModel;
