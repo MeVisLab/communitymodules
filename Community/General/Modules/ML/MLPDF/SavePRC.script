@@ -68,7 +68,7 @@ Window "Main Panel" {
       
           expandY = Yes
           
-          CheckBox simpleModePointSet { title = "Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
+          CheckBox simpleModePointSet { title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
  
           Field modelPrefixPointClouds { title = "Prefix for Point Clouds Without Name:" }
 
@@ -92,7 +92,7 @@ Window "Main Panel" {
       
           expandY = Yes
 
-          CheckBox simpleModeLineSet { title = "Enble Simple Mode (collect all positions from input field and assemble one line set with default settings)."}
+          CheckBox simpleModeLineSet { title = "Enable Simple Mode (collect all positions from input field and assemble one line set with default settings)."}
           
           Field modelPrefixLineSets { title = "Prefix for Line Sets Without Name:" }
 
@@ -116,7 +116,7 @@ Window "Main Panel" {
       
           expandY = Yes
 
-          CheckBox simpleModeMesh { title = "Enble Simple Mode (add all patches from input wem and parse WEM description for details)."}
+          CheckBox simpleModeMesh { title = "Enable Simple Mode (add all patches from input wem and parse WEM description for details)."}
 
           Field modelPrefixMeshes { title = "Prefix for Meshes Without Name:" }
 

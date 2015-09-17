@@ -36,7 +36,11 @@ Description {
 }
 
 
-Interface { }
+Interface {
+  Parameters {
+    Field useDefaultSettings { type = Bool value = Yes }
+  }
+}
 
 
 Commands {
@@ -63,7 +67,7 @@ Window "Main Panel" {
       
           expandY = Yes
           
-          CheckBox simpleModePointSet { title = "Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
+          CheckBox simpleModePointSet { title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
  
           Field modelPrefixPointClouds { title = "Prefix for Point Clouds Without Name:" }
 
@@ -87,7 +91,7 @@ Window "Main Panel" {
       
           expandY = Yes
 
-          CheckBox simpleModeLineSet { title = "Enble Simple Mode (collect all positions from input field and assemble one line set with default settings)."}
+          CheckBox simpleModeLineSet { title = "Enable Simple Mode (collect all positions from input field and assemble one line set with default settings)."}
           
           Field modelPrefixLineSets { title = "Prefix for Line Sets Without Name:" }
 
@@ -111,7 +115,7 @@ Window "Main Panel" {
       
           expandY = Yes
 
-          CheckBox simpleModeMesh { title = "Enble Simple Mode (add all patches from input wem and parse WEM description for details)."}
+          CheckBox simpleModeMesh { title = "Enable Simple Mode (add all patches from input wem and parse WEM description for details)."}
 
           Field modelPrefixMeshes { title = "Prefix for Meshes Without Name:" }
 
@@ -223,9 +227,14 @@ Window "Main Panel" {
           expandY = Yes
           alignY = Top
 
+          Checkbox useDefaultSettings {}
+          
+          Separator {}
+          
           Box "Default Material Settings" { layout = Vertical
-            expandY = No
-            alignY  = Top
+            expandY   = No
+            alignY    = Top
+            dependsOn = !useDefaultSettings
             
             Grid {
               Field defaultMaterialDiffuseColor  { title = "Default Material Color:" fixedWidth = 300 x = 0 y = 0 alignGroupX = 1 }
@@ -239,8 +248,9 @@ Window "Main Panel" {
           }  // Box 
         
           Box "Default Light Settings" { layout = Vertical
-            expandY = No
-            alignY  = Top
+            expandY   = No
+            alignY    = Top
+            dependsOn = !useDefaultSettings
             
             Grid { 
               CheckBox addDefaultLightNode { x = 0 y = 0 x2 = 1 title = "Add default Light Node" }
@@ -253,8 +263,9 @@ Window "Main Panel" {
           }  // Box 
 
           Box "Default View Settings" { layout = Vertical
-            expandY = No
-            alignY  = Top
+            expandY   = No
+            alignY    = Top
+            dependsOn = !useDefaultSettings    
             
             Grid { 
               CheckBox addDefaultViewNode { x = 0 y = 0 x2 = 1 title = "Add default View Node" }
