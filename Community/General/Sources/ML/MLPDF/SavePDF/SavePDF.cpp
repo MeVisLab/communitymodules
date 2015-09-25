@@ -172,13 +172,47 @@ void SavePDF::savePDFFile(std::string filename)
 
     HPDF_Rect rect1 = { 50, 250, 350, 400 };
 
-    u3dModel = HPDF_LoadU3DFromFile (pdfDocument, "D:\\MeVisLab\\Packages\\Community\\General\\Modules\\ML\\MLPDF\\networks\\SavePDFExample.u3d");
-    u3dAnnot = HPDF_Page_Create3DAnnot (pdfPage, rect1, u3dModel); 
-    HPDF_Dict view = HPDF_Page_Create3DView(pdfPage, u3dModel, u3dAnnot, "View Name");
-    HPDF_3DView_SetBackgroundColor(view, 0.5, 0.5, 0.5);
-    //HPDF_STATUS stat = HPDF_Annot_Set3DView (mmgr, annot, u3dAnnot, view);
+    u3dModel = HPDF_LoadU3DFromFile(pdfDocument, "D:\\MeVisLab\\Packages\\Community\\General\\Modules\\ML\\MLPDF\\networks\\SavePDFExample.u3d");
+
+    HPDF_Dict defaultView = HPDF_Page_Create3DView(pdfPage, u3dModel, u3dAnnot, "Default View");    
+    //HPDF_3DView_AddNode(defaultView, "Cow Mesh red", 0.5, true);   // funktioniert! :-)
+    //HPDF_3DView_AddNode(defaultView, "Point Set Cow", 0.5, true);  // funktioniert! :-)
+    HPDF_3DView_SetLighting(defaultView, "HeadLamp");  // "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "HeadLamp"
+    HPDF_3DView_SetBackgroundColor(defaultView, 0.8, 0.8, 0.8);
+    //HPDF_3DView_SetPerspectiveProjection(defaultView);
+    //HPDF_3DView_SetOrthogonalProjection(defaultView);
+
+    // Kamera-Berechnung:
+    // http://rodomontano.altervista.org/GuidePDF3D.htm
+    // http://www3.math.tu-berlin.de/jreality/mediawiki/index.php/Export_U3D_files
+    // http://www.pdflib.com/pdflib-cookbook/multimedia/javascript-for-3d-camera/
+
+    HPDF_REAL coox = 0;  // Center of Orbit, X
+    HPDF_REAL cooy = 0;  // Center of Orbit, Y
+    HPDF_REAL cooz = 0;  // Center of Orbit, Z
+    HPDF_REAL c2cx = 0;  // Center to Camera, X
+    HPDF_REAL c2cy = 0;  // Center to Camera, Y
+    HPDF_REAL c2cz = 0;  // Center to Camera, Z
+    HPDF_REAL roo  = 0;  // Radius of Orbit
+    HPDF_REAL roll = 0;  // Camera Roll
+    HPDF_3DView_SetCamera(defaultView, coox, cooy, cooz, c2cx, c2cy, c2cz, roo, roll);
+
+    HPDF_U3D_Add3DView(u3dModel, defaultView);
+    //HPDF_U3D_SetDefault3DView(u3dModel, "Default View");
+
+    //HPDF_Create3DView();
+    //HPDF_3DView_Add3DC3DMeasure();
+
+    //HPDF_U3D_AddOnInstanciate();
+    //HPDF_STATUS stat = HPDF_Annot_Set3DView(mmgr, annot, u3dAnnot, defaultView);
+
+    //HPDF_Page_Create3DAnnotExData();
+    //HPDF_3DAnnotExData_Set3DMeasurement();
 
 
+
+
+    u3dAnnot = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dModel); 
 
     /* save the document to a file */
     HPDF_SaveToFile (pdfDocument, filename.c_str());
