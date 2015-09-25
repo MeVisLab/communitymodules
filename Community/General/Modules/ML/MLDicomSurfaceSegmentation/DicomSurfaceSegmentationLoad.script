@@ -1,0 +1,240 @@
+//----------------------------------------------------------------------------------
+//! DicomSurfaceSegmentationLoad module definitions.
+/*!
+// \file    DicomSurfaceSegmentationLoad.script
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  
+  Field numPointSets      { editable = No }
+  Field numLineSets       { editable = No }
+  Field numMeshes         { editable = No }
+  Field numUnknownObjects { editable = No }  
+  
+  Field tagValue0         { editable = No }
+  Field tagValue1         { editable = No }
+  Field tagValue2         { editable = No }
+  Field tagValue3         { editable = No }
+  Field tagValue4         { editable = No }
+  Field tagValue5         { editable = No }
+  Field tagValue6         { editable = No }
+  Field tagValue7         { editable = No }
+  Field tagValue8         { editable = No }
+  Field tagValue9         { editable = No }
+  
+  Field allDicomTags      { editable = No }
+
+  Field outputValid       { editable = No }  
+}
+
+Commands {
+  wakeupCommand = @@js: if (!ctx.field("autoApply").value) { ctx.field("unload").touch(); } @@
+}
+
+Window {
+  
+  minimumWidth = 900
+  
+  Category Main {
+    
+    FieldListener numPointSets { command = @@js: ctx.control("ObjectsTabView").setTabText(0, "Point Sets (" + ctx.field("numPointSets").value.toString() + ")"); @@ }
+    FieldListener numLineSets { command = @@js: ctx.control("ObjectsTabView").setTabText(1, "Line Sets (" + ctx.field("numLineSets").value.toString() + ")"); @@ }
+    FieldListener numMeshes { command = @@js: ctx.control("ObjectsTabView").setTabText(2, "Meshes (" + ctx.field("numMeshes").value.toString() + ")"); @@ }
+    FieldListener numUnknownObjects { command = @@js: ctx.control("ObjectsTabView").setTabText(3, "Unknown Objects (" + ctx.field("numUnknownObjects").value.toString() + ")"); @@ }
+    
+    Box {
+      title = "Source"
+      Field filename { browseButton = On }
+    }  
+    
+    TabView {
+      
+      name      = ObjectsTabView
+      dependsOn = outputValid
+
+      TabViewItem "Point Sets" {
+        
+        Field numPointSets { title = "Number of Point Sets:" }
+        Field pointSetsExportMarkerTypeStartValue { title = "Export XMarker Type Start Value:" step = 1 stepstep = 10 }
+
+        ListView pointSetsInfo {
+          rowSeparator    = ";"
+          columnSeparator = ","
+          visibleRows     = 16
+          selectionMode   = NoSelection
+        }  //ListView
+
+      } // TabViewItem "Point Sets"
+      
+      TabViewItem "Line Sets" {
+        
+        Field numLineSets { title = "Number of Line Sets:" }
+        Field lineSetsExportMarkerTypeStartValue { title = "Export XMarker Type Start Value:" step = 1 stepstep = 10 }
+        
+        ListView lineSetsInfo {
+          rowSeparator    = ";"
+          columnSeparator = ","
+          visibleRows     = 16
+          selectionMode   = NoSelection
+        }  //ListView
+
+      } //TabViewItem "Line Sets"
+      
+      TabViewItem "Meshes" {
+        
+        Field numMeshes { title = "Number of Meshes:" }
+        Field meshesIDStartValueFld { title = "Export WEM ID Start Value:" step = 1 stepstep = 10 }
+        
+        ListView meshesInfo {
+          rowSeparator    = ";"
+          columnSeparator = ","
+          visibleRows     = 16
+          selectionMode   = NoSelection
+        }  //ListView 
+
+      }  //TabViewItem "Meshes"
+      
+      TabViewItem "Unknown Objects" {
+        
+        Field numUnknownObjects { title = "Number of Unknown Objects:" }
+        
+        ListView unknownObjectsInfo {
+          rowSeparator    = ";"
+          columnSeparator = ","
+          visibleRows     = 16
+          selectionMode   = NoSelection
+        }  //ListView 
+
+      }  //TabViewItem "Unknown Objects"
+
+      TabViewItem "All Dicom Tags" {
+        
+        expandY = Yes
+        
+        TextView allDicomTags {
+          vscroller = On
+          hscroller = On
+          expandY   = Yes
+        }
+                
+      } // TabViewItem "All Dicom Tags"
+      
+      TabViewItem "Read Dicom Tags" {
+        
+        style  {
+          Prototype NameField {
+            parent = Field
+            title  = ""
+          }
+          Prototype ValueField {
+            parent = Field
+            title  = ""
+          }
+        } // style
+
+        Table  {
+          
+          margin  = 0
+          expandX = yes
+          
+          Row  {
+            Label { title = "#" }
+            Horizontal { expandX = no
+              Empty { w = 20 }
+              Label { title = "Tag Name:" }
+            }
+            Horizontal { expandX = no
+              Empty { w = 20 }
+              Label { title = "Tag Value:" }
+            }
+          }
+          
+          Row  {
+            Label { title = 0: }
+            NameField tagName0 {}
+            ValueField tagValue0 {}
+          }
+          
+          Row  {
+            Label { title = 1: }
+            NameField tagName1 {}
+            ValueField tagValue1 {}
+          }
+          
+          Row  {
+            Label { title = 2: }
+            NameField tagName2 {}
+            ValueField tagValue2 {}
+          }
+          
+          Row  {
+            Label { title = 3: }
+            NameField tagName3 {}
+            ValueField tagValue3 {}
+          }
+          
+          Row  {
+            Label { title = 4: }
+            NameField tagName4 {}
+            ValueField tagValue4 {}
+          }
+          
+          Row  {
+            Label { title = 5: }
+            NameField tagName5 {}
+            ValueField tagValue5 {}
+          }
+          
+          Row  {
+            Label { title = 6: }
+            NameField tagName6 {}
+            ValueField tagValue6 {}
+          }
+          
+          Row  {
+            Label { title = 7: }
+            NameField tagName7 {}
+            ValueField tagValue7 {}
+          }
+          
+          Row  {
+            Label { title = 8: }
+            NameField tagName8 {}
+            ValueField tagValue8 {}
+          }
+          
+          Row  {
+            Label { title = 9: }
+            NameField tagName9 {}
+            ValueField tagValue9 {}
+          }
+          
+        } // Table     
+        
+      } // TabViewItem "Read Dicom Tags"
+            
+    } //TabView
+    
+    Horizontal {
+
+      alignX = Right
+      
+      CheckBox autoApply { title = "Auto Load" }
+      
+      ButtonBox {
+        Button   apply     { title = "Load" role = AcceptRole }
+        Button   unload    { dependsOn = outputValid role = RejectRole}
+      }
+      
+    } //Horizontal
+    
+  } //Category
+
+  Execute = @@js: ctx.field("numPointSets").touch(); ctx.field("numLineSets").touch(); ctx.field("numMeshes").touch(); @@
+
+}//Window
+
+

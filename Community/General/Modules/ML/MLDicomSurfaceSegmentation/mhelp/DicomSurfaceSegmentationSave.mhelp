@@ -1,0 +1,167 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.def
+    moduleName = DicomSurfaceSegmentationSave
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLDicomSurfaceSegmentation
+    genre = DICOM
+    keywords = "Save, DICOM, Segmentation, Mesh, WEM, Marker, Fiber, Fiberset"
+    seeAlso = ""
+    package = General
+    packageGroup = Axel
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text  {
+      title = ""
+      text = ""
+    }
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field input0 {
+      type = Image
+      text = ""
+    }
+    Field inWEM {
+      type = MLBase
+      text = ""
+    }
+    Field inPointPositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLineConnections {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = DicomSurfaceSegmentationSave
+    }
+    Field isProcessing {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field elapsedTime {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field autoApply {
+      hidden = true
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field autoUpdate {
+      hidden = true
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field autoClear {
+      hidden = true
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = Save
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field listenToFinishingNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field listenToRepaintNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field listenToSelectionChangedNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field status {
+      type = String
+      text = ""
+      title = Status
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    text = ""
+  }
+}

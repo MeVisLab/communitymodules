@@ -1,0 +1,33 @@
+//----------------------------------------------------------------------------------
+//! MLDicomSurfaceSegmentation module definitions.
+/*!
+// \file    MLDicomSurfaceSegmentation.def
+// \author  Axel Newe, Christian Hoffmann
+// \date    2015-09-25
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule DicomSurfaceSegmentationLoad {
+  DLL                = "MLDicomSurfaceSegmentation"
+
+  genre              = "DICOM"
+  author             = "Axel Newe, Christian Hoffmann"
+  comment            = "Loads DICOM Supplement 132 surface segmentation object from a DICOM file."
+  keywords           = "Load, DICOM, Segmentation, Mesh, WEM, Marker, Fiber, Fiberset"
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/DicomSurfaceSegmentationLoad.script
+  exampleNetwork     = $(LOCAL)/networks/DicomSurfaceSegmentationLoadExample.mlab 
+}
+
+MLModule DicomSurfaceSegmentationSave {
+  DLL                = "MLDicomSurfaceSegmentation"
+
+  genre              = "DICOM"
+  author             = "Axel Newe, Christian Hoffmann"
+  comment            = "Saves WEMs, Line Sets and Point Clouds as DICOM Supplement 132 surface segmentation object to DICOM file."
+  keywords           = "Save, DICOM, Segmentation, Mesh, WEM, Marker, Fiber, Fiberset"
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/DicomSurfaceSegmentationSave.script
+  exampleNetwork     = $(LOCAL)/networks/DicomSurfaceSegmentationSaveExample.mlab 
+}

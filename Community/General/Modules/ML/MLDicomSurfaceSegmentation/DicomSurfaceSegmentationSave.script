@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------------
+//! DicomSurfaceSegmentationSave module definitions.
+/*!
+// \file    DicomSurfaceSegmentationSave.script
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  Field status     { editable = No }
+  Field autoApply  { editable = No hidden = Yes }
+  Field autoUpdate { editable = No hidden = Yes }  
+  Field autoClear  { editable = No hidden = Yes }
+}
+
+Window 
+{ minimumWidth = 500
+  Vertical {
+    margin = 10
+
+    Field filename { browseButton = Yes browseMode = open }
+    Separator {}  
+    Button apply { title = "Save" alignX = Right }
+    Field status {  }
+  }
+}
+
+

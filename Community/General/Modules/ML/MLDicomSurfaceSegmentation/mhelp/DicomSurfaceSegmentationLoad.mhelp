@@ -1,0 +1,449 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.def
+    moduleName = DicomSurfaceSegmentationLoad
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLDicomSurfaceSegmentation
+    genre = DICOM
+    keywords = "Load, DICOM, Segmentation, Mesh, WEM, Marker, Fiber, Fiberset"
+    seeAlso = ""
+    package = General
+    packageGroup = Axel
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outWEM {
+      type = MLBase
+      text = ""
+    }
+    Field outPointSetPositions {
+      type = MLBase
+      text = ""
+    }
+    Field outLineSetPositions {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = DicomSurfaceSegmentationLoad
+    }
+    Field isProcessing {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field elapsedTime {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field id {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 0
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = "Auto Load"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field autoUpdate {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field autoClear {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = Load
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field removePreviousWEMs {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field overwriteLabelDescription {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field label {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field description {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field unload {
+      type = Trigger
+      text = ""
+      title = Unload
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field outputValid {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field numPointSets {
+      type = Integer
+      text = ""
+      title = "Number of Point Sets"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field numLineSets {
+      type = Integer
+      text = ""
+      title = "Number of Line Sets"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field numMeshes {
+      type = Integer
+      text = ""
+      title = "Number of Meshes"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field numUnknownObjects {
+      type = Integer
+      text = ""
+      title = "Number of Unknown Objects"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field pointSetsInfo {
+      type = String
+      text = ""
+      title = "Point Sets Info"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "#,XMarker Type,Label,Anatomic Region"
+    }
+    Field lineSetsInfo {
+      type = String
+      text = ""
+      title = "Line Sets Info"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "#,XMarker Type,Label,Anatomic Region"
+    }
+    Field meshesInfo {
+      type = String
+      text = ""
+      title = "Meshes Info"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "#,WEM ID,Label,Anatomic Region"
+    }
+    Field unknownObjectsInfo {
+      type = String
+      text = ""
+      title = "Unknown Objects Info"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "#,Label,Anatomic Region"
+    }
+    Field pointSetsExportMarkerTypeStartValue {
+      type = Integer
+      text = ""
+      title = "Export XMarker Type Start Value"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 1
+    }
+    Field lineSetsExportMarkerTypeStartValue {
+      type = Integer
+      text = ""
+      title = "Export XMarker Type Start Value"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 1
+    }
+    Field meshesIDStartValueFld {
+      type = Integer
+      text = ""
+      title = "Export WEM ID Start Value"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 1
+    }
+    Field allDicomTags {
+      type = String
+      text = ""
+      title = "All Dicom Tags"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field tagName0 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName1 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName2 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName3 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName4 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName5 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName6 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName7 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName8 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagName9 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field tagValue0 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue1 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue2 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue3 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue4 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue5 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue6 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue7 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue8 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    Field tagValue9 {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+      default = ""
+    }
+    text = ""
+  }
+}

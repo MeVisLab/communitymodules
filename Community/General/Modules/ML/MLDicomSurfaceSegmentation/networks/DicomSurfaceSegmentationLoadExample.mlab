@@ -1,0 +1,282 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "-603 137 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "199 498 513 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PointSetPositions
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "-271 137 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "471 614 428 557"
+        sizeHint = "424 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LineSetConnections
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 0
+    index2 = 0
+    type = 0
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "-435 137 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "322 657 513 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LineSetPositions
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ImageLoad {
+  internal  {
+    frame = "-327 325 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "812 451 311 357"
+        sizeHint = "311 357"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ImageLoad
+    filename = ""
+    autoLoad = TRUE
+    readRaw = FALSE
+    rawX = 1
+    rawY = 1
+    rawZ = 1
+    rawC = 1
+    rawT = 1
+    rawU = 1
+    dataTypeRaw = "unsigned int8"
+    planarConfig = Contiguous
+    byteOrder = LittleEndian
+    dataOffset = 0
+    pageSizeHint = "0 0 0 0 0 0"
+    suppressErrorLog = FALSE
+    dicomIgnoreHalfVoxelShift = FALSE
+    suppressMLImageFormatCheckSumTests = FALSE
+  }
+}
+module Info {
+  internal  {
+    frame = "-19 -51 56 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = Info
+  }
+}
+module DicomTagViewer {
+  internal  {
+    frame = "-919 421 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "270 168 645 381"
+        sizeHint = "438 381"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 329 965 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomTagViewer
+    tagName0 = ""
+    tagName1 = ""
+    tagName2 = ""
+    tagName3 = ""
+    tagName4 = ""
+    tagName5 = ""
+    tagName6 = ""
+    tagName7 = ""
+    tagName8 = ""
+    maxValueLen = 80
+    showPrivateTags = TRUE
+    tagListSubset = AllTags
+    trimSpaces = FALSE
+  }
+}
+module LocalImage {
+  internal  {
+    frame = "-919 573 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LocalImage
+    name = $(DemoDataPath)/BrainMultiModal/ProbandT1.dcm
+    autoLoad = TRUE
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "-715 141 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "113 414 749 376"
+        sizeHint = "509 376"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = ""
+    hasEdges = FALSE
+    boundingBoxMode = "Axis Aligned"
+    primitiveValueLists = ""
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module DicomSurfaceSegmentationLoad {
+  internal  {
+    frame = "-623 277 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "459 418 900 478"
+        sizeHint = "900 478"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "84 451 664 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomSurfaceSegmentationLoad
+    id = 0
+    autoApply = FALSE
+    autoUpdate = FALSE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    filename = J:/MeVisLab/Packages/Axel/General/Sources/ML/MLDicomSurfaceSegmentation/Documentation/68790867.dcm
+    pointSetsInfo = "#,XMarker Type,Label,Anatomic Region"
+    lineSetsInfo = "#,XMarker Type,Label,Anatomic Region"
+    meshesInfo = "#,WEM ID,Label,Anatomic Region"
+    unknownObjectsInfo = "#,Label,Anatomic Region"
+    pointSetsExportMarkerTypeStartValue = 100
+    lineSetsExportMarkerTypeStartValue = 100
+    meshesIDStartValueFld = 100
+    tagName0 = ""
+    tagName1 = ""
+    tagName2 = ""
+    tagName3 = ""
+    tagName4 = ""
+    tagName5 = ""
+    tagName6 = ""
+    tagName7 = ""
+    tagName8 = ""
+    tagName9 = ""
+  }
+}
+connections  {
+  PointSetPositions.inXMarkerList = DicomSurfaceSegmentationLoad.outPointSetPositions
+  LineSetPositions.inXMarkerList = DicomSurfaceSegmentationLoad.outLineSetPositions
+  DicomTagViewer.input0 = LocalImage.outImage
+  WEMInfo.inWEM = DicomSurfaceSegmentationLoad.outWEM
+}
+networkModel = ""

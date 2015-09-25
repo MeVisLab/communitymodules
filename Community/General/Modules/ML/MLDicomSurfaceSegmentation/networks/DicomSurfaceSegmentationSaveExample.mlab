@@ -1,0 +1,184 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "873 481 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 351 1011 557"
+        sizeHint = "424 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = EdgesList
+    listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8, (0 4) 1 #9, (1 5) 1 #10, (2 6) 1 #11, (3 7) 1 #12]"
+    numItems = 12
+    index = 4
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 5
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 4
+    index2 = 5
+    type = 1
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "709 561 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "414 605 858 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsList
+    listString = "[(-4.45 -3.64 -1.7) 1 #1, (-4.45 -3.64 1.7) 1 #2, (-4.45 2.76 -1.7) 1 #3, (-4.45 2.76 1.7) 1 #4, (6 -3.64 -1.7) 1 #5, (6 -3.64 1.7) 1 #6, (6 2.76 -1.7) 1 #7, (6 2.76 1.7) 1 #8, (-2.84 -1.1 -4.54) 2 #9, (-2.84 -1.1 5.96) 2 #10, (-2.84 2.64 -4.54) 2 #11, (-2.84 2.64 5.96) 2 #12, (2.31 -1.1 -4.54) 2 #13, (2.31 -1.1 5.96) 2 #14, (2.31 2.64 -4.54) 2 #15, (2.31 2.64 5.96) 2 #16]"
+    numItems = 16
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    id = 1
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "589 469 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1068 290 416 339"
+        sizeHint = "416 339"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalWEMLoad
+    name = $(DemoDataPath)/venus.off
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = ""
+    description = ""
+    selectedTab = 0
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "449 285 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "253 523 420 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(HOME)/venus.dcm
+    checkIfFileExists = TRUE
+  }
+}
+module DicomSurfaceSegmentationSave {
+  internal  {
+    frame = "681 285 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "97 166 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "799 191 500 113"
+        sizeHint = "500 113"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = DicomSurfaceSegmentationSave
+    isProcessing = FALSE
+    elapsedTime = 0
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    filename = C:/Users/Axel/venus.dcm
+  }
+}
+connections  {
+  DicomSurfaceSegmentationSave.inWEM = LocalWEMLoad.outWEM
+  DicomSurfaceSegmentationSave.inPointPositions = PositionsList.outXMarkerList
+  DicomSurfaceSegmentationSave.inLinePositions = PositionsList.outXMarkerList
+  DicomSurfaceSegmentationSave.inLineConnections = EdgesList.outIndexPairList
+  DicomSurfaceSegmentationSave.filename = LocalFileName.trueName
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "177 389 289 193"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "*This network shows how to use the DicomSurfaceSegmentationSave module.
+
+Simply click the "Save" button in the DicomSurfaceSegmentationSave panel. This should create a DCM file in your user home directory.
+
+For details regarding the parameters take a look at the documentation.*"
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "182 394 279 22"
+      }
+    }
+  }
+}
