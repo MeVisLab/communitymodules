@@ -39,6 +39,7 @@ HEADERS += \
   shared/MLPDF_Tools.h \
   SpecificationGenerator/MLPDF_SpecificationGenerator.h \
   SavePDF/SavePDF.h \
+  Save3DFigurePDF/Save3DFigurePDF.h \
   SaveU3D/SaveU3D.h \
   SaveU3D/U3DFileFormat/U3D_BitStream.h \
   SaveU3D/U3DFileFormat/U3D_Constants.h \
@@ -62,6 +63,7 @@ SOURCES += \
   shared/MLPDF_Tools.cpp \
   SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
   SavePDF/SavePDF.cpp \
+  Save3DFigurePDF/Save3DFigurePDF.cpp \
   SaveU3D/SaveU3D.cpp \
   SaveU3D/SaveU3D_Tools.cpp \
   SaveU3D/SaveU3D_ProcessPointSets.cpp \

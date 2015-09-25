@@ -12,11 +12,23 @@ MLModule SavePDF {
 
   genre              = "FileMain"
   author             = "Axel Newe"
-  comment            = "Creates PDF file"
+  comment            = "Creates PDF file."
   keywords           = "PDF U3D PRC"
   seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC"
   exampleNetwork     = "$(LOCAL)/networks/SavePDFExample.mlab"
   externalDefinition = $(LOCAL)/SavePDF.script
+}  
+
+MLModule Save3DFigurePDF {
+  DLL                = "MLPDF"
+
+  genre              = "FileMain"
+  author             = "Axel Newe"
+  comment            = "Creates PDF file with one interactive 3D scene for scientific publications."
+  keywords           = "PDF U3D PRC"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC SavePDF"
+  exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
+  externalDefinition = $(LOCAL)/Save3DFigurePDF.script
 }  
 
 MLModule SaveU3D {
@@ -24,9 +36,9 @@ MLModule SaveU3D {
 
   genre              = "FileMain"
   author             = "Axel Newe"
-  comment            = "Creates U3D file from WEMs and XMarkerLists"
+  comment            = "Creates U3D file from WEMs and XMarkerLists."
   keywords           = "PDF U3D WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SavePRC SavePDFFigure SavePDF"
   exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
   externalDefinition = $(LOCAL)/SaveU3D.script
 }
@@ -36,9 +48,9 @@ MLModule SavePRC {
 
   genre              = "FileMain"
   author             = "Axel Newe"
-  comment            = "Creates PRC file from WEMs, FiberSets and XMarkers"
+  comment            = "Creates PRC file from WEMs and XMarkerLists."
   keywords           = "PDF PRC WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePDFFigure SavePDF"
   exampleNetwork     = "$(LOCAL)/networks/SavePRCExample.mlab"
   externalDefinition = $(LOCAL)/SavePRC.script
 }

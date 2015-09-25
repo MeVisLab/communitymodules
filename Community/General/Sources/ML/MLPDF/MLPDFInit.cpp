@@ -16,6 +16,7 @@
 
 // Include all module headers ...
 #include "SavePDF/SavePDF.h"
+#include "Save3DFigurePDF/Save3DFigurePDF.h"
 #include "SaveU3D/SaveU3D.h"
 #include "SavePRC/SavePRC.h"
 
@@ -28,6 +29,7 @@ ML_START_NAMESPACE
 int MLPDFInit()
 {
   SavePDF::initClass();
+  Save3DFigurePDF::initClass();
   SaveU3D::initClass();
   SavePRC::initClass();
 

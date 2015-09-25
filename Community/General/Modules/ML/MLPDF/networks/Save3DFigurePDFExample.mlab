@@ -1,0 +1,57 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module Save3DFigurePDF {
+  internal  {
+    frame = "637 157 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "563 626 548 73"
+        sizeHint = "206 73"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "247 183 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Save3DFigurePDF
+    filename = "D:\\test.pdf"
+    status = Idle.
+    progress = 1
+    pdfAttrTitle = Title
+    pdfAttrAuthor = Author
+    pdfAttrSubject = Subject
+    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
+  }
+}
+connections = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "204 95 316 136"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This network shows how to use the Save3DFigurePDF module.
+
+For details regarding the parameters take a look at the documentation."
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "209 100 306 22"
+      }
+    }
+  }
+}
