@@ -1,0 +1,490 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module VCGLineSetDefinition {
+  internal  {
+    frame = "645 269 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "820 391 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "1030 168 400 500"
+        sizeHint = "400 500"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGLineSetDefinition
+    singleLoop = FALSE
+    linesetStartColor = "1 1 0"
+    linesetEndColor = "1 0.5 0"
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "629 81 176 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "118 162 370 331"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AssembleLinesetDefinition
+    operationType = Concatenate
+    string1 = "<LineSet>
+<ObjectName>Beat 1</ObjectName>
+<PositionTypes>1</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 1 0</Color>
+
+<LineSet>
+<ObjectName>Beat 2</ObjectName>
+<PositionTypes>2</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.928571 0</Color>
+
+<LineSet>
+<ObjectName>Beat 3</ObjectName>
+<PositionTypes>3</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.857143 0</Color>
+
+<LineSet>
+<ObjectName>Beat 4</ObjectName>
+<PositionTypes>4</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.785714 0</Color>
+
+<LineSet>
+<ObjectName>Beat 5</ObjectName>
+<PositionTypes>5</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.714286 0</Color>
+
+<LineSet>
+<ObjectName>Beat 6</ObjectName>
+<PositionTypes>6</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.642857 0</Color>
+
+<LineSet>
+<ObjectName>Beat 7</ObjectName>
+<PositionTypes>7</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.571429 0</Color>
+
+<LineSet>
+<ObjectName>Beat 8</ObjectName>
+<PositionTypes>8</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.5 0</Color>
+
+"
+    string2 = "<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1000</PositionTypes>
+<ConnectionTypes>1000</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1001</PositionTypes>
+<ConnectionTypes>1001</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1002</PositionTypes>
+<ConnectionTypes>1002</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1003</PositionTypes>
+<ConnectionTypes>1003</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1004</PositionTypes>
+<ConnectionTypes>1004</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1005</PositionTypes>
+<ConnectionTypes>1005</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/</GroupPath>
+<ObjectName>End Markers</ObjectName>
+<PositionTypes>1006</PositionTypes>
+<ConnectionTypes>1006</ConnectionTypes>
+<Color>1 0 0</Color>
+
+"
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "117 -7 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "576 546 910 532"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateOutputFilename
+    operationType = Replace
+    string1 = J:/MeVisLab/Packages/Community/General/Modules/ML/MLVectorcardiogram/networks/example.vcg
+    string2 = .vcg
+    string3 = .u3d
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module MergeLists {
+  internal  {
+    frame = "345 141 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "273 407 318 130"
+        sizeHint = "318 130"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MergeLists
+    updateMode = AutoUpdate
+    alwaysRebuild = TRUE
+    notifyForEachEvent = TRUE
+  }
+}
+module SaveU3D {
+  internal  {
+    frame = "349 -3 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "801 396 850 638"
+        sizeHint = "850 642"
+        wasOpen = yes
+      }
+      window "Specification Generator Panel" {
+        geometry = "435 230 377 579"
+        sizeHint = "275 579"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1755 154 986 547"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SaveU3D
+    autoApply = FALSE
+    autoUpdate = FALSE
+    autoClear = TRUE
+    listenToFinishingNotifications = FALSE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    simpleModePointSet = FALSE
+    simpleModeLineSet = FALSE
+    simpleModeMesh = FALSE
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    pointCloudSpecification = ""
+    lineSetSpecification = "<LineSet>
+<ObjectName>Beat 1</ObjectName>
+<PositionTypes>1</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 1 0</Color>
+
+<LineSet>
+<ObjectName>Beat 2</ObjectName>
+<PositionTypes>2</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.928571 0</Color>
+
+<LineSet>
+<ObjectName>Beat 3</ObjectName>
+<PositionTypes>3</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.857143 0</Color>
+
+<LineSet>
+<ObjectName>Beat 4</ObjectName>
+<PositionTypes>4</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.785714 0</Color>
+
+<LineSet>
+<ObjectName>Beat 5</ObjectName>
+<PositionTypes>5</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.714286 0</Color>
+
+<LineSet>
+<ObjectName>Beat 6</ObjectName>
+<PositionTypes>6</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.642857 0</Color>
+
+<LineSet>
+<ObjectName>Beat 7</ObjectName>
+<PositionTypes>7</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.571429 0</Color>
+
+<LineSet>
+<ObjectName>Beat 8</ObjectName>
+<PositionTypes>8</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.5 0</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1000</PositionTypes>
+<ConnectionTypes>1000</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1001</PositionTypes>
+<ConnectionTypes>1001</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1002</PositionTypes>
+<ConnectionTypes>1002</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1003</PositionTypes>
+<ConnectionTypes>1003</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1004</PositionTypes>
+<ConnectionTypes>1004</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1005</PositionTypes>
+<ConnectionTypes>1005</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/</GroupPath>
+<ObjectName>End Markers</ObjectName>
+<PositionTypes>1006</PositionTypes>
+<ConnectionTypes>1006</ConnectionTypes>
+<Color>1 0 0</Color>
+
+"
+    meshSpecification = ""
+    viewsSpecification = ""
+    lightsSpecification = ""
+    metaDataSpecification = ""
+    defaultViewName = DefaultView
+    defaultLightName = DefaultAmbientLight
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialAmbientColor = "0 0 0"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAlpha = 1
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    defaultBoundingBoxMetaData = TRUE
+    addDefaultViewNode = TRUE
+    addDefaultLightNode = TRUE
+    filename = J:/MeVisLab/Packages/Community/General/Modules/ML/MLVectorcardiogram/networks/example.u3d
+    status = Idle.
+    newSpecification = "<Mesh>
+<ObjectName>Coordinate System</ObjectName>
+<GroupPath>/as/</GroupPath>
+<Color>0.651 0.651 0.651 1.000</Color>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    selectedTab = 2
+    newSpecificationOutputValid = TRUE
+    newSpecificationType = OBJECTTYPE_MESH
+    newSpecificationObjectName = "Coordinate System"
+    newSpecificationGroupPath = as
+    newSpecificationUseDefaultColor = FALSE
+    newSpecificationUseDefaultSpecularColor = TRUE
+    newSpecificationColor = "0.651 0.651 0.651"
+    newSpecificationColorAlpha = 1
+    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
+    newSpecificationMetaDataKey = ""
+    newSpecificationMetaDataValue = ""
+    newSpecificationWEMLabel = ""
+    newSpecificationPositionTypes = 1000
+    newSpecificationConnectionTypes = ""
+    useDefaultSettings = TRUE
+  }
+}
+module VCGLoad {
+  internal  {
+    frame = "325 405 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "122 760 777 188"
+        sizeHint = "623 188"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1167 568 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGLoad
+    filename = J:/MeVisLab/Packages/Community/General/Modules/ML/MLVectorcardiogram/networks/example.vcg
+    autoLoad = TRUE
+    numBeats = 8
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "141 429 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "128 783 1354 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(NETWORK)/example.vcg
+    checkIfFileExists = TRUE
+  }
+}
+module VCGCoordinateSystem {
+  internal  {
+    frame = "433 269 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "189 483 453 495"
+        sizeHint = "388 495"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "971 163 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGCoordinateSystem
+    lineTypeStartID = 1000
+    xyPlaneWEMLabel = VCGCoordinateSystemXYPlane
+    yzPlaneWEMLabel = VCGCoordinateSystemYZPlane
+    zxPlaneWEMLabel = VCGCoordinateSystemZXPlane
+    axesType = Axes
+    axesOverlengthPercent = 20
+    axesMarkerAtAbsoluteEnd = TRUE
+    axesTicks = TRUE
+    axesTicksLengthPercent = 5
+    xAxisColor = "0.7 0.7 0.7"
+    yAxisColor = "0.75 0.75 0.75"
+    zAxisColor = "0.8 0.8 0.8"
+    axisMarkerColor = "1 0 0"
+  }
+}
+connections  {
+  VCGLineSetDefinition.inLinePositions = VCGLoad.outPointSetFld
+  AssembleLinesetDefinition.string1 = VCGLineSetDefinition.linesetDefinition
+  AssembleLinesetDefinition.string2 = VCGCoordinateSystem.linesetDefinition
+  CreateOutputFilename.string1 = LocalFileName.trueName
+  MergeLists.inList1 = VCGLoad.outPointSetFld
+  MergeLists.inList2 = VCGCoordinateSystem.outLinePositions
+  SaveU3D.inLinePositions = MergeLists.outList
+  SaveU3D.inLineConnections = VCGCoordinateSystem.outLineConnections
+  SaveU3D.lineSetSpecification = AssembleLinesetDefinition.result
+  SaveU3D.filename = CreateOutputFilename.result
+  VCGLoad.filename = LocalFileName.trueName
+  VCGCoordinateSystem.inPositions = VCGLoad.outPointSetFld
+}
+networkModel = ""

@@ -1,0 +1,572 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoSeparator {
+  internal  {
+    frame = "377 245 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoSeparator1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "337 477 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _materialeditor {
+        geometry = "479 462 216 182"
+        sizeHint = "216 182"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoMaterial
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.333333 1 0"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.411
+    transparency = 0
+  }
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "153 309 160 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = IndexPairListContainer
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 0
+    index2 = 0
+    type = 0
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "-11 309 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "281 479 1270 497"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = XMarkerListContainer
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = -1
+    useInsertTemplate = FALSE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoLineSet {
+  internal  {
+    frame = "501 389 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "139 425 239 64"
+        sizeHint = "152 64"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoLineSet
+    startIndex = 0
+    numVertices = "[ 2, 2, 2 ]"
+    sendAdjacency = FALSE
+  }
+}
+module SoVertexProperty {
+  internal  {
+    frame = "481 477 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "125 804 1464 184"
+        sizeHint = "268 184"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVertexProperty
+    vertex = "[ -500 0 0, 1500 0 0, 0 -200 0, 0 800 0, 0 0 -600, 0 0 1100 ]"
+    normal = "[  ]"
+    texCoord = "[  ]"
+    orderedRGBA = "[  ]"
+    materialBinding = OVERALL
+    normalBinding = OVERALL
+  }
+}
+module SoIndexedLineSet {
+  internal  {
+    frame = "669 357 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "238 650 403 124"
+        sizeHint = "192 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoIndexedLineSet
+    coordIndex = "[ 0, 1, 3 ]"
+    materialIndex = -1
+    normalIndex = -1
+    textureCoordIndex = -1
+    sendAdjacency = FALSE
+  }
+}
+module MarkerListInspector {
+  internal  {
+    frame = "209 -43 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "701 422 293 264"
+        sizeHint = "293 264"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "957 283 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MarkerListInspector
+    updateMode = AutoUpdate
+    showIndices3D = FALSE
+    scaleSize = 4.5
+    useDecoration = FALSE
+    autoViewAll = TRUE
+    showBackground = FALSE
+    showBoundingBox = TRUE
+    drawMode = DrawModePoints
+    useFastMode = TRUE
+    hide3DView = TRUE
+    markerPosition = "0 0 0"
+    markerVector = "0 0 0"
+    currentMarker = 0
+    currentType = 0
+    detail = FALSE
+    tabbar = shortinfo
+  }
+}
+module SoSwitch {
+  internal  {
+    frame = "-499 237 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "761 511 173 87"
+        sizeHint = "173 87"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSwitch
+    whichChild = -1
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "-383 -279 112 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = GateOutScene
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "-379 -171 104 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module BaseBypass {
+  internal  {
+    frame = "-191 601 160 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = GateInLineConnections
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module BaseBypass {
+  internal  {
+    frame = "-375 601 144 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = GateInLinePositions
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module BaseBypass {
+  internal  {
+    frame = "-659 601 136 64"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = GateInPlanesWEM
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "-543 157 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1127 679 327 441"
+        sizeHint = "300 441"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    interactionProviderID = ""
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_DOUBLE_SIDE
+    allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 0.63999999
+    faceShininessValue = 1
+    primitiveValueLists = ""
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = FALSE
+    primitiveValueListAlphaValid = FALSE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = -1
+    sendAdjacency = FALSE
+    selectedTab = 0
+  }
+}
+module SoWEMRendererEdges {
+  internal  {
+    frame = "-391 469 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "729 452 252 205"
+        sizeHint = "237 205"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRendererEdges
+    enableRendering = TRUE
+    colorMode = WEM_COLOR_GENERAL
+    globalAlpha = 1
+    generalColor = "0 0 0"
+    generalAlpha = 1
+    availablePVLs = ""
+    selectedPVL = ""
+    lineWidth = 1
+    normalOffset = 0.001
+  }
+}
+module SoWEMRendererNodes {
+  internal  {
+    frame = "-559 469 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "729 452 252 205"
+        sizeHint = "237 205"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRendererNodes
+    enableRendering = TRUE
+    colorMode = WEM_COLOR_GENERAL
+    globalAlpha = 1
+    generalColor = "1 1 1"
+    generalAlpha = 1
+    availablePVLs = ""
+    selectedPVL = ""
+    pointSize = 3
+    normalOffset = 0.1
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-503 357 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "647 354 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoGroupWEMRenderOptions
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "-235 137 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "447 170 436 835"
+        sizeHint = "325 835"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "197 204 400 617"
+        sizeHint = "257 440"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = So3DXMarker
+    interactionProviderID = ""
+    scaleSize = 4.5
+    scaleLength = 1
+    color = "0.721569001674652 0.776471018791199 0.349020004272461"
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = FALSE
+    selectingOn = TRUE
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textBackgroundColor = "0.5 0.5 0.5"
+    textBackgroundAlpha = 0.30000001
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModePoints
+    numMarkersThresholdForFastRendering = 3000
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "-375 -11 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup1
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "-175 -91 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "817 343 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539819
+    position = "-2139.41040039062 561.341064453125 2031.01623535156"
+    orientation = "-0.477662742137909 -0.21233132481575 0.852498471736908 2.23892974853516"
+    nearDistance = 1852.0469
+    farDistance = 4540.2524
+    focalDistance = 3194.8093
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    recordRotation = TRUE
+  }
+}
+connections  {
+  SoSeparator1.children = "SoMaterial.self SoLineSet.self"
+  IndexPairListContainer.inIndexPairList = GateInLineConnections.baseOut0
+  XMarkerListContainer.inXMarkerList = GateInLinePositions.baseOut0
+  SoLineSet.vertexProperty = SoVertexProperty.self
+  SoIndexedLineSet.vertexProperty = SoVertexProperty.self
+  MarkerListInspector.inMarkerList = GateInLinePositions.baseOut0
+  SoSwitch.children = SoGroupWEMRenderOptions.self
+  GateOutScene.child = SoSeparator.self
+  SoSeparator.children = SoGroup1.self
+  SoWEMRenderer.inWEM = GateInPlanesWEM.baseOut0
+  SoWEMRenderer.inExtensions = SoSwitch.self
+  SoGroupWEMRenderOptions.children = "SoWEMRendererNodes.self SoWEMRendererEdges.self"
+  So3DXMarker.inXMarkerList = GateInLinePositions.baseOut0
+  SoGroup1.children = "SoWEMRenderer.self SoSeparator1.self"
+  SoExaminerViewer1.children = SoGroup1.self
+}
+networkModel = ""

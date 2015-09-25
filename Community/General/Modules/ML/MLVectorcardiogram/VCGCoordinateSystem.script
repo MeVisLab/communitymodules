@@ -1,0 +1,80 @@
+//----------------------------------------------------------------------------------
+//! VCGCoordinateSystem module definitions.
+/*!
+// \file    VCGCoordinateSystem.script
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+// Creates a coordinate system for VCG rendering and exporting.
+//
+//----------------------------------------------------------------------------------
+
+Description {
+  Field axesOverlengthPercent  { min = 0 }
+  Field axesTicksLengthPercent { min = 1 max = 100 }
+  Field lineTypeXAxisID        { editable = No }
+  Field lineTypeYAxisID        { editable = No }
+  Field lineTypeZAxisID        { editable = No }
+  Field lineTypeXTicks         { editable = No }
+  Field lineTypeYTicks         { editable = No }
+  Field lineTypeZTicks         { editable = No }
+  Field lineTypeEndMarkerID    { editable = No }
+  Field linesetDefinition      { editable = No }
+  Field meshDefinition         { editable = No }
+}
+
+Window {
+  Vertical {
+    margin = 3
+    expandY = Yes
+    
+    TabView {
+      
+      TabViewItem Axes {
+        
+        Field axesType                { }
+        Field axesOverlengthPercent   { title = "Axes Overlength (% of each axis): "step = 10 stepstep = 20 }
+        Field axesTicks               { }
+        Field axesMarkerAtAbsoluteEnd { }
+        Field axesTicksLengthPercent  { title = "Axes Ticks/Marker Length (% of longest axis): "  dependsOn  = @@ axesTicks || axesMarkerAtAbsoluteEnd @@ step = 5 stepstep = 10 }
+
+        Separator { direction = Horizontal }
+        
+        Field lineTypeStartID       { title = "Line Type Start ID: " step = 10 stepstep = 100 }
+        Field lineTypeXAxisID       { editAlign = Left title = "X-Axis ID:" }
+        Field lineTypeYAxisID       { editAlign = Left title = "Y-Axis ID:" }
+        Field lineTypeZAxisID       { editAlign = Left title = "Z-Axis ID:" }
+        Field lineTypeXTicks        { editAlign = Left title = "X-Ticks ID:" }
+        Field lineTypeYTicks        { editAlign = Left title = "Y-Ticks ID:" }
+        Field lineTypeZTicks        { editAlign = Left title = "Z-Ticks ID:" }
+        Field lineTypeEndMarkerID   { editAlign = Left title = "End Marker ID:" }
+        
+        Separator { direction = Horizontal }
+
+        Field xyPlaneWEMLabel        { editAlign = Left title = "XY Plane WEM Label:" }
+        Field yzPlaneWEMLabel        { editAlign = Left title = "YZ Plane WEM Label:" }
+        Field zxPlaneWEMLabel        { editAlign = Left title = "ZX Plane WEM Label:" }
+        
+      }
+      
+      TabViewItem Colors {       
+        Field xAxisColor {}
+        Field yAxisColor {}
+        Field zAxisColor {}
+        Field axisMarkerColor {}        
+      }
+      
+      TabViewItem "Mesh Definition" {
+        expandY = Yes
+        TextView meshDefinition { title = "" expandY = Yes }
+      }
+      
+      TabViewItem "Lineset Definition" {
+        expandY = Yes
+        TextView linesetDefinition { title = "" expandY = Yes }
+      }
+      
+    }
+    
+  }
+}

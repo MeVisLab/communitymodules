@@ -1,0 +1,239 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module MarkerListInspector {
+  internal  {
+    frame = "681 93 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1010 84 350 360"
+        sizeHint = "293 264"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "1122 282 500 600"
+        sizeHint = "260 223"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = MarkerListInspector
+    updateMode = AutoUpdate
+    showIndices3D = FALSE
+    scaleSize = 4.5
+    useDecoration = FALSE
+    autoViewAll = TRUE
+    showBackground = FALSE
+    showBoundingBox = TRUE
+    drawMode = DrawModePoints
+    useFastMode = TRUE
+    hide3DView = TRUE
+    markerPosition = "0 0 0"
+    markerVector = "0 0 0"
+    currentMarker = 0
+    currentType = 0
+    detail = FALSE
+    tabbar = shortinfo
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "361 341 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "136 491 1354 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(NETWORK)/example.vcg
+    checkIfFileExists = TRUE
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "449 13 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "525 -123 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "1015 499 349 308"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539801
+    position = "722.316284179688 -2206.70776367188 2076.46606445312"
+    orientation = "0.64538586139679 0.486592382192612 -0.588816463947296 1.06294786930084"
+    nearDistance = 2219.123
+    farDistance = 3928.4424
+    focalDistance = 3126.02
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    recordRotation = TRUE
+  }
+}
+module SoFiberVis {
+  internal  {
+    frame = "545 93 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "721 342 484 572"
+        sizeHint = "484 572"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoFiberVis
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    generalColor = "1 1 1"
+    drawLines = TRUE
+    drawSpheres = FALSE
+    optimizePoints = FALSE
+    angleThreshold = 0.99900001
+    sphereRadius = 1
+    computeFiberSet = TRUE
+    alphaValue = 1
+    minFibernessValue = 0
+    colorMode = COLOR_STANDARD
+    enableLighting = FALSE
+    ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
+    diffuse = "1 1 1"
+    specular = "1 1 1"
+    shininess = 1
+    allowClip = TRUE
+  }
+}
+module FiberInfo {
+  internal  {
+    frame = "433 93 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "116 184 330 270"
+        sizeHint = "330 270"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = FiberInfo
+  }
+}
+module VCGLoad {
+  internal  {
+    frame = "549 325 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "205 955 777 188"
+        sizeHint = "623 188"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "1167 568 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGLoad
+    filename = J:/MeVisLab/Packages/Community/General/Modules/ML/MLVectorcardiogram/networks/example.vcg
+    autoLoad = FALSE
+    numBeats = 1
+  }
+}
+connections  {
+  MarkerListInspector.inMarkerList = VCGLoad.outPointSetFld
+  SoExaminerViewer.children = "SoBackground.self SoFiberVis.self"
+  SoFiberVis.inFiberSetFld = VCGLoad.outFiberSetFld
+  FiberInfo.inputFiberSet = VCGLoad.outFiberSetFld
+  VCGLoad.filename = LocalFileName.trueName
+}
+networkModel = ""

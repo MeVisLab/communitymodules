@@ -1,0 +1,145 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLVectorcardiogram/MLVectorcardiogram.def
+    moduleName = VCGLoad
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLVectorcardiogram
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = General
+    packageGroup = Axel
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outFiberSetFld {
+      type = MLBase
+      text = ""
+    }
+    Field outPointSetFld {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = VCGLoad
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field load {
+      type = Trigger
+      text = ""
+      title = Load
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field unload {
+      type = Trigger
+      text = ""
+      title = Unload
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoLoad {
+      type = Bool
+      text = ""
+      title = "Auto Load"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field outputValid {
+      type = Bool
+      text = ""
+      title = "Output is valid."
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field numBeats {
+      type = Integer
+      text = ""
+      title = "Num Beats"
+      visibleInGUI = Yes
+      min = 1
+      max = ""
+      persistent = Yes
+      default = 1
+    }
+    Field numBeatsFromFile {
+      type = Bool
+      text = ""
+      title = "Number of beats is defined in file."
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field numDataLines {
+      type = Integer
+      text = ""
+      title = "Number of data lines found in file: "
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field numDataLinesPerBeat {
+      type = Integer
+      text = ""
+      title = "Calculated number of data lines per beat: "
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field numDataLinesMatchesNumBeats {
+      type = Bool
+      text = ""
+      title = "Number of data lines matches number of beats."
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    text = ""
+  }
+}

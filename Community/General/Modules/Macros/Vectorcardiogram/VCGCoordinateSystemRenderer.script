@@ -1,0 +1,33 @@
+//----------------------------------------------------------------------------------
+//! Macro module VCGCoordinateSystemRenderer
+/*!
+// \file    VCGCoordinateSystemRenderer.script
+// \author  Axel (ext) Newe
+// \date    2015-02-19
+//
+// 
+*/
+//----------------------------------------------------------------------------------
+
+
+
+Interface {
+  
+  Inputs 
+  {
+    Field inPlanesWEM       { internalName = GateInPlanesWEM.baseIn0 }
+    Field inLinePositions   { internalName = GateInLinePositions.baseIn0 }
+    Field inLineConnections { internalName = GateInLineConnections.baseIn0 }    
+  }
+
+  Outputs 
+  {
+    Field outScene { internalName = GateOutScene.self }    
+  }
+  
+  Parameters {}
+}
+
+
+Commands {
+}

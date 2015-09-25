@@ -1,0 +1,242 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLVectorcardiogram/MLVectorcardiogram.def
+    moduleName = VCGCoordinateSystem
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLVectorcardiogram
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = General
+    packageGroup = Axel
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inPositions {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field outLineConnections {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = VCGCoordinateSystem
+    }
+    Field lineTypeStartID {
+      type = Integer
+      text = ""
+      title = "Line Type Start ID: "
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = Yes
+      default = 1000
+    }
+    Field lineTypeXAxisID {
+      type = Integer
+      text = ""
+      title = "X-Axis ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field lineTypeYAxisID {
+      type = Integer
+      text = ""
+      title = "Y-Axis ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field lineTypeZAxisID {
+      type = Integer
+      text = ""
+      title = "Z-Axis ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field lineTypeXTicks {
+      type = Integer
+      text = ""
+      title = "X-Ticks ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field lineTypeYTicks {
+      type = Integer
+      text = ""
+      title = "Y-Ticks ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field lineTypeZTicks {
+      type = Integer
+      text = ""
+      title = "Z-Ticks ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field lineTypeEndMarkerID {
+      type = Integer
+      text = ""
+      title = "End Marker ID"
+      visibleInGUI = Yes
+      min = ""
+      max = ""
+      persistent = No
+      default = ""
+    }
+    Field axesType {
+      type = Enum
+      text = ""
+      title = "Axes Type"
+      visibleInGUI = Yes
+      items  {
+        item Axes {
+          title = Axes
+          text = ""
+          deprecatedName = ""
+        }
+        item Grid {
+          title = Grid
+          text = ""
+          deprecatedName = ""
+        }
+      }
+      persistent = Yes
+      default = Axes
+    }
+    Field axesOverlengthPercent {
+      type = Integer
+      text = ""
+      title = "Axes Overlength (% of each axis): "
+      visibleInGUI = Yes
+      min = 0
+      max = ""
+      persistent = Yes
+      default = 10
+    }
+    Field axesMarkerAtAbsoluteEnd {
+      type = Bool
+      text = ""
+      title = "Axes Marker At Absolute End"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field axesTicks {
+      type = Bool
+      text = ""
+      title = "Axes Ticks"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field axesTicksLengthPercent {
+      type = Integer
+      text = ""
+      title = "Axes Ticks/Marker Length (% of longest axis): "
+      visibleInGUI = Yes
+      min = 1
+      max = 100
+      persistent = Yes
+      default = 5
+    }
+    Field linesetDefinition {
+      type = String
+      text = ""
+      title = "Lineset Definition"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field linesetXAxisColor {
+      type = Color
+      text = ""
+      title = "Lineset XAxis Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.7 0.7 0.7"
+    }
+    Field linesetYAxisColor {
+      type = Color
+      text = ""
+      title = "Lineset YAxis Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.75 0.75 0.75"
+    }
+    Field linesetZAxisColor {
+      type = Color
+      text = ""
+      title = "Lineset ZAxis Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.8 0.8 0.8"
+    }
+    Field linesetMarkerColor {
+      type = Color
+      text = ""
+      title = "Lineset Marker Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 0 0"
+    }
+    text = ""
+  }
+}

@@ -1,0 +1,45 @@
+//----------------------------------------------------------------------------------
+//! MLVectorcardiogram module definitions.
+/*!
+// \file    MLVectorcardiogram.def
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule VCGLoad {
+  DLL                = "MLVectorcardiogram"
+
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = "Loads a vectorcardiogram (VCG) from file."
+  keywords           = ""
+  seeAlso            = "VCGCoordinateSystemRenderer VCGCoordinateSystem VCGLineSetDefinition"
+  externalDefinition = $(LOCAL)/VCGLoad.script
+  exampleNetwork     = $(LOCAL)/networks/VCGLoadExample.mlab 
+}  
+
+MLModule VCGCoordinateSystem {
+  DLL                = "MLVectorcardiogram"
+
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = "Creates a coordinate system for VCG rendering and exporting."
+  keywords           = ""
+  seeAlso            = "VCGLoad VCGCoordinateSystemRenderer VCGLineSetDefinition SaveU3D SavePRC Save3DFigurePDF"
+  externalDefinition = $(LOCAL)/VCGCoordinateSystem.script
+  exampleNetwork     = $(LOCAL)/networks/VCGExportExample.mlab 
+}  
+
+MLModule VCGLineSetDefinition {
+  DLL                = "MLVectorcardiogram"
+
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = "Assembles a lineset definition for U3D export."
+  keywords           = ""
+  seeAlso            = "VCGLoad VCGCoordinateSystem VCGCoordinateSystemRenderer SaveU3D SavePRC Save3DFigurePDF"
+  externalDefinition = $(LOCAL)/VCGLineSetDefinition.script
+  exampleNetwork     = $(LOCAL)/networks/VCGExportExample.mlab 
+}  

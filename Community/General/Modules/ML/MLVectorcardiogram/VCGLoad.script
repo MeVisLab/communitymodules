@@ -1,0 +1,55 @@
+//----------------------------------------------------------------------------------
+//! VCGLoad module definitions.
+/*!
+// \file    VCGLoad.script
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+// Loads a vectorcardiogram (VCG) from file.
+//
+//----------------------------------------------------------------------------------
+
+Description {
+  Field outputValid                 { editable = No }
+  Field numBeatsFromFile            { editable = No }
+  Field numDataLinesMatchesNumBeats { editable = No }  
+  Field numDataLines                { editable = No }
+  Field numDataLinesPerBeat         { editable = No }
+  Field numBeats                    { min = 1 }
+}
+
+Commands {
+  source = $(LOCAL)/VCGLoad.py
+  initCommand = InitModule
+}
+
+Window {
+  Vertical {
+    Field filename { browseButton = Yes browseMode = open }
+
+    Separator {}
+
+    Grid 
+    { 
+      Field numBeats                       { x=0 y=0 dependsOn = !numBeatsFromFile step = 1 stepstep = 10 editAlign = Left }
+      CheckBox numBeatsFromFile            { x=1 y=0 title = "Number of beats is defined in file." }
+      Field numDataLines                   { x=0 y=1 title = "Number of data lines found in file: " editAlign = Left }
+      Field numDataLinesPerBeat            { x=0 y=2 title = "Calculated number of data lines per beat: " editAlign = Left }
+      CheckBox numDataLinesMatchesNumBeats { x=1 y=2 title = "Number of data lines matches number of beats." }
+    }    
+    CheckBox outputValid { title = "Output is valid." }
+
+    Separator {}
+    
+    Horizontal {
+      Empty { expandX = Yes }
+      Horizontal { alignX = Right
+        CheckBox autoLoad {  }
+        ButtonBox { 
+          Button load { role = AcceptRole }
+          Button unload { role = RejectRole dependsOn = outputValid }
+        }
+      }
+    }
+  }
+}

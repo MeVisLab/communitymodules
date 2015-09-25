@@ -1,0 +1,41 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module VCGCoordinateSystem {
+  internal  {
+    frame = "-15 285 160 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = VCGCoordinateSystem
+    lineTypeStartID = 1000
+    xyPlaneWEMLabel = VCGCoordinateSystemXYPlane
+    yzPlaneWEMLabel = VCGCoordinateSystemYZPlane
+    zxPlaneWEMLabel = VCGCoordinateSystemZXPlane
+    axesType = Axes
+    axesOverlengthPercent = 10
+    axesMarkerAtAbsoluteEnd = TRUE
+    axesTicks = TRUE
+    axesTicksLengthPercent = 5
+    xAxisColor = "0.7 0.7 0.7"
+    yAxisColor = "0.75 0.75 0.75"
+    zAxisColor = "0.8 0.8 0.8"
+    axisMarkerColor = "1 0 0"
+  }
+}
+module VCGCoordinateSystemRenderer {
+  internal  {
+    frame = "-39 77 208 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = VCGCoordinateSystemRenderer
+  }
+}
+connections  {
+  VCGCoordinateSystemRenderer.inPlanesWEM = VCGCoordinateSystem.outGridPlaneWEM
+  VCGCoordinateSystemRenderer.inLinePositions = VCGCoordinateSystem.outLinePositions
+  VCGCoordinateSystemRenderer.inLineConnections = VCGCoordinateSystem.outLineConnections
+}
+networkModel = ""

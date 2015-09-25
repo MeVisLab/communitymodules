@@ -1,0 +1,87 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLVectorcardiogram/MLVectorcardiogram.def
+    moduleName = VCGLineSetDefinition
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLVectorcardiogram
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = General
+    packageGroup = Axel
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inLinePositions {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = VCGLineSetDefinition
+    }
+    Field singleLoop {
+      type = Bool
+      text = ""
+      title = "Single Loop"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field linesetDefinition {
+      type = String
+      text = ""
+      title = "Lineset Definition"
+      visibleInGUI = Yes
+      persistent = No
+      default = ""
+    }
+    Field linesetStartColor {
+      type = Color
+      text = ""
+      title = "Lineset Start Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 1 0"
+    }
+    Field linesetEndColor {
+      type = Color
+      text = ""
+      title = "Lineset End Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 0.5 0"
+    }
+    text = ""
+  }
+}

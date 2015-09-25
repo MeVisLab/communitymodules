@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------------
+//! VCGCoordinateSystem module definitions.
+/*!
+// \file    VCGCoordinateSystem.script
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+// Assembles a lineset definition for U3D export.
+//
+//----------------------------------------------------------------------------------
+
+Description {
+  Field linesetDefinition      { editable = No }
+}
+
+Window {
+  Vertical {
+    margin        = 3
+    minimumWidth  = 400
+    minimumHeight = 500
+    
+    Field singleLoop {}
+    Field linesetStartColor {  }
+    Field linesetEndColor   { dependsOn = !singleLoop }
+
+    TextView linesetDefinition { title = "" expandY = Yes }
+  }
+}
+    
