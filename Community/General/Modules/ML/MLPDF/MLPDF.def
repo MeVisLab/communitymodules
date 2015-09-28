@@ -25,7 +25,7 @@ MLModule Save3DFigurePDF {
   genre              = "FileMain"
   author             = "Axel Newe"
   comment            = "Creates PDF file with one interactive 3D scene for scientific publications."
-  keywords           = "PDF U3D PRC"
+  keywords           = "PDF U3D PRC 3D"
   seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC SavePDF"
   exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
   externalDefinition = $(LOCAL)/Save3DFigurePDF.script
@@ -42,6 +42,7 @@ MLModule SaveU3D {
   exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
   externalDefinition = $(LOCAL)/SaveU3D.script
 }
+
 /*
 MLModule SavePRC {
   DLL                = "MLPDF"
@@ -55,3 +56,14 @@ MLModule SavePRC {
   externalDefinition = $(LOCAL)/SavePRC.script
 }
 */
+
+MacroModule 3DFigurePDFMacro {
+  genre              = "FileMain"
+  author             = "Axel Newe"
+  comment            = "Imports triangle meshes of various formats, point clouds an line set and and creates an interactive 3D PDF for scientific publication."
+  keywords           = "PDF U3D PRC 3D"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC SavePDF Save3DFigurePDF"
+  exampleNetwork     = "$(LOCAL)/networks/3DFigurePDFMacroExample.mlab"
+  externalDefinition = $(LOCAL)/3DFigurePDFMacro.script
+}
+

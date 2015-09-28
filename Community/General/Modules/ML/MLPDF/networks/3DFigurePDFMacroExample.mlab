@@ -1,0 +1,45 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module 3DFigurePDFMacro {
+  internal  {
+    frame = "513 45 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1055 201 500 600"
+        sizeHint = "256 192"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = 3DFigurePDFMacro
+  }
+}
+connections = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "35 2 316 136"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This network shows how to use the 3DFigurePDFMacro module.
+
+For details regarding the parameters take a look at the documentation."
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "40 7 306 22"
+      }
+    }
+  }
+}

@@ -1,0 +1,503 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ComposeWEMDescriptionForU3D {
+  internal  {
+    frame = "29 193 216 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "111 207 627 302"
+        sizeHint = "529 302"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ComposeWEMDescriptionForCow
+    U3DObjectName = Cow
+    U3DGroupName = ""
+    U3DModelName = ""
+    U3DColor = "1 0.666666666666667 0"
+    U3DSpecularColor = "0 0.666666666666667 1"
+    U3DGroupColor = "1 1 0"
+    U3DColorTransparency = 0.479
+    U3DGroupColorTransparency = 0
+    UseU3DColor = TRUE
+    UseU3DGroupColor = FALSE
+    UseU3DSpecularColor = TRUE
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "309 193 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 94 1110 445"
+        sizeHint = "328 445"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "877 153 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadCowMesh
+    name = $(DemoDataPath)/vtkCow.obj
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = Cow
+    description = "U3DColor=1.0 0.667 0.0 0.479;U3DSpecularColor=0.0 0.667 1.0"
+    selectedTab = 0
+  }
+}
+module WEMMerge {
+  internal  {
+    frame = "425 53 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "697 489 300 131"
+        sizeHint = "300 131"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMMerge
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+  }
+}
+module ComposeWEMDescriptionForU3D {
+  internal  {
+    frame = "121 289 224 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "127 849 653 302"
+        sizeHint = "529 302"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ComposeWEMDescriptionForVenus
+    U3DObjectName = Venus
+    U3DGroupName = ""
+    U3DModelName = ""
+    U3DColor = "0 0 1"
+    U3DSpecularColor = "0 0.666666666666667 1"
+    U3DGroupColor = "1 1 0"
+    U3DColorTransparency = 0
+    U3DGroupColorTransparency = 0
+    UseU3DColor = TRUE
+    UseU3DGroupColor = FALSE
+    UseU3DSpecularColor = FALSE
+  }
+}
+module LocalWEMLoad {
+  internal  {
+    frame = "409 289 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 94 1110 445"
+        sizeHint = "328 445"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "136 219 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadVenusMesh
+    name = $(DemoDataPath)/venus.off
+    id = 0
+    mirrorFaces = FALSE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    generateEdges = TRUE
+    autoUpdate = TRUE
+    autoApply = TRUE
+    removePreviousWEMs = TRUE
+    label = Venus
+    description = "U3DColor=0.0 0.0 1.0 0.0"
+    selectedTab = 0
+  }
+}
+module SaveU3D {
+  internal  {
+    frame = "557 -107 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "580 179 850 661"
+        sizeHint = "850 606"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "233 158 849 549"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window "Specification Generator Panel" {
+        geometry = "183 454 596 594"
+        sizeHint = "295 579"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SaveU3D
+    autoApply = FALSE
+    autoUpdate = FALSE
+    autoClear = TRUE
+    listenToFinishingNotifications = FALSE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    simpleModePointSet = FALSE
+    simpleModeLineSet = FALSE
+    simpleModeMesh = FALSE
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    pointCloudSpecification = "<PointSet>
+<PositionTypes>1</PositionTypes>
+<ObjectName>Point Set Cow</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>
+
+<PointSet>
+<PositionTypes>2</PositionTypes>
+<ObjectName>Point Set Venus</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>
+
+<PointSet>
+<PositionTypes>1,2</PositionTypes>
+<ObjectName>All Points</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>"
+    lineSetSpecification = "<LineSet>
+<PositionTypes>1</PositionTypes>
+<ConnectionTypes>1</ConnectionTypes>
+<ObjectName>Line Set Bounding Box</ObjectName>
+<GroupPath>/Test Model/Primitives/Line Sets/</GroupPath>
+<Color>1.000 0.667 0.000 0.000</Color>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    meshSpecification = "<Mesh>
+<WEMLabel>Cow</WEMLabel>
+<ObjectName>Cow Mesh red</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>1.000 0.000 0.000 0.2</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+<ModelVisibility>3</ModelVisibility>
+
+<Mesh>
+<WEMLabel>Cow</WEMLabel>
+<ObjectName>Cow Mesh green</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>0.000 1.000 0.000</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+<ModelVisibility>3</ModelVisibility>
+
+<Mesh>
+<WEMLabel>Venus</WEMLabel>
+<ObjectName>Venus Mesh</ObjectName>
+<GroupPath>/Test Model 2/Meshes/</GroupPath>
+<Color>0.000 0.000 1.000 0.75</Color>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    viewsSpecification = ""
+    lightsSpecification = ""
+    metaDataSpecification = ""
+    defaultViewName = DefaultView
+    defaultLightName = DefaultAmbientLight
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialAmbientColor = "0 0 0"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAlpha = 1
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    defaultBoundingBoxMetaData = TRUE
+    addDefaultViewNode = TRUE
+    addDefaultLightNode = TRUE
+    filename = C:/Users/Axel/SaveU3DExample.u3d
+    status = Idle.
+    newSpecification = "<Mesh>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    selectedTab = 2
+    newSpecificationOutputValid = TRUE
+    newSpecificationType = OBJECTTYPE_MESH
+    newSpecificationObjectName = ""
+    newSpecificationGroupPath = ""
+    newSpecificationUseDefaultColor = TRUE
+    newSpecificationUseDefaultSpecularColor = TRUE
+    newSpecificationColor = "0.651 0.651 0.651"
+    newSpecificationColorAlpha = 1
+    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
+    newSpecificationMetaDataKey = ""
+    newSpecificationMetaDataValue = ""
+    newSpecificationWEMLabel = ""
+    newSpecificationPositionTypes = ""
+    newSpecificationConnectionTypes = ""
+    useDefaultSettings = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "317 -87 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "117 900 868 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalOutputFileName
+    localName = $(HOME)/SaveU3DExample.u3d
+    checkIfFileExists = TRUE
+  }
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "769 153 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 351 1011 557"
+        sizeHint = "424 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = EdgesList
+    listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8, (0 4) 1 #9, (1 5) 1 #10, (2 6) 1 #11, (3 7) 1 #12]"
+    index = 4
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 4
+    index2 = 5
+    type = 1
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module ColoredMarkerListContainer {
+  internal  {
+    frame = "645 241 184 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "296 356 1042 505"
+        sizeHint = "507 505"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ColoredPositionsList
+    listString = "[(-4.45 -3.64 -1.7)(1 0 0 1) 1, (-4.45 -3.64 1.7)(1 0 0 1) 1, (-4.45 2.76 -1.7)(1 0 0 1) 1, (-4.45 2.76 1.7)(1 0 0 1) 1, (6 -3.64 -1.7)(1 0 0 1) 1, (6 -3.64 1.7)(1 0 0 1) 1, (6 2.76 -1.7)(1 0 0 1) 1, (6 2.76 1.7)(1 0 0 1) 1, (-2.84 -1.1 -4.54)(1 1 0 1) 2, (-2.84 -1.1 5.96)(1 1 0 1) 2, (-2.84 2.64 -4.54)(1 1 0 1) 2, (-2.84 2.64 5.96)(1 1 0 1) 2, (2.31 -1.1 -4.54)(1 1 0 1) 2, (2.31 -1.1 5.96)(1 1 0 1) 2, (2.31 2.64 -4.54)(1 1 0 1) 2, (2.31 2.64 5.96)(1 1 0 1) 2]"
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-4.45 -3.64 -1.7"
+    posC = 0
+    posT = 0
+    posU = 0
+    color = "1 0 0"
+    alpha = 1
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newColor = "0 0 0"
+    newAlpha = 1
+    newType = 0
+  }
+}
+module BaseSwitch {
+  internal  {
+    frame = "593 69 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "717 329 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BaseSwitch
+    currentInput = 0
+    currentOutput = 0
+    numberOfInputs = 5
+    numberOfOutputs = 5
+  }
+}
+module MarkerListImport {
+  internal  {
+    frame = "561 377 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "647 502 400 104"
+        sizeHint = "400 104"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PositionsLoad
+    filename = ""
+    filter = PointSet
+    numberDelimiter = ;
+    numberDelimiterSpace = TRUE
+    decimalSeparator = .
+    autoLoad = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "325 377 168 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "198 819 1354 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalMarkerListFileName
+    localName = $(NETWORK)/SaveU3DExampleMarkerList.txt
+    checkIfFileExists = TRUE
+  }
+}
+module Save3DFigurePDF {
+  internal  {
+    frame = "61 -107 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "563 626 548 73"
+        sizeHint = "206 73"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "247 183 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Save3DFigurePDF
+    filename = "D:\\test.pdf"
+    status = Idle.
+    progress = 1
+    pdfAttrTitle = Title
+    pdfAttrAuthor = Author
+    pdfAttrSubject = Subject
+    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
+  }
+}
+connections  {
+  LoadCowMesh.label = ComposeWEMDescriptionForCow.WEMLabel
+  LoadCowMesh.description = ComposeWEMDescriptionForCow.WEMDescription
+  WEMMerge.inWEM = LoadCowMesh.outWEM
+  WEMMerge.inWEM1 = LoadVenusMesh.outWEM
+  LoadVenusMesh.label = ComposeWEMDescriptionForVenus.WEMLabel
+  LoadVenusMesh.description = ComposeWEMDescriptionForVenus.WEMDescription
+  SaveU3D.inWEM = WEMMerge.outWEM
+  SaveU3D.inPointPositions = BaseSwitch.outputBaseObject0
+  SaveU3D.inLinePositions = BaseSwitch.outputBaseObject0
+  SaveU3D.inLineConnections = EdgesList.outIndexPairList
+  SaveU3D.filename = LocalOutputFileName.trueName
+  BaseSwitch.inputBaseObject0 = PositionsLoad.outMarkerList
+  BaseSwitch.inputBaseObject1 = ColoredPositionsList.outColoredMarkerList
+  PositionsLoad.filename = LocalMarkerListFileName.trueName
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-94 1 316 136"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = ---
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "-89 6 306 22"
+      }
+    }
+  }
+}
