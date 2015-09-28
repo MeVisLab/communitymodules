@@ -10,11 +10,9 @@
 
 MLModule VCGLoad {
   DLL                = "MLVectorcardiogram"
-
-  genre              = ""
   author             = "Axel Newe"
   comment            = "Loads a vectorcardiogram (VCG) from file."
-  keywords           = ""
+  keywords           = "VCG"
   seeAlso            = "VCGCoordinateSystemRenderer VCGCoordinateSystem VCGLineSetDefinition"
   externalDefinition = $(LOCAL)/VCGLoad.script
   exampleNetwork     = $(LOCAL)/networks/VCGLoadExample.mlab 
@@ -22,11 +20,9 @@ MLModule VCGLoad {
 
 MLModule VCGCoordinateSystem {
   DLL                = "MLVectorcardiogram"
-
-  genre              = ""
   author             = "Axel Newe"
   comment            = "Creates a coordinate system for VCG rendering and exporting."
-  keywords           = ""
+  keywords           = "VCG"
   seeAlso            = "VCGLoad VCGCoordinateSystemRenderer VCGLineSetDefinition SaveU3D SavePRC Save3DFigurePDF"
   externalDefinition = $(LOCAL)/VCGCoordinateSystem.script
   exampleNetwork     = $(LOCAL)/networks/VCGExportExample.mlab 
@@ -34,12 +30,19 @@ MLModule VCGCoordinateSystem {
 
 MLModule VCGLineSetDefinition {
   DLL                = "MLVectorcardiogram"
-
-  genre              = ""
   author             = "Axel Newe"
   comment            = "Assembles a lineset definition for U3D export."
-  keywords           = ""
+  keywords           = "VCG"
   seeAlso            = "VCGLoad VCGCoordinateSystem VCGCoordinateSystemRenderer SaveU3D SavePRC Save3DFigurePDF"
   externalDefinition = $(LOCAL)/VCGLineSetDefinition.script
   exampleNetwork     = $(LOCAL)/networks/VCGExportExample.mlab 
-}  
+}
+
+MacroModule VCGCoordinateSystemRenderer {
+  author             = "Axel Newe"
+  comment            = "Renders a VCG coordinate system."
+  keywords           = "VCG"
+  seeAlso            = "VCGLoad VCGCoordinateSystem VCGLineSetDefinition"   
+  externalDefinition = "$(LOCAL)/VCGCoordinateSystemRenderer.script"
+  exampleNetwork     = $(LOCAL)/networks/VCGCoordinateSystemRendererExample.mlab   
+}
