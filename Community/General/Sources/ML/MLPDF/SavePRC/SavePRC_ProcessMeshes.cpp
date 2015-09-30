@@ -68,6 +68,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
       ML_CHECK_NEW(triangulatedPatch,WEMTrianglePatch());
       wemPatch->triangulate(triangulatedPatch, WEM_TRIANGULATION_STRIP);
       addedTrianglePatch = saveWEM->addWEMPatchCopy(triangulatedPatch);
+      addedTrianglePatch->computeBoundingBox();
       ML_DELETE(triangulatedPatch);
     }
     else

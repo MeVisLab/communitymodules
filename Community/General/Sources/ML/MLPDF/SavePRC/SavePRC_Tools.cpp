@@ -160,6 +160,11 @@ void SavePRC::addMetaData(PRCMetaDataVector &metaDataVector, PRCModelBoundingBox
                            floatToString(static_cast<float>(boundingBox.end.z));
 
       metaDataVector.push_back(metaDataPair);  
+
+      metaDataPair.key = "BoundingBoxRadius";
+      metaDataPair.value = floatToString(static_cast<float>(boundingBox.radius));
+
+      metaDataVector.push_back(metaDataPair);  
     }
 
     StringVector metaDataSpecificationsVector = GetPRCObjectSpecificationsFromUI(_metaDataSpecificationFld, "<PRCMetaData>");

@@ -24,9 +24,10 @@ typedef std::vector<MLint>       MLintVector;
 
 struct ModelBoundingBoxStruct
 {
-  Vector3 start;
-  Vector3 end;
-  Vector3 center;
+  Vector3  start;
+  Vector3  end;
+  Vector3  center;
+  MLdouble radius;
 };
 
 struct GroupNodeStruct

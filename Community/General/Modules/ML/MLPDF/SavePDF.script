@@ -21,7 +21,14 @@ Commands {
 Window {
   Vertical {
     margin = 3
-    Field filename { browseButton = On browseMode = save }
+    Field centerOfOrbit  {  }
+    Field centerToCamera {  }
+    Field radiusOfOrbit  {  }
+    Field cameraRoll     {  }
+    Field cameraFOVAngle {title = "Camera FOV Angle:" }
+    Separator {}
+    Field u3dFileName    { browseButton = On browseMode = save }
+    Field pdfFilename    { browseButton = On browseMode = save }
     Separator { }
     Button save { title = "Test" alignX = Left }
   }

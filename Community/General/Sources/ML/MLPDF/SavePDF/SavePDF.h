@@ -47,7 +47,8 @@ private:
   /* FIELDS */
 
   //! Field - Filename
-  StringField   *_mlFileNameFld;
+  StringField   *_mlPDFFileNameFld;
+  StringField   *_mlU3DFileNameFld;
 
   //! Field - Save notification
   NotifyField   *_saveFld;
@@ -57,6 +58,14 @@ private:
 
   //! Progress bar.
   ProgressField *_progressFld;
+
+  // Camera fields
+  Vector3Field*  _centerOfOrbitFld;
+  Vector3Field*  _centerToCameraFld;
+  FloatField*    _radiusOfOrbitFld;
+  FloatField*    _cameraRollFld;
+  FloatField*    _cameraFOVAngleFld;
+
 
   //! MeVisLab Program version (must be set via Python scripting, because the full version number is not available in C++)
   StringField * _mevislabVersionFld;

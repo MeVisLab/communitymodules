@@ -364,13 +364,13 @@ Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor)
 // Updates the model bounding box
 void UpdateBoundingBox(ModelBoundingBoxStruct& existingBoundingBox, ModelBoundingBoxStruct newCorners)
 {
-  MLdouble smallestX = 0;
-  MLdouble smallestY = 0;
-  MLdouble smallestZ = 0;
+  MLdouble smallestX = ML_DOUBLE_MAX;
+  MLdouble smallestY = ML_DOUBLE_MAX;
+  MLdouble smallestZ = ML_DOUBLE_MAX;
    
-  MLdouble biggestX = 0;
-  MLdouble biggestY = 0;
-  MLdouble biggestZ = 0;
+  MLdouble biggestX = ML_DOUBLE_MIN;
+  MLdouble biggestY = ML_DOUBLE_MIN;
+  MLdouble biggestZ = ML_DOUBLE_MIN;
 
   if (newCorners.start.x < smallestX) { smallestX = newCorners.start.x; }
   if (newCorners.start.x > biggestX)  { biggestX = newCorners.start.x; }
@@ -387,21 +387,28 @@ void UpdateBoundingBox(ModelBoundingBoxStruct& existingBoundingBox, ModelBoundin
   if (newCorners.end.z < smallestZ)   { smallestZ = newCorners.end.z; }
   if (newCorners.end.z > biggestZ)    { biggestZ = newCorners.end.z; }
 
-  MLdouble centerX = smallestX + biggestX / 2.f;
-  MLdouble centerY = smallestY + biggestY / 2.f;
-  MLdouble centerZ = smallestZ + biggestZ / 2.f;
+  if (existingBoundingBox.start.x > smallestX) { existingBoundingBox.start.x = smallestX; }
+  if (existingBoundingBox.start.y > smallestY) { existingBoundingBox.start.y = smallestY; }
+  if (existingBoundingBox.start.z > smallestZ) { existingBoundingBox.start.z = smallestZ; }
 
-  existingBoundingBox.start.x = smallestX;
-  existingBoundingBox.start.y = smallestY;
-  existingBoundingBox.start.z = smallestZ;
+  if (existingBoundingBox.end.x < biggestX) { existingBoundingBox.end.x = biggestX; }
+  if (existingBoundingBox.end.y < biggestY) { existingBoundingBox.end.y = biggestY; }
+  if (existingBoundingBox.end.z < biggestZ) { existingBoundingBox.end.z = biggestZ; }
 
-  existingBoundingBox.end.x = biggestX;
-  existingBoundingBox.end.y = biggestY;
-  existingBoundingBox.end.z = biggestZ;
+  MLdouble centerX = (existingBoundingBox.start.x + existingBoundingBox.end.x) / 2.f;
+  MLdouble centerY = (existingBoundingBox.start.y + existingBoundingBox.end.y) / 2.f;
+  MLdouble centerZ = (existingBoundingBox.start.z + existingBoundingBox.end.z) / 2.f;
 
   existingBoundingBox.center.x = centerX;
   existingBoundingBox.center.y = centerY;
   existingBoundingBox.center.z = centerZ;
+
+  MLdouble newRadius = sqrt(pow(existingBoundingBox.end.x-existingBoundingBox.center.x,2) + pow(existingBoundingBox.end.y-existingBoundingBox.center.y,2) + pow(existingBoundingBox.end.z-existingBoundingBox.center.z,2));
+
+  if (newRadius > existingBoundingBox.radius)
+  {
+    existingBoundingBox.radius = newRadius;
+  }
 }
 
 //***********************************************************************************

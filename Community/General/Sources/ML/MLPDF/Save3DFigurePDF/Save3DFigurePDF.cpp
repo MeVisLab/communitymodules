@@ -178,7 +178,7 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
     //HPDF_3DView_AddNode(defaultView, "Cow Mesh red", 0.5, true);   // funktioniert! :-)
     //HPDF_3DView_AddNode(defaultView, "Point Set Cow", 0.5, true);  // funktioniert! :-)
     HPDF_3DView_SetLighting(defaultView, "HeadLamp");  // "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "HeadLamp"
-    HPDF_3DView_SetBackgroundColor(defaultView, 0.8, 0.8, 0.8);
+    HPDF_3DView_SetBackgroundColor(defaultView, 0.8f, 0.8f, 0.8f);
     //HPDF_3DView_SetPerspectiveProjection(defaultView);
     //HPDF_3DView_SetOrthogonalProjection(defaultView);
 

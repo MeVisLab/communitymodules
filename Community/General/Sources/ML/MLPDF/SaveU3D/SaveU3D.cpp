@@ -379,6 +379,12 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
 
   // Stores the model bounding box data & its center. Shall be modified only with UpdateBoundingBox() method!
   ModelBoundingBoxStruct modelBoundingBox;
+  modelBoundingBox.start.x = ML_DOUBLE_MAX;
+  modelBoundingBox.start.y = ML_DOUBLE_MAX;
+  modelBoundingBox.start.z = ML_DOUBLE_MAX;
+  modelBoundingBox.end.x   = ML_DOUBLE_MIN;
+  modelBoundingBox.end.y   = ML_DOUBLE_MIN;
+  modelBoundingBox.end.z   = ML_DOUBLE_MIN;
 
   // Get default parameters from field values
   defaultValues = getDefaultValuesFromFields(); 

@@ -409,6 +409,11 @@ void SaveU3D::addMetaData(MetaDataVector &metaDataVector, ModelBoundingBoxStruct
                            floatToString(static_cast<float>(boundingBox.end.z));
 
       metaDataVector.push_back(metaDataPair);  
+
+      metaDataPair.key = "BoundingBoxRadius";
+      metaDataPair.value = floatToString(static_cast<float>(boundingBox.radius));
+
+      metaDataVector.push_back(metaDataPair);  
     }
 
     StringVector metaDataSpecificationsVector = getObjectSpecificationsStringFromUI(_metaDataSpecificationFld, "<MetaData>");

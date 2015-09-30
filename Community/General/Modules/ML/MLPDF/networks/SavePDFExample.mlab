@@ -2,14 +2,628 @@
 network  {
   watchlist = ""
 }
-module SavePDF {
+module Calculator {
   internal  {
-    frame = "637 157 88 56"
+    frame = "-171 -147 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "482 567 548 73"
-        sizeHint = "206 73"
+        geometry = "400 108 1155 650"
+        sizeHint = "700 650"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Calculator
+    exp1 = "v2*d1"
+    exp2 = "(v2*d1)-v1"
+    exp3 = ""
+    exp4 = ""
+    exp5 = ""
+    exp6 = ""
+    exp7 = ""
+    exp8 = ""
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    d1 = 174.900100708008
+    d2 = 0
+    d3 = 0
+    d4 = 0
+    d5 = 0
+    d6 = 0
+    d7 = 0
+    d8 = 0
+    d9 = 0
+    d10 = 0
+    d11 = 0
+    d12 = 0
+    v1 = "65.9080276489258 78.4794692993164 167.115951538086"
+    v2 = "0.211859107017517 -0.290678769350052 -0.93307101726532"
+    v3 = "0 0 0"
+    v4 = "0 0 0"
+    v5 = "0 0 0"
+    v6 = "0 0 0"
+    domainErrorHandling = Nothing
+    applyMode = AutoApply
+    exp1Comment = "orientation * focalDistance"
+    exp2Comment = "position + (orientation * focalDistance)"
+    exp3Comment = ""
+    exp4Comment = ""
+    exp5Comment = ""
+    exp6Comment = ""
+    exp7Comment = ""
+    exp8Comment = ""
+    scalarVariablesComment = ""
+    vectorVariablesComment = ""
+    resultVector1_x = 37.05418
+    resultVector1_y = -50.839745
+    resultVector1_z = -163.19421
+    resultVector2_x = -28.853849
+    resultVector2_y = -129.31921
+    resultVector2_z = -330.31018
+    resultVector3_x = 0
+    resultVector3_y = 0
+    resultVector3_z = 0
+    resultVector4_x = 0
+    resultVector4_y = 0
+    resultVector4_z = 0
+    resultVector5_x = 0
+    resultVector5_y = 0
+    resultVector5_z = 0
+    resultVector6_x = 0
+    resultVector6_y = 0
+    resultVector6_z = 0
+    resultVector7_x = 0
+    resultVector7_y = 0
+    resultVector7_z = 0
+    resultVector8_x = 0
+    resultVector8_y = 0
+    resultVector8_z = 0
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "625 -179 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1167 115 459 241"
+        sizeHint = "446 241"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic0
+    debugLevel = 0
+    arg1 = "65.9080276489258 78.4794692993164 167.115951538086"
+    arg1X = 65.9080276489258
+    arg1XAsVec = FALSE
+    operation = Multiply
+    arg2 = "-1 1 -1"
+    arg2X = -1
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "449 193 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "407 340 459 241"
+        sizeHint = "446 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CalculateRadiusOfOrbit
+    debugLevel = 0
+    arg1 = "9.65848665617975 -103.953656954177 -140.322474038086"
+    arg1X = 9.65848636627197
+    arg1XAsVec = FALSE
+    operation = Length
+    arg2 = "0 0 0"
+    arg2X = 0
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module Calculator {
+  internal  {
+    frame = "465 -159 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1780 350 700 650"
+        sizeHint = "700 650"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CalcFOVAngle
+    exp1 = 180/(pi/d1)
+    exp2 = ""
+    exp3 = ""
+    exp4 = ""
+    exp5 = ""
+    exp6 = ""
+    exp7 = ""
+    exp8 = ""
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    d1 = 0.785000026226044
+    d2 = 0
+    d3 = 0
+    d4 = 0
+    d5 = 0
+    d6 = 0
+    d7 = 0
+    d8 = 0
+    d9 = 0
+    d10 = 0
+    d11 = 0
+    d12 = 0
+    v1 = "0 0 0"
+    v2 = "0 0 0"
+    v3 = "0 0 0"
+    v4 = "0 0 0"
+    v5 = "0 0 0"
+    v6 = "0 0 0"
+    domainErrorHandling = Nothing
+    applyMode = AutoApply
+    exp1Comment = ""
+    exp2Comment = ""
+    exp3Comment = ""
+    exp4Comment = ""
+    exp5Comment = ""
+    exp6Comment = ""
+    exp7Comment = ""
+    exp8Comment = ""
+    scalarVariablesComment = ""
+    vectorVariablesComment = ""
+    resultVector1_x = 0
+    resultVector1_y = 0
+    resultVector1_z = 0
+    resultVector2_x = 0
+    resultVector2_y = 0
+    resultVector2_z = 0
+    resultVector3_x = 0
+    resultVector3_y = 0
+    resultVector3_z = 0
+    resultVector4_x = 0
+    resultVector4_y = 0
+    resultVector4_z = 0
+    resultVector5_x = 0
+    resultVector5_y = 0
+    resultVector5_z = 0
+    resultVector6_x = 0
+    resultVector6_y = 0
+    resultVector6_z = 0
+    resultVector7_x = 0
+    resultVector7_y = 0
+    resultVector7_z = 0
+    resultVector8_x = 0
+    resultVector8_y = 0
+    resultVector8_z = 0
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "457 113 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1164 413 459 241"
+        sizeHint = "446 241"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = CalculateC2CVector
+    debugLevel = 0
+    arg1 = "75.5665143051055 -25.4741876548605 26.7934775"
+    arg1X = 75.5665130615234
+    arg1XAsVec = FALSE
+    operation = Subtract
+    arg2 = "65.9080276489258 78.4794692993164 167.115951538086"
+    arg2X = 65.9080276489258
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "237 101 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "685 137 436 835"
+        sizeHint = "325 835"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    scaleSize = 1
+    scaleLength = 1
+    color = "0.333333343267441 1 0"
+    validStylePalette = FALSE
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = TRUE
+    selectingOn = FALSE
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textBackgroundColor = "0.5 0.5 0.5"
+    textBackgroundAlpha = 0.30000001
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModeCorrect
+    numMarkersThresholdForFastRendering = 5000
+    instanceName = So3DMarkerEditor
+    listString = ""
+    numItems = 0
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = TRUE
+    applySelect = FALSE
+    id = -1
+    name = ""
+    newName = ""
+    actionClass = New
+    actionIndex = -1
+    actionId = -1
+    currentIndex = -1
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ConstantXMarkerList {
+  internal  {
+    frame = "209 205 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "213 354 534 560"
+        sizeHint = "338 560"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ConstantXMarkerList
+    markerList = "75.5665143051055 -25.4741876548605 26.7934775
+"
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "-3 93 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "135 246 895 376"
+        sizeHint = "509 376"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    isProcessing = FALSE
+    elapsedTime = 0.15899999
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "2@Patella|4@Tibia_medial|6@Tibia_lateral|8@Femur_condyle_lateral|10@Femur_condyle_medial|12@Femur_central|14@Femur_medial|16@Femur_lateral"
+    hasEdges = FALSE
+    boundingBoxMode = "Axis Aligned"
+    primitiveValueLists = LUT
+    curveScaleFactor = 1
+    selectedTab = 2
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "-23 21 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "113 13 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 7
+    selectedTab = 0
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "85 197 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "754 703 364 239"
+        sizeHint = "364 239"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoad
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    filename = D:/knee.wem
+    loading = FALSE
+    loadingOK = TRUE
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    status = "Successfully loaded 8 patches."
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "113 -191 176 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "2653 46 618 574"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "2486 665 843 358"
+        sizeHint = "260 252"
+        wasOpen = yes
+      }
+      window _default {
+        geometry = "786 366 655 496"
+        sizeHint = "655 496"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0.736593186855316 -0.356397777795792 -0.574813902378082 3.27108001708984"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78500003
+    position = "65.9080276489258 78.4794692993164 167.115951538086"
+    orientation = "0.211859107017517 -0.290678769350052 -0.93307101726532 4.15606451034546"
+    nearDistance = 116.24294
+    farDistance = 233.67436
+    focalDistance = 174.9001
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableRotXWheel = TRUE
+    enableRotYWheel = TRUE
+    enableDollyWheel = TRUE
+    overwriteDollyWheelLabel = TRUE
+    overwriteRotXWheelLabel = FALSE
+    overwriteRotYWheelLabel = FALSE
+    dollyWheelPerspectiveText = Dolly
+    rotXWheelPerspectiveText = Rotx
+    rotYWheelPerspectiveText = Roty
+    dollyWheelOrthographicText = Zoom
+    rotXWheelOrthographicText = Rotx
+    rotYWheelOrthographicText = Roty
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoCameraAccess {
+  internal  {
+    frame = "433 -59 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "813 217 778 738"
+        sizeHint = "536 738"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCameraAccess
+    transformDeltaOut = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    viewingMatrix = "-0.459482192993164 -0.886468529701233 -0.0552229657769203 0
+0.698262453079224 -0.398955643177032 0.594359934329987 0
+-0.548912942409515 0.234537646174431 0.802300810813904 0
+67.2164077758789 50.5402412414551 -177.08268737793 1"
+    projectionMatrix = "2.39365363121033 0 0 0
+0 2.41557335853577 0 0
+1.57103102083056e-07 0 -2.97975873947144 -1
+0 0 -462.618865966797 0"
+    cameraSpaceMatrix = "0.998307943344116 0.0182113666087389 -0.0552230440080166 0
+0.0182113666087389 0.803992927074432 0.594359934329987 0
+0.0552230440080166 -0.594359934329987 0.802300870418549 0
+-76.4543838500977 35.0298156738281 -177.08268737793 1"
+    camPosition = "65.9080276489258 78.4794692993164 167.115951538086"
+    lookAtPosition = "0.54891300201416 -0.234537661075592 -0.802300810813904"
+    upVector = "-0.886468529701233 -0.398955643177032 0.234537646174431"
+    viewVector = "0.0552212744951248 -0.594357311725616 -0.80230301618576"
+    viewportSizeOut = "551 546"
+    nearDistance = 116.24294
+    farDistance = 233.67436
+    NewViewingMatrix = "1 0 0 1
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    NewProjectionMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 2
+0 0 0 1"
+  }
+}
+module SavePDF {
+  internal  {
+    frame = "437 285 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "727 726 825 264"
+        sizeHint = "309 264"
         wasOpen = yes
       }
       window _automatic {
@@ -21,16 +635,39 @@ module SavePDF {
   }
   fields  {
     instanceName = SavePDF
-    filename = "D:\\test.pdf"
+    pdfFilename = "d:\\test.pdf"
+    u3dFileName = "d:\\knee.u3d"
     status = Idle.
     progress = 1
     pdfAttrTitle = Title
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
+    centerOfOrbit = "75.5665143051055 -25.4741876548605 26.7934775"
+    centerToCamera = "9.65848665617975 -103.953656954177 -140.322474038086"
+    radiusOfOrbit = 174.9001
+    cameraFOVAngle = 44.977188
+    cameraRoll = 0
   }
 }
-connections = ""
+connections  {
+  Calculator.d1 = SoCustomExaminerViewer.focalDistance
+  Calculator.v1 = SoCustomExaminerViewer.position
+  Calculator.v2 = SoCustomExaminerViewer.orientation
+  Arithmetic0.arg1 = SoCustomExaminerViewer.position
+  CalculateRadiusOfOrbit.arg1 = CalculateC2CVector.result
+  CalcFOVAngle.d1 = SoCustomExaminerViewer.height
+  CalculateC2CVector.arg1 = WEMInfo.globalCenter
+  CalculateC2CVector.arg2 = SoCustomExaminerViewer.position
+  So3DMarkerEditor.inXMarkerList = ConstantXMarkerList.outputXMarkerList
+  WEMInfo.inWEM = WEMLoad.outWEM
+  SoWEMRenderer.inWEM = WEMLoad.outWEM
+  SoCustomExaminerViewer.children = "SoBackground.self SoWEMRenderer.self So3DMarkerEditor.self SoCameraAccess.self"
+  SavePDF.centerOfOrbit = CalculateC2CVector.arg1
+  SavePDF.centerToCamera = CalculateC2CVector.result
+  SavePDF.radiusOfOrbit = SoCustomExaminerViewer.focalDistance
+  SavePDF.cameraFOVAngle = CalcFOVAngle.resultScalar1
+}
 networkModel  {
   parentItems  {
     0  {
@@ -38,7 +675,7 @@ networkModel  {
         uniqueId = 17
         objectName = ""
         parentUniqueId = 0
-        frame = "204 95 316 136"
+        frame = "-112 297 316 136"
         backgroundColor  {
           r = 252
           g = 242
@@ -50,7 +687,7 @@ networkModel  {
 For details regarding the parameters take a look at the documentation."
         titleText = Description
         isCollapsed = False
-        titleFrame = "209 100 306 22"
+        titleFrame = "-107 302 306 22"
       }
     }
   }
