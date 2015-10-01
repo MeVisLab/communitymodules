@@ -46,27 +46,38 @@ private:
 
   /* FIELDS */
 
-  //! Field - Filename
-  StringField   *_mlFileNameFld;
+  //! Filename fields
+  StringField*  _u3dFilenameFld;
+  StringField*  _pdfFilenameFld;
 
-  //! Field - Save notification
-  NotifyField   *_saveFld;
+  //! Page property fields
+  StringField*  _pageHeaderReferenceFld;
+  StringField*  _pageHeaderHeadlineFld;
 
-  //! Status message
-  StringField   *_statusFld;
+  //! Figure property fields
+  ColorField*   _figureBackgroundColorFld;
+  StringField*  _figureCaptionFld;
+  StringField*  _figureDescriptionFld;
 
-  //! Progress bar.
-  ProgressField *_progressFld;
+
+  //! Save notification field
+  NotifyField*  _saveFld;
+
+  //! Status fields
+  StringField*   _statusFld;
+
+  //! Progress fields
+  ProgressField* _progressFld;
 
   //! MeVisLab Program version (must be set via Python scripting, because the full version number is not available in C++)
-  StringField * _mevislabVersionFld;
+  StringField*   _mevislabVersionFld;
 
 
   //! PDF file property fields
-  StringField   *_pdfAttrTitleFld;
-  StringField   *_pdfAttrAuthorFld;
-  StringField   *_pdfAttrSubjectFld;
-  StringField   *_pdfAttrKeywordsFld;
+  StringField*   _pdfAttrTitleFld;
+  StringField*   _pdfAttrAuthorFld;
+  StringField*   _pdfAttrSubjectFld;
+  StringField*   _pdfAttrKeywordsFld;
 
 
   // Methods ============================================================

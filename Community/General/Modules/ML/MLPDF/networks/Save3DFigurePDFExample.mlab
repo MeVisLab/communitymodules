@@ -4,12 +4,12 @@ network  {
 }
 module Save3DFigurePDF {
   internal  {
-    frame = "637 157 88 56"
+    frame = "581 141 136 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "563 626 548 73"
-        sizeHint = "206 73"
+        geometry = "968 222 604 498"
+        sizeHint = "262 498"
         wasOpen = yes
       }
       window _automatic {
@@ -21,9 +21,15 @@ module Save3DFigurePDF {
   }
   fields  {
     instanceName = Save3DFigurePDF
-    filename = "D:\\test.pdf"
+    u3dFilename = ""
+    pdfFilename = ""
+    pageHeaderReference = ""
+    pageHeaderHeadline = ""
+    figureBackgroundColor = "0.8 0.8 0.8"
+    figureCaption = ""
+    figureDescription = ""
     status = Idle.
-    progress = 1
+    progress = 0
     pdfAttrTitle = Title
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject

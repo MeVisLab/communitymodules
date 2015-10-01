@@ -21,8 +21,17 @@ Commands {
 Window {
   Vertical {
     margin = 3
-    Field filename { browseButton = On browseMode = save }
+    Field u3dFilename { title = "U3D Filename:" browseButton = On browseMode = open }
+    Field pdfFilename { title = "PDF Filename:" browseButton = On browseMode = save }
     Separator { }
-    Button save { title = "Test" alignX = Left }
+    Field pageHeaderReference   {  }
+    Field pageHeaderHeadline    {  }
+    Field figureBackgroundColor {  }
+    Field figureCaption         {  }
+    TextView figureDescription  { autoApply = Yes }    
+    Separator {}
+    Button save { title = "Save" alignX = Left }
+    ProgressBar progress { textVisible = No }
+    Label { titleField = status }
   }
 }

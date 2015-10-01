@@ -35,7 +35,15 @@ Save3DFigurePDF::Save3DFigurePDF() : Module(0, 0)
   handleNotificationOff();
 
 
-  (_mlFileNameFld = addString("filename"))->setStringValue("");
+  (_u3dFilenameFld = addString("u3dFilename"))->setStringValue("");
+  (_pdfFilenameFld = addString("pdfFilename"))->setStringValue("");
+
+  (_pageHeaderReferenceFld = addString("pageHeaderReference"))->setStringValue("");
+  (_pageHeaderHeadlineFld = addString("pageHeaderHeadline"))->setStringValue("");
+
+  (_figureBackgroundColorFld = addColor("figureBackgroundColor"))->setVector3Value(Vector3(0.8,0.8,0.8));
+  (_figureCaptionFld = addString("figureCaption"))->setStringValue("");
+  (_figureDescriptionFld = addString("figureDescription"))->setStringValue("");
 
   _saveFld = addNotify("save");
 
@@ -95,29 +103,57 @@ void Save3DFigurePDF::activateAttachments()
 
 void Save3DFigurePDF::saveButtonClicked()
 {
-  std::string filename = _mlFileNameFld->getStringValue();
-  if (filename == "") 
+  unsigned int filenameLength = 0;
+  std::string last4 = "";
+
+  //
+  // Check PDF filename
+  //
+  std::string pdfFilename = _pdfFilenameFld->getStringValue();
+  if (pdfFilename == "") 
   {
-    _statusFld->setStringValue("No filename specified.");
+    _statusFld->setStringValue("No PDF filename specified.");
     return;
   }
 
-  const unsigned int filenameLength = static_cast<unsigned int>(filename.length());
-
-  std::string last4 = "";
+  filenameLength = static_cast<unsigned int>(pdfFilename.length());
 
   if (filenameLength > 4) 
   { 
-    last4 = filename.substr(filenameLength-4, 4); 
+    last4 = pdfFilename.substr(filenameLength-4, 4); 
 
     if (last4 != ".pdf") 
     { 
-      filename.append(".pdf"); 
-      _mlFileNameFld->setStringValue(filename);
+      pdfFilename.append(".pdf"); 
+      _pdfFilenameFld->setStringValue(pdfFilename);
     }
   }
 
-  Save3DFigurePDFFile(filename);
+  //
+  // Check U3D filename
+  //
+  std::string u3dFilename = _u3dFilenameFld->getStringValue();
+  if (u3dFilename == "") 
+  {
+    _statusFld->setStringValue("No U3D filename specified.");
+    return;
+  }
+
+  filenameLength = static_cast<unsigned int>(u3dFilename.length());
+
+  if (filenameLength > 4) 
+  { 
+    last4 = u3dFilename.substr(filenameLength-4, 4); 
+
+    if (last4 != ".u3d") 
+    { 
+      u3dFilename.append(".pdf"); 
+      _u3dFilenameFld->setStringValue(u3dFilename);
+    }
+  }
+
+
+  Save3DFigurePDFFile(pdfFilename);
 }
 
 //----------------------------------------------------------------------------------
@@ -168,13 +204,13 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
 
 
     HPDF_U3D u3dModel;
-    HPDF_Annotation u3dAnnot;
+    HPDF_Annotation u3dAnnotation;
 
     HPDF_Rect rect1 = { 50, 250, 350, 400 };
 
     u3dModel = HPDF_LoadU3DFromFile(pdfDocument, "D:\\MeVisLab\\Packages\\Community\\General\\Modules\\ML\\MLPDF\\networks\\Save3DFigurePDFExample.u3d");
 
-    HPDF_Dict defaultView = HPDF_Page_Create3DView(pdfPage, u3dModel, u3dAnnot, "Default View");    
+    HPDF_Dict defaultView = HPDF_Page_Create3DView(pdfPage, u3dModel, u3dAnnotation, "Default View");    
     //HPDF_3DView_AddNode(defaultView, "Cow Mesh red", 0.5, true);   // funktioniert! :-)
     //HPDF_3DView_AddNode(defaultView, "Point Set Cow", 0.5, true);  // funktioniert! :-)
     HPDF_3DView_SetLighting(defaultView, "HeadLamp");  // "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "HeadLamp"
@@ -212,7 +248,7 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
 
 
 
-    u3dAnnot = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dModel); 
+    u3dAnnotation = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dModel); 
 
     /* save the document to a file */
     HPDF_SaveToFile (pdfDocument, filename.c_str());
