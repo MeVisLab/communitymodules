@@ -21,6 +21,9 @@
 #include "mlUnicode.h"
 
 
+#include <Inventor/nodes/SoNodes.h>
+
+
 ML_START_NAMESPACE
 
 //! Implements code for the runtime type system of the ML
@@ -33,6 +36,10 @@ SavePDF::SavePDF() : Module(0, 0)
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
   handleNotificationOff();
+
+  SbVec3f v3f(0,0,1);
+  SbRotation rot(v3f,3.14);
+
 
 
   (_mlPDFFileNameFld = addString("pdfFilename"))->setStringValue("");

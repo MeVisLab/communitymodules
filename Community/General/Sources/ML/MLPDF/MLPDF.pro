@@ -18,7 +18,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLWEM zlib png MLBaseListExtensions libhpdf
+CONFIG += dll ML MLBase MLWEM zlib png MLBaseListExtensions libhpdf inventor
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General Community_ThirdParty
 
