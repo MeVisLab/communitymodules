@@ -17,6 +17,7 @@ isEmpty(Community_General_PRI_INCLUDED) {
 # MLCSOCommunityModules - CSO community modules
 # MLPDF                 - PDF and 3D-PDF creation (Axel Newe)
 # MLBaseListExtensions  - IndexPair[List[Container]], ColoredMarker[List[Container]] (Axel Newe)
+# MLOsiriXServices      - OsiriX interface
 
 
 # include guard against multiple inclusion
@@ -30,8 +31,9 @@ include( $(MLAB_MeVis_Foundation)/Configuration/SystemInit.pri )
 
 # -- Define local PACKAGE variables -------------------------------------
 
-PACKAGE_ROOT    = $$(MLAB_Community_General)
-PACKAGE_SOURCES = "$$(MLAB_Community_General)"/Sources
+PACKAGE_ROOT     = $$(MLAB_Community_General)
+PACKAGE_SOURCES  = "$$(MLAB_Community_General)"/Sources
+PACKAGE_PROJECTS = "$$(MLAB_Community_General)"/Projects
 
 # Add package library path
 LIBS          += -L"$${PACKAGE_ROOT}"/lib
@@ -62,7 +64,12 @@ MLCSOCommunityModules {
 MLPDF {
   CONFIG_FOUND += MLPDF
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF
-  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/libharu-RELEASE_2_2_0/include
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePDF
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SaveU3D
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePRC
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared  
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/include
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/win32/include
   win32:LIBS += MLPDF$${d}.lib
   unix:LIBS  += -lMLPDF$${d}
 }
@@ -72,8 +79,19 @@ MLBaseListExtensions {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/ColoredMarkerList
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/IndexPairList
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/ListTools
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/MarkerListImport
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLBaseListExtensions/shared  
   win32:LIBS += MLBaseListExtensions$${d}.lib
   unix:LIBS  += -lMLBaseListExtensions$${d}
+}
+
+MLOsiriXServices {
+  CONFIG_FOUND += MLOsiriXServices
+  macx {
+    INCLUDEPATH += $${PACKAGE_PROJECTS}/OsiriXMeVisLabBridge/Sources/MLOsiriXServices
+    LIBS        += -lMLOsiriXServices$${d}
+  }
 }
 
 # -- Inventor Projects -------------------------------------------------------
