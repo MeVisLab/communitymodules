@@ -39,6 +39,13 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetBackgroundColor(HPDF_Dict view, HPDF_REA
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetPerspectiveProjection(HPDF_Dict view, HPDF_REAL fov);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetOrthogonalProjection(HPDF_Dict view, HPDF_REAL mag);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetCamera(HPDF_Dict view, HPDF_REAL coox, HPDF_REAL cooy, HPDF_REAL cooz, HPDF_REAL c2cx, HPDF_REAL c2cy, HPDF_REAL c2cz, HPDF_REAL roo, HPDF_REAL roll);
+HPDF_EXPORT(HPDF_Dict) HPDF_Create3DActivation(HPDF_Annotation u3dAnnotation);
+HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Set3DActivation(HPDF_Annotation u3dAnnotation, HPDF_Dict activation);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetActivationMode(HPDF_Dict activation, const char *mode);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetDeactivationMode(HPDF_Dict activation, const char *mode);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetAnimationAutoStart(HPDF_Dict activation, HPDF_BOOL autoStart);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetToolbarEnabled(HPDF_Dict activation, HPDF_BOOL enabled);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetNavigationInterfaceOpened(HPDF_Dict activation, HPDF_BOOL enabled);
 
 HPDF_Dict
 HPDF_3DView_New    ( HPDF_MMgr  mmgr,

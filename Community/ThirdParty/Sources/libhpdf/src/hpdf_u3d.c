@@ -16,6 +16,7 @@
  */
 #include "hpdf_conf.h"
 #include "hpdf_utils.h"
+#include "hpdf_annotation.h"
 #include "hpdf.h"
 
 #include <string.h>
@@ -239,6 +240,7 @@ HPDF_U3D_LoadU3D   (HPDF_MMgr        mmgr,
 	return u3d;
 }
 
+
 HPDF_EXPORT(HPDF_Dict) HPDF_Create3DView(HPDF_MMgr mmgr, const char *name)
 {
 	HPDF_STATUS ret = HPDF_OK;
@@ -281,7 +283,7 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Add3DView(HPDF_U3D u3d, HPDF_Dict view)
 	HPDF_Array views = NULL;
 	HPDF_STATUS ret = HPDF_OK;
 
-	HPDF_PTRACE ((" HPDF_Add3DView\n"));
+	HPDF_PTRACE ((" HPDF_U3D_Add3DView\n"));
 
 	if (u3d == NULL || view == NULL) {
 		return HPDF_INVALID_U3D_DATA;
@@ -304,11 +306,160 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Add3DView(HPDF_U3D u3d, HPDF_Dict view)
 	}
 
 	if (ret == HPDF_OK) {
-		ret = HPDF_Array_Add( views, view);
+		ret = HPDF_Array_Add(views, view);
 	}
 
 	return ret;
 }
+
+
+HPDF_EXPORT(HPDF_Dict) HPDF_Create3DActivation(HPDF_Annotation u3dAnnotation)
+{
+  HPDF_STATUS ret = HPDF_OK;
+  HPDF_Dict activation;
+
+  HPDF_PTRACE ((" HPDF_Create3DActivation\n"));
+
+  activation = HPDF_Dict_New (u3dAnnotation->mmgr);
+  if (!activation) 
+  {
+    return NULL;
+  }
+
+  ret = HPDF_Dict_AddName (activation, "DIS", "U");
+  if (ret != HPDF_OK) {
+    HPDF_Dict_Free (activation);
+    return NULL;
+  }
+
+  return activation;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Set3DActivation(HPDF_Annotation u3dAnnotation, HPDF_Dict activation)
+{
+  HPDF_STATUS ret = HPDF_OK;
+  HPDF_Name subtype;
+
+  HPDF_PTRACE ((" HPDF_U3D_Set3DActivation\n"));
+
+  if (u3d == NULL || activation == NULL) 
+  {
+    return HPDF_INVALID_U3D_DATA;
+  }
+
+  subtype = HPDF_Dict_GetItem (u3dAnnotation, "Subtype", HPDF_OCLASS_NAME);
+
+  if (!subtype || HPDF_StrCmp (subtype->value, "3D") != 0) 
+  {
+      HPDF_RaiseError (u3dAnnotation->error, HPDF_INVALID_ANNOTATION, 0);
+      return HPDF_FALSE;
+  }
+
+  ret = HPDF_Dict_Add(u3dAnnotation, "3DA", activation);
+
+  return ret;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetActivationMode(HPDF_Dict activation, const char *mode)
+{
+  HPDF_STATUS ret = HPDF_OK;
+  static const char * const modes[] = { "PageOpen", "PageVisible", "ExplicitActivate" };
+  static const char * const names[] = { "PO", "PV", "XA" };
+  int i;
+
+  HPDF_PTRACE ((" HPDF_3DActivation_SetActivationMode\n"));
+
+  if (activation == NULL || mode == NULL || mode[0] == '\0') 
+  {
+    return HPDF_INVALID_U3D_DATA;
+  }
+
+  for (i = 0; i < 3; i++) 
+  {
+    if (!strcmp(mode, modes[i]))
+    {
+      ret = HPDF_Dict_AddName (activation, "A", names[i]);
+      break;
+    }
+    else
+    {
+      return HPDF_INVALID_U3D_DATA;
+    }
+  }
+
+  return ret;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetDeactivationMode(HPDF_Dict activation, const char *mode)
+{
+  HPDF_STATUS ret = HPDF_OK;
+  static const char * const modes[] = { "PageClosed", "PageInvisible", "ExplicitDeactivate" };
+  static const char * const names[] = { "PC", "PI", "XD" };
+  int i;
+
+  HPDF_PTRACE ((" HPDF_3DActivation_SetDeactivationMode\n"));
+
+  if (activation == NULL || mode == NULL || mode[0] == '\0') 
+  {
+    return HPDF_INVALID_U3D_DATA;
+  }
+
+  for (i = 0; i < 3; i++) 
+  {
+    if (!strcmp(mode, modes[i]))
+    {
+      ret = HPDF_Dict_AddName (activation, "D", names[i]);
+      break;
+    }
+    else
+    {
+      return HPDF_INVALID_U3D_DATA;
+    }
+  }
+
+  return ret;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetAnimationAutoStart(HPDF_Dict activation, HPDF_BOOL autoStart)
+{
+  HPDF_STATUS ret = HPDF_OK;
+
+  HPDF_PTRACE ((" HPDF_3DActivation_SetAnimationAutoStart\n"));
+
+  if (autoStart)
+  {
+    ret = HPDF_Dict_AddName (activation, "AIS", "L");
+  }
+  else
+  {
+    ret = HPDF_Dict_AddName (activation, "AIS", "I");
+  }
+
+  return ret;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetToolbarEnabled(HPDF_Dict activation, HPDF_BOOL enabled)
+{
+  HPDF_STATUS ret = HPDF_OK;
+
+  HPDF_PTRACE ((" HPDF_3DActivation_SetToolbarEnabled\n"));
+
+  ret = HPDF_Dict_AddBoolean (activation, "TB", enabled);
+
+  return ret;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetNavigationInterfaceOpened(HPDF_Dict activation, HPDF_BOOL enabled)
+{
+  HPDF_STATUS ret = HPDF_OK;
+
+  HPDF_PTRACE ((" HPDF_3DActivation_SetNavigationInterfaceOpened\n"));
+
+  ret = HPDF_Dict_AddBoolean (activation, "NP", enabled);
+
+  return ret;
+}
+
 
 
 HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_AddOnInstanciate(HPDF_U3D u3d, HPDF_JavaScript javascript)
