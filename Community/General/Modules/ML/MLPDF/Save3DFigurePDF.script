@@ -10,6 +10,23 @@
 
 Description {
   Field mevislabVersion { editable = No }
+  
+  Field figureActivationMode {
+    items {
+      item ACTIVATION_MODE_EXPLICIT_ACIVATE { title = "User activate (recommended)" }
+      item ACTIVATION_MODE_PAGE_OPEN        { title = "Page opened"}
+      item ACTIVATION_MODE_PAGE_VISIBLE     { title = "Page visible" }
+    }
+  }
+
+  Field figureDeactivationMode {
+    items {
+      item DEACTIVATION_MODE_EXPLICIT_DEACTIVATE { title = "User deactivate (recommended)" }
+      item DEACTIVATION_MODE_PAGE_CLOSED         { title = "Page closed"}
+      item DEACTIVATION_MODE_PAGE_INVISIBLE      { title = "Page invisible" }
+    }
+  }
+  
 }
 
 
@@ -26,9 +43,16 @@ Window {
     Separator { }
     Field pageHeaderReference   {  }
     Field pageHeaderHeadline    {  }
-    Field figureBackgroundColor {  }
-    Field figureCaption         {  }
-    TextView figureDescription  { autoApply = Yes }    
+    Separator {}
+    Field figureActivationMode             { title = "Activation Mode:" }
+    Field figureDeactivationMode           { title = "Deactivation Mode:" }
+    Field figureToolbarEnabled             { title = "Toolbar Enabled:" }
+    Field figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+    Field figureAnimationAutostart         { title = "Animation Autostart:" }
+    Separator {}
+    Field viewBackgroundColor {  }
+    Field caption         {  }
+    TextView description  { autoApply = Yes }    
     Separator {}
     Button save { title = "Save" alignX = Left }
     ProgressBar progress { textVisible = No }

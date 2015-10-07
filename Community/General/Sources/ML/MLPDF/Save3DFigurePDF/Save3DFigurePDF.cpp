@@ -30,10 +30,27 @@ ML_MODULE_CLASS_SOURCE(Save3DFigurePDF, Module);
 
 Save3DFigurePDF::Save3DFigurePDF() : Module(0, 0)
 {
+  //-------------------------------------------------------------------
+  //! Strings for enum field: specification type 
+  //-------------------------------------------------------------------
+  const char* const ACTIVATION_MODE_STRINGS[NUM_ACTIVATIONMODES] = {
+    "ACTIVATION_MODE_EXPLICIT_ACIVATE",
+    "ACTIVATION_MODE_PAGE_OPEN",
+    "ACTIVATION_MODE_PAGE_VISIBLE"
+  };
+
+  //-------------------------------------------------------------------
+  //! Strings for enum field: specification type 
+  //-------------------------------------------------------------------
+  const char* const DEACTIVATION_MODE_STRINGS[NUM_DEACTIVATIONMODES] = {
+    "DEACTIVATION_MODE_EXPLICIT_DEACTIVATE",
+    "DEACTIVATION_MODE_PAGE_CLOSED",
+    "DEACTIVATION_MODE_PAGE_INVISIBLE"
+  };
+
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
   handleNotificationOff();
-
 
   (_u3dFilenameFld = addString("u3dFilename"))->setStringValue("");
   (_pdfFilenameFld = addString("pdfFilename"))->setStringValue("");
@@ -41,9 +58,15 @@ Save3DFigurePDF::Save3DFigurePDF() : Module(0, 0)
   (_pageHeaderReferenceFld = addString("pageHeaderReference"))->setStringValue("");
   (_pageHeaderHeadlineFld = addString("pageHeaderHeadline"))->setStringValue("");
 
-  (_figureBackgroundColorFld = addColor("figureBackgroundColor"))->setVector3Value(Vector3(0.8,0.8,0.8));
-  (_figureCaptionFld = addString("figureCaption"))->setStringValue("");
-  (_figureDescriptionFld = addString("figureDescription"))->setStringValue("");
+  (_figureActivationModeFld             = addEnum("figureActivationMode", ACTIVATION_MODE_STRINGS, NUM_ACTIVATIONMODES))->setEnumValue(ACTIVATION_MODE_EXPLICIT_ACTIVATE);
+  (_figureDeactivationModeFld           = addEnum("figureDeactivationMode", DEACTIVATION_MODE_STRINGS, NUM_DEACTIVATIONMODES))->setEnumValue(DEACTIVATION_MODE_EXPLICIT_DEACTIVATE);
+  (_figureAnimationAutostartFld         = addBool("figureAnimationAutostart"))->setBoolValue(false);
+  (_figureToolbarEnabledFld             = addBool("figureToolbarEnabled"))->setBoolValue(true);
+  (_figureNavigationInterfaceEnabledFld = addBool("figureNavigationInterfaceEnabled"))->setBoolValue(false);
+
+  (_viewBackgroundColorFld = addColor("viewBackgroundColor"))->setVector3Value(Vector3(0.8,0.8,0.8));
+  (_captionFld = addString("caption"))->setStringValue("");
+  (_descriptionFld = addString("description"))->setStringValue("");
 
   _saveFld = addNotify("save");
 
@@ -204,13 +227,12 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
 
 
     HPDF_U3D u3dModel;
-    HPDF_Annotation u3dAnnotation;
 
     HPDF_Rect rect1 = { 50, 250, 350, 400 };
 
     u3dModel = HPDF_LoadU3DFromFile(pdfDocument, "D:\\MeVisLab\\Packages\\Community\\General\\Modules\\ML\\MLPDF\\networks\\Save3DFigurePDFExample.u3d");
 
-    HPDF_Dict defaultView = HPDF_Page_Create3DView(pdfPage, u3dModel, u3dAnnotation, "Default View");    
+    HPDF_Dict defaultView = HPDF_Create3DView(pdfPage->mmgr, "Default View");
     //HPDF_3DView_AddNode(defaultView, "Cow Mesh red", 0.5, true);   // funktioniert! :-)
     //HPDF_3DView_AddNode(defaultView, "Point Set Cow", 0.5, true);  // funktioniert! :-)
     HPDF_3DView_SetLighting(defaultView, "HeadLamp");  // "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "HeadLamp"
@@ -236,19 +258,17 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
     HPDF_U3D_Add3DView(u3dModel, defaultView);
     //HPDF_U3D_SetDefault3DView(u3dModel, "Default View");
 
-    //HPDF_Create3DView();
-    //HPDF_3DView_Add3DC3DMeasure();
+    HPDF_Annotation u3dAnnotation = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dModel); 
 
-    //HPDF_U3D_AddOnInstanciate();
-    //HPDF_STATUS stat = HPDF_Annot_Set3DView(mmgr, annot, u3dAnnot, defaultView);
+    HPDF_Dict activation = HPDF_Create3DActivation(u3dAnnotation);
+    HPDF_3DActivation_SetActivationMode(activation, "ExplicitActivate");
+    HPDF_3DActivation_SetDeactivationMode(activation, "ExplicitDeactivate");
+    HPDF_3DActivation_SetAnimationAutoStart(activation, false);
+    HPDF_3DActivation_SetToolbarEnabled(activation, true);
+    HPDF_3DActivation_SetNavigationInterfaceOpened(activation, true);
 
-    //HPDF_Page_Create3DAnnotExData();
-    //HPDF_3DAnnotExData_Set3DMeasurement();
+    HPDF_U3D_Set3DActivation(u3dAnnotation, activation);
 
-
-
-
-    u3dAnnotation = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dModel); 
 
     /* save the document to a file */
     HPDF_SaveToFile (pdfDocument, filename.c_str());

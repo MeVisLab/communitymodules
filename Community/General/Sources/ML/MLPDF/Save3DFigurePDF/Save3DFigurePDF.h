@@ -31,6 +31,26 @@ public:
   //! Constructor.
   Save3DFigurePDF();
 
+  //-----------------------------------------------------------------------------------------------//
+  //! Figure activation modes.
+  //-----------------------------------------------------------------------------------------------//
+  enum ACTIVATION_MODES {
+    ACTIVATION_MODE_EXPLICIT_ACTIVATE = 0,
+    ACTIVATION_MODE_PAGE_OPEN         = 1,
+    ACTIVATION_MODE_PAGE_VISIBLE      = 2,
+    NUM_ACTIVATIONMODES               = 3
+  };
+
+  //-----------------------------------------------------------------------------------------------//
+  //! Figure deactivation modes.
+  //-----------------------------------------------------------------------------------------------//
+  enum DEACTIVATION_MODES {
+    DEACTIVATION_MODE_EXPLICIT_DEACTIVATE = 0,
+    DEACTIVATION_MODE_PAGE_CLOSED         = 1,
+    DEACTIVATION_MODE_PAGE_INVISIBLE      = 2,
+    NUM_DEACTIVATIONMODES                 = 3
+  };
+
 protected:
 
   //! Destructor.
@@ -55,11 +75,28 @@ private:
   StringField*  _pageHeaderHeadlineFld;
 
   //! Figure property fields
-  ColorField*   _figureBackgroundColorFld;
-  StringField*  _figureCaptionFld;
-  StringField*  _figureDescriptionFld;
+  EnumField*    _figureActivationModeFld;
+  EnumField*    _figureDeactivationModeFld;
+  BoolField*    _figureAnimationAutostartFld;
+  BoolField*    _figureToolbarEnabledFld;
+  BoolField*    _figureNavigationInterfaceEnabledFld;
+
+  //! View property fields
+  ColorField*   _viewBackgroundColorFld;
+
+  //! Description fields
+  StringField*  _captionFld;
+  StringField*  _descriptionFld;
+
+/*
+    HPDF_3DActivation_SetActivationMode(activation, "ExplicitActivate");
+    HPDF_3DActivation_SetDeactivationMode(activation, "ExplicitDeactivate");
+    HPDF_3DActivation_SetAnimationAutoStart(activation, false);
+    HPDF_3DActivation_SetToolbarEnabled(activation, true);
+    HPDF_3DActivation_SetNavigationInterfaceOpened(activation, true);
 
 
+*/
   //! Save notification field
   NotifyField*  _saveFld;
 

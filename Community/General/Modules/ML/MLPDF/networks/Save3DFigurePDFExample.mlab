@@ -25,9 +25,14 @@ module Save3DFigurePDF {
     pdfFilename = ""
     pageHeaderReference = ""
     pageHeaderHeadline = ""
-    figureBackgroundColor = "0.8 0.8 0.8"
-    figureCaption = ""
-    figureDescription = ""
+    figureActivationMode = ACTIVATION_MODE_EXPLICIT_ACIVATE
+    figureDeactivationMode = DEACTIVATION_MODE_EXPLICIT_DEACTIVATE
+    figureAnimationAutostart = FALSE
+    figureToolbarEnabled = TRUE
+    figureNavigationInterfaceEnabled = FALSE
+    viewBackgroundColor = "0.8 0.8 0.8"
+    caption = ""
+    description = ""
     status = Idle.
     progress = 0
     pdfAttrTitle = Title
