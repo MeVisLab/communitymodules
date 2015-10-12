@@ -1343,12 +1343,6 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
   // Get names from GUI.
   std::string outWEMStr = _outWEMNameFld->getStringValue();
   
-  // Variables
-  WEMTrianglePatch *triPatch = NULL;
-  WEMNode *node = NULL;
-  WEMTriangle *triangle = NULL;
-  unsigned int i = 0;
-  
   // Internal temp variable with the number of patches in Matlab.
   mxArray *m_patchList = engGetVariable(m_pEngine, outWEMStr.c_str());
   if(m_patchList!=NULL) {
@@ -1376,6 +1370,12 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       engEvalString(m_pEngine, "clear tmpOutWEMFaces");
       // Clear temp string.
       executeStr.str("");
+
+      // Variables
+      WEMTrianglePatch *triPatch = NULL;
+      WEMNode *node = NULL;
+      WEMTriangle *triangle = NULL;
+      unsigned int i = 0;
 
       // Get data from Matlab array.
       if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
