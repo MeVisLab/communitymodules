@@ -1,0 +1,711 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "569 -11 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module VCGCoordinateSystemRenderer {
+  internal  {
+    frame = "609 213 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGCoordinateSystemRenderer
+  }
+}
+module WEMInitialize {
+  internal  {
+    frame = "557 501 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "969 284 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInitialize
+    isProcessing = FALSE
+    elapsedTime = 0.0020000001
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    initialPosition = "0 0 0"
+    initialDeformation = "1 1 1"
+    initModel = Dodecahedron
+    mirrorFaces = TRUE
+    generateEdges = TRUE
+    generatePrimitiveValueLists = TRUE
+  }
+}
+module FiberInfo {
+  internal  {
+    frame = "217 373 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "116 184 330 270"
+        sizeHint = "330 270"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FiberInfo
+  }
+}
+module SoFiberVis {
+  internal  {
+    frame = "329 333 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "207 632 383 488"
+        sizeHint = "383 488"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoFiberVis
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    generalColor = "1 1 1"
+    drawLines = TRUE
+    drawSpheres = FALSE
+    optimizePoints = FALSE
+    angleThreshold = 0.99900001
+    sphereRadius = 8
+    computeFiberSet = FALSE
+    alphaValue = 1.1
+    minFibernessValue = 0
+    colorMode = COLOR_GENERAL
+    enableLighting = TRUE
+    ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
+    diffuse = "1 1 1"
+    specular = "1 1 1"
+    shininess = 0.63010001
+    allowClip = TRUE
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "245 205 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "1015 499 349 308"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539801
+    position = "-2372.13720703125 1965.83178710938 -573.01953125"
+    orientation = "-0.79130893945694 0.15688082575798 0.590947151184082 2.52881979942322"
+    nearDistance = 2422.4441
+    farDistance = 4254.6313
+    focalDistance = 3126.02
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "193 301 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module VCGCoordinateSystem {
+  internal  {
+    frame = "521 373 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "634 395 725 495"
+        sizeHint = "388 495"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "971 163 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGCoordinateSystem
+    lineTypeStartID = 1000
+    xyPlaneWEMLabel = VCGCoordinateSystemXYPlane
+    yzPlaneWEMLabel = VCGCoordinateSystemYZPlane
+    zxPlaneWEMLabel = VCGCoordinateSystemZXPlane
+    axesType = Grid
+    axesOverlengthPercent = 20
+    axesMarkerAtAbsoluteEnd = FALSE
+    axesTicks = TRUE
+    axesTicksLengthPercent = 5
+    xAxisColor = "0.7 0.7 0.7"
+    yAxisColor = "0.75 0.75 0.75"
+    zAxisColor = "0.8 0.8 0.8"
+    axisMarkerColor = "1 0 0"
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "233 517 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "128 783 1354 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(NETWORK)/example.vcg
+    checkIfFileExists = TRUE
+  }
+}
+module VCGLoad {
+  internal  {
+    frame = "421 493 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "106 727 777 188"
+        sizeHint = "623 188"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1167 568 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGLoad
+    filename = D:/MeVisLab/Packages/Axel/General/Sources/ML/MLVectorcardiogram/example.vcg
+    autoLoad = TRUE
+    numBeats = 8
+  }
+}
+module SaveU3D {
+  internal  {
+    frame = "461 -99 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "751 416 850 602"
+        sizeHint = "850 606"
+        wasOpen = no
+      }
+      window "Specification Generator Panel" {
+        geometry = "435 230 377 579"
+        sizeHint = "275 579"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1755 154 986 547"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SaveU3D
+    isProcessing = FALSE
+    elapsedTime = 0
+    autoApply = FALSE
+    autoUpdate = FALSE
+    autoClear = TRUE
+    listenToFinishingNotifications = FALSE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    simpleModePointSet = FALSE
+    simpleModeLineSet = FALSE
+    simpleModeMesh = FALSE
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    pointCloudSpecification = ""
+    lineSetSpecification = "<LineSet>
+<ObjectName>Beat 1</ObjectName>
+<PositionTypes>1</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 1 0</Color>
+
+<LineSet>
+<ObjectName>Beat 2</ObjectName>
+<PositionTypes>2</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.928571 0</Color>
+
+<LineSet>
+<ObjectName>Beat 3</ObjectName>
+<PositionTypes>3</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.857143 0</Color>
+
+<LineSet>
+<ObjectName>Beat 4</ObjectName>
+<PositionTypes>4</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.785714 0</Color>
+
+<LineSet>
+<ObjectName>Beat 5</ObjectName>
+<PositionTypes>5</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.714286 0</Color>
+
+<LineSet>
+<ObjectName>Beat 6</ObjectName>
+<PositionTypes>6</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.642857 0</Color>
+
+<LineSet>
+<ObjectName>Beat 7</ObjectName>
+<PositionTypes>7</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.571429 0</Color>
+
+<LineSet>
+<ObjectName>Beat 8</ObjectName>
+<PositionTypes>8</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.5 0</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1000</PositionTypes>
+<ConnectionTypes>1000</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1001</PositionTypes>
+<ConnectionTypes>1001</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1002</PositionTypes>
+<ConnectionTypes>1002</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1003</PositionTypes>
+<ConnectionTypes>1003</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1004</PositionTypes>
+<ConnectionTypes>1004</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1005</PositionTypes>
+<ConnectionTypes>1005</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/</GroupPath>
+<ObjectName>End Markers</ObjectName>
+<PositionTypes>1006</PositionTypes>
+<ConnectionTypes>1006</ConnectionTypes>
+<Color>1 0 0</Color>
+
+"
+    meshSpecification = ""
+    viewsSpecification = ""
+    lightsSpecification = ""
+    metaDataSpecification = ""
+    defaultViewName = DefaultView
+    defaultLightName = DefaultAmbientLight
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialAmbientColor = "0 0 0"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAlpha = 1
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    defaultBoundingBoxMetaData = TRUE
+    addDefaultViewNode = TRUE
+    addDefaultLightNode = TRUE
+    filename = D:/MeVisLab/Packages/Axel/General/Sources/ML/MLVectorcardiogram/example.u3d
+    status = Idle.
+    newSpecificationType = SPECTYPE_LINESET
+    newSpecificationObjectName = "Coordinate System"
+    newSpecificationGroupPath = as
+    newSpecificationUseDefaultColor = FALSE
+    newSpecificationUseDefaultSpecularColor = TRUE
+    newSpecificationColor = "0.651 0.651 0.651"
+    newSpecificationColorAlpha = 1
+    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    newSpecificationModelVisibility = SPECTYPE_FRONTANDBACKVISIBLE
+    newSpecificationWEMLabel = ""
+    newSpecificationPositionTypes = 1000
+    newSpecificationConnectionTypes = ""
+    newSpecificationMetaDataKey = ""
+    newSpecificationMetaDataValue = ""
+    newSpecification = "<LineSet>
+<PositionTypes>1000</PositionTypes>
+<ObjectName>Coordinate System</ObjectName>
+<GroupPath>/as/</GroupPath>
+<Color>0.651 0.651 0.651 1.000</Color>
+<ModelVisibility>3</ModelVisibility>
+
+"
+    newSpecificationOutputValid = TRUE
+    selectedTab = 1
+  }
+}
+module MergeLists {
+  internal  {
+    frame = "425 237 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "273 407 318 130"
+        sizeHint = "318 130"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MergeLists
+    updateMode = AutoUpdate
+    alwaysRebuild = TRUE
+    notifyForEachEvent = TRUE
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "193 -87 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "576 546 910 532"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateOutputFilename
+    operationType = Replace
+    string1 = D:/MeVisLab/Packages/Axel/General/Sources/ML/MLVectorcardiogram/example.vcg
+    string2 = .vcg
+    string3 = .u3d
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "753 -95 176 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "171 219 370 331"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AssembleLinesetDefinition
+    operationType = Concatenate
+    string1 = "<LineSet>
+<ObjectName>Beat 1</ObjectName>
+<PositionTypes>1</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 1 0</Color>
+
+<LineSet>
+<ObjectName>Beat 2</ObjectName>
+<PositionTypes>2</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.928571 0</Color>
+
+<LineSet>
+<ObjectName>Beat 3</ObjectName>
+<PositionTypes>3</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.857143 0</Color>
+
+<LineSet>
+<ObjectName>Beat 4</ObjectName>
+<PositionTypes>4</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.785714 0</Color>
+
+<LineSet>
+<ObjectName>Beat 5</ObjectName>
+<PositionTypes>5</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.714286 0</Color>
+
+<LineSet>
+<ObjectName>Beat 6</ObjectName>
+<PositionTypes>6</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.642857 0</Color>
+
+<LineSet>
+<ObjectName>Beat 7</ObjectName>
+<PositionTypes>7</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.571429 0</Color>
+
+<LineSet>
+<ObjectName>Beat 8</ObjectName>
+<PositionTypes>8</PositionTypes>
+<ConnectionTypes>simple</ConnectionTypes>
+<Color>1 0.5 0</Color>
+
+"
+    string2 = "<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1000</PositionTypes>
+<ConnectionTypes>1000</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1001</PositionTypes>
+<ConnectionTypes>1001</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Axis</ObjectName>
+<PositionTypes>1002</PositionTypes>
+<ConnectionTypes>1002</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/X-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1003</PositionTypes>
+<ConnectionTypes>1003</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Y-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1004</PositionTypes>
+<ConnectionTypes>1004</ConnectionTypes>
+<Color>0.75 0.75 0.75</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/Z-Axis/</GroupPath>
+<ObjectName>Ticks</ObjectName>
+<PositionTypes>1005</PositionTypes>
+<ConnectionTypes>1005</ConnectionTypes>
+<Color>0.8 0.8 0.8</Color>
+
+<LineSet>
+<GroupPath>/Coordinate System/</GroupPath>
+<ObjectName>End Markers</ObjectName>
+<PositionTypes>1006</PositionTypes>
+<ConnectionTypes>1006</ConnectionTypes>
+<Color>1 0 0</Color>
+
+"
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module VCGLineSetDefinition {
+  internal  {
+    frame = "733 373 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "820 391 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "1030 168 400 500"
+        sizeHint = "400 500"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VCGLineSetDefinition
+    singleLoop = FALSE
+    linesetStartColor = "1 1 0"
+    linesetEndColor = "1 0.5 0"
+  }
+}
+connections  {
+  SoGroup.children = "SoFiberVis.self VCGCoordinateSystemRenderer.outScene"
+  VCGCoordinateSystemRenderer.inPlanesWEM = VCGCoordinateSystem.outGridPlaneWEM
+  VCGCoordinateSystemRenderer.inLinePositions = VCGCoordinateSystem.outLinePositions
+  VCGCoordinateSystemRenderer.inLineConnections = VCGCoordinateSystem.outLineConnections
+  FiberInfo.inputFiberSet = VCGLoad.outFiberSetFld
+  SoFiberVis.inFiberSetFld = VCGLoad.outFiberSetFld
+  SoExaminerViewer.children = "SoBackground.self SoFiberVis.self"
+  VCGCoordinateSystem.inPositions = VCGLoad.outPointSetFld
+  VCGLoad.filename = LocalFileName.trueName
+  SaveU3D.inWEM = VCGCoordinateSystem.outGridPlaneWEM
+  SaveU3D.inLinePositions = MergeLists.outList
+  SaveU3D.inLineConnections = VCGCoordinateSystem.outLineConnections
+  SaveU3D.lineSetSpecification = AssembleLinesetDefinition.result
+  SaveU3D.filename = CreateOutputFilename.result
+  MergeLists.inList1 = VCGLoad.outPointSetFld
+  MergeLists.inList2 = VCGCoordinateSystem.outLinePositions
+  CreateOutputFilename.string1 = LocalFileName.trueName
+  AssembleLinesetDefinition.string1 = VCGLineSetDefinition.linesetDefinition
+  AssembleLinesetDefinition.string2 = VCGCoordinateSystem.linesetDefinition
+  VCGLineSetDefinition.inLinePositions = VCGLoad.outPointSetFld
+}
+networkModel = ""
