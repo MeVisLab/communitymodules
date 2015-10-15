@@ -1,2 +1,0 @@
-http://fossies.org/dox/asymptote-2.32.src/annotated.html
-
