@@ -34,15 +34,15 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Add3DView(HPDF_U3D u3d, HPDF_Dict view);
 HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_SetDefault3DView(HPDF_U3D u3d, const char *name);
 HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_AddOnInstanciate(HPDF_U3D u3d, HPDF_JavaScript javaScript);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_AddNode(HPDF_Dict view, const char *name, HPDF_REAL opacity, HPDF_BOOL visible);
-HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetLighting(HPDF_Dict view, const char *scheme);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetLighting(HPDF_Dict view, const char *scheme);  // Allowed: "Artwork", "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "Headlamp"
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetBackgroundColor(HPDF_Dict view, HPDF_REAL r, HPDF_REAL g, HPDF_REAL b);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetPerspectiveProjection(HPDF_Dict view, HPDF_REAL fov);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetOrthogonalProjection(HPDF_Dict view, HPDF_REAL mag);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetCamera(HPDF_Dict view, HPDF_REAL coox, HPDF_REAL cooy, HPDF_REAL cooz, HPDF_REAL c2cx, HPDF_REAL c2cy, HPDF_REAL c2cz, HPDF_REAL roo, HPDF_REAL roll);
 HPDF_EXPORT(HPDF_Dict) HPDF_Create3DActivation(HPDF_Annotation u3dAnnotation);
 HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Set3DActivation(HPDF_Annotation u3dAnnotation, HPDF_Dict activation);
-HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetActivationMode(HPDF_Dict activation, const char *mode);
-HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetDeactivationMode(HPDF_Dict activation, const char *mode);
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetActivationMode(HPDF_Dict activation, const char *mode);   // Allowed: "PageOpen", "PageVisible", "ExplicitActivate"
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetDeactivationMode(HPDF_Dict activation, const char *mode); // Allowed: "PageClosed", "PageInvisible", "ExplicitDeactivate"
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetAnimationAutoStart(HPDF_Dict activation, HPDF_BOOL autoStart);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetToolbarEnabled(HPDF_Dict activation, HPDF_BOOL enabled);
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetNavigationInterfaceOpened(HPDF_Dict activation, HPDF_BOOL enabled);
