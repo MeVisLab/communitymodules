@@ -13,7 +13,7 @@
 #include "SaveU3D.h"
 #include "U3DFileFormat/U3D_DataTypes.h"
 #include "U3DFileFormat/U3D_Tools.h"
-#include "MLPDF_Tools.h"
+#include "../shared/MLPDF_Tools.h"
 
 ML_START_NAMESPACE
 
@@ -61,117 +61,122 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
     addedTrianglePatch = NULL;
     const unsigned int newId = saveWEM->getCurrentWEMPatchId();
 
-    if (wemPatch->getPatchType() != WEM_PATCH_TRIANGLES)
+    if (wemPatch->getNumFaces() > 0)
     {
-      WEMTrianglePatch* triangulatedPatch = NULL;
 
-      ML_CHECK_NEW(triangulatedPatch,WEMTrianglePatch());
-      wemPatch->triangulate(triangulatedPatch, WEM_TRIANGULATION_STRIP);
-      addedTrianglePatch = saveWEM->addWEMPatchCopy(triangulatedPatch);
-      addedTrianglePatch->computeBoundingBox();
-      ML_DELETE(triangulatedPatch);
-    }
-    else
-    {
-      addedTrianglePatch = saveWEM->addWEMPatchCopy(reinterpret_cast<WEMTrianglePatch*>(wemPatch));
-    }
-
-    if (addedTrianglePatch != NULL) 
-    {
-      addedTrianglePatch->setId(newId);
-
-      // Adjust properties of main WEM bounding box
-      WEMBoundingBox* thisWEMPatchBoundingBox = addedTrianglePatch->getBoundingBox();
-      ModelBoundingBoxStruct newboundingBox;
-      newboundingBox.start = thisWEMPatchBoundingBox->getMin();
-      newboundingBox.end   = thisWEMPatchBoundingBox->getMax();
-      UpdateBoundingBox(boundingBox, newboundingBox);
-
-	    std::string wemDescription = addedTrianglePatch->getDescription();
-      std::string wemLabel = addedTrianglePatch->getLabel();
-
-      SpecificationParametersStruct thisSpecificationParameters;
-
-      // Create an artificial meshSpecificationVector if only WEM label & description shall be used 
-      if (simpleMode)
+      if (wemPatch->getPatchType() != WEM_PATCH_TRIANGLES)
       {
-        meshSpecificationsVector.clear();
+        WEMTrianglePatch* triangulatedPatch = NULL;
 
-        // Parse WEM label & description...
-        std::string u3dModelName       = getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
-        std::string u3dGroupName       = getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
-        std::string u3dGroupPath       = "";
-        if ("" != u3dModelName)
+        ML_CHECK_NEW(triangulatedPatch,WEMTrianglePatch());
+        wemPatch->triangulate(triangulatedPatch, WEM_TRIANGULATION_STRIP);
+        addedTrianglePatch = saveWEM->addWEMPatchCopy(triangulatedPatch);
+        addedTrianglePatch->computeBoundingBox();
+        ML_DELETE(triangulatedPatch);
+      }
+      else
+      {
+        addedTrianglePatch = saveWEM->addWEMPatchCopy(reinterpret_cast<WEMTrianglePatch*>(wemPatch));
+      }
+
+      if (addedTrianglePatch != NULL) 
+      {
+        addedTrianglePatch->setId(newId);
+
+        // Adjust properties of main WEM bounding box
+        WEMBoundingBox* thisWEMPatchBoundingBox = addedTrianglePatch->getBoundingBox();
+        ModelBoundingBoxStruct newboundingBox;
+        newboundingBox.start = thisWEMPatchBoundingBox->getMin();
+        newboundingBox.end   = thisWEMPatchBoundingBox->getMax();
+        UpdateBoundingBox(boundingBox, newboundingBox);
+
+	      std::string wemDescription = addedTrianglePatch->getDescription();
+        std::string wemLabel = addedTrianglePatch->getLabel();
+
+        SpecificationParametersStruct thisSpecificationParameters;
+
+        // Create an artificial meshSpecificationVector if only WEM label & description shall be used 
+        if (simpleMode)
         {
-          u3dGroupPath = "/" + u3dModelName + "/";
-        }
-        if ("" != u3dGroupName)
-        {
-          if ("" == u3dGroupPath)
+          meshSpecificationsVector.clear();
+
+          // Parse WEM label & description...
+          std::string u3dModelName       = getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
+          std::string u3dGroupName       = getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
+          std::string u3dGroupPath       = "";
+          if ("" != u3dModelName)
           {
-            u3dGroupPath += "/";
+            u3dGroupPath = "/" + u3dModelName + "/";
           }
-          u3dGroupPath += u3dGroupName + "/";
+          if ("" != u3dGroupName)
+          {
+            if ("" == u3dGroupPath)
+            {
+              u3dGroupPath += "/";
+            }
+            u3dGroupPath += u3dGroupName + "/";
+          }
+
+          std::string displayName = wemLabel;
+          if (displayName == "") {
+            displayName = "Mesh " + intToString(i+1);
+          }
+
+          // ...and write data into meshSpecification string
+          std::string meshSpecificationsString = "<U3DMesh>";
+          meshSpecificationsString += "<WEMLabel>" + wemLabel + "</WEMLabel>";
+          meshSpecificationsString += "<ObjectName>" + displayName + "</ObjectName>";
+          meshSpecificationsString += "<GroupPath>" + u3dGroupPath + "</GroupPath>";
+          meshSpecificationsString += "<Color>" + getSpecificParameterFromWEMDescription(wemDescription, "Color") + "</Color>";
+          meshSpecificationsString += "<SpecularColor>" + getSpecificParameterFromWEMDescription(wemDescription, "SpecularColor") + "</SpecularColor>";
+          meshSpecificationsString += "<ModelVisibility>3</ModelVisibility>";
+
+          // Add meshSpecification string to meshSpecificationVector
+          meshSpecificationsVector.push_back(meshSpecificationsString);
         }
 
-        std::string displayName = wemLabel;
-        if (displayName == "") {
-          displayName = "Mesh " + intToString(i+1);
-        }
-
-        // ...and write data into meshSpecification string
-        std::string meshSpecificationsString = "<U3DMesh>";
-        meshSpecificationsString += "<WEMLabel>" + wemLabel + "</WEMLabel>";
-        meshSpecificationsString += "<ObjectName>" + displayName + "</ObjectName>";
-        meshSpecificationsString += "<GroupPath>" + u3dGroupPath + "</GroupPath>";
-        meshSpecificationsString += "<Color>" + getSpecificParameterFromWEMDescription(wemDescription, "Color") + "</Color>";
-        meshSpecificationsString += "<SpecularColor>" + getSpecificParameterFromWEMDescription(wemDescription, "SpecularColor") + "</SpecularColor>";
-        meshSpecificationsString += "<ModelVisibility>3</ModelVisibility>";
-
-        // Add meshSpecification string to meshSpecificationVector
-        meshSpecificationsVector.push_back(meshSpecificationsString);
-      }
-
-      for (int thisSpecificationIndex = 0; thisSpecificationIndex < meshSpecificationsVector.size(); thisSpecificationIndex++)
-      {
-        thisSpecificationParameters = getAllSpecificationParametersFromString(meshSpecificationsVector[thisSpecificationIndex]);
-        if (thisSpecificationParameters.WEMLabel == wemLabel)
+        for (int thisSpecificationIndex = 0; thisSpecificationIndex < meshSpecificationsVector.size(); thisSpecificationIndex++)
         {
-          U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_MESH, thisSpecificationParameters.ObjectName, defaultValues);
+          thisSpecificationParameters = getAllSpecificationParametersFromString(meshSpecificationsVector[thisSpecificationIndex]);
+          if (thisSpecificationParameters.WEMLabel == wemLabel)
+          {
+            U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_MESH, thisSpecificationParameters.ObjectName, defaultValues);
 
-          thisU3DObjectInfo.GroupPath = thisSpecificationParameters.GroupPath;
-          thisU3DObjectInfo.DiffuseColor = getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
-          thisU3DObjectInfo.SpecularColor = getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
+            thisU3DObjectInfo.GroupPath = thisSpecificationParameters.GroupPath;
+            thisU3DObjectInfo.DiffuseColor = getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+            thisU3DObjectInfo.SpecularColor = getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
 
-          thisU3DObjectInfo.Visibility = (MLuint32)stringToInt(thisSpecificationParameters.ModelVisibility);
+            thisU3DObjectInfo.Visibility = (MLuint32)stringToInt(thisSpecificationParameters.ModelVisibility);
 
-          // Collect mesh info
-          thisWEMMeshInfo.DiffuseColorCount    = 0;    // This is not really needed in this version
-          thisWEMMeshInfo.SpecularColorCount   = 0;    // This is not really needed in this version
-          thisWEMMeshInfo.TextureCoordCount    = 0;    // This is not really needed in this version
-          thisWEMMeshInfo.DefaultAmbientColor  = defaultValues.defaultMaterialAmbientColor;
-          thisWEMMeshInfo.DefaultSpecularColor = defaultValues.defaultMaterialSpecularColor;
-          thisWEMMeshInfo.DefaultDiffuseColor  = defaultValues.defaultMaterialDiffuseColorWithTransparency;
-          thisWEMMeshInfo.DefaultEmissiveColor = defaultValues.defaultMaterialEmissiveColor;            
-          thisWEMMeshInfo.FaceCount = addedTrianglePatch->getNumFaces();
-          thisWEMMeshInfo.NormalCount = addedTrianglePatch->getNumFaces();
-          thisWEMMeshInfo.VertexCount = addedTrianglePatch->getNumNodes();            
-          thisWEMMeshInfo.PatchID = addedTrianglePatch->getId();
-          thisWEMMeshInfo.MeshAttributes = U3D_MESH_ATTRIBUTES_DEFAULT;
-          thisWEMMeshInfo.MeshAttributes |= ( (thisWEMMeshInfo.NormalCount == 0) ? U3D_MESH_ATTRIBUTES_EXCLUDENORMALS : 0 );
-          thisWEMMeshInfo.ShadingAttributes = U3D_SHADINGATTRIBUTES_NONE;  
-          thisWEMMeshInfo.ShadingAttributes |= ( (thisWEMMeshInfo.DiffuseColorCount > 0) ? U3D_SHADINGATTRIBUTES_DIFFUSECOLORS : 0 );   // Should not happen in this version
-          thisWEMMeshInfo.ShadingAttributes |= ( (thisWEMMeshInfo.SpecularColorCount > 0) ? U3D_SHADINGATTRIBUTES_SPECULARCOLORS : 0 ); // Should not happen in this version
-          thisWEMMeshInfo.DisplayName  = thisU3DObjectInfo.DisplayName;
-          thisWEMMeshInfo.ResourceName = thisU3DObjectInfo.ResourceName;
-          thisWEMMeshInfo.MeshNumber = meshNumber++;
+            // Collect mesh info
+            thisWEMMeshInfo.DiffuseColorCount    = 0;    // This is not really needed in this version
+            thisWEMMeshInfo.SpecularColorCount   = 0;    // This is not really needed in this version
+            thisWEMMeshInfo.TextureCoordCount    = 0;    // This is not really needed in this version
+            thisWEMMeshInfo.DefaultAmbientColor  = defaultValues.defaultMaterialAmbientColor;
+            thisWEMMeshInfo.DefaultSpecularColor = defaultValues.defaultMaterialSpecularColor;
+            thisWEMMeshInfo.DefaultDiffuseColor  = defaultValues.defaultMaterialDiffuseColorWithTransparency;
+            thisWEMMeshInfo.DefaultEmissiveColor = defaultValues.defaultMaterialEmissiveColor;            
+            thisWEMMeshInfo.FaceCount = addedTrianglePatch->getNumFaces();
+            thisWEMMeshInfo.NormalCount = addedTrianglePatch->getNumFaces();
+            thisWEMMeshInfo.VertexCount = addedTrianglePatch->getNumNodes();            
+            thisWEMMeshInfo.PatchID = addedTrianglePatch->getId();
+            thisWEMMeshInfo.MeshAttributes = U3D_MESH_ATTRIBUTES_DEFAULT;
+            thisWEMMeshInfo.MeshAttributes |= ( (thisWEMMeshInfo.NormalCount == 0) ? U3D_MESH_ATTRIBUTES_EXCLUDENORMALS : 0 );
+            thisWEMMeshInfo.ShadingAttributes = U3D_SHADINGATTRIBUTES_NONE;  
+            thisWEMMeshInfo.ShadingAttributes |= ( (thisWEMMeshInfo.DiffuseColorCount > 0) ? U3D_SHADINGATTRIBUTES_DIFFUSECOLORS : 0 );   // Should not happen in this version
+            thisWEMMeshInfo.ShadingAttributes |= ( (thisWEMMeshInfo.SpecularColorCount > 0) ? U3D_SHADINGATTRIBUTES_SPECULARCOLORS : 0 ); // Should not happen in this version
+            thisWEMMeshInfo.DisplayName  = thisU3DObjectInfo.DisplayName;
+            thisWEMMeshInfo.ResourceName = thisU3DObjectInfo.ResourceName;
+            thisWEMMeshInfo.MeshNumber = meshNumber++;
 
-	        meshInfoVector.push_back(thisWEMMeshInfo);           
-          _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
+	          meshInfoVector.push_back(thisWEMMeshInfo);           
+            _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
+          }
         }
-      }
 
-    }
+      }  // if (addedTrianglePatch != NULL)
+
+    }  // if (wemPatch->getNumFaces() > 0)
 
     wemPatch = NULL;
   }

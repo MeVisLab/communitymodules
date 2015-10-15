@@ -2,14 +2,307 @@
 network  {
   watchlist = ""
 }
-module Save3DFigurePDF {
+module LocalFileName {
   internal  {
-    frame = "581 141 136 56"
+    frame = "-311 13 112 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "968 222 604 498"
-        sizeHint = "262 498"
+        geometry = "688 559 635 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(NETWORK)/Save3DFigurePDFExample.u3d
+    checkIfFileExists = TRUE
+  }
+}
+module SoCameraAccess {
+  internal  {
+    frame = "449 173 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "813 217 778 738"
+        sizeHint = "536 738"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCameraAccess
+    transformDeltaOut = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    viewingMatrix = "0.216607347130775 0.806080460548401 0.550740897655487 0
+0.442435324192047 0.421822339296341 -0.791401863098145 0
+-0.870248317718506 0.415090560913086 -0.26526865363121 0
+18.2193031311035 -61.2887306213379 -239.485061645508 1"
+    projectionMatrix = "2.45240759849548 0 0 0
+0 2.55250549316406 0 0
+0 -2.09908520787394e-07 -2.6827437877655 -1
+0 0 -427.078979492188 0"
+    cameraSpaceMatrix = "0.587174832820892 0.593220114707947 0.550740957260132 0
+0.593220114707947 0.14755654335022 -0.791401863098145 0
+-0.550740957260132 0.791401863098145 -0.265268564224243 0
+-14.5027160644531 -62.2729568481445 -239.485046386719 1"
+    camPosition = "177.351440429688 -171.736846923828 -22.232177734375"
+    lookAtPosition = "0.870248436927795 -0.41509073972702 0.265268564224243"
+    upVector = "0.806080460548401 0.421822339296341 0.415090560913086"
+    viewVector = "-0.550739288330078 0.791402578353882 0.265270173549652"
+    viewportSizeOut = "408 392"
+    nearDistance = 115.96761
+    farDistance = 253.79918
+    NewViewingMatrix = "1 0 0 1
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    NewProjectionMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 2
+0 0 0 1"
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "297 -107 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "119 516 475 420"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "435 74 867 760"
+        sizeHint = "260 252"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "302 208 655 496"
+        sizeHint = "655 496"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0.736591994762421 -0.356398105621338 -0.574815213680267 3.27108001708984"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7467863
+    position = "177.351440429688 -171.736846923828 -22.232177734375"
+    orientation = "0.635253667831421 0.748192548751831 -0.191469818353653 1.88958811759949"
+    nearDistance = 115.96761
+    farDistance = 253.79918
+    focalDistance = 184.8147
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 0 1"
+    rotationAngle = 360
+    rotationSteps = 90
+    rotationCurrentStep = 0
+    recordRotation = FALSE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableRotXWheel = TRUE
+    enableRotYWheel = TRUE
+    enableDollyWheel = TRUE
+    overwriteDollyWheelLabel = TRUE
+    overwriteRotXWheelLabel = FALSE
+    overwriteRotYWheelLabel = FALSE
+    dollyWheelPerspectiveText = Dolly
+    rotXWheelPerspectiveText = Rotx
+    rotYWheelPerspectiveText = Roty
+    dollyWheelOrthographicText = Zoom
+    rotXWheelOrthographicText = Rotx
+    rotYWheelOrthographicText = Roty
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "285 285 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "754 703 364 239"
+        sizeHint = "364 239"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoad
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    filename = D:/knee.wem
+    loading = FALSE
+    loadingOK = TRUE
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    status = "Successfully loaded 8 patches."
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "313 101 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 7
+    selectedTab = 0
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "177 109 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "197 189 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "331 689 895 376"
+        sizeHint = "509 376"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    isProcessing = FALSE
+    elapsedTime = 0.148
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "2@Patella|4@Tibia_medial|6@Tibia_lateral|8@Femur_condyle_lateral|10@Femur_condyle_medial|12@Femur_central|14@Femur_medial|16@Femur_lateral"
+    hasEdges = FALSE
+    boundingBoxMode = "Axis Aligned"
+    primitiveValueLists = LUT
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module Save3DFigurePDF {
+  internal  {
+    frame = "-163 13 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "739 121 827 784"
+        sizeHint = "808 784"
         wasOpen = yes
       }
       window _automatic {
@@ -21,27 +314,44 @@ module Save3DFigurePDF {
   }
   fields  {
     instanceName = Save3DFigurePDF
-    u3dFilename = ""
-    pdfFilename = ""
-    pageHeaderReference = ""
-    pageHeaderHeadline = ""
-    figureActivationMode = ACTIVATION_MODE_EXPLICIT_ACIVATE
-    figureDeactivationMode = DEACTIVATION_MODE_EXPLICIT_DEACTIVATE
+    u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
+    posterImageFilename = ""
+    pdfFilename = "d:\\test.pdf"
+    pageHeaderCitationText = "Newe (2015). Some fancy article title. Journal."
+    pageHeaderHeadlineText = "Additional File S1 – Interactive 3D PDF"
+    includeUsageHints = TRUE
+    figureActivationMode = ExplicitActivate
+    figureDeactivationMode = ExplicitDeactivate
     figureAnimationAutostart = FALSE
-    figureToolbarEnabled = TRUE
+    figureToolbarEnabled = FALSE
     figureNavigationInterfaceEnabled = FALSE
     viewBackgroundColor = "0.8 0.8 0.8"
-    caption = ""
-    description = ""
+    autoCalculateCameraFromInventorScene = TRUE
+    cameraCenterOfOrbit = "75.5664061260613 -25.4741401640786 26.7933736884443"
+    cameraCenterToCamera = "101.785034303626 -146.26270675975 -49.0255514228193"
+    cameraRadiusOfOrbit = 184.8147
+    cameraFOVAngle = 42.787704
+    cameraRollAngle = 295.50018
+    caption = "Model of a segmented human femur."
+    description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue)."
     status = Idle.
-    progress = 0
+    progress = 1
     pdfAttrTitle = Title
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
   }
 }
-connections = ""
+connections  {
+  SoCustomExaminerViewer.children = "SoBackground.self SoWEMRenderer.self SoCameraAccess.self"
+  SoWEMRenderer.inWEM = WEMLoad.outWEM
+  WEMInfo.inWEM = WEMLoad.outWEM
+  Save3DFigurePDF.u3dFilename = LocalFileName.trueName
+  Save3DFigurePDF.inventorCameraPosition = SoCustomExaminerViewer.position
+  Save3DFigurePDF.inventorCameraOrientation = SoCustomExaminerViewer.orientation
+  Save3DFigurePDF.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
+  Save3DFigurePDF.inventorCameraHeight = SoCustomExaminerViewer.height
+}
 networkModel  {
   parentItems  {
     0  {
@@ -49,7 +359,7 @@ networkModel  {
         uniqueId = 17
         objectName = ""
         parentUniqueId = 0
-        frame = "204 95 316 136"
+        frame = "-197 -205 316 136"
         backgroundColor  {
           r = 252
           g = 242
@@ -61,7 +371,7 @@ networkModel  {
 For details regarding the parameters take a look at the documentation."
         titleText = Description
         isCollapsed = False
-        titleFrame = "209 100 306 22"
+        titleFrame = "-192 -200 306 22"
       }
     }
   }

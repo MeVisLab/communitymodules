@@ -35,9 +35,10 @@ DEFINES += ML_WARN_DEPRECATED
 HEADERS += \
   MLPDFInit.h \
   MLPDFSystem.h \
-  shared/MLPDF_DataTypes.h \
   shared/MLPDF_Tools.h \
-  SpecificationGenerator/MLPDF_SpecificationGenerator.h \
+  shared/MLPDF_DataTypes.h \
+  shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h \
+  shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h \
   SavePDF/SavePDF.h \
   Save3DFigurePDF/Save3DFigurePDF.h \
   SaveU3D/SaveU3D.h \
@@ -57,11 +58,12 @@ HEADERS += \
   SavePRC/PRCFileFormat/PRC_Write.h \
   SavePRC/PRCFileFormat/PRC_File.h \
   SavePRC/PRCFileFormat/PRC_Tools.h \
-    
+
 SOURCES += \
   MLPDFInit.cpp \
   shared/MLPDF_Tools.cpp \
-  SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
+  shared/PDFDocumentTools/MLPDF_PDFDocumentTools.cpp \
+  shared/SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
   SavePDF/SavePDF.cpp \
   Save3DFigurePDF/Save3DFigurePDF.cpp \
   SaveU3D/SaveU3D.cpp \

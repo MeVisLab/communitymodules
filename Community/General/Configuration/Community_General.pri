@@ -65,13 +65,15 @@ MLPDF {
   CONFIG_FOUND += MLPDF
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePDF
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/Save3DFigurePDF
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SaveU3D
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePRC
-  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared  
-  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/include
-  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/thirdparty/libHaru/RELEASE/win32/include
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared/PDFDocumentTools
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared/SpecificationGenerator
   win32:LIBS += MLPDF$${d}.lib
   unix:LIBS  += -lMLPDF$${d}
+  CONFIG += MLBaseListExtensions  
 }
 
 MLBaseListExtensions {
@@ -101,4 +103,3 @@ MLOsiriXServices {
 # End of projects ------------------------------------------------------------
 
 }
-

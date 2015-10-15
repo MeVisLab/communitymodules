@@ -15,7 +15,7 @@
 
 // Local includes
 #include "PRC_DataTypes.h"
-#include "MLPDF_DataTypes.h"
+#include "../../shared/MLPDF_DataTypes.h"
 
 
 ML_START_NAMESPACE

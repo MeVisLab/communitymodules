@@ -12,7 +12,7 @@
 
 // Local includes
 #include "SavePRC.h"
-#include "SpecificationGenerator/MLPDF_SpecificationGenerator.h"
+#include "shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
 #include "PRCFileFormat/PRC_File.h"
 #include "PRCFileFormat/PRC_Tools.h"
 
@@ -86,7 +86,7 @@ SavePRC::SavePRC (std::string type)
   //-------------------------------------------------------------------
   //! Strings for enum field: specification type 
   //-------------------------------------------------------------------
-  const char* const NEW_SPECIFICATION_OBJECTTYPE_STRINGS[SpecificationGenerator::NUM_OBJECTTYPES] = {
+  const char* const NEW_SPECIFICATION_OBJECTTYPE_STRINGS[mlPDF::SpecificationGenerator::NUM_OBJECTTYPES] = {
     "OBJECTTYPE_POINTCLOUD",
     "OBJECTTYPE_LINESET",
     "OBJECTTYPE_MESH",
@@ -96,7 +96,7 @@ SavePRC::SavePRC (std::string type)
   //-------------------------------------------------------------------
   //! Strings for enum field: model visibility 
   //-------------------------------------------------------------------
-  const char* const NEW_SPECIFICATION_MODELVISIBILITY_STRINGS[SpecificationGenerator::NUM_MODELVISIBILITY] = {
+  const char* const NEW_SPECIFICATION_MODELVISIBILITY_STRINGS[mlPDF::SpecificationGenerator::NUM_MODELVISIBILITY] = {
     "MODELVISIBILITY_NOTVISIBLE",
     "MODELVISIBILITY_FRONTVISIBLE",
     "MODELVISIBILITY_BACKVISIBLE",
@@ -108,7 +108,7 @@ SavePRC::SavePRC (std::string type)
   (_newSpecificationSelectedTabFld             = addInt("selectedTab"))->setIntValue(0);
   (_newSpecificationOutputValidFld             = addBool("newSpecificationOutputValid"))->setBoolValue(false);
   _newSpecificationAddFld                      = addNotify("newSpecificationAdd");
-  (_newSpecificationTypeFld                    = addEnum("newSpecificationType", NEW_SPECIFICATION_OBJECTTYPE_STRINGS, SpecificationGenerator::NUM_OBJECTTYPES))->setEnumValue(SpecificationGenerator::OBJECTTYPE_MESH);
+  (_newSpecificationTypeFld                    = addEnum("newSpecificationType", NEW_SPECIFICATION_OBJECTTYPE_STRINGS, mlPDF::SpecificationGenerator::NUM_OBJECTTYPES))->setEnumValue(mlPDF::SpecificationGenerator::OBJECTTYPE_MESH);
   (_newSpecificationObjectNameFld              = addString("newSpecificationObjectName"))->setStringValue("");
   (_newSpecificationGroupPathFld               = addString("newSpecificationGroupPath"))->setStringValue("");
   (_newSpecificationUseDefaultColorFld         = addBool("newSpecificationUseDefaultColor"))->setBoolValue(true);
@@ -116,7 +116,7 @@ SavePRC::SavePRC (std::string type)
   (_newSpecificationColorFld                   = addColor("newSpecificationColor"))->setVector3Value(Vector3(0.651f,0.651f,0.651f));
   (_newSpecificationColorAlphaFld              = addFloat("newSpecificationColorAlpha"))->setFloatValue(1.0f);
   (_newSpecificationSpecularColorFld           = addColor("newSpecificationSpecularColor"))->setVector3Value(Vector3(0.75f,0.75f,0.75f));
-  (_newSpecificationModelVisibilityFld         = addEnum("newSpecificationModelVisibility", NEW_SPECIFICATION_MODELVISIBILITY_STRINGS, SpecificationGenerator::NUM_MODELVISIBILITY))->setEnumValue(SpecificationGenerator::MODELVISIBILITY_FRONTANDBACKVISIBLE);
+  (_newSpecificationModelVisibilityFld         = addEnum("newSpecificationModelVisibility", NEW_SPECIFICATION_MODELVISIBILITY_STRINGS, mlPDF::SpecificationGenerator::NUM_MODELVISIBILITY))->setEnumValue(mlPDF::SpecificationGenerator::MODELVISIBILITY_FRONTANDBACKVISIBLE);
   (_newSpecificationMetaDataKeyFld             = addString("newSpecificationMetaDataKey"))->setStringValue("");
   (_newSpecificationMetaDataValueFld           = addString("newSpecificationMetaDataValue"))->setStringValue("");
   (_newSpecificationWEMLabelFld                = addString("newSpecificationWEMLabel"))->setStringValue("");
@@ -460,19 +460,19 @@ void SavePRC::UpdateObjectTypeTabView()
 {
   int newSpecificationType = _newSpecificationTypeFld->getEnumValue();
 
-  if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
+  if (newSpecificationType == mlPDF::SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
   {
     _newSpecificationSelectedTabFld->setIntValue(0);
   }
-  else if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_LINESET)
+  else if (newSpecificationType == mlPDF::SpecificationGenerator::OBJECTTYPE_LINESET)
   {
     _newSpecificationSelectedTabFld->setIntValue(1);
   }
-  else if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_MESH)
+  else if (newSpecificationType == mlPDF::SpecificationGenerator::OBJECTTYPE_MESH)
   {
     _newSpecificationSelectedTabFld->setIntValue(2);
   }
-  else if (newSpecificationType == SpecificationGenerator::OBJECTTYPE_METADATA)
+  else if (newSpecificationType == mlPDF::SpecificationGenerator::OBJECTTYPE_METADATA)
   {
     _newSpecificationSelectedTabFld->setIntValue(3);
   }
@@ -486,19 +486,19 @@ void SavePRC::AddNewSpecification()
 {
   int newSpecificationObjectType = _newSpecificationTypeFld->getEnumValue();
 
-  if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
+  if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
   {
     _pointCloudSpecificationFld->setStringValue(_pointCloudSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
   }
-  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_LINESET)
+  else if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_LINESET)
   {
     _lineSetSpecificationFld->setStringValue(_lineSetSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
   }
-  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_MESH)
+  else if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_MESH)
   {
     _meshSpecificationFld->setStringValue(_meshSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
   }
-  //else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_METADATA)
+  //else if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_METADATA)
   //{
   //  _metaDataSpecificationFld->setStringValue(_metaDataSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
   //}
@@ -516,47 +516,47 @@ void SavePRC::UpdateNewSpecification()
 //  if (callingField == ctx.field("newSpecificationType")):
 //    UpdateTabView()
   
-  if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
+  if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_POINTCLOUD)
   {
     newSpecificationString = "<PointSet>\n";
-    newSpecificationString += SpecificationGenerator::GetPositionTypes(_newSpecificationPositionTypesFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetPositionTypes(_newSpecificationPositionTypesFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
     newSpecificationString += "\n";
     _newSpecificationOutputValidFld->setBoolValue(true);
   }
-  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_LINESET)
+  else if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_LINESET)
   {
     newSpecificationString = "<LineSet>\n";
-    newSpecificationString += SpecificationGenerator::GetPositionTypes(_newSpecificationPositionTypesFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetConnectionTypes(_newSpecificationConnectionTypesFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
-    newSpecificationString += SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetPositionTypes(_newSpecificationPositionTypesFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetConnectionTypes(_newSpecificationConnectionTypesFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 1;
     _newSpecificationOutputValidFld->setBoolValue(true);
   }
-  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_MESH)
+  else if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_MESH)
   {
     newSpecificationString = "<Mesh>\n";
-    newSpecificationString += SpecificationGenerator::GetWEMLabel(_newSpecificationWEMLabelFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
-    newSpecificationString += SpecificationGenerator::GetSpecularColor(_newSpecificationSpecularColorFld->getColorValue(), _newSpecificationUseDefaultSpecularColorFld->getBoolValue());
-    newSpecificationString += SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetWEMLabel(_newSpecificationWEMLabelFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetSpecularColor(_newSpecificationSpecularColorFld->getColorValue(), _newSpecificationUseDefaultSpecularColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 2;
     _newSpecificationOutputValidFld->setBoolValue(true);
   }
-  else if (newSpecificationObjectType == SpecificationGenerator::OBJECTTYPE_METADATA)
+  else if (newSpecificationObjectType == mlPDF::SpecificationGenerator::OBJECTTYPE_METADATA)
   {
     newSpecificationString = "<MetaData>\n";
-    newSpecificationString += SpecificationGenerator::GetMetaDataKey(_newSpecificationMetaDataKeyFld->getStringValue());
-    newSpecificationString += SpecificationGenerator::GetMetaDataValue(_newSpecificationMetaDataValueFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetMetaDataKey(_newSpecificationMetaDataKeyFld->getStringValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetMetaDataValue(_newSpecificationMetaDataValueFld->getStringValue());
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 3;
     _newSpecificationOutputValidFld->setBoolValue(true);

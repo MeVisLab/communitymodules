@@ -68,11 +68,13 @@ private:
 
   //! Filename fields
   StringField*  _u3dFilenameFld;
+  StringField*  _posterImageFilenameFld;
   StringField*  _pdfFilenameFld;
 
   //! Page property fields
-  StringField*  _pageHeaderReferenceFld;
-  StringField*  _pageHeaderHeadlineFld;
+  StringField*  _pageHeaderCitationTextFld;
+  StringField*  _pageHeaderHeadlineTextFld;
+  BoolField*    _includeUsageHintsFld;
 
   //! Figure property fields
   EnumField*    _figureActivationModeFld;
@@ -84,19 +86,25 @@ private:
   //! View property fields
   ColorField*   _viewBackgroundColorFld;
 
+  // Inventor camera fields
+  NotifyField*   _calculateCameraFromInventorSceneFld;
+  BoolField*     _autoCalculateCameraFromInventorScene;
+  Vector3Field*  _inventorCameraPositionFld;
+  Vector4Field*  _inventorCameraOrientationFld;
+  FloatField*    _inventorCameraFocalDistanceFld;
+  FloatField*    _inventorCameraHeightFld;
+
+  // PDF view camera fields
+  Vector3Field*  _cameraCenterOfOrbitFld;
+  Vector3Field*  _cameraCenterToCameraFld;
+  FloatField*    _cameraRadiusOfOrbitFld;
+  FloatField*    _cameraRollAngleFld;
+  FloatField*    _cameraFOVAngleFld;
+
   //! Description fields
   StringField*  _captionFld;
   StringField*  _descriptionFld;
 
-/*
-    HPDF_3DActivation_SetActivationMode(activation, "ExplicitActivate");
-    HPDF_3DActivation_SetDeactivationMode(activation, "ExplicitDeactivate");
-    HPDF_3DActivation_SetAnimationAutoStart(activation, false);
-    HPDF_3DActivation_SetToolbarEnabled(activation, true);
-    HPDF_3DActivation_SetNavigationInterfaceOpened(activation, true);
-
-
-*/
   //! Save notification field
   NotifyField*  _saveFld;
 
@@ -122,8 +130,7 @@ private:
   void saveButtonClicked();
   void Save3DFigurePDFFile(std::string filename);
 
-
-
+  void _calculateCameraPropertiesFromInventorCamera();
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(Save3DFigurePDF)

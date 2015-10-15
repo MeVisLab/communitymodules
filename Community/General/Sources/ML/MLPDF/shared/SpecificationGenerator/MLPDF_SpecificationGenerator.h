@@ -19,7 +19,9 @@
 
 ML_START_NAMESPACE
 
-class SpecificationGenerator
+namespace mlPDF {
+
+class MLPDF_EXPORT SpecificationGenerator
 {
 
 public:
@@ -60,6 +62,8 @@ public:
   static std::string FormatColorString(Vector3 colorValue);
   static std::string FormatColorString(Vector3 colorValue, float alphaValue);
 };
+
+} // end namespace mlPDF
 
 ML_END_NAMESPACE
 

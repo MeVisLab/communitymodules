@@ -12,8 +12,8 @@
 // Local includes
 #include "U3D_Tools.h"
 #include "U3D_DataTypes.h"
-#include "MLPDF_DataTypes.h"
-#include "MLPDF_Tools.h"
+#include "../../shared/MLPDF_DataTypes.h"
+#include "../../shared/MLPDF_Tools.h"
 
 
 ML_START_NAMESPACE

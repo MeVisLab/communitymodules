@@ -1,0 +1,1524 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoGroup {
+  internal  {
+    frame = "1749 521 120 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _viewer {
+        geometry = "647 354 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GroupCamYAxis
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "1745 417 128 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "1123 69 239 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleCamYAxis
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "1117 401 120 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "837 60 239 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = toggleNewAxes
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1073 501 96 56"
+    moduleGroupName = VisualizeCamera
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "837 581 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "879 605 459 241"
+        sizeHint = "446 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic03
+    debugLevel = 0
+    arg1 = "0.0615685711733684 0.445066023952382 0.280624655084106"
+    arg1X = 0.0615685693919659
+    arg1XAsVec = FALSE
+    operation = Multiply
+    arg2 = "25 25 25"
+    arg2X = 25
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module VectorLine {
+  internal  {
+    frame = "1041 653 96 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "774 80 318 275"
+        sizeHint = "318 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VectorLine1
+    show = TRUE
+    start = "0 0 0"
+    end = "1.53921427933421 11.1266505988095 7.01561637710265"
+    overwriteAppearance = FALSE
+    color = "0.333333333333333 0.666666666666667 0.498039215686275"
+    width = 1
+    pattern = 65535
+    preset = 65535
+    showOutline = TRUE
+    outlineColor = "0.666666666666667 0.666666666666667 1"
+    outlineWidth = 1
+    outlinePattern = 3087
+    outlinePreset = 3087
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "2045 449 136 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "1117 61 389 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleRotationAxis
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "2065 697 160 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _viewer {
+        geometry = "489 338 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GroupCamRotationAxis
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "1601 513 128 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _viewer {
+        geometry = "647 354 400 400"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GroupCamXAxis
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "1617 417 128 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "1123 69 343 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleCamXAxis
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "829 509 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "904 444 459 241"
+        sizeHint = "446 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic02
+    debugLevel = 0
+    arg1 = "0.726047158241272 0.555243968963623 0.405660003423691"
+    arg1X = 0.726047158241272
+    arg1XAsVec = FALSE
+    operation = Multiply
+    arg2 = "25 25 25"
+    arg2X = 25
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module VectorLine {
+  internal  {
+    frame = "1021 581 88 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "276 98 318 275"
+        sizeHint = "318 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VectorLine
+    show = TRUE
+    start = "0 0 0"
+    end = "18.1511789560318 13.8810992240906 10.1415000855923"
+    overwriteAppearance = FALSE
+    color = "1 1 1"
+    width = 1
+    pattern = 65535
+    preset = 65535
+    showOutline = TRUE
+    outlineColor = "0.333333333333333 0 1"
+    outlineWidth = 1
+    outlinePattern = 3087
+    outlinePreset = 3087
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "1205 185 152 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "613 610 239 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ApplyCameraPosition
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "1385 25 96 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "446 71 365 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleWEM
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module VectorField {
+  internal  {
+    frame = "1785 957 96 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "921 385 672 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = VectorField
+    value = "-0.0828598439693451 0.287562102079391 -0.954171061515808"
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "1661 957 88 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "1740 644 1116 331"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = StringUtils
+    operationType = Concatenate
+    string1 = "0 0 0, 1 0 0, 0 1 0, 0 0 1, 1 1 1, 1 0 0, 0 1 0, 0 0 1, 1 1 1,"
+    string2 = "-0.0828598439693451 0.287562102079391 -0.954171061515808"
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = TRUE
+    togglePostfix = TRUE
+    separator = ""
+    selectSeparator = 0
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module SoDrawStyle {
+  internal  {
+    frame = "1229 837 104 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "773 492 183 124"
+        sizeHint = "149 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoDrawStyle
+    style = LINES
+    pointSize = 0
+    lineWidth = 0
+    linePattern = 43690
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "1557 193 120 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "489 486 239 94"
+        sizeHint = "239 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ApplyOrientation
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "1881 825 96 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _materialeditor {
+        geometry = "739 463 216 182"
+        sizeHint = "216 182"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Pink
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0.666667 0.333333 0.498039"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoScale {
+  internal  {
+    frame = "1213 689 88 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "709 537 277 34"
+        sizeHint = "277 34"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ScaleKOS
+    scaleFactor = "25 25 12.5"
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "1297 493 128 56"
+    moduleGroupName = VisualizeCamera
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoIndexedLineSet {
+  internal  {
+    frame = "1333 793 136 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "710 706 503 124"
+        sizeHint = "192 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CoordinateSystem
+    coordIndex = "[ 0, 1, -1, 0, 2, -1, 0, 3, -1 ]"
+    materialIndex = -1
+    normalIndex = -1
+    textureCoordIndex = -1
+    sendAdjacency = FALSE
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "1745 609 96 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _materialeditor {
+        geometry = "739 463 216 182"
+        sizeHint = "216 182"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Blue
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0 0 1"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoIndexedLineSet {
+  internal  {
+    frame = "2025 825 144 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "842 372 503 124"
+        sizeHint = "192 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraRotationAxis
+    coordIndex = "[ 0, 9, -1 ]"
+    materialIndex = -1
+    normalIndex = -1
+    textureCoordIndex = -1
+    sendAdjacency = FALSE
+  }
+}
+module SoIndexedLineSet {
+  internal  {
+    frame = "1957 569 136 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "842 372 503 124"
+        sizeHint = "192 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraZ
+    coordIndex = "[ 0, 7, -1 ]"
+    materialIndex = -1
+    normalIndex = -1
+    textureCoordIndex = -1
+    sendAdjacency = FALSE
+  }
+}
+module SoIndexedLineSet {
+  internal  {
+    frame = "1773 625 136 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "842 372 503 124"
+        sizeHint = "192 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraY
+    coordIndex = "[ 0, 6, -1 ]"
+    materialIndex = -1
+    normalIndex = -1
+    textureCoordIndex = -1
+    sendAdjacency = FALSE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "1665 269 240 56"
+    moduleGroupName = VisualizeCamera
+  }
+  fields  {
+    instanceName = SoSeparator2
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "1517 45 152 56"
+    moduleGroupName = VisualizeCamera
+  }
+  fields  {
+    instanceName = SoSeparator3
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoScale {
+  internal  {
+    frame = "1509 449 104 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "709 537 277 34"
+        sizeHint = "277 34"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ScaleCamera
+    scaleFactor = "25 25 25"
+  }
+}
+module SoTranslation {
+  internal  {
+    frame = "1197 289 120 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "383 586 270 34"
+        sizeHint = "270 34"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraPosition
+    translation = "62.870361328125 -117.25178527832 175.136810302734"
+  }
+}
+module SoVertexProperty {
+  internal  {
+    frame = "1441 957 128 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "688 786 772 184"
+        sizeHint = "268 184"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVertexProperty
+    vertex = "[ 0 0 0, 1 0 0, 0 1 0, 0 0 1, 1 1 1, 1 0 0, 0 1 0, 0 0 1, 1 1 1, -0.0828598 0.287562 -0.954171 ]"
+    normal = "[  ]"
+    texCoord = "[  ]"
+    orderedRGBA = "[  ]"
+    materialBinding = OVERALL
+    normalBinding = PER_VERTEX_INDEXED
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "1421 -131 184 56"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _viewer {
+        geometry = "1694 100 823 616"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539819
+    position = "56.3659858703613 -254.061676025391 419.972595214844"
+    orientation = "0.00319652375765145 0.264300584793091 -0.964435040950775 3.28639101982117"
+    nearDistance = 220.73013
+    farDistance = 512.12958
+    focalDistance = 366.28448
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    rotationCurrentStep = 0
+    recordRotation = TRUE
+    enablePickNView = TRUE
+    enableHome = FALSE
+    enableViewAll = TRUE
+    enableSeek = FALSE
+    enableASC = TRUE
+    enableProjType = FALSE
+    enableRotXWheel = TRUE
+    enableRotYWheel = TRUE
+    enableDollyWheel = TRUE
+    overwriteDollyWheelLabel = FALSE
+    overwriteRotXWheelLabel = FALSE
+    overwriteRotYWheelLabel = FALSE
+    dollyWheelPerspectiveText = Dolly
+    rotXWheelPerspectiveText = Rotx
+    rotYWheelPerspectiveText = Roty
+    dollyWheelOrthographicText = Zoom
+    rotXWheelOrthographicText = Rotx
+    rotYWheelOrthographicText = Roty
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "1569 593 96 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _materialeditor {
+        geometry = "739 463 216 182"
+        sizeHint = "216 182"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Green
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "0 1 0"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoMaterial {
+  internal  {
+    frame = "1897 545 96 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _materialeditor {
+        geometry = "739 463 216 182"
+        sizeHint = "216 182"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Red
+    ambientColor = "0.2 0.2 0.2"
+    diffuseColor = "1 0 0"
+    specularColor = "0 0 0"
+    emissiveColor = "0 0 0"
+    shininess = 0.2
+    transparency = 0
+  }
+}
+module SoIndexedLineSet {
+  internal  {
+    frame = "1597 625 136 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "842 372 503 124"
+        sizeHint = "192 124"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraX
+    coordIndex = "[ 0, 5, -1 ]"
+    materialIndex = -1
+    normalIndex = -1
+    textureCoordIndex = -1
+    sendAdjacency = FALSE
+  }
+}
+module SoRotation {
+  internal  {
+    frame = "1469 321 136 64"
+    moduleGroupName = VisualizeCamera
+    windows  {
+      window _default {
+        geometry = "258 136 489 38"
+        sizeHint = "390 38"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CameraOrientation
+    rotation = "-0.0828598439693451 0.287562102079391 -0.954171061515808 3.94335246086121"
+  }
+}
+module ComposeRotation {
+  internal  {
+    frame = "481 69 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1765 416 868 135"
+        sizeHint = "473 135"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ComposeRotation
+    rotation1 = "0 0 1 0"
+    invert1 = FALSE
+    rotation2 = "-0.0828598385449613 0.287562083254263 -0.954170999051413 3.94335246086121"
+    invert2 = TRUE
+    result = "0.0828598385449613 -0.287562083254263 0.954170999051413 3.94335246086121"
+    invertResult = FALSE
+  }
+}
+module CalculateAngle {
+  internal  {
+    frame = "649 -131 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1298 860 222 97"
+        sizeHint = "222 97"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CalculateAngle
+    v1 = "-12.6961529769805 -91.7775976234598 148.343332802734"
+    v2 = "-0.639607667922974 0.0780741721391678 -0.764726519584656"
+    angle = 130.027083725462
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "229 389 104 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "730 784 459 241"
+        sizeHint = "446 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic01
+    debugLevel = 0
+    arg1 = "44.9136071375304 -24.4060071731398 -11.2556098573433"
+    arg1X = 44.9136085510254
+    arg1XAsVec = FALSE
+    operation = DegAngle
+    arg2 = "1 1 1"
+    arg2X = 1
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "233 317 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "108 500 459 241"
+        sizeHint = "446 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Arithmetic0
+    debugLevel = 0
+    arg1 = "-12.6961529769805 -91.7775976234598 148.343332802734"
+    arg1X = -12.6961526870728
+    arg1XAsVec = FALSE
+    operation = CrossProduct
+    arg2 = "-0.0828598439693451 0.287562102079391 -0.954171061515808"
+    arg2X = -0.0828598439693451
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module Arithmetic0 {
+  internal  {
+    frame = "457 169 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1100 775 459 241"
+        sizeHint = "446 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CalculateC2CVector
+    debugLevel = 0
+    arg1 = "62.870361328125 -117.25178527832 175.136810302734"
+    arg1X = 62.870361328125
+    arg1XAsVec = FALSE
+    operation = Subtract
+    arg2 = "75.5665143051055 -25.4741876548605 26.7934775"
+    arg2X = 75.5665130615234
+    arg2XAsVec = FALSE
+    resultsAsPercent = FALSE
+    formatString = ""
+  }
+}
+module DecomposeVector4 {
+  internal  {
+    frame = "697 233 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1078 192 433 60"
+        sizeHint = "433 60"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GetRotationComponent
+    v = "-0.0828598439693451 0.287562102079391 -0.954171061515808 3.94335246086121"
+  }
+}
+module Calculator {
+  internal  {
+    frame = "725 21 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "124 52 1173 650"
+        sizeHint = "718 650"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Calculator
+    exp1 = "v2*d1"
+    exp2 = "(v2*d1)-v1"
+    exp3 = "165+(d4/pi*180)*sgn(d10)"
+    exp4 = "v2*v3"
+    exp5 = "(v2*v3*d1)-v1"
+    exp6 = sgn(d10)
+    exp7 = ""
+    exp8 = "(d4/pi*180)*sgn(d10)"
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    d1 = 174.900100708008
+    d2 = 0
+    d3 = 0
+    d4 = 3.94335246086121
+    d5 = 0
+    d6 = 0
+    d7 = 0
+    d8 = 0
+    d9 = 0
+    d10 = 0.0381880252152004
+    d11 = 0
+    d12 = 0
+    v1 = "62.870361328125 -117.25178527832 175.136810302734"
+    v2 = "-0.0828598439693451 0.287562102079391 -0.954171061515808"
+    v3 = "1 1 -1"
+    v4 = "0 0 0"
+    v5 = "0 0 0"
+    v6 = "0 0 0"
+    domainErrorHandling = Nothing
+    applyMode = AutoApply
+    exp1Comment = "orientation * focalDistance"
+    exp2Comment = "position + (orientation * focalDistance)"
+    exp3Comment = ""
+    exp4Comment = "Adjust Z component of orientation vector"
+    exp5Comment = ""
+    exp6Comment = ""
+    exp7Comment = ""
+    exp8Comment = ""
+    scalarVariablesComment = ""
+    vectorVariablesComment = ""
+    resultVector1_x = -14.492195
+    resultVector1_y = 50.29464
+    resultVector1_z = -166.88461
+    resultVector2_x = -77.362556
+    resultVector2_y = 167.54643
+    resultVector2_z = -342.02142
+    resultVector3_x = 0
+    resultVector3_y = 0
+    resultVector3_z = 0
+    resultVector4_x = -0.082859844
+    resultVector4_y = 0.2875621
+    resultVector4_z = 0.95417106
+    resultVector5_x = -77.362556
+    resultVector5_y = 167.54643
+    resultVector5_z = -8.2521954
+    resultVector6_x = 0
+    resultVector6_y = 0
+    resultVector6_z = 0
+    resultVector7_x = 0
+    resultVector7_y = 0
+    resultVector7_z = 0
+    resultVector8_x = 0
+    resultVector8_y = 0
+    resultVector8_z = 0
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "237 101 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "685 137 436 835"
+        sizeHint = "325 835"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    scaleSize = 1
+    scaleLength = 1
+    color = "0.333333343267441 1 0"
+    validStylePalette = FALSE
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = TRUE
+    selectingOn = FALSE
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textBackgroundColor = "0.5 0.5 0.5"
+    textBackgroundAlpha = 0.30000001
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModeCorrect
+    numMarkersThresholdForFastRendering = 5000
+    instanceName = So3DMarkerEditor
+    listString = ""
+    numItems = 0
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    ownsList = TRUE
+    applySelect = FALSE
+    id = -1
+    name = ""
+    newName = ""
+    actionClass = New
+    actionIndex = -1
+    actionId = -1
+    currentIndex = -1
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    upToDate = TRUE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module ConstantXMarkerList {
+  internal  {
+    frame = "209 205 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "213 354 534 560"
+        sizeHint = "338 560"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ConstantXMarkerList
+    markerList = "75.5665143051055 -25.4741876548605 26.7934775
+"
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "-3 101 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "331 689 895 376"
+        sizeHint = "509 376"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    isProcessing = FALSE
+    elapsedTime = 0.19599999
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "2@Patella|4@Tibia_medial|6@Tibia_lateral|8@Femur_condyle_lateral|10@Femur_condyle_medial|12@Femur_central|14@Femur_medial|16@Femur_lateral"
+    hasEdges = FALSE
+    boundingBoxMode = "Axis Aligned"
+    primitiveValueLists = LUT
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "-23 21 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "113 13 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 7
+    selectedTab = 0
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "85 197 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "754 703 364 239"
+        sizeHint = "364 239"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoad
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    filename = D:/knee.wem
+    loading = FALSE
+    loadingOK = TRUE
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+    status = "Successfully loaded 8 patches."
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "113 -191 176 64"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "2049 607 372 376"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "1839 170 867 760"
+        sizeHint = "260 252"
+        wasOpen = yes
+      }
+      window _default {
+        geometry = "302 208 655 496"
+        sizeHint = "655 496"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    status = ready
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0.736591815948486 -0.356398105621338 -0.574815511703491 3.27108001708984"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78500003
+    position = "62.870361328125 -117.25178527832 175.136810302734"
+    orientation = "-0.0828598439693451 0.287562102079391 -0.954171061515808 3.94335246086121"
+    nearDistance = 116.81186
+    farDistance = 233.10439
+    focalDistance = 174.9001
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 0 1"
+    rotationAngle = 360
+    rotationSteps = 90
+    rotationCurrentStep = 0
+    recordRotation = FALSE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableRotXWheel = TRUE
+    enableRotYWheel = TRUE
+    enableDollyWheel = TRUE
+    overwriteDollyWheelLabel = TRUE
+    overwriteRotXWheelLabel = FALSE
+    overwriteRotYWheelLabel = FALSE
+    dollyWheelPerspectiveText = Dolly
+    rotXWheelPerspectiveText = Rotx
+    rotYWheelPerspectiveText = Roty
+    dollyWheelOrthographicText = Zoom
+    rotXWheelOrthographicText = Rotx
+    rotYWheelOrthographicText = Roty
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoCameraAccess {
+  internal  {
+    frame = "289 -35 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "813 217 778 738"
+        sizeHint = "536 738"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCameraAccess
+    transformDeltaOut = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    viewingMatrix = "-0.683802843093872 -0.726046979427338 -0.0725906640291214 0
+0.645251095294952 -0.555243790149689 -0.524742960929871 0
+0.340682506561279 -0.405660063028336 0.848160028457642 0
+58.9817352294922 51.5895233154297 -205.507293701172 1"
+    projectionMatrix = "2.41557335853577 0 0 0
+0 2.11709713935852 0 0
+-1.18327214693181e-07 1.38275083827466e-07 -3.0089316368103 -1
+0 0 -468.290740966797 0"
+    cameraSpaceMatrix = "0.997148811817169 -0.020610498264432 -0.0725907608866692 0
+-0.020610498264432 0.851011097431183 -0.52474308013916 0
+0.0725907608866692 0.52474308013916 0.848159909248352 0
+-77.8210296630859 9.17652893066406 -205.507278442383 1"
+    camPosition = "62.870361328125 -117.25178527832 175.136810302734"
+    lookAtPosition = "-0.340682536363602 0.405660033226013 -0.848159968852997"
+    upVector = "-0.726046979427338 -0.555243790149689 -0.405660063028336"
+    viewVector = "0.0725899264216423 0.524742484092712 -0.84816038608551"
+    viewportSizeOut = "305 348"
+    nearDistance = 116.81186
+    farDistance = 233.10439
+    NewViewingMatrix = "1 0 0 1
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    NewProjectionMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 2
+0 0 0 1"
+  }
+}
+module SavePDF {
+  internal  {
+    frame = "461 373 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "152 691 825 264"
+        sizeHint = "309 264"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "829 199 695 608"
+        sizeHint = "256 192"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SavePDF
+    pdfFilename = "d:\\test.pdf"
+    u3dFileName = "d:\\knee.u3d"
+    status = Idle.
+    progress = 1
+    pdfAttrTitle = Title
+    pdfAttrAuthor = Author
+    pdfAttrSubject = Subject
+    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
+    inventorCameraPosition = "62.870361328125 -117.25178527832 175.136810302734"
+    inventorCameraOrientation = "-0.0828598439693451 0.287562102079391 -0.954171061515808 3.94335246086121"
+    inventorCameraFocalDistance = 174.9001
+    inventorCameraHeight = 0.78500003
+    cameraCenterOfOrbit = "0 0 0"
+    cameraCenterToCamera = "0 0 0"
+    cameraRadiusOfOrbit = 0
+    cameraFOVAngle = 0
+    cameraRoll = 0
+    newAxis = "0.726047158241272 0.555243968963623 0.405660003423691"
+    newAxis2 = "0.0615685711733684 0.445066023952382 0.280624655084106"
+    centerOfOrbit = "75.5665143051055 -25.4741876548605 26.7934775"
+    centerToCamera = "-12.6961529769805 -91.7775976234598 148.343332802734"
+  }
+}
+connections  {
+  GroupCamYAxis.children = "Blue.self CameraY.self"
+  ToggleCamYAxis.child = GroupCamYAxis.self
+  toggleNewAxes.child = SoGroup.self
+  SoGroup.children = "VectorLine.soSeparator0self VectorLine1.soSeparator0self"
+  Arithmetic03.arg1 = SavePDF.newAxis2
+  VectorLine1.end = Arithmetic03.result
+  ToggleRotationAxis.child = GroupCamRotationAxis.self
+  GroupCamRotationAxis.children = "Pink.self CameraRotationAxis.self"
+  GroupCamXAxis.children = "Green.self CameraX.self"
+  ToggleCamXAxis.child = GroupCamXAxis.self
+  Arithmetic02.arg1 = SavePDF.newAxis
+  VectorLine.end = Arithmetic02.result
+  ApplyCameraPosition.child = CameraPosition.self
+  ApplyCameraPosition.bypass = ToggleWEM.bypass
+  ToggleWEM.child = SoWEMRenderer.self
+  ToggleWEM.bypass = ApplyCameraPosition.bypass
+  VectorField.value = CameraOrientation.rotation
+  StringUtils.string2 = VectorField.value
+  ApplyOrientation.child = CameraOrientation.self
+  SoSeparator.children = "SoDrawStyle.self ScaleKOS.self CoordinateSystem.self"
+  CoordinateSystem.vertexProperty = SoVertexProperty.self
+  CameraRotationAxis.vertexProperty = SoVertexProperty.self
+  CameraZ.vertexProperty = SoVertexProperty.self
+  CameraY.vertexProperty = SoVertexProperty.self
+  SoSeparator2.children = "ScaleCamera.self ToggleCamXAxis.self ToggleCamYAxis.self Red.self CameraZ.self ToggleRotationAxis.self"
+  SoSeparator3.children = "ApplyCameraPosition.self SoSeparator.self toggleNewAxes.self ApplyOrientation.self SoSeparator2.self"
+  CameraPosition.translation = SoCustomExaminerViewer.position
+  SoVertexProperty.vertex = StringUtils.result
+  SoCustomExaminerViewer1.children = "ToggleWEM.self SoSeparator3.self"
+  CameraX.vertexProperty = SoVertexProperty.self
+  CameraOrientation.rotation = SoCustomExaminerViewer.orientation
+  ComposeRotation.rotation2 = SoCustomExaminerViewer.orientation
+  CalculateAngle.v1 = SavePDF.centerToCamera
+  Arithmetic01.arg1 = Arithmetic0.result
+  Arithmetic0.arg1 = CalculateC2CVector.result
+  Arithmetic0.arg2 = SoCustomExaminerViewer.orientation
+  CalculateC2CVector.arg1 = SoCustomExaminerViewer.position
+  CalculateC2CVector.arg2 = WEMInfo.globalCenter
+  GetRotationComponent.v = SoCustomExaminerViewer.orientation
+  Calculator.d1 = SoCustomExaminerViewer.focalDistance
+  Calculator.d4 = GetRotationComponent.d
+  Calculator.v1 = SoCustomExaminerViewer.position
+  Calculator.v2 = SoCustomExaminerViewer.orientation
+  So3DMarkerEditor.inXMarkerList = ConstantXMarkerList.outputXMarkerList
+  WEMInfo.inWEM = WEMLoad.outWEM
+  SoWEMRenderer.inWEM = WEMLoad.outWEM
+  SoCustomExaminerViewer.children = "SoBackground.self SoWEMRenderer.self So3DMarkerEditor.self SoCameraAccess.self"
+  SavePDF.inventorCameraPosition = SoCustomExaminerViewer.position
+  SavePDF.inventorCameraOrientation = SoCustomExaminerViewer.orientation
+  SavePDF.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
+  SavePDF.inventorCameraHeight = SoCustomExaminerViewer.height
+  SavePDF.centerToCamera = CalculateC2CVector.result
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-165 315 316 136"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This network shows how to use the SavePDF module.
+
+For details regarding the parameters take a look at the documentation."
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "-160 320 306 22"
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 117
+        objectName = VisualizeCamera
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+    }
+  }
+}

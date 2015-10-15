@@ -9,21 +9,25 @@
 
 
 Description {
-  Field mevislabVersion { editable = No }
+  Field mevislabVersion             { editable = No }
+  Field inventorCameraPosition      { editable = No }
+  Field inventorCameraOrientation   { editable = No }
+  Field inventorCameraFocalDistance { editable = No }
+  Field inventorCameraHeight        { editable = No }
   
   Field figureActivationMode {
     items {
-      item ACTIVATION_MODE_EXPLICIT_ACIVATE { title = "User activate (recommended)" }
-      item ACTIVATION_MODE_PAGE_OPEN        { title = "Page opened"}
-      item ACTIVATION_MODE_PAGE_VISIBLE     { title = "Page visible" }
+      item ExplicitActivate { title = "User activate (recommended)" }
+      item PageOpen         { title = "Page opened"}
+      item PageVisible      { title = "Page visible" }
     }
   }
 
   Field figureDeactivationMode {
     items {
-      item DEACTIVATION_MODE_EXPLICIT_DEACTIVATE { title = "User deactivate (recommended)" }
-      item DEACTIVATION_MODE_PAGE_CLOSED         { title = "Page closed"}
-      item DEACTIVATION_MODE_PAGE_INVISIBLE      { title = "Page invisible" }
+      item ExplicitDeactivate { title = "User deactivate (recommended)" }
+      item PageClosed         { title = "Page closed"}
+      item PageInvisible      { title = "Page invisible" }
     }
   }
   
@@ -36,26 +40,68 @@ Commands {
 
 
 Window {
-  Vertical {
+  Category "Main" {
     margin = 3
-    Field u3dFilename { title = "U3D Filename:" browseButton = On browseMode = open }
-    Field pdfFilename { title = "PDF Filename:" browseButton = On browseMode = save }
+
+    Box "Page Header" {
+      Field pageHeaderCitationText   {  }
+      Field pageHeaderHeadlineText   {  }
+      CheckBox includeUsageHints     { title = "Include instructional hints above the figure" }
+    }
+    
+    Box "3D Figure" {
+      Field u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
+      Field posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
+    
+      Field figureActivationMode             { title = "Activation Mode:" }
+      Field figureDeactivationMode           { title = "Deactivation Mode:" }
+      Field figureToolbarEnabled             { title = "Toolbar Enabled:" }
+      Field figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+      Field figureAnimationAutostart         { title = "Animation Autostart:" }
+      
+    }
+    
+    Box "Description" {
+      
+      Field caption         {  }
+      TextView description  { autoApply = Yes }    
+    }
+    
+    Box "Output" {
+      Field pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
+      Button save { title = "Save" alignX = Left }
+      ProgressBar progress { textVisible = No }
+      Label { titleField = status }
+    }
+  }  // Category "Main"
+  Category "Views" {
+    Horizontal { alignY = Top
+      
+      Box "PDF Camera" { alignY = Top
+        Field cameraCenterOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraCenterToCamera { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraRadiusOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraRollAngle      { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraFOVAngle       { title = "Camera FOV Angle:" dependsOn = !autoCalculateCameraFromInventorScene }
+        Separator {}
+        Horizontal {
+          Button calculateCameraFromInventorScene { title = "Calculate From Inventor Scene" dependsOn = !autoCalculateCameraFromInventorScene }
+          CheckBox autoCalculateCameraFromInventorScene { title = "Auto" }
+        }
+      }
+      
+      Box "Inventor Camera" { alignY = Top
+        Field inventorCameraPosition      {  }
+        Field inventorCameraOrientation   {  }
+        Field inventorCameraFocalDistance {  }
+        Field inventorCameraHeight        {  }        
+      }
+      
+    }
+    
     Separator { }
-    Field pageHeaderReference   {  }
-    Field pageHeaderHeadline    {  }
-    Separator {}
-    Field figureActivationMode             { title = "Activation Mode:" }
-    Field figureDeactivationMode           { title = "Deactivation Mode:" }
-    Field figureToolbarEnabled             { title = "Toolbar Enabled:" }
-    Field figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
-    Field figureAnimationAutostart         { title = "Animation Autostart:" }
-    Separator {}
+    
     Field viewBackgroundColor {  }
-    Field caption         {  }
-    TextView description  { autoApply = Yes }    
-    Separator {}
-    Button save { title = "Save" alignX = Left }
-    ProgressBar progress { textVisible = No }
-    Label { titleField = status }
+    
   }
 }

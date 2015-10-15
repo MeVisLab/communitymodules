@@ -12,6 +12,7 @@
 // Local includes
 #include "SavePDF.h"
 #include "../shared/MLPDF_Tools.h"
+#include "../shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h"
 
 // ThirdParty includes
 #include "hpdf.h"
@@ -19,8 +20,7 @@
 #include "hpdf_objects.h"
 
 // ML includes
-#include "mlUnicode.h"
-
+//#include "mlUnicode.h"
 
 #include <Inventor/nodes/SoNodes.h>
 
@@ -38,11 +38,6 @@ SavePDF::SavePDF() : Module(0, 0)
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
-  SbVec3f v3f(0,0,1);
-  SbRotation rot(v3f,3.14);
-
-
-
   (_mlPDFFileNameFld = addString("pdfFilename"))->setStringValue("");
   (_mlU3DFileNameFld = addString("u3dFileName"))->setStringValue("");
 
@@ -58,12 +53,18 @@ SavePDF::SavePDF() : Module(0, 0)
   (_pdfAttrSubjectFld   = addString("pdfAttrSubject"))  ->setStringValue("");
   (_pdfAttrKeywordsFld  = addString("pdfAttrKeywords")) ->setStringValue("");
 
+  _calculateCameraFromInventorSceneFld   = addNotify("calculateCameraFromInventorScene");
+  (_autoCalculateCameraFromInventorScene = addBool("autoCalculateCameraFromInventorScene"))->setBoolValue(false);
+  (_inventorCameraPositionFld            = addVector3("inventorCameraPosition")) ->setVector3Value(Vector3(0,0,0));
+  (_inventorCameraOrientationFld         = addVector4("inventorCameraOrientation")) ->setVector4Value(Vector4(0,0,1,0));
+  (_inventorCameraFocalDistanceFld       = addFloat("inventorCameraFocalDistance"))->setFloatValue(0);
+  (_inventorCameraHeightFld              = addFloat("inventorCameraHeight"))       ->setFloatValue(0);
 
-  (_centerOfOrbitFld  = addVector3("centerOfOrbit"))->setVector3Value(Vector3(0));
-  (_centerToCameraFld = addVector3("centerToCamera"))->setVector3Value(Vector3(0));
-  (_radiusOfOrbitFld  = addFloat("radiusOfOrbit"))->setFloatValue(0);
-  (_cameraFOVAngleFld = addFloat("cameraFOVAngle"))->setFloatValue(90.0f);
-  (_cameraRollFld     = addFloat("cameraRoll"))->setFloatValue(0);
+  (_cameraCenterOfOrbitFld  = addVector3("cameraCenterOfOrbit")) ->setVector3Value(Vector3(0));
+  (_cameraCenterToCameraFld = addVector3("cameraCenterToCamera"))->setVector3Value(Vector3(0));
+  (_cameraRadiusOfOrbitFld  = addFloat("cameraRadiusOfOrbit"))   ->setFloatValue(0);
+  (_cameraFOVAngleFld       = addFloat("cameraFOVAngle"))        ->setFloatValue(90.0f);
+  (_cameraRollAngleFld      = addFloat("cameraRollAngle"))            ->setFloatValue(0);
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -94,6 +95,27 @@ void SavePDF::handleNotification(Field* field)
     // Call the save routine.
     saveButtonClicked();
   } 
+
+  if (field == _calculateCameraFromInventorSceneFld) 
+  {
+    _calculateCameraPropertiesFromInventorCamera();
+  } 
+
+  if (
+      (
+        (field == _autoCalculateCameraFromInventorScene) ||
+        (field == _inventorCameraPositionFld) ||
+        (field == _inventorCameraOrientationFld) ||
+        (field == _autoCalculateCameraFromInventorScene) ||
+        (field == _inventorCameraFocalDistanceFld) ||
+        (field == _inventorCameraHeightFld)
+      ) 
+      && 
+      (_autoCalculateCameraFromInventorScene->getBoolValue())
+     )
+  {
+    _calculateCameraPropertiesFromInventorCamera();
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -203,16 +225,16 @@ void SavePDF::savePDFFile(std::string filename)
     // http://www3.math.tu-berlin.de/jreality/mediawiki/index.php/Export_U3D_files
     // http://www.pdflib.com/pdflib-cookbook/multimedia/javascript-for-3d-camera/
 
-    Vector3 coo = _centerOfOrbitFld->getVector3Value();
-    Vector3 c2c = _centerToCameraFld->getVector3Value();
+    Vector3 coo = _cameraCenterOfOrbitFld->getVectorValue();
+    Vector3 c2c = _cameraCenterToCameraFld->getVectorValue();
     HPDF_REAL coox = (HPDF_REAL)coo.x;  // Center of Orbit, X
     HPDF_REAL cooy = (HPDF_REAL)coo.y;  // Center of Orbit, Y
     HPDF_REAL cooz = (HPDF_REAL)coo.z;  // Center of Orbit, Z
     HPDF_REAL c2cx = (HPDF_REAL)c2c.x;  // Center to Camera, X
     HPDF_REAL c2cy = (HPDF_REAL)c2c.y;  // Center to Camera, Y
     HPDF_REAL c2cz = (HPDF_REAL)c2c.z;  // Center to Camera, Z
-    HPDF_REAL roo  = sqrt(pow(c2cx, 2) + pow(c2cy, 2) + pow(c2cz, 2));  // Radius of Orbit -> SoCustomExaminerViewer.focalDistance
-    HPDF_REAL roll = 90.0f;             // Camera Roll in degrees
+    HPDF_REAL roo  = _cameraRadiusOfOrbitFld->getFloatValue(); // Radius of Orbit
+    HPDF_REAL roll = _cameraRollAngleFld->getFloatValue();     // Camera Roll in degrees
     HPDF_3DView_SetCamera(myView, coox, cooy, cooz, c2cx, c2cy, c2cz, roo, roll);
 
     HPDF_REAL fov = _cameraFOVAngleFld->getFloatValue();
@@ -220,7 +242,7 @@ void SavePDF::savePDFFile(std::string filename)
     //HPDF_3DView_SetOrthogonalProjection(defaultView);    
     HPDF_U3D_Add3DView(u3dScene, myView);
 
-
+/*
     HPDF_Dict myView2 = HPDF_Create3DView(pdfPage->mmgr, "Alternative View");
     HPDF_3DView_SetLighting(myView2, "White");
     HPDF_3DView_SetBackgroundColor(myView2, 0.1f, 0.1f, 0.1f);
@@ -228,8 +250,8 @@ void SavePDF::savePDFFile(std::string filename)
     HPDF_3DView_SetPerspectiveProjection(myView2, fov);
     HPDF_U3D_Add3DView(u3dScene, myView2);
 
-
     HPDF_U3D_SetDefault3DView(u3dScene, "Alternative View");
+*/
 
     HPDF_Annotation u3dAnnotation = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dScene); 
 
@@ -239,8 +261,8 @@ void SavePDF::savePDFFile(std::string filename)
     HPDF_3DActivation_SetActivationMode(activation, "ExplicitActivate");
     HPDF_3DActivation_SetDeactivationMode(activation, "ExplicitDeactivate");
     HPDF_3DActivation_SetAnimationAutoStart(activation, false);
-    HPDF_3DActivation_SetToolbarEnabled(activation, true);
-    HPDF_3DActivation_SetNavigationInterfaceOpened(activation, true);
+    HPDF_3DActivation_SetToolbarEnabled(activation, false);
+    HPDF_3DActivation_SetNavigationInterfaceOpened(activation, false);
 
     HPDF_U3D_Set3DActivation(u3dAnnotation, activation);
 
@@ -265,6 +287,29 @@ void SavePDF::savePDFFile(std::string filename)
 
 //----------------------------------------------------------------------------------
 
+void SavePDF::_calculateCameraPropertiesFromInventorCamera()
+{
+  Vector3 inventorCameraPosition      = _inventorCameraPositionFld->getVectorValue();
+  Vector4 inventorCameraOrientation   = _inventorCameraOrientationFld->getVectorValue();
+  float   inventorCameraFocalDistance = _inventorCameraFocalDistanceFld->getFloatValue();
+  float   inventorCameraHeight        = _inventorCameraHeightFld->getFloatValue();
+  Vector3 camCenterOfOrbit;
+  Vector3 camCenterToCamera;
+  float   camRadiusOfOrbit;
+  float   camRollAngle;
+  float   camFOVAngle;
+
+  mlPDF::PDFDocumentTools::CalculateCameraPropertiesFromInventorCamera(
+    inventorCameraPosition, inventorCameraOrientation, inventorCameraFocalDistance, inventorCameraHeight,
+    camCenterOfOrbit, camCenterToCamera, camRadiusOfOrbit, camRollAngle, camFOVAngle);
+
+  // Set field values
+  _cameraCenterOfOrbitFld ->setVector3Value(camCenterOfOrbit);
+  _cameraCenterToCameraFld->setVector3Value(camCenterToCamera);
+  _cameraRadiusOfOrbitFld ->setFloatValue(inventorCameraFocalDistance);
+  _cameraRollAngleFld     ->setFloatValue(camRollAngle);
+  _cameraFOVAngleFld      ->setFloatValue(camFOVAngle);
+}
 
 
 //----------------------------------------------------------------------------------

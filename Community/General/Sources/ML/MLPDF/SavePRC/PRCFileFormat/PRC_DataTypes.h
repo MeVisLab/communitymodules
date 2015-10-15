@@ -12,7 +12,7 @@
 #define _PRC_DataFormats_H
 
 #include "PRC_BitStream.h"
-#include "MLPDF_DataTypes.h"
+#include "../../shared/MLPDF_DataTypes.h"
 
 #include "mlModuleIncludes.h"
 

@@ -93,6 +93,9 @@ void stringLower(std::string &sourceString);
 // Convert MeVisLab version number into string
 std::string getMeVisLabVersionNumberString();
 
+// Return string with module's version number
+std::string getModuleVersionNumberString();
+
 //***********************************************************************************
 
 // Parses a string and try to get color values from it.

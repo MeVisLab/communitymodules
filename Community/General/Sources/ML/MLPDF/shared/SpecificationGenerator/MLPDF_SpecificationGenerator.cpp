@@ -16,6 +16,7 @@
 
 ML_START_NAMESPACE
 
+namespace mlPDF {
 
 //----------------------------------------------------------------------------------
 
@@ -242,5 +243,6 @@ std::string SpecificationGenerator::FormatColorString(Vector3 colorValue, float 
 
 //----------------------------------------------------------------------------------
 
+} // end namespace mlPDF
 
 ML_END_NAMESPACE

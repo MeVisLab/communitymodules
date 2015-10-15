@@ -287,6 +287,13 @@ std::string getMeVisLabVersionNumberString()
 
 //***********************************************************************************
 
+std::string getModuleVersionNumberString()
+{
+  return "1.2";
+}
+
+//***********************************************************************************
+
 Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor) 
 {
   Vector4 result = defaultColor;

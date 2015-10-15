@@ -18,7 +18,7 @@
 #include "MLPDFSystem.h"
 #include "PRCFileFormat/PRC_DataTypes.h"
 #include "PRCFileFormat/PRC_File.h"
-#include "MLPDF_DataTypes.h"
+#include "../shared/MLPDF_DataTypes.h"
 
 #include <WEMBase/WEM.h>
 #include <WEMBase/WEMModuleBase/WEMInspector.h>

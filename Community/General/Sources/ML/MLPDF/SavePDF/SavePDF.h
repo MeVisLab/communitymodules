@@ -59,11 +59,19 @@ private:
   //! Progress bar.
   ProgressField *_progressFld;
 
-  // Camera fields
-  Vector3Field*  _centerOfOrbitFld;
-  Vector3Field*  _centerToCameraFld;
-  FloatField*    _radiusOfOrbitFld;
-  FloatField*    _cameraRollFld;
+  // Inventor camera fields
+  NotifyField*   _calculateCameraFromInventorSceneFld;
+  BoolField*     _autoCalculateCameraFromInventorScene;
+  Vector3Field*  _inventorCameraPositionFld;
+  Vector4Field*  _inventorCameraOrientationFld;
+  FloatField*    _inventorCameraFocalDistanceFld;
+  FloatField*    _inventorCameraHeightFld;
+
+  // PDF view camera fields
+  Vector3Field*  _cameraCenterOfOrbitFld;
+  Vector3Field*  _cameraCenterToCameraFld;
+  FloatField*    _cameraRadiusOfOrbitFld;
+  FloatField*    _cameraRollAngleFld;
   FloatField*    _cameraFOVAngleFld;
 
 
@@ -83,7 +91,7 @@ private:
   void saveButtonClicked();
   void savePDFFile(std::string filename);
 
-
+  void _calculateCameraPropertiesFromInventorCamera();
 
 
   // Implements interface for the runtime type system of the ML.

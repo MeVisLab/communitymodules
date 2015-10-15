@@ -12,6 +12,7 @@
 // Local includes
 #include "Save3DFigurePDF.h"
 #include "../shared/MLPDF_Tools.h"
+#include "../shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h"
 
 // ThirdParty includes
 #include "hpdf.h"
@@ -34,29 +35,31 @@ Save3DFigurePDF::Save3DFigurePDF() : Module(0, 0)
   //! Strings for enum field: specification type 
   //-------------------------------------------------------------------
   const char* const ACTIVATION_MODE_STRINGS[NUM_ACTIVATIONMODES] = {
-    "ACTIVATION_MODE_EXPLICIT_ACIVATE",
-    "ACTIVATION_MODE_PAGE_OPEN",
-    "ACTIVATION_MODE_PAGE_VISIBLE"
+    "ExplicitActivate",
+    "PageOpen",
+    "PageVisible"
   };
 
   //-------------------------------------------------------------------
   //! Strings for enum field: specification type 
   //-------------------------------------------------------------------
   const char* const DEACTIVATION_MODE_STRINGS[NUM_DEACTIVATIONMODES] = {
-    "DEACTIVATION_MODE_EXPLICIT_DEACTIVATE",
-    "DEACTIVATION_MODE_PAGE_CLOSED",
-    "DEACTIVATION_MODE_PAGE_INVISIBLE"
+    "ExplicitDeactivate",
+    "PageClosed",
+    "PageInvisible"
   };
 
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
-  (_u3dFilenameFld = addString("u3dFilename"))->setStringValue("");
-  (_pdfFilenameFld = addString("pdfFilename"))->setStringValue("");
+  (_u3dFilenameFld         = addString("u3dFilename"))->setStringValue("");
+  (_posterImageFilenameFld = addString("posterImageFilename"))->setStringValue("");
+  (_pdfFilenameFld         = addString("pdfFilename"))->setStringValue("");
 
-  (_pageHeaderReferenceFld = addString("pageHeaderReference"))->setStringValue("");
-  (_pageHeaderHeadlineFld = addString("pageHeaderHeadline"))->setStringValue("");
+  (_pageHeaderCitationTextFld = addString("pageHeaderCitationText"))->setStringValue("");
+  (_pageHeaderHeadlineTextFld = addString("pageHeaderHeadlineText"))->setStringValue("");
+  (_includeUsageHintsFld      = addBool("includeUsageHints"))->setBoolValue(true);
 
   (_figureActivationModeFld             = addEnum("figureActivationMode", ACTIVATION_MODE_STRINGS, NUM_ACTIVATIONMODES))->setEnumValue(ACTIVATION_MODE_EXPLICIT_ACTIVATE);
   (_figureDeactivationModeFld           = addEnum("figureDeactivationMode", DEACTIVATION_MODE_STRINGS, NUM_DEACTIVATIONMODES))->setEnumValue(DEACTIVATION_MODE_EXPLICIT_DEACTIVATE);
@@ -65,6 +68,20 @@ Save3DFigurePDF::Save3DFigurePDF() : Module(0, 0)
   (_figureNavigationInterfaceEnabledFld = addBool("figureNavigationInterfaceEnabled"))->setBoolValue(false);
 
   (_viewBackgroundColorFld = addColor("viewBackgroundColor"))->setVector3Value(Vector3(0.8,0.8,0.8));
+
+  _calculateCameraFromInventorSceneFld   = addNotify("calculateCameraFromInventorScene");
+  (_autoCalculateCameraFromInventorScene = addBool("autoCalculateCameraFromInventorScene"))->setBoolValue(false);
+  (_inventorCameraPositionFld            = addVector3("inventorCameraPosition")) ->setVector3Value(Vector3(0,0,0));
+  (_inventorCameraOrientationFld         = addVector4("inventorCameraOrientation")) ->setVector4Value(Vector4(0,0,1,0));
+  (_inventorCameraFocalDistanceFld       = addFloat("inventorCameraFocalDistance"))->setFloatValue(0);
+  (_inventorCameraHeightFld              = addFloat("inventorCameraHeight"))       ->setFloatValue(0);
+
+  (_cameraCenterOfOrbitFld  = addVector3("cameraCenterOfOrbit")) ->setVector3Value(Vector3(0));
+  (_cameraCenterToCameraFld = addVector3("cameraCenterToCamera"))->setVector3Value(Vector3(0));
+  (_cameraRadiusOfOrbitFld  = addFloat("cameraRadiusOfOrbit"))   ->setFloatValue(0);
+  (_cameraFOVAngleFld       = addFloat("cameraFOVAngle"))        ->setFloatValue(90.0f);
+  (_cameraRollAngleFld      = addFloat("cameraRollAngle"))            ->setFloatValue(0);
+
   (_captionFld = addString("caption"))->setStringValue("");
   (_descriptionFld = addString("description"))->setStringValue("");
 
@@ -111,6 +128,28 @@ void Save3DFigurePDF::handleNotification(Field* field)
     // Call the save routine.
     saveButtonClicked();
   } 
+
+  if (field == _calculateCameraFromInventorSceneFld) 
+  {
+    _calculateCameraPropertiesFromInventorCamera();
+  } 
+
+  if (
+      (
+        (field == _autoCalculateCameraFromInventorScene) ||
+        (field == _inventorCameraPositionFld) ||
+        (field == _inventorCameraOrientationFld) ||
+        (field == _autoCalculateCameraFromInventorScene) ||
+        (field == _inventorCameraFocalDistanceFld) ||
+        (field == _inventorCameraHeightFld)
+      ) 
+      && 
+      (_autoCalculateCameraFromInventorScene->getBoolValue())
+     )
+  {
+    _calculateCameraPropertiesFromInventorCamera();
+  }
+
 }
 
 //----------------------------------------------------------------------------------
@@ -226,11 +265,12 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
     // **********************************************
 
 
-    HPDF_U3D u3dModel;
+    HPDF_U3D u3dScene;
 
-    HPDF_Rect rect1 = { 50, 250, 350, 400 };
+    HPDF_Rect annotationRect = { 50, 250, 350, 400 };
 
-    u3dModel = HPDF_LoadU3DFromFile(pdfDocument, "D:\\MeVisLab\\Packages\\Community\\General\\Modules\\ML\\MLPDF\\networks\\Save3DFigurePDFExample.u3d");
+    std::string u3dFilename = _u3dFilenameFld->getStringValue();
+    u3dScene = HPDF_LoadU3DFromFile(pdfDocument, u3dFilename.c_str());
 
     HPDF_Dict defaultView = HPDF_Create3DView(pdfPage->mmgr, "Default View");
     //HPDF_3DView_AddNode(defaultView, "Cow Mesh red", 0.5, true);   // funktioniert! :-)
@@ -240,35 +280,37 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
     //HPDF_3DView_SetPerspectiveProjection(defaultView);
     //HPDF_3DView_SetOrthogonalProjection(defaultView);
 
-    // Kamera-Berechnung:
-    // http://rodomontano.altervista.org/GuidePDF3D.htm
-    // http://www3.math.tu-berlin.de/jreality/mediawiki/index.php/Export_U3D_files
-    // http://www.pdflib.com/pdflib-cookbook/multimedia/javascript-for-3d-camera/
-
-    HPDF_REAL coox = 0;  // Center of Orbit, X
-    HPDF_REAL cooy = 0;  // Center of Orbit, Y
-    HPDF_REAL cooz = 0;  // Center of Orbit, Z
-    HPDF_REAL c2cx = 0;  // Center to Camera, X
-    HPDF_REAL c2cy = 0;  // Center to Camera, Y
-    HPDF_REAL c2cz = 0;  // Center to Camera, Z
-    HPDF_REAL roo  = 0;  // Radius of Orbit
-    HPDF_REAL roll = 0;  // Camera Roll
+    Vector3 coo = _cameraCenterOfOrbitFld->getVectorValue();
+    Vector3 c2c = _cameraCenterToCameraFld->getVectorValue();
+    HPDF_REAL coox = (HPDF_REAL)coo.x;  // Center of Orbit, X
+    HPDF_REAL cooy = (HPDF_REAL)coo.y;  // Center of Orbit, Y
+    HPDF_REAL cooz = (HPDF_REAL)coo.z;  // Center of Orbit, Z
+    HPDF_REAL c2cx = (HPDF_REAL)c2c.x;  // Center to Camera, X
+    HPDF_REAL c2cy = (HPDF_REAL)c2c.y;  // Center to Camera, Y
+    HPDF_REAL c2cz = (HPDF_REAL)c2c.z;  // Center to Camera, Z
+    HPDF_REAL roo  = _cameraRadiusOfOrbitFld->getFloatValue(); // Radius of Orbit
+    HPDF_REAL roll = _cameraRollAngleFld->getFloatValue();     // Camera Roll in degrees
     HPDF_3DView_SetCamera(defaultView, coox, cooy, cooz, c2cx, c2cy, c2cz, roo, roll);
 
-    HPDF_U3D_Add3DView(u3dModel, defaultView);
+    HPDF_REAL fov = _cameraFOVAngleFld->getFloatValue();
+    HPDF_3DView_SetPerspectiveProjection(defaultView, fov);
+    //HPDF_3DView_SetOrthogonalProjection(defaultView);    
+    HPDF_U3D_Add3DView(u3dScene, defaultView);
     //HPDF_U3D_SetDefault3DView(u3dModel, "Default View");
 
-    HPDF_Annotation u3dAnnotation = HPDF_Page_Create3DAnnot(pdfPage, rect1, u3dModel); 
+    HPDF_Annotation u3dAnnotation = HPDF_Page_Create3DAnnot(pdfPage, annotationRect, u3dScene); 
 
-    HPDF_Dict activation = HPDF_Create3DActivation(u3dAnnotation);
-    HPDF_3DActivation_SetActivationMode(activation, "ExplicitActivate");
-    HPDF_3DActivation_SetDeactivationMode(activation, "ExplicitDeactivate");
-    HPDF_3DActivation_SetAnimationAutoStart(activation, false);
-    HPDF_3DActivation_SetToolbarEnabled(activation, true);
-    HPDF_3DActivation_SetNavigationInterfaceOpened(activation, true);
+    if (u3dAnnotation)
+    {
+      HPDF_Dict activation = HPDF_Create3DActivation(u3dAnnotation);
+      HPDF_3DActivation_SetActivationMode(activation, _figureActivationModeFld->getStringValue().c_str());
+      HPDF_3DActivation_SetDeactivationMode(activation, _figureDeactivationModeFld->getStringValue().c_str());
+      HPDF_3DActivation_SetAnimationAutoStart(activation, _figureAnimationAutostartFld->getBoolValue());
+      HPDF_3DActivation_SetToolbarEnabled(activation, _figureToolbarEnabledFld->getBoolValue());
+      HPDF_3DActivation_SetNavigationInterfaceOpened(activation, _figureNavigationInterfaceEnabledFld->getBoolValue());
 
-    HPDF_U3D_Set3DActivation(u3dAnnotation, activation);
-
+      HPDF_U3D_Set3DActivation(u3dAnnotation, activation);
+    }
 
     /* save the document to a file */
     HPDF_SaveToFile (pdfDocument, filename.c_str());
@@ -291,6 +333,29 @@ void Save3DFigurePDF::Save3DFigurePDFFile(std::string filename)
 
 //----------------------------------------------------------------------------------
 
+void Save3DFigurePDF::_calculateCameraPropertiesFromInventorCamera()
+{
+  Vector3 inventorCameraPosition      = _inventorCameraPositionFld->getVectorValue();
+  Vector4 inventorCameraOrientation   = _inventorCameraOrientationFld->getVectorValue();
+  float   inventorCameraFocalDistance = _inventorCameraFocalDistanceFld->getFloatValue();
+  float   inventorCameraHeight        = _inventorCameraHeightFld->getFloatValue();
+  Vector3 camCenterOfOrbit;
+  Vector3 camCenterToCamera;
+  float   camRadiusOfOrbit;
+  float   camRollAngle;
+  float   camFOVAngle;
+
+  mlPDF::PDFDocumentTools::CalculateCameraPropertiesFromInventorCamera(
+    inventorCameraPosition, inventorCameraOrientation, inventorCameraFocalDistance, inventorCameraHeight,
+    camCenterOfOrbit, camCenterToCamera, camRadiusOfOrbit, camRollAngle, camFOVAngle);
+
+  // Set field values
+  _cameraCenterOfOrbitFld ->setVector3Value(camCenterOfOrbit);
+  _cameraCenterToCameraFld->setVector3Value(camCenterToCamera);
+  _cameraRadiusOfOrbitFld ->setFloatValue(inventorCameraFocalDistance);
+  _cameraRollAngleFld     ->setFloatValue(camRollAngle);
+  _cameraFOVAngleFld      ->setFloatValue(camFOVAngle);
+}
 
 
 //----------------------------------------------------------------------------------

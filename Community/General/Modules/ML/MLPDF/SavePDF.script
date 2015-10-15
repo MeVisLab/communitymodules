@@ -9,7 +9,11 @@
 
 
 Description {
-  Field mevislabVersion { editable = No }
+  Field mevislabVersion             { editable = No }
+  Field inventorCameraPosition      { editable = No }
+  Field inventorCameraOrientation   { editable = No }
+  Field inventorCameraFocalDistance { editable = No }
+  Field inventorCameraHeight        { editable = No }
 }
 
 
@@ -21,11 +25,32 @@ Commands {
 Window {
   Vertical {
     margin = 3
-    Field centerOfOrbit  {  }
-    Field centerToCamera {  }
-    Field radiusOfOrbit  {  }
-    Field cameraRoll     {  }
-    Field cameraFOVAngle {title = "Camera FOV Angle:" }
+    
+    Horizontal { alignY = Top
+      
+      Box "PDF Camera" { alignY = Top
+        Field cameraCenterOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraCenterToCamera { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraRadiusOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraRollAngle      { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraFOVAngle       { title = "Camera FOV Angle:" dependsOn = !autoCalculateCameraFromInventorScene }
+        Separator {}
+        Horizontal {
+          Button calculateCameraFromInventorScene { title = "Calculate From Inventor Scene" dependsOn = !autoCalculateCameraFromInventorScene }
+          CheckBox autoCalculateCameraFromInventorScene { title = "Auto" }
+        }
+      }
+      
+      Box "Inventor Camera" { alignY = Top
+        Field inventorCameraPosition      {  }
+        Field inventorCameraOrientation   {  }
+        Field inventorCameraFocalDistance {  }
+        Field inventorCameraHeight        {  }        
+      }
+      
+    }
+    
+    
     Separator {}
     Field u3dFileName    { browseButton = On browseMode = save }
     Field pdfFilename    { browseButton = On browseMode = save }
