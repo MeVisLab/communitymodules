@@ -38,9 +38,21 @@ MLModule SaveU3D {
   author             = "Axel Newe"
   comment            = "Creates U3D file from WEMs and XMarkerLists."
   keywords           = "PDF U3D WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SavePRC SavePDFFigure SavePDF"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SavePRC SavePDFFigure SavePDF LoadU3D"
   exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
   externalDefinition = $(LOCAL)/SaveU3D.script
+}
+
+MLModule LoadU3D {
+  DLL                = "MLPDF"
+
+  genre              = "FileMain"
+  author             = "Axel Newe"
+  comment            = "Loads U3D file and creates WEMs and XMarkerLists from it."
+  keywords           = "PDF U3D WEM XMarker Fiber"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SavePRC SavePDFFigure SavePDF SaveU3D"
+  exampleNetwork     = "$(LOCAL)/networks/LoadU3DExample.mlab"
+  externalDefinition = $(LOCAL)/LoadU3D.script
 }
 
 /*
