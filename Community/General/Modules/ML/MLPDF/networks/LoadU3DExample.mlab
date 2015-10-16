@@ -1,0 +1,50 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LoadU3D {
+  internal  {
+    frame = "589 253 88 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = LoadU3D
+    isProcessing = FALSE
+    elapsedTime = 0
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    boundingBoxCenter = "0 0 0"
+    boundingBoxRadius = 0
+  }
+}
+connections = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "32 -1 345 149"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This network shows how to use theLoadU3D module.
+
+For details regarding the parameters take a look at the documentation."
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "37 4 335 22"
+      }
+    }
+  }
+}
