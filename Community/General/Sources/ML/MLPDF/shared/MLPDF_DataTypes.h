@@ -10,8 +10,8 @@
 //----------------------------------------------------------------------------------
 
 
-#ifndef _PDF_CommonDataTypes_H
-#define _PDF_CommonDataTypes_H 
+#ifndef _PDF_DataTypes_H
+#define _PDF_DataTypes_H 
 
 #include "mlModuleIncludes.h"
 
@@ -102,4 +102,4 @@ struct SpecificationParametersStruct
 
 ML_END_NAMESPACE
 
-#endif // _PDF_CommonDataTypes_H
+#endif // _PDF_DataTypes_H

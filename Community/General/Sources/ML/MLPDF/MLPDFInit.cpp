@@ -19,6 +19,7 @@
 #include "Save3DFigurePDF/Save3DFigurePDF.h"
 #include "SaveU3D/SaveU3D.h"
 #include "SavePRC/SavePRC.h"
+#include "LoadU3D/LoadU3D.h"
 
 ML_START_NAMESPACE
 
@@ -32,6 +33,8 @@ int MLPDFInit()
   Save3DFigurePDF::initClass();
   SaveU3D::initClass();
   SavePRC::initClass();
+
+  LoadU3D::initClass();
 
   return 1;
 }

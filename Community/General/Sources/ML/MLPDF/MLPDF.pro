@@ -36,7 +36,9 @@ HEADERS += \
   MLPDFInit.h \
   MLPDFSystem.h \
   shared/MLPDF_Tools.h \
+  shared/MLPDF_Defines.h \
   shared/MLPDF_DataTypes.h \
+  shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h \
   shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h \
   shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h \
   SavePDF/SavePDF.h \
@@ -58,10 +60,13 @@ HEADERS += \
   SavePRC/PRCFileFormat/PRC_Write.h \
   SavePRC/PRCFileFormat/PRC_File.h \
   SavePRC/PRCFileFormat/PRC_Tools.h \
+  LoadU3D/LoadU3D.h \
+
 
 SOURCES += \
   MLPDFInit.cpp \
   shared/MLPDF_Tools.cpp \
+  shared/PDFCreatorBase/MLPDF_PDFCreatorBase.cpp \
   shared/PDFDocumentTools/MLPDF_PDFDocumentTools.cpp \
   shared/SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
   SavePDF/SavePDF.cpp \
@@ -87,3 +92,4 @@ SOURCES += \
   SavePRC/PRCFileFormat/PRC_Write.cpp \
   SavePRC/PRCFileFormat/PRC_File.cpp \
   SavePRC/PRCFileFormat/PRC_Tools.cpp \
+  LoadU3D/LoadU3D.cpp \

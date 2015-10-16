@@ -16,6 +16,7 @@
 
 // Local includes
 #include "MLPDFSystem.h"
+#include "../shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h"
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -24,32 +25,12 @@ ML_START_NAMESPACE
 
 
 //! 
-class MLPDF_EXPORT Save3DFigurePDF : public Module
+class MLPDF_EXPORT Save3DFigurePDF : public PDFCreatorBase
 {
 public:
 
   //! Constructor.
   Save3DFigurePDF();
-
-  //-----------------------------------------------------------------------------------------------//
-  //! Figure activation modes.
-  //-----------------------------------------------------------------------------------------------//
-  enum ACTIVATION_MODES {
-    ACTIVATION_MODE_EXPLICIT_ACTIVATE = 0,
-    ACTIVATION_MODE_PAGE_OPEN         = 1,
-    ACTIVATION_MODE_PAGE_VISIBLE      = 2,
-    NUM_ACTIVATIONMODES               = 3
-  };
-
-  //-----------------------------------------------------------------------------------------------//
-  //! Figure deactivation modes.
-  //-----------------------------------------------------------------------------------------------//
-  enum DEACTIVATION_MODES {
-    DEACTIVATION_MODE_EXPLICIT_DEACTIVATE = 0,
-    DEACTIVATION_MODE_PAGE_CLOSED         = 1,
-    DEACTIVATION_MODE_PAGE_INVISIBLE      = 2,
-    NUM_DEACTIVATIONMODES                 = 3
-  };
 
 protected:
 
@@ -62,6 +43,12 @@ protected:
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field* field);
 
+  //! Assemble PDF document
+  //! This is the main method for all derived modules.
+  //! It is called by the saveButtonClicked() method.
+  //! Add all code that assembles the actual PDF document here!
+  virtual void assemblePDFDocument();
+
 private:
 
   /* FIELDS */
@@ -69,7 +56,6 @@ private:
   //! Filename fields
   StringField*  _u3dFilenameFld;
   StringField*  _posterImageFilenameFld;
-  StringField*  _pdfFilenameFld;
 
   //! Page property fields
   StringField*  _pageHeaderCitationTextFld;
@@ -86,51 +72,10 @@ private:
   //! View property fields
   ColorField*   _viewBackgroundColorFld;
 
-  // Inventor camera fields
-  NotifyField*   _calculateCameraFromInventorSceneFld;
-  BoolField*     _autoCalculateCameraFromInventorScene;
-  Vector3Field*  _inventorCameraPositionFld;
-  Vector4Field*  _inventorCameraOrientationFld;
-  FloatField*    _inventorCameraFocalDistanceFld;
-  FloatField*    _inventorCameraHeightFld;
-
-  // PDF view camera fields
-  Vector3Field*  _cameraCenterOfOrbitFld;
-  Vector3Field*  _cameraCenterToCameraFld;
-  FloatField*    _cameraRadiusOfOrbitFld;
-  FloatField*    _cameraRollAngleFld;
-  FloatField*    _cameraFOVAngleFld;
-
   //! Description fields
   StringField*  _captionFld;
   StringField*  _descriptionFld;
 
-  //! Save notification field
-  NotifyField*  _saveFld;
-
-  //! Status fields
-  StringField*   _statusFld;
-
-  //! Progress fields
-  ProgressField* _progressFld;
-
-  //! MeVisLab Program version (must be set via Python scripting, because the full version number is not available in C++)
-  StringField*   _mevislabVersionFld;
-
-
-  //! PDF file property fields
-  StringField*   _pdfAttrTitleFld;
-  StringField*   _pdfAttrAuthorFld;
-  StringField*   _pdfAttrSubjectFld;
-  StringField*   _pdfAttrKeywordsFld;
-
-
-  // Methods ============================================================
-
-  void saveButtonClicked();
-  void Save3DFigurePDFFile(std::string filename);
-
-  void _calculateCameraPropertiesFromInventorCamera();
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(Save3DFigurePDF)
