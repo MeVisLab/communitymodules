@@ -31,3 +31,5 @@ build/
 /Community/General/Modules/ML/MLVectorcardiogram/VCGLoad.pyc
 /Community/General/Modules/ML/MLPDF/networks/SaveU3DExample.u3d
 /Community/General/Modules/ML/MLPDF/networks/SavePDFExample.u3d
+/Community/General/lib/MLBaseListExtensions.mldepends
+/Community/General/lib/MLPDF.mldepends
