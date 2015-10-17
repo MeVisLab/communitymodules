@@ -10,6 +10,7 @@
 *.cfg text
 *.conf text
 *.cpp text
+*.css text
 *.cxx text
 *.def text
 *.h text
