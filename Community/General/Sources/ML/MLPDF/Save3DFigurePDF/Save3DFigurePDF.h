@@ -76,6 +76,7 @@ private:
   StringField*  _captionFld;
   StringField*  _descriptionFld;
 
+  void _add3DFigure(float x, float y, float width, float height);
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(Save3DFigurePDF)

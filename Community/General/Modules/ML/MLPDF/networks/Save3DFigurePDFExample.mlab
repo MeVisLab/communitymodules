@@ -4,7 +4,7 @@ network  {
 }
 module LocalFileName {
   internal  {
-    frame = "-311 13 112 56"
+    frame = "-315 81 120 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -15,7 +15,25 @@ module LocalFileName {
     }
   }
   fields  {
-    instanceName = LocalFileName
+    instanceName = PosterFilename
+    localName = $(NETWORK)/Save3DFigurePDFExample.png
+    checkIfFileExists = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-319 -11 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "688 559 635 212"
+        sizeHint = "420 212"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ModelFilename
     localName = $(NETWORK)/Save3DFigurePDFExample.u3d
     checkIfFileExists = TRUE
   }
@@ -38,25 +56,25 @@ module SoCameraAccess {
 0 1 0 0
 0 0 1 0
 0 0 0 1"
-    viewingMatrix = "0.216607347130775 0.806080460548401 0.550740897655487 0
-0.442435324192047 0.421822339296341 -0.791401863098145 0
--0.870248317718506 0.415090560913086 -0.26526865363121 0
-18.2193031311035 -61.2887306213379 -239.485061645508 1"
+    viewingMatrix = "0.373402208089828 0.733730971813202 0.567635297775269 0
+0.892826616764069 -0.450371116399765 -0.00516562256962061 0
+0.251856237649918 0.508728623390198 -0.823264181613922 0
+-12.2207641601562 -80.548698425293 -205.782409667969 1"
     projectionMatrix = "2.45240759849548 0 0 0
-0 2.55250549316406 0 0
-0 -2.09908520787394e-07 -2.6827437877655 -1
-0 0 -427.078979492188 0"
-    cameraSpaceMatrix = "0.587174832820892 0.593220114707947 0.550740957260132 0
-0.593220114707947 0.14755654335022 -0.791401863098145 0
--0.550740957260132 0.791401863098145 -0.265268564224243 0
--14.5027160644531 -62.2729568481445 -239.485046386719 1"
-    camPosition = "177.351440429688 -171.736846923828 -22.232177734375"
-    lookAtPosition = "0.870248436927795 -0.41509073972702 0.265268564224243"
-    upVector = "0.806080460548401 0.421822339296341 0.415090560913086"
-    viewVector = "-0.550739288330078 0.791402578353882 0.265270173549652"
+0 2.55250597000122 0 0
+0 3.78189994876266e-08 -3.29311180114746 -1
+0 0 -552.661193847656 0"
+    cameraSpaceMatrix = "-0.823113083839417 0.0165908355265856 0.567635059356689 0
+0.0165908355265856 0.999849021434784 -0.00516563653945923 0
+-0.567635059356689 0.00516563653945923 -0.823264122009277 0
+77.8311309814453 24.0781288146973 -205.782348632812 1"
+    camPosition = "180.4736328125 -26.4287757873535 -125.35791015625"
+    lookAtPosition = "-0.251856207847595 -0.508728504180908 0.823263883590698"
+    upVector = "0.733730971813202 -0.450371116399765 0.508728623390198"
+    viewVector = "-0.567639410495758 0.00516507495194674 0.823261022567749"
     viewportSizeOut = "408 392"
-    nearDistance = 115.96761
-    farDistance = 253.79918
+    nearDistance = 128.73209
+    farDistance = 241.00929
     NewViewingMatrix = "1 0 0 1
 0 1 0 0
 0 0 1 0
@@ -73,7 +91,7 @@ module SoCustomExaminerViewer {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "119 516 475 420"
+        geometry = "144 360 475 420"
         sizeHint = "400 400"
         wasOpen = yes
       }
@@ -96,7 +114,7 @@ module SoCustomExaminerViewer {
     renderCulling = AUTO
     pickCulling = AUTO
     border = FALSE
-    background = "0 0 0"
+    background = "1 1 1"
     transparency = DELAYED_BLEND
     antialiasing = FALSE
     antialiasingNumPasses = 1
@@ -128,7 +146,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736591994762421 -0.356398105621338 -0.574815213680267 3.27108001708984"
+    userSettingOrientation = "0.736591935157776 -0.356398105621338 -0.574815332889557 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -138,10 +156,10 @@ module SoCustomExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 0.7467863
-    position = "177.351440429688 -171.736846923828 -22.232177734375"
-    orientation = "0.635253667831421 0.748192548751831 -0.191469818353653 1.88958811759949"
-    nearDistance = 115.96761
-    farDistance = 253.79918
+    position = "180.4736328125 -26.4287757873535 -125.35791015625"
+    orientation = "0.823824644088745 0.5062255859375 0.255046337842941 2.82440543174744"
+    nearDistance = 128.73209
+    farDistance = 241.00929
     focalDistance = 184.8147
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
@@ -256,6 +274,13 @@ module SoBackground {
   internal  {
     frame = "177 109 112 56"
     moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "785 482 125 145"
+        sizeHint = "125 145"
+        wasOpen = no
+      }
+    }
   }
   fields  {
     instanceName = SoBackground
@@ -280,7 +305,7 @@ module WEMInfo {
   fields  {
     instanceName = WEMInfo
     isProcessing = FALSE
-    elapsedTime = 0.148
+    elapsedTime = 0.146
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
@@ -301,7 +326,7 @@ module Save3DFigurePDF {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "739 121 827 784"
+        geometry = "745 146 827 784"
         sizeHint = "808 784"
         wasOpen = yes
       }
@@ -314,9 +339,22 @@ module Save3DFigurePDF {
   }
   fields  {
     instanceName = Save3DFigurePDF
-    u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
-    posterImageFilename = ""
     pdfFilename = "d:\\test.pdf"
+    status = "PDF file sucessfully written (1 page)."
+    success = TRUE
+    progress = 1
+    pdfAttrTitle = Title
+    pdfAttrAuthor = Author
+    pdfAttrSubject = Subject
+    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
+    cameraCenterOfOrbit = "75.5663311601384 -25.4740902341291 26.7933552592876"
+    cameraCenterToCamera = "104.907301652362 -0.954685553224408 -152.151265415538"
+    cameraRadiusOfOrbit = 184.8147
+    cameraFOVAngle = 42.787704
+    cameraRollAngle = 26.338642
+    autoCalculateCameraFromInventorScene = TRUE
+    u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
+    posterImageFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.png
     pageHeaderCitationText = "Newe (2015). Some fancy article title. Journal."
     pageHeaderHeadlineText = "Additional File S1 – Interactive 3D PDF"
     includeUsageHints = TRUE
@@ -326,31 +364,20 @@ module Save3DFigurePDF {
     figureToolbarEnabled = FALSE
     figureNavigationInterfaceEnabled = FALSE
     viewBackgroundColor = "0.8 0.8 0.8"
-    autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "75.5664061260613 -25.4741401640786 26.7933736884443"
-    cameraCenterToCamera = "101.785034303626 -146.26270675975 -49.0255514228193"
-    cameraRadiusOfOrbit = 184.8147
-    cameraFOVAngle = 42.787704
-    cameraRollAngle = 295.50018
     caption = "Model of a segmented human femur."
     description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue)."
-    status = Idle.
-    progress = 1
-    pdfAttrTitle = Title
-    pdfAttrAuthor = Author
-    pdfAttrSubject = Subject
-    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
   }
 }
 connections  {
-  SoCustomExaminerViewer.children = "SoBackground.self SoWEMRenderer.self SoCameraAccess.self"
+  SoCustomExaminerViewer.children = "SoWEMRenderer.self SoCameraAccess.self"
   SoWEMRenderer.inWEM = WEMLoad.outWEM
   WEMInfo.inWEM = WEMLoad.outWEM
-  Save3DFigurePDF.u3dFilename = LocalFileName.trueName
   Save3DFigurePDF.inventorCameraPosition = SoCustomExaminerViewer.position
   Save3DFigurePDF.inventorCameraOrientation = SoCustomExaminerViewer.orientation
   Save3DFigurePDF.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
   Save3DFigurePDF.inventorCameraHeight = SoCustomExaminerViewer.height
+  Save3DFigurePDF.u3dFilename = ModelFilename.trueName
+  Save3DFigurePDF.posterImageFilename = PosterFilename.trueName
 }
 networkModel  {
   parentItems  {

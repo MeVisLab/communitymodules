@@ -23,10 +23,15 @@ ML_START_NAMESPACE
 
 namespace mlPDF 
 {
-  typedef HPDF_U3D        PDF3DSCENE;
-  typedef HPDF_Dict       PDF3DVIEW;
-  typedef HPDF_Annotation PDF3DANNOTATION;
+  typedef HPDF_Page       PAGE;
+  typedef HPDF_Image      IMAGE;
+  typedef HPDF_U3D        MODEL3D;
+  typedef HPDF_Dict       VIEW3D;
+  typedef HPDF_Annotation SCENE3D;
 
+  static bool IGNORE_MARGINS = true;
+
+  static std::string LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.\nNunc viverra imperdiet enim. Fusce est. Vivamus a tellus.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.\n";
 
   enum PAGESIZES {
     PAGESIZE_LETTER       = HPDF_PAGE_SIZE_LETTER,       // 612     x 792       pixels
@@ -124,6 +129,36 @@ namespace mlPDF
     "ExplicitDeactivate",
     "PageClosed",
     "PageInvisible"
+  };
+
+  enum LIGHTING_SCHEMES {
+    LIGHTING_SCHEME_NONE       = 0,
+    LIGHTING_SCHEME_WHITE,
+    LIGHTING_SCHEME_DAY,
+    LIGHTING_SCHEME_NIGHT,
+    LIGHTING_SCHEME_HARD,
+    LIGHTING_SCHEME_PRIMARY,
+    LIGHTING_SCHEME_BLUE,
+    LIGHTING_SCHEME_RED,
+    LIGHTING_SCHEME_CUBE,
+    LIGHTING_SCHEME_CAD,
+    LIGHTING_SCHEME_HEADLAMP,
+
+    NUM_LIGHTING_SCHEMES
+  };
+
+  const char* const LightingSchemeStrings[NUM_LIGHTING_SCHEMES] = {
+    "None", 
+    "White", 
+    "Day", 
+    "Night", 
+    "Hard", 
+    "Primary", 
+    "Blue", 
+    "Red", 
+    "Cube", 
+    "CAD", 
+    "HeadLamp"
   };
 
 

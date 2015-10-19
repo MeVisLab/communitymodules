@@ -21,6 +21,8 @@
 
 #include "mlModuleIncludes.h"
 
+#include <sys/stat.h>
+
 ML_START_NAMESPACE
 
 // Inlines ================================================================
@@ -81,6 +83,12 @@ inline int stringToInt(std::string sourceString)
   return result;
 }
 
+inline bool fileExists(std::string& filename)
+{
+  struct stat fileCheckBuffer;
+
+  return (stat (filename.c_str(), &fileCheckBuffer) == 0);
+}
 
 // Tool methods ============================================================
 

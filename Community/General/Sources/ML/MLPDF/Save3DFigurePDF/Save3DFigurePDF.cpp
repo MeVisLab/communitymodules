@@ -87,55 +87,71 @@ void Save3DFigurePDF::activateAttachments()
 void Save3DFigurePDF::assemblePDFDocument()
 {
   //HPDF_Page pdfPage;
-  docAddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);
-  docSetCurrentFont(buildInFonts.Times, 16);
+  float yPos = 0;
+  pdfDoc_AddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);
+  pdfDoc_SetGlobalPageMarginsMM(20, 20, 20, 20);
 
-  docWriteTextAt(130,450, "3D Annotation Test");
+  pdfDoc_SetCurrentFont(buildInFonts.Times, 11);
+  pdfDoc_WriteTextFromTopAt(0, yPos, _pageHeaderCitationTextFld->getStringValue()/*, mlPDF::IGNORE_MARGINS*/);
 
-  // **********************************************
-  // Idee: Noch ein Poster-Image hinzufügen
-  // **********************************************
+  yPos += 25;
+  pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 12);
+  pdfDoc_WriteTextFromTopAt(0, yPos, _pageHeaderHeadlineTextFld->getStringValue());
 
+  if (_includeUsageHintsFld->getBoolValue())
+  {
+    yPos += 35;
+    pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
+    pdfDoc_WriteTextFromTopAt(0, yPos, "Figure is best viewed with Adobe Reader 9 or later");
 
-  HPDF_U3D u3dScene;
+    pdfDoc_SetCurrentFont(buildInFonts.Times, 9);
+    yPos += 15;
+    pdfDoc_WriteTextFromTopAt(0, yPos, "Click image to enable interactive mode.");
+    yPos += 10;
+    pdfDoc_WriteTextFromTopAt(0, yPos, "Left-click & move mouse to rotate scene.");
+    yPos += 10;
+    pdfDoc_WriteTextFromTopAt(0, yPos, "Right-click & move mouse to zoom.");
+    yPos += 10;
+    pdfDoc_WriteTextFromTopAt(0, yPos, "Both-click and move mouse to pan.");
+  }
 
-  std::string u3dFilename = _u3dFilenameFld->getStringValue();
-  u3dScene = HPDF_LoadU3DFromFile(pdfDocument, u3dFilename.c_str());
+  yPos += 20;
+  float sceneWidth  = pdfDoc_GetMaxWidth();
+  float sceneHeight = (float)(pdfDoc_GetMaxHeight()/2.0);
+  _add3DFigure(0, yPos, sceneWidth, sceneHeight);
 
-  mlPDF::PDF3DVIEW defaultView = HPDF_Create3DView(pdfDocCurrentPage->mmgr, "Default View");
-  //HPDF_3DView_AddNode(defaultView, "Cow Mesh red", 0.5, true);   // funktioniert! :-)
-  //HPDF_3DView_AddNode(defaultView, "Point Set Cow", 0.5, true);  // funktioniert! :-)
-  HPDF_3DView_SetLighting(defaultView, "HeadLamp");  // "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "HeadLamp"
-  HPDF_3DView_SetBackgroundColor(defaultView, 0.8f, 0.8f, 0.8f);
-  //HPDF_3DView_SetPerspectiveProjection(defaultView);
-  //HPDF_3DView_SetOrthogonalProjection(defaultView);
-
-  Vector3 coo = _cameraCenterOfOrbitFld->getVectorValue();
-  Vector3 c2c = _cameraCenterToCameraFld->getVectorValue();
-  HPDF_REAL coox = (HPDF_REAL)coo.x;  // Center of Orbit, X
-  HPDF_REAL cooy = (HPDF_REAL)coo.y;  // Center of Orbit, Y
-  HPDF_REAL cooz = (HPDF_REAL)coo.z;  // Center of Orbit, Z
-  HPDF_REAL c2cx = (HPDF_REAL)c2c.x;  // Center to Camera, X
-  HPDF_REAL c2cy = (HPDF_REAL)c2c.y;  // Center to Camera, Y
-  HPDF_REAL c2cz = (HPDF_REAL)c2c.z;  // Center to Camera, Z
-  HPDF_REAL roo  = _cameraRadiusOfOrbitFld->getFloatValue(); // Radius of Orbit
-  HPDF_REAL roll = _cameraRollAngleFld->getFloatValue();     // Camera Roll in degrees
-  HPDF_3DView_SetCamera(defaultView, coox, cooy, cooz, c2cx, c2cy, c2cz, roo, roll);
-
-  HPDF_REAL fov = _cameraFOVAngleFld->getFloatValue();
-  HPDF_3DView_SetPerspectiveProjection(defaultView, fov);
-  //HPDF_3DView_SetOrthogonalProjection(defaultView);    
-
-  doc3DAddView(u3dScene, defaultView);
-  //HPDF_U3D_SetDefault3DView(u3dModel, "Default View");
-
-  mlPDF::PDF3DANNOTATION u3dAnnotation = doc3DCreateAnnotation(50, 250, 350, 400, u3dScene);
-  doc3DSetActivationProperties(u3dAnnotation, _figureActivationModeFld->getStringValue(), _figureDeactivationModeFld->getStringValue(), _figureToolbarEnabledFld->getBoolValue(),_figureNavigationInterfaceEnabledFld->getBoolValue(), _figureAnimationAutostartFld->getBoolValue());
+  yPos += sceneHeight + 5;
+  pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 10);
+  pdfDoc_WriteTextFromTopAt(0, yPos, _captionFld->getStringValue());
+  
+  yPos += 12;
+  float descriptionBoxHeight = pdfDoc_GetRemainingHeightFromTop(yPos);
+  pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
+  pdfDoc_WriteTextBoxFromTopAt(0, yPos, pdfDoc_GetMaxWidth(), descriptionBoxHeight, _descriptionFld->getStringValue());
 }
 
 //----------------------------------------------------------------------------------
 
+void Save3DFigurePDF::_add3DFigure(float x, float y, float width, float height)
+{
+  HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(_u3dFilenameFld->getStringValue());
 
+  mlPDF::VIEW3D defaultView = pdfDoc_3DModel_CreateView("Default View", mlPDF::LIGHTING_SCHEME_HEADLAMP, 0.8f, 0.8f, 0.8f);
+  //pdfDoc_3DView_AddVisibleNode(defaultView, "Cow Mesh red", 0.5, true);
+  //pdfDoc_3DView_AddVisibleNode(defaultView, "Point Set Cow", 0.5, true);
+  pdfDoc_3DView_SetPerspectiveCamera(defaultView, cameraCenterOfOrbitFld->getVectorValue(), cameraRadiusOfOrbitFld->getFloatValue(), cameraCenterToCameraFld->getVectorValue(), cameraFOVAngleFld->getFloatValue(), cameraRollAngleFld->getFloatValue());
+  pdfDoc_3DModel_AddView(u3dModel, defaultView);
+
+  mlPDF::VIEW3D altView = pdfDoc_3DModel_CreateView("Alternative View", "AltView", mlPDF::LIGHTING_SCHEME_CAD, 0.1f, 0.1f, 0.1f);
+  pdfDoc_3DView_SetPerspectiveCamera(altView, cameraCenterOfOrbitFld->getVectorValue(), cameraRadiusOfOrbitFld->getFloatValue(), cameraCenterToCameraFld->getVectorValue(), cameraFOVAngleFld->getFloatValue(), cameraRollAngleFld->getFloatValue());
+  pdfDoc_3DModel_AddView(u3dModel, altView);
+
+  pdfDoc_3DModel_SetDefaultView(u3dModel, altView);
+
+  mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(_posterImageFilenameFld->getStringValue());
+  mlPDF::SCENE3D u3dScene = pdfDoc_Add3DSceneFromTop(x, y, width, height, u3dModel, posterImage);
+  pdfDoc_3DScene_SetActivationProperties(u3dScene, _figureActivationModeFld->getStringValue(), _figureDeactivationModeFld->getStringValue(), _figureToolbarEnabledFld->getBoolValue(),_figureNavigationInterfaceEnabledFld->getBoolValue(), _figureAnimationAutostartFld->getBoolValue());
+}
 
 //----------------------------------------------------------------------------------
 
