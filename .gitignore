@@ -1,5 +1,14 @@
+Makefile.*
+*.xcodeproj
+*.py[cod]
+
 tmp/
 build/
+
+/Community/General/bin/
+/Community/General/lib/
+/Community/General/Documentation/Publish/ModuleReference/
+
 /Community/General/Sources/ML/MLDicomSurfaceSegmentation/Example Data
 /Community/General/Sources/ML/MLDicomSurfaceSegmentation/20140730_v1-3_completeCode
 /Community/General/Sources/ML/MLPDF/ipch
