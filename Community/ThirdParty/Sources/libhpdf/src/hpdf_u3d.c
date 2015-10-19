@@ -278,6 +278,43 @@ HPDF_EXPORT(HPDF_Dict) HPDF_Create3DView(HPDF_MMgr mmgr, const char *name)
 	return view;
 }
 
+HPDF_EXPORT(HPDF_Dict) HPDF_Create3DView2 (HPDF_MMgr mmgr, const char *name, const char *internalName)
+{
+	HPDF_STATUS ret = HPDF_OK;
+	HPDF_Dict view;
+
+	HPDF_PTRACE ((" HPDF_Create3DView\n"));
+
+	if (name == NULL || name[0] == '\0' || internalName == NULL || internalName[0] == '\0') { 
+		return NULL;
+	}
+
+	view = HPDF_Dict_New (mmgr);
+	if (!view) {
+		return NULL;
+	}
+
+	ret = HPDF_Dict_AddName (view, "TYPE", "3DView");
+	if (ret != HPDF_OK) {
+		HPDF_Dict_Free (view);
+		return NULL;
+	}
+	
+	ret = HPDF_Dict_Add (view, "XN", HPDF_String_New (mmgr, name, NULL));
+	if (ret != HPDF_OK) {
+		HPDF_Dict_Free (view);
+		return NULL;
+	}
+
+	ret = HPDF_Dict_Add (view, "IN", HPDF_String_New (mmgr, internalName, NULL));
+	if (ret != HPDF_OK) {
+		HPDF_Dict_Free (view);
+		return NULL;
+	}
+
+	return view;
+}
+
 HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_Add3DView(HPDF_U3D u3d, HPDF_Dict view)
 {
 	HPDF_Array views = NULL;
@@ -460,8 +497,6 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetNavigationInterfaceOpened(HPDF_Dic
   return ret;
 }
 
-
-
 HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_AddOnInstanciate(HPDF_U3D u3d, HPDF_JavaScript javascript)
 {
 	HPDF_STATUS ret = HPDF_OK;
@@ -491,6 +526,24 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_SetDefault3DView(HPDF_U3D u3d, const char *nam
 	ret = HPDF_Dict_Add (u3d, "DV", HPDF_String_New (u3d->mmgr, name, NULL));
 	return ret;
 }
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_U3D_SetDefault3DView2(HPDF_U3D u3d, HPDF_Dict view)
+{
+	HPDF_STATUS ret = HPDF_OK;
+  HPDF_String viewInternalName;
+
+	HPDF_PTRACE ((" HPDF_U3D_SetDefault3DView\n"));
+
+	if (u3d == NULL || view == NULL) {
+		return HPDF_INVALID_U3D_DATA;
+	}
+
+  viewInternalName = HPDF_Dict_GetItem(view, "IN", HPDF_OCLASS_STRING);
+
+	ret = HPDF_Dict_Add (u3d, "DV", HPDF_String_New (u3d->mmgr, (const char *)viewInternalName->value, NULL));
+	return ret;
+}
+
 
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_AddNode(HPDF_Dict view, const char *name, HPDF_REAL opacity, HPDF_BOOL visible)
 {
