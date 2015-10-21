@@ -1,0 +1,380 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SaveImage {
+  internal  {
+    frame = "-247 69 96 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SaveImage
+    sourceName = ""
+    format = DICOMTIFF
+    comment = MeVisLab
+    pathBase = ""
+    filename = ""
+    result = None
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    tiffCompression = None
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    hideCancel = FALSE
+  }
+}
+module SavePDFTemplate {
+  internal  {
+    frame = "-331 -43 136 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "240 872 581 101"
+        sizeHint = "228 101"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "798 361 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SavePDFTemplate
+    pdfFilename = D:/MeVisLab/Packages/Community/General/Projects/PDFExamples/Modules/networks/test.pdf
+    pdfAttrTitle = Title
+    pdfAttrAuthor = Author
+    pdfAttrSubject = Subject
+    pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
+    cameraCenterOfOrbit = "75.5663563226481 -25.4740628419677 26.793330780114"
+    cameraCenterToCamera = "-18.2542454217692 106.857012671069 -149.682445159997"
+    cameraRadiusOfOrbit = 184.8147
+    cameraFOVAngle = 42.787704
+    cameraRollAngle = 186.22798
+    autoCalculateCameraFromInventorScene = TRUE
+    inventorCameraPosition = "57.3121109008789 81.3829498291016 -122.889114379883"
+    inventorCameraOrientation = "0.998537182807922 0.0302131287753582 -0.0448406115174294 3.76215434074402"
+    inventorCameraFocalDistance = 184.8147
+    inventorCameraHeight = 0.7467863
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "5 -35 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "331 689 895 376"
+        sizeHint = "509 376"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "2@|4@|6@|8@|10@|12@|14@|16@"
+    hasEdges = FALSE
+    boundingBoxMode = "Axis Aligned"
+    primitiveValueLists = LUT
+    curveScaleFactor = 1
+    selectedTab = 0
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "129 -35 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    interactionProviderID = ""
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 7
+    sendAdjacency = FALSE
+    selectedTab = 0
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "101 149 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "754 703 364 239"
+        sizeHint = "364 239"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoad
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    shouldComputeNormals = FALSE
+    filename = D:/knee.wem
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+  }
+}
+module SoCustomExaminerViewer {
+  internal  {
+    frame = "113 -243 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "983 229 475 420"
+        sizeHint = "400 400"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "435 74 867 760"
+        sizeHint = "260 252"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "302 208 655 496"
+        sizeHint = "655 496"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCustomExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "1 1 1"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = FALSE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0.736591577529907 -0.356398105621338 -0.57481575012207 3.27108001708984"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.7467863
+    position = "57.3121109008789 81.3829498291016 -122.889114379883"
+    orientation = "0.998537182807922 0.0302131287753582 -0.0448406115174294 3.76215434074402"
+    nearDistance = 124.66589
+    farDistance = 245.08398
+    focalDistance = 184.8147
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 0 1"
+    rotationAngle = 360
+    rotationSteps = 90
+    recordRotation = FALSE
+    enablePickNView = TRUE
+    enableHome = TRUE
+    enableViewAll = TRUE
+    enableSeek = TRUE
+    enableASC = FALSE
+    enableProjType = TRUE
+    enableRotXWheel = TRUE
+    enableRotYWheel = TRUE
+    enableDollyWheel = TRUE
+    overwriteDollyWheelLabel = TRUE
+    overwriteRotXWheelLabel = FALSE
+    overwriteRotYWheelLabel = FALSE
+    dollyWheelPerspectiveText = Dolly
+    rotXWheelPerspectiveText = Rotx
+    rotYWheelPerspectiveText = Roty
+    dollyWheelOrthographicText = Zoom
+    rotXWheelOrthographicText = Rotx
+    rotYWheelOrthographicText = Roty
+    enableM3Control = FALSE
+    chooseView = VIEW_ANTERIOR
+    transformDeltaIn = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+  }
+}
+module SoCameraAccess {
+  internal  {
+    frame = "265 37 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "813 217 778 738"
+        sizeHint = "536 738"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoCameraAccess
+    transformDeltaOut = "1 0 0 0
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    viewingMatrix = "0.994697988033295 0.0286384541541338 -0.0987705513834953 0
+0.0807873904705048 -0.811896443367004 0.578184604644775 0
+-0.0636331140995026 -0.583098530769348 -0.809905409812927 0
+-71.4027709960938 -7.2232666015625 -140.922180175781 1"
+    projectionMatrix = "2.45240759849548 0 0 0
+0 2.55250549316406 0 0
+3.75210582603813e-08 7.81050459863764e-08 -3.0705509185791 -1
+0 0 -507.458862304688 0"
+    cameraSpaceMatrix = "0.94868016242981 0.300416827201843 -0.0987704992294312 0
+0.300416827201843 -0.758585453033447 0.578184545040131 0
+0.0987704992294312 -0.578184545040131 -0.809905290603638 0
+-66.6818542480469 -26.5341873168945 -140.922149658203 1"
+    camPosition = "57.3121109008789 81.3829498291016 -122.889114379883"
+    lookAtPosition = "0.0636331290006638 0.583098590373993 0.809905529022217"
+    upVector = "0.0286384541541338 -0.811896443367004 -0.583098530769348"
+    viewVector = "0.0987700223922729 -0.578185319900513 0.809905052185059"
+    viewportSizeOut = "408 392"
+    nearDistance = 124.66589
+    farDistance = 245.08398
+    NewViewingMatrix = "1 0 0 1
+0 1 0 0
+0 0 1 0
+0 0 0 1"
+    NewProjectionMatrix = "1 0 0 0
+0 1 0 0
+0 0 1 2
+0 0 0 1"
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-527 -43 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "532 585 724 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreatePDFFilename
+    localName = $(NETWORK)/test.pdf
+    checkIfFileExists = FALSE
+  }
+}
+connections  {
+  SavePDFTemplate.pdfFilename = CreatePDFFilename.trueName
+  SavePDFTemplate.inventorCameraPosition = SoCustomExaminerViewer.position
+  SavePDFTemplate.inventorCameraOrientation = SoCustomExaminerViewer.orientation
+  SavePDFTemplate.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
+  SavePDFTemplate.inventorCameraHeight = SoCustomExaminerViewer.height
+  WEMInfo.inWEM = WEMLoad.outWEM
+  SoWEMRenderer.inWEM = WEMLoad.outWEM
+  SoCustomExaminerViewer.children = "SoWEMRenderer.self SoCameraAccess.self"
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 15
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-526 -275 427 166"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "Click 'Save PDF' button to create the PDF file.
+
+It will be stored in the network folder which can be found as follows:
+* right-click the SavePDFTemplate module
+* select 'Related Files (3)' -> 'Show Definition Folder' 
+* open the sub-folder 'networks' in the file browser"
+        titleText = "Example network for 'SavePDFTemplate' module"
+        isCollapsed = False
+        titleFrame = "-521 -270 417 22"
+      }
+    }
+  }
+}

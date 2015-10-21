@@ -1,0 +1,21 @@
+//----------------------------------------------------------------------------------
+//! SavePDFTemplate module definitions.
+/*!
+// \file    SavePDFTemplate.def
+// \author  Axel Newe (axel.newe@fau.de)
+// \date    2015-10-20
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule SavePDFTemplate {
+  DLL                = "SavePDFTemplate"
+
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/SavePDFTemplateExample.mlab"
+  externalDefinition = $(LOCAL)/SavePDFTemplate.script
+}  

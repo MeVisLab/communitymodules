@@ -1,0 +1,41 @@
+//----------------------------------------------------------------------------------
+//! SavePDFTemplate module definitions.
+/*!
+// \file    SavePDFTemplate.script
+// \author  Axel Newe (axel.newe@fau.de)
+// \date    2015-10-20
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  Field status   { editable = No }
+  Field progress { editable = No }
+  Field success  { editable = No }
+}
+
+NetworkPanel {
+  info = success
+  Button  save { symbol = @@ "start" @@ }
+}
+
+
+Window {
+  
+  Vertical {
+    
+    margin = 3
+             
+    Field pdfFilename    { browseButton = On browseMode = save }
+    
+    Separator { }
+    
+    Horizontal {
+      Button save { title = "Save PDF" alignX = Left }
+      Field status {}
+    }
+    
+    ProgressBar progress { textVisible = No }
+    
+  } // Vertical
+  
+} // Window
