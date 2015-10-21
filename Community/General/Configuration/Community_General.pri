@@ -68,12 +68,15 @@ MLPDF {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/Save3DFigurePDF
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SaveU3D
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/SavePRC
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/LoadU3D
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared
+  INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared/PDFCreatorBase
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared/PDFDocumentTools
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared/SpecificationGenerator
   win32:LIBS += MLPDF$${d}.lib
   unix:LIBS  += -lMLPDF$${d}
-  CONFIG += MLBaseListExtensions  
+  CONFIG += MLBaseListExtensions
+  CONFIG += libhpdf
 }
 
 MLBaseListExtensions {
@@ -99,6 +102,10 @@ MLOsiriXServices {
 # -- Inventor Projects -------------------------------------------------------
 
 # -- Shared Projects ---------------------------------------------------------
+
+# -- ThirdParty packages --------------------------------------------------
+
+include( ../../ThirdParty/Configuration/Community_ThirdParty.pri )
 
 # End of projects ------------------------------------------------------------
 
