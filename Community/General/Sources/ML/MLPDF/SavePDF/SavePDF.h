@@ -2,7 +2,7 @@
 //! The ML module class SavePDF.
 /*!
 // \file    SavePDF.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 //
 // Creates PDF file.

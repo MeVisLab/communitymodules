@@ -4,9 +4,10 @@
 //! Chapter 9
 /*!
 // \file    U3D_DataBlock.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 */
+//----------------------------------------------------------------------------------
 
 
 #include "U3D_DataBlock.h"

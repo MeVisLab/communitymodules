@@ -3,9 +3,10 @@
 /*! http://help.adobe.com/livedocs/acrobat_sdk/9/Acrobat9_HTMLHelp/API_References/PRCReference/PRC_Format_Specification/prc_overview.html
 //
 // \file    PRC_Defines.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 */
+//----------------------------------------------------------------------------------
 
 
 #ifndef _PRC_Defines_H

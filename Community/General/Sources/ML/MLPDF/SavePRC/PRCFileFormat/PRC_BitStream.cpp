@@ -3,9 +3,10 @@
 /*! 
 //
 // \file    PRC_BitStream.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 */
+//----------------------------------------------------------------------------------
 
 
 #include <zlib.h>

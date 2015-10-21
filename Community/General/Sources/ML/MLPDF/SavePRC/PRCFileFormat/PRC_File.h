@@ -3,9 +3,10 @@
 /*! 
 //
 // \file    PRC_File.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 */
+//----------------------------------------------------------------------------------
 
 
 #ifndef _PRC_File_H

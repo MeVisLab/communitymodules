@@ -3,9 +3,10 @@
 /*! 
 //
 // \file    PRC_BitStream.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 */
+//----------------------------------------------------------------------------------
 
 #ifndef _PRC_BitStream_H
 #define _PRC_BitStream_H

@@ -3,9 +3,10 @@
 /*! 
 //
 // \file    PRC_Write.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 */
+//----------------------------------------------------------------------------------
 
 #include "PRC_Write.h"
 #include "PRC_Macros.h"

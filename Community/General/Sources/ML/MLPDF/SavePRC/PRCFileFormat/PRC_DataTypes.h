@@ -4,9 +4,10 @@
 //! plus some additional types
 /*
 // \file    PRC_DataFormats.h
-// \author  Axel Newe
+// \author  Axel Newe  (axel.newe@fau.de)
 // \date    2015-08-01
 */
+//----------------------------------------------------------------------------------
 
 #ifndef _PRC_DataFormats_H
 #define _PRC_DataFormats_H

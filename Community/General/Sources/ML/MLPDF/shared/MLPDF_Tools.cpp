@@ -2,9 +2,8 @@
 //! Tools for PDF file creation.
 /*!
 // \file    MLPDF_Tools.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
-//
 */
 //----------------------------------------------------------------------------------
 

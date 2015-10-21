@@ -2,9 +2,8 @@
 //! Methods for processing XMarkers for to a PRC file.
 /*!
 // \file    SavePRC_ProcessLineSets.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
-//
 */
 //----------------------------------------------------------------------------------
 

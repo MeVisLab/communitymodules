@@ -2,9 +2,8 @@
 //! Tool methods for creating PRC file.
 /*!
 // \file    SavePRC_Tools.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
-//
 */
 //----------------------------------------------------------------------------------
 

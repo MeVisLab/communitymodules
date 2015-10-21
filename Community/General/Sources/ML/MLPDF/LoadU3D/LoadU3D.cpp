@@ -2,7 +2,7 @@
 //! The ML module class LoadU3D.
 /*!
 // \file    LoadU3D.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
 // Loads U3D file and creates WEMs, Linesets and XMarkers

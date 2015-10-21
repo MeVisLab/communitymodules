@@ -2,7 +2,7 @@
 //! This class composes WEMs, Fibers and XMarkers to a U3D file.
 /*!
 // \file    SaveU3D.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 //
 // Creates U3D file from WEMs and XMarkers

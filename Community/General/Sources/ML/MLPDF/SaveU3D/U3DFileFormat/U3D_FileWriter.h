@@ -4,9 +4,10 @@
 //! 
 /*!
 // \file    U3D_FileWriter.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 */
+//----------------------------------------------------------------------------------
 
 
 #ifndef _U3D_FileWriter_H

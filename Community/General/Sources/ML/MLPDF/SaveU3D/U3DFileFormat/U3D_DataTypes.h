@@ -2,9 +2,10 @@
 //! This header files contains some data type definitions needed for file creation
 /*!
 // \file    U3D_DataTypes.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 */
+//----------------------------------------------------------------------------------
 
 
 #ifndef _U3D_DataTypes_H

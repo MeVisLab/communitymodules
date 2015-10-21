@@ -2,9 +2,8 @@
 //! Methods for processing WEMs for a U3D file.
 /*!
 // \file    SaveU3D_ProcessMeshes.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
-//
 */
 //----------------------------------------------------------------------------------
 

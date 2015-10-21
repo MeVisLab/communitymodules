@@ -2,9 +2,8 @@
 //!Methods for processing line sets for a U3D file.
 /*!
 // \file    SaveU3D_ProcessLineSets.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
-//
 */
 //----------------------------------------------------------------------------------
 

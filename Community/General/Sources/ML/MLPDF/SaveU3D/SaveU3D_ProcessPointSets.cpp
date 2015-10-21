@@ -2,9 +2,8 @@
 //! Methods for processing point sets for a U3D file.
 /*!
 // \file    SaveU3D_ProcessPointSets.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
-//
 */
 //----------------------------------------------------------------------------------
 

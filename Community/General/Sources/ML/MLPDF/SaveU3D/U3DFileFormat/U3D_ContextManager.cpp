@@ -4,9 +4,10 @@
 //! Chapter 10 and Annex A
 /*!
 // \file    U3D_ContextManager.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 */
+//----------------------------------------------------------------------------------
 
 
 #include "U3D_DataBlock.h"

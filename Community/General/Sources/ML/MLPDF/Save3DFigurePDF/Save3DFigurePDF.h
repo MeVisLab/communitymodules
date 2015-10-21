@@ -2,7 +2,7 @@
 //! The ML module class Save3DFigurePDF.
 /*!
 // \file    SavePRC.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-09-25
 //
 // Creates PDF file with one interactive 3D scene for scientific publications.

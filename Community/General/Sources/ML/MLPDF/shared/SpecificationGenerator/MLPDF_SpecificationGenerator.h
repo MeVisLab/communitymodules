@@ -2,10 +2,8 @@
 //! Tools for MLPDF specification generation.
 /*!
 // \file    MLPDF_SpecificationGenerator.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-26
-//
-//
 */
 //----------------------------------------------------------------------------------
 

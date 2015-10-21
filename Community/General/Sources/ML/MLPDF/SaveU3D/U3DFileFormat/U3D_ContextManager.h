@@ -4,9 +4,10 @@
 //! Chapter 10 and Annex A
 /*!
 // \file    U3D_ContextManager.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 */
+//----------------------------------------------------------------------------------
 
 
 #ifndef _U3D_ContextManager_H

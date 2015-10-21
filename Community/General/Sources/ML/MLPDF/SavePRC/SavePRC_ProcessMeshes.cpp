@@ -2,9 +2,8 @@
 //! Methods for processing WEMs for a PRC file.
 /*!
 // \file    SavePRC_ProcessMeshes.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
-//
 */
 //----------------------------------------------------------------------------------
 

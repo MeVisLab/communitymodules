@@ -2,7 +2,7 @@
 //! Tools for U3D file creation.
 /*!
 // \file    U3D_Tools.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
 //
 // Creates U3D file from WEMs, Linesets and XMarkers

@@ -2,9 +2,8 @@
 //! Tool methods for creating U3D file.
 /*!
 // \file    SaveU3D_Tools.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-01-20
-//
 */
 //----------------------------------------------------------------------------------
 

@@ -2,10 +2,8 @@
 //! Defines for PDF file creation.
 /*!
 // \file    MLPDF_Defines.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
-//
-//
 */
 //----------------------------------------------------------------------------------
 
@@ -31,7 +29,12 @@ namespace mlPDF
 
   static bool IGNORE_MARGINS = true;
 
-  static std::string LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.\nNunc viverra imperdiet enim. Fusce est. Vivamus a tellus.\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.\n";
+  static bool YAXIS_REFERENCE_DEFAULT  = true;
+  static bool YAXIS_REFERENCE_TOP      = true;
+  static bool YAXIS_REFERENCE_BOTTOM   = false;
+  static bool YAXIS_REFERENCE_NATIVE   = false;
+
+  static std::string LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n";
 
   enum PAGESIZES {
     PAGESIZE_LETTER       = HPDF_PAGE_SIZE_LETTER,       // 612     x 792       pixels
@@ -160,13 +163,6 @@ namespace mlPDF
     "CAD", 
     "HeadLamp"
   };
-
-
-
-
-
-
-
 
 } // namespace mlPDF 
 

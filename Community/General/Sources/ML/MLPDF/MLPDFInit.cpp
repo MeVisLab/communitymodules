@@ -2,7 +2,7 @@
 //! Dynamic library and runtime type system initialization.
 /*!
 // \file    MLPDFInit.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-02-06
 */
 //----------------------------------------------------------------------------------

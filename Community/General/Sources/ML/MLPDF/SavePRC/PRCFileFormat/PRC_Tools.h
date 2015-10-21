@@ -2,7 +2,7 @@
 //! Tools for PRC file creation.
 /*!
 // \file    PRC_Tools.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-08-01
 //
 // Creates PRC file from WEMs, Linesets and XMarkers
