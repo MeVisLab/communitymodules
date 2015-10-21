@@ -146,7 +146,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736591935157776 -0.356398105621338 -0.574815332889557 3.27108001708984"
+    userSettingOrientation = "0.736591756343842 -0.356398105621338 -0.574815511703491 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -305,7 +305,7 @@ module WEMInfo {
   fields  {
     instanceName = WEMInfo
     isProcessing = FALSE
-    elapsedTime = 0.146
+    elapsedTime = 0.215
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
@@ -355,8 +355,8 @@ module Save3DFigurePDF {
     autoCalculateCameraFromInventorScene = TRUE
     u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
     posterImageFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.png
-    pageHeaderCitationText = "Newe (2015). Some fancy article title. Journal."
-    pageHeaderHeadlineText = "Additional File S1 – Interactive 3D PDF"
+    pageHeaderCitationText = "*Newe (2015). "Some fancy article title". Journal.*"
+    pageHeaderHeadlineText = "Additional File S1 - Interactive 3D PDF"
     includeUsageHints = TRUE
     figureActivationMode = ExplicitActivate
     figureDeactivationMode = ExplicitDeactivate
@@ -365,7 +365,22 @@ module Save3DFigurePDF {
     figureNavigationInterfaceEnabled = FALSE
     viewBackgroundColor = "0.8 0.8 0.8"
     caption = "Model of a segmented human femur."
-    description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue)."
+    description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue).
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. "
   }
 }
 connections  {
