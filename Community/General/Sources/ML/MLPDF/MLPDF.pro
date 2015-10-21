@@ -2,7 +2,7 @@
 # MLPDF project profile
 #
 # \file    MLPDF.pro
-# \author  Axel Newe
+# \author  Axel Newe (axel.newe@fau.de)
 # \date    2014-02-06
 # -----------------------------------------------------------------------------
 

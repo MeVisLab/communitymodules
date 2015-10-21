@@ -2,7 +2,7 @@
 //! The ML module class SavePDF.
 /*!
 // \file    MLPDF_PDFCreatorBase_Assembling.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
 // Base class for PDF creators.
@@ -16,6 +16,48 @@
 
 
 ML_START_NAMESPACE
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_SetYAxisReference(bool reference)
+{
+  _currentYAxisReferenceIsFromTop = reference;
+}
+
+//----------------------------------------------------------------------------------
+
+const bool PDFCreatorBase::pdfDoc_GetYAxisReference()
+{
+  return _currentYAxisReferenceIsFromTop;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_StoreYAxisReference()
+{
+  _previousYAxisReferenceIsFromTop = _currentYAxisReferenceIsFromTop;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_RestoreYAxisReference()
+{
+  _currentYAxisReferenceIsFromTop = _previousYAxisReferenceIsFromTop;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_SetDefaultYAxisReference(bool reference)
+{
+  _defaultYAxisReferenceIsFromTop = reference;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_RestoreDefaultYAxisReference()
+{
+  _currentYAxisReferenceIsFromTop = _defaultYAxisReferenceIsFromTop;
+}
 
 //----------------------------------------------------------------------------------
 
@@ -97,7 +139,7 @@ void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float t
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetMinX(bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageMinX(bool ignoreMargins)
 {
   float result = 0;
 
@@ -118,7 +160,7 @@ const float PDFCreatorBase::pdfDoc_GetMinX(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetMinY(bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageMinY(bool ignoreMargins)
 {
   float result = 0;
 
@@ -140,7 +182,7 @@ const float PDFCreatorBase::pdfDoc_GetMinY(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetMaxX(bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageMaxX(bool ignoreMargins)
 {
   float result = 0;
 
@@ -161,7 +203,7 @@ const float PDFCreatorBase::pdfDoc_GetMaxX(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetMaxY(bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageMaxY(bool ignoreMargins)
 {
   float result = 0;
 
@@ -186,7 +228,7 @@ const float PDFCreatorBase::pdfDoc_GetMaxY(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetMaxWidth(bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageMaxWidth(bool ignoreMargins)
 {
   float result = 0;
 
@@ -194,7 +236,7 @@ const float PDFCreatorBase::pdfDoc_GetMaxWidth(bool ignoreMargins)
   {
     if (ignoreMargins)
     {
-      result = pdfDoc_GetMaxX(true);
+      result = pdfDoc_GetPageMaxX(true);
     }
     else
     {
@@ -208,7 +250,7 @@ const float PDFCreatorBase::pdfDoc_GetMaxWidth(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetMaxHeight(bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageMaxHeight(bool ignoreMargins)
 {
   float result = 0;
 
@@ -216,7 +258,7 @@ const float PDFCreatorBase::pdfDoc_GetMaxHeight(bool ignoreMargins)
   {
     if (ignoreMargins)
     {
-      result = pdfDoc_GetMaxY(true);
+      result = pdfDoc_GetPageMaxY(true);
     }
     else
     {
@@ -230,13 +272,13 @@ const float PDFCreatorBase::pdfDoc_GetMaxHeight(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetRemainingHeight(float yPos, bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins)
 {
   float result = 0;
 
   if (pdfDocument && pdfDocCurrentPage)
   {
-    result = pdfDoc_GetMaxHeight(ignoreMargins) - yPos;
+    result = pdfDoc_GetPageMaxHeight(ignoreMargins) - yPos;
   }
 
   if (result < 0)
@@ -249,13 +291,13 @@ const float PDFCreatorBase::pdfDoc_GetRemainingHeight(float yPos, bool ignoreMar
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetRemainingHeightFromTop(float yPos, bool ignoreMargins)
+const float PDFCreatorBase::pdfDoc_GetPageRemainingHeightFromTop(float yPos, bool ignoreMargins)
 {
   float result = 0;
 
   if (pdfDocument && pdfDocCurrentPage)
   {
-    result = _getYPosFromTop(yPos, ignoreMargins) - pdfDoc_GetMinY(ignoreMargins);
+    result = _getYPosFromTop(yPos, ignoreMargins) - pdfDoc_GetPageMinY(ignoreMargins);
   }
 
   if (result < 0)
@@ -305,18 +347,24 @@ void PDFCreatorBase::pdfDoc_SetCurrentFontSize(float fontSize)
 
 //----------------------------------------------------------------------------------
 
+const float PDFCreatorBase::pdfDoc_GetCurrentFontHeight()
+{
+  return _currentFontHeight;
+}
+
+//----------------------------------------------------------------------------------
+
 void PDFCreatorBase::pdfDoc_WriteTextAt(float x, float y, std::string text, bool ignoreMargins)
 {
   if (pdfDocCurrentPage)
   {
-    if (!ignoreMargins)
+    if (_currentYAxisReferenceIsFromTop)
     {
-      x += _globalPageMarginLeft;
-      y += _globalPageMarginBottom;
+      y += _currentFontHeight;
     }
 
     HPDF_Page_BeginText(pdfDocCurrentPage);
-    HPDF_Page_MoveTextPos(pdfDocCurrentPage, (HPDF_REAL)x, (HPDF_REAL)y);
+    HPDF_Page_MoveTextPos(pdfDocCurrentPage, _getPageX(x), _getPageY(y));
     HPDF_Page_ShowText(pdfDocCurrentPage, text.c_str());
     HPDF_Page_EndText(pdfDocCurrentPage);
   }
@@ -324,57 +372,14 @@ void PDFCreatorBase::pdfDoc_WriteTextAt(float x, float y, std::string text, bool
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextFromTopAt(float x, float y, std::string text, bool ignoreMargins)
+void PDFCreatorBase::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, bool ignoreMargins)
 {
   if (pdfDocCurrentPage)
   {
-    float yFromTop = _getYPosFromTop(y, ignoreMargins) -_currentFontHeight;
-
-    if (!ignoreMargins)
-    {
-      yFromTop -= _globalPageMarginBottom;  // Bottom margin is automatically added in pdfDoc_WriteTextAt(), so we must substract it here.
-    }
-
-    pdfDoc_WriteTextAt(x, yFromTop, text, ignoreMargins);
-  }
-}
-
-//----------------------------------------------------------------------------------
-
-void PDFCreatorBase::pdfDoc_WriteTextBoxAt(float x, float y, float width, float height, std::string text, bool ignoreMargins)
-{
-  if (pdfDocCurrentPage)
-  {
-    if (!ignoreMargins)
-    {
-      x += _globalPageMarginLeft;
-      y += _globalPageMarginBottom;
-    }
-
-    float top = y+height;
+    HPDF_Rect TextRect = _getPageRect(x, y, width, height, ignoreMargins);
 
     HPDF_Page_BeginText(pdfDocCurrentPage);
-    HPDF_Page_TextRect(pdfDocCurrentPage, x, top, x+width, y, text.c_str(), HPDF_TALIGN_LEFT, NULL);
-    HPDF_Page_EndText(pdfDocCurrentPage);
-  }
-}
-
-//----------------------------------------------------------------------------------
-
-void PDFCreatorBase::pdfDoc_WriteTextBoxFromTopAt(float x, float y, float width, float height, std::string text, bool ignoreMargins)
-{
-  if (pdfDocCurrentPage)
-  {
-    float yFromTop = _getYPosFromTop(y, ignoreMargins);
-
-    if (!ignoreMargins)
-    {
-      x += _globalPageMarginLeft;
-      y += _globalPageMarginBottom;
-    }
-
-    HPDF_Page_BeginText(pdfDocCurrentPage);
-    HPDF_Page_TextRect(pdfDocCurrentPage, x, yFromTop, x+width, yFromTop-height, text.c_str(), HPDF_TALIGN_LEFT, NULL);
+    HPDF_Page_TextRect(pdfDocCurrentPage, TextRect.left, TextRect.top, TextRect.right, TextRect.bottom, text.c_str(), HPDF_TALIGN_LEFT, NULL);
     HPDF_Page_EndText(pdfDocCurrentPage);
   }
 }
@@ -434,6 +439,35 @@ mlPDF::MODEL3D PDFCreatorBase::pdfDoc_Load3DModelDataFromFile(std::string fileNa
   }
 
   return newScene;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_AddImage(float x, float y, float width, float height, mlPDF::IMAGE image, bool ignoreMargins)
+{
+  if ( (pdfDocCurrentPage) && (image) )
+  {
+    HPDF_Rect imageRect = _getPageRect(x, y, width, height, ignoreMargins);
+
+    HPDF_Page_DrawImage(pdfDocCurrentPage, image, imageRect.left, imageRect.bottom, width, height);
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_AddImage(float x, float y, float width, float height, std::string imageFilename, bool ignoreMargins)
+{
+  if (pdfDocCurrentPage)
+  {
+    HPDF_Rect imageRect = _getPageRect(x, y, width, height, ignoreMargins);
+
+    HPDF_Image image = pdfDoc_LoadImageFromFile(imageFilename);
+
+    if (image)
+    {
+      HPDF_Page_DrawImage(pdfDocCurrentPage, image, imageRect.left, imageRect.bottom, width, height);
+    }
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -656,22 +690,13 @@ void PDFCreatorBase::pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D model, mlPDF::
 
 //----------------------------------------------------------------------------------
 
-mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float left, float bottom, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins)
+mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins)
 {
   HPDF_Annotation newScene = NULL;
 
   if (pdfDocCurrentPage && model)
   {
-    if (!ignoreMargins)
-    {
-      left   += _globalPageMarginLeft;
-      bottom += _globalPageMarginBottom;
-    }
-
-    float right  = left + width;
-    float top    = bottom + height;
-
-    HPDF_Rect annotationRect = { left, bottom, right, top };
+    HPDF_Rect annotationRect = _getPageRect(x, y, width, height, ignoreMargins);
     newScene = HPDF_Page_Create3DAnnot(pdfDocCurrentPage, annotationRect, model); 
   }
 
@@ -680,30 +705,22 @@ mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float left, float bottom, float
 
 //----------------------------------------------------------------------------------
 
-mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float left, float bottom, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins)
+mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins)
 {
   HPDF_Annotation newScene = NULL;
 
   if (pdfDocCurrentPage)
   {
-    if (!ignoreMargins)
-    {
-      left   += _globalPageMarginLeft;
-      bottom += _globalPageMarginBottom;
-    }
+    HPDF_Rect annotationRect = _getPageRect(x, y, width, height, ignoreMargins);
 
     if (model)
     {
-      float right  = left + width;
-      float top    = bottom + height;
-
-      HPDF_Rect annotationRect = { left, bottom, right, top };
       newScene = HPDF_Page_Create3DAnnot(pdfDocCurrentPage, annotationRect, model); 
     }
 
     if ( (newScene) && (posterImage) )
     {
-      HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, left, bottom, width, height);
+      HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, annotationRect.left, annotationRect.bottom, width, height);
     }
 
   }
@@ -713,24 +730,16 @@ mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float left, float bottom, float
 
 //----------------------------------------------------------------------------------
 
-mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float left, float bottom, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins)
+mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins)
 {
   HPDF_Annotation newScene = NULL;
 
   if (pdfDocCurrentPage)
   {
-    if (!ignoreMargins)
-    {
-      left   += _globalPageMarginLeft;
-      bottom += _globalPageMarginBottom;
-    }
+    HPDF_Rect annotationRect = _getPageRect(x, y, width, height, ignoreMargins);
 
     if (model)
     {
-      float right  = left + width;
-      float top    = bottom + height;
-
-      HPDF_Rect annotationRect = { left, bottom, right, top };
       newScene = HPDF_Page_Create3DAnnot(pdfDocCurrentPage, annotationRect, model); 
     }
 
@@ -740,79 +749,10 @@ mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DScene(float left, float bottom, float
 
       if (posterImage)
       {
-        HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, left, bottom, width, height);
+        HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, annotationRect.left, annotationRect.bottom, width, height);
       }
     }
 
-  }
-
-  return newScene;
-}
-
-//----------------------------------------------------------------------------------
-
-mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DSceneFromTop(float left, float top, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins)
-{
-  HPDF_Annotation newScene = NULL;
-
-  if (pdfDocCurrentPage && model)
-  {
-    top = _getYPosFromTop(top, ignoreMargins);
-
-    if (!ignoreMargins)
-    {
-      top -= _globalPageMarginBottom; // Bottom margin is automatically added in pdfDoc_Add3DScene(), so we must substract it here.
-    }
-
-    float bottom = top - height;
-
-    newScene = pdfDoc_Add3DScene(left, bottom, width, height, model, ignoreMargins);
-  }
-
-  return newScene;
-}
-
-//----------------------------------------------------------------------------------
-
-mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DSceneFromTop(float left, float top, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins)
-{
-  HPDF_Annotation newScene = NULL;
-
-  if (pdfDocCurrentPage && model)
-  {
-    top = _getYPosFromTop(top, ignoreMargins);
-
-    if (!ignoreMargins)
-    {
-      top -= _globalPageMarginBottom; // Bottom margin is automatically added in pdfDoc_Add3DScene(), so we must substract it here.
-    }
-
-    float bottom = top - height;
-
-    newScene = pdfDoc_Add3DScene(left, bottom, width, height, model, posterImage, ignoreMargins);
-  }
-
-  return newScene;
-}
-
-//----------------------------------------------------------------------------------
-
-mlPDF::SCENE3D PDFCreatorBase::pdfDoc_Add3DSceneFromTop(float left, float top, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins)
-{
-  HPDF_Annotation newScene = NULL;
-
-  if (pdfDocCurrentPage && model)
-  {
-    top = _getYPosFromTop(top, ignoreMargins);
-
-    if (!ignoreMargins)
-    {
-      top -= _globalPageMarginBottom; // Bottom margin is automatically added in pdfDoc_Add3DScene(), so we must substract it here.
-    }
-
-    float bottom = top - height;
-
-    newScene = pdfDoc_Add3DScene(left, bottom, width, height, model, posterFilename, ignoreMargins);
   }
 
   return newScene;

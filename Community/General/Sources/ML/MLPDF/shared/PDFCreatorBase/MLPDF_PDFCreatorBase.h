@@ -2,7 +2,7 @@
 //! The ML module class SavePDF.
 /*!
 // \file    MLPDF_PDFCreatorBase.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
 // Base class for PDF creators.
@@ -91,6 +91,14 @@ protected:
   // Methods for assembling PDF document
   //------------------------------------
 
+  // Document handling
+  void pdfDoc_SetYAxisReference(bool reference);
+  const bool pdfDoc_GetYAxisReference();
+  void pdfDoc_StoreYAxisReference();
+  void pdfDoc_RestoreYAxisReference();
+  void pdfDoc_SetDefaultYAxisReference(bool reference);
+  void pdfDoc_RestoreDefaultYAxisReference();
+
   // Page handling
   void pdfDoc_AddPage();
   void pdfDoc_AddPage(float width, float height);
@@ -98,27 +106,30 @@ protected:
   void pdfDoc_SetGlobalPageMarginsMM(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
   void pdfDoc_SetGlobalPageMarginsInch(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
   void pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
-  const float pdfDoc_GetMinX(bool ignoreMargins = false);
-  const float pdfDoc_GetMinY(bool ignoreMargins = false);
-  const float pdfDoc_GetMaxX(bool ignoreMargins = false);
-  const float pdfDoc_GetMaxY(bool ignoreMargins = false);
-  const float pdfDoc_GetMaxWidth(bool ignoreMargins = false);
-  const float pdfDoc_GetMaxHeight(bool ignoreMargins = false);
-  const float pdfDoc_GetRemainingHeight(float yPos, bool ignoreMargins = false);
-  const float pdfDoc_GetRemainingHeightFromTop(float yPos, bool ignoreMargins = false);
+  const float pdfDoc_GetPageMinX(bool ignoreMargins = false);
+  const float pdfDoc_GetPageMinY(bool ignoreMargins = false);
+  const float pdfDoc_GetPageMaxX(bool ignoreMargins = false);
+  const float pdfDoc_GetPageMaxY(bool ignoreMargins = false);
+  const float pdfDoc_GetPageMaxWidth(bool ignoreMargins = false);
+  const float pdfDoc_GetPageMaxHeight(bool ignoreMargins = false);
+  const float pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins = false);
+  const float pdfDoc_GetPageRemainingHeightFromTop(float yPos, bool ignoreMargins = false);
 
   // Text and font handling
   void pdfDoc_SetCurrentFont(HPDF_Font font);
   void pdfDoc_SetCurrentFont(HPDF_Font font, float fontSize);
   void pdfDoc_SetCurrentFontSize(float fontSize);
+  const float pdfDoc_GetCurrentFontHeight();
   void pdfDoc_WriteTextAt(float x, float y, std::string text, bool ignoreMargins = false);
-  void pdfDoc_WriteTextFromTopAt(float x, float y, std::string text, bool ignoreMargins = false);
-  void pdfDoc_WriteTextBoxAt(float x, float y, float width, float height, std::string text, bool ignoreMargins = false);
-  void pdfDoc_WriteTextBoxFromTopAt(float x, float y, float width, float height, std::string text, bool ignoreMargins = false);
+  void pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, bool ignoreMargins = false);
 
   // Resources handling
   mlPDF::IMAGE   pdfDoc_LoadImageFromFile(std::string fileName);
   mlPDF::MODEL3D pdfDoc_Load3DModelDataFromFile(std::string fileName);
+
+  // Image handling
+  void pdfDoc_AddImage(float x, float y, float width, float height, mlPDF::IMAGE image, bool ignoreMargins = false);
+  void pdfDoc_AddImage(float x, float y, float width, float height, std::string imageFilename, bool ignoreMargins = false);
 
   // 3D scenes handling
   mlPDF::VIEW3D pdfDoc_3DModel_CreateView(std::string viewName, std::string viewNameInternal = "");
@@ -135,12 +146,9 @@ protected:
   void pdfDoc_3DModel_AddView(mlPDF::MODEL3D model, mlPDF::VIEW3D view);
   void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D model, std::string viewName);
   void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D model, mlPDF::VIEW3D view);
-  mlPDF::SCENE3D pdfDoc_Add3DScene(float left, float bottom, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DScene(float left, float bottom, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DScene(float left, float bottom, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DSceneFromTop(float left, float top, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DSceneFromTop(float left, float top, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DSceneFromTop(float left, float top, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins = false);
+  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins = false);
+  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins = false);
+  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins = false);
   void pdfDoc_3DScene_SetActivationProperties(mlPDF::SCENE3D scene, std::string activationCode, std::string deactivationCode, bool toolbarEnabled = false, bool navigationInterfaceOpened = false, bool animationAutoStart = false);
 
   //------------------------------------
@@ -211,7 +219,16 @@ private:
   HPDF_REAL _currrentFontSize;
   HPDF_REAL _currentFontHeight;
 
-  const float _getYPosFromTop(float y, bool ignoreMargins = false);
+  // Vertical reference direction
+  bool _defaultYAxisReferenceIsFromTop;
+  bool _currentYAxisReferenceIsFromTop;
+  bool _previousYAxisReferenceIsFromTop;
+
+  // Internal tool methods
+  const float     _getYPosFromTop(float y, bool ignoreMargins = false);
+  const HPDF_Rect _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false);
+  const float     _getPageX(float x, bool ignoreMargins = false);
+  const float     _getPageY(float y, bool ignoreMargins = false);
   const HPDF_REAL _getFontHeight(HPDF_Font& font, HPDF_REAL size);
 
   // Page margins

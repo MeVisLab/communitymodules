@@ -2,7 +2,7 @@
 //! The ML module class SavePDF.
 /*!
 // \file    MLPDF_PDFCreatorBase.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
 // Base class for PDF creators.
@@ -118,6 +118,9 @@ void PDFCreatorBase::_initPDFDocument()
   pdfDocImages.clear();
   pdfDoc3DScenes.clear();
   pdfDocCurrentPage = NULL;
+  _currentYAxisReferenceIsFromTop  = mlPDF::YAXIS_REFERENCE_DEFAULT;
+  _defaultYAxisReferenceIsFromTop  = mlPDF::YAXIS_REFERENCE_DEFAULT;
+  _previousYAxisReferenceIsFromTop = mlPDF::YAXIS_REFERENCE_DEFAULT;
 
   pdfDocument = HPDF_New(NULL, NULL);
 
@@ -278,7 +281,71 @@ const float PDFCreatorBase::_getYPosFromTop(float y, bool ignoreMargins)
 
   if (pdfDocCurrentPage)
   {
-    result = pdfDoc_GetMaxY(ignoreMargins) - y;
+    result = pdfDoc_GetPageMaxY(ignoreMargins) - y;
+  }
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+const HPDF_Rect PDFCreatorBase::_getPageRect(float x, float y, float width, float height, bool ignoreMargins)
+{
+  float startXPos = x;
+  float startYPos = y;
+  float endXPos   = startXPos + width;
+  float endYPos   = startYPos + height;
+
+  if (_currentYAxisReferenceIsFromTop)
+  {
+    startYPos = _getYPosFromTop(y, ignoreMargins) - height;
+  }
+
+  if (!ignoreMargins)
+  {
+    startXPos   += _globalPageMarginLeft;
+
+    if (!_currentYAxisReferenceIsFromTop)
+    {
+      startYPos   += _globalPageMarginBottom;
+    }
+  }
+
+  endXPos = startXPos + width;
+  endYPos = startYPos + height;
+
+  HPDF_Rect result = { startXPos, startYPos, endXPos, endYPos };
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+const float PDFCreatorBase::_getPageX(float x, bool ignoreMargins)
+{
+  float result = x;
+
+  if (!ignoreMargins)
+  {
+    result += _globalPageMarginLeft;
+  }
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+const float PDFCreatorBase::_getPageY(float y, bool ignoreMargins)
+{
+  float result = y;
+
+  if (_currentYAxisReferenceIsFromTop)
+  {
+    result = _getYPosFromTop(y, ignoreMargins);
+  }
+  else if (!ignoreMargins)
+  {
+    result += _globalPageMarginBottom;
   }
 
   return result;
@@ -288,7 +355,7 @@ const float PDFCreatorBase::_getYPosFromTop(float y, bool ignoreMargins)
 
 const HPDF_REAL PDFCreatorBase::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
 {
-  return (HPDF_REAL)(HPDF_Font_GetCapHeight(font) * size / 1000.0);
+  return (HPDF_REAL)((HPDF_Font_GetCapHeight(font)/*+HPDF_Font_GetDescent(font)*/) * size / 1000.0);
 }
 
 //----------------------------------------------------------------------------------
