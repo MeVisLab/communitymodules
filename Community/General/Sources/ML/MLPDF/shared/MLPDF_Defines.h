@@ -36,7 +36,7 @@ namespace mlPDF
 
   static std::string LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n";
 
-  enum PAGESIZES {
+  enum PAGE_SIZES {
     PAGESIZE_LETTER       = HPDF_PAGE_SIZE_LETTER,       // 612     x 792       pixels
     PAGESIZE_LEGAL        = HPDF_PAGE_SIZE_LEGAL,        // 612     x 1008      pixels
     PAGESIZE_A3           = HPDF_PAGE_SIZE_A3,           // 841.89  x 1199.551  pixels
@@ -77,7 +77,7 @@ namespace mlPDF
     HPDF_REAL       MarginY;
   };
 
-  enum PAGEDIRECTIONS {
+  enum PAGE_DIRECTIONS {
     PAGEDIRECTION_PORTRAIT  = HPDF_PAGE_PORTRAIT,
     PAGEDIRECTION_LANDSCAPE = HPDF_PAGE_LANDSCAPE,
 
@@ -115,7 +115,7 @@ namespace mlPDF
     NUM_ACTIVATIONMODES               = 3
   };
 
-  const char* const ACTIVATION_MODE_STRINGS[NUM_ACTIVATIONMODES] = {
+  const char* const ActivationModeStrings[NUM_ACTIVATIONMODES] = {
     "ExplicitActivate",
     "PageOpen",
     "PageVisible"
@@ -128,7 +128,7 @@ namespace mlPDF
     NUM_DEACTIVATIONMODES                 = 3
   };
 
-  const char* const DEACTIVATION_MODE_STRINGS[NUM_DEACTIVATIONMODES] = {
+  const char* const DeactivationModeStrings[NUM_DEACTIVATIONMODES] = {
     "ExplicitDeactivate",
     "PageClosed",
     "PageInvisible"
@@ -163,6 +163,47 @@ namespace mlPDF
     "CAD", 
     "HeadLamp"
   };
+
+  enum TEXT_ALIGNMENTS {
+    TEXTALIGNMENT_LEFT = HPDF_TALIGN_LEFT,
+    TEXTALIGNMENT_RIGHT = HPDF_TALIGN_RIGHT,
+    TEXTALIGNMENT_CENTER = HPDF_TALIGN_CENTER,
+    TEXTALIGNMENT_JUSTIFY = HPDF_TALIGN_JUSTIFY,
+
+    NUM_TEXTALIGNMENTS
+  };
+
+  const char* const TextAlignmentStrings[NUM_TEXTALIGNMENTS] = {
+    "Left",
+    "Right",
+    "Center",
+    "Justify"
+  };
+
+  enum TEXT_RENDERMODES {
+    TEXTRENDERMODE_FILL                 = HPDF_FILL,
+    TEXTRENDERMODE_STROKE               = HPDF_STROKE,
+    TEXTRENDERMODE_FILL_STROKE          = HPDF_FILL_THEN_STROKE,
+    TEXTRENDERMODE_INVISIBLE            = HPDF_INVISIBLE,
+    TEXTRENDERMODE_FILL_CLIPPING        = HPDF_FILL_CLIPPING,
+    TEXTRENDERMODE_STROKE_CLIPPING      = HPDF_STROKE_CLIPPING,
+    TEXTRENDERMODE_FILL_STROKE_CLIPPING = HPDF_FILL_STROKE_CLIPPING,
+    TEXTRENDERMODE_CLIPPING             = HPDF_CLIPPING,
+
+    NUM_TEXTRENDERMODES
+  };
+
+  const char* const TextRenderModeStrings[NUM_TEXTRENDERMODES] = {
+    "TEXTRENDERMODE_FILL",
+    "TEXTRENDERMODE_STROKE",
+    "TEXTRENDERMODE_FILL_STROKE",
+    "TEXTRENDERMODE_INVISIBLE",
+    "TEXTRENDERMODE_FILL_CLIPPING",
+    "TEXTRENDERMODE_STROKE_CLIPPING",
+    "TEXTRENDERMODE_FILL_STROKE_CLIPPING",
+    "TEXTRENDERMODE_CLIPPING"
+  };
+
 
 } // namespace mlPDF 
 

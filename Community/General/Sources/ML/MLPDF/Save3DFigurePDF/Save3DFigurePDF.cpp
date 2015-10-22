@@ -43,8 +43,8 @@ Save3DFigurePDF::Save3DFigurePDF() : PDFCreatorBase()
   (_pageHeaderHeadlineTextFld = addString("pageHeaderHeadlineText"))->setStringValue("");
   (_includeUsageHintsFld      = addBool("includeUsageHints"))->setBoolValue(true);
 
-  (_figureActivationModeFld             = addEnum("figureActivationMode", mlPDF::ACTIVATION_MODE_STRINGS, mlPDF::NUM_ACTIVATIONMODES))->setEnumValue(mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE);
-  (_figureDeactivationModeFld           = addEnum("figureDeactivationMode", mlPDF::DEACTIVATION_MODE_STRINGS, mlPDF::NUM_DEACTIVATIONMODES))->setEnumValue(mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE);
+  (_figureActivationModeFld             = addEnum("figureActivationMode", mlPDF::ActivationModeStrings, mlPDF::NUM_ACTIVATIONMODES))->setEnumValue(mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE);
+  (_figureDeactivationModeFld           = addEnum("figureDeactivationMode", mlPDF::DeactivationModeStrings, mlPDF::NUM_DEACTIVATIONMODES))->setEnumValue(mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE);
   (_figureAnimationAutostartFld         = addBool("figureAnimationAutostart"))->setBoolValue(false);
   (_figureToolbarEnabledFld             = addBool("figureToolbarEnabled"))->setBoolValue(true);
   (_figureNavigationInterfaceEnabledFld = addBool("figureNavigationInterfaceEnabled"))->setBoolValue(false);
@@ -125,9 +125,9 @@ void Save3DFigurePDF::assemblePDFDocument()
   pdfDoc_WriteTextAt(0, yPos, _captionFld->getStringValue());
   
   yPos += 12;
-  float descriptionBoxHeight = pdfDoc_GetPageRemainingHeightFromTop(yPos);
+  float descriptionBoxHeight = pdfDoc_GetPageRemainingHeight(yPos);
   pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
-  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), descriptionBoxHeight, _descriptionFld->getStringValue());
+  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), descriptionBoxHeight, _descriptionFld->getStringValue(), mlPDF::TEXTALIGNMENT_LEFT);
 }
 
 //----------------------------------------------------------------------------------

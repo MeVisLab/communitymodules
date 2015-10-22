@@ -67,7 +67,11 @@ SOURCES += \
   MLPDFInit.cpp \
   shared/MLPDF_Tools.cpp \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase.cpp \
+  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_3DModels.cpp \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Assembling.cpp \
+  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Graphics.cpp \
+  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Images.cpp \
+  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Text.cpp \
   shared/PDFDocumentTools/MLPDF_PDFDocumentTools.cpp \
   shared/SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
   SavePDF/SavePDF.cpp \

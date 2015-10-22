@@ -19,6 +19,9 @@
 
 #include "mlModuleIncludes.h"
 
+// Inventor includes
+#include <Inventor/nodes/SoNodes.h>  // for M_PI
+
 #include <sys/stat.h>
 
 ML_START_NAMESPACE
@@ -87,6 +90,17 @@ inline bool fileExists(std::string& filename)
 
   return (stat (filename.c_str(), &fileCheckBuffer) == 0);
 }
+
+inline float degToRad(float degrees)
+{
+  return (degrees/180.0f) * M_PI;
+}
+
+inline float radToDeg(float radians)
+{
+  return (radians / M_PI * 180.0);
+}
+
 
 // Tool methods ============================================================
 

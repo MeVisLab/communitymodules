@@ -33,7 +33,8 @@ PDFCreatorBase::PDFCreatorBase() : Module(0, 0)
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
-  (mlPDFFileNameFld = addString("pdfFilename"))->setStringValue("");
+  (pdfFilenameFld = addString("pdfFilename"))->setStringValue("");
+  (resourcesPathFld = addString("resourcesPath"))->setStringValue("");
 
   saveFld = addNotify("save");
 
@@ -120,7 +121,7 @@ void PDFCreatorBase::_initPDFDocument()
   pdfDocCurrentPage = NULL;
   _currentYAxisReferenceIsFromTop  = mlPDF::YAXIS_REFERENCE_DEFAULT;
   _defaultYAxisReferenceIsFromTop  = mlPDF::YAXIS_REFERENCE_DEFAULT;
-  _previousYAxisReferenceIsFromTop = mlPDF::YAXIS_REFERENCE_DEFAULT;
+  _previousYAxisReferenceIsFromTop.clear();
 
   pdfDocument = HPDF_New(NULL, NULL);
 
@@ -173,7 +174,7 @@ void PDFCreatorBase::saveButtonClicked()
   if (pdfDocument)
   {
     // Check if filename exists
-    std::string filename = mlPDFFileNameFld->getStringValue();
+    std::string filename = pdfFilenameFld->getStringValue();
     if (filename == "") 
     {
       statusFld->setStringValue("No filename specified.");
@@ -194,7 +195,7 @@ void PDFCreatorBase::saveButtonClicked()
       if (last4 != ".pdf") 
       { 
         filename.append(".pdf"); 
-        mlPDFFileNameFld->setStringValue(filename);
+        pdfFilenameFld->setStringValue(filename);
       }
     }
 
@@ -271,6 +272,18 @@ void PDFCreatorBase::saveButtonClicked()
   }
 
   return;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::_checkCoordinate(float& smaller, float& larger)
+{
+  if (smaller > larger)
+  {
+    const float tempX = larger;
+    larger = smaller;
+    smaller = tempX;
+  }
 }
 
 //----------------------------------------------------------------------------------
