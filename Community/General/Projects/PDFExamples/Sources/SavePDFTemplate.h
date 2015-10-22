@@ -41,8 +41,9 @@ protected:
 
 private:
 
-  StringField*  _modelFilenameFld;
-  StringField*  _posterImageFilenameFld;
+  //! Adding a 3D figure requires a little more than just one command.
+  //! Therefore it has been outsourced to a separate method...
+  void _add3DFigure(float x, float y, float width, float height);
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(SavePDFTemplate)

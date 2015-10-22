@@ -26,6 +26,7 @@ Window {
     margin = 3
              
     Field pdfFilename    { browseButton = On browseMode = save }
+    Field resourcesPath  { browseButton = On browseMode = directory }
     
     Separator { }
     

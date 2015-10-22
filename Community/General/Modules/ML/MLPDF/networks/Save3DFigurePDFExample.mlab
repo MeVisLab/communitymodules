@@ -4,7 +4,25 @@ network  {
 }
 module LocalFileName {
   internal  {
-    frame = "-315 81 120 64"
+    frame = "-195 237 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "801 416 695 103"
+        sizeHint = "480 103"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMFilename
+    localName = $(NETWORK)/Save3DFigurePDFExample.wem
+    checkIfFileExists = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-323 73 120 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -56,25 +74,25 @@ module SoCameraAccess {
 0 1 0 0
 0 0 1 0
 0 0 0 1"
-    viewingMatrix = "0.373402208089828 0.733730971813202 0.567635297775269 0
-0.892826616764069 -0.450371116399765 -0.00516562256962061 0
-0.251856237649918 0.508728623390198 -0.823264181613922 0
--12.2207641601562 -80.548698425293 -205.782409667969 1"
+    viewingMatrix = "0.981888234615326 0.0961806997656822 0.163232058286667 0
+0.158185288310051 0.0579990521073341 -0.98570454120636 0
+-0.104273125529289 0.993672668933868 0.0417341813445091 0
+48.1418762207031 -1112.25891113281 -809.167663574219 1"
     projectionMatrix = "2.45240759849548 0 0 0
-0 2.55250597000122 0 0
-0 3.78189994876266e-08 -3.29311180114746 -1
-0 0 -552.661193847656 0"
-    cameraSpaceMatrix = "-0.823113083839417 0.0165908355265856 0.567635059356689 0
-0.0165908355265856 0.999849021434784 -0.00516563653945923 0
--0.567635059356689 0.00516563653945923 -0.823264122009277 0
-77.8311309814453 24.0781288146973 -205.782348632812 1"
-    camPosition = "180.4736328125 -26.4287757873535 -125.35791015625"
-    lookAtPosition = "-0.251856207847595 -0.508728504180908 0.823263883590698"
-    upVector = "0.733730971813202 -0.450371116399765 0.508728623390198"
-    viewVector = "-0.567639410495758 0.00516507495194674 0.823261022567749"
+0 2.55250549316406 0 0
+0 -3.73612145665447e-08 -7.19336080551147 -1
+0 0 -4270.68798828125 0"
+    cameraSpaceMatrix = "0.974422693252563 0.154452741146088 0.163232162594795 0
+0.154452741146088 0.0673114061355591 -0.985704600811005 0
+-0.163232162594795 0.985704600811005 0.0417340993881226 0
+114.258766174316 -1107.42150878906 -809.167663574219 1"
+    camPosition = "191.790145874023 -740.705749511719 1144.01110839844"
+    lookAtPosition = "0.104273118078709 -0.993672609329224 -0.0417342185974121"
+    upVector = "0.0961806997656822 0.0579990521073341 0.993672668933868"
+    viewVector = "-0.163236156105995 0.985703408718109 -0.0417474396526814"
     viewportSizeOut = "408 392"
-    nearDistance = 128.73209
-    farDistance = 241.00929
+    nearDistance = 521.23761
+    farDistance = 689.55902
     NewViewingMatrix = "1 0 0 1
 0 1 0 0
 0 0 1 0
@@ -122,12 +140,12 @@ module SoCustomExaminerViewer {
     useSampleBuffers = FALSE
     numSamples = 8
     grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
     snapshotFormat = SNAPSHOT_RGB
     outputAviFile = ""
     autoRedrawWhenRecording = TRUE
     frameRate = 7
     frameRateAvi = 15
-    status = ready
     outputSnapshotFile = none
     outputSnapshotFileWritten = none
     autoIncreaseFile = TRUE
@@ -146,7 +164,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736591756343842 -0.356398105621338 -0.574815511703491 3.27108001708984"
+    userSettingOrientation = "0.736591696739197 -0.356398105621338 -0.574815571308136 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -156,11 +174,11 @@ module SoCustomExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 0.7467863
-    position = "180.4736328125 -26.4287757873535 -125.35791015625"
-    orientation = "0.823824644088745 0.5062255859375 0.255046337842941 2.82440543174744"
-    nearDistance = 128.73209
-    farDistance = 241.00929
-    focalDistance = 184.8147
+    position = "191.790145874023 -740.705749511719 1144.01110839844"
+    orientation = "0.990513861179352 0.133864149451256 0.0310281552374363 1.52997410297394"
+    nearDistance = 521.23761
+    farDistance = 689.55902
+    focalDistance = 605.31464
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -173,7 +191,6 @@ module SoCustomExaminerViewer {
     rotationAxis = "0 0 1"
     rotationAngle = 360
     rotationSteps = 90
-    rotationCurrentStep = 0
     recordRotation = FALSE
     enablePickNView = TRUE
     enableHome = TRUE
@@ -207,8 +224,8 @@ module WEMLoad {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "754 703 364 239"
-        sizeHint = "364 239"
+        geometry = "477 728 686 330"
+        sizeHint = "372 330"
         wasOpen = no
       }
     }
@@ -220,17 +237,15 @@ module WEMLoad {
     autoUpdate = TRUE
     autoClear = FALSE
     removePreviousWEMs = TRUE
-    overwriteLabelDescription = TRUE
+    overwriteLabelDescription = FALSE
     label = ""
     description = ""
-    filename = D:/knee.wem
-    loading = FALSE
-    loadingOK = TRUE
+    shouldComputeNormals = FALSE
+    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.wem
     mirrorFaces = FALSE
     generateEdges = TRUE
     triangulateFaces = FALSE
     triangulationMode = Strip
-    status = "Successfully loaded 8 patches."
   }
 }
 module SoWEMRenderer {
@@ -240,16 +255,17 @@ module SoWEMRenderer {
   }
   fields  {
     instanceName = SoWEMRenderer
-    renderCaching = AUTO
-    boundingBoxCaching = AUTO
-    renderCulling = AUTO
-    pickCulling = AUTO
+    interactionProviderID = ""
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
     useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
     faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
     allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
     colorMode = WEM_COLOR_GENERAL
     drawFaces = TRUE
     faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
@@ -266,7 +282,8 @@ module SoWEMRenderer {
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 7
+    maxWEMPatchIndex = 2
+    sendAdjacency = FALSE
     selectedTab = 0
   }
 }
@@ -304,15 +321,13 @@ module WEMInfo {
   }
   fields  {
     instanceName = WEMInfo
-    isProcessing = FALSE
-    elapsedTime = 0.215
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = "2@Patella|4@Tibia_medial|6@Tibia_lateral|8@Femur_condyle_lateral|10@Femur_condyle_medial|12@Femur_central|14@Femur_medial|16@Femur_lateral"
+    WEMs = "2@Left Femur (Outer Surface)|4@Left Femur (Spongiosa Surface)|6@Left Femur (Bone Marrow Surface)"
     hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
     primitiveValueLists = LUT
@@ -328,7 +343,7 @@ module Save3DFigurePDF {
       window _default {
         geometry = "745 146 827 784"
         sizeHint = "808 784"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "247 183 500 600"
@@ -340,6 +355,7 @@ module Save3DFigurePDF {
   fields  {
     instanceName = Save3DFigurePDF
     pdfFilename = "d:\\test.pdf"
+    resourcesPath = ""
     status = "PDF file sucessfully written (1 page)."
     success = TRUE
     progress = 1
@@ -347,11 +363,11 @@ module Save3DFigurePDF {
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
-    cameraCenterOfOrbit = "75.5663311601384 -25.4740902341291 26.7933552592876"
-    cameraCenterToCamera = "104.907301652362 -0.954685553224408 -152.151265415538"
-    cameraRadiusOfOrbit = 184.8147
+    cameraCenterOfOrbit = "92.9833197319513 -144.044291561542 1118.74877504978"
+    cameraCenterToCamera = "98.8068261420722 -596.661457950177 25.2623333486554"
+    cameraRadiusOfOrbit = 605.31464
     cameraFOVAngle = 42.787704
-    cameraRollAngle = 26.338642
+    cameraRollAngle = 354.00949
     autoCalculateCameraFromInventorScene = TRUE
     u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
     posterImageFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.png
@@ -385,6 +401,7 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
 }
 connections  {
   SoCustomExaminerViewer.children = "SoWEMRenderer.self SoCameraAccess.self"
+  WEMLoad.filename = WEMFilename.trueName
   SoWEMRenderer.inWEM = WEMLoad.outWEM
   WEMInfo.inWEM = WEMLoad.outWEM
   Save3DFigurePDF.inventorCameraPosition = SoCustomExaminerViewer.position

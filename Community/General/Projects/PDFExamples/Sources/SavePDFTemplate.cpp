@@ -86,13 +86,16 @@ void SavePDFTemplate::assemblePDFDocument()
   // Write text at specified position
   pdfDoc_WriteTextAt(10, yPos, "Created by 'SavePDFTemplate' module.");
 
-  yPos += 50;
+  yPos += 35;
 
   // Adjust font size without changing the font type.
   pdfDoc_SetCurrentFontSize(10);
 
   // Write lorem ipsum text into specified area
-  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), 50, mlPDF::LOREM_IPSUM);
+  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), 50, mlPDF::LOREM_IPSUM, mlPDF::TEXTALIGNMENT_JUSTIFY);
+
+  // Draw a rectangle around the recently added text
+  pdfDoc_AddOutlineRectangle(0, yPos, pdfDoc_GetPageMaxWidth(), 50, 1);
 
   // Set font to Courier Oblique, keep current font size.
   pdfDoc_SetCurrentFont(buildInFonts.CourierOblique);
@@ -104,31 +107,128 @@ void SavePDFTemplate::assemblePDFDocument()
   // which will result in all y coordinates being interpreted with the lower page border as zero
   pdfDoc_SetYAxisReference(mlPDF::YAXIS_REFERENCE_BOTTOM); 
 
-  // Write lorem ipsum text into specified area (note that the preset page margins shall be ignored)
-  pdfDoc_WriteTextAreaAt(0, 0, pdfDoc_GetPageMaxWidth(mlPDF::IGNORE_MARGINS)/2, 25, "A text in the lower left corner of the page.\nPage margins are ignored!", mlPDF::IGNORE_MARGINS);
+  // Write text into specified area at lower right corner of the page (note that the preset page margins shall be ignored)
+  float textAreaWidth = pdfDoc_GetPageMaxWidth(mlPDF::IGNORE_MARGINS) / 2;
+  pdfDoc_WriteTextAreaAt(pdfDoc_GetPageMaxX(mlPDF::IGNORE_MARGINS) - textAreaWidth, 0, textAreaWidth, 25, "A text in the lower right corner of the page.\nPage margins are ignored!", mlPDF::TEXTALIGNMENT_RIGHT, mlPDF::IGNORE_MARGINS);
 
   // Now restore the previous y-axis reference
   // pdfDoc_RestoreDefaultYAxisReference() would have worked here as well.
   pdfDoc_RestoreYAxisReference();
 
-  // Example code to show images can be added. It is disabled here since the image files must exists in order to work properly
+  // Go back to Times font.
+  pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 10);
 
-  yPos += 60;
+  // Write headline for the following images
+  yPos += 80;
+  pdfDoc_WriteTextAt(0, yPos, "Two images sharing the same resource");
  
   // Load image into image resource pool (n.b.: only PNG anf JPG images are allowed!)
-   mlPDF::IMAGE myImage = pdfDoc_LoadImageFromFile("D:/myImage.png");
+  std::string resourcesPath = resourcesPathFld->getStringValue();
+  mlPDF::IMAGE exampleImage = pdfDoc_LoadImageFromFile(resourcesPath + "/SavePDFTemplateExample_Image.png");
 
-   // Add image by direct reference
-   pdfDoc_AddImage(0, yPos, 100, 100, myImage);
+  // Add image by direct reference
+  yPos += 15;
+  pdfDoc_AddImage(0, yPos, 100, 100, exampleImage);
 
-   // Add image once more through image pool
-   pdfDoc_AddImage(110, yPos, 100, 100, pdfDocImages[pdfDocImages.size()-1]);
+  // Add image once more through image pool
+  if (pdfDocImages.size() > 0)
+  {
+	  pdfDoc_AddImage(110, yPos, 100, 100, pdfDocImages[pdfDocImages.size() - 1]);
+  }
+
+  // Write headline for the interactive 3D scene
+  yPos += 120;
+  pdfDoc_WriteTextAt(0, yPos, "Interactive 3D Scene");
+
+  // Now add 3D scene.
+  // This needs a little more than just one command.
+  // Therefore it has been outsourced to a separate method...
+  yPos += 15;
+  _add3DFigure(0, yPos, 210, 210);
 
 
+  // Now let's add some graphics...
 
+  // First change fill color from default black to green.
+  // Attention! This applies for text as well!
+  pdfDoc_SetFillColor(0, 1, 0);
 
+  // Add a green circle with black outline (black is the default stroke color)
+  pdfDoc_AddFilledOutlineCircle(pdfDoc_GetPageCenterX()+80, pdfDoc_GetPageCenterY(), 50, 2);
+
+  // And some text to show that the fill color also applies for text
+  pdfDoc_WriteTextAt(pdfDoc_GetPageCenterX() + 140, pdfDoc_GetPageCenterY(), "This text is now green!");
+
+  // Add a filled blue arc without outline
+  pdfDoc_SetFillColor(0, 0, 1);
+  pdfDoc_AddFilledArcDegrees(pdfDoc_GetPageCenterX() + 80, pdfDoc_GetPageCenterY() + 100, 50, 45, 270, 3);
+
+  // And a yellow outline ellipse
+  pdfDoc_SetStrokeColor(1, 1, 0);
+  pdfDoc_AddOutlineEllipse(pdfDoc_GetPageCenterX() + 80, pdfDoc_GetPageCenterY() + 200, 50, 25, 1);
+
+  // Finally draw a fat red line from the lower left corner to the upper right corner! :-)
+  pdfDoc_SetYAxisReference(mlPDF::YAXIS_REFERENCE_BOTTOM);
+  pdfDoc_SetStrokeColor(1, 0, 0);
+  pdfDoc_AddLine(0, 0, pdfDoc_GetPageMaxX(true), pdfDoc_GetPageMaxY(true), 5, true);
+
+  //
   // For more methods to add and manipulate contents, see MLPDF_PDFCreatorBase.h file.
+  //
 }
+
+void SavePDFTemplate::_add3DFigure(float x, float y, float width, float height)
+{
+	std::string resourcesPath = resourcesPathFld->getStringValue();
+
+	// Load model into model resource pool (n.b.: only U3D models are allowed!)
+	HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(resourcesPath + "/SavePDFTemplateExample_Model.u3d");
+
+	if (u3dModel)
+	{
+		// Create a view for the model
+		mlPDF::VIEW3D anteriorView = pdfDoc_3DModel_CreateView("Anterior View", mlPDF::LIGHTING_SCHEME_HEADLAMP, 0.75f, 0.75f, 0.75f);
+
+		// Set camera properties for this view 
+		// The values are pre-calculated for the example model.
+		// Alternatively they can be taken from the camera* fields.
+		Vector3 centerOfOrbit(92.983320219395, -144.044277472549, 1118.7488450232);
+		float   radiusOfOrbit = 605.31464f;
+		Vector3 centerToCamera(107.696596162441, -587.894809441514, 95.8489332971112);
+		float   fovAngle = 42.787704f;
+		float   rollAngle = 351.67535f;
+		pdfDoc_3DView_SetPerspectiveCamera(anteriorView, centerOfOrbit, radiusOfOrbit, centerToCamera, fovAngle, rollAngle);
+		pdfDoc_3DModel_AddView(u3dModel, anteriorView);
+
+		// Create another view
+		mlPDF::VIEW3D lateralView = pdfDoc_3DModel_CreateView("Lateral View", mlPDF::LIGHTING_SCHEME_CAD, 0.75f, 0.75f, 0.75f);
+		centerOfOrbit = Vector3(92.983320219395, -144.044277472549, 1118.7488450232);
+		radiusOfOrbit = 605.31464f;
+		centerToCamera = Vector3(-598.932991211859, -56.9541532176117, 66.6430675379161);
+		fovAngle = 42.787704f;
+		rollAngle = 8.9973822f;
+		pdfDoc_3DView_SetPerspectiveCamera(lateralView, centerOfOrbit, radiusOfOrbit, centerToCamera, fovAngle, rollAngle);
+		pdfDoc_3DModel_AddView(u3dModel, lateralView);
+
+		// Set default view
+		pdfDoc_3DModel_SetDefaultView(u3dModel, anteriorView);
+
+		// Load poster image and add it to the image resource pool
+		mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(resourcesPath + "/SavePDFTemplateExample_ModelPoster.png");
+
+		// Now actually create the 3D scene
+		mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);
+
+		// And finally set the scene properties.
+		std::string activationMode = mlPDF::ActivationModeStrings[mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE];
+		std::string deactivationMode = mlPDF::DeactivationModeStrings[mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE];
+		bool toolbarEnabled = true;
+		bool navigationInterfaceEnabled = false;
+		bool animationAutoStart = false;
+		pdfDoc_3DScene_SetActivationProperties(u3dScene, activationMode, deactivationMode, toolbarEnabled, navigationInterfaceEnabled, animationAutoStart);
+	}
+}
+
 
 //----------------------------------------------------------------------------------
 
