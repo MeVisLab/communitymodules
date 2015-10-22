@@ -2,7 +2,7 @@
 //! This class provides a module for filtering BaseList derived lists.
 /*!
 // \file    ListFilter.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
 //
 */

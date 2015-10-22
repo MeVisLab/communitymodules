@@ -2,7 +2,7 @@
 //! This class provides a module for displaying info about BaseList derived list.
 /*!
 // \file    ListInfo.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
 //
 */

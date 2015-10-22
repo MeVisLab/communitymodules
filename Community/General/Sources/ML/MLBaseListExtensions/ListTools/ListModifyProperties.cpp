@@ -2,7 +2,7 @@
 //! This class provides a module for modifying BaseList derived lists.
 /*!
 // \file    ListModifyProperties.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
 //
 */

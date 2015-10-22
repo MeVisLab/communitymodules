@@ -2,7 +2,7 @@
 //! The ML module class ColoredMarkerToXMarker.
 /*!
 // \file    ColoredMarkerToXMarker.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-02
 //
 // 

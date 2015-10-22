@@ -2,7 +2,7 @@
 //! This class provides an IndexPair(List)
 /*!
 // \file    IndexPairList.h
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
 //
 */

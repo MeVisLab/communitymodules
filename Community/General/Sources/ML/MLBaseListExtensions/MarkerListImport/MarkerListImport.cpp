@@ -2,7 +2,7 @@
 //! The ML module class MarkerListImport.
 /*!
 // \file    MarkerListImport.cpp
-// \author  Axel Newe
+// \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-01-15
 //
 // 
