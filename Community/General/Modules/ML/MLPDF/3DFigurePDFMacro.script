@@ -1,0 +1,301 @@
+//----------------------------------------------------------------------------------
+//! ML module Save3DFigurePDF definition
+/*!
+// \file    Save3DFigurePDF.script
+// \author  Axel Newe
+// \date    2015-09-25
+*/
+//----------------------------------------------------------------------------------
+
+
+Description {
+/*  
+  Field Save3DFigurePDF.inventorCameraPosition      { editable = No }
+  Field Save3DFigurePDF.inventorCameraOrientation   { editable = No }
+  Field Save3DFigurePDF.inventorCameraFocalDistance { editable = No }
+  Field Save3DFigurePDF.inventorCameraHeight        { editable = No }
+*/  
+  Field Save3DFigurePDF.figureActivationMode {
+    items {
+      item ExplicitActivate { title = "User activate (recommended)" }
+      item PageOpen         { title = "Page opened"}
+      item PageVisible      { title = "Page visible" }
+    }
+  }
+
+  Field Save3DFigurePDF.figureDeactivationMode {
+    items {
+      item ExplicitDeactivate { title = "User deactivate (recommended)" }
+      item PageClosed         { title = "Page closed"}
+      item PageInvisible      { title = "Page invisible" }
+    }
+  }
+  
+}
+
+Interface {
+  Inputs {
+    Field inWEM { internalName = GateInWEM.baseIn0 }
+    Field inPointPositions { internalName = GateInPointPositions.baseIn0 }
+    Field inLinePositions { internalName = GateInLinePositions.baseIn0 }
+    Field inLineConnections { internalName = GateInLineConnections.baseIn0 }    
+  }
+  
+  Parameters {
+    Field useInputConnectors { internalName = UseInputConnectors.invBoolValue }
+    Field loadDataManually   { internalName = UseInputConnectors.boolValue }
+    
+    Field filenameWEM             { internalName = WEMSceneLoader.filename }
+    Field filenamePointPositions  { internalName = LoadPointPositions.filename }
+    Field filenameLinePositions   { internalName = LoadLinePositions.filename }
+    Field filenameLineConnections { internalName = LoadLineConnections.filename }
+    
+    Field showPointsPreview        { internalName = ShowPointsPreview.bypass }
+    Field showPointsPrevieSize     { internalName = So3DMarkerEditor.scaleSize }
+    Field showLinesPreview         { internalName = ShowLinesPreview.bypass }
+    Field showMeshPreview          { internalName = ShowMeshPreview.bypass }
+    Field showMeshPreviewFaceAlpha { internalName = WEMRendererAll.faceAlphaValue }
+    Field resetPreview             { internalName = ModelDataViewer.viewAll }
+        
+    Field viewDisplayName          { internalName = PDFUtils.newViewDisplayName }
+    Field viewBackgroundColor      { internalName = PDFUtils.newViewBackgroundColor }
+    Field viewLightingScheme       { internalName = PDFUtils.newViewLightingScheme }
+    Field viewCameraCenterOfOrbit  { internalName = PDFUtils.cameraCenterOfOrbit }
+    Field viewCameraCenterToCamera { internalName = PDFUtils.cameraCenterToCamera }
+    Field viewCameraRadiusOfOrbit  { internalName = PDFUtils.cameraRadiusOfOrbit }
+    Field viewCameraRollAngle      { internalName = PDFUtils.cameraRollAngle }
+    Field viewCameraFOVAngle       { internalName = PDFUtils.cameraFOVAngle }    
+    Field viewSpecifications       { internalName = PDFUtils.viewSpecifications }
+    Field addNewView               { internalName = PDFUtils.addNewView }
+    Field clearViews               { internalName = PDFUtils.clearViews }
+    
+    Field selectedWEMPatch         { internalName = PDFUtils.selectedWEMPatch }
+    Field selectedWEMPatchNewLabel { internalName = PDFUtils.selectedWEMPatchNewLabel }
+    Field availableWEMPatches      { internalName = PDFUtils.availableWEMPatches }
+//    Field  { internalName = PDFUtils. }
+      
+  }
+}
+
+
+Commands {
+  //  initCommand = InitModule
+}
+
+
+Window {
+  
+  Category "3D Model" {
+    
+    expandY = Yes
+    
+    TabView {
+      
+      expandY = Yes
+      
+      TabViewItem "Model Data" {
+        
+        expandY = Yes
+        
+        Box "Select Data Source" {        
+          CheckBox loadDataManually {}
+          CheckBox useInputConnectors {}
+        }
+        
+        Box "Files" {
+          Field filenameWEM             { title = "Mesh File:" browseButton = On browseMode = open }
+          Field filenamePointPositions  { title = "Point Positions File:" browseButton = On browseMode = open }
+          Field filenameLinePositions   { title = "Line Nodes File:" browseButton = On browseMode = open }
+          Field filenameLineConnections { title = "Line connections File :" browseButton = On browseMode = open }    
+        }
+               
+        Box "Scene" {
+          
+          expandY = Yes
+          
+          Viewer ModelDataViewer.self {
+            expandY = Yes
+            type    = SoExaminerViewer
+            clone   = Yes
+          }
+          
+          Horizontal {
+            expandX = Yes
+            Label                           { title = "Show:" alignX = Left }
+            Empty                           { width = 20 alignX = Left }
+            CheckBox showPointsPreview      { title = "Points" alignX = Left }
+            CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+            CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+            Separator                       { direction = Vertical alignX = Left }
+            Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+            Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+            Separator                       { direction = Vertical alignX = Left }
+            Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+            Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+            Empty                           { expandX = Yes }
+            Button resetPreview             { title = "Reset" alignX = Right }
+          }
+          
+        } // Box "Scene"
+        
+      } // TabViewItem "Model Data"
+     
+      TabViewItem "Points" {
+
+        expandY = Yes
+        
+      }
+      
+      TabViewItem "Lines" {
+
+        expandY = Yes
+        
+      }
+      
+      TabViewItem "Meshes" {
+
+        expandY = Yes
+                
+        Horizontal {
+        
+          FieldLabel selectedWEMPatch { title = "Selected WEM:" }
+        
+          ComboBox selectedWEMPatch {
+            editable       = No
+            comboField     = availableWEMPatches
+            comboSeparator = "|"
+          }
+        }
+      
+        Field selectedWEMPatchNewLabel { title = "New Label:" }
+
+        Box "Scene" {
+          
+          expandY = Yes
+          
+          Viewer MeshViewer.self {
+            expandY = Yes
+            type    = SoExaminerViewer
+            clone   = Yes
+          }
+          
+          Horizontal {
+            Button resetPreview             { title = "Reset" alignX = Right }
+          }
+          
+        } // Box "Scene"      
+        
+        
+      }
+      
+      TabViewItem "Views" {
+
+        expandY = Yes
+                
+        Horizontal { 
+                                    
+          Box "Create New View" { 
+            expandX = Yes
+            Field viewDisplayName          { title = "View Display Name:" }
+            Field viewBackgroundColor      { title = "Background Color:" }
+            Field viewLightingScheme       { title = "Lighting Scheme:" }
+            Field viewCameraCenterOfOrbit  { title = "Camera - Center of Orbit:" edit = No expandX = Yes }
+            Field viewCameraCenterToCamera { title = "Camera - Center to Camera:" edit = No expandX = Yes }
+            Field viewCameraRadiusOfOrbit  { title = "Camera - Radius of Orbit:" edit = No expandX = Yes editAlign = Left }
+            Field viewCameraRollAngle      { title = "Camera - Roll Angle:" edit = No expandX = Yes editAlign = Left }
+            Field viewCameraFOVAngle       { title = "Camera - FOV Angle:" edit = No expandX = Yes editAlign = Left }
+            Separator {}
+            Button addNewView { title = "Add New View" expandX = Yes }
+          }
+      
+          Box "All View Specifications" {
+            expandY = Yes
+            TextView viewSpecifications { 
+              expandY         = Yes
+              title           = ""
+              wrap            = off
+              autoApply       = yes
+              console         = yes
+              style           = monospacedTextView
+              showLineNumbers = No
+              textFormat      = Plain
+            }
+         
+            Separator {}
+            
+            Button clearViews { title = "Delete All Views" expandX = Yes }
+          }
+                   
+        } // Horizontal
+        
+        Box "Scene" {
+          
+          expandY = Yes
+          
+          Viewer ViewsViewer.self {
+            expandY = Yes
+            type    = SoExaminerViewer
+            clone   = Yes
+          }
+          
+          Horizontal {
+            expandX = Yes
+            Label                           { title = "Show:" alignX = Left }
+            Empty                           { width = 20 alignX = Left }
+            CheckBox showPointsPreview      { title = "Points" alignX = Left }
+            CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+            CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+            Separator                       { direction = Vertical alignX = Left }
+            Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+            Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+            Separator                       { direction = Vertical alignX = Left }
+            Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+            Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+            Empty                           { expandX = Yes }
+            Button resetPreview             { title = "Reset" alignX = Right }
+          }
+          
+        } // Box "Scene"        
+    
+      } // TabViewItem "Views"
+      
+    } // TabView
+        
+  }  // Category "3D Model"
+  
+  Category "PDF Page" {
+    margin = 3
+
+    Box "Page Header" {
+      Field Save3DFigurePDF.pageHeaderCitationText   {  }
+      Field Save3DFigurePDF.pageHeaderHeadlineText   {  }
+      CheckBox Save3DFigurePDF.includeUsageHints     { title = "Include instructional hints above the figure" }
+    }
+    
+    Box "3D Figure" {
+      Field Save3DFigurePDF.u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
+      Field Save3DFigurePDF.posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
+    
+      Field Save3DFigurePDF.figureActivationMode             { title = "Activation Mode:" }
+      Field Save3DFigurePDF.figureDeactivationMode           { title = "Deactivation Mode:" }
+      Field Save3DFigurePDF.figureToolbarEnabled             { title = "Toolbar Enabled:" }
+      Field Save3DFigurePDF.figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+      Field Save3DFigurePDF.figureAnimationAutostart         { title = "Animation Autostart:" }      
+    }
+    
+    Box "Description" {
+      
+      Field Save3DFigurePDF.caption         {  }
+      TextView Save3DFigurePDF.description  { autoApply = Yes }    
+    }
+    
+    Box "Output" {
+      Field Save3DFigurePDF.pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
+      Button Save3DFigurePDF.save { title = "Save" alignX = Left }
+      ProgressBar Save3DFigurePDF.progress { textVisible = No }
+      Label { titleField = Save3DFigurePDF.status }
+    }
+  }  // Category "Main"
+  
+
+}
