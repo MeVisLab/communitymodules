@@ -183,19 +183,19 @@ std::string SpecificationGenerator::GetModelVisibility(int fieldValue)
   std::string result = "";
   std::string modelVisibility = "";
 
-  if (fieldValue == SpecificationGenerator::MODELVISIBILITY_NOTVISIBLE)
+  if (fieldValue == MODELVISIBILITY_NOTVISIBLE)
   {
     modelVisibility = "0";
   }
-  else if (fieldValue == SpecificationGenerator::MODELVISIBILITY_FRONTVISIBLE)
+  else if (fieldValue == MODELVISIBILITY_FRONTVISIBLE)
   {
       modelVisibility = "1";
   }
-  else if (fieldValue == SpecificationGenerator::MODELVISIBILITY_BACKVISIBLE)
+  else if (fieldValue == MODELVISIBILITY_BACKVISIBLE)
   {
       modelVisibility = "2";
   }
-  else if (fieldValue == SpecificationGenerator::MODELVISIBILITY_FRONTANDBACKVISIBLE)
+  else if (fieldValue == MODELVISIBILITY_FRONTANDBACKVISIBLE)
   {
       modelVisibility = "3";
   }
@@ -234,6 +234,21 @@ std::string SpecificationGenerator::FormatColorString(Vector3 colorValue, float 
   char buffer[bufferLength];
 
   snprintf (buffer, bufferLength, "%.3f %.3f %.3f %.3f", colorValue.x, colorValue.y, colorValue.z, alphaValue);
+
+  std::string result(buffer);
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+std::string SpecificationGenerator::FormatVec3String(Vector3 vectorValue)
+{
+
+  const int bufferLength = 27;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%.3f %.3f %.3f", vectorValue.x, vectorValue.y, vectorValue.z);
 
   std::string result(buffer);
 

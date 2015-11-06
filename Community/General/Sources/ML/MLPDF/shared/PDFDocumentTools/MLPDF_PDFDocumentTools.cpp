@@ -89,6 +89,10 @@ void PDFDocumentTools::CalculateDefaultCameraProperties(
     Vector3& camCenterOfOrbit, Vector3& camCenterToCamera, float& camRadiusOfOrbit, float& camRollAngle, float& camFOVAngle
     )
 {
+  //
+  // TODO: Calc valid values!
+  //
+
   // Return result values
   camCenterOfOrbit  = Vector3(0);
   camCenterToCamera = Vector3(0);

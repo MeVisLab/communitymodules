@@ -19,32 +19,40 @@ ML_START_NAMESPACE
 
 namespace mlPDF {
 
-class MLPDF_EXPORT SpecificationGenerator
-{
-
-public:
-
   //-----------------------------------------------------------------------------------------------//
   //! Types of specifications.
   //-----------------------------------------------------------------------------------------------//
   enum NEW_SPECIFICATION_OBJECTTYPES {
     OBJECTTYPE_POINTCLOUD = 0,
-    OBJECTTYPE_LINESET    = 1,
-    OBJECTTYPE_MESH       = 2,
-    OBJECTTYPE_METADATA   = 3,
-    NUM_OBJECTTYPES       = 4
+    OBJECTTYPE_LINESET = 1,
+    OBJECTTYPE_MESH = 2,
+    OBJECTTYPE_METADATA = 3,
+    NUM_OBJECTTYPES = 4
   };
 
   //-----------------------------------------------------------------------------------------------//
   //! Model visibility codes.
   //-----------------------------------------------------------------------------------------------//
   enum NEW_SPECIFICATION_MODELVISIBILITY {
-    MODELVISIBILITY_NOTVISIBLE          = 0,
-    MODELVISIBILITY_FRONTVISIBLE        = 1,
-    MODELVISIBILITY_BACKVISIBLE         = 2,
+    MODELVISIBILITY_NOTVISIBLE = 0,
+    MODELVISIBILITY_FRONTVISIBLE = 1,
+    MODELVISIBILITY_BACKVISIBLE = 2,
     MODELVISIBILITY_FRONTANDBACKVISIBLE = 3,
-    NUM_MODELVISIBILITY           = 4
+    NUM_MODELVISIBILITY = 4
   };
+
+  const char* const NewSpecificationModelVisibilityStrings[NUM_MODELVISIBILITY] = {
+    "MODELVISIBILITY_NOTVISIBLE",
+    "MODELVISIBILITY_FRONTVISIBLE",
+    "MODELVISIBILITY_BACKVISIBLE",
+    "MODELVISIBILITY_FRONTANDBACKVISIBLE"
+  };
+
+
+class MLPDF_EXPORT SpecificationGenerator
+{
+
+public:
 
   static std::string GetMetaDataKey(std::string fieldValue);
   static std::string GetMetaDataValue(std::string fieldValue);
@@ -59,6 +67,8 @@ public:
 
   static std::string FormatColorString(Vector3 colorValue);
   static std::string FormatColorString(Vector3 colorValue, float alphaValue);
+
+  static std::string FormatVec3String(Vector3 vectorValue);
 };
 
 } // end namespace mlPDF
