@@ -234,14 +234,7 @@ void MarkerListImport::_updateOutputData()
       if (thisDataLineComponents.size() == 2)  // Must be a <Tag> <Type> pair
       {
         newSetType = thisDataLineComponents[0];
-
-        if ((newSetType != "PointSet") && (newSetType != "LineSet"))
-        {
-          newSetType = "PointSet";
-        }
-
         newPositionType = stringToInt(thisDataLineComponents[1]);
-
       }
 
       if (thisDataLineComponents.size() == 3)  // Must be the point coordinates
