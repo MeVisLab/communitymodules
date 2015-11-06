@@ -9,11 +9,12 @@
 
 
 Description {
+/*  
   Field inventorCameraPosition      { editable = No }
   Field inventorCameraOrientation   { editable = No }
   Field inventorCameraFocalDistance { editable = No }
   Field inventorCameraHeight        { editable = No }
-  
+*/  
   Field figureActivationMode {
     items {
       item ExplicitActivate { title = "User activate (recommended)" }
@@ -73,6 +74,8 @@ Window {
       Label { titleField = status }
     }
   }  // Category "Main"
+  
+/*  
   Category "Views" {
     Horizontal { alignY = Top
       
@@ -102,5 +105,7 @@ Window {
     
     Field viewBackgroundColor {  }
     
-  }
+  } // Category "Views"
+*/
+  
 }

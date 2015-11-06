@@ -2,15 +2,119 @@
 network  {
   watchlist = ""
 }
+module PDFUtils {
+  internal  {
+    frame = "65 5 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _automatic {
+        geometry = "2169 173 922 600"
+        sizeHint = "260 223"
+        wasOpen = yes
+      }
+      window _default {
+        geometry = "2110 407 850 400"
+        sizeHint = "850 400"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PDFUtils
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    useInputWEMToCreateOutputWEM = TRUE
+    triangulationMode = Strip
+    autoCalculateCameraFromInventorScene = TRUE
+    cameraCenterOfOrbit = "92.9836853520046 -144.044176419536 1118.74865652254"
+    cameraCenterToCamera = "63.4494811519016 -6.43308798476096 412.435181368084"
+    cameraRadiusOfOrbit = 417.33679
+    cameraFOVAngle = 42.787704
+    cameraRollAngle = 284.83807
+    vertexList = "[  ]"
+    coordIndexList = 0
+    viewSpecifications = "<View>
+<DisplayName>Anterior View</DisplayName>
+<BackgroundColor>0.784 0.784 0.784</BackgroundColor>
+<LightingScheme>9</LightingScheme>
+<CamCenterOfOrbit>92.983 -144.044 1118.749</CamCenterOfOrbit>
+<CamCenterToCamera>70.916 -596.224 76.772</CamCenterToCamera>
+<CamRadiusOfOrbit>605.315</CamRadiusOfOrbit>
+<CamRollAngle>351.79</CamRollAngle>
+<CamFOVAngle>42.7877</CamFOVAngle>
+</View>
+
+<View>
+<DisplayName>Lateral View</DisplayName>
+<BackgroundColor>1.000 0.667 0.498</BackgroundColor>
+<LightingScheme>9</LightingScheme>
+<CamCenterOfOrbit>92.983 -144.044 1118.749</CamCenterOfOrbit>
+<CamCenterToCamera>588.542 98.922 -101.187</CamCenterToCamera>
+<CamRadiusOfOrbit>605.315</CamRadiusOfOrbit>
+<CamRollAngle>351.711</CamRollAngle>
+<CamFOVAngle>42.7877</CamFOVAngle>
+</View>
+
+<View>
+<DisplayName>Top-down View</DisplayName>
+<BackgroundColor>1.000 0.667 1.000</BackgroundColor>
+<LightingScheme>9</LightingScheme>
+<CamCenterOfOrbit>92.984 -144.044 1118.749</CamCenterOfOrbit>
+<CamCenterToCamera>63.449 -6.433 412.435</CamCenterToCamera>
+<CamRadiusOfOrbit>417.337</CamRadiusOfOrbit>
+<CamRollAngle>284.838</CamRollAngle>
+<CamFOVAngle>42.7877</CamFOVAngle>
+</View>
+
+"
+    newViewDisplayName = "Top-down View"
+    newViewBackgroundColor = "1 0.666666666666667 1"
+    newViewLightingScheme = CAD
+    selectedWEMPatch = ""
+    availableWEMPatches = ""
+    showNetworkFields = FALSE
+  }
+}
 module LocalFileName {
   internal  {
-    frame = "-195 237 120 56"
+    frame = "-163 133 120 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "801 416 695 103"
+        geometry = "356 774 695 103"
         sizeHint = "480 103"
-        wasOpen = yes
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OutputFileName
+    localName = $(NETWORK)/Save3DFigurePDFExample.pdf
+    checkIfFileExists = FALSE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-159 233 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "713 132 695 103"
+        sizeHint = "480 103"
+        wasOpen = no
       }
     }
   }
@@ -74,25 +178,25 @@ module SoCameraAccess {
 0 1 0 0
 0 0 1 0
 0 0 0 1"
-    viewingMatrix = "0.981888234615326 0.0961806997656822 0.163232058286667 0
-0.158185288310051 0.0579990521073341 -0.98570454120636 0
--0.104273125529289 0.993672668933868 0.0417341813445091 0
-48.1418762207031 -1112.25891113281 -809.167663574219 1"
-    projectionMatrix = "2.45240759849548 0 0 0
+    viewingMatrix = "0.976259768009186 -0.154281079769135 0.152034312486649 0
+0.15841868519783 0.987251758575439 -0.0154146421700716 0
+-0.147717878222466 0.0391337424516678 0.988255023956299 0
+97.3022308349609 112.772659301758 -1539.30285644531 1"
+    projectionMatrix = "2.4524073600769 0 0 0
 0 2.55250549316406 0 0
-0 -3.73612145665447e-08 -7.19336080551147 -1
-0 0 -4270.68798828125 0"
-    cameraSpaceMatrix = "0.974422693252563 0.154452741146088 0.163232162594795 0
-0.154452741146088 0.0673114061355591 -0.985704600811005 0
--0.163232162594795 0.985704600811005 0.0417340993881226 0
-114.258766174316 -1107.42150878906 -809.167663574219 1"
-    camPosition = "191.790145874023 -740.705749511719 1144.01110839844"
-    lookAtPosition = "0.104273118078709 -0.993672609329224 -0.0417342185974121"
-    upVector = "0.0961806997656822 0.0579990521073341 0.993672668933868"
-    viewVector = "-0.163236156105995 0.985703408718109 -0.0417474396526814"
+-4.92841962795865e-08 5.12957925025148e-08 -1.83349072933197 -1
+0 0 -537.856994628906 0"
+    cameraSpaceMatrix = "0.988374531269073 0.00117869640234858 0.152034193277359 0
+0.00117869640234858 0.999880492687225 -0.0154146179556847 0
+-0.152034193277359 0.0154146179556847 0.988255023956299 0
+78.3551025390625 126.672271728516 -1539.30285644531 1"
+    camPosition = "156.433166503906 -150.477264404297 1531.18383789062"
+    lookAtPosition = "0.147717893123627 -0.0391337499022484 -0.988255023956299"
+    upVector = "-0.154281079769135 0.987251758575439 0.0391337424516678"
+    viewVector = "-0.152034550905228 0.0154109690338373 -0.988255083560944"
     viewportSizeOut = "408 392"
-    nearDistance = 521.23761
-    farDistance = 689.55902
+    nearDistance = 189.82133
+    farDistance = 645.30658
     NewViewingMatrix = "1 0 0 1
 0 1 0 0
 0 0 1 0
@@ -109,13 +213,13 @@ module SoCustomExaminerViewer {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "144 360 475 420"
+        geometry = "969 174 475 420"
         sizeHint = "400 400"
         wasOpen = yes
       }
       window _automatic {
-        geometry = "435 74 867 760"
-        sizeHint = "260 252"
+        geometry = "1778 155 867 731"
+        sizeHint = "260 223"
         wasOpen = no
       }
       window _default {
@@ -164,7 +268,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736591696739197 -0.356398105621338 -0.574815571308136 3.27108001708984"
+    userSettingOrientation = "0.736591458320618 -0.35639813542366 -0.574816048145294 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -174,11 +278,11 @@ module SoCustomExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 0.7467863
-    position = "191.790145874023 -740.705749511719 1144.01110839844"
-    orientation = "0.990513861179352 0.133864149451256 0.0310281552374363 1.52997410297394"
-    nearDistance = 521.23761
-    farDistance = 689.55902
-    focalDistance = 605.31464
+    position = "156.433166503906 -150.477264404297 1531.18383789062"
+    orientation = "0.124942786991596 0.686580955982208 0.716237425804138 0.22006531059742"
+    nearDistance = 189.82133
+    farDistance = 645.30658
+    focalDistance = 417.33679
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -287,26 +391,6 @@ module SoWEMRenderer {
     selectedTab = 0
   }
 }
-module SoBackground {
-  internal  {
-    frame = "177 109 112 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "785 482 125 145"
-        sizeHint = "125 145"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = SoBackground
-    rotate = TRUE
-    flip = FALSE
-    on = TRUE
-    depthBuffer = TRUE
-  }
-}
 module WEMInfo {
   internal  {
     frame = "197 189 88 56"
@@ -341,12 +425,12 @@ module Save3DFigurePDF {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "745 146 827 784"
-        sizeHint = "808 784"
-        wasOpen = no
+        geometry = "956 281 701 753"
+        sizeHint = "363 753"
+        wasOpen = yes
       }
       window _automatic {
-        geometry = "247 183 500 600"
+        geometry = "710 168 500 600"
         sizeHint = "256 192"
         wasOpen = no
       }
@@ -354,7 +438,7 @@ module Save3DFigurePDF {
   }
   fields  {
     instanceName = Save3DFigurePDF
-    pdfFilename = "d:\\test.pdf"
+    pdfFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.pdf
     resourcesPath = ""
     status = "PDF file sucessfully written (1 page)."
     success = TRUE
@@ -363,12 +447,40 @@ module Save3DFigurePDF {
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
-    cameraCenterOfOrbit = "92.9833197319513 -144.044291561542 1118.74877504978"
-    cameraCenterToCamera = "98.8068261420722 -596.661457950177 25.2623333486554"
-    cameraRadiusOfOrbit = 605.31464
-    cameraFOVAngle = 42.787704
-    cameraRollAngle = 354.00949
-    autoCalculateCameraFromInventorScene = TRUE
+    viewSpecifications = "<View>
+<DisplayName>Anterior View</DisplayName>
+<BackgroundColor>0.784 0.784 0.784</BackgroundColor>
+<LightingScheme>9</LightingScheme>
+<CamCenterOfOrbit>92.983 -144.044 1118.749</CamCenterOfOrbit>
+<CamCenterToCamera>70.916 -596.224 76.772</CamCenterToCamera>
+<CamRadiusOfOrbit>605.315</CamRadiusOfOrbit>
+<CamRollAngle>351.79</CamRollAngle>
+<CamFOVAngle>42.7877</CamFOVAngle>
+</View>
+
+<View>
+<DisplayName>Lateral View</DisplayName>
+<BackgroundColor>1.000 0.667 0.498</BackgroundColor>
+<LightingScheme>9</LightingScheme>
+<CamCenterOfOrbit>92.983 -144.044 1118.749</CamCenterOfOrbit>
+<CamCenterToCamera>588.542 98.922 -101.187</CamCenterToCamera>
+<CamRadiusOfOrbit>605.315</CamRadiusOfOrbit>
+<CamRollAngle>351.711</CamRollAngle>
+<CamFOVAngle>42.7877</CamFOVAngle>
+</View>
+
+<View>
+<DisplayName>Top-down View</DisplayName>
+<BackgroundColor>1.000 0.667 1.000</BackgroundColor>
+<LightingScheme>9</LightingScheme>
+<CamCenterOfOrbit>92.984 -144.044 1118.749</CamCenterOfOrbit>
+<CamCenterToCamera>63.449 -6.433 412.435</CamCenterToCamera>
+<CamRadiusOfOrbit>417.337</CamRadiusOfOrbit>
+<CamRollAngle>284.838</CamRollAngle>
+<CamFOVAngle>42.7877</CamFOVAngle>
+</View>
+
+"
     u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
     posterImageFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.png
     pageHeaderCitationText = "*Newe (2015). "Some fancy article title". Journal.*"
@@ -377,9 +489,8 @@ module Save3DFigurePDF {
     figureActivationMode = ExplicitActivate
     figureDeactivationMode = ExplicitDeactivate
     figureAnimationAutostart = FALSE
-    figureToolbarEnabled = FALSE
+    figureToolbarEnabled = TRUE
     figureNavigationInterfaceEnabled = FALSE
-    viewBackgroundColor = "0.8 0.8 0.8"
     caption = "Model of a segmented human femur."
     description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue).
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
@@ -400,14 +511,16 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
   }
 }
 connections  {
+  PDFUtils.inventorCameraPosition = SoCustomExaminerViewer.position
+  PDFUtils.inventorCameraOrientation = SoCustomExaminerViewer.orientation
+  PDFUtils.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
+  PDFUtils.inventorCameraHeight = SoCustomExaminerViewer.height
   SoCustomExaminerViewer.children = "SoWEMRenderer.self SoCameraAccess.self"
   WEMLoad.filename = WEMFilename.trueName
   SoWEMRenderer.inWEM = WEMLoad.outWEM
   WEMInfo.inWEM = WEMLoad.outWEM
-  Save3DFigurePDF.inventorCameraPosition = SoCustomExaminerViewer.position
-  Save3DFigurePDF.inventorCameraOrientation = SoCustomExaminerViewer.orientation
-  Save3DFigurePDF.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
-  Save3DFigurePDF.inventorCameraHeight = SoCustomExaminerViewer.height
+  Save3DFigurePDF.pdfFilename = OutputFileName.trueName
+  Save3DFigurePDF.viewSpecifications = PDFUtils.viewSpecifications
   Save3DFigurePDF.u3dFilename = ModelFilename.trueName
   Save3DFigurePDF.posterImageFilename = PosterFilename.trueName
 }

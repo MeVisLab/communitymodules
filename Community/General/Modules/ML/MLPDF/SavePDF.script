@@ -9,10 +9,12 @@
 
 
 Description {
+/*  
   Field inventorCameraPosition      { editable = No }
   Field inventorCameraOrientation   { editable = No }
   Field inventorCameraFocalDistance { editable = No }
   Field inventorCameraHeight        { editable = No }
+*/  
 }
 
 

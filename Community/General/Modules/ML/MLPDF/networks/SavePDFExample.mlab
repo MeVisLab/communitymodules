@@ -2,6 +2,41 @@
 network  {
   watchlist = ""
 }
+module PDFUtils {
+  internal  {
+    frame = "457 93 80 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "2475 98 850 400"
+        sizeHint = "850 400"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "195 412 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PDFUtils
+    autoApply = FALSE
+    autoUpdate = FALSE
+    autoClear = TRUE
+    listenToFinishingNotifications = FALSE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    cameraCenterOfOrbit = "75.5665765252925 -25.4741999155731 26.7933654569715"
+    cameraCenterToCamera = "-180.100618883691 -27.8024114125519 174.887008688536"
+    cameraRadiusOfOrbit = 252.57605
+    cameraFOVAngle = 42.787704
+    cameraRollAngle = 293.3306
+    autoCalculateCameraFromInventorScene = TRUE
+    useDefaultSettings = TRUE
+    showInputs = FALSE
+  }
+}
 module So3DMarkerEditor {
   internal  {
     frame = "237 101 136 56"
@@ -15,14 +50,13 @@ module So3DMarkerEditor {
     }
   }
   fields  {
-    renderCaching = AUTO
-    boundingBoxCaching = AUTO
-    renderCulling = AUTO
-    pickCulling = AUTO
+    instanceName = So3DMarkerEditor
+    interactionProviderID = ""
     scaleSize = 1
     scaleLength = 1
     color = "0.333333343267441 1 0"
-    validStylePalette = FALSE
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
     enableVector = FALSE
     drawingOn = TRUE
     editingOn = TRUE
@@ -31,6 +65,8 @@ module So3DMarkerEditor {
     addOnClick = FALSE
     edit3DOn = FALSE
     edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
     colorMode = COLOR_BY_TYPE
     markerType = 0
     textColorMode = COLOR_TEXT
@@ -42,28 +78,19 @@ module So3DMarkerEditor {
     textFontType = SoExtText2::HELVETICA_10
     vectorArrow = VECTOR_NO_ARROWS
     lineStyle = Solid
-    drawMode = DrawModeCorrect
+    drawMode = DrawModeGeometry
     numMarkersThresholdForFastRendering = 5000
-    instanceName = So3DMarkerEditor
     listString = ""
-    numItems = 0
     index = 0
     persistent = FALSE
     listStringEnable = FALSE
-    ownsList = TRUE
     applySelect = FALSE
-    id = -1
     name = ""
     newName = ""
-    actionClass = New
-    actionIndex = -1
-    actionId = -1
-    currentIndex = -1
     overflowMode = None
     maxSize = 0
     useInsertTemplate = FALSE
-    upToDate = TRUE
-    posXYZ = "0 0 0"
+    posXYZ = "75.5665143051055 -25.4741876548605 26.7934775"
     posC = 0
     posT = 0
     posU = 0
@@ -109,15 +136,13 @@ module WEMInfo {
   }
   fields  {
     instanceName = WEMInfo
-    isProcessing = FALSE
-    elapsedTime = 0.14300001
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = "2@Patella|4@Tibia_medial|6@Tibia_lateral|8@Femur_condyle_lateral|10@Femur_condyle_medial|12@Femur_central|14@Femur_medial|16@Femur_lateral"
+    WEMs = "2@|4@|6@|8@|10@|12@|14@|16@"
     hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
     primitiveValueLists = LUT
@@ -145,16 +170,17 @@ module SoWEMRenderer {
   }
   fields  {
     instanceName = SoWEMRenderer
-    renderCaching = AUTO
-    boundingBoxCaching = AUTO
-    renderCulling = AUTO
-    pickCulling = AUTO
+    interactionProviderID = ""
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
     useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
     faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
     allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
     colorMode = WEM_COLOR_GENERAL
     drawFaces = TRUE
     faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
@@ -172,6 +198,7 @@ module SoWEMRenderer {
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
     maxWEMPatchIndex = 7
+    sendAdjacency = FALSE
     selectedTab = 0
   }
 }
@@ -197,14 +224,12 @@ module WEMLoad {
     overwriteLabelDescription = TRUE
     label = ""
     description = ""
+    shouldComputeNormals = FALSE
     filename = D:/knee.wem
-    loading = FALSE
-    loadingOK = TRUE
     mirrorFaces = FALSE
     generateEdges = TRUE
     triangulateFaces = FALSE
     triangulationMode = Strip
-    status = "Successfully loaded 8 patches."
   }
 }
 module SoCustomExaminerViewer {
@@ -213,12 +238,12 @@ module SoCustomExaminerViewer {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "143 563 475 420"
+        geometry = "1838 749 475 420"
         sizeHint = "400 400"
         wasOpen = yes
       }
       window _automatic {
-        geometry = "615 161 867 760"
+        geometry = "217 164 867 760"
         sizeHint = "260 252"
         wasOpen = no
       }
@@ -244,12 +269,12 @@ module SoCustomExaminerViewer {
     useSampleBuffers = FALSE
     numSamples = 8
     grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
     snapshotFormat = SNAPSHOT_RGB
     outputAviFile = ""
     autoRedrawWhenRecording = TRUE
     frameRate = 7
     frameRateAvi = 15
-    status = ready
     outputSnapshotFile = none
     outputSnapshotFileWritten = none
     autoIncreaseFile = TRUE
@@ -268,7 +293,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736592173576355 -0.356398105621338 -0.574815034866333 3.27108001708984"
+    userSettingOrientation = "0.736592054367065 -0.356398105621338 -0.574815213680267 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -278,11 +303,11 @@ module SoCustomExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 0.7467863
-    position = "-15.5917587280273 99.0175628662109 128.520690917969"
-    orientation = "-0.400514543056488 0.287407368421555 0.870048820972443 2.58673048019409"
-    nearDistance = 112.95511
-    farDistance = 256.81763
-    focalDistance = 184.8147
+    position = "-104.534042358398 -53.276611328125 201.680374145508"
+    orientation = "-0.402237206697464 0.0513673573732376 0.914093315601349 3.65599870681763"
+    nearDistance = 190.37534
+    farDistance = 314.90054
+    focalDistance = 252.57605
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -295,7 +320,6 @@ module SoCustomExaminerViewer {
     rotationAxis = "0 0 1"
     rotationAngle = 360
     rotationSteps = 90
-    rotationCurrentStep = 0
     recordRotation = FALSE
     enablePickNView = TRUE
     enableHome = TRUE
@@ -337,29 +361,29 @@ module SoCameraAccess {
   }
   fields  {
     instanceName = SoCameraAccess
-    transformDeltaOut = "1 1.49011611938477e-08 4.44089209850063e-16 0
--1.49011611938477e-08 1 5.96046447753906e-08 0
-4.44089209850063e-16 -5.96046447753906e-08 1 0
+    transformDeltaOut = "1 0 0 0
+0 1 0 0
+0 0 1 0
 0 0 0 1"
-    viewingMatrix = "-0.553215444087982 -0.67131632566452 -0.493241339921951 0
-0.245412215590477 -0.697159826755524 0.673602759838104 0
--0.796068787574768 0.251600205898285 0.550429105758667 0
-69.3855895996094 26.2282333374023 -145.130523681641 1"
+    viewingMatrix = "-0.567934274673462 0.411100327968597 -0.713054656982422 0
+-0.488399833440781 -0.865649402141571 -0.110075250267982 0
+-0.662507593631744 0.285740345716476 0.69241338968277 0
+48.2260208129883 -60.7731018066406 -220.049102783203 1"
     projectionMatrix = "2.45240640640259 0 0 0
 0 2.55250453948975 0 0
--8.28221757842584e-08 8.62026681147654e-08 -2.57032012939453 -1
-0 0 -403.285919189453 0"
-    cameraSpaceMatrix = "0.843084037303925 0.214294821023941 -0.493241369724274 0
-0.214294821023941 0.707344830036163 0.673602998256683 0
-0.493241369724274 -0.673602998256683 0.550428867340088 0
--71.4655075073242 19.8735961914062 -145.130523681641 1"
-    camPosition = "-15.5917587280273 99.0175628662109 128.520690917969"
-    lookAtPosition = "0.796068608760834 -0.251600027084351 -0.550428986549377"
-    upVector = "-0.67131632566452 -0.697159826755524 0.251600205898285"
-    viewVector = "0.493239670991898 -0.673604607582092 -0.550428450107574"
+-4.91407554648049e-08 0 -4.05761909484863 -1
+0 0 -962.845947265625 0"
+    cameraSpaceMatrix = "0.699572622776031 -0.0463774353265762 -0.713054895401001 0
+-0.0463774353265762 0.992840647697449 -0.110075384378433 0
+0.713054895401001 0.110075384378433 0.69241327047348 0
+-73.1508560180664 25.8471202850342 -220.049118041992 1"
+    camPosition = "-104.534042358398 -53.276611328125 201.680374145508"
+    lookAtPosition = "0.6625075340271 -0.285740375518799 -0.692413330078125"
+    upVector = "0.411100327968597 -0.865649402141571 0.285740345716476"
+    viewVector = "0.71305650472641 0.110076598823071 -0.692411422729492"
     viewportSizeOut = "408 392"
-    nearDistance = 112.95511
-    farDistance = 256.81763
+    nearDistance = 190.37534
+    farDistance = 314.90054
     NewViewingMatrix = "1 0 0 1
 0 1 0 0
 0 0 1 0
@@ -372,11 +396,11 @@ module SoCameraAccess {
 }
 module SavePDF {
   internal  {
-    frame = "461 285 88 56"
+    frame = "589 93 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "742 464 821 501"
+        geometry = "2487 550 821 501"
         sizeHint = "802 328"
         wasOpen = yes
       }
@@ -390,30 +414,37 @@ module SavePDF {
   fields  {
     instanceName = SavePDF
     pdfFilename = "d:\\test.pdf"
-    u3dFileName = "d:\\knee.u3d"
+    resourcesPath = ""
     status = ""
+    success = FALSE
     progress = 1
     pdfAttrTitle = Title
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
-    autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "75.5665067122609 -25.4741823496297 26.7933464342495"
-    cameraCenterToCamera = "-91.1582654402882 124.491745215841 101.727344483719"
-    cameraRadiusOfOrbit = 184.8147
+    cameraCenterOfOrbit = "75.5665765252925 -25.4741999155731 26.7933654569715"
+    cameraCenterToCamera = "-180.100618883691 -27.8024114125519 174.887008688536"
+    cameraRadiusOfOrbit = 252.57605
     cameraFOVAngle = 42.787704
-    cameraRollAngle = 107.5393
+    cameraRollAngle = 293.3306
+    autoCalculateCameraFromInventorScene = FALSE
+    u3dFileName = "d:\\knee.u3d"
   }
 }
 connections  {
+  PDFUtils.inventorCameraPosition = SoCustomExaminerViewer.position
+  PDFUtils.inventorCameraOrientation = SoCustomExaminerViewer.orientation
+  PDFUtils.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
+  PDFUtils.inventorCameraHeight = SoCustomExaminerViewer.height
   So3DMarkerEditor.inXMarkerList = ConstantXMarkerList.outputXMarkerList
   WEMInfo.inWEM = WEMLoad.outWEM
   SoWEMRenderer.inWEM = WEMLoad.outWEM
   SoCustomExaminerViewer.children = "SoBackground.self SoWEMRenderer.self So3DMarkerEditor.self SoCameraAccess.self"
-  SavePDF.inventorCameraPosition = SoCustomExaminerViewer.position
-  SavePDF.inventorCameraOrientation = SoCustomExaminerViewer.orientation
-  SavePDF.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
-  SavePDF.inventorCameraHeight = SoCustomExaminerViewer.height
+  SavePDF.cameraCenterOfOrbit = PDFUtils.cameraCenterOfOrbit
+  SavePDF.cameraCenterToCamera = PDFUtils.cameraCenterToCamera
+  SavePDF.cameraRadiusOfOrbit = PDFUtils.cameraRadiusOfOrbit
+  SavePDF.cameraFOVAngle = PDFUtils.cameraFOVAngle
+  SavePDF.cameraRollAngle = PDFUtils.cameraRollAngle
 }
 networkModel  {
   parentItems  {

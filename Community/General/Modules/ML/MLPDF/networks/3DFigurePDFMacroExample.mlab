@@ -2,23 +2,231 @@
 network  {
   watchlist = ""
 }
-module 3DFigurePDFMacro {
+module PDFUtils {
   internal  {
-    frame = "513 45 144 56"
+    frame = "1013 -387 120 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = PDFUtils
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    useInputWEMToCreateOutputWEM = TRUE
+    triangulationMode = Strip
+    autoCalculateCameraFromInventorScene = FALSE
+    cameraCenterOfOrbit = "0 0 0"
+    cameraCenterToCamera = "0 0 0"
+    cameraRadiusOfOrbit = 0
+    cameraFOVAngle = 90
+    cameraRollAngle = 0
+    vertexList = "[  ]"
+    coordIndexList = 0
+    viewSpecifications = ""
+    newViewDisplayName = ""
+    newViewBackgroundColor = "1 1 1"
+    newViewLightingScheme = CAD
+    selectedWEMPatch = ""
+    availableWEMPatches = ""
+    selectedWEMPatchNewLabel = ""
+    newSpecificationObjectName = ""
+    newSpecificationGroupPath = ""
+    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
+    newSpecificationUseDefaultColor = TRUE
+    newSpecificationColor = "0.651 0.651 0.651"
+    newSpecificationColorAlpha = 1
+    newSpecificationUseDefaultSpecularColor = TRUE
+    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    pointPositionsMaxTypeID = -1
+    linePositionsMaxTypeID = -1
+    lineConnectionsMaxTypeID = -1
+    lineDefinitionsMaxTypeID = -1
+    pointPositionsNextTypeID = 0
+    linePositionsNextTypeID = 0
+    lineConnectionsNextTypeID = 0
+    lineDefinitionsNextTypeID = 0
+    showNetworkFields = TRUE
+  }
+}
+module ModuleDependencyAnalyzer {
+  internal  {
+    frame = "537 -107 192 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1055 201 500 600"
-        sizeHint = "256 192"
-        wasOpen = yes
+        geometry = "335 154 1024 800"
+        sizeHint = "493 511"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ModuleDependencyAnalyzer
+    module = 3DFigurePDFMacro
+    scanNetwork = FALSE
+    ignoredPackages = MeVis/ThirdParty
+    includeWebContents = FALSE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "297 141 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "607 503 480 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(DemoDataPath)/
+    checkIfFileExists = TRUE
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "45 141 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "477 728 686 330"
+        sizeHint = "372 330"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoad
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = FALSE
+    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.wem
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-175 145 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "713 132 695 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMFilename
+    localName = $(NETWORK)/Save3DFigurePDFExample.wem
+    checkIfFileExists = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "249 -7 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "575 578 682 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateMarkersFilename
+    localName = $(NETWORK)/3DFigurePDFMacroExample.txt
+    checkIfFileExists = FALSE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "253 -95 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "554 702 682 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateMeshFilename
+    localName = $(NETWORK)/3DFigurePDFMacroExample.stl
+    checkIfFileExists = FALSE
+  }
+}
+module 3DFigurePDFMacro {
+  internal  {
+    frame = "41 -51 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1964 56 1031 806"
+        sizeHint = "1000 784"
+        wasOpen = no
       }
     }
   }
   fields  {
     instanceName = 3DFigurePDFMacro
+    useInputConnectors = FALSE
+    loadDataManually = TRUE
+    filenameWEM = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.stl
+    filenamePointPositions = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt
+    filenameLineDefinitions = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt
+    showPointsPreview = TRUE
+    showPointsPrevieSize = 2.05
+    showLinesPreview = TRUE
+    showMeshPreview = TRUE
+    showMeshPreviewFaceAlpha = 0.493
+    viewDisplayName = ""
+    viewBackgroundColor = "0.333333333333333 1 0.498039215686275"
+    viewLightingScheme = Blue
+    viewCameraCenterOfOrbit = "2.40048646789364 -12.3947729066495 6.43407856677368"
+    viewCameraCenterToCamera = "109.620357037966 -197.176745037686 -27.012918822511"
+    viewCameraRadiusOfOrbit = 227.2113
+    viewCameraRollAngle = 7.5833387
+    viewCameraFOVAngle = 90
+    viewSpecifications = ""
+    selectedWEMPatch = ""
+    selectedWEMPatchNewLabel = [undefined]
+    availableWEMPatches = ""
   }
 }
-connections = ""
+connections  {
+  WEMLoad.filename = WEMFilename.trueName
+  3DFigurePDFMacro.inWEM = WEMLoad.outWEM
+  3DFigurePDFMacro.filenameWEM = CreateMeshFilename.trueName
+  3DFigurePDFMacro.filenamePointPositions = CreateMarkersFilename.trueName
+  3DFigurePDFMacro.filenameLineDefinitions = CreateMarkersFilename.trueName
+}
 networkModel  {
   parentItems  {
     0  {
@@ -26,7 +234,7 @@ networkModel  {
         uniqueId = 17
         objectName = ""
         parentUniqueId = 0
-        frame = "35 2 316 136"
+        frame = "-377 -54 316 136"
         backgroundColor  {
           r = 252
           g = 242
@@ -38,7 +246,7 @@ networkModel  {
 For details regarding the parameters take a look at the documentation."
         titleText = Description
         isCollapsed = False
-        titleFrame = "40 7 306 22"
+        titleFrame = "-372 -49 306 22"
       }
     }
   }
