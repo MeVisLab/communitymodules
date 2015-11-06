@@ -18,9 +18,9 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLWEM zlib png MLBaseListExtensions libhpdf inventor
+CONFIG += dll ML MLBase MLWEM MLFiberUtils zlib png MLBaseListExtensions libhpdf inventor
 
-MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General Community_ThirdParty
+MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General Community_ThirdParty FMEstable_Release
 
 INCLUDEPATH += ./shared/
 
@@ -41,6 +41,8 @@ HEADERS += \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h \
   shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h \
   shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h \
+  LoadPointLineGeometry/LoadPointLineGeometry.h \
+  PDFUtils/PDFUtils.h \
   SavePDF/SavePDF.h \
   Save3DFigurePDF/Save3DFigurePDF.h \
   SaveU3D/SaveU3D.h \
@@ -74,6 +76,13 @@ SOURCES += \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Text.cpp \
   shared/PDFDocumentTools/MLPDF_PDFDocumentTools.cpp \
   shared/SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
+  LoadPointLineGeometry/LoadPointLineGeometry.cpp \
+  PDFUtils/PDFUtils.cpp \
+  PDFUtils/PDFUtils_Views.cpp \
+  PDFUtils/PDFUtils_Lists.cpp \
+  PDFUtils/PDFUtils_Meshes.cpp \
+  PDFUtils/PDFUtils_Camera.cpp \
+  PDFUtils/PDFUtils_Inventor.cpp \
   SavePDF/SavePDF.cpp \
   Save3DFigurePDF/Save3DFigurePDF.cpp \
   SaveU3D/SaveU3D.cpp \

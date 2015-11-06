@@ -116,6 +116,16 @@ private:
   BoolField*     _newSpecificationUseDefaultSpecularColorFld;
   ColorField*    _newSpecificationSpecularColorFld;
 
+  //! Fields for PointSet/LineSet properties
+  IntField*      _pointPositionsMaxTypeIDFld;
+  IntField*      _linePositionsMaxTypeIDFld;
+  IntField*      _lineConnectionsMaxTypeIDFld;
+  IntField*      _lineDefinitionsMaxTypeIDFld;
+  IntField*      _pointPositionsNextTypeIDFld;
+  IntField*      _linePositionsNextTypeIDFld;
+  IntField*      _lineConnectionsNextTypeIDFld;
+  IntField*      _lineDefinitionsNextTypeIDFld;
+
   //! The XMarkerList input for point positions of point clouds
   ml::XMarkerList _inPointPositions;  
 
@@ -151,6 +161,13 @@ private:
   void _selectedWEMPatchIdChanged(WEMPtr wem);
   void _selectedWEMPatchNewLabelChanged();
   void _processPatch(unsigned int patchIndex);
+
+
+  // Methods for PointSet/LineSet properties =================================
+
+  void _getMaxTypeIDFromList(ml::XMarkerList& list, int& maxTypeID);
+  void _getMaxTypeIDFromList(ml::IndexPairList& list, int& maxTypeID);
+  void _calculateListPropertyFields();
 
   // Debug, development & test methods =======================================
 

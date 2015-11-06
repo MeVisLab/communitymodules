@@ -7,6 +7,18 @@
 */
 //----------------------------------------------------------------------------------
 
+MLModule PDFUtils {
+  DLL                = "MLPDF"
+
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = "Utilities for PDF creation."
+  keywords           = "PDF U3D PRC"
+  seeAlso            = "SaveU3D SavePRC Save3DFigurePDF"
+  exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
+  externalDefinition = $(LOCAL)/PDFUtils.script
+}  
+
 MLModule SavePDF {
   DLL                = "MLPDF"
 
@@ -69,6 +81,17 @@ MLModule SavePRC {
 }
 */
 
+MLModule LoadPointLineGeometry {
+  DLL                = "MLPDF"
+  
+  genre              = "Fields"
+  author             = "Axel Newe"
+  comment            = "Imports a marker list from txt/csv file."
+  keywords           = "ListBase XMarker ColoredMarker IndexPairList"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer MarkerListImport"
+  externalDefinition = $(LOCAL)/LoadPointLineGeometry.script
+}  
+
 MacroModule 3DFigurePDFMacro {
   genre              = "FileMain"
   author             = "Axel Newe"
@@ -78,4 +101,5 @@ MacroModule 3DFigurePDFMacro {
   exampleNetwork     = "$(LOCAL)/networks/3DFigurePDFMacroExample.mlab"
   externalDefinition = $(LOCAL)/3DFigurePDFMacro.script
 }
+
 

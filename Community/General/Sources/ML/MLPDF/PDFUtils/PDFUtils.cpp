@@ -87,6 +87,16 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   (_newSpecificationUseDefaultSpecularColorFld = addBool("newSpecificationUseDefaultSpecularColor"))->setBoolValue(true);
   (_newSpecificationSpecularColorFld           = addColor("newSpecificationSpecularColor"))->setStringValue("0.75 0.75 0.75");
 
+  //! Fields for PointSet/LineSet properties
+  (_pointPositionsMaxTypeIDFld = addInt("pointPositionsMaxTypeID"))->setIntValue(-1);
+  (_linePositionsMaxTypeIDFld = addInt("linePositionsMaxTypeID"))->setIntValue(-1);
+  (_lineConnectionsMaxTypeIDFld = addInt("lineConnectionsMaxTypeID"))->setIntValue(-1);
+  (_lineDefinitionsMaxTypeIDFld = addInt("lineDefinitionsMaxTypeID"))->setIntValue(-1);
+  (_pointPositionsNextTypeIDFld = addInt("pointPositionsNextTypeID"))->setIntValue(0);
+  (_linePositionsNextTypeIDFld = addInt("linePositionsNextTypeID"))->setIntValue(0);
+  (_lineConnectionsNextTypeIDFld = addInt("lineConnectionsNextTypeID"))->setIntValue(0);
+  (_lineDefinitionsNextTypeIDFld = addInt("lineDefinitionsNextTypeID"))->setIntValue(0);
+
 
   // Set WEM processor fields
   _copyInputWEMsFld->setBoolValue(true);
@@ -133,6 +143,7 @@ void PDFUtils::handleNotification (Field* field)
       _inPointPositions.clear();
     }
 
+    _calculateListPropertyFields();
     _calculateInventorPropertyFields();
   }
 
@@ -159,6 +170,7 @@ void PDFUtils::handleNotification (Field* field)
       _inLinePositions.clear();
     }
 
+    _calculateListPropertyFields();
     _calculateInventorPropertyFields();
   }
 
@@ -176,6 +188,7 @@ void PDFUtils::handleNotification (Field* field)
       _inLineConnections.clear();
     }
 
+    _calculateListPropertyFields();
     _calculateInventorPropertyFields();
   }
 

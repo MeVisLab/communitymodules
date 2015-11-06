@@ -167,11 +167,28 @@ Window "Main Panel" {
       CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" }
       Field newSpecificationSpecularColor              { title = "Object Specular Color:" dependsOn = !newSpecificationUseDefaultSpecularColor }
       
-      
-      
-      
       Empty { expandY = Yes }
       
+    }   
+    
+    TabViewItem "PointSet/LineSet Properties" { expandY = Yes      
+      Horizontal { alignX = Left
+        Field pointPositionsMaxTypeID   { alignGroupX = g1 }
+        Field pointPositionsNextTypeID  { alignGroupX = g2 }
+      }
+      Horizontal { alignX = Left
+        Field linePositionsMaxTypeID    { alignGroupX = g1 }
+        Field linePositionsNextTypeID   { alignGroupX = g2 }
+      }
+      Horizontal { alignX = Left
+        Field lineConnectionsMaxTypeID  { alignGroupX = g1 }
+        Field lineConnectionsNextTypeID { alignGroupX = g2 }
+      }
+      Horizontal { alignX = Left
+        Field lineDefinitionsMaxTypeID  { alignGroupX = g1 }
+        Field lineDefinitionsNextTypeID { alignGroupX = g2 }
+      }
+      Empty { expandY = Yes }
     }   
     
     TabViewItem "Other" { expandY = Yes      
