@@ -260,6 +260,14 @@ void stringLower(std::string &sourceString)
   }
 }
 
+//***********************************************************************************
+
+bool stringToBool(std::string sourceString)
+{
+  stringLower(sourceString);
+
+  return ((sourceString == "true") || (sourceString != "0"));
+}
 
 //***********************************************************************************
 

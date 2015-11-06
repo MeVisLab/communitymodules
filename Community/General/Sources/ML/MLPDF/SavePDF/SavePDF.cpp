@@ -106,19 +106,19 @@ void SavePDF::assemblePDFDocument()
   HPDF_3DView_SetLighting(myView, "HeadLamp");  // "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "HeadLamp"
   HPDF_3DView_SetBackgroundColor(myView, 0.8f, 0.8f, 0.8f);
     
-  Vector3 coo = cameraCenterOfOrbitFld->getVectorValue();
-  Vector3 c2c = cameraCenterToCameraFld->getVectorValue();
+  Vector3 coo(0, 0, 0);// = cameraCenterOfOrbitFld->getVectorValue();
+  Vector3 c2c(0, 0, 0);// = cameraCenterToCameraFld->getVectorValue();
   HPDF_REAL coox = (HPDF_REAL)coo.x;  // Center of Orbit, X
   HPDF_REAL cooy = (HPDF_REAL)coo.y;  // Center of Orbit, Y
   HPDF_REAL cooz = (HPDF_REAL)coo.z;  // Center of Orbit, Z
   HPDF_REAL c2cx = (HPDF_REAL)c2c.x;  // Center to Camera, X
   HPDF_REAL c2cy = (HPDF_REAL)c2c.y;  // Center to Camera, Y
   HPDF_REAL c2cz = (HPDF_REAL)c2c.z;  // Center to Camera, Z
-  HPDF_REAL roo  = cameraRadiusOfOrbitFld->getFloatValue(); // Radius of Orbit
-  HPDF_REAL roll = cameraRollAngleFld->getFloatValue();     // Camera Roll in degrees
+  HPDF_REAL roo  = 0;//cameraRadiusOfOrbitFld->getFloatValue(); // Radius of Orbit
+  HPDF_REAL roll = 0;//cameraRollAngleFld->getFloatValue();     // Camera Roll in degrees
   HPDF_3DView_SetCamera(myView, coox, cooy, cooz, c2cx, c2cy, c2cz, roo, roll);
 
-  HPDF_REAL fov = cameraFOVAngleFld->getFloatValue();
+  HPDF_REAL fov = 0;// cameraFOVAngleFld->getFloatValue();
   HPDF_3DView_SetPerspectiveProjection(myView, fov);
   HPDF_U3D_Add3DView(u3dScene, myView);
 

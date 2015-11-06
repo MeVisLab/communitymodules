@@ -83,6 +83,7 @@ typedef std::vector<LineSetSpecificationStruct> LineSetsVector;
 
 struct SpecificationParametersStruct
 {
+  // For U3D objects
   std::string ObjectName;
   std::string GroupPath;
   std::string Color;

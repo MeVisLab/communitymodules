@@ -110,6 +110,9 @@ StringVector stringSplit(const std::string& stringToSplit, const std::string& de
 // Convert String to lower case
 void stringLower(std::string &sourceString);
 
+// Converts  a string to bool
+bool stringToBool(std::string sourceString);
+
 // Convert MeVisLab version number into string
 std::string getMeVisLabVersionNumberString();
 
@@ -144,8 +147,6 @@ std::string normalizeGroupPath(std::string groupPath);
 
 // Updates a GroupNodeVector with a new group path
 void updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath);
-
-
 
 //***********************************************************************************
 

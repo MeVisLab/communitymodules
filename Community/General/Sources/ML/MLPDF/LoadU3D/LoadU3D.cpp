@@ -138,7 +138,7 @@ void LoadU3D::_parseU3DFile(std::string filename)
       U3DDataBlockFundamental blockDataSize = _readU32(u3dFile);
 
       // Get meta data block size
-      U3DDataBlockFundamental blockMetaDataSize = _readU32(u3dFile);
+      /*U3DDataBlockFundamental blockMetaDataSize = */_readU32(u3dFile);
 
       // Calc meta data start position
       MLuint32 dataStartPos = (MLuint32)u3dFile.tellg();
