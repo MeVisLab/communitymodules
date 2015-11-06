@@ -49,8 +49,6 @@ Save3DFigurePDF::Save3DFigurePDF() : PDFCreatorBase()
   (_figureToolbarEnabledFld             = addBool("figureToolbarEnabled"))->setBoolValue(true);
   (_figureNavigationInterfaceEnabledFld = addBool("figureNavigationInterfaceEnabled"))->setBoolValue(false);
 
-  (_viewBackgroundColorFld = addColor("viewBackgroundColor"))->setVector3Value(Vector3(0.8,0.8,0.8));
-
   (_captionFld = addString("caption"))->setStringValue("");
   (_descriptionFld = addString("description"))->setStringValue("");
 
@@ -136,17 +134,7 @@ void Save3DFigurePDF::_add3DFigure(float x, float y, float width, float height)
 {
   HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(_u3dFilenameFld->getStringValue());
 
-  mlPDF::VIEW3D defaultView = pdfDoc_3DModel_CreateView("Default View", mlPDF::LIGHTING_SCHEME_HEADLAMP, 0.8f, 0.8f, 0.8f);
-  //pdfDoc_3DView_AddVisibleNode(defaultView, "Cow Mesh red", 0.5, true);
-  //pdfDoc_3DView_AddVisibleNode(defaultView, "Point Set Cow", 0.5, true);
-  pdfDoc_3DView_SetPerspectiveCamera(defaultView, cameraCenterOfOrbitFld->getVectorValue(), cameraRadiusOfOrbitFld->getFloatValue(), cameraCenterToCameraFld->getVectorValue(), cameraFOVAngleFld->getFloatValue(), cameraRollAngleFld->getFloatValue());
-  pdfDoc_3DModel_AddView(u3dModel, defaultView);
-
-  mlPDF::VIEW3D altView = pdfDoc_3DModel_CreateView("Alternative View", "AltView", mlPDF::LIGHTING_SCHEME_CAD, 0.1f, 0.1f, 0.1f);
-  pdfDoc_3DView_SetPerspectiveCamera(altView, cameraCenterOfOrbitFld->getVectorValue(), cameraRadiusOfOrbitFld->getFloatValue(), cameraCenterToCameraFld->getVectorValue(), cameraFOVAngleFld->getFloatValue(), cameraRollAngleFld->getFloatValue());
-  pdfDoc_3DModel_AddView(u3dModel, altView);
-
-  pdfDoc_3DModel_SetDefaultView(u3dModel, altView);
+  pdfDoc_3DModel_AddAllViewsFromSpecificationString(u3dModel, viewSpecificationsFld->getStringValue());
 
   mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(_posterImageFilenameFld->getStringValue());
   mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);

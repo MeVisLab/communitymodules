@@ -204,6 +204,7 @@ protected:
   mlPDF::VIEW3D pdfDoc_3DModel_CreateView(std::string viewName, std::string viewNameInternal, mlPDF::LIGHTING_SCHEMES lightingScheme, float r, float g, float b);
   mlPDF::VIEW3D pdfDoc_3DModel_CreateView(std::string viewName, mlPDF::LIGHTING_SCHEMES lightingScheme, Vector3 backgroundColor);
   mlPDF::VIEW3D pdfDoc_3DModel_CreateView(std::string viewName, std::string viewNameInternal, mlPDF::LIGHTING_SCHEMES lightingScheme, Vector3 backgroundColor);
+  mlPDF::VIEW3D pdfDoc_3DModel_CreateViewFromSpecificationString(std::string specificationString);
 
   // Set lighting scheme property for 3D view.
   void pdfDoc_3DView_SetLightingScheme(mlPDF::VIEW3D view, mlPDF::LIGHTING_SCHEMES lightingScheme);
@@ -216,11 +217,15 @@ protected:
   void pdfDoc_3DView_SetPerspectiveCamera(mlPDF::VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float fieldOfView, float cameraRollDegrees = 0);
   void pdfDoc_3DView_SetOrthogonalCamera(mlPDF::VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float scaleFactor, float cameraRollDegrees = 0);
 
-  // Add a model node property to a 3D view.
+  // Add model node property to a 3D view.
   void pdfDoc_3DView_AddVisibleNode(mlPDF::VIEW3D view, std::string nodeName, float transparency, bool visibility);
+  void pdfDoc_3DView_AddVisibleNodeFromSpecificationString(mlPDF::VIEW3D view, std::string specificationString);
+  void pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(mlPDF::VIEW3D view, std::string specificationString);
 
-  // Add a 3D view to 3D model.
+  // Add a 3D views to 3D model.
   void pdfDoc_3DModel_AddView(mlPDF::MODEL3D model, mlPDF::VIEW3D view);
+  void pdfDoc_3DModel_AddViewFromSpecificationString(mlPDF::MODEL3D model, std::string specificationString);
+  void pdfDoc_3DModel_AddAllViewsFromSpecificationString(mlPDF::MODEL3D model, std::string specificationString);
 
   // Set the default 3D view of a 3D model.
   void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D model, std::string viewName);
@@ -251,25 +256,33 @@ protected:
 
   // Add an arc drawing.
   void pdfDoc_AddOutlineArcDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
-  void pdfDoc_AddFilledArcDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledArcDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, bool ignoreMargins = false);
   void pdfDoc_AddFilledOutlineArcDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
   void pdfDoc_AddOutlineArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
-  void pdfDoc_AddFilledArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, bool ignoreMargins = false);
   void pdfDoc_AddFilledOutlineArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
+
+  // Add a pie drawing.
+  void pdfDoc_AddOutlinePieDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledPieDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, bool ignoreMargins = false);
+  void pdfDoc_AddFilledOutlinePieDegrees(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddOutlinePieRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledPieRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, bool ignoreMargins = false);
+  void pdfDoc_AddFilledOutlinePieRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins = false);
 
   // Add a circle drawing.
   void pdfDoc_AddOutlineCircle(float centerX, float centerY, float radius, float lineWidth, bool ignoreMargins = false);
-  void pdfDoc_AddFilledCircle(float centerX, float centerY, float radius, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledCircle(float centerX, float centerY, float radius, bool ignoreMargins = false);
   void pdfDoc_AddFilledOutlineCircle(float centerX, float centerY, float radius, float lineWidth, bool ignoreMargins = false);
 
   // Add an ellipse drawing.
   void pdfDoc_AddOutlineEllipse(float centerX, float centerY, float radiusX, float radiusY, float lineWidth, bool ignoreMargins = false);
-  void pdfDoc_AddFilledEllipse(float centerX, float centerY, float radiusX, float radiusY, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledEllipse(float centerX, float centerY, float radiusX, float radiusY, bool ignoreMargins = false);
   void pdfDoc_AddFilledOutlineEllipse(float centerX, float centerY, float radiusX, float radiusY, float lineWidth, bool ignoreMargins = false);
 
   // Add a rectangle drawing.
   void pdfDoc_AddOutlineRectangle(float x, float y, float width, float height, float lineWidth, bool ignoreMargins = false);
-  void pdfDoc_AddFilledRectangle(float x, float y, float width, float height, float lineWidth, bool ignoreMargins = false);
+  void pdfDoc_AddFilledRectangle(float x, float y, float width, float height, bool ignoreMargins = false);
   void pdfDoc_AddFilledOutlineRectangle(float x, float y, float width, float height, float lineWidth, bool ignoreMargins = false);
 
 
@@ -278,8 +291,8 @@ protected:
   //-------------
 
   // Calculate PDF camera properties
-  void calculateCameraPropertiesFromInventorCamera();
-  void calculateDefaultCameraProperties();
+//  void calculateCameraPropertiesFromInventorCamera();
+//  void calculateDefaultCameraProperties();
 
   /* FIELDS */
 
@@ -305,6 +318,10 @@ protected:
   StringField   *pdfAttrSubjectFld;
   StringField   *pdfAttrKeywordsFld;
 
+  //! View specifiactions field
+  StringField*   viewSpecificationsFld;
+
+/*
   //! PDF view camera fields
   Vector3Field*  cameraCenterOfOrbitFld;
   Vector3Field*  cameraCenterToCameraFld;
@@ -319,16 +336,17 @@ protected:
   Vector4Field*  inventorCameraOrientationFld;
   FloatField*    inventorCameraFocalDistanceFld;
   FloatField*    inventorCameraHeightFld;
+*/
 
   //! The main document container
   HPDF_Doc  pdfDocument;
 
-  //! Document content containersk
+  //! Document content containers
   std::vector<mlPDF::PAGE>    pdfDocPages;
   mlPDF::PAGE                 pdfDocCurrentPage;
   std::vector<mlPDF::IMAGE>   pdfDocImages;
   std::vector<mlPDF::MODEL3D> pdfDoc3DScenes;
-  
+
   //! General PDF properties
   mlPDF::BuiltInFontsStruct buildInFonts;
   mlPDF::PageSizeInfoStruct pageSizeInfo;
@@ -351,6 +369,7 @@ private:
 
   // Internal tool methods
   void            _checkCoordinate(float& smaller, float& larger);
+  void            _checkAngle(float& startAngle, float& endAngle);
   const float     _getYPosFromTop(float y, bool ignoreMargins = false);
   const HPDF_Rect _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false);
   const float     _getPageX(float x, bool ignoreMargins = false);

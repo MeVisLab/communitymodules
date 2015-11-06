@@ -47,6 +47,9 @@ PDFCreatorBase::PDFCreatorBase() : Module(0, 0)
   (pdfAttrSubjectFld   = addString("pdfAttrSubject"))  ->setStringValue("");
   (pdfAttrKeywordsFld  = addString("pdfAttrKeywords")) ->setStringValue("");
 
+  (viewSpecificationsFld = addString("viewSpecifications"))->setStringValue("");
+
+/*
   (cameraCenterOfOrbitFld  = addVector3("cameraCenterOfOrbit")) ->setVector3Value(Vector3(0));
   (cameraCenterToCameraFld = addVector3("cameraCenterToCamera"))->setVector3Value(Vector3(0));
   (cameraRadiusOfOrbitFld  = addFloat("cameraRadiusOfOrbit"))   ->setFloatValue(0);
@@ -59,6 +62,8 @@ PDFCreatorBase::PDFCreatorBase() : Module(0, 0)
   (inventorCameraOrientationFld         = addVector4("inventorCameraOrientation")) ->setVector4Value(Vector4(0,0,1,0));
   (inventorCameraFocalDistanceFld       = addFloat("inventorCameraFocalDistance"))->setFloatValue(0);
   (inventorCameraHeightFld              = addFloat("inventorCameraHeight"))       ->setFloatValue(0);
+*/
+
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -80,6 +85,7 @@ void PDFCreatorBase::handleNotification(Field* field)
     saveButtonClicked();
   } 
 
+/*
   if (field == calculateCameraFromInventorSceneFld) 
   {
     calculateCameraPropertiesFromInventorCamera();
@@ -100,6 +106,7 @@ void PDFCreatorBase::handleNotification(Field* field)
   {
     calculateCameraPropertiesFromInventorCamera();
   }
+*/
 }
 
 //----------------------------------------------------------------------------------
@@ -288,6 +295,51 @@ void PDFCreatorBase::_checkCoordinate(float& smaller, float& larger)
 
 //----------------------------------------------------------------------------------
 
+void PDFCreatorBase::_checkAngle(float& startAngle, float& endAngle)
+{
+  // Check if angles are > 360 degrees
+  while (startAngle > 360)
+  {
+    startAngle -= 360;
+  }
+
+  while (endAngle > 360)
+  {
+    endAngle -= 360;
+  }
+
+  // Check if angles are < -360 degrees
+  while (startAngle < -360)
+  {
+    startAngle += 360;
+  }
+
+  while (endAngle < -360)
+  {
+    endAngle += 360;
+  }
+
+  // Check if angles are negative
+  if (startAngle < 0)
+  {
+    startAngle += 360;
+  }
+
+  if (endAngle < 0)
+  {
+    endAngle += 360;
+  }
+
+  // Finally check if angles must be swapped (netagive angles are accepted in this case!)
+  if (startAngle > endAngle)
+  {
+      startAngle -= 360;
+  }
+
+}
+
+//----------------------------------------------------------------------------------
+
 const float PDFCreatorBase::_getYPosFromTop(float y, bool ignoreMargins)
 {
   float result = 0;
@@ -384,7 +436,7 @@ const HPDF_REAL PDFCreatorBase::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
 
 
 //----------------------------------------------------------------------------------
-
+/*
 void PDFCreatorBase::calculateCameraPropertiesFromInventorCamera()
 {
   Vector3 inventorCameraPosition      = inventorCameraPositionFld->getVectorValue();
@@ -430,7 +482,7 @@ void PDFCreatorBase::calculateDefaultCameraProperties()
   cameraRollAngleFld     ->setFloatValue(camRollAngle);
   cameraFOVAngleFld      ->setFloatValue(camFOVAngle);
 }
-
+*/
 //----------------------------------------------------------------------------------
 
 

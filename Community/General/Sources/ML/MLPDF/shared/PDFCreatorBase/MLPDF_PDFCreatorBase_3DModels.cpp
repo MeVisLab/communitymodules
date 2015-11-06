@@ -11,7 +11,8 @@
 
 // Local includes
 #include "MLPDF_PDFCreatorBase.h"
-
+//#include "../MLPDF_DataTypes.h"
+#include "../MLPDF_Tools.h"
 
 ML_START_NAMESPACE
 
@@ -137,6 +138,31 @@ mlPDF::VIEW3D PDFCreatorBase::pdfDoc_3DModel_CreateView(std::string viewName, st
 
 //----------------------------------------------------------------------------------
 
+mlPDF::VIEW3D PDFCreatorBase::pdfDoc_3DModel_CreateViewFromSpecificationString(std::string specificationString)
+{
+  mlPDF::VIEW3D newView = NULL;
+
+  std::string displayName   = getSpecificParameterFromString(specificationString, "<DisplayName>", "Default View");
+  Vector3 backgroundColor   = getColorVec3(getSpecificParameterFromString(specificationString, "<BackgroundColor>"), Vector3(0,0,0));
+  int lightingScheme        = stringToInt(getSpecificParameterFromString(specificationString, "<LightingScheme>", "9"));
+  Vector3 camCenterOfOrbit  = getColorVec3(getSpecificParameterFromString(specificationString, "<CamCenterOfOrbit>"), Vector3(0, 0, 0));
+  Vector3 camCenterToCamera = getColorVec3(getSpecificParameterFromString(specificationString, "<CamCenterToCamera>"), Vector3(0, 0, 0));
+  float camRadiusOfOrbit    = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<CamRadiusOfOrbit>", "0"));
+  float camRollAngle        = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<CamRollAngle>", "0"));
+  float camFOVAngle         = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<CamFOVAngle>", "0"));
+  std::string nodes         = getSpecificParameterFromString(specificationString, "<Nodes>", "");
+
+  newView = pdfDoc_3DModel_CreateView(displayName, (mlPDF::LIGHTING_SCHEMES)lightingScheme, backgroundColor);
+
+  pdfDoc_3DView_SetPerspectiveCamera(newView, camCenterOfOrbit, camRadiusOfOrbit, camCenterToCamera, camFOVAngle, camRollAngle);
+
+  pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(newView, nodes);
+
+  return newView;
+}
+
+//----------------------------------------------------------------------------------
+
 void PDFCreatorBase::pdfDoc_3DView_SetLightingScheme(mlPDF::VIEW3D view, mlPDF::LIGHTING_SCHEMES lightingScheme)
 {
   if (view)
@@ -224,11 +250,73 @@ void PDFCreatorBase::pdfDoc_3DView_AddVisibleNode(mlPDF::VIEW3D view, std::strin
 
 //----------------------------------------------------------------------------------
 
+void PDFCreatorBase::pdfDoc_3DView_AddVisibleNodeFromSpecificationString(mlPDF::VIEW3D view, std::string specificationString)
+{
+  if (view && specificationString != "")
+  {
+    std::string nodeName = getSpecificParameterFromString(specificationString, "<NodeName>", "");
+
+    if (nodeName != "")
+    {
+      float opacity = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<NodeOpacity>", "0"));
+      bool visibility = stringToBool(getSpecificParameterFromString(specificationString, "<NodeVisibility>", "true"));
+
+      pdfDoc_3DView_AddVisibleNode(view, nodeName, opacity, visibility);
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(mlPDF::VIEW3D view, std::string specificationString)
+{
+  if (view && specificationString != "")
+  {
+    StringVector specificationsVector = stringSplit(specificationString, "<ViewNode>", false);
+
+    for (size_t i = 0; i < specificationsVector.size(); i++)
+    {
+      pdfDoc_3DView_AddVisibleNodeFromSpecificationString(view, specificationsVector[i]);
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------
+
 void PDFCreatorBase::pdfDoc_3DModel_AddView(mlPDF::MODEL3D model, mlPDF::VIEW3D view)
 {
   if (model && view)
   {
     HPDF_U3D_Add3DView(model, view);
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_3DModel_AddViewFromSpecificationString(mlPDF::MODEL3D model, std::string specificationString)
+{
+  if (model && specificationString != "")
+  {
+    mlPDF::VIEW3D newView = pdfDoc_3DModel_CreateViewFromSpecificationString(specificationString);
+
+    pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(newView, specificationString);
+
+    pdfDoc_3DModel_AddView(model, newView);
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_3DModel_AddAllViewsFromSpecificationString(mlPDF::MODEL3D model, std::string specificationString)
+{
+  if (model && specificationString != "")
+  {
+    StringVector specificationsVector = stringSplit(specificationString, "<View>", false);
+
+    for (size_t i = 0; i < specificationsVector.size(); i++)
+    {
+      pdfDoc_3DModel_AddViewFromSpecificationString(model, specificationsVector[i]);
+    }
   }
 }
 

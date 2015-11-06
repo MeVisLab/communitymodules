@@ -69,9 +69,6 @@ private:
   BoolField*    _figureToolbarEnabledFld;
   BoolField*    _figureNavigationInterfaceEnabledFld;
 
-  //! View property fields
-  ColorField*   _viewBackgroundColorFld;
-
   //! Description fields
   StringField*  _captionFld;
   StringField*  _descriptionFld;
