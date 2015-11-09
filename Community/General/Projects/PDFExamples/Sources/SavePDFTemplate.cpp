@@ -120,7 +120,7 @@ void SavePDFTemplate::assemblePDFDocument()
 
   // Write headline for the following images
   yPos += 80;
-  pdfDoc_WriteTextAt(0, yPos, "Two images sharing the same resource");
+  pdfDoc_WriteTextAt(0, yPos, "Two Images Sharing the Same Resource");
  
   // Load image into image resource pool (n.b.: only PNG anf JPG images are allowed!)
   std::string resourcesPath = resourcesPathFld->getStringValue();
@@ -138,7 +138,7 @@ void SavePDFTemplate::assemblePDFDocument()
 
   // Write headline for the interactive 3D scene
   yPos += 120;
-  pdfDoc_WriteTextAt(0, yPos, "Interactive 3D Scene");
+  pdfDoc_WriteTextAt(0, yPos, "Interactive 3D Scene with Poster Image");
 
   // Now add 3D scene.
   // This needs a little more than just one command.
@@ -161,7 +161,7 @@ void SavePDFTemplate::assemblePDFDocument()
 
   // Add a filled blue arc without outline
   pdfDoc_SetFillColor(0, 0, 1);
-  pdfDoc_AddFilledArcDegrees(pdfDoc_GetPageCenterX() + 80, pdfDoc_GetPageCenterY() + 100, 50, 45, 270, 3);
+  pdfDoc_AddFilledPieDegrees(pdfDoc_GetPageCenterX() + 80, pdfDoc_GetPageCenterY() + 100, 50, 60, -40);
 
   // And a yellow outline ellipse
   pdfDoc_SetStrokeColor(1, 1, 0);
@@ -176,6 +176,8 @@ void SavePDFTemplate::assemblePDFDocument()
   // For more methods to add and manipulate contents, see MLPDF_PDFCreatorBase.h file.
   //
 }
+
+//----------------------------------------------------------------------------------
 
 void SavePDFTemplate::_add3DFigure(float x, float y, float width, float height)
 {
@@ -228,7 +230,6 @@ void SavePDFTemplate::_add3DFigure(float x, float y, float width, float height)
 		pdfDoc_3DScene_SetActivationProperties(u3dScene, activationMode, deactivationMode, toolbarEnabled, navigationInterfaceEnabled, animationAutoStart);
 	}
 }
-
 
 //----------------------------------------------------------------------------------
 

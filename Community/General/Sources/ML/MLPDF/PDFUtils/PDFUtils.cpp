@@ -44,6 +44,8 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   _inPointPositionsFld->addAllowedType<ml::ColoredMarkerList>();
   _inLinePositionsFld->addAllowedType<ml::ColoredMarkerList>();
 
+  (_outFibersFld = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
   _calculateCameraFromInventorSceneFld = addNotify("calculateCameraFromInventorScene");
   (_autoCalculateCameraFromInventorSceneFld = addBool("autoCalculateCameraFromInventorScene"))->setBoolValue(false);
@@ -113,6 +115,10 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
 PDFUtils::~PDFUtils()
 {
   // Destroy own dynamic data structures here
+  _inPointPositions.clearList();
+  _inLinePositions.clearList();
+  _inLineConnections.clearList();
+  _outFiberSetContainer.deleteAllFiberSets();
 }
 
 //----------------------------------------------------------------------------------
@@ -172,6 +178,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
+    _createFibers();
   }
 
   // _inLineConnectionsFld
@@ -190,6 +197,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
+    _createFibers();
   }
 
   // _calculateCameraFromInventorSceneFld

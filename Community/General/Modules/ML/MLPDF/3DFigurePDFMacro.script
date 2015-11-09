@@ -73,13 +73,13 @@ Interface {
     Field availableWEMPatches      { internalName = PDFUtils.availableWEMPatches }
     //    Field  { internalName = PDFUtils. }
     
-    Field importPointsModel   { type = Trigger }
-    Field importLinesModel    { type = Trigger }
+    Field importPointsModel   { internalName = RunPointsImportScript.execute }
+    Field importLinesModel    { internalName = RunLinesImportScript.execute }
     Field importMeshModel     { internalName = RunMeshImportScript.execute }
     Field addImportedModel    { internalName = RunAddImportedModelScript.execute }
     Field cancelImport        { internalName = RunCancelImportScript.execute }   
-    Field removeAllPoints     { type = Trigger }
-    Field removeAllLines      { type = Trigger }
+    Field removeAllPoints     { internalName = LoadPointPositions.clearCache }
+    Field removeAllLines      { internalName = LoadLinePositions.clearCache }
     Field removeAllMeshes     { internalName = WEMComposePatches.clear }
   }
 }
@@ -134,7 +134,7 @@ Window {
             }
             
             Box "Add Model" {
-              Button addImportedModel { expandX = Yes minimumHeight = 50 dependsOn = @@ SwitchPreview.whichChild > -1 && WEMImportInfo.isWEMValid @@ }              
+              Button addImportedModel { expandX = Yes minimumHeight = 50 dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) || (SwitchPreview.whichChild == 1 && LoadPointPositions.positionsLoaded) || (SwitchPreview.whichChild == 2 && LoadLinePositions.positionsLoaded) @@ }
             }
             
             Box "Remove Models" {
@@ -248,7 +248,7 @@ Window {
             Field viewCameraRollAngle      { title = "Camera - Roll Angle:" edit = No expandX = Yes editAlign = Left }
             Field viewCameraFOVAngle       { title = "Camera - FOV Angle:" edit = No expandX = Yes editAlign = Left }
             Separator {}
-            Button addNewView { title = "Add New View" expandX = Yes }
+            Button addNewView              { title = "Add New View" expandX = Yes dependsOn = @@ viewDisplayName != "" @@ }
           }
       
           Box "All View Specifications" {

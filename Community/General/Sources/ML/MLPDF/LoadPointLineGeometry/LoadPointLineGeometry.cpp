@@ -11,8 +11,6 @@
 
 // Local includes
 #include "LoadPointLineGeometry.h"
-#include "shared/MLBaseListExtensions_DataTypes.h"
-#include "shared/MLBaseListExtensions_Tools.h"
 
 #include <mlUnicode.h>
 
@@ -33,9 +31,11 @@ LoadPointLineGeometry::LoadPointLineGeometry() : Module(0, 0)
   handleNotificationOff();
 
   // Add output field
-  (_outPositionsListFld   = addBase("outPositionsList"))->setBaseValueAndAddAllowedType(&_outPositionsList);
-  (_outConnectionsListFld = addBase("outConnectionsList"))->setBaseValueAndAddAllowedType(&_outConnectionsList);
-  (_outFibersFld          = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+  (_outPositionsListFld         = addBase("outPositionsList"))->setBaseValueAndAddAllowedType(&_outPositionsList);
+  (_outConnectionsListFld       = addBase("outConnectionsList"))->setBaseValueAndAddAllowedType(&_outConnectionsList);
+  (_outFibersFld                = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+  (_outCachedPositionsListFld   = addBase("outCachedPositionsList"))->setBaseValueAndAddAllowedType(&_outCachedPositionsList);
+  (_outCachedConnectionsListFld = addBase("outCachedConnectionsList"))->setBaseValueAndAddAllowedType(&_outCachedConnectionsList);
 
   // Add parameter fields
    _filenameFld = addString("filename","");
@@ -49,6 +49,13 @@ LoadPointLineGeometry::LoadPointLineGeometry() : Module(0, 0)
    _unloadFld   = addNotify("unload");
    _autoLoadFld = addBool("autoLoad", false);
 
+   _positionsLoadedFld   = addBool("positionsLoaded", false);
+   _connectionsLoadedFld = addBool("connectionsLoaded", false);
+
+   _addToCacheFld     = addNotify("addToCache");
+   _clearCacheFld     = addNotify("clearCache");
+   _autoAddToCacheFld = addBool("autoAddToCache", false);
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -60,12 +67,26 @@ LoadPointLineGeometry::~LoadPointLineGeometry()
   _outPositionsList.clearList();
   _outConnectionsList.clearList();
   _outFiberSetContainer.deleteAllFiberSets();
+  _outCachedPositionsList.clearList();
+  _outCachedConnectionsList.clearList();
 }
 
 //----------------------------------------------------------------------------------
 
 void LoadPointLineGeometry::handleNotification(Field* field)
 {
+  if (field == _clearCacheFld)
+  {
+    _clearCache();
+    return;
+  }
+
+  if (field == _addToCacheFld)
+  {
+    _addToCache();
+    return;
+  }
+
   if  (field == _numberDelimiterFld) 
   {
     _cropNumberDelimiter();
@@ -215,11 +236,10 @@ void LoadPointLineGeometry::_updateOutputData()
 {
   _outPositionsList.clearList();
   _outConnectionsList.clearList();
-  _outFiberSetContainer.deleteAllFiberSets();
 
   std::string newSetFilter = "";
-  int newSetType = 0;
   std::string newSetName = "";
+  int newSetType = 0;
 
   std::string filterString = _filterFld->getStringValue();
 
@@ -253,6 +273,8 @@ void LoadPointLineGeometry::_updateOutputData()
 
           if (thisDataLineNumComponents > 2)
           {
+            newSetName = "";
+
             // Append all remaining fragments to the name
             for (size_t i = 2; i < thisDataLineNumComponents; i++)
             {
@@ -307,104 +329,21 @@ void LoadPointLineGeometry::_updateOutputData()
   _outPositionsList.selectItemAt(-1);
   _outConnectionsList.selectItemAt(-1);
 
-  // Create fibers
   _createFibers();
+
+  if (_autoAddToCacheFld->getBoolValue())
+  {
+    _addToCache();
+  }
+
+  // Set validation fields
+  _positionsLoadedFld->setBoolValue(_outPositionsList.size() > 0);
+  _connectionsLoadedFld->setBoolValue(_outConnectionsList.size() > 0);
 
   // Update output
   _outPositionsListFld->touch();
   _outConnectionsListFld->touch();
   _outFibersFld->touch();
-}
-
-//----------------------------------------------------------------------------------
-
-void LoadPointLineGeometry::_createFibers()
-{
-  std::set<int> typeIDsSet;
-
-  // Step 1: Scan all positions and get all type ID from them
-  for (XMarkerList::const_iterator it = _outPositionsList.cbegin(); it != _outPositionsList.cend(); ++it)
-  {
-    XMarker thisMarker = *it;
-    typeIDsSet.insert(thisMarker.type);
-  }
-
-  // Step 2: Now create fibers
-  for (std::set<int>::const_iterator typeIdIterator = typeIDsSet.cbegin(); typeIdIterator != typeIDsSet.cend(); ++typeIdIterator)
-  {
-    int thisTypeID = *typeIdIterator;
-
-    FiberSetContainer::FiberSet* newFiberSet = _outFiberSetContainer.createFiberSet("Key");
-    newFiberSet->setColor(Vector3(1, 0, 0));
-    newFiberSet->setLabel("FiberSet Label");
-
-    // Add all connections to the temporary connections list if type ID matches
-    XMarkerList   workPositions;
-    for (XMarkerList::const_iterator outPositionsIterator = _outPositionsList.cbegin(); outPositionsIterator != _outPositionsList.cend(); ++outPositionsIterator)
-    {
-      XMarker thisMarker = *outPositionsIterator;
-
-      if (thisMarker.type == thisTypeID)
-      {
-        workPositions.push_back(thisMarker);
-      }
-    }
-    MLint workPositionsSize = (MLint)workPositions.size();
-
-    // Add all connections to the temporary connections list if type ID matches
-    IndexPairList workConnections;
-    for (IndexPairList::const_iterator outConnectionsIterator = _outConnectionsList.cbegin(); outConnectionsIterator != _outConnectionsList.cend(); ++outConnectionsIterator)
-    {
-      IndexPair thisPair = *outConnectionsIterator;
-
-      if (thisPair.type == thisTypeID)
-      {
-        workConnections.push_back(thisPair);
-      }
-    }
-
-    // If temporary connections list is still empty at this point: create default list
-    if (workConnections.size() == 0)
-    {
-
-
-
-    }
-
-    // Now finally create fibers from connections
-    for (IndexPairList::const_iterator workListIterator = workConnections.cbegin(); workListIterator != workConnections.cend(); ++workListIterator)
-    {
-      IndexPair thisWorkPair = *workListIterator;
-
-      MLint startIndex = thisWorkPair.index1;
-      MLint endIndex = thisWorkPair.index2;
-
-      if ((startIndex < workPositionsSize) && (endIndex < workPositionsSize))
-      {
-        XMarker startMarker = workPositions[startIndex];
-        XMarker endMarker = workPositions[endIndex];
-
-        FiberSetContainer::FiberSet::Fiber* newFiber = newFiberSet->createFiber();
-
-        FiberSetContainer::FiberSet::Fiber::FiberPoint startPoint;
-        startPoint.setCoordinates(startMarker.x(), startMarker.y(), startMarker.z());
-        FiberSetContainer::FiberSet::Fiber::FiberPoint endPoint;
-        endPoint.setCoordinates(endMarker.x(), endMarker.y(), endMarker.z());
-
-        newFiber->appendPoint(startPoint);
-        newFiber->appendPoint(endPoint);
-        newFiber->setLabel(1.0);
-
-        newFiberSet->appendFiber(newFiber);
-      }
-    }
-
-    _outFiberSetContainer.appendFiberSet(newFiberSet);
-
-    workPositions.clearList();
-    workConnections.clearList();
-  }
-
 }
 
 //----------------------------------------------------------------------------------
@@ -415,5 +354,130 @@ void LoadPointLineGeometry::_unloadData()
   _analyzeInputData();
   _updateOutputData();
 }
- 
+
+//----------------------------------------------------------------------------------
+
+void LoadPointLineGeometry::_createFibers()
+{
+  fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
+
+  _outFibersFld->touch();
+}
+
+//----------------------------------------------------------------------------------
+
+void LoadPointLineGeometry::_clearCache()
+{
+  _outCachedPositionsList.clearList();
+  _outCachedConnectionsList.clearList();
+
+  _outCachedPositionsListFld->touch();
+  _outCachedConnectionsListFld->touch();
+}
+
+//----------------------------------------------------------------------------------
+
+void LoadPointLineGeometry::_addToCache()
+{
+  // Get highest type ID from posittions and connections
+  int highestTypeID = 0;
+  std::map<int, int> typeIDMap;
+
+  // Step 1: Scan all positions and get all type ID from them
+  for (XMarkerList::const_iterator it = _outCachedPositionsList.cbegin(); it != _outCachedPositionsList.cend(); ++it)
+  {
+    XMarker thisMarker = *it;
+
+    if (thisMarker.type > highestTypeID)
+    {
+      highestTypeID = thisMarker.type;
+    }
+  }
+
+  for (IndexPairList::const_iterator it = _outCachedConnectionsList.cbegin(); it != _outCachedConnectionsList.cend(); ++it)
+  {
+    IndexPair thisPair = *it;
+
+    if (thisPair.type > highestTypeID)
+    {
+      highestTypeID = thisPair.type;
+    }
+  }
+
+  // Add positions 
+  for (XMarkerList::const_iterator it = _outPositionsList.cbegin(); it != _outPositionsList.cend(); ++it)
+  {
+    XMarker inMarker  = *it;
+    int inMarkerType  = inMarker.type;
+    int newMarkerType = inMarker.type;
+
+    // Check if type ID must be modified
+    if (inMarkerType <= highestTypeID)
+    {
+      std::map<int, int>::iterator findIt = typeIDMap.find(inMarkerType);
+
+      if (findIt == typeIDMap.end())
+      {
+        // inMarkerType has not yet been added to map, so add it now
+        newMarkerType = highestTypeID + 1;
+        typeIDMap[inMarkerType] = newMarkerType;
+        highestTypeID++;
+      }
+      else
+      {
+        newMarkerType = typeIDMap[inMarkerType];
+      }
+    }
+    
+    XMarker newCachedMarker(Vector6(inMarker.x(), inMarker.y(), inMarker.z(), inMarker.c(), inMarker.t(), inMarker.u()), newMarkerType, inMarker.name());
+
+    _outCachedPositionsList.appendItem(newCachedMarker);
+  }
+
+  // Add connections
+  for (IndexPairList::const_iterator it = _outConnectionsList.cbegin(); it != _outConnectionsList.cend(); ++it)
+  {
+    IndexPair inPair = *it;
+    int inPairType = inPair.type;
+    int newPairType = inPair.type;
+
+    // Check if type ID must be modified
+    if (inPairType <= highestTypeID)
+    {
+      std::map<int, int>::iterator findIt = typeIDMap.find(inPairType);
+
+      if (findIt == typeIDMap.end())
+      {
+        // newPairType has not yet been added to map -> skip this connection!
+        inPairType = ML_INT_MIN;
+      }
+      else
+      {
+        newPairType = typeIDMap[inPairType];
+      }
+    }
+
+    if (inPairType > ML_INT_MIN)
+    {
+      IndexPair newCachedPair(inPair.index1, inPair.index2, newPairType, inPair.name());
+
+      _outCachedConnectionsList.appendItem(newCachedPair);
+    }
+  }
+
+
+
+  // Deselect items
+  _outCachedPositionsList.selectItemAt(-1);
+  _outCachedConnectionsList.selectItemAt(-1);
+
+  // Notify observers
+  _outCachedPositionsListFld->touch();
+  _outCachedConnectionsListFld->touch();
+}
+
+//----------------------------------------------------------------------------------
+
+
+
 ML_END_NAMESPACE

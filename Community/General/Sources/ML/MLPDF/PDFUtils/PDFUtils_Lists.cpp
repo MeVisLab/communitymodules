@@ -83,6 +83,12 @@ void PDFUtils::_calculateListPropertyFields()
 
 //----------------------------------------------------------------------------------
 
+void PDFUtils::_createFibers()
+{
+  fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _inLinePositions, _inLineConnections);
+
+  _outFibersFld->touch();
+}
 
 //----------------------------------------------------------------------------------
 

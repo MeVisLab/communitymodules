@@ -16,6 +16,7 @@
 #include <mlXMarkerList.h>
 #include <IndexPairList.h>
 #include <ColoredMarkerList.h>
+#include <mlFiberSet.h>
 
 #include "mlModuleIncludes.h"
 
@@ -179,6 +180,10 @@ LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList po
 LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition);
 
 
+//***********************************************************************************
+
+// Fill a FiberSetContainer from line positions and line connections
+void fillFiberSetContainerFromPositionsAndConnections(ml::FiberSetContainer& outFiberSetContainer, const ml::XMarkerList& inLinePositions, const ml::IndexPairList& inLineConnections);
 
 //////////////////////////////////////////////
 

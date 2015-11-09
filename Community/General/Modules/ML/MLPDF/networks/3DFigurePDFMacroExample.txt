@@ -142,7 +142,6 @@ LinePositions 1 Main Branch
 38 39 
 39 40 
 40 41
-41 42
 
 LinePositions 2 Side branch
 

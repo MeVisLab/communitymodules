@@ -15,7 +15,7 @@
 
 // Local includes
 #include "MLPDFSystem.h"
-#include "shared/MLBaseListExtensions_DataTypes.h"
+#include "../shared/MLPDF_Tools.h"
 
 
 // ML includes
@@ -42,7 +42,8 @@ public:
   BaseField*   _outPositionsListFld;
   BaseField*   _outConnectionsListFld;
   BaseField*   _outFibersFld;
-
+  BaseField*   _outCachedPositionsListFld;
+  BaseField*   _outCachedConnectionsListFld;
 
   // UI fields
   StringField* _filenameFld;
@@ -56,10 +57,28 @@ public:
   NotifyField* _unloadFld;
   BoolField*   _autoLoadFld;
 
+  BoolField*   _positionsLoadedFld;
+  BoolField*   _connectionsLoadedFld;
+
+  NotifyField* _addToCacheFld;
+  NotifyField* _clearCacheFld;
+  BoolField*   _autoAddToCacheFld;
+
   //! Handles field changes of the field \p field.
   virtual void handleNotification (Field* field);
 
 private:
+
+  // Globals
+  XMarkerList           _outPositionsList;
+  IndexPairList         _outConnectionsList;
+  FiberSetContainer     _outFiberSetContainer;
+  XMarkerList           _outCachedPositionsList;
+  IndexPairList         _outCachedConnectionsList;
+
+  StringVector          _inputFileLinesVector;
+  int                   _dataStartIndex;
+
 
   // Load data
   void _loadData();
@@ -67,14 +86,17 @@ private:
   // Unload data
   void _unloadData();
 
+  // Clear cached data
+  void _clearCache();
+
+  // Add loaded data to cache
+  void _addToCache();
+
   // Analyze input data
   void _analyzeInputData();
 
   // Update output data
   void _updateOutputData();
-
-  // Create fibers
-  void _createFibers();
 
   // Crop the delimiter to the first character
   void _cropNumberDelimiter();
@@ -82,13 +104,8 @@ private:
   // Crop the decimal separator to the first character
   void _cropDecimalSeparator();
 
-  // Globals
-  XMarkerList                   _outPositionsList;
-  IndexPairList                 _outConnectionsList;
-  FiberSetContainer             _outFiberSetContainer;
-
-  StringVector                  _inputFileLinesVector;
-  int                           _dataStartIndex;
+  // Create fiberset container
+  void _createFibers();
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(LoadPointLineGeometry)

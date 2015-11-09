@@ -26,6 +26,7 @@
 #include <mlXMarkerList.h>
 #include <IndexPairList.h>
 #include <ColoredMarkerList.h>
+#include <mlFiberSet.h>
 
 // WEM includes
 #include <WEMBase/WEM.h>
@@ -72,6 +73,9 @@ private:
   BaseField *_inPointPositionsFld;
   BaseField *_inLinePositionsFld;
   BaseField *_inLineConnectionsFld;
+
+  // Output fields (WEM output is for free...)
+  BaseField*   _outFibersFld;
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
   NotifyField*   _calculateCameraFromInventorSceneFld;
@@ -135,6 +139,9 @@ private:
   //! The StringList input for connections of line sets
   ml::IndexPairList _inLineConnections;
 
+  //! The fiberset container used for visualizing the line sets
+  FiberSetContainer _outFiberSetContainer;
+
   /* METHODS */
 
   // Camera methods ==========================================================
@@ -168,6 +175,11 @@ private:
   void _getMaxTypeIDFromList(ml::XMarkerList& list, int& maxTypeID);
   void _getMaxTypeIDFromList(ml::IndexPairList& list, int& maxTypeID);
   void _calculateListPropertyFields();
+
+  // Methods for Fibersets ===================================================
+
+  void _createFibers();
+
 
   // Debug, development & test methods =======================================
 

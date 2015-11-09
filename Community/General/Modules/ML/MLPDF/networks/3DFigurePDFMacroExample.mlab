@@ -154,7 +154,7 @@ module LocalFileName {
       window _default {
         geometry = "575 578 682 103"
         sizeHint = "480 103"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -188,8 +188,13 @@ module 3DFigurePDFMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1964 56 1031 806"
+        geometry = "2006 149 1031 766"
         sizeHint = "1000 784"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "597 254 903 600"
+        sizeHint = "260 223"
         wasOpen = no
       }
     }
@@ -209,10 +214,10 @@ module 3DFigurePDFMacro {
     viewDisplayName = ""
     viewBackgroundColor = "0.333333333333333 1 0.498039215686275"
     viewLightingScheme = Blue
-    viewCameraCenterOfOrbit = "2.40048646789364 -12.3947729066495 6.43407856677368"
-    viewCameraCenterToCamera = "109.620357037966 -197.176745037686 -27.012918822511"
+    viewCameraCenterOfOrbit = "2.43322314095712 -12.3751481249492 5.22026944495155"
+    viewCameraCenterToCamera = "85.2197996251562 -210.623615913137 -0.507098439702531"
     viewCameraRadiusOfOrbit = 227.2113
-    viewCameraRollAngle = 7.5833387
+    viewCameraRollAngle = 353.3382
     viewCameraFOVAngle = 90
     viewSpecifications = ""
     selectedWEMPatch = ""
@@ -223,9 +228,6 @@ module 3DFigurePDFMacro {
 connections  {
   WEMLoad.filename = WEMFilename.trueName
   3DFigurePDFMacro.inWEM = WEMLoad.outWEM
-  3DFigurePDFMacro.filenameWEM = CreateMeshFilename.trueName
-  3DFigurePDFMacro.filenamePointPositions = CreateMarkersFilename.trueName
-  3DFigurePDFMacro.filenameLineDefinitions = CreateMarkersFilename.trueName
 }
 networkModel  {
   parentItems  {

@@ -8,6 +8,8 @@
 //----------------------------------------------------------------------------------
 
 Description {
+  Field positionsLoaded   { editable = No }
+  Field connectionsLoaded { editable = No }
 }
 
 Window {
@@ -31,19 +33,21 @@ Window {
     
     Horizontal {
       
+      CheckBox autoLoad {  }
+      ButtonBox { 
+        Button load { role = AcceptRole }
+        Button unload { role = RejectRole }
+      }        
+
       Empty { expandX = Yes }
-      
-      Horizontal { 
-        alignX = Right
+      Separator { direction = Vertical }
         
-        CheckBox autoLoad {  }
-        ButtonBox { 
-          Button load { role = AcceptRole }
-          Button unload { role = RejectRole }
-        }        
+      CheckBox autoAddToCache {  }
+      ButtonBox { 
+        Button addToCache { role = AcceptRole }
+        Button clearCache { role = RejectRole }
+      }        
         
-      }  // Horizontal
-      
     }  // Horizontal
     
   }  // Vertical
