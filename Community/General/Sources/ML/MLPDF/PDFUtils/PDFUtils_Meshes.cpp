@@ -12,6 +12,7 @@
 
 // Local includes
 #include "PDFUtils.h"
+#include "../shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
 
 
 ML_START_NAMESPACE
@@ -157,6 +158,8 @@ void PDFUtils::_selectedWEMPatchChanged(WEMPtr wem)
 void PDFUtils::_selectedWEMPatchIdChanged(WEMPtr wem)
 {
   std::string newLabel = "[undefined]";
+  std::string groupPath = ""; 
+  std::string modelColor = "";
 
   if (wem)
   {
@@ -169,6 +172,11 @@ void PDFUtils::_selectedWEMPatchIdChanged(WEMPtr wem)
       if (patch)
       {
         newLabel = patch->getLabel();
+
+        std::string description = patch->getDescription();
+
+        groupPath = getSpecificParameterFromWEMDescription(description, "GroupPath"); 
+        modelColor = getSpecificParameterFromWEMDescription(description, "Color");
       }
 
     }
@@ -176,15 +184,31 @@ void PDFUtils::_selectedWEMPatchIdChanged(WEMPtr wem)
   }
 
   _selectedWEMPatchNewLabelFld->setStringValue(newLabel);
+  _selectedWEMPatchGroupPathFld->setStringValue(groupPath);
+
+  if (modelColor == "")
+  {
+    _selectedWEMPatchUseDefaultColorFld->setBoolValue(true);
+  }
+  else
+  {
+    _selectedWEMPatchUseDefaultColorFld->setBoolValue(false);
+
+    Vector4 colorVector = getColorVec4(modelColor, Vector4(0));
+
+    _selectedWEMPatchColorFld->setColorValue(colorVector[0], colorVector[1], colorVector[2]);
+    _selectedWEMPatchColorAlphaFld->setFloatValue(colorVector[3]);
+  }
+
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFUtils::_selectedWEMPatchNewLabelChanged()
+void PDFUtils::_updateSelectedWEMPatchLabel()
 {
   const std::string newLabel = _selectedWEMPatchNewLabelFld->getStringValue();
 
-  if ( (_outWEM) && (newLabel != "") )
+  if (_outWEM) 
   {
     const int patchId = _selectedWEMPatchIdFld->getIntValue();
 
@@ -197,6 +221,68 @@ void PDFUtils::_selectedWEMPatchNewLabelChanged()
         outWEMPatch->setLabel(newLabel);
         _updateAvailableWEMPatchesFld(_outWEM, newLabel);
         _notifyObservers();
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFUtils::_updateSelectedWEMPatchDescription()
+{
+
+  if (_outWEM) 
+  {
+    const int patchId = _selectedWEMPatchIdFld->getIntValue();
+
+    if (patchId > -1)
+    {
+      WEMPatch* outWEMPatch = _outWEM->getWEMPatchById(patchId);
+
+      if (outWEMPatch)
+      {
+        std::string modelName = "ModelName=" + outWEMPatch->getLabel()+";";
+        std::string groupPath = _selectedWEMPatchGroupPathFld->getStringValue(); 
+        std::string modelColor = "";
+
+        if (!_selectedWEMPatchUseDefaultColorFld->getBoolValue())
+        {
+          modelColor = mlPDF::SpecificationGenerator::FormatColorString(_selectedWEMPatchColorFld->getColorValue(), _selectedWEMPatchColorAlphaFld->getFloatValue());
+        }
+
+        if (groupPath != "")
+        {
+          groupPath = "GroupPath=" + groupPath + ";";
+        }
+
+        if (modelColor != "")
+        {
+          modelColor = "Color=" + modelColor + ";";
+        }
+
+        outWEMPatch->setDescription(modelName + groupPath + modelColor);
+        _notifyObservers();
+      }
+    }
+  }
+
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFUtils::_updateWEMPatchNodesColor()
+{
+  if (_outWEM) 
+  {
+    const int patchId = _selectedWEMPatchIdFld->getIntValue();
+
+    if (patchId > -1)
+    {
+      WEMPatch* outWEMPatch = _outWEM->getWEMPatchById(patchId);
+
+      if (outWEMPatch)
+      {
+        // ToDo: change patch nodes color!
       }
     }
   }

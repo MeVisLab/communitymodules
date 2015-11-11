@@ -109,16 +109,10 @@ private:
   IntField*      _selectedWEMPatchIdFld;
   StringField*   _availableWEMPatchesFld;
   StringField*   _selectedWEMPatchNewLabelFld;
-
-  //! Fields for specification generator
-  StringField*   _newSpecificationObjectNameFld;
-  StringField*   _newSpecificationGroupPathFld;
-  EnumField*     _newSpecificationModelVisibilityFld;
-  BoolField*     _newSpecificationUseDefaultColorFld;
-  ColorField*    _newSpecificationColorFld;
-  FloatField*    _newSpecificationColorAlphaFld;
-  BoolField*     _newSpecificationUseDefaultSpecularColorFld;
-  ColorField*    _newSpecificationSpecularColorFld;
+  StringField*   _selectedWEMPatchGroupPathFld;
+  BoolField*     _selectedWEMPatchUseDefaultColorFld;
+  ColorField*    _selectedWEMPatchColorFld;
+  FloatField*    _selectedWEMPatchColorAlphaFld;
 
   //! Fields for PointSet/LineSet properties
   IntField*      _pointPositionsMaxTypeIDFld;
@@ -166,7 +160,9 @@ private:
   void _updateAvailableWEMPatchesFld(WEMPtr wem, std::string defaultEntry = "");
   void _selectedWEMPatchChanged(WEMPtr wem);
   void _selectedWEMPatchIdChanged(WEMPtr wem);
-  void _selectedWEMPatchNewLabelChanged();
+  void _updateSelectedWEMPatchLabel();
+  void _updateSelectedWEMPatchDescription();
+  void _updateWEMPatchNodesColor();
   void _processPatch(unsigned int patchIndex);
 
 

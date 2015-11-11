@@ -42,3 +42,5 @@ build/
 /Community/General/Modules/ML/MLPDF/networks/SavePDFExample.u3d
 /Community/General/lib/MLBaseListExtensions.mldepends
 /Community/General/lib/MLPDF.mldepends
+/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.mlab.auto
+/Community/General/Sources/ML/MLPDF/MLPDF.opensdf

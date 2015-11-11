@@ -68,10 +68,13 @@ Interface {
     Field addNewView               { internalName = PDFUtils.addNewView }
     Field clearViews               { internalName = PDFUtils.clearViews }
     
-    Field selectedWEMPatch         { internalName = PDFUtils.selectedWEMPatch }
-    Field selectedWEMPatchNewLabel { internalName = PDFUtils.selectedWEMPatchNewLabel }
-    Field availableWEMPatches      { internalName = PDFUtils.availableWEMPatches }
-    //    Field  { internalName = PDFUtils. }
+    Field selectedWEMPatch                { internalName = PDFUtils.selectedWEMPatch }
+    Field selectedWEMPatchNewLabel        { internalName = PDFUtils.selectedWEMPatchNewLabel }
+    Field availableWEMPatches             { internalName = PDFUtils.availableWEMPatches }
+    Field selectedWEMPatchGroupPath       { internalName = PDFUtils.selectedWEMPatchGroupPath }
+    Field selectedWEMPatchUseDefaultColor { internalName = PDFUtils.selectedWEMPatchUseDefaultColor }
+    Field selectedWEMPatchColor           { internalName = PDFUtils.selectedWEMPatchColor }
+    Field selectedWEMPatchColorAlpha      { internalName = PDFUtils.selectedWEMPatchColorAlpha min = 0 max = 1 }
     
     Field importPointsModel   { internalName = RunPointsImportScript.execute }
     Field importLinesModel    { internalName = RunLinesImportScript.execute }
@@ -198,36 +201,55 @@ Window {
       TabViewItem "Edit Meshes" {
 
         expandY = Yes
-                
-        Horizontal {
-        
-          FieldLabel selectedWEMPatch { title = "Selected Mesh:" }
-        
-          ComboBox selectedWEMPatch {
-            editable       = No
-            comboField     = availableWEMPatches
-            comboSeparator = "|"
-          }
-        }
-      
-        Field selectedWEMPatchNewLabel { title = "New Label:" }
-
-        Box "Preview" {
+        expandX = Yes
+              
+        Horizontal { 
           
           expandY = Yes
           
-          Viewer MeshViewer.self {
-            expandY = Yes
-            type    = SoExaminerViewer
-            clone   = Yes
-          }
-          
-          Horizontal {
-            Button resetPreview             { title = "Reset" alignX = Right }
-          }
-          
-        } // Box "Preview"      
+          Vertical {
+
+            alignX = Left
+            alignY = Top
+            minimumWidth = 300
+                      
+            Horizontal {
         
+              FieldLabel selectedWEMPatch { title = "Selected Mesh:" }
+        
+              ComboBox selectedWEMPatch {
+                editable       = No
+                comboField     = availableWEMPatches
+                comboSeparator = "|"
+              }
+            }
+      
+            Field selectedWEMPatchNewLabel { title = "Name:" dependsOn = @@ selectedWEMPatch != "" @@ }
+           
+            Field selectedWEMPatchGroupPath       { title = "Group Path:" dependsOn = @@ selectedWEMPatch != "" @@ }
+            Field selectedWEMPatchUseDefaultColor { title = "Use Default Color" dependsOn = @@ selectedWEMPatch != "" @@ }
+            Field selectedWEMPatchColor           { title = "Color:" dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }
+            Field selectedWEMPatchColorAlpha      { title = "Opacity:" slider = Yes dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }            
+          }
+          
+          Box "Preview" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer MeshViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Preview"      
+        
+        } // Horizontal
         
       } // TabViewItem "Meshes"
       
@@ -305,6 +327,8 @@ Window {
       TabViewItem "Save Model" {
         
         expandY = Yes
+        
+        Field SaveU3D.filename { title = "Filename:" browseButton = Yes browseMode = save }
         
         Empty { expandY = Yes }
       }

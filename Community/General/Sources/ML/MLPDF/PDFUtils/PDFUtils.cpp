@@ -74,20 +74,14 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   _clearViewsFld              = addNotify("clearViews");
 
   //! Fields for WEM/mesh handling
-  (_selectedWEMPatchFld         = addString("selectedWEMPatch"))->setStringValue("");
-  (_selectedWEMPatchIdFld       = addInt("selectedWEMPatchId"))->setIntValue(-1);
-  (_availableWEMPatchesFld      = addString("availableWEMPatches"))->setStringValue("");
-  (_selectedWEMPatchNewLabelFld = addString("selectedWEMPatchNewLabel"))->setStringValue("");
-
-  //! Fields for specification generator
-  (_newSpecificationObjectNameFld              = addString("newSpecificationObjectName"))->setStringValue("");
-  (_newSpecificationGroupPathFld               = addString("newSpecificationGroupPath"))->setStringValue("");
-  (_newSpecificationModelVisibilityFld         = addEnum("newSpecificationModelVisibility", mlPDF::NewSpecificationModelVisibilityStrings, mlPDF::NUM_MODELVISIBILITY))->setEnumValue(mlPDF::MODELVISIBILITY_FRONTANDBACKVISIBLE);
-  (_newSpecificationUseDefaultColorFld         = addBool("newSpecificationUseDefaultColor"))->setBoolValue(true);
-  (_newSpecificationColorFld                   = addColor("newSpecificationColor"))->setStringValue("0.651 0.651 0.651");
-  (_newSpecificationColorAlphaFld              = addFloat("newSpecificationColorAlpha"))->setFloatValue(1);
-  (_newSpecificationUseDefaultSpecularColorFld = addBool("newSpecificationUseDefaultSpecularColor"))->setBoolValue(true);
-  (_newSpecificationSpecularColorFld           = addColor("newSpecificationSpecularColor"))->setStringValue("0.75 0.75 0.75");
+  (_selectedWEMPatchFld                   = addString("selectedWEMPatch"))->setStringValue("");
+  (_selectedWEMPatchIdFld                 = addInt("selectedWEMPatchId"))->setIntValue(-1);
+  (_availableWEMPatchesFld                = addString("availableWEMPatches"))->setStringValue("");
+  (_selectedWEMPatchNewLabelFld           = addString("selectedWEMPatchNewLabel"))->setStringValue("");
+  (_selectedWEMPatchGroupPathFld          = addString("selectedWEMPatchGroupPath"))->setStringValue("");
+  (_selectedWEMPatchUseDefaultColorFld    = addBool("selectedWEMPatchUseDefaultColor"))->setBoolValue(true);
+  (_selectedWEMPatchColorFld              = addColor("selectedWEMPatchColor"))->setStringValue("0.651 0.651 0.651");
+  (_selectedWEMPatchColorAlphaFld         = addFloat("selectedWEMPatchColorAlpha"))->setFloatValue(1);
 
   //! Fields for PointSet/LineSet properties
   (_pointPositionsMaxTypeIDFld = addInt("pointPositionsMaxTypeID"))->setIntValue(-1);
@@ -241,8 +235,25 @@ void PDFUtils::handleNotification (Field* field)
 
   if (field == _selectedWEMPatchNewLabelFld)
   {
-    _selectedWEMPatchNewLabelChanged();
+    _updateSelectedWEMPatchLabel();
+    _updateSelectedWEMPatchDescription();
   }
+
+  if (field == _selectedWEMPatchGroupPathFld)
+  {
+    _updateSelectedWEMPatchDescription();
+  }
+
+  if (
+      (field == _selectedWEMPatchUseDefaultColorFld) ||
+      (field == _selectedWEMPatchColorFld) ||
+      (field == _selectedWEMPatchColorAlphaFld)
+     )
+  {
+    _updateWEMPatchNodesColor();
+    _updateSelectedWEMPatchDescription();
+  }
+
 
   // call parent class and handle apply/autoApply and in/outputs
   WEMProcessor::handleNotification(field);

@@ -2,6 +2,61 @@
 network  {
   watchlist = ""
 }
+module ComposeWEMDescriptionForU3D {
+  internal  {
+    frame = "693 -795 216 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "369 197 882 302"
+        sizeHint = "529 302"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ComposeWEMDescriptionForU3D
+    U3DObjectName = object
+    U3DGroupName = group
+    U3DModelName = model
+    U3DColor = "0.333333333333333 1 0"
+    U3DSpecularColor = "1 1 1"
+    U3DGroupColor = "1 1 1"
+    U3DColorTransparency = 0.42500001
+    U3DGroupColorTransparency = 0
+    UseU3DColor = TRUE
+    UseU3DGroupColor = FALSE
+    UseU3DSpecularColor = FALSE
+  }
+}
+module WEMInfo {
+  internal  {
+    frame = "525 -579 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "132 225 690 438"
+        sizeHint = "509 438"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMInfo
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    listenToFinishingNotifications = TRUE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = TRUE
+    WEMs = "1@Main Branch|2@Side branch"
+    hasEdges = FALSE
+    boundingBoxMode = "Axis Aligned"
+    primitiveValueLists = LUT
+    curveScaleFactor = 1
+    selectedTab = 1
+  }
+}
 module ListInfo {
   internal  {
     frame = "706 -988 72 56"
@@ -626,7 +681,7 @@ module So3DMarkerEditor {
   fields  {
     instanceName = PointsRendererImport
     interactionProviderID = ""
-    scaleSize = 2.05
+    scaleSize = 2.74
     scaleLength = 1
     color = "1 0 0"
     ambientColor = "0 0 0"
@@ -921,10 +976,10 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "80.9824676513672 -211.607437133789 91.8160552978516"
-    orientation = "-0.953340291976929 -0.222478494048119 -0.204072818160057 5.05447673797607"
-    nearDistance = 184.2019
-    farDistance = 386.29922
+    position = "106.100120544434 -217.712295532227 11.4187021255493"
+    orientation = "-0.947737753391266 -0.223267912864685 -0.227913543581963 4.67475748062134"
+    nearDistance = 147.23695
+    farDistance = 316.51239
     focalDistance = 231.79025
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
@@ -1007,8 +1062,8 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "80.9824676513672 -211.607437133789 91.8160552978516"
-    orientation = "-0.953340291976929 -0.222478494048119 -0.204072818160057 5.05447673797607"
+    position = "106.100120544434 -217.712295532227 11.4187021255493"
+    orientation = "-0.947737753391266 -0.223267912864685 -0.227913543581963 4.67475748062134"
     nearDistance = 62.357777
     farDistance = 439.58456
     focalDistance = 231.79025
@@ -1093,8 +1148,8 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "80.9824676513672 -211.607437133789 91.8160552978516"
-    orientation = "-0.953340291976929 -0.222478494048119 -0.204072818160057 5.05447673797607"
+    position = "106.100120544434 -217.712295532227 11.4187021255493"
+    orientation = "-0.947737753391266 -0.223267912864685 -0.227913543581963 4.67475748062134"
     nearDistance = 107.76762
     farDistance = 356.06061
     focalDistance = 231.79025
@@ -1179,8 +1234,8 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "80.9824676513672 -211.607437133789 91.8160552978516"
-    orientation = "-0.953340291976929 -0.222478494048119 -0.204072818160057 5.05447673797607"
+    position = "106.100120544434 -217.712295532227 11.4187021255493"
+    orientation = "-0.947737753391266 -0.223267912864685 -0.227913543581963 4.67475748062134"
     nearDistance = 107.76762
     farDistance = 356.06061
     focalDistance = 231.79025
@@ -1265,8 +1320,8 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "80.9824676513672 -211.607437133789 91.8160552978516"
-    orientation = "-0.953340291976929 -0.222478494048119 -0.204072818160057 5.05447673797607"
+    position = "106.100120544434 -217.712295532227 11.4187021255493"
+    orientation = "-0.947737753391266 -0.223267912864685 -0.227913543581963 4.67475748062134"
     nearDistance = 128.72786
     farDistance = 345.57785
     focalDistance = 231.79025
@@ -1343,16 +1398,16 @@ module SoWEMRenderer {
     faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
     useFaceSpecularColor = FALSE
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
-    faceAlphaValue = 0.493
+    faceAlphaValue = 0.56199998
     faceShininessValue = 1
-    primitiveValueLists = ""
+    primitiveValueLists = LUT
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = -1
+    maxWEMPatchIndex = 1
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -1391,14 +1446,14 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 1
     faceShininessValue = 1
-    primitiveValueLists = ""
+    primitiveValueLists = LUT
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = -1
+    maxWEMPatchIndex = 0
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -1434,10 +1489,10 @@ module WEMSelectPatches {
     forwardSelectionNotifications = TRUE
     triangulationMode = Strip
     selectMode = "Patch ID"
-    selectValue = 1
+    selectValue = 2
     singleOutputPatch = TRUE
     triangulatePatches = TRUE
-    status = "Merged nothing."
+    status = "Merged 1 triangle patch."
   }
 }
 module SoGroup {
@@ -1512,12 +1567,12 @@ module PDFUtils {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1733 493 1126 400"
+        geometry = "518 153 1036 400"
         sizeHint = "850 400"
         wasOpen = no
       }
       window _automatic {
-        geometry = "102 591 864 600"
+        geometry = "315 194 1132 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -1543,28 +1598,24 @@ module PDFUtils {
     useInputWEMToCreateOutputWEM = TRUE
     triangulationMode = Strip
     autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "2.43451913573699 -10.4300282125387 7.64603937153879"
-    cameraCenterToCamera = "78.5479485156302 -201.17740892125 84.1700159263128"
+    cameraCenterOfOrbit = "2.43455303872906 -10.4300131035998 7.64604207810225"
+    cameraCenterToCamera = "103.665567505705 -207.282282428627 3.77266004744706"
     cameraRadiusOfOrbit = 231.79025
     cameraFOVAngle = 90
-    cameraRollAngle = 355.056
+    cameraRollAngle = 0.054479588
     vertexList = "[  ]"
     coordIndexList = "[  ]"
     viewSpecifications = ""
     newViewDisplayName = ""
     newViewBackgroundColor = "0.333333333333333 1 0.498039215686275"
-    newViewLightingScheme = HeadLamp
-    selectedWEMPatch = "[no label specified] {ID=1}"
-    availableWEMPatches = ""
-    selectedWEMPatchNewLabel = ""
-    newSpecificationObjectName = ""
-    newSpecificationGroupPath = ""
-    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
-    newSpecificationUseDefaultColor = TRUE
-    newSpecificationColor = "0.651 0.651 0.651"
-    newSpecificationColorAlpha = 1
-    newSpecificationUseDefaultSpecularColor = TRUE
-    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    newViewLightingScheme = Blue
+    selectedWEMPatch = "Side branch {ID=2}"
+    availableWEMPatches = "Main Branch {ID=1}|Side branch {ID=2}"
+    selectedWEMPatchNewLabel = "Side branch"
+    selectedWEMPatchGroupPath = ""
+    selectedWEMPatchUseDefaultColor = TRUE
+    selectedWEMPatchColor = "1 0 0"
+    selectedWEMPatchColorAlpha = 0.384
     pointPositionsMaxTypeID = -1
     linePositionsMaxTypeID = -1
     lineConnectionsMaxTypeID = -1
@@ -1653,7 +1704,7 @@ module LoadPointLineGeometry {
   }
   fields  {
     instanceName = LoadPointPositions
-    filename = ""
+    filename = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt"
     filter = PointPositions
     numberDelimiter = " "
     numberDelimiterSpace = TRUE
@@ -1677,7 +1728,7 @@ module So3DMarkerEditor {
   fields  {
     instanceName = PointsRenderer
     interactionProviderID = ""
-    scaleSize = 2.05
+    scaleSize = 2.74
     scaleLength = 1
     color = "0 0 0"
     ambientColor = "0 0 0"
@@ -1743,7 +1794,7 @@ module LoadPointLineGeometry {
   }
   fields  {
     instanceName = LoadLinePositions
-    filename = ""
+    filename = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt"
     filter = LinePositions
     numberDelimiter = " "
     numberDelimiterSpace = TRUE
@@ -1989,14 +2040,14 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 0.25999999
     faceShininessValue = 1
-    primitiveValueLists = ""
+    primitiveValueLists = LUT
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = -1
+    maxWEMPatchIndex = 1
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -2277,7 +2328,7 @@ module SaveU3D {
         wasOpen = no
       }
       window "Specification Generator Panel" {
-        geometry = "286 338 576 594"
+        geometry = "129 345 576 594"
         sizeHint = "275 579"
         wasOpen = no
       }
@@ -2293,60 +2344,13 @@ module SaveU3D {
     listenToSelectionChangedNotifications = FALSE
     simpleModePointSet = FALSE
     simpleModeLineSet = FALSE
-    simpleModeMesh = FALSE
+    simpleModeMesh = TRUE
     modelPrefixPointClouds = PointSet
     modelPrefixLineSets = LineSet
     modelPrefixMeshes = Mesh
-    pointCloudSpecification = "<PointSet>
-<PositionTypes>1</PositionTypes>
-<ObjectName>Point Set Cow</ObjectName>
-<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
-<ModelVisibility>3</ModelVisibility>
-
-<PointSet>
-<PositionTypes>2</PositionTypes>
-<ObjectName>Point Set Venus</ObjectName>
-<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
-<ModelVisibility>3</ModelVisibility>
-
-<PointSet>
-<PositionTypes>1,2</PositionTypes>
-<ObjectName>All Points</ObjectName>
-<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
-<ModelVisibility>3</ModelVisibility>"
-    lineSetSpecification = "<LineSet>
-<PositionTypes>1</PositionTypes>
-<ConnectionTypes>1</ConnectionTypes>
-<ObjectName>Line Set Bounding Box</ObjectName>
-<GroupPath>/Test Model/Primitives/Line Sets/</GroupPath>
-<Color>1.000 0.667 0.000 0.000</Color>
-<ModelVisibility>3</ModelVisibility>
-
-"
-    meshSpecification = "<Mesh>
-<WEMLabel>Cow</WEMLabel>
-<ObjectName>Cow Mesh red</ObjectName>
-<GroupPath>/Test Model/Meshes/</GroupPath>
-<Color>1.000 0.000 0.000 0.2</Color>
-<SpecularColor>1.000 1.000 0.000</SpecularColor>
-<ModelVisibility>3</ModelVisibility>
-
-<Mesh>
-<WEMLabel>Cow</WEMLabel>
-<ObjectName>Cow Mesh green</ObjectName>
-<GroupPath>/Test Model/Meshes/</GroupPath>
-<Color>0.000 1.000 0.000</Color>
-<SpecularColor>1.000 1.000 0.000</SpecularColor>
-<ModelVisibility>3</ModelVisibility>
-
-<Mesh>
-<WEMLabel>Venus</WEMLabel>
-<ObjectName>Venus Mesh</ObjectName>
-<GroupPath>/Test Model 2/Meshes/</GroupPath>
-<Color>0.000 0.000 1.000 0.75</Color>
-<ModelVisibility>3</ModelVisibility>
-
-"
+    pointCloudSpecification = ""
+    lineSetSpecification = ""
+    meshSpecification = ""
     viewsSpecification = ""
     lightsSpecification = ""
     metaDataSpecification = ""
@@ -2364,13 +2368,13 @@ module SaveU3D {
     addDefaultLightNode = TRUE
     filename = ""
     status = Idle.
-    newSpecification = "<Mesh>
+    newSpecification = "<LineSet>
 <ModelVisibility>3</ModelVisibility>
 
 "
-    selectedTab = 2
+    selectedTab = 1
     newSpecificationOutputValid = TRUE
-    newSpecificationType = OBJECTTYPE_MESH
+    newSpecificationType = OBJECTTYPE_LINESET
     newSpecificationObjectName = ""
     newSpecificationGroupPath = ""
     newSpecificationUseDefaultColor = TRUE
@@ -2388,6 +2392,7 @@ module SaveU3D {
   }
 }
 connections  {
+  WEMInfo.inWEM = PDFUtils.outWEM
   ListInfo.inList1 = SelectPointPositionsInput.outputBaseObject0
   SwitchMArkerRendering.intValue = ListInfo.listLength
   LinesRendererImport.inFiberSetFld = LoadLinePositions.outFibers

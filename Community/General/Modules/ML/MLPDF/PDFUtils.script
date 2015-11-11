@@ -21,16 +21,8 @@ Description {
   }
   
   Field selectedWEMPatchId { editable = No }
-  
-  Field newSpecificationModelVisibility {
-    items {
-      item MODELVISIBILITY_NOTVISIBLE          { title = "Not Visible" }
-      item MODELVISIBILITY_FRONTVISIBLE        { title = "Front Visible" }
-      item MODELVISIBILITY_BACKVISIBLE         { title = "Back Visible" }
-      item MODELVISIBILITY_FRONTANDBACKVISIBLE { title = "Front & Back Visible" }
-    }
-  }  
-  
+   
+  Field selectedWEMPatchColorAlpha { min = 0 max = 1 }
 }
 
 
@@ -160,12 +152,9 @@ Window "Main Panel" {
       
       Field newSpecificationObjectName                 { title = "Object Name:" }
       Field newSpecificationGroupPath                  { title = "Object Group Path:" }
-      Field newSpecificationModelVisibility            { title = "Model Visibility:" }
       CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" }
       Field newSpecificationColor                      { title = "Object Color:" dependsOn = !newSpecificationUseDefaultColor }
       Field newSpecificationColorAlpha                 { title = "Object Alpha:" dependsOn = !newSpecificationUseDefaultColor slider = Yes }
-      CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" }
-      Field newSpecificationSpecularColor              { title = "Object Specular Color:" dependsOn = !newSpecificationUseDefaultSpecularColor }
       
       Empty { expandY = Yes }
       

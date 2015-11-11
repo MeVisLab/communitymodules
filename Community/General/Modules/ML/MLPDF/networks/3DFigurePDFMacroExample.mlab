@@ -2,6 +2,53 @@
 network  {
   watchlist = ""
 }
+module WEMClip {
+  internal  {
+    frame = "85 -323 104 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = WEMClip
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = TRUE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    copyInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    csoId = 0
+    addCSOToGroupWithLabel = "WEMClip Generated CSOs"
+    csoPathPointLineStyle = LineStyleSolid
+    csoPathPointLineWidth = 1
+    csoPathPointColor = "1 1 0"
+    csoPathPointAlpha = 1
+    csoSeedPointMode = MarkerModeRect
+    csoSeedPointSize = 2
+    csoSeedPointColor = "0 1 0"
+    csoSeedPointAlpha = 1
+    csoVoxelWriteMode = VoxelWriteModeModule
+    csoVoxelWriteValue = 1024
+    invalidCSOPathPointColor = "1 0.66667 0"
+    invalidCSOSeedPointColor = "1 0 0"
+    generateXMarkerList = FALSE
+    targetMarkerDistance = 0
+    plane = "0 0 1 0"
+    generateEdges = TRUE
+    generateCSOs = TRUE
+    generateCSOsOpen = FALSE
+    autoLevelCSOs = TRUE
+    whichOutput = Inner
+  }
+}
 module PDFUtils {
   internal  {
     frame = "1013 -387 120 56"
@@ -41,14 +88,10 @@ module PDFUtils {
     selectedWEMPatch = ""
     availableWEMPatches = ""
     selectedWEMPatchNewLabel = ""
-    newSpecificationObjectName = ""
-    newSpecificationGroupPath = ""
-    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
-    newSpecificationUseDefaultColor = TRUE
-    newSpecificationColor = "0.651 0.651 0.651"
-    newSpecificationColorAlpha = 1
-    newSpecificationUseDefaultSpecularColor = TRUE
-    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    selectedWEMPatchGroupPath = ""
+    selectedWEMPatchUseDefaultColor = TRUE
+    selectedWEMPatchColor = "0.651 0.651 0.651"
+    selectedWEMPatchColorAlpha = 1
     pointPositionsMaxTypeID = -1
     linePositionsMaxTypeID = -1
     lineConnectionsMaxTypeID = -1
@@ -121,7 +164,7 @@ module WEMLoad {
     label = ""
     description = ""
     shouldComputeNormals = FALSE
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.wem
+    filename = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.wem"
     mirrorFaces = FALSE
     generateEdges = TRUE
     triangulateFaces = FALSE
@@ -152,9 +195,9 @@ module LocalFileName {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "575 578 682 103"
+        geometry = "162 696 682 103"
         sizeHint = "480 103"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -188,7 +231,7 @@ module 3DFigurePDFMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "2006 149 1031 766"
+        geometry = "757 213 1000 784"
         sizeHint = "1000 784"
         wasOpen = yes
       }
@@ -203,26 +246,30 @@ module 3DFigurePDFMacro {
     instanceName = 3DFigurePDFMacro
     useInputConnectors = FALSE
     loadDataManually = TRUE
-    filenameWEM = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.stl
-    filenamePointPositions = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt
-    filenameLineDefinitions = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt
+    filenameWEM = ""
+    filenamePointPositions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt"
+    filenameLineDefinitions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt"
     showPointsPreview = TRUE
-    showPointsPrevieSize = 2.05
+    showPointsPrevieSize = 2.74
     showLinesPreview = TRUE
     showMeshPreview = TRUE
-    showMeshPreviewFaceAlpha = 0.493
+    showMeshPreviewFaceAlpha = 0.56199998
     viewDisplayName = ""
     viewBackgroundColor = "0.333333333333333 1 0.498039215686275"
     viewLightingScheme = Blue
-    viewCameraCenterOfOrbit = "2.43322314095712 -12.3751481249492 5.22026944495155"
-    viewCameraCenterToCamera = "85.2197996251562 -210.623615913137 -0.507098439702531"
-    viewCameraRadiusOfOrbit = 227.2113
-    viewCameraRollAngle = 353.3382
+    viewCameraCenterOfOrbit = "2.43456336049985 -10.4300148834154 7.64601596645298"
+    viewCameraCenterToCamera = "-39.3211028197284 211.407737051384 -53.853836858787"
+    viewCameraRadiusOfOrbit = 221.67453
+    viewCameraRollAngle = 187.39163
     viewCameraFOVAngle = 90
     viewSpecifications = ""
-    selectedWEMPatch = ""
-    selectedWEMPatchNewLabel = [undefined]
-    availableWEMPatches = ""
+    selectedWEMPatch = "[no label specified] {ID=2}"
+    selectedWEMPatchNewLabel = ""
+    availableWEMPatches = "[no label specified] {ID=1}|[no label specified] {ID=2}"
+    selectedWEMPatchGroupPath = ""
+    selectedWEMPatchUseDefaultColor = TRUE
+    selectedWEMPatchColor = "0.651 0.651 0.651"
+    selectedWEMPatchColorAlpha = 1
   }
 }
 connections  {

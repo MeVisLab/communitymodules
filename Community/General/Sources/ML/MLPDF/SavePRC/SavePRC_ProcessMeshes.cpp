@@ -102,7 +102,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
           // Parse WEM label & description...
           std::string u3dModelName       = getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
           std::string u3dGroupName       = getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
-          std::string u3dGroupPath       = "";
+          std::string u3dGroupPath       = getSpecificParameterFromWEMDescription(wemDescription, "GroupPath");
           if ("" != u3dModelName)
           {
             u3dGroupPath = "/" + u3dModelName + "/";
