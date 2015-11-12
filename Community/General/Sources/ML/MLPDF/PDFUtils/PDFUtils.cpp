@@ -41,10 +41,11 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   (_inPointPositionsFld  = addBase("inPointPositions"))->setBaseValueAndAddAllowedType(&_inPointPositions);
   (_inLinePositionsFld   = addBase("inLinePositions"))->setBaseValueAndAddAllowedType(&_inLinePositions);
   (_inLineConnectionsFld = addBase("inLineConnections"))->setBaseValueAndAddAllowedType(&_inLineConnections);
-  _inPointPositionsFld->addAllowedType<ml::ColoredMarkerList>();
-  _inLinePositionsFld->addAllowedType<ml::ColoredMarkerList>();
 
-  (_outFibersFld = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+  (_outPointPositionsFld  = addBase("outPointPositions"))->setBaseValueAndAddAllowedType(&_outPointPositions);
+  (_outLinePositionsFld   = addBase("outLinePositions"))->setBaseValueAndAddAllowedType(&_outLinePositions);
+  (_outLineConnectionsFld = addBase("outLineConnections"))->setBaseValueAndAddAllowedType(&_outLineConnections);
+  (_outFibersFld          = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
   _calculateCameraFromInventorSceneFld = addNotify("calculateCameraFromInventorScene");
@@ -73,15 +74,31 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   _addNewViewFld              = addNotify("addNewView");
   _clearViewsFld              = addNotify("clearViews");
 
-  //! Fields for WEM/mesh handling
-  (_selectedWEMPatchFld                   = addString("selectedWEMPatch"))->setStringValue("");
-  (_selectedWEMPatchIdFld                 = addInt("selectedWEMPatchId"))->setIntValue(-1);
-  (_availableWEMPatchesFld                = addString("availableWEMPatches"))->setStringValue("");
-  (_selectedWEMPatchNewLabelFld           = addString("selectedWEMPatchNewLabel"))->setStringValue("");
-  (_selectedWEMPatchGroupPathFld          = addString("selectedWEMPatchGroupPath"))->setStringValue("");
-  (_selectedWEMPatchUseDefaultColorFld    = addBool("selectedWEMPatchUseDefaultColor"))->setBoolValue(true);
-  (_selectedWEMPatchColorFld              = addColor("selectedWEMPatchColor"))->setStringValue("0.651 0.651 0.651");
-  (_selectedWEMPatchColorAlphaFld         = addFloat("selectedWEMPatchColorAlpha"))->setFloatValue(1);
+  //! Fields for WEM/mesh editing
+  (_selectedWEMPatchFld                  = addString("selectedWEMPatch"))->setStringValue("");
+  (_selectedWEMPatchIdFld                = addInt("selectedWEMPatchId"))->setIntValue(-1);
+  (_availableWEMPatchesFld               = addString("availableWEMPatches"))->setStringValue("");
+  (_selectedWEMPatchNewLabelFld          = addString("selectedWEMPatchNewLabel"))->setStringValue("");
+  (_selectedWEMPatchGroupPathFld         = addString("selectedWEMPatchGroupPath"))->setStringValue("");
+  (_selectedWEMPatchUseDefaultColorFld   = addBool("selectedWEMPatchUseDefaultColor"))->setBoolValue(true);
+  (_selectedWEMPatchColorFld             = addColor("selectedWEMPatchColor"))->setStringValue("0.651 0.651 0.651");
+  (_selectedWEMPatchColorAlphaFld        = addFloat("selectedWEMPatchColorAlpha"))->setFloatValue(0);
+
+  //! Fields for line set editing
+  (_selectedLineSetFld                   = addString("selectedLineSet"))->setStringValue("");
+  (_selectedLineSetIdFld                 = addInt("selectedLineSetId"))->setIntValue(-1);
+  (_availableLineSetsFld                 = addString("availableLineSets"))->setStringValue("");
+  (_selectedLineSetNewLabelFld           = addString("selectedLineSetNewLabel"))->setStringValue("");
+  (_selectedLineSetGroupPathFld          = addString("selectedLineSetGroupPath"))->setStringValue("");
+  (_selectedLineSetUseDefaultColorFld    = addBool("selectedLineSetUseDefaultColor"))->setBoolValue(true);
+  (_selectedLineSetColorFld              = addColor("selectedLineSetColor"))->setStringValue("0.651 0.651 0.651");
+
+  //! Fields for point set editing
+  (_selectedPointSetFld                  = addString("selectedPointSet"))->setStringValue("");
+  (_selectedPointSetIdFld                = addInt("selectedPointSetId"))->setIntValue(-1);
+  (_availablePointSetsFld                = addString("availablePointSets"))->setStringValue("");
+  (_selectedPointSetNewLabelFld          = addString("selectedPointSetNewLabel"))->setStringValue("");
+  (_selectedPointSetGroupPathFld         = addString("selectedPointSetGroupPath"))->setStringValue("");
 
   //! Fields for PointSet/LineSet properties
   (_pointPositionsMaxTypeIDFld = addInt("pointPositionsMaxTypeID"))->setIntValue(-1);
@@ -113,6 +130,9 @@ PDFUtils::~PDFUtils()
   _inLinePositions.clearList();
   _inLineConnections.clearList();
   _outFiberSetContainer.deleteAllFiberSets();
+  _outPointPositions.clearList();  
+  _outLinePositions.clearList();
+  _outLineConnections.clearList();
 }
 
 //----------------------------------------------------------------------------------
@@ -126,17 +146,11 @@ void PDFUtils::handleNotification (Field* field)
 
     if (inValue)
     {
-      if (ML_BASE_IS_A(inValue, ml::ColoredMarkerList))
-      {
-        ml::ColoredMarkerList* inList = ((ml::ColoredMarkerList*)inValue);
-        _inPointPositions = inList->toXMarkerList();
-      }
-      else
+      if (ML_BASE_IS_A(inValue, ml::XMarkerList))
       {
         ml::XMarkerList* inList = ((ml::XMarkerList*)inValue);
          _inPointPositions = *inList;
       }
-
     }
     else
     {
@@ -145,6 +159,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
+    _updatePointSetOutputs();
   }
 
   // _inLinePositionsFld
@@ -154,15 +169,10 @@ void PDFUtils::handleNotification (Field* field)
 
     if (inValue)
     {
-      if (ML_BASE_IS_A(inValue, ml::ColoredMarkerList))
-      {
-        ml::ColoredMarkerList* inList = ((ml::ColoredMarkerList*)inValue);
-        _inLinePositions = inList->toXMarkerList();
-      }
-      else
+      if (ML_BASE_IS_A(inValue, ml::XMarkerList))
       {
         ml::XMarkerList* inList = ((ml::XMarkerList*)inValue);
-         _inLinePositions = *inList;
+        _inLinePositions = *inList;
       }
     }
     else
@@ -172,7 +182,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
-    _createFibers();
+    _updateLineSetOutputs();
   }
 
   // _inLineConnectionsFld
@@ -191,7 +201,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
-    _createFibers();
+    _updateLineSetOutputs();
   }
 
   // _calculateCameraFromInventorSceneFld

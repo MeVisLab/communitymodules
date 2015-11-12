@@ -282,7 +282,19 @@ void PDFUtils::_updateWEMPatchNodesColor()
 
       if (outWEMPatch)
       {
-        // ToDo: change patch nodes color!
+        Vector4 newColor(0, 0, 0, 1);
+
+        if (!_selectedWEMPatchUseDefaultColorFld->getBoolValue())
+        {
+          newColor = Vector4(_selectedWEMPatchColorFld->getColorValue(), 1-_selectedWEMPatchColorAlphaFld->getFloatValue());
+        }
+
+        const int numNodes = outWEMPatch->getNumNodes();
+
+        for (int i = 0; i < numNodes; i++)
+        {
+          outWEMPatch->getNodeAt(i)->setColor(newColor);
+        }
       }
     }
   }
@@ -298,6 +310,43 @@ void PDFUtils::_processPatch(unsigned int patchIndex)
   if (inWEMPatch && outWEMPatch)
   {
     outWEMPatch->setId(inWEMPatch->getId());
+    const int numNodes = outWEMPatch->getNumNodes();
+
+    std::string label       = inWEMPatch->getLabel();
+    std::string description = inWEMPatch->getDescription();
+
+    std::string modelName = "ModelName=" + label +";";
+    std::string groupPath = getSpecificParameterFromWEMDescription(description, "GroupPath"); 
+    std::string modelColor = getSpecificParameterFromWEMDescription(description, "Color");
+
+    if (groupPath != "")
+    {
+      groupPath = "GroupPath=" + groupPath + ";";
+    }
+
+    if (modelColor == "")
+    {
+      // Set default color to black (normally it is white...)
+      for (int n = 0; n < numNodes; n++)
+      {
+        outWEMPatch->getNodeAt(n)->setColor(Vector4(0, 0, 0, 1));
+      }
+    }
+    else
+    {
+      Vector4 colorVector = getColorVec4(modelColor, Vector4(0));
+      colorVector[3] = 1 - colorVector[3];
+
+      modelColor = "Color=" + modelColor + ";";
+
+      for (int n = 0; n < numNodes; n++)
+      {
+        outWEMPatch->getNodeAt(n)->setColor(colorVector);
+      }
+    }
+
+    outWEMPatch->setDescription(modelName + groupPath + modelColor);
+
   }
 }
 

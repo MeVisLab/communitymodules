@@ -76,6 +76,18 @@ Interface {
     Field selectedWEMPatchColor           { internalName = PDFUtils.selectedWEMPatchColor }
     Field selectedWEMPatchColorAlpha      { internalName = PDFUtils.selectedWEMPatchColorAlpha min = 0 max = 1 }
     
+    Field selectedLineSet                 { internalName = PDFUtils.selectedLineSet }
+    Field selectedLineSetNewLabel         { internalName = PDFUtils.selectedLineSetNewLabel }
+    Field availableLineSets               { internalName = PDFUtils.availableLineSets }
+    Field selectedLineSetGroupPath        { internalName = PDFUtils.selectedLineSetGroupPath }
+    Field selectedLineSetUseDefaultColor  { internalName = PDFUtils.selectedLineSetUseDefaultColor }
+    Field selectedLineSetColor            { internalName = PDFUtils.selectedLineSetColor }
+
+    Field selectedPointSet                { internalName = PDFUtils.selectedPointSet }
+    Field selectedPointSetNewLabel        { internalName = PDFUtils.selectedPointSetNewLabel }
+    Field availablePointSets              { internalName = PDFUtils.availablePointSets }
+    Field selectedPointSetGroupPath       { internalName = PDFUtils.selectedPointSetGroupPath }
+    
     Field importPointsModel   { internalName = RunPointsImportScript.execute }
     Field importLinesModel    { internalName = RunLinesImportScript.execute }
     Field importMeshModel     { internalName = RunMeshImportScript.execute }
@@ -90,6 +102,7 @@ Interface {
 
 Commands {
 //    initCommand = InitModule
+  FieldListener UseInputConnectors.boolValue { command = @@py: ctx.field("resetPreview").touch() @@}
 }
 
 
@@ -187,16 +200,107 @@ Window {
       TabViewItem "Edit Points" {
         
         expandY = Yes
+        expandX = Yes
+              
+        Horizontal { 
+          
+          expandY = Yes
+          
+          Vertical {
+
+            alignX     = Left
+            alignY     = Top
+            fixedWidth = 300
+                      
+            Horizontal {
         
-        Empty { expandY = Yes }
-      }
+              FieldLabel selectedPointSet { title = "Point Set:" minimumWidth = 86 }
+        
+              ComboBox selectedPointSet {
+                editable       = No
+                comboField     = availablePointSets
+                comboSeparator = "|"
+              }
+            }
+      
+            Field selectedPointSetNewLabel { title = "Name:" dependsOn = @@ selectedPointSet != "" @@ }
+           
+            Field selectedPointSetGroupPath       { title = "Group Path:" dependsOn = @@ selectedPointSet != "" @@ }
+          }
+          
+          Box "Preview" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer PointsViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Preview"      
+        
+        } // Horizontal      }        
+      } // TabViewItem "Edit Points"
       
       TabViewItem "Edit Lines" {
 
         expandY = Yes
+        expandX = Yes
+              
+        Horizontal { 
+          
+          expandY = Yes
+          
+          Vertical {
+
+            alignX     = Left
+            alignY     = Top
+            fixedWidth = 300
+                      
+            Horizontal {
         
-        Empty { expandY = Yes }
-      }
+              FieldLabel selectedLineSet { title = "Line Set:" minimumWidth = 122 }
+        
+              ComboBox selectedLineSet {
+                editable       = No
+                comboField     = availableLineSets
+                comboSeparator = "|"
+              }
+            }
+      
+            Field selectedLineSetNewLabel { title = "Name:" dependsOn = @@ selectedLineSet != "" @@ }
+           
+            Field selectedLineSetGroupPath       { title = "Group Path:" dependsOn = @@ selectedLineSet != "" @@ }
+            Field selectedLineSetUseDefaultColor { title = "Use Default Color:" dependsOn = @@ selectedLineSet != "" @@ }
+            Field selectedLineSetColor           { title = "Color:" dependsOn = @@ selectedLineSet != "" && !selectedLineSetUseDefaultColor @@ }
+          }
+          
+          Box "Preview" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer LinesViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Preview"      
+        
+        } // Horizontal     
+      
+      } // TabViewItem "Edit Lines"
       
       TabViewItem "Edit Meshes" {
 
@@ -209,13 +313,13 @@ Window {
           
           Vertical {
 
-            alignX = Left
-            alignY = Top
-            minimumWidth = 300
+            alignX     = Left
+            alignY     = Top
+            fixedWidth = 300
                       
             Horizontal {
         
-              FieldLabel selectedWEMPatch { title = "Selected Mesh:" }
+              FieldLabel selectedWEMPatch { title = "Mesh:" minimumWidth = 122 }
         
               ComboBox selectedWEMPatch {
                 editable       = No
@@ -227,9 +331,9 @@ Window {
             Field selectedWEMPatchNewLabel { title = "Name:" dependsOn = @@ selectedWEMPatch != "" @@ }
            
             Field selectedWEMPatchGroupPath       { title = "Group Path:" dependsOn = @@ selectedWEMPatch != "" @@ }
-            Field selectedWEMPatchUseDefaultColor { title = "Use Default Color" dependsOn = @@ selectedWEMPatch != "" @@ }
+            Field selectedWEMPatchUseDefaultColor { title = "Use Default Color:" dependsOn = @@ selectedWEMPatch != "" @@ }
             Field selectedWEMPatchColor           { title = "Color:" dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }
-            Field selectedWEMPatchColorAlpha      { title = "Opacity:" slider = Yes dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }            
+            Field selectedWEMPatchColorAlpha      { title = "Transparency:" slider = Yes dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }            
           }
           
           Box "Preview" {
@@ -258,70 +362,87 @@ Window {
         expandY = Yes
                 
         Horizontal { 
-                                    
-          Box "Create New View" { 
-            expandX = Yes
-            Field viewDisplayName          { title = "View Display Name:" }
-            Field viewBackgroundColor      { title = "Background Color:" }
-            Field viewLightingScheme       { title = "Lighting Scheme:" }
-            Field viewCameraCenterOfOrbit  { title = "Camera - Center of Orbit:" edit = No expandX = Yes }
-            Field viewCameraCenterToCamera { title = "Camera - Center to Camera:" edit = No expandX = Yes }
-            Field viewCameraRadiusOfOrbit  { title = "Camera - Radius of Orbit:" edit = No expandX = Yes editAlign = Left }
-            Field viewCameraRollAngle      { title = "Camera - Roll Angle:" edit = No expandX = Yes editAlign = Left }
-            Field viewCameraFOVAngle       { title = "Camera - FOV Angle:" edit = No expandX = Yes editAlign = Left }
-            Separator {}
-            Button addNewView              { title = "Add New View" expandX = Yes dependsOn = @@ viewDisplayName != "" @@ }
-          }
-      
-          Box "All View Specifications" {
-            expandY = Yes
-            TextView viewSpecifications { 
-              expandY         = Yes
-              title           = ""
-              wrap            = off
-              autoApply       = yes
-              console         = yes
-              style           = monospacedTextView
-              showLineNumbers = No
-              textFormat      = Plain
-            }
-         
-            Separator {}
-            
-            Button clearViews { title = "Delete All Views" expandX = Yes }
-          }
-                   
-        } // Horizontal
-        
-        Box "Scene" {
           
           expandY = Yes
           
-          Viewer ViewsViewer.self {
+          Vertical {
+                                    
             expandY = Yes
-            type    = SoExaminerViewer
-            clone   = Yes
-          }
+            alignX = Left
+            fixedWidth = 350
+            
+            Box "Create New View" { 
+              
+              alignY = Top
+              expandX = Yes
+              
+              Field viewDisplayName          { title = "View Display Name:" }
+              Field viewBackgroundColor      { title = "Background Color:" }
+              Field viewLightingScheme       { title = "Lighting Scheme:" }
+              //Field viewCameraCenterOfOrbit  { title = "Camera - Center of Orbit:" edit = No expandX = Yes }
+              //Field viewCameraCenterToCamera { title = "Camera - Center to Camera:" edit = No expandX = Yes }
+              //Field viewCameraRadiusOfOrbit  { title = "Camera - Radius of Orbit:" edit = No expandX = Yes editAlign = Left }
+              //Field viewCameraRollAngle      { title = "Camera - Roll Angle:" edit = No expandX = Yes editAlign = Left }
+              //Field viewCameraFOVAngle       { title = "Camera - FOV Angle:" edit = No expandX = Yes editAlign = Left }
+              Separator {}
+              Button addNewView              { title = "Add New View" expandX = Yes dependsOn = @@ viewDisplayName != "" @@ }
+            }
+      
+            Box "All View Specifications" {
+              
+              expandY = Yes
+              
+              TextView viewSpecifications { 
+                expandY         = Yes
+                title           = ""
+                wrap            = off
+                autoApply       = yes
+                console         = yes
+                style           = monospacedTextView
+                showLineNumbers = No
+                textFormat      = Plain
+                edit            = Yes
+              }
+         
+              Separator {}
+            
+              Button clearViews { title = "Delete All Views" expandX = Yes }
+            }
+            
+          } // Vertical
+
+          Box "Scene" {
           
-          Horizontal {
+            expandY = Yes
             expandX = Yes
-            Label                           { title = "Show:" alignX = Left }
-            Empty                           { width = 20 alignX = Left }
-            CheckBox showPointsPreview      { title = "Points" alignX = Left }
-            CheckBox showLinesPreview       { title = "Lines" alignX = Left }
-            CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
-            Separator                       { direction = Vertical alignX = Left }
-            Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
-            Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
-            Separator                       { direction = Vertical alignX = Left }
-            Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-            Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
-            Empty                           { expandX = Yes }
-            Button resetPreview             { title = "Reset" alignX = Right }
-          }
           
-        } // Box "Scene"        
-    
+            Viewer ViewsViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              expandX = Yes
+              Label                           { title = "Show:" alignX = Left }
+              Empty                           { width = 20 alignX = Left }
+              CheckBox showPointsPreview      { title = "Points" alignX = Left }
+              CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+              CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+              Separator                       { direction = Vertical alignX = Left }
+              Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+              Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+              Separator                       { direction = Vertical alignX = Left }
+              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+              Empty                           { expandX = Yes }
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Scene"
+          
+        } // Horizontal
+            
       } // TabViewItem "Views"
       
       TabViewItem "Save Model" {

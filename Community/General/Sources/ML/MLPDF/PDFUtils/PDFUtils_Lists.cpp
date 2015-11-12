@@ -83,9 +83,63 @@ void PDFUtils::_calculateListPropertyFields()
 
 //----------------------------------------------------------------------------------
 
+void PDFUtils::_updatePointSetOutputs()
+{
+  _outPointPositions.clearList();
+  _outPointPositions.selectItemAt(-1);
+
+  const int numPoints = (int)_inPointPositions.size();
+
+  for (int p = 0; p < numPoints; p++)
+  {
+    ml::XMarker thisPoint = _inPointPositions[p];
+
+    _outPointPositions.appendItem(thisPoint);
+  }
+
+  _outPointPositionsFld->touch();
+}
+
+
+//----------------------------------------------------------------------------------
+
+void PDFUtils::_updateLineSetOutputs()
+{
+  _outLinePositions.clearList();
+  _outLinePositions.selectItemAt(-1);
+
+  const int numLinePoints = (int)_inLinePositions.size();
+
+  for (int p = 0; p < numLinePoints; p++)
+  {
+    ml::XMarker thisPoint = _inLinePositions[p];
+
+    _outLinePositions.appendItem(thisPoint);
+  }
+
+  _outLineConnections.clearList();
+  _outLineConnections.selectItemAt(-1);
+
+  const int numLineConnections = (int)_inLineConnections.size();
+
+  for (int c = 0; c < numLineConnections; c++)
+  {
+    ml::IndexPair thisConnection = _inLineConnections[c];
+
+    _outLineConnections.appendItem(thisConnection);
+  }
+
+  _outLinePositionsFld->touch();
+  _outLineConnectionsFld->touch();
+  _createFibers();
+}
+
+
+//----------------------------------------------------------------------------------
+
 void PDFUtils::_createFibers()
 {
-  fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _inLinePositions, _inLineConnections);
+  fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outLinePositions, _outLineConnections);
 
   _outFibersFld->touch();
 }

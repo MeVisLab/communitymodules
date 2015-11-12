@@ -92,6 +92,18 @@ module PDFUtils {
     selectedWEMPatchUseDefaultColor = TRUE
     selectedWEMPatchColor = "0.651 0.651 0.651"
     selectedWEMPatchColorAlpha = 1
+    selectedLineSet = ""
+    selectedLineSetId = -1
+    availableLineSets = ""
+    selectedLineSetNewLabel = ""
+    selectedLineSetGroupPath = ""
+    selectedLineSetUseDefaultColor = TRUE
+    selectedLineSetColor = "0.651 0.651 0.651"
+    selectedPointSet = ""
+    selectedPointSetId = -1
+    availablePointSets = ""
+    selectedPointSetNewLabel = ""
+    selectedPointSetGroupPath = ""
     pointPositionsMaxTypeID = -1
     linePositionsMaxTypeID = -1
     lineConnectionsMaxTypeID = -1
@@ -231,8 +243,8 @@ module 3DFigurePDFMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "757 213 1000 784"
-        sizeHint = "1000 784"
+        geometry = "524 153 1205 828"
+        sizeHint = "1187 784"
         wasOpen = yes
       }
       window _automatic {
@@ -244,8 +256,8 @@ module 3DFigurePDFMacro {
   }
   fields  {
     instanceName = 3DFigurePDFMacro
-    useInputConnectors = FALSE
-    loadDataManually = TRUE
+    useInputConnectors = TRUE
+    loadDataManually = FALSE
     filenameWEM = ""
     filenamePointPositions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt"
     filenameLineDefinitions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.txt"
@@ -255,21 +267,31 @@ module 3DFigurePDFMacro {
     showMeshPreview = TRUE
     showMeshPreviewFaceAlpha = 0.56199998
     viewDisplayName = ""
-    viewBackgroundColor = "0.333333333333333 1 0.498039215686275"
-    viewLightingScheme = Blue
-    viewCameraCenterOfOrbit = "2.43456336049985 -10.4300148834154 7.64601596645298"
-    viewCameraCenterToCamera = "-39.3211028197284 211.407737051384 -53.853836858787"
-    viewCameraRadiusOfOrbit = 221.67453
-    viewCameraRollAngle = 187.39163
+    viewBackgroundColor = "1 1 1"
+    viewLightingScheme = HeadLamp
+    viewCameraCenterOfOrbit = "91.7434262972388 -144.486438362504 1117.73729447518"
+    viewCameraCenterToCamera = "57.9371004361597 -273.020367057417 49.6855570873231"
+    viewCameraRadiusOfOrbit = 283.48807
+    viewCameraRollAngle = 350.5694
     viewCameraFOVAngle = 90
     viewSpecifications = ""
-    selectedWEMPatch = "[no label specified] {ID=2}"
-    selectedWEMPatchNewLabel = ""
-    availableWEMPatches = "[no label specified] {ID=1}|[no label specified] {ID=2}"
+    selectedWEMPatch = "Left Femur (Outer Surface) {ID=3}"
+    selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
+    availableWEMPatches = "Left Femur (Outer Surface) {ID=3}|Left Femur (Spongiosa Surface) {ID=5}|Left Femur (Bone Marrow Surface) {ID=7}"
     selectedWEMPatchGroupPath = ""
-    selectedWEMPatchUseDefaultColor = TRUE
-    selectedWEMPatchColor = "0.651 0.651 0.651"
-    selectedWEMPatchColorAlpha = 1
+    selectedWEMPatchUseDefaultColor = FALSE
+    selectedWEMPatchColor = "1 0 0"
+    selectedWEMPatchColorAlpha = 0.60000002
+    selectedLineSet = ""
+    selectedLineSetNewLabel = ""
+    availableLineSets = ""
+    selectedLineSetGroupPath = ""
+    selectedLineSetUseDefaultColor = TRUE
+    selectedLineSetColor = "0.651 0.651 0.651"
+    selectedPointSet = ""
+    selectedPointSetNewLabel = ""
+    availablePointSets = ""
+    selectedPointSetGroupPath = ""
   }
 }
 connections  {

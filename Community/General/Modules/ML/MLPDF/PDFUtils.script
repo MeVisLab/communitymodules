@@ -150,11 +150,10 @@ Window "Main Panel" {
       
       Field selectedWEMPatchNewLabel { title = "New Label:" }
       
-      Field newSpecificationObjectName                 { title = "Object Name:" }
-      Field newSpecificationGroupPath                  { title = "Object Group Path:" }
-      CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" }
-      Field newSpecificationColor                      { title = "Object Color:" dependsOn = !newSpecificationUseDefaultColor }
-      Field newSpecificationColorAlpha                 { title = "Object Alpha:" dependsOn = !newSpecificationUseDefaultColor slider = Yes }
+      Field selectedWEMPatchGroupPath                  { title = "Object Group Path:" }
+      CheckBox selectedWEMPatchUseDefaultColor         { title = "Use Default Color" }
+      Field selectedWEMPatchColor                      { title = "Object Color:" dependsOn = !selectedWEMPatchUseDefaultColor }
+      Field selectedWEMPatchColorAlpha                 { title = "Object Alpha:" dependsOn = !selectedWEMPatchUseDefaultColor slider = Yes }
       
       Empty { expandY = Yes }
       

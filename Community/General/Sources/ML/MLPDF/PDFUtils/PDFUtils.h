@@ -75,6 +75,9 @@ private:
   BaseField *_inLineConnectionsFld;
 
   // Output fields (WEM output is for free...)
+  BaseField*   _outPointPositionsFld;
+  BaseField*   _outLinePositionsFld;
+  BaseField*   _outLineConnectionsFld;
   BaseField*   _outFibersFld;
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
@@ -104,7 +107,7 @@ private:
   NotifyField*   _addNewViewFld;
   NotifyField*   _clearViewsFld;
 
-  //! Fields for WEM/mesh handling
+  //! Fields for WEM/mesh editing
   StringField*   _selectedWEMPatchFld;
   IntField*      _selectedWEMPatchIdFld;
   StringField*   _availableWEMPatchesFld;
@@ -113,6 +116,22 @@ private:
   BoolField*     _selectedWEMPatchUseDefaultColorFld;
   ColorField*    _selectedWEMPatchColorFld;
   FloatField*    _selectedWEMPatchColorAlphaFld;
+
+  //! Fields for line set editing
+  StringField*   _selectedLineSetFld;
+  IntField*      _selectedLineSetIdFld;
+  StringField*   _availableLineSetsFld;
+  StringField*   _selectedLineSetNewLabelFld;
+  StringField*   _selectedLineSetGroupPathFld;
+  BoolField*     _selectedLineSetUseDefaultColorFld;
+  ColorField*    _selectedLineSetColorFld;
+
+  //! Fields for point set editing
+  StringField*   _selectedPointSetFld;
+  IntField*      _selectedPointSetIdFld;
+  StringField*   _availablePointSetsFld;
+  StringField*   _selectedPointSetNewLabelFld;
+  StringField*   _selectedPointSetGroupPathFld;
 
   //! Fields for PointSet/LineSet properties
   IntField*      _pointPositionsMaxTypeIDFld;
@@ -132,6 +151,15 @@ private:
 
   //! The StringList input for connections of line sets
   ml::IndexPairList _inLineConnections;
+
+  //! The XMarkerList output for point positions of point clouds
+  ml::XMarkerList _outPointPositions;  
+
+  //! The XMarkerList output for node positions of line sets
+  ml::XMarkerList _outLinePositions;
+
+  //! The StringList output for connections of line sets
+  ml::IndexPairList _outLineConnections;
 
   //! The fiberset container used for visualizing the line sets
   FiberSetContainer _outFiberSetContainer;
@@ -172,8 +200,13 @@ private:
   void _getMaxTypeIDFromList(ml::IndexPairList& list, int& maxTypeID);
   void _calculateListPropertyFields();
 
-  // Methods for Fibersets ===================================================
+  // Methods for Point Sets===================================================
 
+  void _updatePointSetOutputs();
+
+  // Methods for Line Sets====================================================
+
+  void _updateLineSetOutputs();
   void _createFibers();
 
 
