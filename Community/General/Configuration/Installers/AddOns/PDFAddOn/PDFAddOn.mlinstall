@@ -1,0 +1,35 @@
+#---------------------------------------------------------------------
+# MeVisLab PDFAddOn Installer
+#---------------------------------------------------------------------
+
+$PRODUCT MeVisLabPDFAddOn
+
+$DEBUG   1
+$RELEASE 1
+
+# make sure that header files contain correct header and that hidden sections are removed
+#$PUBLIC_MEVISLAB 1
+
+# change the default license text
+$INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/PDFAddOn/PDFAddOnLicense.txt
+ 
+#---------------------------------------------------------------------
+INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
+#---------------------------------------------------------------------
+
+# Collecting files for AddOn:
+#INCLUDE $(MLAB_MeVisLab_Standard)/Configuration/Installers/Libraries/MLABQSA.mli
+#INCLUDE $(MLAB_MeVisLab_Standard)/Configuration/Installers/Libraries/MLBase.mli
+#INCLUDE $(MLAB_MeVisLab_Standard)/Configuration/Installers/Libraries/MLCSO.mli
+#INCLUDE $(MLAB_MeVisLab_Standard)/Configuration/Installers/Libraries/MLVesselGraph.mli
+#INCLUDE $(MLAB_MeVisLab_Standard)/Configuration/Installers/Libraries/MLWEM.mli
+#INCLUDE $(MLAB_MeVis_ThirdParty)/Configuration/Installers/Libraries/Eigen.mli
+#INCLUDE $(MLAB_MeVis_ThirdParty)/Configuration/Installers/Libraries/assimp.mli
+#INCLUDE $(MLAB_MeVis_ThirdParty)/Configuration/Installers/Libraries/xerces.mli
+
+SWITCH_PACKAGE Community/General
++ Package.def
++ Modules/ML/MLBaseListExtensions
++ Modules/ML/MLPDF
++ Projects/PDF3DFigurePage/Modules
++ Projects/PDFExamples/Modules
