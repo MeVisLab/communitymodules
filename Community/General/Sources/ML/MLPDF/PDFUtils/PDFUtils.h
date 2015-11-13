@@ -38,7 +38,7 @@ ML_START_NAMESPACE
 
 //////////////////////////////////////////////////////////////////////////
 //! Utilities for PDF creation.
-class MLPDF_EXPORT PDFUtils : public WEMProcessor
+class MLPDF_EXPORT PDFUtils : public Module
 {
   //! Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(PDFUtils)
@@ -46,38 +46,26 @@ class MLPDF_EXPORT PDFUtils : public WEMProcessor
 public:
 
   //! Constructor.
-  PDFUtils (std::string type="PDFUtils");
+  PDFUtils();
 
 protected:
 
   //! Destructor.
   virtual ~PDFUtils();
 
-  //! Initialize module after loading.
-  virtual void activateAttachments();
-
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field* field);
-
-  //! _process()-routine for correct processing.
-  virtual void _process();
-
-  //! Called when the inputWEM has changed
-  virtual void _inWEMChanged();
 
 private:
 
   /* FIELDS */
 
-  // Input fields for point sets and line sets
+  // Input fields
   BaseField *_inPointPositionsFld;
   BaseField *_inLinePositionsFld;
   BaseField *_inLineConnectionsFld;
 
   // Output fields (WEM output is for free...)
-  BaseField*   _outPointPositionsFld;
-  BaseField*   _outLinePositionsFld;
-  BaseField*   _outLineConnectionsFld;
   BaseField*   _outFibersFld;
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
@@ -107,32 +95,6 @@ private:
   NotifyField*   _addNewViewFld;
   NotifyField*   _clearViewsFld;
 
-  //! Fields for WEM/mesh editing
-  StringField*   _selectedWEMPatchFld;
-  IntField*      _selectedWEMPatchIdFld;
-  StringField*   _availableWEMPatchesFld;
-  StringField*   _selectedWEMPatchNewLabelFld;
-  StringField*   _selectedWEMPatchGroupPathFld;
-  BoolField*     _selectedWEMPatchUseDefaultColorFld;
-  ColorField*    _selectedWEMPatchColorFld;
-  FloatField*    _selectedWEMPatchColorAlphaFld;
-
-  //! Fields for line set editing
-  StringField*   _selectedLineSetFld;
-  IntField*      _selectedLineSetIdFld;
-  StringField*   _availableLineSetsFld;
-  StringField*   _selectedLineSetNewLabelFld;
-  StringField*   _selectedLineSetGroupPathFld;
-  BoolField*     _selectedLineSetUseDefaultColorFld;
-  ColorField*    _selectedLineSetColorFld;
-
-  //! Fields for point set editing
-  StringField*   _selectedPointSetFld;
-  IntField*      _selectedPointSetIdFld;
-  StringField*   _availablePointSetsFld;
-  StringField*   _selectedPointSetNewLabelFld;
-  StringField*   _selectedPointSetGroupPathFld;
-
   //! Fields for PointSet/LineSet properties
   IntField*      _pointPositionsMaxTypeIDFld;
   IntField*      _linePositionsMaxTypeIDFld;
@@ -143,23 +105,14 @@ private:
   IntField*      _lineConnectionsNextTypeIDFld;
   IntField*      _lineDefinitionsNextTypeIDFld;
 
-  //! The XMarkerList input for point positions of point clouds
-  ml::XMarkerList _inPointPositions;  
+  //! The XMarkerList input for node positions of point sets
+  ml::XMarkerList _inPointPositions;
 
   //! The XMarkerList input for node positions of line sets
   ml::XMarkerList _inLinePositions;
 
   //! The StringList input for connections of line sets
   ml::IndexPairList _inLineConnections;
-
-  //! The XMarkerList output for point positions of point clouds
-  ml::XMarkerList _outPointPositions;  
-
-  //! The XMarkerList output for node positions of line sets
-  ml::XMarkerList _outLinePositions;
-
-  //! The StringList output for connections of line sets
-  ml::IndexPairList _outLineConnections;
 
   //! The fiberset container used for visualizing the line sets
   FiberSetContainer _outFiberSetContainer;
@@ -183,32 +136,15 @@ private:
   void _createNewView();
   void _clearViews();
 
-  // Methods for handling meshes =============================================
-
-  void _updateAvailableWEMPatchesFld(WEMPtr wem, std::string defaultEntry = "");
-  void _selectedWEMPatchChanged(WEMPtr wem);
-  void _selectedWEMPatchIdChanged(WEMPtr wem);
-  void _updateSelectedWEMPatchLabel();
-  void _updateSelectedWEMPatchDescription();
-  void _updateWEMPatchNodesColor();
-  void _processPatch(unsigned int patchIndex);
-
-
   // Methods for PointSet/LineSet properties =================================
 
   void _getMaxTypeIDFromList(ml::XMarkerList& list, int& maxTypeID);
   void _getMaxTypeIDFromList(ml::IndexPairList& list, int& maxTypeID);
   void _calculateListPropertyFields();
 
-  // Methods for Point Sets===================================================
-
-  void _updatePointSetOutputs();
-
   // Methods for Line Sets====================================================
 
-  void _updateLineSetOutputs();
   void _createFibers();
-
 
   // Debug, development & test methods =======================================
 

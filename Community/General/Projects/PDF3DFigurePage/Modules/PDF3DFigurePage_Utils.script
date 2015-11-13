@@ -1,0 +1,188 @@
+//----------------------------------------------------------------------------------
+//! PDF3DFigurePage_Utils module definitions.
+/*!
+// \file    PDF3DFigurePage_Utils.script
+// \author  Axel Newe (axel.newe@fau.de)
+// \date    2015-10-01
+*/
+//----------------------------------------------------------------------------------
+
+
+Description {
+  
+  Field inventorCameraPosition      { editable = No }
+  Field inventorCameraOrientation   { editable = No }
+  Field inventorCameraFocalDistance { editable = No }
+  Field inventorCameraHeight        { editable = No } 
+  
+  Field newViewLightingScheme {
+    items {
+      item CAD { title = "CAD" }
+    }
+  }
+  
+  Field selectedWEMPatchId { editable = No }
+   
+  Field selectedWEMPatchColorAlpha { min = 0 max = 1 }
+}
+
+
+Interface {
+  Parameters {
+    Field showNetworkFields { type = Bool value = Yes }
+  }
+}
+
+
+Commands {
+  FieldListener showNetworkFields {
+    init    = Yes
+    command = @@js: show = ctx.field("showNetworkFields").value; ctx.field("inWEM").setHidden(!show); ctx.field("outWEM").setHidden(!show); ctx.field("inPointPositions").setHidden(!show); ctx.field("inLinePositions").setHidden(!show); ctx.field("inLineConnections").setHidden(!show); ctx.field("outPointPositions").setHidden(!show); ctx.field("outLinePositions").setHidden(!show); ctx.field("outLineConnections").setHidden(!show); ctx.field("outFibers").setHidden(!show); ctx.updateLayout(); @@
+  }  
+}
+
+
+Window "Main Panel" { 
+  
+  minimumWidth  = 850
+  minimumHeight = 400
+  
+  TabView {
+
+    TabViewItem "PDF Camera" { expandY = Yes
+    
+      Vertical {
+        
+        expandY = Yes
+        margin  = 3
+    
+        Horizontal { alignY = Top
+      
+          Box "PDF Camera" { alignY = Top
+            Field cameraCenterOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+            Field cameraCenterToCamera { dependsOn = !autoCalculateCameraFromInventorScene }
+            Field cameraRadiusOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+            Field cameraRollAngle      { dependsOn = !autoCalculateCameraFromInventorScene }
+            Field cameraFOVAngle       { title = "Camera FOV Angle:" dependsOn = !autoCalculateCameraFromInventorScene }
+            Separator {}
+            Horizontal {
+              Button calculateCameraFromInventorScene { title = "Calculate From Inventor Scene" dependsOn = !autoCalculateCameraFromInventorScene }
+              CheckBox autoCalculateCameraFromInventorScene { title = "Auto" }
+            }
+          }
+      
+          Box "Inventor Camera" { alignY = Top
+            Field inventorCameraPosition      {  }
+            Field inventorCameraOrientation   {  }
+            Field inventorCameraFocalDistance {  }
+            Field inventorCameraHeight        {  }        
+          }
+      
+        } // Horizontal
+        
+        Empty { expandY = Yes }
+       
+      }
+    
+
+    
+    }  // TabViewItem
+    
+    TabViewItem "Inventor PointSet / LineSet" { expandY = Yes
+      Field vertexList     { title = "SoVertexProperty - Vertex:" }
+      Field coordIndexList { title = "SoIndexedLineSet - Coord Index:" }
+      Empty { expandY = Yes }
+    }    
+    
+    TabViewItem "View Assembling" { expandY = Yes  
+      
+      Horizontal { alignY = Top
+      
+        Box "Create New View" { 
+          expandX = Yes
+          Field newViewDisplayName      { title = "View Display Name:" }
+          Field newViewBackgroundColor  { title = "Background Color:" }
+          Field newViewLightingScheme   { title = "Lighting Scheme:" }
+          Field cameraCenterOfOrbit     { title = "Center of Orbit:" edit = No expandX = Yes }
+          Field cameraCenterToCamera    { title = "Center to Camera:" edit = No expandX = Yes }
+          Field cameraRadiusOfOrbit     { title = "Radius of Orbit:" edit = No expandX = Yes editAlign = Left }
+          Field cameraRollAngle         { title = "Camera Roll Angle:" edit = No expandX = Yes editAlign = Left }
+          Field cameraFOVAngle          { title = "Camera FOV Angle:" edit = No expandX = Yes editAlign = Left }
+          Separator {}
+          Button addNewView { title = "Add New View" expandX = Yes }
+        }
+      
+        Box "All View Specifications" {
+          expandY = Yes
+          TextView viewSpecifications { 
+            expandY         = Yes
+            title           = ""
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+         
+          Separator {}
+            
+          Button clearViews { title = "Delete All Views" expandX = Yes }
+        }
+      
+      } // Horizontal
+      
+      Empty { expandY = Yes }
+      
+    }    
+    
+    TabViewItem "WEMs" { expandY = Yes      
+
+      Horizontal {
+        
+        FieldLabel selectedWEMPatch { title = "Selected WEM:" }
+        
+        ComboBox selectedWEMPatch {
+          editable       = No
+          comboField     = availableWEMPatches
+          comboSeparator = "|"
+        }
+      }
+      
+      Field selectedWEMPatchNewLabel { title = "New Label:" }
+      
+      Field selectedWEMPatchGroupPath                  { title = "Object Group Path:" }
+      CheckBox selectedWEMPatchUseDefaultColor         { title = "Use Default Color" }
+      Field selectedWEMPatchColor                      { title = "Object Color:" dependsOn = !selectedWEMPatchUseDefaultColor }
+      Field selectedWEMPatchColorAlpha                 { title = "Object Alpha:" dependsOn = !selectedWEMPatchUseDefaultColor slider = Yes }
+      
+      Empty { expandY = Yes }
+      
+    }   
+    
+    TabViewItem "PointSet/LineSet Properties" { expandY = Yes      
+      Horizontal { alignX = Left
+        Field pointPositionsMaxTypeID   { alignGroupX = g1 }
+        Field pointPositionsNextTypeID  { alignGroupX = g2 }
+      }
+      Horizontal { alignX = Left
+        Field linePositionsMaxTypeID    { alignGroupX = g1 }
+        Field linePositionsNextTypeID   { alignGroupX = g2 }
+      }
+      Horizontal { alignX = Left
+        Field lineConnectionsMaxTypeID  { alignGroupX = g1 }
+        Field lineConnectionsNextTypeID { alignGroupX = g2 }
+      }
+      Horizontal { alignX = Left
+        Field lineDefinitionsMaxTypeID  { alignGroupX = g1 }
+        Field lineDefinitionsNextTypeID { alignGroupX = g2 }
+      }
+      Empty { expandY = Yes }
+    }   
+    
+    TabViewItem "Other" { expandY = Yes      
+      Label { title = "Empty" alignX = Center alignY = Center }
+    }   
+    
+  } // TabView
+}

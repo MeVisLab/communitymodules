@@ -1,0 +1,211 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ModuleDependencyAnalyzer {
+  internal  {
+    frame = "897 -467 192 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "335 154 1024 800"
+        sizeHint = "493 511"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ModuleDependencyAnalyzer
+    module = PDF3DFigurePageMacro
+    scanNetwork = FALSE
+    ignoredPackages = MeVis/ThirdParty
+    includeWebContents = FALSE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "297 141 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "607 503 480 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalFileName
+    localName = $(DemoDataPath)/
+    checkIfFileExists = TRUE
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "45 141 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "477 728 686 330"
+        sizeHint = "372 330"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoad
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = FALSE
+    filename = "J:/MeVisLab/Packages Community/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.wem"
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-175 145 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "713 132 695 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMFilename
+    localName = $(NETWORK)/PDF3DFigurePageMacroExample.wem
+    checkIfFileExists = TRUE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "249 -7 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "162 696 682 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateMarkersFilename
+    localName = $(NETWORK)/PDF3DFigurePageMacroExample.txt
+    checkIfFileExists = FALSE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "253 -95 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "226 711 684 103"
+        sizeHint = "482 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreateMeshFilename
+    localName = $(NETWORK)/PDF3DFigurePageMacroExample.stl
+    checkIfFileExists = FALSE
+  }
+}
+module PDF3DFigurePageMacro {
+  internal  {
+    frame = "41 -51 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "380 110 1205 828"
+        sizeHint = "1187 784"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 903 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PDF3DFigurePageMacro
+    useInputConnectors = TRUE
+    loadDataManually = FALSE
+    filenameWEM = ""
+    filenamePointPositions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/PDF3DFigurePageMacroExample.txt"
+    filenameLineDefinitions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/PDF3DFigurePageMacroExample.txt"
+    showPointsPreview = TRUE
+    showPointsPrevieSize = 2.74
+    showLinesPreview = TRUE
+    showMeshPreview = TRUE
+    showMeshPreviewFaceAlpha = 0.56199998
+    viewDisplayName = ""
+    viewBackgroundColor = "1 1 1"
+    viewLightingScheme = HeadLamp
+    viewCameraCenterOfOrbit = "91.7434262972388 -144.486438362504 1117.73729447518"
+    viewCameraCenterToCamera = "57.9371004361597 -273.020367057417 49.6855570873231"
+    viewCameraRadiusOfOrbit = 283.48807
+    viewCameraRollAngle = 350.5694
+    viewCameraFOVAngle = 90
+    viewSpecifications = ""
+    selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
+    selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
+    availableWEMPatches = "Left Femur (Outer Surface) {ID=2}|Left Femur (Spongiosa Surface) {ID=4}|Left Femur (Bone Marrow Surface) {ID=6}"
+    selectedWEMPatchGroupPath = ""
+    selectedWEMPatchUseDefaultColor = FALSE
+    selectedWEMPatchColor = "1 0 0"
+    selectedWEMPatchColorAlpha = 0.60000002
+    selectedLineSet = ""
+    selectedLineSetNewLabel = ""
+    availableLineSets = ""
+    selectedLineSetGroupPath = ""
+    selectedLineSetUseDefaultColor = TRUE
+    selectedLineSetColor = "0.651 0.651 0.651"
+    selectedPointSet = ""
+    selectedPointSetNewLabel = ""
+    availablePointSets = ""
+    selectedPointSetGroupPath = ""
+  }
+}
+connections  {
+  WEMLoad.filename = WEMFilename.trueName
+  PDF3DFigurePageMacro.inWEM = WEMLoad.outWEM
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 17
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-377 -54 316 136"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "This network shows how to use the PDF3DFigurePageMacro module.
+
+For details regarding the parameters take a look at the documentation."
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "-372 -49 306 22"
+      }
+    }
+  }
+}

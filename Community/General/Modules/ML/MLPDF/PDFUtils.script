@@ -20,9 +20,6 @@ Description {
     }
   }
   
-  Field selectedWEMPatchId { editable = No }
-   
-  Field selectedWEMPatchColorAlpha { min = 0 max = 1 }
 }
 
 
@@ -36,7 +33,7 @@ Interface {
 Commands {
   FieldListener showNetworkFields {
     init    = Yes
-    command = @@js: show = ctx.field("showNetworkFields").value; ctx.field("inWEM").setHidden(!show); ctx.field("outWEM").setHidden(!show); ctx.field("inPointPositions").setHidden(!show); ctx.field("inLinePositions").setHidden(!show); ctx.field("inLineConnections").setHidden(!show); ctx.updateLayout(); @@
+    command = @@js: show = ctx.field("showNetworkFields").value; ctx.field("inPointPositions").setHidden(!show); ctx.field("inLinePositions").setHidden(!show); ctx.field("inLineConnections").setHidden(!show); ctx.field("outFibers").setHidden(!show); ctx.updateLayout(); @@
   }  
 }
 
@@ -133,51 +130,7 @@ Window "Main Panel" {
       
       Empty { expandY = Yes }
       
-    }    
-    
-    TabViewItem "WEMs" { expandY = Yes      
-
-      Horizontal {
-        
-        FieldLabel selectedWEMPatch { title = "Selected WEM:" }
-        
-        ComboBox selectedWEMPatch {
-          editable       = No
-          comboField     = availableWEMPatches
-          comboSeparator = "|"
-        }
-      }
-      
-      Field selectedWEMPatchNewLabel { title = "New Label:" }
-      
-      Field selectedWEMPatchGroupPath                  { title = "Object Group Path:" }
-      CheckBox selectedWEMPatchUseDefaultColor         { title = "Use Default Color" }
-      Field selectedWEMPatchColor                      { title = "Object Color:" dependsOn = !selectedWEMPatchUseDefaultColor }
-      Field selectedWEMPatchColorAlpha                 { title = "Object Alpha:" dependsOn = !selectedWEMPatchUseDefaultColor slider = Yes }
-      
-      Empty { expandY = Yes }
-      
-    }   
-    
-    TabViewItem "PointSet/LineSet Properties" { expandY = Yes      
-      Horizontal { alignX = Left
-        Field pointPositionsMaxTypeID   { alignGroupX = g1 }
-        Field pointPositionsNextTypeID  { alignGroupX = g2 }
-      }
-      Horizontal { alignX = Left
-        Field linePositionsMaxTypeID    { alignGroupX = g1 }
-        Field linePositionsNextTypeID   { alignGroupX = g2 }
-      }
-      Horizontal { alignX = Left
-        Field lineConnectionsMaxTypeID  { alignGroupX = g1 }
-        Field lineConnectionsNextTypeID { alignGroupX = g2 }
-      }
-      Horizontal { alignX = Left
-        Field lineDefinitionsMaxTypeID  { alignGroupX = g1 }
-        Field lineDefinitionsNextTypeID { alignGroupX = g2 }
-      }
-      Empty { expandY = Yes }
-    }   
+    }        
     
     TabViewItem "Other" { expandY = Yes      
       Label { title = "Empty" alignX = Center alignY = Center }

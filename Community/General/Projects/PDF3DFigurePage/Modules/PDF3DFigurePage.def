@@ -1,0 +1,46 @@
+//----------------------------------------------------------------------------------
+//! SMSPDF3DFigure module definitions.
+/*!
+// \file    PDF3DFigurePage.def
+// \author  Axel Newe (axel.newe@fau.de)
+// \date    2015-10-01
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule PDF3DFigurePage_SavePDF {
+  DLL                = "PDF3DFigurePage"
+  author             = "Axel Newe, axel.newe at fau.de"
+  comment            = "Creates PDF file with one interactive 3D scene for scientific publications."
+  keywords           = "PDF U3D 3D"
+  exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
+  exampleNetwork     = "$(LOCAL)/PDF3DFigurePageMacro.mlab"
+  externalDefinition = $(LOCAL)/PDF3DFigurePage_SavePDF.script
+}  
+
+MLModule PDF3DFigurePage_LoadPointLineGeometry {
+  DLL                = "PDF3DFigurePage"
+  author             = "Axel Newe, axel.newe at fau.de"
+  comment            = "Imports a marker list from txt/csv file."
+  keywords           = "PDF U3D 3D"
+  exampleNetwork     = "$(LOCAL)/PDF3DFigurePageMacro.mlab"
+  externalDefinition = $(LOCAL)/PDF3DFigurePage_LoadPointLineGeometry.script
+}  
+
+MLModule PDF3DFigurePage_Utils {
+  DLL                = "PDF3DFigurePage"
+  author             = "Axel Newe, axel.newe at fau.de"
+  comment            = "Utilities for PDF creation."
+  keywords           = "PDF U3D 3D"
+  exampleNetwork     = "$(LOCAL)/PDF3DFigurePageMacro.mlab"
+  externalDefinition = $(LOCAL)/PDF3DFigurePage_Utils.script
+}  
+
+MacroModule PDF3DFigurePageMacro {
+  author             = "Axel Newe, axel.newe at fau.de"
+  comment            = "Imports triangle meshes of various formats, point clouds an line set and and creates an interactive 3D PDF for scientific publication."
+  keywords           = "PDF U3D 3D"
+  exampleNetwork     = "$(LOCAL)/networks/PDF3DFigurePageMacroExample.mlab"
+  externalDefinition = $(LOCAL)/PDF3DFigurePageMacro.script
+}
+

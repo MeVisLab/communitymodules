@@ -44,7 +44,6 @@ HEADERS += \
   LoadPointLineGeometry/LoadPointLineGeometry.h \
   PDFUtils/PDFUtils.h \
   SavePDF/SavePDF.h \
-  Save3DFigurePDF/Save3DFigurePDF.h \
   SaveU3D/SaveU3D.h \
   SaveU3D/U3DFileFormat/U3D_BitStream.h \
   SaveU3D/U3DFileFormat/U3D_Constants.h \
@@ -80,11 +79,9 @@ SOURCES += \
   PDFUtils/PDFUtils.cpp \
   PDFUtils/PDFUtils_Views.cpp \
   PDFUtils/PDFUtils_Lists.cpp \
-  PDFUtils/PDFUtils_Meshes.cpp \
   PDFUtils/PDFUtils_Camera.cpp \
   PDFUtils/PDFUtils_Inventor.cpp \
   SavePDF/SavePDF.cpp \
-  Save3DFigurePDF/Save3DFigurePDF.cpp \
   SaveU3D/SaveU3D.cpp \
   SaveU3D/SaveU3D_Tools.cpp \
   SaveU3D/SaveU3D_ProcessPointSets.cpp \

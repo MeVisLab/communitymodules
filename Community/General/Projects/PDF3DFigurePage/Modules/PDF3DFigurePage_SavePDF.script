@@ -1,0 +1,111 @@
+//----------------------------------------------------------------------------------
+//! PDF3DFigurePage_SavePDF module definitions.
+/*!
+// \file    PDF3DFigurePage_SavePDF.script
+// \author  Axel Newe (axel.newe@fau.de)
+// \date    2015-10-01
+*/
+//----------------------------------------------------------------------------------
+
+
+Description {
+/*  
+  Field inventorCameraPosition      { editable = No }
+  Field inventorCameraOrientation   { editable = No }
+  Field inventorCameraFocalDistance { editable = No }
+  Field inventorCameraHeight        { editable = No }
+*/  
+  Field figureActivationMode {
+    items {
+      item ExplicitActivate { title = "User activate (recommended)" }
+      item PageOpen         { title = "Page opened"}
+      item PageVisible      { title = "Page visible" }
+    }
+  }
+
+  Field figureDeactivationMode {
+    items {
+      item ExplicitDeactivate { title = "User deactivate (recommended)" }
+      item PageClosed         { title = "Page closed"}
+      item PageInvisible      { title = "Page invisible" }
+    }
+  }
+  
+}
+
+
+Commands {
+//  initCommand = InitModule
+}
+
+
+Window {
+  Category "Main" {
+    margin = 3
+
+    Box "Page Header" {
+      Field pageHeaderCitationText   {  }
+      Field pageHeaderHeadlineText   {  }
+      CheckBox includeUsageHints     { title = "Include instructional hints above the figure" }
+    }
+    
+    Box "3D Figure" {
+      Field u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
+      Field posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
+    
+      Field figureActivationMode             { title = "Activation Mode:" }
+      Field figureDeactivationMode           { title = "Deactivation Mode:" }
+      Field figureToolbarEnabled             { title = "Toolbar Enabled:" }
+      Field figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+      Field figureAnimationAutostart         { title = "Animation Autostart:" }
+      
+    }
+    
+    Box "Description" {
+      
+      Field caption         {  }
+      TextView description  { autoApply = Yes }    
+    }
+    
+    Box "Output" {
+      Field pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
+      Button save { title = "Save" alignX = Left }
+      ProgressBar progress { textVisible = No }
+      Label { titleField = status }
+    }
+  }  // Category "Main"
+  
+/*  
+  Category "Views" {
+    Horizontal { alignY = Top
+      
+      Box "PDF Camera" { alignY = Top
+        Field cameraCenterOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraCenterToCamera { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraRadiusOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraRollAngle      { dependsOn = !autoCalculateCameraFromInventorScene }
+        Field cameraFOVAngle       { title = "Camera FOV Angle:" dependsOn = !autoCalculateCameraFromInventorScene }
+        Separator {}
+        Horizontal {
+          Button calculateCameraFromInventorScene { title = "Calculate From Inventor Scene" dependsOn = !autoCalculateCameraFromInventorScene }
+          CheckBox autoCalculateCameraFromInventorScene { title = "Auto" }
+        }
+      }
+      
+      Box "Inventor Camera" { alignY = Top
+        Field inventorCameraPosition      {  }
+        Field inventorCameraOrientation   {  }
+        Field inventorCameraFocalDistance {  }
+        Field inventorCameraHeight        {  }        
+      }
+      
+    }
+    
+    Separator { }
+    
+    Field viewBackgroundColor {  }
+    
+  } // Category "Views"
+*/
+  
+}

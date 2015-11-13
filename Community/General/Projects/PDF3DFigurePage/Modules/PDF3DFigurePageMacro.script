@@ -1,0 +1,491 @@
+//----------------------------------------------------------------------------------
+//! Macro module PDF3DFigurePageMacro definition
+/*!
+// \file    PDF3DFigurePageMacro.script
+// \author  Axel Newe (axel.newe@fau.de)
+// \date    2015-10-01
+*/
+//----------------------------------------------------------------------------------
+
+
+Description {
+
+  Field PDF3DFigurePage_SavePDF.figureActivationMode {
+    items {
+      item ExplicitActivate { title = "User activate (recommended)" }
+      item PageOpen         { title = "Page opened"}
+      item PageVisible      { title = "Page visible" }
+    }
+  }
+
+  Field PDF3DFigurePage_SavePDF.figureDeactivationMode {
+    items {
+      item ExplicitDeactivate { title = "User deactivate (recommended)" }
+      item PageClosed         { title = "Page closed"}
+      item PageInvisible      { title = "Page invisible" }
+    }
+  }
+  
+}
+
+Interface {
+  Inputs {
+    Field inWEM { internalName = GateInWEM.baseIn0 }
+    Field inPointPositions { internalName = GateInPointPositions.baseIn0 }
+    Field inLinePositions { internalName = GateInLinePositions.baseIn0 }
+    Field inLineConnections { internalName = GateInLineConnections.baseIn0 }    
+  }
+  
+  Parameters {
+    Field useInputConnectors { internalName = UseInputConnectors.invBoolValue }
+    Field loadDataManually   { internalName = UseInputConnectors.boolValue }
+    
+    Field filenameWEM             { internalName = WEMSceneLoader.filename }
+    Field filenamePointPositions  { internalName = LoadPointPositions.filename }
+    Field filenameLineDefinitions { internalName = LoadLinePositions.filename }
+    
+    Field showPointsPreview        { internalName = ShowPointsPreview.bypass }
+    Field showPointsPrevieSize     { internalName = PointsRenderer.scaleSize }
+    Field showLinesPreview         { internalName = ShowLinesPreview.bypass }
+    Field showMeshPreview          { internalName = ShowMeshPreview.bypass }
+    Field showMeshPreviewFaceAlpha { internalName = WEMRendererAll.faceAlphaValue }
+    Field resetPreview             { internalName = PreviewViewer.viewAll }
+        
+    Field viewDisplayName          { internalName = PDF3DFigurePage_Utils.newViewDisplayName }
+    Field viewBackgroundColor      { internalName = PDF3DFigurePage_Utils.newViewBackgroundColor }
+    Field viewLightingScheme       { internalName = PDF3DFigurePage_Utils.newViewLightingScheme }
+    Field viewCameraCenterOfOrbit  { internalName = PDF3DFigurePage_Utils.cameraCenterOfOrbit }
+    Field viewCameraCenterToCamera { internalName = PDF3DFigurePage_Utils.cameraCenterToCamera }
+    Field viewCameraRadiusOfOrbit  { internalName = PDF3DFigurePage_Utils.cameraRadiusOfOrbit }
+    Field viewCameraRollAngle      { internalName = PDF3DFigurePage_Utils.cameraRollAngle }
+    Field viewCameraFOVAngle       { internalName = PDF3DFigurePage_Utils.cameraFOVAngle }    
+    Field viewSpecifications       { internalName = PDF3DFigurePage_Utils.viewSpecifications }
+    Field addNewView               { internalName = PDF3DFigurePage_Utils.addNewView }
+    Field clearViews               { internalName = PDF3DFigurePage_Utils.clearViews }
+    
+    Field selectedWEMPatch                { internalName = PDF3DFigurePage_Utils.selectedWEMPatch }
+    Field selectedWEMPatchNewLabel        { internalName = PDF3DFigurePage_Utils.selectedWEMPatchNewLabel }
+    Field availableWEMPatches             { internalName = PDF3DFigurePage_Utils.availableWEMPatches }
+    Field selectedWEMPatchGroupPath       { internalName = PDF3DFigurePage_Utils.selectedWEMPatchGroupPath }
+    Field selectedWEMPatchUseDefaultColor { internalName = PDF3DFigurePage_Utils.selectedWEMPatchUseDefaultColor }
+    Field selectedWEMPatchColor           { internalName = PDF3DFigurePage_Utils.selectedWEMPatchColor }
+    Field selectedWEMPatchColorAlpha      { internalName = PDF3DFigurePage_Utils.selectedWEMPatchColorAlpha min = 0 max = 1 }
+    
+    Field selectedLineSet                 { internalName = PDF3DFigurePage_Utils.selectedLineSet }
+    Field selectedLineSetNewLabel         { internalName = PDF3DFigurePage_Utils.selectedLineSetNewLabel }
+    Field availableLineSets               { internalName = PDF3DFigurePage_Utils.availableLineSets }
+    Field selectedLineSetGroupPath        { internalName = PDF3DFigurePage_Utils.selectedLineSetGroupPath }
+    Field selectedLineSetUseDefaultColor  { internalName = PDF3DFigurePage_Utils.selectedLineSetUseDefaultColor }
+    Field selectedLineSetColor            { internalName = PDF3DFigurePage_Utils.selectedLineSetColor }
+
+    Field selectedPointSet                { internalName = PDF3DFigurePage_Utils.selectedPointSet }
+    Field selectedPointSetNewLabel        { internalName = PDF3DFigurePage_Utils.selectedPointSetNewLabel }
+    Field availablePointSets              { internalName = PDF3DFigurePage_Utils.availablePointSets }
+    Field selectedPointSetGroupPath       { internalName = PDF3DFigurePage_Utils.selectedPointSetGroupPath }
+    
+    Field importPointsModel   { internalName = RunPointsImportScript.execute }
+    Field importLinesModel    { internalName = RunLinesImportScript.execute }
+    Field importMeshModel     { internalName = RunMeshImportScript.execute }
+    Field addImportedModel    { internalName = RunAddImportedModelScript.execute }
+    Field cancelImport        { internalName = RunCancelImportScript.execute }   
+    Field removeAllPoints     { internalName = LoadPointPositions.clearCache }
+    Field removeAllLines      { internalName = LoadLinePositions.clearCache }
+    Field removeAllMeshes     { internalName = WEMComposePatches.clear }
+  }
+}
+
+
+Commands {
+//    initCommand = InitModule
+  FieldListener UseInputConnectors.boolValue { command = @@py: ctx.field("resetPreview").touch() @@}
+}
+
+
+Window {
+  
+  
+  minimumWidth = 1000
+  minimumHeight = 750
+  
+  Category "3D Model" {
+    
+    expandY = Yes
+    
+    Box "Select Data Source" { 
+      layout = Horizontal     
+      CheckBox loadDataManually   { alignX = Left }
+      CheckBox useInputConnectors { alignX = Left }
+      
+      Empty { expandX = Yes }
+    }
+                          
+    TabView {
+      
+      expandY = Yes
+      
+      TabViewItem "Assemble Model" {
+        
+        expandY = Yes
+        
+        Horizontal { expandY = Yes
+          
+          Vertical { expandY = Yes
+            
+            maximumWidth = 150
+
+            dependsOn = loadDataManually
+            
+            Box "Import Model" {
+              alignY = Top
+              Button importPointsModel { expandX = Yes }
+              Button importLinesModel  { expandX = Yes }
+              Button importMeshModel   { expandX = Yes }              
+              Separator { expandX = Yes }
+              Button cancelImport { expandX = Yes }
+            }
+            
+            Box "Add Model" {
+              Button addImportedModel { expandX = Yes minimumHeight = 50 dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) || (SwitchPreview.whichChild == 1 && LoadPointPositions.positionsLoaded) || (SwitchPreview.whichChild == 2 && LoadLinePositions.positionsLoaded) @@ }
+            }
+            
+            Box "Remove Models" {
+              alignY = Top
+              Button removeAllPoints { expandX = Yes }
+              Button removeAllLines  { expandX = Yes }
+              Button removeAllMeshes { expandX = Yes }              
+            }
+            
+            Empty { expandY = Yes }
+              
+          }
+        
+          Box "Model Preview" {
+          
+            expandY = Yes
+          
+            Viewer PreviewViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              expandX = Yes
+              Label                           { title = "Show:" alignX = Left }
+              Empty                           { width = 20 alignX = Left }
+              CheckBox showPointsPreview      { title = "Points" alignX = Left }
+              CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+              CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+              Separator                       { direction = Vertical alignX = Left }
+              Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+              Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+              Separator                       { direction = Vertical alignX = Left }
+              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+              Empty                           { expandX = Yes }
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Scene"
+          
+        } // Horizontal
+        
+      } // TabViewItem "Assemble Model"      
+     
+      TabViewItem "Edit Points" {
+        
+        expandY = Yes
+        expandX = Yes
+              
+        Horizontal { 
+          
+          expandY = Yes
+          
+          Vertical {
+
+            alignX     = Left
+            alignY     = Top
+            fixedWidth = 300
+                      
+            Horizontal {
+        
+              FieldLabel selectedPointSet { title = "Point Set:" minimumWidth = 86 }
+        
+              ComboBox selectedPointSet {
+                editable       = No
+                comboField     = availablePointSets
+                comboSeparator = "|"
+              }
+            }
+      
+            Field selectedPointSetNewLabel { title = "Name:" dependsOn = @@ selectedPointSet != "" @@ }
+           
+            Field selectedPointSetGroupPath       { title = "Group Path:" dependsOn = @@ selectedPointSet != "" @@ }
+          }
+          
+          Box "Preview" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer PointsViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Preview"      
+        
+        } // Horizontal      }        
+      } // TabViewItem "Edit Points"
+      
+      TabViewItem "Edit Lines" {
+
+        expandY = Yes
+        expandX = Yes
+              
+        Horizontal { 
+          
+          expandY = Yes
+          
+          Vertical {
+
+            alignX     = Left
+            alignY     = Top
+            fixedWidth = 300
+                      
+            Horizontal {
+        
+              FieldLabel selectedLineSet { title = "Line Set:" minimumWidth = 122 }
+        
+              ComboBox selectedLineSet {
+                editable       = No
+                comboField     = availableLineSets
+                comboSeparator = "|"
+              }
+            }
+      
+            Field selectedLineSetNewLabel { title = "Name:" dependsOn = @@ selectedLineSet != "" @@ }
+           
+            Field selectedLineSetGroupPath       { title = "Group Path:" dependsOn = @@ selectedLineSet != "" @@ }
+            Field selectedLineSetUseDefaultColor { title = "Use Default Color:" dependsOn = @@ selectedLineSet != "" @@ }
+            Field selectedLineSetColor           { title = "Color:" dependsOn = @@ selectedLineSet != "" && !selectedLineSetUseDefaultColor @@ }
+          }
+          
+          Box "Preview" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer LinesViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Preview"      
+        
+        } // Horizontal     
+      
+      } // TabViewItem "Edit Lines"
+      
+      TabViewItem "Edit Meshes" {
+
+        expandY = Yes
+        expandX = Yes
+              
+        Horizontal { 
+          
+          expandY = Yes
+          
+          Vertical {
+
+            alignX     = Left
+            alignY     = Top
+            fixedWidth = 300
+                      
+            Horizontal {
+        
+              FieldLabel selectedWEMPatch { title = "Mesh:" minimumWidth = 122 }
+        
+              ComboBox selectedWEMPatch {
+                editable       = No
+                comboField     = availableWEMPatches
+                comboSeparator = "|"
+              }
+            }
+      
+            Field selectedWEMPatchNewLabel { title = "Name:" dependsOn = @@ selectedWEMPatch != "" @@ }
+           
+            Field selectedWEMPatchGroupPath       { title = "Group Path:" dependsOn = @@ selectedWEMPatch != "" @@ }
+            Field selectedWEMPatchUseDefaultColor { title = "Use Default Color:" dependsOn = @@ selectedWEMPatch != "" @@ }
+            Field selectedWEMPatchColor           { title = "Color:" dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }
+            Field selectedWEMPatchColorAlpha      { title = "Transparency:" slider = Yes dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }            
+          }
+          
+          Box "Preview" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer MeshViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Preview"      
+        
+        } // Horizontal
+        
+      } // TabViewItem "Meshes"
+      
+      TabViewItem "Create Views" {
+
+        expandY = Yes
+                
+        Horizontal { 
+          
+          expandY = Yes
+          
+          Vertical {
+                                    
+            expandY = Yes
+            alignX = Left
+            fixedWidth = 350
+            
+            Box "Create New View" { 
+              
+              alignY = Top
+              expandX = Yes
+              
+              Field viewDisplayName          { title = "View Display Name:" }
+              Field viewBackgroundColor      { title = "Background Color:" }
+              Field viewLightingScheme       { title = "Lighting Scheme:" }
+              //Field viewCameraCenterOfOrbit  { title = "Camera - Center of Orbit:" edit = No expandX = Yes }
+              //Field viewCameraCenterToCamera { title = "Camera - Center to Camera:" edit = No expandX = Yes }
+              //Field viewCameraRadiusOfOrbit  { title = "Camera - Radius of Orbit:" edit = No expandX = Yes editAlign = Left }
+              //Field viewCameraRollAngle      { title = "Camera - Roll Angle:" edit = No expandX = Yes editAlign = Left }
+              //Field viewCameraFOVAngle       { title = "Camera - FOV Angle:" edit = No expandX = Yes editAlign = Left }
+              Separator {}
+              Button addNewView              { title = "Add New View" expandX = Yes dependsOn = @@ viewDisplayName != "" @@ }
+            }
+      
+            Box "All View Specifications" {
+              
+              expandY = Yes
+              
+              TextView viewSpecifications { 
+                expandY         = Yes
+                title           = ""
+                wrap            = off
+                autoApply       = yes
+                console         = yes
+                style           = monospacedTextView
+                showLineNumbers = No
+                textFormat      = Plain
+                edit            = Yes
+              }
+         
+              Separator {}
+            
+              Button clearViews { title = "Delete All Views" expandX = Yes }
+            }
+            
+          } // Vertical
+
+          Box "Scene" {
+          
+            expandY = Yes
+            expandX = Yes
+          
+            Viewer ViewsViewer.self {
+              expandY = Yes
+              type    = SoExaminerViewer
+              clone   = Yes
+            }
+          
+            Horizontal {
+              expandX = Yes
+              Label                           { title = "Show:" alignX = Left }
+              Empty                           { width = 20 alignX = Left }
+              CheckBox showPointsPreview      { title = "Points" alignX = Left }
+              CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+              CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+              Separator                       { direction = Vertical alignX = Left }
+              Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+              Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+              Separator                       { direction = Vertical alignX = Left }
+              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+              Empty                           { expandX = Yes }
+              Button resetPreview             { title = "Reset" alignX = Right }
+            }
+          
+          } // Box "Scene"
+          
+        } // Horizontal
+            
+      } // TabViewItem "Views"
+      
+      TabViewItem "Save Model" {
+        
+        expandY = Yes
+        
+        Field SaveU3D.filename { title = "Filename:" browseButton = Yes browseMode = save }
+        
+        Empty { expandY = Yes }
+      }
+       
+    } // TabView
+        
+  }  // Category "3D Model"
+  
+  Category "PDF Page" {
+    margin = 3
+
+    Box "Page Header" {
+      Field PDF3DFigurePage_SavePDF.pageHeaderCitationText   {  }
+      Field PDF3DFigurePage_SavePDF.pageHeaderHeadlineText   {  }
+      CheckBox PDF3DFigurePage_SavePDF.includeUsageHints     { title = "Include instructional hints above the figure" }
+    }
+    
+    Box "3D Figure" {
+      Field PDF3DFigurePage_SavePDF.u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
+      Field PDF3DFigurePage_SavePDF.posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
+    
+      Field PDF3DFigurePage_SavePDF.figureActivationMode             { title = "Activation Mode:" }
+      Field PDF3DFigurePage_SavePDF.figureDeactivationMode           { title = "Deactivation Mode:" }
+      Field PDF3DFigurePage_SavePDF.figureToolbarEnabled             { title = "Toolbar Enabled:" }
+      Field PDF3DFigurePage_SavePDF.figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+      Field PDF3DFigurePage_SavePDF.figureAnimationAutostart         { title = "Animation Autostart:" }      
+    }
+    
+    Box "Description" {
+      
+      Field PDF3DFigurePage_SavePDF.caption         {  }
+      TextView PDF3DFigurePage_SavePDF.description  { autoApply = Yes }    
+    }
+    
+    Box "Output" {
+      Field PDF3DFigurePage_SavePDF.pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
+      Button PDF3DFigurePage_SavePDF.save { title = "Save" alignX = Left }
+      ProgressBar PDF3DFigurePage_SavePDF.progress { textVisible = No }
+      Label { titleField = PDF3DFigurePage_SavePDF.status }
+    }
+  }  // Category "Main"
+  
+
+}

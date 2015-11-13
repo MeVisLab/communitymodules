@@ -92,14 +92,3 @@ MLModule LoadPointLineGeometry {
   externalDefinition = $(LOCAL)/LoadPointLineGeometry.script
 }  
 
-MacroModule 3DFigurePDFMacro {
-  genre              = "FileMain"
-  author             = "Axel Newe"
-  comment            = "Imports triangle meshes of various formats, point clouds an line set and and creates an interactive 3D PDF for scientific publication."
-  keywords           = "PDF U3D PRC 3D"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC SavePDF Save3DFigurePDF"
-  exampleNetwork     = "$(LOCAL)/networks/3DFigurePDFMacroExample.mlab"
-  externalDefinition = $(LOCAL)/3DFigurePDFMacro.script
-}
-
-

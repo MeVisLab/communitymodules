@@ -45,3 +45,14 @@ build/
 /Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.mlab.auto
 /Community/General/Sources/ML/MLPDF/MLPDF.opensdf
 /Community/General/Modules/ML/MLPDF/networks/Create separate WEMs.mlab
+/Community/General/Projects/PDF3DFigurePage/Modules/networks/Create separate WEMs.mlab
+/Community/General/Projects/PDF3DFigurePage/Sources/ipch
+/Community/General/Projects/PDF3DFigurePage/Sources/*.sdf
+/Community/General/Projects/PDF3DFigurePage/Sources/*.sln
+/Community/General/Projects/PDF3DFigurePage/Sources/*.vcxproj
+/Community/General/Projects/PDF3DFigurePage/Sources/*.filters
+/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.sdf
+/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.sln
+/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.vcxproj
+/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.vcxproj.filters
+/Community/General/Projects/PDFExamples/Sources/ipch/savepdftemplate-cd074324/savepdftemplate_d-d5ad92d8.ipch

@@ -31,7 +31,7 @@ ML_MODULE_CLASS_SOURCE(PDFUtils, WEMProcessor);
 
 //----------------------------------------------------------------------------------
 
-PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
+PDFUtils::PDFUtils() : Module(0, 0)
 {
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
@@ -42,9 +42,6 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   (_inLinePositionsFld   = addBase("inLinePositions"))->setBaseValueAndAddAllowedType(&_inLinePositions);
   (_inLineConnectionsFld = addBase("inLineConnections"))->setBaseValueAndAddAllowedType(&_inLineConnections);
 
-  (_outPointPositionsFld  = addBase("outPointPositions"))->setBaseValueAndAddAllowedType(&_outPointPositions);
-  (_outLinePositionsFld   = addBase("outLinePositions"))->setBaseValueAndAddAllowedType(&_outLinePositions);
-  (_outLineConnectionsFld = addBase("outLineConnections"))->setBaseValueAndAddAllowedType(&_outLineConnections);
   (_outFibersFld          = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
@@ -74,32 +71,6 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   _addNewViewFld              = addNotify("addNewView");
   _clearViewsFld              = addNotify("clearViews");
 
-  //! Fields for WEM/mesh editing
-  (_selectedWEMPatchFld                  = addString("selectedWEMPatch"))->setStringValue("");
-  (_selectedWEMPatchIdFld                = addInt("selectedWEMPatchId"))->setIntValue(-1);
-  (_availableWEMPatchesFld               = addString("availableWEMPatches"))->setStringValue("");
-  (_selectedWEMPatchNewLabelFld          = addString("selectedWEMPatchNewLabel"))->setStringValue("");
-  (_selectedWEMPatchGroupPathFld         = addString("selectedWEMPatchGroupPath"))->setStringValue("");
-  (_selectedWEMPatchUseDefaultColorFld   = addBool("selectedWEMPatchUseDefaultColor"))->setBoolValue(true);
-  (_selectedWEMPatchColorFld             = addColor("selectedWEMPatchColor"))->setStringValue("0.651 0.651 0.651");
-  (_selectedWEMPatchColorAlphaFld        = addFloat("selectedWEMPatchColorAlpha"))->setFloatValue(0);
-
-  //! Fields for line set editing
-  (_selectedLineSetFld                   = addString("selectedLineSet"))->setStringValue("");
-  (_selectedLineSetIdFld                 = addInt("selectedLineSetId"))->setIntValue(-1);
-  (_availableLineSetsFld                 = addString("availableLineSets"))->setStringValue("");
-  (_selectedLineSetNewLabelFld           = addString("selectedLineSetNewLabel"))->setStringValue("");
-  (_selectedLineSetGroupPathFld          = addString("selectedLineSetGroupPath"))->setStringValue("");
-  (_selectedLineSetUseDefaultColorFld    = addBool("selectedLineSetUseDefaultColor"))->setBoolValue(true);
-  (_selectedLineSetColorFld              = addColor("selectedLineSetColor"))->setStringValue("0.651 0.651 0.651");
-
-  //! Fields for point set editing
-  (_selectedPointSetFld                  = addString("selectedPointSet"))->setStringValue("");
-  (_selectedPointSetIdFld                = addInt("selectedPointSetId"))->setIntValue(-1);
-  (_availablePointSetsFld                = addString("availablePointSets"))->setStringValue("");
-  (_selectedPointSetNewLabelFld          = addString("selectedPointSetNewLabel"))->setStringValue("");
-  (_selectedPointSetGroupPathFld         = addString("selectedPointSetGroupPath"))->setStringValue("");
-
   //! Fields for PointSet/LineSet properties
   (_pointPositionsMaxTypeIDFld = addInt("pointPositionsMaxTypeID"))->setIntValue(-1);
   (_linePositionsMaxTypeIDFld = addInt("linePositionsMaxTypeID"))->setIntValue(-1);
@@ -111,12 +82,6 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
   (_lineDefinitionsNextTypeIDFld = addInt("lineDefinitionsNextTypeID"))->setIntValue(0);
 
 
-  // Set WEM processor fields
-  _copyInputWEMsFld->setBoolValue(true);
-  _autoUpdateFld->setBoolValue(true);
-  _autoApplyFld->setBoolValue(true);
-  _overwriteLabelDescriptionFld->setBoolValue(false);
-
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -126,13 +91,9 @@ PDFUtils::PDFUtils(std::string type) : WEMProcessor(type)
 PDFUtils::~PDFUtils()
 {
   // Destroy own dynamic data structures here
-  _inPointPositions.clearList();
   _inLinePositions.clearList();
   _inLineConnections.clearList();
   _outFiberSetContainer.deleteAllFiberSets();
-  _outPointPositions.clearList();  
-  _outLinePositions.clearList();
-  _outLineConnections.clearList();
 }
 
 //----------------------------------------------------------------------------------
@@ -159,7 +120,6 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
-    _updatePointSetOutputs();
   }
 
   // _inLinePositionsFld
@@ -182,7 +142,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
-    _updateLineSetOutputs();
+    _createFibers();
   }
 
   // _inLineConnectionsFld
@@ -201,7 +161,7 @@ void PDFUtils::handleNotification (Field* field)
 
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
-    _updateLineSetOutputs();
+    _createFibers();
   }
 
   // _calculateCameraFromInventorSceneFld
@@ -237,46 +197,6 @@ void PDFUtils::handleNotification (Field* field)
     _clearViews();
   }
 
-  // WEM fields
-  if (field == _selectedWEMPatchFld)
-  {
-    _selectedWEMPatchChanged(_outWEM);
-  }
-
-  if (field == _selectedWEMPatchNewLabelFld)
-  {
-    _updateSelectedWEMPatchLabel();
-    _updateSelectedWEMPatchDescription();
-  }
-
-  if (field == _selectedWEMPatchGroupPathFld)
-  {
-    _updateSelectedWEMPatchDescription();
-  }
-
-  if (
-      (field == _selectedWEMPatchUseDefaultColorFld) ||
-      (field == _selectedWEMPatchColorFld) ||
-      (field == _selectedWEMPatchColorAlphaFld)
-     )
-  {
-    _updateWEMPatchNodesColor();
-    _updateSelectedWEMPatchDescription();
-  }
-
-
-  // call parent class and handle apply/autoApply and in/outputs
-  WEMProcessor::handleNotification(field);
-}
-
-//----------------------------------------------------------------------------------
-
-void PDFUtils::activateAttachments()
-{
-  // ... own initialization routines
-
-  // call parent class
-  WEMProcessor::activateAttachments();
 }
 
 //----------------------------------------------------------------------------------

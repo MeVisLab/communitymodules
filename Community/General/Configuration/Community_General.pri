@@ -77,6 +77,9 @@ MLPDF {
   unix:LIBS  += -lMLPDF$${d}
   CONFIG += MLBaseListExtensions
   CONFIG += libhpdf
+  CONFIG += inventor
+  CONFIG += zlib
+  CONFIG += png
 }
 
 MLBaseListExtensions {
