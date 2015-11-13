@@ -41,7 +41,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
   }
   else
   {
-    meshSpecificationsVector = getObjectSpecificationsStringFromUI(_meshSpecificationFld, "<Mesh>");
+    meshSpecificationsVector = mlPDF::PDFTools::getObjectSpecificationsStringFromUI(_meshSpecificationFld, "<Mesh>");
   }
 
   // Scan all WEM patches, triangulate them if necessary and collect base info.
@@ -87,7 +87,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
         ModelBoundingBoxStruct newboundingBox;
         newboundingBox.start = thisWEMPatchBoundingBox->getMin();
         newboundingBox.end   = thisWEMPatchBoundingBox->getMax();
-        UpdateBoundingBox(boundingBox, newboundingBox);
+        mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
 
 	      std::string wemDescription = addedTrianglePatch->getDescription();
         std::string wemLabel = addedTrianglePatch->getLabel();
@@ -100,9 +100,9 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
           meshSpecificationsVector.clear();
 
           // Parse WEM label & description...
-          std::string u3dModelName       = getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
-          std::string u3dGroupName       = getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
-          std::string u3dGroupPath       = getSpecificParameterFromWEMDescription(wemDescription, "GroupPath");
+          std::string u3dModelName       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
+          std::string u3dGroupName       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
+          std::string u3dGroupPath       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupPath");
           if ("" != u3dModelName)
           {
             u3dGroupPath = "/" + u3dModelName + "/";
@@ -118,7 +118,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
 
           std::string displayName = wemLabel;
           if (displayName == "") {
-            displayName = "Mesh " + intToString(i+1);
+            displayName = "Mesh " + mlPDF::intToString(i+1);
           }
 
           // ...and write data into meshSpecification string
@@ -126,8 +126,8 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
           meshSpecificationsString += "<WEMLabel>" + wemLabel + "</WEMLabel>";
           meshSpecificationsString += "<ObjectName>" + displayName + "</ObjectName>";
           meshSpecificationsString += "<GroupPath>" + u3dGroupPath + "</GroupPath>";
-          meshSpecificationsString += "<Color>" + getSpecificParameterFromWEMDescription(wemDescription, "Color") + "</Color>";
-          meshSpecificationsString += "<SpecularColor>" + getSpecificParameterFromWEMDescription(wemDescription, "SpecularColor") + "</SpecularColor>";
+          meshSpecificationsString += "<Color>" + mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "Color") + "</Color>";
+          meshSpecificationsString += "<SpecularColor>" + mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "SpecularColor") + "</SpecularColor>";
           meshSpecificationsString += "<ModelVisibility>3</ModelVisibility>";
 
           // Add meshSpecification string to meshSpecificationVector
@@ -136,13 +136,13 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
 
         for (int thisSpecificationIndex = 0; thisSpecificationIndex < meshSpecificationsVector.size(); thisSpecificationIndex++)
         {
-          thisSpecificationParameters = getAllSpecificationParametersFromString(meshSpecificationsVector[thisSpecificationIndex]);
+          thisSpecificationParameters = mlPDF::PDFTools::getAllSpecificationParametersFromString(meshSpecificationsVector[thisSpecificationIndex]);
           if (thisSpecificationParameters.WEMLabel == wemLabel)
           {
             PRCObjectInfoStruct thisPRCObjectInfo = CreateNewPRCObjectInfo(i,PRCOBJECTTYPE_MESH, thisSpecificationParameters.ObjectName, defaultValues);
             thisPRCObjectInfo.GroupPath        = thisSpecificationParameters.GroupPath;
             thisPRCObjectInfo.ParentTreeNodeID = -1;
-            thisPRCObjectInfo.RGBAColor        = getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render;
+            thisPRCObjectInfo.RGBAColor        = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render;
             _prcObjectInfoVector.push_back(thisPRCObjectInfo);
 
 

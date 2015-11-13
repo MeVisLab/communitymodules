@@ -137,21 +137,21 @@ void PDFCreatorBase::pdfDoc_AddFilledOutlineArcDegrees(float centerX, float cent
 
 void PDFCreatorBase::pdfDoc_AddOutlineArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins)
 {
-  pdfDoc_AddOutlineArcDegrees(centerX, centerY, radius, radToDeg(startAngle), radToDeg(endAngle), lineWidth, ignoreMargins);
+  pdfDoc_AddOutlineArcDegrees(centerX, centerY, radius, mlPDF::radToDeg(startAngle), mlPDF::radToDeg(endAngle), lineWidth, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
 void PDFCreatorBase::pdfDoc_AddFilledArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, bool ignoreMargins)
 {
-  pdfDoc_AddFilledArcDegrees(centerX, centerY, radius, radToDeg(startAngle), radToDeg(endAngle), ignoreMargins);
+  pdfDoc_AddFilledArcDegrees(centerX, centerY, radius, mlPDF::radToDeg(startAngle), mlPDF::radToDeg(endAngle), ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
 void PDFCreatorBase::pdfDoc_AddFilledOutlineArcRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins)
 {
-  pdfDoc_AddFilledOutlineArcDegrees(centerX, centerY, radius, radToDeg(startAngle), radToDeg(endAngle), lineWidth, ignoreMargins);
+  pdfDoc_AddFilledOutlineArcDegrees(centerX, centerY, radius, mlPDF::radToDeg(startAngle), mlPDF::radToDeg(endAngle), lineWidth, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
@@ -168,10 +168,10 @@ void PDFCreatorBase::pdfDoc_AddOutlinePieDegrees(float centerX, float centerY, f
     HPDF_Page_SetLineCap(pdfDocCurrentPage, HPDF_ROUND_END);
     HPDF_Page_SetLineJoin(pdfDocCurrentPage, HPDF_ROUND_JOIN);
 
-    float endLine1X = (float)(centerX + sin(degToRad(startAngle)) * radius);
-    float endLine1Y = (float)(centerY - cos(degToRad(startAngle)) * radius);
-    float startLine2X = (float)(centerX + sin(degToRad(endAngle)) * radius);
-    float startLine2Y = (float)(centerY - cos(degToRad(endAngle)) * radius);
+    float endLine1X = (float)(centerX + sin(mlPDF::degToRad(startAngle)) * radius);
+    float endLine1Y = (float)(centerY - cos(mlPDF::degToRad(startAngle)) * radius);
+    float startLine2X = (float)(centerX + sin(mlPDF::degToRad(endAngle)) * radius);
+    float startLine2Y = (float)(centerY - cos(mlPDF::degToRad(endAngle)) * radius);
 
     HPDF_Page_MoveTo(pdfDocCurrentPage, _getPageX(centerX, ignoreMargins), _getPageY(centerY, ignoreMargins));
     HPDF_Page_LineTo(pdfDocCurrentPage, _getPageX(endLine1X, ignoreMargins), _getPageY(endLine1Y, ignoreMargins));
@@ -197,10 +197,10 @@ void PDFCreatorBase::pdfDoc_AddFilledPieDegrees(float centerX, float centerY, fl
     HPDF_Page_SetLineCap(pdfDocCurrentPage, HPDF_ROUND_END);
     HPDF_Page_SetLineJoin(pdfDocCurrentPage, HPDF_ROUND_JOIN);
 
-    float endLine1X = (float)(centerX + sin(degToRad(startAngle)) * radius);
-    float endLine1Y = (float)(centerY - cos(degToRad(startAngle)) * radius);
-    float startLine2X = (float)(centerX + sin(degToRad(endAngle)) * radius);
-    float startLine2Y = (float)(centerY - cos(degToRad(endAngle)) * radius);
+    float endLine1X = (float)(centerX + sin(mlPDF::degToRad(startAngle)) * radius);
+    float endLine1Y = (float)(centerY - cos(mlPDF::degToRad(startAngle)) * radius);
+    float startLine2X = (float)(centerX + sin(mlPDF::degToRad(endAngle)) * radius);
+    float startLine2Y = (float)(centerY - cos(mlPDF::degToRad(endAngle)) * radius);
 
     HPDF_Page_MoveTo(pdfDocCurrentPage, _getPageX(centerX, ignoreMargins), _getPageY(centerY, ignoreMargins));
     HPDF_Page_LineTo(pdfDocCurrentPage, _getPageX(endLine1X, ignoreMargins), _getPageY(endLine1Y, ignoreMargins));
@@ -227,10 +227,10 @@ void PDFCreatorBase::pdfDoc_AddFilledOutlinePieDegrees(float centerX, float cent
     HPDF_Page_SetLineCap(pdfDocCurrentPage, HPDF_ROUND_END);
     HPDF_Page_SetLineJoin(pdfDocCurrentPage, HPDF_ROUND_JOIN);
 
-    float endLine1X = (float)(centerX + sin(degToRad(startAngle)) * radius);
-    float endLine1Y = (float)(centerY - cos(degToRad(startAngle)) * radius);
-    float startLine2X = (float)(centerX + sin(degToRad(endAngle)) * radius);
-    float startLine2Y = (float)(centerY - cos(degToRad(endAngle)) * radius);
+    float endLine1X = (float)(centerX + sin(mlPDF::degToRad(startAngle)) * radius);
+    float endLine1Y = (float)(centerY - cos(mlPDF::degToRad(startAngle)) * radius);
+    float startLine2X = (float)(centerX + sin(mlPDF::degToRad(endAngle)) * radius);
+    float startLine2Y = (float)(centerY - cos(mlPDF::degToRad(endAngle)) * radius);
 
     HPDF_Page_MoveTo(pdfDocCurrentPage, _getPageX(centerX, ignoreMargins), _getPageY(centerY, ignoreMargins));
     HPDF_Page_LineTo(pdfDocCurrentPage, _getPageX(endLine1X, ignoreMargins), _getPageY(endLine1Y, ignoreMargins));
@@ -247,21 +247,21 @@ void PDFCreatorBase::pdfDoc_AddFilledOutlinePieDegrees(float centerX, float cent
 
 void PDFCreatorBase::pdfDoc_AddOutlinePieRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins)
 {
-  pdfDoc_AddOutlinePieDegrees(centerX, centerY, radius, radToDeg(startAngle), radToDeg(endAngle), lineWidth, ignoreMargins);
+  pdfDoc_AddOutlinePieDegrees(centerX, centerY, radius, mlPDF::radToDeg(startAngle), mlPDF::radToDeg(endAngle), lineWidth, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
 void PDFCreatorBase::pdfDoc_AddFilledPieRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, bool ignoreMargins)
 {
-  pdfDoc_AddFilledPieDegrees(centerX, centerY, radius, radToDeg(startAngle), radToDeg(endAngle), ignoreMargins);
+  pdfDoc_AddFilledPieDegrees(centerX, centerY, radius, mlPDF::radToDeg(startAngle), mlPDF::radToDeg(endAngle), ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
 void PDFCreatorBase::pdfDoc_AddFilledOutlinePieRadians(float centerX, float centerY, float radius, float startAngle, float endAngle, float lineWidth, bool ignoreMargins)
 {
-  pdfDoc_AddFilledOutlinePieDegrees(centerX, centerY, radius, radToDeg(startAngle), radToDeg(endAngle), lineWidth, ignoreMargins);
+  pdfDoc_AddFilledOutlinePieDegrees(centerX, centerY, radius, mlPDF::radToDeg(startAngle), mlPDF::radToDeg(endAngle), lineWidth, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------

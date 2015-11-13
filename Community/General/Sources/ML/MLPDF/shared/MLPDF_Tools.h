@@ -8,9 +8,10 @@
 //----------------------------------------------------------------------------------
 
 
-#ifndef _PDF_CommonTools_H
-#define _PDF_CommonTools_H 
+#ifndef _PDF_Tools_H
+#define _PDF_Tools_H 
 
+#include "MLPDFSystem.h"
 #include "MLPDF_DataTypes.h"
 
 #include <mlXMarkerList.h>
@@ -25,7 +26,10 @@
 
 #include <sys/stat.h>
 
+
 ML_START_NAMESPACE
+
+namespace mlPDF {
 
 // Inlines ================================================================
 
@@ -103,93 +107,99 @@ inline float radToDeg(float radians)
 }
 
 
-// Tool methods ============================================================
+class MLPDF_EXPORT PDFTools
+{
 
-// Split a string
-StringVector stringSplit(const std::string& stringToSplit, const std::string& delimiter, const bool keepEmpty);
+public:
 
-// Convert String to lower case
-void stringLower(std::string &sourceString);
+  // Tool methods ============================================================
 
-// Converts  a string to bool
-bool stringToBool(std::string sourceString);
+  // Split a string
+  static StringVector stringSplit(const std::string& stringToSplit, const std::string& delimiter, const bool keepEmpty);
 
-// Convert MeVisLab version number into string
-std::string getMeVisLabVersionNumberString();
+  // Convert String to lower case
+  static void stringLower(std::string &sourceString);
 
-// Return string with module's version number
-std::string getModuleVersionNumberString();
+  // Converts  a string to bool
+  static bool stringToBool(std::string sourceString);
 
-//***********************************************************************************
+  // Convert MeVisLab version number into string
+  static std::string getMeVisLabVersionNumberString();
 
-// Parses a string and try to get color values from it.
-Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor);
-Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor);
+  // Return string with module's version number
+  static std::string getModuleVersionNumberString();
 
-//***********************************************************************************
+  //***********************************************************************************
 
-// Get data from object (point cloud, line set, mesh) specification fields
-StringVector getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter);
+  // Parses a string and try to get color values from it.
+  static Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor);
+  static Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor);
 
-// Parses the specification string from the UI and extracts a specific U3D property
-std::string getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult = "");
+  //***********************************************************************************
 
-// Parses input string from UI and extracts object specification parameters
-SpecificationParametersStruct getAllSpecificationParametersFromString(const std::string specificationString);
+  // Get data from object (point cloud, line set, mesh) specification fields
+  static StringVector getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter);
 
-// Parses the description string of the WEM to set U3D properties.
-std::string getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult = "");
+  // Parses the specification string from the UI and extracts a specific U3D property
+  static std::string getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult = "");
 
-// Get parent node name from the group name path
-std::string getParentNameFromGroupPath(std::string groupPath);
+  // Parses input string from UI and extracts object specification parameters
+  static SpecificationParametersStruct getAllSpecificationParametersFromString(const std::string specificationString);
 
-// Make sure each group path has a leading and a trailing "/"
-std::string normalizeGroupPath(std::string groupPath);
+  // Parses the description string of the WEM to set U3D properties.
+  static std::string getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult = "");
 
-// Updates a GroupNodeVector with a new group path
-void updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath);
+  // Get parent node name from the group name path
+  static std::string getParentNameFromGroupPath(std::string groupPath);
 
-//***********************************************************************************
+  // Make sure each group path has a leading and a trailing "/"
+  static std::string normalizeGroupPath(std::string groupPath);
 
-// Updates the model bounding box
-void UpdateBoundingBox(ModelBoundingBoxStruct& boundingBox, ModelBoundingBoxStruct newCorners);
+  // Updates a GroupNodeVector with a new group path
+  static void updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath);
 
-// Get bounding box edges from positions
-ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions);
+  //***********************************************************************************
 
-//***********************************************************************************
+  // Updates the model bounding box
+  static void UpdateBoundingBox(ModelBoundingBoxStruct& boundingBox, ModelBoundingBoxStruct newCorners);
 
-// Get all positions (vertices) from ColoredMarkerList
-PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
+  // Get bounding box edges from positions
+  static ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions);
 
-// Get all positions (vertices) from XMarkerList
-PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
+  //***********************************************************************************
 
-//***********************************************************************************
+  // Get all positions (vertices) from ColoredMarkerList
+  static PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
 
-// Get all line connections from IndexPairList
-LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth);
+  // Get all positions (vertices) from XMarkerList
+  static PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
 
-// Automatically calculate simple line connections from XMarkerList
-LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
+  //***********************************************************************************
 
-// Automatically calculate simple line connections from  ColoredMarkerList
-LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
+  // Get all line connections from IndexPairList
+  static LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth);
 
-// Get all lines that end at a given position
-LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition);
+  // Automatically calculate simple line connections from XMarkerList
+  static LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
 
+  // Automatically calculate simple line connections from  ColoredMarkerList
+  static LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
 
-//***********************************************************************************
-
-// Fill a FiberSetContainer from line positions and line connections
-void fillFiberSetContainerFromPositionsAndConnections(ml::FiberSetContainer& outFiberSetContainer, const ml::XMarkerList& inLinePositions, const ml::IndexPairList& inLineConnections);
-
-//////////////////////////////////////////////
+  // Get all lines that end at a given position
+  static LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition);
 
 
+  //***********************************************************************************
 
+  // Fill a FiberSetContainer from line positions and line connections
+  static void fillFiberSetContainerFromPositionsAndConnections(ml::FiberSetContainer& outFiberSetContainer, const ml::XMarkerList& inLinePositions, const ml::IndexPairList& inLineConnections);
+
+  //////////////////////////////////////////////
+
+};
+
+} // end namespace mlPDF
 
 ML_END_NAMESPACE
 
-#endif // _PDF_CommonTools_H
+#endif // _PDF_Tools_H

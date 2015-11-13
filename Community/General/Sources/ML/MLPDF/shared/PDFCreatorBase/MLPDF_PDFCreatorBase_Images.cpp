@@ -29,10 +29,10 @@ mlPDF::IMAGE PDFCreatorBase::pdfDoc_LoadImageFromFile(std::string filename)
 
     std::string last4 = "";
 
-    if ((filenameLength > 4) && (fileExists(filename)))
+    if ((filenameLength > 4) && (mlPDF::fileExists(filename)))
     {
       last4 = filename.substr(filenameLength - 4, 4);
-      stringLower(last4);
+      mlPDF::PDFTools::stringLower(last4);
 
       if (last4 == ".png")
       {

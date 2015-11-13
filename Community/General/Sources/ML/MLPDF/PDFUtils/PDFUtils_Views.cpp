@@ -30,12 +30,12 @@ void PDFUtils::_createNewView()
 
     newViewString += "<DisplayName>" + newViewDisplayName + "</DisplayName>\n";
     newViewString += "<BackgroundColor>" + mlPDF::SpecificationGenerator::FormatColorString(_newViewBackgroundColorFld->getVectorValue()) + "</BackgroundColor>\n";
-    newViewString += "<LightingScheme>" + intToString(_newViewLightingSchemeFld->getEnumValue()) + "</LightingScheme>\n";
+    newViewString += "<LightingScheme>" + mlPDF::intToString(_newViewLightingSchemeFld->getEnumValue()) + "</LightingScheme>\n";
     newViewString += "<CamCenterOfOrbit>" + mlPDF::SpecificationGenerator::FormatVec3String(_cameraCenterOfOrbitFld->getVectorValue()) + "</CamCenterOfOrbit>\n";
     newViewString += "<CamCenterToCamera>" + mlPDF::SpecificationGenerator::FormatVec3String(_cameraCenterToCameraFld->getVectorValue()) + "</CamCenterToCamera>\n";
-    newViewString += "<CamRadiusOfOrbit>" + floatToString(_cameraRadiusOfOrbitFld->getFloatValue()) + "</CamRadiusOfOrbit>\n";
-    newViewString += "<CamRollAngle>" + floatToString(_cameraRollAngleFld->getFloatValue()) + "</CamRollAngle>\n";
-    newViewString += "<CamFOVAngle>" + floatToString(_cameraFOVAngleFld->getFloatValue()) + "</CamFOVAngle>\n";
+    newViewString += "<CamRadiusOfOrbit>" + mlPDF::floatToString(_cameraRadiusOfOrbitFld->getFloatValue()) + "</CamRadiusOfOrbit>\n";
+    newViewString += "<CamRollAngle>" + mlPDF::floatToString(_cameraRollAngleFld->getFloatValue()) + "</CamRollAngle>\n";
+    newViewString += "<CamFOVAngle>" + mlPDF::floatToString(_cameraFOVAngleFld->getFloatValue()) + "</CamFOVAngle>\n";
 
     newViewString += "</View>\n\n";
 

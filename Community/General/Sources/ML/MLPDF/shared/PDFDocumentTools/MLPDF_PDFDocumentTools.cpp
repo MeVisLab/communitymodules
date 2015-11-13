@@ -102,6 +102,7 @@ void PDFDocumentTools::CalculateDefaultCameraProperties(
 }
 
 //----------------------------------------------------------------------------------
+
 } // end namespace mlPDF
 
 ML_END_NAMESPACE

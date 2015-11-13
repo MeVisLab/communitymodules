@@ -256,7 +256,7 @@ void LoadPointLineGeometry::_updateOutputData()
   {
     std::string thisLine = *it;
 
-    StringVector thisDataLineComponents = stringSplit(thisLine, " ", false);
+    StringVector thisDataLineComponents = mlPDF::PDFTools::stringSplit(thisLine, " ", false);
     size_t thisDataLineNumComponents = thisDataLineComponents.size();
 
     if (thisDataLineNumComponents > 0)
@@ -269,7 +269,7 @@ void LoadPointLineGeometry::_updateOutputData()
         if (isalpha(firstComponent[0]))
         {
           newSetFilter = firstComponent;
-          newSetType = stringToInt(thisDataLineComponents[1]);
+          newSetType = mlPDF::stringToInt(thisDataLineComponents[1]);
 
           if (thisDataLineNumComponents > 2)
           {
@@ -301,8 +301,8 @@ void LoadPointLineGeometry::_updateOutputData()
         if (thisDataLineNumComponents == 2)
         {
           // Add point (only the first 3 components)         
-          int start = stringToInt(thisDataLineComponents[0]);
-          int end = stringToInt(thisDataLineComponents[1]);
+          int start = mlPDF::stringToInt(thisDataLineComponents[0]);
+          int end = mlPDF::stringToInt(thisDataLineComponents[1]);
 
           IndexPair newConnection(start, end, newSetType, newSetName.c_str());
           _outConnectionsList.appendItem(newConnection);
@@ -311,9 +311,9 @@ void LoadPointLineGeometry::_updateOutputData()
         else if (thisDataLineNumComponents > 2)
         {
           // Add point (only the first 3 components)         
-          double x = stringToDouble(thisDataLineComponents[0]);
-          double y = stringToDouble(thisDataLineComponents[1]);
-          double z = stringToDouble(thisDataLineComponents[2]);
+          double x = mlPDF::stringToDouble(thisDataLineComponents[0]);
+          double y = mlPDF::stringToDouble(thisDataLineComponents[1]);
+          double z = mlPDF::stringToDouble(thisDataLineComponents[2]);
 
           XMarker newPosition(Vector6(x, y, z, 0, 0, 0), newSetType, newSetName.c_str());
           _outPositionsList.appendItem(newPosition);
@@ -359,7 +359,7 @@ void LoadPointLineGeometry::_unloadData()
 
 void LoadPointLineGeometry::_createFibers()
 {
-  fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
+  mlPDF::PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
 
   _outFibersFld->touch();
 }

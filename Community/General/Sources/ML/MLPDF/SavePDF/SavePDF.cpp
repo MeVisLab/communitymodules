@@ -75,7 +75,7 @@ void SavePDF::assemblePDFDocument()
   HPDF_Page pdfPage;
   HPDF_Font pdfFont;
 
-  std::string producerInfoString = "MeVisLab SavePDF module (v" + getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
+  std::string producerInfoString = "MeVisLab SavePDF module (v" + mlPDF::PDFTools::getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
 
   /* use Times-Roman pdfFont. */
   pdfFont = HPDF_GetFont(pdfDocument, "Times-Roman", "WinAnsiEncoding");

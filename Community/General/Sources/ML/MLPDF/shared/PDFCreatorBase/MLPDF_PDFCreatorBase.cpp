@@ -197,7 +197,7 @@ void PDFCreatorBase::saveButtonClicked()
     { 
       last4 = filename.substr(filenameLength-4, 4); 
 
-      stringLower(last4);
+      mlPDF::PDFTools::stringLower(last4);
 
       if (last4 != ".pdf") 
       { 
@@ -219,8 +219,8 @@ void PDFCreatorBase::saveButtonClicked()
     }
 
     // Please do not remove or modify these credits
-    std::string VersionString = "MeVisLab " + getMeVisLabVersionNumberString() + " (" + moduleTypeName + " module)";
-    std::string ProducerString = "MeVisLab MLPDF library (v" + getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
+    std::string VersionString = "MeVisLab " + mlPDF::PDFTools::getMeVisLabVersionNumberString() + " (" + moduleTypeName + " module)";
+    std::string ProducerString = "MeVisLab MLPDF library (v" + mlPDF::PDFTools::getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
 
     // Set PDF info attributes
     HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_TITLE, pdfAttrTitleFld->getStringValue().c_str());
@@ -250,7 +250,7 @@ void PDFCreatorBase::saveButtonClicked()
       if (saveStatus == HPDF_OK)
       {
         int numPages = (int)pdfDocPages.size();
-        std::string pagesString = intToString(numPages) + " page";
+        std::string pagesString = mlPDF::intToString(numPages) + " page";
         if (numPages != 1)
         {
           pagesString += "s";

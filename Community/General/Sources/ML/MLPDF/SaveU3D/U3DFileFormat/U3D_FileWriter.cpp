@@ -279,7 +279,7 @@ size_t U3DFileWriter::addStandardBlock_ModelNode(const U3DObjectInfoStruct& obje
 {
   U3DDataBlockWriter ModelNodeBlock;
   ModelNodeBlock.blockType = U3D_BLOCKTYPE_MODELNODE;
-  std::string parentName = getParentNameFromGroupPath(objectInfo.GroupPath);
+  std::string parentName = mlPDF::PDFTools::getParentNameFromGroupPath(objectInfo.GroupPath);
 
   //ModelNodeBlock.writeString(objectInfo.DisplayName);        // Write Model Node Name (9.5.2.1) - Unfortunately, the model node name must be unique... :-(
   ModelNodeBlock.writeString(objectInfo.InternalName);       // Write Model Node Name (9.5.2.1)

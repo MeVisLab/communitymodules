@@ -20,11 +20,12 @@
 
 ML_START_NAMESPACE
 
+namespace mlPDF {
 
 //***********************************************************************************
 
 // Get data from object (point cloud, line set, mesh) specification fields
-StringVector getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter)
+StringVector PDFTools::getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter)
 {
   StringVector result;
 
@@ -38,7 +39,7 @@ StringVector getObjectSpecificationsStringFromUI(ml::StringField *inputField, st
 //***********************************************************************************
 
 // Parses the specification string from the UI and extracts a specific U3D property
-std::string getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult)
+std::string PDFTools::getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult)
 {
   std::string result = failResult; 
   
@@ -73,7 +74,7 @@ std::string getSpecificParameterFromString(const std::string specificationString
 //***********************************************************************************
 
 // Parses input string from UI and extracts object specification parameters
-SpecificationParametersStruct getAllSpecificationParametersFromString(const std::string specificationString)
+SpecificationParametersStruct PDFTools::getAllSpecificationParametersFromString(const std::string specificationString)
 {
   SpecificationParametersStruct result;
 
@@ -97,7 +98,7 @@ SpecificationParametersStruct getAllSpecificationParametersFromString(const std:
 
 //***********************************************************************************
 
-std::string getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult)
+std::string PDFTools::getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult)
 {
   std::string result = failResult; 
   std::string keyword (parameter+"=");
@@ -124,7 +125,7 @@ std::string getSpecificParameterFromWEMDescription(const std::string wemDescript
 
 //***********************************************************************************
 
-std::string getParentNameFromGroupPath(std::string groupPath)  
+std::string PDFTools::getParentNameFromGroupPath(std::string groupPath)  
 {
   std::string result = "";  // Default = root node
     
@@ -141,7 +142,7 @@ std::string getParentNameFromGroupPath(std::string groupPath)
 //***********************************************************************************
 
 // Make sure each group path has a leading and a trailing "/"
-std::string normalizeGroupPath(std::string groupPath)
+std::string PDFTools::normalizeGroupPath(std::string groupPath)
 {
   std::string result = groupPath;
 
@@ -167,7 +168,7 @@ std::string normalizeGroupPath(std::string groupPath)
 
 //***********************************************************************************
 
-void updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath)
+void PDFTools::updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath)
 {
     StringVector groupPathComponents = stringSplit(thisGroupPath,"/", false);
     size_t numGroupPathComponents = groupPathComponents.size();
@@ -216,7 +217,7 @@ void updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPa
 
 //***********************************************************************************
 
-StringVector stringSplit(const std::string& stringToSplit, const std::string& delimiter, const bool keepEmpty)
+StringVector PDFTools::stringSplit(const std::string& stringToSplit, const std::string& delimiter, const bool keepEmpty)
 {
   StringVector result;
 
@@ -252,7 +253,7 @@ StringVector stringSplit(const std::string& stringToSplit, const std::string& de
 
 //***********************************************************************************
 
-void stringLower(std::string &sourceString)
+void PDFTools::stringLower(std::string &sourceString)
 {
   for(unsigned short loop=0;loop < sourceString.size();loop++)
   {
@@ -262,7 +263,7 @@ void stringLower(std::string &sourceString)
 
 //***********************************************************************************
 
-bool stringToBool(std::string sourceString)
+bool PDFTools::stringToBool(std::string sourceString)
 {
   stringLower(sourceString);
 
@@ -271,7 +272,7 @@ bool stringToBool(std::string sourceString)
 
 //***********************************************************************************
 
-std::string getMeVisLabVersionNumberString()
+std::string PDFTools::getMeVisLabVersionNumberString()
 {
   /*
   std::string MeVisLabVersionString = intToString(MEVISLAB_VERSION); // Preprocessor define must be parsed
@@ -294,14 +295,14 @@ std::string getMeVisLabVersionNumberString()
 
 //***********************************************************************************
 
-std::string getModuleVersionNumberString()
+std::string PDFTools::getModuleVersionNumberString()
 {
   return "1.2";
 }
 
 //***********************************************************************************
 
-Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor) 
+Vector4 PDFTools::getColorVec4(std::string colorString, const Vector4 defaultColor) 
 {
   Vector4 result = defaultColor;
 
@@ -340,7 +341,7 @@ Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor)
   return result;
 }
 
-Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor) 
+Vector3 PDFTools::getColorVec3(std::string colorString, const Vector3 defaultColor) 
 {
   Vector3 result = defaultColor;
 
@@ -376,7 +377,7 @@ Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor)
 //***********************************************************************************
 
 // Updates the model bounding box
-void UpdateBoundingBox(ModelBoundingBoxStruct& existingBoundingBox, ModelBoundingBoxStruct newCorners)
+void PDFTools::UpdateBoundingBox(ModelBoundingBoxStruct& existingBoundingBox, ModelBoundingBoxStruct newCorners)
 {
   MLdouble smallestX = ML_DOUBLE_MAX;
   MLdouble smallestY = ML_DOUBLE_MAX;
@@ -428,7 +429,7 @@ void UpdateBoundingBox(ModelBoundingBoxStruct& existingBoundingBox, ModelBoundin
 //***********************************************************************************
 
 // Get bounding box edges from positions
-ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions)
+ModelBoundingBoxStruct PDFTools::GetBoundingBoxFomPositions(PositionsVector positions)
 {
   ModelBoundingBoxStruct result;
 
@@ -468,7 +469,7 @@ ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions)
 //***********************************************************************************
 
 // Get all positions (vertices) from ColoredMarkerList
-PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize)
+PositionsVector PDFTools::getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize)
 {
   PositionsVector result;
   
@@ -505,7 +506,7 @@ PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList
 //***********************************************************************************
 
 // Get all positions (vertices) from XMarkerList
-PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize)
+PositionsVector PDFTools::getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize)
 {
   PositionsVector result;
   
@@ -540,7 +541,7 @@ PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsLi
 //***********************************************************************************
 
 // Get all line connections from IndexPairList
-LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth)
+LinesVector PDFTools::getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth)
 {
   LinesVector result;
   LineStruct thisLine;
@@ -582,7 +583,7 @@ LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList
 //***********************************************************************************
 
 // Automatically calculate simple line connections from XMarkerList
-LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth)
+LinesVector PDFTools::getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth)
 {
   LinesVector result;
   LineStruct thisLine;
@@ -624,7 +625,7 @@ LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList,
 //***********************************************************************************
 
 // Automatically calculate simple line connections from ColoredMarkerList
-LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth)
+LinesVector PDFTools::getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth)
 {
   LinesVector result;
   LineStruct thisLine;
@@ -667,7 +668,7 @@ LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList po
 //***********************************************************************************
 
 // Get all lines that end at a given position
-LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition)
+LinesVector PDFTools::getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition)
 {
   LinesVector result;
   LineStruct newLine;
@@ -689,7 +690,7 @@ LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition)
 
 //***********************************************************************************
 
-void fillFiberSetContainerFromPositionsAndConnections(FiberSetContainer& outFiberSetContainer, const XMarkerList& inLinePositions, const IndexPairList& inLineConnections)
+void PDFTools::fillFiberSetContainerFromPositionsAndConnections(FiberSetContainer& outFiberSetContainer, const XMarkerList& inLinePositions, const IndexPairList& inLineConnections)
 {
   outFiberSetContainer.deleteAllFiberSets();
 
@@ -787,5 +788,7 @@ void fillFiberSetContainerFromPositionsAndConnections(FiberSetContainer& outFibe
 
 //***********************************************************************************
 
+
+} // end namespace mlPDF
 
 ML_END_NAMESPACE

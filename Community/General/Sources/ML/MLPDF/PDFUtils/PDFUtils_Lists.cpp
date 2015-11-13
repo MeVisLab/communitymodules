@@ -139,7 +139,7 @@ void PDFUtils::_updateLineSetOutputs()
 
 void PDFUtils::_createFibers()
 {
-  fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outLinePositions, _outLineConnections);
+  mlPDF::PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outLinePositions, _outLineConnections);
 
   _outFibersFld->touch();
 }

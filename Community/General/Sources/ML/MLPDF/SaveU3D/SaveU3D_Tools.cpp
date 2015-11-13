@@ -389,38 +389,38 @@ void SaveU3D::addMetaData(MetaDataVector &metaDataVector, ModelBoundingBoxStruct
     if (_defaultBoundingBoxMetaDataFld->getBoolValue())
     {
       metaDataPair.key = "BoundingBoxCenter";
-      metaDataPair.value = floatToString(static_cast<float>(boundingBox.center.x)) + " " + 
-                           floatToString(static_cast<float>(boundingBox.center.y)) + " " + 
-                           floatToString(static_cast<float>(boundingBox.center.z));
+      metaDataPair.value = mlPDF::floatToString(static_cast<float>(boundingBox.center.x)) + " " + 
+                           mlPDF::floatToString(static_cast<float>(boundingBox.center.y)) + " " + 
+                           mlPDF::floatToString(static_cast<float>(boundingBox.center.z));
 
       metaDataVector.push_back(metaDataPair);  
 
       metaDataPair.key = "BoundingBoxStart";
-      metaDataPair.value = floatToString(static_cast<float>(boundingBox.start.x)) + " " + 
-                           floatToString(static_cast<float>(boundingBox.start.y)) + " " + 
-                           floatToString(static_cast<float>(boundingBox.start.z));
+      metaDataPair.value = mlPDF::floatToString(static_cast<float>(boundingBox.start.x)) + " " + 
+                           mlPDF::floatToString(static_cast<float>(boundingBox.start.y)) + " " + 
+                           mlPDF::floatToString(static_cast<float>(boundingBox.start.z));
 
       metaDataVector.push_back(metaDataPair);  
 
       metaDataPair.key = "BoundingBoxEnd";
-      metaDataPair.value = floatToString(static_cast<float>(boundingBox.end.x)) + " " + 
-                           floatToString(static_cast<float>(boundingBox.end.y)) + " " + 
-                           floatToString(static_cast<float>(boundingBox.end.z));
+      metaDataPair.value = mlPDF::floatToString(static_cast<float>(boundingBox.end.x)) + " " + 
+                           mlPDF::floatToString(static_cast<float>(boundingBox.end.y)) + " " + 
+                           mlPDF::floatToString(static_cast<float>(boundingBox.end.z));
 
       metaDataVector.push_back(metaDataPair);  
 
       metaDataPair.key = "BoundingBoxRadius";
-      metaDataPair.value = floatToString(static_cast<float>(boundingBox.radius));
+      metaDataPair.value = mlPDF::floatToString(static_cast<float>(boundingBox.radius));
 
       metaDataVector.push_back(metaDataPair);  
     }
 
-    StringVector metaDataSpecificationsVector = getObjectSpecificationsStringFromUI(_metaDataSpecificationFld, "<MetaData>");
+    StringVector metaDataSpecificationsVector = mlPDF::PDFTools::getObjectSpecificationsStringFromUI(_metaDataSpecificationFld, "<MetaData>");
     const MLuint32 numberOfMEtaDataPairs = (MLuint32)metaDataSpecificationsVector.size();  
 
     for (MLuint32 i = 0; i < numberOfMEtaDataPairs; i++)
     {
-      SpecificationParametersStruct thisSpecificationParameters = getAllSpecificationParametersFromString(metaDataSpecificationsVector[i]);
+      SpecificationParametersStruct thisSpecificationParameters = mlPDF::PDFTools::getAllSpecificationParametersFromString(metaDataSpecificationsVector[i]);
 
       metaDataPair.key = thisSpecificationParameters.MetaDataKey;
       metaDataPair.value = thisSpecificationParameters.MetaDataValue;

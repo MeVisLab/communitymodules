@@ -34,7 +34,7 @@ GroupNodeVector assemblePRCGroupNodeInfo(PRCObjectInfoVector &_prcObjectInfoVect
     PRCObjectInfoStruct thisPRCObjectInfo = _prcObjectInfoVector[i];
     std::string thisGroupPath = thisPRCObjectInfo.GroupPath;
 
-    updateGroupNodesVector(groupNodes, thisGroupPath);
+    mlPDF::PDFTools::updateGroupNodesVector(groupNodes, thisGroupPath);
   }
 
   return groupNodes;
@@ -54,7 +54,7 @@ void mapParentTreeNodeIDs(PRCObjectInfoVector &_prcObjectInfoVector, GroupNodeVe
 
     if ( ("" != thisGroupPath) && ("/" != thisGroupPath) )
     {
-      StringVector groupPathComponents = stringSplit(thisGroupPath,"/", false);
+      StringVector groupPathComponents = mlPDF::PDFTools::stringSplit(thisGroupPath,"/", false);
       size_t numGroupPathComponents = groupPathComponents.size();
 
       if (numGroupPathComponents > 0)

@@ -142,15 +142,15 @@ mlPDF::VIEW3D PDFCreatorBase::pdfDoc_3DModel_CreateViewFromSpecificationString(s
 {
   mlPDF::VIEW3D newView = NULL;
 
-  std::string displayName   = getSpecificParameterFromString(specificationString, "<DisplayName>", "Default View");
-  Vector3 backgroundColor   = getColorVec3(getSpecificParameterFromString(specificationString, "<BackgroundColor>"), Vector3(0,0,0));
-  int lightingScheme        = stringToInt(getSpecificParameterFromString(specificationString, "<LightingScheme>", "9"));
-  Vector3 camCenterOfOrbit  = getColorVec3(getSpecificParameterFromString(specificationString, "<CamCenterOfOrbit>"), Vector3(0, 0, 0));
-  Vector3 camCenterToCamera = getColorVec3(getSpecificParameterFromString(specificationString, "<CamCenterToCamera>"), Vector3(0, 0, 0));
-  float camRadiusOfOrbit    = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<CamRadiusOfOrbit>", "0"));
-  float camRollAngle        = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<CamRollAngle>", "0"));
-  float camFOVAngle         = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<CamFOVAngle>", "0"));
-  std::string nodes         = getSpecificParameterFromString(specificationString, "<Nodes>", "");
+  std::string displayName   = mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<DisplayName>", "Default View");
+  Vector3 backgroundColor   = mlPDF::PDFTools::getColorVec3(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<BackgroundColor>"), Vector3(0,0,0));
+  int lightingScheme        = mlPDF::stringToInt(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<LightingScheme>", "9"));
+  Vector3 camCenterOfOrbit  = mlPDF::PDFTools::getColorVec3(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<CamCenterOfOrbit>"), Vector3(0, 0, 0));
+  Vector3 camCenterToCamera = mlPDF::PDFTools::getColorVec3(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<CamCenterToCamera>"), Vector3(0, 0, 0));
+  float camRadiusOfOrbit    = (float)mlPDF::stringToDouble(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<CamRadiusOfOrbit>", "0"));
+  float camRollAngle        = (float)mlPDF::stringToDouble(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<CamRollAngle>", "0"));
+  float camFOVAngle         = (float)mlPDF::stringToDouble(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<CamFOVAngle>", "0"));
+  std::string nodes         = mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<Nodes>", "");
 
   newView = pdfDoc_3DModel_CreateView(displayName, (mlPDF::LIGHTING_SCHEMES)lightingScheme, backgroundColor);
 
@@ -254,12 +254,12 @@ void PDFCreatorBase::pdfDoc_3DView_AddVisibleNodeFromSpecificationString(mlPDF::
 {
   if (view && specificationString != "")
   {
-    std::string nodeName = getSpecificParameterFromString(specificationString, "<NodeName>", "");
+    std::string nodeName = mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<NodeName>", "");
 
     if (nodeName != "")
     {
-      float opacity = (float)stringToDouble(getSpecificParameterFromString(specificationString, "<NodeOpacity>", "0"));
-      bool visibility = stringToBool(getSpecificParameterFromString(specificationString, "<NodeVisibility>", "true"));
+      float opacity = (float)mlPDF::stringToDouble(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<NodeOpacity>", "0"));
+      bool visibility = mlPDF::PDFTools::stringToBool(mlPDF::PDFTools::getSpecificParameterFromString(specificationString, "<NodeVisibility>", "true"));
 
       pdfDoc_3DView_AddVisibleNode(view, nodeName, opacity, visibility);
     }
@@ -272,7 +272,7 @@ void PDFCreatorBase::pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(mlP
 {
   if (view && specificationString != "")
   {
-    StringVector specificationsVector = stringSplit(specificationString, "<ViewNode>", false);
+    StringVector specificationsVector = mlPDF::PDFTools::stringSplit(specificationString, "<ViewNode>", false);
 
     for (size_t i = 0; i < specificationsVector.size(); i++)
     {
@@ -311,7 +311,7 @@ void PDFCreatorBase::pdfDoc_3DModel_AddAllViewsFromSpecificationString(mlPDF::MO
 {
   if (model && specificationString != "")
   {
-    StringVector specificationsVector = stringSplit(specificationString, "<View>", false);
+    StringVector specificationsVector = mlPDF::PDFTools::stringSplit(specificationString, "<View>", false);
 
     for (size_t i = 0; i < specificationsVector.size(); i++)
     {

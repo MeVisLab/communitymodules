@@ -34,7 +34,7 @@ GroupNodeVector assembleU3DGroupNodeInfo(U3DObjectInfoVector &_u3dObjectInfoVect
     U3DObjectInfoStruct thisU3DObjectInfo = _u3dObjectInfoVector[i];
     std::string thisGroupPath = thisU3DObjectInfo.GroupPath;
 
-    updateGroupNodesVector(groupNodes, thisGroupPath);
+    mlPDF::PDFTools::updateGroupNodesVector(groupNodes, thisGroupPath);
   }
 
   return groupNodes;

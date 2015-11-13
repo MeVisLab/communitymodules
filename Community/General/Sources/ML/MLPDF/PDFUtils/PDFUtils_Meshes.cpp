@@ -88,7 +88,7 @@ void PDFUtils::_updateAvailableWEMPatchesFld(WEMPtr wem, std::string defaultEntr
       }
 
       patchDescription.append(" {ID=");
-      patchDescription.append(intToString(wemPatch->getId()));
+      patchDescription.append(mlPDF::intToString(wemPatch->getId()));
       patchDescription.append("}");
 
       availableWEMs.append(patchDescription);
@@ -140,7 +140,7 @@ void PDFUtils::_selectedWEMPatchChanged(WEMPtr wem)
       {
         std::string idSection = idSectionPlusRest.substr(4, endIDPosition - 4);
 
-        int patchId = stringToInt(idSection);
+        int patchId = mlPDF::stringToInt(idSection);
 
         _selectedWEMPatchIdFld->setIntValue(patchId);
 
@@ -175,8 +175,8 @@ void PDFUtils::_selectedWEMPatchIdChanged(WEMPtr wem)
 
         std::string description = patch->getDescription();
 
-        groupPath = getSpecificParameterFromWEMDescription(description, "GroupPath"); 
-        modelColor = getSpecificParameterFromWEMDescription(description, "Color");
+        groupPath = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(description, "GroupPath"); 
+        modelColor = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(description, "Color");
       }
 
     }
@@ -194,7 +194,7 @@ void PDFUtils::_selectedWEMPatchIdChanged(WEMPtr wem)
   {
     _selectedWEMPatchUseDefaultColorFld->setBoolValue(false);
 
-    Vector4 colorVector = getColorVec4(modelColor, Vector4(0));
+    Vector4 colorVector = mlPDF::PDFTools::getColorVec4(modelColor, Vector4(0));
 
     _selectedWEMPatchColorFld->setColorValue(colorVector[0], colorVector[1], colorVector[2]);
     _selectedWEMPatchColorAlphaFld->setFloatValue(colorVector[3]);
@@ -316,8 +316,8 @@ void PDFUtils::_processPatch(unsigned int patchIndex)
     std::string description = inWEMPatch->getDescription();
 
     std::string modelName = "ModelName=" + label +";";
-    std::string groupPath = getSpecificParameterFromWEMDescription(description, "GroupPath"); 
-    std::string modelColor = getSpecificParameterFromWEMDescription(description, "Color");
+    std::string groupPath = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(description, "GroupPath"); 
+    std::string modelColor = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(description, "Color");
 
     if (groupPath != "")
     {
@@ -334,7 +334,7 @@ void PDFUtils::_processPatch(unsigned int patchIndex)
     }
     else
     {
-      Vector4 colorVector = getColorVec4(modelColor, Vector4(0));
+      Vector4 colorVector = mlPDF::PDFTools::getColorVec4(modelColor, Vector4(0));
       colorVector[3] = 1 - colorVector[3];
 
       modelColor = "Color=" + modelColor + ";";

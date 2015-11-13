@@ -32,7 +32,7 @@ void SaveU3D::PreProcessPointSetData(U3DPointSetInfoVector &U3DPointSetInfoVecto
   }
   else
   {
-    pointSetSpecificationsVector = getObjectSpecificationsStringFromUI(_pointCloudSpecificationFld, "<PointSet>");
+    pointSetSpecificationsVector = mlPDF::PDFTools::getObjectSpecificationsStringFromUI(_pointCloudSpecificationFld, "<PointSet>");
   }
   
   const MLuint32 numberOfPointSetSpecifications = (MLuint32)pointSetSpecificationsVector.size();  
@@ -46,24 +46,24 @@ void SaveU3D::PreProcessPointSetData(U3DPointSetInfoVector &U3DPointSetInfoVecto
 
   for (MLuint32 i = 0; i < numberOfPointSetSpecifications; i++)
   {
-    SpecificationParametersStruct thisSpecificationParameters = getAllSpecificationParametersFromString(pointSetSpecificationsVector[i]);
+    SpecificationParametersStruct thisSpecificationParameters = mlPDF::PDFTools::getAllSpecificationParametersFromString(pointSetSpecificationsVector[i]);
 
     // Override default object name
     if (thisSpecificationParameters.ObjectName == "Object")
     {
-      thisSpecificationParameters.ObjectName = "Point Set " + intToString(i+1);
+      thisSpecificationParameters.ObjectName = "Point Set " + mlPDF::intToString(i+1);
     }
 
     U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_POINTSET, thisSpecificationParameters.ObjectName, defaultValues);
     thisU3DObjectInfo.GroupPath = thisSpecificationParameters.GroupPath;
-    thisU3DObjectInfo.DiffuseColor = getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
-    thisU3DObjectInfo.SpecularColor = getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
-    thisU3DObjectInfo.Visibility = (MLuint32)stringToInt(thisSpecificationParameters.ModelVisibility);
+    thisU3DObjectInfo.DiffuseColor = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+    thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
+    thisU3DObjectInfo.Visibility = (MLuint32)mlPDF::stringToInt(thisSpecificationParameters.ModelVisibility);
     _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
 
     PointSetSpecificationStruct thisPointSetGeometry;
     thisPointSetGeometry.internalName = thisU3DObjectInfo.InternalName;
-    thisPointSetGeometry.positions = getAllPositionsFromXMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
+    thisPointSetGeometry.positions = mlPDF::PDFTools::getAllPositionsFromXMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
     _pointSetsGeometryVector.push_back(thisPointSetGeometry);
 
     // Collect point set info
@@ -84,8 +84,8 @@ void SaveU3D::PreProcessPointSetData(U3DPointSetInfoVector &U3DPointSetInfoVecto
     thisPointSetInfo.ResourceName = thisU3DObjectInfo.ResourceName;
     U3DPointSetInfoVector.push_back(thisPointSetInfo);                
 
-    ModelBoundingBoxStruct newboundingBox = GetBoundingBoxFomPositions(thisPointSetGeometry.positions);
-    UpdateBoundingBox(boundingBox, newboundingBox);
+    ModelBoundingBoxStruct newboundingBox = mlPDF::PDFTools::GetBoundingBoxFomPositions(thisPointSetGeometry.positions);
+    mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
   }
 	
 }

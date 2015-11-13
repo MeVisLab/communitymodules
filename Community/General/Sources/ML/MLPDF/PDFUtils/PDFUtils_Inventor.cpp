@@ -37,11 +37,11 @@ void PDFUtils::_calculateInventorVertexList()
   {
     ml::XMarker thisPosition = _inPointPositions[i];
 
-    vertexList += floatToString(thisPosition.x());
+    vertexList += mlPDF::floatToString(thisPosition.x());
     vertexList += " ";
-    vertexList += floatToString(thisPosition.y());
+    vertexList += mlPDF::floatToString(thisPosition.y());
     vertexList += " ";
-    vertexList += floatToString(thisPosition.z());
+    vertexList += mlPDF::floatToString(thisPosition.z());
 
     if (i < positionsListLength - 1)
     {
@@ -75,7 +75,7 @@ void PDFUtils::_calculateInventorCoordIndexList()
       // No connections are defined -> create default single line connection
       for (int i = 0; i < positionsListLength; i++)
       {
-        coordIndexList += intToString(i);
+        coordIndexList += mlPDF::intToString(i);
 
         if (i < positionsListLength - 1)
         {

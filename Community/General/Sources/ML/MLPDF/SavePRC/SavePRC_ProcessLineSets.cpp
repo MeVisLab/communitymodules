@@ -30,7 +30,7 @@ void SavePRC::PreProcessLineSetData(ModelBoundingBoxStruct& boundingBox)
   }
   else
   {
-    pointSetSpecificationsVector = getObjectSpecificationsStringFromUI(_lineSetSpecificationFld, "<LineSet>");
+    pointSetSpecificationsVector = mlPDF::PDFTools::getObjectSpecificationsStringFromUI(_lineSetSpecificationFld, "<LineSet>");
   }
   
   const MLuint32 numberOfPointSetSpecifications = (MLuint32)pointSetSpecificationsVector.size();  
@@ -44,38 +44,38 @@ void SavePRC::PreProcessLineSetData(ModelBoundingBoxStruct& boundingBox)
 
   for (MLuint32 i = 0; i < numberOfPointSetSpecifications; i++)
   {
-    SpecificationParametersStruct thisSpecificationParameters = getAllSpecificationParametersFromString(pointSetSpecificationsVector[i]);
+    SpecificationParametersStruct thisSpecificationParameters = mlPDF::PDFTools::getAllSpecificationParametersFromString(pointSetSpecificationsVector[i]);
 
     // Override default object name
     if (thisSpecificationParameters.ObjectName == "Object")
     {
-      thisSpecificationParameters.ObjectName = "Line Set " + intToString(i+1);
+      thisSpecificationParameters.ObjectName = "Line Set " + mlPDF::intToString(i+1);
     }
 
     PRCObjectInfoStruct thisPRCObjectInfo = CreateNewPRCObjectInfo(i, PRCOBJECTTYPE_LINESET, thisSpecificationParameters.ObjectName, defaultValues);
     thisPRCObjectInfo.GroupPath        = thisSpecificationParameters.GroupPath;
     thisPRCObjectInfo.ParentTreeNodeID = -1;
-    thisPRCObjectInfo.RGBAColor        = getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
+    thisPRCObjectInfo.RGBAColor        = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
     _prcObjectInfoVector.push_back(thisPRCObjectInfo);
 		
     // Collect geometry info
     LineSetSpecificationStruct thisLineSetGeometry;
     thisLineSetGeometry.internalName = thisPRCObjectInfo.InternalName;
-    thisLineSetGeometry.positions    = getAllPositionsFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
+    thisLineSetGeometry.positions    = mlPDF::PDFTools::getAllPositionsFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
 
     if ( (_inLineConnections.size() > 0) && (thisSpecificationParameters.ConnectionTypes != "simple") )
     {
-      thisLineSetGeometry.lines = getAllLinesFromIndexPairList(_inLineConnections, thisSpecificationParameters.ConnectionTypes, thisSpecificationParameters.LineWidth);
+      thisLineSetGeometry.lines = mlPDF::PDFTools::getAllLinesFromIndexPairList(_inLineConnections, thisSpecificationParameters.ConnectionTypes, thisSpecificationParameters.LineWidth);
     }
     else
     {
-      thisLineSetGeometry.lines = getStandardLinesFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.LineWidth);
+      thisLineSetGeometry.lines = mlPDF::PDFTools::getStandardLinesFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.LineWidth);
     }
 
     _lineSetsGeometryVector.push_back(thisLineSetGeometry);
 
-    ModelBoundingBoxStruct newboundingBox = GetBoundingBoxFomPositions(thisLineSetGeometry.positions);
-    UpdateBoundingBox(boundingBox, newboundingBox);
+    ModelBoundingBoxStruct newboundingBox = mlPDF::PDFTools::GetBoundingBoxFomPositions(thisLineSetGeometry.positions);
+    mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
   }
 	
 }
