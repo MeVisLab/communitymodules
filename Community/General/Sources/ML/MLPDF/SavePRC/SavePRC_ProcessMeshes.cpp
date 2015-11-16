@@ -103,10 +103,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
           std::string u3dModelName       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
           std::string u3dGroupName       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
           std::string u3dGroupPath       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupPath");
-          if ("" != u3dModelName)
-          {
-            u3dGroupPath = "/" + u3dModelName + "/";
-          }
+
           if ("" != u3dGroupName)
           {
             if ("" == u3dGroupPath)
