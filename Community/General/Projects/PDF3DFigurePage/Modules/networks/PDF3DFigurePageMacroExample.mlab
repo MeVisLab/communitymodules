@@ -130,9 +130,9 @@ module PDF3DFigurePageMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "380 110 1205 828"
+        geometry = "492 677 1205 828"
         sizeHint = "1187 784"
-        wasOpen = no
+        wasOpen = yes
       }
       window _automatic {
         geometry = "597 254 903 600"
@@ -143,11 +143,11 @@ module PDF3DFigurePageMacro {
   }
   fields  {
     instanceName = PDF3DFigurePageMacro
-    useInputConnectors = TRUE
-    loadDataManually = FALSE
+    useInputConnectors = FALSE
+    loadDataManually = TRUE
     filenameWEM = ""
-    filenamePointPositions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/PDF3DFigurePageMacroExample.txt"
-    filenameLineDefinitions = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/MLPDF/networks/PDF3DFigurePageMacroExample.txt"
+    filenamePointPositions = "J:/MeVisLab/Packages Community/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.txt"
+    filenameLineDefinitions = "J:/MeVisLab/Packages Community/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.txt"
     showPointsPreview = TRUE
     showPointsPrevieSize = 2.74
     showLinesPreview = TRUE
@@ -156,18 +156,18 @@ module PDF3DFigurePageMacro {
     viewDisplayName = ""
     viewBackgroundColor = "1 1 1"
     viewLightingScheme = HeadLamp
-    viewCameraCenterOfOrbit = "91.7434262972388 -144.486438362504 1117.73729447518"
-    viewCameraCenterToCamera = "57.9371004361597 -273.020367057417 49.6855570873231"
-    viewCameraRadiusOfOrbit = 283.48807
-    viewCameraRollAngle = 350.5694
+    viewCameraCenterOfOrbit = "2.43455518762676 -10.430001499928 7.64604242897622"
+    viewCameraCenterToCamera = "10.5154217334548 230.525307896412 -21.7771440372526"
+    viewCameraRadiusOfOrbit = 231.79025
+    viewCameraRollAngle = 10.967788
     viewCameraFOVAngle = 90
     viewSpecifications = ""
-    selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
-    selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
-    availableWEMPatches = "Left Femur (Outer Surface) {ID=2}|Left Femur (Spongiosa Surface) {ID=4}|Left Femur (Bone Marrow Surface) {ID=6}"
-    selectedWEMPatchGroupPath = ""
+    selectedWEMPatch = "Side Branch {ID=2}"
+    selectedWEMPatchNewLabel = "Side Branch"
+    availableWEMPatches = "Main Branch {ID=1}|Side Branch {ID=2}"
+    selectedWEMPatchGroupPath = Meshes
     selectedWEMPatchUseDefaultColor = FALSE
-    selectedWEMPatchColor = "1 0 0"
+    selectedWEMPatchColor = "1 0.333333333333333 0"
     selectedWEMPatchColorAlpha = 0.60000002
     selectedLineSet = ""
     selectedLineSetNewLabel = ""
