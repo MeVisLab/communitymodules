@@ -24,6 +24,7 @@
 
 ML_START_NAMESPACE
 
+using namespace mlPDF;
 
 //! Implements code for the runtime type system of the ML
 ML_MODULE_CLASS_SOURCE(PDF3DFigurePage_Utils, WEMProcessor);
@@ -36,15 +37,21 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
+  //_inRawWEM = NULL;
+  //_outOptimizedWEM = new WEM();
+
   // Input fields and allowed types.
   (_inPointPositionsFld  = addBase("inPointPositions"))->setBaseValueAndAddAllowedType(&_inPointPositions);
   (_inLinePositionsFld   = addBase("inLinePositions"))->setBaseValueAndAddAllowedType(&_inLinePositions);
   (_inLineConnectionsFld = addBase("inLineConnections"))->setBaseValueAndAddAllowedType(&_inLineConnections);
+  //(_inRawWEMFld          = addBase("inRawWEM"))->setBaseValueAndAddAllowedType(&_inRawWEM);
 
   (_outPointPositionsFld  = addBase("outPointPositions"))->setBaseValueAndAddAllowedType(&_outPointPositions);
   (_outLinePositionsFld   = addBase("outLinePositions"))->setBaseValueAndAddAllowedType(&_outLinePositions);
   (_outLineConnectionsFld = addBase("outLineConnections"))->setBaseValueAndAddAllowedType(&_outLineConnections);
   (_outFibersFld          = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+  (_outSeletedFibersFld   = addBase("outSeletedFibers"))->setBaseValueAndAddAllowedType(&_outSelectedFiberSetContainer);
+  //(_outOptimizedWEMFld    = addBase("outOptimizedWEM"))->setBaseValueAndAddAllowedType(&_outOptimizedWEM);
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
   _calculateCameraFromInventorSceneFld = addNotify("calculateCameraFromInventorScene");
@@ -100,14 +107,22 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
   (_selectedPointSetGroupPathFld         = addString("selectedPointSetGroupPath"))->setStringValue("");
 
   //! Fields for PointSet/LineSet properties
-  (_pointPositionsMaxTypeIDFld = addInt("pointPositionsMaxTypeID"))->setIntValue(-1);
-  (_linePositionsMaxTypeIDFld = addInt("linePositionsMaxTypeID"))->setIntValue(-1);
-  (_lineConnectionsMaxTypeIDFld = addInt("lineConnectionsMaxTypeID"))->setIntValue(-1);
-  (_lineDefinitionsMaxTypeIDFld = addInt("lineDefinitionsMaxTypeID"))->setIntValue(-1);
-  (_pointPositionsNextTypeIDFld = addInt("pointPositionsNextTypeID"))->setIntValue(0);
-  (_linePositionsNextTypeIDFld = addInt("linePositionsNextTypeID"))->setIntValue(0);
+  (_pointPositionsMaxTypeIDFld   = addInt("pointPositionsMaxTypeID"))->setIntValue(-1);
+  (_linePositionsMaxTypeIDFld    = addInt("linePositionsMaxTypeID"))->setIntValue(-1);
+  (_lineConnectionsMaxTypeIDFld  = addInt("lineConnectionsMaxTypeID"))->setIntValue(-1);
+  (_lineDefinitionsMaxTypeIDFld  = addInt("lineDefinitionsMaxTypeID"))->setIntValue(-1);
+  (_pointPositionsNextTypeIDFld  = addInt("pointPositionsNextTypeID"))->setIntValue(0);
+  (_linePositionsNextTypeIDFld   = addInt("linePositionsNextTypeID"))->setIntValue(0);
   (_lineConnectionsNextTypeIDFld = addInt("lineConnectionsNextTypeID"))->setIntValue(0);
   (_lineDefinitionsNextTypeIDFld = addInt("lineDefinitionsNextTypeID"))->setIntValue(0);
+
+  //! Fields for point/line set specification strings
+  (_pointCloudSpecificationFld      = addString("pointCloudSpecification"))->setStringValue("");
+  (_lineSetSpecificationFld         = addString("lineSetSpecification"))->setStringValue("");
+  (_metaDataSpecificationFld        = addString("metaDataSpecification"))->setStringValue("");
+  _createPointCloudSpecificationFld = addNotify("createPointCloudSpecification");
+  _createLineSetSpecificationFld    = addNotify("createLineSetSpecification");
+  _createMetaDataSpecificationFld = addNotify("createMetaDataSpecification");
 
 
   // Set WEM processor fields
@@ -129,16 +144,27 @@ PDF3DFigurePage_Utils::~PDF3DFigurePage_Utils()
   _inLinePositions.clearList();
   _inLineConnections.clearList();
   _outFiberSetContainer.deleteAllFiberSets();
+  _outSelectedFiberSetContainer.deleteAllFiberSets();
   _outPointPositions.clearList();  
   _outLinePositions.clearList();
   _outLineConnections.clearList();
+
+//  if (_outOptimizedWEM)
+//  {
+//    _outOptimizedWEM->clear();
+//  }
+//
+//  _outOptimizedWEM = NULL;
 }
 
 //----------------------------------------------------------------------------------
 
 void PDF3DFigurePage_Utils::handleNotification (Field* field)
 {
-  // _inPointPositionsFld
+  //
+  // Point set related fields
+  // 
+
   if (field == _inPointPositionsFld)
   {
     ml::Base *inValue = _inPointPositionsFld->getBaseValue();
@@ -159,9 +185,34 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
     _updatePointSetOutputs();
+    _updatePointSetMap();
+    _updateAvailablePointSetsFld();
   }
 
-  // _inLinePositionsFld
+  if (field == _selectedPointSetFld)
+  {
+    _selectedPointSetChanged();
+  }
+
+  if (field == _selectedPointSetNewLabelFld)
+  {
+    _updateSelectedPointSetLabel();
+  }
+
+  if (field == _selectedPointSetGroupPathFld)
+  {
+    _updateSelectedPointSethGroupPath();
+  }
+
+  if (field == _createPointCloudSpecificationFld)
+  {
+    _createPointCloudSpecification();
+  }
+
+  //
+  // Line set related fields
+  // 
+
   if (field == _inLinePositionsFld)
   {
     ml::Base *inValue = _inLinePositionsFld->getBaseValue();
@@ -182,9 +233,10 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
     _updateLineSetOutputs();
+    _updateLineSetMap();
+    _updateAvailableLineSetsFld();
   }
 
-  // _inLineConnectionsFld
   if (field == _inLineConnectionsFld)
   {
     ml::IndexPairList* inList = ((ml::IndexPairList*)_inLineConnectionsFld->getBaseValue());
@@ -201,15 +253,44 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _calculateListPropertyFields();
     _calculateInventorPropertyFields();
     _updateLineSetOutputs();
+    _updateLineSetMap();
+    _updateAvailableLineSetsFld();
   }
 
-  // _calculateCameraFromInventorSceneFld
+  if (field == _selectedLineSetFld)
+  {
+    _selectedLineSetChanged();
+  }
+
+  if (field == _selectedLineSetNewLabelFld)
+  {
+    _updateSelectedLineSetLabel();
+  }
+
+  if (field == _selectedLineSetGroupPathFld)
+  {
+    _updateSelectedLineSethGroupPath();
+  }
+
+  if ( (field == _selectedLineSetUseDefaultColorFld) || (field == _selectedLineSetColorFld) )
+  {
+    _updateSelectedLineSetColor();
+  }
+
+  if (field == _createLineSetSpecificationFld)
+  {
+    _createLineSetSpecification();
+  }
+
+  //
+  // Inventor camera related fields
+  // 
+
   if (field == _calculateCameraFromInventorSceneFld)
   {
     _calculateCameraPropertiesFromInventorCamera();
   }
 
-  // Inventor camera fields
   if (
       (
        (field == _autoCalculateCameraFromInventorSceneFld) ||
@@ -225,7 +306,10 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _calculateCameraPropertiesFromInventorCamera();
   }
 
-  // View fields
+  //
+  // View related fields
+  // 
+
   if (field == _addNewViewFld)
   {
     _createNewView();
@@ -236,7 +320,16 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _clearViews();
   }
 
-  // WEM fields
+  if (field == _createMetaDataSpecificationFld)
+  {
+    _createMetaDataSpecification();
+  }
+
+
+  //
+  // Mesh related fields
+  // 
+
   if (field == _selectedWEMPatchFld)
   {
     _selectedWEMPatchChanged(_outWEM);
@@ -263,7 +356,6 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _updateSelectedWEMPatchDescription();
   }
 
-
   // call parent class and handle apply/autoApply and in/outputs
   WEMProcessor::handleNotification(field);
 }
@@ -279,6 +371,31 @@ void PDF3DFigurePage_Utils::activateAttachments()
 }
 
 //----------------------------------------------------------------------------------
+
+int PDF3DFigurePage_Utils::_getModelIDFromString(std::string idString)
+{
+  int result = ML_INT_MIN;
+
+  if (idString != "")
+  {
+    size_t startIDPosition = idString.find("{ID=");
+
+    if (startIDPosition != std::string::npos)
+    {
+      std::string idSectionPlusRest = idString.substr(startIDPosition);
+      size_t endIDPosition = idSectionPlusRest.find("}");
+
+      if (endIDPosition != std::string::npos)
+      {
+        std::string idSection = idSectionPlusRest.substr(4, endIDPosition - 4);
+
+        result = stringToInt(idSection);
+      }
+    }
+  }
+
+  return result;
+}
 
 
 //----------------------------------------------------------------------------------

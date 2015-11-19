@@ -11,6 +11,7 @@
 
 // Local includes
 #include "MLPDF_SpecificationGenerator.h"
+#include "MLPDF_Tools.h"
 
 
 ML_START_NAMESPACE
@@ -151,7 +152,7 @@ std::string SpecificationGenerator::GetColor(Vector3 colorValue, float alphaValu
   if (!useDefaultColor)
   {
     result = "<Color>"; 
-    result += FormatColorString(colorValue, alphaValue);
+    result += PDFTools::FormatColorString(colorValue, alphaValue);
     result += "</Color>\n";
   }
 
@@ -168,7 +169,7 @@ std::string SpecificationGenerator::GetSpecularColor(Vector3 colorValue, bool us
   if (!useDefaultColor)
   {
     result = "<SpecularColor>";
-    result += FormatColorString(colorValue);
+    result += PDFTools::FormatColorString(colorValue);
     result += "</SpecularColor>\n";
   }
 
@@ -207,51 +208,6 @@ std::string SpecificationGenerator::GetModelVisibility(int fieldValue)
     result += "</ModelVisibility>\n";
   }
   
-  return result;
-}
-
-//----------------------------------------------------------------------------------
-
-std::string SpecificationGenerator::FormatColorString(Vector3 colorValue)
-{
-
-  const int bufferLength = 18;
-  char buffer[bufferLength];
-
-  snprintf (buffer, bufferLength, "%.3f %.3f %.3f", colorValue.x, colorValue.y, colorValue.z);
-
-  std::string result(buffer);
-
-  return result;
-}
-
-//----------------------------------------------------------------------------------
-
-std::string SpecificationGenerator::FormatColorString(Vector3 colorValue, float alphaValue)
-{
-
-  const int bufferLength = 24;
-  char buffer[bufferLength];
-
-  snprintf (buffer, bufferLength, "%.3f %.3f %.3f %.3f", colorValue.x, colorValue.y, colorValue.z, alphaValue);
-
-  std::string result(buffer);
-
-  return result;
-}
-
-//----------------------------------------------------------------------------------
-
-std::string SpecificationGenerator::FormatVec3String(Vector3 vectorValue)
-{
-
-  const int bufferLength = 27;
-  char buffer[bufferLength];
-
-  snprintf(buffer, bufferLength, "%.3f %.3f %.3f", vectorValue.x, vectorValue.y, vectorValue.z);
-
-  std::string result(buffer);
-
   return result;
 }
 

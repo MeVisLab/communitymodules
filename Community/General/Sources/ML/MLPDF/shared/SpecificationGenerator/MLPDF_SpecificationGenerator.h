@@ -64,11 +64,6 @@ public:
   static std::string GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor);
   static std::string GetSpecularColor(Vector3 colorValue, bool useDefaultColor);
   static std::string GetModelVisibility(int fieldValue);
-
-  static std::string FormatColorString(Vector3 colorValue);
-  static std::string FormatColorString(Vector3 colorValue, float alphaValue);
-
-  static std::string FormatVec3String(Vector3 vectorValue);
 };
 
 } // end namespace mlPDF

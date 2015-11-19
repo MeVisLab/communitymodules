@@ -29,10 +29,10 @@ void PDF3DFigurePage_Utils::_createNewView()
     std::string newViewString = "<View>\n";
 
     newViewString += "<DisplayName>" + newViewDisplayName + "</DisplayName>\n";
-    newViewString += "<BackgroundColor>" + SpecificationGenerator::FormatColorString(_newViewBackgroundColorFld->getVectorValue()) + "</BackgroundColor>\n";
+    newViewString += "<BackgroundColor>" + PDFTools::FormatColorString(_newViewBackgroundColorFld->getVectorValue()) + "</BackgroundColor>\n";
     newViewString += "<LightingScheme>" + intToString(_newViewLightingSchemeFld->getEnumValue()) + "</LightingScheme>\n";
-    newViewString += "<CamCenterOfOrbit>" + SpecificationGenerator::FormatVec3String(_cameraCenterOfOrbitFld->getVectorValue()) + "</CamCenterOfOrbit>\n";
-    newViewString += "<CamCenterToCamera>" + SpecificationGenerator::FormatVec3String(_cameraCenterToCameraFld->getVectorValue()) + "</CamCenterToCamera>\n";
+    newViewString += "<CamCenterOfOrbit>" + PDFTools::FormatVec3String(_cameraCenterOfOrbitFld->getVectorValue()) + "</CamCenterOfOrbit>\n";
+    newViewString += "<CamCenterToCamera>" + PDFTools::FormatVec3String(_cameraCenterToCameraFld->getVectorValue()) + "</CamCenterToCamera>\n";
     newViewString += "<CamRadiusOfOrbit>" + floatToString(_cameraRadiusOfOrbitFld->getFloatValue()) + "</CamRadiusOfOrbit>\n";
     newViewString += "<CamRollAngle>" + floatToString(_cameraRollAngleFld->getFloatValue()) + "</CamRollAngle>\n";
     newViewString += "<CamFOVAngle>" + floatToString(_cameraFOVAngleFld->getFloatValue()) + "</CamFOVAngle>\n";
@@ -56,12 +56,19 @@ void PDF3DFigurePage_Utils::_clearViews()
 
 //----------------------------------------------------------------------------------
 
+void PDF3DFigurePage_Utils::_createMetaDataSpecification()
+{
+  std::string metaDataSpecification = "";
 
-//----------------------------------------------------------------------------------
+  metaDataSpecification += "<MetaData>\n";
+  metaDataSpecification += "<MetaDataKey>ViewSpecifications</MetaDataKey>\n";
+  metaDataSpecification += "<MetaDataValue>\n\n";
+  metaDataSpecification += _viewSpecificationsFld->getStringValue();
+  metaDataSpecification += "</MetaDataValue>\n";
+  metaDataSpecification += "</MetaData>\n";
 
-
-//----------------------------------------------------------------------------------
-
+  _metaDataSpecificationFld->setStringValue(metaDataSpecification);
+}
 
 //----------------------------------------------------------------------------------
 

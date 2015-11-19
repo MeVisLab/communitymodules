@@ -272,6 +272,26 @@ bool PDFTools::stringToBool(std::string sourceString)
 
 //***********************************************************************************
 
+std::string PDFTools::stringTrimWhitespace(std::string sourceString)
+{
+  std::string result = sourceString;
+  const std::string whitespaceChars = " \n\r\t";
+
+  // Remove leading whitespace
+  size_t firstCharIndex = result.find_first_not_of(whitespaceChars);
+  if (firstCharIndex != result.npos)
+  {
+    result.erase(0, result.find_first_not_of(whitespaceChars));
+  }
+
+  // Remove trailing whitespace
+  result.erase(result.find_last_not_of(whitespaceChars) + 1);
+
+  return result;
+}
+
+//***********************************************************************************
+
 std::string PDFTools::getMeVisLabVersionNumberString()
 {
   /*
@@ -370,6 +390,44 @@ Vector3 PDFTools::getColorVec3(std::string colorString, const Vector3 defaultCol
       result[i] = stringToDouble(parts[i]);
     }
   }
+
+  return result;
+}
+
+//***********************************************************************************
+
+std::string PDFTools::FormatColorString(Vector3 colorValue)
+{
+  const int bufferLength = 18;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%.3f %.3f %.3f", colorValue.x, colorValue.y, colorValue.z);
+
+  std::string result(buffer);
+
+  return result;
+}
+
+std::string PDFTools::FormatColorString(Vector3 colorValue, float alphaValue)
+{
+  const int bufferLength = 24;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%.3f %.3f %.3f %.3f", colorValue.x, colorValue.y, colorValue.z, alphaValue);
+
+  std::string result(buffer);
+
+  return result;
+}
+
+std::string PDFTools::FormatVec3String(Vector3 vectorValue)
+{
+  const int bufferLength = 27;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%.3f %.3f %.3f", vectorValue.x, vectorValue.y, vectorValue.z);
+
+  std::string result(buffer);
 
   return result;
 }
@@ -713,7 +771,7 @@ void PDFTools::fillFiberSetContainerFromPositionsAndConnections(FiberSetContaine
     int thisTypeID = *typeIdIterator;
 
     FiberSetContainer::FiberSet* newFiberSet = outFiberSetContainer.createFiberSet();
-    newFiberSet->setColor(Vector3(1, 0, 0));
+    newFiberSet->setColor(Vector3(0));
     newFiberSet->setLabel(typeLabels[thisTypeID]);
 
     // Add all connections to the temporary connections list if type ID matches

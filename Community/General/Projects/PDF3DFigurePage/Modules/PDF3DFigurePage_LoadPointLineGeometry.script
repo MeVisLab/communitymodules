@@ -15,7 +15,7 @@ Description {
 
 Window {
   
-  minimumWidth = 400
+  minimumWidth = 750
   
   Vertical {
     
@@ -41,12 +41,19 @@ Window {
       }        
 
       Empty { expandX = Yes }
+      
       Separator { direction = Vertical }
         
-      CheckBox autoAddToCache {  }
       ButtonBox { 
-        Button addToCache { role = AcceptRole }
-        Button clearCache { role = RejectRole }
+        Button addToPointCache { role = AcceptRole }
+        Button clearPointCache { role = RejectRole }
+      }        
+      
+      Separator { direction = Vertical }
+        
+      ButtonBox { 
+        Button addToLineCache { role = AcceptRole }
+        Button clearLineCache { role = RejectRole }
       }        
         
     }  // Horizontal

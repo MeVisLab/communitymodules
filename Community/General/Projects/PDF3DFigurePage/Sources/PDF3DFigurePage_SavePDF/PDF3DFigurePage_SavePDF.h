@@ -20,6 +20,10 @@
 // ML includes
 #include <mlModuleIncludes.h>
 
+// Global includes
+#include <fstream>
+
+
 ML_START_NAMESPACE
 
 
@@ -72,6 +76,13 @@ private:
   StringField*  _captionFld;
   StringField*  _descriptionFld;
 
+  /* Methods */
+
+  MLuint8 _readU8(std::ifstream& file);
+  MLuint16 _readU16(std::ifstream& file);
+  MLuint32 _readU32(std::ifstream& file);
+  std::string _readString(std::ifstream& file);
+  std::string _getViewsSpecificationFromU3DFile(std::string filename);
   void _add3DFigure(float x, float y, float width, float height);
 
   // Implements interface for the runtime type system of the ML.

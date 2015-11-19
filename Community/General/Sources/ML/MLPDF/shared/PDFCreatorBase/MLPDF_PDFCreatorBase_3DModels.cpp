@@ -315,7 +315,8 @@ void PDFCreatorBase::pdfDoc_3DModel_AddAllViewsFromSpecificationString(mlPDF::MO
 
     for (size_t i = 0; i < specificationsVector.size(); i++)
     {
-      pdfDoc_3DModel_AddViewFromSpecificationString(model, specificationsVector[i]);
+      const std::string thisSpecification = mlPDF::PDFTools::stringTrimWhitespace(specificationsVector[i]);
+      pdfDoc_3DModel_AddViewFromSpecificationString(model, thisSpecification);
     }
   }
 }

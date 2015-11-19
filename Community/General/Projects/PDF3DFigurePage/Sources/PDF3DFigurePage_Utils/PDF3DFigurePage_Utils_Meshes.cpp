@@ -84,7 +84,7 @@ void PDF3DFigurePage_Utils::_updateAvailableWEMPatchesFld(WEMPtr wem, std::strin
 
       if (patchDescription == "")
       {
-        patchDescription = "[no label specified]";
+        patchDescription = NOLABELSPECIFIED;
       }
 
       patchDescription.append(" {ID=");
@@ -124,31 +124,12 @@ void PDF3DFigurePage_Utils::_updateAvailableWEMPatchesFld(WEMPtr wem, std::strin
 
 void PDF3DFigurePage_Utils::_selectedWEMPatchChanged(WEMPtr wem)
 {
-  std::string selectedWEMPatchString = _selectedWEMPatchFld->getStringValue();
+  int patchId = _getModelIDFromString(_selectedWEMPatchFld->getStringValue());
 
-  if (selectedWEMPatchString != "")
+  if (patchId != ML_INT_MIN)
   {
-    // Get patch ID from string
-    size_t startIDPosition = selectedWEMPatchString.find("{ID=");
-
-    if (startIDPosition != std::string::npos)
-    {
-      std::string idSectionPlusRest = selectedWEMPatchString.substr(startIDPosition);
-      size_t endIDPosition = idSectionPlusRest.find("}");
-
-      if (endIDPosition != std::string::npos)
-      {
-        std::string idSection = idSectionPlusRest.substr(4, endIDPosition - 4);
-
-        int patchId = stringToInt(idSection);
-
-        _selectedWEMPatchIdFld->setIntValue(patchId);
-
-      }
-
-    }
-
-  } // if (selectedWEMPatchString != "")
+    _selectedWEMPatchIdFld->setIntValue(patchId);
+  }
 
   _selectedWEMPatchIdChanged(wem);
 }
@@ -247,7 +228,7 @@ void PDF3DFigurePage_Utils::_updateSelectedWEMPatchDescription()
 
         if (!_selectedWEMPatchUseDefaultColorFld->getBoolValue())
         {
-          modelColor = mlPDF::SpecificationGenerator::FormatColorString(_selectedWEMPatchColorFld->getColorValue(), _selectedWEMPatchColorAlphaFld->getFloatValue());
+          modelColor = PDFTools::FormatColorString(_selectedWEMPatchColorFld->getColorValue(), _selectedWEMPatchColorAlphaFld->getFloatValue());
         }
 
         if (groupPath != "")

@@ -40,9 +40,9 @@ Interface {
     Field useInputConnectors { internalName = UseInputConnectors.invBoolValue }
     Field loadDataManually   { internalName = UseInputConnectors.boolValue }
     
-    Field filenameWEM             { internalName = WEMSceneLoader.filename }
-    Field filenamePointPositions  { internalName = LoadPointPositions.filename }
-    Field filenameLineDefinitions { internalName = LoadLinePositions.filename }
+    Field filenameWEM             { internalName = MeshSceneLoader.filename }
+    Field filenamePointPositions  { internalName = LoadPointLineGeometry.filename }
+    Field filenameLineDefinitions { internalName = LoadPointLineGeometry.filename }
     
     Field showPointsPreview        { internalName = ShowPointsPreview.bypass }
     Field showPointsPrevieSize     { internalName = PointsRenderer.scaleSize }
@@ -83,20 +83,33 @@ Interface {
     Field availablePointSets              { internalName = PDF3DFigurePage_Utils.availablePointSets }
     Field selectedPointSetGroupPath       { internalName = PDF3DFigurePage_Utils.selectedPointSetGroupPath }
     
-    Field importPointsModel   { internalName = RunPointsImportScript.execute }
-    Field importLinesModel    { internalName = RunLinesImportScript.execute }
-    Field importMeshModel     { internalName = RunMeshImportScript.execute }
+    Field loadPointsModel     { internalName = RunPointsImportScript.execute }
+    Field loadPointsFilter    { type = String }
+    Field loadLinesModel      { internalName = RunLinesImportScript.execute }
+    Field loadLinesFilter     { type = String }
+    Field loadMeshModel       { internalName = RunMeshImportScript.execute }    
+    Field useReducedMesh      { internalName = ToggleReducedMesh.boolValue }
+    Field meshReductionRatio  { internalName = WEMReducePolygons.targetReduction }
     Field addImportedModel    { internalName = RunAddImportedModelScript.execute }
+    Field addPointsToModel    { internalName = LoadPointLineGeometry.addToPointCache }
+    Field addLinesToModel     { internalName = LoadPointLineGeometry.addToLineCache }
+    Field addMeshToModel      { internalName = WEMComposePatches.apply }
     Field cancelImport        { internalName = RunCancelImportScript.execute }   
-    Field removeAllPoints     { internalName = LoadPointPositions.clearCache }
-    Field removeAllLines      { internalName = LoadLinePositions.clearCache }
+    Field removeAllPoints     { internalName = LoadPointLineGeometry.clearPointCache }
+    Field removeAllLines      { internalName = LoadPointLineGeometry.clearLineCache }
     Field removeAllMeshes     { internalName = WEMComposePatches.clear }
+    
+    Field saveU3D             { internalName = RunSaveU3DScript.execute }
+    Field saveU3DStatus       { type = String }
+    Field savePoster          { internalName = RunCreatePosterScript.execute }
+    Field savePosterStatus    { type = String }
+    Field savePDF             { internalName = RunSavePDFScript.execute }
   }
 }
 
 
 Commands {
-//    initCommand = InitModule
+  initCommand = @@py: ctx.field("InitializeModule.execute").touch() @@
   FieldListener UseInputConnectors.boolValue { command = @@py: ctx.field("resetPreview").touch() @@}
 }
 
@@ -135,17 +148,35 @@ Window {
 
             dependsOn = loadDataManually
             
-            Box "Import Model" {
+            Box "Import Point Sets" {
               alignY = Top
-              Button importPointsModel { expandX = Yes }
-              Button importLinesModel  { expandX = Yes }
-              Button importMeshModel   { expandX = Yes }              
+              Field loadPointsFilter { title = "ID:" }
+              Button loadPointsModel { expandX = Yes }
               Separator { expandX = Yes }
-              Button cancelImport { expandX = Yes }
+              Button cancelImport { title = "Unload" expandX = Yes }
+            }
+
+            Box "Import Line Sets" {
+              alignY = Top
+              Field loadLinesFilter { title = "ID:" }
+              Button loadLinesModel  { expandX = Yes }
+              Separator { expandX = Yes }
+              Button cancelImport { title = "Unload" expandX = Yes }
+            }
+            
+            Box "Import Meshes" {
+              alignY = Top
+              Button loadMeshModel   { expandX = Yes }              
+              Separator { expandX = Yes }
+              Button useReducedMesh     { expandX = Yes dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) @@ }
+              Field  meshReductionRatio { title = "Reduction %:" dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid && useReducedMesh) @@ }
+              Slider meshReductionRatio { dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid && useReducedMesh) @@ }
+              Separator { expandX = Yes }
+              Button cancelImport { title = "Unload" expandX = Yes }
             }
             
             Box "Add Model" {
-              Button addImportedModel { expandX = Yes minimumHeight = 50 dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) || (SwitchPreview.whichChild == 1 && LoadPointPositions.positionsLoaded) || (SwitchPreview.whichChild == 2 && LoadLinePositions.positionsLoaded) @@ }
+              Button addImportedModel { expandX = Yes minimumHeight = 50 dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) || (SwitchPreview.whichChild == 1 && LoadPointLineGeometry.positionsLoaded) || (SwitchPreview.whichChild == 2 && LoadPointLineGeometry.positionsLoaded) @@ }
             }
             
             Box "Remove Models" {
@@ -180,13 +211,13 @@ Window {
               Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
               Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
               Separator                       { direction = Vertical alignX = Left }
-              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+//              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+//              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
               Empty                           { expandX = Yes }
               Button resetPreview             { title = "Reset" alignX = Right }
             }
           
-          } // Box "Scene"
+          } // Box "Model Preview"
           
         } // Horizontal
         
@@ -350,7 +381,7 @@ Window {
         
         } // Horizontal
         
-      } // TabViewItem "Meshes"
+      } // TabViewItem "Meshes"     
       
       TabViewItem "Create Views" {
 
@@ -362,13 +393,13 @@ Window {
           
           Vertical {
                                     
-            expandY = Yes
-            alignX = Left
+            expandY    = Yes
+            alignX     = Left
             fixedWidth = 350
             
             Box "Create New View" { 
               
-              alignY = Top
+              alignY  = Top
               expandX = Yes
               
               Field viewDisplayName          { title = "View Display Name:" }
@@ -411,6 +442,9 @@ Window {
             expandY = Yes
             expandX = Yes
           
+            Horizontal { Label { title = "Please remember that this is only a sketched preview." alignX = Center } }
+            Horizontal { Label { title = "The actual appearance in the PDF depends on the rendering enginge of the actual PDF viewer!" alignX = Center } }
+            
             Viewer ViewsViewer.self {
               expandY = Yes
               type    = SoExaminerViewer
@@ -428,8 +462,8 @@ Window {
               Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
               Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
               Separator                       { direction = Vertical alignX = Left }
-              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+//              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+//              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
               Empty                           { expandX = Yes }
               Button resetPreview             { title = "Reset" alignX = Right }
             }
@@ -438,54 +472,145 @@ Window {
           
         } // Horizontal
             
-      } // TabViewItem "Views"
+      } // TabViewItem "Create Views"
       
       TabViewItem "Save Model" {
         
         expandY = Yes
         
-        Field SaveU3D.filename { title = "Filename:" browseButton = Yes browseMode = save }
+//        Field SaveU3D.filename { title = "Filename:" browseButton = Yes browseMode = save }        
         
-        Empty { expandY = Yes }
-      }
+        Button saveU3D {title = "Save" expandX = Yes minimumHeight = 40 }
+        
+        Horizontal { expandX = Yes
+          ProgressBar SaveU3D.progress { textVisible = No maximumWidth = 400 }
+          Label { titleField = saveU3DStatus expandX = Yes }
+        }
+        
+        Box "Preview" {
+          
+          expandY = Yes
+          expandX = Yes
+          
+          Label { title = "Please remember that this is only a sketched preview. The actual appearance in the PDF depends on the rendering enginge of the actual PDF viewer!" alignX = Center }
+          
+          Viewer PreviewViewer.self {
+            expandY = Yes
+            type    = SoExaminerViewer
+            clone   = Yes
+          }
+          
+          Horizontal {
+            expandX = Yes
+            Label                           { title = "Show:" alignX = Left }
+            Empty                           { width = 20 alignX = Left }
+            CheckBox showPointsPreview      { title = "Points" alignX = Left }
+            CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+            CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+            Separator                       { direction = Vertical alignX = Left }
+            Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+            Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+            Separator                       { direction = Vertical alignX = Left }
+//            Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+//            Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+            Empty                           { expandX = Yes }
+            Button resetPreview             { title = "Reset" alignX = Right }
+          }
+          
+        } // Box "Scene"        
+        
+      } // TabViewItem "Save Model"
        
+      TabViewItem "Create Poster Image" {
+
+        expandY = Yes
+        
+        Box "Preview" {
+          
+          expandY = Yes
+          
+          Viewer PreviewViewer.self {
+            expandY = Yes
+            type    = SoExaminerViewer
+            clone   = Yes
+          }
+          
+          Horizontal {
+            expandX = Yes
+            Label                           { title = "Show:" alignX = Left }
+            Empty                           { width = 20 alignX = Left }
+            CheckBox showPointsPreview      { title = "Points" alignX = Left }
+            CheckBox showLinesPreview       { title = "Lines" alignX = Left }
+            CheckBox showMeshPreview        { title = "Meshes" alignX = Left }
+            Separator                       { direction = Vertical alignX = Left }
+            Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
+            Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
+            Separator                       { direction = Vertical alignX = Left }
+            //              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
+            //              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
+            Empty                           { expandX = Yes }
+            Button resetPreview             { title = "Reset" alignX = Right }
+          }
+          
+        } // Box "Preview"
+        
+        Button savePoster {title = "Save Poster" expandX = Yes minimumHeight = 40 }  
+        
+        Horizontal { expandX = Yes
+          ProgressBar SavePosterImage.progress { textVisible = No maximumWidth = 400 }
+          Label { titleField = savePosterStatus expandX = Yes }
+        }        
+      }
+            
     } // TabView
         
   }  // Category "3D Model"
   
   Category "PDF Page" {
+    
     margin = 3
 
-    Box "Page Header" {
-      Field PDF3DFigurePage_SavePDF.pageHeaderCitationText   {  }
-      Field PDF3DFigurePage_SavePDF.pageHeaderHeadlineText   {  }
-      CheckBox PDF3DFigurePage_SavePDF.includeUsageHints     { title = "Include instructional hints above the figure" }
-    }
-    
-    Box "3D Figure" {
-      Field PDF3DFigurePage_SavePDF.u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
-      Field PDF3DFigurePage_SavePDF.posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
-    
-      Field PDF3DFigurePage_SavePDF.figureActivationMode             { title = "Activation Mode:" }
-      Field PDF3DFigurePage_SavePDF.figureDeactivationMode           { title = "Deactivation Mode:" }
-      Field PDF3DFigurePage_SavePDF.figureToolbarEnabled             { title = "Toolbar Enabled:" }
-      Field PDF3DFigurePage_SavePDF.figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
-      Field PDF3DFigurePage_SavePDF.figureAnimationAutostart         { title = "Animation Autostart:" }      
-    }
-    
-    Box "Description" {
+    TabView {
       
-      Field PDF3DFigurePage_SavePDF.caption         {  }
-      TextView PDF3DFigurePage_SavePDF.description  { autoApply = Yes }    
-    }
+//      TabViewItem "[Empty]" { }
+          
+      TabViewItem "Specify Content" {
+      
+      Box "Page Header" {
+        Field PDF3DFigurePage_SavePDF.pageHeaderCitationText   {  }
+        Field PDF3DFigurePage_SavePDF.pageHeaderHeadlineText   {  }
+        CheckBox PDF3DFigurePage_SavePDF.includeUsageHints     { title = "Include instructional hints above the figure" }
+      }
     
-    Box "Output" {
-      Field PDF3DFigurePage_SavePDF.pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
-      Button PDF3DFigurePage_SavePDF.save { title = "Save" alignX = Left }
-      ProgressBar PDF3DFigurePage_SavePDF.progress { textVisible = No }
-      Label { titleField = PDF3DFigurePage_SavePDF.status }
-    }
-  }  // Category "Main"
-  
+      Box "3D Figure" {
+        Field PDF3DFigurePage_SavePDF.u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
+        Field PDF3DFigurePage_SavePDF.posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
+    
+        Field PDF3DFigurePage_SavePDF.figureActivationMode             { title = "Activation Mode:" }
+        Field PDF3DFigurePage_SavePDF.figureDeactivationMode           { title = "Deactivation Mode:" }
+        Field PDF3DFigurePage_SavePDF.figureToolbarEnabled             { title = "Toolbar Enabled:" }
+        Field PDF3DFigurePage_SavePDF.figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+        Field PDF3DFigurePage_SavePDF.figureAnimationAutostart         { title = "Animation Autostart:" }      
+      }
+    
+      Box "Description" {
+      
+        Field PDF3DFigurePage_SavePDF.caption         {  }
+        TextView PDF3DFigurePage_SavePDF.description  { autoApply = Yes }    
+      }
+    
+      Box "Output" {
+        Field PDF3DFigurePage_SavePDF.pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
 
+        Button savePDF {title = "Save" expandX = Yes minimumHeight = 40 dependsOn = @@ PDF3DFigurePage_SavePDF.pdfFilename != "" @@ }      
+//        Button PDF3DFigurePage_SavePDF.save { title = "Save" alignX = Left }
+        
+        ProgressBar PDF3DFigurePage_SavePDF.progress { textVisible = No }
+        Label { titleField = PDF3DFigurePage_SavePDF.status }
+      }
+    }  // Category "Main"
+  
+    } // TabViewItem "Specify Content"
+    
+  } // TabView
 }

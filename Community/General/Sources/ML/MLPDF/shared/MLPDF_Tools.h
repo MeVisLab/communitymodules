@@ -54,24 +54,6 @@ inline std::string intToString(int intValue)
   return buffer.str();
 }
 
-inline std::string stringTrimWhitespace(std::string sourceString)
-{
-  std::string result = sourceString;
-  const std::string whitespaceChars = " \n\r\t";
-
-  // Remove leading whitespace
-  size_t firstCharIndex = sourceString.find_first_not_of(whitespaceChars);
-  if (firstCharIndex != sourceString.npos)
-  {
-    sourceString.erase(0,sourceString.find_first_not_of(whitespaceChars));
-  }
-  
-  // Remove trailing whitespace
-  sourceString.erase(sourceString.find_last_not_of(" \n\r\t")+1);
-
-  return result;
-}
-
 inline MLdouble stringToDouble(std::string sourceString)
 {
   return atof(sourceString.c_str());
@@ -120,8 +102,11 @@ public:
   // Convert String to lower case
   static void stringLower(std::string &sourceString);
 
-  // Converts  a string to bool
+  // Converts a string to bool
   static bool stringToBool(std::string sourceString);
+
+  // Trims whitespace characters from string
+  static std::string stringTrimWhitespace(std::string sourceString);
 
   // Convert MeVisLab version number into string
   static std::string getMeVisLabVersionNumberString();
@@ -134,6 +119,11 @@ public:
   // Parses a string and try to get color values from it.
   static Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor);
   static Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor);
+
+  // Converts a (color) Vector to a color string.
+  static std::string FormatColorString(Vector3 colorValue);
+  static std::string FormatColorString(Vector3 colorValue, float alphaValue);
+  static std::string FormatVec3String(Vector3 vectorValue);
 
   //***********************************************************************************
 

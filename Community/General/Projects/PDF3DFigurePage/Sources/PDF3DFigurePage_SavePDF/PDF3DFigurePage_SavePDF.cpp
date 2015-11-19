@@ -17,6 +17,9 @@
 #include "hpdf.h"
 #include "hpdf_u3d.h"
 
+// Project includes
+#include "../SaveU3D/U3DFileFormat/U3D_Constants.h"
+
 // ML includes
 #include "mlUnicode.h"
 
@@ -103,18 +106,18 @@ void PDF3DFigurePage_SavePDF::assemblePDFDocument()
 
     pdfDoc_SetCurrentFont(buildInFonts.Times, 9);
     yPos += 15;
-    pdfDoc_WriteTextAt(0, yPos, "Click image to enable interactive mode.");
+    pdfDoc_WriteTextAt(0, yPos, "Click inside image or frame to enable interactive mode.");
     yPos += 10;
-    pdfDoc_WriteTextAt(0, yPos, "Left-click & move mouse to rotate scene.");
+    pdfDoc_WriteTextAt(0, yPos, "- Left-click & move mouse to rotate scene.");
     yPos += 10;
-    pdfDoc_WriteTextAt(0, yPos, "Right-click & move mouse to zoom.");
+    pdfDoc_WriteTextAt(0, yPos, "- Right-click & move mouse to zoom.");
     yPos += 10;
-    pdfDoc_WriteTextAt(0, yPos, "Both-click and move mouse to pan.");
+    pdfDoc_WriteTextAt(0, yPos, "- Both-click and move mouse to pan.");
   }
 
   yPos += 20;
   float sceneWidth  = pdfDoc_GetPageMaxWidth();
-  float sceneHeight = (float)(pdfDoc_GetPageMaxHeight()/2.0);
+  float sceneHeight = sceneWidth * 0.75; // Use fixed heigt ratio to facilitate poster image creation!
   _add3DFigure(0, yPos, sceneWidth, sceneHeight);
 
   yPos += sceneHeight + 5;
@@ -131,16 +134,195 @@ void PDF3DFigurePage_SavePDF::assemblePDFDocument()
 
 void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float height)
 {
-  HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(_u3dFilenameFld->getStringValue());
+  std::string u3dFilename = _u3dFilenameFld->getStringValue();
+  bool sceneAdded = false;
 
-  pdfDoc_3DModel_AddAllViewsFromSpecificationString(u3dModel, viewSpecificationsFld->getStringValue());
+  pdfDoc_AddOutlineRectangle(x, y, width, height, 1);
 
-  mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(_posterImageFilenameFld->getStringValue());
-  mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);
-  pdfDoc_3DScene_SetActivationProperties(u3dScene, _figureActivationModeFld->getStringValue(), _figureDeactivationModeFld->getStringValue(), _figureToolbarEnabledFld->getBoolValue(),_figureNavigationInterfaceEnabledFld->getBoolValue(), _figureAnimationAutostartFld->getBoolValue());
+  if (mlPDF::fileExists(u3dFilename))
+  {
+    std::string viewsSpecification = _getViewsSpecificationFromU3DFile(u3dFilename);
+
+    HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(u3dFilename);
+
+    if (u3dModel)
+    {
+
+      if (mlPDF::PDFTools::stringTrimWhitespace(viewsSpecification) == "")
+      {
+        viewsSpecification = viewSpecificationsFld->getStringValue();
+      }
+
+      pdfDoc_3DModel_AddAllViewsFromSpecificationString(u3dModel, viewsSpecification);
+
+      // Load poster image
+      std::string posterFilename = _posterImageFilenameFld->getStringValue();
+      bool posterExists = false;
+      mlPDF::IMAGE posterImage = NULL;
+
+      if (mlPDF::fileExists(posterFilename))
+      {
+        posterImage = pdfDoc_LoadImageFromFile(posterFilename);
+
+        if (posterImage)
+        {
+          posterExists = true;
+        }
+      }
+
+      if (!posterExists)
+      {
+        pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "Click here to display interactive 3D figure.", mlPDF::TEXT_ALIGNMENTS::TEXTALIGNMENT_CENTER);
+      }
+
+      mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x + 1, y + 1, width - 2, height - 2, u3dModel, posterImage);
+
+      if (u3dScene)
+      {
+        pdfDoc_3DScene_SetActivationProperties(u3dScene, _figureActivationModeFld->getStringValue(), _figureDeactivationModeFld->getStringValue(), _figureToolbarEnabledFld->getBoolValue(), _figureNavigationInterfaceEnabledFld->getBoolValue(), _figureAnimationAutostartFld->getBoolValue());
+        sceneAdded = true;
+      }
+
+    } // if (u3dModel)
+
+  } // if (mlPDF::fileExists(u3dFilename))
+
+  if (!sceneAdded)
+  {
+    pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "FAILED TO IMPORT 3D FIGURE!", mlPDF::TEXT_ALIGNMENTS::TEXTALIGNMENT_CENTER);
+  }
 }
 
 //----------------------------------------------------------------------------------
 
+std::string PDF3DFigurePage_SavePDF::_getViewsSpecificationFromU3DFile(std::string filename)
+{
+  std::string result = "";
+
+  std::ifstream u3dFile;
+  u3dFile.open(filename, std::ios::out | std::ios::binary);
+
+  if (u3dFile.is_open())
+  {
+    U3DDataBlockFundamental blockType = _readU32(u3dFile);
+
+    if (blockType == U3D_BLOCKTYPE_FILEHEADER)
+    {
+      // Get data block size
+      U3DDataBlockFundamental blockDataSize = _readU32(u3dFile);
+
+      // Get meta data block size
+      /*U3DDataBlockFundamental blockMetaDataSize = */_readU32(u3dFile);
+
+      // Calc meta data start position
+      MLuint32 dataStartPos = (MLuint32)u3dFile.tellg();
+      MLuint32 metaDataStartPos = dataStartPos + blockDataSize;
+
+      if (blockDataSize % 4 != 0)
+      {
+        metaDataStartPos += (4 - (blockDataSize % 4));
+      }
+
+      // Go to meta data start position
+      u3dFile.seekg(metaDataStartPos, std::ios::beg);
+
+      // Get Key/Value Pair Count (9.2.6.1)
+      U3DDataBlockFundamental keyValuePairCount = _readU32(u3dFile);
+
+      for (int thisKeyValuePair = 0; thisKeyValuePair < (int)keyValuePairCount; thisKeyValuePair++)
+      {
+        // Get Key/Value Pair Attributes (9.2.6.2)
+        /*U3DDataBlockFundamental keyValuePairAttributes = */_readU32(u3dFile);
+
+        std::string keyString = _readString(u3dFile);
+        std::string valueString = _readString(u3dFile);
+
+        if (keyString == "ViewSpecifications")
+        {
+          result = valueString;
+        }
+
+      }
+
+    }
+
+    u3dFile.close();
+
+  }
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+MLuint8 PDF3DFigurePage_SavePDF::_readU8(std::ifstream& file)
+{
+  char* u8Buf = new char[1];
+
+  file.read(u8Buf, 1);
+
+  MLuint8 result = u8Buf[0];
+
+  delete[] u8Buf;
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+MLuint16 PDF3DFigurePage_SavePDF::_readU16(std::ifstream& file)
+{
+  char* u16Buf = new char[2];
+
+  file.read(u16Buf, 2);
+
+  MLuint16 byte1 = u16Buf[1] << 8;
+  MLuint8  byte0 = u16Buf[0];
+
+  MLuint16 result = byte1 | byte0;
+
+  delete[] u16Buf;
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+MLuint32 PDF3DFigurePage_SavePDF::_readU32(std::ifstream& file)
+{
+  char* u32Buf = new char[4];
+
+  file.read(u32Buf, 4);
+
+  MLuint32 byte3 = u32Buf[3] << 24;
+  MLuint32 byte2 = u32Buf[2] << 16;
+  MLuint32 byte1 = u32Buf[1] << 8;
+  MLuint8  byte0 = u32Buf[0];
+
+  MLuint32 result = byte3 | byte2 | byte1 | byte0;
+
+  delete[] u32Buf;
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+std::string PDF3DFigurePage_SavePDF::_readString(std::ifstream& file)
+{
+  std::string result = "";
+
+  MLuint16 stringLength = _readU16(file);
+
+  for (int i = 0; i < stringLength; i++)
+  {
+    MLuint8 stringCharacter = _readU8(file);
+
+    result += stringCharacter;
+  }
+
+  return result;
+
+}//----------------------------------------------------------------------------------
 
 ML_END_NAMESPACE

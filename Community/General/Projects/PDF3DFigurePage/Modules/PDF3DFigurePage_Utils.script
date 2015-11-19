@@ -27,19 +27,9 @@ Description {
 }
 
 
-Interface {
-  Parameters {
-    Field showNetworkFields { type = Bool value = Yes }
-  }
-}
+Interface {}
 
-
-Commands {
-  FieldListener showNetworkFields {
-    init    = Yes
-    command = @@js: show = ctx.field("showNetworkFields").value; ctx.field("inWEM").setHidden(!show); ctx.field("outWEM").setHidden(!show); ctx.field("inPointPositions").setHidden(!show); ctx.field("inLinePositions").setHidden(!show); ctx.field("inLineConnections").setHidden(!show); ctx.field("outPointPositions").setHidden(!show); ctx.field("outLinePositions").setHidden(!show); ctx.field("outLineConnections").setHidden(!show); ctx.field("outFibers").setHidden(!show); ctx.updateLayout(); @@
-  }  
-}
+Commands {}
 
 
 Window "Main Panel" { 

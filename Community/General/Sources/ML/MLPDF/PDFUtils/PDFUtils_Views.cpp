@@ -17,6 +17,7 @@
 
 ML_START_NAMESPACE
 
+using namespace mlPDF;
 
 //----------------------------------------------------------------------------------
 
@@ -29,13 +30,13 @@ void PDFUtils::_createNewView()
     std::string newViewString = "<View>\n";
 
     newViewString += "<DisplayName>" + newViewDisplayName + "</DisplayName>\n";
-    newViewString += "<BackgroundColor>" + mlPDF::SpecificationGenerator::FormatColorString(_newViewBackgroundColorFld->getVectorValue()) + "</BackgroundColor>\n";
-    newViewString += "<LightingScheme>" + mlPDF::intToString(_newViewLightingSchemeFld->getEnumValue()) + "</LightingScheme>\n";
-    newViewString += "<CamCenterOfOrbit>" + mlPDF::SpecificationGenerator::FormatVec3String(_cameraCenterOfOrbitFld->getVectorValue()) + "</CamCenterOfOrbit>\n";
-    newViewString += "<CamCenterToCamera>" + mlPDF::SpecificationGenerator::FormatVec3String(_cameraCenterToCameraFld->getVectorValue()) + "</CamCenterToCamera>\n";
-    newViewString += "<CamRadiusOfOrbit>" + mlPDF::floatToString(_cameraRadiusOfOrbitFld->getFloatValue()) + "</CamRadiusOfOrbit>\n";
-    newViewString += "<CamRollAngle>" + mlPDF::floatToString(_cameraRollAngleFld->getFloatValue()) + "</CamRollAngle>\n";
-    newViewString += "<CamFOVAngle>" + mlPDF::floatToString(_cameraFOVAngleFld->getFloatValue()) + "</CamFOVAngle>\n";
+    newViewString += "<BackgroundColor>" + PDFTools::FormatColorString(_newViewBackgroundColorFld->getVectorValue()) + "</BackgroundColor>\n";
+    newViewString += "<LightingScheme>" + intToString(_newViewLightingSchemeFld->getEnumValue()) + "</LightingScheme>\n";
+    newViewString += "<CamCenterOfOrbit>" + PDFTools::FormatVec3String(_cameraCenterOfOrbitFld->getVectorValue()) + "</CamCenterOfOrbit>\n";
+    newViewString += "<CamCenterToCamera>" + PDFTools::FormatVec3String(_cameraCenterToCameraFld->getVectorValue()) + "</CamCenterToCamera>\n";
+    newViewString += "<CamRadiusOfOrbit>" + floatToString(_cameraRadiusOfOrbitFld->getFloatValue()) + "</CamRadiusOfOrbit>\n";
+    newViewString += "<CamRollAngle>" + floatToString(_cameraRollAngleFld->getFloatValue()) + "</CamRollAngle>\n";
+    newViewString += "<CamFOVAngle>" + floatToString(_cameraFOVAngleFld->getFloatValue()) + "</CamFOVAngle>\n";
 
     newViewString += "</View>\n\n";
 

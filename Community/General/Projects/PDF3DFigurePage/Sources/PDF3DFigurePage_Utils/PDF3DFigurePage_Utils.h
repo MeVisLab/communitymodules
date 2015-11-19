@@ -34,6 +34,30 @@
 
 ML_START_NAMESPACE
 
+struct PointSetProperties
+{
+  int id;
+  int numPoints;
+  std::string name;
+  std::string groupPath;
+};
+
+struct LineSetProperties
+{
+  int id;
+  int numPoints;
+  int numConnections;
+  std::string name;
+  std::string groupPath;
+  bool useDefaultColor;
+  Vector3 color;
+};
+
+typedef std::map<int, PointSetProperties> PointSetMapType;
+typedef std::map<int, LineSetProperties>  LineSetMapType;
+
+#define NOLABELSPECIFIED "[no label specified]"
+
 
 //////////////////////////////////////////////////////////////////////////
 //! Utilities for PDF creation.
@@ -72,12 +96,16 @@ private:
   BaseField *_inPointPositionsFld;
   BaseField *_inLinePositionsFld;
   BaseField *_inLineConnectionsFld;
+  //BaseField *_inRawWEMFld;
+
 
   // Output fields (WEM output is for free...)
   BaseField*   _outPointPositionsFld;
   BaseField*   _outLinePositionsFld;
   BaseField*   _outLineConnectionsFld;
   BaseField*   _outFibersFld;
+  BaseField*   _outSeletedFibersFld;
+  //BaseField*   _outOptimizedWEMFld;
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
   NotifyField*   _calculateCameraFromInventorSceneFld;
@@ -142,6 +170,15 @@ private:
   IntField*      _lineConnectionsNextTypeIDFld;
   IntField*      _lineDefinitionsNextTypeIDFld;
 
+  //! Fields for point/line set specification strings
+  StringField*   _pointCloudSpecificationFld;
+  StringField*   _lineSetSpecificationFld;
+  StringField*   _metaDataSpecificationFld;
+  NotifyField*   _createPointCloudSpecificationFld;
+  NotifyField*   _createLineSetSpecificationFld;
+  NotifyField*   _createMetaDataSpecificationFld;
+
+
   //! The XMarkerList input for point positions of point clouds
   ml::XMarkerList _inPointPositions;  
 
@@ -160,8 +197,16 @@ private:
   //! The StringList output for connections of line sets
   ml::IndexPairList _outLineConnections;
 
-  //! The fiberset container used for visualizing the line sets
+  //! The fiberset containers used for visualizing the line sets
   FiberSetContainer _outFiberSetContainer;
+  FiberSetContainer _outSelectedFiberSetContainer;
+
+  //! Pointer to second input & output WEM.
+  //WEM* _inRawWEM;
+  //WEM* _outOptimizedWEM;
+
+  PointSetMapType _pointSetMap;
+  LineSetMapType  _lineSetMap;
 
   /* METHODS */
 
@@ -177,10 +222,11 @@ private:
   void _calculateInventorVertexList();
   void _calculateInventorCoordIndexList();
 
-  // Methods for cresting views ==============================================
+  // Methods for creating views ==============================================
 
   void _createNewView();
   void _clearViews();
+  void _createMetaDataSpecification();
 
   // Methods for handling meshes =============================================
 
@@ -201,13 +247,34 @@ private:
 
   // Methods for Point Sets===================================================
 
+  void _updatePointSetMap();
+  void _selectedPointSetChanged();
+  void _selectedPointSetIdChanged();
+  void _updateSelectedPointSetLabel();
+  void _updateSelectedPointSethGroupPath();
   void _updatePointSetOutputs();
+  void _updateAvailablePointSetsFld(std::string defaultEntry = "");
+  void _createPointCloudSpecification();
+
 
   // Methods for Line Sets====================================================
 
+  void _updateLineSetMap();
+  void _selectedLineSetChanged();
+  void _selectedLineSetIdChanged();
+  void _updateSelectedLineSetLabel();
+  void _updateSelectedLineSethGroupPath();
+  void _updateSelectedLineSetColor();
   void _updateLineSetOutputs();
   void _createFibers();
+  void _createSelectedFibers();
+  void _updateFiberColor(LineSetProperties lineSet);
+  void _updateAvailableLineSetsFld(std::string defaultEntry = "");
+  void _createLineSetSpecification();
 
+  // Tool Methods ============================================================
+
+  int _getModelIDFromString(std::string idString);
 
   // Debug, development & test methods =======================================
 

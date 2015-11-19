@@ -40,10 +40,11 @@ public:
 
   // Output fields
   BaseField*   _outPositionsListFld;
-  BaseField*   _outConnectionsListFld;
+  //BaseField*   _outConnectionsListFld;
   BaseField*   _outFibersFld;
-  BaseField*   _outCachedPositionsListFld;
-  BaseField*   _outCachedConnectionsListFld;
+  BaseField*   _outCachedPointPositionsListFld;
+  BaseField*   _outCachedLinePositionsListFld;
+  BaseField*   _outCachedLineConnectionsListFld;
 
   // UI fields
   StringField* _filenameFld;
@@ -60,9 +61,10 @@ public:
   BoolField*   _positionsLoadedFld;
   BoolField*   _connectionsLoadedFld;
 
-  NotifyField* _addToCacheFld;
-  NotifyField* _clearCacheFld;
-  BoolField*   _autoAddToCacheFld;
+  NotifyField* _addToPointCacheFld;
+  NotifyField* _addToLineCacheFld;
+  NotifyField* _clearPointCacheFld;
+  NotifyField* _clearLineCacheFld;
 
   //! Handles field changes of the field \p field.
   virtual void handleNotification (Field* field);
@@ -73,8 +75,9 @@ private:
   XMarkerList           _outPositionsList;
   IndexPairList         _outConnectionsList;
   FiberSetContainer     _outFiberSetContainer;
-  XMarkerList           _outCachedPositionsList;
-  IndexPairList         _outCachedConnectionsList;
+  XMarkerList           _outCachedPointPositionsList;
+  XMarkerList           _outCachedLinePositionsList;
+  IndexPairList         _outCachedLineConnectionsList;
 
   StringVector          _inputFileLinesVector;
   int                   _dataStartIndex;
@@ -87,13 +90,12 @@ private:
   void _unloadData();
 
   // Clear cached data
-  void _clearCache();
+  void _clearPointCache();
+  void _clearLineCache();
 
   // Add loaded data to cache
-  void _addToCache();
-
-  // Analyze input data
-  void _analyzeInputData();
+  void _addToPointCache();
+  void _addToLineCache();
 
   // Update output data
   void _updateOutputData();

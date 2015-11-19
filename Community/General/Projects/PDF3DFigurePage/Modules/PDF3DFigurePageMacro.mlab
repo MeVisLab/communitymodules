@@ -2,9 +2,1180 @@
 network  {
   watchlist = ""
 }
+module RunPythonScript {
+  internal  {
+    frame = "1849 -2051 128 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _default {
+        geometry = "1758 167 1361 734"
+        sizeHint = "648 734"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1032 351 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = RunCreatePosterScript
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    editComments = FALSE
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = Moep.
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+from mevis import MLABFileDialog"
+    wakeUpCode = ""
+    code = "*networkCTX=RunPythonScript_ctx.owner().owner()
+
+networkCTX.field("savePosterStatus").value = ""
+filename = MLABFileDialog.getSaveFileName("", "PNG (*.png);;All files (*.*)", "Save Poster Image")
+
+if (filename):
+  networkCTX.field("SavePosterImage.filename").value = filename
+  networkCTX.field("savePosterStatus").connectFrom(networkCTX.field("SavePosterImage.status"))
+  networkCTX.field("OffscreenRenderer.update").touch()
+  networkCTX.field("SavePosterImage.save").touch()
+  networkCTX.field("PDF3DFigurePage_SavePDF.posterImageFilename").value = networkCTX.field("SavePosterImage.filename").value
+  networkCTX.field("savePosterStatus").disconnectAll()
+  networkCTX.field("SavePosterImage.filename").value = ""
+
+
+*"
+    showFields = TRUE
+    showInitCode = TRUE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showConsole = FALSE
+  }
+}
+module SoView2DLabel {
+  internal  {
+    frame = "2061 -2114 120 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _default {
+        geometry = "555 196 352 580"
+        sizeHint = "338 580"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2DLabel
+    interactionProviderID = ""
+    drawingOn = TRUE
+    color = "0 0 0"
+    text = "Click here to enable interactive mode."
+    viewerId = ""
+    textPositioning = RELATIVE_TO_VIEWER
+    worldPosition = "0 0 0"
+    relativeViewerPosition = "0.5 0.949999988079071"
+    verticalOffset = 0
+    verticalPosition = POS_VCENTER
+    horizontalOffset = 0
+    horizontalPosition = POS_HCENTER
+    fontSize = 24
+    alpha = 1
+    textShadow = FALSE
+  }
+}
+module ConstantImage {
+  internal  {
+    frame = "2189 -2018 120 72"
+    moduleGroupName = "Create Poster"
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "739 435 217 238"
+        sizeHint = "217 238"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ConstantImage
+    sizeX = 500
+    sizeY = 375
+    sizeZ = 1
+    sizeC = 1
+    sizeT = 1
+    sizeU = 1
+    dataType = "unsigned int8"
+    fillValue = 0
+    autoApply = FALSE
+  }
+}
+module SoView2D {
+  internal  {
+    frame = "2205 -2114 88 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _default {
+        geometry = "628 304 439 501"
+        sizeHint = "439 501"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoView2D
+    interactionProviderID = ""
+    viewerId = viewer
+    startSlice = 0
+    sliceStep = 1
+    numSlices = 1
+    numXSlices = 1
+    maxSlice = 0
+    keepSlicesInView = FALSE
+    slab = 1
+    lowerLeft = "0 0"
+    upperRight = "1 1"
+    margin = "2 2"
+    spacing = "4 4"
+    sliceZoom = 1
+    sliceZoomSynchronized = 1
+    zoomCenter = "0.5 0.5"
+    minSliceZoomKeyboard = 1
+    sliceOrigin = "0 0"
+    viewingCenter = "0 0 0"
+    enableViewingCenter = FALSE
+    unzoomOnImageChange = FALSE
+    drawImageData = FALSE
+    timePoint = 0
+    maxTimePoint = 0
+    snapToCenter = FALSE
+    standardKeys = FALSE
+    standardKeysNumbers = TRUE
+    standardKeysNeedValidPosition = FALSE
+    passHandledFlagToInventor = FALSE
+    reverseExtensionDrawingOrder = FALSE
+    blendMode = BLEND_REPLACE
+    filterMode = FILTER_LINEAR
+    cacheMode = SLICE_CACHING_OFF
+    sliceAlignX = SLICE_ALIGNX_CENTER
+    sliceAlignY = SLICE_ALIGNY_CENTER
+    useShaders = TRUE
+    applyLut = TRUE
+    lutPrecision = VIEW2D_LUT_AUTO
+    zoomMode = VIEW2D_AUTO_ZOOM
+    zoomModeParameter = 1
+    invertKeyPanningDirections = FALSE
+    invertKeySlicingDirection = FALSE
+    overrideAspectRatio = FALSE
+    overrideAspectRatioValue = 1
+    alphaFactor = 1
+    baseColor = "1 1 1"
+    backgroundAlphaFactor = 0
+    backgroundColor = "0 0 0"
+    cineCenterT = 0
+    cineIntervalT = 0
+    cineCenterZ = 0
+    cineIntervalZ = 0
+    cineMode = CINE_Z
+    cineDirection = CINE_PINGPONG
+    cineRepeat = CINE_ONCE
+    cineSpeed = 0.1
+    cineFullRangeZ = TRUE
+    cineFullRangeT = TRUE
+    cineAlwaysReset = TRUE
+    deletingEnabled = TRUE
+    handle2DEvents = TRUE
+    handle3DEvents = TRUE
+    useManagedInteraction = FALSE
+    devicePixelSize = 1
+    enableZBuffer = TRUE
+    enableZWrite = TRUE
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "2105 -2218 112 56"
+    moduleGroupName = "Create Poster"
+  }
+  fields  {
+    instanceName = SoSeparator1
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module SoPerspectiveCamera {
+  internal  {
+    frame = "1805 -2210 152 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _default {
+        geometry = "680 392 446 248"
+        sizeHint = "406 248"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoPerspectiveCamera
+    viewportMapping = ADJUST_CAMERA
+    position = "162.050567626953 -442.166625976562 1191.71057128906"
+    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    aspectRatio = 0.75
+    nearDistance = 16.620569
+    farDistance = 458.11389
+    focalDistance = 314.59598
+    heightAngle = 1.5707964
+  }
+}
+module SoSeparator {
+  internal  {
+    frame = "1945 -2298 128 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoSeparator
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+  }
+}
+module ImageSave {
+  internal  {
+    frame = "1961 -2522 96 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _default {
+        geometry = "453 185 401 678"
+        sizeHint = "401 500"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = SavePosterImage
+    taskVerboseLogging = FALSE
+    filename = ""
+    format = PNG
+    comment = ""
+    allowOverwrite = TRUE
+    autoFilename = FALSE
+    sourceName = ""
+    postfix = ""
+    dicomNameUsed = TRUE
+    dicomMetaHeader = TRUE
+    dicomDerived = TRUE
+    dicomDerivedImageType = "OTHER\\MEVISLAB"
+    dicomDiscardTags = FrameSpecific
+    dicomStoreTimeInfo = None
+    dicomSetWindow = FALSE
+    dicomWindowCenter = 0
+    dicomWindowWidth = 0
+    dicomIgnoreHalfVoxelShift = FALSE
+    tiffCompression = None
+    tiffTileX = 128
+    tiffTileY = 128
+    tiffTileXAuto = TRUE
+    tiffTileYAuto = TRUE
+    saveDicomHeaderOnly = FALSE
+    pngCompression = Default
+    pngInterlaced = FALSE
+    jpegQuality = 75
+    jpegProgressive = FALSE
+  }
+}
+module OffscreenRenderer {
+  internal  {
+    frame = "1941 -2410 136 56"
+    moduleGroupName = "Create Poster"
+    windows  {
+      window _default {
+        geometry = "163 294 291 389"
+        sizeHint = "268 389"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "529 350 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = OffscreenRenderer
+    transparencyType = BLEND
+    imageType = RGB
+    bufferType = AUTO
+    stencilBuffer = FALSE
+    size = "1000 750"
+    pixelScale = 1
+    bgColor = "1 1 1"
+    enableMultiSampling = FALSE
+    multiSampling = 16
+  }
+}
+module RunPythonScript {
+  internal  {
+    frame = "-331 -383 136 64"
+    moduleGroupName = SaveFiles
+    windows  {
+      window _default {
+        geometry = "1801 139 1370 882"
+        sizeHint = "648 734"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1032 351 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = RunSavePDFScript
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    editComments = FALSE
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = ""
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+from mevis import MLABFileDialog"
+    wakeUpCode = ""
+    code = "*networkCTX=RunPythonScript_ctx.owner().owner()
+
+networkCTX.field("PDF3DFigurePage_SavePDF.save").touch()
+*"
+    showFields = TRUE
+    showInitCode = TRUE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showConsole = FALSE
+  }
+}
+module RunPythonScript {
+  internal  {
+    frame = "-331 -263 136 64"
+    moduleGroupName = SaveFiles
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "1761 79 1363 882"
+        sizeHint = "641 734"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1032 351 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = RunSaveU3DScript
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    editComments = FALSE
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = ""
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+from mevis import MLABFileDialog"
+    wakeUpCode = ""
+    code = "*networkCTX=RunPythonScript_ctx.owner().owner()
+
+
+networkCTX.field("saveU3DStatus").value = ""
+filename = MLABFileDialog.getSaveFileName("", "U3D (*.u3d);;All files (*.*)", "Save Model File")
+
+if (filename):
+  networkCTX.field("SaveU3D.filename").value = filename
+  networkCTX.field("saveU3DStatus").connectFrom(networkCTX.field("SaveU3D.status"))
+  networkCTX.field("SavePosterImage.save").touch()
+  networkCTX.field("PDF3DFigurePage_Utils.createPointCloudSpecification").touch()
+  networkCTX.field("PDF3DFigurePage_Utils.createLineSetSpecification").touch()
+  networkCTX.field("PDF3DFigurePage_Utils.createMetaDataSpecification").touch()
+  networkCTX.field("PDF3DFigurePage_SavePDF.u3dFilename").value = networkCTX.field("SaveU3D.filename").value
+  networkCTX.field("SaveU3D.save").touch()
+  networkCTX.field("PDF3DFigurePage_SavePDF.u3dFilename").value = networkCTX.field("SaveU3D.filename").value
+  networkCTX.field("saveU3DStatus").disconnectAll()
+  networkCTX.field("SaveU3D.filename").value = ""
+
+
+
+*"
+    showFields = TRUE
+    showInitCode = TRUE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showConsole = FALSE
+  }
+}
+module BoolString {
+  internal  {
+    frame = "2669 -991 216 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "248 252 506 206"
+        sizeHint = "200 206"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = DefinePreviewColorModeForLines
+    boolValue = FALSE
+    stringValue = COLOR_INDIVIDUAL
+    offValue = COLOR_INDIVIDUAL
+    onValue = COLOR_GENERAL
+    defaultBool = Unchanged
+  }
+}
+module SoFiberVis {
+  internal  {
+    frame = "1769 -1307 160 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "967 409 383 488"
+        sizeHint = "383 488"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LinesRendererSelected
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    generalColor = "0 0 0"
+    drawLines = TRUE
+    drawSpheres = FALSE
+    optimizePoints = FALSE
+    angleThreshold = 0.99900001
+    sphereRadius = 1
+    computeFiberSet = FALSE
+    alphaValue = 1
+    minFibernessValue = 0
+    colorMode = COLOR_GENERAL
+    enableLighting = FALSE
+    ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
+    diffuse = "1 1 1"
+    specular = "1 1 1"
+    shininess = 1
+    allowClip = TRUE
+  }
+}
+module SoFiberVis {
+  internal  {
+    frame = "1577 -1307 176 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "967 409 383 488"
+        sizeHint = "383 488"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LinesRendererUnSelected
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    generalColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    drawLines = TRUE
+    drawSpheres = FALSE
+    optimizePoints = FALSE
+    angleThreshold = 0.99900001
+    sphereRadius = 1
+    computeFiberSet = FALSE
+    alphaValue = 1
+    minFibernessValue = 0
+    colorMode = COLOR_GENERAL
+    enableLighting = FALSE
+    ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
+    diffuse = "1 1 1"
+    specular = "1 1 1"
+    shininess = 1
+    allowClip = TRUE
+  }
+}
+module XMarkerListFilter {
+  internal  {
+    frame = "1133 -1179 152 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "1755 171 562 626"
+        sizeHint = "300 626"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FilterPointsUnselected
+    filterMode = Exclude
+    filterType = TRUE
+    filterPosition = FALSE
+    filterName = FALSE
+    filterVectorLength = FALSE
+    markerTypes = 0
+    markerName = ""
+    minVectorLength = 0
+    maxVectorLength = 1
+    useMinVectorLength = FALSE
+    useMaxVectorLength = TRUE
+    filterX = TRUE
+    filterY = TRUE
+    filterZ = TRUE
+    filterC = FALSE
+    filterT = FALSE
+    filterU = FALSE
+    allowSwapMinMax = TRUE
+    minValues = "0 0 0 0 0 0"
+    maxValues = "1 1 1 0 0 0"
+    maxNumMarkers = -1
+    numFilteredMarkers = 0
+    autoUpdate = TRUE
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "1109 -1307 184 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "495 499 542 340"
+        sizeHint = "542 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PointsRendererUnSelected
+    interactionProviderID = ""
+    scaleSize = 3.8399999
+    scaleLength = 1
+    color = "0.792156994342804 0.792156994342804 0.792156994342804"
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = FALSE
+    selectingOn = FALSE
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = FALSE
+    textBackgroundColor = "1 1 1"
+    textBackgroundAlpha = 0
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModePointSprites
+    numMarkersThresholdForFastRendering = 5000
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module XMarkerListFilter {
+  internal  {
+    frame = "1337 -1179 144 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "1126 131 562 626"
+        sizeHint = "300 626"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = FilterPointsSelected
+    filterMode = Include
+    filterType = TRUE
+    filterPosition = FALSE
+    filterName = FALSE
+    filterVectorLength = FALSE
+    markerTypes = 0
+    markerName = ""
+    minVectorLength = 0
+    maxVectorLength = 1
+    useMinVectorLength = FALSE
+    useMaxVectorLength = TRUE
+    filterX = TRUE
+    filterY = TRUE
+    filterZ = TRUE
+    filterC = FALSE
+    filterT = FALSE
+    filterU = FALSE
+    allowSwapMinMax = TRUE
+    minValues = "0 0 0 0 0 0"
+    maxValues = "1 1 1 0 0 0"
+    maxNumMarkers = -1
+    numFilteredMarkers = 0
+    autoUpdate = TRUE
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "1309 -1307 168 64"
+    moduleGroupName = Visualization
+    windows  {
+      window _default {
+        geometry = "495 499 542 340"
+        sizeHint = "542 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PointsRendererSelected
+    interactionProviderID = ""
+    scaleSize = 3.8399999
+    scaleLength = 1
+    color = "0 0 0"
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = FALSE
+    selectingOn = FALSE
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = FALSE
+    textBackgroundColor = "1 1 1"
+    textBackgroundAlpha = 0
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModePointSprites
+    numMarkersThresholdForFastRendering = 5000
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "0 0 0"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module PDF3DFigurePage_LoadPointLineGeometry {
+  internal  {
+    frame = "1033 1297 272 64"
+    moduleGroupName = "Load Points and Lines"
+    windows  {
+      window _default {
+        geometry = "465 779 627 164"
+        sizeHint = "589 164"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "336 314 633 600"
+        sizeHint = "269 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadPointLineGeometry
+    filename = ""
+    filter = Lines
+    numberDelimiter = " "
+    numberDelimiterSpace = TRUE
+    decimalSeparator = .
+    autoLoad = FALSE
+  }
+}
+module RunPythonScript {
+  internal  {
+    frame = "-1903 729 128 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "74 89 1370 882"
+        sizeHint = "648 734"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1032 351 500 600"
+        sizeHint = "256 192"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = InitializeModule
+    in0 = ""
+    in1 = ""
+    in2 = ""
+    in3 = ""
+    in4 = ""
+    in5 = ""
+    in6 = ""
+    in7 = ""
+    in8 = ""
+    in9 = ""
+    editComments = FALSE
+    inComment0 = in0
+    inComment1 = in1
+    inComment2 = in2
+    inComment3 = in3
+    inComment4 = in4
+    inComment5 = in5
+    inComment6 = in6
+    inComment7 = in7
+    inComment8 = in8
+    inComment9 = in9
+    autoApply0 = TRUE
+    autoApply1 = TRUE
+    autoApply2 = TRUE
+    autoApply3 = TRUE
+    autoApply4 = TRUE
+    autoApply5 = TRUE
+    autoApply6 = TRUE
+    autoApply7 = TRUE
+    autoApply8 = TRUE
+    autoApply9 = TRUE
+    out0 = ""
+    out1 = ""
+    out2 = ""
+    out3 = ""
+    out4 = ""
+    out5 = ""
+    out6 = ""
+    out7 = ""
+    out8 = ""
+    out9 = ""
+    outComment0 = out0
+    outComment1 = out1
+    outComment2 = out2
+    outComment3 = out3
+    outComment4 = out4
+    outComment5 = out5
+    outComment6 = out6
+    outComment7 = out7
+    outComment8 = out8
+    outComment9 = out9
+    initCode = "from mevis import MLAB
+from mevis import MLABFileDialog"
+    wakeUpCode = ""
+    code = "*networkCTX=RunPythonScript_ctx.owner().owner()
+
+networkCTX.field("loadLinesFilter").value = "Lines"
+networkCTX.field("loadPointsFilter").value = "Points"
+networkCTX.field("filenameWEM").value = ""
+networkCTX.field("filenamePointPositions").value = ""
+networkCTX.field("filenameLineDefinitions").value = ""
+networkCTX.field("SaveU3D.filename").value = ""
+networkCTX.field("PDF3DFigurePage_SavePDF.u3dFilename").value = ""
+networkCTX.field("PDF3DFigurePage_SavePDF.pdfFilename").value = ""
+networkCTX.field("SwitchPreview.whichChild").value = -1
+networkCTX.field("ToggleReducedMesh.boolValue").value = False
+networkCTX.field("WEMReducePolygons.targetReduction").value = 75
+networkCTX.field("PDF3DFigurePage_Utils.pointCloudSpecification").value = ""
+networkCTX.field("PDF3DFigurePage_Utils.lineSetSpecification").value = ""
+networkCTX.field("PDF3DFigurePage_Utils.metaDataSpecification").value = ""
+networkCTX.field("PDF3DFigurePage_Utils.viewSpecifications").value = ""
+networkCTX.field("savePosterStatus").value = ""
+networkCTX.field("saveU3DStatus").value = ""
+networkCTX.field("SaveU3D.progress").value = 0
+networkCTX.field("PDF3DFigurePage_SavePDF.status").value = "Idle."
+networkCTX.field("PDF3DFigurePage_SavePDF.progress").value = 0
+networkCTX.field("viewDisplayName").value = ""
+networkCTX.field("viewBackgroundColor").setStringValue("1 1 1")
+networkCTX.field("viewLightingScheme").value = "HeadLamp"
+networkCTX.field("selectedWEMPatchNewLabel").value = ""
+networkCTX.field("selectedWEMPatchGroupPath").value = ""
+networkCTX.field("selectedWEMPatchUseDefaultColor").value = True
+networkCTX.field("selectedWEMPatchColor").setStringValue("0 0 0")
+networkCTX.field("selectedWEMPatchColorAlpha").value = 0
+networkCTX.field("selectedLineSetNewLabel").value = ""
+networkCTX.field("selectedLineSetGroupPath").value = ""
+networkCTX.field("selectedLineSetUseDefaultColor").value = True
+networkCTX.field("selectedLineSetColor").setStringValue("0 0 0")
+networkCTX.field("availableLineSets").value = ""
+networkCTX.field("selectedPointSetNewLabel").value = ""
+networkCTX.field("selectedPointSetGroupPath").value = ""
+networkCTX.field("availablePointSets").value = ""
+#networkCTX.field("").value = ""
+
+
+*"
+    showFields = TRUE
+    showInitCode = TRUE
+    showWakeUpCode = FALSE
+    showCode = TRUE
+    showConsole = FALSE
+  }
+}
+module BoolInt {
+  internal  {
+    frame = "-703 969 144 64"
+    moduleGroupName = "Import Meshes"
+    windows  {
+      window _default {
+        geometry = "364 605 206 241"
+        sizeHint = "206 241"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleReducedMesh
+    boolValue = FALSE
+    invBoolValue = TRUE
+    intValue = 0
+    offValue = 0
+    onValue = 1
+    defaultBool = Unchanged
+  }
+}
+module BaseSwitch {
+  internal  {
+    frame = "-527 969 144 64"
+    moduleGroupName = "Import Meshes"
+    windows  {
+      window _default {
+        geometry = "566 510 563 89"
+        sizeHint = "563 89"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SwitchReducedMesh
+    currentInput = 0
+    currentOutput = 0
+    numberOfInputs = 2
+    numberOfOutputs = 1
+  }
+}
+module SoWEMConvertInventor {
+  internal  {
+    frame = "-603 1253 168 56"
+    moduleGroupName = "Import Meshes"
+    windows  {
+      window _default {
+        geometry = "722 520 250 69"
+        sizeHint = "250 69"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "597 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMConvertInventor
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    progress = 0
+    convertInfo = Ready
+    autoApply = TRUE
+    isProcessing = FALSE
+  }
+}
+module SoSceneLoader {
+  internal  {
+    frame = "-587 1353 136 64"
+    moduleGroupName = "Import Meshes"
+    windows  {
+      window _default {
+        geometry = "541 539 362 268"
+        sizeHint = "279 268"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1079 254 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MeshSceneLoader
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    filename = ""
+    calculateTangents = FALSE
+    joinIdenticalVertices = TRUE
+    removeRedundantMaterials = TRUE
+    triangulate = TRUE
+    findDegenerates = TRUE
+    findInvalidData = TRUE
+    splitLargeMeshes = FALSE
+    improveCacheLocality = FALSE
+    optimizeMeshes = FALSE
+    logDetail = Errors
+    generateNormals = GenerateSmoothNormals
+    normalSmoothingCreaseAngle = 175
+  }
+}
+module WEMReducePolygons {
+  internal  {
+    frame = "-459 1125 152 56"
+    moduleGroupName = "Import Meshes"
+    windows  {
+      window _default {
+        geometry = "867 285 308 312"
+        sizeHint = "308 312"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMReducePolygons
+    id = 0
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = FALSE
+    removePreviousWEMs = TRUE
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    copyInputWEMs = TRUE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    forwardRepaintNotifications = TRUE
+    forwardSelectionNotifications = TRUE
+    triangulationMode = Strip
+    targetReduction = 75
+    smooth = FALSE
+    numEdgeCollapses = 0
+    reduction = 0
+    useExpertMode = FALSE
+    vertexPlacementMode = Optimal
+    areaWeightedQuadrics = FALSE
+    valenceWeightedQuadrics = FALSE
+    edgeWeightedQuadrics = FALSE
+    shouldInterpolatePVLValues = TRUE
+    shouldLeaveEdgesWithDifferentPVLValues = FALSE
+    shouldSwapEdges = TRUE
+    swapAngleLimit = 12
+  }
+}
 module WEMInfo {
   internal  {
-    frame = "517 -755 88 56"
+    frame = "349 -307 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -22,7 +1193,7 @@ module WEMInfo {
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = "1@Main Branch|2@Side Branch"
+    WEMs = "2@Left Femur (Outer Surface)|4@Left Femur (Spongiosa Surface)|6@Left Femur (Bone Marrow Surface)"
     hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
     primitiveValueLists = LUT
@@ -32,7 +1203,7 @@ module WEMInfo {
 }
 module BoolString {
   internal  {
-    frame = "1733 -847 168 64"
+    frame = "2661 -823 232 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -43,7 +1214,7 @@ module BoolString {
     }
   }
   fields  {
-    instanceName = DefinePreviewColorMode
+    instanceName = DefinePreviewColorModeForMeshes
     boolValue = FALSE
     stringValue = WEM_COLOR_NODE_COLORS
     offValue = WEM_COLOR_NODE_COLORS
@@ -81,9 +1252,9 @@ module BoolInt {
   }
   fields  {
     instanceName = SwitchMarkerRendering
-    boolValue = TRUE
-    invBoolValue = FALSE
-    intValue = 52
+    boolValue = FALSE
+    invBoolValue = TRUE
+    intValue = 0
     offValue = 0
     onValue = 1
     defaultBool = On
@@ -91,11 +1262,11 @@ module BoolInt {
 }
 module RunPythonScript {
   internal  {
-    frame = "1081 711 152 64"
-    moduleGroupName = "Load Lines"
+    frame = "893 1089 152 64"
+    moduleGroupName = "Load Points and Lines"
     windows  {
       window _default {
-        geometry = "1621 45 1370 882"
+        geometry = "1811 90 1370 882"
         sizeHint = "648 734"
         wasOpen = no
       }
@@ -167,13 +1338,16 @@ from mevis import MLABFileDialog"
 filename = MLABFileDialog.getOpenFileName("", "All files (*.*);;CSV (*.csv);;Text (*.txt)", "Open Points File")
 
 if (filename):
-  networkCTX.field("LoadLinePositions.filename").value = filename
-  networkCTX.field("LoadLinePositions.load").touch()
+  networkCTX.field("filenameLineDefinitions").value = filename
+  networkCTX.field("LoadPointLineGeometry.filter").value = networkCTX.field("loadLinesFilter").value
+  networkCTX.field("LoadPointLineGeometry.load").touch()
   networkCTX.field("SwitchPreview.whichChild").value = 2
   networkCTX.field("PreviewViewer.viewAll").touch()
 else:
   networkCTX.field("SwitchPreview.whichChild").value = -1
-  networkCTX.field("LoadLinePositions.unload").touch()
+  networkCTX.field("LoadPointLineGeometry.unload").touch()
+  networkCTX.field("filenameLineDefinitions").value = ""
+  networkCTX.field("LoadPointLineGeometry.filter").value = ""
   networkCTX.field("PreviewViewer.viewAll").touch()
 *"
     showFields = TRUE
@@ -185,11 +1359,11 @@ else:
 }
 module RunPythonScript {
   internal  {
-    frame = "541 673 152 64"
-    moduleGroupName = "Load Points"
+    frame = "893 985 152 64"
+    moduleGroupName = "Load Points and Lines"
     windows  {
       window _default {
-        geometry = "1762 75 1370 882"
+        geometry = "199 104 1370 882"
         sizeHint = "648 734"
         wasOpen = no
       }
@@ -261,14 +1435,18 @@ from mevis import MLABFileDialog"
 filename = MLABFileDialog.getOpenFileName("", "All files (*.*);;CSV (*.csv);;Text (*.txt)", "Open Points File")
 
 if (filename):
-  networkCTX.field("LoadPointPositions.filename").value = filename
-  networkCTX.field("LoadPointPositions.load").touch()
+  networkCTX.field("filenamePointPositions").value = filename
+  networkCTX.field("LoadPointLineGeometry.filter").value = networkCTX.field("loadPointsFilter").value
+  networkCTX.field("LoadPointLineGeometry.load").touch()
   networkCTX.field("SwitchPreview.whichChild").value = 1
   networkCTX.field("PreviewViewer.viewAll").touch()
 else:
   networkCTX.field("SwitchPreview.whichChild").value = -1
-  networkCTX.field("LoadPointPositions.unload").touch()
+  networkCTX.field("LoadPointLineGeometry.unload").touch()
+  networkCTX.field("filenamePointPositions").value = ""
+  networkCTX.field("LoadPointLineGeometry.filter").value = ""
   networkCTX.field("PreviewViewer.viewAll").touch()
+
 *"
     showFields = TRUE
     showInitCode = TRUE
@@ -279,12 +1457,12 @@ else:
 }
 module RunPythonScript {
   internal  {
-    frame = "57 953 192 64"
+    frame = "-1911 641 192 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1723 110 1363 882"
-        sizeHint = "641 734"
+        geometry = "287 90 1361 734"
+        sizeHint = "648 734"
         wasOpen = no
       }
       window _automatic {
@@ -355,16 +1533,17 @@ from mevis import MLABFileDialog"
 lastImportedModelType = networkCTX.field("SwitchPreview.whichChild").value
 
 if (lastImportedModelType == 0):
-	networkCTX.field("WEMComposePatches.apply").touch()
+	networkCTX.field("addMeshToModel").touch()
 elif (lastImportedModelType == 1):
-	networkCTX.field("LoadPointPositions.addToCache").touch()
+	networkCTX.field("addPointsToModel").touch()
 elif (lastImportedModelType == 2):
-	networkCTX.field("LoadLinePositions.addToCache").touch()
+	networkCTX.field("addLinesToModel").touch()
 
-networkCTX.field("WEMSceneLoader.filename").value = ""
-#networkCTX.field("LoadPointPositions.filename").value = ""
-#networkCTX.field("LoadLinePositions.filename").value = ""
+networkCTX.field("filenameWEM").value = ""
+networkCTX.field("filenamePointPositions").value = ""
+networkCTX.field("filenameLineDefinitions").value = ""
 networkCTX.field("SwitchPreview.whichChild").value = -1
+networkCTX.field("ToggleReducedMesh.boolValue").value = False
 
 
 *"
@@ -377,8 +1556,8 @@ networkCTX.field("SwitchPreview.whichChild").value = -1
 }
 module SoFiberVis {
   internal  {
-    frame = "1030 480 144 64"
-    moduleGroupName = "Load Lines"
+    frame = "1441 945 144 64"
+    moduleGroupName = "Load Points and Lines"
     windows  {
       window _default {
         geometry = "1076 510 383 488"
@@ -415,7 +1594,7 @@ module SoFiberVis {
 }
 module BoolInt {
   internal  {
-    frame = "1917 -931 72 56"
+    frame = "2933 -899 72 56"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -437,7 +1616,7 @@ module BoolInt {
 }
 module BoolString {
   internal  {
-    frame = "1729 -935 144 64"
+    frame = "2745 -903 144 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -458,11 +1637,11 @@ module BoolString {
 }
 module WEMInfo {
   internal  {
-    frame = "-203 605 88 56"
+    frame = "-643 1073 120 64"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
-        geometry = "593 335 509 438"
+        geometry = "692 233 509 438"
         sizeHint = "509 438"
         wasOpen = no
       }
@@ -476,21 +1655,21 @@ module WEMInfo {
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = ""
+    WEMs = "1@"
     hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
-    primitiveValueLists = ""
+    primitiveValueLists = LUT
     curveScaleFactor = 1
-    selectedTab = 0
+    selectedTab = 1
   }
 }
 module SoWEMRendererEdges {
   internal  {
-    frame = "1489 -1007 160 64"
+    frame = "2361 -871 160 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
-        geometry = "579 938 252 205"
+        geometry = "318 636 252 205"
         sizeHint = "237 205"
         wasOpen = no
       }
@@ -511,12 +1690,12 @@ module SoWEMRendererEdges {
 }
 module RunPythonScript {
   internal  {
-    frame = "-135 953 160 64"
+    frame = "-1911 833 160 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "93 195 1363 882"
-        sizeHint = "641 734"
+        geometry = "186 58 1370 882"
+        sizeHint = "648 734"
         wasOpen = no
       }
       window _automatic {
@@ -584,10 +1763,12 @@ from mevis import MLABFileDialog"
     wakeUpCode = ""
     code = "*networkCTX=RunPythonScript_ctx.owner().owner()
 
-networkCTX.field("WEMSceneLoader.filename").value = ""
-#networkCTX.field("LoadPointPositions.filename").value = ""
-#networkCTX.field("LoadLinePositions.filename").value = ""
+networkCTX.field("filenameWEM").value = ""
+networkCTX.field("filenamePointPositions").value = ""
+networkCTX.field("filenameLineDefinitions").value = ""
 networkCTX.field("SwitchPreview.whichChild").value = -1
+networkCTX.field("ToggleReducedMesh.boolValue").value = False
+
 
 
 *"
@@ -600,7 +1781,7 @@ networkCTX.field("SwitchPreview.whichChild").value = -1
 }
 module SoDepthPeelRenderer {
   internal  {
-    frame = "-7 461 160 56"
+    frame = "-327 753 192 64"
     moduleGroupName = "Import Meshes"
   }
   fields  {
@@ -619,7 +1800,7 @@ module SoDepthPeelRenderer {
 }
 module SoWEMRendererEdges {
   internal  {
-    frame = "29 661 168 56"
+    frame = "-307 985 168 64"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
@@ -644,7 +1825,7 @@ module SoWEMRendererEdges {
 }
 module SoSwitch {
   internal  {
-    frame = "1681 -1055 128 80"
+    frame = "2593 -1143 128 80"
     moduleGroupName = Visualization
     showNetworkPanel = true
     windows  {
@@ -662,8 +1843,8 @@ module SoSwitch {
 }
 module So3DMarkerEditor {
   internal  {
-    frame = "427 477 152 64"
-    moduleGroupName = "Load Points"
+    frame = "1269 945 152 64"
+    moduleGroupName = "Load Points and Lines"
     windows  {
       window _default {
         geometry = "276 415 653 340"
@@ -675,7 +1856,7 @@ module So3DMarkerEditor {
   fields  {
     instanceName = PointsRendererImport
     interactionProviderID = ""
-    scaleSize = 2.74
+    scaleSize = 2.3299999
     scaleLength = 1
     color = "1 0 0"
     ambientColor = "0 0 0"
@@ -708,17 +1889,17 @@ module So3DMarkerEditor {
     persistent = FALSE
     listStringEnable = FALSE
     applySelect = FALSE
-    name = "Main Branch"
+    name = ""
     newName = ""
     overflowMode = None
     maxSize = 0
     useInsertTemplate = FALSE
-    posXYZ = "-74.072 -37.0475 -202.263"
+    posXYZ = "0 0 0"
     posC = 0
     posT = 0
     posU = 0
     vecXYZ = "0 0 0"
-    type = 1
+    type = 0
     newPosXYZ = "0 0 0"
     newPosC = 0
     newPosT = 0
@@ -729,7 +1910,7 @@ module So3DMarkerEditor {
 }
 module RunPythonScript {
   internal  {
-    frame = "53 761 152 64"
+    frame = "-267 1353 152 64"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
@@ -805,12 +1986,12 @@ from mevis import MLABFileDialog"
 filename = MLABFileDialog.getOpenFileName("", "All files (*.*);;Stereolithography (*.stl);;Wavefront Object (*.obj);;Object File Format (*.off);;Stanford Polygon Library (*.ply);;3D GameStudio Model (*.mdl);;3D GameStudio Terrain (*.hmp);;3D Studio Max 3DS (*.3ds);;3D Studio Max ASE (*.ase);;AC3D (*.ac);;AutoCAD DXF (*.dxf);;Autodesk DXF (*.dxf);;Blender (*.blend);;Biovision BVH (*.bvh);;CharacterStudio Motion (*.csm);;Collada (*.dae);;DirectX X (*.x);;Doom 3 (*.md5mesh);;Irrlicht Mesh (*.irrmesh);;LightWave Model (*.lwo);;LightWave Scene (*.lws);;Milkshape 3D (*.ms3d);;Modo Model (*.lxo);;Neutral File Format (*.nff);;Ogre (*.mesh.xml);;Quake I (*.mdl);;Quake II (*.md2);;Quake III (*.md3);;Quake 3 BSP (*.pk3);;Quick3D (*.q3o *q3s);;Raw Triangles (*.raw);;RtCW (*.mdc);;Sense8 WorldToolkit (*.nff);;Terragen Terrain (*.ter);;TrueSpace (*.cob *.scn);;Valve Model (*.smd *.vta);;XGL (*.xgl *.zgl)", "Open Mesh File")
 
 if (filename):
-  networkCTX.field("WEMSceneLoader.filename").value = filename
+  networkCTX.field("MeshSceneLoader.filename").value = filename
   networkCTX.field("SwitchPreview.whichChild").value = 0
   networkCTX.field("PreviewViewer.viewAll").touch()
 else:
   networkCTX.field("SwitchPreview.whichChild").value = -1
-  networkCTX.field("WEMSceneLoader.filename").value = ""
+  networkCTX.field("MeshSceneLoader.filename").value = ""
   networkCTX.field("PreviewViewer.viewAll").touch()
 *"
     showFields = TRUE
@@ -822,7 +2003,7 @@ else:
 }
 module SoWEMRenderer {
   internal  {
-    frame = "-24 557 152 64"
+    frame = "-323 857 152 64"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
@@ -859,21 +2040,21 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 1
     faceShininessValue = 1
-    primitiveValueLists = ""
+    primitiveValueLists = LUT
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = -1
+    maxWEMPatchIndex = 0
     sendAdjacency = FALSE
     selectedTab = 0
   }
 }
 module WEMComposePatches {
   internal  {
-    frame = "-199 461 160 56"
+    frame = "-535 765 160 56"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
@@ -901,22 +2082,27 @@ module WEMComposePatches {
     shouldComputeNormals = TRUE
     inWEMValid = TRUE
     triangulatePatches = TRUE
-    status = "Added 1 triangle patch."
+    status = "Valid WEM connected"
   }
 }
 module SoExaminerViewer {
   internal  {
-    frame = "1101 -1711 136 64"
+    frame = "2701 -1775 136 64"
     moduleGroupName = Visualization
     windows  {
       window _viewer {
-        geometry = "899 569 467 447"
+        geometry = "189 103 572 557"
         sizeHint = "400 400"
         wasOpen = no
       }
       window _automatic {
-        geometry = "1742 287 684 600"
+        geometry = "991 414 684 600"
         sizeHint = "260 223"
+        wasOpen = no
+      }
+      window _default {
+        geometry = "826 278 574 368"
+        sizeHint = "574 368"
         wasOpen = no
       }
     }
@@ -942,11 +2128,11 @@ module SoExaminerViewer {
     autoRedrawWhenRecording = TRUE
     frameRate = 7
     frameRateAvi = 15
-    outputSnapshotFile = none
-    outputSnapshotFileWritten = none0.tif
-    autoIncreaseFile = TRUE
+    outputSnapshotFile = ""
+    outputSnapshotFileWritten = "d:\\snapshot1.tif"
+    autoIncreaseFile = FALSE
     showSnapshotWithShell = FALSE
-    snapCount = 1
+    snapCount = 0
     inputDevicesList = ""
     headlight = TRUE
     decoration = TRUE
@@ -955,7 +2141,7 @@ module SoExaminerViewer {
     autoClipping = TRUE
     drawStyle = VIEW_AS_IS
     interactiveDrawStyle = VIEW_LOW_COMPLEXITY
-    viewAllFlag = TRUE
+    viewAllFlag = FALSE
     initialCameraOrientation = CAMERA_KEEP_AS_IS
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
@@ -970,11 +2156,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "12.9499769210815 220.095306396484 -14.1311016082764"
-    orientation = "0.0875432565808296 0.73527592420578 0.672090470790863 3.23970627784729"
-    nearDistance = 147.23695
-    farDistance = 316.51239
-    focalDistance = 231.79025
+    position = "162.050567626953 -442.166625976562 1191.71057128906"
+    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    nearDistance = 84.194893
+    farDistance = 390.40457
+    focalDistance = 314.59598
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -992,7 +2178,7 @@ module SoExaminerViewer {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "1805 -1711 136 64"
+    frame = "2501 -1775 136 64"
     moduleGroupName = Visualization
     windows  {
       window _viewer {
@@ -1056,11 +2242,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "12.9499769210815 220.095306396484 -14.1311016082764"
-    orientation = "0.0875432565808296 0.73527592420578 0.672090470790863 3.23970627784729"
-    nearDistance = 62.357777
-    farDistance = 439.58456
-    focalDistance = 231.79025
+    position = "162.050567626953 -442.166625976562 1191.71057128906"
+    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    nearDistance = 78.067238
+    farDistance = 396.54413
+    focalDistance = 314.59598
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -1078,7 +2264,7 @@ module SoExaminerViewer {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "1469 -1711 136 64"
+    frame = "1661 -1759 136 64"
     moduleGroupName = Visualization
     windows  {
       window _viewer {
@@ -1142,11 +2328,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "12.9499769210815 220.095306396484 -14.1311016082764"
-    orientation = "0.0875432565808296 0.73527592420578 0.672090470790863 3.23970627784729"
+    position = "162.050567626953 -442.166625976562 1191.71057128906"
+    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
     nearDistance = 107.76762
     farDistance = 356.06061
-    focalDistance = 231.79025
+    focalDistance = 314.59598
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -1164,11 +2350,11 @@ module SoExaminerViewer {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "1285 -1711 136 64"
+    frame = "1213 -1775 136 64"
     moduleGroupName = Visualization
     windows  {
       window _viewer {
-        geometry = "899 569 467 447"
+        geometry = "1724 251 467 447"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -1228,11 +2414,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "12.9499769210815 220.095306396484 -14.1311016082764"
-    orientation = "0.0875432565808296 0.73527592420578 0.672090470790863 3.23970627784729"
-    nearDistance = 107.76762
-    farDistance = 356.06061
-    focalDistance = 231.79025
+    position = "162.050567626953 -442.166625976562 1191.71057128906"
+    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    nearDistance = 144.77559
+    farDistance = 319.99008
+    focalDistance = 314.59598
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -1250,11 +2436,11 @@ module SoExaminerViewer {
 }
 module SoExaminerViewer {
   internal  {
-    frame = "1629 -1711 136 64"
+    frame = "2141 -1775 136 64"
     moduleGroupName = Visualization
     windows  {
       window _viewer {
-        geometry = "899 569 467 447"
+        geometry = "1737 374 467 447"
         sizeHint = "400 400"
         wasOpen = no
       }
@@ -1314,11 +2500,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1.5707964
-    position = "12.9499769210815 220.095306396484 -14.1311016082764"
-    orientation = "0.0875432565808296 0.73527592420578 0.672090470790863 3.23970627784729"
-    nearDistance = 128.72786
-    farDistance = 345.57785
-    focalDistance = 231.79025
+    position = "162.050567626953 -442.166625976562 1191.71057128906"
+    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    nearDistance = 0.0099999998
+    farDistance = 2
+    focalDistance = 314.59598
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -1336,7 +2522,7 @@ module SoExaminerViewer {
 }
 module SoDepthPeelRenderer {
   internal  {
-    frame = "1421 -1247 152 64"
+    frame = "2437 -1446 152 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -1362,11 +2548,11 @@ module SoDepthPeelRenderer {
 }
 module SoWEMRenderer {
   internal  {
-    frame = "1505 -1135 128 64"
+    frame = "2433 -1307 128 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
-        geometry = "114 741 443 470"
+        geometry = "139 498 443 470"
         sizeHint = "443 470"
         wasOpen = no
       }
@@ -1392,7 +2578,7 @@ module SoWEMRenderer {
     faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
     useFaceSpecularColor = FALSE
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
-    faceAlphaValue = 0.56199998
+    faceAlphaValue = 0.25999999
     faceShininessValue = 1
     primitiveValueLists = LUT
     selectedPrimitiveValueList = LUT
@@ -1401,14 +2587,14 @@ module SoWEMRenderer {
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 1
+    maxWEMPatchIndex = 2
     sendAdjacency = FALSE
     selectedTab = 0
   }
 }
 module SoWEMRenderer {
   internal  {
-    frame = "1089 -1111 160 64"
+    frame = "2025 -1307 160 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -1454,7 +2640,7 @@ module SoWEMRenderer {
 }
 module WEMSelectPatches {
   internal  {
-    frame = "761 -587 144 56"
+    frame = "593 -139 144 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1491,7 +2677,7 @@ module WEMSelectPatches {
 }
 module SoGroup {
   internal  {
-    frame = "1581 -1515 152 56"
+    frame = "2605 -1667 152 56"
     moduleGroupName = Visualization
   }
   fields  {
@@ -1500,11 +2686,11 @@ module SoGroup {
 }
 module SoFiberVis {
   internal  {
-    frame = "1817 -1247 112 64"
+    frame = "2833 -1307 112 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
-        geometry = "977 483 383 488"
+        geometry = "1088 412 383 488"
         sizeHint = "383 488"
         wasOpen = no
       }
@@ -1527,7 +2713,7 @@ module SoFiberVis {
     computeFiberSet = FALSE
     alphaValue = 1
     minFibernessValue = 0
-    colorMode = COLOR_GENERAL
+    colorMode = COLOR_INDIVIDUAL
     enableLighting = FALSE
     ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
     diffuse = "1 1 1"
@@ -1538,7 +2724,7 @@ module SoFiberVis {
 }
 module PDF3DFigurePage_Utils {
   internal  {
-    frame = "537 -243 144 56"
+    frame = "357 205 168 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1547,7 +2733,7 @@ module PDF3DFigurePage_Utils {
         wasOpen = no
       }
       window _automatic {
-        geometry = "105 134 1132 600"
+        geometry = "1769 270 1132 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -1573,54 +2759,75 @@ module PDF3DFigurePage_Utils {
     useInputWEMToCreateOutputWEM = TRUE
     triangulationMode = Strip
     autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "2.43455518762676 -10.430001499928 7.64604242897622"
-    cameraCenterToCamera = "10.5154217334548 230.525307896412 -21.7771440372526"
-    cameraRadiusOfOrbit = 231.79025
+    cameraCenterOfOrbit = "93.3554159031273 -143.989957882062 1118.61961758058"
+    cameraCenterToCamera = "68.6951517238258 -298.1766680945 73.0909537084826"
+    cameraRadiusOfOrbit = 314.59598
     cameraFOVAngle = 90
-    cameraRollAngle = 10.967788
-    vertexList = "[ -74.072 -37.0475 -202.263, -66.6112 -53.7368 -174.854, -66.6112 -57.1839 -170.861, -66.6112 -56.9107 -167.141, -66.6112 -56.6375 -163.42, -66.6112 -59.5382 -151.986, -62.8809 -54.7251 -137.378, -62.8809 -54.4519 -133.657, -62.8809 -45.6451 -115.602, -62.8809 -41.3784 -108.435, -66.6112 -40.832 -100.994, -66.6112 -40.5588 -97.2736, -62.6112 -40.0124 -89.8329, -58.9809 -35.7456 -82.6655, -30.3076 -19.591 -79.0379, -25.5772 -16.5974 -76.5908, -21.8469 -15.5046 -61.7094, -21.8469 -18.6786 -53.9955, -21.8469 -25.2996 -42.2881, -14.3861 -27.9272 -27.1335, 0.535324 -27.1076 -15.9724, 11.7264 -19.1204 -9.07815, 19.1871 -14.3073 5.53003, 19.1871 -17.208 16.9643, 11.7264 -20.1087 28.3985, 4.26569 -19.5623 35.8392, 0.535324 -19.0159 43.2799, -6.9254 -18.1963 54.4409, -6.9254 -13.1099 72.7695, -3.19504 -8.29676 87.3776, -3.19504 -3.7568 98.2655, 0.535324 -2.66398 113.147, 0.535324 -1.57116 128.028, 4.26569 2.6956 135.196, 7.99605 3.51522 146.357, 11.7264 7.78198 153.524, 15.4568 12.0487 160.692, 19.1871 16.3155 167.859, 22.9175 20.5823 175.027, 26.6479 25.1222 185.915, 26.6479 29.6622 196.802, 26.6479 34.7486 215.131, 78.873 -30.2173 -109.254, 75.1426 -25.6774 -98.3665, 63.9515 -16.5974 -76.5908, 52.7604 -11.7843 -61.9826, 41.5693 -7.5175 -54.8151, 34.1086 -7.24429 -51.0948, 26.6479 -10.6914 -47.1012, 15.4568 -14.1386 -43.1077, 7.99605 -17.3125 -35.3938, 7.99605 -19.9401 -20.2392 ]"
+    cameraRollAngle = 351.29684
+    vertexList = "[  ]"
     coordIndexList = "[  ]"
     viewSpecifications = ""
     newViewDisplayName = ""
     newViewBackgroundColor = "1 1 1"
     newViewLightingScheme = HeadLamp
-    selectedWEMPatch = "Side Branch {ID=2}"
-    availableWEMPatches = "Main Branch {ID=1}|Side Branch {ID=2}"
-    selectedWEMPatchNewLabel = "Side Branch"
-    selectedWEMPatchGroupPath = Meshes
+    selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
+    availableWEMPatches = "Left Femur (Outer Surface) {ID=2}|Left Femur (Spongiosa Surface) {ID=4}|Left Femur (Bone Marrow Surface) {ID=6}"
+    selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
+    selectedWEMPatchGroupPath = ""
     selectedWEMPatchUseDefaultColor = FALSE
-    selectedWEMPatchColor = "1 0.333333333333333 0"
+    selectedWEMPatchColor = "1 0 0"
     selectedWEMPatchColorAlpha = 0.60000002
     selectedLineSet = ""
-    selectedLineSetId = -1
+    selectedLineSetId = 0
     availableLineSets = ""
     selectedLineSetNewLabel = ""
     selectedLineSetGroupPath = ""
     selectedLineSetUseDefaultColor = TRUE
-    selectedLineSetColor = "0.651 0.651 0.651"
+    selectedLineSetColor = "0 0 0"
     selectedPointSet = ""
-    selectedPointSetId = -1
+    selectedPointSetId = 0
     availablePointSets = ""
     selectedPointSetNewLabel = ""
     selectedPointSetGroupPath = ""
-    pointPositionsMaxTypeID = 2
-    linePositionsMaxTypeID = 2
-    lineConnectionsMaxTypeID = 2
-    lineDefinitionsMaxTypeID = 2
-    pointPositionsNextTypeID = 3
-    linePositionsNextTypeID = 3
-    lineConnectionsNextTypeID = 3
-    lineDefinitionsNextTypeID = 3
-    showNetworkFields = TRUE
+    pointPositionsMaxTypeID = -1
+    linePositionsMaxTypeID = -1
+    lineConnectionsMaxTypeID = -1
+    lineDefinitionsMaxTypeID = -1
+    pointPositionsNextTypeID = 0
+    linePositionsNextTypeID = 0
+    lineConnectionsNextTypeID = 0
+    lineDefinitionsNextTypeID = 0
+    pointCloudSpecification = "<PointSet>
+<PositionTypes>-842150451</PositionTypes>
+<ObjectName>[no label specified]</ObjectName>
+<GroupPath></GroupPath>
+<ModelVisibility>3</ModelVisibility>
+</PointSet>
+"
+    lineSetSpecification = "<LineSet>
+<PositionTypes>-842150451</PositionTypes>
+<ConnectionTypes>-842150451</ConnectionTypes>
+<ObjectName>[no label specified]</ObjectName>
+<GroupPath></GroupPath>
+<ModelVisibility>3</ModelVisibility>
+</LineSet>
+"
+    metaDataSpecification = "<MetaData>
+<MetaDataKey>ViewSpecifications</MetaDataKey>
+<MetaDataValue>
+
+</MetaDataValue>
+</MetaData>
+"
   }
 }
 module PDF3DFigurePage_SavePDF {
   internal  {
-    frame = "267 -773 136 56"
+    frame = "-15 -387 192 56"
     moduleGroupName = SaveFiles
     windows  {
       window _default {
-        geometry = "755 129 572 753"
+        geometry = "348 197 863 753"
         sizeHint = "363 753"
         wasOpen = no
       }
@@ -1636,15 +2843,15 @@ module PDF3DFigurePage_SavePDF {
     pdfFilename = ""
     resourcesPath = ""
     status = Idle.
-    success = FALSE
+    success = TRUE
     progress = 0
     pdfAttrTitle = ""
     pdfAttrAuthor = ""
     pdfAttrSubject = ""
     pdfAttrKeywords = ""
     viewSpecifications = ""
-    u3dFilename = ""
-    posterImageFilename = ""
+    u3dFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.u3d
+    posterImageFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.png
     pageHeaderCitationText = "*Newe (2015). "Some fancy article title". Journal.*"
     pageHeaderHeadlineText = "Additional File S1 - Interactive 3D PDF"
     includeUsageHints = TRUE
@@ -1672,37 +2879,9 @@ Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. "
   }
 }
-module PDF3DFigurePage_LoadPointLineGeometry {
-  internal  {
-    frame = "293 673 168 64"
-    moduleGroupName = "Load Points"
-    windows  {
-      window _default {
-        geometry = "465 779 627 164"
-        sizeHint = "589 164"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "597 254 500 600"
-        sizeHint = "260 223"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = LoadPointPositions
-    filename = "J:/MeVisLab/Packages Community/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.txt"
-    filter = PointPositions
-    numberDelimiter = " "
-    numberDelimiterSpace = TRUE
-    decimalSeparator = .
-    autoLoad = FALSE
-    autoAddToCache = FALSE
-  }
-}
 module So3DMarkerEditor {
   internal  {
-    frame = "1605 -1239 136 64"
+    frame = "2629 -1307 136 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -1715,13 +2894,13 @@ module So3DMarkerEditor {
   fields  {
     instanceName = PointsRenderer
     interactionProviderID = ""
-    scaleSize = 2.74
+    scaleSize = 2.3299999
     scaleLength = 1
     color = "0 0 0"
     ambientColor = "0 0 0"
     specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
     enableVector = FALSE
-    drawingOn = TRUE
+    drawingOn = FALSE
     editingOn = FALSE
     selectingOn = FALSE
     deleteOnClick = FALSE
@@ -1748,17 +2927,17 @@ module So3DMarkerEditor {
     persistent = FALSE
     listStringEnable = FALSE
     applySelect = FALSE
-    name = "Main Branch"
+    name = ""
     newName = ""
     overflowMode = None
     maxSize = 0
     useInsertTemplate = FALSE
-    posXYZ = "-74.072 -37.0475 -202.263"
+    posXYZ = "0 0 0"
     posC = 0
     posT = 0
     posU = 0
     vecXYZ = "0 0 0"
-    type = 1
+    type = 0
     newPosXYZ = "0 0 0"
     newPosC = 0
     newPosT = 0
@@ -1767,32 +2946,9 @@ module So3DMarkerEditor {
     newType = 0
   }
 }
-module PDF3DFigurePage_LoadPointLineGeometry {
-  internal  {
-    frame = "763 723 272 64"
-    moduleGroupName = "Load Lines"
-    windows  {
-      window _default {
-        geometry = "511 821 868 164"
-        sizeHint = "589 164"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = LoadLinePositions
-    filename = "J:/MeVisLab/Packages Community/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.txt"
-    filter = LinePositions
-    numberDelimiter = " "
-    numberDelimiterSpace = TRUE
-    decimalSeparator = .
-    autoLoad = FALSE
-    autoAddToCache = FALSE
-  }
-}
 module SoDepthPeelRenderer {
   internal  {
-    frame = "1181 -1251 152 56"
+    frame = "2133 -1442 152 56"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -1818,7 +2974,7 @@ module SoDepthPeelRenderer {
 }
 module SoBypass {
   internal  {
-    frame = "1789 -1367 168 64"
+    frame = "2805 -1566 168 64"
     moduleGroupName = Visualization
     showNetworkPanel = true
     windows  {
@@ -1837,7 +2993,7 @@ module SoBypass {
 }
 module SoBypass {
   internal  {
-    frame = "1597 -1367 168 64"
+    frame = "2613 -1566 168 64"
     moduleGroupName = Visualization
     showNetworkPanel = true
     windows  {
@@ -1856,7 +3012,7 @@ module SoBypass {
 }
 module SoBypass {
   internal  {
-    frame = "1413 -1367 168 64"
+    frame = "2429 -1566 168 64"
     moduleGroupName = Visualization
     showNetworkPanel = true
     windows  {
@@ -1873,104 +3029,9 @@ module SoBypass {
     noBypass = FALSE
   }
 }
-module SoExaminerViewer {
-  internal  {
-    frame = "1549 -1887 136 64"
-    moduleGroupName = Visualization
-    windows  {
-      window _viewer {
-        geometry = "899 569 467 447"
-        sizeHint = "400 400"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "2145 128 1053 600"
-        sizeHint = "260 223"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = MainSceneViewer2
-    renderCaching = AUTO
-    boundingBoxCaching = AUTO
-    renderCulling = AUTO
-    pickCulling = AUTO
-    border = TRUE
-    background = "1 1 1"
-    transparency = BLEND
-    antialiasing = TRUE
-    antialiasingNumPasses = 1
-    hiResRendering = TRUE
-    useSampleBuffers = FALSE
-    numSamples = 8
-    grabKeyFocus = TRUE
-    enableKeyCommands = TRUE
-    snapshotFormat = SNAPSHOT_RGB
-    outputAviFile = ""
-    autoRedrawWhenRecording = TRUE
-    frameRate = 7
-    frameRateAvi = 15
-    outputSnapshotFile = none
-    outputSnapshotFileWritten = none0.tif
-    autoIncreaseFile = TRUE
-    showSnapshotWithShell = FALSE
-    snapCount = 1
-    inputDevicesList = ""
-    headlight = TRUE
-    decoration = TRUE
-    popupMenuEnabled = FALSE
-    viewing = TRUE
-    autoClipping = TRUE
-    drawStyle = VIEW_AS_IS
-    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
-    viewAllFlag = FALSE
-    initialCameraOrientation = CAMERA_KEEP_AS_IS
-    applyCameraOrientation = CAMERA_KEEP_AS_IS
-    cameraType = CAMERA_PERSPECTIVE
-    autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0 0 1 0"
-    automaticViewAll = FALSE
-    storeCurrentState = TRUE
-    saveCamera = TRUE
-    cursor = TRUE
-    isCameraStored = TRUE
-    perspective = TRUE
-    stereoViewing = FALSE
-    stereoOffset = 3
-    height = 1.5707964
-    position = "119.455520629883 91.8465576171875 1106.25085449219"
-    orientation = "-0.110149510204792 -0.717140913009644 -0.688168525695801 3.08371448516846"
-    nearDistance = 107.76762
-    farDistance = 356.06061
-    focalDistance = 237.14526
-    forceRedrawOnInteraction = FALSE
-    button1events = TO_VIEWER
-    button2events = TO_VIEWER
-    button3events = TO_VIEWER
-    keyEvents = TO_VIEWER
-    animationEnabled = FALSE
-    feedback = FALSE
-    feedbackSize = 32
-    mouseInteraction = ""
-    rotationAxis = "0 1 0"
-    rotationAngle = 360
-    rotationSteps = 80
-    recordRotation = TRUE
-  }
-}
-module Info {
-  internal  {
-    frame = "-339 85 56 56"
-    moduleGroupName = ""
-  }
-  fields  {
-    instanceName = Info
-  }
-}
 module SoWEMRendererEdges {
   internal  {
-    frame = "1141 -983 184 64"
+    frame = "2077 -1179 184 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
@@ -1995,11 +3056,11 @@ module SoWEMRendererEdges {
 }
 module SoWEMRenderer {
   internal  {
-    frame = "1289 -1119 176 64"
+    frame = "2201 -1307 176 64"
     moduleGroupName = Visualization
     windows  {
       window _default {
-        geometry = "1044 599 443 470"
+        geometry = "541 491 443 470"
         sizeHint = "443 470"
         wasOpen = no
       }
@@ -2034,72 +3095,14 @@ module SoWEMRenderer {
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 1
+    maxWEMPatchIndex = 2
     sendAdjacency = FALSE
     selectedTab = 0
   }
 }
-module WEMModify {
-  internal  {
-    frame = "-116 689 96 56"
-    moduleGroupName = "Import Meshes"
-    windows  {
-      window _default {
-        geometry = "429 446 554 572"
-        sizeHint = "517 572"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = WEMModify
-    id = 0
-    autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = FALSE
-    removePreviousWEMs = TRUE
-    overwriteLabelDescription = TRUE
-    label = ""
-    description = ""
-    shouldComputeNormals = TRUE
-    copyInputWEMs = TRUE
-    listenToFinishNotifications = TRUE
-    listenToRepaintNotifications = TRUE
-    listenToSelectionChangedNotifications = TRUE
-    forwardRepaintNotifications = TRUE
-    forwardSelectionNotifications = TRUE
-    triangulationMode = Strip
-    WEMs = ""
-    selectedWEMs = ""
-    modifyFieldsValid = FALSE
-    modifyAllPatches = TRUE
-    scale = "1 1 1"
-    translate = "0 0 0"
-    center = FALSE
-    rotation = "0 0 1 0"
-    transformMatrix = "1 0 0 0
-0 1 0 0
-0 0 1 0
-0 0 0 1"
-    useTransformMatrix = FALSE
-    mirrorFaces = FALSE
-    triangulateFaces = TRUE
-    closeBoundaries = FALSE
-    setNodeColor = FALSE
-    nodeColor = "1 1 1"
-    setNodeAlpha = FALSE
-    nodeAlpha = 1
-    nodeValueMode = None
-    nodeValue = 0
-    clampNodeMinValue = FALSE
-    minClampValue = 0
-    clampNodeMaxValue = FALSE
-    maxClampValue = 4095
-  }
-}
 module BoolInt {
   internal  {
-    frame = "25 -15 144 64"
+    frame = "9 473 144 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -2111,9 +3114,9 @@ module BoolInt {
   }
   fields  {
     instanceName = UseInputConnectors
-    boolValue = TRUE
-    invBoolValue = FALSE
-    intValue = 1
+    boolValue = FALSE
+    invBoolValue = TRUE
+    intValue = 0
     offValue = 0
     onValue = 1
     defaultBool = Unchanged
@@ -2121,7 +3124,7 @@ module BoolInt {
 }
 module BaseSwitch {
   internal  {
-    frame = "525 -15 168 64"
+    frame = "509 473 168 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -2133,7 +3136,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectLinePositionsInput
-    currentInput = 1
+    currentInput = 0
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -2141,7 +3144,7 @@ module BaseSwitch {
 }
 module BaseSwitch {
   internal  {
-    frame = "709 -15 184 64"
+    frame = "693 473 184 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -2153,7 +3156,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectLineConnectionsInput
-    currentInput = 1
+    currentInput = 0
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -2161,7 +3164,7 @@ module BaseSwitch {
 }
 module BaseSwitch {
   internal  {
-    frame = "349 -15 168 64"
+    frame = "333 473 168 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -2173,7 +3176,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectPointPositionsInput
-    currentInput = 1
+    currentInput = 0
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -2181,7 +3184,7 @@ module BaseSwitch {
 }
 module BaseSwitch {
   internal  {
-    frame = "193 -15 128 64"
+    frame = "177 473 128 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -2193,7 +3196,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectWEMInput
-    currentInput = 1
+    currentInput = 0
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -2201,7 +3204,7 @@ module BaseSwitch {
 }
 module BaseBypass {
   internal  {
-    frame = "745 1145 192 64"
+    frame = "729 1633 192 64"
     moduleGroupName = ""
     showNetworkPanel = true
   }
@@ -2213,7 +3216,7 @@ module BaseBypass {
 }
 module BaseBypass {
   internal  {
-    frame = "313 1145 176 64"
+    frame = "297 1633 176 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -2232,7 +3235,7 @@ module BaseBypass {
 }
 module BaseBypass {
   internal  {
-    frame = "525 1145 168 64"
+    frame = "509 1633 168 64"
     moduleGroupName = ""
     showNetworkPanel = true
   }
@@ -2244,7 +3247,7 @@ module BaseBypass {
 }
 module BaseBypass {
   internal  {
-    frame = "145 1145 128 64"
+    frame = "129 1633 128 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -2261,53 +3264,15 @@ module BaseBypass {
     noBypass = FALSE
   }
 }
-module WEMSceneLoader {
-  internal  {
-    frame = "-139 789 136 56"
-    moduleGroupName = "Import Meshes"
-    windows  {
-      window _default {
-        geometry = "558 342 558 387"
-        sizeHint = "275 387"
-        wasOpen = no
-      }
-      window _automatic {
-        geometry = "597 254 500 600"
-        sizeHint = "260 223"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = WEMSceneLoader
-    id = 0
-    autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = FALSE
-    removePreviousWEMs = TRUE
-    overwriteLabelDescription = FALSE
-    label = ""
-    description = ""
-    shouldComputeNormals = TRUE
-    filename = ""
-    logDetail = Errors
-    generateNormals = SmoothNormals
-    normalSmoothingCreaseAngle = 175
-    joinIdenticalVertices = TRUE
-    findDegenerates = TRUE
-    findInvalidData = TRUE
-    optimizeMeshes = TRUE
-  }
-}
 module SaveU3D {
   internal  {
-    frame = "275 -685 120 56"
+    frame = "-139 -259 120 56"
     moduleGroupName = SaveFiles
     windows  {
       window _default {
-        geometry = "772 364 850 697"
+        geometry = "689 87 850 697"
         sizeHint = "850 642"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "233 158 849 549"
@@ -2336,39 +3301,30 @@ module SaveU3D {
     modelPrefixLineSets = LineSet
     modelPrefixMeshes = Mesh
     pointCloudSpecification = "<PointSet>
-<PositionTypes>1</PositionTypes>
-<ObjectName>Main Branch Vessel Center Anchor</ObjectName>
-<GroupPath>/Point Clouds/</GroupPath>
+<PositionTypes>-842150451</PositionTypes>
+<ObjectName>[no label specified]</ObjectName>
+<GroupPath></GroupPath>
 <ModelVisibility>3</ModelVisibility>
-
-<PointSet>
-<PositionTypes>2</PositionTypes>
-<ObjectName>Side Branch Vessel Center Anchor</ObjectName>
-<GroupPath>/Point Clouds/</GroupPath>
-<ModelVisibility>3</ModelVisibility>
-
+</PointSet>
 "
     lineSetSpecification = "<LineSet>
-<PositionTypes>1</PositionTypes>
-<ConnectionTypes>1</ConnectionTypes>
-<ObjectName>Main Branch Vessel Centerline</ObjectName>
-<GroupPath>/Centerlines/</GroupPath>
-<Color>1.000 0.000 0.000 1.000</Color>
+<PositionTypes>-842150451</PositionTypes>
+<ConnectionTypes>-842150451</ConnectionTypes>
+<ObjectName>[no label specified]</ObjectName>
+<GroupPath></GroupPath>
 <ModelVisibility>3</ModelVisibility>
-
-<LineSet>
-<PositionTypes>2</PositionTypes>
-<ConnectionTypes>2</ConnectionTypes>
-<ObjectName>Side Branch Vessel Centerline</ObjectName>
-<GroupPath>/Centerlines/</GroupPath>
-<Color>1.000 0.333 0.000 1.000</Color>
-<ModelVisibility>3</ModelVisibility>
-
+</LineSet>
 "
     meshSpecification = ""
     viewsSpecification = ""
     lightsSpecification = ""
-    metaDataSpecification = ""
+    metaDataSpecification = "<MetaData>
+<MetaDataKey>ViewSpecifications</MetaDataKey>
+<MetaDataValue>
+
+</MetaDataValue>
+</MetaData>
+"
     defaultViewName = DefaultView
     defaultLightName = DefaultAmbientLight
     defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
@@ -2381,20 +3337,16 @@ module SaveU3D {
     defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
-    filename = "J:\\Lehrstuhl\\Ausschreibungen\\Praktika\\U3D-Entschlüsselung\\Aorta.u3d"
+    filename = ""
     status = "U3D file saved."
-    newSpecification = "<LineSet>
-<PositionTypes>1</PositionTypes>
-<ConnectionTypes>1</ConnectionTypes>
-<ObjectName>Main Branch Vessel Centerline</ObjectName>
-<GroupPath>/Point Clouds/</GroupPath>
-<Color>0.651 0.651 0.651 1.000</Color>
-<ModelVisibility>3</ModelVisibility>
+    newSpecification = "<MetaData>
+<MetaDataKey>[No key specified]</MetaDataKey>
+<MetaDataValue>[No value specified]</MetaDataValue>
 
 "
-    selectedTab = 1
+    selectedTab = 3
     newSpecificationOutputValid = TRUE
-    newSpecificationType = OBJECTTYPE_LINESET
+    newSpecificationType = OBJECTTYPE_METADATA
     newSpecificationObjectName = "Main Branch Vessel Centerline"
     newSpecificationGroupPath = "Point Clouds"
     newSpecificationUseDefaultColor = FALSE
@@ -2412,23 +3364,46 @@ module SaveU3D {
   }
 }
 connections  {
+  SoView2D.image = ConstantImage.output0
+  SoSeparator1.children = "SoView2DLabel.self SoView2D.self"
+  SoPerspectiveCamera.position = PreviewViewer.position
+  SoPerspectiveCamera.orientation = PreviewViewer.orientation
+  SoPerspectiveCamera.focalDistance = PreviewViewer.focalDistance
+  SoPerspectiveCamera.heightAngle = PreviewViewer.height
+  SoSeparator.children = "SoPerspectiveCamera.self SoGroup.self SoSeparator1.self"
+  SavePosterImage.input0 = OffscreenRenderer.output0
+  OffscreenRenderer.sceneGraph = SoSeparator.self
+  DefinePreviewColorModeForLines.boolValue = BoolInt.boolValue
+  LinesRendererSelected.inFiberSetFld = PDF3DFigurePage_Utils.outSeletedFibers
+  LinesRendererUnSelected.inFiberSetFld = PDF3DFigurePage_Utils.outFibers
+  FilterPointsUnselected.inXMarkerList = PDF3DFigurePage_Utils.outPointPositions
+  FilterPointsUnselected.markerTypes = FilterPointsSelected.markerTypes
+  PointsRendererUnSelected.inXMarkerList = FilterPointsUnselected.outXMarkerList
+  FilterPointsSelected.inXMarkerList = PDF3DFigurePage_Utils.outPointPositions
+  FilterPointsSelected.markerTypes = PDF3DFigurePage_Utils.selectedPointSetId
+  PointsRendererSelected.inXMarkerList = FilterPointsSelected.outXMarkerList
+  SwitchReducedMesh.inputBaseObject0 = SoWEMConvertInventor.outWEM
+  SwitchReducedMesh.inputBaseObject1 = WEMReducePolygons.outWEM
+  SwitchReducedMesh.currentInput = ToggleReducedMesh.intValue
+  SoWEMConvertInventor.inScene = MeshSceneLoader.self
+  WEMReducePolygons.inWEM = SoWEMConvertInventor.outWEM
   WEMInfo.inWEM = PDF3DFigurePage_Utils.outWEM
-  DefinePreviewColorMode.boolValue = BoolInt.boolValue
+  DefinePreviewColorModeForMeshes.boolValue = BoolInt.boolValue
   ListInfo.inList1 = PDF3DFigurePage_Utils.outPointPositions
   SwitchMarkerRendering.intValue = ListInfo.listLength
-  LinesRendererImport.inFiberSetFld = LoadLinePositions.outFibers
+  LinesRendererImport.inFiberSetFld = LoadPointLineGeometry.outFibers
   BoolInt.intValue = SwitchPreview.whichChild
   DefinePreviewColor.boolValue = BoolInt.boolValue
-  WEMImportInfo.inWEM = WEMModify.outWEM
-  WEMRenderEdgesAll.colorMode = DefinePreviewColorMode.stringValue
+  WEMImportInfo.inWEM = SoWEMConvertInventor.outWEM
+  WEMRenderEdgesAll.colorMode = DefinePreviewColorModeForMeshes.stringValue
   WEMRenderEdgesAll.generalColor = DefinePreviewColor.stringValue
   SoDepthPeelRendererImport.children = WEMRendererImport.self
   SwitchPreview.children = "SoDepthPeelRendererImport.self PointsRendererImport.self LinesRendererImport.self"
-  PointsRendererImport.inXMarkerList = LoadPointPositions.outPositionsList
+  PointsRendererImport.inXMarkerList = LoadPointLineGeometry.outPositionsList
   PointsRendererImport.scaleSize = PointsRenderer.scaleSize
-  WEMRendererImport.inWEM = WEMModify.outWEM
+  WEMRendererImport.inWEM = SwitchReducedMesh.outputBaseObject0
   WEMRendererImport.inExtensions = WEMRenderEdgesImport.self
-  WEMComposePatches.inWEM = WEMModify.outWEM
+  WEMComposePatches.inWEM = SwitchReducedMesh.outputBaseObject0
   PreviewViewer.height = PointsViewer.height
   PreviewViewer.position = PointsViewer.position
   PreviewViewer.orientation = PointsViewer.orientation
@@ -2444,10 +3419,12 @@ connections  {
   LinesViewer.position = MeshViewer.position
   LinesViewer.orientation = MeshViewer.orientation
   LinesViewer.focalDistance = MeshViewer.focalDistance
+  LinesViewer.children = "LinesRendererUnSelected.self LinesRendererSelected.self"
   PointsViewer.height = LinesViewer.height
   PointsViewer.position = LinesViewer.position
   PointsViewer.orientation = LinesViewer.orientation
   PointsViewer.focalDistance = LinesViewer.focalDistance
+  PointsViewer.children = "PointsRendererUnSelected.self PointsRendererSelected.self"
   MeshViewer.height = ViewsViewer.height
   MeshViewer.position = ViewsViewer.position
   MeshViewer.orientation = ViewsViewer.orientation
@@ -2460,9 +3437,10 @@ connections  {
   WEMRendererSelected.inExtensions = WEMRenderEdgesSelected.self
   WEMSelectPatches.inWEM = PDF3DFigurePage_Utils.outWEM
   WEMSelectPatches.selectValue = PDF3DFigurePage_Utils.selectedWEMPatchId
-  SoGroup.children = "ShowMeshPreview.self ShowPointsPreview.self ShowLinesPreview.self SwitchPreview.self"
+  SoGroup.children = "ShowMeshPreview.self SwitchPreview.self ShowPointsPreview.self ShowLinesPreview.self"
   LinesRenderer.inFiberSetFld = PDF3DFigurePage_Utils.outFibers
   LinesRenderer.generalColor = PointsRenderer.color
+  LinesRenderer.colorMode = DefinePreviewColorModeForLines.stringValue
   PDF3DFigurePage_Utils.inWEM = SelectWEMInput.outputBaseObject0
   PDF3DFigurePage_Utils.inPointPositions = SelectPointPositionsInput.outputBaseObject0
   PDF3DFigurePage_Utils.inLinePositions = SelectLinePositionsInput.outputBaseObject0
@@ -2471,7 +3449,6 @@ connections  {
   PDF3DFigurePage_Utils.inventorCameraOrientation = ViewsViewer.orientation
   PDF3DFigurePage_Utils.inventorCameraFocalDistance = ViewsViewer.focalDistance
   PDF3DFigurePage_Utils.inventorCameraHeight = ViewsViewer.height
-  PDF3DFigurePage_SavePDF.viewSpecifications = PDF3DFigurePage_Utils.viewSpecifications
   PointsRenderer.inXMarkerList = PDF3DFigurePage_Utils.outPointPositions
   PointsRenderer.color = WEMRenderEdgesAll.generalColor
   PointsRenderer.drawingOn = SwitchMarkerRendering.boolValue
@@ -2479,17 +3456,15 @@ connections  {
   ShowLinesPreview.child = LinesRenderer.self
   ShowPointsPreview.child = PointsRenderer.self
   ShowMeshPreview.child = DepthPeelerAll.self
-  MainSceneViewer2.children = SoGroup.self
   WEMRendererUnSelected.inWEM = PDF3DFigurePage_Utils.outWEM
-  WEMModify.inWEM = WEMSceneLoader.outWEM
   SelectLinePositionsInput.inputBaseObject0 = GateInLinePositions.baseOut0
-  SelectLinePositionsInput.inputBaseObject1 = LoadLinePositions.outCachedPositionsList
+  SelectLinePositionsInput.inputBaseObject1 = LoadPointLineGeometry.outCachedLinePositionsList
   SelectLinePositionsInput.currentInput = SelectPointPositionsInput.currentInput
   SelectLineConnectionsInput.inputBaseObject0 = GateInLineConnections.baseOut0
-  SelectLineConnectionsInput.inputBaseObject1 = LoadLinePositions.outCachedConnectionsList
+  SelectLineConnectionsInput.inputBaseObject1 = LoadPointLineGeometry.outCachedLineConnectionsList
   SelectLineConnectionsInput.currentInput = SelectLinePositionsInput.currentInput
   SelectPointPositionsInput.inputBaseObject0 = GateInPointPositions.baseOut0
-  SelectPointPositionsInput.inputBaseObject1 = LoadPointPositions.outCachedPositionsList
+  SelectPointPositionsInput.inputBaseObject1 = LoadPointLineGeometry.outCachedPointPositionsList
   SelectPointPositionsInput.currentInput = SelectWEMInput.currentInput
   SelectWEMInput.inputBaseObject0 = GateInWEM.baseOut0
   SelectWEMInput.inputBaseObject1 = WEMComposePatches.outWEM
@@ -2498,12 +3473,15 @@ connections  {
   SaveU3D.inPointPositions = PDF3DFigurePage_Utils.outPointPositions
   SaveU3D.inLinePositions = PDF3DFigurePage_Utils.outLinePositions
   SaveU3D.inLineConnections = PDF3DFigurePage_Utils.outLineConnections
+  SaveU3D.pointCloudSpecification = PDF3DFigurePage_Utils.pointCloudSpecification
+  SaveU3D.lineSetSpecification = PDF3DFigurePage_Utils.lineSetSpecification
+  SaveU3D.metaDataSpecification = PDF3DFigurePage_Utils.metaDataSpecification
 }
 networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 166
+        uniqueId = 185
         objectName = "Import Meshes"
         parentUniqueId = 0
         color  {
@@ -2514,8 +3492,8 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 167
-        objectName = "Load Points"
+        uniqueId = 186
+        objectName = "Load Points and Lines"
         parentUniqueId = 0
         color  {
           r = 45
@@ -2525,18 +3503,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 168
-        objectName = "Load Lines"
-        parentUniqueId = 0
-        color  {
-          r = 45
-          g = 226
-          b = 226
-          a = 40
-        }
-      }
-      MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 169
+        uniqueId = 187
         objectName = Visualization
         parentUniqueId = 0
         color  {
@@ -2560,6 +3527,17 @@ networkModel  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
         uniqueId = 354
         objectName = SaveFiles
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 459
+        objectName = "Create Poster"
         parentUniqueId = 0
         color  {
           r = 45
