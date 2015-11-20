@@ -59,13 +59,17 @@ void PDF3DFigurePage_Utils::_clearViews()
 void PDF3DFigurePage_Utils::_createMetaDataSpecification()
 {
   std::string metaDataSpecification = "";
+  std::string viewSpecifications = _viewSpecificationsFld->getStringValue();
 
-  metaDataSpecification += "<MetaData>\n";
-  metaDataSpecification += "<MetaDataKey>ViewSpecifications</MetaDataKey>\n";
-  metaDataSpecification += "<MetaDataValue>\n\n";
-  metaDataSpecification += _viewSpecificationsFld->getStringValue();
-  metaDataSpecification += "</MetaDataValue>\n";
-  metaDataSpecification += "</MetaData>\n";
+  if (PDFTools::stringTrimWhitespace(viewSpecifications) != "")
+  {
+    metaDataSpecification += "<MetaData>\n";
+    metaDataSpecification += "<MetaDataKey>ViewSpecifications</MetaDataKey>\n";
+    metaDataSpecification += "<MetaDataValue>\n\n";
+    metaDataSpecification += viewSpecifications;
+    metaDataSpecification += "</MetaDataValue>\n";
+    metaDataSpecification += "</MetaData>\n";
+  }
 
   _metaDataSpecificationFld->setStringValue(metaDataSpecification);
 }

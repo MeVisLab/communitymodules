@@ -75,6 +75,9 @@ MLPDF {
   INCLUDEPATH += $${PACKAGE_SOURCES}/ML/MLPDF/shared/SpecificationGenerator
   win32:LIBS += MLPDF$${d}.lib
   unix:LIBS  += -lMLPDF$${d}
+  CONFIG += MLBase
+  CONFIG += MLWEM
+  CONFIG += MLFiberUtils
   CONFIG += MLBaseListExtensions
   CONFIG += libhpdf
   CONFIG += inventor

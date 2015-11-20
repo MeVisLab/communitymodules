@@ -48,7 +48,6 @@ Interface {
     Field showPointsPrevieSize     { internalName = PointsRenderer.scaleSize }
     Field showLinesPreview         { internalName = ShowLinesPreview.bypass }
     Field showMeshPreview          { internalName = ShowMeshPreview.bypass }
-    Field showMeshPreviewFaceAlpha { internalName = WEMRendererAll.faceAlphaValue }
     Field resetPreview             { internalName = PreviewViewer.viewAll }
         
     Field viewDisplayName          { internalName = PDF3DFigurePage_Utils.newViewDisplayName }
@@ -104,19 +103,32 @@ Interface {
     Field savePoster          { internalName = RunCreatePosterScript.execute }
     Field savePosterStatus    { type = String }
     Field savePDF             { internalName = RunSavePDFScript.execute }
+    Field savePDFStatus       { type = String }
+    
+    Field headerCitationText  { internalName = PDF3DFigurePage_SavePDF.pageHeaderCitationText }
+    Field headerHeadlineText  { internalName = PDF3DFigurePage_SavePDF.pageHeaderHeadlineText }
+    Field caption             { internalName = PDF3DFigurePage_SavePDF.caption }
+    Field description         { internalName = PDF3DFigurePage_SavePDF.description }
+    
+    Field cameraHeight        { internalName = PreviewViewer.height }
+    Field cameraPosition      { internalName = PreviewViewer.position }
+    Field cameraOrientation   { internalName = PreviewViewer.orientation }
+    Field cameraNearDistance  { internalName = PreviewViewer.nearDistance }
+    Field cameraFarDistance   { internalName = PreviewViewer.farDistance }
+    Field cameraFocalDistance { internalName = PreviewViewer.focalDistance }
   }
 }
 
 
 Commands {
   initCommand = @@py: ctx.field("InitializeModule.execute").touch() @@
+  wakeupCommand = @@py: ctx.field("resetPreview").touch() @@
   FieldListener UseInputConnectors.boolValue { command = @@py: ctx.field("resetPreview").touch() @@}
 }
 
 
 Window {
-  
-  
+    
   minimumWidth = 1000
   minimumHeight = 750
   
@@ -211,8 +223,6 @@ Window {
               Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
               Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
               Separator                       { direction = Vertical alignX = Left }
-//              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-//              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
               Empty                           { expandX = Yes }
               Button resetPreview             { title = "Reset" alignX = Right }
             }
@@ -271,7 +281,8 @@ Window {
           
           } // Box "Preview"      
         
-        } // Horizontal      }        
+        } // Horizontal      
+        
       } // TabViewItem "Edit Points"
       
       TabViewItem "Edit Lines" {
@@ -381,7 +392,7 @@ Window {
         
         } // Horizontal
         
-      } // TabViewItem "Meshes"     
+      } // TabViewItem "Edit Meshes"     
       
       TabViewItem "Create Views" {
 
@@ -405,11 +416,6 @@ Window {
               Field viewDisplayName          { title = "View Display Name:" }
               Field viewBackgroundColor      { title = "Background Color:" }
               Field viewLightingScheme       { title = "Lighting Scheme:" }
-              //Field viewCameraCenterOfOrbit  { title = "Camera - Center of Orbit:" edit = No expandX = Yes }
-              //Field viewCameraCenterToCamera { title = "Camera - Center to Camera:" edit = No expandX = Yes }
-              //Field viewCameraRadiusOfOrbit  { title = "Camera - Radius of Orbit:" edit = No expandX = Yes editAlign = Left }
-              //Field viewCameraRollAngle      { title = "Camera - Roll Angle:" edit = No expandX = Yes editAlign = Left }
-              //Field viewCameraFOVAngle       { title = "Camera - FOV Angle:" edit = No expandX = Yes editAlign = Left }
               Separator {}
               Button addNewView              { title = "Add New View" expandX = Yes dependsOn = @@ viewDisplayName != "" @@ }
             }
@@ -443,7 +449,7 @@ Window {
             expandX = Yes
           
             Horizontal { Label { title = "Please remember that this is only a sketched preview." alignX = Center } }
-            Horizontal { Label { title = "The actual appearance in the PDF depends on the rendering enginge of the actual PDF viewer!" alignX = Center } }
+            Horizontal { Label { title = "The actual appearance in the PDF depends on the rendering engine of the actual PDF viewer!" alignX = Center } }
             
             Viewer ViewsViewer.self {
               expandY = Yes
@@ -462,8 +468,6 @@ Window {
               Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
               Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
               Separator                       { direction = Vertical alignX = Left }
-//              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-//              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
               Empty                           { expandX = Yes }
               Button resetPreview             { title = "Reset" alignX = Right }
             }
@@ -478,21 +482,12 @@ Window {
         
         expandY = Yes
         
-//        Field SaveU3D.filename { title = "Filename:" browseButton = Yes browseMode = save }        
-        
-        Button saveU3D {title = "Save" expandX = Yes minimumHeight = 40 }
-        
-        Horizontal { expandX = Yes
-          ProgressBar SaveU3D.progress { textVisible = No maximumWidth = 400 }
-          Label { titleField = saveU3DStatus expandX = Yes }
-        }
-        
         Box "Preview" {
           
           expandY = Yes
           expandX = Yes
           
-          Label { title = "Please remember that this is only a sketched preview. The actual appearance in the PDF depends on the rendering enginge of the actual PDF viewer!" alignX = Center }
+          Label { title = "Please remember that this is only a sketched preview. The actual appearance in the PDF depends on the rendering engine of the actual PDF viewer!" alignX = Center }
           
           Viewer PreviewViewer.self {
             expandY = Yes
@@ -511,14 +506,19 @@ Window {
             Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
             Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
             Separator                       { direction = Vertical alignX = Left }
-//            Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-//            Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
             Empty                           { expandX = Yes }
             Button resetPreview             { title = "Reset" alignX = Right }
           }
           
-        } // Box "Scene"        
+        } // Box "Preview"        
         
+        Button saveU3D {title = "Save Model" expandX = Yes minimumHeight = 40 }
+        
+        Horizontal { expandX = Yes
+          ProgressBar SaveU3D.progress { textVisible = No maximumWidth = 400 }
+          Label { titleField = saveU3DStatus expandX = Yes }
+        }
+                
       } // TabViewItem "Save Model"
        
       TabViewItem "Create Poster Image" {
@@ -546,8 +546,6 @@ Window {
             Label                           { title = "Points Size: " dependsOn = showPointsPreview alignX = Left }
             Slider showPointsPrevieSize     { dependsOn = showPointsPreview alignX = Left }            
             Separator                       { direction = Vertical alignX = Left }
-            //              Label                           { title = "Mesh Face Transparency: " dependsOn = showMeshPreview alignX = Left }
-            //              Slider showMeshPreviewFaceAlpha { dependsOn = showMeshPreview alignX = Left }
             Empty                           { expandX = Yes }
             Button resetPreview             { title = "Reset" alignX = Right }
           }
@@ -572,45 +570,46 @@ Window {
 
     TabView {
       
-//      TabViewItem "[Empty]" { }
-          
       TabViewItem "Specify Content" {
-      
-      Box "Page Header" {
-        Field PDF3DFigurePage_SavePDF.pageHeaderCitationText   {  }
-        Field PDF3DFigurePage_SavePDF.pageHeaderHeadlineText   {  }
-        CheckBox PDF3DFigurePage_SavePDF.includeUsageHints     { title = "Include instructional hints above the figure" }
-      }
+       
+        Box "Page Header" {
+          Field headerCitationText   {  }
+          Field headerHeadlineText   {  }
+          CheckBox PDF3DFigurePage_SavePDF.includeUsageHints     { title = "Include instructional hints above the figure" }
+        } // Box "Page Header"
     
-      Box "3D Figure" {
-        Field PDF3DFigurePage_SavePDF.u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
-        Field PDF3DFigurePage_SavePDF.posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
+        Box "3D Figure" {
+          Field PDF3DFigurePage_SavePDF.u3dFilename         { title = "U3D Filename:" browseButton = On browseMode = open }
+          Field PDF3DFigurePage_SavePDF.posterImageFilename { title = "Poster Image Filename:" browseButton = On browseMode = open }
     
-        Field PDF3DFigurePage_SavePDF.figureActivationMode             { title = "Activation Mode:" }
-        Field PDF3DFigurePage_SavePDF.figureDeactivationMode           { title = "Deactivation Mode:" }
-        Field PDF3DFigurePage_SavePDF.figureToolbarEnabled             { title = "Toolbar Enabled:" }
-        Field PDF3DFigurePage_SavePDF.figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
-        Field PDF3DFigurePage_SavePDF.figureAnimationAutostart         { title = "Animation Autostart:" }      
-      }
+          Field PDF3DFigurePage_SavePDF.figureActivationMode             { title = "Activation Mode:" }
+          Field PDF3DFigurePage_SavePDF.figureDeactivationMode           { title = "Deactivation Mode:" }
+          Field PDF3DFigurePage_SavePDF.figureToolbarEnabled             { title = "Toolbar Enabled:" }
+          Field PDF3DFigurePage_SavePDF.figureNavigationInterfaceEnabled { title = "Navigation Interface Enabled:" }
+          Field PDF3DFigurePage_SavePDF.figureAnimationAutostart         { title = "Animation Autostart:" }      
+        } // Box "3D Figure"
     
-      Box "Description" {
-      
-        Field PDF3DFigurePage_SavePDF.caption         {  }
-        TextView PDF3DFigurePage_SavePDF.description  { autoApply = Yes }    
-      }
+        Box "Description" {
+          Field caption         {  }
+          TextView description  { autoApply = Yes }    
+        } // Box "Description"
     
-      Box "Output" {
-        Field PDF3DFigurePage_SavePDF.pdfFilename         { title = "PDF Filename:" browseButton = On browseMode = save }    
-
-        Button savePDF {title = "Save" expandX = Yes minimumHeight = 40 dependsOn = @@ PDF3DFigurePage_SavePDF.pdfFilename != "" @@ }      
-//        Button PDF3DFigurePage_SavePDF.save { title = "Save" alignX = Left }
+        Box "Output" {
+       
+          Button savePDF {title = "Save PDF" expandX = Yes minimumHeight = 40 dependsOn = @@ PDF3DFigurePage_SavePDF.u3dFilename != "" @@ }
         
-        ProgressBar PDF3DFigurePage_SavePDF.progress { textVisible = No }
-        Label { titleField = PDF3DFigurePage_SavePDF.status }
-      }
-    }  // Category "Main"
+          Horizontal { expandX = Yes
+            ProgressBar PDF3DFigurePage_SavePDF.progress { textVisible = No maximumWidth = 400 }
+            Label { titleField = savePDFStatus expandX = Yes }
+          }
+        
+        } // Box "Output"
+        
+      } // TabViewItem "Specify Content
   
-    } // TabViewItem "Specify Content"
+    } // TabView
     
-  } // TabView
+  } // Category "PDF Page"
+  
+  Execute = @@py: ctx.field("resetPreview").touch() @@
 }

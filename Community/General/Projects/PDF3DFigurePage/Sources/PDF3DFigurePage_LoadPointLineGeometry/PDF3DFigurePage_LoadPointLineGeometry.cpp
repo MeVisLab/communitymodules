@@ -10,6 +10,7 @@
 
 // Local includes
 #include "PDF3DFigurePage_LoadPointLineGeometry.h"
+#include "../shared/MLPDF_MarkerListTools.h"
 
 #include <mlUnicode.h>
 
@@ -360,7 +361,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_unloadData()
 
 void PDF3DFigurePage_LoadPointLineGeometry::_createFibers()
 {
-  PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
+  PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
 
   _outFibersFld->touch();
 }
@@ -516,7 +517,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_addToLineCache()
       if (findIt == typeIDMap.end())
       {
         // newPairType has not yet been added to map -> skip this connection!
-        inPairType = ML_INT_MIN;
+        inPairType = ML_INT16_MIN;
       }
       else
       {
@@ -524,7 +525,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_addToLineCache()
       }
     }
 
-    if (inPairType > ML_INT_MIN)
+    if (inPairType > ML_INT16_MIN)
     {
       IndexPair newCachedPair(inPair.index1, inPair.index2, newPairType, inPair.name());
 

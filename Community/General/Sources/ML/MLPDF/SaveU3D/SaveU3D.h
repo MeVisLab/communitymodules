@@ -31,7 +31,6 @@
 
 ML_START_NAMESPACE
 
-
 //////////////////////////////////////////////////////////////////////////
 //! Creates U3D file from WEMs, Linesets and XMarkers
 class MLPDF_EXPORT SaveU3D : public WEMInspector

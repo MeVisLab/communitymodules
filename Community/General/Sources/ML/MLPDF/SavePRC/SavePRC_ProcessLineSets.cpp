@@ -14,6 +14,7 @@
 #include "PRCFileFormat/PRC_Tools.h"
 #include "../shared/MLPDF_DataTypes.h"
 #include "../shared/MLPDF_Tools.h"
+#include "../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 
@@ -53,23 +54,23 @@ void SavePRC::PreProcessLineSetData(ModelBoundingBoxStruct& boundingBox)
     }
 
     PRCObjectInfoStruct thisPRCObjectInfo = CreateNewPRCObjectInfo(i, PRCOBJECTTYPE_LINESET, thisSpecificationParameters.ObjectName, defaultValues);
-    thisPRCObjectInfo.GroupPath        = thisSpecificationParameters.GroupPath;
-    thisPRCObjectInfo.ParentTreeNodeID = -1;
-    thisPRCObjectInfo.RGBAColor        = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
+    thisPRCObjectInfo.GroupPath           = thisSpecificationParameters.GroupPath;
+    thisPRCObjectInfo.ParentTreeNodeID    = -1;
+    thisPRCObjectInfo.RGBAColor           = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
     _prcObjectInfoVector.push_back(thisPRCObjectInfo);
 		
     // Collect geometry info
     LineSetSpecificationStruct thisLineSetGeometry;
     thisLineSetGeometry.internalName = thisPRCObjectInfo.InternalName;
-    thisLineSetGeometry.positions    = mlPDF::PDFTools::getAllPositionsFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
+    thisLineSetGeometry.positions    = mlPDF::PDFMarkerListTools::getAllPositionsFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
 
     if ( (_inLineConnections.size() > 0) && (thisSpecificationParameters.ConnectionTypes != "simple") )
     {
-      thisLineSetGeometry.lines = mlPDF::PDFTools::getAllLinesFromIndexPairList(_inLineConnections, thisSpecificationParameters.ConnectionTypes, thisSpecificationParameters.LineWidth);
+      thisLineSetGeometry.lines = mlPDF::PDFMarkerListTools::getAllLinesFromIndexPairList(_inLineConnections, thisSpecificationParameters.ConnectionTypes, thisSpecificationParameters.LineWidth);
     }
     else
     {
-      thisLineSetGeometry.lines = mlPDF::PDFTools::getStandardLinesFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.LineWidth);
+      thisLineSetGeometry.lines = mlPDF::PDFMarkerListTools::getStandardLinesFromColoredMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.LineWidth);
     }
 
     _lineSetsGeometryVector.push_back(thisLineSetGeometry);

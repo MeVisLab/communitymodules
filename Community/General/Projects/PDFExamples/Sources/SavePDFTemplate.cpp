@@ -10,6 +10,9 @@
 // Local includes
 #include "SavePDFTemplate.h"
 
+// Project includes
+#include "MLPDF_Tools.h"
+
 
 ML_START_NAMESPACE
 
@@ -49,7 +52,7 @@ void SavePDFTemplate::handleNotification(Field* field)
 
 //----------------------------------------------------------------------------------
 
-void SavePDFTemplate::assemblePDFDocument()
+bool SavePDFTemplate::assemblePDFDocument()
 {
   // This is the main method for all modules derived from PDFCreatorBase.
   // Add all code that assembles the actual PDF document here!
@@ -124,16 +127,27 @@ void SavePDFTemplate::assemblePDFDocument()
  
   // Load image into image resource pool (n.b.: only PNG anf JPG images are allowed!)
   std::string resourcesPath = resourcesPathFld->getStringValue();
-  mlPDF::IMAGE exampleImage = pdfDoc_LoadImageFromFile(resourcesPath + "/SavePDFTemplateExample_Image.png");
+  std::string exampleImagePath = resourcesPath + "/SavePDFTemplateExample_Image.png";
 
-  // Add image by direct reference
-  yPos += 15;
-  pdfDoc_AddImage(0, yPos, 100, 100, exampleImage);
-
-  // Add image once more through image pool
-  if (pdfDocImages.size() > 0)
+  if (mlPDF::fileExists(exampleImagePath))
   {
-	  pdfDoc_AddImage(110, yPos, 100, 100, pdfDocImages[pdfDocImages.size() - 1]);
+    mlPDF::IMAGE exampleImage = pdfDoc_LoadImageFromFile(exampleImagePath);
+
+    // Add image by direct reference
+    yPos += 15;
+    pdfDoc_AddImage(0, yPos, 100, 100, exampleImage);
+
+    // Add image once more through image pool
+    if (pdfDocImages.size() > 0)
+    {
+      pdfDoc_AddImage(110, yPos, 100, 100, pdfDocImages[pdfDocImages.size() - 1]);
+    }
+  }
+  else
+  {
+    // Image could not be found. -> Cancel assembly, set error message
+    assemblyErrorMessage = "Image file not found.";
+    return false;
   }
 
   // Write headline for the interactive 3D scene
@@ -145,7 +159,6 @@ void SavePDFTemplate::assemblePDFDocument()
   // Therefore it has been outsourced to a separate method...
   yPos += 15;
   _add3DFigure(0, yPos, 210, 210);
-
 
   // Now let's add some graphics...
 
@@ -175,6 +188,8 @@ void SavePDFTemplate::assemblePDFDocument()
   //
   // For more methods to add and manipulate contents, see MLPDF_PDFCreatorBase.h file.
   //
+
+  return true;
 }
 
 //----------------------------------------------------------------------------------

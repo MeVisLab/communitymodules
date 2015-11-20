@@ -30,8 +30,8 @@ public:
   );
 
   static void CalculateDefaultCameraProperties(
-     // inputs
-    Vector3& camCenterOfOrbit, Vector3& camCenterToCamera, float& camRadiusOfOrbit, float& camRollAngle, float& camFOVAngle           // outputs
+    Vector3 boundingBoxCenter, double boundingBoxRadius,                                                                     // inputs
+    Vector3& camCenterOfOrbit, Vector3& camCenterToCamera, float& camRadiusOfOrbit, float& camRollAngle, float& camFOVAngle  // outputs
   );
 
 };

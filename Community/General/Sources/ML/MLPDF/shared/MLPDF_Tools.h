@@ -14,11 +14,6 @@
 #include "MLPDFSystem.h"
 #include "MLPDF_DataTypes.h"
 
-#include <mlXMarkerList.h>
-#include <IndexPairList.h>
-#include <ColoredMarkerList.h>
-#include <mlFiberSet.h>
-
 #include "mlModuleIncludes.h"
 
 // Inventor includes
@@ -117,8 +112,9 @@ public:
   //***********************************************************************************
 
   // Parses a string and try to get color values from it.
-  static Vector4 getColorVec4(std::string colorString, const Vector4 defaultColor);
-  static Vector3 getColorVec3(std::string colorString, const Vector3 defaultColor);
+  static Vector4 getColorVec4FromString(std::string colorString, const Vector4 defaultColor = Vector4(0));
+  static Vector3 getColorVec3FromString(std::string colorString, const Vector3 defaultColor = Vector3(0));
+  static Vector3 getVec3FromString(std::string vectorString, const Vector3 defaultValue = Vector3(0));
 
   // Converts a (color) Vector to a color string.
   static std::string FormatColorString(Vector3 colorValue);
@@ -155,34 +151,6 @@ public:
 
   // Get bounding box edges from positions
   static ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions);
-
-  //***********************************************************************************
-
-  // Get all positions (vertices) from ColoredMarkerList
-  static PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
-
-  // Get all positions (vertices) from XMarkerList
-  static PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
-
-  //***********************************************************************************
-
-  // Get all line connections from IndexPairList
-  static LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth);
-
-  // Automatically calculate simple line connections from XMarkerList
-  static LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
-
-  // Automatically calculate simple line connections from  ColoredMarkerList
-  static LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
-
-  // Get all lines that end at a given position
-  static LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition);
-
-
-  //***********************************************************************************
-
-  // Fill a FiberSetContainer from line positions and line connections
-  static void fillFiberSetContainerFromPositionsAndConnections(ml::FiberSetContainer& outFiberSetContainer, const ml::XMarkerList& inLinePositions, const ml::IndexPairList& inLineConnections);
 
   //////////////////////////////////////////////
 

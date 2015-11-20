@@ -16,6 +16,7 @@
 // Local includes
 #include "PDF3DFigurePageSystem.h"
 #include "../shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h"
+#include "MLPDF_DataTypes.h"
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -50,7 +51,7 @@ protected:
   //! This is the main method for all derived modules.
   //! It is called by the saveButtonClicked() method.
   //! Add all code that assembles the actual PDF document here!
-  virtual void assemblePDFDocument();
+  virtual bool assemblePDFDocument();
 
 private:
 
@@ -76,13 +77,19 @@ private:
   StringField*  _captionFld;
   StringField*  _descriptionFld;
 
+  // Private vars
+  std::vector<MetaDataStruct> _u3dMetaData;
+
+
   /* Methods */
 
   MLuint8 _readU8(std::ifstream& file);
   MLuint16 _readU16(std::ifstream& file);
   MLuint32 _readU32(std::ifstream& file);
   std::string _readString(std::ifstream& file);
-  std::string _getViewsSpecificationFromU3DFile(std::string filename);
+  bool _getMetaDataFromU3DFile();
+  std::string _getViewsSpecificationFromU3DMetaData();
+  std::string _getDefaultViewSpecificationFromU3DMetaData();
   void _add3DFigure(float x, float y, float width, float height);
 
   // Implements interface for the runtime type system of the ML.

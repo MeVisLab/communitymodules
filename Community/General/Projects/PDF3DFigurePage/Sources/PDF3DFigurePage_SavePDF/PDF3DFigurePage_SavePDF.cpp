@@ -54,6 +54,8 @@ PDF3DFigurePage_SavePDF::PDF3DFigurePage_SavePDF() : PDFCreatorBase()
   (_captionFld = addString("caption"))->setStringValue("");
   (_descriptionFld = addString("description"))->setStringValue("");
 
+  _u3dMetaData.clear();
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -84,50 +86,63 @@ void PDF3DFigurePage_SavePDF::activateAttachments()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_SavePDF::assemblePDFDocument()
+bool PDF3DFigurePage_SavePDF::assemblePDFDocument()
 {
-  //HPDF_Page pdfPage;
-  float yPos = 0;
-  pdfDoc_AddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);
-  pdfDoc_SetGlobalPageMarginsMM(20, 20, 20, 20);
+  bool result = true;
 
-  pdfDoc_SetCurrentFont(buildInFonts.Times, 11);
-  pdfDoc_WriteTextAt(0, yPos, _pageHeaderCitationTextFld->getStringValue()/*, mlPDF::IGNORE_MARGINS*/);
-
-  yPos += 25;
-  pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 12);
-  pdfDoc_WriteTextAt(0, yPos, _pageHeaderHeadlineTextFld->getStringValue());
-
-  if (_includeUsageHintsFld->getBoolValue())
+  if (_getMetaDataFromU3DFile())
   {
-    yPos += 35;
-    pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
-    pdfDoc_WriteTextAt(0, yPos, "Figure is best viewed with Adobe Reader 9 or later");
+    //HPDF_Page pdfPage;
+    float yPos = 0;
+    pdfDoc_AddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);
+    pdfDoc_SetGlobalPageMarginsMM(20, 20, 20, 20);
 
-    pdfDoc_SetCurrentFont(buildInFonts.Times, 9);
-    yPos += 15;
-    pdfDoc_WriteTextAt(0, yPos, "Click inside image or frame to enable interactive mode.");
-    yPos += 10;
-    pdfDoc_WriteTextAt(0, yPos, "- Left-click & move mouse to rotate scene.");
-    yPos += 10;
-    pdfDoc_WriteTextAt(0, yPos, "- Right-click & move mouse to zoom.");
-    yPos += 10;
-    pdfDoc_WriteTextAt(0, yPos, "- Both-click and move mouse to pan.");
+    pdfDoc_SetCurrentFont(buildInFonts.Times, 11);
+    pdfDoc_WriteTextAt(0, yPos, _pageHeaderCitationTextFld->getStringValue()/*, mlPDF::IGNORE_MARGINS*/);
+
+    yPos += 25;
+    pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 12);
+    pdfDoc_WriteTextAt(0, yPos, _pageHeaderHeadlineTextFld->getStringValue());
+
+    if (_includeUsageHintsFld->getBoolValue())
+    {
+      yPos += 35;
+      pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
+      pdfDoc_WriteTextAt(0, yPos, "Figure is best viewed with Adobe Reader 9 or later");
+
+      pdfDoc_SetCurrentFont(buildInFonts.Times, 9);
+      yPos += 15;
+      pdfDoc_WriteTextAt(0, yPos, "Click inside image or frame to enable interactive mode.");
+      yPos += 10;
+      pdfDoc_WriteTextAt(0, yPos, "- Left-click & move mouse to rotate scene.");
+      yPos += 10;
+      pdfDoc_WriteTextAt(0, yPos, "- Right-click & move mouse to zoom.");
+      yPos += 10;
+      pdfDoc_WriteTextAt(0, yPos, "- Both-click and move mouse to pan.");
+    }
+
+    yPos += 20;
+    float sceneWidth = pdfDoc_GetPageMaxWidth();
+    float sceneHeight = sceneWidth * 0.75; // Use fixed heigt ratio to facilitate poster image creation!
+    _add3DFigure(0, yPos, sceneWidth, sceneHeight);
+
+    yPos += sceneHeight + 5;
+    pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 10);
+    pdfDoc_WriteTextAt(0, yPos, _captionFld->getStringValue());
+
+    yPos += 12;
+    float descriptionBoxHeight = pdfDoc_GetPageRemainingHeight(yPos);
+    pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
+    pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), descriptionBoxHeight, _descriptionFld->getStringValue(), mlPDF::TEXTALIGNMENT_LEFT);
+
+  }
+  else
+  {
+    result = false;
+    assemblyErrorMessage = "U3D file could not be loaded.";
   }
 
-  yPos += 20;
-  float sceneWidth  = pdfDoc_GetPageMaxWidth();
-  float sceneHeight = sceneWidth * 0.75; // Use fixed heigt ratio to facilitate poster image creation!
-  _add3DFigure(0, yPos, sceneWidth, sceneHeight);
-
-  yPos += sceneHeight + 5;
-  pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 10);
-  pdfDoc_WriteTextAt(0, yPos, _captionFld->getStringValue());
-  
-  yPos += 12;
-  float descriptionBoxHeight = pdfDoc_GetPageRemainingHeight(yPos);
-  pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
-  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), descriptionBoxHeight, _descriptionFld->getStringValue(), mlPDF::TEXTALIGNMENT_LEFT);
+  return result;
 }
 
 //----------------------------------------------------------------------------------
@@ -141,7 +156,7 @@ void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float 
 
   if (mlPDF::fileExists(u3dFilename))
   {
-    std::string viewsSpecification = _getViewsSpecificationFromU3DFile(u3dFilename);
+    std::string viewsSpecification = _getViewsSpecificationFromU3DMetaData();
 
     HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(u3dFilename);
 
@@ -151,6 +166,11 @@ void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float 
       if (mlPDF::PDFTools::stringTrimWhitespace(viewsSpecification) == "")
       {
         viewsSpecification = viewSpecificationsFld->getStringValue();
+      }
+
+      if (mlPDF::PDFTools::stringTrimWhitespace(viewsSpecification) == "")
+      {
+        viewsSpecification = _getDefaultViewSpecificationFromU3DMetaData();
       }
 
       pdfDoc_3DModel_AddAllViewsFromSpecificationString(u3dModel, viewsSpecification);
@@ -195,59 +215,146 @@ void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float 
 
 //----------------------------------------------------------------------------------
 
-std::string PDF3DFigurePage_SavePDF::_getViewsSpecificationFromU3DFile(std::string filename)
+bool PDF3DFigurePage_SavePDF::_getMetaDataFromU3DFile()
+{
+  bool result = false;
+
+  _u3dMetaData.clear();
+
+  std::string u3dFilename = _u3dFilenameFld->getStringValue();
+
+  if (mlPDF::fileExists(u3dFilename))
+  {
+    std::ifstream u3dFile;
+    u3dFile.open(u3dFilename, std::ios::out | std::ios::binary);
+
+    if (u3dFile.is_open())
+    {
+      result = true;
+
+      U3DDataBlockFundamental blockType = _readU32(u3dFile);
+
+      if (blockType == U3D_BLOCKTYPE_FILEHEADER)
+      {
+        // Get data block size
+        U3DDataBlockFundamental blockDataSize = _readU32(u3dFile);
+
+        // Get meta data block size
+        /*U3DDataBlockFundamental blockMetaDataSize = */_readU32(u3dFile);
+
+        // Calc meta data start position
+        MLuint32 dataStartPos = (MLuint32)u3dFile.tellg();
+        MLuint32 metaDataStartPos = dataStartPos + blockDataSize;
+
+        if (blockDataSize % 4 != 0)
+        {
+          metaDataStartPos += (4 - (blockDataSize % 4));
+        }
+
+        // Go to meta data start position
+        u3dFile.seekg(metaDataStartPos, std::ios::beg);
+
+        // Get Key/Value Pair Count (9.2.6.1)
+        U3DDataBlockFundamental keyValuePairCount = _readU32(u3dFile);
+
+        for (int thisKeyValuePair = 0; thisKeyValuePair < (int)keyValuePairCount; thisKeyValuePair++)
+        {
+          // Get Key/Value Pair Attributes (9.2.6.2)
+          /*U3DDataBlockFundamental keyValuePairAttributes = */_readU32(u3dFile);
+
+          std::string keyString = _readString(u3dFile);
+          std::string valueString = _readString(u3dFile);
+
+          MetaDataStruct newMetaDataSet;
+          newMetaDataSet.key = keyString;
+          newMetaDataSet.value = valueString;
+
+          _u3dMetaData.push_back(newMetaDataSet);
+        }
+
+      } // if (blockType == U3D_BLOCKTYPE_FILEHEADER)
+
+      u3dFile.close();
+
+    } // if (u3dFile.is_open())
+
+  } // if (mlPDF::fileExists(u3dFilename))
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+std::string PDF3DFigurePage_SavePDF::_getViewsSpecificationFromU3DMetaData()
 {
   std::string result = "";
 
-  std::ifstream u3dFile;
-  u3dFile.open(filename, std::ios::out | std::ios::binary);
+  const int keyValuePairCount = (int)_u3dMetaData.size();
 
-  if (u3dFile.is_open())
+  for (int thisKeyValuePairIndex = 0; thisKeyValuePairIndex < keyValuePairCount; thisKeyValuePairIndex++)
   {
-    U3DDataBlockFundamental blockType = _readU32(u3dFile);
+    MetaDataStruct thisKeyValuePair = _u3dMetaData[thisKeyValuePairIndex];
 
-    if (blockType == U3D_BLOCKTYPE_FILEHEADER)
+    if (thisKeyValuePair.key == "ViewSpecifications")
     {
-      // Get data block size
-      U3DDataBlockFundamental blockDataSize = _readU32(u3dFile);
-
-      // Get meta data block size
-      /*U3DDataBlockFundamental blockMetaDataSize = */_readU32(u3dFile);
-
-      // Calc meta data start position
-      MLuint32 dataStartPos = (MLuint32)u3dFile.tellg();
-      MLuint32 metaDataStartPos = dataStartPos + blockDataSize;
-
-      if (blockDataSize % 4 != 0)
-      {
-        metaDataStartPos += (4 - (blockDataSize % 4));
-      }
-
-      // Go to meta data start position
-      u3dFile.seekg(metaDataStartPos, std::ios::beg);
-
-      // Get Key/Value Pair Count (9.2.6.1)
-      U3DDataBlockFundamental keyValuePairCount = _readU32(u3dFile);
-
-      for (int thisKeyValuePair = 0; thisKeyValuePair < (int)keyValuePairCount; thisKeyValuePair++)
-      {
-        // Get Key/Value Pair Attributes (9.2.6.2)
-        /*U3DDataBlockFundamental keyValuePairAttributes = */_readU32(u3dFile);
-
-        std::string keyString = _readString(u3dFile);
-        std::string valueString = _readString(u3dFile);
-
-        if (keyString == "ViewSpecifications")
-        {
-          result = valueString;
-        }
-
-      }
-
+      result = thisKeyValuePair.value;
+      break;
     }
 
-    u3dFile.close();
+  }
 
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+std::string PDF3DFigurePage_SavePDF::_getDefaultViewSpecificationFromU3DMetaData()
+{
+  std::string result = "";
+  std::string boundingBoxCenterString = "";
+  std::string boundingBoxRadiusString = "";
+
+  const int keyValuePairCount = _u3dMetaData.size();
+
+  for (int thisKeyValuePairIndex = 0; thisKeyValuePairIndex < keyValuePairCount; thisKeyValuePairIndex++)
+  {
+    MetaDataStruct thisKeyValuePair = _u3dMetaData[thisKeyValuePairIndex];
+
+    if (thisKeyValuePair.key == "BoundingBoxCenter")
+    {
+      boundingBoxCenterString = thisKeyValuePair.value;
+    }
+
+    if (thisKeyValuePair.key == "BoundingBoxRadius")
+    {
+      boundingBoxRadiusString = thisKeyValuePair.value;
+    }
+
+  }
+
+  if ( (boundingBoxCenterString != "") && (boundingBoxRadiusString != "") )
+  {
+    Vector3 boundingBoxCenter = mlPDF::PDFTools::getVec3FromString(boundingBoxCenterString);
+    double  boundingBoxRadius = mlPDF::stringToDouble(boundingBoxRadiusString);
+
+    Vector3 camCenterOfOrbit;
+    Vector3 camCenterToCamera;
+    float   camRadiusOfOrbit;
+    float   camRollAngle;
+    float   camFOVAngle;
+
+    mlPDF::PDFDocumentTools::CalculateDefaultCameraProperties(boundingBoxCenter, boundingBoxRadius, camCenterOfOrbit, camCenterToCamera, camRadiusOfOrbit, camRollAngle, camFOVAngle);
+
+    result += "<View>";
+    result += "<DisplayName>Default View</DisplayName>";
+    result += "<BackgroundColor>1.000 1.000 1.000</BackgroundColor>";
+    result += "<LightingScheme>10</LightingScheme>";
+    result += "<CamCenterOfOrbit>" + mlPDF::PDFTools::FormatVec3String(camCenterOfOrbit) + "</CamCenterOfOrbit>\n";
+    result += "<CamCenterToCamera>" + mlPDF::PDFTools::FormatVec3String(camCenterToCamera) + "</CamCenterToCamera>\n";
+    result += "<CamRadiusOfOrbit>" + mlPDF::floatToString(camRadiusOfOrbit) + "</CamRadiusOfOrbit>\n";
+    result += "<CamRollAngle>" + mlPDF::floatToString(camRollAngle) + "</CamRollAngle>\n";
+    result += "<CamFOVAngle>" + mlPDF::floatToString(camFOVAngle) + "</CamFOVAngle>\n";
+    result += "</View>";
   }
 
   return result;

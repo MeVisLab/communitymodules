@@ -19,30 +19,6 @@ MLModule PDFUtils {
   externalDefinition = $(LOCAL)/PDFUtils.script
 }  
 
-MLModule SavePDF {
-  DLL                = "MLPDF"
-
-  genre              = "FileMain"
-  author             = "Axel Newe"
-  comment            = "Creates PDF file."
-  keywords           = "PDF U3D PRC"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC"
-  exampleNetwork     = "$(LOCAL)/networks/SavePDFExample.mlab"
-  externalDefinition = $(LOCAL)/SavePDF.script
-}  
-
-MLModule Save3DFigurePDF {
-  DLL                = "MLPDF"
-
-  genre              = "FileMain"
-  author             = "Axel Newe"
-  comment            = "Creates PDF file with one interactive 3D scene for scientific publications."
-  keywords           = "PDF U3D PRC 3D"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePRC SavePDF"
-  exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
-  externalDefinition = $(LOCAL)/Save3DFigurePDF.script
-}  
-
 MLModule SaveU3D {
   DLL                = "MLPDF"
 

@@ -126,7 +126,7 @@ void PDF3DFigurePage_Utils::_selectedWEMPatchChanged(WEMPtr wem)
 {
   int patchId = _getModelIDFromString(_selectedWEMPatchFld->getStringValue());
 
-  if (patchId != ML_INT_MIN)
+  if (patchId != ML_INT16_MIN)
   {
     _selectedWEMPatchIdFld->setIntValue(patchId);
   }
@@ -138,7 +138,7 @@ void PDF3DFigurePage_Utils::_selectedWEMPatchChanged(WEMPtr wem)
 
 void PDF3DFigurePage_Utils::_selectedWEMPatchIdChanged(WEMPtr wem)
 {
-  std::string newLabel = "[undefined]";
+  std::string newLabel = "";
   std::string groupPath = ""; 
   std::string modelColor = "";
 
@@ -175,7 +175,7 @@ void PDF3DFigurePage_Utils::_selectedWEMPatchIdChanged(WEMPtr wem)
   {
     _selectedWEMPatchUseDefaultColorFld->setBoolValue(false);
 
-    Vector4 colorVector = PDFTools::getColorVec4(modelColor, Vector4(0));
+    Vector4 colorVector = PDFTools::getColorVec4FromString(modelColor, Vector4(0));
 
     _selectedWEMPatchColorFld->setColorValue(colorVector[0], colorVector[1], colorVector[2]);
     _selectedWEMPatchColorAlphaFld->setFloatValue(colorVector[3]);
@@ -315,7 +315,7 @@ void PDF3DFigurePage_Utils::_processPatch(unsigned int patchIndex)
     }
     else
     {
-      Vector4 colorVector = PDFTools::getColorVec4(modelColor, Vector4(0));
+      Vector4 colorVector = PDFTools::getColorVec4FromString(modelColor, Vector4(0));
       colorVector[3] = 1 - colorVector[3];
 
       modelColor = "Color=" + modelColor + ";";

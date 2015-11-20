@@ -85,20 +85,16 @@ void PDFDocumentTools::CalculateCameraPropertiesFromInventorCamera(
 //----------------------------------------------------------------------------------
 
 void PDFDocumentTools::CalculateDefaultCameraProperties(
-    // inputs
-    Vector3& camCenterOfOrbit, Vector3& camCenterToCamera, float& camRadiusOfOrbit, float& camRollAngle, float& camFOVAngle
-    )
+  Vector3 boundingBoxCenter, double boundingBoxRadius,                                                                     // inputs
+  Vector3& camCenterOfOrbit, Vector3& camCenterToCamera, float& camRadiusOfOrbit, float& camRollAngle, float& camFOVAngle  // outputs
+  )
 {
-  //
-  // TODO: Calc valid values!
-  //
-
   // Return result values
-  camCenterOfOrbit  = Vector3(0);
-  camCenterToCamera = Vector3(0);
-  camRadiusOfOrbit  = 0.0;
+  camCenterOfOrbit  = boundingBoxCenter;
+  camCenterToCamera = Vector3(0, -1, 0);
+  camRadiusOfOrbit  = (float)boundingBoxRadius*2;
   camRollAngle      = 0.0;
-  camFOVAngle       = 45.0;
+  camFOVAngle       = 60.0;
 }
 
 //----------------------------------------------------------------------------------

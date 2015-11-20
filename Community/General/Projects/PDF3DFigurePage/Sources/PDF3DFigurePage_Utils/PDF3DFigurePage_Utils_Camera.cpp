@@ -45,36 +45,5 @@ void PDF3DFigurePage_Utils::_calculateCameraPropertiesFromInventorCamera()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_Utils::_calculateDefaultCameraProperties()
-{
-  Vector3 camCenterOfOrbit;
-  Vector3 camCenterToCamera;
-  float   camRadiusOfOrbit;
-  float   camRollAngle;
-  float   camFOVAngle;
-
-  mlPDF::PDFDocumentTools::CalculateDefaultCameraProperties(
-    // Inputs
-    camCenterOfOrbit, camCenterToCamera, camRadiusOfOrbit, camRollAngle, camFOVAngle);
-
-  // Set field values
-  _cameraCenterOfOrbitFld->setVector3Value(camCenterOfOrbit);
-  _cameraCenterToCameraFld->setVector3Value(camCenterToCamera);
-  _cameraRadiusOfOrbitFld->setFloatValue(camRadiusOfOrbit);
-  _cameraRollAngleFld->setFloatValue(camRollAngle);
-  _cameraFOVAngleFld->setFloatValue(camFOVAngle);
-}
-
-//----------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------------
-
 
 ML_END_NAMESPACE

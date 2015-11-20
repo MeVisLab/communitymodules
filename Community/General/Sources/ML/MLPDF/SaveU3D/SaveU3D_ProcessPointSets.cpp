@@ -13,6 +13,7 @@
 #include "U3DFileFormat/U3D_DataTypes.h"
 #include "U3DFileFormat/U3D_Tools.h"
 #include "../shared/MLPDF_Tools.h"
+#include "../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 
@@ -56,14 +57,14 @@ void SaveU3D::PreProcessPointSetData(U3DPointSetInfoVector &U3DPointSetInfoVecto
 
     U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_POINTSET, thisSpecificationParameters.ObjectName, defaultValues);
     thisU3DObjectInfo.GroupPath = thisSpecificationParameters.GroupPath;
-    thisU3DObjectInfo.DiffuseColor = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
-    thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
+    thisU3DObjectInfo.DiffuseColor = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+    thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
     thisU3DObjectInfo.Visibility = (MLuint32)mlPDF::stringToInt(thisSpecificationParameters.ModelVisibility);
     _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
 
     PointSetSpecificationStruct thisPointSetGeometry;
     thisPointSetGeometry.internalName = thisU3DObjectInfo.InternalName;
-    thisPointSetGeometry.positions = mlPDF::PDFTools::getAllPositionsFromXMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
+    thisPointSetGeometry.positions    = mlPDF::PDFMarkerListTools::getAllPositionsFromXMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
     _pointSetsGeometryVector.push_back(thisPointSetGeometry);
 
     // Collect point set info

@@ -12,6 +12,8 @@
 // Local includes
 #include "LoadPointLineGeometry.h"
 
+#include "../shared/MLPDF_MarkerListTools.h"
+
 #include <mlUnicode.h>
 
 #include <iostream>
@@ -359,7 +361,7 @@ void LoadPointLineGeometry::_unloadData()
 
 void LoadPointLineGeometry::_createFibers()
 {
-  mlPDF::PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
+  mlPDF::PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
 
   _outFibersFld->touch();
 }

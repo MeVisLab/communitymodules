@@ -82,7 +82,7 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
 
   //! Fields for WEM/mesh editing
   (_selectedWEMPatchFld                  = addString("selectedWEMPatch"))->setStringValue("");
-  (_selectedWEMPatchIdFld                = addInt("selectedWEMPatchId"))->setIntValue(-1);
+  (_selectedWEMPatchIdFld                = addInt("selectedWEMPatchId"))->setIntValue(ML_INT16_MIN);
   (_availableWEMPatchesFld               = addString("availableWEMPatches"))->setStringValue("");
   (_selectedWEMPatchNewLabelFld          = addString("selectedWEMPatchNewLabel"))->setStringValue("");
   (_selectedWEMPatchGroupPathFld         = addString("selectedWEMPatchGroupPath"))->setStringValue("");
@@ -92,7 +92,7 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
 
   //! Fields for line set editing
   (_selectedLineSetFld                   = addString("selectedLineSet"))->setStringValue("");
-  (_selectedLineSetIdFld                 = addInt("selectedLineSetId"))->setIntValue(-1);
+  (_selectedLineSetIdFld                 = addInt("selectedLineSetId"))->setIntValue(ML_INT16_MIN);
   (_availableLineSetsFld                 = addString("availableLineSets"))->setStringValue("");
   (_selectedLineSetNewLabelFld           = addString("selectedLineSetNewLabel"))->setStringValue("");
   (_selectedLineSetGroupPathFld          = addString("selectedLineSetGroupPath"))->setStringValue("");
@@ -101,7 +101,7 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
 
   //! Fields for point set editing
   (_selectedPointSetFld                  = addString("selectedPointSet"))->setStringValue("");
-  (_selectedPointSetIdFld                = addInt("selectedPointSetId"))->setIntValue(-1);
+  (_selectedPointSetIdFld                = addInt("selectedPointSetId"))->setIntValue(ML_INT16_MIN);
   (_availablePointSetsFld                = addString("availablePointSets"))->setStringValue("");
   (_selectedPointSetNewLabelFld          = addString("selectedPointSetNewLabel"))->setStringValue("");
   (_selectedPointSetGroupPathFld         = addString("selectedPointSetGroupPath"))->setStringValue("");
@@ -374,7 +374,7 @@ void PDF3DFigurePage_Utils::activateAttachments()
 
 int PDF3DFigurePage_Utils::_getModelIDFromString(std::string idString)
 {
-  int result = ML_INT_MIN;
+  int result = ML_INT16_MIN;
 
   if (idString != "")
   {

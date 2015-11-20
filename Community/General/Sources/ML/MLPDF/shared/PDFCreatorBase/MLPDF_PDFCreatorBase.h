@@ -85,7 +85,8 @@ protected:
   //! This is the main method for all derived modules.
   //! It is called by the saveButtonClicked() method.
   //! Add all code that assembles the actual PDF document here!
-  virtual void assemblePDFDocument() = 0;
+  //! Returns true if assembly was successful, false otherwise.
+  virtual bool assemblePDFDocument() = 0;
 
   //====================================
   // Methods for assembling PDF document
@@ -285,15 +286,6 @@ protected:
   void pdfDoc_AddFilledRectangle(float x, float y, float width, float height, bool ignoreMargins = false);
   void pdfDoc_AddFilledOutlineRectangle(float x, float y, float width, float height, float lineWidth, bool ignoreMargins = false);
 
-
-  //-------------
-  // Tool methods 
-  //-------------
-
-  // Calculate PDF camera properties
-//  void calculateCameraPropertiesFromInventorCamera();
-//  void calculateDefaultCameraProperties();
-
   /* FIELDS */
 
   //! Field - Output filename
@@ -321,23 +313,6 @@ protected:
   //! View specifiactions field
   StringField*   viewSpecificationsFld;
 
-/*
-  //! PDF view camera fields
-  Vector3Field*  cameraCenterOfOrbitFld;
-  Vector3Field*  cameraCenterToCameraFld;
-  FloatField*    cameraRadiusOfOrbitFld;
-  FloatField*    cameraRollAngleFld;
-  FloatField*    cameraFOVAngleFld;
-
-  //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
-  NotifyField*   calculateCameraFromInventorSceneFld;
-  BoolField*     autoCalculateCameraFromInventorScene;
-  Vector3Field*  inventorCameraPositionFld;
-  Vector4Field*  inventorCameraOrientationFld;
-  FloatField*    inventorCameraFocalDistanceFld;
-  FloatField*    inventorCameraHeightFld;
-*/
-
   //! The main document container
   HPDF_Doc  pdfDocument;
 
@@ -350,6 +325,9 @@ protected:
   //! General PDF properties
   mlPDF::BuiltInFontsStruct buildInFonts;
   mlPDF::PageSizeInfoStruct pageSizeInfo;
+
+  //! Assembly error message container
+  std::string assemblyErrorMessage;
 
 private:
   

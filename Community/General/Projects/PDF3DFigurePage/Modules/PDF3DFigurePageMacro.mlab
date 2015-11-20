@@ -91,7 +91,7 @@ if (filename):
 
 
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -265,13 +265,13 @@ module SoPerspectiveCamera {
   fields  {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "162.050567626953 -442.166625976562 1191.71057128906"
-    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    position = "0 0 0"
+    orientation = "0 0 1 0"
     aspectRatio = 0.75
     nearDistance = 16.620569
     farDistance = 458.11389
-    focalDistance = 314.59598
-    heightAngle = 1.5707964
+    focalDistance = 3
+    heightAngle = 1
   }
 }
 module SoSeparator {
@@ -307,7 +307,7 @@ module ImageSave {
       window _automatic {
         geometry = "597 254 500 600"
         sizeHint = "260 223"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -379,8 +379,8 @@ module RunPythonScript {
     moduleGroupName = SaveFiles
     windows  {
       window _default {
-        geometry = "1801 139 1370 882"
-        sizeHint = "648 734"
+        geometry = "1718 66 1263 882"
+        sizeHint = "641 734"
         wasOpen = no
       }
       window _automatic {
@@ -448,9 +448,17 @@ from mevis import MLABFileDialog"
     wakeUpCode = ""
     code = "*networkCTX=RunPythonScript_ctx.owner().owner()
 
-networkCTX.field("PDF3DFigurePage_SavePDF.save").touch()
+networkCTX.field("savePDFStatus").value = ""
+filename = MLABFileDialog.getSaveFileName("", "PDF (*.pdf);;All files (*.*)", "Save PDF File")
+
+if (filename):
+  networkCTX.field("PDF3DFigurePage_SavePDF.pdfFilename").value = filename
+  networkCTX.field("savePDFStatus").connectFrom(networkCTX.field("PDF3DFigurePage_SavePDF.status"))
+  networkCTX.field("PDF3DFigurePage_SavePDF.save").touch()
+  networkCTX.field("savePDFStatus").disconnectAll()
+  networkCTX.field("PDF3DFigurePage_SavePDF.pdfFilename").value = ""
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -464,8 +472,8 @@ module RunPythonScript {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "1761 79 1363 882"
-        sizeHint = "641 734"
+        geometry = "187 89 1351 788"
+        sizeHint = "629 542"
         wasOpen = no
       }
       window _automatic {
@@ -533,18 +541,15 @@ from mevis import MLABFileDialog"
     wakeUpCode = ""
     code = "*networkCTX=RunPythonScript_ctx.owner().owner()
 
-
 networkCTX.field("saveU3DStatus").value = ""
 filename = MLABFileDialog.getSaveFileName("", "U3D (*.u3d);;All files (*.*)", "Save Model File")
 
 if (filename):
   networkCTX.field("SaveU3D.filename").value = filename
   networkCTX.field("saveU3DStatus").connectFrom(networkCTX.field("SaveU3D.status"))
-  networkCTX.field("SavePosterImage.save").touch()
   networkCTX.field("PDF3DFigurePage_Utils.createPointCloudSpecification").touch()
   networkCTX.field("PDF3DFigurePage_Utils.createLineSetSpecification").touch()
   networkCTX.field("PDF3DFigurePage_Utils.createMetaDataSpecification").touch()
-  networkCTX.field("PDF3DFigurePage_SavePDF.u3dFilename").value = networkCTX.field("SaveU3D.filename").value
   networkCTX.field("SaveU3D.save").touch()
   networkCTX.field("PDF3DFigurePage_SavePDF.u3dFilename").value = networkCTX.field("SaveU3D.filename").value
   networkCTX.field("saveU3DStatus").disconnectAll()
@@ -553,7 +558,7 @@ if (filename):
 
 
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -676,7 +681,7 @@ module XMarkerListFilter {
     filterPosition = FALSE
     filterName = FALSE
     filterVectorLength = FALSE
-    markerTypes = 0
+    markerTypes = -32768
     markerName = ""
     minVectorLength = 0
     maxVectorLength = 1
@@ -782,7 +787,7 @@ module XMarkerListFilter {
     filterPosition = FALSE
     filterName = FALSE
     filterVectorLength = FALSE
-    markerTypes = 0
+    markerTypes = -32768
     markerName = ""
     minVectorLength = 0
     maxVectorLength = 1
@@ -898,7 +903,7 @@ module PDF3DFigurePage_LoadPointLineGeometry {
 }
 module RunPythonScript {
   internal  {
-    frame = "-1903 729 128 64"
+    frame = "-1899 497 152 64"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -972,13 +977,17 @@ from mevis import MLABFileDialog"
     wakeUpCode = ""
     code = "*networkCTX=RunPythonScript_ctx.owner().owner()
 
-networkCTX.field("loadLinesFilter").value = "Lines"
-networkCTX.field("loadPointsFilter").value = "Points"
 networkCTX.field("filenameWEM").value = ""
 networkCTX.field("filenamePointPositions").value = ""
 networkCTX.field("filenameLineDefinitions").value = ""
+networkCTX.field("viewDisplayName").value = ""
+networkCTX.field("viewBackgroundColor").setStringValue("1 1 1")
+networkCTX.field("viewLightingScheme").value = "HeadLamp"
+networkCTX.field("loadLinesFilter").value = "Lines"
+networkCTX.field("loadPointsFilter").value = "Points"
 networkCTX.field("SaveU3D.filename").value = ""
 networkCTX.field("PDF3DFigurePage_SavePDF.u3dFilename").value = ""
+networkCTX.field("PDF3DFigurePage_SavePDF.posterImageFilename").value = ""
 networkCTX.field("PDF3DFigurePage_SavePDF.pdfFilename").value = ""
 networkCTX.field("SwitchPreview.whichChild").value = -1
 networkCTX.field("ToggleReducedMesh.boolValue").value = False
@@ -989,12 +998,10 @@ networkCTX.field("PDF3DFigurePage_Utils.metaDataSpecification").value = ""
 networkCTX.field("PDF3DFigurePage_Utils.viewSpecifications").value = ""
 networkCTX.field("savePosterStatus").value = ""
 networkCTX.field("saveU3DStatus").value = ""
+networkCTX.field("savePDFStatus").value = ""
 networkCTX.field("SaveU3D.progress").value = 0
 networkCTX.field("PDF3DFigurePage_SavePDF.status").value = "Idle."
 networkCTX.field("PDF3DFigurePage_SavePDF.progress").value = 0
-networkCTX.field("viewDisplayName").value = ""
-networkCTX.field("viewBackgroundColor").setStringValue("1 1 1")
-networkCTX.field("viewLightingScheme").value = "HeadLamp"
 networkCTX.field("selectedWEMPatchNewLabel").value = ""
 networkCTX.field("selectedWEMPatchGroupPath").value = ""
 networkCTX.field("selectedWEMPatchUseDefaultColor").value = True
@@ -1008,11 +1015,10 @@ networkCTX.field("availableLineSets").value = ""
 networkCTX.field("selectedPointSetNewLabel").value = ""
 networkCTX.field("selectedPointSetGroupPath").value = ""
 networkCTX.field("availablePointSets").value = ""
-#networkCTX.field("").value = ""
 
-
+networkCTX.field("resetPreview").touch()
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -1193,10 +1199,10 @@ module WEMInfo {
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = "2@Left Femur (Outer Surface)|4@Left Femur (Spongiosa Surface)|6@Left Femur (Bone Marrow Surface)"
+    WEMs = ""
     hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
-    primitiveValueLists = LUT
+    primitiveValueLists = ""
     curveScaleFactor = 1
     selectedTab = 1
   }
@@ -1350,7 +1356,7 @@ else:
   networkCTX.field("LoadPointLineGeometry.filter").value = ""
   networkCTX.field("PreviewViewer.viewAll").touch()
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -1448,7 +1454,7 @@ else:
   networkCTX.field("PreviewViewer.viewAll").touch()
 
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -1457,7 +1463,7 @@ else:
 }
 module RunPythonScript {
   internal  {
-    frame = "-1911 641 192 64"
+    frame = "-1183 745 192 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1547,7 +1553,7 @@ networkCTX.field("ToggleReducedMesh.boolValue").value = False
 
 
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -1690,7 +1696,7 @@ module SoWEMRendererEdges {
 }
 module RunPythonScript {
   internal  {
-    frame = "-1911 833 160 64"
+    frame = "-1183 833 160 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -1772,7 +1778,7 @@ networkCTX.field("ToggleReducedMesh.boolValue").value = False
 
 
 *"
-    showFields = TRUE
+    showFields = FALSE
     showInitCode = TRUE
     showWakeUpCode = FALSE
     showCode = TRUE
@@ -1856,7 +1862,7 @@ module So3DMarkerEditor {
   fields  {
     instanceName = PointsRendererImport
     interactionProviderID = ""
-    scaleSize = 2.3299999
+    scaleSize = 2
     scaleLength = 1
     color = "1 0 0"
     ambientColor = "0 0 0"
@@ -2096,7 +2102,7 @@ module SoExaminerViewer {
         wasOpen = no
       }
       window _automatic {
-        geometry = "991 414 684 600"
+        geometry = "562 227 684 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -2141,7 +2147,7 @@ module SoExaminerViewer {
     autoClipping = TRUE
     drawStyle = VIEW_AS_IS
     interactiveDrawStyle = VIEW_LOW_COMPLEXITY
-    viewAllFlag = FALSE
+    viewAllFlag = TRUE
     initialCameraOrientation = CAMERA_KEEP_AS_IS
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
@@ -2155,12 +2161,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 1.5707964
-    position = "162.050567626953 -442.166625976562 1191.71057128906"
-    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
-    nearDistance = 84.194893
-    farDistance = 390.40457
-    focalDistance = 314.59598
+    height = 1
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 2
+    farDistance = 4
+    focalDistance = 3
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2241,12 +2247,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 1.5707964
-    position = "162.050567626953 -442.166625976562 1191.71057128906"
-    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
-    nearDistance = 78.067238
-    farDistance = 396.54413
-    focalDistance = 314.59598
+    height = 1
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 0
+    farDistance = 0
+    focalDistance = 3
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2327,12 +2333,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 1.5707964
-    position = "162.050567626953 -442.166625976562 1191.71057128906"
-    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    height = 1
+    position = "0 0 0"
+    orientation = "0 0 1 0"
     nearDistance = 107.76762
     farDistance = 356.06061
-    focalDistance = 314.59598
+    focalDistance = 3
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2413,12 +2419,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 1.5707964
-    position = "162.050567626953 -442.166625976562 1191.71057128906"
-    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
+    height = 1
+    position = "0 0 0"
+    orientation = "0 0 1 0"
     nearDistance = 144.77559
     farDistance = 319.99008
-    focalDistance = 314.59598
+    focalDistance = 3
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2499,12 +2505,12 @@ module SoExaminerViewer {
     perspective = TRUE
     stereoViewing = FALSE
     stereoOffset = 3
-    height = 1.5707964
-    position = "162.050567626953 -442.166625976562 1191.71057128906"
-    orientation = "0.981068909168243 0.187830612063408 0.0471541695296764 1.33807945251465"
-    nearDistance = 0.0099999998
-    farDistance = 2
-    focalDistance = 314.59598
+    height = 1
+    position = "0 0 0"
+    orientation = "0 0 1 0"
+    nearDistance = 2
+    farDistance = 4
+    focalDistance = 3
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2580,14 +2586,14 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 0.25999999
     faceShininessValue = 1
-    primitiveValueLists = LUT
+    primitiveValueLists = ""
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 2
+    maxWEMPatchIndex = -1
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -2626,14 +2632,14 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 1
     faceShininessValue = 1
-    primitiveValueLists = LUT
+    primitiveValueLists = ""
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 0
+    maxWEMPatchIndex = -1
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -2669,10 +2675,10 @@ module WEMSelectPatches {
     forwardSelectionNotifications = TRUE
     triangulationMode = Strip
     selectMode = "Patch ID"
-    selectValue = 2
+    selectValue = -32768
     singleOutputPatch = TRUE
     triangulatePatches = TRUE
-    status = "Merged 1 triangle patch."
+    status = "Merged nothing."
   }
 }
 module SoGroup {
@@ -2728,14 +2734,14 @@ module PDF3DFigurePage_Utils {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "518 153 1036 400"
+        geometry = "270 564 1036 400"
         sizeHint = "850 400"
         wasOpen = no
       }
       window _automatic {
         geometry = "1769 270 1132 600"
         sizeHint = "260 223"
-        wasOpen = no
+        wasOpen = yes
       }
     }
   }
@@ -2759,33 +2765,31 @@ module PDF3DFigurePage_Utils {
     useInputWEMToCreateOutputWEM = TRUE
     triangulationMode = Strip
     autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "93.3554159031273 -143.989957882062 1118.61961758058"
-    cameraCenterToCamera = "68.6951517238258 -298.1766680945 73.0909537084826"
-    cameraRadiusOfOrbit = 314.59598
+    cameraCenterOfOrbit = "0 0 -3"
+    cameraCenterToCamera = "0 0 3"
+    cameraRadiusOfOrbit = 3
     cameraFOVAngle = 90
-    cameraRollAngle = 351.29684
+    cameraRollAngle = 270
     vertexList = "[  ]"
     coordIndexList = "[  ]"
     viewSpecifications = ""
     newViewDisplayName = ""
     newViewBackgroundColor = "1 1 1"
     newViewLightingScheme = HeadLamp
-    selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
-    availableWEMPatches = "Left Femur (Outer Surface) {ID=2}|Left Femur (Spongiosa Surface) {ID=4}|Left Femur (Bone Marrow Surface) {ID=6}"
-    selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
+    selectedWEMPatch = ""
+    availableWEMPatches = ""
+    selectedWEMPatchNewLabel = ""
     selectedWEMPatchGroupPath = ""
-    selectedWEMPatchUseDefaultColor = FALSE
-    selectedWEMPatchColor = "1 0 0"
-    selectedWEMPatchColorAlpha = 0.60000002
+    selectedWEMPatchUseDefaultColor = TRUE
+    selectedWEMPatchColor = "0 0 0"
+    selectedWEMPatchColorAlpha = 0
     selectedLineSet = ""
-    selectedLineSetId = 0
     availableLineSets = ""
     selectedLineSetNewLabel = ""
     selectedLineSetGroupPath = ""
     selectedLineSetUseDefaultColor = TRUE
     selectedLineSetColor = "0 0 0"
     selectedPointSet = ""
-    selectedPointSetId = 0
     availablePointSets = ""
     selectedPointSetNewLabel = ""
     selectedPointSetGroupPath = ""
@@ -2797,28 +2801,9 @@ module PDF3DFigurePage_Utils {
     linePositionsNextTypeID = 0
     lineConnectionsNextTypeID = 0
     lineDefinitionsNextTypeID = 0
-    pointCloudSpecification = "<PointSet>
-<PositionTypes>-842150451</PositionTypes>
-<ObjectName>[no label specified]</ObjectName>
-<GroupPath></GroupPath>
-<ModelVisibility>3</ModelVisibility>
-</PointSet>
-"
-    lineSetSpecification = "<LineSet>
-<PositionTypes>-842150451</PositionTypes>
-<ConnectionTypes>-842150451</ConnectionTypes>
-<ObjectName>[no label specified]</ObjectName>
-<GroupPath></GroupPath>
-<ModelVisibility>3</ModelVisibility>
-</LineSet>
-"
-    metaDataSpecification = "<MetaData>
-<MetaDataKey>ViewSpecifications</MetaDataKey>
-<MetaDataValue>
-
-</MetaDataValue>
-</MetaData>
-"
+    pointCloudSpecification = ""
+    lineSetSpecification = ""
+    metaDataSpecification = ""
   }
 }
 module PDF3DFigurePage_SavePDF {
@@ -2827,7 +2812,7 @@ module PDF3DFigurePage_SavePDF {
     moduleGroupName = SaveFiles
     windows  {
       window _default {
-        geometry = "348 197 863 753"
+        geometry = "641 99 863 753"
         sizeHint = "363 753"
         wasOpen = no
       }
@@ -2850,33 +2835,18 @@ module PDF3DFigurePage_SavePDF {
     pdfAttrSubject = ""
     pdfAttrKeywords = ""
     viewSpecifications = ""
-    u3dFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.u3d
-    posterImageFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.png
-    pageHeaderCitationText = "*Newe (2015). "Some fancy article title". Journal.*"
-    pageHeaderHeadlineText = "Additional File S1 - Interactive 3D PDF"
+    u3dFilename = ""
+    posterImageFilename = ""
+    pageHeaderCitationText = ""
+    pageHeaderHeadlineText = ""
     includeUsageHints = TRUE
     figureActivationMode = ExplicitActivate
     figureDeactivationMode = ExplicitDeactivate
     figureAnimationAutostart = FALSE
     figureToolbarEnabled = TRUE
     figureNavigationInterfaceEnabled = FALSE
-    caption = "Model of a segmented human femur."
-    description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue).
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. "
+    caption = ""
+    description = ""
   }
 }
 module So3DMarkerEditor {
@@ -2894,7 +2864,7 @@ module So3DMarkerEditor {
   fields  {
     instanceName = PointsRenderer
     interactionProviderID = ""
-    scaleSize = 2.3299999
+    scaleSize = 2
     scaleLength = 1
     color = "0 0 0"
     ambientColor = "0 0 0"
@@ -3088,14 +3058,14 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 0.25999999
     faceShininessValue = 1
-    primitiveValueLists = LUT
+    primitiveValueLists = ""
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 2
+    maxWEMPatchIndex = -1
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -3114,9 +3084,9 @@ module BoolInt {
   }
   fields  {
     instanceName = UseInputConnectors
-    boolValue = FALSE
-    invBoolValue = TRUE
-    intValue = 0
+    boolValue = TRUE
+    invBoolValue = FALSE
+    intValue = 1
     offValue = 0
     onValue = 1
     defaultBool = Unchanged
@@ -3136,7 +3106,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectLinePositionsInput
-    currentInput = 0
+    currentInput = 1
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -3156,7 +3126,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectLineConnectionsInput
-    currentInput = 0
+    currentInput = 1
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -3176,7 +3146,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectPointPositionsInput
-    currentInput = 0
+    currentInput = 1
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -3196,7 +3166,7 @@ module BaseSwitch {
   }
   fields  {
     instanceName = SelectWEMInput
-    currentInput = 0
+    currentInput = 1
     currentOutput = 0
     numberOfInputs = 2
     numberOfOutputs = 1
@@ -3300,31 +3270,12 @@ module SaveU3D {
     modelPrefixPointClouds = PointSet
     modelPrefixLineSets = LineSet
     modelPrefixMeshes = Mesh
-    pointCloudSpecification = "<PointSet>
-<PositionTypes>-842150451</PositionTypes>
-<ObjectName>[no label specified]</ObjectName>
-<GroupPath></GroupPath>
-<ModelVisibility>3</ModelVisibility>
-</PointSet>
-"
-    lineSetSpecification = "<LineSet>
-<PositionTypes>-842150451</PositionTypes>
-<ConnectionTypes>-842150451</ConnectionTypes>
-<ObjectName>[no label specified]</ObjectName>
-<GroupPath></GroupPath>
-<ModelVisibility>3</ModelVisibility>
-</LineSet>
-"
+    pointCloudSpecification = ""
+    lineSetSpecification = ""
     meshSpecification = ""
     viewsSpecification = ""
     lightsSpecification = ""
-    metaDataSpecification = "<MetaData>
-<MetaDataKey>ViewSpecifications</MetaDataKey>
-<MetaDataValue>
-
-</MetaDataValue>
-</MetaData>
-"
+    metaDataSpecification = ""
     defaultViewName = DefaultView
     defaultLightName = DefaultAmbientLight
     defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
@@ -3338,7 +3289,7 @@ module SaveU3D {
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
     filename = ""
-    status = "U3D file saved."
+    status = Idle.
     newSpecification = "<MetaData>
 <MetaDataKey>[No key specified]</MetaDataKey>
 <MetaDataValue>[No value specified]</MetaDataValue>

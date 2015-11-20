@@ -11,6 +11,7 @@
 
 // Local includes
 #include "PDF3DFigurePage_Utils.h"
+#include "../shared/MLPDF_MarkerListTools.h"
 
 
 ML_START_NAMESPACE
@@ -210,7 +211,7 @@ void PDF3DFigurePage_Utils::_updateLineSetOutputs()
 
 void PDF3DFigurePage_Utils::_createFibers()
 {
-  PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outLinePositions, _outLineConnections);
+  PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outLinePositions, _outLineConnections);
 
   _outFibersFld->touch();
 }
@@ -244,7 +245,7 @@ void PDF3DFigurePage_Utils::_createSelectedFibers()
     }
   }
 
-  PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outSelectedFiberSetContainer, _outSelectedLinePositions, _outSelectedLineConnections);
+  PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outSelectedFiberSetContainer, _outSelectedLinePositions, _outSelectedLineConnections);
 
   _outSeletedFibersFld->touch();
 }
@@ -320,12 +321,12 @@ void PDF3DFigurePage_Utils::_selectedPointSetChanged()
 {
   int pointSetId = _getModelIDFromString(_selectedPointSetFld->getStringValue());
 
-  if (pointSetId != ML_INT_MIN)
+  if (pointSetId != ML_INT16_MIN)
   {
     _selectedPointSetIdFld->setIntValue(pointSetId);
+    _selectedPointSetIdChanged();
   }
 
-  _selectedPointSetIdChanged();
 }
 
 //----------------------------------------------------------------------------------
@@ -337,18 +338,21 @@ void PDF3DFigurePage_Utils::_selectedPointSetIdChanged()
 
   const int pointSetId = _selectedPointSetIdFld->getIntValue();
 
-  PointSetProperties thisPointSet = _pointSetMap[pointSetId];
-
-  newLabel = thisPointSet.name;
-  groupPath = thisPointSet.groupPath;
-
-  if (newLabel == NOLABELSPECIFIED)
+  if (pointSetId != ML_INT16_MIN)
   {
-    newLabel = "";
-  }
+    PointSetProperties thisPointSet = _pointSetMap[pointSetId];
 
-  _selectedPointSetNewLabelFld->setStringValue(newLabel);
-  _selectedPointSetGroupPathFld->setStringValue(groupPath);
+    newLabel = thisPointSet.name;
+    groupPath = thisPointSet.groupPath;
+
+    if (newLabel == NOLABELSPECIFIED)
+    {
+      newLabel = "";
+    }
+
+    _selectedPointSetNewLabelFld->setStringValue(newLabel);
+    _selectedPointSetGroupPathFld->setStringValue(groupPath);
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -411,10 +415,13 @@ void PDF3DFigurePage_Utils::_updateSelectedPointSetLabel()
 
   const int pointSetId = _selectedPointSetIdFld->getIntValue();
 
-  _pointSetMap[pointSetId].name = newLabel;
-  std::string defaultSelection = newLabel + " {ID=" + intToString(pointSetId) + "}";
+  if (pointSetId != ML_INT16_MIN)
+  {
+    _pointSetMap[pointSetId].name = newLabel;
+    std::string defaultSelection = newLabel + " {ID=" + intToString(pointSetId) + "}";
 
-  _updateAvailablePointSetsFld(defaultSelection);
+    _updateAvailablePointSetsFld(defaultSelection);
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -422,7 +429,11 @@ void PDF3DFigurePage_Utils::_updateSelectedPointSetLabel()
 void PDF3DFigurePage_Utils::_updateSelectedPointSethGroupPath()
 {
   const int pointSetId = _selectedPointSetIdFld->getIntValue();
-  _pointSetMap[pointSetId].groupPath = _selectedPointSetGroupPathFld->getStringValue();
+
+  if (pointSetId != ML_INT16_MIN)
+  {
+    _pointSetMap[pointSetId].groupPath = _selectedPointSetGroupPathFld->getStringValue();
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -431,13 +442,12 @@ void PDF3DFigurePage_Utils::_selectedLineSetChanged()
 {
   int lineSetId = _getModelIDFromString(_selectedLineSetFld->getStringValue());
 
-  if (lineSetId != ML_INT_MIN)
+  if (lineSetId != ML_INT16_MIN)
   {
     _selectedLineSetIdFld->setIntValue(lineSetId);
+    _createSelectedFibers();
+    _selectedLineSetIdChanged();
   }
-
-  _createSelectedFibers();
-  _selectedLineSetIdChanged();
 }
 
 //----------------------------------------------------------------------------------
@@ -451,22 +461,25 @@ void PDF3DFigurePage_Utils::_selectedLineSetIdChanged()
 
   const int lineSetId = _selectedLineSetIdFld->getIntValue();
 
-  LineSetProperties thisLineSet = _lineSetMap[lineSetId];
-
-  newLabel = thisLineSet.name;
-  groupPath = thisLineSet.groupPath;
-  useDefaultColor = thisLineSet.useDefaultColor;
-  color = thisLineSet.color;
-
-  if (newLabel == NOLABELSPECIFIED)
+  if (lineSetId != ML_INT16_MIN)
   {
-    newLabel = "";
-  }
+    LineSetProperties thisLineSet = _lineSetMap[lineSetId];
 
-  _selectedLineSetNewLabelFld->setStringValue(newLabel);
-  _selectedLineSetGroupPathFld->setStringValue(groupPath);
-  _selectedLineSetUseDefaultColorFld->setBoolValue(useDefaultColor);
-  _selectedLineSetColorFld->setVectorValue(color);
+    newLabel = thisLineSet.name;
+    groupPath = thisLineSet.groupPath;
+    useDefaultColor = thisLineSet.useDefaultColor;
+    color = thisLineSet.color;
+
+    if (newLabel == NOLABELSPECIFIED)
+    {
+      newLabel = "";
+    }
+
+    _selectedLineSetNewLabelFld->setStringValue(newLabel);
+    _selectedLineSetGroupPathFld->setStringValue(groupPath);
+    _selectedLineSetUseDefaultColorFld->setBoolValue(useDefaultColor);
+    _selectedLineSetColorFld->setVectorValue(color);
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -529,10 +542,13 @@ void PDF3DFigurePage_Utils::_updateSelectedLineSetLabel()
 
   const int lineSetId = _selectedLineSetIdFld->getIntValue();
 
-  _lineSetMap[lineSetId].name = newLabel;
-  std::string defaultSelection = newLabel + " {ID=" + intToString(lineSetId) + "}";
+  if (lineSetId != ML_INT16_MIN)
+  {
+    _lineSetMap[lineSetId].name = newLabel;
+    std::string defaultSelection = newLabel + " {ID=" + intToString(lineSetId) + "}";
 
-  _updateAvailableLineSetsFld(defaultSelection);
+    _updateAvailableLineSetsFld(defaultSelection);
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -540,7 +556,11 @@ void PDF3DFigurePage_Utils::_updateSelectedLineSetLabel()
 void PDF3DFigurePage_Utils::_updateSelectedLineSethGroupPath()
 {
   const int lineSetId = _selectedLineSetIdFld->getIntValue();
-  _lineSetMap[lineSetId].groupPath = _selectedLineSetGroupPathFld->getStringValue();
+
+  if (lineSetId != ML_INT16_MIN)
+  {
+    _lineSetMap[lineSetId].groupPath = _selectedLineSetGroupPathFld->getStringValue();
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -548,16 +568,19 @@ void PDF3DFigurePage_Utils::_updateSelectedLineSethGroupPath()
 void PDF3DFigurePage_Utils::_updateSelectedLineSetColor()
 {
   const int lineSetId = _selectedLineSetIdFld->getIntValue();
-  bool useDefaultColor = _selectedLineSetUseDefaultColorFld->getBoolValue();
-  _lineSetMap[lineSetId].useDefaultColor = useDefaultColor;
 
-  if (!useDefaultColor)
+  if (lineSetId != ML_INT16_MIN)
   {
-    _lineSetMap[lineSetId].color = _selectedLineSetColorFld->getVectorValue();
+    bool useDefaultColor = _selectedLineSetUseDefaultColorFld->getBoolValue();
+    _lineSetMap[lineSetId].useDefaultColor = useDefaultColor;
+
+    if (!useDefaultColor)
+    {
+      _lineSetMap[lineSetId].color = _selectedLineSetColorFld->getVectorValue();
+    }
+
+    _updateFiberColor(_lineSetMap[lineSetId]);
   }
-
-  _updateFiberColor(_lineSetMap[lineSetId]);
-
 }
 
 //----------------------------------------------------------------------------------

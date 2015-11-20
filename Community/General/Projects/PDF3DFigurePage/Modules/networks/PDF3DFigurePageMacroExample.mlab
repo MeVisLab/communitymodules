@@ -2,127 +2,96 @@
 network  {
   watchlist = ""
 }
-module SiemensKneeCaP_SaveSnapshot {
+module XMarkerListContainer {
   internal  {
-    frame = "509 -187 216 56"
-    moduleGroupName = ""
-  }
-  fields  {
-    instanceName = SiemensKneeCaP_SaveSnapshot
-    filename = ""
-    allowOverwrite = TRUE
-  }
-}
-module PDF3DFigurePage_SavePDF {
-  internal  {
-    frame = "257 -299 192 56"
+    frame = "45 145 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "1795 171 863 753"
-        sizeHint = "363 753"
-        wasOpen = yes
-      }
-      window _automatic {
-        geometry = "597 254 708 600"
-        sizeHint = "256 192"
+        geometry = "597 306 513 497"
+        sizeHint = "500 497"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = PDF3DFigurePage_SavePDF
-    pdfFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.pdf
-    resourcesPath = ""
-    status = "PDF file sucessfully written (1 page)."
-    success = TRUE
-    progress = 1
-    pdfAttrTitle = ""
-    pdfAttrAuthor = ""
-    pdfAttrSubject = ""
-    pdfAttrKeywords = ""
-    viewSpecifications = ""
-    u3dFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.u3d
-    posterImageFilename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.png
-    pageHeaderCitationText = "*Newe (2015). "Some fancy article title". Journal.*"
-    pageHeaderHeadlineText = "Additional File S1 - Interactive 3D PDF"
-    includeUsageHints = TRUE
-    figureActivationMode = ExplicitActivate
-    figureDeactivationMode = ExplicitDeactivate
-    figureAnimationAutostart = FALSE
-    figureToolbarEnabled = TRUE
-    figureNavigationInterfaceEnabled = FALSE
-    caption = "Model of a segmented human femur."
-    description = "It shows the outer surface (red), the surface between compact bone and spongy bone (green) and the surface of the bone marrow (blue).
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
-Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. "
+    instanceName = Points
+    listString = "[(-74.072 -37.0475 -202.263) 1 #1 :Main Branch, (-66.6112 -57.1839 -170.861) 1 #2 :Main Branch, (-66.6112 -56.6375 -163.42) 1 #3 :Main Branch, (-62.8809 -54.7251 -137.378) 1 #4 :Main Branch, (-62.8809 -45.6451 -115.602) 1 #5 :Main Branch, (-66.6112 -40.832 -100.994) 1 #6 :Main Branch, (-62.6112 -40.0124 -89.8329) 1 #7 :Main Branch, (-30.3076 -19.591 -79.0379) 1 #8 :Main Branch, (-21.8469 -15.5046 -61.7094) 1 #9 :Main Branch, (-21.8469 -25.2996 -42.2881) 1 #10 :Main Branch, (0.535324 -27.1076 -15.9724) 1 #11 :Main Branch, (19.1871 -14.3073 5.53003) 1 #12 :Main Branch, (11.7264 -20.1087 28.3985) 1 #13 :Main Branch, (0.535324 -19.0159 43.2799) 1 #14 :Main Branch, (-6.9254 -13.1099 72.7695) 1 #15 :Main Branch, (-3.19504 -3.7568 98.2655) 1 #16 :Main Branch, (0.535324 -1.57116 128.028) 1 #17 :Main Branch, (7.99605 3.51522 146.357) 1 #18 :Main Branch, (15.4568 12.0487 160.692) 1 #19 :Main Branch, (22.9175 20.5823 175.027) 1 #20 :Main Branch, (26.6479 34.7486 215.131) 1 #21 :Main Branch, (78.873 -30.2173 -109.254) 2 #22, (63.9515 -16.5974 -76.5908) 2 #23, (41.5693 -7.5175 -54.8151) 2 #24, (26.6479 -10.6914 -47.1012) 2 #25, (7.99605 -19.9401 -20.2392) 2 #26]"
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = "Main Branch"
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-74.072 -37.0475 -202.263"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
   }
 }
-module ModuleDependencyAnalyzer {
+module XMarkerListContainer {
   internal  {
-    frame = "625 -371 192 56"
+    frame = "213 145 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "335 154 1024 800"
-        sizeHint = "493 511"
+        geometry = "175 155 513 497"
+        sizeHint = "500 497"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = ModuleDependencyAnalyzer
-    module = PDF3DFigurePageMacro
-    scanNetwork = FALSE
-    ignoredPackages = MeVis/ThirdParty
-    includeWebContents = FALSE
-  }
-}
-module LocalFileName {
-  internal  {
-    frame = "297 141 112 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "931 747 480 103"
-        sizeHint = "480 103"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = LocalFileName
-    localName = $(NETWORK)/
-    checkIfFileExists = TRUE
+    instanceName = Lines
+    listString = "[(-74.072 -37.0475 -202.263) 1 #1 :Main Branch, (-66.6112 -53.7368 -174.854) 1 #2 :Main Branch, (-66.6112 -57.1839 -170.861) 1 #3 :Main Branch, (-66.6112 -56.9107 -167.141) 1 #4 :Main Branch, (-66.6112 -56.6375 -163.42) 1 #5 :Main Branch, (-66.6112 -59.5382 -151.986) 1 #6 :Main Branch, (-62.8809 -54.7251 -137.378) 1 #7 :Main Branch, (-62.8809 -54.4519 -133.657) 1 #8 :Main Branch, (-62.8809 -45.6451 -115.602) 1 #9 :Main Branch, (-62.8809 -41.3784 -108.435) 1 #10 :Main Branch, (-66.6112 -40.832 -100.994) 1 #11 :Main Branch, (-66.6112 -40.5588 -97.2736) 1 #12 :Main Branch, (-62.6112 -40.0124 -89.8329) 1 #13 :Main Branch, (-58.9809 -35.7456 -82.6655) 1 #14 :Main Branch, (-30.3076 -19.591 -79.0379) 1 #15 :Main Branch, (-25.5772 -16.5974 -76.5908) 1 #16 :Main Branch, (-21.8469 -15.5046 -61.7094) 1 #17 :Main Branch, (-21.8469 -18.6786 -53.9955) 1 #18 :Main Branch, (-21.8469 -25.2996 -42.2881) 1 #19 :Main Branch, (-14.3861 -27.9272 -27.1335) 1 #20 :Main Branch, (0.535324 -27.1076 -15.9724) 1 #21 :Main Branch, (11.7264 -19.1204 -9.07815) 1 #22 :Main Branch, (19.1871 -14.3073 5.53003) 1 #23 :Main Branch, (19.1871 -17.208 16.9643) 1 #24 :Main Branch, (11.7264 -20.1087 28.3985) 1 #25 :Main Branch, (4.26569 -19.5623 35.8392) 1 #26 :Main Branch, (0.535324 -19.0159 43.2799) 1 #27 :Main Branch, (-6.9254 -18.1963 54.4409) 1 #28 :Main Branch, (-6.9254 -13.1099 72.7695) 1 #29 :Main Branch, (-3.19504 -8.29676 87.3776) 1 #30 :Main Branch, (-3.19504 -3.7568 98.2655) 1 #31 :Main Branch, (0.535324 -2.66398 113.147) 1 #32 :Main Branch, (0.535324 -1.57116 128.028) 1 #33 :Main Branch, (4.26569 2.6956 135.196) 1 #34 :Main Branch, (7.99605 3.51522 146.357) 1 #35 :Main Branch, (11.7264 7.78198 153.524) 1 #36 :Main Branch, (15.4568 12.0487 160.692) 1 #37 :Main Branch, (19.1871 16.3155 167.859) 1 #38 :Main Branch, (22.9175 20.5823 175.027) 1 #39 :Main Branch, (26.6479 25.1222 185.915) 1 #40 :Main Branch, (26.6479 29.6622 196.802) 1 #41 :Main Branch, (26.6479 34.7486 215.131) 1 #42 :Main Branch, (78.873 -30.2173 -109.254) 2 #43 :Side branch, (75.1426 -25.6774 -98.3665) 2 #44 :Side branch, (63.9515 -16.5974 -76.5908) 2 #45 :Side branch, (52.7604 -11.7843 -61.9826) 2 #46 :Side branch, (41.5693 -7.5175 -54.8151) 2 #47 :Side branch, (34.1086 -7.24429 -51.0948) 2 #48 :Side branch, (26.6479 -10.6914 -47.1012) 2 #49 :Side branch, (15.4568 -14.1386 -43.1077) 2 #50 :Side branch, (7.99605 -17.3125 -35.3938) 2 #51 :Side branch, (7.99605 -19.9401 -20.2392) 2 #52 :Side branch]"
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = "Main Branch"
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-74.072 -37.0475 -202.263"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
   }
 }
 module WEMLoad {
   internal  {
-    frame = "45 141 88 56"
+    frame = "-58 145 88 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "477 728 686 330"
+        geometry = "386 674 686 330"
         sizeHint = "372 330"
         wasOpen = no
       }
     }
   }
   fields  {
-    instanceName = WEMLoad
+    instanceName = Meshes
     id = 0
     autoApply = TRUE
     autoUpdate = TRUE
@@ -141,7 +110,7 @@ module WEMLoad {
 }
 module LocalFileName {
   internal  {
-    frame = "-175 145 112 64"
+    frame = "-266 145 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -152,45 +121,9 @@ module LocalFileName {
     }
   }
   fields  {
-    instanceName = WEMFilename
+    instanceName = CreateMeshFilename
     localName = $(NETWORK)/PDF3DFigurePageMacroExample.wem
     checkIfFileExists = TRUE
-  }
-}
-module LocalFileName {
-  internal  {
-    frame = "249 -7 160 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "162 696 682 103"
-        sizeHint = "480 103"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = CreateMarkersFilename
-    localName = $(NETWORK)/PDF3DFigurePageMacroExample.txt
-    checkIfFileExists = FALSE
-  }
-}
-module LocalFileName {
-  internal  {
-    frame = "253 -95 152 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "226 711 684 103"
-        sizeHint = "482 103"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = CreateMeshFilename
-    localName = $(NETWORK)/PDF3DFigurePageMacroExample.stl
-    checkIfFileExists = FALSE
   }
 }
 module PDF3DFigurePageMacro {
@@ -199,12 +132,12 @@ module PDF3DFigurePageMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "373 132 1124 764"
-        sizeHint = "1000 806"
-        wasOpen = no
+        geometry = "1754 162 1124 750"
+        sizeHint = "1000 761"
+        wasOpen = yes
       }
       window _automatic {
-        geometry = "597 254 903 600"
+        geometry = "639 336 903 600"
         sizeHint = "260 223"
         wasOpen = no
       }
@@ -221,38 +154,15 @@ module PDF3DFigurePageMacro {
     showPointsPrevieSize = 2.3299999
     showLinesPreview = TRUE
     showMeshPreview = TRUE
-    showMeshPreviewFaceAlpha = 0.25999999
-    viewDisplayName = "View 2"
+    viewDisplayName = ""
     viewBackgroundColor = "1 1 1"
-    viewLightingScheme = CAD
-    viewCameraCenterOfOrbit = "93.5372327914373 -145.533862705854 1119.12194069341"
-    viewCameraCenterToCamera = "17.0596986660822 99.7912708479435 297.861213603466"
-    viewCameraRadiusOfOrbit = 314.59598
-    viewCameraRollAngle = 193.84386
-    viewCameraFOVAngle = 90
-    viewSpecifications = "<View>
-<DisplayName>View 1</DisplayName>
-<BackgroundColor>1.000 1.000 1.000</BackgroundColor>
-<LightingScheme>10</LightingScheme>
-<CamCenterOfOrbit>93.355 -143.990 1118.620</CamCenterOfOrbit>
-<CamCenterToCamera>68.695 -298.177 73.091</CamCenterToCamera>
-<CamRadiusOfOrbit>314.596</CamRadiusOfOrbit>
-<CamRollAngle>351.297</CamRollAngle>
-<CamFOVAngle>90</CamFOVAngle>
-</View>
-
-<View>
-<DisplayName>View 2</DisplayName>
-<BackgroundColor>1.000 1.000 1.000</BackgroundColor>
-<LightingScheme>9</LightingScheme>
-<CamCenterOfOrbit>93.537 -145.534 1119.122</CamCenterOfOrbit>
-<CamCenterToCamera>17.060 99.791 297.861</CamCenterToCamera>
-<CamRadiusOfOrbit>314.596</CamRadiusOfOrbit>
-<CamRollAngle>193.844</CamRollAngle>
-<CamFOVAngle>90</CamFOVAngle>
-</View>
-
-"
+    viewLightingScheme = HeadLamp
+    viewCameraCenterOfOrbit = "40.0959409102215 -87.3094791502663 568.033923500159"
+    viewCameraCenterToCamera = "501.917608894466 -1346.07846030286 133.780895835778"
+    viewCameraRadiusOfOrbit = 1442.8256
+    viewCameraRollAngle = 349.49899
+    viewCameraFOVAngle = 57.29578
+    viewSpecifications = ""
     selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
     selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
     availableWEMPatches = "Left Femur (Outer Surface) {ID=2}|Left Femur (Spongiosa Surface) {ID=4}|Left Femur (Bone Marrow Surface) {ID=6}"
@@ -260,27 +170,54 @@ module PDF3DFigurePageMacro {
     selectedWEMPatchUseDefaultColor = FALSE
     selectedWEMPatchColor = "1 0 0"
     selectedWEMPatchColorAlpha = 0.60000002
-    selectedLineSet = ""
-    selectedLineSetNewLabel = ""
-    availableLineSets = ""
+    selectedLineSet = "Main Branch {ID=1}"
+    selectedLineSetNewLabel = "Main Branch"
+    availableLineSets = "Main Branch {ID=1}|Side branch {ID=2}"
     selectedLineSetGroupPath = ""
     selectedLineSetUseDefaultColor = TRUE
     selectedLineSetColor = "0 0 0"
-    selectedPointSet = ""
-    selectedPointSetNewLabel = ""
-    availablePointSets = ""
+    selectedPointSet = "Main Branch {ID=1}"
+    selectedPointSetNewLabel = "Main Branch"
+    availablePointSets = "Main Branch {ID=1}|[no label specified] {ID=2}"
     selectedPointSetGroupPath = ""
     loadPointsFilter = Points
     loadLinesFilter = Lines
     useReducedMesh = FALSE
     meshReductionRatio = 75
-    saveU3DStatus = "U3D file saved."
-    savePosterStatus = "Image saved"
+    saveU3DStatus = ""
+    savePosterStatus = ""
+    savePDFStatus = ""
+    headerCitationText = "*Newe (2015). "Fancy article title". Journal.*"
+    headerHeadlineText = "Additional File S1 - Interactive 3D PDF"
+    caption = "Model of an anatomic structure."
+    description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci."
+    cameraHeight = 1
+    cameraPosition = "542.013549804688 -1433.38793945312 701.814819335938"
+    cameraOrientation = "0.959412813186646 0.26561963558197 0.0947265699505806 1.48618865013123"
+    cameraNearDistance = 2
+    cameraFarDistance = 4
+    cameraFocalDistance = 1442.8256
   }
 }
 connections  {
-  WEMLoad.filename = WEMFilename.trueName
-  PDF3DFigurePageMacro.inWEM = WEMLoad.outWEM
+  Meshes.filename = CreateMeshFilename.trueName
+  PDF3DFigurePageMacro.inWEM = Meshes.outWEM
+  PDF3DFigurePageMacro.inPointPositions = Points.outXMarkerList
+  PDF3DFigurePageMacro.inLinePositions = Lines.outXMarkerList
 }
 networkModel  {
   parentItems  {
@@ -289,19 +226,19 @@ networkModel  {
         uniqueId = 17
         objectName = ""
         parentUniqueId = 0
-        frame = "-377 -54 316 136"
+        frame = "-354 -54 346 141"
         backgroundColor  {
           r = 252
           g = 242
           b = 2
           a = 255
         }
-        text = "This network shows how to use the PDF3DFigurePageMacro module.
+        text = "*This network shows how to use the PDF3DFigurePageMacro module.
 
-For details regarding the parameters take a look at the documentation."
+For details regarding the parameters take a look at the documentation (right-click the PDF3DPageMacro module and select "Show Help" from the context menu).*"
         titleText = Description
         isCollapsed = False
-        titleFrame = "-372 -49 306 22"
+        titleFrame = "-349 -49 336 22"
       }
     }
   }

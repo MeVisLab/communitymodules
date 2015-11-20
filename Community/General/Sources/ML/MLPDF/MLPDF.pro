@@ -38,12 +38,12 @@ HEADERS += \
   shared/MLPDF_Tools.h \
   shared/MLPDF_Defines.h \
   shared/MLPDF_DataTypes.h \
+  shared/MLPDF_MarkerListTools.h \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h \
   shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h \
   shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h \
   LoadPointLineGeometry/LoadPointLineGeometry.h \
   PDFUtils/PDFUtils.h \
-  SavePDF/SavePDF.h \
   SaveU3D/SaveU3D.h \
   SaveU3D/U3DFileFormat/U3D_BitStream.h \
   SaveU3D/U3DFileFormat/U3D_Constants.h \
@@ -67,6 +67,7 @@ HEADERS += \
 SOURCES += \
   MLPDFInit.cpp \
   shared/MLPDF_Tools.cpp \
+  shared/MLPDF_MarkerListTools.cpp \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase.cpp \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase_3DModels.cpp \
   shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Assembling.cpp \
@@ -81,7 +82,6 @@ SOURCES += \
   PDFUtils/PDFUtils_Lists.cpp \
   PDFUtils/PDFUtils_Camera.cpp \
   PDFUtils/PDFUtils_Inventor.cpp \
-  SavePDF/SavePDF.cpp \
   SaveU3D/SaveU3D.cpp \
   SaveU3D/SaveU3D_Tools.cpp \
   SaveU3D/SaveU3D_ProcessPointSets.cpp \

@@ -123,7 +123,6 @@ private:
 
   // Calculate PDF camera properties
   void _calculateCameraPropertiesFromInventorCamera();
-  void _calculateDefaultCameraProperties();
 
   // Methods for SoVertexProperty and SoIndexedLineSet =======================
 

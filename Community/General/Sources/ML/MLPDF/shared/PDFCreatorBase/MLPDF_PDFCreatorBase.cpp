@@ -49,21 +49,7 @@ PDFCreatorBase::PDFCreatorBase() : Module(0, 0)
 
   (viewSpecificationsFld = addString("viewSpecifications"))->setStringValue("");
 
-/*
-  (cameraCenterOfOrbitFld  = addVector3("cameraCenterOfOrbit")) ->setVector3Value(Vector3(0));
-  (cameraCenterToCameraFld = addVector3("cameraCenterToCamera"))->setVector3Value(Vector3(0));
-  (cameraRadiusOfOrbitFld  = addFloat("cameraRadiusOfOrbit"))   ->setFloatValue(0);
-  (cameraFOVAngleFld       = addFloat("cameraFOVAngle"))        ->setFloatValue(90.0f);
-  (cameraRollAngleFld      = addFloat("cameraRollAngle"))            ->setFloatValue(0);
-
-  calculateCameraFromInventorSceneFld   = addNotify("calculateCameraFromInventorScene");
-  (autoCalculateCameraFromInventorScene = addBool("autoCalculateCameraFromInventorScene"))->setBoolValue(false);
-  (inventorCameraPositionFld            = addVector3("inventorCameraPosition")) ->setVector3Value(Vector3(0,0,0));
-  (inventorCameraOrientationFld         = addVector4("inventorCameraOrientation")) ->setVector4Value(Vector4(0,0,1,0));
-  (inventorCameraFocalDistanceFld       = addFloat("inventorCameraFocalDistance"))->setFloatValue(0);
-  (inventorCameraHeightFld              = addFloat("inventorCameraHeight"))       ->setFloatValue(0);
-*/
-
+  assemblyErrorMessage == "";
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -84,29 +70,6 @@ void PDFCreatorBase::handleNotification(Field* field)
     // Call the save routine.
     saveButtonClicked();
   } 
-
-/*
-  if (field == calculateCameraFromInventorSceneFld) 
-  {
-    calculateCameraPropertiesFromInventorCamera();
-  } 
-
-  if (
-      (
-        (field == autoCalculateCameraFromInventorScene) ||
-        (field == inventorCameraPositionFld) ||
-        (field == inventorCameraOrientationFld) ||
-        (field == autoCalculateCameraFromInventorScene) ||
-        (field == inventorCameraFocalDistanceFld) ||
-        (field == inventorCameraHeightFld)
-      ) 
-      && 
-      (autoCalculateCameraFromInventorScene->getBoolValue())
-     )
-  {
-    calculateCameraPropertiesFromInventorCamera();
-  }
-*/
 }
 
 //----------------------------------------------------------------------------------
@@ -234,8 +197,7 @@ void PDFCreatorBase::saveButtonClicked()
 
     try
     {
-      assemblePDFDocument();
-      docAssembled = true;
+      docAssembled = assemblePDFDocument();
     }
     catch(...)
     {
@@ -263,19 +225,26 @@ void PDFCreatorBase::saveButtonClicked()
       else // Possible values: HPDF_INVALID_DOCUMENT, HPDF_FAILD_TO_ALLOC_MEM, HPDF_FILE_IO_ERROR
       {
         //HPDF_FILE_IO_ERROR;
-        statusFld->setStringValue("Unable to write PDF document '" + filename + "'.");
+        statusFld->setStringValue("Unable to write PDF document '" + filename + "'. (Target file might be write protected.)");
       }
     }
     else
     {
-      statusFld->setStringValue("PDF document could not be assembled.");
+      if (assemblyErrorMessage == "")
+      {
+        statusFld->setStringValue("PDF document could not be assembled.");
+      }
+      else
+      {
+        statusFld->setStringValue("PDF document could not be assembled: " + assemblyErrorMessage);
+      }
     }
 
     HPDF_Free(pdfDocument);
   }
   else
   {
-    statusFld->setStringValue("Critical error: Internal PDF docuemnt could not be initialized!");
+    statusFld->setStringValue("Critical error: Internal PDF document could not be initialized!");
   }
 
   return;

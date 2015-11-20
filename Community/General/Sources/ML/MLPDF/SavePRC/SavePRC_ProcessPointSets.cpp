@@ -14,6 +14,7 @@
 #include "PRCFileFormat/PRC_Tools.h"
 #include "../shared/MLPDF_DataTypes.h"
 #include "../shared/MLPDF_Tools.h"
+#include "../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 
@@ -53,14 +54,14 @@ void SavePRC::PreProcessPointSetData(ModelBoundingBoxStruct& boundingBox)
     }
 
     PRCObjectInfoStruct thisPRCObjectInfo = CreateNewPRCObjectInfo(i, PRCOBJECTTYPE_POINTSET, thisSpecificationParameters.ObjectName, defaultValues);
-    thisPRCObjectInfo.GroupPath        = thisSpecificationParameters.GroupPath;
-    thisPRCObjectInfo.ParentTreeNodeID = -1;
-    thisPRCObjectInfo.RGBAColor        = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
+    thisPRCObjectInfo.GroupPath           = thisSpecificationParameters.GroupPath;
+    thisPRCObjectInfo.ParentTreeNodeID    = -1;
+    thisPRCObjectInfo.RGBAColor           = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
     _prcObjectInfoVector.push_back(thisPRCObjectInfo);
 		
     PointSetSpecificationStruct thisPointSetGeometry;
     thisPointSetGeometry.internalName = thisPRCObjectInfo.InternalName;
-    thisPointSetGeometry.positions    = mlPDF::PDFTools::getAllPositionsFromColoredMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
+    thisPointSetGeometry.positions    = mlPDF::PDFMarkerListTools::getAllPositionsFromColoredMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
     _pointSetsGeometryVector.push_back(thisPointSetGeometry);
 
     ModelBoundingBoxStruct newboundingBox = mlPDF::PDFTools::GetBoundingBoxFomPositions(thisPointSetGeometry.positions);

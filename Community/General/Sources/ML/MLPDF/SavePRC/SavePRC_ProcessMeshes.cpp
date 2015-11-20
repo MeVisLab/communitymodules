@@ -137,9 +137,9 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
           if (thisSpecificationParameters.WEMLabel == wemLabel)
           {
             PRCObjectInfoStruct thisPRCObjectInfo = CreateNewPRCObjectInfo(i,PRCOBJECTTYPE_MESH, thisSpecificationParameters.ObjectName, defaultValues);
-            thisPRCObjectInfo.GroupPath        = thisSpecificationParameters.GroupPath;
-            thisPRCObjectInfo.ParentTreeNodeID = -1;
-            thisPRCObjectInfo.RGBAColor        = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render;
+            thisPRCObjectInfo.GroupPath           = thisSpecificationParameters.GroupPath;
+            thisPRCObjectInfo.ParentTreeNodeID    = -1;
+            thisPRCObjectInfo.RGBAColor           = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render;
             _prcObjectInfoVector.push_back(thisPRCObjectInfo);
 
 

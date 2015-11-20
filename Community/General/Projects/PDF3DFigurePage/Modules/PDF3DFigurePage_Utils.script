@@ -21,9 +21,10 @@ Description {
     }
   }
   
-  Field selectedWEMPatchId { editable = No }
-   
+  Field selectedWEMPatchId         { editable = No persistent = No }
   Field selectedWEMPatchColorAlpha { min = 0 max = 1 }
+  Field selectedPointSetId         { editable = No persistent = No }
+  Field selectedLineSetId          { editable = No persistent = No }
 }
 
 

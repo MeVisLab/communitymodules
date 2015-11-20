@@ -13,6 +13,8 @@
 // Local includes
 #include "PDFUtils.h"
 
+// Project includes
+#include "../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 
@@ -85,7 +87,7 @@ void PDFUtils::_calculateListPropertyFields()
 
 void PDFUtils::_createFibers()
 {
-  mlPDF::PDFTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _inLinePositions, _inLineConnections);
+  mlPDF::PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _inLinePositions, _inLineConnections);
 
   _outFibersFld->touch();
 }

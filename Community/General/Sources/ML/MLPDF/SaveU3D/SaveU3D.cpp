@@ -18,6 +18,8 @@
 #include "U3DFileFormat/U3D_DataBlockWriter.h"
 #include "U3DFileFormat/U3D_FileWriter.h"
 
+#include "MLPDF_Tools.h"
+
 #include <ColoredMarkerList.h>
 
 // ML includes
@@ -382,9 +384,9 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
   modelBoundingBox.start.x = ML_DOUBLE_MAX;
   modelBoundingBox.start.y = ML_DOUBLE_MAX;
   modelBoundingBox.start.z = ML_DOUBLE_MAX;
-  modelBoundingBox.end.x   = ML_DOUBLE_MIN;
-  modelBoundingBox.end.y   = ML_DOUBLE_MIN;
-  modelBoundingBox.end.z   = ML_DOUBLE_MIN;
+  modelBoundingBox.end.x   = ML_DOUBLE_MAX * -1;
+  modelBoundingBox.end.y   = ML_DOUBLE_MAX * -1;
+  modelBoundingBox.end.z   = ML_DOUBLE_MAX * -1;
 
   // Get default parameters from field values
   defaultValues = getDefaultValuesFromFields(); 
@@ -419,11 +421,8 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
     MetaDataVector metaData;
     MetaDataStruct metaDataPair;
 
-    std::string VersionString = "MeVisLab ( ML version  )"; 
-    VersionString.insert(22,ML_VERSION_STRING);
-
-    metaDataPair.key = "CreatedBy";
-    metaDataPair.value = VersionString;
+    metaDataPair.key   = "CreatedBy";
+    metaDataPair.value = "SaveU3D module from MeVisLab MLPDF library (v" + mlPDF::PDFTools::getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
     metaData.push_back(metaDataPair);  
 
     outU3DFile->addStandardBlock_PriorityUpdate((MLuint32)0x00000001);

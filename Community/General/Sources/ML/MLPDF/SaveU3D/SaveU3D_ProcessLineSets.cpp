@@ -13,6 +13,7 @@
 #include "U3DFileFormat/U3D_DataTypes.h"
 #include "U3DFileFormat/U3D_Tools.h"
 #include "../shared/MLPDF_Tools.h"
+#include "../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 
@@ -58,23 +59,23 @@ void SaveU3D::PreProcessLineSetData(U3DLineSetInfoVector &U3DLineSetInfoVector,
     U3DLineSetInfoStruct  thisLineSetInfo;
     U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_LINESET, thisSpecificationParameters.ObjectName, defaultValues);
     thisU3DObjectInfo.GroupPath     = thisSpecificationParameters.GroupPath;
-    thisU3DObjectInfo.DiffuseColor  = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
-    thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);		
+    thisU3DObjectInfo.DiffuseColor  = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+    thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
     thisU3DObjectInfo.Visibility    = (MLuint32)mlPDF::stringToInt(thisSpecificationParameters.ModelVisibility);
     _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
 
     // Collect geometry info
     LineSetSpecificationStruct thisLineSetGeometry;
     thisLineSetGeometry.internalName = thisLineSetInfo.InternalName;
-    thisLineSetGeometry.positions    = mlPDF::PDFTools::getAllPositionsFromXMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
+    thisLineSetGeometry.positions    = mlPDF::PDFMarkerListTools::getAllPositionsFromXMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
 
     if ( (_inLineConnections.size() > 0) && (thisSpecificationParameters.ConnectionTypes != "simple") )
     {
-      thisLineSetGeometry.lines = mlPDF::PDFTools::getAllLinesFromIndexPairList(_inLineConnections, thisSpecificationParameters.ConnectionTypes, thisSpecificationParameters.LineWidth);
+      thisLineSetGeometry.lines = mlPDF::PDFMarkerListTools::getAllLinesFromIndexPairList(_inLineConnections, thisSpecificationParameters.ConnectionTypes, thisSpecificationParameters.LineWidth);
     }
     else
     {
-      thisLineSetGeometry.lines = mlPDF::PDFTools::getStandardLinesFromXMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.LineWidth);
+      thisLineSetGeometry.lines = mlPDF::PDFMarkerListTools::getStandardLinesFromXMarkerList(_inLinePositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.LineWidth);
     }
 
     _lineSetsGeometryVector.push_back(thisLineSetGeometry);
@@ -175,7 +176,7 @@ U3DDataBlockWriter SaveU3D::CreateLineSetContinuationBlock(LineSetSpecificationS
 		  thisLineSetContinuationBlock.writeCompressedU32(U3DContext_cPosDiffY,diffY);                            // Write Line Description - New Position Info - Position Difference Y (9.6.1.3.4.10.3)
   		thisLineSetContinuationBlock.writeCompressedU32(U3DContext_cPosDiffZ,diffZ);                            // Write Line Description - New Position Info - Position Difference Z (9.6.1.3.4.10.4)
 
-      LinesVector newLines = mlPDF::PDFTools::getNewLinesFromAllLines(lineSetGeometry.lines, currentPosition);
+      LinesVector newLines = mlPDF::PDFMarkerListTools::getNewLinesFromAllLines(lineSetGeometry.lines, currentPosition);
 		  MLuint32 newLineCount = (MLuint32)newLines.size(); 
       
       MLuint32 newNormalCount = (MLuint32)( (lineSetInfo.NormalCount > 0) ? newLineCount : 0);                // Should be zero -> no normals in this version

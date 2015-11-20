@@ -138,9 +138,9 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
           {
             U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_MESH, thisSpecificationParameters.ObjectName, defaultValues);
 
-            thisU3DObjectInfo.GroupPath = thisSpecificationParameters.GroupPath;
-            thisU3DObjectInfo.DiffuseColor = mlPDF::PDFTools::getColorVec4(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
-            thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
+            thisU3DObjectInfo.GroupPath     = thisSpecificationParameters.GroupPath;
+            thisU3DObjectInfo.DiffuseColor  = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+            thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
 
             thisU3DObjectInfo.Visibility = (MLuint32)mlPDF::stringToInt(thisSpecificationParameters.ModelVisibility);
 

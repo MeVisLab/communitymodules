@@ -35,9 +35,10 @@ public:
 protected:
 
   //! Assemble PDF document
-  //! This is the main method for all modules derived from PDFCreatorBase.
+  //! This is the main method for all derived modules.
   //! Add all code that assembles the actual PDF document here!
-  virtual void assemblePDFDocument();
+  //! Return true if assembly was successful, false otherwise.
+  virtual bool assemblePDFDocument();
 
 private:
 
