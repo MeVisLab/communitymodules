@@ -106,6 +106,9 @@ XMarkerListToFile::XMarkerListToFile (void)
   _nameFld = fields->addBool("exportName");
   _nameFld->setBoolValue(false);
 
+  // Add field to select writing precision
+  _precisionFld = fields->addInt("precision", 4);
+
   // Add field to enable/disable output of only one marker per voxel
   _maxOneMarkerPerVoxelFld = fields->addBool("maxOneMarkerPerVoxel");
   _maxOneMarkerPerVoxelFld->setBoolValue(false);
@@ -162,6 +165,10 @@ void XMarkerListToFile::handleNotification (Field *field)
         std::cout << "Cannot write output file!" << std::endl;
         return;
       }
+
+	  // Set precision
+	  file_op << std::fixed;
+	  file_op << std::setprecision(_precisionFld->getIntValue());
 
       // transformix format?
       if (_transformixFormatFld->getBoolValue()) {

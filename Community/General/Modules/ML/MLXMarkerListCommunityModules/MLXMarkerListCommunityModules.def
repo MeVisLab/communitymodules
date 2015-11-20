@@ -129,6 +129,7 @@ MLModule XMarkerListToFile {
       Field outputCoordinateSystem { alignGroup=left }
       Field elastixFormat { alignGroup = Left }
       Field maxOneMarkerPerVoxel {}
+      Field precision {title = "Decimal precision"}
       Separator {}
       Button save { }
     }

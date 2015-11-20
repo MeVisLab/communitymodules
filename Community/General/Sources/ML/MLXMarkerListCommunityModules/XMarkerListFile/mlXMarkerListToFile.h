@@ -98,6 +98,9 @@ private:
   BoolField *_typeFld;
   BoolField *_nameFld;
 
+  //! Int field to select writing precision
+  IntField *_precisionFld;
+
   //! Bool field for transformix format (first line: number of points, second line: point or index)
   BoolField *_transformixFormatFld;
 
