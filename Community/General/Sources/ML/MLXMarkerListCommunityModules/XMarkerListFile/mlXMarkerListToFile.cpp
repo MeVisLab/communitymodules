@@ -89,8 +89,12 @@ XMarkerListToFile::XMarkerListToFile (void)
   _positionYFld->setBoolValue(true);
   _positionZFld = fields->addBool("exportPositionZ");
   _positionZFld->setBoolValue(true);
+  _positionSFld = fields->addBool("exportPositionS");
+  _positionSFld->setBoolValue(false);
   _positionTFld = fields->addBool("exportPositionT");
   _positionTFld->setBoolValue(false);
+  _positionUFld = fields->addBool("exportPositionU");
+  _positionUFld->setBoolValue(false);
   _vectorXFld = fields->addBool("exportVectorX");
   _vectorXFld->setBoolValue(false);
   _vectorYFld = fields->addBool("exportVectorY");
@@ -173,7 +177,9 @@ void XMarkerListToFile::handleNotification (Field *field)
       const bool posX = _positionXFld->getBoolValue();
       const bool posY = _positionYFld->getBoolValue();
       const bool posZ = _positionZFld->getBoolValue();
+	  const bool posS = _positionSFld->getBoolValue();
       const bool posT = _positionTFld->getBoolValue();
+	  const bool posU = _positionUFld->getBoolValue();
       const bool vecX = _vectorXFld->getBoolValue();
       const bool vecY = _vectorYFld->getBoolValue();
       const bool vecZ = _vectorZFld->getBoolValue();
@@ -225,28 +231,40 @@ void XMarkerListToFile::handleNotification (Field *field)
         if(allowInsert) {
           if (posX) {
             file_op << voxel[0];
-            if (posT || posY || posZ || vecX || vecY || vecZ || type || name) {
+            if (posS || posT || posU || posY || posZ || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (posY) {
             file_op << voxel[1];
-            if (posT || posZ || vecX || vecY || vecZ || type || name) {
+			if (posS || posT || posU || posZ || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (posZ) {
             file_op << voxel[2];
-            if (posT || vecX || vecY || vecZ || type || name) {
+			if (posS || posT || posU || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
+		  if (posS) {
+			file_op << marker.pos[3];
+			if (vecX || vecY || vecZ || type || name) {
+			  file_op << coordinateSeparator.str();
+			}
+		  }
           if (posT) {
             file_op << marker.pos[4];
             if (vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
+		  if (posU) {
+			file_op << marker.pos[5];
+			if (vecX || vecY || vecZ || type || name) {
+			  file_op << coordinateSeparator.str();
+			}
+		  }
           if (vecX) {
             file_op << vec[0];
             if (vecY || vecZ || type || name) {
