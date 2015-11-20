@@ -115,7 +115,9 @@ MLModule XMarkerListToFile {
       Field exportPositionX {}
       Field exportPositionY {}
       Field exportPositionZ {}
-      Field exportPositionT {}      
+      Field exportPositionS {}
+      Field exportPositionT {}
+      Field exportPositionU {}
       Field exportVectorX {}
       Field exportVectorY {}
       Field exportVectorZ {}
