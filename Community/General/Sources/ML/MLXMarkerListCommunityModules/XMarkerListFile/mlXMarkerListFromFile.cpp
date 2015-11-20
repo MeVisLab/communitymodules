@@ -2,8 +2,8 @@
 //! The ML module class XMarkerListFromFile.
 /*!
 // \file    mlXMarkerListFromFile.cpp
-// \author  Coert Metz
-// \date    2007-06-22
+// \author  Coert Metz, Erwin Vast
+// \date    2007-06-22, 20-11-15
 //
 // Read XMarkers from a text file
 */

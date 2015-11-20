@@ -2,8 +2,8 @@
 //! The ML module class XMarkerListToFile.
 /*!
 // \file    mlXMarkerListToFile.h
-// \author  Coert Metz
-// \date    2007-07-06
+// \author  Coert Metz, Erwin Vast
+// \date    2007-07-06, 20-11-15
 //
 // Save XMarkerList to a text file
 */
