@@ -69,7 +69,9 @@ MLModule XMarkerListFromFile {
           Field importPositionX {}
           Field importPositionY {}
           Field importPositionZ {}
+          Field importPositionS {}
           Field importPositionT {}
+          Field importPositionU {}
         }
         Box Vector {
           Field importVectorX {}

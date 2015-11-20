@@ -81,7 +81,9 @@ private:
   BoolField *_positionXFld;
   BoolField *_positionYFld;
   BoolField *_positionZFld;
+  BoolField *_positionSFld;
   BoolField *_positionTFld;
+  BoolField *_positionUFld;
   BoolField *_vectorXFld;
   BoolField *_vectorYFld;
   BoolField *_vectorZFld;

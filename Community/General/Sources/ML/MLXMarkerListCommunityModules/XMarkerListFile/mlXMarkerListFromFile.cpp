@@ -71,8 +71,12 @@ XMarkerListFromFile::XMarkerListFromFile (void)
   _positionYFld->setBoolValue(true);
   _positionZFld = fields->addBool("importPositionZ");
   _positionZFld->setBoolValue(true);
+  _positionSFld = fields->addBool("importPositionS");
+  _positionSFld->setBoolValue(false);
   _positionTFld = fields->addBool("importPositionT");
   _positionTFld->setBoolValue(false);
+  _positionUFld = fields->addBool("importPositionU");
+  _positionUFld->setBoolValue(false);
   _vectorXFld = fields->addBool("importVectorX");
   _vectorXFld->setBoolValue(false);
   _vectorYFld = fields->addBool("importVectorY");
@@ -154,15 +158,17 @@ void XMarkerListFromFile::handleNotification (Field *field)
         // Read XMarkers from text file
         while (true) {
           XMarker marker;
-          std::vector<std::string> tokens (8, "0");
+          std::vector<std::string> tokens (10, "0");
           if (_positionXFld->getBoolValue()) if ( !(file_op >> tokens[0]) ) break;
           if (_positionYFld->getBoolValue()) if ( !(file_op >> tokens[1]) ) break;
           if (_positionZFld->getBoolValue()) if ( !(file_op >> tokens[2]) ) break;
-          if (_positionTFld->getBoolValue()) if ( !(file_op >> tokens[3]) ) break;
-          if (_vectorXFld->getBoolValue()) if ( !(file_op >> tokens[4]) ) break;
-          if (_vectorYFld->getBoolValue()) if ( !(file_op >> tokens[5]) ) break;
-          if (_vectorZFld->getBoolValue()) if ( !(file_op >> tokens[6]) ) break;
-          if (_typeFld->getBoolValue()) if ( !(file_op >> tokens[7]) ) break;
+		  if (_positionSFld->getBoolValue()) if ( !(file_op >> tokens[3])) break;
+          if (_positionTFld->getBoolValue()) if ( !(file_op >> tokens[4]) ) break;
+		  if (_positionUFld->getBoolValue()) if ( !(file_op >> tokens[5])) break;
+          if (_vectorXFld->getBoolValue()) if ( !(file_op >> tokens[6]) ) break;
+          if (_vectorYFld->getBoolValue()) if ( !(file_op >> tokens[7]) ) break;
+          if (_vectorZFld->getBoolValue()) if ( !(file_op >> tokens[8]) ) break;
+          if (_typeFld->getBoolValue()) if ( !(file_op >> tokens[9]) ) break;
 		      if (_nameFld->getBoolValue()) if (!(file_op.getline(name, 1024, '\n'))) break;
 
           vec3 voxel (atof (tokens[0].c_str()), atof(tokens[1].c_str()), atof(tokens[2].c_str()));
@@ -170,10 +176,10 @@ void XMarkerListFromFile::handleNotification (Field *field)
           // When coordinates in file are in world coordinates, we are done
           vec3 world = voxel;
           vec3 vec;
-          vec[0] = atof (tokens[4].c_str());
-          vec[1] = atof (tokens[5].c_str());
-          vec[2] = atof (tokens[6].c_str());
-          int type = atoi (tokens[7].c_str());
+          vec[0] = atof (tokens[6].c_str());
+          vec[1] = atof (tokens[7].c_str());
+          vec[2] = atof (tokens[8].c_str());
+          int type = atoi (tokens[9].c_str());
           
           // When coordinates in file are in voxel coordinates, we need to convert both the
           // position and the vector to world coordinates
@@ -189,7 +195,9 @@ void XMarkerListFromFile::handleNotification (Field *field)
           marker.pos[0] = world[0];
           marker.pos[1] = world[1];
           marker.pos[2] = world[2];
-          marker.pos[4] = atof(tokens[3].c_str());
+		  marker.pos[3] = atof(tokens[3].c_str());
+          marker.pos[4] = atof(tokens[4].c_str());
+		  marker.pos[5] = atof(tokens[5].c_str());
           marker.vec = vec;
           marker.type = type;
           // strip spaces
