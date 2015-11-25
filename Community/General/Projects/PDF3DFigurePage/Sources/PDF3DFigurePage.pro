@@ -48,3 +48,11 @@ SOURCES += \
     PDF3DFigurePage_SavePDF/PDF3DFigurePage_SavePDF.cpp \
     PDF3DFigurePage_LoadPointLineGeometry/PDF3DFigurePage_LoadPointLineGeometry.cpp \
 
+# Additional files that are NOT compiled
+RELATEDFILES += \
+    ../Modules/PDF3DFigurePage.def \
+    ../Modules/PDF3DFigureModule.script \
+    ../Modules/PDF3DFigurePage_Utils.script \
+    ../Modules/PDF3DFigurePage_SavePDF.script \
+    ../Modules/PDF3DFigurePage_LoadPointLineGeometry.script \
+    ../Modules/PDF3DFigurePageMacro.script 

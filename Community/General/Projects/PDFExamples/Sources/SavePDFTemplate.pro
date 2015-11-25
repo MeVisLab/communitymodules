@@ -39,3 +39,9 @@ HEADERS += \
 SOURCES += \
     SavePDFTemplateInit.cpp \
     SavePDFTemplate.cpp \
+
+
+# Additional files that are NOT compiled
+RELATEDFILES += \
+    ../Modules/SavePDFTemplate.def \
+    ../Modules/SavePDFTemplate.script
