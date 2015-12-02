@@ -43,19 +43,19 @@ static HPDF_STATUS Get3DStreamType (HPDF_Stream  stream, const char **type)
 
 	len = 4;
 	if (HPDF_Stream_Read (stream, tag, &len) != HPDF_OK) {
-    HPDF_STATUS errorCode = HPDF_Error_GetCode (stream->error);
-    if (errorCode != HPDF_OK)
-    {
-      return errorCode;
+	  HPDF_STATUS errorCode = HPDF_Error_GetCode (stream->error);
+	  if (errorCode != HPDF_OK)
+	  {
+	    return errorCode;
+	  }
+	  else
+	  {
+	    return HPDF_INVALID_U3D_DATA;
+	  }
     }
-    else
-    {
-      return HPDF_INVALID_U3D_DATA;
-    }
-  }
 
 	if (HPDF_Stream_Seek (stream, 0, HPDF_SEEK_SET) != HPDF_OK) {
-    return HPDF_Error_GetCode (stream->error);
+		return HPDF_Error_GetCode (stream->error);
 	}
 
 	if (HPDF_MemCmp(tag, (HPDF_BYTE *)u3d, 4/* yes, \0 is required */) == 0) {
@@ -133,7 +133,9 @@ HPDF_LoadU3DFromFile  (HPDF_Doc     pdf,
 	}
 
 	/* destroy file stream */
-	HPDF_Stream_Free (imagedata);
+  if (imagedata) {
+	  HPDF_Stream_Free (imagedata);
+  }
 
 	if (!image) {
 		HPDF_CheckError (&pdf->error);
