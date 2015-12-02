@@ -370,7 +370,7 @@ Window {
             Field selectedWEMPatchGroupPath       { title = "Group Path:" dependsOn = @@ selectedWEMPatch != "" @@ }
             Field selectedWEMPatchUseDefaultColor { title = "Use Default Color:" dependsOn = @@ selectedWEMPatch != "" @@ }
             Field selectedWEMPatchColor           { title = "Color:" dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }
-            Field selectedWEMPatchColorAlpha      { title = "Transparency:" slider = Yes dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }            
+            Field selectedWEMPatchColorAlpha      { title = "Opacity:" slider = Yes dependsOn = @@ selectedWEMPatch != "" && !selectedWEMPatchUseDefaultColor @@ }            
           }
           
           Box "Preview" {

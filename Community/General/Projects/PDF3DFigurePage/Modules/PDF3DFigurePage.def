@@ -44,3 +44,10 @@ MacroModule PDF3DFigurePageMacro {
   externalDefinition = $(LOCAL)/PDF3DFigurePageMacro.script
 }
 
+MacroModule Scientific3DFigurePDFApp {
+  author             = "Axel Newe, axel.newe at fau.de"
+  comment            = "Imports triangle meshes of various formats, point clouds an line set and and creates an interactive 3D PDF for scientific publication."
+  keywords           = "PDF U3D 3D"
+  exampleNetwork     = "$(LOCAL)/networks/Scientific3DFigurePDFAppExample.mlab"
+  externalDefinition = $(LOCAL)/PDF3DFigurePageMacro.script
+}

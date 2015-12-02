@@ -230,8 +230,6 @@ bool PDF3DFigurePage_SavePDF::_getMetaDataFromU3DFile()
 
     if (u3dFile.is_open())
     {
-      result = true;
-
       U3DDataBlockFundamental blockType = _readU32(u3dFile);
 
       if (blockType == U3D_BLOCKTYPE_FILEHEADER)
@@ -271,6 +269,8 @@ bool PDF3DFigurePage_SavePDF::_getMetaDataFromU3DFile()
 
           _u3dMetaData.push_back(newMetaDataSet);
         }
+
+        result = true;
 
       } // if (blockType == U3D_BLOCKTYPE_FILEHEADER)
 
@@ -314,7 +314,7 @@ std::string PDF3DFigurePage_SavePDF::_getDefaultViewSpecificationFromU3DMetaData
   std::string boundingBoxCenterString = "";
   std::string boundingBoxRadiusString = "";
 
-  const int keyValuePairCount = _u3dMetaData.size();
+  const int keyValuePairCount = (int)_u3dMetaData.size();
 
   for (int thisKeyValuePairIndex = 0; thisKeyValuePairIndex < keyValuePairCount; thisKeyValuePairIndex++)
   {

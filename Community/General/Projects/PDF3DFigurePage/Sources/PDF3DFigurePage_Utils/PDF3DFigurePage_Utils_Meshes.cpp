@@ -12,6 +12,7 @@
 // Local includes
 #include "PDF3DFigurePage_Utils.h"
 #include "../shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
+#include "../shared/MLPDF_Defines.h"
 
 
 ML_START_NAMESPACE
@@ -267,7 +268,7 @@ void PDF3DFigurePage_Utils::_updateWEMPatchNodesColor()
 
         if (!_selectedWEMPatchUseDefaultColorFld->getBoolValue())
         {
-          newColor = Vector4(_selectedWEMPatchColorFld->getColorValue(), 1-_selectedWEMPatchColorAlphaFld->getFloatValue());
+          newColor = Vector4(_selectedWEMPatchColorFld->getColorValue(), _selectedWEMPatchColorAlphaFld->getFloatValue());
         }
 
         const int numNodes = outWEMPatch->getNumNodes();
@@ -316,7 +317,6 @@ void PDF3DFigurePage_Utils::_processPatch(unsigned int patchIndex)
     else
     {
       Vector4 colorVector = PDFTools::getColorVec4FromString(modelColor, Vector4(0));
-      colorVector[3] = 1 - colorVector[3];
 
       modelColor = "Color=" + modelColor + ";";
 
@@ -325,6 +325,8 @@ void PDF3DFigurePage_Utils::_processPatch(unsigned int patchIndex)
         outWEMPatch->getNodeAt(n)->setColor(colorVector);
       }
     }
+
+    //modelColor = "Color=" + mlPDF::USEVERTEXCOLORS + ";";
 
     outWEMPatch->setDescription(modelName + groupPath + modelColor);
 

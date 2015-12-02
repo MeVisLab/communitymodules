@@ -16,13 +16,13 @@ module XMarkerListContainer {
   }
   fields  {
     instanceName = CornerPoints
-    listString = "[(31.704 -209.367 899.168) 1 #1 :Corner, (31.704 -209.367 1338.330) 1 #2 :Corner, (31.704 -78.722 899.168) 1 #3 :Corner, (31.704 -78.722 1338.330) 1 #4 :Corner, (154.263 -209.367 899.168) 1 #5 :Corner, (154.263 -209.367 1338.330) 1 #6 :Corner,(154.263 -78.722 899.168) 1 #7 :Corner,(154.263 -78.722 1338.330) 1 #8 :Corner]
+    listString = "[(31.704 -209.367 899.168) 1 #1 :Corners, (31.704 -209.367 1338.330) 1 #2 :Corners, (31.704 -78.722 899.168) 1 #3 :Corners, (31.704 -78.722 1338.330) 1 #4 :Corners, (154.263 -209.367 899.168) 1 #5 :Corners, (154.263 -209.367 1338.330) 1 #6 :Corners,(154.263 -78.722 899.168) 1 #7 :Corners,(154.263 -78.722 1338.330) 1 #8 :Corners]
 "
     index = 0
     persistent = TRUE
     listStringEnable = TRUE
     applySelect = FALSE
-    name = Corner
+    name = Corners
     newName = ""
     overflowMode = None
     maxSize = 0
@@ -133,7 +133,7 @@ module PDF3DFigurePageMacro {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "391 110 1124 750"
+        geometry = "416 199 1124 750"
         sizeHint = "1000 761"
         wasOpen = yes
       }
@@ -158,10 +158,10 @@ module PDF3DFigurePageMacro {
     viewDisplayName = ""
     viewBackgroundColor = "1 1 1"
     viewLightingScheme = HeadLamp
-    viewCameraCenterOfOrbit = "92.9833032942188 -144.044253440101 1118.74894137727"
-    viewCameraCenterToCamera = "-154.804424510039 398.594668479163 74.8036709274165"
+    viewCameraCenterOfOrbit = "92.9833350913541 -144.044285239463 1118.74887799223"
+    viewCameraCenterToCamera = "-374.664273812057 213.361820639853 50.4096913437097"
     viewCameraRadiusOfOrbit = 434.09412
-    viewCameraRollAngle = 5.7390428
+    viewCameraRollAngle = 3.0844808
     viewCameraFOVAngle = 57.29578
     viewSpecifications = ""
     selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
@@ -177,9 +177,9 @@ module PDF3DFigurePageMacro {
     selectedLineSetGroupPath = ""
     selectedLineSetUseDefaultColor = TRUE
     selectedLineSetColor = "0 0 0"
-    selectedPointSet = "Corner {ID=1}"
-    selectedPointSetNewLabel = Corner
-    availablePointSets = "Corner {ID=1}"
+    selectedPointSet = "Corners {ID=1}"
+    selectedPointSetNewLabel = Corners
+    availablePointSets = "Corners {ID=1}"
     selectedPointSetGroupPath = ""
     loadPointsFilter = Points
     loadLinesFilter = Lines
@@ -207,8 +207,8 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor con
 Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci."
     cameraHeight = 1
-    cameraPosition = "-61.8211212158203 254.550415039062 1193.55261230469"
-    cameraOrientation = "0.0880862474441528 -0.64784187078476 -0.756664872169495 2.78268027305603"
+    cameraPosition = "-281.680938720703 69.3175354003906 1169.15856933594"
+    cameraOrientation = "0.346324861049652 -0.63448041677475 -0.691009104251862 2.33450365066528"
     cameraNearDistance = 2
     cameraFarDistance = 4
     cameraFocalDistance = 434.09412

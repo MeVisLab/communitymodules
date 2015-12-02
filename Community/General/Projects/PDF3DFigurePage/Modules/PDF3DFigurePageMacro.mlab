@@ -265,12 +265,12 @@ module SoPerspectiveCamera {
   fields  {
     instanceName = SoPerspectiveCamera
     viewportMapping = ADJUST_CAMERA
-    position = "0 0 0"
+    position = "0 0 1.8304877281189"
     orientation = "0 0 1 0"
     aspectRatio = 0.75
     nearDistance = 16.620569
     farDistance = 458.11389
-    focalDistance = 3
+    focalDistance = 1.8304877
     heightAngle = 1
   }
 }
@@ -2162,11 +2162,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1
-    position = "0 0 0"
+    position = "0 0 1.8304877281189"
     orientation = "0 0 1 0"
     nearDistance = 2
     farDistance = 4
-    focalDistance = 3
+    focalDistance = 1.8304877
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2248,11 +2248,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1
-    position = "0 0 0"
+    position = "0 0 1.8304877281189"
     orientation = "0 0 1 0"
     nearDistance = 0
     farDistance = 0
-    focalDistance = 3
+    focalDistance = 1.8304877
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2334,11 +2334,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1
-    position = "0 0 0"
+    position = "0 0 1.8304877281189"
     orientation = "0 0 1 0"
     nearDistance = 107.76762
     farDistance = 356.06061
-    focalDistance = 3
+    focalDistance = 1.8304877
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2420,11 +2420,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1
-    position = "0 0 0"
+    position = "0 0 1.8304877281189"
     orientation = "0 0 1 0"
     nearDistance = 144.77559
     farDistance = 319.99008
-    focalDistance = 3
+    focalDistance = 1.8304877
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2506,11 +2506,11 @@ module SoExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 1
-    position = "0 0 0"
+    position = "0 0 1.8304877281189"
     orientation = "0 0 1 0"
     nearDistance = 2
     farDistance = 4
-    focalDistance = 3
+    focalDistance = 1.8304877
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -2741,7 +2741,7 @@ module PDF3DFigurePage_Utils {
       window _automatic {
         geometry = "1769 270 1132 600"
         sizeHint = "260 223"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -2765,10 +2765,10 @@ module PDF3DFigurePage_Utils {
     useInputWEMToCreateOutputWEM = TRUE
     triangulationMode = Strip
     autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "0 0 -3"
-    cameraCenterToCamera = "0 0 3"
-    cameraRadiusOfOrbit = 3
-    cameraFOVAngle = 90
+    cameraCenterOfOrbit = "0 0 0"
+    cameraCenterToCamera = "0 0 1.8304877281189"
+    cameraRadiusOfOrbit = 1.8304877
+    cameraFOVAngle = 57.29578
     cameraRollAngle = 270
     vertexList = "[  ]"
     coordIndexList = "[  ]"
@@ -3236,7 +3236,7 @@ module BaseBypass {
 }
 module SaveU3D {
   internal  {
-    frame = "-139 -259 120 56"
+    frame = "-147 -259 120 56"
     moduleGroupName = SaveFiles
     windows  {
       window _default {
@@ -3293,6 +3293,7 @@ module SaveU3D {
     newSpecification = "<MetaData>
 <MetaDataKey>[No key specified]</MetaDataKey>
 <MetaDataValue>[No value specified]</MetaDataValue>
+</MetaData>
 
 "
     selectedTab = 3
@@ -3301,6 +3302,7 @@ module SaveU3D {
     newSpecificationObjectName = "Main Branch Vessel Centerline"
     newSpecificationGroupPath = "Point Clouds"
     newSpecificationUseDefaultColor = FALSE
+    newSpecificationUseVertexColors = FALSE
     newSpecificationUseDefaultSpecularColor = TRUE
     newSpecificationColor = "0.651 0.651 0.651"
     newSpecificationColorAlpha = 1
