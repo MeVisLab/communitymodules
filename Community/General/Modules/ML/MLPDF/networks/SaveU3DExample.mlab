@@ -34,7 +34,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = PositionsLoad
-    filename = J:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
+    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
     filter = PointSet
     numberDelimiter = ;
     numberDelimiterSpace = TRUE
@@ -168,9 +168,9 @@ module SaveU3D {
         wasOpen = no
       }
       window "Specification Generator Panel" {
-        geometry = "183 454 596 594"
-        sizeHint = "295 579"
-        wasOpen = no
+        geometry = "604 476 705 536"
+        sizeHint = "617 521"
+        wasOpen = yes
       }
     }
   }
@@ -253,21 +253,19 @@ module SaveU3D {
     defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
-    filename = C:/Users/Axel/SaveU3DExample.u3d
+    filename = ""
     status = Idle.
-    newSpecification = "<PointSet>
-<ModelVisibility>3</ModelVisibility>
-
-"
-    selectedTab = 0
+    newSpecification = ""
+    selectedTab = 3
     newSpecificationOutputValid = TRUE
-    newSpecificationType = OBJECTTYPE_MESH
+    newSpecificationType = OBJECTTYPE_METADATA
     newSpecificationObjectName = ""
     newSpecificationGroupPath = ""
-    newSpecificationUseDefaultColor = TRUE
+    newSpecificationUseDefaultColor = FALSE
+    newSpecificationUseVertexColors = FALSE
     newSpecificationUseDefaultSpecularColor = TRUE
     newSpecificationColor = "0.651 0.651 0.651"
-    newSpecificationColorAlpha = 1
+    newSpecificationColorAlpha = 0.75599998
     newSpecificationSpecularColor = "0.75 0.75 0.75"
     newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
     newSpecificationMetaDataKey = ""
@@ -275,6 +273,7 @@ module SaveU3D {
     newSpecificationWEMLabel = ""
     newSpecificationPositionTypes = ""
     newSpecificationConnectionTypes = ""
+    useDefaultSettings = TRUE
   }
 }
 module LocalWEMLoad {

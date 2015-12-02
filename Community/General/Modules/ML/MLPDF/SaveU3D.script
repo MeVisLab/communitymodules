@@ -353,12 +353,25 @@ Window "Specification Generator Panel"
     
     Box "Color && Visibility" {
       dependsOn = @@ newSpecificationType != "OBJECTTYPE_METADATA" @@
-      Field newSpecificationModelVisibility            { title = "Model Visibility:" }
-      CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" @@ }
-      Field newSpecificationColor                      { title = "Object Color" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
-      Field newSpecificationColorAlpha                 { title = "Object Alpha:" slider = On dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor @@ }
-      CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
-      Field newSpecificationSpecularColor              { title = "Specular Color:" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" && !newSpecificationUseDefaultSpecularColor @@ }
+      
+      Table {
+        Row {
+          Field newSpecificationModelVisibility            { title = "Model Visibility:" }         
+        }
+        Row {
+          Field newSpecificationColor                      { title = "Object Color:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor && !newSpecificationUseVertexColors @@ }
+          CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseVertexColors @@ }
+          CheckBox newSpecificationUseVertexColors         { title = "Use Vertex Colors" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
+        }
+        Row {
+          Field newSpecificationColorAlpha                 { title = "Object Opacity:" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
+          Slider newSpecificationColorAlpha                { dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
+        }
+        Row {
+          Field newSpecificationSpecularColor              { title = "Specular Color:" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" && !newSpecificationUseDefaultSpecularColor @@ }
+          CheckBox newSpecificationUseDefaultSpecularColor { title = "Use Default Specular Color" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
+        }
+      }      
     }
     
     Empty { height = 10 }
