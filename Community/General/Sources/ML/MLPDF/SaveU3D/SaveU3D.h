@@ -124,6 +124,7 @@ private:
   StringField   *_newSpecificationObjectNameFld;
   StringField   *_newSpecificationGroupPathFld;
   BoolField     *_newSpecificationUseDefaultColorFld;
+  BoolField     *_newSpecificationUseVertexColorsFld;
   BoolField     *_newSpecificationUseDefaultSpecularColorFld;
   ColorField    *_newSpecificationColorFld;
   FloatField    *_newSpecificationColorAlphaFld;
@@ -245,6 +246,12 @@ private:
   void PreProcessMeshData(WEMPtr saveWEM, 	                                             
 					                U3DMeshInfoVector &meshInfoVector,
                           ModelBoundingBoxStruct& boundingBox);
+
+  // Scan all node colors of a WEM patch and return number of different colors.
+  MLuint32 GetNumberOfDifferentColorsFromWEMPatch(WEMTrianglePatch* patch) const;
+
+  // Writes all vertex colors of a WEM patch to the continuation block
+  U3DColorMap WriteVertexColors(WEMPatch* patch, U3DDataBlockWriter& continuationBlock) const;
 
   // Add a CLOD mesh declaration modifier chain for each WEM patch
   void AddAllCLODMeshModifierChains(U3DMeshInfoVector meshInfoVector, WEMPtr saveWEM) const;

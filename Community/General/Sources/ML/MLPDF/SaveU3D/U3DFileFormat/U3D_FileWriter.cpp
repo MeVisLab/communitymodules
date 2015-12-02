@@ -166,7 +166,7 @@ size_t U3DFileWriter::addStandardBlock_LitTextureShader(const std::string& litTe
   U3DDataBlockWriter LitTextureShaderBlock;
   LitTextureShaderBlock.blockType = U3D_BLOCKTYPE_LITTEXTURESHADER;
   LitTextureShaderBlock.writeString(litTextureShaderName);                        // Write Lit Texture Shader Name (9.8.3.1)
-  LitTextureShaderBlock.writeU32(U3D_LITTEXTURESHADERATTRIBUTES_LIGHTINGENABLED); // Write Lit Texture Shader Attributes (9.8.3.2)  [UNUSED BY ACROBAT]
+  LitTextureShaderBlock.writeU32(U3D_LITTEXTURESHADERATTRIBUTES_ALL);             // Write Lit Texture Shader Attributes (9.8.3.2)  [UNUSED BY ACROBAT]
   LitTextureShaderBlock.writeF32(0.0f);                                           // Write Alpha Test Reference (9.8.3.3)           [UNUSED BY ACROBAT]
   LitTextureShaderBlock.writeU32(U3D_ALPHATESTFUCTION_ALWAYS);                    // Write Alpha Test Function (9.8.3.4)            [UNUSED BY ACROBAT]
   LitTextureShaderBlock.writeU32(U3D_COLORBLEND_ALPHABLEND);                      // Write Color Blend Function (9.8.3.5)           [UNUSED BY ACROBAT]
@@ -189,9 +189,9 @@ size_t U3DFileWriter::addStandardBlock_MaterialResourceWithDefaultLight(const st
   MaterialResourceBlock.writeString(materialResourceName);                        // Write Material Resource Name (9.8.4.1)
   MaterialResourceBlock.writeU32(U3D_MATERIALRESOURCEATTRIBUTES_ALL);             // Write Material Attributes (9.8.4.2)
 
-  MaterialResourceBlock.writeF32(0.0f);                                           // Ambient Color - Red (9.8.4.3.1)
-  MaterialResourceBlock.writeF32(0.0f);                                           // Ambient Color - Green (9.8.4.3.2)
-  MaterialResourceBlock.writeF32(0.0f);                                           // Ambient Color - Blue (9.8.4.3.3)
+  MaterialResourceBlock.writeF32(1.0f);                                           // Ambient Color - Red (9.8.4.3.1)
+  MaterialResourceBlock.writeF32(1.0f);                                           // Ambient Color - Green (9.8.4.3.2)
+  MaterialResourceBlock.writeF32(1.0f);                                           // Ambient Color - Blue (9.8.4.3.3)
   MaterialResourceBlock.writeF32(0.65f);                                          // Diffuse Color - Red (9.8.4.4.1)
   MaterialResourceBlock.writeF32(0.65f);                                          // Diffuse Color - Green (9.8.4.4.2)
   MaterialResourceBlock.writeF32(0.65f);                                          // Diffuse Color - Blue (9.8.4.4.3)

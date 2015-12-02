@@ -533,7 +533,7 @@ void SavePRC::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetConnectionTypes(_newSpecificationConnectionTypesFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), false);
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 1;
@@ -545,7 +545,7 @@ void SavePRC::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetWEMLabel(_newSpecificationWEMLabelFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), false);
     newSpecificationString += mlPDF::SpecificationGenerator::GetSpecularColor(_newSpecificationSpecularColorFld->getColorValue(), _newSpecificationUseDefaultSpecularColorFld->getBoolValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
     newSpecificationString += "\n";

@@ -78,6 +78,7 @@ SpecificationParametersStruct PDFTools::getAllSpecificationParametersFromString(
   result.GroupPath        = normalizeGroupPath(getSpecificParameterFromString(specificationString, "<GroupPath>"));
   result.Color            = getSpecificParameterFromString(specificationString, "<Color>");
   result.SpecularColor    = getSpecificParameterFromString(specificationString, "<SpecularColor>");
+  result.Opacity          = getSpecificParameterFromString(specificationString, "<Opacity>");
   result.GlyphText        = getSpecificParameterFromString(specificationString, "<GlyphText>");     // U3D Glyphs are not supported by Acrobat... :-(
   result.MetaDataKey      = getSpecificParameterFromString(specificationString, "<MetaDataKey>");
   result.MetaDataValue    = getSpecificParameterFromString(specificationString, "<MetaDataValue>");
@@ -431,6 +432,23 @@ std::string PDFTools::FormatVec3String(Vector3 vectorValue)
   return result;
 }
 
+std::string PDFTools::FormatDouble(double value)
+{
+  const int bufferLength = 12;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%.3f", value);
+
+  std::string result(buffer);
+
+  return result;
+}
+
+std::string PDFTools::FormatFloat(float value)
+{
+  return FormatDouble((double)value);
+}
+
 //***********************************************************************************
 
 // Updates the model bounding box
@@ -490,13 +508,13 @@ ModelBoundingBoxStruct PDFTools::GetBoundingBoxFomPositions(PositionsVector posi
 {
   ModelBoundingBoxStruct result;
 
-  MLdouble smallestX = 0;
-  MLdouble smallestY = 0;
-  MLdouble smallestZ = 0;
-   
-  MLdouble biggestX = 0;
-  MLdouble biggestY = 0;
-  MLdouble biggestZ = 0;
+  MLdouble smallestX = ML_DOUBLE_MAX;
+  MLdouble smallestY = ML_DOUBLE_MAX;
+  MLdouble smallestZ = ML_DOUBLE_MAX;
+
+  MLdouble biggestX = ML_DOUBLE_MAX * -1;
+  MLdouble biggestY = ML_DOUBLE_MAX * -1;
+  MLdouble biggestZ = ML_DOUBLE_MAX * -1;
 
   for (int i = 0; i < positions.size(); i++)
   {

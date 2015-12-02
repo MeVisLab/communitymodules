@@ -120,6 +120,7 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
   (_newSpecificationObjectNameFld              = addString("newSpecificationObjectName"))->setStringValue("");
   (_newSpecificationGroupPathFld               = addString("newSpecificationGroupPath"))->setStringValue("");
   (_newSpecificationUseDefaultColorFld         = addBool("newSpecificationUseDefaultColor"))->setBoolValue(true);
+  (_newSpecificationUseVertexColorsFld         = addBool("newSpecificationUseVertexColors"))->setBoolValue(false);
   (_newSpecificationUseDefaultSpecularColorFld = addBool("newSpecificationUseDefaultSpecularColor"))->setBoolValue(true);
   (_newSpecificationColorFld                   = addColor("newSpecificationColor"))->setVector3Value(Vector3(0.651f,0.651f,0.651f));
   (_newSpecificationColorAlphaFld              = addFloat("newSpecificationColorAlpha"))->setFloatValue(1.0f);
@@ -240,6 +241,7 @@ void SaveU3D::handleNotification (Field* field)
        (field == _newSpecificationObjectNameFld) ||
        (field == _newSpecificationGroupPathFld) ||
        (field == _newSpecificationUseDefaultColorFld) ||
+       (field == _newSpecificationUseVertexColorsFld) ||
        (field == _newSpecificationUseDefaultSpecularColorFld) ||
        (field == _newSpecificationColorFld) ||
        (field == _newSpecificationColorAlphaFld) ||
@@ -584,6 +586,7 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += "</PointSet>\n";
     newSpecificationString += "\n";
     _newSpecificationOutputValidFld->setBoolValue(true);
   }
@@ -594,8 +597,9 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetConnectionTypes(_newSpecificationConnectionTypesFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), false);
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += "<LineSet>\n";
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 1;
     _newSpecificationOutputValidFld->setBoolValue(true);
@@ -606,9 +610,11 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetWEMLabel(_newSpecificationWEMLabelFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), _newSpecificationUseVertexColorsFld->getBoolValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetSpecularColor(_newSpecificationSpecularColorFld->getColorValue(), _newSpecificationUseDefaultSpecularColorFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetOpacity(_newSpecificationColorAlphaFld->getFloatValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
+    newSpecificationString += "</Mesh>\n";
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 2;
     _newSpecificationOutputValidFld->setBoolValue(true);
@@ -618,6 +624,7 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString = "<MetaData>\n";
     newSpecificationString += mlPDF::SpecificationGenerator::GetMetaDataKey(_newSpecificationMetaDataKeyFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetMetaDataValue(_newSpecificationMetaDataValueFld->getStringValue());
+    newSpecificationString += "</MetaData>\n";
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 3;
     _newSpecificationOutputValidFld->setBoolValue(true);

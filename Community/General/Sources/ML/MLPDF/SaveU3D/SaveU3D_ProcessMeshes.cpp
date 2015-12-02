@@ -12,6 +12,7 @@
 #include "SaveU3D.h"
 #include "U3DFileFormat/U3D_DataTypes.h"
 #include "U3DFileFormat/U3D_Tools.h"
+#include "../shared/MLPDF_Defines.h"
 #include "../shared/MLPDF_Tools.h"
 
 ML_START_NAMESPACE
@@ -100,9 +101,9 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
           meshSpecificationsVector.clear();
 
           // Parse WEM label & description...
-          std::string u3dModelName       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
-          std::string u3dGroupName       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
-          std::string u3dGroupPath       = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupPath");
+          std::string u3dModelName = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "ModelName");
+          std::string u3dGroupName = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupName");
+          std::string u3dGroupPath = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "GroupPath");
           
           if ("" != u3dGroupName)
           {
@@ -125,7 +126,9 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
           meshSpecificationsString += "<GroupPath>" + u3dGroupPath + "</GroupPath>";
           meshSpecificationsString += "<Color>" + mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "Color") + "</Color>";
           meshSpecificationsString += "<SpecularColor>" + mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "SpecularColor") + "</SpecularColor>";
+          meshSpecificationsString += "<Opacity>" + mlPDF::PDFTools::getSpecificParameterFromWEMDescription(wemDescription, "Opacity") + "</Opacity>";
           meshSpecificationsString += "<ModelVisibility>3</ModelVisibility>";
+          meshSpecificationsString += "</U3DMesh>";
 
           // Add meshSpecification string to meshSpecificationVector
           meshSpecificationsVector.push_back(meshSpecificationsString);
@@ -138,32 +141,48 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
           {
             U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_MESH, thisSpecificationParameters.ObjectName, defaultValues);
 
-            thisU3DObjectInfo.GroupPath     = thisSpecificationParameters.GroupPath;
-            thisU3DObjectInfo.DiffuseColor  = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+            thisU3DObjectInfo.GroupPath = thisSpecificationParameters.GroupPath;
+
+            if (thisSpecificationParameters.Color == mlPDF::USEVERTEXCOLORS)
+            {
+              thisU3DObjectInfo.UseVertexColors = true;
+              thisU3DObjectInfo.DiffuseColor = defaultValues.defaultMaterialDiffuseColorWithTransparency;
+            }
+            else
+            {
+              thisU3DObjectInfo.UseVertexColors = false;
+              thisU3DObjectInfo.DiffuseColor = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+            }
+
             thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
+
+            if (thisSpecificationParameters.Opacity != "")
+            {
+              thisU3DObjectInfo.DiffuseColor[3] = mlPDF::stringToMLDouble(thisSpecificationParameters.Opacity);
+            }
 
             thisU3DObjectInfo.Visibility = (MLuint32)mlPDF::stringToInt(thisSpecificationParameters.ModelVisibility);
 
             // Collect mesh info
-            thisWEMMeshInfo.DiffuseColorCount    = 0;    // This is not really needed in this version
-            thisWEMMeshInfo.SpecularColorCount   = 0;    // This is not really needed in this version
+            thisWEMMeshInfo.DiffuseColorCount    = (thisU3DObjectInfo.UseVertexColors ? GetNumberOfDifferentColorsFromWEMPatch(addedTrianglePatch) : 0);
+            thisWEMMeshInfo.SpecularColorCount   = (thisU3DObjectInfo.UseVertexColors ? 1 : 0);
             thisWEMMeshInfo.TextureCoordCount    = 0;    // This is not really needed in this version
             thisWEMMeshInfo.DefaultAmbientColor  = defaultValues.defaultMaterialAmbientColor;
             thisWEMMeshInfo.DefaultSpecularColor = defaultValues.defaultMaterialSpecularColor;
             thisWEMMeshInfo.DefaultDiffuseColor  = defaultValues.defaultMaterialDiffuseColorWithTransparency;
             thisWEMMeshInfo.DefaultEmissiveColor = defaultValues.defaultMaterialEmissiveColor;            
-            thisWEMMeshInfo.FaceCount = addedTrianglePatch->getNumFaces();
-            thisWEMMeshInfo.NormalCount = addedTrianglePatch->getNumFaces();
-            thisWEMMeshInfo.VertexCount = addedTrianglePatch->getNumNodes();            
-            thisWEMMeshInfo.PatchID = addedTrianglePatch->getId();
-            thisWEMMeshInfo.MeshAttributes = U3D_MESH_ATTRIBUTES_DEFAULT;
-            thisWEMMeshInfo.MeshAttributes |= ( (thisWEMMeshInfo.NormalCount == 0) ? U3D_MESH_ATTRIBUTES_EXCLUDENORMALS : 0 );
-            thisWEMMeshInfo.ShadingAttributes = U3D_SHADINGATTRIBUTES_NONE;  
-            thisWEMMeshInfo.ShadingAttributes |= ( (thisWEMMeshInfo.DiffuseColorCount > 0) ? U3D_SHADINGATTRIBUTES_DIFFUSECOLORS : 0 );   // Should not happen in this version
-            thisWEMMeshInfo.ShadingAttributes |= ( (thisWEMMeshInfo.SpecularColorCount > 0) ? U3D_SHADINGATTRIBUTES_SPECULARCOLORS : 0 ); // Should not happen in this version
-            thisWEMMeshInfo.DisplayName  = thisU3DObjectInfo.DisplayName;
-            thisWEMMeshInfo.ResourceName = thisU3DObjectInfo.ResourceName;
-            thisWEMMeshInfo.MeshNumber = meshNumber++;
+            thisWEMMeshInfo.FaceCount            = addedTrianglePatch->getNumFaces();
+            thisWEMMeshInfo.NormalCount          = addedTrianglePatch->getNumNodes();
+            thisWEMMeshInfo.VertexCount          = addedTrianglePatch->getNumNodes();            
+            thisWEMMeshInfo.PatchID              = addedTrianglePatch->getId();
+            thisWEMMeshInfo.MeshAttributes       = U3D_MESH_ATTRIBUTES_DEFAULT;
+            thisWEMMeshInfo.MeshAttributes      |= ( (thisWEMMeshInfo.NormalCount == 0) ? U3D_MESH_ATTRIBUTES_EXCLUDENORMALS : 0 );
+            thisWEMMeshInfo.ShadingAttributes    = U3D_SHADINGATTRIBUTES_NONE;  
+            thisWEMMeshInfo.ShadingAttributes   |= ( (thisWEMMeshInfo.DiffuseColorCount > 0) ? U3D_SHADINGATTRIBUTES_DIFFUSECOLORS : 0 );
+            thisWEMMeshInfo.ShadingAttributes   |= ( (thisWEMMeshInfo.SpecularColorCount > 0) ? U3D_SHADINGATTRIBUTES_SPECULARCOLORS : 0 );
+            thisWEMMeshInfo.DisplayName          = thisU3DObjectInfo.DisplayName;
+            thisWEMMeshInfo.ResourceName         = thisU3DObjectInfo.ResourceName;
+            thisWEMMeshInfo.MeshNumber           = meshNumber++;
 
 	          meshInfoVector.push_back(thisWEMMeshInfo);           
             _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
@@ -179,6 +198,65 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
 
 }
 
+//***********************************************************************************
+
+// Scan all node colors of a WEM patch and return number of different colors.
+MLuint32 SaveU3D::GetNumberOfDifferentColorsFromWEMPatch(WEMTrianglePatch* patch) const
+{
+  MLuint result = 0;
+
+  std::set<Vector4> colorsSet;
+
+  const int numNodesInPatch = patch->getNumNodes();
+
+  for (int n = 0; n < numNodesInPatch; n++)
+  {
+    WEMNode* thisNode = patch->getNodeAt(n);
+
+    const Vector4 thisNodeColor = thisNode->getColor();
+
+    colorsSet.insert(thisNodeColor);
+  }
+
+  result = colorsSet.size();
+
+  return result;
+}
+
+//***********************************************************************************
+
+// Writes all vertex colors of a WEM patch to the continuation block
+U3DColorMap SaveU3D::WriteVertexColors(WEMPatch* patch, U3DDataBlockWriter& continuationBlock) const
+{
+  MLuint thisColorIndex = 0;
+  U3DColorMap colorsMap;   // <Color,ColorIndex>
+
+  const int numNodesInPatch = patch->getNumNodes();
+
+  for (int n = 0; n < numNodesInPatch; n++)
+  {
+    WEMNode* thisNode = patch->getNodeAt(n);
+
+    const Vector4 thisNodeColor = thisNode->getColor();
+
+    U3DColorMap::iterator findIt = colorsMap.find(thisNodeColor);
+
+    if (findIt == colorsMap.end())
+    {
+      // Color has not yet been added to map, so add it now
+      colorsMap[thisNodeColor] = thisColorIndex;
+      continuationBlock.writeF32Color(thisNodeColor);
+      thisColorIndex++;
+    }
+    else
+    {
+      // Do nothing
+    }
+
+  }
+
+  return colorsMap;
+}
 
 //***********************************************************************************
 
@@ -207,6 +285,8 @@ void SaveU3D::AddAllCLODMeshModifierChains(U3DMeshInfoVector meshInfoVector, WEM
 
 U3DDataBlockWriter SaveU3D::CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, U3DMeshInfoStruct meshInfo) const
 {
+  U3DColorMap baseDiffuseColorsMap;
+
   WEMPatch* wemPatch = NULL;
   WEMFace*  wemFace  = NULL;
 
@@ -232,7 +312,6 @@ U3DDataBlockWriter SaveU3D::CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, 
    thisCLODBaseMeshContinuationBlock.writeU32(meshInfo.DiffuseColorCount);    // Write Base Mesh Description - Diffuse Color Count (9.6.1.2.3.4)
    thisCLODBaseMeshContinuationBlock.writeU32(meshInfo.SpecularColorCount);   // Write Base Mesh Description - Specular Color Count (9.6.1.2.3.5)
    thisCLODBaseMeshContinuationBlock.writeU32(0x00000001);                    // Write Base Mesh Description - Texture Coord Count (9.6.1.2.3.6)
-
   
   // Write all vertex positions (in U3D, vertices are called "positions")        
   for (MLuint32 thisVertex = 0; thisVertex < meshInfo.VertexCount; thisVertex++)
@@ -246,21 +325,21 @@ U3DDataBlockWriter SaveU3D::CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, 
 
   for (MLuint32 thisNormal = 0; thisNormal < meshInfo.NormalCount; thisNormal++)
   {
-    Vector3 faceNormal = wemPatch->getFaceAt(thisNormal)->getNormal();
+    Vector3 nodeNormal = wemPatch->getNodeAt(thisNormal)->getNormal();
 
-    thisCLODBaseMeshContinuationBlock.writeF32(faceNormal[0]);              // Write Base Normal - X (9.6.1.2.4.2.1)
-    thisCLODBaseMeshContinuationBlock.writeF32(faceNormal[1]);              // Write Base Normal - Y (9.6.1.2.4.2.2)
-    thisCLODBaseMeshContinuationBlock.writeF32(faceNormal[2]);              // Write Base Normal - Z (9.6.1.2.4.2.3)
+    thisCLODBaseMeshContinuationBlock.writeF32(nodeNormal[0]);              // Write Base Normal - X (9.6.1.2.4.2.1)
+    thisCLODBaseMeshContinuationBlock.writeF32(nodeNormal[1]);              // Write Base Normal - Y (9.6.1.2.4.2.2)
+    thisCLODBaseMeshContinuationBlock.writeF32(nodeNormal[2]);              // Write Base Normal - Z (9.6.1.2.4.2.3)
   }
 
-  for (MLuint32 thisDiffuseColor = 0; thisDiffuseColor < meshInfo.DiffuseColorCount; thisDiffuseColor++)
+  if (meshInfo.DiffuseColorCount > 0)
   {
-    thisCLODBaseMeshContinuationBlock.writeF32Color(meshInfo.DefaultDiffuseColor);   // Write Base Diffuse Color (9.6.1.2.4.3)
+    baseDiffuseColorsMap = WriteVertexColors(wemPatch, thisCLODBaseMeshContinuationBlock); // Write all Base Diffuse Colors (9.6.1.2.4.3)
   }
 
   for (MLuint32 thisSpecularColor = 0; thisSpecularColor < meshInfo.SpecularColorCount; thisSpecularColor++)
   {
-    thisCLODBaseMeshContinuationBlock.writeF32Color(meshInfo.DefaultSpecularColor);   // Write Base Specular Color (9.6.1.2.4.4)
+    thisCLODBaseMeshContinuationBlock.writeF32Color(meshInfo.DefaultSpecularColor, 1.0f);   // Write Base Specular Color (9.6.1.2.4.4)
   }
 
   // Write Write Base Texture Coord (9.6.1.2.4.5)
@@ -271,13 +350,16 @@ U3DDataBlockWriter SaveU3D::CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, 
 
   for (MLuint32 thisFace = 0; thisFace < meshInfo.FaceCount; thisFace++)
   {
-    wemFace = wemPatch->getFaceAt(thisFace);
-	thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
+	  thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
 	  
-	for (MLuint thisNode = 0; thisNode < 3; thisNode++)
+    wemFace = wemPatch->getFaceAt(thisFace);
+
+    for (MLuint thisNode = 0; thisNode < 3; thisNode++)
     {
-      MLuint32 VertexIndex = wemFace->getNodeAt(static_cast<unsigned int>(thisNode))->getEntryNumber();
-      MLuint32 NormalIndex = thisFace;
+      WEMNode* thisWEMNode = wemFace->getNodeAt(static_cast<unsigned int>(thisNode));
+      const MLuint32 VertexIndex = thisWEMNode->getEntryNumber();
+      const Vector4 thisWEMNodeColor = thisWEMNode->getColor();
+      MLuint32 NormalIndex = VertexIndex;
 
       // Write Base Corner Info - Base Position Index (9.6.1.2.4.6.2.1)
       thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_StaticFull+meshInfo.VertexCount, VertexIndex);  
@@ -291,7 +373,8 @@ U3DDataBlockWriter SaveU3D::CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, 
       // Write Base Corner Info - Base Diffuse Color Index (9.6.1.2.4.6.2.3)
       if (meshInfo.DiffuseColorCount > 0) 
       {
-        thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_StaticFull+meshInfo.DiffuseColorCount, 0);
+        MLuint32 diffuseColorIndex = baseDiffuseColorsMap[thisWEMNodeColor];
+        thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_StaticFull + meshInfo.DiffuseColorCount, diffuseColorIndex);
       }
 
       // Write Base Corner Info - Base Specular Color Index (9.6.1.2.4.6.2.4)

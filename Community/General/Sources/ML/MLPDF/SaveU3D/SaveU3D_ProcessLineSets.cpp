@@ -12,6 +12,7 @@
 #include "SaveU3D.h"
 #include "U3DFileFormat/U3D_DataTypes.h"
 #include "U3DFileFormat/U3D_Tools.h"
+#include "../shared/MLPDF_Defines.h"
 #include "../shared/MLPDF_Tools.h"
 #include "../shared/MLPDF_MarkerListTools.h"
 
@@ -59,8 +60,22 @@ void SaveU3D::PreProcessLineSetData(U3DLineSetInfoVector &U3DLineSetInfoVector,
     U3DLineSetInfoStruct  thisLineSetInfo;
     U3DObjectInfoStruct thisU3DObjectInfo = CreateNewU3DObjectInfo(i, U3DOBJECTTYPE_LINESET, thisSpecificationParameters.ObjectName, defaultValues);
     thisU3DObjectInfo.GroupPath     = thisSpecificationParameters.GroupPath;
-    thisU3DObjectInfo.DiffuseColor  = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+
+    if (thisSpecificationParameters.Color == mlPDF::USEVERTEXCOLORS)
+    {
+      thisU3DObjectInfo.UseVertexColors = false; // Never use vertex colors for line sets
+      thisU3DObjectInfo.DiffuseColor = defaultValues.defaultMaterialDiffuseColorWithTransparency;
+    }
+    else
+    {
+      thisU3DObjectInfo.UseVertexColors = false; // Never use vertex colors for line sets
+      thisU3DObjectInfo.DiffuseColor = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, defaultValues.defaultMaterialDiffuseColorWithTransparency);
+    }
+
     thisU3DObjectInfo.SpecularColor = mlPDF::PDFTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, defaultValues.defaultMaterialSpecularColor);
+
+    thisU3DObjectInfo.DiffuseColor[3] = 1; // Make sure that opacity is set to opaque
+
     thisU3DObjectInfo.Visibility    = (MLuint32)mlPDF::stringToInt(thisSpecificationParameters.ModelVisibility);
     _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
 

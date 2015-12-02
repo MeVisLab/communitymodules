@@ -18,6 +18,7 @@ ML_START_NAMESPACE
 
 typedef MLuint32 U3DDataBlockFundamental;
 typedef std::vector< U3DDataBlockFundamental > U3DDataVector;
+typedef std::map<Vector4, MLuint> U3DColorMap;
 
 enum  U3DObjectType {U3DOBJECTTYPE_POINTSET, U3DOBJECTTYPE_LINESET, U3DOBJECTTYPE_MESH /*, U3DOBJECTTYPE_GLYPH*/};
 
@@ -34,6 +35,7 @@ struct U3DObjectInfoStruct
   Vector3       SpecularColor;
   Vector3       AmbientColor;
   Vector3       EmissiveColor;
+  bool          UseVertexColors;
   MLuint32      Visibility;
 };
 

@@ -11,6 +11,7 @@
 
 // Local includes
 #include "MLPDF_SpecificationGenerator.h"
+#include "MLPDF_Defines.h"
 #include "MLPDF_Tools.h"
 
 
@@ -145,11 +146,15 @@ std::string SpecificationGenerator::GetGroupPath(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor)
+std::string SpecificationGenerator::GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor, bool useVertexColor)
 {
   std::string result = "";
 
-  if (!useDefaultColor)
+  if (useVertexColor)
+  {
+    result = "<Color>" + USEVERTEXCOLORS + "</Color>\n";
+  }
+  else if (!useDefaultColor)
   {
     result = "<Color>"; 
     result += PDFTools::FormatColorString(colorValue, alphaValue);
@@ -175,6 +180,19 @@ std::string SpecificationGenerator::GetSpecularColor(Vector3 colorValue, bool us
 
   return result;
 
+}
+
+//----------------------------------------------------------------------------------
+
+std::string SpecificationGenerator::GetOpacity(float alphaValue)
+{
+  std::string result = "";
+
+  result = "<Opacity>";
+  result += PDFTools::FormatFloat(alphaValue);
+  result += "</Opacity>\n";
+
+  return result;
 }
 
 //----------------------------------------------------------------------------------

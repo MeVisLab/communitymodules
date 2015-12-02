@@ -61,8 +61,9 @@ public:
   static std::string GetConnectionTypes(std::string fieldValue);
   static std::string GetObjectName(std::string fieldValue);
   static std::string GetGroupPath(std::string fieldValue);
-  static std::string GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor);
+  static std::string GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor, bool useVertexColor);
   static std::string GetSpecularColor(Vector3 colorValue, bool useDefaultColor);
+  static std::string GetOpacity(float alphaValue);
   static std::string GetModelVisibility(int fieldValue);
 };
 

@@ -66,7 +66,7 @@ void U3DDataBlockWriter::close()
 }
 
 
-void U3DDataBlockWriter::writeF32Color(MLfloat red, MLfloat green, MLfloat blue, MLfloat alpha)
+void U3DDataBlockWriter::writeF32Color(const MLfloat red, const MLfloat green, const MLfloat blue, const MLfloat alpha)
 {
   _dataWriter.writeF32(red);   // Write color value red
   _dataWriter.writeF32(green); // Write color value green
@@ -75,14 +75,19 @@ void U3DDataBlockWriter::writeF32Color(MLfloat red, MLfloat green, MLfloat blue,
 }
 
 
-void U3DDataBlockWriter::writeF32Color(Vector4 colors)
+void U3DDataBlockWriter::writeF32Color(const Vector4 colors)
 {
   writeF32Color(static_cast<MLfloat>(colors[0]), static_cast<MLfloat>(colors[1]), static_cast<MLfloat>(colors[2]), static_cast<MLfloat>(colors[3]));  
 }
 
-void U3DDataBlockWriter::writeF32Color(Vector3 colors)
+void U3DDataBlockWriter::writeF32Color(const Vector3 colors, const MLfloat alpha)
 {
-  writeF32Color(static_cast<MLfloat>(colors[0]), static_cast<MLfloat>(colors[1]), static_cast<MLfloat>(colors[2]), 0.0f);
+  writeF32Color(static_cast<MLfloat>(colors[0]), static_cast<MLfloat>(colors[1]), static_cast<MLfloat>(colors[2]), alpha);
+}
+
+void U3DDataBlockWriter::writeF32Color(const Vector3 colors)
+{
+  writeF32Color(static_cast<MLfloat>(colors[0]), static_cast<MLfloat>(colors[1]), static_cast<MLfloat>(colors[2]), 1.0f);
 }
 
 void U3DDataBlockWriter::writeF32Matrix(MLfloat a, MLfloat b, MLfloat c, MLfloat d, MLfloat e, MLfloat f, MLfloat g, MLfloat h, MLfloat i, MLfloat j, MLfloat k, MLfloat l, MLfloat m, MLfloat n, MLfloat o, MLfloat p)

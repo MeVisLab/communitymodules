@@ -204,6 +204,7 @@ namespace mlPDF
     "TEXTRENDERMODE_CLIPPING"
   };
 
+  static std::string USEVERTEXCOLORS = "{VertexColors}";
 
 } // namespace mlPDF 
 

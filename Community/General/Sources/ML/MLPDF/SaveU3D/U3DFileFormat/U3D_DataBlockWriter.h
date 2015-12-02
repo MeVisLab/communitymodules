@@ -63,6 +63,7 @@ public:
   void writeString(const std::string& sValue) { if (!_closed) _dataWriter.writeString(sValue); }
   void writeF32Color(const MLfloat red, const MLfloat green, const MLfloat blue, const MLfloat alpha);
   void writeF32Color(const Vector4 colors);
+  void writeF32Color(const Vector3 colors, const MLfloat alpha);
   void writeF32Color(const Vector3 colors);
   void writeF32Matrix(const MLfloat a, const MLfloat b, const MLfloat c, const MLfloat d, 
                       const MLfloat e, const MLfloat f, const MLfloat g, const MLfloat h, 

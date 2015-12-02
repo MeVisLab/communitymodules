@@ -88,6 +88,7 @@ struct SpecificationParametersStruct
   std::string GroupPath;
   std::string Color;
   std::string SpecularColor;
+  std::string Opacity;
   std::string GlyphText;       // U3D Glyphs are not parsed by Acrobat
   std::string ModelVisibility;
   std::string MetaDataKey;

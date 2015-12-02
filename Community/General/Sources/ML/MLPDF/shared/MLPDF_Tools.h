@@ -121,6 +121,10 @@ public:
   static std::string FormatColorString(Vector3 colorValue, float alphaValue);
   static std::string FormatVec3String(Vector3 vectorValue);
 
+  // Converts float/double to string.
+  static std::string FormatDouble(double value);
+  static std::string FormatFloat(float value);
+
   //***********************************************************************************
 
   // Get data from object (point cloud, line set, mesh) specification fields
