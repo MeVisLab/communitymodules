@@ -349,6 +349,7 @@ std::string PDF3DFigurePage_SavePDF::_getDefaultViewSpecificationFromU3DMetaData
     result += "<DisplayName>Default View</DisplayName>";
     result += "<BackgroundColor>1.000 1.000 1.000</BackgroundColor>";
     result += "<LightingScheme>10</LightingScheme>";
+    result += "<RenderMode>0</RenderMode>";
     result += "<CamCenterOfOrbit>" + mlPDF::PDFTools::FormatVec3String(camCenterOfOrbit) + "</CamCenterOfOrbit>\n";
     result += "<CamCenterToCamera>" + mlPDF::PDFTools::FormatVec3String(camCenterToCamera) + "</CamCenterToCamera>\n";
     result += "<CamRadiusOfOrbit>" + mlPDF::floatToString(camRadiusOfOrbit) + "</CamRadiusOfOrbit>\n";

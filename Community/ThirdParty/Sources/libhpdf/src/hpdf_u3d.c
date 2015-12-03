@@ -43,19 +43,19 @@ static HPDF_STATUS Get3DStreamType (HPDF_Stream  stream, const char **type)
 
 	len = 4;
 	if (HPDF_Stream_Read (stream, tag, &len) != HPDF_OK) {
-	  HPDF_STATUS errorCode = HPDF_Error_GetCode (stream->error);
-	  if (errorCode != HPDF_OK)
-	  {
-	    return errorCode;
-	  }
-	  else
-	  {
-	    return HPDF_INVALID_U3D_DATA;
-	  }
+    HPDF_STATUS errorCode = HPDF_Error_GetCode (stream->error);
+    if (errorCode != HPDF_OK)
+    {
+      return errorCode;
     }
+    else
+    {
+      return HPDF_INVALID_U3D_DATA;
+    }
+  }
 
 	if (HPDF_Stream_Seek (stream, 0, HPDF_SEEK_SET) != HPDF_OK) {
-		return HPDF_Error_GetCode (stream->error);
+    return HPDF_Error_GetCode (stream->error);
 	}
 
 	if (HPDF_MemCmp(tag, (HPDF_BYTE *)u3d, 4/* yes, \0 is required */) == 0) {
@@ -133,9 +133,7 @@ HPDF_LoadU3DFromFile  (HPDF_Doc     pdf,
 	}
 
 	/* destroy file stream */
-  if (imagedata) {
-	  HPDF_Stream_Free (imagedata);
-  }
+	HPDF_Stream_Free (imagedata);
 
 	if (!image) {
 		HPDF_CheckError (&pdf->error);
@@ -629,8 +627,7 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetLighting(HPDF_Dict view, const char *sch
 	HPDF_STATUS ret = HPDF_OK;
 	HPDF_Dict lighting;
 	int i;
-	static const char * const schemes[] =
-	{ "Artwork", "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "Headlamp" };
+	static const char * const schemes[] = { "Artwork", "None", "White", "Day", "Night", "Hard", "Primary", "Blue", "Red", "Cube", "CAD", "Headlamp" };
 
 	HPDF_PTRACE ((" HPDF_3DView_SetLighting\n"));
 
@@ -670,7 +667,57 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetLighting(HPDF_Dict view, const char *sch
 		HPDF_Dict_Free (lighting);
 		return ret;
 	}
+
 	return ret;
+}
+
+HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetRenderMode(HPDF_Dict view, const char *mode)
+{
+  HPDF_STATUS ret = HPDF_OK;
+  HPDF_Dict renderMode;
+  int i;
+  static const char * const modes[] = { "Solid", "SolidWireframe", "Transparent", "TransparentWireframe", "BoundingBox", "TransparentBoundingBox", "TransparentBoundingBoxOutline", "Wireframe", "ShadedWireframe", "HiddenWireframe", "Vertices", "ShadedVertices", "Illustration", "SolidOutline", "ShadedIllustration" };
+
+  HPDF_PTRACE((" HPDF_3DView_SetRenderMode\n"));
+
+  if (view == NULL || mode == NULL || mode[0] == '\0') {
+    return HPDF_INVALID_U3D_DATA;
+  }
+
+  for (i = 0; i < 15; i++) {
+    if (!strcmp(mode, modes[i])) {
+      break;
+    }
+  }
+
+  if (i == 15) {
+    return HPDF_INVALID_U3D_DATA;
+  }
+
+  renderMode = HPDF_Dict_New(view->mmgr);
+  if (!renderMode) {
+    return HPDF_Error_GetCode(view->error);
+  }
+
+  ret = HPDF_Dict_AddName(renderMode, "Type", "3DRenderMode");
+  if (ret != HPDF_OK) {
+    HPDF_Dict_Free(renderMode);
+    return ret;
+  }
+
+  ret = HPDF_Dict_AddName(renderMode, "Subtype", mode);
+  if (ret != HPDF_OK) {
+    HPDF_Dict_Free(renderMode);
+    return ret;
+  }
+
+  ret = HPDF_Dict_Add(view, "RM", renderMode);
+  if (ret != HPDF_OK) {
+    HPDF_Dict_Free(renderMode);
+    return ret;
+  }
+
+  return ret;
 }
 
 HPDF_EXPORT(HPDF_STATUS) HPDF_3DView_SetBackgroundColor(HPDF_Dict view, HPDF_REAL r, HPDF_REAL g, HPDF_REAL b)

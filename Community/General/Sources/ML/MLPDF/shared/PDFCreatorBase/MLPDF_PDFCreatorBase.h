@@ -214,6 +214,9 @@ protected:
   void pdfDoc_3DView_SetBackgroundColor(mlPDF::VIEW3D view, float r, float g, float b);
   void pdfDoc_3DView_SetBackgroundColor(mlPDF::VIEW3D view, Vector3 color);
 
+  // Set render mode for 3D view.
+  void pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D view, mlPDF::MODEL_RENDERMODES renderMode);
+
   // Set camera for 3D view.
   void pdfDoc_3DView_SetPerspectiveCamera(mlPDF::VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float fieldOfView, float cameraRollDegrees = 0);
   void pdfDoc_3DView_SetOrthogonalCamera(mlPDF::VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float scaleFactor, float cameraRollDegrees = 0);

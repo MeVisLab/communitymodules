@@ -26,6 +26,12 @@ Description {
     }
   }
   
+  Field viewRenderMode { 
+    items {
+      item TransparentBoundingBoxOutline { title = "Transparent BB Outline" }
+    }
+    
+  }
 }
 
 Interface {
@@ -53,6 +59,7 @@ Interface {
     Field viewDisplayName          { internalName = PDF3DFigurePage_Utils.newViewDisplayName }
     Field viewBackgroundColor      { internalName = PDF3DFigurePage_Utils.newViewBackgroundColor }
     Field viewLightingScheme       { internalName = PDF3DFigurePage_Utils.newViewLightingScheme }
+    Field viewRenderMode           { internalName = PDF3DFigurePage_Utils.newViewRenderMode }
     Field viewCameraCenterOfOrbit  { internalName = PDF3DFigurePage_Utils.cameraCenterOfOrbit }
     Field viewCameraCenterToCamera { internalName = PDF3DFigurePage_Utils.cameraCenterToCamera }
     Field viewCameraRadiusOfOrbit  { internalName = PDF3DFigurePage_Utils.cameraRadiusOfOrbit }
@@ -415,7 +422,10 @@ Window {
               
               Field viewDisplayName          { title = "View Display Name:" }
               Field viewBackgroundColor      { title = "Background Color:" }
-              Field viewLightingScheme       { title = "Lighting Scheme:" }
+              Field viewLightingScheme       { title = "Lighting Scheme*:" }
+              Field viewRenderMode           { title = "RenderMode*:" }
+              Separator {}
+              Label { title = @@* These settings are not illustrated in the preview.@@ }
               Separator {}
               Button addNewView              { title = "Add New View" expandX = Yes dependsOn = @@ viewDisplayName != "" @@ }
             }

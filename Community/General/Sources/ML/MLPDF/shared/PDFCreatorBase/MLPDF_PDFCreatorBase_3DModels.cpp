@@ -147,6 +147,7 @@ VIEW3D PDFCreatorBase::pdfDoc_3DModel_CreateViewFromSpecificationString(std::str
   std::string displayName   = PDFTools::getSpecificParameterFromString(specificationString, "<DisplayName>", "Default View");
   Vector3 backgroundColor   = PDFTools::getColorVec3FromString(PDFTools::getSpecificParameterFromString(specificationString, "<BackgroundColor>"), Vector3(0, 0, 0));
   int lightingScheme        = stringToInt(PDFTools::getSpecificParameterFromString(specificationString, "<LightingScheme>", "9"));
+  int renderMode            = stringToInt(PDFTools::getSpecificParameterFromString(specificationString, "<RenderMode>", "0"));
   Vector3 camCenterOfOrbit  = PDFTools::getVec3FromString(PDFTools::getSpecificParameterFromString(specificationString, "<CamCenterOfOrbit>"), Vector3(0, 0, 0));
   Vector3 camCenterToCamera = PDFTools::getVec3FromString(PDFTools::getSpecificParameterFromString(specificationString, "<CamCenterToCamera>"), Vector3(0, 0, 0));
   float camRadiusOfOrbit    = (float)stringToDouble(PDFTools::getSpecificParameterFromString(specificationString, "<CamRadiusOfOrbit>", "0"));
@@ -157,6 +158,7 @@ VIEW3D PDFCreatorBase::pdfDoc_3DModel_CreateViewFromSpecificationString(std::str
   newView = pdfDoc_3DModel_CreateView(displayName, (LIGHTING_SCHEMES)lightingScheme, backgroundColor);
 
   pdfDoc_3DView_SetPerspectiveCamera(newView, camCenterOfOrbit, camRadiusOfOrbit, camCenterToCamera, camFOVAngle, camRollAngle);
+  pdfDoc_3DView_SetRenderMode(newView, (MODEL_RENDERMODES)renderMode);
 
   pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(newView, nodes);
 
@@ -190,6 +192,16 @@ void PDFCreatorBase::pdfDoc_3DView_SetBackgroundColor(VIEW3D view, Vector3 color
   if (view)
   {
     pdfDoc_3DView_SetBackgroundColor(view, (float)color.x, (float)color.y, (float)color.z);
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFCreatorBase::pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D view, mlPDF::MODEL_RENDERMODES renderMode)
+{
+  if (view)
+  {
+    HPDF_3DView_SetRenderMode(view, ModelRenderModeStrings[(int)renderMode]);
   }
 }
 

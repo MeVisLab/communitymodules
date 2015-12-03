@@ -93,7 +93,8 @@ Window "Main Panel" {
           expandX = Yes
           Field newViewDisplayName      { title = "View Display Name:" }
           Field newViewBackgroundColor  { title = "Background Color:" }
-          Field newViewLightingScheme   { title = "Lighting Scheme:" }
+          Field newViewLightingScheme   { title = "Lighting Scheme*:" }
+          Field newViewRenderMode       { title = "Render Mode*:" }
           Field cameraCenterOfOrbit     { title = "Center of Orbit:" edit = No expandX = Yes }
           Field cameraCenterToCamera    { title = "Center to Camera:" edit = No expandX = Yes }
           Field cameraRadiusOfOrbit     { title = "Radius of Orbit:" edit = No expandX = Yes editAlign = Left }

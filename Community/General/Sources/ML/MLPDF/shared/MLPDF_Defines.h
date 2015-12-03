@@ -164,6 +164,44 @@ namespace mlPDF
     "HeadLamp"
   };
 
+  enum MODEL_RENDERMODES {
+    MODEL_RENDERMODE_SOLID = 0,
+    MODEL_RENDERMODE_SOLIDWIREFRAME,
+    MODEL_RENDERMODE_TRANSPARENT,
+    MODEL_RENDERMODE_TRANSPARENTWIREFRAME,
+    MODEL_RENDERMODE_BOUNDINGBOX,
+    MODEL_RENDERMODE_TRANSPARENTBOUNDINGBOX,
+    MODEL_RENDERMODE_TRANSPARENTBOUNDINGBOXOUTLINE,
+    MODEL_RENDERMODE_WIREFRAME,
+    MODEL_RENDERMODE_SHADEDWIREFRAME,
+    MODEL_RENDERMODE_HIDDENWIREFRAME,
+    MODEL_RENDERMODE_VERTICES,
+    MODEL_RENDERMODE_SHADEDVERTICES,
+    MODEL_RENDERMODE_ILLUSTRATION,
+    MODEL_RENDERMODE_SOLIDOUTLINE,
+    MODEL_RENDERMODE_SHADEDILLUSTRATION,
+
+    NUM_MODEL_RENDERMODES
+  };
+
+  const char* const ModelRenderModeStrings[NUM_MODEL_RENDERMODES] = {
+    "Solid",
+    "SolidWireframe",
+    "Transparent",
+    "TransparentWireframe",
+    "BoundingBox",
+    "TransparentBoundingBox",
+    "TransparentBoundingBoxOutline",
+    "Wireframe",
+    "ShadedWireframe",
+    "HiddenWireframe",
+    "Vertices",
+    "ShadedVertices",
+    "Illustration",
+    "SolidOutline",
+    "ShadedIllustration"
+  };
+
   enum TEXT_ALIGNMENTS {
     TEXTALIGNMENT_LEFT = HPDF_TALIGN_LEFT,
     TEXTALIGNMENT_RIGHT = HPDF_TALIGN_RIGHT,
