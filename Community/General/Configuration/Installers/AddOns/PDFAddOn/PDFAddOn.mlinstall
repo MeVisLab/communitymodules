@@ -2,19 +2,29 @@
 # MeVisLab PDFAddOn Installer
 #---------------------------------------------------------------------
 
+# Name of the product
 $PRODUCT MeVisLabPDFAddOn
 
-$DEBUG   1
+# Version of the product
+$VERSION 1.0
+
+# Include release DLLs and executables
 $RELEASE 1
+
+# Include debug DLLs and executables
+$DEBUG   1
+
+# precompile all python files
+$INSTALLER_COMPILE_ALL_PYTHON_FILES 1
+
+# Specify the license text
+$INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/PDFAddOn/PDFAddOnLicense.txt
 
 # make sure that header files contain correct header and that hidden sections are removed
 #$PUBLIC_MEVISLAB 1
 
-# change the default license text
-$INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/PDFAddOn/PDFAddOnLicense.txt
- 
 #---------------------------------------------------------------------
-INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
+INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
 #---------------------------------------------------------------------
 
 # Collecting files for AddOn:
@@ -29,7 +39,68 @@ INCLUDE $(MLAB_MeVis_Foundation)/Configuration/Installers/Shared/AddOns/defaultM
 
 SWITCH_PACKAGE Community/General
 + Package.def
++ lib/MLBaseListExtensions*.dll
++ lib/MLBaseListExtensions*.lib
++ lib/MLPDF*.dll
++ lib/MLPDF*.lib
++ lib/PDF3DFigurePage*.dll
++ lib/PDF3DFigurePage*.lib
++ lib/SavePDFTemplate*.dll
++ lib/SavePDFTemplate*.lib
 + Modules/ML/MLBaseListExtensions
++ Sources/ML/MLBaseListExtensions/ColoredMarkerList
++ Sources/ML/MLBaseListExtensions/IndexPairList
++ Sources/ML/MLBaseListExtensions/ListTools
++ Sources/ML/MLBaseListExtensions/MarkerListImport
++ Sources/ML/MLBaseListExtensions/shared
++ Sources/ML/MLBaseListExtensions/MLBaseListExtensions.bat
++ Sources/ML/MLBaseListExtensions/MLBaseListExtensions.sh
++ Sources/ML/MLBaseListExtensions/MLBaseListExtensions.pro
++ Sources/ML/MLBaseListExtensions/MLBaseListExtensionsInit.h
++ Sources/ML/MLBaseListExtensions/MLBaseListExtensionsInit.cpp
++ Sources/ML/MLBaseListExtensions/MLBaseListExtensionsSystem.h
 + Modules/ML/MLPDF
++ Sources/ML/MLPDF/LoadPointLineGeometry
++ Sources/ML/MLPDF/LoadU3D
++ Sources/ML/MLPDF/PDFUtils
++ Sources/ML/MLPDF/SavePRC
++ Sources/ML/MLPDF/SaveU3D
++ Sources/ML/MLPDF/shared
++ Sources/ML/MLPDF/MLPDF.bat
++ Sources/ML/MLPDF/MLPDF.sh
++ Sources/ML/MLPDF/MLPDF.pro
++ Sources/ML/MLPDF/MLPDFInit.h
++ Sources/ML/MLPDF/MLPDFInit.cpp
++ Sources/ML/MLPDF/MLPDFSystem.h
 + Projects/PDF3DFigurePage/Modules
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_LoadPointLineGeometry
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_SavePDF
+- Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_SavePDF/3DFigureExample.*
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_Utils
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePage.bat
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePage.sh
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePage.pro
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePageInit.h
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePageInit.cpp
++ Projects/PDF3DFigurePage/Sources/PDF3DFigurePageSystem.h
 + Projects/PDFExamples/Modules
++ Projects/PDFExamples/Sources/SavePDFTemplate.bat
++ Projects/PDFExamples/Sources/SavePDFTemplate.sh
++ Projects/PDFExamples/Sources/SavePDFTemplate.pro
++ Projects/PDFExamples/Sources/SavePDFTemplate.h
++ Projects/PDFExamples/Sources/SavePDFTemplate.cpp
++ Projects/PDFExamples/Sources/SavePDFTemplateInit.h
++ Projects/PDFExamples/Sources/SavePDFTemplateInit.cpp
++ Projects/PDFExamples/Sources/SavePDFTemplateSystem.h
+
+SWITCH_PACKAGE Community/ThirdParty
++ Package.def
++ lib
+- lib/*.mldepends
+- lib/updated
++ Sources/libhpdf/include
++ Sources/libhpdf/src
++ Sources/libhpdf/hpdf_config.h
++ Sources/libhpdf/libhpdf.bat
++ Sources/libhpdf/libhpdf.pro
++ Sources/libhpdf/libhpdf.sh
