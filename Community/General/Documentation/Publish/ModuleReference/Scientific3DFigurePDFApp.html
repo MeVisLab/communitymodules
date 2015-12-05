@@ -1,0 +1,1122 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=latin1" />
+    
+    <title>Scientific3DFigurePDFApp &mdash; MeVisLab  documentation</title>
+    <link rel="stylesheet" href="_static/MeVisLab.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/MeVisLab.ico"/>
+    <link rel="top" title="MeVisLab  documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="scientific3dfigurepdfapp">
+<h1>Scientific3DFigurePDFApp<a class="headerlink" href="#scientific3dfigurepdfapp" title="Permalink to this headline">¶</a></h1>
+<dl class="module">
+<dt id="mlabmodule-Scientific3DFigurePDFApp">
+<tt class="descname">MacroModule</tt><a class="headerlink" href="#mlabmodule-Scientific3DFigurePDFApp" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+<tr><td>authors</td>
+<td><a class="reference internal" href="author.html# Newe, Axel" title="Newe, Axel"><tt class="xref mlab mlab-author docutils literal"><span class="pre">Axel</span> <span class="pre">Newe</span></tt></a>, <a class="reference internal" href="author.html# fau.de, at, axel.newe" title="fau.de, at, axel.newe"><tt class="xref mlab mlab-author docutils literal"><span class="pre">axel.newe</span> <span class="pre">at</span> <span class="pre">fau.de</span></tt></a></td>
+</tr>
+<tr><td>package</td>
+<td><a class="reference internal" href="index.html#top" title="Community/General"><tt class="xref mlab mlab-package docutils literal"><span class="pre">Community/General</span></tt></a></td>
+</tr>
+<tr><td>definition</td>
+<td><a class="reference external" href="../../../Projects/PDF3DFigurePage/Modules/PDF3DFigurePage.def">PDF3DFigurePage.def</a></td>
+</tr>
+<tr><td>keywords</td>
+<td><a class="reference internal" href="keyword.html#pdf" title="PDF"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">PDF</span></tt></a>, <a class="reference internal" href="keyword.html#u3d" title="U3D"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">U3D</span></tt></a>, <a class="reference internal" href="keyword.html#3d" title="3D"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">3D</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="purpose">
+<h1>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h1>
+<p>This module provides an integrated application for creating two types of files:</p>
+<ul class="simple">
+<li>U3D files which can be embedded into Portable Document Format (PDF) for creating interactive figures and</li>
+<li>a PDF document with pre-defined layout which includes such an embedded interactive figure.</li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>The creation of PDF documents is done entirely on the &quot;PDF Page&quot; tab (see Details section below).</p>
+<p>For creating U3D files, there are two approaches:</p>
+<ul class="simple">
+<li>connecting input data to the four input connectors or</li>
+<li>assembling the  data with the build in assistant (Tab &quot;3D Model&quot; -&gt; Tab &quot;Assemble Model&quot;).</li>
+</ul>
+<p>The input connectors work  as described for the  <a class="reference internal" href="SaveU3D.html#SaveU3D" title="SaveU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">SaveU3D</span></tt></a> module (see there). Assembling the module by means of the assistant is described in the &quot;Details&quot; section below.</p>
+</div>
+<div class="section" id="details">
+<h1>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-u3d-model-files">
+<h2>Creating U3D model files<a class="headerlink" href="#creating-u3d-model-files" title="Permalink to this headline">¶</a></h2>
+<p>Universal 3D (U3D) is a compressed file format standard for 3D computer graphics data which is standardized by Ecma International as ECMA-363. This module internally uses the <a class="reference internal" href="SaveU3D.html#SaveU3D" title="SaveU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">SaveU3D</span></tt></a> module for creating the U3D files.</p>
+<p>Select the &quot;3D Model&quot; tab to create a U3D file.</p>
+<p>Input data can be collected in two ways: either by feeding it to the input connectors or by assembling it by means of the built-in assistant. The former way is for experienced MeVisLab users and allows for attaching this macro at the end of a processing chain. Enable the <a class="reference internal" href="#mlabfield-useinputconnectors" title="Use Input Connectors"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Input</span> <span class="pre">Connectors</span></tt></a> checkbox if you want to use this option. In order to assemble the model by means of the built-in assisstant, enable the <a class="reference internal" href="#mlabfield-loaddatamanually" title="Load Data Manually"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Load</span> <span class="pre">Data</span> <span class="pre">Manually</span></tt></a> checkbox.</p>
+</div>
+<div class="section" id="assembling-the-model">
+<h2>Assembling the model<a class="headerlink" href="#assembling-the-model" title="Permalink to this headline">¶</a></h2>
+<p><strong>Using input connectors</strong></p>
+<p>If the <a class="reference internal" href="#mlabfield-useinputconnectors" title="Use Input Connectors"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Input</span> <span class="pre">Connectors</span></tt></a> checkbox is enabled, the model data is loaded from the input connectors and all controls on the <em>Assemble Model</em> tab. However, the <em>Assemble Model</em> tab can still be used to preview the model.</p>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-AssembleModel2.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-AssembleModel2.png" />
+<p><strong>Manual assembly</strong></p>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-AssembleModel.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-AssembleModel.png" />
+<p>The model can also be assembled manually by importing each object step-by-step. Three types of geometries can be imported: point clouds, line sets and meshes.</p>
+<p>Each type of geometry has its own box of controls to import. The first step is always to load the object by means of the appropriate <em>Load {Points|Lines|Mesh} Object</em> button. After successfully loading the object, it is shown highlighted in the preview area, while all previously added objects are displayed faded. If you are happy with the object, click <em>Add Imported Model</em> in the <em>Add Object</em> box. It is then permanently added to the model. If you do not want to add a loaded object, click <em>Unload</em> in the appropriate box. All models of a kind can be removed at once by means of the appropriate button in the <em>Remove Objects</em> box. It is not possible to remove a specific object.</p>
+<p>Each type of geometry has its specific import options:</p>
+<p><strong>Point Set import</strong></p>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportPointSets.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportPointSets.png" />
+<p>Point Sets can be imported from text files, e.g., CSV files. A point set definition shall start with a header which consists of an identifier and a numerical value:</p>
+<p><tt class="docutils literal"><span class="pre">Points</span> <span class="pre">1</span></tt></p>
+<p>The identifier which is used for filtering point sets out of a larger file can be specified by means of the <em>ID</em> field. By default it is &quot;Points&quot;.</p>
+<p>The header can also have an optional name. Everything after the numerical value is interpreted as name:</p>
+<p><tt class="docutils literal"><span class="pre">Points</span> <span class="pre">1</span> <span class="pre">Anchor</span> <span class="pre">Points</span></tt></p>
+<p>The point set definition shall then continue with the coordinates of each point. Each coordinate shall consist of three values (x, y, z) and be listed in a separate line. The values can be separated either by a semicolon (&quot;;&quot;) or by a space. The decimal delimiter shall be a decimal point (&quot;.&quot;):</p>
+<p><tt class="docutils literal"><span class="pre">78.873;-30.2173;-109.254</span></tt> or <tt class="docutils literal"><span class="pre">63.9515</span> <span class="pre">-16.5974</span> <span class="pre">-76.5908</span></tt></p>
+<p>A full Point Set definition typically looks like this:</p>
+<div class="highlight-python"><pre>Points 1 Anchor Points
+78.873;-30.2173;-109.254
+63.9515;-16.5974;-76.5908
+41.5693;-7.5175;-54.8151
+26.6479;-10.6914;-47.1012
+7.99605;-19.9401;-20.2392</pre>
+</div>
+<p><strong>Line Set import</strong></p>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportLineSets.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportLineSets.png" />
+<p>Just like Point Sets, Line Sets can be imported from text files (CSV etc.) as well. A Line Set definition shall also start with a header, just like a Point Set definition:</p>
+<p><tt class="docutils literal"><span class="pre">Lines</span> <span class="pre">1</span></tt> or <tt class="docutils literal"><span class="pre">Lines</span> <span class="pre">1</span> <span class="pre">Centerline</span></tt></p>
+<p>It shall then continue with two lists: a list of positions and a list of connections.</p>
+<p>The list of positions shall be a list of coordinates that define the positions in the model space that are touched by a line. These positions must be specified just like the Point Set positions described above.</p>
+<p>The list of connections shall be a list of pairs, where every pair specifies the indices of two positions that are connected by one segment of a line. The  pairs must be integer numbers and can be separated either by a semicolon (&quot;;&quot;) or by a space:</p>
+<p><tt class="docutils literal"><span class="pre">0;1</span></tt> or <tt class="docutils literal"><span class="pre">5</span> <span class="pre">8</span></tt></p>
+<p>The numbering of indices starts with &quot;0&quot;, so the index of the first position in the positions list is &quot;0&quot;. The list of connections can be omitted. If no list of connections is provided, all positions of the list of positions are connected automatically, in order of their appearance.</p>
+<p>A full Line Set definition typically looks like this:</p>
+<div class="highlight-python"><pre>Lines 1 Axes
+31 -144 1118
+154 -144 1118
+92 -209 1118
+92 -78 1118
+92 -144 899
+92 -144 1338
+0 1
+2 3
+4 5</pre>
+</div>
+<p><strong>Mesh import</strong></p>
+<p>Meshes can be imported from a number of formats. See <a class="reference internal" href="../../../../../MeVisLab/Standard/Documentation/Publish/ModuleReference/WEMSceneLoader.html#WEMSceneLoader" title="WEMSceneLoader"><tt class="xref mlab mlab-module docutils literal"><span class="pre">WEMSceneLoader</span></tt></a> for a full list of supported formats.</p>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportMeshes.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportMeshes.png" />
+<p>After loading a mesh, the number of faces can be reduced before it is added to the model. Click the <em>Use Reduced Mesh</em> button and adjust the reduction ration by means of the <em>Reduction %</em> field or the slider below the field.</p>
+<p><strong>Adding the imported object</strong></p>
+<p>After importing an object, click the <em>Add Imported Object</em> button in the <em>Add Object</em> box to permanently add the object to the model.</p>
+<p><strong>Deleting all objects of a kind</strong></p>
+<p>All models of a kind can be removed at once from the model by means of the appropriate button in the <em>Remove Objects</em> box. It is not possible to remove a specific object from the model.</p>
+</div>
+<div class="section" id="editing-point-sets">
+<h2>Editing Point Sets<a class="headerlink" href="#editing-point-sets" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-EditPoints.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-EditPoints.png" />
+<p>lorem</p>
+</div>
+<div class="section" id="editing-line-sets">
+<h2>Editing Line Sets<a class="headerlink" href="#editing-line-sets" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-EditLines.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-EditLines.png" />
+<p>lorem</p>
+</div>
+<div class="section" id="editing-meshes">
+<h2>Editing Meshes<a class="headerlink" href="#editing-meshes" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-EditMeshes.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-EditMeshes.png" />
+<p>lorem</p>
+</div>
+<div class="section" id="creating-views">
+<h2>Creating Views<a class="headerlink" href="#creating-views" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-CreateViews.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-CreateViews.png" />
+<p>lorem</p>
+</div>
+<div class="section" id="saving-the-model-to-u3d">
+<h2>Saving the Model to U3D<a class="headerlink" href="#saving-the-model-to-u3d" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-SaveModel.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-SaveModel.png" />
+<p>lorem</p>
+</div>
+<div class="section" id="creating-poster-images">
+<h2>Creating Poster Images<a class="headerlink" href="#creating-poster-images" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-CreatePosterImage.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-CreatePosterImage.png" />
+<p>lorem</p>
+</div>
+<div class="section" id="editing-the-pdf-page">
+<h2>Editing the PDF Page<a class="headerlink" href="#editing-the-pdf-page" title="Permalink to this headline">¶</a></h2>
+<img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.PDFPage.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.PDFPage.png" />
+<p>lorem</p>
+</div>
+</div>
+<div class="section" id="input-fields">
+<span id="id1"></span><h1>Input Fields<a class="headerlink" href="#input-fields" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="inwem">
+<span id="mlabfield-inwem"></span><span id="id2"></span><h2>inWEM<a class="headerlink" href="#inwem" title="Permalink to this headline">¶</a></h2>
+<dl class="field">
+<dt id="mlabfieldname-inWEM">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">inWEM</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">MLBase</tt><a class="headerlink" href="#mlabfieldname-inWEM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="inpointpositions">
+<span id="mlabfield-inpointpositions"></span><span id="id3"></span><h2>inPointPositions<a class="headerlink" href="#inpointpositions" title="Permalink to this headline">¶</a></h2>
+<dl class="field">
+<dt id="mlabfieldname-inPointPositions">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">inPointPositions</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">MLBase</tt><a class="headerlink" href="#mlabfieldname-inPointPositions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="inlinepositions">
+<span id="mlabfield-inlinepositions"></span><span id="id4"></span><h2>inLinePositions<a class="headerlink" href="#inlinepositions" title="Permalink to this headline">¶</a></h2>
+<dl class="field">
+<dt id="mlabfieldname-inLinePositions">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">inLinePositions</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">MLBase</tt><a class="headerlink" href="#mlabfieldname-inLinePositions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="inlineconnections">
+<span id="mlabfield-inlineconnections"></span><span id="id5"></span><h2>inLineConnections<a class="headerlink" href="#inlineconnections" title="Permalink to this headline">¶</a></h2>
+<dl class="field">
+<dt id="mlabfieldname-inLineConnections">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">inLineConnections</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">MLBase</tt><a class="headerlink" href="#mlabfieldname-inLineConnections" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="parameter-fields">
+<span id="id6"></span><h1>Parameter Fields<a class="headerlink" href="#parameter-fields" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="field-index">
+<h2>Field Index<a class="headerlink" href="#field-index" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="parameter-fields-index docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+<tr><td><a class="reference internal" href="#mlabfield-addimportedmodel" title="Add Imported Model"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span> <span class="pre">Imported</span> <span class="pre">Model</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedlinesetgrouppath" title="Group Path (selectedLineSetGroupPath)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Group</span> <span class="pre">Path</span> <span class="pre">(selectedLineSetGroupPath)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-removeallpoints" title="Remove All Points"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Remove</span> <span class="pre">All</span> <span class="pre">Points</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-addnewview" title="Add New View"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span> <span class="pre">New</span> <span class="pre">View</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedpointsetgrouppath" title="Group Path (selectedPointSetGroupPath)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Group</span> <span class="pre">Path</span> <span class="pre">(selectedPointSetGroupPath)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewrendermode" title="RenderMode*"><tt class="xref mlab mlab-field docutils literal"><span class="pre">RenderMode*</span></tt></a>: <tt class="docutils literal"><span class="pre">Enum</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-addlinestomodel" title="addLinesToModel"><tt class="xref mlab mlab-field docutils literal"><span class="pre">addLinesToModel</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-headercitationtext" title="Header Citation Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Citation</span> <span class="pre">Text</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-resetpreview" title="Reset"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Reset</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-addmeshtomodel" title="addMeshToModel"><tt class="xref mlab mlab-field docutils literal"><span class="pre">addMeshToModel</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-headerheadlinetext" title="Header Headline Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Headline</span> <span class="pre">Text</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-saveu3d" title="Save Model"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Save</span> <span class="pre">Model</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-addpointstomodel" title="addPointsToModel"><tt class="xref mlab mlab-field docutils literal"><span class="pre">addPointsToModel</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-loadpointsfilter" title="ID (loadPointsFilter)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">ID</span> <span class="pre">(loadPointsFilter)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-savepdf" title="Save PDF"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Save</span> <span class="pre">PDF</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-availablelinesets" title="availableLineSets"><tt class="xref mlab mlab-field docutils literal"><span class="pre">availableLineSets</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-loadlinesfilter" title="ID (loadLinesFilter)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">ID</span> <span class="pre">(loadLinesFilter)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-saveposter" title="Save Poster"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Save</span> <span class="pre">Poster</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-availablepointsets" title="availablePointSets"><tt class="xref mlab mlab-field docutils literal"><span class="pre">availablePointSets</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewlightingscheme" title="Lighting Scheme*"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Lighting</span> <span class="pre">Scheme*</span></tt></a>: <tt class="docutils literal"><span class="pre">Enum</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-savepdfstatus" title="savePDFStatus"><tt class="xref mlab mlab-field docutils literal"><span class="pre">savePDFStatus</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-availablewempatches" title="availableWEMPatches"><tt class="xref mlab mlab-field docutils literal"><span class="pre">availableWEMPatches</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedlineset" title="Line Set"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Line</span> <span class="pre">Set</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-saveposterstatus" title="savePosterStatus"><tt class="xref mlab mlab-field docutils literal"><span class="pre">savePosterStatus</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-viewbackgroundcolor" title="Background Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Background</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-showlinespreview" title="Lines"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Lines</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-saveu3dstatus" title="saveU3DStatus"><tt class="xref mlab mlab-field docutils literal"><span class="pre">saveU3DStatus</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-camerafardistance" title="cameraFarDistance"><tt class="xref mlab mlab-field docutils literal"><span class="pre">cameraFarDistance</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-loaddatamanually" title="Load Data Manually"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Load</span> <span class="pre">Data</span> <span class="pre">Manually</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-showpointspreviesize" title="Show Points Previe Size"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Show</span> <span class="pre">Points</span> <span class="pre">Previe</span> <span class="pre">Size</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-camerafocaldistance" title="cameraFocalDistance"><tt class="xref mlab mlab-field docutils literal"><span class="pre">cameraFocalDistance</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-loadlinesmodel" title="Load Lines Model"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Load</span> <span class="pre">Lines</span> <span class="pre">Model</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-cancelimport" title="Unload"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Unload</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-cameraheight" title="cameraHeight"><tt class="xref mlab mlab-field docutils literal"><span class="pre">cameraHeight</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-loadmeshmodel" title="Load Mesh Model"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Load</span> <span class="pre">Mesh</span> <span class="pre">Model</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedwempatchusedefaultcolor" title="Use Default Color (selectedWEMPatchUseDefaultColor)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Default</span> <span class="pre">Color</span> <span class="pre">(selectedWEMPatchUseDefaultColor)</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-cameraneardistance" title="cameraNearDistance"><tt class="xref mlab mlab-field docutils literal"><span class="pre">cameraNearDistance</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-loadpointsmodel" title="Load Points Model"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Load</span> <span class="pre">Points</span> <span class="pre">Model</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedlinesetusedefaultcolor" title="Use Default Color (selectedLineSetUseDefaultColor)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Default</span> <span class="pre">Color</span> <span class="pre">(selectedLineSetUseDefaultColor)</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-cameraorientation" title="cameraOrientation"><tt class="xref mlab mlab-field docutils literal"><span class="pre">cameraOrientation</span></tt></a>: <tt class="docutils literal"><span class="pre">Rotation</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedwempatch" title="Mesh"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Mesh</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-useinputconnectors" title="Use Input Connectors"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Input</span> <span class="pre">Connectors</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-cameraposition" title="cameraPosition"><tt class="xref mlab mlab-field docutils literal"><span class="pre">cameraPosition</span></tt></a>: <tt class="docutils literal"><span class="pre">Vector3</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-showmeshpreview" title="Meshes"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Meshes</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-usereducedmesh" title="Use Reduced Mesh"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Reduced</span> <span class="pre">Mesh</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-caption" title="Caption"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Caption</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedwempatchnewlabel" title="Name (selectedWEMPatchNewLabel)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Name</span> <span class="pre">(selectedWEMPatchNewLabel)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewdisplayname" title="View Display Name"><tt class="xref mlab mlab-field docutils literal"><span class="pre">View</span> <span class="pre">Display</span> <span class="pre">Name</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-selectedwempatchcolor" title="Color (selectedWEMPatchColor)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Color</span> <span class="pre">(selectedWEMPatchColor)</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedlinesetnewlabel" title="Name (selectedLineSetNewLabel)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Name</span> <span class="pre">(selectedLineSetNewLabel)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewspecifications" title="View Specifications"><tt class="xref mlab mlab-field docutils literal"><span class="pre">View</span> <span class="pre">Specifications</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-selectedlinesetcolor" title="Color (selectedLineSetColor)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Color</span> <span class="pre">(selectedLineSetColor)</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedpointsetnewlabel" title="Name (selectedPointSetNewLabel)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Name</span> <span class="pre">(selectedPointSetNewLabel)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewcameracenteroforbit" title="viewCameraCenterOfOrbit"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewCameraCenterOfOrbit</span></tt></a>: <tt class="docutils literal"><span class="pre">Vector3</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-clearviews" title="Delete All Views"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Delete</span> <span class="pre">All</span> <span class="pre">Views</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedwempatchcoloralpha" title="Opacity"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Opacity</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewcameracentertocamera" title="viewCameraCenterToCamera"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewCameraCenterToCamera</span></tt></a>: <tt class="docutils literal"><span class="pre">Vector3</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-description" title="Description"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Description</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-selectedpointset" title="Point Set"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Point</span> <span class="pre">Set</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewcamerafovangle" title="viewCameraFOVAngle"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewCameraFOVAngle</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-filenamelinedefinitions" title="filenameLineDefinitions"><tt class="xref mlab mlab-field docutils literal"><span class="pre">filenameLineDefinitions</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-showpointspreview" title="Points"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Points</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewcameraradiusoforbit" title="viewCameraRadiusOfOrbit"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewCameraRadiusOfOrbit</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-filenamepointpositions" title="filenamePointPositions"><tt class="xref mlab mlab-field docutils literal"><span class="pre">filenamePointPositions</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-meshreductionratio" title="Reduction %"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Reduction</span> <span class="pre">%</span></tt></a>: <tt class="docutils literal"><span class="pre">Integer</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewcamerarollangle" title="viewCameraRollAngle"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewCameraRollAngle</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-filenamewem" title="filenameWEM"><tt class="xref mlab mlab-field docutils literal"><span class="pre">filenameWEM</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-removealllines" title="Remove All Lines"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Remove</span> <span class="pre">All</span> <span class="pre">Lines</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+<tr><td><a class="reference internal" href="#mlabfield-selectedwempatchgrouppath" title="Group Path (selectedWEMPatchGroupPath)"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Group</span> <span class="pre">Path</span> <span class="pre">(selectedWEMPatchGroupPath)</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-removeallmeshes" title="Remove All Meshes"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Remove</span> <span class="pre">All</span> <span class="pre">Meshes</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="visible-fields">
+<h2>Visible Fields<a class="headerlink" href="#visible-fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="use-input-connectors">
+<span id="useinputconnectors"></span><span id="mlabfield-useinputconnectors"></span><h3>Use Input Connectors<a class="headerlink" href="#use-input-connectors" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-useInputConnectors">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">useInputConnectors</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-useInputConnectors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="load-data-manually">
+<span id="loaddatamanually"></span><span id="mlabfield-loaddatamanually"></span><h3>Load Data Manually<a class="headerlink" href="#load-data-manually" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-loadDataManually">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">loadDataManually</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-loadDataManually" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="points">
+<span id="showpointspreview"></span><span id="mlabfield-showpointspreview"></span><h3>Points<a class="headerlink" href="#points" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-showPointsPreview">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">showPointsPreview</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-showPointsPreview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="show-points-previe-size">
+<span id="showpointspreviesize"></span><span id="mlabfield-showpointspreviesize"></span><h3>Show Points Previe Size<a class="headerlink" href="#show-points-previe-size" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-showPointsPrevieSize">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">showPointsPrevieSize</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">2</tt><tt class="descname" id="mlab_title">, minimum: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, maximum: </tt><tt class="descname" id="mlab_title">10</tt><a class="headerlink" href="#mlabfieldname-showPointsPrevieSize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="lines">
+<span id="showlinespreview"></span><span id="mlabfield-showlinespreview"></span><h3>Lines<a class="headerlink" href="#lines" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-showLinesPreview">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">showLinesPreview</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-showLinesPreview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="meshes">
+<span id="showmeshpreview"></span><span id="mlabfield-showmeshpreview"></span><h3>Meshes<a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-showMeshPreview">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">showMeshPreview</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-showMeshPreview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="reset">
+<span id="resetpreview"></span><span id="mlabfield-resetpreview"></span><h3>Reset<a class="headerlink" href="#reset" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-resetPreview">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">resetPreview</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-resetPreview" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="view-display-name">
+<span id="viewdisplayname"></span><span id="mlabfield-viewdisplayname"></span><h3>View Display Name<a class="headerlink" href="#view-display-name" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewDisplayName">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewDisplayName</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-viewDisplayName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="background-color">
+<span id="viewbackgroundcolor"></span><span id="mlabfield-viewbackgroundcolor"></span><h3>Background Color<a class="headerlink" href="#background-color" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewBackgroundColor">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewBackgroundColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Color</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">1 1 1</tt><a class="headerlink" href="#mlabfieldname-viewBackgroundColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="lighting-scheme">
+<span id="viewlightingscheme"></span><span id="mlabfield-viewlightingscheme"></span><h3>Lighting Scheme*<a class="headerlink" href="#lighting-scheme" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewLightingScheme">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewLightingScheme</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Enum</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">HeadLamp</tt><a class="headerlink" href="#mlabfieldname-viewLightingScheme" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="enum-field-values">Values:</p>
+<table border="1" class="enum-field-values docutils">
+<colgroup>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Title</th>
+<th class="head">Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>None</td>
+<td>None</td>
+</tr>
+<tr><td>White</td>
+<td>White</td>
+</tr>
+<tr><td>Day</td>
+<td>Day</td>
+</tr>
+<tr><td>Night</td>
+<td>Night</td>
+</tr>
+<tr><td>Hard</td>
+<td>Hard</td>
+</tr>
+<tr><td>Primary</td>
+<td>Primary</td>
+</tr>
+<tr><td>Blue</td>
+<td>Blue</td>
+</tr>
+<tr><td>Red</td>
+<td>Red</td>
+</tr>
+<tr><td>Cube</td>
+<td>Cube</td>
+</tr>
+<tr><td>CAD</td>
+<td>CAD</td>
+</tr>
+<tr><td>Head Lamp</td>
+<td>HeadLamp</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rendermode">
+<span id="viewrendermode"></span><span id="mlabfield-viewrendermode"></span><h3>RenderMode*<a class="headerlink" href="#rendermode" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewRenderMode">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewRenderMode</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Enum</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">Solid</tt><a class="headerlink" href="#mlabfieldname-viewRenderMode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="enum-field-values">Values:</p>
+<table border="1" class="enum-field-values docutils">
+<colgroup>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Title</th>
+<th class="head">Name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Solid</td>
+<td>Solid</td>
+</tr>
+<tr><td>Solid Wireframe</td>
+<td>SolidWireframe</td>
+</tr>
+<tr><td>Transparent</td>
+<td>Transparent</td>
+</tr>
+<tr><td>Transparent Wireframe</td>
+<td>TransparentWireframe</td>
+</tr>
+<tr><td>Bounding Box</td>
+<td>BoundingBox</td>
+</tr>
+<tr><td>Transparent Bounding Box</td>
+<td>TransparentBoundingBox</td>
+</tr>
+<tr><td>Transparent BB Outline</td>
+<td>TransparentBoundingBoxOutline</td>
+</tr>
+<tr><td>Wireframe</td>
+<td>Wireframe</td>
+</tr>
+<tr><td>Shaded Wireframe</td>
+<td>ShadedWireframe</td>
+</tr>
+<tr><td>Hidden Wireframe</td>
+<td>HiddenWireframe</td>
+</tr>
+<tr><td>Vertices</td>
+<td>Vertices</td>
+</tr>
+<tr><td>Shaded Vertices</td>
+<td>ShadedVertices</td>
+</tr>
+<tr><td>Illustration</td>
+<td>Illustration</td>
+</tr>
+<tr><td>Solid Outline</td>
+<td>SolidOutline</td>
+</tr>
+<tr><td>Shaded Illustration</td>
+<td>ShadedIllustration</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="view-specifications">
+<span id="viewspecifications"></span><span id="mlabfield-viewspecifications"></span><h3>View Specifications<a class="headerlink" href="#view-specifications" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewSpecifications">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewSpecifications</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-viewSpecifications" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="add-new-view">
+<span id="addnewview"></span><span id="mlabfield-addnewview"></span><h3>Add New View<a class="headerlink" href="#add-new-view" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-addNewView">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">addNewView</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-addNewView" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="delete-all-views">
+<span id="clearviews"></span><span id="mlabfield-clearviews"></span><h3>Delete All Views<a class="headerlink" href="#delete-all-views" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-clearViews">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">clearViews</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-clearViews" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="mesh">
+<span id="selectedwempatch"></span><span id="mlabfield-selectedwempatch"></span><h3>Mesh<a class="headerlink" href="#mesh" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedWEMPatch">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedWEMPatch</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedWEMPatch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="name-selectedwempatchnewlabel">
+<span id="selectedwempatchnewlabel"></span><span id="mlabfield-selectedwempatchnewlabel"></span><h3>Name (selectedWEMPatchNewLabel)<a class="headerlink" href="#name-selectedwempatchnewlabel" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedWEMPatchNewLabel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedWEMPatchNewLabel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedWEMPatchNewLabel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="group-path-selectedwempatchgrouppath">
+<span id="selectedwempatchgrouppath"></span><span id="mlabfield-selectedwempatchgrouppath"></span><h3>Group Path (selectedWEMPatchGroupPath)<a class="headerlink" href="#group-path-selectedwempatchgrouppath" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedWEMPatchGroupPath">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedWEMPatchGroupPath</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedWEMPatchGroupPath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="use-default-color-selectedwempatchusedefaultcolor">
+<span id="selectedwempatchusedefaultcolor"></span><span id="mlabfield-selectedwempatchusedefaultcolor"></span><h3>Use Default Color (selectedWEMPatchUseDefaultColor)<a class="headerlink" href="#use-default-color-selectedwempatchusedefaultcolor" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedWEMPatchUseDefaultColor">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedWEMPatchUseDefaultColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-selectedWEMPatchUseDefaultColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="color-selectedwempatchcolor">
+<span id="selectedwempatchcolor"></span><span id="mlabfield-selectedwempatchcolor"></span><h3>Color (selectedWEMPatchColor)<a class="headerlink" href="#color-selectedwempatchcolor" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedWEMPatchColor">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedWEMPatchColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Color</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 0</tt><a class="headerlink" href="#mlabfieldname-selectedWEMPatchColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="opacity">
+<span id="selectedwempatchcoloralpha"></span><span id="mlabfield-selectedwempatchcoloralpha"></span><h3>Opacity<a class="headerlink" href="#opacity" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedWEMPatchColorAlpha">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedWEMPatchColorAlpha</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, minimum: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, maximum: </tt><tt class="descname" id="mlab_title">1</tt><a class="headerlink" href="#mlabfieldname-selectedWEMPatchColorAlpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="line-set">
+<span id="selectedlineset"></span><span id="mlabfield-selectedlineset"></span><h3>Line Set<a class="headerlink" href="#line-set" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedLineSet">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedLineSet</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedLineSet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="name-selectedlinesetnewlabel">
+<span id="selectedlinesetnewlabel"></span><span id="mlabfield-selectedlinesetnewlabel"></span><h3>Name (selectedLineSetNewLabel)<a class="headerlink" href="#name-selectedlinesetnewlabel" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedLineSetNewLabel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedLineSetNewLabel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedLineSetNewLabel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="group-path-selectedlinesetgrouppath">
+<span id="selectedlinesetgrouppath"></span><span id="mlabfield-selectedlinesetgrouppath"></span><h3>Group Path (selectedLineSetGroupPath)<a class="headerlink" href="#group-path-selectedlinesetgrouppath" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedLineSetGroupPath">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedLineSetGroupPath</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedLineSetGroupPath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="use-default-color-selectedlinesetusedefaultcolor">
+<span id="selectedlinesetusedefaultcolor"></span><span id="mlabfield-selectedlinesetusedefaultcolor"></span><h3>Use Default Color (selectedLineSetUseDefaultColor)<a class="headerlink" href="#use-default-color-selectedlinesetusedefaultcolor" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedLineSetUseDefaultColor">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedLineSetUseDefaultColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-selectedLineSetUseDefaultColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="color-selectedlinesetcolor">
+<span id="selectedlinesetcolor"></span><span id="mlabfield-selectedlinesetcolor"></span><h3>Color (selectedLineSetColor)<a class="headerlink" href="#color-selectedlinesetcolor" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedLineSetColor">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedLineSetColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Color</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 0</tt><a class="headerlink" href="#mlabfieldname-selectedLineSetColor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="point-set">
+<span id="selectedpointset"></span><span id="mlabfield-selectedpointset"></span><h3>Point Set<a class="headerlink" href="#point-set" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedPointSet">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedPointSet</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedPointSet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="name-selectedpointsetnewlabel">
+<span id="selectedpointsetnewlabel"></span><span id="mlabfield-selectedpointsetnewlabel"></span><h3>Name (selectedPointSetNewLabel)<a class="headerlink" href="#name-selectedpointsetnewlabel" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedPointSetNewLabel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedPointSetNewLabel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedPointSetNewLabel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="group-path-selectedpointsetgrouppath">
+<span id="selectedpointsetgrouppath"></span><span id="mlabfield-selectedpointsetgrouppath"></span><h3>Group Path (selectedPointSetGroupPath)<a class="headerlink" href="#group-path-selectedpointsetgrouppath" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-selectedPointSetGroupPath">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedPointSetGroupPath</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-selectedPointSetGroupPath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="load-points-model">
+<span id="loadpointsmodel"></span><span id="mlabfield-loadpointsmodel"></span><h3>Load Points Model<a class="headerlink" href="#load-points-model" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-loadPointsModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">loadPointsModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-loadPointsModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="loadpointsfilter">
+<span id="mlabfield-loadpointsfilter"></span><span id="id-loadpointsfilter"></span><h3>ID (loadPointsFilter)<a class="headerlink" href="#loadpointsfilter" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-loadPointsFilter">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">loadPointsFilter</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">Points</tt><a class="headerlink" href="#mlabfieldname-loadPointsFilter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="load-lines-model">
+<span id="loadlinesmodel"></span><span id="mlabfield-loadlinesmodel"></span><h3>Load Lines Model<a class="headerlink" href="#load-lines-model" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-loadLinesModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">loadLinesModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-loadLinesModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="loadlinesfilter">
+<span id="mlabfield-loadlinesfilter"></span><span id="id-loadlinesfilter"></span><h3>ID (loadLinesFilter)<a class="headerlink" href="#loadlinesfilter" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-loadLinesFilter">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">loadLinesFilter</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">Lines</tt><a class="headerlink" href="#mlabfieldname-loadLinesFilter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="load-mesh-model">
+<span id="loadmeshmodel"></span><span id="mlabfield-loadmeshmodel"></span><h3>Load Mesh Model<a class="headerlink" href="#load-mesh-model" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-loadMeshModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">loadMeshModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-loadMeshModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="use-reduced-mesh">
+<span id="usereducedmesh"></span><span id="mlabfield-usereducedmesh"></span><h3>Use Reduced Mesh<a class="headerlink" href="#use-reduced-mesh" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-useReducedMesh">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">useReducedMesh</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-useReducedMesh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="reduction">
+<span id="meshreductionratio"></span><span id="mlabfield-meshreductionratio"></span><h3>Reduction %<a class="headerlink" href="#reduction" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-meshReductionRatio">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">meshReductionRatio</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Integer</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">75</tt><tt class="descname" id="mlab_title">, minimum: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, maximum: </tt><tt class="descname" id="mlab_title">100</tt><a class="headerlink" href="#mlabfieldname-meshReductionRatio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="add-imported-model">
+<span id="addimportedmodel"></span><span id="mlabfield-addimportedmodel"></span><h3>Add Imported Model<a class="headerlink" href="#add-imported-model" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-addImportedModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">addImportedModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-addImportedModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="unload">
+<span id="cancelimport"></span><span id="mlabfield-cancelimport"></span><h3>Unload<a class="headerlink" href="#unload" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cancelImport">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cancelImport</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-cancelImport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="remove-all-points">
+<span id="removeallpoints"></span><span id="mlabfield-removeallpoints"></span><h3>Remove All Points<a class="headerlink" href="#remove-all-points" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-removeAllPoints">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">removeAllPoints</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-removeAllPoints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="remove-all-lines">
+<span id="removealllines"></span><span id="mlabfield-removealllines"></span><h3>Remove All Lines<a class="headerlink" href="#remove-all-lines" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-removeAllLines">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">removeAllLines</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-removeAllLines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="remove-all-meshes">
+<span id="removeallmeshes"></span><span id="mlabfield-removeallmeshes"></span><h3>Remove All Meshes<a class="headerlink" href="#remove-all-meshes" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-removeAllMeshes">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">removeAllMeshes</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-removeAllMeshes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="save-model">
+<span id="saveu3d"></span><span id="mlabfield-saveu3d"></span><h3>Save Model<a class="headerlink" href="#save-model" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-saveU3D">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">saveU3D</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-saveU3D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="save-poster">
+<span id="saveposter"></span><span id="mlabfield-saveposter"></span><h3>Save Poster<a class="headerlink" href="#save-poster" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-savePoster">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">savePoster</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-savePoster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="save-pdf">
+<span id="savepdf"></span><span id="mlabfield-savepdf"></span><h3>Save PDF<a class="headerlink" href="#save-pdf" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-savePDF">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">savePDF</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-savePDF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="header-citation-text">
+<span id="headercitationtext"></span><span id="mlabfield-headercitationtext"></span><h3>Header Citation Text<a class="headerlink" href="#header-citation-text" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-headerCitationText">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">headerCitationText</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-headerCitationText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="header-headline-text">
+<span id="headerheadlinetext"></span><span id="mlabfield-headerheadlinetext"></span><h3>Header Headline Text<a class="headerlink" href="#header-headline-text" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-headerHeadlineText">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">headerHeadlineText</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-headerHeadlineText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="caption">
+<span id="mlabfield-caption"></span><span id="id7"></span><h3>Caption<a class="headerlink" href="#caption" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-caption">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">caption</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-caption" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="description">
+<span id="mlabfield-description"></span><span id="id8"></span><h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-description">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">description</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="hidden-fields">
+<h2>Hidden Fields<a class="headerlink" href="#hidden-fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="filenamewem">
+<span id="mlabfield-filenamewem"></span><span id="id9"></span><h3>filenameWEM<a class="headerlink" href="#filenamewem" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-filenameWEM">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">filenameWEM</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-filenameWEM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="filenamepointpositions">
+<span id="mlabfield-filenamepointpositions"></span><span id="id10"></span><h3>filenamePointPositions<a class="headerlink" href="#filenamepointpositions" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-filenamePointPositions">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">filenamePointPositions</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-filenamePointPositions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="filenamelinedefinitions">
+<span id="mlabfield-filenamelinedefinitions"></span><span id="id11"></span><h3>filenameLineDefinitions<a class="headerlink" href="#filenamelinedefinitions" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-filenameLineDefinitions">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">filenameLineDefinitions</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-filenameLineDefinitions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="viewcameracenteroforbit">
+<span id="mlabfield-viewcameracenteroforbit"></span><span id="id12"></span><h3>viewCameraCenterOfOrbit<a class="headerlink" href="#viewcameracenteroforbit" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewCameraCenterOfOrbit">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraCenterOfOrbit</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Vector3</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 0</tt><a class="headerlink" href="#mlabfieldname-viewCameraCenterOfOrbit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="viewcameracentertocamera">
+<span id="mlabfield-viewcameracentertocamera"></span><span id="id13"></span><h3>viewCameraCenterToCamera<a class="headerlink" href="#viewcameracentertocamera" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewCameraCenterToCamera">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraCenterToCamera</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Vector3</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 1.8304877281189</tt><a class="headerlink" href="#mlabfieldname-viewCameraCenterToCamera" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="viewcameraradiusoforbit">
+<span id="mlabfield-viewcameraradiusoforbit"></span><span id="id14"></span><h3>viewCameraRadiusOfOrbit<a class="headerlink" href="#viewcameraradiusoforbit" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewCameraRadiusOfOrbit">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraRadiusOfOrbit</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">1.8304877</tt><a class="headerlink" href="#mlabfieldname-viewCameraRadiusOfOrbit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="viewcamerarollangle">
+<span id="mlabfield-viewcamerarollangle"></span><span id="id15"></span><h3>viewCameraRollAngle<a class="headerlink" href="#viewcamerarollangle" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewCameraRollAngle">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraRollAngle</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">270</tt><a class="headerlink" href="#mlabfieldname-viewCameraRollAngle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="viewcamerafovangle">
+<span id="mlabfield-viewcamerafovangle"></span><span id="id16"></span><h3>viewCameraFOVAngle<a class="headerlink" href="#viewcamerafovangle" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-viewCameraFOVAngle">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraFOVAngle</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">57.29578</tt><a class="headerlink" href="#mlabfieldname-viewCameraFOVAngle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="availablewempatches">
+<span id="mlabfield-availablewempatches"></span><span id="id17"></span><h3>availableWEMPatches<a class="headerlink" href="#availablewempatches" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-availableWEMPatches">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">availableWEMPatches</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-availableWEMPatches" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="availablelinesets">
+<span id="mlabfield-availablelinesets"></span><span id="id18"></span><h3>availableLineSets<a class="headerlink" href="#availablelinesets" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-availableLineSets">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">availableLineSets</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-availableLineSets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="availablepointsets">
+<span id="mlabfield-availablepointsets"></span><span id="id19"></span><h3>availablePointSets<a class="headerlink" href="#availablepointsets" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-availablePointSets">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">availablePointSets</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-availablePointSets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="addpointstomodel">
+<span id="mlabfield-addpointstomodel"></span><span id="id20"></span><h3>addPointsToModel<a class="headerlink" href="#addpointstomodel" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-addPointsToModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">addPointsToModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-addPointsToModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="addlinestomodel">
+<span id="mlabfield-addlinestomodel"></span><span id="id21"></span><h3>addLinesToModel<a class="headerlink" href="#addlinestomodel" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-addLinesToModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">addLinesToModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-addLinesToModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="addmeshtomodel">
+<span id="mlabfield-addmeshtomodel"></span><span id="id22"></span><h3>addMeshToModel<a class="headerlink" href="#addmeshtomodel" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-addMeshToModel">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">addMeshToModel</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-addMeshToModel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="saveu3dstatus">
+<span id="mlabfield-saveu3dstatus"></span><span id="id23"></span><h3>saveU3DStatus<a class="headerlink" href="#saveu3dstatus" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-saveU3DStatus">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">saveU3DStatus</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-saveU3DStatus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="saveposterstatus">
+<span id="mlabfield-saveposterstatus"></span><span id="id24"></span><h3>savePosterStatus<a class="headerlink" href="#saveposterstatus" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-savePosterStatus">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">savePosterStatus</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-savePosterStatus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="savepdfstatus">
+<span id="mlabfield-savepdfstatus"></span><span id="id25"></span><h3>savePDFStatus<a class="headerlink" href="#savepdfstatus" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-savePDFStatus">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">savePDFStatus</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-savePDFStatus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cameraheight">
+<span id="mlabfield-cameraheight"></span><span id="id26"></span><h3>cameraHeight<a class="headerlink" href="#cameraheight" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cameraHeight">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cameraHeight</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">1</tt><a class="headerlink" href="#mlabfieldname-cameraHeight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cameraposition">
+<span id="mlabfield-cameraposition"></span><span id="id27"></span><h3>cameraPosition<a class="headerlink" href="#cameraposition" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cameraPosition">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cameraPosition</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Vector3</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 1.8304877281189</tt><a class="headerlink" href="#mlabfieldname-cameraPosition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cameraorientation">
+<span id="mlabfield-cameraorientation"></span><span id="id28"></span><h3>cameraOrientation<a class="headerlink" href="#cameraorientation" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cameraOrientation">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cameraOrientation</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Rotation</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 1 0</tt><a class="headerlink" href="#mlabfieldname-cameraOrientation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="cameraneardistance">
+<span id="mlabfield-cameraneardistance"></span><span id="id29"></span><h3>cameraNearDistance<a class="headerlink" href="#cameraneardistance" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cameraNearDistance">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cameraNearDistance</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">2</tt><a class="headerlink" href="#mlabfieldname-cameraNearDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="camerafardistance">
+<span id="mlabfield-camerafardistance"></span><span id="id30"></span><h3>cameraFarDistance<a class="headerlink" href="#camerafardistance" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cameraFarDistance">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cameraFarDistance</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">4</tt><a class="headerlink" href="#mlabfieldname-cameraFarDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="camerafocaldistance">
+<span id="mlabfield-camerafocaldistance"></span><span id="id31"></span><h3>cameraFocalDistance<a class="headerlink" href="#camerafocaldistance" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-cameraFocalDistance">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">cameraFocalDistance</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">1.8304877</tt><a class="headerlink" href="#mlabfieldname-cameraFocalDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Scientific3DFigurePDFApp</a></li>
+<li><a class="reference internal" href="#purpose">Purpose</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#details">Details</a><ul>
+<li><a class="reference internal" href="#creating-u3d-model-files">Creating U3D model files</a></li>
+<li><a class="reference internal" href="#assembling-the-model">Assembling the model</a></li>
+<li><a class="reference internal" href="#editing-point-sets">Editing Point Sets</a></li>
+<li><a class="reference internal" href="#editing-line-sets">Editing Line Sets</a></li>
+<li><a class="reference internal" href="#editing-meshes">Editing Meshes</a></li>
+<li><a class="reference internal" href="#creating-views">Creating Views</a></li>
+<li><a class="reference internal" href="#saving-the-model-to-u3d">Saving the Model to U3D</a></li>
+<li><a class="reference internal" href="#creating-poster-images">Creating Poster Images</a></li>
+<li><a class="reference internal" href="#editing-the-pdf-page">Editing the PDF Page</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-fields">Input Fields</a><ul>
+<li><a class="reference internal" href="#inwem">inWEM</a></li>
+<li><a class="reference internal" href="#inpointpositions">inPointPositions</a></li>
+<li><a class="reference internal" href="#inlinepositions">inLinePositions</a></li>
+<li><a class="reference internal" href="#inlineconnections">inLineConnections</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parameter-fields">Parameter Fields</a><ul>
+<li><a class="reference internal" href="#field-index">Field Index</a></li>
+<li><a class="reference internal" href="#visible-fields">Visible Fields</a><ul>
+<li><a class="reference internal" href="#use-input-connectors">Use Input Connectors</a></li>
+<li><a class="reference internal" href="#load-data-manually">Load Data Manually</a></li>
+<li><a class="reference internal" href="#points">Points</a></li>
+<li><a class="reference internal" href="#show-points-previe-size">Show Points Previe Size</a></li>
+<li><a class="reference internal" href="#lines">Lines</a></li>
+<li><a class="reference internal" href="#meshes">Meshes</a></li>
+<li><a class="reference internal" href="#reset">Reset</a></li>
+<li><a class="reference internal" href="#view-display-name">View Display Name</a></li>
+<li><a class="reference internal" href="#background-color">Background Color</a></li>
+<li><a class="reference internal" href="#lighting-scheme">Lighting Scheme*</a></li>
+<li><a class="reference internal" href="#rendermode">RenderMode*</a></li>
+<li><a class="reference internal" href="#view-specifications">View Specifications</a></li>
+<li><a class="reference internal" href="#add-new-view">Add New View</a></li>
+<li><a class="reference internal" href="#delete-all-views">Delete All Views</a></li>
+<li><a class="reference internal" href="#mesh">Mesh</a></li>
+<li><a class="reference internal" href="#name-selectedwempatchnewlabel">Name (selectedWEMPatchNewLabel)</a></li>
+<li><a class="reference internal" href="#group-path-selectedwempatchgrouppath">Group Path (selectedWEMPatchGroupPath)</a></li>
+<li><a class="reference internal" href="#use-default-color-selectedwempatchusedefaultcolor">Use Default Color (selectedWEMPatchUseDefaultColor)</a></li>
+<li><a class="reference internal" href="#color-selectedwempatchcolor">Color (selectedWEMPatchColor)</a></li>
+<li><a class="reference internal" href="#opacity">Opacity</a></li>
+<li><a class="reference internal" href="#line-set">Line Set</a></li>
+<li><a class="reference internal" href="#name-selectedlinesetnewlabel">Name (selectedLineSetNewLabel)</a></li>
+<li><a class="reference internal" href="#group-path-selectedlinesetgrouppath">Group Path (selectedLineSetGroupPath)</a></li>
+<li><a class="reference internal" href="#use-default-color-selectedlinesetusedefaultcolor">Use Default Color (selectedLineSetUseDefaultColor)</a></li>
+<li><a class="reference internal" href="#color-selectedlinesetcolor">Color (selectedLineSetColor)</a></li>
+<li><a class="reference internal" href="#point-set">Point Set</a></li>
+<li><a class="reference internal" href="#name-selectedpointsetnewlabel">Name (selectedPointSetNewLabel)</a></li>
+<li><a class="reference internal" href="#group-path-selectedpointsetgrouppath">Group Path (selectedPointSetGroupPath)</a></li>
+<li><a class="reference internal" href="#load-points-model">Load Points Model</a></li>
+<li><a class="reference internal" href="#loadpointsfilter">ID (loadPointsFilter)</a></li>
+<li><a class="reference internal" href="#load-lines-model">Load Lines Model</a></li>
+<li><a class="reference internal" href="#loadlinesfilter">ID (loadLinesFilter)</a></li>
+<li><a class="reference internal" href="#load-mesh-model">Load Mesh Model</a></li>
+<li><a class="reference internal" href="#use-reduced-mesh">Use Reduced Mesh</a></li>
+<li><a class="reference internal" href="#reduction">Reduction %</a></li>
+<li><a class="reference internal" href="#add-imported-model">Add Imported Model</a></li>
+<li><a class="reference internal" href="#unload">Unload</a></li>
+<li><a class="reference internal" href="#remove-all-points">Remove All Points</a></li>
+<li><a class="reference internal" href="#remove-all-lines">Remove All Lines</a></li>
+<li><a class="reference internal" href="#remove-all-meshes">Remove All Meshes</a></li>
+<li><a class="reference internal" href="#save-model">Save Model</a></li>
+<li><a class="reference internal" href="#save-poster">Save Poster</a></li>
+<li><a class="reference internal" href="#save-pdf">Save PDF</a></li>
+<li><a class="reference internal" href="#header-citation-text">Header Citation Text</a></li>
+<li><a class="reference internal" href="#header-headline-text">Header Headline Text</a></li>
+<li><a class="reference internal" href="#caption">Caption</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hidden-fields">Hidden Fields</a><ul>
+<li><a class="reference internal" href="#filenamewem">filenameWEM</a></li>
+<li><a class="reference internal" href="#filenamepointpositions">filenamePointPositions</a></li>
+<li><a class="reference internal" href="#filenamelinedefinitions">filenameLineDefinitions</a></li>
+<li><a class="reference internal" href="#viewcameracenteroforbit">viewCameraCenterOfOrbit</a></li>
+<li><a class="reference internal" href="#viewcameracentertocamera">viewCameraCenterToCamera</a></li>
+<li><a class="reference internal" href="#viewcameraradiusoforbit">viewCameraRadiusOfOrbit</a></li>
+<li><a class="reference internal" href="#viewcamerarollangle">viewCameraRollAngle</a></li>
+<li><a class="reference internal" href="#viewcamerafovangle">viewCameraFOVAngle</a></li>
+<li><a class="reference internal" href="#availablewempatches">availableWEMPatches</a></li>
+<li><a class="reference internal" href="#availablelinesets">availableLineSets</a></li>
+<li><a class="reference internal" href="#availablepointsets">availablePointSets</a></li>
+<li><a class="reference internal" href="#addpointstomodel">addPointsToModel</a></li>
+<li><a class="reference internal" href="#addlinestomodel">addLinesToModel</a></li>
+<li><a class="reference internal" href="#addmeshtomodel">addMeshToModel</a></li>
+<li><a class="reference internal" href="#saveu3dstatus">saveU3DStatus</a></li>
+<li><a class="reference internal" href="#saveposterstatus">savePosterStatus</a></li>
+<li><a class="reference internal" href="#savepdfstatus">savePDFStatus</a></li>
+<li><a class="reference internal" href="#cameraheight">cameraHeight</a></li>
+<li><a class="reference internal" href="#cameraposition">cameraPosition</a></li>
+<li><a class="reference internal" href="#cameraorientation">cameraOrientation</a></li>
+<li><a class="reference internal" href="#cameraneardistance">cameraNearDistance</a></li>
+<li><a class="reference internal" href="#camerafardistance">cameraFarDistance</a></li>
+<li><a class="reference internal" href="#camerafocaldistance">cameraFocalDistance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul> 
+      </ul>
+    </div>
+    <div class="footer">
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>

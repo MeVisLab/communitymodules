@@ -1,0 +1,915 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/PDF3DFigurePage/Modules/PDF3DFigurePage.def
+    moduleName = Scientific3DFigurePDFApp
+    moduleType = MacroModule
+    author = "Axel Newe, axel.newe at fau.de"
+    dll = ""
+    genre = ""
+    keywords = "PDF U3D 3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module provides an integrated application for creating two types of files:
+
+* U3D files which can be embedded into Portable Document Format (PDF) for creating interactive figures and
+* a PDF document with pre-defined layout which includes such an embedded interactive figure.
+"
+  }
+  Usage  {
+    text = "*The creation of PDF documents is done entirely on the "PDF Page" tab (see Details section below).
+
+For creating U3D files, there are two approaches: 
+
+* connecting input data to the four input connectors or 
+* assembling the  data with the build in assistant (Tab "3D Model" -> Tab "Assemble Model"). 
+
+The input connectors work  as described for the  :module:`SaveU3D` module (see there). Assembling the module by means of the assistant is described in the "Details" section below. *"
+  }
+  Details  {
+    text = "*Creating U3D Model Files
+------------------------
+
+Universal 3D (U3D) is a compressed file format standard for 3D computer graphics data which is standardized by Ecma International as ECMA-363. This module internally uses the :module:`SaveU3D` module for creating the U3D files.
+
+Select the "3D Model" tab to create a U3D file.
+
+Input data can be collected in two ways: either by feeding it to the input connectors or by assembling it by means of the built-in assistant. The former way is for experienced MeVisLab users and allows for attaching this macro at the end of a processing chain. Enable the :field:`useInputConnectors` checkbox if you want to use this option. In order to assemble the model by means of the built-in assisstant, enable the :field:`loadDataManually` checkbox.
+
+Assembling the Model
+--------------------
+
+**Using input connectors**
+
+If the :field:`useInputConnectors` checkbox is enabled, the model data is loaded from the input connectors and all controls on the *Assemble Model* tab. However, the *Assemble Model* tab can still be used to preview the model. 
+
+.. screenshot:: 3DModel AssembleModel2
+
+**Manual assembly**
+
+.. screenshot:: 3DModel AssembleModel
+
+The model can also be assembled manually by importing each object step-by-step. Three types of geometries can be imported: point clouds, line sets and meshes.
+
+Each type of geometry has its own box of controls to import. The first step is always to load the object by means of the appropriate *Load {Points|Lines|Mesh} Object* button. After successfully loading the object, it is shown highlighted in the preview area, while all previously added objects are displayed faded. If you are happy with the object, click *Add Imported Model* in the *Add Object* box. It is then permanently added to the model. If you do not want to add a loaded object, click *Unload* in the appropriate box. All models of a kind can be removed at once by means of the appropriate button in the *Remove Objects* box. It is not possible to remove a specific object.
+
+Each type of geometry has its specific import options:
+
+**Point Set import**
+
+.. screenshot:: 3DModel ImportPointSets
+
+Point Sets can be imported from text files, e.g., CSV files. A point set definition shall start with a header which consists of an identifier and a numerical value:
+
+``Points 1``
+
+The identifier which is used for filtering point sets out of a larger file can be specified by means of the *ID* field. By default it is "Points".
+
+The header can also have an optional name. Everything after the numerical value is interpreted as name:
+
+``Points 1 Anchor Points``
+
+The point set definition shall then continue with the coordinates of each point. Each coordinate shall consist of three values (x, y, z) and be listed in a separate line. The values can be separated either by a semicolon (";") or by a space. The decimal delimiter shall be a decimal point ("."):
+
+``78.873;-30.2173;-109.254`` or ``63.9515 -16.5974 -76.5908``
+
+A full Point Set definition typically looks like this:
+
+::
+
+  Points 1 Anchor Points
+  78.873;-30.2173;-109.254
+  63.9515;-16.5974;-76.5908 
+  41.5693;-7.5175;-54.8151
+  26.6479;-10.6914;-47.1012
+  7.99605;-19.9401;-20.2392
+
+**Line Set import**
+
+.. screenshot:: 3DModel ImportLineSets
+
+Just like Point Sets, Line Sets can be imported from text files (CSV etc.) as well. A Line Set definition shall also start with a header, just like a Point Set definition:
+
+``Lines 1`` or ``Lines 1 Centerline``
+
+It shall then continue with two lists: a list of positions and a list of connections. 
+
+The list of positions shall be a list of coordinates that define the positions in the model space that are touched by a line. These positions must be specified just like the Point Set positions described above.
+
+The list of connections shall be a list of pairs, where every pair specifies the indices of two positions that are connected by one segment of a line. The  pairs must be integer numbers and can be separated either by a semicolon (";") or by a space:
+
+``0;1`` or ``5 8``
+
+The numbering of indices starts with "0", so the index of the first position in the positions list is "0". The list of connections can be omitted. If no list of connections is provided, all positions of the list of positions are connected automatically, in order of their appearance.
+
+A full Line Set definition typically looks like this:
+
+::
+
+  Lines 1 Axes
+  31 -144 1118
+  154 -144 1118
+  92 -209 1118
+  92 -78 1118
+  92 -144 899
+  92 -144 1338
+  0 1
+  2 3
+  4 5
+
+
+**Mesh import**
+
+Meshes can be imported from a number of formats. See :module:`WEMSceneLoader` for a full list of supported formats. 
+
+.. screenshot:: 3DModel ImportMeshes
+
+After loading a mesh, the number of faces can be reduced before it is added to the model. Click the *Use Reduced Mesh* button and adjust the reduction ration by means of the *Reduction %* field or the slider below the field.
+
+**Adding the imported object**
+
+After importing an object, click the *Add Imported Object* button in the *Add Object* box to permanently add the object to the model.
+
+**Deleting all objects of a kind**
+
+All models of a kind can be removed at once from the model by means of the appropriate button in the *Remove Objects* box. It is not possible to remove a specific object from the model.
+
+
+Editing Point Sets
+------------------
+
+.. screenshot:: 3DModel EditPoints
+
+lorem
+
+
+Editing Line Sets
+-----------------
+
+.. screenshot:: 3DModel EditLines
+
+lorem
+
+
+Editing Meshes
+--------------
+
+.. screenshot:: 3DModel EditMeshes
+
+lorem
+
+
+Creating Views
+--------------
+
+.. screenshot:: 3DModel CreateViews
+
+lorem
+
+
+Saving the Model to U3D
+-----------------------
+
+.. screenshot:: 3DModel SaveModel
+
+lorem
+
+
+Creating Poster Images
+----------------------
+
+.. screenshot:: 3DModel CreatePosterImage
+
+lorem
+
+
+Editing the PDF Page
+--------------------
+
+.. screenshot:: PDFPage
+
+lorem
+
+*"
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ""
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inWEM {
+      type = MLBase
+      text = ""
+    }
+    Field inPointPositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLineConnections {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = Scientific3DFigurePDFApp
+    }
+    Field useInputConnectors {
+      type = Bool
+      text = ""
+      title = "Use Input Connectors"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field loadDataManually {
+      type = Bool
+      text = ""
+      title = "Load Data Manually"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field filenameWEM {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field filenamePointPositions {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field filenameLineDefinitions {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field showPointsPreview {
+      type = Bool
+      text = ""
+      title = Points
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field showPointsPrevieSize {
+      type = Float
+      text = ""
+      title = "Show Points Previe Size"
+      visibleInGUI = Yes
+      min = 0
+      max = 10
+      persistent = Yes
+      default = 2
+    }
+    Field showLinesPreview {
+      type = Bool
+      text = ""
+      title = Lines
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field showMeshPreview {
+      type = Bool
+      text = ""
+      title = Meshes
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field resetPreview {
+      type = Trigger
+      text = ""
+      title = Reset
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field viewDisplayName {
+      type = String
+      text = ""
+      title = "View Display Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field viewBackgroundColor {
+      type = Color
+      text = ""
+      title = "Background Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 1 1"
+    }
+    Field viewLightingScheme {
+      type = Enum
+      text = ""
+      title = "Lighting Scheme*"
+      visibleInGUI = Yes
+      items  {
+        item None {
+          title = None
+          text = ""
+        }
+        item White {
+          title = White
+          text = ""
+        }
+        item Day {
+          title = Day
+          text = ""
+        }
+        item Night {
+          title = Night
+          text = ""
+        }
+        item Hard {
+          title = Hard
+          text = ""
+        }
+        item Primary {
+          title = Primary
+          text = ""
+        }
+        item Blue {
+          title = Blue
+          text = ""
+        }
+        item Red {
+          title = Red
+          text = ""
+        }
+        item Cube {
+          title = Cube
+          text = ""
+        }
+        item CAD {
+          title = CAD
+          text = ""
+        }
+        item HeadLamp {
+          title = "Head Lamp"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = HeadLamp
+    }
+    Field viewRenderMode {
+      type = Enum
+      text = ""
+      title = "RenderMode*"
+      visibleInGUI = Yes
+      items  {
+        item Solid {
+          title = Solid
+          text = ""
+        }
+        item SolidWireframe {
+          title = "Solid Wireframe"
+          text = ""
+        }
+        item Transparent {
+          title = Transparent
+          text = ""
+        }
+        item TransparentWireframe {
+          title = "Transparent Wireframe"
+          text = ""
+        }
+        item BoundingBox {
+          title = "Bounding Box"
+          text = ""
+        }
+        item TransparentBoundingBox {
+          title = "Transparent Bounding Box"
+          text = ""
+        }
+        item TransparentBoundingBoxOutline {
+          title = "Transparent BB Outline"
+          text = ""
+        }
+        item Wireframe {
+          title = Wireframe
+          text = ""
+        }
+        item ShadedWireframe {
+          title = "Shaded Wireframe"
+          text = ""
+        }
+        item HiddenWireframe {
+          title = "Hidden Wireframe"
+          text = ""
+        }
+        item Vertices {
+          title = Vertices
+          text = ""
+        }
+        item ShadedVertices {
+          title = "Shaded Vertices"
+          text = ""
+        }
+        item Illustration {
+          title = Illustration
+          text = ""
+        }
+        item SolidOutline {
+          title = "Solid Outline"
+          text = ""
+        }
+        item ShadedIllustration {
+          title = "Shaded Illustration"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = Solid
+    }
+    Field viewCameraCenterOfOrbit {
+      type = Vector3
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field viewCameraCenterToCamera {
+      type = Vector3
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = "0 0 1.8304877281189"
+    }
+    Field viewCameraRadiusOfOrbit {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 1.8304877
+    }
+    Field viewCameraRollAngle {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 270
+    }
+    Field viewCameraFOVAngle {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 57.29578
+    }
+    Field viewSpecifications {
+      type = String
+      text = ""
+      title = "View Specifications"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field addNewView {
+      type = Trigger
+      text = ""
+      title = "Add New View"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field clearViews {
+      type = Trigger
+      text = ""
+      title = "Delete All Views"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatch {
+      type = String
+      text = ""
+      title = Mesh
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchNewLabel {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field availableWEMPatches {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchGroupPath {
+      type = String
+      text = ""
+      title = "Group Path"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchUseDefaultColor {
+      type = Bool
+      text = ""
+      title = "Use Default Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field selectedWEMPatchColor {
+      type = Color
+      text = ""
+      title = Color
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field selectedWEMPatchColorAlpha {
+      type = Float
+      text = ""
+      title = Opacity
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 0
+    }
+    Field selectedLineSet {
+      type = String
+      text = ""
+      title = "Line Set"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetNewLabel {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field availableLineSets {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetGroupPath {
+      type = String
+      text = ""
+      title = "Group Path"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetUseDefaultColor {
+      type = Bool
+      text = ""
+      title = "Use Default Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field selectedLineSetColor {
+      type = Color
+      text = ""
+      title = Color
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field selectedPointSet {
+      type = String
+      text = ""
+      title = "Point Set"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedPointSetNewLabel {
+      type = String
+      text = ""
+      title = Name
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field availablePointSets {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedPointSetGroupPath {
+      type = String
+      text = ""
+      title = "Group Path"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field loadPointsModel {
+      type = Trigger
+      text = ""
+      title = "Load Points Model"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field loadPointsFilter {
+      type = String
+      text = ""
+      title = ID
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Points
+    }
+    Field loadLinesModel {
+      type = Trigger
+      text = ""
+      title = "Load Lines Model"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field loadLinesFilter {
+      type = String
+      text = ""
+      title = ID
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Lines
+    }
+    Field loadMeshModel {
+      type = Trigger
+      text = ""
+      title = "Load Mesh Model"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field useReducedMesh {
+      type = Bool
+      text = ""
+      title = "Use Reduced Mesh"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field meshReductionRatio {
+      type = Integer
+      text = ""
+      title = "Reduction %"
+      visibleInGUI = Yes
+      min = 0
+      max = 100
+      persistent = Yes
+      default = 75
+    }
+    Field addImportedModel {
+      type = Trigger
+      text = ""
+      title = "Add Imported Model"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field addPointsToModel {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field addLinesToModel {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field addMeshToModel {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field cancelImport {
+      type = Trigger
+      text = ""
+      title = Unload
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field removeAllPoints {
+      type = Trigger
+      text = ""
+      title = "Remove All Points"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field removeAllLines {
+      type = Trigger
+      text = ""
+      title = "Remove All Lines"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field removeAllMeshes {
+      type = Trigger
+      text = ""
+      title = "Remove All Meshes"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field saveU3D {
+      type = Trigger
+      text = ""
+      title = "Save Model"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field saveU3DStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field savePoster {
+      type = Trigger
+      text = ""
+      title = "Save Poster"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field savePosterStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field savePDF {
+      type = Trigger
+      text = ""
+      title = "Save PDF"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field savePDFStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field headerCitationText {
+      type = String
+      text = ""
+      title = "Header Citation Text"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field headerHeadlineText {
+      type = String
+      text = ""
+      title = "Header Headline Text"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field caption {
+      type = String
+      text = ""
+      title = Caption
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field description {
+      type = String
+      text = ""
+      title = Description
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field cameraHeight {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 1
+    }
+    Field cameraPosition {
+      type = Vector3
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = "0 0 1.8304877281189"
+    }
+    Field cameraOrientation {
+      type = Rotation
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = "0 0 1 0"
+    }
+    Field cameraNearDistance {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 2
+    }
+    Field cameraFarDistance {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 4
+    }
+    Field cameraFocalDistance {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 1.8304877
+    }
+    text = ""
+  }
+}

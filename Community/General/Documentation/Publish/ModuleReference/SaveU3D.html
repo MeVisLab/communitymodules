@@ -62,7 +62,7 @@
 <td><a class="reference external" href="../../../Modules/ML/MLPDF/MLPDF.def">MLPDF.def</a></td>
 </tr>
 <tr><td>see also</td>
-<td><a class="reference internal" href="../../../../../../../../../C:/Program Files/MeVisLab2.6VC10-64/Packages/MeVisLab/Standard/Documentation/Publish/ModuleReference/WEMSaveAsU3D.html#WEMSaveAsU3D" title="WEMSaveAsU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">WEMSaveAsU3D</span></tt></a>, <a class="reference internal" href="../../../../../../../../../C:/Program Files/MeVisLab2.6VC10-64/Packages/MeVisLab/Standard/Documentation/Publish/ModuleReference/ComposeWEMDescriptionForU3D.html#ComposeWEMDescriptionForU3D" title="ComposeWEMDescriptionForU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">ComposeWEMDescriptionForU3D</span></tt></a></td>
+<td><a class="reference internal" href="../../../../../MeVisLab/Standard/Documentation/Publish/ModuleReference/WEMSaveAsU3D.html#WEMSaveAsU3D" title="WEMSaveAsU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">WEMSaveAsU3D</span></tt></a>, <a class="reference internal" href="../../../../../MeVisLab/Standard/Documentation/Publish/ModuleReference/ComposeWEMDescriptionForU3D.html#ComposeWEMDescriptionForU3D" title="ComposeWEMDescriptionForU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">ComposeWEMDescriptionForU3D</span></tt></a>, <a class="reference internal" href="LoadU3D.html#LoadU3D" title="LoadU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">LoadU3D</span></tt></a>, <a class="reference internal" href="PDF3DFigurePageMacro.html#PDF3DFigurePageMacro" title="PDF3DFigurePageMacro"><tt class="xref mlab mlab-module docutils literal"><span class="pre">PDF3DFigurePageMacro</span></tt></a></td>
 </tr>
 <tr><td>keywords</td>
 <td><a class="reference internal" href="keyword.html#pdf" title="PDF"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">PDF</span></tt></a>, <a class="reference internal" href="keyword.html#u3d" title="U3D"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">U3D</span></tt></a>, <a class="reference internal" href="keyword.html#wem" title="WEM"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">WEM</span></tt></a>, <a class="reference internal" href="keyword.html#xmarker" title="XMarker"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">XMarker</span></tt></a>, <a class="reference internal" href="keyword.html#fiber" title="Fiber"><tt class="xref mlab mlab-keyword docutils literal"><span class="pre">Fiber</span></tt></a></td>
@@ -97,7 +97,8 @@
 <ul class="simple">
 <li><em>&lt;ObjectName&gt;&lt;/ObjectName&gt;</em>: This specifies the name under which the object is identified in the 3D model tree. Names do <em>not</em> need to be unique.</li>
 <li><em>&lt;GroupPath&gt;&lt;GroupPath&gt;</em>: This specifies the path where the object is placed in the 3D model tree. All necessary sub-branches are created automatically.</li>
-<li><em>&lt;Color&gt;&lt;Color&gt;</em>: This specifies the (diffuse) color of the object.</li>
+<li><em>&lt;Color&gt;&lt;/Color&gt;</em>: This specifies the (diffuse) color of the object.</li>
+<li><em>&lt;Opacity&gt;&lt;/Opacity&gt;</em>: This specifies the opacity of the object. It ranges from 0 (invisible) to 1 (totally opaque).</li>
 <li><em>&lt;SpecularColor&gt;&lt;SpecularColor&gt;</em>: This specifies the specular (reflective) color of the object.</li>
 <li><em>&lt;ModelVisibility&gt;&lt;ModelVisibility&gt;</em>: This specifies the model visibility (front visible, back visible, both sides visible or not visible).</li>
 </ul>
@@ -112,6 +113,7 @@
 <p><strong>Mesh Specification</strong></p>
 <p>A new mesh is started by the <em>&lt;Mesh&gt;</em> tag. A closing tag is not necessary</p>
 <p>The geometry data is taken from the <a class="reference internal" href="#mlabfield-inwem" title="inWEM"><tt class="xref mlab mlab-field docutils literal"><span class="pre">inWEM</span></tt></a> input field, which accepts a WEM. Use the &lt;WEMLabel&gt; tag to filter which WEM (selected by its Label) of the input WEM shall be used.</p>
+<p>Meshes can have a per-vertex color. To enable this feature, enter <em>&lt;Color&gt;{VertexColors}&lt;/Color&gt;</em> as color specification. In this case, the node colors of the WEMs are used to generate the colors of the mesh.</p>
 <p><strong>Meta Data</strong></p>
 <p>U3D allows for inclusion of meta data. Since meta data is no geometry data, it is specified purely via the UI.</p>
 <p>A new meta data entry is started by the <em>&lt;MetaData&gt;</em> tag. A closing tag is not necessary.</p>
@@ -124,8 +126,8 @@
 </div>
 <div class="section" id="tips">
 <h1>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">¶</a></h1>
-<p>There is a simple mode available, which creates default 3D models from the input data. If you only connect input geometry data (e.g. a WEM or a positions list) and activate the respective &quot;Enable Simple Mode&quot; checkbox, all geometry data is automatically converted into 3D objects using default settings. In case of WEMs, the WEM description is also parsed. You can use the <a class="reference internal" href="../../../../../../../../../C:/Program Files/MeVisLab2.6VC10-64/Packages/MeVisLab/Standard/Documentation/Publish/ModuleReference/ComposeWEMDescriptionForU3D.html#ComposeWEMDescriptionForU3D" title="ComposeWEMDescriptionForU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">ComposeWEMDescriptionForU3D</span></tt></a> module to create suitable WEM descriptions.</p>
-<p>You can use a <a class="reference internal" href="../../../../../../../../../C:/Program Files/MeVisLab2.6VC10-64/Packages/FMEstable/Release/Documentation/Publish/ModuleReference/FiberSetToXMarker.html#FiberSetToXMarker" title="FiberSetToXMarker"><tt class="xref mlab mlab-module docutils literal"><span class="pre">FiberSetToXMarker</span></tt></a> module to connect a fiber set to the <a class="reference internal" href="#mlabfield-inlinepositions" title="inLinePositions"><tt class="xref mlab mlab-field docutils literal"><span class="pre">inLinePositions</span></tt></a> input.</p>
+<p>There is a simple mode available, which creates default 3D models from the input data. If you only connect input geometry data (e.g. a WEM or a positions list) and activate the respective &quot;Enable Simple Mode&quot; checkbox, all geometry data is automatically converted into 3D objects using default settings. In case of WEMs, the WEM description is also parsed. You can use the <a class="reference internal" href="../../../../../MeVisLab/Standard/Documentation/Publish/ModuleReference/ComposeWEMDescriptionForU3D.html#ComposeWEMDescriptionForU3D" title="ComposeWEMDescriptionForU3D"><tt class="xref mlab mlab-module docutils literal"><span class="pre">ComposeWEMDescriptionForU3D</span></tt></a> module to create suitable WEM descriptions.</p>
+<p>You can use a <a class="reference internal" href="../../../../../FMEstable/Release/Documentation/Publish/ModuleReference/FiberSetToXMarker.html#FiberSetToXMarker" title="FiberSetToXMarker"><tt class="xref mlab mlab-module docutils literal"><span class="pre">FiberSetToXMarker</span></tt></a> module to connect a fiber set to the <a class="reference internal" href="#mlabfield-inlinepositions" title="inLinePositions"><tt class="xref mlab mlab-field docutils literal"><span class="pre">inLinePositions</span></tt></a> input.</p>
 <p>Have a look at the example network which demonstrates all features.</p>
 <p>This module requires the MLBaseListExtensions.</p>
 </div>
@@ -139,7 +141,7 @@
 <div class="section" id="specification-generator-panel">
 <h2>Specification Generator Panel<a class="headerlink" href="#specification-generator-panel" title="Permalink to this headline">¶</a></h2>
 <p>For your convenience, the module has a built-in specification generator. You can use it to specify 3D object settings using standard MeVisLab fields. Use the &quot;Add&quot; button to add the currently displayed specification to the respective specifications in the main module.</p>
-<img alt="../../../Modules/ML/MLPDF/mhelp/Images/Screenshots/SaveU3D.Specification-GeneratorPanel.png" src="../../../Modules/ML/MLPDF/mhelp/Images/Screenshots/SaveU3D.Specification-GeneratorPanel.png" />
+<img alt="../../../Modules/ML/MLPDF/mhelp/Images/Screenshots/SaveU3D.Specification-Generator-Panel.png" src="../../../Modules/ML/MLPDF/mhelp/Images/Screenshots/SaveU3D.Specification-Generator-Panel.png" />
 </div>
 </div>
 <div class="section" id="input-fields">
@@ -194,15 +196,15 @@ Allowed: IndexPairList.</p>
 </colgroup>
 <tbody valign="top">
 <tr><td><a class="reference internal" href="#mlabfield-newspecificationadd" title="Add"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span></tt></a>: <tt class="docutils literal"><span class="pre">Trigger</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-simplemodemesh" title="Enble Simple Mode (add all patches from input wem and parse WEM description for details)."><tt class="xref mlab mlab-field docutils literal"><span class="pre">Enble</span> <span class="pre">Simple</span> <span class="pre">Mode</span> <span class="pre">(add</span> <span class="pre">all</span> <span class="pre">patches</span> <span class="pre">from</span> <span class="pre">input</span> <span class="pre">wem</span> <span class="pre">and</span> <span class="pre">parse</span> <span class="pre">WEM</span> <span class="pre">description</span> <span class="pre">for</span> <span class="pre">details).</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-newspecificationgrouppath" title="Object Group Path"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Group</span> <span class="pre">Path</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
-</tr>
-<tr><td><a class="reference internal" href="#mlabfield-defaultboundingboxmetadata" title="Add default bounding box meta data"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span> <span class="pre">default</span> <span class="pre">bounding</span> <span class="pre">box</span> <span class="pre">meta</span> <span class="pre">data</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-simplemodelineset" title="Enble Simple Mode (collect all positions from input field and assemble one line set with default settings)."><tt class="xref mlab mlab-field docutils literal"><span class="pre">Enble</span> <span class="pre">Simple</span> <span class="pre">Mode</span> <span class="pre">(collect</span> <span class="pre">all</span> <span class="pre">positions</span> <span class="pre">from</span> <span class="pre">input</span> <span class="pre">field</span> <span class="pre">and</span> <span class="pre">assemble</span> <span class="pre">one</span> <span class="pre">line</span> <span class="pre">set</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">settings).</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-simplemodemesh" title="Enable Simple Mode (add all patches from input wem and parse WEM description for details)."><tt class="xref mlab mlab-field docutils literal"><span class="pre">Enable</span> <span class="pre">Simple</span> <span class="pre">Mode</span> <span class="pre">(add</span> <span class="pre">all</span> <span class="pre">patches</span> <span class="pre">from</span> <span class="pre">input</span> <span class="pre">wem</span> <span class="pre">and</span> <span class="pre">parse</span> <span class="pre">WEM</span> <span class="pre">description</span> <span class="pre">for</span> <span class="pre">details).</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
 <td><a class="reference internal" href="#mlabfield-newspecificationobjectname" title="Object Name"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Name</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
 </tr>
+<tr><td><a class="reference internal" href="#mlabfield-defaultboundingboxmetadata" title="Add default bounding box meta data"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span> <span class="pre">default</span> <span class="pre">bounding</span> <span class="pre">box</span> <span class="pre">meta</span> <span class="pre">data</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-simplemodelineset" title="Enable Simple Mode (collect all positions from input field and assemble one line set with default settings)."><tt class="xref mlab mlab-field docutils literal"><span class="pre">Enable</span> <span class="pre">Simple</span> <span class="pre">Mode</span> <span class="pre">(collect</span> <span class="pre">all</span> <span class="pre">positions</span> <span class="pre">from</span> <span class="pre">input</span> <span class="pre">field</span> <span class="pre">and</span> <span class="pre">assemble</span> <span class="pre">one</span> <span class="pre">line</span> <span class="pre">set</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">settings).</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-newspecificationcoloralpha" title="Object Opacity"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Opacity</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
+</tr>
 <tr><td><a class="reference internal" href="#mlabfield-adddefaultlightnode" title="Add default Light Node"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span> <span class="pre">default</span> <span class="pre">Light</span> <span class="pre">Node</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-simplemodepointset" title="Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."><tt class="xref mlab mlab-field docutils literal"><span class="pre">Enble</span> <span class="pre">Simple</span> <span class="pre">Mode</span> <span class="pre">(collect</span> <span class="pre">all</span> <span class="pre">positions</span> <span class="pre">from</span> <span class="pre">input</span> <span class="pre">field</span> <span class="pre">and</span> <span class="pre">assemble</span> <span class="pre">one</span> <span class="pre">point</span> <span class="pre">cloud</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">settings).</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-simplemodepointset" title="Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."><tt class="xref mlab mlab-field docutils literal"><span class="pre">Enable</span> <span class="pre">Simple</span> <span class="pre">Mode</span> <span class="pre">(collect</span> <span class="pre">all</span> <span class="pre">positions</span> <span class="pre">from</span> <span class="pre">input</span> <span class="pre">field</span> <span class="pre">and</span> <span class="pre">assemble</span> <span class="pre">one</span> <span class="pre">point</span> <span class="pre">cloud</span> <span class="pre">with</span> <span class="pre">default</span> <span class="pre">settings).</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
 <td><a class="reference internal" href="#mlabfield-newspecificationtype" title="Object Type"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Type</span></tt></a>: <tt class="docutils literal"><span class="pre">Enum</span></tt></td>
 </tr>
 <tr><td><a class="reference internal" href="#mlabfield-adddefaultviewnode" title="Add default View Node"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Add</span> <span class="pre">default</span> <span class="pre">View</span> <span class="pre">Node</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
@@ -251,23 +253,23 @@ Allowed: IndexPairList.</p>
 </tr>
 <tr><td><a class="reference internal" href="#mlabfield-defaultmaterialdiffusecolor" title="Default Material Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Default</span> <span class="pre">Material</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
 <td><a class="reference internal" href="#mlabfield-newspecificationmodelvisibility" title="Model Visibility"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Model</span> <span class="pre">Visibility</span></tt></a>: <tt class="docutils literal"><span class="pre">Enum</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-newspecificationusedefaultspecularcolor" title="Use Default Specular Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Default</span> <span class="pre">Specular</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-usedefaultsettings" title="Use Default Settings"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Default</span> <span class="pre">Settings</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
 </tr>
 <tr><td><a class="reference internal" href="#mlabfield-defaultmaterialemissivecolor" title="Default Material Emissive Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Default</span> <span class="pre">Material</span> <span class="pre">Emissive</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
 <td><a class="reference internal" href="#mlabfield-newspecification" title="New Specification"><tt class="xref mlab mlab-field docutils literal"><span class="pre">New</span> <span class="pre">Specification</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-viewsspecification" title="viewsSpecification"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewsSpecification</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-newspecificationusedefaultspecularcolor" title="Use Default Specular Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Default</span> <span class="pre">Specular</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
 </tr>
 <tr><td><a class="reference internal" href="#mlabfield-defaultmaterialspecularcolor" title="Default Material Specular Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Default</span> <span class="pre">Material</span> <span class="pre">Specular</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
 <td><a class="reference internal" href="#mlabfield-newspecificationoutputvalid" title="newSpecificationOutputValid"><tt class="xref mlab mlab-field docutils literal"><span class="pre">newSpecificationOutputValid</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-newspecificationwemlabel" title="WEM Label"><tt class="xref mlab mlab-field docutils literal"><span class="pre">WEM</span> <span class="pre">Label</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-newspecificationusevertexcolors" title="Use Vertex Colors"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Use</span> <span class="pre">Vertex</span> <span class="pre">Colors</span></tt></a>: <tt class="docutils literal"><span class="pre">Bool</span></tt></td>
 </tr>
 <tr><td><a class="reference internal" href="#mlabfield-defaultviewname" title="Default View Name"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Default</span> <span class="pre">View</span> <span class="pre">Name</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-newspecificationcoloralpha" title="Object Alpha"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Alpha</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="#mlabfield-newspecificationcolor" title="Object Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-viewsspecification" title="viewsSpecification"><tt class="xref mlab mlab-field docutils literal"><span class="pre">viewsSpecification</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
 </tr>
 <tr><td><a class="reference internal" href="#mlabfield-elapsedtime" title="elapsedTime"><tt class="xref mlab mlab-field docutils literal"><span class="pre">elapsedTime</span></tt></a>: <tt class="docutils literal"><span class="pre">Float</span></tt></td>
-<td><a class="reference internal" href="#mlabfield-newspecificationcolor" title="Object Color"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Color</span></tt></a>: <tt class="docutils literal"><span class="pre">Color</span></tt></td>
-<td>&nbsp;</td>
+<td><a class="reference internal" href="#mlabfield-newspecificationgrouppath" title="Object Group Path"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Object</span> <span class="pre">Group</span> <span class="pre">Path</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
+<td><a class="reference internal" href="#mlabfield-newspecificationwemlabel" title="WEM Label"><tt class="xref mlab mlab-field docutils literal"><span class="pre">WEM</span> <span class="pre">Label</span></tt></a>: <tt class="docutils literal"><span class="pre">String</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -290,24 +292,24 @@ Allowed: IndexPairList.</p>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="enble-simple-mode-collect-all-positions-from-input-field-and-assemble-one-point-cloud-with-default-settings">
-<span id="simplemodepointset"></span><span id="mlabfield-simplemodepointset"></span><h3>Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings).<a class="headerlink" href="#enble-simple-mode-collect-all-positions-from-input-field-and-assemble-one-point-cloud-with-default-settings" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enable-simple-mode-collect-all-positions-from-input-field-and-assemble-one-point-cloud-with-default-settings">
+<span id="simplemodepointset"></span><span id="mlabfield-simplemodepointset"></span><h3>Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings).<a class="headerlink" href="#enable-simple-mode-collect-all-positions-from-input-field-and-assemble-one-point-cloud-with-default-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-simpleModePointSet">
 <tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">simpleModePointSet</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-simpleModePointSet" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="enble-simple-mode-collect-all-positions-from-input-field-and-assemble-one-line-set-with-default-settings">
-<span id="simplemodelineset"></span><span id="mlabfield-simplemodelineset"></span><h3>Enble Simple Mode (collect all positions from input field and assemble one line set with default settings).<a class="headerlink" href="#enble-simple-mode-collect-all-positions-from-input-field-and-assemble-one-line-set-with-default-settings" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enable-simple-mode-collect-all-positions-from-input-field-and-assemble-one-line-set-with-default-settings">
+<span id="simplemodelineset"></span><span id="mlabfield-simplemodelineset"></span><h3>Enable Simple Mode (collect all positions from input field and assemble one line set with default settings).<a class="headerlink" href="#enable-simple-mode-collect-all-positions-from-input-field-and-assemble-one-line-set-with-default-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-simpleModeLineSet">
 <tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">simpleModeLineSet</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-simpleModeLineSet" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="enble-simple-mode-add-all-patches-from-input-wem-and-parse-wem-description-for-details">
-<span id="simplemodemesh"></span><span id="mlabfield-simplemodemesh"></span><h3>Enble Simple Mode (add all patches from input wem and parse WEM description for details).<a class="headerlink" href="#enble-simple-mode-add-all-patches-from-input-wem-and-parse-wem-description-for-details" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enable-simple-mode-add-all-patches-from-input-wem-and-parse-wem-description-for-details">
+<span id="simplemodemesh"></span><span id="mlabfield-simplemodemesh"></span><h3>Enable Simple Mode (add all patches from input wem and parse WEM description for details).<a class="headerlink" href="#enable-simple-mode-add-all-patches-from-input-wem-and-parse-wem-description-for-details" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-simpleModeMesh">
 <tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">simpleModeMesh</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-simpleModeMesh" title="Permalink to this definition">¶</a></dt>
@@ -490,11 +492,27 @@ Allowed: IndexPairList.</p>
 <dd></dd></dl>
 
 </div>
+<div class="section" id="new-specification">
+<span id="newspecification"></span><span id="mlabfield-newspecification"></span><h3>New Specification<a class="headerlink" href="#new-specification" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-newSpecification">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecification</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-newSpecification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="add">
+<span id="newspecificationadd"></span><span id="mlabfield-newspecificationadd"></span><h3>Add<a class="headerlink" href="#add" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-newSpecificationAdd">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationAdd</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-newSpecificationAdd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="object-type">
 <span id="newspecificationtype"></span><span id="mlabfield-newspecificationtype"></span><h3>Object Type<a class="headerlink" href="#object-type" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-newSpecificationType">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationType</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Enum</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">SPECTYPE_POINTCLOUD</tt><a class="headerlink" href="#mlabfieldname-newSpecificationType" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationType</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Enum</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">OBJECTTYPE_MESH</tt><a class="headerlink" href="#mlabfieldname-newSpecificationType" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="enum-field-values">Values:</p>
@@ -508,16 +526,16 @@ Allowed: IndexPairList.</p>
 </thead>
 <tbody valign="top">
 <tr><td>Point Cloud</td>
-<td>SPECTYPE_POINTCLOUD</td>
+<td>OBJECTTYPE_POINTCLOUD</td>
 </tr>
 <tr><td>Line Set</td>
-<td>SPECTYPE_LINESET</td>
+<td>OBJECTTYPE_LINESET</td>
 </tr>
 <tr><td>Mesh</td>
-<td>SPECTYPE_MESH</td>
+<td>OBJECTTYPE_MESH</td>
 </tr>
 <tr><td>Meta Data</td>
-<td>SPECTYPE_METADATA</td>
+<td>OBJECTTYPE_METADATA</td>
 </tr>
 </tbody>
 </table>
@@ -546,6 +564,14 @@ Allowed: IndexPairList.</p>
 <dd></dd></dl>
 
 </div>
+<div class="section" id="use-vertex-colors">
+<span id="newspecificationusevertexcolors"></span><span id="mlabfield-newspecificationusevertexcolors"></span><h3>Use Vertex Colors<a class="headerlink" href="#use-vertex-colors" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-newSpecificationUseVertexColors">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationUseVertexColors</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-newSpecificationUseVertexColors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
 <div class="section" id="use-default-specular-color">
 <span id="newspecificationusedefaultspecularcolor"></span><span id="mlabfield-newspecificationusedefaultspecularcolor"></span><h3>Use Default Specular Color<a class="headerlink" href="#use-default-specular-color" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
@@ -558,12 +584,12 @@ Allowed: IndexPairList.</p>
 <span id="newspecificationcolor"></span><span id="mlabfield-newspecificationcolor"></span><h3>Object Color<a class="headerlink" href="#object-color" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-newSpecificationColor">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Color</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0.651 0.651 0.651</tt><a class="headerlink" href="#mlabfieldname-newSpecificationColor" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationColor</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Color</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0.651000022888184 0.651000022888184 0.651000022888184</tt><a class="headerlink" href="#mlabfieldname-newSpecificationColor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="object-alpha">
-<span id="newspecificationcoloralpha"></span><span id="mlabfield-newspecificationcoloralpha"></span><h3>Object Alpha<a class="headerlink" href="#object-alpha" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="object-opacity">
+<span id="newspecificationcoloralpha"></span><span id="mlabfield-newspecificationcoloralpha"></span><h3>Object Opacity<a class="headerlink" href="#object-opacity" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-newSpecificationColorAlpha">
 <tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationColorAlpha</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">1</tt><tt class="descname" id="mlab_title">, minimum: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, maximum: </tt><tt class="descname" id="mlab_title">1</tt><a class="headerlink" href="#mlabfieldname-newSpecificationColorAlpha" title="Permalink to this definition">¶</a></dt>
@@ -582,7 +608,7 @@ Allowed: IndexPairList.</p>
 <span id="newspecificationmodelvisibility"></span><span id="mlabfield-newspecificationmodelvisibility"></span><h3>Model Visibility<a class="headerlink" href="#model-visibility" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-newSpecificationModelVisibility">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationModelVisibility</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Enum</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">SPECTYPE_FRONTANDBACKVISIBLE</tt><a class="headerlink" href="#mlabfieldname-newSpecificationModelVisibility" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationModelVisibility</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Enum</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">MODELVISIBILITY_FRONTANDBACKVISIBLE</tt><a class="headerlink" href="#mlabfieldname-newSpecificationModelVisibility" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="enum-field-values">Values:</p>
@@ -596,19 +622,35 @@ Allowed: IndexPairList.</p>
 </thead>
 <tbody valign="top">
 <tr><td>Not Visible</td>
-<td>VISIBILITY_NOTVISIBLE</td>
+<td>MODELVISIBILITY_NOTVISIBLE</td>
 </tr>
 <tr><td>Front Visible</td>
-<td>SPECTYPE_FRONTVISIBLE</td>
+<td>MODELVISIBILITY_FRONTVISIBLE</td>
 </tr>
 <tr><td>Back Visible</td>
-<td>SPECTYPE_BACKVISIBLE</td>
+<td>MODELVISIBILITY_BACKVISIBLE</td>
 </tr>
 <tr><td>Front &amp; Back Visible</td>
-<td>SPECTYPE_FRONTANDBACKVISIBLE</td>
+<td>MODELVISIBILITY_FRONTANDBACKVISIBLE</td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="meta-data-key">
+<span id="newspecificationmetadatakey"></span><span id="mlabfield-newspecificationmetadatakey"></span><h3>Meta Data Key<a class="headerlink" href="#meta-data-key" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-newSpecificationMetaDataKey">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationMetaDataKey</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-newSpecificationMetaDataKey" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="meta-data-value">
+<span id="newspecificationmetadatavalue"></span><span id="mlabfield-newspecificationmetadatavalue"></span><h3>Meta Data Value<a class="headerlink" href="#meta-data-value" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="mlabfieldname-newSpecificationMetaDataValue">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationMetaDataValue</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-newSpecificationMetaDataValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="wem-label">
 <span id="newspecificationwemlabel"></span><span id="mlabfield-newspecificationwemlabel"></span><h3>WEM Label<a class="headerlink" href="#wem-label" title="Permalink to this headline">¶</a></h3>
@@ -634,35 +676,11 @@ Allowed: IndexPairList.</p>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="meta-data-key">
-<span id="newspecificationmetadatakey"></span><span id="mlabfield-newspecificationmetadatakey"></span><h3>Meta Data Key<a class="headerlink" href="#meta-data-key" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="use-default-settings">
+<span id="usedefaultsettings"></span><span id="mlabfield-usedefaultsettings"></span><h3>Use Default Settings<a class="headerlink" href="#use-default-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
-<dt id="mlabfieldname-newSpecificationMetaDataKey">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationMetaDataKey</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-newSpecificationMetaDataKey" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="meta-data-value">
-<span id="newspecificationmetadatavalue"></span><span id="mlabfield-newspecificationmetadatavalue"></span><h3>Meta Data Value<a class="headerlink" href="#meta-data-value" title="Permalink to this headline">¶</a></h3>
-<dl class="field">
-<dt id="mlabfieldname-newSpecificationMetaDataValue">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationMetaDataValue</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><a class="headerlink" href="#mlabfieldname-newSpecificationMetaDataValue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="new-specification">
-<span id="newspecification"></span><span id="mlabfield-newspecification"></span><h3>New Specification<a class="headerlink" href="#new-specification" title="Permalink to this headline">¶</a></h3>
-<dl class="field">
-<dt id="mlabfieldname-newSpecification">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecification</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">&lt;PointSet&gt;, &lt;ModelVisibility&gt;3&lt;/ModelVisibility&gt;, ,</tt><a class="headerlink" href="#mlabfieldname-newSpecification" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="add">
-<span id="newspecificationadd"></span><span id="mlabfield-newspecificationadd"></span><h3>Add<a class="headerlink" href="#add" title="Permalink to this headline">¶</a></h3>
-<dl class="field">
-<dt id="mlabfieldname-newSpecificationAdd">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationAdd</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Trigger</tt><a class="headerlink" href="#mlabfieldname-newSpecificationAdd" title="Permalink to this definition">¶</a></dt>
+<dt id="mlabfieldname-useDefaultSettings">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">useDefaultSettings</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-useDefaultSettings" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -673,7 +691,7 @@ Allowed: IndexPairList.</p>
 <span id="mlabfield-isprocessing"></span><span id="id10"></span><h3>isProcessing<a class="headerlink" href="#isprocessing" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-isProcessing">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">isProcessing</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-isProcessing" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">isProcessing</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, persistent: </tt><tt class="descname" id="mlab_title">no</tt><a class="headerlink" href="#mlabfieldname-isProcessing" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -681,7 +699,7 @@ Allowed: IndexPairList.</p>
 <span id="mlabfield-elapsedtime"></span><span id="id11"></span><h3>elapsedTime<a class="headerlink" href="#elapsedtime" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-elapsedTime">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">elapsedTime</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0</tt><a class="headerlink" href="#mlabfieldname-elapsedTime" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">elapsedTime</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Float</tt><tt class="descname" id="mlab_title">, persistent: </tt><tt class="descname" id="mlab_title">no</tt><a class="headerlink" href="#mlabfieldname-elapsedTime" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -749,19 +767,19 @@ Allowed: IndexPairList.</p>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="newspecificationoutputvalid">
-<span id="mlabfield-newspecificationoutputvalid"></span><span id="id20"></span><h3>newSpecificationOutputValid<a class="headerlink" href="#newspecificationoutputvalid" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="selectedtab">
+<span id="mlabfield-selectedtab"></span><span id="id20"></span><h3>selectedTab<a class="headerlink" href="#selectedtab" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
-<dt id="mlabfieldname-newSpecificationOutputValid">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationOutputValid</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">TRUE</tt><a class="headerlink" href="#mlabfieldname-newSpecificationOutputValid" title="Permalink to this definition">¶</a></dt>
+<dt id="mlabfieldname-selectedTab">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedTab</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Integer</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0</tt><a class="headerlink" href="#mlabfieldname-selectedTab" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
-<div class="section" id="selectedtab">
-<span id="mlabfield-selectedtab"></span><span id="id21"></span><h3>selectedTab<a class="headerlink" href="#selectedtab" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="newspecificationoutputvalid">
+<span id="mlabfield-newspecificationoutputvalid"></span><span id="id21"></span><h3>newSpecificationOutputValid<a class="headerlink" href="#newspecificationoutputvalid" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
-<dt id="mlabfieldname-selectedTab">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">selectedTab</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Integer</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, minimum: </tt><tt class="descname" id="mlab_title">0</tt><tt class="descname" id="mlab_title">, maximum: </tt><tt class="descname" id="mlab_title">3</tt><a class="headerlink" href="#mlabfieldname-selectedTab" title="Permalink to this definition">¶</a></dt>
+<dt id="mlabfieldname-newSpecificationOutputValid">
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">newSpecificationOutputValid</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Bool</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">FALSE</tt><a class="headerlink" href="#mlabfieldname-newSpecificationOutputValid" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -798,9 +816,9 @@ Allowed: IndexPairList.</p>
 <li><a class="reference internal" href="#visible-fields">Visible Fields</a><ul>
 <li><a class="reference internal" href="#auto-apply">Auto Apply</a></li>
 <li><a class="reference internal" href="#auto-update">Auto Update</a></li>
-<li><a class="reference internal" href="#enble-simple-mode-collect-all-positions-from-input-field-and-assemble-one-point-cloud-with-default-settings">Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings).</a></li>
-<li><a class="reference internal" href="#enble-simple-mode-collect-all-positions-from-input-field-and-assemble-one-line-set-with-default-settings">Enble Simple Mode (collect all positions from input field and assemble one line set with default settings).</a></li>
-<li><a class="reference internal" href="#enble-simple-mode-add-all-patches-from-input-wem-and-parse-wem-description-for-details">Enble Simple Mode (add all patches from input wem and parse WEM description for details).</a></li>
+<li><a class="reference internal" href="#enable-simple-mode-collect-all-positions-from-input-field-and-assemble-one-point-cloud-with-default-settings">Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings).</a></li>
+<li><a class="reference internal" href="#enable-simple-mode-collect-all-positions-from-input-field-and-assemble-one-line-set-with-default-settings">Enable Simple Mode (collect all positions from input field and assemble one line set with default settings).</a></li>
+<li><a class="reference internal" href="#enable-simple-mode-add-all-patches-from-input-wem-and-parse-wem-description-for-details">Enable Simple Mode (add all patches from input wem and parse WEM description for details).</a></li>
 <li><a class="reference internal" href="#prefix-for-point-clouds-without-name">Prefix for Point Clouds Without Name</a></li>
 <li><a class="reference internal" href="#prefix-for-line-sets-without-name">Prefix for Line Sets Without Name</a></li>
 <li><a class="reference internal" href="#prefix-for-meshes-without-name">Prefix for Meshes Without Name</a></li>
@@ -823,22 +841,24 @@ Allowed: IndexPairList.</p>
 <li><a class="reference internal" href="#filename">Filename</a></li>
 <li><a class="reference internal" href="#save">Save</a></li>
 <li><a class="reference internal" href="#status">Status</a></li>
+<li><a class="reference internal" href="#new-specification">New Specification</a></li>
+<li><a class="reference internal" href="#add">Add</a></li>
 <li><a class="reference internal" href="#object-type">Object Type</a></li>
 <li><a class="reference internal" href="#object-name">Object Name</a></li>
 <li><a class="reference internal" href="#object-group-path">Object Group Path</a></li>
 <li><a class="reference internal" href="#use-default-color">Use Default Color</a></li>
+<li><a class="reference internal" href="#use-vertex-colors">Use Vertex Colors</a></li>
 <li><a class="reference internal" href="#use-default-specular-color">Use Default Specular Color</a></li>
 <li><a class="reference internal" href="#object-color">Object Color</a></li>
-<li><a class="reference internal" href="#object-alpha">Object Alpha</a></li>
+<li><a class="reference internal" href="#object-opacity">Object Opacity</a></li>
 <li><a class="reference internal" href="#specular-color">Specular Color</a></li>
 <li><a class="reference internal" href="#model-visibility">Model Visibility</a></li>
+<li><a class="reference internal" href="#meta-data-key">Meta Data Key</a></li>
+<li><a class="reference internal" href="#meta-data-value">Meta Data Value</a></li>
 <li><a class="reference internal" href="#wem-label">WEM Label</a></li>
 <li><a class="reference internal" href="#position-types">Position Types</a></li>
 <li><a class="reference internal" href="#connection-types">Connection Types</a></li>
-<li><a class="reference internal" href="#meta-data-key">Meta Data Key</a></li>
-<li><a class="reference internal" href="#meta-data-value">Meta Data Value</a></li>
-<li><a class="reference internal" href="#new-specification">New Specification</a></li>
-<li><a class="reference internal" href="#add">Add</a></li>
+<li><a class="reference internal" href="#use-default-settings">Use Default Settings</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#hidden-fields">Hidden Fields</a><ul>
@@ -852,8 +872,8 @@ Allowed: IndexPairList.</p>
 <li><a class="reference internal" href="#viewsspecification">viewsSpecification</a></li>
 <li><a class="reference internal" href="#lightsspecification">lightsSpecification</a></li>
 <li><a class="reference internal" href="#progress">progress</a></li>
-<li><a class="reference internal" href="#newspecificationoutputvalid">newSpecificationOutputValid</a></li>
 <li><a class="reference internal" href="#selectedtab">selectedTab</a></li>
+<li><a class="reference internal" href="#newspecificationoutputvalid">newSpecificationOutputValid</a></li>
 </ul>
 </li>
 </ul>
