@@ -98,9 +98,9 @@ bool PDF3DFigurePage_SavePDF::assemblePDFDocument()
     pdfDoc_SetGlobalPageMarginsMM(20, 20, 20, 20);
 
     pdfDoc_SetCurrentFont(buildInFonts.Times, 11);
-    pdfDoc_WriteTextAt(0, yPos, _pageHeaderCitationTextFld->getStringValue()/*, mlPDF::IGNORE_MARGINS*/);
+    pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), 40, _pageHeaderCitationTextFld->getStringValue(), mlPDF::TEXTALIGNMENT_LEFT);
 
-    yPos += 25;
+    yPos += 50;
     pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 12);
     pdfDoc_WriteTextAt(0, yPos, _pageHeaderHeadlineTextFld->getStringValue());
 
