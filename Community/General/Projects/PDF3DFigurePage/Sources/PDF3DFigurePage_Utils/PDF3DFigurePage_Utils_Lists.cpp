@@ -479,6 +479,7 @@ void PDF3DFigurePage_Utils::_selectedLineSetIdChanged()
     _selectedLineSetGroupPathFld->setStringValue(groupPath);
     _selectedLineSetUseDefaultColorFld->setBoolValue(useDefaultColor);
     _selectedLineSetColorFld->setVectorValue(color);
+    _updateSelectedLineSetColor();
   }
 }
 
@@ -587,6 +588,7 @@ void PDF3DFigurePage_Utils::_updateSelectedLineSetColor()
 
 void PDF3DFigurePage_Utils::_updateFiberColor(LineSetProperties lineSet)
 {
+  // Set color of result fiberset
   FiberSetContainer::FiberSet* selectedFiberSet = _outFiberSetContainer.getFiberSet(lineSet.id-1);
 
   if (selectedFiberSet)
@@ -602,6 +604,23 @@ void PDF3DFigurePage_Utils::_updateFiberColor(LineSetProperties lineSet)
   }
 
   _outFibersFld->touch();
+
+  // Set color of preview fiberset
+  selectedFiberSet = _outSelectedFiberSetContainer.getFiberSet(0);
+
+  if (selectedFiberSet)
+  {
+    if (lineSet.useDefaultColor)
+    {
+      selectedFiberSet->setColor(Vector3(0));
+    }
+    else
+    {
+      selectedFiberSet->setColor(lineSet.color);
+    }
+  }
+
+  _outSeletedFibersFld->touch();
 }
 
 //----------------------------------------------------------------------------------
