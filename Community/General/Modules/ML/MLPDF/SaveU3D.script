@@ -359,8 +359,8 @@ Window "Specification Generator Panel"
           Field newSpecificationModelVisibility            { title = "Model Visibility:" }         
         }
         Row {
-          Field newSpecificationColor                      { title = "Object Color:" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseDefaultColor && !newSpecificationUseVertexColors @@ }
-          CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType != "OBJECTTYPE_POINTCLOUD" && !newSpecificationUseVertexColors @@ }
+          Field newSpecificationColor                      { title = "Object Color:" dependsOn = @@ (newSpecificationType == "OBJECTTYPE_LINESET" && !newSpecificationUseDefaultColor) || (newSpecificationType == "OBJECTTYPE_MESH" && !newSpecificationUseDefaultColor && !newSpecificationUseVertexColors) @@ }
+          CheckBox newSpecificationUseDefaultColor         { title = "Use Default Color" dependsOn = @@ newSpecificationType == "OBJECTTYPE_LINESET" || (newSpecificationType == "OBJECTTYPE_MESH" && !newSpecificationUseVertexColors) @@ }
           CheckBox newSpecificationUseVertexColors         { title = "Use Vertex Colors" dependsOn = @@ newSpecificationType == "OBJECTTYPE_MESH" @@ }
         }
         Row {

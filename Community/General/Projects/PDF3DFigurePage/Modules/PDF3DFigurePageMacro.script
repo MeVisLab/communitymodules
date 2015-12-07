@@ -105,6 +105,9 @@ Interface {
     Field removeAllLines      { internalName = LoadPointLineGeometry.clearLineCache }
     Field removeAllMeshes     { internalName = WEMComposePatches.clear }
     
+    Field posterBackground    { internalName = OffscreenRenderer.bgColor }
+    field posterText          { internalName = SoView2DLabel.text }
+    
     Field saveU3D             { internalName = RunSaveU3DScript.execute }
     Field saveU3DStatus       { type = String }
     Field savePoster          { internalName = RunCreatePosterScript.execute }
@@ -134,7 +137,7 @@ Commands {
 }
 
 
-Window {
+Window AppWindow {
     
   minimumWidth = 1000
   minimumHeight = 750
@@ -170,7 +173,7 @@ Window {
             Box "Import Point Sets" {
               alignY = Top
               Field loadPointsFilter { title = "ID:" }
-              Button loadPointsModel { expandX = Yes }
+              Button loadPointsModel { title = "Load Points Object" expandX = Yes }
               Separator { expandX = Yes }
               Button cancelImport { title = "Unload" expandX = Yes }
             }
@@ -178,14 +181,14 @@ Window {
             Box "Import Line Sets" {
               alignY = Top
               Field loadLinesFilter { title = "ID:" }
-              Button loadLinesModel  { expandX = Yes }
+              Button loadLinesModel  { title = "Load Lines Object" expandX = Yes }
               Separator { expandX = Yes }
               Button cancelImport { title = "Unload" expandX = Yes }
             }
             
             Box "Import Meshes" {
               alignY = Top
-              Button loadMeshModel   { expandX = Yes }              
+              Button loadMeshModel   { title = "Load Mesh Object" expandX = Yes }              
               Separator { expandX = Yes }
               Button useReducedMesh     { expandX = Yes dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) @@ }
               Field  meshReductionRatio { title = "Reduction %:" dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid && useReducedMesh) @@ }
@@ -194,11 +197,11 @@ Window {
               Button cancelImport { title = "Unload" expandX = Yes }
             }
             
-            Box "Add Model" {
-              Button addImportedModel { expandX = Yes minimumHeight = 50 dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) || (SwitchPreview.whichChild == 1 && LoadPointLineGeometry.positionsLoaded) || (SwitchPreview.whichChild == 2 && LoadPointLineGeometry.positionsLoaded) @@ }
+            Box "Add Object" {
+              Button addImportedModel { title = "Add Imported Object" expandX = Yes minimumHeight = 50 dependsOn = @@ (SwitchPreview.whichChild == 0 && WEMImportInfo.isWEMValid) || (SwitchPreview.whichChild == 1 && LoadPointLineGeometry.positionsLoaded) || (SwitchPreview.whichChild == 2 && LoadPointLineGeometry.positionsLoaded) @@ }
             }
             
-            Box "Remove Models" {
+            Box "Remove Objects" {
               alignY = Top
               Button removeAllPoints { expandX = Yes }
               Button removeAllLines  { expandX = Yes }
@@ -423,7 +426,7 @@ Window {
               Field viewDisplayName          { title = "View Display Name:" }
               Field viewBackgroundColor      { title = "Background Color:" }
               Field viewLightingScheme       { title = "Lighting Scheme*:" }
-              Field viewRenderMode           { title = "RenderMode*:" }
+              Field viewRenderMode           { title = "Render Mode*:" }
               Separator {}
               Label { title = @@* These settings are not illustrated in the preview.@@ }
               Separator {}
@@ -534,17 +537,38 @@ Window {
       TabViewItem "Create Poster Image" {
 
         expandY = Yes
+
+        Box "Settings" {
+          
+          Field posterBackground {}
+          Field posterText {}          
+        }
         
         Box "Preview" {
           
           expandY = Yes
           
-          Viewer PreviewViewer.self {
+          Vertical {
+
             expandY = Yes
-            type    = SoExaminerViewer
-            clone   = Yes
+            Style { Colors { bg = #BBBBBB } }            
+            
+            Horizontal {
+              expandX = Yes
+
+              Empty { expandX = Yes }
+
+              Viewer PreviewViewer.self {
+                expandY     = Yes
+                type        = SoExaminerViewer
+                clone       = Yes
+                fixedHeight = 400   // Need a fixed width/height here to maintain 4:3 aspect ratio
+                fixedWidth  = 562   // The width is a little more than 4:3 beacause the viewr controls need to be displayed as well...
+              }
+            
+              Empty { expandX = Yes }            
+            }
           }
-          
           Horizontal {
             expandX = Yes
             Label                           { title = "Show:" alignX = Left }

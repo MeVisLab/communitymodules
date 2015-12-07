@@ -102,7 +102,7 @@ module WEMLoad {
     label = ""
     description = ""
     shouldComputeNormals = FALSE
-    filename = D:/MeVisLab/Packages/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.wem
+    filename = ""
     mirrorFaces = FALSE
     generateEdges = TRUE
     triangulateFaces = FALSE

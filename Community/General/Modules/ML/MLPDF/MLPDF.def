@@ -14,7 +14,7 @@ MLModule PDFUtils {
   author             = "Axel Newe"
   comment            = "Utilities for PDF creation."
   keywords           = "PDF U3D PRC"
-  seeAlso            = "SaveU3D SavePRC Save3DFigurePDF"
+  seeAlso            = "SaveU3D PDF3DFigurePageMacro"
   exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
   externalDefinition = $(LOCAL)/PDFUtils.script
 }  
@@ -26,7 +26,7 @@ MLModule SaveU3D {
   author             = "Axel Newe"
   comment            = "Creates U3D file from WEMs and XMarkerLists."
   keywords           = "PDF U3D WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SavePRC SavePDFFigure SavePDF LoadU3D"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D LoadU3D PDF3DFigurePageMacro"
   exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
   externalDefinition = $(LOCAL)/SaveU3D.script
 }
@@ -38,7 +38,7 @@ MLModule LoadU3D {
   author             = "Axel Newe"
   comment            = "Loads U3D file and creates WEMs and XMarkerLists from it."
   keywords           = "PDF U3D WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SavePRC SavePDFFigure SavePDF SaveU3D"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D PDF3DFigurePageMacro"
   exampleNetwork     = "$(LOCAL)/networks/LoadU3DExample.mlab"
   externalDefinition = $(LOCAL)/LoadU3D.script
 }
@@ -51,7 +51,7 @@ MLModule SavePRC {
   author             = "Axel Newe"
   comment            = "Creates PRC file from WEMs and XMarkerLists."
   keywords           = "PDF PRC WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D SavePDFFigure SavePDF"
+  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D"
   exampleNetwork     = "$(LOCAL)/networks/SavePRCExample.mlab"
   externalDefinition = $(LOCAL)/SavePRC.script
 }

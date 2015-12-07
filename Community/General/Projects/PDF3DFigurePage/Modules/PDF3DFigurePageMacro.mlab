@@ -115,7 +115,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0 0 0"
-    text = "Click here to enable interactive mode."
+    text = "Click here to enable interactive mode in Acrobat Reader."
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
@@ -615,7 +615,7 @@ module SoFiberVis {
     computeFiberSet = FALSE
     alphaValue = 1
     minFibernessValue = 0
-    colorMode = COLOR_GENERAL
+    colorMode = COLOR_INDIVIDUAL
     enableLighting = FALSE
     ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
     diffuse = "1 1 1"
@@ -895,8 +895,8 @@ module PDF3DFigurePage_LoadPointLineGeometry {
     instanceName = LoadPointLineGeometry
     filename = ""
     filter = Lines
-    numberDelimiter = " "
-    numberDelimiterSpace = TRUE
+    numberDelimiter = ;
+    numberDelimiterSpace = FALSE
     decimalSeparator = .
     autoLoad = FALSE
   }
@@ -2135,7 +2135,7 @@ module SoExaminerViewer {
     frameRate = 7
     frameRateAvi = 15
     outputSnapshotFile = ""
-    outputSnapshotFileWritten = "d:\\snapshot1.tif"
+    outputSnapshotFileWritten = ""
     autoIncreaseFile = FALSE
     showSnapshotWithShell = FALSE
     snapCount = 0
@@ -2776,6 +2776,7 @@ module PDF3DFigurePage_Utils {
     newViewDisplayName = ""
     newViewBackgroundColor = "1 1 1"
     newViewLightingScheme = HeadLamp
+    newViewRenderMode = Solid
     selectedWEMPatch = ""
     availableWEMPatches = ""
     selectedWEMPatchNewLabel = ""
@@ -3278,7 +3279,7 @@ module SaveU3D {
     metaDataSpecification = ""
     defaultViewName = DefaultView
     defaultLightName = DefaultAmbientLight
-    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialDiffuseColor = "0 0 0"
     defaultMaterialSpecularColor = "0.75 0.75 0.75"
     defaultMaterialAmbientColor = "0 0 0"
     defaultMaterialEmissiveColor = "0 0 0"
@@ -3313,7 +3314,7 @@ module SaveU3D {
     newSpecificationWEMLabel = ""
     newSpecificationPositionTypes = 1
     newSpecificationConnectionTypes = 1
-    useDefaultSettings = TRUE
+    useDefaultSettings = FALSE
   }
 }
 connections  {
@@ -3357,6 +3358,7 @@ connections  {
   WEMRendererImport.inWEM = SwitchReducedMesh.outputBaseObject0
   WEMRendererImport.inExtensions = WEMRenderEdgesImport.self
   WEMComposePatches.inWEM = SwitchReducedMesh.outputBaseObject0
+  PreviewViewer.background = OffscreenRenderer.bgColor
   PreviewViewer.height = PointsViewer.height
   PreviewViewer.position = PointsViewer.position
   PreviewViewer.orientation = PointsViewer.orientation

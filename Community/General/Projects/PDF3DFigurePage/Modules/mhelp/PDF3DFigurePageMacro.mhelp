@@ -1,7 +1,7 @@
 ModuleHelp  {
   MetaInformation  {
     definition = Projects/PDF3DFigurePage/Modules/PDF3DFigurePage.def
-    moduleName = Scientific3DFigurePDFApp
+    moduleName = PDF3DFigurePageMacro
     moduleType = MacroModule
     author = "Axel Newe, axel.newe at fau.de"
     dll = ""
@@ -316,7 +316,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       needsDocumentation = No
       visibleInGUI = No
       persistent = Yes
-      default = Scientific3DFigurePDFApp
+      default = PDF3DFigurePageMacro
     }
     Field useInputConnectors {
       type = Bool

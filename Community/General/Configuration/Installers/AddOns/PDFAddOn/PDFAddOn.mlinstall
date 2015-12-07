@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------
 
 # Name of the product
-$PRODUCT MeVisLabPDFAddOn
+$PRODUCT MeVisLab Community PDF-AddOn
 
 # Version of the product
 $VERSION 1.0
@@ -14,14 +14,17 @@ $RELEASE 1
 # Include debug DLLs and executables
 $DEBUG   1
 
-# precompile all python files
+# Precompile all python files
 $INSTALLER_COMPILE_ALL_PYTHON_FILES 1
 
 # Specify the license text
 $INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/PDFAddOn/PDFAddOnLicense.txt
 
-# make sure that header files contain correct header and that hidden sections are removed
+# Make sure that header files contain correct header and that hidden sections are removed
 #$PUBLIC_MEVISLAB 1
+
+# Disable signing
+$DEBUG_NO_SIGNING 1
 
 #---------------------------------------------------------------------
 INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
@@ -73,6 +76,7 @@ SWITCH_PACKAGE Community/General
 + Sources/ML/MLPDF/MLPDFInit.cpp
 + Sources/ML/MLPDF/MLPDFSystem.h
 + Projects/PDF3DFigurePage/Modules
+- Projects/PDF3DFigurePage/Modules/networks_for_development
 + Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_LoadPointLineGeometry
 + Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_SavePDF
 - Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_SavePDF/3DFigureExample.*
@@ -92,6 +96,9 @@ SWITCH_PACKAGE Community/General
 + Projects/PDFExamples/Sources/SavePDFTemplateInit.h
 + Projects/PDFExamples/Sources/SavePDFTemplateInit.cpp
 + Projects/PDFExamples/Sources/SavePDFTemplateSystem.h
++ Documentation/Publish/ModuleReference/
++ Documentation/Publish/ModuleReference/_static
+- Documentation/Publish/ModuleReference/.buildinfo
 
 SWITCH_PACKAGE Community/ThirdParty
 + Package.def

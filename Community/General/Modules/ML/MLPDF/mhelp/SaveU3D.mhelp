@@ -7,9 +7,9 @@ ModuleHelp  {
     DLL = MLPDF
     genre = FileMain
     keywords = "PDF U3D WEM XMarker Fiber"
-    seeAlso = "WEMSaveAsU3D ComposeWEMDescriptionForU3D"
+    seeAlso = "WEMSaveAsU3D ComposeWEMDescriptionForU3D LoadU3D PDF3DFigurePageMacro"
     package = General
-    packageGroup = Axel
+    packageGroup = Community
   }
   Purpose  {
     text = "This module creates Universal 3D (U3D) files that can be imported into Portable Document Format (PDF) files for creating 3D annotations."
@@ -37,7 +37,8 @@ The common tags are:
 
 * *<ObjectName></ObjectName>*: This specifies the name under which the object is identified in the 3D model tree. Names do *not* need to be unique.
 * *<GroupPath><GroupPath>*: This specifies the path where the object is placed in the 3D model tree. All necessary sub-branches are created automatically.
-* *<Color><Color>*: This specifies the (diffuse) color of the object.
+* *<Color></Color>*: This specifies the (diffuse) color of the object.
+* *<Opacity></Opacity>*: This specifies the opacity of the object. It ranges from 0 (invisible) to 1 (totally opaque).
 * *<SpecularColor><SpecularColor>*: This specifies the specular (reflective) color of the object.
 * *<ModelVisibility><ModelVisibility>*: This specifies the model visibility (front visible, back visible, both sides visible or not visible).
 
@@ -62,6 +63,8 @@ The geometry data is taken from the :field:`inLinePositions` input field (XMarke
 A new mesh is started by the *<Mesh>* tag. A closing tag is not necessary
 
 The geometry data is taken from the :field:`inWEM` input field, which accepts a WEM. Use the <WEMLabel> tag to filter which WEM (selected by its Label) of the input WEM shall be used.
+
+Meshes can have a per-vertex color. To enable this feature, enter *<Color>{VertexColors}</Color>* as color specification. In this case, the node colors of the WEMs are used to generate the colors of the mesh.
 
 **Meta Data**
 
@@ -91,10 +94,7 @@ This module requires the MLBaseListExtensions.
 *"
   }
   Windows  {
-    text  {
-      title = ""
-      text = ""
-    }
+    text = ""
     Window "Main Panel" {
       title = ""
       text = "*The main panel contains a "Default Settings" tab. This tab contains the default object specifications that pitch in if they are not explicitly specified in the respective object type tabs.
@@ -147,18 +147,14 @@ Allowed: IndexPairList."
       text = ""
       title = ""
       visibleInGUI = No
-      persistent = Yes
-      default = FALSE
+      persistent = No
     }
     Field elapsedTime {
       type = Float
       text = ""
       title = ""
       visibleInGUI = No
-      min = ""
-      max = ""
-      persistent = Yes
-      default = 0
+      persistent = No
     }
     Field autoApply {
       type = Bool
@@ -219,7 +215,7 @@ Allowed: IndexPairList."
     Field simpleModePointSet {
       type = Bool
       text = ""
-      title = "Enble Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."
+      title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."
       visibleInGUI = Yes
       persistent = Yes
       default = FALSE
@@ -227,7 +223,7 @@ Allowed: IndexPairList."
     Field simpleModeLineSet {
       type = Bool
       text = ""
-      title = "Enble Simple Mode (collect all positions from input field and assemble one line set with default settings)."
+      title = "Enable Simple Mode (collect all positions from input field and assemble one line set with default settings)."
       visibleInGUI = Yes
       persistent = Yes
       default = FALSE
@@ -235,7 +231,7 @@ Allowed: IndexPairList."
     Field simpleModeMesh {
       type = Bool
       text = ""
-      title = "Enble Simple Mode (add all patches from input wem and parse WEM description for details)."
+      title = "Enable Simple Mode (add all patches from input wem and parse WEM description for details)."
       visibleInGUI = Yes
       persistent = Yes
       default = FALSE
@@ -441,9 +437,38 @@ Allowed: IndexPairList."
       text = ""
       title = ""
       visibleInGUI = No
-      min = ""
-      max = ""
       persistent = No
+    }
+    Field newSpecification {
+      type = String
+      text = ""
+      title = "New Specification"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedTab {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    Field newSpecificationOutputValid {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field newSpecificationAdd {
+      type = Trigger
+      text = ""
+      title = Add
+      visibleInGUI = Yes
+      persistent = Yes
       default = ""
     }
     Field newSpecificationType {
@@ -452,29 +477,25 @@ Allowed: IndexPairList."
       title = "Object Type"
       visibleInGUI = Yes
       items  {
-        item SPECTYPE_POINTCLOUD {
+        item OBJECTTYPE_POINTCLOUD {
           title = "Point Cloud"
           text = ""
-          deprecatedName = ""
         }
-        item SPECTYPE_LINESET {
+        item OBJECTTYPE_LINESET {
           title = "Line Set"
           text = ""
-          deprecatedName = ""
         }
-        item SPECTYPE_MESH {
+        item OBJECTTYPE_MESH {
           title = Mesh
           text = ""
-          deprecatedName = ""
         }
-        item SPECTYPE_METADATA {
+        item OBJECTTYPE_METADATA {
           title = "Meta Data"
           text = ""
-          deprecatedName = ""
         }
       }
       persistent = Yes
-      default = SPECTYPE_POINTCLOUD
+      default = OBJECTTYPE_MESH
     }
     Field newSpecificationObjectName {
       type = String
@@ -500,6 +521,14 @@ Allowed: IndexPairList."
       persistent = Yes
       default = TRUE
     }
+    Field newSpecificationUseVertexColors {
+      type = Bool
+      text = ""
+      title = "Use Vertex Colors"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
     Field newSpecificationUseDefaultSpecularColor {
       type = Bool
       text = ""
@@ -514,12 +543,12 @@ Allowed: IndexPairList."
       title = "Object Color"
       visibleInGUI = Yes
       persistent = Yes
-      default = "0.651 0.651 0.651"
+      default = "0.651000022888184 0.651000022888184 0.651000022888184"
     }
     Field newSpecificationColorAlpha {
       type = Float
       text = ""
-      title = "Object Alpha"
+      title = "Object Opacity"
       visibleInGUI = Yes
       min = 0
       max = 1
@@ -540,29 +569,41 @@ Allowed: IndexPairList."
       title = "Model Visibility"
       visibleInGUI = Yes
       items  {
-        item VISIBILITY_NOTVISIBLE {
+        item MODELVISIBILITY_NOTVISIBLE {
           title = "Not Visible"
           text = ""
-          deprecatedName = ""
         }
-        item SPECTYPE_FRONTVISIBLE {
+        item MODELVISIBILITY_FRONTVISIBLE {
           title = "Front Visible"
           text = ""
-          deprecatedName = ""
         }
-        item SPECTYPE_BACKVISIBLE {
+        item MODELVISIBILITY_BACKVISIBLE {
           title = "Back Visible"
           text = ""
-          deprecatedName = ""
         }
-        item SPECTYPE_FRONTANDBACKVISIBLE {
+        item MODELVISIBILITY_FRONTANDBACKVISIBLE {
           title = "Front & Back Visible"
           text = ""
-          deprecatedName = ""
         }
       }
       persistent = Yes
-      default = SPECTYPE_FRONTANDBACKVISIBLE
+      default = MODELVISIBILITY_FRONTANDBACKVISIBLE
+    }
+    Field newSpecificationMetaDataKey {
+      type = String
+      text = ""
+      title = "Meta Data Key"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field newSpecificationMetaDataValue {
+      type = String
+      text = ""
+      title = "Meta Data Value"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
     }
     Field newSpecificationWEMLabel {
       type = String
@@ -588,58 +629,13 @@ Allowed: IndexPairList."
       persistent = Yes
       default = ""
     }
-    Field newSpecificationMetaDataKey {
-      type = String
-      text = ""
-      title = "Meta Data Key"
-      visibleInGUI = Yes
-      persistent = Yes
-      default = ""
-    }
-    Field newSpecificationMetaDataValue {
-      type = String
-      text = ""
-      title = "Meta Data Value"
-      visibleInGUI = Yes
-      persistent = Yes
-      default = ""
-    }
-    Field newSpecification {
-      type = String
-      text = ""
-      title = "New Specification"
-      visibleInGUI = Yes
-      persistent = Yes
-      default = "<PointSet>
-<ModelVisibility>3</ModelVisibility>
-
-"
-    }
-    Field newSpecificationOutputValid {
+    Field useDefaultSettings {
       type = Bool
       text = ""
-      title = ""
-      visibleInGUI = No
-      persistent = Yes
-      default = TRUE
-    }
-    Field newSpecificationAdd {
-      type = Trigger
-      text = ""
-      title = Add
+      title = "Use Default Settings"
       visibleInGUI = Yes
       persistent = Yes
-      default = ""
-    }
-    Field selectedTab {
-      type = Integer
-      text = ""
-      title = ""
-      visibleInGUI = No
-      min = 0
-      max = 3
-      persistent = Yes
-      default = 0
+      default = TRUE
     }
     text = ""
   }
