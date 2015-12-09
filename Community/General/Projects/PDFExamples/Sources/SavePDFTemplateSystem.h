@@ -17,5 +17,5 @@
   #define SAVEPDFTEMPLATE_EXPORT ML_LIBRARY_EXPORT_ATTRIBUTE
 #else
   // If included by external modules, exported symbols are declared as import symbols.
-  #define SAVEPDFTEMPLAT_EXPORT ML_LIBRARY_IMPORT_ATTRIBUTE
+  #define SAVEPDFTEMPLATE_EXPORT ML_LIBRARY_IMPORT_ATTRIBUTE
 #endif
