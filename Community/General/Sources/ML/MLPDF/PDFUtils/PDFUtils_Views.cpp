@@ -32,6 +32,7 @@ void PDFUtils::_createNewView()
     newViewString += "<DisplayName>" + newViewDisplayName + "</DisplayName>\n";
     newViewString += "<BackgroundColor>" + PDFTools::FormatColorString(_newViewBackgroundColorFld->getVectorValue()) + "</BackgroundColor>\n";
     newViewString += "<LightingScheme>" + intToString(_newViewLightingSchemeFld->getEnumValue()) + "</LightingScheme>\n";
+    newViewString += "<RenderMode>" + intToString(_newViewRenderModeFld->getEnumValue()) + "</RenderMode>\n";
     newViewString += "<CamCenterOfOrbit>" + PDFTools::FormatVec3String(_cameraCenterOfOrbitFld->getVectorValue()) + "</CamCenterOfOrbit>\n";
     newViewString += "<CamCenterToCamera>" + PDFTools::FormatVec3String(_cameraCenterToCameraFld->getVectorValue()) + "</CamCenterToCamera>\n";
     newViewString += "<CamRadiusOfOrbit>" + floatToString(_cameraRadiusOfOrbitFld->getFloatValue()) + "</CamRadiusOfOrbit>\n";

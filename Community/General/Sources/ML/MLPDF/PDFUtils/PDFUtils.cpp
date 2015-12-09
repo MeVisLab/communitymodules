@@ -68,6 +68,7 @@ PDFUtils::PDFUtils() : Module(0, 0)
   (_newViewDisplayNameFld     = addString("newViewDisplayName"))->setStringValue("");
   (_newViewBackgroundColorFld = addColor("newViewBackgroundColor"))->setStringValue("1 1 1");
   (_newViewLightingSchemeFld  = addEnum("newViewLightingScheme", mlPDF::LightingSchemeStrings, mlPDF::NUM_LIGHTING_SCHEMES))->setEnumValue(mlPDF::LIGHTING_SCHEME_CAD);
+  (_newViewRenderModeFld      = addEnum("newViewRenderMode", mlPDF::ModelRenderModeStrings, mlPDF::NUM_MODEL_RENDERMODES))->setEnumValue(mlPDF::MODEL_RENDERMODE_SOLID);
   _addNewViewFld              = addNotify("addNewView");
   _clearViewsFld              = addNotify("clearViews");
 

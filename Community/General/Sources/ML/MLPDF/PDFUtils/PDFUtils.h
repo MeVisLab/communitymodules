@@ -92,6 +92,7 @@ private:
   StringField*   _newViewDisplayNameFld;
   ColorField*    _newViewBackgroundColorFld;
   EnumField*     _newViewLightingSchemeFld;
+  EnumField*     _newViewRenderModeFld;
   NotifyField*   _addNewViewFld;
   NotifyField*   _clearViewsFld;
 
