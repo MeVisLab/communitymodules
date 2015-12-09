@@ -41,6 +41,7 @@ void PDFDocumentTools::CalculateCameraPropertiesFromInventorCamera(
   Vector3 camYAxisInverted = camYAxis * -1;
   Vector3 centerToCamera = camZAxis * inventorCameraFocalDistance;
   Vector3 centerOfOrbit = inventorCameraPosition - centerToCamera;
+  centerToCamera.normalize(); // Must be AFTER calculation of centerOfOrbit!
 
   Vector4 mx(cameraRotationMatrix[0][0], cameraRotationMatrix[0][1], cameraRotationMatrix[0][2], cameraRotationMatrix[0][3]);
   Vector4 my(cameraRotationMatrix[1][0], cameraRotationMatrix[1][1], cameraRotationMatrix[1][2], cameraRotationMatrix[1][3]);
