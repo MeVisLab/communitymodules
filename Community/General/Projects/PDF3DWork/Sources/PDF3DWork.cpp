@@ -13,7 +13,7 @@
 // Project includes
 #include "MLPDF_Tools.h"
 #include "../shared/MLPDF_Tools.h"
-#include "../shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h"
+#include "../shared/MLPDF_PDFDocumentTools.h"
 
 // ThirdParty includes
 #include "hpdf.h"
@@ -30,7 +30,7 @@ ML_MODULE_CLASS_SOURCE(PDF3DWork, Module);
 
 //----------------------------------------------------------------------------------
 
-PDF3DWork::PDF3DWork() : PDFCreatorBase()
+PDF3DWork::PDF3DWork() : PDFGenerator()
 {
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
@@ -54,7 +54,7 @@ PDF3DWork::PDF3DWork() : PDFCreatorBase()
 void PDF3DWork::handleNotification(Field* field)
 {
   // Call super class functionality first!
-  PDFCreatorBase::handleNotification(field);
+  PDFGenerator::handleNotification(field);
 
   // Handle changes of module parameters and input image fields here.
 }
@@ -63,7 +63,7 @@ void PDF3DWork::handleNotification(Field* field)
 
 bool PDF3DWork::assemblePDFDocument()
 {
-  bool result = _assembleVersion2();
+  bool result = _assembleVersion3();
 
   return result;
 }
@@ -122,7 +122,7 @@ bool PDF3DWork::_assembleVersion1()
   if (_getMetaDataFromU3DFile(u3dFilename))
   {
     yPos += 40;
-    _add3DFigure(0, yPos, sceneWidth, sceneHeight, u3dFilename, posterFilename, viewDefinition);
+    _add3DFigure(0, yPos, sceneWidth, sceneHeight, true, u3dFilename, posterFilename, viewDefinition);
   }
 
   yPos += sceneHeight;
@@ -136,7 +136,7 @@ bool PDF3DWork::_assembleVersion1()
 
   if (_getMetaDataFromU3DFile(u3dFilename))
   {
-    _add3DFigure(0, yPos, sceneWidth, sceneHeight, u3dFilename, posterFilename, viewDefinition);
+    _add3DFigure(0, yPos, sceneWidth, sceneHeight, true, u3dFilename, posterFilename, viewDefinition);
   }
 
   // Add sub-figure #3
@@ -146,7 +146,7 @@ bool PDF3DWork::_assembleVersion1()
 
   if (_getMetaDataFromU3DFile(u3dFilename))
   {
-    _add3DFigure(sceneWidth, yPos, sceneWidth, sceneHeight, u3dFilename, posterFilename, viewDefinition);
+    _add3DFigure(sceneWidth, yPos, sceneWidth, sceneHeight, true, u3dFilename, posterFilename, viewDefinition);
   }
 
   yPos += sceneHeight;
@@ -219,7 +219,7 @@ bool PDF3DWork::_assembleVersion2()
   if (_getMetaDataFromU3DFile(u3dFilename))
   {
     yPos += 40;
-    _add3DFigure(0, yPos, sceneWidth, sceneHeight, u3dFilename, posterFilename, viewDefinition);
+    _add3DFigure(0, yPos, sceneWidth, sceneHeight, true, u3dFilename, posterFilename, viewDefinition);
   }
 
   yPos += sceneHeight;
@@ -238,11 +238,126 @@ bool PDF3DWork::_assembleVersion2()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DWork::_add3DFigure(float x, float y, float width, float height, std::string u3dFilename, std::string posterFilename, std::string viewDefinition)
+bool PDF3DWork::_assembleVersion3()
+{
+  bool result = true;
+
+  const std::string headerCitationText = "Neubert et.al. (2016). Automatic Segmentation of the Glenohumeral Cartilages from Magnetic Resonance Images.";
+  const std::string headerHeadlineText = "Additional Figure 1 - Interactive 3D Figure";
+
+  //const std::string caption = "CAPTION.";
+  const std::string description = "3D visualization of the focused shape models of glenohumeral joint bone constructed from manual segmentations: the combined bone model (top); humerus (bottom left); scapula (bottom right). Each subfigure shows surfaces generated at ±3 standard deviations of the most important mode of variation. The surfaces of the models are colour coded with the manually assigned weights for constructing focused shape models in the relevant areas of the bones.";
+
+  const std::string resourcesPath = resourcesPathFld->getStringValue();
+  std::string u3dFilename = "";
+  std::string posterFilename = "";
+  std::string viewDefinition = "";
+
+  //HPDF_Page pdfPage;
+  float yPos = 0;
+  pdfDoc_AddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);
+  pdfDoc_SetGlobalPageMarginsMM(20, 20, 20, 20);
+
+  pdfDoc_SetCurrentFont(buildInFonts.Times, 11);
+  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), 40, headerCitationText, mlPDF::TEXTALIGNMENT_LEFT);
+
+  yPos += 50;
+  pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 12);
+  pdfDoc_WriteTextAt(0, yPos, headerHeadlineText);
+
+  yPos += 35;
+  pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
+  pdfDoc_WriteTextAt(0, yPos, "Figure is best viewed with Adobe Reader 9 or later");
+
+  pdfDoc_SetCurrentFont(buildInFonts.Times, 9);
+  yPos += 15;
+  pdfDoc_WriteTextAt(0, yPos, "Click inside image or frame to enable interactive mode.");
+  yPos += 10;
+  pdfDoc_WriteTextAt(0, yPos, "- Left-click & move mouse to rotate scene.");
+  yPos += 10;
+  pdfDoc_WriteTextAt(0, yPos, "- Right-click & move mouse to zoom.");
+  yPos += 10;
+  pdfDoc_WriteTextAt(0, yPos, "- Both-click and move mouse to pan.");
+
+  // Add sub-figure #1
+  float pageWidth = pdfDoc_GetPageMaxWidth();
+  float sceneWidth = pageWidth * 0.5;
+  float sceneHeight = sceneWidth;
+
+    yPos += 40;
+    pdfDoc_AddOutlineRectangle(0, yPos, sceneWidth*2, sceneHeight, 1);
+
+    u3dFilename = resourcesPath + "/version3/combined_minus3_colorized.u3d";
+    posterFilename = resourcesPath + "/version3/combined_minus3_poster.png";
+    viewDefinition = "<View><DisplayName>Default View</DisplayName><BackgroundColor>1.000 1.000 1.000</BackgroundColor><LightingScheme>10</LightingScheme><RenderMode>1</RenderMode><CamCenterOfOrbit>0.001 0.001 -0.002</CamCenterOfOrbit><CamCenterToCamera>0.622 -0.684 -0.381</CamCenterToCamera><CamRadiusOfOrbit>3</CamRadiusOfOrbit><CamRollAngle>10.8656</CamRollAngle><CamFOVAngle>45</CamFOVAngle></View>";
+    _getMetaDataFromU3DFile(u3dFilename);
+    _add3DFigure(0, yPos, sceneWidth, sceneHeight, false, u3dFilename, posterFilename, viewDefinition);
+
+    u3dFilename = resourcesPath + "/version3/combined_plus3_colorized.u3d";
+    posterFilename = resourcesPath + "/version3/combined_plus3_poster.png";
+    //viewDefinition = "<View><DisplayName>Default View</DisplayName><BackgroundColor>1.000 1.000 1.000</BackgroundColor><LightingScheme>10</LightingScheme><RenderMode>1</RenderMode><CamCenterOfOrbit>0.000 0.779 -0.002</CamCenterOfOrbit><CamCenterToCamera>3.937 -4.304 -2.4894</CamCenterToCamera><CamRadiusOfOrbit>3.3424</CamRadiusOfOrbit><CamRollAngle>1.472</CamRollAngle><CamFOVAngle>45</CamFOVAngle></View>";
+    _getMetaDataFromU3DFile(u3dFilename);
+    _add3DFigure(sceneWidth, yPos, sceneWidth, sceneHeight, false, u3dFilename, posterFilename, viewDefinition);
+
+  yPos += sceneHeight;
+
+  // Add sub-figure #2
+  sceneWidth = pageWidth * 0.25;
+  sceneHeight = sceneWidth * 2;
+
+    pdfDoc_AddOutlineRectangle(0, yPos, sceneWidth*2, sceneHeight, 1);
+
+    u3dFilename = resourcesPath + "/version3/humerus_minus3_colorized.u3d";
+    posterFilename = resourcesPath + "/version3/humerus_minus3_poster.png";
+    viewDefinition = "<View><DisplayName>Default View</DisplayName><BackgroundColor>1.000 1.000 1.000</BackgroundColor><LightingScheme>10</LightingScheme><RenderMode>1</RenderMode><CamCenterOfOrbit>-0.313 -0.256 -0.196</CamCenterOfOrbit><CamCenterToCamera>0.631 -0.694 -0.346</CamCenterToCamera><CamRadiusOfOrbit>2</CamRadiusOfOrbit><CamRollAngle>10.9752</CamRollAngle><CamFOVAngle>45</CamFOVAngle></View>";
+    _getMetaDataFromU3DFile(u3dFilename);
+    _add3DFigure(0, yPos, sceneWidth, sceneHeight, false, u3dFilename, posterFilename, viewDefinition);
+
+    u3dFilename = resourcesPath + "/version3/humerus_plus3_colorized.u3d";
+    posterFilename = resourcesPath + "/version3/humerus_plus3_poster.png";
+    //viewDefinition = "<View><DisplayName>Default View</DisplayName><BackgroundColor>1.000 1.000 1.000</BackgroundColor><LightingScheme>10</LightingScheme><RenderMode>1</RenderMode><CamCenterOfOrbit>-0.299 0.522 -0.036</CamCenterOfOrbit><CamCenterToCamera>4.109 -0.112 -1.217</CamCenterToCamera><CamRadiusOfOrbit>4.287</CamRadiusOfOrbit><CamRollAngle>14.376</CamRollAngle><CamFOVAngle>45</CamFOVAngle></View>";
+    _getMetaDataFromU3DFile(u3dFilename);
+    _add3DFigure(sceneWidth, yPos, sceneWidth, sceneHeight, false, u3dFilename, posterFilename, viewDefinition);
+
+  // Add sub-figure #3
+    pdfDoc_AddOutlineRectangle(sceneWidth*2, yPos, sceneWidth*2, sceneHeight, 1);
+
+    u3dFilename = resourcesPath + "/version3/scapula_minus3_colorized.u3d";
+    posterFilename = resourcesPath + "/version3/scapula_minus3_poster.png";
+    viewDefinition = "<View><DisplayName>Default View</DisplayName><BackgroundColor>1.000 1.000 1.000</BackgroundColor><LightingScheme>10</LightingScheme><RenderMode>1</RenderMode><CamCenterOfOrbit>0.215 0.018 0.211</CamCenterOfOrbit><CamCenterToCamera>0.640 -0.711 -0.291</CamCenterToCamera><CamRadiusOfOrbit>2</CamRadiusOfOrbit><CamRollAngle>11.2132</CamRollAngle><CamFOVAngle>45</CamFOVAngle></View>";
+    _getMetaDataFromU3DFile(u3dFilename);
+    _add3DFigure(sceneWidth*2, yPos, sceneWidth, sceneHeight, false, u3dFilename, posterFilename, viewDefinition);
+
+    u3dFilename = resourcesPath + "/version3/scapula_plus3_colorized.u3d";
+    posterFilename = resourcesPath + "/version3/scapula_plus3_poster.png";
+    //viewDefinition = "<View><DisplayName>Default View</DisplayName><BackgroundColor>1.000 1.000 1.000</BackgroundColor><LightingScheme>10</LightingScheme><RenderMode>1</RenderMode><CamCenterOfOrbit>0.215 0.797 0.310</CamCenterOfOrbit><CamCenterToCamera>3.940 -0.581 -0.752</CamCenterToCamera><CamRadiusOfOrbit>4.053</CamRadiusOfOrbit><CamRollAngle>6.585</CamRollAngle><CamFOVAngle>45</CamFOVAngle></View>";
+    _getMetaDataFromU3DFile(u3dFilename);
+    _add3DFigure(sceneWidth*3, yPos, sceneWidth, sceneHeight, false, u3dFilename, posterFilename, viewDefinition);
+
+  yPos += sceneHeight;
+
+  //yPos += 5;
+  //pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 10);
+  //pdfDoc_WriteTextAt(0, yPos, caption);
+
+  yPos += 12;
+  float descriptionBoxHeight = pdfDoc_GetPageRemainingHeight(yPos);
+  pdfDoc_SetCurrentFont(buildInFonts.Times, 10);
+  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), descriptionBoxHeight, description, mlPDF::TEXTALIGNMENT_LEFT);
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDF3DWork::_add3DFigure(float x, float y, float width, float height, bool addOutline, std::string u3dFilename, std::string posterFilename, std::string viewDefinition)
 {
   bool sceneAdded = false;
 
-  pdfDoc_AddOutlineRectangle(x, y, width, height, 1);
+  if (addOutline)
+  {
+    pdfDoc_AddOutlineRectangle(x, y, width, height, 1);
+  }
 
   if (mlPDF::fileExists(u3dFilename))
   {
@@ -276,14 +391,14 @@ void PDF3DWork::_add3DFigure(float x, float y, float width, float height, std::s
 
       if (!posterExists)
       {
-        pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "Click here to display interactive 3D figure.", mlPDF::TEXT_ALIGNMENTS::TEXTALIGNMENT_CENTER);
+        pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "Click here to display interactive 3D figure.", mlPDF::TEXTALIGNMENT_CENTER);
       }
 
       mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x + 1, y + 1, width - 2, height - 2, u3dModel, posterImage);
 
       if (u3dScene)
       {
-        pdfDoc_3DScene_SetActivationProperties(u3dScene, mlPDF::ActivationModeStrings[mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE], mlPDF::DeactivationModeStrings[mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE], true, true, false);
+        pdfDoc_3DScene_SetActivationProperties(u3dScene, mlPDF::ActivationModeStrings[mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE], mlPDF::DeactivationModeStrings[mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE], true);
         sceneAdded = true;
       }
 
@@ -293,7 +408,7 @@ void PDF3DWork::_add3DFigure(float x, float y, float width, float height, std::s
 
   if (!sceneAdded)
   {
-    pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "FAILED TO IMPORT 3D FIGURE!", mlPDF::TEXT_ALIGNMENTS::TEXTALIGNMENT_CENTER);
+    pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "FAILED TO IMPORT 3D FIGURE!", mlPDF::TEXTALIGNMENT_CENTER);
   }
 }
 

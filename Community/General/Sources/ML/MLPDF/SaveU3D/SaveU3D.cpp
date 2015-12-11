@@ -12,7 +12,7 @@
 
 // Local includes
 #include "SaveU3D.h"
-#include "shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
+#include "../shared/MLPDF_SpecificationGenerator.h"
 #include "U3DFileFormat/U3D_Tools.h"
 #include "U3DFileFormat/U3D_Constants.h"
 #include "U3DFileFormat/U3D_DataBlockWriter.h"

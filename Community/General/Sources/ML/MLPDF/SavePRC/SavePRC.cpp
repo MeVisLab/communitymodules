@@ -12,7 +12,7 @@
 
 // Local includes
 #include "SavePRC.h"
-#include "shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
+#include "../shared/MLPDF_SpecificationGenerator.h"
 #include "PRCFileFormat/PRC_File.h"
 #include "PRCFileFormat/PRC_Tools.h"
 

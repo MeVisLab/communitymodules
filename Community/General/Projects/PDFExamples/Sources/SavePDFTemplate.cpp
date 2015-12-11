@@ -21,7 +21,7 @@ ML_MODULE_CLASS_SOURCE(SavePDFTemplate, Module);
 
 //----------------------------------------------------------------------------------
 
-SavePDFTemplate::SavePDFTemplate() : PDFCreatorBase()
+SavePDFTemplate::SavePDFTemplate() : PDFGenerator()
 {
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
@@ -45,7 +45,7 @@ SavePDFTemplate::SavePDFTemplate() : PDFCreatorBase()
 void SavePDFTemplate::handleNotification(Field* field)
 {
   // Call super class functionality first!
-  PDFCreatorBase::handleNotification(field);
+  PDFGenerator::handleNotification(field);
 
   // Handle changes of module parameters and input image fields here.
 }

@@ -39,9 +39,9 @@ HEADERS += \
   shared/MLPDF_Defines.h \
   shared/MLPDF_DataTypes.h \
   shared/MLPDF_MarkerListTools.h \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h \
-  shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h \
-  shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h \
+  shared/MLPDF_PDFDocumentTools.h \
+  shared/MLPDF_SpecificationGenerator.h \
+  shared/PDFGenerator/PDFGenerator.h \
   LoadPointLineGeometry/LoadPointLineGeometry.h \
   PDFUtils/PDFUtils.h \
   SaveU3D/SaveU3D.h \
@@ -68,14 +68,14 @@ SOURCES += \
   MLPDFInit.cpp \
   shared/MLPDF_Tools.cpp \
   shared/MLPDF_MarkerListTools.cpp \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase.cpp \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_3DModels.cpp \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Assembling.cpp \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Graphics.cpp \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Images.cpp \
-  shared/PDFCreatorBase/MLPDF_PDFCreatorBase_Text.cpp \
-  shared/PDFDocumentTools/MLPDF_PDFDocumentTools.cpp \
-  shared/SpecificationGenerator/MLPDF_SpecificationGenerator.cpp \
+  shared/MLPDF_PDFDocumentTools.cpp \
+  shared/MLPDF_SpecificationGenerator.cpp \
+  shared/PDFGenerator/PDFGenerator.cpp \
+  shared/PDFGenerator/PDFGenerator_3DModels.cpp \
+  shared/PDFGenerator/PDFGenerator_Assembling.cpp \
+  shared/PDFGenerator/PDFGenerator_Graphics.cpp \
+  shared/PDFGenerator/PDFGenerator_Images.cpp \
+  shared/PDFGenerator/PDFGenerator_Text.cpp \
   LoadPointLineGeometry/LoadPointLineGeometry.cpp \
   PDFUtils/PDFUtils.cpp \
   PDFUtils/PDFUtils_Views.cpp \

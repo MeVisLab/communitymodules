@@ -12,7 +12,7 @@
 
 // Local includes
 #include "PDFUtils.h"
-#include "shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
+#include "../shared/MLPDF_SpecificationGenerator.h"
 
 
 ML_START_NAMESPACE

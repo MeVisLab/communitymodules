@@ -11,7 +11,7 @@
 // Local includes
 #include "PDF3DFigurePage_SavePDF.h"
 #include "../shared/MLPDF_Tools.h"
-#include "../shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h"
+#include "../shared/MLPDF_PDFDocumentTools.h"
 
 // ThirdParty includes
 #include "hpdf.h"
@@ -31,7 +31,7 @@ ML_MODULE_CLASS_SOURCE(PDF3DFigurePage_SavePDF, Module);
 
 //----------------------------------------------------------------------------------
 
-PDF3DFigurePage_SavePDF::PDF3DFigurePage_SavePDF() : PDFCreatorBase()
+PDF3DFigurePage_SavePDF::PDF3DFigurePage_SavePDF() : PDFGenerator()
 {
 
   // Suppress calls of handleNotification on field changes to
@@ -72,7 +72,7 @@ PDF3DFigurePage_SavePDF::~PDF3DFigurePage_SavePDF()
 void PDF3DFigurePage_SavePDF::handleNotification(Field* field)
 {
   // Call super class functionality
-  PDFCreatorBase::handleNotification(field);
+  PDFGenerator::handleNotification(field);
 }
 
 //----------------------------------------------------------------------------------
@@ -192,7 +192,7 @@ void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float 
 
       if (!posterExists)
       {
-        pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "Click here to display interactive 3D figure.", mlPDF::TEXT_ALIGNMENTS::TEXTALIGNMENT_CENTER);
+        pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "Click here to display interactive 3D figure.", mlPDF::TEXTALIGNMENT_CENTER);
       }
 
       mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x + 1, y + 1, width - 2, height - 2, u3dModel, posterImage);
@@ -209,7 +209,7 @@ void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float 
 
   if (!sceneAdded)
   {
-    pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "FAILED TO IMPORT 3D FIGURE!", mlPDF::TEXT_ALIGNMENTS::TEXTALIGNMENT_CENTER);
+    pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "FAILED TO IMPORT 3D FIGURE!", mlPDF::TEXTALIGNMENT_CENTER);
   }
 }
 

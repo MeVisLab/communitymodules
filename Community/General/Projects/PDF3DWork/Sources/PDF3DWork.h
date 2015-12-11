@@ -13,7 +13,7 @@
 
 // Local includes
 #include "PDF3DWorkSystem.h"
-#include "../shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h"
+#include "../shared/PDFGenerator/PDFGenerator.h"
 #include "MLPDF_DataTypes.h"
 
 // ML includes
@@ -23,7 +23,7 @@ ML_START_NAMESPACE
 
 
 //! 
-class PDF3DWORK_EXPORT PDF3DWork : public PDFCreatorBase
+class PDF3DWORK_EXPORT PDF3DWork : public PDFGenerator
 {
 public:
 
@@ -53,11 +53,11 @@ private:
   std::string _readString(std::ifstream& file);
   bool _getMetaDataFromU3DFile(std::string u3dFilename);
   std::string _getDefaultViewSpecificationFromU3DMetaData();
-  void _add3DFigure(float x, float y, float width, float height, std::string u3dFilename, std::string posterFilename, std::string viewDefinition = "");
+  void _add3DFigure(float x, float y, float width, float height, bool addOutline, std::string u3dFilename, std::string posterFilename, std::string viewDefinition = "");
 
   bool _assembleVersion1();
   bool _assembleVersion2();
-
+  bool _assembleVersion3();
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(PDF3DWork)

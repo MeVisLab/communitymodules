@@ -13,7 +13,7 @@
 
 // Local includes
 #include "SavePDFTemplateSystem.h"
-#include "../shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h"
+#include "../shared/PDFGenerator/PDFGenerator.h"
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -22,7 +22,7 @@ ML_START_NAMESPACE
 
 
 //! 
-class SAVEPDFTEMPLATE_EXPORT SavePDFTemplate : public PDFCreatorBase
+class SAVEPDFTEMPLATE_EXPORT SavePDFTemplate : public PDFGenerator
 {
 public:
 

@@ -12,9 +12,9 @@
 
 // Local includes
 #include "PDFUtils.h"
-#include "shared/MLPDF_Defines.h"
-#include "shared/SpecificationGenerator/MLPDF_SpecificationGenerator.h"
-#include "../shared/PDFDocumentTools/MLPDF_PDFDocumentTools.h"
+#include "../shared/MLPDF_Defines.h"
+#include "../shared/MLPDF_SpecificationGenerator.h"
+#include "../shared/MLPDF_PDFDocumentTools.h"
 
 
 #include <ColoredMarkerList.h>

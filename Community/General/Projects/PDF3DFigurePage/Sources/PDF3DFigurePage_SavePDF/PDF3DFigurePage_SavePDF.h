@@ -15,7 +15,7 @@
 
 // Local includes
 #include "PDF3DFigurePageSystem.h"
-#include "../shared/PDFCreatorBase/MLPDF_PDFCreatorBase.h"
+#include "../shared/PDFGenerator/PDFGenerator.h"
 #include "MLPDF_DataTypes.h"
 
 // ML includes
@@ -29,7 +29,7 @@ ML_START_NAMESPACE
 
 
 //! 
-class PDF3DFIGUREPAGE_EXPORT PDF3DFigurePage_SavePDF : public PDFCreatorBase
+class PDF3DFIGUREPAGE_EXPORT PDF3DFigurePage_SavePDF : public PDFGenerator
 {
 public:
 

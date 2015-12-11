@@ -12,7 +12,7 @@
 // Local includes
 #include "PDFGenerator.h"
 #include "../MLPDF_Tools.h"
-#include "../PDFDocumentTools/MLPDF_PDFDocumentTools.h"
+#include "../MLPDF_PDFDocumentTools.h"
 
 // ML includes
 //#include "mlUnicode.h"
