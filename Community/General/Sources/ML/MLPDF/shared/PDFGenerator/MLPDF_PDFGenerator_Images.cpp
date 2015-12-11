@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! The ML module class SavePDF.
 /*!
-// \file    MLPDF_PDFCreatorBase_Images.cpp
+// \file    PDFGenerator_Images.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------------
 
 // Local includes
-#include "MLPDF_PDFCreatorBase.h"
+#include "PDFGenerator.h"
 #include "../MLPDF_Tools.h"
 
 
@@ -19,7 +19,7 @@ ML_START_NAMESPACE
 
 //----------------------------------------------------------------------------------
 
-mlPDF::IMAGE PDFCreatorBase::pdfDoc_LoadImageFromFile(std::string filename)
+mlPDF::IMAGE PDFGenerator::pdfDoc_LoadImageFromFile(std::string filename)
 {
   mlPDF::IMAGE newImage = NULL;
 
@@ -57,7 +57,7 @@ mlPDF::IMAGE PDFCreatorBase::pdfDoc_LoadImageFromFile(std::string filename)
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_AddImage(float x, float y, float width, float height, mlPDF::IMAGE image, bool ignoreMargins)
+void PDFGenerator::pdfDoc_AddImage(float x, float y, float width, float height, mlPDF::IMAGE image, bool ignoreMargins)
 {
   if ((pdfDocCurrentPage) && (image))
   {
@@ -69,7 +69,7 @@ void PDFCreatorBase::pdfDoc_AddImage(float x, float y, float width, float height
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_AddImage(float x, float y, float width, float height, std::string imageFilename, bool ignoreMargins)
+void PDFGenerator::pdfDoc_AddImage(float x, float y, float width, float height, std::string imageFilename, bool ignoreMargins)
 {
   if (pdfDocCurrentPage)
   {

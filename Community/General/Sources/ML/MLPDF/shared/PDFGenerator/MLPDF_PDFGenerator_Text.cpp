@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! The ML module class SavePDF.
 /*!
-// \file    MLPDF_PDFCreatorBase_Text.cpp
+// \file    PDFGenerator_Text.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------------
 
 // Local includes
-#include "MLPDF_PDFCreatorBase.h"
+#include "PDFGenerator.h"
 
 
 ML_START_NAMESPACE
@@ -18,7 +18,7 @@ ML_START_NAMESPACE
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetCurrentFont(HPDF_Font font)
+void PDFGenerator::pdfDoc_SetCurrentFont(HPDF_Font font)
 {
   if (pdfDocCurrentPage)
   {
@@ -30,7 +30,7 @@ void PDFCreatorBase::pdfDoc_SetCurrentFont(HPDF_Font font)
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetCurrentFont(HPDF_Font font, float fontSize)
+void PDFGenerator::pdfDoc_SetCurrentFont(HPDF_Font font, float fontSize)
 {
   if (pdfDocCurrentPage)
   {
@@ -43,7 +43,7 @@ void PDFCreatorBase::pdfDoc_SetCurrentFont(HPDF_Font font, float fontSize)
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetCurrentFontSize(float fontSize)
+void PDFGenerator::pdfDoc_SetCurrentFontSize(float fontSize)
 {
   if (pdfDocCurrentPage)
   {
@@ -55,21 +55,21 @@ void PDFCreatorBase::pdfDoc_SetCurrentFontSize(float fontSize)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetCurrentFontHeight()
+const float PDFGenerator::pdfDoc_GetCurrentFontHeight()
 {
   return _currentFontHeight;
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextAt(float x, float y, std::string text, bool ignoreMargins)
+void PDFGenerator::pdfDoc_WriteTextAt(float x, float y, std::string text, bool ignoreMargins)
 {
   pdfDoc_WriteTextAt(x, y, text, mlPDF::TEXTRENDERMODE_FILL, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextAt(float x, float y, std::string text, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins)
+void PDFGenerator::pdfDoc_WriteTextAt(float x, float y, std::string text, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins)
 {
   if (pdfDocCurrentPage)
   {
@@ -89,28 +89,28 @@ void PDFCreatorBase::pdfDoc_WriteTextAt(float x, float y, std::string text, mlPD
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, bool ignoreMargins)
+void PDFGenerator::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, bool ignoreMargins)
 {
   pdfDoc_WriteTextAreaAt(x, y, width, height, text, mlPDF::TEXTRENDERMODE_FILL, mlPDF::TEXTALIGNMENT_LEFT, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_ALIGNMENTS alignment, bool ignoreMargins)
+void PDFGenerator::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_ALIGNMENTS alignment, bool ignoreMargins)
 {
   pdfDoc_WriteTextAreaAt(x, y, width, height, text, mlPDF::TEXTRENDERMODE_FILL, alignment, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins)
+void PDFGenerator::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins)
 {
   pdfDoc_WriteTextAreaAt(x, y, width, height, text, renderMode, mlPDF::TEXTALIGNMENT_LEFT, ignoreMargins);
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_RENDERMODES renderMode, mlPDF::TEXT_ALIGNMENTS alignment, bool ignoreMargins)
+void PDFGenerator::pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_RENDERMODES renderMode, mlPDF::TEXT_ALIGNMENTS alignment, bool ignoreMargins)
 {
   if (pdfDocCurrentPage)
   {

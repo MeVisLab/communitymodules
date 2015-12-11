@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! The ML module class SavePDF.
 /*!
-// \file    MLPDF_PDFCreatorBase.h
+// \file    PDFGenerator.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
@@ -10,8 +10,8 @@
 //----------------------------------------------------------------------------------
 
 
-#ifndef _PDF_PDFCreatorBase_H
-#define _PDF_PDFCreatorBase_H 
+#ifndef _PDF_PDFGenerator_H
+#define _PDF_PDFGenerator_H 
 
 
 // Local includes
@@ -60,17 +60,17 @@ ML_START_NAMESPACE
 
 
 //! 
-class MLPDF_EXPORT PDFCreatorBase : public Module
+class MLPDF_EXPORT PDFGenerator : public Module
 {
 public:
 
   //! Constructor.
-  PDFCreatorBase();
+  PDFGenerator();
 
 protected:
 
   //! Destructor.
-  virtual ~PDFCreatorBase();
+  virtual ~PDFGenerator();
 
   //! Initialize module after loading.
   virtual void activateAttachments();
@@ -364,11 +364,11 @@ private:
   float _globalPageMarginBottom;
 
   // Implements interface for the runtime type system of the ML.
-  ML_MODULE_CLASS_HEADER(PDFCreatorBase)
+  ML_MODULE_CLASS_HEADER(PDFGenerator)
 
 };
 
 
 ML_END_NAMESPACE
 
-#endif // _PDF_PDFCreatorBase_H
+#endif // _PDF_PDFGenerator_H

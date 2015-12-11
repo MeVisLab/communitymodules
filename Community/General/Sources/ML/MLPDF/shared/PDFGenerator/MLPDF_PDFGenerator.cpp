@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! The ML module class SavePDF.
 /*!
-// \file    MLPDF_PDFCreatorBase.cpp
+// \file    PDFGenerator.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------------
 
 // Local includes
-#include "MLPDF_PDFCreatorBase.h"
+#include "PDFGenerator.h"
 #include "../MLPDF_Tools.h"
 #include "../PDFDocumentTools/MLPDF_PDFDocumentTools.h"
 
@@ -23,11 +23,11 @@
 ML_START_NAMESPACE
 
 //! Implements code for the runtime type system of the ML
-ML_ABSTRACT_MODULE_CLASS_SOURCE(PDFCreatorBase, Module);
+ML_ABSTRACT_MODULE_CLASS_SOURCE(PDFGenerator, Module);
 
 //----------------------------------------------------------------------------------
 
-PDFCreatorBase::PDFCreatorBase() : Module(0, 0)
+PDFGenerator::PDFGenerator() : Module(0, 0)
 {
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
@@ -57,13 +57,13 @@ PDFCreatorBase::PDFCreatorBase() : Module(0, 0)
 
 //----------------------------------------------------------------------------------
 
-PDFCreatorBase::~PDFCreatorBase()
+PDFGenerator::~PDFGenerator()
 {
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::handleNotification(Field* field)
+void PDFGenerator::handleNotification(Field* field)
 {
   if (field == saveFld) 
   {
@@ -74,7 +74,7 @@ void PDFCreatorBase::handleNotification(Field* field)
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::activateAttachments()
+void PDFGenerator::activateAttachments()
 {
   // Update members to new field state here.
   // Call super class functionality to enable notification handling again.
@@ -83,7 +83,7 @@ void PDFCreatorBase::activateAttachments()
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::_initPDFDocument()
+void PDFGenerator::_initPDFDocument()
 {
   pdfDocPages.clear();
   pdfDocImages.clear();
@@ -111,7 +111,7 @@ void PDFCreatorBase::_initPDFDocument()
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::_initFonts()
+void PDFGenerator::_initFonts()
 {
   buildInFonts.Times                = HPDF_GetFont(pdfDocument, "Times-Roman", "WinAnsiEncoding");
   buildInFonts.TimesBold            = HPDF_GetFont(pdfDocument, "Times-Bold", "WinAnsiEncoding");
@@ -134,7 +134,7 @@ void PDFCreatorBase::_initFonts()
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::saveButtonClicked()
+void PDFGenerator::saveButtonClicked()
 {
   progressFld->setFloatValue(0.0f);
   successFld->setBoolValue(false);
@@ -252,7 +252,7 @@ void PDFCreatorBase::saveButtonClicked()
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::_checkCoordinate(float& smaller, float& larger)
+void PDFGenerator::_checkCoordinate(float& smaller, float& larger)
 {
   if (smaller > larger)
   {
@@ -264,7 +264,7 @@ void PDFCreatorBase::_checkCoordinate(float& smaller, float& larger)
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::_checkAngle(float& startAngle, float& endAngle)
+void PDFGenerator::_checkAngle(float& startAngle, float& endAngle)
 {
   // Check if angles are > 360 degrees
   while (startAngle > 360)
@@ -309,7 +309,7 @@ void PDFCreatorBase::_checkAngle(float& startAngle, float& endAngle)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::_getYPosFromTop(float y, bool ignoreMargins)
+const float PDFGenerator::_getYPosFromTop(float y, bool ignoreMargins)
 {
   float result = 0;
 
@@ -323,7 +323,7 @@ const float PDFCreatorBase::_getYPosFromTop(float y, bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const HPDF_Rect PDFCreatorBase::_getPageRect(float x, float y, float width, float height, bool ignoreMargins)
+const HPDF_Rect PDFGenerator::_getPageRect(float x, float y, float width, float height, bool ignoreMargins)
 {
   float startXPos = x;
   float startYPos = y;
@@ -355,7 +355,7 @@ const HPDF_Rect PDFCreatorBase::_getPageRect(float x, float y, float width, floa
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::_getPageX(float x, bool ignoreMargins)
+const float PDFGenerator::_getPageX(float x, bool ignoreMargins)
 {
   float result = x;
 
@@ -369,7 +369,7 @@ const float PDFCreatorBase::_getPageX(float x, bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::_getPageY(float y, bool ignoreMargins)
+const float PDFGenerator::_getPageY(float y, bool ignoreMargins)
 {
   float result = y;
 
@@ -387,7 +387,7 @@ const float PDFCreatorBase::_getPageY(float y, bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const HPDF_REAL PDFCreatorBase::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
+const HPDF_REAL PDFGenerator::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
 {
   return (HPDF_REAL)((HPDF_Font_GetCapHeight(font)/*+HPDF_Font_GetDescent(font)*/) * size / 1000.0);
 }
@@ -406,7 +406,7 @@ const HPDF_REAL PDFCreatorBase::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
 
 //----------------------------------------------------------------------------------
 /*
-void PDFCreatorBase::calculateCameraPropertiesFromInventorCamera()
+void PDFGenerator::calculateCameraPropertiesFromInventorCamera()
 {
   Vector3 inventorCameraPosition      = inventorCameraPositionFld->getVectorValue();
   Vector4 inventorCameraOrientation   = inventorCameraOrientationFld->getVectorValue();
@@ -432,7 +432,7 @@ void PDFCreatorBase::calculateCameraPropertiesFromInventorCamera()
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::calculateDefaultCameraProperties()
+void PDFGenerator::calculateDefaultCameraProperties()
 {
   Vector3 camCenterOfOrbit;
   Vector3 camCenterToCamera;

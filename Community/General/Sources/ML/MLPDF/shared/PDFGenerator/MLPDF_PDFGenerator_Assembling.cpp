@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! The ML module class SavePDF.
 /*!
-// \file    MLPDF_PDFCreatorBase_Assembling.cpp
+// \file    PDFGenerator_Assembling.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------------
 
 // Local includes
-#include "MLPDF_PDFCreatorBase.h"
+#include "PDFGenerator.h"
 #include "../MLPDF_Tools.h"
 #include "../PDFDocumentTools/MLPDF_PDFDocumentTools.h"
 
@@ -19,28 +19,28 @@ ML_START_NAMESPACE
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetYAxisReference(bool reference)
+void PDFGenerator::pdfDoc_SetYAxisReference(bool reference)
 {
   _currentYAxisReferenceIsFromTop = reference;
 }
 
 //----------------------------------------------------------------------------------
 
-const bool PDFCreatorBase::pdfDoc_GetYAxisReference()
+const bool PDFGenerator::pdfDoc_GetYAxisReference()
 {
   return _currentYAxisReferenceIsFromTop;
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_StoreYAxisReference()
+void PDFGenerator::pdfDoc_StoreYAxisReference()
 {
   _previousYAxisReferenceIsFromTop.push_back(_currentYAxisReferenceIsFromTop);
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_RestoreYAxisReference()
+void PDFGenerator::pdfDoc_RestoreYAxisReference()
 {
   if (_previousYAxisReferenceIsFromTop.size() > 0)
   {
@@ -55,28 +55,28 @@ void PDFCreatorBase::pdfDoc_RestoreYAxisReference()
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetDefaultYAxisReference(bool reference)
+void PDFGenerator::pdfDoc_SetDefaultYAxisReference(bool reference)
 {
   _defaultYAxisReferenceIsFromTop = reference;
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_RestoreDefaultYAxisReference()
+void PDFGenerator::pdfDoc_RestoreDefaultYAxisReference()
 {
   _currentYAxisReferenceIsFromTop = _defaultYAxisReferenceIsFromTop;
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_AddPage()
+void PDFGenerator::pdfDoc_AddPage()
 {
   pdfDoc_AddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_AddPage(float width, float height)
+void PDFGenerator::pdfDoc_AddPage(float width, float height)
 {
   if (pdfDocument)
   {
@@ -101,7 +101,7 @@ void PDFCreatorBase::pdfDoc_AddPage(float width, float height)
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_AddPage(mlPDF::PAGE_SIZES pageSize, mlPDF::PAGE_DIRECTIONS pageDirection)
+void PDFGenerator::pdfDoc_AddPage(mlPDF::PAGE_SIZES pageSize, mlPDF::PAGE_DIRECTIONS pageDirection)
 {
   if (pdfDocument)
   {
@@ -125,7 +125,7 @@ void PDFCreatorBase::pdfDoc_AddPage(mlPDF::PAGE_SIZES pageSize, mlPDF::PAGE_DIRE
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsMM(float leftMargin, float topMargin, float rightMargin, float bottomMargin)
+void PDFGenerator::pdfDoc_SetGlobalPageMarginsMM(float leftMargin, float topMargin, float rightMargin, float bottomMargin)
 {
   _globalPageMarginLeft   = (float)(leftMargin * 2.8346465);
   _globalPageMarginRight  = (float)(rightMargin * 2.8346465);
@@ -135,7 +135,7 @@ void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsMM(float leftMargin, float topMa
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsInch(float leftMargin, float topMargin, float rightMargin, float bottomMargin)
+void PDFGenerator::pdfDoc_SetGlobalPageMarginsInch(float leftMargin, float topMargin, float rightMargin, float bottomMargin)
 {
   _globalPageMarginLeft   = leftMargin * 72;
   _globalPageMarginRight  = rightMargin * 72;
@@ -145,7 +145,7 @@ void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsInch(float leftMargin, float top
 
 //----------------------------------------------------------------------------------
 
-void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float topMargin, float rightMargin, float bottomMargin)
+void PDFGenerator::pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float topMargin, float rightMargin, float bottomMargin)
 {
   _globalPageMarginLeft   = leftMargin;
   _globalPageMarginRight  = rightMargin;
@@ -155,7 +155,7 @@ void PDFCreatorBase::pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float t
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageMinX(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageMinX(bool ignoreMargins)
 {
   float result = 0;
 
@@ -176,7 +176,7 @@ const float PDFCreatorBase::pdfDoc_GetPageMinX(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageMinY(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageMinY(bool ignoreMargins)
 {
   float result = 0;
 
@@ -198,7 +198,7 @@ const float PDFCreatorBase::pdfDoc_GetPageMinY(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageMaxX(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageMaxX(bool ignoreMargins)
 {
   float result = 0;
 
@@ -219,7 +219,7 @@ const float PDFCreatorBase::pdfDoc_GetPageMaxX(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageMaxY(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageMaxY(bool ignoreMargins)
 {
   float result = 0;
 
@@ -244,21 +244,21 @@ const float PDFCreatorBase::pdfDoc_GetPageMaxY(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageCenterX(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageCenterX(bool ignoreMargins)
 {
   return pdfDoc_GetPageMaxX(ignoreMargins) / 2.0f;
 }
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageCenterY(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageCenterY(bool ignoreMargins)
 {
   return pdfDoc_GetPageMaxY(ignoreMargins) / 2.0f;
 }
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageMaxWidth(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageMaxWidth(bool ignoreMargins)
 {
   float result = 0;
 
@@ -280,7 +280,7 @@ const float PDFCreatorBase::pdfDoc_GetPageMaxWidth(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageMaxHeight(bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageMaxHeight(bool ignoreMargins)
 {
   float result = 0;
 
@@ -302,7 +302,7 @@ const float PDFCreatorBase::pdfDoc_GetPageMaxHeight(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFCreatorBase::pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins)
+const float PDFGenerator::pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins)
 {
   float result = 0;
 
