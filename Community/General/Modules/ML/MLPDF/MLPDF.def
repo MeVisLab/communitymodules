@@ -43,20 +43,6 @@ MLModule LoadU3D {
   externalDefinition = $(LOCAL)/LoadU3D.script
 }
 
-/*
-MLModule SavePRC {
-  DLL                = "MLPDF"
-
-  genre              = "FileMain"
-  author             = "Axel Newe"
-  comment            = "Creates PRC file from WEMs and XMarkerLists."
-  keywords           = "PDF PRC WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D"
-  exampleNetwork     = "$(LOCAL)/networks/SavePRCExample.mlab"
-  externalDefinition = $(LOCAL)/SavePRC.script
-}
-*/
-
 MLModule LoadPointLineGeometry {
   DLL                = "MLPDF"
   

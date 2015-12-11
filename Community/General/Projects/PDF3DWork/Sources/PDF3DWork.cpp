@@ -11,16 +11,13 @@
 #include "PDF3DWork.h"
 
 // Project includes
-#include "MLPDF_Tools.h"
-#include "../shared/MLPDF_Tools.h"
-#include "../shared/MLPDF_PDFDocumentTools.h"
+#include <MLPDF_Tools.h>
+#include <MLPDF_PDFDocumentTools.h>
+#include <U3D_Constants.h>
 
 // ThirdParty includes
-#include "hpdf.h"
-#include "hpdf_u3d.h"
-
-// Project includes
-#include "../SaveU3D/U3DFileFormat/U3D_Constants.h"
+#include <hpdf.h>
+#include <hpdf_u3d.h>
 
 
 ML_START_NAMESPACE

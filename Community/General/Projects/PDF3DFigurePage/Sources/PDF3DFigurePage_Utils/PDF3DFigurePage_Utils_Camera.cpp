@@ -11,7 +11,9 @@
 
 // Local includes
 #include "PDF3DFigurePage_Utils.h"
-#include "../shared/MLPDF_PDFDocumentTools.h"
+
+// Project includes
+#include <MLPDF_PDFDocumentTools.h>
 
 
 ML_START_NAMESPACE

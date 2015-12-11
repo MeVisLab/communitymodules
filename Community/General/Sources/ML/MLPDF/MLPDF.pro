@@ -41,7 +41,7 @@ HEADERS += \
   shared/MLPDF_MarkerListTools.h \
   shared/MLPDF_PDFDocumentTools.h \
   shared/MLPDF_SpecificationGenerator.h \
-  shared/PDFGenerator/PDFGenerator.h \
+  abstract/PDFGenerator/PDFGenerator.h \
   LoadPointLineGeometry/LoadPointLineGeometry.h \
   PDFUtils/PDFUtils.h \
   SaveU3D/SaveU3D.h \
@@ -70,12 +70,12 @@ SOURCES += \
   shared/MLPDF_MarkerListTools.cpp \
   shared/MLPDF_PDFDocumentTools.cpp \
   shared/MLPDF_SpecificationGenerator.cpp \
-  shared/PDFGenerator/PDFGenerator.cpp \
-  shared/PDFGenerator/PDFGenerator_3DModels.cpp \
-  shared/PDFGenerator/PDFGenerator_Assembling.cpp \
-  shared/PDFGenerator/PDFGenerator_Graphics.cpp \
-  shared/PDFGenerator/PDFGenerator_Images.cpp \
-  shared/PDFGenerator/PDFGenerator_Text.cpp \
+  abstract/PDFGenerator/PDFGenerator.cpp \
+  abstract/PDFGenerator/PDFGenerator_3DModels.cpp \
+  abstract/PDFGenerator/PDFGenerator_Assembling.cpp \
+  abstract/PDFGenerator/PDFGenerator_Graphics.cpp \
+  abstract/PDFGenerator/PDFGenerator_Images.cpp \
+  abstract/PDFGenerator/PDFGenerator_Text.cpp \
   LoadPointLineGeometry/LoadPointLineGeometry.cpp \
   PDFUtils/PDFUtils.cpp \
   PDFUtils/PDFUtils_Views.cpp \
@@ -104,3 +104,12 @@ SOURCES += \
   #SavePRC/PRCFileFormat/PRC_File.cpp \
   #SavePRC/PRCFileFormat/PRC_Tools.cpp \
   LoadU3D/LoadU3D.cpp \
+
+# Additional files that are NOT compiled
+RELATEDFILES += \
+  ../../../Modules/ML/MLPDF/MLPDF.def \
+  ../../../Modules/ML/MLPDF/SaveU3D.script \
+  ../../../Modules/ML/MLPDF/LoadU3D.script \
+  ../../../Modules/ML/MLPDF/PDFUtils.script \
+  ../../../Modules/ML/MLPDF/LoadPointLineGeometry.script \
+

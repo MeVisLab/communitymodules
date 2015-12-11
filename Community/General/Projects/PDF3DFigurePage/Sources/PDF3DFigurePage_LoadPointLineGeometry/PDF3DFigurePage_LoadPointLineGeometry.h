@@ -15,13 +15,14 @@
 
 // Local includes
 #include "PDF3DFigurePageSystem.h"
-#include "../shared/MLPDF_Tools.h"
 
+// Project includes
+#include <MLPDF_Tools.h>
+#include <IndexPairList.h>
 
 // ML includes
 #include <mlModuleIncludes.h>
 #include <mlXMarkerList.h>
-#include <IndexPairList.h>
 #include <mlFiberSet.h>
 
 

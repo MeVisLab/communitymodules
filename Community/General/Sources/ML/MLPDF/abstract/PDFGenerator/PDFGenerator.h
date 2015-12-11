@@ -16,7 +16,7 @@
 
 // Local includes
 #include "MLPDFSystem.h"
-#include"../MLPDF_Defines.h"
+#include"../../shared/MLPDF_Defines.h"
 
 // ML includes
 #include <mlModuleIncludes.h>

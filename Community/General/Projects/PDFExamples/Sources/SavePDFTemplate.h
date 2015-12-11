@@ -13,7 +13,9 @@
 
 // Local includes
 #include "SavePDFTemplateSystem.h"
-#include "../shared/PDFGenerator/PDFGenerator.h"
+
+// Project includes
+#include <PDFGenerator.h>
 
 // ML includes
 #include <mlModuleIncludes.h>

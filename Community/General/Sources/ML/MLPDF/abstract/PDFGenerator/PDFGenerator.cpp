@@ -11,8 +11,8 @@
 
 // Local includes
 #include "PDFGenerator.h"
-#include "../MLPDF_Tools.h"
-#include "../MLPDF_PDFDocumentTools.h"
+#include "../../shared/MLPDF_Tools.h"
+#include "../../shared/MLPDF_PDFDocumentTools.h"
 
 // ML includes
 //#include "mlUnicode.h"

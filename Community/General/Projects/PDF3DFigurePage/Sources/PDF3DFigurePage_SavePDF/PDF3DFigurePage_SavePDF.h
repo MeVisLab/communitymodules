@@ -15,8 +15,10 @@
 
 // Local includes
 #include "PDF3DFigurePageSystem.h"
-#include "../shared/PDFGenerator/PDFGenerator.h"
-#include "MLPDF_DataTypes.h"
+
+// Project includes
+#include <PDFGenerator.h>
+#include <MLPDF_DataTypes.h>
 
 // ML includes
 #include <mlModuleIncludes.h>

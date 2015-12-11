@@ -10,12 +10,17 @@
 
 // Local includes
 #include "PDF3DFigurePage_LoadPointLineGeometry.h"
-#include "../shared/MLPDF_MarkerListTools.h"
 
+// Project includes
+#include <MLPDF_MarkerListTools.h>
+
+// ML includes
 #include <mlUnicode.h>
 
+// Std includes
 #include <iostream>
 #include <fstream>
+
 
 ML_START_NAMESPACE
 
