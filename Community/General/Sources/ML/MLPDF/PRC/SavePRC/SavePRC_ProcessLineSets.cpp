@@ -10,11 +10,11 @@
 
 // Local includes
 #include "SavePRC.h"
-#include "PRCFileFormat/PRC_DataTypes.h"
-#include "PRCFileFormat/PRC_Tools.h"
-#include "../shared/MLPDF_DataTypes.h"
-#include "../shared/MLPDF_Tools.h"
-#include "../shared/MLPDF_MarkerListTools.h"
+#include "../PRCFileFormat/PRC_DataTypes.h"
+#include "../PRCFileFormat/PRC_Tools.h"
+#include "../../shared/MLPDF_DataTypes.h"
+#include "../../shared/MLPDF_Tools.h"
+#include "../../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 

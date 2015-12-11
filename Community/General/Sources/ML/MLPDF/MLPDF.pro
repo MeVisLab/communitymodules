@@ -41,27 +41,30 @@ HEADERS += \
   shared/MLPDF_MarkerListTools.h \
   shared/MLPDF_PDFDocumentTools.h \
   shared/MLPDF_SpecificationGenerator.h \
+  abstract/abstract.h \
   abstract/PDFGenerator/PDFGenerator.h \
   LoadPointLineGeometry/LoadPointLineGeometry.h \
   PDFUtils/PDFUtils.h \
-  SaveU3D/SaveU3D.h \
-  SaveU3D/U3DFileFormat/U3D_BitStream.h \
-  SaveU3D/U3DFileFormat/U3D_Constants.h \
-  SaveU3D/U3DFileFormat/U3D_ContextManager.h \
-  SaveU3D/U3DFileFormat/U3D_DataBlock.h \
-  SaveU3D/U3DFileFormat/U3D_DataBlockWriter.h \
-  SaveU3D/U3DFileFormat/U3D_DataTypes.h \
-  SaveU3D/U3DFileFormat/U3D_FileWriter.h \
-  SaveU3D/U3DFileFormat/U3D_Tools.h \
-  #SavePRC/SavePRC.h \
-  #SavePRC/PRCFileFormat/PRC_Macros.h \
-  #SavePRC/PRCFileFormat/PRC_Defines.h \
-  #SavePRC/PRCFileFormat/PRC_DataTypes.h \
-  #SavePRC/PRCFileFormat/PRC_BitStream.h \
-  #SavePRC/PRCFileFormat/PRC_Write.h \
-  #SavePRC/PRCFileFormat/PRC_File.h \
-  #SavePRC/PRCFileFormat/PRC_Tools.h \
-  LoadU3D/LoadU3D.h \
+  U3D/U3D.h \
+  U3D/U3DFileFormat/U3D_BitStream.h \
+  U3D/U3DFileFormat/U3D_Constants.h \
+  U3D/U3DFileFormat/U3D_ContextManager.h \
+  U3D/U3DFileFormat/U3D_DataBlock.h \
+  U3D/U3DFileFormat/U3D_DataBlockWriter.h \
+  U3D/U3DFileFormat/U3D_DataTypes.h \
+  U3D/U3DFileFormat/U3D_FileWriter.h \
+  U3D/U3DFileFormat/U3D_Tools.h \
+  U3D/SaveU3D/SaveU3D.h \
+  U3D/LoadU3D/LoadU3D.h \
+  #PRC/PRC.h \
+  #PRC/PRCFileFormat/PRC_Macros.h \
+  #PRC/PRCFileFormat/PRC_Defines.h \
+  #PRC/PRCFileFormat/PRC_DataTypes.h \
+  #PRC/PRCFileFormat/PRC_BitStream.h \
+  #PRC/PRCFileFormat/PRC_Write.h \
+  #PRC/PRCFileFormat/PRC_File.h \
+  #PRC/PRCFileFormat/PRC_Tools.h \
+  #PRC/SavePRC/SavePRC.h \
 
 
 SOURCES += \
@@ -70,6 +73,7 @@ SOURCES += \
   shared/MLPDF_MarkerListTools.cpp \
   shared/MLPDF_PDFDocumentTools.cpp \
   shared/MLPDF_SpecificationGenerator.cpp \
+  abstract/abstract.cpp \
   abstract/PDFGenerator/PDFGenerator.cpp \
   abstract/PDFGenerator/PDFGenerator_3DModels.cpp \
   abstract/PDFGenerator/PDFGenerator_Assembling.cpp \
@@ -82,28 +86,30 @@ SOURCES += \
   PDFUtils/PDFUtils_Lists.cpp \
   PDFUtils/PDFUtils_Camera.cpp \
   PDFUtils/PDFUtils_Inventor.cpp \
-  SaveU3D/SaveU3D.cpp \
-  SaveU3D/SaveU3D_Tools.cpp \
-  SaveU3D/SaveU3D_ProcessPointSets.cpp \
-  SaveU3D/SaveU3D_ProcessLineSets.cpp \
-  SaveU3D/SaveU3D_ProcessMeshes.cpp \
-  SaveU3D/U3DFileFormat/U3D_BitStream.cpp \
-  SaveU3D/U3DFileFormat/U3D_ContextManager.cpp \
-  SaveU3D/U3DFileFormat/U3D_DataBlock.cpp \
-  SaveU3D/U3DFileFormat/U3D_DataBlockWriter.cpp \
-  SaveU3D/U3DFileFormat/U3D_FileWriter.cpp \
-  SaveU3D/U3DFileFormat/U3D_Tools.cpp \
-  #SavePRC/SavePRC.cpp \
-  #SavePRC/SavePRC_Tools.cpp \
-  #SavePRC/SavePRC_ProcessPointSets.cpp \
-  #SavePRC/SavePRC_ProcessLineSets.cpp \
-  #SavePRC/SavePRC_ProcessMeshes.cpp \
-  #SavePRC/PRCFileFormat/PRC_DataTypes.cpp \
-  #SavePRC/PRCFileFormat/PRC_BitStream.cpp \
-  #SavePRC/PRCFileFormat/PRC_Write.cpp \
-  #SavePRC/PRCFileFormat/PRC_File.cpp \
-  #SavePRC/PRCFileFormat/PRC_Tools.cpp \
-  LoadU3D/LoadU3D.cpp \
+  U3D/U3D.cpp \
+  U3D/U3DFileFormat/U3D_BitStream.cpp \
+  U3D/U3DFileFormat/U3D_ContextManager.cpp \
+  U3D/U3DFileFormat/U3D_DataBlock.cpp \
+  U3D/U3DFileFormat/U3D_DataBlockWriter.cpp \
+  U3D/U3DFileFormat/U3D_FileWriter.cpp \
+  U3D/U3DFileFormat/U3D_Tools.cpp \
+  U3D/SaveU3D/SaveU3D.cpp \
+  U3D/SaveU3D/SaveU3D_Tools.cpp \
+  U3D/SaveU3D/SaveU3D_ProcessPointSets.cpp \
+  U3D/SaveU3D/SaveU3D_ProcessLineSets.cpp \
+  U3D/SaveU3D/SaveU3D_ProcessMeshes.cpp \
+  U3D/LoadU3D/LoadU3D.cpp \
+  #PRC/PRC.cpp \
+  #PRC/PRCFileFormat/PRC_DataTypes.cpp \
+  #PRC/PRCFileFormat/PRC_BitStream.cpp \
+  #PRC/PRCFileFormat/PRC_Write.cpp \
+  #PRC/PRCFileFormat/PRC_File.cpp \
+  #PRC/PRCFileFormat/PRC_Tools.cpp \
+  #PRC/SavePRC/SavePRC.cpp \
+  #PRC/SavePRC/SavePRC_Tools.cpp \
+  #PRC/SavePRC/SavePRC_ProcessPointSets.cpp \
+  #PRC/SavePRC/SavePRC_ProcessLineSets.cpp \
+  #PRC/SavePRC/SavePRC_ProcessMeshes.cpp \
 
 # Additional files that are NOT compiled
 RELATEDFILES += \

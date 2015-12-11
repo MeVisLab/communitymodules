@@ -16,9 +16,9 @@
 
 // Local includes
 #include "MLPDFSystem.h"
-#include "U3DFileFormat/U3D_Constants.h"
-#include "U3DFileFormat/U3D_FileWriter.h"
-#include "../shared/MLPDF_DataTypes.h"
+#include "../U3DFileFormat/U3D_Constants.h"
+#include "../U3DFileFormat/U3D_FileWriter.h"
+#include "../../shared/MLPDF_DataTypes.h"
 
 #include <WEMBase/WEM.h>
 #include <WEMBase/WEMModuleBase/WEMInspector.h>

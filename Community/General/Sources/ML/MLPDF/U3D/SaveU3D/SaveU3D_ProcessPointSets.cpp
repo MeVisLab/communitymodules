@@ -10,11 +10,11 @@
 
 // Local includes
 #include "SaveU3D.h"
-#include "U3DFileFormat/U3D_DataTypes.h"
-#include "U3DFileFormat/U3D_Tools.h"
-#include "../shared/MLPDF_Defines.h"
-#include "../shared/MLPDF_Tools.h"
-#include "../shared/MLPDF_MarkerListTools.h"
+#include "../U3DFileFormat/U3D_DataTypes.h"
+#include "../U3DFileFormat/U3D_Tools.h"
+#include "../../shared/MLPDF_Defines.h"
+#include "../../shared/MLPDF_Tools.h"
+#include "../../shared/MLPDF_MarkerListTools.h"
 
 ML_START_NAMESPACE
 

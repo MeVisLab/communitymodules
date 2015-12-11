@@ -1,24 +1,20 @@
 //----------------------------------------------------------------------------------
-//! This class composes WEMs, Fibers and XMarkers to a U3D file.
+//! The ML module class SavePRC.
 /*!
-// \file    SaveU3D.cpp
-// \author  Axel Newe (axel.newe@fau.de)
-// \date    2014-01-20
+// \file    SavePRC.cpp
+// \author  Axel Newe
+// \date    2015-08-01
 //
-// Creates U3D file from WEMs and XMarkers
+// Creates PRC file from WEMs, Linesets and XMarkers
 */
 //----------------------------------------------------------------------------------
 
 
 // Local includes
-#include "SaveU3D.h"
-#include "../shared/MLPDF_SpecificationGenerator.h"
-#include "U3DFileFormat/U3D_Tools.h"
-#include "U3DFileFormat/U3D_Constants.h"
-#include "U3DFileFormat/U3D_DataBlockWriter.h"
-#include "U3DFileFormat/U3D_FileWriter.h"
-
-#include "MLPDF_Tools.h"
+#include "SavePRC.h"
+#include "../PRCFileFormat/PRC_File.h"
+#include "../PRCFileFormat/PRC_Tools.h"
+#include "../../shared/MLPDF_SpecificationGenerator.h"
 
 #include <ColoredMarkerList.h>
 
@@ -30,13 +26,11 @@ ML_START_NAMESPACE
 
 
 //! Implements code for the runtime type system of the ML
-ML_MODULE_CLASS_SOURCE(SaveU3D, WEMInspector);
+ML_MODULE_CLASS_SOURCE(SavePRC, WEMInspector);
 
 
-//***********************************************************************************
-
-
-SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
+SavePRC::SavePRC (std::string type)
+  : WEMInspector(type)
 {
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
@@ -46,8 +40,6 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
   (_inPointPositionsFld  = addBase("inPointPositions"))->setBaseValueAndAddAllowedType(&_inPointPositions);
   (_inLinePositionsFld   = addBase("inLinePositions"))->setBaseValueAndAddAllowedType(&_inLinePositions);
   (_inLineConnectionsFld = addBase("inLineConnections"))->setBaseValueAndAddAllowedType(&_inLineConnections);
-  _inPointPositionsFld->addAllowedType<ml::ColoredMarkerList>();
-  _inLinePositionsFld->addAllowedType<ml::ColoredMarkerList>();
 
   // Add fields for selecting simple, straightforward mode
   (_simpleModePointSetFld = addBool("simpleModePointSet"))->setBoolValue(false);
@@ -64,25 +56,25 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
   (_lineSetSpecificationFld    = addString("lineSetSpecification"))->setStringValue("");
   (_meshSpecificationFld       = addString("meshSpecification"))->setStringValue("");
   //(_glyphSpecificationFld      = addString("glyphSpecification"))->setStringValue("");          // Not supported by Acrobat
-  (_viewsSpecificationFld      = addString("viewsSpecification"))->setStringValue("");
-  (_lightsSpecificationFld     = addString("lightsSpecification"))->setStringValue("");
-  (_metaDataSpecificationFld   = addString("metaDataSpecification"))->setStringValue("");
+  //(_viewsSpecificationFld      = addString("viewsSpecification"))->setStringValue("");
+  //(_lightsSpecificationFld     = addString("lightsSpecification"))->setStringValue("");
+  //(_metaDataSpecificationFld   = addString("metaDataSpecification"))->setStringValue("");
 
-  (_defaultViewNameFld     = addString("defaultViewName"))->setStringValue("DefaultView");
-  (_defaultLightNameFld    = addString("defaultLightName"))->setStringValue("DefaultAmbientLight");
+  //(_defaultViewNameFld     = addString("defaultViewName"))->setStringValue("DefaultView");
+  //(_defaultLightNameFld    = addString("defaultLightName"))->setStringValue("DefaultAmbientLight");
 
-  (_defaultMaterialDiffuseColorFld  = addColor("defaultMaterialDiffuseColor"))->setVector3Value(Vector3(0.65f,0.65f,0.65f));
-  (_defaultMaterialSpecularColorFld = addColor("defaultMaterialSpecularColor"))->setVector3Value(Vector3(0.75f,0.75f,0.75f));
-  (_defaultMaterialAmbientColorFld  = addColor("defaultMaterialAmbientColor"))->setVector3Value(Vector3(0.0f,0.0f,0.0f));
-  (_defaultMaterialEmissiveColorFld = addColor("defaultMaterialEmissiveColor"))->setVector3Value(Vector3(0.0f,0.0f,0.0f));
-  (_defaultMaterialAlphaFld         = addFloat("defaultMaterialAlpha"))->setFloatValue(1.0f);
+  //(_defaultMaterialDiffuseColorFld  = addColor("defaultMaterialDiffuseColor"))->setVector3Value(Vector3(0.65f,0.65f,0.65f));
+  //(_defaultMaterialSpecularColorFld = addColor("defaultMaterialSpecularColor"))->setVector3Value(Vector3(0.75f,0.75f,0.75f));
+  //(_defaultMaterialAmbientColorFld  = addColor("defaultMaterialAmbientColor"))->setVector3Value(Vector3(0.0f,0.0f,0.0f));
+  //(_defaultMaterialEmissiveColorFld = addColor("defaultMaterialEmissiveColor"))->setVector3Value(Vector3(0.0f,0.0f,0.0f));
+  //(_defaultMaterialTransparencyFld  = addFloat("defaultMaterialTransparency"))->setFloatValue(0.0f);
 
-  (_defaultLightColorFld = addColor("defaultLightColor"))->setVector3Value(Vector3(1.0f,1.0f,1.0f));
-  (_defaultLightIntensityFld = addDouble("defaultLightIntensity"))->setDoubleValue(1.0f);
+  //(_defaultLightColorFld = addColor("defaultLightColor"))->setVector3Value(Vector3(1.0f,1.0f,1.0f));
+  //(_defaultLightIntensityFld = addDouble("defaultLightIntensity"))->setDoubleValue(1.0f);
 
-  (_defaultBoundingBoxMetaDataFld = addBool("defaultBoundingBoxMetaData"))->setBoolValue(true);
-  (_addDefaultViewNodeFld         = addBool("addDefaultViewNode"))->setBoolValue(true);
-  (_addDefaultLightNodeFld        = addBool("addDefaultLightNode"))->setBoolValue(true);
+  //(_defaultBoundingBoxMetaDataFld = addBool("defaultBoundingBoxMetaData"))->setBoolValue(true);
+  //(_addDefaultViewNodeFld         = addBool("addDefaultViewNode"))->setBoolValue(true);
+  //(_addDefaultLightNodeFld        = addBool("addDefaultLightNode"))->setBoolValue(true);
 
   (_mlFileNameFld = addString("filename"))->setStringValue("");
 
@@ -120,7 +112,6 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
   (_newSpecificationObjectNameFld              = addString("newSpecificationObjectName"))->setStringValue("");
   (_newSpecificationGroupPathFld               = addString("newSpecificationGroupPath"))->setStringValue("");
   (_newSpecificationUseDefaultColorFld         = addBool("newSpecificationUseDefaultColor"))->setBoolValue(true);
-  (_newSpecificationUseVertexColorsFld         = addBool("newSpecificationUseVertexColors"))->setBoolValue(false);
   (_newSpecificationUseDefaultSpecularColorFld = addBool("newSpecificationUseDefaultSpecularColor"))->setBoolValue(true);
   (_newSpecificationColorFld                   = addColor("newSpecificationColor"))->setVector3Value(Vector3(0.651f,0.651f,0.651f));
   (_newSpecificationColorAlphaFld              = addFloat("newSpecificationColorAlpha"))->setFloatValue(1.0f);
@@ -148,7 +139,7 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
 //***********************************************************************************
 
 
-SaveU3D::~SaveU3D()
+SavePRC::~SavePRC()
 {
   // destroy own dynamic data structures here
 }
@@ -157,31 +148,29 @@ SaveU3D::~SaveU3D()
 //***********************************************************************************
 
 
-void SaveU3D::handleNotification (Field* field)
+void SavePRC::handleNotification (Field* field)
 {
   if (field == _mlSaveFld) 
   {
-    // Call the save routine.
     saveButtonClicked();
   } 
 
   if (field == _inPointPositionsFld)
   {
-    ml::Base *inValue = _inPointPositionsFld->getBaseValue();
+    ml::Base *inBaseValue = _inPointPositionsFld->getBaseValue();
 
-    if (inValue)
+    if (inBaseValue)
     {
-      if (ML_BASE_IS_A(inValue, ml::ColoredMarkerList))
+      if (ML_BASE_IS_A(inBaseValue, ml::XMarkerList))
       {
-        ml::ColoredMarkerList* inList = ((ml::ColoredMarkerList*)inValue);
-        _inPointPositions = inList->toXMarkerList();
+        ml::XMarkerList* inList = ((ml::XMarkerList*)inBaseValue);
+        _inPointPositions.fromXMarkerList(*inList);
       }
       else
       {
-        ml::XMarkerList* inList = ((ml::XMarkerList*)inValue);
+        ml::ColoredMarkerList* inList = ((ml::ColoredMarkerList*)inBaseValue);
          _inPointPositions = *inList;
       }
-
     }
     else
     {
@@ -191,18 +180,18 @@ void SaveU3D::handleNotification (Field* field)
 
   if (field == _inLinePositionsFld)
   {
-    ml::Base *inValue = _inLinePositionsFld->getBaseValue();
+    ml::Base *inBaseValue = _inLinePositionsFld->getBaseValue();
 
-    if (inValue)
+    if (inBaseValue)
     {
-      if (ML_BASE_IS_A(inValue, ml::ColoredMarkerList))
+      if (ML_BASE_IS_A(inBaseValue, ml::XMarkerList))
       {
-        ml::ColoredMarkerList* inList = ((ml::ColoredMarkerList*)inValue);
-        _inLinePositions = inList->toXMarkerList();
+        ml::XMarkerList* inList = ((ml::XMarkerList*)inBaseValue);
+        _inLinePositions.fromXMarkerList(*inList);
       }
       else
       {
-        ml::XMarkerList* inList = ((ml::XMarkerList*)inValue);
+        ml::ColoredMarkerList* inList = ((ml::ColoredMarkerList*)inBaseValue);
          _inLinePositions = *inList;
       }
     }
@@ -241,7 +230,6 @@ void SaveU3D::handleNotification (Field* field)
        (field == _newSpecificationObjectNameFld) ||
        (field == _newSpecificationGroupPathFld) ||
        (field == _newSpecificationUseDefaultColorFld) ||
-       (field == _newSpecificationUseVertexColorsFld) ||
        (field == _newSpecificationUseDefaultSpecularColorFld) ||
        (field == _newSpecificationColorFld) ||
        (field == _newSpecificationColorAlphaFld) ||
@@ -265,7 +253,7 @@ void SaveU3D::handleNotification (Field* field)
 //***********************************************************************************
 
 
-void SaveU3D::activateAttachments()
+void SavePRC::activateAttachments()
 {
   // ... own initialization routines
 
@@ -273,11 +261,9 @@ void SaveU3D::activateAttachments()
   WEMInspector::activateAttachments();
 }
 
-
 //***********************************************************************************
 
-
-void SaveU3D::_process()
+void SavePRC::_process()
 {
   // for time measurement and mouse cursor setting.
   _startProcessing();
@@ -293,7 +279,7 @@ void SaveU3D::_process()
 //***********************************************************************************
 
 
-void SaveU3D::saveButtonClicked()
+void SavePRC::saveButtonClicked()
 {
   std::string filename = _mlFileNameFld->getStringValue();
   if (filename == "") 
@@ -310,9 +296,9 @@ void SaveU3D::saveButtonClicked()
   { 
     last4 = filename.substr(filenameLength-4, 4); 
 
-    if (last4 != ".u3d") 
+    if (last4 != ".prc") 
     { 
-      filename.append(".u3d"); 
+      filename.append(".prc"); 
       _mlFileNameFld->setStringValue(filename);
     }
   }
@@ -343,9 +329,9 @@ void SaveU3D::saveButtonClicked()
 
   if (ofstream.is_open())
   {
-    saveU3DToFileStream(ofstream);
+    savePRCToFileStream(ofstream);
     ofstream.close();
-    status = "U3D file saved.";
+    status = "PRC file saved.";
   } 
   else 
   {
@@ -360,26 +346,59 @@ void SaveU3D::saveButtonClicked()
 //***********************************************************************************
 
 
-void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
+void SavePRC::WriteNodeModelsToPRCFile(PRCFile &outPRCFile, PRCModelTreeNode modelTreeNode)
+{
+  if (modelTreeNode.ID != 0)   // Do not create a group for root node
+  {
+    outPRCFile.begingroup(modelTreeNode.Name.c_str());
+  }
+
+  WritePointSetDataToPRCFile(outPRCFile, modelTreeNode.ID);
+  WriteLineSetDataToPRCFile(outPRCFile, modelTreeNode.ID);
+  WriteMeshDataToPRCFile(outPRCFile, modelTreeNode.ID);
+  // Write annotations
+
+  for (MLintVector::iterator it = modelTreeNode.ChildrenIDs.begin(); it != modelTreeNode.ChildrenIDs.end(); ++it) 
+  {
+    MLint thisChildNodeIndex = *it;
+    PRCModelTreeNode nextNode = getNodeFromPRCModelTree(_modelTree, thisChildNodeIndex);
+
+    if (nextNode.ID != -1)  
+    {
+      WriteNodeModelsToPRCFile(outPRCFile, nextNode);
+    }
+    else  
+    {
+      // This can happen only if ThisChildNodeIndex was not found in model tree... and therefore should never happen!
+    }
+  }
+
+  if (modelTreeNode.ID != 0)   // Do not close group for root node
+  {
+    outPRCFile.endgroup();
+  }
+
+}
+
+
+//***********************************************************************************
+
+
+void SavePRC::savePRCToFileStream(std::ofstream& ofstream)
 {
   _progressFld->setFloatValue(0.0f);
 
   WEMPtr saveWEM = NULL;
   ML_CHECK_NEW(saveWEM,WEM());
 
-  outU3DFile = NULL; 
-
   // Clear object info vector;
-  _u3dObjectInfoVector.clear();
+  _prcObjectInfoVector.clear();
 
   // Clear geometry vectors
   _pointSetsGeometryVector.clear();
   _lineSetsGeometryVector.clear();
 
-  // These vectors contain all geometry related data
-  U3DPointSetInfoVector  U3DPointSetInfoVector;
-  U3DLineSetInfoVector U3DLineSetInfoVector;
-  U3DMeshInfoVector  meshInfoVector;
+  PRCMeshInfoVector meshInfoVector;
 
   // Stores the model bounding box data & its center. Shall be modified only with UpdateBoundingBox() method!
   ModelBoundingBoxStruct modelBoundingBox;
@@ -391,126 +410,44 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
   modelBoundingBox.end.z   = ML_DOUBLE_MAX * -1;
 
   // Get default parameters from field values
-  defaultValues = getDefaultValuesFromFields(); 
-
+  //defaultValues = getDefaultValuesFromFields(); 
+  
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   _statusFld->setStringValue("Analyzing input data.");
 
   // Scan all data from input field and collect base info for point sets.
-  PreProcessPointSetData(U3DPointSetInfoVector, modelBoundingBox);
+  PreProcessPointSetData(modelBoundingBox);
 
   // Scan all data from input field and collect base info for line sets.
-  PreProcessLineSetData(U3DLineSetInfoVector, modelBoundingBox);
+  PreProcessLineSetData(modelBoundingBox);
 
   // Scan all WEM patches, triangulate them if necessary and collect base info.
   PreProcessMeshData(saveWEM, meshInfoVector, modelBoundingBox);
+
+  
+  GroupNodeVector groupNodes = assemblePRCGroupNodeInfo(_prcObjectInfoVector);
+  mapParentTreeNodeIDs(_prcObjectInfoVector, groupNodes);
+
+  _modelTree = assemblePRCModelTreeInfo(groupNodes);
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   _progressFld->setFloatValue(0.1f);
 
-  if ( _u3dObjectInfoVector.size() > 0 )  // If at least one valid object (WEM patch, XMarker or FiberSet) was added.
-  {
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-    //
-    // Preparation
-    //
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
+  PRCFile outPRCFile(ofstream);
 
-    ML_CHECK_NEW(outU3DFile,U3DFileWriter());
+  PRCModelTreeNode modelRootNode = getNodeFromPRCModelTree(_modelTree, 0);
 
-    MetaDataVector metaData;
-    MetaDataStruct metaDataPair;
+  WriteNodeModelsToPRCFile(outPRCFile, modelRootNode);
 
-    metaDataPair.key   = "CreatedBy";
-    metaDataPair.value = "SaveU3D module from MeVisLab MLPDF library (v" + mlPDF::PDFTools::getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
-    metaData.push_back(metaDataPair);  
 
-    outU3DFile->addStandardBlock_PriorityUpdate((MLuint32)0x00000001);
 
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-    //
-    // Add nodes
-    //
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
 
-    _statusFld->setStringValue("Adding main nodes.");
 
-    // Add default view node ===================================================================
-    addDefaultViewNode();
+  outPRCFile.finish();
 
-    // Add all group nodes =====================================================================
-    GroupNodeVector groupNodes = assembleU3DGroupNodeInfo(_u3dObjectInfoVector);
-    makeGroupPathNamesUnique(groupNodes, _u3dObjectInfoVector);
-    addAllGroupNodes(groupNodes);   
 
-    // Add a model node for each U3D object ====================================================
-    addU3DModelNodes();
-    
-    // Add default light node ==================================================================
-    addDefaultLightNode();
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-    //
-    // Add models
-    //
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // Add point sets ==========================================================================
-
-    // Add a point set modifier chain for each point set
-    AddAllPointSetModifierChains(U3DPointSetInfoVector);
-   
-    // Add line sets ===========================================================================
-
-    // Add a line set modifier chain for each line set
-    AddAllLineSetModifierChains(U3DLineSetInfoVector);
-
-    // Add meshes ==============================================================================
-
-    // Add a CLOD mesh declaration modifier chain for each mesh 
-    AddAllCLODMeshModifierChains(meshInfoVector, saveWEM);
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-    //
-    // Add resources
-    //
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-
-    _progressFld->setFloatValue(0.9f);
-
-    // Add shader & material resource for each U3D object ======================================
-    addShaderAndMaterialResources();
-
-    // Add light resources =====================================================================
-    addLightResources();
-
-    // Add view resources ======================================================================
-    addViewResources(); 
-
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-    //
-    // Finishing moves
-    //
-    // +++++++++++++++++++++++++++++++++++++++++++++++++
-
-    // Write meta data into meta data vector ===================================================
-    addMetaData(metaData, modelBoundingBox);
-
-    // Write data to disk & free mem ===========================================================
-
-    outU3DFile->writeToFileStream(ofstream, metaData);
-
-    ML_DELETE(outU3DFile);
-    outU3DFile = NULL;
-
-  }
-  else
-  {
-    _statusFld->setStringValue("No objects to export found.");
-  }
-  
   _progressFld->setFloatValue(1.0f);
 
 }
@@ -519,7 +456,7 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
 //***********************************************************************************
 
 
-void SaveU3D::UpdateObjectTypeTabView()
+void SavePRC::UpdateObjectTypeTabView()
 {
   int newSpecificationType = _newSpecificationTypeFld->getEnumValue();
 
@@ -545,7 +482,7 @@ void SaveU3D::UpdateObjectTypeTabView()
 //***********************************************************************************
 
 
-void SaveU3D::AddNewSpecification()
+void SavePRC::AddNewSpecification()
 {
   int newSpecificationObjectType = _newSpecificationTypeFld->getEnumValue();
 
@@ -560,18 +497,18 @@ void SaveU3D::AddNewSpecification()
   else if (newSpecificationObjectType == mlPDF::OBJECTTYPE_MESH)
   {
     _meshSpecificationFld->setStringValue(_meshSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
-    }
-  else if (newSpecificationObjectType == mlPDF::OBJECTTYPE_METADATA)
-  {
-    _metaDataSpecificationFld->setStringValue(_metaDataSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
   }
+  //else if (newSpecificationObjectType == mlPDF::OBJECTTYPE_METADATA)
+  //{
+  //  _metaDataSpecificationFld->setStringValue(_metaDataSpecificationFld->getStringValue() + _newSpecificationFld->getStringValue());
+  //}
 }
 
 
 //***********************************************************************************
 
 
-void SaveU3D::UpdateNewSpecification()
+void SavePRC::UpdateNewSpecification()
 {
   std::string newSpecificationString = "";
   int newSpecificationObjectType = _newSpecificationTypeFld->getEnumValue();
@@ -586,7 +523,6 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
-    newSpecificationString += "</PointSet>\n";
     newSpecificationString += "\n";
     _newSpecificationOutputValidFld->setBoolValue(true);
   }
@@ -599,7 +535,6 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), false);
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
-    newSpecificationString += "<LineSet>\n";
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 1;
     _newSpecificationOutputValidFld->setBoolValue(true);
@@ -610,11 +545,9 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString += mlPDF::SpecificationGenerator::GetWEMLabel(_newSpecificationWEMLabelFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetObjectName(_newSpecificationObjectNameFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetGroupPath(_newSpecificationGroupPathFld->getStringValue());
-    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), _newSpecificationUseVertexColorsFld->getBoolValue());
+    newSpecificationString += mlPDF::SpecificationGenerator::GetColor(_newSpecificationColorFld->getColorValue(), _newSpecificationColorAlphaFld->getFloatValue(), _newSpecificationUseDefaultColorFld->getBoolValue(), false);
     newSpecificationString += mlPDF::SpecificationGenerator::GetSpecularColor(_newSpecificationSpecularColorFld->getColorValue(), _newSpecificationUseDefaultSpecularColorFld->getBoolValue());
-    newSpecificationString += mlPDF::SpecificationGenerator::GetOpacity(_newSpecificationColorAlphaFld->getFloatValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetModelVisibility(_newSpecificationModelVisibilityFld->getEnumValue());
-    newSpecificationString += "</Mesh>\n";
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 2;
     _newSpecificationOutputValidFld->setBoolValue(true);
@@ -624,7 +557,6 @@ void SaveU3D::UpdateNewSpecification()
     newSpecificationString = "<MetaData>\n";
     newSpecificationString += mlPDF::SpecificationGenerator::GetMetaDataKey(_newSpecificationMetaDataKeyFld->getStringValue());
     newSpecificationString += mlPDF::SpecificationGenerator::GetMetaDataValue(_newSpecificationMetaDataValueFld->getStringValue());
-    newSpecificationString += "</MetaData>\n";
     newSpecificationString += "\n";
 //    ctx.field("selectedTab").value = 3;
     _newSpecificationOutputValidFld->setBoolValue(true);
@@ -638,6 +570,8 @@ void SaveU3D::UpdateNewSpecification()
 
 
 //***********************************************************************************
+
+
 
 
 ML_END_NAMESPACE

@@ -16,9 +16,9 @@
 
 // Local includes
 #include "MLPDFSystem.h"
-#include "PRCFileFormat/PRC_DataTypes.h"
-#include "PRCFileFormat/PRC_File.h"
-#include "../shared/MLPDF_DataTypes.h"
+#include "../PRCFileFormat/PRC_DataTypes.h"
+#include "../PRCFileFormat/PRC_File.h"
+#include "../../shared/MLPDF_DataTypes.h"
 
 #include <WEMBase/WEM.h>
 #include <WEMBase/WEMModuleBase/WEMInspector.h>
@@ -236,4 +236,4 @@ private:
 
 ML_END_NAMESPACE
 
-#endif // __mlSavePRC_H
+#endif // _SavePRC_H

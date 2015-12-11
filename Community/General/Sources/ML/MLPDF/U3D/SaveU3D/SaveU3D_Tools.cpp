@@ -10,9 +10,9 @@
 
 // Local includes
 #include "SaveU3D.h"
-#include "U3DFileFormat/U3D_Tools.h"
-#include "U3DFileFormat/U3D_DataTypes.h"
-#include "../shared/MLPDF_Tools.h"
+#include "../U3DFileFormat/U3D_Tools.h"
+#include "../U3DFileFormat/U3D_DataTypes.h"
+#include "../../shared/MLPDF_Tools.h"
 
 ML_START_NAMESPACE
 
