@@ -18,7 +18,7 @@
 #include "PDFUtils/PDFUtils.h"
 #include "LoadPointLineGeometry/LoadPointLineGeometry.h"
 #include "SaveU3D/SaveU3D.h"
-#include "SavePRC/SavePRC.h"
+//#include "SavePRC/SavePRC.h"
 #include "LoadU3D/LoadU3D.h"
 
 ML_START_NAMESPACE
@@ -32,7 +32,7 @@ int MLPDFInit()
   PDFUtils::initClass();
 
   SaveU3D::initClass();
-  SavePRC::initClass();
+  //SavePRC::initClass();
 
   LoadU3D::initClass();
 

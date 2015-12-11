@@ -53,14 +53,14 @@ HEADERS += \
   SaveU3D/U3DFileFormat/U3D_DataTypes.h \
   SaveU3D/U3DFileFormat/U3D_FileWriter.h \
   SaveU3D/U3DFileFormat/U3D_Tools.h \
-  SavePRC/SavePRC.h \
-  SavePRC/PRCFileFormat/PRC_Macros.h \
-  SavePRC/PRCFileFormat/PRC_Defines.h \
-  SavePRC/PRCFileFormat/PRC_DataTypes.h \
-  SavePRC/PRCFileFormat/PRC_BitStream.h \
-  SavePRC/PRCFileFormat/PRC_Write.h \
-  SavePRC/PRCFileFormat/PRC_File.h \
-  SavePRC/PRCFileFormat/PRC_Tools.h \
+  #SavePRC/SavePRC.h \
+  #SavePRC/PRCFileFormat/PRC_Macros.h \
+  #SavePRC/PRCFileFormat/PRC_Defines.h \
+  #SavePRC/PRCFileFormat/PRC_DataTypes.h \
+  #SavePRC/PRCFileFormat/PRC_BitStream.h \
+  #SavePRC/PRCFileFormat/PRC_Write.h \
+  #SavePRC/PRCFileFormat/PRC_File.h \
+  #SavePRC/PRCFileFormat/PRC_Tools.h \
   LoadU3D/LoadU3D.h \
 
 
@@ -93,14 +93,14 @@ SOURCES += \
   SaveU3D/U3DFileFormat/U3D_DataBlockWriter.cpp \
   SaveU3D/U3DFileFormat/U3D_FileWriter.cpp \
   SaveU3D/U3DFileFormat/U3D_Tools.cpp \
-  SavePRC/SavePRC.cpp \
-  SavePRC/SavePRC_Tools.cpp \
-  SavePRC/SavePRC_ProcessPointSets.cpp \
-  SavePRC/SavePRC_ProcessLineSets.cpp \
-  SavePRC/SavePRC_ProcessMeshes.cpp \
-  SavePRC/PRCFileFormat/PRC_DataTypes.cpp \
-  SavePRC/PRCFileFormat/PRC_BitStream.cpp \
-  SavePRC/PRCFileFormat/PRC_Write.cpp \
-  SavePRC/PRCFileFormat/PRC_File.cpp \
-  SavePRC/PRCFileFormat/PRC_Tools.cpp \
+  #SavePRC/SavePRC.cpp \
+  #SavePRC/SavePRC_Tools.cpp \
+  #SavePRC/SavePRC_ProcessPointSets.cpp \
+  #SavePRC/SavePRC_ProcessLineSets.cpp \
+  #SavePRC/SavePRC_ProcessMeshes.cpp \
+  #SavePRC/PRCFileFormat/PRC_DataTypes.cpp \
+  #SavePRC/PRCFileFormat/PRC_BitStream.cpp \
+  #SavePRC/PRCFileFormat/PRC_Write.cpp \
+  #SavePRC/PRCFileFormat/PRC_File.cpp \
+  #SavePRC/PRCFileFormat/PRC_Tools.cpp \
   LoadU3D/LoadU3D.cpp \
