@@ -13,9 +13,13 @@
 #ifndef _U3D_DataBlockWriter_H
 #define _U3D_DataBlockWriter_H
 
+// Std includes
 #include<vector>
+
+// Local includes
 #include "U3D_BitStream.h"
 #include "U3D_DataBlock.h"
+
 
 ML_START_NAMESPACE
 

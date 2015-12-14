@@ -11,11 +11,11 @@
 #ifndef _PDF_DataTypes_H
 #define _PDF_DataTypes_H 
 
-#include "mlModuleIncludes.h"
+// ML includes
+#include <mlModuleIncludes.h>
+
 
 ML_START_NAMESPACE
-
-  
 
 typedef std::vector<std::string> StringVector;
 typedef std::vector<MLint>       MLintVector;

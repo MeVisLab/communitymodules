@@ -13,7 +13,10 @@
 #ifndef _U3D_Bitstream_H
 #define _U3D_Bitstream_H
 
+// Std includes
 #include <vector>
+
+// Local includes
 #include "U3D_Constants.h"
 #include "U3D_ContextManager.h"
 

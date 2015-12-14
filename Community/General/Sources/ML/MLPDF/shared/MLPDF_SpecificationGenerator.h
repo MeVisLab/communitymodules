@@ -11,9 +11,12 @@
 #ifndef _PDF_SpecificationGenerator_H
 #define _PDF_SpecificationGenerator_H 
 
-#include "mlModuleIncludes.h"
+// Local includes
+#include "MLPDFSystem.h"
 
-#include "SaveU3D/SaveU3D.h"
+// ML includes
+#include <mlModuleIncludes.h>
+
 
 ML_START_NAMESPACE
 

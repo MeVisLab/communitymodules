@@ -11,9 +11,12 @@
 #ifndef _PDF_PDFDocumentTools_H
 #define _PDF_PDFDocumentTools_H 
 
-#include "mlModuleIncludes.h"
-
+// Local includes
 #include "MLPDFSystem.h"
+
+// ML includes
+#include <mlModuleIncludes.h>
+
 
 ML_START_NAMESPACE
 

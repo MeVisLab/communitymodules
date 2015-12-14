@@ -12,7 +12,7 @@
 
 // Project includes
 #include "MLPDF_Tools.h"
-
+#include "MLPDF_Defines.h"
 
 ML_START_NAMESPACE
 
@@ -30,14 +30,12 @@ SavePDFTemplate::SavePDFTemplate() : PDFGenerator()
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
-
   // Activate inplace data buffers for output outputIndex and input inputIndex.
   // setOutputImageInplace(outputIndex, inputIndex);
 
   // Activate page data bypass from input inputIndex to output outputIndex.
   // Note that the module must still be able to calculate the output image.
   // setBypass(outputIndex, inputIndex);
-
 }
 
 //----------------------------------------------------------------------------------
@@ -54,14 +52,29 @@ void SavePDFTemplate::handleNotification(Field* field)
 
 bool SavePDFTemplate::assemblePDFDocument()
 {
+  // *************************************************************************
   // This is the main method for all modules derived from PDFCreatorBase.
   // Add all code that assembles the actual PDF document here!
-
+  //
   // The following code is a simple example that demsontrates the usage and
   // built-in methods to add content to the PDF.
+  // *************************************************************************
 
   // Helper variable to store current drawing position height
   float yPos = 0;
+
+  // Enable compression for images only (Default is mlPDF::COMPRESS_ALL).
+  // Writing the actual PDF file to disk is considerably speeded up if compression
+  // is disbled. However, file size can considerably increase!
+  pdfDoc_SetCompressionMode(mlPDF::COMPRESS_IMAGES);
+
+  // Set the passwords
+  // The first password protects the document from unauthorized modifications.
+  // The second password protects the document from unautorized access and can be empty.
+  pdfDoc_SetPasswords("ModifyMe", "");
+
+  // Set permissions
+  pdfDoc_SetPermissions(mlPDF::PERMIT_PRINT_HIGH_QUALITY | mlPDF::PERMIT_EXTRACT_FOR_ACCESSIBILITY);
 
   // Set default y axis reference to mlPDF::YAXIS_REFERENCE_TOP
   // This will result in all y coordinates being interpreted with the upper page border as zero

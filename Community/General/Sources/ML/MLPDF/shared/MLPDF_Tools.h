@@ -11,14 +11,17 @@
 #ifndef _PDF_Tools_H
 #define _PDF_Tools_H 
 
+// Local includes
 #include "MLPDFSystem.h"
 #include "MLPDF_DataTypes.h"
 
-#include "mlModuleIncludes.h"
+// ML includes
+#include <mlModuleIncludes.h>
 
 // Inventor includes
 #include <Inventor/nodes/SoNodes.h>  // for M_PI
 
+// Std includes
 #include <sys/stat.h>
 
 

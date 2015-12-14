@@ -12,9 +12,8 @@
 
 // Local includes
 #include "PDFUtils.h"
-
-// Project includes
 #include "../shared/MLPDF_MarkerListTools.h"
+
 
 ML_START_NAMESPACE
 

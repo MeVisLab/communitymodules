@@ -20,14 +20,18 @@
 #include "../U3DFileFormat/U3D_FileWriter.h"
 #include "../../shared/MLPDF_DataTypes.h"
 
-#include <WEMBase/WEM.h>
-#include <WEMBase/WEMModuleBase/WEMInspector.h>
+// Project includes
+#include <IndexPairList.h>
+#include <ColoredMarkerList.h>
 
 // ML includes
 #include <mlModuleIncludes.h>
 #include <mlXMarkerList.h>
-#include <IndexPairList.h>
-#include <ColoredMarkerList.h>
+
+// WEM includes
+#include <WEMBase/WEM.h>
+#include <WEMBase/WEMModuleBase/WEMInspector.h>
+
 
 ML_START_NAMESPACE
 

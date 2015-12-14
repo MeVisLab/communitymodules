@@ -14,9 +14,7 @@
 #include "../../shared/MLPDF_Tools.h"
 #include "../../shared/MLPDF_PDFDocumentTools.h"
 
-// ML includes
-//#include "mlUnicode.h"
-
+// Inventor includes
 #include <Inventor/nodes/SoNodes.h>
 
 
@@ -102,6 +100,7 @@ void PDFGenerator::_initPDFDocument()
 
     _initFonts();
     pdfDoc_SetGlobalPageMarginsPixels(0,0,0,0);
+    pdfDoc_SetCompressionMode(mlPDF::COMPRESS_ALL);
   }
   else
   {

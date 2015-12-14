@@ -11,10 +11,11 @@
 #ifndef _PDF_Defines_H
 #define _PDF_Defines_H 
 
-#include "mlModuleIncludes.h"
+// ML includes
+#include <mlModuleIncludes.h>
 
 // Thirdparty includes
-#include "hpdf.h"
+#include <hpdf.h>
 
 
 ML_START_NAMESPACE
@@ -35,6 +36,22 @@ namespace mlPDF
   static bool YAXIS_REFERENCE_NATIVE   = false;
 
   static std::string LOREM_IPSUM = "Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\nExcepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n";
+
+  static unsigned int COMPRESS_NOTHING   = HPDF_COMP_NONE;
+  static unsigned int COMPRESS_TEXT      = HPDF_COMP_TEXT;
+  static unsigned int COMPRESS_IMAGES    = HPDF_COMP_IMAGE;
+  static unsigned int COMPRESS_METADATA  = HPDF_COMP_METADATA;
+  static unsigned int COMPRESS_ALL       = HPDF_COMP_ALL;
+
+  static unsigned int PERMIT_PRINT_LOW_QUALITY         = 0x0004;  // Bit 3:  Print the document (possibly not at the highest quality level, depending on whether bit 12 is also set).
+  static unsigned int PERMIT_MODIFY                    = 0x0008;  // Bit 4:  Modify the contents of the document by operations other than those controlled by bits 6, 9, and 11.
+  static unsigned int PERMIT_EXTACT_TEXT_AND_GRAPHICS  = 0x0010;  // Bit 5:  Copy or otherwise extract text and graphics from the document by operations other than that controlled by bit 10.
+  static unsigned int PERMIT_MODIFY_ANNOTATIONS        = 0x0020;  // Bit 6:  Add or modify text annotations, fill in interactive form fields, and, if bit 4 is also set, create or modify interactive form fields (including signature fields).
+  static unsigned int PERMIT_FORM_FIELDS               = 0x0100;  // Bit 9:  Fill in existing interactive form fields (including signature fields), even if bit 6 is clear.
+  static unsigned int PERMIT_EXTRACT_FOR_ACCESSIBILITY = 0x0200;  // Bit 10: Extract text and graphics (in support of accessibility to users with disabilities or for other purposes).
+  static unsigned int PERMIT_DOCUMENT_ASSEMBLY         = 0x0400;  // Bit 11: Assemble the document (insert, rotate, or delete pages and create bookmarks or thumbnail images), even if bit 4 is clear.
+  static unsigned int PERMIT_PRINT_HIGH_QUALITY        = 0x0804;  // Bit 12: Print the document to a representation from which a faithful digital copy of the PDF content could be generated. When this bit is clear (and bit 3 is set), printing is limited to a low-level representation of the appearance, possibly of degraded quality.
+  static unsigned int PERMIT_ALL                       = 0x0FFF;  // Enable all permissions (default)
 
   enum PAGE_SIZES {
     PAGESIZE_LETTER       = HPDF_PAGE_SIZE_LETTER,       // 612     x 792       pixels

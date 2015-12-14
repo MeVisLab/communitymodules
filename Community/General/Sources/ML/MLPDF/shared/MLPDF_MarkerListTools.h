@@ -11,15 +11,18 @@
 #ifndef _PDF_MarkerListTools_H
 #define _PDF_MarkerListTools_H 
 
+// Local includes
 #include "MLPDFSystem.h"
 #include "MLPDF_DataTypes.h"
 
-#include <mlXMarkerList.h>
+// Project includes
 #include <IndexPairList.h>
 #include <ColoredMarkerList.h>
-#include <mlFiberSet.h>
 
-#include "mlModuleIncludes.h"
+// ML includes
+#include <mlXMarkerList.h>
+#include <mlFiberSet.h>
+#include <mlModuleIncludes.h>
 
 // Inventor includes
 #include <Inventor/nodes/SoNodes.h>  // for M_PI

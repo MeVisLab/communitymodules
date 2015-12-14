@@ -23,11 +23,12 @@
 // Local includes
 #include "MLPDFSystem.h"
 
-#include <WEMBase/WEM.h>
-#include <WEMBase/WEMModuleBase/WEMGenerator.h>
-
 // ML includes
 #include <mlModuleIncludes.h>
+
+// WEM includes
+#include <WEMBase/WEM.h>
+#include <WEMBase/WEMModuleBase/WEMGenerator.h>
 
 
 using namespace std;

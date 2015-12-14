@@ -11,9 +11,7 @@
 
 // Local includes
 #include "LoadU3D.h"
-
-// Project includes
-#include "../SaveU3D/U3DFileFormat/U3D_Constants.h"
+#include "../U3D/U3DFileFormat/U3D_Constants.h"
 
 
 using namespace std;

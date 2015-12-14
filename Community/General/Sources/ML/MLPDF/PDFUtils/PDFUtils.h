@@ -21,11 +21,13 @@
 #include "MLPDFSystem.h"
 #include "../shared/MLPDF_Tools.h"
 
+// Project includes
+#include <IndexPairList.h>
+#include <ColoredMarkerList.h>
+
 // ML includes
 #include <mlModuleIncludes.h>
 #include <mlXMarkerList.h>
-#include <IndexPairList.h>
-#include <ColoredMarkerList.h>
 #include <mlFiberSet.h>
 
 // WEM includes
