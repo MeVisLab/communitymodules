@@ -40,22 +40,13 @@ module SavePDFTemplate {
   }
   fields  {
     instanceName = SavePDFTemplate
-    pdfFilename = ""
-    resourcesPath = ""
+    pdfFilename = "J:/MeVisLab/Packages Community/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample.pdf"
+    resourcesPath = "J:/MeVisLab/Packages Community/Community/General/Projects/PDFExamples/Modules/networks"
     pdfAttrTitle = Title
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
-    cameraCenterOfOrbit = "0 0 0"
-    cameraCenterToCamera = "0 0 0"
-    cameraRadiusOfOrbit = 0
-    cameraFOVAngle = 0
-    cameraRollAngle = 0
-    autoCalculateCameraFromInventorScene = FALSE
-    inventorCameraPosition = "0 0 0"
-    inventorCameraOrientation = "0 0 0 0"
-    inventorCameraFocalDistance = 0
-    inventorCameraHeight = 0
+    viewSpecifications = ""
   }
 }
 module LocalFileName {

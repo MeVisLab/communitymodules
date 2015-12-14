@@ -22,38 +22,38 @@
 #include <mlModuleIncludes.h>
 
 // Include all libhpdf headers
-#include "hpdf.h"
-#include "hpdf_3dmeasure.h"
-#include "hpdf_annotation.h"
-#include "hpdf_catalog.h"
-#include "hpdf_conf.h"
-#include "hpdf_consts.h"
-#include "hpdf_destination.h"
-#include "hpdf_doc.h"
-#include "hpdf_encoder.h"
-#include "hpdf_encrypt.h"
-#include "hpdf_encryptdict.h"
-#include "hpdf_error.h"
-#include "hpdf_exdata.h"
-#include "hpdf_ext_gstate.h"
-#include "hpdf_font.h"
-#include "hpdf_fontdef.h"
-#include "hpdf_gstate.h"
-#include "hpdf_image.h"
-#include "hpdf_info.h"
-#include "hpdf_list.h"
-#include "hpdf_mmgr.h"
-#include "hpdf_namedict.h"
-#include "hpdf_objects.h"
-#include "hpdf_outline.h"
-#include "hpdf_page_label.h"
-#include "hpdf_pages.h"
-#include "hpdf_pdfa.h"
-#include "hpdf_streams.h"
-#include "hpdf_types.h"
-#include "hpdf_u3d.h"
-#include "hpdf_utils.h"
-#include "hpdf_version.h"
+#include <hpdf.h>
+#include <hpdf_3dmeasure.h>
+#include <hpdf_annotation.h>
+#include <hpdf_catalog.h>
+#include <hpdf_conf.h>
+#include <hpdf_consts.h>
+#include <hpdf_destination.h>
+#include <hpdf_doc.h>
+#include <hpdf_encoder.h>
+#include <hpdf_encrypt.h>
+#include <hpdf_encryptdict.h>
+#include <hpdf_error.h>
+#include <hpdf_exdata.h>
+#include <hpdf_ext_gstate.h>
+#include <hpdf_font.h>
+#include <hpdf_fontdef.h>
+#include <hpdf_gstate.h>
+#include <hpdf_image.h>
+#include <hpdf_info.h>
+#include <hpdf_list.h>
+#include <hpdf_mmgr.h>
+#include <hpdf_namedict.h>
+#include <hpdf_objects.h>
+#include <hpdf_outline.h>
+#include <hpdf_page_label.h>
+#include <hpdf_pages.h>
+#include <hpdf_pdfa.h>
+#include <hpdf_streams.h>
+#include <hpdf_types.h>
+#include <hpdf_u3d.h>
+#include <hpdf_utils.h>
+#include <hpdf_version.h>
 
 
 ML_START_NAMESPACE
@@ -95,6 +95,15 @@ protected:
   //------------------
   // Document handling
   //------------------
+
+  // Set the compression mode
+  void pdfDoc_SetCompressionMode(const unsigned int compressionFlags);
+
+  // Set the password
+  void pdfDoc_SetPasswords(std::string editPassword, std::string openPassword = "");
+
+  // Set permissions
+  void pdfDoc_SetPermissions(const unsigned int permissionFlags);
 
   // Set the y-axis reference (i.e., where the y-axis zero coordinate shall be: at the top of the page or at the bottom).
   void pdfDoc_SetYAxisReference(bool reference);
@@ -349,13 +358,14 @@ private:
   std::vector<bool> _previousYAxisReferenceIsFromTop;
 
   // Internal tool methods
-  void            _checkCoordinate(float& smaller, float& larger);
-  void            _checkAngle(float& startAngle, float& endAngle);
-  const float     _getYPosFromTop(float y, bool ignoreMargins = false);
-  const HPDF_Rect _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false);
-  const float     _getPageX(float x, bool ignoreMargins = false);
-  const float     _getPageY(float y, bool ignoreMargins = false);
-  const HPDF_REAL _getFontHeight(HPDF_Font& font, HPDF_REAL size);
+  void              _checkCoordinate(float& smaller, float& larger);
+  void              _checkAngle(float& startAngle, float& endAngle);
+  const float       _getYPosFromTop(float y, bool ignoreMargins = false);
+  const HPDF_Rect   _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false);
+  const float       _getPageX(float x, bool ignoreMargins = false);
+  const float       _getPageY(float y, bool ignoreMargins = false);
+  const HPDF_REAL   _getFontHeight(HPDF_Font& font, HPDF_REAL size);
+  const std::string _getRandomPassword(const unsigned int passwordLength);
 
   // Page margins
   float _globalPageMarginLeft;

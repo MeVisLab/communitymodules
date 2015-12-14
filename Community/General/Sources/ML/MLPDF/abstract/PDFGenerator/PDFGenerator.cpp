@@ -393,64 +393,26 @@ const HPDF_REAL PDFGenerator::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
 
 //----------------------------------------------------------------------------------
 
-
-
-//----------------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------------
-/*
-void PDFGenerator::calculateCameraPropertiesFromInventorCamera()
+const std::string PDFGenerator::_getRandomPassword(const unsigned int passwordLength)
 {
-  Vector3 inventorCameraPosition      = inventorCameraPositionFld->getVectorValue();
-  Vector4 inventorCameraOrientation   = inventorCameraOrientationFld->getVectorValue();
-  float   inventorCameraFocalDistance = inventorCameraFocalDistanceFld->getFloatValue();
-  float   inventorCameraHeight        = inventorCameraHeightFld->getFloatValue();
-  Vector3 camCenterOfOrbit;
-  Vector3 camCenterToCamera;
-  float   camRadiusOfOrbit;
-  float   camRollAngle;
-  float   camFOVAngle;
+  char* chars = new char[passwordLength+1];
 
-  mlPDF::PDFDocumentTools::CalculateCameraPropertiesFromInventorCamera(
-    inventorCameraPosition, inventorCameraOrientation, inventorCameraFocalDistance, inventorCameraHeight,
-    camCenterOfOrbit, camCenterToCamera, camRadiusOfOrbit, camRollAngle, camFOVAngle);
+  static const char alphanum[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-  // Set field values
-  cameraCenterOfOrbitFld ->setVector3Value(camCenterOfOrbit);
-  cameraCenterToCameraFld->setVector3Value(camCenterToCamera);
-  cameraRadiusOfOrbitFld ->setFloatValue(camRadiusOfOrbit);
-  cameraRollAngleFld     ->setFloatValue(camRollAngle);
-  cameraFOVAngleFld      ->setFloatValue(camFOVAngle);
+  for (unsigned int i = 0; i < passwordLength; ++i) 
+  {
+    chars[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+  }
+
+  chars[passwordLength] = 0;
+
+  std::string result(chars);
+
+  delete[] chars;
+
+  return result;
 }
 
-//----------------------------------------------------------------------------------
-
-void PDFGenerator::calculateDefaultCameraProperties()
-{
-  Vector3 camCenterOfOrbit;
-  Vector3 camCenterToCamera;
-  float   camRadiusOfOrbit;
-  float   camRollAngle;
-  float   camFOVAngle;
-
-  mlPDF::PDFDocumentTools::CalculateDefaultCameraProperties(
-    // Inputs
-    camCenterOfOrbit, camCenterToCamera, camRadiusOfOrbit, camRollAngle, camFOVAngle);
-
-  // Set field values
-  cameraCenterOfOrbitFld ->setVector3Value(camCenterOfOrbit);
-  cameraCenterToCameraFld->setVector3Value(camCenterToCamera);
-  cameraRadiusOfOrbitFld ->setFloatValue(camRadiusOfOrbit);
-  cameraRollAngleFld     ->setFloatValue(camRollAngle);
-  cameraFOVAngleFld      ->setFloatValue(camFOVAngle);
-}
-*/
 //----------------------------------------------------------------------------------
 
 

@@ -17,6 +17,48 @@
 
 ML_START_NAMESPACE
 
+
+//----------------------------------------------------------------------------------
+
+void PDFGenerator::pdfDoc_SetCompressionMode(const unsigned int compressionFlags)
+{
+  if (pdfDocument)
+  {
+    HPDF_SetCompressionMode(pdfDocument, (HPDF_UINT)compressionFlags);  
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFGenerator::pdfDoc_SetPasswords(std::string editPassword, std::string openPassword)
+{
+  if ((pdfDocument) && (editPassword != ""))
+  {
+    HPDF_SetPassword(pdfDocument, editPassword.c_str(), openPassword.c_str());
+    HPDF_SetEncryptionMode(pdfDocument, HPDF_ENCRYPT_R3, 16);
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFGenerator::pdfDoc_SetPermissions(const unsigned int  permissionFlags)
+{
+  if (pdfDocument)
+  {
+    HPDF_UINT permissions = permissionFlags | 0xFFFFF0C0; // Bit 7,8,13-32: must be 1
+
+    HPDF_STATUS pdfResult = HPDF_SetPermission(pdfDocument, permissions);
+
+    if (pdfResult == HPDF_DOC_ENCRYPTDICT_NOT_FOUND)
+    {
+      HPDF_ResetError(pdfDocument);
+      std::string randomPassword = _getRandomPassword(64);
+      pdfDoc_SetPasswords(randomPassword);
+      HPDF_SetPermission(pdfDocument, permissions);
+    }
+  }
+}
+
 //----------------------------------------------------------------------------------
 
 void PDFGenerator::pdfDoc_SetYAxisReference(bool reference)
@@ -45,7 +87,7 @@ void PDFGenerator::pdfDoc_RestoreYAxisReference()
   if (_previousYAxisReferenceIsFromTop.size() > 0)
   {
     _currentYAxisReferenceIsFromTop = _previousYAxisReferenceIsFromTop.back();
-	_previousYAxisReferenceIsFromTop.pop_back();	
+	  _previousYAxisReferenceIsFromTop.pop_back();	
   }
   else
   {

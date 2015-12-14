@@ -74,6 +74,9 @@ bool SavePDFTemplate::assemblePDFDocument()
   pdfDoc_SetPasswords("ModifyMe", "");
 
   // Set permissions
+  // Attention: A password must be set PRIOR to setting permissions.
+  // If no password has been set when pdfDoc_SetPermissions() is invoked,
+  // a random password of 64 characters (512 bit) length is set!
   pdfDoc_SetPermissions(mlPDF::PERMIT_PRINT_HIGH_QUALITY | mlPDF::PERMIT_EXTRACT_FOR_ACCESSIBILITY);
 
   // Set default y axis reference to mlPDF::YAXIS_REFERENCE_TOP
