@@ -115,7 +115,7 @@ module SoView2DLabel {
     interactionProviderID = ""
     drawingOn = TRUE
     color = "0 0 0"
-    text = "Click here to enable interactive mode in Acrobat Reader."
+    text = "Click here to enable interactive mode in Adobe Reader."
     viewerId = ""
     textPositioning = RELATIVE_TO_VIEWER
     worldPosition = "0 0 0"
