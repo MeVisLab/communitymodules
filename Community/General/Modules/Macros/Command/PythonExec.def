@@ -34,6 +34,10 @@
 */
 //----------------------------------------------------------------------------------
 
+UserGenres {
+  Genre BIGR { Genre BIGR-Utils    { title = "Utils" } }
+}
+
 MacroModule PythonExec {
   documentation = "$(LOCAL)/html/PythonExec.html"
   group = "BIGR"

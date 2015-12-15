@@ -1,3 +1,6 @@
+UserGenres {
+  Genre BIGR { Genre BIGR-WEM    { title = WEM } }
+}
 
 //----------------------------------------------------------------------------------
 // MLModule WEMPlane

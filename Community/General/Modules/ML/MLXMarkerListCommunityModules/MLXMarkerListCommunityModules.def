@@ -7,6 +7,9 @@
 */
 //----------------------------------------------------------------------------------
 
+UserGenres {
+  Genre BIGR { Genre BIGR-XMarkerList    { title = "X-Marker List" } }
+}
 
 //----------------------------------------------------------------------------------
 // MLModule LinearInterpolateXMarkerList
