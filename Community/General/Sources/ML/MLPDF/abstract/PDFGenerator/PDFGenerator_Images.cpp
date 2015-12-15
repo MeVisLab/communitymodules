@@ -47,6 +47,12 @@ mlPDF::IMAGE PDFGenerator::pdfDoc_LoadImageFromFile(std::string filename)
       {
         pdfDocImages.push_back(newImage);
       }
+      else
+      {
+        HPDF_STATUS pdfResult = HPDF_GetError(pdfDocument);
+        pdfResult = HPDF_GetErrorDetail(pdfDocument);
+        HPDF_ResetError(pdfDocument);
+      }
 
     }  // if ( (filenameLength > 4) && (fileExists(filename)) )
 
@@ -83,9 +89,6 @@ void PDFGenerator::pdfDoc_AddImage(float x, float y, float width, float height, 
     }
   }
 }
-
-//----------------------------------------------------------------------------------
-
 
 //----------------------------------------------------------------------------------
 

@@ -32,6 +32,12 @@ MODEL3D PDFGenerator::pdfDoc_Load3DModelDataFromFile(std::string fileName)
     {
       pdfDoc3DScenes.push_back(newScene);
     }
+    else
+    {
+      HPDF_STATUS pdfResult = HPDF_GetError(pdfDocument);
+      pdfResult = HPDF_GetErrorDetail(pdfDocument);
+      HPDF_ResetError(pdfDocument);
+    }
   }
 
   return newScene;
