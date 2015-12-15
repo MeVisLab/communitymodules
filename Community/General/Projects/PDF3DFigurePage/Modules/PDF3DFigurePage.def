@@ -7,6 +7,10 @@
 */
 //----------------------------------------------------------------------------------
 
+UserGenres {
+  Genre PDF { Genre PDFApps      { title = Apps      } }
+  Genre PDF { Genre PDFModules   { title = Modules   } }
+}
 
 MLModule PDF3DFigurePage_SavePDF {
   DLL                = "PDF3DFigurePage"
@@ -37,6 +41,7 @@ MLModule PDF3DFigurePage_Utils {
 }  
 
 MacroModule PDF3DFigurePageMacro {
+  genre              = "PDFModules"
   author             = "Axel Newe, axel.newe at fau.de"
   comment            = "Imports triangle meshes of various formats, point clouds an line set and and creates an interactive 3D PDF for scientific publication."
   keywords           = "PDF U3D 3D"
@@ -45,6 +50,7 @@ MacroModule PDF3DFigurePageMacro {
 }
 
 MacroModule Scientific3DFigurePDFApp {
+  genre              = "PDFApps"
   author             = "Axel Newe, axel.newe at fau.de"
   comment            = "Imports triangle meshes of various formats, point clouds an line set and and creates an interactive 3D PDF for scientific publication."
   keywords           = "PDF U3D 3D"
