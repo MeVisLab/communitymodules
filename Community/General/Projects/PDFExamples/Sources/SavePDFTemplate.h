@@ -26,6 +26,10 @@ ML_START_NAMESPACE
 //! 
 class SAVEPDFTEMPLATE_EXPORT SavePDFTemplate : public PDFGenerator
 {
+
+  // Implements interface for the runtime type system of the ML.
+  ML_MODULE_CLASS_HEADER(SavePDFTemplate)
+
 public:
 
   //! Constructor.
@@ -35,6 +39,9 @@ public:
   virtual void handleNotification (Field* field);
 
 protected:
+
+  //! Destructor.
+  virtual ~SavePDFTemplate();
 
   //! Assemble PDF document
   //! This is the main method for all derived modules.
@@ -48,8 +55,6 @@ private:
   //! Therefore it has been outsourced to a separate method...
   void _add3DFigure(float x, float y, float width, float height);
 
-  // Implements interface for the runtime type system of the ML.
-  ML_MODULE_CLASS_HEADER(SavePDFTemplate)
 };
 
 

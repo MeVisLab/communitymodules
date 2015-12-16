@@ -15,6 +15,7 @@
 #include "mlLibraryInitMacros.h"
 
 // Include all module headers ...
+#include "abstract/PDFGenerator/PDFGenerator.h"
 #include "PDFUtils/PDFUtils.h"
 #include "LoadPointLineGeometry/LoadPointLineGeometry.h"
 #include "U3D/SaveU3D/SaveU3D.h"
@@ -28,11 +29,11 @@ ML_START_NAMESPACE
 //----------------------------------------------------------------------------------
 int MLPDFInit()
 {
+  PDFGenerator::initClass();
+
   PDFUtils::initClass();
 
   SaveU3D::initClass();
-  //SavePRC::initClass();
-
   LoadU3D::initClass();
 
   LoadPointLineGeometry::initClass();

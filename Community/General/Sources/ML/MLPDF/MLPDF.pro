@@ -118,4 +118,9 @@ RELATEDFILES += \
   ../../../Modules/ML/MLPDF/LoadU3D.script \
   ../../../Modules/ML/MLPDF/PDFUtils.script \
   ../../../Modules/ML/MLPDF/LoadPointLineGeometry.script \
+  ../../../Modules/ML/MLPDF/Wizard/PDFModuleWizard.script \
+  ../../../Modules/ML/MLPDF/Wizard/PDFModuleWizard.mlab \
+  ../../../Modules/ML/MLPDF/Wizard/PDFModuleWizard.lst \
+  ../../../Modules/ML/MLPDF/Wizard/PDFModuleWizard.py \
+
 

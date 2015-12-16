@@ -17,7 +17,7 @@
 ML_START_NAMESPACE
 
 //! Implements code for the runtime type system of the ML
-ML_MODULE_CLASS_SOURCE(SavePDFTemplate, Module);
+ML_MODULE_CLASS_SOURCE(SavePDFTemplate, PDFGenerator);
 
 //----------------------------------------------------------------------------------
 
@@ -40,6 +40,17 @@ SavePDFTemplate::SavePDFTemplate() : PDFGenerator()
 
 //----------------------------------------------------------------------------------
 
+SavePDFTemplate::~SavePDFTemplate()
+{
+  // Destroy own dynamic data structures here!
+
+
+  // Finally call superclass destructor
+  PDFGenerator::~PDFGenerator();
+}
+
+//----------------------------------------------------------------------------------
+
 void SavePDFTemplate::handleNotification(Field* field)
 {
   // Call super class functionality first!
@@ -56,7 +67,7 @@ bool SavePDFTemplate::assemblePDFDocument()
   // This is the main method for all modules derived from PDFCreatorBase.
   // Add all code that assembles the actual PDF document here!
   //
-  // The following code is a simple example that demsontrates the usage and
+  // The following code is a simple example that demonstrates the usage and
   // built-in methods to add content to the PDF.
   // *************************************************************************
 
