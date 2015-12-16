@@ -7,10 +7,14 @@
 */
 //----------------------------------------------------------------------------------
 
+UserGenres {
+  Genre PDF { Genre PDFApps      { title = Apps      } }
+  Genre PDF { Genre PDFModules   { title = Modules   } }
+}
+
 MLModule PDFUtils {
   DLL                = "MLPDF"
-
-  genre              = ""
+  genre              = "PDFModules"
   author             = "Axel Newe"
   comment            = "Utilities for PDF creation."
   keywords           = "PDF U3D PRC"
@@ -21,8 +25,7 @@ MLModule PDFUtils {
 
 MLModule SaveU3D {
   DLL                = "MLPDF"
-
-  genre              = "FileMain"
+  genre              = "PDFModules"
   author             = "Axel Newe"
   comment            = "Creates U3D file from WEMs and XMarkerLists."
   keywords           = "PDF U3D WEM XMarker Fiber"
@@ -33,8 +36,7 @@ MLModule SaveU3D {
 
 MLModule LoadU3D {
   DLL                = "MLPDF"
-
-  genre              = "FileMain"
+  genre              = "PDFModules"
   author             = "Axel Newe"
   comment            = "Loads U3D file and creates WEMs and XMarkerLists from it."
   keywords           = "PDF U3D WEM XMarker Fiber"
@@ -44,9 +46,8 @@ MLModule LoadU3D {
 }
 
 MLModule LoadPointLineGeometry {
-  DLL                = "MLPDF"
-  
-  genre              = "Fields"
+  DLL                = "MLPDF"  
+  genre              = "PDFModules"
   author             = "Axel Newe"
   comment            = "Imports a marker list from txt/csv file."
   keywords           = "ListBase XMarker ColoredMarker IndexPairList"
@@ -54,3 +55,10 @@ MLModule LoadPointLineGeometry {
   externalDefinition = $(LOCAL)/LoadPointLineGeometry.script
 }  
 
+ModuleWizard PDFModuleWizard {
+  author             = "Axel Newe"
+  title              = "Modules (C++)/PDF Module"
+  comment            = "Module for generating customized PDFs."
+  externalDefinition = $(LOCAL)/Wizard/PDFModuleWizard.script
+  templateList       = $(LOCAL)/Wizard/PDFModuleWizard.lst
+}

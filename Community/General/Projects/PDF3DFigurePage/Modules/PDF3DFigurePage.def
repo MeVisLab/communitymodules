@@ -7,11 +7,6 @@
 */
 //----------------------------------------------------------------------------------
 
-UserGenres {
-  Genre PDF { Genre PDFApps      { title = Apps      } }
-  Genre PDF { Genre PDFModules   { title = Modules   } }
-}
-
 MLModule PDF3DFigurePage_SavePDF {
   DLL                = "PDF3DFigurePage"
   author             = "Axel Newe, axel.newe at fau.de"

@@ -1,0 +1,24 @@
+//----------------------------------------------------------------------------------
+//! ${vars.cppProject.fullProject} module definitions.
+/*!
+// \file    ${__TARGETFILE__}
+// \author  ${vars.author}
+// \date    ${__DATE__}
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule ${vars.moduleName} {
+  DLL                = "${vars.cppProject.fullProject}"
+
+  genre              = "${vars.genre}"
+  author             = "${vars.author}"
+  comment            = "${vars.comment}"
+  keywords           = "${vars.keywords}"
+  seeAlso            = "${vars.seeAlso}"
+
+%if vars.exampleNetwork:
+  exampleNetwork     = "$(LOCAL)/networks/${vars.moduleName}Example.mlab"
+%endif
+  externalDefinition = "$(LOCAL)/${vars.moduleName}.script"
+}  

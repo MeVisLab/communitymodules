@@ -1,0 +1,44 @@
+//----------------------------------------------------------------------------------
+//! ${vars.moduleName} module definition.
+/*!
+// \file    ${__TARGETFILE__}
+// \author  ${vars.author}
+// \date    ${__DATE__}
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  Field status   { editable = No }
+  Field progress { editable = No }
+  Field success  { editable = No }
+  
+  // Put any own fields descriptions in here if required
+}
+
+NetworkPanel {
+  info = success
+  Button  save { symbol = @@ "start" @@ }
+}
+
+
+Window {
+  
+  Vertical {
+    
+    margin = 3
+             
+    Field pdfFilename    { browseButton = On browseMode = save }
+    Field resourcesPath  { browseButton = On browseMode = directory }
+    
+    Separator { }
+    
+    Horizontal {
+      Button save { title = "Save PDF" alignX = Left }
+      Field status {}
+    }
+    
+    ProgressBar progress { textVisible = No }
+    
+  } // Vertical
+  
+} // Window
