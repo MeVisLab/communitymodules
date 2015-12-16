@@ -63,6 +63,8 @@ SWITCH_PACKAGE Community/General
 + Sources/ML/MLBaseListExtensions/MLBaseListExtensionsInit.cpp
 + Sources/ML/MLBaseListExtensions/MLBaseListExtensionsSystem.h
 + Modules/ML/MLPDF
++ Modules/ML/MLPDF/networks
++ Modules/ML/MLPDF/demodata
 + Sources/ML/MLPDF/LoadPointLineGeometry
 + Sources/ML/MLPDF/LoadU3D
 + Sources/ML/MLPDF/PDFUtils
