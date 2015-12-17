@@ -24,11 +24,18 @@ NetworkPanel {
 Window {
   
   Vertical {
+
+    minimumWidth = 400
     
     margin = 3
              
-    Field pdfFilename    { browseButton = On browseMode = save }
-    Field resourcesPath  { browseButton = On browseMode = directory }
+    Field pdfFilename      { browseButton = On browseMode = save }
+    Field resourcesPath    { browseButton = On browseMode = directory }
+%if vars.includeDemoCode:
+    Field imageFilename    { browseButton = On browseMode = save }
+    Field modelFilename    { browseButton = On browseMode = save }
+    Field posterFilename   { browseButton = On browseMode = save }
+%endif
     
     Separator { }
     

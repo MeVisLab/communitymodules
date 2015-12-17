@@ -30,8 +30,7 @@ ${vars.moduleName}::${vars.moduleName}() : PDFGenerator()
   handleNotificationOff();
 
 %if fields:
-
-  // Add fields to the module and set their values.
+  // Add automatically generated fields and set their values.
  %for f in fields:
   %if f.fieldType.upper() == "ENUM":
   static const char * const ${f.fieldName}Values[] = { ${f.enumValuesInitializer} };
@@ -46,6 +45,13 @@ ${vars.moduleName}::${vars.moduleName}() : PDFGenerator()
   _${f.fieldName}Fld = add${f.fieldType}("${f.fieldName}", ${f.fieldCValue});
   %endif
  %endfor
+%endif
+
+%if vars.includeDemoCode:
+  // Add fields for demo code
+  _imageFilenameFld  = addString("imageFilename",  "PDFDemoData_Image.png");
+  _modelFilenameFld  = addString("modelFilename",  "PDFDemoData_Model.u3d");
+  _posterFilenameFld = addString("posterFilename", "PDFDemoData_ModelPoster.png");
 %endif
 
   // Reactivate calls of handleNotification on field changes.
@@ -80,13 +86,18 @@ bool ${vars.moduleName}::assemblePDFDocument()
   // *************************************************************************
   // This is the main method for all modules derived from PDFCreatorBase.
   // Add all code that assembles the actual PDF document here!
+%if vars.includeDemoCode:
   //
   // The following code is a simple example that demonstrates the usage and
   // built-in methods to add content to the PDF.
+%endif
   // *************************************************************************
 
-  // Helper variable to store current drawing position height
-  float yPos = 0;
+%if vars.includeDemoCode:
+  // Predefined helper variable to store current y position for drawing
+  // Attention! pdfDoc_CurrentYPos (and pdfDoc_CurrentXPos, respectively)
+  // are automatically set to zero at each time a new page is started. 
+  pdfDoc_CurrentYPos = 0;
 
   // Enable compression for images only (Default is mlPDF::COMPRESS_ALL).
   // Writing the actual PDF file to disk is considerably speeded up if compression
@@ -120,26 +131,26 @@ bool ${vars.moduleName}::assemblePDFDocument()
   pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 14);
 
   // Write text at specified position
-  pdfDoc_WriteTextAt(0, yPos, "PDF Creation Example");
+  pdfDoc_WriteTextAt(0, pdfDoc_CurrentYPos, "PDF Creation Example");
 
-  yPos += 25;
+  pdfDoc_CurrentYPos += 25;
 
   // Set font to Times, 12 pt.
   pdfDoc_SetCurrentFont(buildInFonts.Times, 12);
 
   // Write text at specified position
-  pdfDoc_WriteTextAt(10, yPos, "Created by '${vars.moduleName}' module.");
+  pdfDoc_WriteTextAt(10, pdfDoc_CurrentYPos, "Created by '${vars.moduleName}' module.");
 
-  yPos += 35;
+  pdfDoc_CurrentYPos += 35;
 
   // Adjust font size without changing the font type.
   pdfDoc_SetCurrentFontSize(10);
 
   // Write lorem ipsum text into specified area
-  pdfDoc_WriteTextAreaAt(0, yPos, pdfDoc_GetPageMaxWidth(), 50, mlPDF::LOREM_IPSUM, mlPDF::TEXTALIGNMENT_JUSTIFY);
+  pdfDoc_WriteTextAreaAt(0, pdfDoc_CurrentYPos, pdfDoc_GetPageMaxWidth(), 50, mlPDF::LOREM_IPSUM, mlPDF::TEXTALIGNMENT_JUSTIFY);
 
   // Draw a rectangle around the recently added text
-  pdfDoc_AddOutlineRectangle(0, yPos, pdfDoc_GetPageMaxWidth(), 50, 1);
+  pdfDoc_AddOutlineRectangle(0, pdfDoc_CurrentYPos, pdfDoc_GetPageMaxWidth(), 50, 1);
 
   // Set font to Courier Oblique, keep current font size.
   pdfDoc_SetCurrentFont(buildInFonts.CourierOblique);
@@ -163,25 +174,25 @@ bool ${vars.moduleName}::assemblePDFDocument()
   pdfDoc_SetCurrentFont(buildInFonts.TimesBold, 10);
 
   // Write headline for the following images
-  yPos += 80;
-  pdfDoc_WriteTextAt(0, yPos, "Two Images Sharing the Same Resource");
+  pdfDoc_CurrentYPos += 80;
+  pdfDoc_WriteTextAt(0, pdfDoc_CurrentYPos, "Two Images Sharing the Same Resource");
  
   // Load image into image resource pool (n.b.: only PNG anf JPG images are allowed!)
-  std::string resourcesPath = resourcesPathFld->getStringValue();
-  std::string exampleImagePath = resourcesPath + "/PDFDemoData_Image.png";
+  std::string resourcesPath = resourcesPathFld->getStringValue() + "/";
+  std::string exampleImagePath = resourcesPath + _imageFilenameFld->getStringValue();
 
   if (mlPDF::fileExists(exampleImagePath))
   {
     mlPDF::IMAGE exampleImage = pdfDoc_LoadImageFromFile(exampleImagePath);
 
     // Add image by direct reference
-    yPos += 15;
-    pdfDoc_AddImage(0, yPos, 100, 100, exampleImage);
+    pdfDoc_CurrentYPos += 15;
+    pdfDoc_AddImage(0, pdfDoc_CurrentYPos, 100, 100, exampleImage);
 
     // Add image once more through image pool
     if (pdfDocImages.size() > 0)
     {
-      pdfDoc_AddImage(110, yPos, 100, 100, pdfDocImages[pdfDocImages.size() - 1]);
+      pdfDoc_AddImage(110, pdfDoc_CurrentYPos, 100, 100, pdfDocImages[pdfDocImages.size() - 1]);
     }
   }
   else
@@ -192,14 +203,14 @@ bool ${vars.moduleName}::assemblePDFDocument()
   }
 
   // Write headline for the interactive 3D scene
-  yPos += 120;
-  pdfDoc_WriteTextAt(0, yPos, "Interactive 3D Scene with Poster Image");
+  pdfDoc_CurrentYPos += 120;
+  pdfDoc_WriteTextAt(0, pdfDoc_CurrentYPos, "Interactive 3D Scene with Poster Image");
 
   // Now add 3D scene.
   // This needs a little more than just one command.
   // Therefore it has been outsourced to a separate method...
-  yPos += 15;
-  _add3DFigure(0, yPos, 210, 210);
+  pdfDoc_CurrentYPos += 15;
+  _add3DFigure(0, pdfDoc_CurrentYPos, 210, 210);
 
   // Now let's add some graphics...
 
@@ -229,18 +240,20 @@ bool ${vars.moduleName}::assemblePDFDocument()
   //
   // For more methods to add and manipulate contents, see MLPDF_PDFCreatorBase.h file.
   //
+%endif
 
   return true;
 }
 
+%if vars.includeDemoCode:
 //----------------------------------------------------------------------------------
 
 void ${vars.moduleName}::_add3DFigure(float x, float y, float width, float height)
 {
-  std::string resourcesPath = resourcesPathFld->getStringValue();
+  std::string resourcesPath = resourcesPathFld->getStringValue() + "/";
 
   // Load model into model resource pool (n.b.: only U3D models are allowed!)
-  HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(resourcesPath + "/PDFDemoData_Model.u3d");
+  HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(resourcesPath + _modelFilenameFld->getStringValue());
 
   if (u3dModel)
   {
@@ -272,7 +285,7 @@ void ${vars.moduleName}::_add3DFigure(float x, float y, float width, float heigh
     pdfDoc_3DModel_SetDefaultView(u3dModel, anteriorView);
 
     // Load poster image and add it to the image resource pool
-    mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(resourcesPath + "/PDFDemoData_ModelPoster.png");
+    mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(resourcesPath + _posterFilenameFld->getStringValue());
 
     // Now actually create the 3D scene
     mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);
@@ -286,6 +299,7 @@ void ${vars.moduleName}::_add3DFigure(float x, float y, float width, float heigh
     pdfDoc_3DScene_SetActivationProperties(u3dScene, activationMode, deactivationMode, toolbarEnabled, navigationInterfaceEnabled, animationAutoStart);
   }
 }
+%endif
 
 //----------------------------------------------------------------------------------
 

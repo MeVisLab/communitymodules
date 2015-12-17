@@ -1,0 +1,92 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ModuleGenreSelector {
+  internal  {
+    frame = "541 437 152 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "876 616 182 26"
+        sizeHint = "182 26"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ModuleGenreSelector
+    genres = ""
+    chosenGenre = ""
+  }
+  internalFields = ""
+}
+module ModuleWizardCppProject {
+  internal  {
+    frame = "341 369 168 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "2168 252 349 565"
+        sizeHint = "270 565"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "2289 353 476 565"
+        sizeHint = "229 565"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = cppProject
+    packageIdentifier = ""
+    moduleName = ""
+    project = ""
+    projectDirName = ML
+    projectPrefix = WEM
+    moduleNameFilePrefix = WEM
+    profileConfig = "ML MLBase MLWEM"
+    createEnable = FALSE
+  }
+  internalFields = ""
+}
+module ModuleWizardPackageSelector {
+  internal  {
+    frame = "533 373 200 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1689 636 473 69"
+        sizeHint = "473 69"
+        wasOpen = no
+        wasActive = no
+      }
+      window _automatic {
+        geometry = "1937 581 594 228"
+        sizeHint = "225 228"
+        wasOpen = no
+        wasActive = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ModuleWizardPackageSelector
+    packageIdentifier = ""
+  }
+  internalFields = ""
+}
+connections  {
+  cppProject.packageIdentifier = ModuleWizardPackageSelector.packageIdentifier
+}
+networkModel = ""
+
+//# MeVis signature v1
+//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
+//# owner: MeVis
+//# date: 2015-09-29T19:31:42
+//# hash: nnluqWvnrWU+52H17r7Fk+XAVijjHQ3mFw3AmLZ6hRzOLWScg/46jzVzADHbXompvrQTC6MgfzF0+RTuyecFUg==
+//# MeVis end

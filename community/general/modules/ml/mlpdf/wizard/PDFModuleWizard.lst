@@ -1,0 +1,42 @@
+# PDFModuleWizard template files
+
+# Source files
+$(LOCAL)/Sources/PDFModuleTemplate.h -> ${vars.cppProject.projectSourceDir}/${vars.moduleName}.h
+$(LOCAL)/Sources/PDFModuleTemplate.cpp -> ${vars.cppProject.projectSourceDir}/${vars.moduleName}.cpp
+
+%if vars.includeProjectFiles:
+$(LOCAL)/Sources/PDFModuleTemplateSystem.h -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}System.h
+$(LOCAL)/Sources/PDFModuleTemplateInit.h -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}Init.h
+$(LOCAL)/Sources/PDFModuleTemplateInit.cpp -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}Init.cpp
+$(LOCAL)/Sources/PDFModuleTemplate.pro -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.pro
+$(LOCAL)/Sources/PDFModuleTemplate.bat -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.bat
+$(LOCAL)/Sources/PDFModuleTemplate.sh -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.sh
+%endif
+
+# Module runtime files
+%if vars.includeProjectFiles:
+$(LOCAL)/Modules/PDFModuleTemplate._def -> ${vars.cppProject.projectModuleDir}/${vars.cppProject.fullProject}.def
+%else:
+$(LOCAL)/Modules/PDFModuleTemplate._def -> ${vars.cppProject.projectModuleDir}/${vars.moduleName}.def
+%endif
+
+$(LOCAL)/Modules/PDFModuleTemplate._script -> ${vars.cppProject.projectModuleDir}/${vars.moduleName}.script
+
+%if vars.exampleNetwork:
+$(LOCAL)/Modules/networks/PDFModuleTemplateExample.mlab -> ${vars.cppProject.projectModuleDir}/networks/${vars.moduleName}Example.mlab
+%endif
+
+
+# Create dsp and open
+%if __WINDOWS__:
+${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.bat
+%endif
+
+
+# Open result files and folders
+%if vars.cppProject.useClassicDirectoryStructure:
+${vars.cppProject.projectSourceDir}/
+${vars.cppProject.projectModuleDir}/
+%else:
+${vars.cppProject.fullProjectsPath}/${vars.cppProject.fullProject}
+%endif

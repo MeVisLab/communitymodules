@@ -67,9 +67,16 @@ private:
   //@}
 %endif
 
+%if vars.includeDemoCode:
+  // Fields needed for demo code
+  StringField *_imageFilenameFld;
+  StringField *_modelFilenameFld;
+  StringField *_posterFilenameFld;
+
   //! Adding a 3D figure requires a little more than just one command.
   //! Therefore it has been outsourced to a separate method...
   void _add3DFigure(float x, float y, float width, float height);
+%endif
 
 };
 

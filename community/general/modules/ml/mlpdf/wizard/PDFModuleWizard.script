@@ -1,0 +1,94 @@
+//----------------------------------------------------------------------------------
+//! Wizard for creating PDF modules
+/*!
+// \file    PDFModuleWizard.script
+// \author  Axel Newe
+// \date    2015-12-01
+*/
+//----------------------------------------------------------------------------------
+
+Interface {
+  
+  Parameters {
+    
+    #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/resources/GeneralModuleWizardFields.script
+
+    #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/MLModule/MLModuleWizardFieldListFields.script
+
+    Field generatedModuleType  { type = String value = "PDF" }
+    
+    // Selectors for extra includes
+    Field profileConfig        { internalName = cppProject.profileConfig persistent = no }
+    Field includeDemoCode      { type = Bool value = Yes persistent = no }
+  }
+}
+
+
+Commands {
+  
+  #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/resources/GeneralModuleWizardCommands.script
+  #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/MLModule/MLModuleWizardCommands.script
+
+  source = $(LOCAL)/PDFModuleWizard.py
+  source = $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/MLModule/MLModuleWizardSharedCode.py
+}
+
+
+Window {
+  
+  Vertical { expandY = yes
+    
+    TabView {
+      
+      expandY = yes
+      mode = invisible
+      name = tab
+      
+      //----------------------------------------------------------------------------------
+      
+      TabViewItem "Module" {
+        
+        #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/resources/GeneralModuleWizardPropertiesGUI.script
+        #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/resources/GeneralModuleWizardProjectGUI.script
+
+        Label { title = " * : Required fields" }
+      }
+
+      //----------------------------------------------------------------------------------
+      
+      TabViewItem "Demo Code" {
+        
+        Vertical {
+          
+          expandY = yes
+          
+          Box {             
+            expandY = yes
+            
+            CheckBox includeDemoCode {}
+            
+            Empty { height = 10 }
+            
+            Label { title = "Enable the checkbox above if you want to include demo code." }
+
+            Empty { height = 10 }
+
+            Label { title = "The demo code generates a complete PDF file, including text, graphics, images and a 3D model." }
+            Label { title = "It also demonstrates how to set up PDF properties like page size, page margins, fonts and how to use" }
+            Label { title = "security features like passwords and encryption." }            
+          }
+        }
+      }
+      
+      //----------------------------------------------------------------------------------
+      
+      #include $(MLAB_MeVisLab_Standard)/Modules/Macros/Wizards/MLModule/MLModuleWizardFieldListGUI.script
+      
+      //----------------------------------------------------------------------------------
+      
+    }
+  }
+
+  FieldListener exitWindow { command = ExitWindow }
+  Execute = InitWindow
+}

@@ -1,0 +1,95 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module ${vars.moduleName} {
+  internal  {
+    frame = "-511 -163 144 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "964 410 400 237"
+        sizeHint = "400 237"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = ${vars.moduleName}
+    pdfFilename = ""
+    resourcesPath = ""
+    pdfAttrTitle = ""
+    pdfAttrAuthor = ""
+    pdfAttrSubject = ""
+    pdfAttrKeywords = ""
+    viewSpecifications = ""
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-751 -103 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "475 849 729 103"
+        sizeHint = "548 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GetPDFDemoDataPath
+    localName = $(MLAB_Community_General)/Modules/ML/MLPDF/demodata
+    checkIfFileExists = FALSE
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-743 -191 144 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "476 698 724 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CreatePDFFilename
+    localName = $(NETWORK)/${vars.moduleName}.pdf
+    checkIfFileExists = FALSE
+  }
+}
+connections  {
+  ${vars.moduleName}.pdfFilename = CreatePDFFilename.trueName
+  ${vars.moduleName}.resourcesPath = GetPDFDemoDataPath.trueName
+}
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 15
+        objectName = ""
+        parentUniqueId = 0
+        frame = "-778 -415 427 166"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "Click 'Save PDF' button to create the PDF file.
+
+It will be named '${vars.moduleName}.pdf' and stored in the network folder which can be found as follows:
+* right-click the ${vars.moduleName} module
+* select 'Related Files (3)' -> 'Show Definition Folder' 
+* open the sub-folder 'networks' in the file browser"
+        titleText = "Example network for '${vars.moduleName}' module"
+        isCollapsed = False
+        titleFrame = "-773 -410 417 22"
+      }
+    }
+  }
+}
