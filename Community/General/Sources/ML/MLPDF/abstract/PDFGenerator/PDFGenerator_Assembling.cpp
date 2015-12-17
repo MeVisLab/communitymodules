@@ -137,6 +137,9 @@ void PDFGenerator::pdfDoc_AddPage(float width, float height)
       HPDF_Page_SetLineWidth(pdfDocCurrentPage, 1);
       pdfDoc_SetStrokeColor(0, 0, 0);
       pdfDoc_SetFillColor(0, 0, 0);
+
+      pdfDoc_CurrentXPos = 0;
+      pdfDoc_CurrentYPos = 0;
     }
   }
 }
@@ -161,6 +164,9 @@ void PDFGenerator::pdfDoc_AddPage(mlPDF::PAGE_SIZES pageSize, mlPDF::PAGE_DIRECT
       HPDF_Page_SetLineWidth(pdfDocCurrentPage, 1);
       pdfDoc_SetStrokeColor(0, 0, 0);
       pdfDoc_SetFillColor(0, 0, 0);
+
+      pdfDoc_CurrentXPos = 0;
+      pdfDoc_CurrentYPos = 0;
     }
   }
 }

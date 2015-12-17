@@ -36,9 +36,9 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
 
   saveFld = addNotify("save");
 
-  (statusFld     = addString("status"))    ->setStringValue("Idle.");
-  (successFld    = addBool("success"))     ->setBoolValue(false);
-  (progressFld   = addProgress("progress"))->setFloatValue(0.0f);
+  (statusFld     = addString("status"))     ->setStringValue("Idle.");
+  (successFld    = addBool("success"))      ->setBoolValue(false);
+  (progressFld   = addProgress("progress")) ->setFloatValue(0.0f);
 
   (pdfAttrTitleFld     = addString("pdfAttrTitle"))    ->setStringValue("");
   (pdfAttrAuthorFld    = addString("pdfAttrAuthor"))   ->setStringValue("");
@@ -57,6 +57,7 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
 
 PDFGenerator::~PDFGenerator()
 {
+  // Nothing to do here...
 }
 
 //----------------------------------------------------------------------------------
@@ -96,15 +97,17 @@ void PDFGenerator::_initPDFDocument()
   if (pdfDocument)
   {
     // Set PDF version
-    pdfDocument->pdf_version = HPDF_VER_16;
+    pdfDocument->pdf_version = HPDF_VER_17;
 
     _initFonts();
     pdfDoc_SetGlobalPageMarginsPixels(0,0,0,0);
     pdfDoc_SetCompressionMode(mlPDF::COMPRESS_ALL);
+    pdfDoc_CurrentXPos = 0;
+    pdfDoc_CurrentYPos = 0;
   }
   else
   {
-    statusFld->setStringValue("Critical error: Internal PDF docuemnt could not be initilaized!");
+    statusFld->setStringValue("Critical error: Internal PDF document could not be initialized!");
   }
 }
 
@@ -205,6 +208,12 @@ void PDFGenerator::saveButtonClicked()
 
     if (docAssembled)
     {
+      // If no pages have been added before: Add at least one page to create valid PDF document!
+      if (pdfDocPages.size() < 1)
+      {
+        pdfDoc_AddPage();
+      }
+
       // Save the document to a file
       HPDF_STATUS saveStatus = HPDF_SaveToFile(pdfDocument, filename.c_str());
 
