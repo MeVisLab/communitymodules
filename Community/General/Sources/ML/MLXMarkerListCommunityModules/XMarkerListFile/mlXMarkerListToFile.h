@@ -3,7 +3,7 @@
 /*!
 // \file    mlXMarkerListToFile.h
 // \author  Coert Metz, Erwin Vast
-// \date    2007-07-06, 20-11-15
+// \date    2007-07-06, 2015-11-20
 //
 // Save XMarkerList to a text file
 */

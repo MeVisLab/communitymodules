@@ -3,7 +3,7 @@
 /*!
 // \file    mlXMarkerListFromFile.h
 // \author  Coert Metz, Erwin Vast
-// \date    2007-06-22, 20-11-15
+// \date    2007-06-22, 2015-11-20
 //
 // Read XMarkers from a text file
 */
