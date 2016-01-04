@@ -3,7 +3,7 @@
 /*!
 // \file    mlXMarkerListToFile.cpp
 // \author  Coert Metz, Erwin Vast
-// \date    2007-07-06, 20-11-15
+// \date    2007-07-06, 2015-11-20
 //
 // Save XMarkers to a text file
 */
@@ -166,9 +166,9 @@ void XMarkerListToFile::handleNotification (Field *field)
         return;
       }
 
-	  // Set precision
-	  file_op << std::fixed;
-	  file_op << std::setprecision(_precisionFld->getIntValue());
+      // Set precision
+      file_op << std::fixed;
+      file_op << std::setprecision(_precisionFld->getIntValue());
 
       // transformix format?
       if (_transformixFormatFld->getBoolValue()) {
@@ -184,14 +184,14 @@ void XMarkerListToFile::handleNotification (Field *field)
       const bool posX = _positionXFld->getBoolValue();
       const bool posY = _positionYFld->getBoolValue();
       const bool posZ = _positionZFld->getBoolValue();
-	  const bool posS = _positionSFld->getBoolValue();
+      const bool posS = _positionSFld->getBoolValue();
       const bool posT = _positionTFld->getBoolValue();
-	  const bool posU = _positionUFld->getBoolValue();
+      const bool posU = _positionUFld->getBoolValue();
       const bool vecX = _vectorXFld->getBoolValue();
       const bool vecY = _vectorYFld->getBoolValue();
       const bool vecZ = _vectorZFld->getBoolValue();
       const bool type = _typeFld->getBoolValue();
-	    const bool name = _nameFld->getBoolValue();
+        const bool name = _nameFld->getBoolValue();
 
       // Vector storing occupied voxel position
       std::set<vec3> voxelsOccupied;
@@ -244,34 +244,34 @@ void XMarkerListToFile::handleNotification (Field *field)
           }
           if (posY) {
             file_op << voxel[1];
-			if (posS || posT || posU || posZ || vecX || vecY || vecZ || type || name) {
+            if (posS || posT || posU || posZ || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
           if (posZ) {
             file_op << voxel[2];
-			if (posS || posT || posU || vecX || vecY || vecZ || type || name) {
+            if (posS || posT || posU || vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
-		  if (posS) {
-			file_op << marker.pos[3];
-			if (vecX || vecY || vecZ || type || name) {
-			  file_op << coordinateSeparator.str();
-			}
-		  }
+          if (posS) {
+            file_op << marker.pos[3];
+            if (vecX || vecY || vecZ || type || name) {
+              file_op << coordinateSeparator.str();
+            }
+          }
           if (posT) {
             file_op << marker.pos[4];
             if (vecX || vecY || vecZ || type || name) {
               file_op << coordinateSeparator.str();
             }
           }
-		  if (posU) {
-			file_op << marker.pos[5];
-			if (vecX || vecY || vecZ || type || name) {
-			  file_op << coordinateSeparator.str();
-			}
-		  }
+          if (posU) {
+            file_op << marker.pos[5];
+            if (vecX || vecY || vecZ || type || name) {
+              file_op << coordinateSeparator.str();
+            }
+          }
           if (vecX) {
             file_op << vec[0];
             if (vecY || vecZ || type || name) {
@@ -297,8 +297,8 @@ void XMarkerListToFile::handleNotification (Field *field)
             }
           }
           if (name) {
-			      file_op << marker.name();
-		      }
+                  file_op << marker.name();
+              }
           file_op << std::endl;
         }
       }
