@@ -154,7 +154,7 @@ void XMarkerListFromFile::handleNotification (Field *field)
         }
 
         const int MAX_NAME_SIZE = 2048;
-            char name[MAX_NAME_SIZE] = "";
+        char name[MAX_NAME_SIZE] = "";
         // Read XMarkers from text file
         while (true) {
           XMarker marker;

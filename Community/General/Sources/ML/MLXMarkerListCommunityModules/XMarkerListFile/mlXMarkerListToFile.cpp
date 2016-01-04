@@ -191,7 +191,7 @@ void XMarkerListToFile::handleNotification (Field *field)
       const bool vecY = _vectorYFld->getBoolValue();
       const bool vecZ = _vectorZFld->getBoolValue();
       const bool type = _typeFld->getBoolValue();
-        const bool name = _nameFld->getBoolValue();
+      const bool name = _nameFld->getBoolValue();
 
       // Vector storing occupied voxel position
       std::set<vec3> voxelsOccupied;
@@ -297,8 +297,8 @@ void XMarkerListToFile::handleNotification (Field *field)
             }
           }
           if (name) {
-                  file_op << marker.name();
-              }
+            file_op << marker.name();
+          }
           file_op << std::endl;
         }
       }
