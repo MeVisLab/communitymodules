@@ -2,8 +2,8 @@
 //! The ML module class XMarkerListToFile.
 /*!
 // \file    mlXMarkerListToFile.h
-// \author  Coert Metz
-// \date    2007-07-06
+// \author  Coert Metz, Erwin Vast
+// \date    2007-07-06, 2015-11-20
 //
 // Save XMarkerList to a text file
 */
@@ -89,12 +89,17 @@ private:
   BoolField *_positionXFld;
   BoolField *_positionYFld;
   BoolField *_positionZFld;
+  BoolField *_positionSFld;
   BoolField *_positionTFld;
+  BoolField *_positionUFld;
   BoolField *_vectorXFld;
   BoolField *_vectorYFld;
   BoolField *_vectorZFld;
   BoolField *_typeFld;
   BoolField *_nameFld;
+
+  //! Int field to select writing precision
+  IntField *_precisionFld;
 
   //! Bool field for transformix format (first line: number of points, second line: point or index)
   BoolField *_transformixFormatFld;

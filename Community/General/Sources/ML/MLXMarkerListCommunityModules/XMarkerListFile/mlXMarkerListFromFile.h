@@ -2,8 +2,8 @@
 //! The ML module class XMarkerListFromFile.
 /*!
 // \file    mlXMarkerListFromFile.h
-// \author  Coert Metz
-// \date    2007-06-22
+// \author  Coert Metz, Erwin Vast
+// \date    2007-06-22, 2015-11-20
 //
 // Read XMarkers from a text file
 */
@@ -81,7 +81,9 @@ private:
   BoolField *_positionXFld;
   BoolField *_positionYFld;
   BoolField *_positionZFld;
+  BoolField *_positionSFld;
   BoolField *_positionTFld;
+  BoolField *_positionUFld;
   BoolField *_vectorXFld;
   BoolField *_vectorYFld;
   BoolField *_vectorZFld;
