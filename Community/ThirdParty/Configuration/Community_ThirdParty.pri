@@ -51,7 +51,7 @@ libhpdf {
   INCLUDEPATH += $${PACKAGE_SOURCES}/libhpdf/src
   INCLUDEPATH += $${PACKAGE_SOURCES}/libhpdf/include
   win32:LIBS += libhpdf$${d}.lib
-  unix:LIBS += -l$${LIB_NAME_PREFIX}libhpdf$${d}
+  unix:LIBS += -llibhpdf$${d}
 }
 
 # End of projects ------------------------------------------------------------
