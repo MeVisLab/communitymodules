@@ -864,7 +864,7 @@ module VCGLoad {
   }
   fields  {
     instanceName = VCGLoad
-    filename = D:/MeVisLab/Packages/Axel/General/Modules/ML/MLVectorcardiogram/networks/example.vcg
+    filename = ""
     autoLoad = TRUE
     numBeats = 8
   }
@@ -1022,7 +1022,7 @@ module SaveU3D {
     defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
     addDefaultLightNode = TRUE
-    filename = D:/MeVisLab/Packages/Axel/General/Modules/ML/MLVectorcardiogram/networks/example.u3d
+    filename = ""
     status = Idle.
     newSpecificationType = SPECTYPE_LINESET
     newSpecificationObjectName = "Coordinate System"
@@ -1084,7 +1084,7 @@ module StringUtils {
   fields  {
     instanceName = CreateOutputFilename
     operationType = Replace
-    string1 = D:/MeVisLab/Packages/Axel/General/Modules/ML/MLVectorcardiogram/networks/example.vcg
+    string1 = ""
     string2 = .vcg
     string3 = .u3d
     string4 = ""

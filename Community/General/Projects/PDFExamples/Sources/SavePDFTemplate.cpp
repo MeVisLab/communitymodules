@@ -27,6 +27,11 @@ SavePDFTemplate::SavePDFTemplate() : PDFGenerator()
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
+  // Add fields for demo data
+  _imageFilenameFld = addString("imageFilename", "");
+  _modelFilenameFld = addString("modelFilename", "");
+  _posterFilenameFld = addString("posterFilename", "");
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 
@@ -153,8 +158,8 @@ bool SavePDFTemplate::assemblePDFDocument()
   pdfDoc_WriteTextAt(0, yPos, "Two Images Sharing the Same Resource");
  
   // Load image into image resource pool (n.b.: only PNG anf JPG images are allowed!)
-  std::string resourcesPath = resourcesPathFld->getStringValue();
-  std::string exampleImagePath = resourcesPath + "/SavePDFTemplateExample_Image.png";
+  std::string resourcesPath = resourcesPathFld->getStringValue() + "/";
+  std::string exampleImagePath = resourcesPath + _imageFilenameFld->getStringValue();
 
   if (mlPDF::fileExists(exampleImagePath))
   {
@@ -223,10 +228,10 @@ bool SavePDFTemplate::assemblePDFDocument()
 
 void SavePDFTemplate::_add3DFigure(float x, float y, float width, float height)
 {
-	std::string resourcesPath = resourcesPathFld->getStringValue();
+  std::string resourcesPath = resourcesPathFld->getStringValue() + "/";
 
 	// Load model into model resource pool (n.b.: only U3D models are allowed!)
-	HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(resourcesPath + "/SavePDFTemplateExample_Model.u3d");
+  HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(resourcesPath + _modelFilenameFld->getStringValue());
 
 	if (u3dModel)
 	{
@@ -258,7 +263,7 @@ void SavePDFTemplate::_add3DFigure(float x, float y, float width, float height)
 		pdfDoc_3DModel_SetDefaultView(u3dModel, anteriorView);
 
 		// Load poster image and add it to the image resource pool
-		mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(resourcesPath + "/SavePDFTemplateExample_ModelPoster.png");
+    mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(resourcesPath + _posterFilenameFld->getStringValue());
 
 		// Now actually create the 3D scene
 		mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);

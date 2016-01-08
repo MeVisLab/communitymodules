@@ -34,7 +34,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = PositionsLoad
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/SaveU3DExampleMarkerList.txt
+    filename = ""
     filter = PointSet
     numberDelimiter = ;
     numberDelimiterSpace = TRUE

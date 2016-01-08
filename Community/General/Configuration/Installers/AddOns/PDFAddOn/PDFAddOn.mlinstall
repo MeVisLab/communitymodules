@@ -50,8 +50,6 @@ SWITCH_PACKAGE Community/General
 + lib/PDF3DFigurePage*.lib
 + lib/SavePDFTemplate*.dll
 + lib/SavePDFTemplate*.lib
-#+ lib/PDF3DWork*.dll
-#+ lib/PDF3DWork*.lib
 + Modules/ML/MLBaseListExtensions
 + Sources/ML/MLBaseListExtensions/ColoredMarkerList
 + Sources/ML/MLBaseListExtensions/IndexPairList
@@ -87,7 +85,7 @@ SWITCH_PACKAGE Community/General
 + Sources/ML/MLPDF/PRC
 + Sources/ML/MLPDF/PRC/PRCFileFormat
 + Sources/ML/MLPDF/PRC/SavePRC
-+ Sources/ML/MLPDF/References
+- Sources/ML/MLPDF/References
 + Sources/ML/MLPDF/shared
 + Sources/ML/MLPDF/shared
 + Sources/ML/MLPDF/U3D
@@ -98,6 +96,7 @@ SWITCH_PACKAGE Community/General
 + Projects/PDF3DFigurePage/Modules/mhelp
 + Projects/PDF3DFigurePage/Modules/mhelp/Images
 + Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots
+- Projects/PDF3DFigurePage/Modules/networks
 + Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.mlab
 + Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.stl
 + Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.txt
@@ -117,11 +116,8 @@ SWITCH_PACKAGE Community/General
 - Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_SavePDF/3DFigureExample.*
 + Projects/PDF3DFigurePage/Sources/PDF3DFigurePage_Utils
 + Projects/PDFExamples/Modules
+- Projects/PDFExamples/Modules/networks
 + Projects/PDFExamples/Modules/networks/SavePDFTemplateExample.mlab
-+ Projects/PDFExamples/Modules/networks/SavePDFTemplateExample.wem
-+ Projects/PDFExamples/Modules/networks/SavePDFTemplateExample_Image.png
-+ Projects/PDFExamples/Modules/networks/SavePDFTemplateExample_Model.u3d
-+ Projects/PDFExamples/Modules/networks/SavePDFTemplateExample_ModelPoster.png
 + Projects/PDFExamples/Sources/SavePDFTemplate.bat
 + Projects/PDFExamples/Sources/SavePDFTemplate.cpp
 + Projects/PDFExamples/Sources/SavePDFTemplate.h

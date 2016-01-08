@@ -2,15 +2,109 @@
 network  {
   watchlist = ""
 }
+module StringUtils {
+  internal  {
+    frame = "-371 41 168 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "511 560 791 331"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AssemblePosterFilename
+    operationType = Concatenate
+    string1 = ""
+    string2 = PDFDemoData_ModelPoster.png
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = /
+    selectSeparator = 3
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module StringUtils {
+  internal  {
+    frame = "-387 -47 168 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1907 261 791 331"
+        sizeHint = "370 331"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = AssembleModelFilename
+    operationType = Concatenate
+    string1 = ""
+    string2 = PDFDemoData_Model.u3d
+    string3 = ""
+    string4 = ""
+    string5 = ""
+    string6 = ""
+    stringPrefix = [
+    stringPostfix = ]
+    toggle1 = TRUE
+    toggle2 = TRUE
+    toggle3 = FALSE
+    toggle4 = FALSE
+    toggle5 = FALSE
+    toggle6 = FALSE
+    togglePrefix = FALSE
+    togglePostfix = FALSE
+    separator = /
+    selectSeparator = 3
+    toggleIgnoreCase = FALSE
+    inPos1 = 0
+    inPos2 = 0
+  }
+}
+module LocalFileName {
+  internal  {
+    frame = "-571 9 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "357 823 839 103"
+        sizeHint = "548 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GetDemoDataPath
+    localName = $(MLAB_Community_General)/Modules/ML/MLPDF/demodata
+    checkIfFileExists = TRUE
+  }
+}
 module PDFUtils {
   internal  {
-    frame = "65 5 80 56"
+    frame = "105 -3 80 56"
     moduleGroupName = ""
     windows  {
       window _automatic {
         geometry = "2169 173 922 600"
         sizeHint = "260 223"
-        wasOpen = yes
+        wasOpen = no
       }
       window _default {
         geometry = "2110 407 850 400"
@@ -21,29 +115,12 @@ module PDFUtils {
   }
   fields  {
     instanceName = PDFUtils
-    id = 0
-    autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = TRUE
-    removePreviousWEMs = TRUE
-    overwriteLabelDescription = FALSE
-    label = ""
-    description = ""
-    shouldComputeNormals = TRUE
-    copyInputWEMs = TRUE
-    listenToFinishNotifications = TRUE
-    listenToRepaintNotifications = FALSE
-    listenToSelectionChangedNotifications = FALSE
-    forwardRepaintNotifications = TRUE
-    forwardSelectionNotifications = TRUE
-    useInputWEMToCreateOutputWEM = TRUE
-    triangulationMode = Strip
     autoCalculateCameraFromInventorScene = TRUE
-    cameraCenterOfOrbit = "92.9836853520046 -144.044176419536 1118.74865652254"
-    cameraCenterToCamera = "63.4494811519016 -6.43308798476096 412.435181368084"
-    cameraRadiusOfOrbit = 417.33679
+    cameraCenterOfOrbit = "92.9839361371669 -144.04421866644 1118.74876696173"
+    cameraCenterToCamera = "0.327481541231016 -0.26189592734468 0.907836088395493"
+    cameraRadiusOfOrbit = 623.5929
     cameraFOVAngle = 42.787704
-    cameraRollAngle = 284.83807
+    cameraRollAngle = 317.43719
     vertexList = "[  ]"
     coordIndexList = 0
     viewSpecifications = "<View>
@@ -83,14 +160,21 @@ module PDFUtils {
     newViewDisplayName = "Top-down View"
     newViewBackgroundColor = "1 0.666666666666667 1"
     newViewLightingScheme = CAD
-    selectedWEMPatch = ""
-    availableWEMPatches = ""
+    newViewRenderMode = Solid
+    pointPositionsMaxTypeID = -1
+    linePositionsMaxTypeID = -1
+    lineConnectionsMaxTypeID = -1
+    lineDefinitionsMaxTypeID = -1
+    pointPositionsNextTypeID = 0
+    linePositionsNextTypeID = 0
+    lineConnectionsNextTypeID = 0
+    lineDefinitionsNextTypeID = 0
     showNetworkFields = FALSE
   }
 }
 module LocalFileName {
   internal  {
-    frame = "-163 133 120 56"
+    frame = "-315 161 120 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -108,7 +192,7 @@ module LocalFileName {
 }
 module LocalFileName {
   internal  {
-    frame = "-159 233 112 64"
+    frame = "-311 249 112 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -121,42 +205,6 @@ module LocalFileName {
   fields  {
     instanceName = WEMFilename
     localName = $(NETWORK)/Save3DFigurePDFExample.wem
-    checkIfFileExists = TRUE
-  }
-}
-module LocalFileName {
-  internal  {
-    frame = "-323 73 120 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "688 559 635 212"
-        sizeHint = "420 212"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = PosterFilename
-    localName = $(NETWORK)/Save3DFigurePDFExample.png
-    checkIfFileExists = TRUE
-  }
-}
-module LocalFileName {
-  internal  {
-    frame = "-319 -11 112 56"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "688 559 635 212"
-        sizeHint = "420 212"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = ModelFilename
-    localName = $(NETWORK)/Save3DFigurePDFExample.u3d
     checkIfFileExists = TRUE
   }
 }
@@ -178,25 +226,25 @@ module SoCameraAccess {
 0 1 0 0
 0 0 1 0
 0 0 0 1"
-    viewingMatrix = "0.976259768009186 -0.154281079769135 0.152034312486649 0
-0.15841868519783 0.987251758575439 -0.0154146421700716 0
--0.147717878222466 0.0391337424516678 0.988255023956299 0
-97.3022308349609 112.772659301758 -1539.30285644531 1"
+    viewingMatrix = "0.939577758312225 -0.0997463390231133 0.327481597661972 0
+0.191695511341095 0.945866346359253 -0.261896014213562 0
+-0.283630758523941 0.308848440647125 0.907836019992828 0
+257.558654785156 -200.002502441406 -1707.40844726562 1"
     projectionMatrix = "2.4524073600769 0 0 0
-0 2.55250549316406 0 0
--4.92841962795865e-08 5.12957925025148e-08 -1.83349072933197 -1
-0 0 -537.856994628906 0"
-    cameraSpaceMatrix = "0.988374531269073 0.00117869640234858 0.152034193277359 0
-0.00117869640234858 0.999880492687225 -0.0154146179556847 0
--0.152034193277359 0.0154146179556847 0.988255023956299 0
-78.3551025390625 126.672271728516 -1539.30285644531 1"
-    camPosition = "156.433166503906 -150.477264404297 1531.18383789062"
-    lookAtPosition = "0.147717893123627 -0.0391337499022484 -0.988255023956299"
-    upVector = "-0.154281079769135 0.987251758575439 0.0391337424516678"
-    viewVector = "-0.152034550905228 0.0154109690338373 -0.988255083560944"
+0 2.55250597000122 0 0
+4.82976538762614e-08 -5.02689907477816e-08 -2.63764905929565 -1
+0 0 -1409.21569824219 0"
+    cameraSpaceMatrix = "0.943787515163422 0.0449546724557877 0.327481657266617 0
+0.0449546724557877 0.964048504829407 -0.261896014213562 0
+-0.327481657266617 0.261896014213562 0.907836019992828 0
+285.088165283203 -158.310333251953 -1707.40844726562 1"
+    camPosition = "297.199096679688 -307.360656738281 1684.86889648438"
+    lookAtPosition = "0.283630758523941 -0.308848470449448 -0.907836019992828"
+    upVector = "-0.0997463390231133 0.945866346359253 0.308848440647125"
+    viewVector = "-0.327483117580414 0.261901050806046 -0.907834112644196"
     viewportSizeOut = "408 392"
-    nearDistance = 189.82133
-    farDistance = 645.30658
+    nearDistance = 387.39737
+    farDistance = 860.51135
     NewViewingMatrix = "1 0 0 1
 0 1 0 0
 0 0 1 0
@@ -268,7 +316,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736591458320618 -0.35639813542366 -0.574816048145294 3.27108001708984"
+    userSettingOrientation = "0.736591279506683 -0.356398105621338 -0.574816107749939 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -278,11 +326,11 @@ module SoCustomExaminerViewer {
     stereoViewing = FALSE
     stereoOffset = 3
     height = 0.7467863
-    position = "156.433166503906 -150.477264404297 1531.18383789062"
-    orientation = "0.124942786991596 0.686580955982208 0.716237425804138 0.22006531059742"
-    nearDistance = 189.82133
-    farDistance = 645.30658
-    focalDistance = 417.33679
+    position = "297.199096679688 -307.360656738281 1684.86889648438"
+    orientation = "0.644530177116394 0.690116941928864 0.329119384288788 0.458674371242523"
+    nearDistance = 387.39737
+    farDistance = 860.51135
+    focalDistance = 623.5929
     forceRedrawOnInteraction = FALSE
     button1events = TO_VIEWER
     button2events = TO_VIEWER
@@ -345,7 +393,7 @@ module WEMLoad {
     label = ""
     description = ""
     shouldComputeNormals = FALSE
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.wem
+    filename = ""
     mirrorFaces = FALSE
     generateEdges = TRUE
     triangulateFaces = FALSE
@@ -386,7 +434,7 @@ module SoWEMRenderer {
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 2
+    maxWEMPatchIndex = 0
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -411,7 +459,7 @@ module WEMInfo {
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = "2@Left Femur (Outer Surface)|4@Left Femur (Spongiosa Surface)|6@Left Femur (Bone Marrow Surface)"
+    WEMs = "2@"
     hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
     primitiveValueLists = LUT
@@ -419,13 +467,13 @@ module WEMInfo {
     selectedTab = 0
   }
 }
-module Save3DFigurePDF {
+module PDF3DFigurePage_SavePDF {
   internal  {
-    frame = "-163 13 136 56"
+    frame = "-143 -3 192 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "956 281 701 753"
+        geometry = "429 203 811 757"
         sizeHint = "363 753"
         wasOpen = yes
       }
@@ -437,8 +485,8 @@ module Save3DFigurePDF {
     }
   }
   fields  {
-    instanceName = Save3DFigurePDF
-    pdfFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.pdf
+    instanceName = PDF3DFigurePage_SavePDF
+    pdfFilename = ""
     resourcesPath = ""
     status = "PDF file sucessfully written (1 page)."
     success = TRUE
@@ -481,8 +529,8 @@ module Save3DFigurePDF {
 </View>
 
 "
-    u3dFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.u3d
-    posterImageFilename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/networks/Save3DFigurePDFExample.png
+    u3dFilename = ""
+    posterImageFilename = ""
     pageHeaderCitationText = "*Newe (2015). "Some fancy article title". Journal.*"
     pageHeaderHeadlineText = "Additional File S1 - Interactive 3D PDF"
     includeUsageHints = TRUE
@@ -511,6 +559,8 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
   }
 }
 connections  {
+  AssemblePosterFilename.string1 = GetDemoDataPath.trueName
+  AssembleModelFilename.string1 = GetDemoDataPath.trueName
   PDFUtils.inventorCameraPosition = SoCustomExaminerViewer.position
   PDFUtils.inventorCameraOrientation = SoCustomExaminerViewer.orientation
   PDFUtils.inventorCameraFocalDistance = SoCustomExaminerViewer.focalDistance
@@ -519,10 +569,10 @@ connections  {
   WEMLoad.filename = WEMFilename.trueName
   SoWEMRenderer.inWEM = WEMLoad.outWEM
   WEMInfo.inWEM = WEMLoad.outWEM
-  Save3DFigurePDF.pdfFilename = OutputFileName.trueName
-  Save3DFigurePDF.viewSpecifications = PDFUtils.viewSpecifications
-  Save3DFigurePDF.u3dFilename = ModelFilename.trueName
-  Save3DFigurePDF.posterImageFilename = PosterFilename.trueName
+  PDF3DFigurePage_SavePDF.pdfFilename = OutputFileName.trueName
+  PDF3DFigurePage_SavePDF.viewSpecifications = PDFUtils.viewSpecifications
+  PDF3DFigurePage_SavePDF.u3dFilename = AssembleModelFilename.result
+  PDF3DFigurePage_SavePDF.posterImageFilename = AssemblePosterFilename.result
 }
 networkModel  {
   parentItems  {
@@ -538,7 +588,7 @@ networkModel  {
           b = 2
           a = 255
         }
-        text = "This network shows how to use the Save3DFigurePDF module.
+        text = "This network shows how to use the PDF3DFigurePage_SavePDF module.
 
 For details regarding the parameters take a look at the documentation."
         titleText = Description

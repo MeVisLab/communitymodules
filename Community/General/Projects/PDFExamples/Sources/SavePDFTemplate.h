@@ -51,6 +51,11 @@ protected:
 
 private:
 
+  // Fields needed for demo data
+  StringField *_imageFilenameFld;
+  StringField *_modelFilenameFld;
+  StringField *_posterFilenameFld;
+
   //! Adding a 3D figure requires a little more than just one command.
   //! Therefore it has been outsourced to a separate method...
   void _add3DFigure(float x, float y, float width, float height);

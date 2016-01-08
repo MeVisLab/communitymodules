@@ -15,8 +15,8 @@ module LocalFileName {
     }
   }
   fields  {
-    instanceName = GetNetWorkPath
-    localName = $(NETWORK)/
+    instanceName = GetResourcesPath
+    localName = $(MLAB_Community_General)/Modules/ML/MLPDF/demodata
     checkIfFileExists = TRUE
   }
 }
@@ -32,7 +32,7 @@ module SavePDFTemplate {
         wasOpen = yes
       }
       window _automatic {
-        geometry = "167 181 1273 600"
+        geometry = "314 209 1273 600"
         sizeHint = "256 192"
         wasOpen = no
       }
@@ -40,13 +40,16 @@ module SavePDFTemplate {
   }
   fields  {
     instanceName = SavePDFTemplate
-    pdfFilename = "J:/MeVisLab/Packages Community/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample.pdf"
-    resourcesPath = "J:/MeVisLab/Packages Community/Community/General/Projects/PDFExamples/Modules/networks"
+    pdfFilename = ""
+    resourcesPath = ""
     pdfAttrTitle = Title
     pdfAttrAuthor = Author
     pdfAttrSubject = Subject
     pdfAttrKeywords = "Keyword1, Keyword2, Keyword 3"
     viewSpecifications = ""
+    imageFilename = PDFDemoData_Image.png
+    modelFilename = PDFDemoData_Model.u3d
+    posterFilename = PDFDemoData_ModelPoster.png
   }
 }
 module LocalFileName {
@@ -69,7 +72,7 @@ module LocalFileName {
 }
 connections  {
   SavePDFTemplate.pdfFilename = CreatePDFFilename.trueName
-  SavePDFTemplate.resourcesPath = GetNetWorkPath.trueName
+  SavePDFTemplate.resourcesPath = GetResourcesPath.trueName
 }
 networkModel  {
   parentItems  {

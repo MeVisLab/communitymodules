@@ -16,8 +16,8 @@ module ReadTextFile {
   }
   fields  {
     instanceName = ReadRawFile
-    fileName = D:/MeVisLab/Packages/Community/General/Modules/ML/MLBaseListExtensions/networks/MarkerListImportExampleData.txt
-    expandedFileName = D:/MeVisLab/Packages/Community/General/Modules/ML/MLBaseListExtensions/networks/MarkerListImportExampleData.txt
+    fileName = ""
+    expandedFileName = ""
     fileContent = "PointSet 1
 -4.45;-3.64;-1.7
 -4.45;-3.64;1.7
@@ -166,7 +166,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = ImportAll
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLBaseListExtensions/networks/MarkerListImportExampleData.txt
+    filename = ""
     filter = ""
     numberDelimiter = ;
     numberDelimiterSpace = FALSE
@@ -188,7 +188,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = ImportLineSets
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLBaseListExtensions/networks/MarkerListImportExampleData.txt
+    filename = ""
     filter = LineSet
     numberDelimiter = ;
     numberDelimiterSpace = FALSE
@@ -481,7 +481,7 @@ module MarkerListImport {
   }
   fields  {
     instanceName = ImportPointSets
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLBaseListExtensions/networks/MarkerListImportExampleData.txt
+    filename = ""
     filter = PointSet
     numberDelimiter = ;
     numberDelimiterSpace = FALSE
