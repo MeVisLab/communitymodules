@@ -26,6 +26,7 @@ CONFIG += dll zlib png
 #MLAB_PACKAGES += MeVisLab_Standard
 
 INCLUDEPATH += include/
+INCLUDEPATH += include/modified/
 INCLUDEPATH += src/
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
@@ -35,8 +36,10 @@ include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
 DEFINES += HPDF_DLL_MAKE
 
 HEADERS += \
-  hpdf_config.h \               # This is the only file that does not come from the original  library
-  include/hpdf.h \
+  include/modified/hpdf_config.h \   # This is the only file that does not come from the original library
+  include/modified/hpdf.h \          # This file has been modified in order to use MeVisLab import/export attributes
+  include/modified/hpdf_types.h \    # This file has been modified in order to use MeVisLab import/export attributes
+  include/modified/hpdf_stdcall.h \  # This file is needed to ensure cross-platform compatability under MeVisLab
   include/hpdf_3dmeasure.h \
   include/hpdf_annotation.h \
   include/hpdf_catalog.h \
@@ -64,7 +67,6 @@ HEADERS += \
   include/hpdf_pages.h \
   include/hpdf_pdfa.h \
   include/hpdf_streams.h \
-  include/hpdf_types.h \
   include/hpdf_u3d.h \
   include/hpdf_utils.h \
   include/hpdf_version.h \

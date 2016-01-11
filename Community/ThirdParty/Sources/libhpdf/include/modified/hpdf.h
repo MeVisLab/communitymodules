@@ -19,14 +19,15 @@
 
 #include "hpdf_config.h"
 #include "hpdf_version.h"
+#include "hpdf_stdcall.h"
 
 #define HPDF_UNUSED(a) ((void)(a))
 
 #ifdef HPDF_DLL_MAKE
-#    define HPDF_EXPORT(A)  __declspec(dllexport) A  __stdcall
+#    define HPDF_EXPORT(A)  ML_LIBRARY_EXPORT_ATTRIBUTE A __stdcall 
 #else
 #    ifdef HPDF_DLL_MAKE_CDECL
-#        define HPDF_EXPORT(A)  __declspec(dllexport) A
+#        define HPDF_EXPORT(A)  ML_LIBRARY_EXPORT_ATTRIBUTE A
 #    else
 #        ifdef HPDF_SHARED_MAKE
 #            define HPDF_EXPORT(A)  extern A
@@ -36,11 +37,11 @@
 
 #ifdef HPDF_DLL
 #    define HPDF_SHARED
-#    define HPDF_EXPORT(A)  __declspec(dllimport) A  __stdcall
+#    define HPDF_EXPORT(A)  ML_LIBRARY_IMPORT_ATTRIBUTE A  __stdcall
 #else
 #    ifdef HPDF_DLL_CDECL
 #        define HPDF_SHARED
-#        define HPDF_EXPORT(A)  __declspec(dllimport) A
+#        define HPDF_EXPORT(A)  ML_LIBRARY_IMPORT_ATTRIBUTE A
 #    endif /* HPDF_DLL_CDECL */
 #endif /* HPDF_DLL */
 

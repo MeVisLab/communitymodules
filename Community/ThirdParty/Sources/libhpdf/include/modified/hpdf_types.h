@@ -15,6 +15,8 @@
  *
  */
 
+#include "hpdf_stdcall.h"
+
 #ifndef _HPDF_TYPES_H
 #define _HPDF_TYPES_H
 
