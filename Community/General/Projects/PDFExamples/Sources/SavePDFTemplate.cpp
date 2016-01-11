@@ -50,8 +50,7 @@ SavePDFTemplate::~SavePDFTemplate()
   // Destroy own dynamic data structures here!
 
 
-  // Finally call superclass destructor
-  PDFGenerator::~PDFGenerator();
+  // Super class destructor is called automatically!
 }
 
 //----------------------------------------------------------------------------------
