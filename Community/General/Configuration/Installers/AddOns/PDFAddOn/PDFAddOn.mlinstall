@@ -136,6 +136,7 @@ SWITCH_PACKAGE Community/ThirdParty
 - lib/*.mldepends
 - lib/updated
 + Sources/libhpdf/include
++ Sources/libhpdf/include/modified
 + Sources/libhpdf/src
 + Sources/libhpdf/hpdf_config.h
 + Sources/libhpdf/libhpdf.bat
