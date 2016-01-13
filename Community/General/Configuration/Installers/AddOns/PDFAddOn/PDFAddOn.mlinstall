@@ -138,7 +138,6 @@ SWITCH_PACKAGE Community/ThirdParty
 + Sources/libhpdf/include
 + Sources/libhpdf/include/modified
 + Sources/libhpdf/src
-+ Sources/libhpdf/hpdf_config.h
 + Sources/libhpdf/libhpdf.bat
 + Sources/libhpdf/libhpdf.pro
 + Sources/libhpdf/libhpdf.sh
