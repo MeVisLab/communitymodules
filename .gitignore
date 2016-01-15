@@ -77,3 +77,4 @@ build/
 /Community/ThirdParty/Sources/libhpdf/Original Sources
 /Community/ThirdParty/Sources/libhpdf/libhpdf.opensdf
 /Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.opensdf
+.DS_Store
