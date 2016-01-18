@@ -24,32 +24,32 @@ ML_MODULE_CLASS_SOURCE(DicomSurfaceSegmentationLoad, WEMGenerator);
 
 DicomSurfaceSegmentationLoad::DicomSurfaceSegmentationLoad(std::string type) : WEMGenerator(type)
 {
-	//Suppress calls of handleNotification on field changes to
-	//avoid side effects during initialization phase.
-	handleNotificationOff();
+  //Suppress calls of handleNotification on field changes to
+  //avoid side effects during initialization phase.
+  handleNotificationOff();
 
-	// Init globals
-	_datasetPointer.reset();
+  // Init globals
+  _datasetPointer.reset();
 
-	// Output fields 
-	(_outPointSetPositionsFld  = addBase("outPointSetPositions"))  ->setBaseValueAndAddAllowedType(&_outPointSetPositions);
-	(_outLineSetPositionsFld   = addBase("outLineSetPositions"))   ->setBaseValueAndAddAllowedType(&_outLineSetPositions);
-	//(_outLineSetConnectionsFld = addBase("outLineSetConnections")) ->setBaseValueAndAddAllowedType(&_outLineSetConnections);
+  // Output fields 
+  (_outPointSetPositionsFld  = addBase("outPointSetPositions"))  ->setBaseValueAndAddAllowedType(&_outPointSetPositions);
+  (_outLineSetPositionsFld   = addBase("outLineSetPositions"))   ->setBaseValueAndAddAllowedType(&_outLineSetPositions);
+  //(_outLineSetConnectionsFld = addBase("outLineSetConnections")) ->setBaseValueAndAddAllowedType(&_outLineSetConnections);
 
   // UI fields
-	_filenameFld    = addString("filename", "");
-	_unloadFld      = addNotify("unload");
+  _filenameFld    = addString("filename", "");
+  _unloadFld      = addNotify("unload");
   _outputValidFld = addBool("outputValid", false);
 
-	_numPointSetsFld      = addInt("numPointSets", 0);
-	_numLineSetsFld       = addInt("numLineSets", 0);
-	_numMeshesFld         = addInt("numMeshes", 0);
-	_numUnknownObjectsFld = addInt("numUnknownObjects", 0);
+  _numPointSetsFld      = addInt("numPointSets", 0);
+  _numLineSetsFld       = addInt("numLineSets", 0);
+  _numMeshesFld         = addInt("numMeshes", 0);
+  _numUnknownObjectsFld = addInt("numUnknownObjects", 0);
 
-	_pointSetsInfoFld      = addString("pointSetsInfo", POINTSETINFOCOLUMNS);
-	_lineSetsInfoFld       = addString("lineSetsInfo", LINESETINFOCOLUMNS);
-	_meshesInfoFld         = addString("meshesInfo", MESHINFOCOLUMNS);
-	_unknownObjectsInfoFld = addString("unknownObjectsInfo", UNKNOWNOBJECTINFOCOLUMNS);
+  _pointSetsInfoFld      = addString("pointSetsInfo", POINTSETINFOCOLUMNS);
+  _lineSetsInfoFld       = addString("lineSetsInfo", LINESETINFOCOLUMNS);
+  _meshesInfoFld         = addString("meshesInfo", MESHINFOCOLUMNS);
+  _unknownObjectsInfoFld = addString("unknownObjectsInfo", UNKNOWNOBJECTINFOCOLUMNS);
 
   _pointSetsExportMarkerTypeStartValueFld = addInt("pointSetsExportMarkerTypeStartValue", 1);
   _lineSetsExportMarkerTypeStartValueFld  = addInt("lineSetsExportMarkerTypeStartValue", 1);
@@ -79,8 +79,8 @@ DicomSurfaceSegmentationLoad::DicomSurfaceSegmentationLoad(std::string type) : W
   _tagValue8Fld = addString("tagValue8", "");
   _tagValue9Fld = addString("tagValue9", "");
 
-	//Reactivate calls of handleNotification on field changes
-	handleNotificationOn();
+  //Reactivate calls of handleNotification on field changes
+  handleNotificationOn();
 }
 
 DicomSurfaceSegmentationLoad::~DicomSurfaceSegmentationLoad()
@@ -90,33 +90,33 @@ DicomSurfaceSegmentationLoad::~DicomSurfaceSegmentationLoad()
 
 void DicomSurfaceSegmentationLoad::activateAttachments()
 {
-	WEMGenerator::activateAttachments();
+  WEMGenerator::activateAttachments();
 }
 
 void DicomSurfaceSegmentationLoad::handleNotification(Field* field)
 {
-	if (field == _unloadFld)
+  if (field == _unloadFld)
   {
-		_unloadFile();
+    _unloadFile();
   }
   /*
   else if (_autoApplyFld->getBoolValue()) 
   {
-		_process();
-	}
+    _process();
+  }
   */
 
-	WEMGenerator::handleNotification(field);
+  WEMGenerator::handleNotification(field);
 }
 
 void DicomSurfaceSegmentationLoad::_unloadFile()
 {
-	if(_datasetPointer) 
+  if(_datasetPointer) 
   {
-  	_datasetPointer.reset();
+    _datasetPointer.reset();
   }
 
-	_filename = "";	
+  _filename = "";  
   _dicomAllObjectsVector.clear();
   _distributeObjectsToVectors();   
 
@@ -131,35 +131,35 @@ void DicomSurfaceSegmentationLoad::_updateInfoFields()
 {  
   MLint pointSetsExportMarkerTypeStartValue  = _pointSetsExportMarkerTypeStartValueFld->getIntValue();
   std::string pointSetsInfo = POINTSETINFOCOLUMNS;
-	for (std::size_t i=0; i< _dicomPointSetsVector.size(); i++)
+  for (std::size_t i=0; i< _dicomPointSetsVector.size(); i++)
   {
-		pointSetsInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(pointSetsExportMarkerTypeStartValue + i) + "," + _dicomPointSetsVector[i].getSegmentLabel() + "," + _dicomPointSetsVector[i].getAnatomicRegion();
+    pointSetsInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(pointSetsExportMarkerTypeStartValue + i) + "," + _dicomPointSetsVector[i].getSegmentLabel() + "," + _dicomPointSetsVector[i].getAnatomicRegion();
   }
 
   MLint lineSetsExportMarkerTypeStartValue  = _lineSetsExportMarkerTypeStartValueFld->getIntValue();
   std::string lineSetsInfo = LINESETINFOCOLUMNS;
-	for (std::size_t i=0; i< _dicomLineSetsVector.size(); i++)
+  for (std::size_t i=0; i< _dicomLineSetsVector.size(); i++)
   {
-		lineSetsInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(lineSetsExportMarkerTypeStartValue + i) + "," + _dicomLineSetsVector[i].getSegmentLabel() + "," + _dicomLineSetsVector[i].getAnatomicRegion();
+    lineSetsInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(lineSetsExportMarkerTypeStartValue + i) + "," + _dicomLineSetsVector[i].getSegmentLabel() + "," + _dicomLineSetsVector[i].getAnatomicRegion();
   }
 
   MLint meshIDStartValue  = _meshesIDStartValueFld->getIntValue();
   std::string meshesInfo = MESHINFOCOLUMNS;
-	for (std::size_t i=0; i < _dicomMeshesVector.size(); i++)
+  for (std::size_t i=0; i < _dicomMeshesVector.size(); i++)
   {
-		meshesInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(meshIDStartValue + i) + "," + _dicomMeshesVector[i].getSegmentLabel() + "," + _dicomMeshesVector[i].getAnatomicRegion();
+    meshesInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(meshIDStartValue + i) + "," + _dicomMeshesVector[i].getSegmentLabel() + "," + _dicomMeshesVector[i].getAnatomicRegion();
   }
 
   std::string unknownObjectsInfo = UNKNOWNOBJECTINFOCOLUMNS;
-	for (std::size_t i=0; i < _dicomUnknownObjectsVector.size(); i++)
+  for (std::size_t i=0; i < _dicomUnknownObjectsVector.size(); i++)
   {
-		unknownObjectsInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(i) + "," + _dicomUnknownObjectsVector[i].getSegmentLabel() + "," + _dicomUnknownObjectsVector[i].getAnatomicRegion();
+    unknownObjectsInfo += ";" + boost::lexical_cast<std::string>(i) + "," + boost::lexical_cast<std::string>(i) + "," + _dicomUnknownObjectsVector[i].getSegmentLabel() + "," + _dicomUnknownObjectsVector[i].getAnatomicRegion();
   }
 
-	_numPointSetsFld->setIntValue(_dicomPointSetsVector.size());
-	_numLineSetsFld->setIntValue(_dicomLineSetsVector.size());
-	_numMeshesFld->setIntValue(_dicomMeshesVector.size());
-	_numUnknownObjectsFld->setIntValue(_dicomUnknownObjectsVector.size());
+  _numPointSetsFld->setIntValue(_dicomPointSetsVector.size());
+  _numLineSetsFld->setIntValue(_dicomLineSetsVector.size());
+  _numMeshesFld->setIntValue(_dicomMeshesVector.size());
+  _numUnknownObjectsFld->setIntValue(_dicomUnknownObjectsVector.size());
 
   _pointSetsInfoFld->setStringValue(pointSetsInfo);
   _lineSetsInfoFld->setStringValue(lineSetsInfo);
@@ -196,19 +196,19 @@ void DicomSurfaceSegmentationLoad::_updateOutputFields()
 
   for (std::size_t i=0; i<_dicomPointSetsVector.size(); i++)
   {
-	  _addPointSetToOutput((int)i);
+    _addPointSetToOutput((int)i);
   } 
   
-	for (std::size_t i=0; i<_dicomLineSetsVector.size(); i++)
+  for (std::size_t i=0; i<_dicomLineSetsVector.size(); i++)
   {
-		_addLineSetToOutput((int)i);
-	}
+    _addLineSetToOutput((int)i);
+  }
   
-	for (std::size_t i=0; i<_dicomMeshesVector.size(); i++)
+  for (std::size_t i=0; i<_dicomMeshesVector.size(); i++)
   {
-		_addMeshToOutput((int)i);
-	} 
-	
+    _addMeshToOutput((int)i);
+  } 
+  
   handleNotificationOn();
 
   _outPointSetPositionsFld->touch();
@@ -221,16 +221,16 @@ void DicomSurfaceSegmentationLoad::_addPointSetToOutput(const int pointSetNumber
 {
   int pointSetsExportMarkerTypeStartValue = (int)_pointSetsExportMarkerTypeStartValueFld->getIntValue();
 
-	Element3D pointSetElement = _dicomPointSetsVector[pointSetNumber];
-	std::vector<Vector3> pointSetPositions = pointSetElement.getReferencedSurface().getCoordinates();
-	const std::string segmentLabel = pointSetElement.getSegmentLabel();
+  Element3D pointSetElement = _dicomPointSetsVector[pointSetNumber];
+  std::vector<Vector3> pointSetPositions = pointSetElement.getReferencedSurface().getCoordinates();
+  const std::string segmentLabel = pointSetElement.getSegmentLabel();
 
-	for (size_t p=0; p < pointSetPositions.size(); p++) 
+  for (size_t p=0; p < pointSetPositions.size(); p++) 
   {
-	  XMarker pointSetPosition(pointSetPositions[p]);
+    XMarker pointSetPosition(pointSetPositions[p]);
     pointSetPosition.type = pointSetsExportMarkerTypeStartValue + pointSetNumber;
     pointSetPosition.setName(segmentLabel.c_str());
-	  _outPointSetPositions.push_back(pointSetPosition);
+    _outPointSetPositions.push_back(pointSetPosition);
   }
 }
 
@@ -238,119 +238,119 @@ void DicomSurfaceSegmentationLoad::_addLineSetToOutput(const int lineSetNumber)
 {
   int lineSetsExportMarkerTypeStartValue  = (int)_lineSetsExportMarkerTypeStartValueFld->getIntValue();
 
-	Element3D lineSetElement = _dicomLineSetsVector[lineSetNumber];
-	std::vector<Vector3> lineSetPositions = lineSetElement.getReferencedSurface().getCoordinates();
-	const std::string segmentLabel = lineSetElement.getSegmentLabel();
-	
-	for (size_t l=0; l < lineSetPositions.size(); l++) 
+  Element3D lineSetElement = _dicomLineSetsVector[lineSetNumber];
+  std::vector<Vector3> lineSetPositions = lineSetElement.getReferencedSurface().getCoordinates();
+  const std::string segmentLabel = lineSetElement.getSegmentLabel();
+  
+  for (size_t l=0; l < lineSetPositions.size(); l++) 
   {
-	  XMarker lineSetPosition(lineSetPositions[l]);
+    XMarker lineSetPosition(lineSetPositions[l]);
     lineSetPosition.type = lineSetsExportMarkerTypeStartValue + lineSetNumber;
     lineSetPosition.setName(segmentLabel.c_str());
-	  _outLineSetPositions.push_back(lineSetPosition);
+    _outLineSetPositions.push_back(lineSetPosition);
   }
 }
 
 void DicomSurfaceSegmentationLoad::_addMeshToOutput(const int meshNumber)
 {
-	if(meshNumber >= _dicomMeshesVector.size())
+  if(meshNumber >= _dicomMeshesVector.size())
   {
-		return;
+    return;
   }
 
   int meshesIDStartValue = (int)_meshesIDStartValueFld->getIntValue();
 
-	const Element3D meshElement     = _dicomMeshesVector[meshNumber];
+  const Element3D meshElement     = _dicomMeshesVector[meshNumber];
 
-	const std::string segmentLabel  = meshElement.getSegmentLabel();	 
+  const std::string segmentLabel  = meshElement.getSegmentLabel();   
   const Coordinates3D meshSurface = meshElement.getReferencedSurface();
 
   const std::vector<Vector3> wemPositions              = meshSurface.getCoordinates();
-	const std::vector<unsigned long> meshPositionIndices = meshSurface.getCoordinateIndices();
-	const std::vector<Vector3> meshNormals               = meshSurface.getNormals();
+  const std::vector<unsigned long> meshPositionIndices = meshSurface.getCoordinateIndices();
+  const std::vector<Vector3> meshNormals               = meshSurface.getNormals();
 
-	WEMTrianglePatch* newPatch = NULL;
-	ML_CHECK_NEW(newPatch, WEMTrianglePatch());
+  WEMTrianglePatch* newPatch = NULL;
+  ML_CHECK_NEW(newPatch, WEMTrianglePatch());
 
   // Add WEM nodes
-	for (unsigned long p = 0; p < wemPositions.size(); p++) 
+  for (unsigned long p = 0; p < wemPositions.size(); p++) 
   {
-		WEMNode* newNode = newPatch->addNode();
+    WEMNode* newNode = newPatch->addNode();
 
-		newNode->setPosition(wemPositions[p]);
+    newNode->setPosition(wemPositions[p]);
 
-		if(!meshNormals.empty())
+    if(!meshNormals.empty())
     {
-			newNode->setNormal(meshNormals[p]);
+      newNode->setNormal(meshNormals[p]);
     }
-		else
+    else
     {
-			newNode->computeNormal();
+      newNode->computeNormal();
     }
-	}
+  }
 
   // Add WEM faces
-	for (size_t f = 0; f < meshPositionIndices.size(); f += 3) 
+  for (size_t f = 0; f < meshPositionIndices.size(); f += 3) 
   {
-		WEMTriangle* newFace = newPatch->addTriangle();
+    WEMTriangle* newFace = newPatch->addTriangle();
 
-		for (unsigned int i = 0; i < 3; i++) 
+    for (unsigned int i = 0; i < 3; i++) 
     {
-			WEMNode* node = newPatch->getNodeAt(meshPositionIndices[f+i]);
-			newFace->setNode(i, node);
-			node->addFace(newFace);
-		}
+      WEMNode* node = newPatch->getNodeAt(meshPositionIndices[f+i]);
+      newFace->setNode(i, node);
+      node->addFace(newFace);
+    }
 
-		newFace->computeNormal();
-	}
-	
-	newPatch->setLabel(segmentLabel);
-	//newPatch->setId(_outWEM->getCurrentWEMPatchId());
-	newPatch->setId(meshesIDStartValue + meshNumber);
-	newPatch->setType(_type);
+    newFace->computeNormal();
+  }
+  
+  newPatch->setLabel(segmentLabel);
+  //newPatch->setId(_outWEM->getCurrentWEMPatchId());
+  newPatch->setId(meshesIDStartValue + meshNumber);
+  newPatch->setType(_type);
 
-	ML_NAMESPACE::WEMPrimitiveValueList* primitiveValueList = newPatch->createOrGetPrimitiveValueList("LUT");
-	primitiveValueList->setValue(0, static_cast<double>(meshNumber));
+  ML_NAMESPACE::WEMPrimitiveValueList* primitiveValueList = newPatch->createOrGetPrimitiveValueList("LUT");
+  primitiveValueList->setValue(0, static_cast<double>(meshNumber));
 
-	newPatch->buildEdgeConnectivity();
-	_outWEM->addWEMPatch(newPatch);
-	_finish(newPatch);
+  newPatch->buildEdgeConnectivity();
+  _outWEM->addWEMPatch(newPatch);
+  _finish(newPatch);
 }
 
 void DicomSurfaceSegmentationLoad::_distributeObjectsToVectors()
 {
-	_dicomPointSetsVector.clear();
-	_dicomLineSetsVector.clear();
-	_dicomMeshesVector.clear();
-  _dicomUnknownObjectsVector.clear();		
+  _dicomPointSetsVector.clear();
+  _dicomLineSetsVector.clear();
+  _dicomMeshesVector.clear();
+  _dicomUnknownObjectsVector.clear();    
 
   for (std::vector<Element3D>::iterator it = _dicomAllObjectsVector.begin();  it != _dicomAllObjectsVector.end();  ++it)
   {
     Element3D thisElement = *it;
 
-		switch(thisElement.getReferencedSurface().getElementType()) 
+    switch(thisElement.getReferencedSurface().getElementType()) 
     {
-		  case Coordinates3D::ElementType_Marker:
+      case Coordinates3D::ElementType_Marker:
       {
-			  _dicomPointSetsVector.push_back(thisElement);
-			  break;
-      }
-		  case Coordinates3D::ElementType_Centerline:
-      {
-			  _dicomLineSetsVector.push_back(thisElement);
-			  break;
-      }
-		  case Coordinates3D::ElementType_Unknown:
-      {
-			  _dicomUnknownObjectsVector.push_back(thisElement);
-  			break;
-      }
-		  case Coordinates3D::ElementType_Segmentation:
-      {
-			  _dicomMeshesVector.push_back(thisElement);
+        _dicomPointSetsVector.push_back(thisElement);
         break;
-			}
-		} // switch
+      }
+      case Coordinates3D::ElementType_Centerline:
+      {
+        _dicomLineSetsVector.push_back(thisElement);
+        break;
+      }
+      case Coordinates3D::ElementType_Unknown:
+      {
+        _dicomUnknownObjectsVector.push_back(thisElement);
+        break;
+      }
+      case Coordinates3D::ElementType_Segmentation:
+      {
+        _dicomMeshesVector.push_back(thisElement);
+        break;
+      }
+    } // switch
   }
 
 }
@@ -364,11 +364,11 @@ bool DicomSurfaceSegmentationLoad::_loadDataset()
 
   const OFCondition status = _datasetPointer->loadFile(_filename.c_str(), EXS_LittleEndianExplicit);
 
-	if(status.bad()) 
+  if(status.bad()) 
   {
     std::cerr << "Loading the dataset failed: " << status.text() << std::endl;
-		throw std::exception(status.text());
-	}
+    throw std::exception(status.text());
+  }
   else
   {
     success = true;
@@ -379,27 +379,27 @@ bool DicomSurfaceSegmentationLoad::_loadDataset()
 
 void DicomSurfaceSegmentationLoad::_loadFile()
 {
-	_filename = _filenameFld->getStringValue();
+  _filename = _filenameFld->getStringValue();
 
-  _dicomAllObjectsVector.clear();		
+  _dicomAllObjectsVector.clear();    
 
   if (_filename != "")
   {
     bool datasetLoaded = _loadDataset();
 
-	  if(!datasetLoaded) 
+    if(!datasetLoaded) 
     {
-		  std::cerr << "Loading the dataset " + _filename + " failed." << std::endl;
-		  _unloadFile();
-		  return;
-	  }
+      std::cerr << "Loading the dataset " + _filename + " failed." << std::endl;
+      _unloadFile();
+      return;
+    }
 
-	  _parseDataset();
+    _parseDataset();
   }
-	
+  
   _distributeObjectsToVectors();
 
-	_updateInfoFields();
+  _updateInfoFields();
   _updateDicomTagFields();
   _updateOutputFields();
 
@@ -415,9 +415,9 @@ void DicomSurfaceSegmentationLoad::_loadFile()
 
 void DicomSurfaceSegmentationLoad::_process()
 {
-	_startProcessing(); 
-	_loadFile();
-	_finishProcessing(); 
+  _startProcessing(); 
+  _loadFile();
+  _finishProcessing(); 
 }
 
 
@@ -428,16 +428,16 @@ void DicomSurfaceSegmentationLoad::_parseDataset()
   _dicomAllObjectsVector.clear();
   std::vector<Element3D> elements;
 
-	try 
+  try 
   {
-		DicomSSODatasetParser datasetParser(_datasetPointer);
-		elements = datasetParser.parseDataset(true);
+    DicomSSODatasetParser datasetParser(_datasetPointer);
+    elements = datasetParser.parseDataset(true);
     _dicomAllObjectsVector = elements;
-	}
-	catch(const std::exception&) 
+  }
+  catch(const std::exception&) 
   {
-		std::cerr << "Parsing dataset failed." << std::endl;
-	}	
+    std::cerr << "Parsing dataset failed." << std::endl;
+  }  
 
 }
 

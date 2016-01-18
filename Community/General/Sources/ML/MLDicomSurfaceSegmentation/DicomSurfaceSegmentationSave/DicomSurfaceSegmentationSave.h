@@ -72,7 +72,7 @@ private:
 
 
   //! The XMarkerList input for point positions of point clouds
-	ml::XMarkerList _inPointPositions;  
+  ml::XMarkerList _inPointPositions;  
 
   //! The XMarkerList input for node positions of line sets
   ml::XMarkerList _inLinePositions;

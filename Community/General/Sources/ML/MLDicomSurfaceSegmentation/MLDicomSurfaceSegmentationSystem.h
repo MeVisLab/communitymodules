@@ -12,11 +12,11 @@
 
 //DLL export macro definition.
 #ifdef MLDICOMSURFACESEGMENTATION_EXPORTS
-	// Use the MLLOADDICOMSEGMENTATION_EXPORT macro to export classes and functions.
-	#define MLDICOMSURFACESEGMENTATION_EXPORT ML_LIBRARY_EXPORT_ATTRIBUTE
+  // Use the MLLOADDICOMSEGMENTATION_EXPORT macro to export classes and functions.
+  #define MLDICOMSURFACESEGMENTATION_EXPORT ML_LIBRARY_EXPORT_ATTRIBUTE
 #else
-	// If included by external modules, exported symbols are declared as import symbols.
-	#define MLDICOMSURFACESEGMENTATION_EXPORT ML_LIBRARY_IMPORT_ATTRIBUTE
+  // If included by external modules, exported symbols are declared as import symbols.
+  #define MLDICOMSURFACESEGMENTATION_EXPORT ML_LIBRARY_IMPORT_ATTRIBUTE
 #endif
 
 #endif // __MLDicomSurfaceSegmentationSystem_H

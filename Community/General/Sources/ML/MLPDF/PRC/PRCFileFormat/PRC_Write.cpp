@@ -364,7 +364,7 @@ void PRC_AttributeEntry::serializeAttributeEntry(PRC_BitStream &pbs) const
   WriteBoolean (title_is_integer) 
   if (title_is_integer)
     WriteUnsignedInteger (title_integer)
-  else	
+  else  
     WriteString (title_text)
 }
 
@@ -1806,11 +1806,11 @@ void PRC_TopologyContext::serializeContextGraphics(PRC_BitStream &pbs)
         else if ( body[i]->topo_item_type == PRC_TYPE_TOPO_BrepDataCompress && dynamic_cast<PRC_CompressedBoundaryRepresentationData*>(body[i]))
         {
                 PRC_CompressedBoundaryRepresentationData *body_i = dynamic_cast<PRC_CompressedBoundaryRepresentationData*>(body[i]);
-             	for( l=0;l<body_i->face.size();l++)
-             	{
-             		element.push_back( body_i->face[l] );
-             		has_graphics = has_graphics || body_i->face[l]->has_graphics();
-             	}
+               for( l=0;l<body_i->face.size();l++)
+               {
+                 element.push_back( body_i->face[l] );
+                 has_graphics = has_graphics || body_i->face[l]->has_graphics();
+               }
         }
    }
    MLuint32 number_of_treat_type = 0;
@@ -1868,7 +1868,7 @@ void PRC_UniqueID::serializeCompressedUniqueId(PRC_BitStream &pbs) const
    WriteUnsignedInteger (id0) 
    WriteUnsignedInteger (id1) 
    WriteUnsignedInteger (id2) 
-   WriteUnsignedInteger (id3) 	
+   WriteUnsignedInteger (id3)   
 }
 
 void PRC_UniqueID::serializeFileStructureUncompressedUniqueId(std::ostream& out) const
@@ -1992,7 +1992,7 @@ MLuint32 PRC_PartDefinition::addRepresentationItem(PRC_RepresentationItem*& pRep
 void PRC_PartDefinition::serializePartDefinition(PRC_BitStream &pbs)
 {
   WriteUnsignedInteger ( PRC_TYPE_ASM_PartDefinition ) 
-	
+  
   SerializePRCBaseWithGraphics
   SerializeBoundingBox
 
@@ -2000,7 +2000,7 @@ void PRC_PartDefinition::serializePartDefinition(PRC_BitStream &pbs)
   WriteUnsignedInteger (number_of_representation_items)
   for (MLuint32 i=0;i<number_of_representation_items;i++)
     SerializeRepresentationItem (representation_item[i])
-	
+  
   // SerializeMarkups (markups)
   WriteUnsignedInteger (0) // number_of_linked_items 
   WriteUnsignedInteger (0) // number_of_leaders 
@@ -2009,7 +2009,7 @@ void PRC_PartDefinition::serializePartDefinition(PRC_BitStream &pbs)
 
   WriteUnsignedInteger (0) // number_of_views
   SerializeUserData
-}	
+}  
 
 
 ML_END_NAMESPACE

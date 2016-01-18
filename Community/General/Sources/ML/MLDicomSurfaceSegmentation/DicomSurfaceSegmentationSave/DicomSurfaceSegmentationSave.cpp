@@ -68,7 +68,7 @@ DicomSurfaceSegmentationSave::~DicomSurfaceSegmentationSave()
   // destroy own dynamic data structures here
   if(_datasetPointer) 
   {
-  	_datasetPointer.reset();
+    _datasetPointer.reset();
   }
 }
 
@@ -187,8 +187,8 @@ void DicomSurfaceSegmentationSave::_testDicomTree()
 
   if (_datasetPointer)
   {
-	  DcmStack stack;
-	  if(_datasetPointer->search(DCM_PatientName, stack).good())
+    DcmStack stack;
+    if(_datasetPointer->search(DCM_PatientName, stack).good())
     {
       if (stack.empty())
       {

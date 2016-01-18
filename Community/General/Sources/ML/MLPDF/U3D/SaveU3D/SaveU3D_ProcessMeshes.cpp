@@ -23,7 +23,7 @@ ML_START_NAMESPACE
 
 
 void SaveU3D::PreProcessMeshData(WEMPtr saveWEM, 
-							                   U3DMeshInfoVector &meshInfoVector,
+                                 U3DMeshInfoVector &meshInfoVector,
                                  ModelBoundingBoxStruct& boundingBox)
 {
   if (!_inWEM) 
@@ -91,7 +91,7 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
         newboundingBox.end   = thisWEMPatchBoundingBox->getMax();
         mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
 
-	      std::string wemDescription = addedTrianglePatch->getDescription();
+        std::string wemDescription = addedTrianglePatch->getDescription();
         std::string wemLabel = addedTrianglePatch->getLabel();
 
         SpecificationParametersStruct thisSpecificationParameters;
@@ -185,7 +185,7 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
             thisWEMMeshInfo.ResourceName         = thisU3DObjectInfo.ResourceName;
             thisWEMMeshInfo.MeshNumber           = meshNumber++;
 
-	          meshInfoVector.push_back(thisWEMMeshInfo);           
+            meshInfoVector.push_back(thisWEMMeshInfo);           
             _u3dObjectInfoVector.push_back(thisU3DObjectInfo);
           }
         }
@@ -273,8 +273,8 @@ void SaveU3D::AddAllCLODMeshModifierChains(U3DMeshInfoVector meshInfoVector, WEM
     outU3DFile->addModifierChain_CLODMeshDeclaration(thisWEMMeshInfo);
 
     // Continuation Block shall not be part of modifier chain!
-	  U3DDataBlockWriter continuationBlock = CreateCLODBaseMeshContinuationBlock(saveWEM, thisWEMMeshInfo);
-    outU3DFile->addDataBlock(continuationBlock);  	
+    U3DDataBlockWriter continuationBlock = CreateCLODBaseMeshContinuationBlock(saveWEM, thisWEMMeshInfo);
+    outU3DFile->addDataBlock(continuationBlock);    
   }
 
   _progressFld->setFloatValue(0.9f);
@@ -351,8 +351,8 @@ U3DDataBlockWriter SaveU3D::CreateCLODBaseMeshContinuationBlock(WEMPtr saveWEM, 
 
   for (MLuint32 thisFace = 0; thisFace < meshInfo.FaceCount; thisFace++)
   {
-	  thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
-	  
+    thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3DContext_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
+    
     wemFace = wemPatch->getFaceAt(thisFace);
 
     for (MLuint thisNode = 0; thisNode < 3; thisNode++)
@@ -408,10 +408,10 @@ void SaveU3D::AddAllCLODBaseMeshContinuationBlocks(WEMPtr saveWEM, U3DMeshInfoVe
 
   size_t meshCount = meshInfoVector.size();
 
-	// Add priority update if necessary
+  // Add priority update if necessary
   if (meshCount > 0)
   {
-	  outU3DFile->addStandardBlock_PriorityUpdate(0x00000100);
+    outU3DFile->addStandardBlock_PriorityUpdate(0x00000100);
   }
 
   // Add a CLOD base mesh continuation block for each WEM patch =================================
@@ -419,8 +419,8 @@ void SaveU3D::AddAllCLODBaseMeshContinuationBlocks(WEMPtr saveWEM, U3DMeshInfoVe
   {
     U3DMeshInfoStruct thisWEMMeshInfo = meshInfoVector[thisMeshIndex];
 
-	U3DDataBlockWriter continuationBlock = CreateCLODBaseMeshContinuationBlock(saveWEM, thisWEMMeshInfo);
-	outU3DFile->addDataBlock(continuationBlock);  	
+  U3DDataBlockWriter continuationBlock = CreateCLODBaseMeshContinuationBlock(saveWEM, thisWEMMeshInfo);
+  outU3DFile->addDataBlock(continuationBlock);    
   }
 
 }

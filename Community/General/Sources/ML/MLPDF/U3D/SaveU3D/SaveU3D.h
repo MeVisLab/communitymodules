@@ -141,7 +141,7 @@ private:
   StringField   *_newSpecificationConnectionTypesFld;
 
   //! The XMarkerList input for point positions of point clouds
-	ml::XMarkerList _inPointPositions;  
+  ml::XMarkerList _inPointPositions;  
 
   //! The XMarkerList input for node positions of line sets
   ml::XMarkerList _inLinePositions;
@@ -221,7 +221,7 @@ private:
 
   // Scan all data from input field and collect base info for point sets.
   void PreProcessPointSetData(U3DPointSetInfoVector &U3DPointSetInfoVector,
-    	                        ModelBoundingBoxStruct& boundingBox);
+                              ModelBoundingBoxStruct& boundingBox);
 
   // Add a point set modifier chain for each point set
   void AddAllPointSetModifierChains(U3DPointSetInfoVector positionsInfoVector);
@@ -247,8 +247,8 @@ private:
   // WEM processing methods ===================================================
 
   // Scan all WEM patches, triangulate them if necessary and collect base info.
-  void PreProcessMeshData(WEMPtr saveWEM, 	                                             
-					                U3DMeshInfoVector &meshInfoVector,
+  void PreProcessMeshData(WEMPtr saveWEM,                                                
+                          U3DMeshInfoVector &meshInfoVector,
                           ModelBoundingBoxStruct& boundingBox);
 
   // Scan all node colors of a WEM patch and return number of different colors.

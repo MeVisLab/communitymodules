@@ -59,18 +59,18 @@ class PRC_SingleAttribute : public PRC_AttributeEntry
 {
 public:
   PRC_SingleAttribute() : type(PRC_ModellerAttributeType_Null) {}
-	PRC_SingleAttribute(int32_t integer) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_Int)  { value.integer = integer; }
-	PRC_SingleAttribute(double real) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_Real) { value.real = real; }
+  PRC_SingleAttribute(int32_t integer) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_Int)  { value.integer = integer; }
+  PRC_SingleAttribute(double real) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_Real) { value.real = real; }
   PRC_SingleAttribute(MLuint32 time) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_Time) { value.time = time; }  
-	PRC_SingleAttribute(const std::string &text) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_String) { value_text = text; }
-	PRC_SingleAttribute(MLuint32 title, int32_t integer) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Int) { value.integer = integer; }
-	PRC_SingleAttribute(MLuint32 title, double real) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Real) { value.real = real; }
+  PRC_SingleAttribute(const std::string &text) : PRC_AttributeEntry(), type(PRC_ModellerAttributeType_String) { value_text = text; }
+  PRC_SingleAttribute(MLuint32 title, int32_t integer) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Int) { value.integer = integer; }
+  PRC_SingleAttribute(MLuint32 title, double real) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Real) { value.real = real; }
   PRC_SingleAttribute(MLuint32 title, MLuint32 time) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Time) { value.time = time; }  
-	PRC_SingleAttribute(MLuint32 title, const std::string &text) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_String) { value_text = text; }
-	PRC_SingleAttribute(const std::string title, int32_t integer) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Int) { value.integer = integer; }
-	PRC_SingleAttribute(const std::string title, double real) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Real) { value.real = real; }
+  PRC_SingleAttribute(MLuint32 title, const std::string &text) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_String) { value_text = text; }
+  PRC_SingleAttribute(const std::string title, int32_t integer) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Int) { value.integer = integer; }
+  PRC_SingleAttribute(const std::string title, double real) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Real) { value.real = real; }
   PRC_SingleAttribute(const std::string title, MLuint32 time) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_Time) { value.time = time; }  
-	PRC_SingleAttribute(const std::string title, const std::string &text) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_String) { value_text = text; }
+  PRC_SingleAttribute(const std::string title, const std::string &text) : PRC_AttributeEntry(title), type(PRC_ModellerAttributeType_String) { value_text = text; }
 
   void serializeSingleAttribute(PRC_BitStream&) const;
 
@@ -88,8 +88,8 @@ class PRC_Attribute : public PRC_AttributeEntry
 {
 public:
   PRC_Attribute() : PRC_AttributeEntry() {}
-	PRC_Attribute(MLuint32 title) : PRC_AttributeEntry(title) {}
-	PRC_Attribute(const std::string title) : PRC_AttributeEntry(title) {}
+  PRC_Attribute(MLuint32 title) : PRC_AttributeEntry(title) {}
+  PRC_Attribute(const std::string title) : PRC_AttributeEntry(title) {}
 
   void serializeAttribute(PRC_BitStream &) const;
   PRC_SingleAttribute& newKey() { attribute_keys.resize(attribute_keys.size()+1); return attribute_keys.back(); }
@@ -272,8 +272,8 @@ public:
   void serializeTessFace(PRC_BitStream&);
 
   std::vector<MLuint32> line_attributes;
-  MLuint32 start_wire;			             // Specifing bounding wire seems not to work as of Acrobat/Reader 9.2
-  std::vector<MLuint32> sizes_wire;	     // Specifing bounding wire seems not to work as of Acrobat/Reader 9.2
+  MLuint32 start_wire;                   // Specifing bounding wire seems not to work as of Acrobat/Reader 9.2
+  std::vector<MLuint32> sizes_wire;       // Specifing bounding wire seems not to work as of Acrobat/Reader 9.2
   MLuint32 used_entities_flag;
   MLuint32 start_triangulated;
   std::vector<MLuint32> sizes_triangulated;
@@ -320,7 +320,7 @@ public:
   bool has_loops;
   double crease_angle;
   std::vector<double> normal_coordinate;
-  std::vector<MLuint32> wire_index;		       // Specifing bounding wire seems not to work as of Acrobat/Reader 9.2
+  std::vector<MLuint32> wire_index;           // Specifing bounding wire seems not to work as of Acrobat/Reader 9.2
   std::vector<MLuint32> triangulated_index;
   PRC_TesselationFaceList face_tessellation;
   std::vector<double> texture_coordinate;
@@ -1243,19 +1243,19 @@ typedef std::deque <PRC_ProductOccurrence*>  PRC_ProductOccurrenceList;
 class PRC_PartDefinition: public PRC_Graphics, public PRC_ContentBase, public PRC_BoundingBox
 {
 public:
-	PRC_PartDefinition(std::string n="") : PRC_ContentBase(PRC_TYPE_ASM_PartDefinition,n) {}
+  PRC_PartDefinition(std::string n="") : PRC_ContentBase(PRC_TYPE_ASM_PartDefinition,n) {}
   ~PRC_PartDefinition() { for(PRC_RepresentationItemList::iterator it=representation_item.begin(); it!=representation_item.end(); ++it) delete *it; }
 
-	void serializePartDefinition(PRC_BitStream&);
-	MLuint32 addBrepModel(PRC_BoundaryRepresentationModel*& pBrepModel);
-	MLuint32 addPolyBrepModel(PRC_PolyBoundaryRepresentationModel*& pPolyBrepModel);
-	MLuint32 addPointSet(PRC_PointSet*& pPointSet);
-	MLuint32 addSet(PRC_Set*& pSet);
-	MLuint32 addWire(PRC_Wire*& pWire);
-	MLuint32 addPolyWire(PRC_PolyWire*& pPolyWire);
-	MLuint32 addRepresentationItem(PRC_RepresentationItem*& pRepresentationItem);
+  void serializePartDefinition(PRC_BitStream&);
+  MLuint32 addBrepModel(PRC_BoundaryRepresentationModel*& pBrepModel);
+  MLuint32 addPolyBrepModel(PRC_PolyBoundaryRepresentationModel*& pPolyBrepModel);
+  MLuint32 addPointSet(PRC_PointSet*& pPointSet);
+  MLuint32 addSet(PRC_Set*& pSet);
+  MLuint32 addWire(PRC_Wire*& pWire);
+  MLuint32 addPolyWire(PRC_PolyWire*& pPolyWire);
+  MLuint32 addRepresentationItem(PRC_RepresentationItem*& pRepresentationItem);
 
-	PRC_RepresentationItemList representation_item;
+  PRC_RepresentationItemList representation_item;
 };
 
 typedef std::deque <PRC_PartDefinition*>  PRC_PartDefinitionList;

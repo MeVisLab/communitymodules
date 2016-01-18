@@ -18,18 +18,18 @@
  */
 Element3D::Element3D(DcmElement* segmentSequence)
 {
-	if(segmentSequence == NULL) {
-		std::cerr << "Segment sequence is NULL.";
-		throw std::exception("Segment sequence is NULL.");
-	}
+  if(segmentSequence == NULL) {
+    std::cerr << "Segment sequence is NULL.";
+    throw std::exception("Segment sequence is NULL.");
+  }
 
-	_segmentSequence = segmentSequence;
-	_segmentNumber = boost::none;
-	_segmentLabel = "";
-	_anatomicRegion = "";
-	_referencedSurfaceNumber = boost::none;
-	_coordinates = Coordinates3D();
-	_referencedSeriesInstanceId = "";
+  _segmentSequence = segmentSequence;
+  _segmentNumber = boost::none;
+  _segmentLabel = "";
+  _anatomicRegion = "";
+  _referencedSurfaceNumber = boost::none;
+  _coordinates = Coordinates3D();
+  _referencedSeriesInstanceId = "";
 }
 
 /**
@@ -41,7 +41,7 @@ Element3D::Element3D(DcmElement* segmentSequence)
  */
 DcmElement* Element3D::getSegmentSequence() const
 {
-	return _segmentSequence;
+  return _segmentSequence;
 }
 
 /**
@@ -53,7 +53,7 @@ DcmElement* Element3D::getSegmentSequence() const
  */
 void Element3D::setSegmentNumber(const boost::optional<unsigned short> segmentNumber)
 {
-	_segmentNumber = segmentNumber;
+  _segmentNumber = segmentNumber;
 }
 
 /**
@@ -65,7 +65,7 @@ void Element3D::setSegmentNumber(const boost::optional<unsigned short> segmentNu
  */
 boost::optional<unsigned short> Element3D::getSegmentNumber() const
 {
-	return _segmentNumber;
+  return _segmentNumber;
 }
 
 /**
@@ -78,12 +78,12 @@ boost::optional<unsigned short> Element3D::getSegmentNumber() const
  */
 void Element3D::setSegmentLabel(char* segmentLabel)
 {
-	if(segmentLabel == NULL) {
-		std::cerr << "Segment label is NULL. Previous label retained.";
-		return;
-	}
+  if(segmentLabel == NULL) {
+    std::cerr << "Segment label is NULL. Previous label retained.";
+    return;
+  }
 
-	_segmentLabel = segmentLabel;
+  _segmentLabel = segmentLabel;
 }
 
 /**
@@ -96,7 +96,7 @@ void Element3D::setSegmentLabel(char* segmentLabel)
  */
 char* Element3D::getSegmentLabel() const
 {
-	return _segmentLabel;
+  return _segmentLabel;
 }
 
 /**
@@ -109,12 +109,12 @@ char* Element3D::getSegmentLabel() const
  */
 void Element3D::setAnatomicRegion(char* anatomicRegion)
 {
-	if(anatomicRegion == NULL) {
-		std::cerr << "Anatomic region is NULL. Previous region retained.";
-		return;
-	}
+  if(anatomicRegion == NULL) {
+    std::cerr << "Anatomic region is NULL. Previous region retained.";
+    return;
+  }
 
-	_anatomicRegion = anatomicRegion;
+  _anatomicRegion = anatomicRegion;
 }
 
 /**
@@ -127,7 +127,7 @@ void Element3D::setAnatomicRegion(char* anatomicRegion)
  */
 char* Element3D::getAnatomicRegion() const
 {
-	return _anatomicRegion;
+  return _anatomicRegion;
 }
 
 /**
@@ -139,7 +139,7 @@ char* Element3D::getAnatomicRegion() const
  */
 void Element3D::setReferencedSurfaceNumber(const boost::optional<unsigned long> referencedSurfaceNumber)
 {
-	_referencedSurfaceNumber = referencedSurfaceNumber;
+  _referencedSurfaceNumber = referencedSurfaceNumber;
 }
 
 /**
@@ -152,7 +152,7 @@ void Element3D::setReferencedSurfaceNumber(const boost::optional<unsigned long> 
  */
 boost::optional<unsigned long> Element3D::getReferencedSurfaceNumber() const
 {
-	return _referencedSurfaceNumber;
+  return _referencedSurfaceNumber;
 }
 
 /**
@@ -162,7 +162,7 @@ boost::optional<unsigned long> Element3D::getReferencedSurfaceNumber() const
  */
 void Element3D::setReferencedSurface(Coordinates3D referencedSurface)
 {
-	_coordinates = referencedSurface;
+  _coordinates = referencedSurface;
 }
 
 /**
@@ -174,7 +174,7 @@ void Element3D::setReferencedSurface(Coordinates3D referencedSurface)
  */
 Coordinates3D Element3D::getReferencedSurface() const
 {
-	return _coordinates;
+  return _coordinates;
 }
 
 /**
@@ -187,12 +187,12 @@ Coordinates3D Element3D::getReferencedSurface() const
  */
 void Element3D::setReferencedSeriesInstanceId(char* referencedSeriesInstanceId)
 {
-	if(referencedSeriesInstanceId == NULL) {
-		std::cerr << "Referenced series instance id is NULL. Previous id retained.";
-		return;
-	}
+  if(referencedSeriesInstanceId == NULL) {
+    std::cerr << "Referenced series instance id is NULL. Previous id retained.";
+    return;
+  }
 
-	_referencedSeriesInstanceId = referencedSeriesInstanceId;
+  _referencedSeriesInstanceId = referencedSeriesInstanceId;
 }
 
 /**
@@ -205,5 +205,5 @@ void Element3D::setReferencedSeriesInstanceId(char* referencedSeriesInstanceId)
  */
 char* Element3D::getReferencedSeriesInstanceId() const
 {
-	return _referencedSeriesInstanceId;
+  return _referencedSeriesInstanceId;
 }

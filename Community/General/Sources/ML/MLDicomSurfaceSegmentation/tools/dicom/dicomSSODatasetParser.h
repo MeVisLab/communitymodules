@@ -31,19 +31,19 @@ ML_START_NAMESPACE
 class DicomSSODatasetParser : public DicomDatasetParser {
 
 public:
-	DicomSSODatasetParser(SmartPtr_DCMDataSet);
-	std::vector<Element3D> parseDataset(const bool isParsingNormalsEnabled) const;
+  DicomSSODatasetParser(SmartPtr_DCMDataSet);
+  std::vector<Element3D> parseDataset(const bool isParsingNormalsEnabled) const;
 
 private:
-	std::vector<Element3D> parseSegmentSequenceItems(std::vector<DcmItem*> segmentSequenceItems) const;
-	std::vector<Coordinates3D> parseSurfaceSequenceItems(std::vector<DcmItem*> surfaceSequenceItems, const bool isParsingNormalsEnabled) const;
+  std::vector<Element3D> parseSegmentSequenceItems(std::vector<DcmItem*> segmentSequenceItems) const;
+  std::vector<Coordinates3D> parseSurfaceSequenceItems(std::vector<DcmItem*> surfaceSequenceItems, const bool isParsingNormalsEnabled) const;
 
-	const float* getCoordinates(DcmItem* surfaceSequence, unsigned long& numberOfCoordinates) const;
-	static bool addCoordinatesToCoordinates3dInstance(DcmItem* surfaceMeshSequenceItem, const DcmTag pointIndexListTag, const float* coordinates, Coordinates3D& coordinates3d);
-	static bool addCoordinatesToCoordiantes3DInstanceUsingIndices(DcmItem* surfaceMeshSequenceItem, DcmTag pointIndexListTag, const float* coordinates, Coordinates3D& coordinates3d, const unsigned long numOfCoordinates);
-	static bool setNormalOfCoordinates3dInstance(DcmItem* surfacePointsNormalsSequenceItem, Coordinates3D& coordinates3d);
-	bool addReferencedSeriesSequenceInformationToElements(std::vector<Element3D>& surfaceSequenceItems, DcmItem* referencedSeriesSequenceItem) const;
-	static void matchElementsWithCoordinates(std::vector<Element3D>& surfaceSequenceItems, std::vector<Coordinates3D>& coordinates3d);
+  const float* getCoordinates(DcmItem* surfaceSequence, unsigned long& numberOfCoordinates) const;
+  static bool addCoordinatesToCoordinates3dInstance(DcmItem* surfaceMeshSequenceItem, const DcmTag pointIndexListTag, const float* coordinates, Coordinates3D& coordinates3d);
+  static bool addCoordinatesToCoordiantes3DInstanceUsingIndices(DcmItem* surfaceMeshSequenceItem, DcmTag pointIndexListTag, const float* coordinates, Coordinates3D& coordinates3d, const unsigned long numOfCoordinates);
+  static bool setNormalOfCoordinates3dInstance(DcmItem* surfacePointsNormalsSequenceItem, Coordinates3D& coordinates3d);
+  bool addReferencedSeriesSequenceInformationToElements(std::vector<Element3D>& surfaceSequenceItems, DcmItem* referencedSeriesSequenceItem) const;
+  static void matchElementsWithCoordinates(std::vector<Element3D>& surfaceSequenceItems, std::vector<Coordinates3D>& coordinates3d);
   static unsigned short getLowestValueInList(const unsigned short* list, const unsigned long numElements);
 };
 

@@ -58,7 +58,7 @@ void SavePRC::PreProcessPointSetData(ModelBoundingBoxStruct& boundingBox)
     thisPRCObjectInfo.ParentTreeNodeID    = -1;
     thisPRCObjectInfo.RGBAColor           = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
     _prcObjectInfoVector.push_back(thisPRCObjectInfo);
-		
+    
     PointSetSpecificationStruct thisPointSetGeometry;
     thisPointSetGeometry.internalName = thisPRCObjectInfo.InternalName;
     thisPointSetGeometry.positions    = mlPDF::PDFMarkerListTools::getAllPositionsFromColoredMarkerList(_inPointPositions, thisSpecificationParameters.PositionTypes, thisSpecificationParameters.PointSize);
@@ -67,7 +67,7 @@ void SavePRC::PreProcessPointSetData(ModelBoundingBoxStruct& boundingBox)
     ModelBoundingBoxStruct newboundingBox = mlPDF::PDFTools::GetBoundingBoxFomPositions(thisPointSetGeometry.positions);
     mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
   }
-	
+  
 }
 
 //***********************************************************************************

@@ -84,10 +84,10 @@ void EquipmentIE::_addEnhancedGeneralEquipmentModule(SmartPtr_DCMDataSet dataset
   // This table contains a subset of the attributes of General Equipment Module (Table C.7-8) but the Type Designation is changed into Type 1. 
   // Including this module in an IOD overwrites the Type Designation of the General Equipment Module. 
 
-  // Add Manufacturer 	            | (0008,0070) | 1	| Manufacturer of the equipment that produced the composite instances.
-  // Add Manufacturer’s Model Name 	| (0008,1090) | 1	| Manufacturer’s model name of the equipment that produced the composite instances.
-  // Add Device Serial Number 	    | (0018,1000) | 1	| Manufacturer’s serial number of the equipment that produced the composite instances.
-  // Add Software Versions 	        | (0018,1020) | 1	| Manufacturer’s designation of software version of the equipment that produced the composite instances. See Section C.7.5.1.1.3. 
+  // Add Manufacturer               | (0008,0070) | 1  | Manufacturer of the equipment that produced the composite instances.
+  // Add Manufacturer’s Model Name   | (0008,1090) | 1  | Manufacturer’s model name of the equipment that produced the composite instances.
+  // Add Device Serial Number       | (0018,1000) | 1  | Manufacturer’s serial number of the equipment that produced the composite instances.
+  // Add Software Versions           | (0018,1020) | 1  | Manufacturer’s designation of software version of the equipment that produced the composite instances. See Section C.7.5.1.1.3. 
 
   DcmPersonName* PatientNameElement = new DcmPersonName(DCM_PatientName);
   PatientNameElement->putNameComponents("Doe", "John", "", "Dr.", "II.");
