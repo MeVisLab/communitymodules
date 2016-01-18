@@ -11,9 +11,7 @@
 # windows_vc8
 # windows_vc8-64
 
-# Example of an ignored profile:
-# Sources/ML/MLExampleProject/MLExampleProject.pro
-Sources/ML/MLMatlabScriptWrapper/MLMatlabScriptWrapper.pro
+Modules/ML/MLPDF/Wizard/Sources/PDFModuleTemplate.pro
 
 # Example of an ignored directory (including subdirs):
 # Sources/ML/MLExampleProject/*
