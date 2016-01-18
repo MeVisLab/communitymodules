@@ -635,12 +635,12 @@ bool U3DFileWriter::writeToFileStream(std::ofstream& ofstream, const MetaDataVec
 
   if (metaDataPairCount > 0)
   {
-	  _dataBlocks[0].writeMetaU32(metaDataPairCount);                     // Write meta data Key/Value Pair Count  
-	
-	  for (size_t i = 0; i < metaData.size(); i++)
-	  {
-	    _dataBlocks[0].writeMetaKeyValuePair(0x00000000, metaData[i].key, metaData[i].value);  // Write meta data Key/Value Pairs 
-	  }
+    _dataBlocks[0].writeMetaU32(metaDataPairCount);                     // Write meta data Key/Value Pair Count  
+  
+    for (size_t i = 0; i < metaData.size(); i++)
+    {
+      _dataBlocks[0].writeMetaKeyValuePair(0x00000000, metaData[i].key, metaData[i].value);  // Write meta data Key/Value Pairs 
+    }
   }
 
   // Close header block

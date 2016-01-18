@@ -16,25 +16,25 @@
  */
 Coordinates3D::Coordinates3D()
 {
-	_surfaceNumber = boost::none;
-	_surfaceComment = "";
-	_elementType = ElementType_Unknown;
-	_isVolumeFinite = false;
-	_coordinates.clear();
-	_normals.clear();
-	_coordinateIndices.clear();
+  _surfaceNumber = boost::none;
+  _surfaceComment = "";
+  _elementType = ElementType_Unknown;
+  _isVolumeFinite = false;
+  _coordinates.clear();
+  _normals.clear();
+  _coordinateIndices.clear();
 }
 
 /**
  * \brief  Sets the number of the surface defined by the coordinates.
- *		   
+ *       
  * cf. DICOM tag 0066,0003 SurfaceNumber UL
  *
  * \param  [in] surfaceNumber The surface number.
  */
 void Coordinates3D::setSurfaceNumber(const boost::optional<unsigned long> surfaceNumber)
 {
-	_surfaceNumber = surfaceNumber;
+  _surfaceNumber = surfaceNumber;
 }
 
 /**
@@ -46,7 +46,7 @@ void Coordinates3D::setSurfaceNumber(const boost::optional<unsigned long> surfac
  */
 boost::optional<unsigned long> Coordinates3D::getSurfaceNumber() const
 {
-	return _surfaceNumber;
+  return _surfaceNumber;
 }
 
 /**
@@ -64,12 +64,12 @@ boost::optional<unsigned long> Coordinates3D::getSurfaceNumber() const
  */
 void Coordinates3D::setSurfaceComment(char* surfaceComment)
 {
-	if(surfaceComment == NULL) {
-		std::cerr << "Surface-comment is NULL. Previous comment retained.";
-		return;
-	}
-	_surfaceComment = surfaceComment;
-	_elementType = parseElementType(surfaceComment);
+  if(surfaceComment == NULL) {
+    std::cerr << "Surface-comment is NULL. Previous comment retained.";
+    return;
+  }
+  _surfaceComment = surfaceComment;
+  _elementType = parseElementType(surfaceComment);
 }
 
 /**
@@ -82,7 +82,7 @@ void Coordinates3D::setSurfaceComment(char* surfaceComment)
  */
 Coordinates3D::ElementType Coordinates3D::getElementType() const
 {
-	return _elementType;
+  return _elementType;
 }
 
 /**
@@ -95,7 +95,7 @@ Coordinates3D::ElementType Coordinates3D::getElementType() const
  */
 void Coordinates3D::setIsVolumeFinite(const bool isVolumeFinite)
 {
-	_isVolumeFinite = isVolumeFinite;
+  _isVolumeFinite = isVolumeFinite;
 }
 
 /**
@@ -108,7 +108,7 @@ void Coordinates3D::setIsVolumeFinite(const bool isVolumeFinite)
  */
 bool Coordinates3D::isVolumeFinite() const
 {
-	return _isVolumeFinite;
+  return _isVolumeFinite;
 }
 
 /**
@@ -120,7 +120,7 @@ bool Coordinates3D::isVolumeFinite() const
  */
 void Coordinates3D::addCoordinate(const float x, const float y, const float z)
 {
-	_coordinates.push_back(ML_NAMESPACE::Vector3(x, y, z));
+  _coordinates.push_back(ML_NAMESPACE::Vector3(x, y, z));
 }
 
 /**
@@ -132,7 +132,7 @@ void Coordinates3D::addCoordinate(const float x, const float y, const float z)
  */
 std::vector<ML_NAMESPACE::Vector3> Coordinates3D::getCoordinates() const
 {
-	return _coordinates;
+  return _coordinates;
 }
 
 /**
@@ -144,19 +144,19 @@ std::vector<ML_NAMESPACE::Vector3> Coordinates3D::getCoordinates() const
  */
 void Coordinates3D::addNormal(const float x, const float y, const float z)
 {
-	_normals.push_back(ML_NAMESPACE::Vector3(x, y, z));
+  _normals.push_back(ML_NAMESPACE::Vector3(x, y, z));
 }
 
 /**
  * \brief  Returns all normals.
  *
  * \return All normals (or an empty vector in case the normals are not set).<br />
- *		   If the normals are to be reordered, the order information is stored in the 
- *		   coordinateIndices-vector. Otherwise, this vector is empty.
+ *       If the normals are to be reordered, the order information is stored in the 
+ *       coordinateIndices-vector. Otherwise, this vector is empty.
  */
 std::vector<ML_NAMESPACE::Vector3> Coordinates3D::getNormals() const
 {
-	return _normals;
+  return _normals;
 }
 
 /**
@@ -167,7 +167,7 @@ std::vector<ML_NAMESPACE::Vector3> Coordinates3D::getNormals() const
  */
 void Coordinates3D::addCoordinateIndex(const unsigned long index)
 {
-	_coordinateIndices.push_back(index);
+  _coordinateIndices.push_back(index);
 }
 
 /**
@@ -176,34 +176,34 @@ void Coordinates3D::addCoordinateIndex(const unsigned long index)
  * \return The index-ordering information: If the points described by the 
  *         coordinates-array and the normals-array are to be reordered, the
  *         returned vector holds the vector indices in the correct order. If the 
- *		   aforementioned vectors do already contain the coordinate points in correct
+ *       aforementioned vectors do already contain the coordinate points in correct
  *         order, the returned vector is empty.
  */
 std::vector<unsigned long> Coordinates3D::getCoordinateIndices() const
 {
-	return _coordinateIndices;
+  return _coordinateIndices;
 }
 
 Coordinates3D::ElementType Coordinates3D::parseElementType(char* elementName)
 {
-	if(elementName == NULL) {
-		std::cerr << "Element name is NULL. Returning element type UNKOWN.";
-		return ElementType_Unknown;
-	}
+  if(elementName == NULL) {
+    std::cerr << "Element name is NULL. Returning element type UNKOWN.";
+    return ElementType_Unknown;
+  }
 
-	ElementType result = ElementType_Unknown;
+  ElementType result = ElementType_Unknown;
 
-	char *str = _strdup(elementName);
-	for (unsigned int i=0; i<strlen(elementName); i++)
-		str[i] = static_cast<char>(tolower(elementName[i]));
+  char *str = _strdup(elementName);
+  for (unsigned int i=0; i<strlen(elementName); i++)
+    str[i] = static_cast<char>(tolower(elementName[i]));
 
-	if(!strcmp(str, "marker"))
-		result = ElementType_Marker;
-	else if(!strcmp(str, "centerline"))
-		result = ElementType_Centerline;
-	else if(!strcmp(str, "segmentation"))
-		result = ElementType_Segmentation;
+  if(!strcmp(str, "marker"))
+    result = ElementType_Marker;
+  else if(!strcmp(str, "centerline"))
+    result = ElementType_Centerline;
+  else if(!strcmp(str, "segmentation"))
+    result = ElementType_Segmentation;
 
-	free(str);
-	return result;
+  free(str);
+  return result;
 }

@@ -87,7 +87,7 @@ void PDFGenerator::pdfDoc_RestoreYAxisReference()
   if (_previousYAxisReferenceIsFromTop.size() > 0)
   {
     _currentYAxisReferenceIsFromTop = _previousYAxisReferenceIsFromTop.back();
-	  _previousYAxisReferenceIsFromTop.pop_back();	
+    _previousYAxisReferenceIsFromTop.pop_back();
   }
   else
   {

@@ -21,7 +21,7 @@ ML_START_NAMESPACE
 
 
 void SavePRC::PreProcessMeshData(WEMPtr saveWEM, 
-							                   PRCMeshInfoVector &meshInfoVector,
+                                 PRCMeshInfoVector &meshInfoVector,
                                  ModelBoundingBoxStruct& boundingBox)
 {
   if (!_inWEM) 
@@ -89,7 +89,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
         newboundingBox.end   = thisWEMPatchBoundingBox->getMax();
         mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
 
-	      std::string wemDescription = addedTrianglePatch->getDescription();
+        std::string wemDescription = addedTrianglePatch->getDescription();
         std::string wemLabel = addedTrianglePatch->getLabel();
 
         SpecificationParametersStruct thisSpecificationParameters;
@@ -164,7 +164,7 @@ void SavePRC::PreProcessMeshData(WEMPtr saveWEM,
   //          thisWEMMeshInfo.ResourceName = thisPRCObjectInfo.ResourceName;
             thisWEMMeshInfo.MeshNumber = meshNumber++;
 
-	          meshInfoVector.push_back(thisWEMMeshInfo);           
+            meshInfoVector.push_back(thisWEMMeshInfo);           
           }
         }
 

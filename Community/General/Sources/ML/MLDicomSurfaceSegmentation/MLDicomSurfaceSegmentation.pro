@@ -44,10 +44,10 @@ HEADERS += \
     DICOMFileFormat/DCM_SurfaceIE.h \
     DicomSurfaceSegmentationLoad/DicomSurfaceSegmentationLoad.h \
     DicomSurfaceSegmentationSave/DicomSurfaceSegmentationSave.h \
-	  tools/dicom/coordinates3D.h \
-	  tools/dicom/dicomDatasetParser.h \
-	  tools/dicom/dicomSSODatasetParser.h \
-	  tools/dicom/element3D.h \
+    tools/dicom/coordinates3D.h \
+    tools/dicom/dicomDatasetParser.h \
+    tools/dicom/dicomSSODatasetParser.h \
+    tools/dicom/element3D.h \
 
 
 
@@ -61,8 +61,8 @@ SOURCES += \
     DICOMFileFormat/DCM_SurfaceIE.cpp \
     DicomSurfaceSegmentationLoad/DicomSurfaceSegmentationLoad.cpp \
     DicomSurfaceSegmentationSave/DicomSurfaceSegmentationSave.cpp \
-	  tools/dicom/coordinates3D.cpp \
-	  tools/dicom/dicomDatasetParser.cpp \
-	  tools/dicom/dicomSSODatasetParser.cpp \
-	  tools/dicom/element3D.cpp \
+    tools/dicom/coordinates3D.cpp \
+    tools/dicom/dicomDatasetParser.cpp \
+    tools/dicom/dicomSSODatasetParser.cpp \
+    tools/dicom/element3D.cpp \
 

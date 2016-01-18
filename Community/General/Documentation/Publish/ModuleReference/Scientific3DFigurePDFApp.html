@@ -46,6 +46,9 @@
 <colgroup>
 </colgroup>
 <tbody valign="top">
+<tr><td>genre</td>
+<td><a class="reference internal" href="genre.html#PDFApps" title="PDFApps"><tt class="xref mlab mlab-genre docutils literal"><span class="pre">PDFApps</span></tt></a></td>
+</tr>
 <tr><td>authors</td>
 <td><a class="reference internal" href="author.html# Newe, Axel" title="Newe, Axel"><tt class="xref mlab mlab-author docutils literal"><span class="pre">Axel</span> <span class="pre">Newe</span></tt></a>, <a class="reference internal" href="author.html# fau.de, at, axel.newe" title="fau.de, at, axel.newe"><tt class="xref mlab mlab-author docutils literal"><span class="pre">axel.newe</span> <span class="pre">at</span> <span class="pre">fau.de</span></tt></a></td>
 </tr>
@@ -140,7 +143,7 @@
 4 5</pre>
 </div>
 <p><strong>Mesh import</strong></p>
-<p>Meshes can be imported from a number of formats. See <a class="reference internal" href="../../../../../MeVisLab/Standard/Documentation/Publish/ModuleReference/WEMSceneLoader.html#WEMSceneLoader" title="WEMSceneLoader"><tt class="xref mlab mlab-module docutils literal"><span class="pre">WEMSceneLoader</span></tt></a> for a full list of supported formats.</p>
+<p>Meshes can be imported from a number of formats. See <a class="reference internal" href="file:///C:/Program Files/MeVisLab/Packages/MeVisLab/Standard/Documentation/Publish/ModuleReference/WEMSceneLoader.html#WEMSceneLoader" title="WEMSceneLoader"><tt class="xref mlab mlab-module docutils literal"><span class="pre">WEMSceneLoader</span></tt></a> for a full list of supported formats.</p>
 <img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportMeshes.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.3DModel-ImportMeshes.png" />
 <p>After loading a mesh, the number of faces can be reduced before it is added to the model. Click the <em>Use Reduced Mesh</em> button and adjust the reduction ration by means of the <em>Reduction %</em> field or the slider below the field. (Note that the mesh is updated on-the-fly which can take a while for large meshes. If the update is too slow, use the numerical field instead of the slider.)</p>
 <p><strong>Adding the imported object</strong></p>
@@ -176,10 +179,10 @@
 <p>Go to the <em>Create Views</em> tab to create Views.</p>
 <p>A View is a predefined setting that specifies how the objects and the environment shall be rendered.</p>
 <p>A view must have a name, which does <em>not</em> need to be unique. However, views with identical names could confuse the consumer of a figure, so they should be avoided.</p>
-<p>The most important setting for the view will be the camera setting which is specified directly in the <em>Scene</em> box. You can interactively rotate, pan and zoom the scene in the <em>Scene</em> box and thus select the projection angle. When the View is added (see <em>Add New View</em> button below), the camera settings for the View are calculated from the currently selected projection in the <em>Scene</em> box. (Note that there might be tiny deviations due to floating point tolerance. However, this usually affects only very small objects.)</p>
+<p>The most important setting for the view is the camera setting which is specified directly in the <em>Scene</em> box. You can interactively rotate, pan and zoom the scene in the <em>Scene</em> box and thus select the projection angle. When the View is added (see <em>Add New View</em> button below), the camera settings for the View are calculated from the currently selected projection in the <em>Scene</em> box. (Note that there might be tiny deviations due to floating point tolerance. However, this usually affects only very small objects.)</p>
 <p>In addition to the camera, a <em>Background Color</em>, a <em>Lighting Scheme</em> and a <em>Render Mode</em> can be specified. (Note that the appearance of the latter 2 strongly depends on the PDF rendering engine and that they are therefore not illustrated in the <em>Scene</em> preview.)</p>
 <p>The <em>Lighting Scheme</em> specifies the ambient light which is use to illuminate the scene. See the PDF specification (<a class="reference external" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf">http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf</a>, section 9.5.3, p. 817) for details.</p>
-<p>The <em>Lighting Scheme</em> specifies how objects are rendered. See the PDF specification (<a class="reference external" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf">http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf</a>, section 9.5.3, p. 813) for details (or just try them...).</p>
+<p>The <em>Render Mode</em> specifies how objects are rendered. See the PDF specification (<a class="reference external" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf">http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf</a>, section 9.5.3, p. 813) for details (or just try them...).</p>
 <p>After all settings have been done, click the <em>Add New View</em> button to add the specified View to the list of all views. An arbitrary number of views can be added, but remember that they should have unique names. Once added, the Views can still be edited manually in the <em>All View Specifications</em> box, but this should only be done very carefully, especially as regards the camera parameters.</p>
 <p>In order to delete all views, click the <em>Delete All Views</em> button. In order to delete a single View, remove it manually by means of the <em>All View Specifications</em> box.</p>
 <p>If no view is specified, the PDF generator will create a default view.</p>
@@ -202,11 +205,11 @@
 <h2>Editing the PDF Page<a class="headerlink" href="#editing-the-pdf-page" title="Permalink to this headline">¶</a></h2>
 <p>In order to create a PDF file with an embedded 3D figure, go to the <em>PDF Page</em> tab.</p>
 <img alt="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.PDFPage.png" src="../../../Projects/PDF3DFigurePage/Modules/mhelp/Images/Screenshots/Scientific3DFigurePDFApp.PDFPage.png" />
-<p>Each PDF page created by this module consists of three part: a header, the interactive figure itself and the figure description.</p>
+<p>Each PDF page created by this module consists of three parts: a header, the interactive figure itself and the figure description.</p>
 <p><strong>Page Header</strong></p>
 <p>The page header consists of a <a class="reference internal" href="#mlabfield-headercitationtext" title="Header Citation Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Citation</span> <span class="pre">Text</span></tt></a> and a <a class="reference internal" href="#mlabfield-headerheadlinetext" title="Header Headline Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Headline</span> <span class="pre">Text</span></tt></a>.</p>
 <p>The <a class="reference internal" href="#mlabfield-headercitationtext" title="Header Citation Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Citation</span> <span class="pre">Text</span></tt></a> is displayed on top of the page and should usually contain information about the article to which the PDF is related to. Alternatively, this line could also contain information about the authors, their institution or something similar. However, the text should fit in three lines, because everything else will be truncated.</p>
-<p>The  is displayed in large, bold font below the <a class="reference internal" href="#mlabfield-headercitationtext" title="Header Citation Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Citation</span> <span class="pre">Text</span></tt></a> and should be rather short since it must fit in one line. (The actual <a class="reference internal" href="#mlabfield-caption" title="Caption"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Caption</span></tt></a> of the figure has its own field, see below.)</p>
+<p>The <a class="reference internal" href="#mlabfield-headerheadlinetext" title="Header Headline Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Headline</span> <span class="pre">Text</span></tt></a> is displayed in large, bold font below the <a class="reference internal" href="#mlabfield-headercitationtext" title="Header Citation Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Citation</span> <span class="pre">Text</span></tt></a> and should be rather short since it must fit in one line. (The actual <a class="reference internal" href="#mlabfield-caption" title="Caption"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Caption</span></tt></a> of the figure has its own field, see below.)</p>
 <p>The page header can be complemented by a pre-defined instructional text which explains how to use the interaction features in Adobe Reader. Enable the <em>Include instructional hints above the figure</em> checkbox to include these instructions.</p>
 <p><strong>3D Figure</strong></p>
 <p>The actual 3D figure will be included below the <a class="reference internal" href="#mlabfield-headerheadlinetext" title="Header Headline Text"><tt class="xref mlab mlab-field docutils literal"><span class="pre">Header</span> <span class="pre">Headline</span> <span class="pre">Text</span></tt></a> or the instructional text, respectively. It will have a fixed 4:3 ratio. The U3D file which shall be included can be specified by means of the <em>U3D Filename</em> field. this field is mandatory - if no U3D file is specified, it will not be possible to create a PDF.</p>
@@ -813,7 +816,7 @@
 <span id="postertext"></span><span id="mlabfield-postertext"></span><h3>Poster Text<a class="headerlink" href="#poster-text" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-posterText">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">posterText</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">Click here to enable interactive mode in Acrobat Reader.</tt><a class="headerlink" href="#mlabfieldname-posterText" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">posterText</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">String</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">Click here to enable interactive mode in Adobe Reader.</tt><a class="headerlink" href="#mlabfieldname-posterText" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -912,7 +915,7 @@
 <span id="mlabfield-viewcameracentertocamera"></span><span id="id13"></span><h3>viewCameraCenterToCamera<a class="headerlink" href="#viewcameracentertocamera" title="Permalink to this headline">¶</a></h3>
 <dl class="field">
 <dt id="mlabfieldname-viewCameraCenterToCamera">
-<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraCenterToCamera</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Vector3</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 1.8304877281189</tt><a class="headerlink" href="#mlabfieldname-viewCameraCenterToCamera" title="Permalink to this definition">¶</a></dt>
+<tt class="descname" id="mlab_title">name: </tt><tt class="descname" id="mlab_title">viewCameraCenterToCamera</tt><tt class="descname" id="mlab_title">, type: </tt><tt class="descname" id="mlab_title">Vector3</tt><tt class="descname" id="mlab_title">, default: </tt><tt class="descname" id="mlab_title">0 0 1</tt><a class="headerlink" href="#mlabfieldname-viewCameraCenterToCamera" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

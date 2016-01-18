@@ -40,39 +40,39 @@ U3DObjectInfoStruct SaveU3D::CreateNewU3DObjectInfo(int objectIndex, U3DObjectTy
     
     if ("" == prefix)  // Just in case the field was cleared...
     {
-	    prefix = "Mesh";
+      prefix = "Mesh";
     }
 
-	  if (U3DOBJECTTYPE_POINTSET == objectType)
-	  {
+    if (U3DOBJECTTYPE_POINTSET == objectType)
+    {
       prefix = _modelPrefixPointCloudsFld->getStringValue();
     
       if ("" == prefix)  // Just in case the field was cleared...
       {
-	      prefix = "PointSet";
+        prefix = "PointSet";
       }
-	  }
+    }
 
-	  if (U3DOBJECTTYPE_LINESET == objectType)
-	  {
+    if (U3DOBJECTTYPE_LINESET == objectType)
+    {
       prefix = _modelPrefixLineSetsFld->getStringValue();
     
       if ("" == prefix)  // Just in case the field was cleared...
       {
-	      prefix = "LineSet";
+        prefix = "LineSet";
       }
-	  }
+    }
 
     // Not supported by Acrobat
-	  //if (U3DOBJECTTYPE_GLYPH == objectType)
-	  //{
+    //if (U3DOBJECTTYPE_GLYPH == objectType)
+    //{
     //  prefix = _modelPrefixGlyphsFld->getStringValue();
     //
     //  if ("" == prefix)  // Just in case the field was cleared...
     //  {
-	  //    prefix = "Glyph";
+    //    prefix = "Glyph";
     //  }
-	  //}
+    //}
 
     newU3DObjectInfo.DisplayName.insert(0,"__" + prefix);
   }
@@ -249,7 +249,7 @@ U3DDefaultValuesStruct SaveU3D::getDefaultValuesFromFields()
 std::string SaveU3D::addAllModelGroupNodes(StringVector &modelNames) const
 {
   // Add all model group nodes 
-	std::sort(modelNames.begin(), modelNames.end());                                        // Sort group names to prepare for removing duplicates
+  std::sort(modelNames.begin(), modelNames.end());                                        // Sort group names to prepare for removing duplicates
   modelNames.erase(std::unique(modelNames.begin(), modelNames.end()), modelNames.end());  // Remove duplicate group names  
   size_t modelGroupCount = modelNames.size();
   std::string modelGroup = "";
@@ -260,7 +260,7 @@ std::string SaveU3D::addAllModelGroupNodes(StringVector &modelNames) const
     modelGroup = modelNames[j];
   }
 
-	return modelGroup;
+  return modelGroup;
 }
 
 //***********************************************************************************
@@ -307,10 +307,10 @@ void SaveU3D::addAllGroupNodes(StringVector &groupNames, std::string modelGroupN
 void SaveU3D::addU3DModelNodes() const
 {
   // Add a model node and shading modifier for each U3D object 
-	for (size_t j = 0; j < _u3dObjectInfoVector.size(); j++)
+  for (size_t j = 0; j < _u3dObjectInfoVector.size(); j++)
     {
       U3DObjectInfoStruct thisU3DObjectInfo = _u3dObjectInfoVector[j];
-	    outU3DFile->addModifierChain_ModelNodeWithShadingModifier(thisU3DObjectInfo);
+      outU3DFile->addModifierChain_ModelNodeWithShadingModifier(thisU3DObjectInfo);
     }
 }
 

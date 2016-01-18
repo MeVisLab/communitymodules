@@ -44,18 +44,18 @@ GroupNodeVector assembleU3DGroupNodeInfo(U3DObjectInfoVector &_u3dObjectInfoVect
 
 void quantizePosition(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ) 
 {
-	u8Signs = (pos.x < 0.0) | ((pos.y < 0.0) << 1) | ((pos.z < 0.0) << 2);
-	udX = (MLuint32) (0.5f + U3DQuant_Position * fabs(pos.x));
-	udY = (MLuint32) (0.5f + U3DQuant_Position * fabs(pos.y));
-	udZ = (MLuint32) (0.5f + U3DQuant_Position * fabs(pos.z));
+  u8Signs = (pos.x < 0.0) | ((pos.y < 0.0) << 1) | ((pos.z < 0.0) << 2);
+  udX = (MLuint32) (0.5f + U3DQuant_Position * fabs(pos.x));
+  udY = (MLuint32) (0.5f + U3DQuant_Position * fabs(pos.y));
+  udZ = (MLuint32) (0.5f + U3DQuant_Position * fabs(pos.z));
 }
 
 void quantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ) 
 {
-	u8Signs = (pos.x < 0.0) | ((pos.y < 0.0) << 1) | ((pos.z < 0.0) << 2);
-	udX = (MLuint32) (0.5f + U3DQuant_Normal * fabs(pos.x));
-	udY = (MLuint32) (0.5f + U3DQuant_Normal * fabs(pos.y));
-	udZ = (MLuint32) (0.5f + U3DQuant_Normal * fabs(pos.z));
+  u8Signs = (pos.x < 0.0) | ((pos.y < 0.0) << 1) | ((pos.z < 0.0) << 2);
+  udX = (MLuint32) (0.5f + U3DQuant_Normal * fabs(pos.x));
+  udY = (MLuint32) (0.5f + U3DQuant_Normal * fabs(pos.y));
+  udZ = (MLuint32) (0.5f + U3DQuant_Normal * fabs(pos.z));
 }
 
 //***********************************************************************************

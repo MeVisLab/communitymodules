@@ -58,7 +58,7 @@ void SavePRC::PreProcessLineSetData(ModelBoundingBoxStruct& boundingBox)
     thisPRCObjectInfo.ParentTreeNodeID    = -1;
     thisPRCObjectInfo.RGBAColor           = mlPDF::PDFTools::getColorVec4FromString(thisSpecificationParameters.Color, Vector4(0));  // If alpha = 0 -> Adobe doesn't render
     _prcObjectInfoVector.push_back(thisPRCObjectInfo);
-		
+    
     // Collect geometry info
     LineSetSpecificationStruct thisLineSetGeometry;
     thisLineSetGeometry.internalName = thisPRCObjectInfo.InternalName;
@@ -78,7 +78,7 @@ void SavePRC::PreProcessLineSetData(ModelBoundingBoxStruct& boundingBox)
     ModelBoundingBoxStruct newboundingBox = mlPDF::PDFTools::GetBoundingBoxFomPositions(thisLineSetGeometry.positions);
     mlPDF::PDFTools::UpdateBoundingBox(boundingBox, newboundingBox);
   }
-	
+  
 }
 
 //***********************************************************************************

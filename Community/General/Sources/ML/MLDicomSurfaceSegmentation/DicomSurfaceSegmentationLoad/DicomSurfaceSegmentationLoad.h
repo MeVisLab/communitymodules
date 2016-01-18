@@ -48,54 +48,54 @@ ML_START_NAMESPACE
 class MLDICOMSURFACESEGMENTATION_EXPORT DicomSurfaceSegmentationLoad : public WEMGenerator
 {
   //! Implements interface for the runtime type system of the ML.
-	ML_MODULE_CLASS_HEADER(DicomSurfaceSegmentationLoad); 
+  ML_MODULE_CLASS_HEADER(DicomSurfaceSegmentationLoad); 
 
 public:
 
   //! Constructor.
-	DicomSurfaceSegmentationLoad(std::string="DicomSurfaceSegmentationLoad");
+  DicomSurfaceSegmentationLoad(std::string="DicomSurfaceSegmentationLoad");
 
 protected:
 
   //! Destructor.
-	virtual ~DicomSurfaceSegmentationLoad();
+  virtual ~DicomSurfaceSegmentationLoad();
 
   //! Initialize module after loading.
   virtual void activateAttachments();
-	
+  
   //! Handle field changes of the field Field.
   virtual void handleNotification (Field*);
-	
+  
   //! _process()-routine for correct processing.
   virtual void _process();
 
 private:
 
   // Output fields
-	BaseField*   _outPointSetPositionsFld;
-	BaseField*   _outLineSetPositionsFld;
+  BaseField*   _outPointSetPositionsFld;
+  BaseField*   _outLineSetPositionsFld;
   //BaseField*   _outLineSetConnectionsFld;
 
   // UI fields
-	StringField* _filenameFld;
+  StringField* _filenameFld;
 
-	NotifyField* _unloadFld;
+  NotifyField* _unloadFld;
   BoolField*   _outputValidFld;
 
-	IntField*    _numPointSetsFld;
-	IntField*    _numLineSetsFld;
-	IntField*    _numMeshesFld;
+  IntField*    _numPointSetsFld;
+  IntField*    _numLineSetsFld;
+  IntField*    _numMeshesFld;
   IntField*    _numUnknownObjectsFld;
 
 
-	StringField* _pointSetsInfoFld;
-	StringField* _lineSetsInfoFld;
-	StringField* _meshesInfoFld;
-	StringField* _unknownObjectsInfoFld;
+  StringField* _pointSetsInfoFld;
+  StringField* _lineSetsInfoFld;
+  StringField* _meshesInfoFld;
+  StringField* _unknownObjectsInfoFld;
 
-	IntField*    _pointSetsExportMarkerTypeStartValueFld;
-	IntField*    _lineSetsExportMarkerTypeStartValueFld;
-	IntField*    _meshesIDStartValueFld;
+  IntField*    _pointSetsExportMarkerTypeStartValueFld;
+  IntField*    _lineSetsExportMarkerTypeStartValueFld;
+  IntField*    _meshesIDStartValueFld;
 
   // DICOM tags fields
   StringField* _allDicomTagsFld;
@@ -122,17 +122,17 @@ private:
   StringField* _tagValue8Fld;
   StringField* _tagValue9Fld;
 
-	// Globals
-	XMarkerList _outPointSetPositions;       // Output point positions
-	XMarkerList _outLineSetPositions;        // Output line positions
-	//IndexPairList _outLineSetConnections;    // Output line connections
+  // Globals
+  XMarkerList _outPointSetPositions;       // Output point positions
+  XMarkerList _outLineSetPositions;        // Output line positions
+  //IndexPairList _outLineSetConnections;    // Output line connections
 
-	std::string _filename;              // File name including path
+  std::string _filename;              // File name including path
 
-	std::vector<Element3D> _dicomPointSetsVector;        // List of all point sets
-	std::vector<Element3D> _dicomLineSetsVector;         // List of all line sets
-	std::vector<Element3D> _dicomMeshesVector;           // List of all meshes
-	std::vector<Element3D> _dicomUnknownObjectsVector;   // List of all unknown objects
+  std::vector<Element3D> _dicomPointSetsVector;        // List of all point sets
+  std::vector<Element3D> _dicomLineSetsVector;         // List of all line sets
+  std::vector<Element3D> _dicomMeshesVector;           // List of all meshes
+  std::vector<Element3D> _dicomUnknownObjectsVector;   // List of all unknown objects
 
   std::vector<Element3D> _dicomAllObjectsVector;
 
@@ -140,19 +140,19 @@ private:
 
 
 
-	// Methods
-  void _loadFile();	
+  // Methods
+  void _loadFile();  
   void _unloadFile();
   bool _loadDataset();
   void _parseDataset();
   void _distributeObjectsToVectors();
-	void _updateInfoFields();
-	void _updateDicomTagFields();
+  void _updateInfoFields();
+  void _updateDicomTagFields();
   void _updateOutputFields();
-	void _addPointSetToOutput(const int pointSetNumber);
-	void _addLineSetToOutput(const int lineSetNumber);
-	void _addMeshToOutput(const int meshNumber);
-	  
+  void _addPointSetToOutput(const int pointSetNumber);
+  void _addLineSetToOutput(const int lineSetNumber);
+  void _addMeshToOutput(const int meshNumber);
+    
 };
 
 ML_END_NAMESPACE

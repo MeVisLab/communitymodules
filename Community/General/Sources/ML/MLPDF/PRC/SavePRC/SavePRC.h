@@ -134,7 +134,7 @@ private:
   StringField   *_newSpecificationConnectionTypesFld;
 
   //! The XMarkerList input for point positions of point clouds
-	ml::ColoredMarkerList _inPointPositions;  
+  ml::ColoredMarkerList _inPointPositions;  
 
   //! The XMarkerList input for node positions of line sets
   ml::ColoredMarkerList _inLinePositions;
@@ -206,7 +206,7 @@ private:
   // Scan all WEM patches, triangulate them if necessary and collect base info.
   void PreProcessMeshData(WEMPtr saveWEM, 
                           PRCMeshInfoVector &meshInfoVector,
-	                        ModelBoundingBoxStruct& boundingBox);
+                          ModelBoundingBoxStruct& boundingBox);
 
   // Write all meshes of a model tree node to PRC file
   void WriteMeshDataToPRCFile(PRCFile &outPRCFile, MLint modelTreeNode);

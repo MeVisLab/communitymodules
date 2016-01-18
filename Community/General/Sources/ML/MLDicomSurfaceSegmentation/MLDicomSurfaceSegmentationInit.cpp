@@ -30,7 +30,7 @@ int DicomSurfaceSegmentationInit()
   DicomSurfaceSegmentationLoad::initClass();
   DicomSurfaceSegmentationSave::initClass();
 
-	return 1;
+  return 1;
 }
 
 ML_END_NAMESPACE

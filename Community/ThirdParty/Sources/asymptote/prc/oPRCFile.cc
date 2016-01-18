@@ -164,7 +164,7 @@ void PRCFileStructure::serializeFileStructureTree(PRCbitStream &out)
   WriteUnsignedInteger (number_of_part_definitions)
   for (uint32_t i=0;i<number_of_part_definitions;i++)
     SerializePartDefinition (part_definitions[i])
-	
+    
   const uint32_t number_of_product_occurrences = product_occurrences.size();
   WriteUnsignedInteger (number_of_product_occurrences)
   for (uint32_t i=0;i<number_of_product_occurrences;i++)

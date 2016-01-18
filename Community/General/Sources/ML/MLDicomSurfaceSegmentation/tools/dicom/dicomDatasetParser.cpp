@@ -22,16 +22,16 @@ ML_START_NAMESPACE
  */
 DicomDatasetParser::DicomDatasetParser(SmartPtr_DCMDataSet dataset)
 {
-	if(!dataset) {
-		std::cerr << "The dataset-pointer is empty; the dataset could not be parsed.";
-		throw std::exception("Dataset-pointer is empty.");
-	}
-	if(dataset->isEmpty()) {
-		std::cerr << "The dataset is empty and could not be parsed.";
-		throw std::exception("Dataset is empty.");
-	}
-	
-	_dataset = dataset;
+  if(!dataset) {
+    std::cerr << "The dataset-pointer is empty; the dataset could not be parsed.";
+    throw std::exception("Dataset-pointer is empty.");
+  }
+  if(dataset->isEmpty()) {
+    std::cerr << "The dataset is empty and could not be parsed.";
+    throw std::exception("Dataset is empty.");
+  }
+  
+  _dataset = dataset;
 }
 
 /**
@@ -44,8 +44,8 @@ std::string  DicomDatasetParser::getMediaStorageSOPClassUID() const
 {
   std::string result = "";
 
-	OFString mediaStorageSOPClassUIDString;
-	OFCondition status = _dataset->findAndGetOFString(DCM_MediaStorageSOPClassUID, mediaStorageSOPClassUIDString);
+  OFString mediaStorageSOPClassUIDString;
+  OFCondition status = _dataset->findAndGetOFString(DCM_MediaStorageSOPClassUID, mediaStorageSOPClassUIDString);
 
   if (status.good())
   {
@@ -65,16 +65,16 @@ std::string  DicomDatasetParser::getMediaStorageSOPClassUID() const
  */
 DcmElement* DicomDatasetParser::searchFirstElement(DcmElement* ancestor, const DcmTag tag) const
 {
-	if(ancestor == NULL) {
-		std::cerr << "Ancestor is NULL. Returning NULL.";
-		return NULL;
-	}
+  if(ancestor == NULL) {
+    std::cerr << "Ancestor is NULL. Returning NULL.";
+    return NULL;
+  }
 
-	DcmStack stack;
-	if(ancestor->search(tag, stack).bad() || stack.empty())
-		return NULL;
-	
-	return static_cast<DcmElement*>(stack.pop());
+  DcmStack stack;
+  if(ancestor->search(tag, stack).bad() || stack.empty())
+    return NULL;
+  
+  return static_cast<DcmElement*>(stack.pop());
 }
 
 /**
@@ -90,11 +90,11 @@ DcmElement* DicomDatasetParser::searchFirstElement(DcmElement* ancestor, const D
  */
 char* DicomDatasetParser::searchFirstElementChar(DcmElement* ancestor, const DcmTag tag) const
 {
-	DcmElement* resultE = searchFirstElement(ancestor, tag);
-	char* result = "";
-	if(resultE != NULL && resultE->getString(result).good())
-		return result;
-	return "";
+  DcmElement* resultE = searchFirstElement(ancestor, tag);
+  char* result = "";
+  if(resultE != NULL && resultE->getString(result).good())
+    return result;
+  return "";
 }
 
 /**
@@ -110,11 +110,11 @@ char* DicomDatasetParser::searchFirstElementChar(DcmElement* ancestor, const Dcm
  */
 boost::optional<unsigned short> DicomDatasetParser::searchFirstElementUnsignedShort(DcmElement* ancestor, const DcmTag tag) const
 {
-	DcmElement* resultE = searchFirstElement(ancestor, tag);
-	unsigned short result = 0;
-	if(resultE != NULL && resultE->getUint16(result).good())
-		return result;
-	return boost::none;
+  DcmElement* resultE = searchFirstElement(ancestor, tag);
+  unsigned short result = 0;
+  if(resultE != NULL && resultE->getUint16(result).good())
+    return result;
+  return boost::none;
 }
 
 /**
@@ -130,11 +130,11 @@ boost::optional<unsigned short> DicomDatasetParser::searchFirstElementUnsignedSh
  */
 boost::optional<unsigned long> DicomDatasetParser::searchFirstElementUnsignedLong(DcmElement* ancestor, const DcmTag tag) const
 {
-	DcmElement* resultE = searchFirstElement(ancestor, tag);
-	unsigned long result = 0;
-	if(resultE != NULL && resultE->getUint32(result).good())
-		return result;
-	return boost::none;
+  DcmElement* resultE = searchFirstElement(ancestor, tag);
+  unsigned long result = 0;
+  if(resultE != NULL && resultE->getUint32(result).good())
+    return result;
+  return boost::none;
 }
 
 /**
@@ -146,12 +146,12 @@ boost::optional<unsigned long> DicomDatasetParser::searchFirstElementUnsignedLon
  */
 inline const char* DicomDatasetParser::getCharAttribute(const DcmTagKey tag) const
 {
-	OFString result;
-	if(_dataset->findAndGetOFString(tag, result).bad())
-		return "";
+  OFString result;
+  if(_dataset->findAndGetOFString(tag, result).bad())
+    return "";
 
-	const char* resultC = result.c_str();
-	return resultC;
+  const char* resultC = result.c_str();
+  return resultC;
 }
 
 /**
@@ -165,15 +165,15 @@ inline const char* DicomDatasetParser::getCharAttribute(const DcmTagKey tag) con
  */
 std::string DicomDatasetParser::getStringAttribute(const DcmTagKey tag) const
 {
-	const char* resultChars;
+  const char* resultChars;
   std::string result = "";
 
   if(_dataset->findAndGetString(tag, resultChars).good())
   {
-		result = std::string(resultChars);
+    result = std::string(resultChars);
   }
 
-	return result;
+  return result;
 }
 
 /**
@@ -187,9 +187,9 @@ std::string DicomDatasetParser::getStringAttribute(const DcmTagKey tag) const
  */
 boost::shared_ptr<DcmStack> DicomDatasetParser::getElementsByTag(const DcmTag tag) const
 {
-	boost::shared_ptr<DcmStack> result(new DcmStack());
-	_dataset->findAndGetElements(tag, *result);
-	return result;
+  boost::shared_ptr<DcmStack> result(new DcmStack());
+  _dataset->findAndGetElements(tag, *result);
+  return result;
 }
 
 /**
@@ -204,16 +204,16 @@ boost::shared_ptr<DcmStack> DicomDatasetParser::getElementsByTag(const DcmTag ta
  */
 std::vector<DcmItem*> DicomDatasetParser::getSequenceItems(const DcmTag sequenceTag) const
 {
-	std::vector<DcmItem*> sequenceItems;
+  std::vector<DcmItem*> sequenceItems;
 
-	long i=0;
-	DcmItem* foundItem;
-	while(_dataset->findAndGetSequenceItem(sequenceTag, foundItem, i).good()) {
-		sequenceItems.push_back(foundItem);
-		i++;
-	}
+  long i=0;
+  DcmItem* foundItem;
+  while(_dataset->findAndGetSequenceItem(sequenceTag, foundItem, i).good()) {
+    sequenceItems.push_back(foundItem);
+    i++;
+  }
 
-	return sequenceItems;
+  return sequenceItems;
 }
 
 /**
@@ -229,20 +229,20 @@ std::vector<DcmItem*> DicomDatasetParser::getSequenceItems(const DcmTag sequence
  */
 std::vector<DcmItem*> DicomDatasetParser::getSequenceItems(DcmItem* item, const DcmTag sequenceTag) const
 {
-	std::vector<DcmItem*> sequenceItems;
-	if(item == NULL) {
-		std::cerr << "Item is NULL. Returning an empty vector.";
-		return sequenceItems;
-	}
+  std::vector<DcmItem*> sequenceItems;
+  if(item == NULL) {
+    std::cerr << "Item is NULL. Returning an empty vector.";
+    return sequenceItems;
+  }
 
-	long i=0;
-	DcmItem* foundItem;
-	while(item->findAndGetSequenceItem(sequenceTag, foundItem, i).good()) {
-		sequenceItems.push_back(foundItem);
-		i++;
-	}
+  long i=0;
+  DcmItem* foundItem;
+  while(item->findAndGetSequenceItem(sequenceTag, foundItem, i).good()) {
+    sequenceItems.push_back(foundItem);
+    i++;
+  }
 
-	return sequenceItems;
+  return sequenceItems;
 }
 
 ML_END_NAMESPACE

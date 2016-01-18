@@ -163,7 +163,7 @@ void PRC_FileStructure::serializeFileStructureTree(PRC_BitStream &out)
   WriteUnsignedInteger (number_of_part_definitions)
   for (MLuint32 i=0;i<number_of_part_definitions;i++)
     SerializePartDefinition (part_definitions[i])
-	
+  
   const MLuint32 number_of_product_occurrences = (MLuint32)product_occurrences.size();
   WriteUnsignedInteger (number_of_product_occurrences)
   for (MLuint32 i=0;i<number_of_product_occurrences;i++)
@@ -1597,12 +1597,12 @@ MLuint32 PRCFile::createTriangleMesh(MLuint32 nP, const double P[][3], MLuint32 
     tess->crease_angle = ca;
   if(textured)
   {
-		tess->texture_coordinate.reserve(2*nT);
-		for(MLuint32 i=0; i<nT; i++)
-		{
-			tess->texture_coordinate.push_back(T[i][0]);
-			tess->texture_coordinate.push_back(T[i][1]);
-		}
+    tess->texture_coordinate.reserve(2*nT);
+    for(MLuint32 i=0; i<nT; i++)
+    {
+      tess->texture_coordinate.push_back(T[i][0]);
+      tess->texture_coordinate.push_back(T[i][1]);
+    }
   }
   tess->triangulated_index.reserve(3*nI+(has_normals?3:0)*nI+(textured?3:0)*nI);
   for(MLuint32 i=0; i<nI; i++)

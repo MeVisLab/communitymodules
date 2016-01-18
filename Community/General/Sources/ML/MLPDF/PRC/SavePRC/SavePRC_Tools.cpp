@@ -41,38 +41,38 @@ PRCObjectInfoStruct SavePRC::CreateNewPRCObjectInfo(int objectIndex, PRCObjectTy
     
     if ("" == prefix)  // Just in case the field was cleared...
     {
-	    prefix = "Mesh";
+      prefix = "Mesh";
     }
 
-	  if (PRCOBJECTTYPE_POINTSET == objectType)
-	  {
+    if (PRCOBJECTTYPE_POINTSET == objectType)
+    {
       prefix = _modelPrefixPointCloudsFld->getStringValue();
     
       if ("" == prefix)  // Just in case the field was cleared...
       {
-	      prefix = "PointSet";
+        prefix = "PointSet";
       }
-	  }
+    }
 
-	  if (PRCOBJECTTYPE_LINESET == objectType)
-	  {
+    if (PRCOBJECTTYPE_LINESET == objectType)
+    {
       prefix = _modelPrefixLineSetsFld->getStringValue();
     
       if ("" == prefix)  // Just in case the field was cleared...
       {
-	      prefix = "LineSet";
+        prefix = "LineSet";
       }
-	  }
+    }
 
-	  //if (PRCOBJECTTYPE_GLYPH == objectType)
-	  //{
+    //if (PRCOBJECTTYPE_GLYPH == objectType)
+    //{
     //  prefix = _modelPrefixGlyphsFld->getStringValue();
     //
     //  if ("" == prefix)  // Just in case the field was cleared...
     //  {
-	  //    prefix = "Glyph";
+    //    prefix = "Glyph";
     //  }
-	  //}
+    //}
 
     newPRCObjectInfo.DisplayName.insert(0,"__" + prefix);
   }
