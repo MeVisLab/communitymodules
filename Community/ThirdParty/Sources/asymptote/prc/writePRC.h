@@ -134,12 +134,12 @@ class UserData
 
 struct PRCAttributeEntry
 {
-	PRCAttributeEntry() : title_is_integer(false) {}
-	PRCAttributeEntry(uint32_t integer) : title_is_integer(true)
+    PRCAttributeEntry() : title_is_integer(false) {}
+    PRCAttributeEntry(uint32_t integer) : title_is_integer(true)
   {
     title_integer = integer;
   }
-	PRCAttributeEntry(const std::string &text) : title_is_integer(false)
+    PRCAttributeEntry(const std::string &text) : title_is_integer(false)
   {
     title_text = text;
   }
@@ -153,11 +153,11 @@ class PRCSingleAttribute : public PRCAttributeEntry
 {
   public:
   PRCSingleAttribute() : type(KEPRCModellerAttributeTypeNull) {}
-	PRCSingleAttribute(int32_t integer) : PRCAttributeEntry(), type(KEPRCModellerAttributeTypeInt)
+    PRCSingleAttribute(int32_t integer) : PRCAttributeEntry(), type(KEPRCModellerAttributeTypeInt)
   {
     value.integer = integer;
   }
-	PRCSingleAttribute(double real) : PRCAttributeEntry(), type(KEPRCModellerAttributeTypeReal)
+    PRCSingleAttribute(double real) : PRCAttributeEntry(), type(KEPRCModellerAttributeTypeReal)
   {
     value.real = real;
   }
@@ -165,14 +165,14 @@ class PRCSingleAttribute : public PRCAttributeEntry
   {
     value.time = time;
   }  
-	PRCSingleAttribute(const std::string &text) : PRCAttributeEntry(), type(KEPRCModellerAttributeTypeString)
+    PRCSingleAttribute(const std::string &text) : PRCAttributeEntry(), type(KEPRCModellerAttributeTypeString)
   {
     value_text = text;}
-	PRCSingleAttribute(uint32_t title, int32_t integer) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeInt)
+    PRCSingleAttribute(uint32_t title, int32_t integer) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeInt)
   {
     value.integer = integer;
   }
-	PRCSingleAttribute(uint32_t title, double real) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeReal)
+    PRCSingleAttribute(uint32_t title, double real) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeReal)
   {
     value.real = real;
   }
@@ -180,15 +180,15 @@ class PRCSingleAttribute : public PRCAttributeEntry
   {
     value.time = time;
   }  
-	PRCSingleAttribute(uint32_t title, const std::string &text) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeString)
+    PRCSingleAttribute(uint32_t title, const std::string &text) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeString)
   {
     value_text = text;
   }
-	PRCSingleAttribute(const std::string title, int32_t integer) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeInt)
+    PRCSingleAttribute(const std::string title, int32_t integer) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeInt)
   {
     value.integer = integer;
   }
-	PRCSingleAttribute(const std::string title, double real) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeReal)
+    PRCSingleAttribute(const std::string title, double real) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeReal)
   {
     value.real = real;
   }
@@ -196,7 +196,7 @@ class PRCSingleAttribute : public PRCAttributeEntry
   {
     value.time = time;
   }  
-	PRCSingleAttribute(const std::string title, const std::string &text) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeString)
+    PRCSingleAttribute(const std::string title, const std::string &text) : PRCAttributeEntry(title), type(KEPRCModellerAttributeTypeString)
   {
     value_text = text;
   }
@@ -215,8 +215,8 @@ class PRCAttribute : public PRCAttributeEntry
 {
   public:
   PRCAttribute() : PRCAttributeEntry() {}
-	PRCAttribute(uint32_t title) : PRCAttributeEntry(title) {}
-	PRCAttribute(const std::string title) : PRCAttributeEntry(title) {}
+    PRCAttribute(uint32_t title) : PRCAttributeEntry(title) {}
+    PRCAttribute(const std::string title) : PRCAttributeEntry(title) {}
   void serializeAttribute(PRCbitStream &) const;
   PRCSingleAttribute& newKey() { attribute_keys.resize(attribute_keys.size()+1); return attribute_keys.back(); }
   void addKey(const PRCSingleAttribute &key) { attribute_keys.push_back(key); }
@@ -508,8 +508,8 @@ public:
   {}
   void serializeTessFace(PRCbitStream&);
   std::vector<uint32_t> line_attributes;
-  uint32_t start_wire;			// specifing bounding wire seems not to work as of Acrobat/Reader 9.2
-  std::vector<uint32_t> sizes_wire;	// specifing bounding wire seems not to work as of Acrobat/Reader 9.2
+  uint32_t start_wire;            // specifing bounding wire seems not to work as of Acrobat/Reader 9.2
+  std::vector<uint32_t> sizes_wire;    // specifing bounding wire seems not to work as of Acrobat/Reader 9.2
   uint32_t used_entities_flag;
   uint32_t start_triangulated;
   std::vector<uint32_t> sizes_triangulated;
@@ -554,7 +554,7 @@ public:
   bool has_loops;
   double crease_angle;
   std::vector<double> normal_coordinate;
-  std::vector<uint32_t> wire_index;		// specifing bounding wire seems not to work as of Acrobat/Reader 9.2
+  std::vector<uint32_t> wire_index;        // specifing bounding wire seems not to work as of Acrobat/Reader 9.2
   std::vector<uint32_t> triangulated_index;
   PRCTessFaceList face_tessellation;
   std::vector<double> texture_coordinate;
@@ -1454,18 +1454,18 @@ typedef std::deque <PRCProductOccurrence*>  PRCProductOccurrenceList;
 class PRCPartDefinition: public PRCGraphics, public ContentPRCBase, public PRCBoundingBox
 {
 public:
-	PRCPartDefinition(std::string n="") :
+    PRCPartDefinition(std::string n="") :
     ContentPRCBase(PRC_TYPE_ASM_PartDefinition,n) {}
   ~PRCPartDefinition() { for(PRCRepresentationItemList::iterator it=representation_item.begin(); it!=representation_item.end(); ++it) delete *it; }
-	void serializePartDefinition(PRCbitStream&);
-	uint32_t addBrepModel(PRCBrepModel*& pBrepModel);
-	uint32_t addPolyBrepModel(PRCPolyBrepModel*& pPolyBrepModel);
-	uint32_t addPointSet(PRCPointSet*& pPointSet);
-	uint32_t addSet(PRCSet*& pSet);
-	uint32_t addWire(PRCWire*& pWire);
-	uint32_t addPolyWire(PRCPolyWire*& pPolyWire);
-	uint32_t addRepresentationItem(PRCRepresentationItem*& pRepresentationItem);
-	PRCRepresentationItemList representation_item;
+    void serializePartDefinition(PRCbitStream&);
+    uint32_t addBrepModel(PRCBrepModel*& pBrepModel);
+    uint32_t addPolyBrepModel(PRCPolyBrepModel*& pPolyBrepModel);
+    uint32_t addPointSet(PRCPointSet*& pPointSet);
+    uint32_t addSet(PRCSet*& pSet);
+    uint32_t addWire(PRCWire*& pWire);
+    uint32_t addPolyWire(PRCPolyWire*& pPolyWire);
+    uint32_t addRepresentationItem(PRCRepresentationItem*& pRepresentationItem);
+    PRCRepresentationItemList representation_item;
 };
 typedef std::deque <PRCPartDefinition*>  PRCPartDefinitionList;
 

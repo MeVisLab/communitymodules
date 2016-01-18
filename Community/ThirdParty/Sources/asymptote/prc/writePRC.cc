@@ -246,7 +246,7 @@ void PRCAttributeEntry::serializeAttributeEntry(PRCbitStream &pbs) const
   WriteBoolean (title_is_integer) 
   if (title_is_integer)
     WriteUnsignedInteger (title_integer)
-  else	
+  else    
     WriteString (title_text)
 }
 
@@ -1878,11 +1878,11 @@ void PRCTopoContext::serializeContextGraphics(PRCbitStream &pbs)
         else if ( body[i]->topo_item_type == PRC_TYPE_TOPO_BrepDataCompress && dynamic_cast<PRCCompressedBrepData*>(body[i]))
         {
                 PRCCompressedBrepData *body_i = dynamic_cast<PRCCompressedBrepData*>(body[i]);
-             	for( l=0;l<body_i->face.size();l++)
-             	{
-             		element.push_back( body_i->face[l] );
-             		has_graphics = has_graphics || body_i->face[l]->has_graphics();
-             	}
+                 for( l=0;l<body_i->face.size();l++)
+                 {
+                     element.push_back( body_i->face[l] );
+                     has_graphics = has_graphics || body_i->face[l]->has_graphics();
+                 }
         }
    }
    uint32_t number_of_treat_type = 0;
@@ -1940,7 +1940,7 @@ void PRCUniqueId::serializeCompressedUniqueId(PRCbitStream &pbs) const
    WriteUnsignedInteger (id0) 
    WriteUnsignedInteger (id1) 
    WriteUnsignedInteger (id2) 
-   WriteUnsignedInteger (id3) 	
+   WriteUnsignedInteger (id3)     
 }
 
 void PRCUniqueId::serializeFileStructureUncompressedUniqueId(std::ostream& out) const
@@ -2065,7 +2065,7 @@ uint32_t PRCPartDefinition::addRepresentationItem(PRCRepresentationItem*& pRepre
 void PRCPartDefinition::serializePartDefinition(PRCbitStream &pbs)
 {
   WriteUnsignedInteger ( PRC_TYPE_ASM_PartDefinition ) 
-	
+    
   SerializePRCBaseWithGraphics
   SerializeBoundingBox
 
@@ -2073,7 +2073,7 @@ void PRCPartDefinition::serializePartDefinition(PRCbitStream &pbs)
   WriteUnsignedInteger (number_of_representation_items)
   for (uint32_t i=0;i<number_of_representation_items;i++)
     SerializeRepresentationItem (representation_item[i])
-	
+    
   // SerializeMarkups (markups)
   WriteUnsignedInteger (0) // number_of_linked_items 
   WriteUnsignedInteger (0) // number_of_leaders 
@@ -2082,4 +2082,4 @@ void PRCPartDefinition::serializePartDefinition(PRCbitStream &pbs)
 
   WriteUnsignedInteger (0) // number_of_views
   SerializeUserData
-}	
+}    
