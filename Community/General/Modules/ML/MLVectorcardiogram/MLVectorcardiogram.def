@@ -23,7 +23,7 @@ MLModule VCGCoordinateSystem {
   author             = "Axel Newe"
   comment            = "Creates a coordinate system for VCG rendering and exporting."
   keywords           = "VCG"
-  seeAlso            = "VCGLoad VCGCoordinateSystemRenderer VCGLineSetDefinition SaveU3D SavePRC Save3DFigurePDF"
+  seeAlso            = "VCGLoad VCGCoordinateSystemRenderer VCGLineSetDefinition SaveU3D"
   externalDefinition = $(LOCAL)/VCGCoordinateSystem.script
   exampleNetwork     = $(LOCAL)/networks/VCGExportExample.mlab 
 }  
@@ -33,7 +33,7 @@ MLModule VCGLineSetDefinition {
   author             = "Axel Newe"
   comment            = "Assembles a lineset definition for U3D export."
   keywords           = "VCG"
-  seeAlso            = "VCGLoad VCGCoordinateSystem VCGCoordinateSystemRenderer SaveU3D SavePRC Save3DFigurePDF"
+  seeAlso            = "VCGLoad VCGCoordinateSystem VCGCoordinateSystemRenderer SaveU3D"
   externalDefinition = $(LOCAL)/VCGLineSetDefinition.script
   exampleNetwork     = $(LOCAL)/networks/VCGExportExample.mlab 
 }

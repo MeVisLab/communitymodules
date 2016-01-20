@@ -1,0 +1,66 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLVectorcardiogram/MLVectorcardiogram.def
+    moduleName = VCGCoordinateSystemRenderer
+    moduleType = MacroModule
+    author = "Axel Newe"
+    dll = ""
+    genre = ""
+    keywords = VCG
+    seeAlso = "VCGLoad VCGCoordinateSystem VCGLineSetDefinition"
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+  }
+  Inputs  {
+    text = ""
+    Field inPlanesWEM {
+      type = MLBase
+      text = ""
+    }
+    Field inLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLineConnections {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outScene {
+      type = SoNode
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = VCGCoordinateSystemRenderer
+    }
+    text = ""
+  }
+}

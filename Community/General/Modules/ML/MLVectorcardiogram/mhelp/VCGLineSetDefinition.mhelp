@@ -6,10 +6,10 @@ ModuleHelp  {
     author = "Axel Newe"
     DLL = MLVectorcardiogram
     genre = ""
-    keywords = ""
-    seeAlso = ""
+    keywords = VCG
+    seeAlso = "VCGLoad VCGCoordinateSystem VCGCoordinateSystemRenderer SaveU3D"
     package = General
-    packageGroup = Axel
+    packageGroup = Community
   }
   Purpose  {
     text = ""
@@ -64,7 +64,6 @@ ModuleHelp  {
       title = "Lineset Definition"
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
     Field linesetStartColor {
       type = Color
