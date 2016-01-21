@@ -6,10 +6,10 @@ ModuleHelp  {
     author = "Axel Newe"
     DLL = MLVectorcardiogram
     genre = ""
-    keywords = ""
-    seeAlso = ""
+    keywords = VCG
+    seeAlso = "VCGLoad VCGCoordinateSystemRenderer VCGLineSetDefinition SaveU3D"
     package = General
-    packageGroup = Axel
+    packageGroup = Community
   }
   Purpose  {
     text = ""
@@ -50,6 +50,10 @@ ModuleHelp  {
       type = MLBase
       text = ""
     }
+    Field outGridPlaneWEM {
+      type = MLBase
+      text = ""
+    }
   }
   Parameters  {
     Field instanceName {
@@ -66,8 +70,6 @@ ModuleHelp  {
       text = ""
       title = "Line Type Start ID: "
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = Yes
       default = 1000
     }
@@ -76,70 +78,73 @@ ModuleHelp  {
       text = ""
       title = "X-Axis ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
     }
     Field lineTypeYAxisID {
       type = Integer
       text = ""
       title = "Y-Axis ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
     }
     Field lineTypeZAxisID {
       type = Integer
       text = ""
       title = "Z-Axis ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
     }
     Field lineTypeXTicks {
       type = Integer
       text = ""
       title = "X-Ticks ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
     }
     Field lineTypeYTicks {
       type = Integer
       text = ""
       title = "Y-Ticks ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
     }
     Field lineTypeZTicks {
       type = Integer
       text = ""
       title = "Z-Ticks ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
     }
     Field lineTypeEndMarkerID {
       type = Integer
       text = ""
       title = "End Marker ID"
       visibleInGUI = Yes
-      min = ""
-      max = ""
       persistent = No
-      default = ""
+    }
+    Field xyPlaneWEMLabel {
+      type = String
+      text = ""
+      title = "XY Plane WEM Label"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = VCGCoordinateSystemXYPlane
+    }
+    Field yzPlaneWEMLabel {
+      type = String
+      text = ""
+      title = "YZ Plane WEM Label"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = VCGCoordinateSystemYZPlane
+    }
+    Field zxPlaneWEMLabel {
+      type = String
+      text = ""
+      title = "ZX Plane WEM Label"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = VCGCoordinateSystemZXPlane
     }
     Field axesType {
       type = Enum
@@ -150,12 +155,10 @@ ModuleHelp  {
         item Axes {
           title = Axes
           text = ""
-          deprecatedName = ""
         }
         item Grid {
           title = Grid
           text = ""
-          deprecatedName = ""
         }
       }
       persistent = Yes
@@ -167,7 +170,6 @@ ModuleHelp  {
       title = "Axes Overlength (% of each axis): "
       visibleInGUI = Yes
       min = 0
-      max = ""
       persistent = Yes
       default = 10
     }
@@ -203,36 +205,42 @@ ModuleHelp  {
       title = "Lineset Definition"
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
-    Field linesetXAxisColor {
+    Field meshDefinition {
+      type = String
+      text = ""
+      title = "Mesh Definition"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field xAxisColor {
       type = Color
       text = ""
-      title = "Lineset XAxis Color"
+      title = "XAxis Color"
       visibleInGUI = Yes
       persistent = Yes
       default = "0.7 0.7 0.7"
     }
-    Field linesetYAxisColor {
+    Field yAxisColor {
       type = Color
       text = ""
-      title = "Lineset YAxis Color"
+      title = "YAxis Color"
       visibleInGUI = Yes
       persistent = Yes
       default = "0.75 0.75 0.75"
     }
-    Field linesetZAxisColor {
+    Field zAxisColor {
       type = Color
       text = ""
-      title = "Lineset ZAxis Color"
+      title = "ZAxis Color"
       visibleInGUI = Yes
       persistent = Yes
       default = "0.8 0.8 0.8"
     }
-    Field linesetMarkerColor {
+    Field axisMarkerColor {
       type = Color
       text = ""
-      title = "Lineset Marker Color"
+      title = "Axis Marker Color"
       visibleInGUI = Yes
       persistent = Yes
       default = "1 0 0"

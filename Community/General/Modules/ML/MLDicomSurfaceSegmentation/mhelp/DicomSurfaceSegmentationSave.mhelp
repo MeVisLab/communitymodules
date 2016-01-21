@@ -3,13 +3,13 @@ ModuleHelp  {
     definition = Modules/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.def
     moduleName = DicomSurfaceSegmentationSave
     moduleType = MLModule
-    author = "Axel Newe"
+    author = "Axel Newe, Christian Hoffmann"
     DLL = MLDicomSurfaceSegmentation
     genre = DICOM
     keywords = "Save, DICOM, Segmentation, Mesh, WEM, Marker, Fiber, Fiberset"
     seeAlso = ""
     package = General
-    packageGroup = Axel
+    packageGroup = Community
   }
   Purpose  {
     text = ""
@@ -27,10 +27,7 @@ ModuleHelp  {
     text = ""
   }
   Windows  {
-    text  {
-      title = ""
-      text = ""
-    }
+    text = ""
     Window _default {
       title = ""
       text = ".. screenshot:: _default"
@@ -74,18 +71,14 @@ ModuleHelp  {
       text = ""
       title = ""
       visibleInGUI = No
-      persistent = Yes
-      default = FALSE
+      persistent = No
     }
     Field elapsedTime {
       type = Float
       text = ""
       title = ""
       visibleInGUI = No
-      min = ""
-      max = ""
-      persistent = Yes
-      default = 0
+      persistent = No
     }
     Field autoApply {
       hidden = true
@@ -94,7 +87,6 @@ ModuleHelp  {
       title = ""
       visibleInGUI = No
       persistent = No
-      default = ""
     }
     Field autoUpdate {
       hidden = true
@@ -103,7 +95,6 @@ ModuleHelp  {
       title = ""
       visibleInGUI = No
       persistent = No
-      default = ""
     }
     Field autoClear {
       hidden = true
@@ -112,7 +103,6 @@ ModuleHelp  {
       title = ""
       visibleInGUI = No
       persistent = No
-      default = ""
     }
     Field apply {
       type = Trigger
@@ -160,7 +150,6 @@ ModuleHelp  {
       title = Status
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
     text = ""
   }
