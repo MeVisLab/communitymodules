@@ -2,6 +2,12 @@ Makefile.*
 *.xcodeproj
 *.py[cod]
 
+# Visual Studio files (generated projects, intellisense data, precompiled headers)
+*.vcxproj*
+*.sln
+*.sdf
+ipch/
+
 tmp/
 build/
 
@@ -14,33 +20,8 @@ Thumbs.db
 
 /Community/General/Sources/ML/MLDicomSurfaceSegmentation/Example Data
 /Community/General/Sources/ML/MLDicomSurfaceSegmentation/20140730_v1-3_completeCode
-/Community/General/Sources/ML/MLPDF/ipch
-/Community/General/Sources/ML/MLPDF/MLPDF.sln
-/Community/General/Sources/ML/MLPDF/MLPDF.sdf
 /Community/General/Sources/ML/MLPDF/MLPDF.sh
-/Community/General/Sources/ML/MLPDF/MLPDF.vcxproj
-/Community/General/Sources/ML/MLPDF/MLPDF.vcxproj.filters
-/Community/General/Sources/ML/MLBaseListExtensions/MLBaseListExtensions.sdf
-/Community/General/Sources/ML/MLBaseListExtensions/MLBaseListExtensions.sln
-/Community/General/Sources/ML/MLBaseListExtensions/MLBaseListExtensions.vcxproj
-/Community/General/Sources/ML/MLBaseListExtensions/MLBaseListExtensions.vcxproj.filters
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.sdf
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.sln
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.vcxproj
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/MLDicomSurfaceSegmentation.vcxproj.filters
-/Community/General/Sources/ML/MLVectorcardiogram/MLVectorcardiogram.sdf
-/Community/General/Sources/ML/MLVectorcardiogram/MLVectorcardiogram.sln
-/Community/General/Sources/ML/MLVectorcardiogram/MLVectorcardiogram.vcxproj
-/Community/General/Sources/ML/MLVectorcardiogram/MLVectorcardiogram.vcxproj.filters
-/Community/ThirdParty/Sources/libhpdf/libhpdf.sdf
-/Community/ThirdParty/Sources/libhpdf/libhpdf.sln
-/Community/ThirdParty/Sources/libhpdf/libhpdf.vcxproj
-/Community/ThirdParty/Sources/libhpdf/libhpdf.vcxproj.filters
 /Community/ThirdParty/lib/libhpdf.mldepends
-/Community/General/Sources/ML/MLBaseListExtensions/ipch
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/ipch
-/Community/General/Sources/ML/MLVectorcardiogram/ipch
-/Community/General/Modules/ML/MLVectorcardiogram/VCGLoad.pyc
 /Community/General/Modules/ML/MLPDF/networks/SaveU3DExample.u3d
 /Community/General/Modules/ML/MLPDF/networks/SavePDFExample.u3d
 /Community/General/lib/MLBaseListExtensions.mldepends
@@ -49,27 +30,8 @@ Thumbs.db
 /Community/General/Sources/ML/MLPDF/MLPDF.opensdf
 /Community/General/Modules/ML/MLPDF/networks/Create separate WEMs.mlab
 /Community/General/Projects/PDF3DFigurePage/Modules/networks/Create separate WEMs.mlab
-/Community/General/Projects/PDF3DFigurePage/Sources/ipch
-/Community/General/Projects/PDF3DFigurePage/Sources/*.sdf
-/Community/General/Projects/PDF3DFigurePage/Sources/*.sln
-/Community/General/Projects/PDF3DFigurePage/Sources/*.vcxproj
 /Community/General/Projects/PDF3DFigurePage/Sources/*.filters
-/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.sdf
-/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.sln
-/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.vcxproj
-/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.vcxproj.filters
-/Community/General/Projects/PDFExamples/Sources/ipch/savepdftemplate-cd074324/savepdftemplate_d-d5ad92d8.ipch
-/Community/General/Projects/PDFExamples/Sources/ipch/savepdftemplate-cd074324/savepdftemplate-f0270bef.ipch
-/Community/ThirdParty/Sources/libhpdf/ipch/libhpdf-3469c37f/libhpdf_d-5c9db0ac.ipch
-/Community/General/Projects/PDF3DWork/Sources/ipch
-/Community/General/Projects/PDF3DWork/Sources/tmp
-/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.sdf
-/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.vcxproj
-/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.vcxproj.filters
-/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.vcxproj.user
-/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.sln
 /Community/General/Projects/PDF3DWork/Sources/PDF3DWork.suo
-/Community/ThirdParty/Sources/libhpdf/ipch/libhpdf-3469c37f/*.ipch
 /Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample_Model - EMPTY.u3d
 /Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.u3d
 /Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.pdf
