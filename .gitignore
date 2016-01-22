@@ -6,6 +6,7 @@ Makefile.*
 *.vcxproj*
 *.sln
 *.sdf
+*.opensdf
 ipch/
 
 tmp/
@@ -13,34 +14,32 @@ build/
 
 .DS_Store
 Thumbs.db
+Modules.mlab.cache
 
 /Community/General/bin/
 /Community/General/lib/
 /Community/General/Documentation/Publish/ModuleReference/
 
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/Example Data
-/Community/General/Sources/ML/MLDicomSurfaceSegmentation/20140730_v1-3_completeCode
-/Community/General/Sources/ML/MLPDF/MLPDF.sh
-/Community/ThirdParty/lib/libhpdf.mldepends
-/Community/General/Modules/ML/MLPDF/networks/SaveU3DExample.u3d
-/Community/General/Modules/ML/MLPDF/networks/SavePDFExample.u3d
-/Community/General/lib/MLBaseListExtensions.mldepends
-/Community/General/lib/MLPDF.mldepends
-/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.mlab.auto
-/Community/General/Sources/ML/MLPDF/MLPDF.opensdf
-/Community/General/Modules/ML/MLPDF/networks/Create separate WEMs.mlab
-/Community/General/Projects/PDF3DFigurePage/Modules/networks/Create separate WEMs.mlab
-/Community/General/Projects/PDF3DFigurePage/Sources/*.filters
-/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.suo
-/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample_Model - EMPTY.u3d
-/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.u3d
-/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.pdf
-/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample_Poster.png
-/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample.pdf
-/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample2.pdf
-/Community/General/Sources/ML/MLPDF/_DevelopmentTools/Create separate WEMs.mlab
-/Community/ThirdParty/Sources/libhpdf/Original Sources
-/Community/ThirdParty/Sources/libhpdf/libhpdf.opensdf
-/Community/General/Projects/PDFExamples/Sources/SavePDFTemplate.opensdf
+/Community/ThirdParty/lib/
 
 /UMD/METK/Documentation/Publish/ModuleReference/
+
+/Community/General/Modules/ML/MLPDF/networks/3DFigurePDFMacroExample.mlab.auto
+/Community/General/Modules/ML/MLPDF/networks/Create separate WEMs.mlab
+/Community/General/Modules/ML/MLPDF/networks/SavePDFExample.u3d
+/Community/General/Modules/ML/MLPDF/networks/SaveU3DExample.u3d
+/Community/General/Projects/PDF3DFigurePage/Modules/networks/Create separate WEMs.mlab
+/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.pdf
+/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.u3d
+/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample_Poster.png
+/Community/General/Projects/PDF3DFigurePage/Sources/*.filters
+/Community/General/Projects/PDF3DWork/Sources/PDF3DWork.suo
+/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample.pdf
+/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample2.pdf
+/Community/General/Projects/PDFExamples/Modules/networks/SavePDFTemplateExample_Model - EMPTY.u3d
+/Community/General/Sources/ML/MLDicomSurfaceSegmentation/20140730_v1-3_completeCode
+/Community/General/Sources/ML/MLDicomSurfaceSegmentation/Example Data
+/Community/General/Sources/ML/MLPDF/MLPDF.sh
+/Community/General/Sources/ML/MLPDF/_DevelopmentTools/Create separate WEMs.mlab
+
+/Community/ThirdParty/Sources/libhpdf/Original Sources
