@@ -16,7 +16,7 @@ MLModule MatlabScriptWrapper {
   DLL            = "MLMatlabScriptWrapper"
   genre          = "Other"
   author         = "Alexander Gryanik, Ola Friman, Markus Harz, Alexander Broersen"
-  status         = "work-in-progress"
+  status         = "stable"
   comment        = "Execute Matlab script and/or exchange different data-structures."
   keywords       = "Matlab scripting wrapper"
   seeAlso        = ""
