@@ -52,9 +52,9 @@ HPDF_EXPORT(HPDF_STATUS) HPDF_3DActivation_SetNavigationInterfaceOpened(HPDF_Dic
 
 HPDF_Dict
 HPDF_3DView_New    ( HPDF_MMgr  mmgr,
-                     HPDF_Xref  xref,
-                     HPDF_U3D    u3d,
-                     const char *name);
+					 HPDF_Xref  xref,
+					 HPDF_U3D	u3d,
+					 const char *name);
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

@@ -95,9 +95,9 @@ typedef HPDF_UNICODE
 
 typedef char *
 (*HPDF_Encoder_EncodeText_Func)  (HPDF_Encoder  encoder,
-                  const char   *text,
-                  HPDF_UINT     len,
-                  HPDF_UINT    *encoded_length);
+				  const char   *text,
+				  HPDF_UINT     len,
+				  HPDF_UINT    *encoded_length);
 
 typedef HPDF_STATUS
 (*HPDF_Encoder_Write_Func)  (HPDF_Encoder  encoder,
