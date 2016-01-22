@@ -20,12 +20,6 @@ $INSTALLER_COMPILE_ALL_PYTHON_FILES 1
 # Specify the license text
 $INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/PDFAddOn/PDFAddOnLicense.txt
 
-# Make sure that header files contain correct header and that hidden sections are removed
-#$PUBLIC_MEVISLAB 1
-
-# Disable signing
-$DEBUG_NO_SIGNING 1
-
 #---------------------------------------------------------------------
 INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
 #---------------------------------------------------------------------
