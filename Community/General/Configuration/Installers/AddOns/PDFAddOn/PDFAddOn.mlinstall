@@ -42,14 +42,16 @@ INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVis
 
 SWITCH_PACKAGE Community/General
 + Package.def
-+ lib/MLBaseListExtensions*.dll
-+ lib/MLBaseListExtensions*.lib
-+ lib/MLPDF*.dll
-+ lib/MLPDF*.lib
-+ lib/PDF3DFigurePage*.dll
-+ lib/PDF3DFigurePage*.lib
-+ lib/SavePDFTemplate*.dll
-+ lib/SavePDFTemplate*.lib
+IFDEF WIN32
+  +L lib/$(DLLPREFIX)MLBaseListExtensions$(DLLSUFFIX)
+  +L lib/$(DLLPREFIX)MLPDF$(DLLSUFFIX)
+  +L lib/$(DLLPREFIX)PDF3DFigurePage$(DLLSUFFIX)
+  +L lib/$(DLLPREFIX)SavePDFTemplate$(DLLSUFFIX)
+ENDIF
++L lib/$(LIBPREFIX)MLBaseListExtensions$(SDK_LIBSUFFIX)
++L lib/$(LIBPREFIX)MLPDF$(SDK_LIBSUFFIX)
++L lib/$(LIBPREFIX)PDF3DFigurePage$(SDK_LIBSUFFIX)
++L lib/$(LIBPREFIX)SavePDFTemplate$(SDK_LIBSUFFIX)
 + Modules/ML/MLBaseListExtensions
 + Sources/ML/MLBaseListExtensions/ColoredMarkerList
 + Sources/ML/MLBaseListExtensions/IndexPairList
