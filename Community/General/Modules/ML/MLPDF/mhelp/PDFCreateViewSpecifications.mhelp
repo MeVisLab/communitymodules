@@ -1,0 +1,252 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLPDF/MLPDF.def
+    moduleName = PDFCreateViewSpecifications
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLPDF
+    genre = PDFModules
+    keywords = PDF
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = PDFCreateViewSpecifications
+    }
+    Field cameraCenterOfOrbit {
+      type = Vector3
+      text = ""
+      title = "Center of Orbit"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field cameraCenterToCamera {
+      type = Vector3
+      text = ""
+      title = "Center to Camera"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field cameraRadiusOfOrbit {
+      type = Float
+      text = ""
+      title = "Radius of Orbit"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field cameraFOVAngle {
+      type = Float
+      text = ""
+      title = "Camera FOV Angle"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 90
+    }
+    Field cameraRollAngle {
+      type = Float
+      text = ""
+      title = "Camera Roll Angle"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field viewSpecifications {
+      type = String
+      text = ""
+      title = "View Specifications"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field newViewDisplayName {
+      type = String
+      text = ""
+      title = "View Display Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field newViewBackgroundColor {
+      type = Color
+      text = ""
+      title = "Background Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 1 1"
+    }
+    Field newViewLightingScheme {
+      type = Enum
+      text = ""
+      title = "Lighting Scheme"
+      visibleInGUI = Yes
+      items  {
+        item None {
+          title = None
+          text = ""
+        }
+        item White {
+          title = White
+          text = ""
+        }
+        item Day {
+          title = Day
+          text = ""
+        }
+        item Night {
+          title = Night
+          text = ""
+        }
+        item Hard {
+          title = Hard
+          text = ""
+        }
+        item Primary {
+          title = Primary
+          text = ""
+        }
+        item Blue {
+          title = Blue
+          text = ""
+        }
+        item Red {
+          title = Red
+          text = ""
+        }
+        item Cube {
+          title = Cube
+          text = ""
+        }
+        item CAD {
+          title = CAD
+          text = ""
+        }
+        item HeadLamp {
+          title = "Head Lamp"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = CAD
+    }
+    Field newViewRenderMode {
+      type = Enum
+      text = ""
+      title = "Render Mode"
+      visibleInGUI = Yes
+      items  {
+        item Solid {
+          title = Solid
+          text = ""
+        }
+        item SolidWireframe {
+          title = "Solid Wireframe"
+          text = ""
+        }
+        item Transparent {
+          title = Transparent
+          text = ""
+        }
+        item TransparentWireframe {
+          title = "Transparent Wireframe"
+          text = ""
+        }
+        item BoundingBox {
+          title = "Bounding Box"
+          text = ""
+        }
+        item TransparentBoundingBox {
+          title = "Transparent Bounding Box"
+          text = ""
+        }
+        item TransparentBoundingBoxOutline {
+          title = "Transparent Bounding Box Outline"
+          text = ""
+        }
+        item Wireframe {
+          title = Wireframe
+          text = ""
+        }
+        item ShadedWireframe {
+          title = "Shaded Wireframe"
+          text = ""
+        }
+        item HiddenWireframe {
+          title = "Hidden Wireframe"
+          text = ""
+        }
+        item Vertices {
+          title = Vertices
+          text = ""
+        }
+        item ShadedVertices {
+          title = "Shaded Vertices"
+          text = ""
+        }
+        item Illustration {
+          title = Illustration
+          text = ""
+        }
+        item SolidOutline {
+          title = "Solid Outline"
+          text = ""
+        }
+        item ShadedIllustration {
+          title = "Shaded Illustration"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = Solid
+    }
+    Field addNewView {
+      type = Trigger
+      text = ""
+      title = "Add New View"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field clearViews {
+      type = Trigger
+      text = ""
+      title = "Delete All Views"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

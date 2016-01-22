@@ -1,0 +1,66 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLPDF/MLPDF.def
+    moduleName = PDFCreateFibersFromLists
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLPDF
+    genre = PDFModules
+    keywords = PDF
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLineConnections {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outFibers {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = PDFCreateFibersFromLists
+    }
+    text = ""
+  }
+}

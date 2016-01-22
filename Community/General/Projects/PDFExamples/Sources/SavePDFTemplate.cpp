@@ -229,52 +229,52 @@ void SavePDFTemplate::_add3DFigure(float x, float y, float width, float height)
 {
   std::string resourcesPath = resourcesPathFld->getStringValue() + "/";
 
-  // Load model into model resource pool (n.b.: only U3D models are allowed!)
+	// Load model into model resource pool (n.b.: only U3D models are allowed!)
   HPDF_U3D u3dModel = pdfDoc_Load3DModelDataFromFile(resourcesPath + _modelFilenameFld->getStringValue());
 
-  if (u3dModel)
-  {
-    // Create a view for the model
-    mlPDF::VIEW3D anteriorView = pdfDoc_3DModel_CreateView("Anterior View", mlPDF::LIGHTING_SCHEME_HEADLAMP, 0.75f, 0.75f, 0.75f);
+	if (u3dModel)
+	{
+		// Create a view for the model
+		mlPDF::VIEW3D anteriorView = pdfDoc_3DModel_CreateView("Anterior View", mlPDF::LIGHTING_SCHEME_HEADLAMP, 0.75f, 0.75f, 0.75f);
 
-    // Set camera properties for this view 
-    // The values are pre-calculated for the example model.
-    // Alternatively they can be taken from the camera* fields.
-    Vector3 centerOfOrbit(92.983320219395, -144.044277472549, 1118.7488450232);
-    float   radiusOfOrbit = 605.31464f;
-    Vector3 centerToCamera(107.696596162441, -587.894809441514, 95.8489332971112);
-    float   fovAngle = 42.787704f;
-    float   rollAngle = 351.67535f;
-    pdfDoc_3DView_SetPerspectiveCamera(anteriorView, centerOfOrbit, radiusOfOrbit, centerToCamera, fovAngle, rollAngle);
-    pdfDoc_3DModel_AddView(u3dModel, anteriorView);
+		// Set camera properties for this view 
+		// The values are pre-calculated for the example model.
+		// Alternatively they can be taken from the camera* fields.
+		Vector3 centerOfOrbit(92.983320219395, -144.044277472549, 1118.7488450232);
+		float   radiusOfOrbit = 605.31464f;
+		Vector3 centerToCamera(107.696596162441, -587.894809441514, 95.8489332971112);
+		float   fovAngle = 42.787704f;
+		float   rollAngle = 351.67535f;
+		pdfDoc_3DView_SetPerspectiveCamera(anteriorView, centerOfOrbit, radiusOfOrbit, centerToCamera, fovAngle, rollAngle);
+		pdfDoc_3DModel_AddView(u3dModel, anteriorView);
 
-    // Create another view
-    mlPDF::VIEW3D lateralView = pdfDoc_3DModel_CreateView("Lateral View", mlPDF::LIGHTING_SCHEME_CAD, 0.75f, 0.75f, 0.75f);
-    centerOfOrbit = Vector3(92.983320219395, -144.044277472549, 1118.7488450232);
-    radiusOfOrbit = 605.31464f;
-    centerToCamera = Vector3(-598.932991211859, -56.9541532176117, 66.6430675379161);
-    fovAngle = 42.787704f;
-    rollAngle = 8.9973822f;
-    pdfDoc_3DView_SetPerspectiveCamera(lateralView, centerOfOrbit, radiusOfOrbit, centerToCamera, fovAngle, rollAngle);
-    pdfDoc_3DModel_AddView(u3dModel, lateralView);
+		// Create another view
+		mlPDF::VIEW3D lateralView = pdfDoc_3DModel_CreateView("Lateral View", mlPDF::LIGHTING_SCHEME_CAD, 0.75f, 0.75f, 0.75f);
+		centerOfOrbit = Vector3(92.983320219395, -144.044277472549, 1118.7488450232);
+		radiusOfOrbit = 605.31464f;
+		centerToCamera = Vector3(-598.932991211859, -56.9541532176117, 66.6430675379161);
+		fovAngle = 42.787704f;
+		rollAngle = 8.9973822f;
+		pdfDoc_3DView_SetPerspectiveCamera(lateralView, centerOfOrbit, radiusOfOrbit, centerToCamera, fovAngle, rollAngle);
+		pdfDoc_3DModel_AddView(u3dModel, lateralView);
 
-    // Set default view
-    pdfDoc_3DModel_SetDefaultView(u3dModel, anteriorView);
+		// Set default view
+		pdfDoc_3DModel_SetDefaultView(u3dModel, anteriorView);
 
-    // Load poster image and add it to the image resource pool
+		// Load poster image and add it to the image resource pool
     mlPDF::IMAGE posterImage = pdfDoc_LoadImageFromFile(resourcesPath + _posterFilenameFld->getStringValue());
 
-    // Now actually create the 3D scene
-    mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);
+		// Now actually create the 3D scene
+		mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x, y, width, height, u3dModel, posterImage);
 
-    // And finally set the scene properties.
-    std::string activationMode = mlPDF::ActivationModeStrings[mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE];
-    std::string deactivationMode = mlPDF::DeactivationModeStrings[mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE];
-    bool toolbarEnabled = true;
-    bool navigationInterfaceEnabled = false;
-    bool animationAutoStart = false;
-    pdfDoc_3DScene_SetActivationProperties(u3dScene, activationMode, deactivationMode, toolbarEnabled, navigationInterfaceEnabled, animationAutoStart);
-  }
+		// And finally set the scene properties.
+		std::string activationMode = mlPDF::ActivationModeStrings[mlPDF::ACTIVATION_MODE_EXPLICIT_ACTIVATE];
+		std::string deactivationMode = mlPDF::DeactivationModeStrings[mlPDF::DEACTIVATION_MODE_EXPLICIT_DEACTIVATE];
+		bool toolbarEnabled = true;
+		bool navigationInterfaceEnabled = false;
+		bool animationAutoStart = false;
+		pdfDoc_3DScene_SetActivationProperties(u3dScene, activationMode, deactivationMode, toolbarEnabled, navigationInterfaceEnabled, animationAutoStart);
+	}
 }
 
 //----------------------------------------------------------------------------------

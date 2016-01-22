@@ -17,7 +17,7 @@ module LocalFileName {
   fields  {
     instanceName = LocalMarkerListFileName
     localName = $(NETWORK)/SaveU3DExampleMarkerList.txt
-    checkIfFileExists = TRUE
+    checkIfFileExists = FALSE
   }
 }
 module MarkerListImport {
@@ -149,7 +149,7 @@ module LocalFileName {
   fields  {
     instanceName = LocalOutputFileName
     localName = $(HOME)/SaveU3DExample.u3d
-    checkIfFileExists = TRUE
+    checkIfFileExists = FALSE
   }
 }
 module SaveU3D {

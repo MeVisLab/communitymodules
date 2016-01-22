@@ -1,0 +1,812 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/PDF3DFigurePage/Modules/PDF3DFigurePage.def
+    moduleName = PDF3DFigurePage_Utils
+    moduleType = MLModule
+    author = "Axel Newe, axel.newe at fau.de"
+    DLL = PDF3DFigurePage
+    genre = ""
+    keywords = "PDF U3D 3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window "Main Panel" {
+      title = ""
+      text = ".. screenshot:: Main Panel"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inWEM {
+      type = MLBase
+      text = ""
+    }
+    Field inPointPositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field inLineConnections {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outWEM {
+      type = MLBase
+      text = ""
+    }
+    Field outPointPositions {
+      type = MLBase
+      text = ""
+    }
+    Field outLinePositions {
+      type = MLBase
+      text = ""
+    }
+    Field outLineConnections {
+      type = MLBase
+      text = ""
+    }
+    Field outFibers {
+      type = MLBase
+      text = ""
+    }
+    Field outSeletedFibers {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = PDF3DFigurePage_Utils
+    }
+    Field isProcessing {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field elapsedTime {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field id {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field autoUpdate {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field autoClear {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field removePreviousWEMs {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field overwriteLabelDescription {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field label {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field description {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field shouldComputeNormals {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field copyInputWEMs {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field listenToFinishNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field listenToRepaintNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field listenToSelectionChangedNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field forwardRepaintNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field forwardSelectionNotifications {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field progress {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field useInputWEMToCreateOutputWEM {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field triangulationMode {
+      type = Enum
+      text = ""
+      title = ""
+      visibleInGUI = No
+      items  {
+        item "Center node" {
+          title = "Center node"
+          text = ""
+        }
+        item Fan {
+          title = Fan
+          text = ""
+        }
+        item Strip {
+          title = Strip
+          text = ""
+        }
+        item Spiderweb {
+          title = Spiderweb
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = Strip
+    }
+    Field calculateCameraFromInventorScene {
+      type = Trigger
+      text = ""
+      title = "Calculate From Inventor Scene"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoCalculateCameraFromInventorScene {
+      type = Bool
+      text = ""
+      title = Auto
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field inventorCameraPosition {
+      type = Vector3
+      text = ""
+      title = "Inventor Camera Position"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field inventorCameraOrientation {
+      type = Vector4
+      text = ""
+      title = "Inventor Camera Orientation"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field inventorCameraFocalDistance {
+      type = Float
+      text = ""
+      title = "Inventor Camera Focal Distance"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field inventorCameraHeight {
+      type = Float
+      text = ""
+      title = "Inventor Camera Height"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field cameraCenterOfOrbit {
+      type = Vector3
+      text = ""
+      title = "Center of Orbit"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field cameraCenterToCamera {
+      type = Vector3
+      text = ""
+      title = "Center to Camera"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field cameraRadiusOfOrbit {
+      type = Float
+      text = ""
+      title = "Radius of Orbit"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field cameraFOVAngle {
+      type = Float
+      text = ""
+      title = "Camera FOV Angle"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 90
+    }
+    Field cameraRollAngle {
+      type = Float
+      text = ""
+      title = "Camera Roll Angle"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field vertexList {
+      type = String
+      text = ""
+      title = "SoVertexProperty - Vertex"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "[  ]"
+    }
+    Field coordIndexList {
+      type = String
+      text = ""
+      title = "SoIndexedLineSet - Coord Index"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field viewSpecifications {
+      type = String
+      text = ""
+      title = "View Specifications"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field newViewDisplayName {
+      type = String
+      text = ""
+      title = "View Display Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field newViewBackgroundColor {
+      type = Color
+      text = ""
+      title = "Background Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 1 1"
+    }
+    Field newViewLightingScheme {
+      type = Enum
+      text = ""
+      title = "Lighting Scheme*"
+      visibleInGUI = Yes
+      items  {
+        item None {
+          title = None
+          text = ""
+        }
+        item White {
+          title = White
+          text = ""
+        }
+        item Day {
+          title = Day
+          text = ""
+        }
+        item Night {
+          title = Night
+          text = ""
+        }
+        item Hard {
+          title = Hard
+          text = ""
+        }
+        item Primary {
+          title = Primary
+          text = ""
+        }
+        item Blue {
+          title = Blue
+          text = ""
+        }
+        item Red {
+          title = Red
+          text = ""
+        }
+        item Cube {
+          title = Cube
+          text = ""
+        }
+        item CAD {
+          title = CAD
+          text = ""
+        }
+        item HeadLamp {
+          title = "Head Lamp"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = CAD
+    }
+    Field newViewRenderMode {
+      type = Enum
+      text = ""
+      title = "Render Mode*"
+      visibleInGUI = Yes
+      items  {
+        item Solid {
+          title = Solid
+          text = ""
+        }
+        item SolidWireframe {
+          title = "Solid Wireframe"
+          text = ""
+        }
+        item Transparent {
+          title = Transparent
+          text = ""
+        }
+        item TransparentWireframe {
+          title = "Transparent Wireframe"
+          text = ""
+        }
+        item BoundingBox {
+          title = "Bounding Box"
+          text = ""
+        }
+        item TransparentBoundingBox {
+          title = "Transparent Bounding Box"
+          text = ""
+        }
+        item TransparentBoundingBoxOutline {
+          title = "Transparent Bounding Box Outline"
+          text = ""
+        }
+        item Wireframe {
+          title = Wireframe
+          text = ""
+        }
+        item ShadedWireframe {
+          title = "Shaded Wireframe"
+          text = ""
+        }
+        item HiddenWireframe {
+          title = "Hidden Wireframe"
+          text = ""
+        }
+        item Vertices {
+          title = Vertices
+          text = ""
+        }
+        item ShadedVertices {
+          title = "Shaded Vertices"
+          text = ""
+        }
+        item Illustration {
+          title = Illustration
+          text = ""
+        }
+        item SolidOutline {
+          title = "Solid Outline"
+          text = ""
+        }
+        item ShadedIllustration {
+          title = "Shaded Illustration"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = Solid
+    }
+    Field addNewView {
+      type = Trigger
+      text = ""
+      title = "Add New View"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field clearViews {
+      type = Trigger
+      text = ""
+      title = "Delete All Views"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatch {
+      type = String
+      text = ""
+      title = "Selected WEM"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchId {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field availableWEMPatches {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchNewLabel {
+      type = String
+      text = ""
+      title = "New Label"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchGroupPath {
+      type = String
+      text = ""
+      title = "Object Group Path"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field selectedWEMPatchUseDefaultColor {
+      type = Bool
+      text = ""
+      title = "Use Default Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field selectedWEMPatchColor {
+      type = Color
+      text = ""
+      title = "Object Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.651 0.651 0.651"
+    }
+    Field selectedWEMPatchColorAlpha {
+      type = Float
+      text = ""
+      title = "Object Alpha"
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 0
+    }
+    Field selectedLineSet {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetId {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field availableLineSets {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetNewLabel {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetGroupPath {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedLineSetUseDefaultColor {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field selectedLineSetColor {
+      type = Color
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = "0.651 0.651 0.651"
+    }
+    Field selectedPointSet {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedPointSetId {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field availablePointSets {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedPointSetNewLabel {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field selectedPointSetGroupPath {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field pointPositionsMaxTypeID {
+      type = Integer
+      text = ""
+      title = "Point Positions Max Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = -1
+    }
+    Field linePositionsMaxTypeID {
+      type = Integer
+      text = ""
+      title = "Line Positions Max Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = -1
+    }
+    Field lineConnectionsMaxTypeID {
+      type = Integer
+      text = ""
+      title = "Line Connections Max Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = -1
+    }
+    Field lineDefinitionsMaxTypeID {
+      type = Integer
+      text = ""
+      title = "Line Definitions Max Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = -1
+    }
+    Field pointPositionsNextTypeID {
+      type = Integer
+      text = ""
+      title = "Point Positions Next Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field linePositionsNextTypeID {
+      type = Integer
+      text = ""
+      title = "Line Positions Next Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field lineConnectionsNextTypeID {
+      type = Integer
+      text = ""
+      title = "Line Connections Next Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field lineDefinitionsNextTypeID {
+      type = Integer
+      text = ""
+      title = "Line Definitions Next Type ID"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field pointCloudSpecification {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field lineSetSpecification {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field metaDataSpecification {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field createPointCloudSpecification {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field createLineSetSpecification {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field createMetaDataSpecification {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

@@ -54,7 +54,7 @@ private:
   ml::ColoredMarkerList _inColoredMarkerList;
   
   //! The XMarkerList input for point positions of point clouds
-  ml::XMarkerList _outXMarkerList;  
+	ml::XMarkerList _outXMarkerList;  
 
   //! Convert the input list
   void _convertColoredMarkersToXMarkers();

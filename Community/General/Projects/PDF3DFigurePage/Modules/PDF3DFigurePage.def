@@ -12,7 +12,6 @@ MLModule PDF3DFigurePage_SavePDF {
   author             = "Axel Newe, axel.newe at fau.de"
   comment            = "Creates PDF file with one interactive 3D scene for scientific publications."
   keywords           = "PDF U3D 3D"
-  exampleNetwork     = "$(LOCAL)/networks/Save3DFigurePDFExample.mlab"
   exampleNetwork     = "$(LOCAL)/PDF3DFigurePageMacro.mlab"
   externalDefinition = $(LOCAL)/PDF3DFigurePage_SavePDF.script
 }  

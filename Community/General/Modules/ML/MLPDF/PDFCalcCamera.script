@@ -1,0 +1,63 @@
+//----------------------------------------------------------------------------------
+//! ML module PDFCalcCamera definition
+/*!
+// \file    PDFCalcCamera.script
+// \author  Axel Newe
+// \date    2016-01-11
+*/
+//----------------------------------------------------------------------------------
+
+Description {  
+  Field inventorCameraPosition      { editable = No }
+  Field inventorCameraOrientation   { editable = No }
+  Field inventorCameraFocalDistance { editable = No }
+  Field inventorCameraHeight        { editable = No }  
+}
+
+
+Interface {
+  Parameters {}
+}
+
+
+Commands {}
+
+
+Window { 
+  
+  expandY = Yes
+
+  Vertical { 
+    
+    expandY = Yes
+    margin  = 3
+    
+    Box "Inventor Camera" { alignY = Top
+      Field inventorCameraPosition      {  }
+      Field inventorCameraOrientation   {  }
+      Field inventorCameraFocalDistance {  }
+      Field inventorCameraHeight        {  }        
+    }
+      
+    Box "PDF Camera" { alignY = Top
+      Field cameraCenterOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+      Field cameraCenterToCamera { dependsOn = !autoCalculateCameraFromInventorScene }
+      Field cameraRadiusOfOrbit  { dependsOn = !autoCalculateCameraFromInventorScene }
+      Field cameraRollAngle      { dependsOn = !autoCalculateCameraFromInventorScene }
+      Field cameraFOVAngle       { title = "Camera FOV Angle:" dependsOn = !autoCalculateCameraFromInventorScene }
+      Separator {}
+      Horizontal {
+        Button calculateCameraFromInventorScene { title = "Calculate From Inventor Scene" dependsOn = !autoCalculateCameraFromInventorScene }
+        CheckBox autoCalculateCameraFromInventorScene { title = "Auto" }
+      }
+    }
+      
+      
+        
+    Empty { expandY = Yes }
+       
+
+    
+  }  // TabViewItem
+    
+}

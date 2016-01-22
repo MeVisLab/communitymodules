@@ -5,7 +5,7 @@ ModuleHelp  {
     moduleType = MacroModule
     author = "Axel Newe, axel.newe at fau.de"
     dll = ""
-    genre = PDFApps
+    genre = ""
     keywords = "PDF U3D 3D"
     seeAlso = ""
     package = General
@@ -187,13 +187,13 @@ A View is a predefined setting that specifies how the objects and the environmen
 
 A view must have a name, which does *not* need to be unique. However, views with identical names could confuse the consumer of a figure, so they should be avoided.
 
-The most important setting for the view is the camera setting which is specified directly in the *Scene* box. You can interactively rotate, pan and zoom the scene in the *Scene* box and thus select the projection angle. When the View is added (see *Add New View* button below), the camera settings for the View are calculated from the currently selected projection in the *Scene* box. (Note that there might be tiny deviations due to floating point tolerance. However, this usually affects only very small objects.)
+The most important setting for the view will be the camera setting which is specified directly in the *Scene* box. You can interactively rotate, pan and zoom the scene in the *Scene* box and thus select the projection angle. When the View is added (see *Add New View* button below), the camera settings for the View are calculated from the currently selected projection in the *Scene* box. (Note that there might be tiny deviations due to floating point tolerance. However, this usually affects only very small objects.)
 
 In addition to the camera, a *Background Color*, a *Lighting Scheme* and a *Render Mode* can be specified. (Note that the appearance of the latter 2 strongly depends on the PDF rendering engine and that they are therefore not illustrated in the *Scene* preview.)
 
 The *Lighting Scheme* specifies the ambient light which is use to illuminate the scene. See the PDF specification (http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf, section 9.5.3, p. 817) for details.
 
-The *Render Mode* specifies how objects are rendered. See the PDF specification (http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf, section 9.5.3, p. 813) for details (or just try them...).
+The *Lighting Scheme* specifies how objects are rendered. See the PDF specification (http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf, section 9.5.3, p. 813) for details (or just try them...).
 
 After all settings have been done, click the *Add New View* button to add the specified View to the list of all views. An arbitrary number of views can be added, but remember that they should have unique names. Once added, the Views can still be edited manually in the *All View Specifications* box, but this should only be done very carefully, especially as regards the camera parameters. 
 
@@ -231,7 +231,7 @@ In order to create a PDF file with an embedded 3D figure, go to the *PDF Page* t
 
 .. screenshot:: PDFPage
 
-Each PDF page created by this module consists of three parts: a header, the interactive figure itself and the figure description.
+Each PDF page created by this module consists of three part: a header, the interactive figure itself and the figure description.
 
 **Page Header**
 
@@ -239,13 +239,13 @@ The page header consists of a :field:`headerCitationText` and a :field:`headerHe
 
 The :field:`headerCitationText` is displayed on top of the page and should usually contain information about the article to which the PDF is related to. Alternatively, this line could also contain information about the authors, their institution or something similar. However, the text should fit in three lines, because everything else will be truncated.
 
-The :field:`headerHeadlineText` is displayed in large, bold font below the :field:`headerCitationText` and should be rather short since it must fit in one line. (The actual :field:`caption` of the figure has its own field, see below.)
+The  is displayed in large, bold font below the :field:`headerCitationText` and should be rather short since it must fit in one line. (The actual :field:`caption` of the figure has its own field, see below.)
 
 The page header can be complemented by a pre-defined instructional text which explains how to use the interaction features in Adobe Reader. Enable the *Include instructional hints above the figure* checkbox to include these instructions.
 
 **3D Figure**
 
-The actual 3D figure will be included below the :field:`headerHeadlineText` or the instructional text, respectively. It will have a fixed 4:3 ratio. The U3D file which shall be included can be specified by means of the *U3D Filename* field. This field is mandatory - if no U3D file is specified, it will not be possible to create a PDF.
+The actual 3D figure will be included below the :field:`headerHeadlineText` or the instructional text, respectively. It will have a fixed 4:3 ratio. The U3D file which shall be included can be specified by means of the *U3D Filename* field. this field is mandatory - if no U3D file is specified, it will not be possible to create a PDF.
 
 The poster image which shall be displayed if the 3D figure is deactivated or if the reader software is not capable of rendering 3D scenes can be specified by means of the *Poster Image Filename* field. This field is not mandatory and can be left empty. If no poster image is provided, the default text of the reading software will be displayed.
 
@@ -554,7 +554,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       title = ""
       visibleInGUI = No
       persistent = Yes
-      default = "0 0 1"
+      default = "0 0 1.8304877281189"
     }
     Field viewCameraRadiusOfOrbit {
       type = Float
@@ -878,7 +878,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       title = "Poster Text"
       visibleInGUI = Yes
       persistent = Yes
-      default = "Click here to enable interactive mode in Adobe Reader."
+      default = "Click here to enable interactive mode in Acrobat Reader."
     }
     Field saveU3D {
       type = Trigger

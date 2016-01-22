@@ -68,7 +68,7 @@ private:
   //StylePalette _inStylePalette;
 
   //! The XMarkerList input for point positions of point clouds
-  ml::XMarkerList _inXMarkerList;  
+	ml::XMarkerList _inXMarkerList;  
 
   //! The XMarkerList input for node positions of line sets
   ml::ColoredMarkerList _outColoredMarkerList;

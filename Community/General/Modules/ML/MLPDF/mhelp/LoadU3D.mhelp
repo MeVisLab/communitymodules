@@ -1,0 +1,165 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLPDF/MLPDF.def
+    moduleName = LoadU3D
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLPDF
+    genre = PDFModules
+    keywords = "PDF U3D WEM XMarker Fiber"
+    seeAlso = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D PDF3DFigurePageMacro"
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window "Main Panel" {
+      title = ""
+      text = ".. screenshot:: Main Panel"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outWEM {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = LoadU3D
+    }
+    Field isProcessing {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field elapsedTime {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field id {
+      type = Integer
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field autoUpdate {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field autoClear {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field removePreviousWEMs {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field overwriteLabelDescription {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field label {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field description {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field shouldComputeNormals {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = TRUE
+    }
+    Field boundingBoxCenter {
+      type = Vector3
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field boundingBoxRadius {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = 0
+    }
+    text = ""
+  }
+}

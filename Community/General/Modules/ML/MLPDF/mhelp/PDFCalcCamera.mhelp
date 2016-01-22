@@ -1,0 +1,132 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLPDF/MLPDF.def
+    moduleName = PDFCalcCamera
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLPDF
+    genre = PDFModules
+    keywords = PDF
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = PDFCalcCamera
+    }
+    Field calculateCameraFromInventorScene {
+      type = Trigger
+      text = ""
+      title = "Calculate From Inventor Scene"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoCalculateCameraFromInventorScene {
+      type = Bool
+      text = ""
+      title = Auto
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field inventorCameraPosition {
+      type = Vector3
+      text = ""
+      title = "Inventor Camera Position"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field inventorCameraOrientation {
+      type = Vector4
+      text = ""
+      title = "Inventor Camera Orientation"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field inventorCameraFocalDistance {
+      type = Float
+      text = ""
+      title = "Inventor Camera Focal Distance"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field inventorCameraHeight {
+      type = Float
+      text = ""
+      title = "Inventor Camera Height"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field cameraCenterOfOrbit {
+      type = Vector3
+      text = ""
+      title = "Camera Center Of Orbit"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field cameraCenterToCamera {
+      type = Vector3
+      text = ""
+      title = "Camera Center To Camera"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field cameraRadiusOfOrbit {
+      type = Float
+      text = ""
+      title = "Camera Radius Of Orbit"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    Field cameraFOVAngle {
+      type = Float
+      text = ""
+      title = "Camera FOV Angle"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 90
+    }
+    Field cameraRollAngle {
+      type = Float
+      text = ""
+      title = "Camera Roll Angle"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = 0
+    }
+    text = ""
+  }
+}

@@ -1,0 +1,157 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/PDFExamples/Modules/SavePDFTemplate.def
+    moduleName = SavePDFTemplate
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = SavePDFTemplate
+    genre = ""
+    keywords = ""
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = SavePDFTemplate
+    }
+    Field pdfFilename {
+      type = String
+      text = ""
+      title = "Pdf Filename"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field resourcesPath {
+      type = String
+      text = ""
+      title = "Resources Path"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field save {
+      type = Trigger
+      text = ""
+      title = "Save PDF"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field status {
+      type = String
+      text = ""
+      title = Status
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field success {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field progress {
+      type = Float
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field pdfAttrTitle {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field pdfAttrAuthor {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field pdfAttrSubject {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field pdfAttrKeywords {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field viewSpecifications {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field imageFilename {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field modelFilename {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field posterFilename {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

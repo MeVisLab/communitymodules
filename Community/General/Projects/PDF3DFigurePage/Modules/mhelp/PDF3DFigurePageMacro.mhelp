@@ -5,7 +5,7 @@ ModuleHelp  {
     moduleType = MacroModule
     author = "Axel Newe, axel.newe at fau.de"
     dll = ""
-    genre = ""
+    genre = PDFModules
     keywords = "PDF U3D 3D"
     seeAlso = ""
     package = General
@@ -554,7 +554,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       title = ""
       visibleInGUI = No
       persistent = Yes
-      default = "0 0 1.8304877281189"
+      default = "0 0 1"
     }
     Field viewCameraRadiusOfOrbit {
       type = Float
@@ -878,7 +878,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       title = "Poster Text"
       visibleInGUI = Yes
       persistent = Yes
-      default = "Click here to enable interactive mode in Acrobat Reader."
+      default = "Click here to enable interactive mode in Adobe Reader."
     }
     Field saveU3D {
       type = Trigger

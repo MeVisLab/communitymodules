@@ -1,0 +1,173 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Modules/ML/MLPDF/MLPDF.def
+    moduleName = LoadPointLineGeometry
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLPDF
+    genre = PDFModules
+    keywords = "ListBase XMarker ColoredMarker IndexPairList"
+    seeAlso = "XMarkerListContainer ColoredMarkerListContainer MarkerListImport"
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outPositionsList {
+      type = MLBase
+      text = ""
+    }
+    Field outConnectionsList {
+      type = MLBase
+      text = ""
+    }
+    Field outFibers {
+      type = MLBase
+      text = ""
+    }
+    Field outCachedPositionsList {
+      type = MLBase
+      text = ""
+    }
+    Field outCachedConnectionsList {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = LoadPointLineGeometry
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field filter {
+      type = String
+      text = ""
+      title = Filter
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field numberDelimiter {
+      type = String
+      text = ""
+      title = "Number Delimiter"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ;
+    }
+    Field numberDelimiterSpace {
+      type = Bool
+      text = ""
+      title = "Use space character as delimiter"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field decimalSeparator {
+      type = String
+      text = ""
+      title = "Decimal Separator"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = .
+    }
+    Field load {
+      type = Trigger
+      text = ""
+      title = Load
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field unload {
+      type = Trigger
+      text = ""
+      title = Unload
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoLoad {
+      type = Bool
+      text = ""
+      title = "Auto Load"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field positionsLoaded {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field connectionsLoaded {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field addToCache {
+      type = Trigger
+      text = ""
+      title = "Add To Cache"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field clearCache {
+      type = Trigger
+      text = ""
+      title = "Clear Cache"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoAddToCache {
+      type = Bool
+      text = ""
+      title = "Auto Add To Cache"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}
