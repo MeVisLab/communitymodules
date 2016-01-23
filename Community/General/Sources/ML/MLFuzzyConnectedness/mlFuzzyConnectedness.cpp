@@ -140,10 +140,11 @@ MLErrorCode FuzzyConnectedness::calculate(PagedImg *inputData, PagedImg *inputMa
         _pointerTmpImg.allocate(ML_RETURN_NULL);
         if( _pointerTmpImg.getData() != NULL )
         {
+          SubImgBox box(extent);
           // Calculate the minimum and maximum intensity values in the image.
           // The original SubImgBox has to be used, as the padding voxels have not been
           // initialised. (As they are never read in the algorithm it is not necessary!!)
-          _inputTmpImg.calcMinMax(_minValue,_maxValue,&(SubImgBox(extent)));
+          _inputTmpImg.calcMinMax(_minValue,_maxValue,&box);
           // initialise the allocated data.
           _connectivityMapOutImg.fillSubImg(_minValue);
           _pointerTmpImg.fillSubImg(0);
