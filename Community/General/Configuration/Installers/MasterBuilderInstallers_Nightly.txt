@@ -67,4 +67,5 @@
 # The YourInstaller installer (this comment is used as title for the html installer pages)
 # YourInstaller/YourInstaller.mlinstall     always           whoever         *
 
-AddOns/MeVisLabCommunityAddOn.mlinstall     always           wolf@mevis.de   *           
+# MeVisLab Community Modules AddOn
+AddOns/MeVisLabCommunityAddOn.mlinstall     always           wolf@mevis.de   *
