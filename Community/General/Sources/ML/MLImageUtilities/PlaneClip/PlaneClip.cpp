@@ -191,7 +191,7 @@ public:
   }
 
   private:
-    PlaneClipHandler& operator= (const PlaneClipHandler&) { }
+    PlaneClipHandler& operator= (const PlaneClipHandler&) { return *this; }
 };
 
 
