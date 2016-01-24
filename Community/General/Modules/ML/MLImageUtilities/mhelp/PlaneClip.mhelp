@@ -94,17 +94,14 @@ ModuleHelp  {
         item IntersectionModeMidpoint {
           title = Midpoint
           text = "Use the midpoint of the voxel to determine to which side this voxel belongs (default)."
-          deprecatedName = ""
         }
         item IntersectionModeVolume {
           title = Volume
           text = "Use the percentage of volume to determine on which side this voxel belongs. Estimation of the volume is performed by subsampling the voxel."
-          deprecatedName = ""
         }
         item IntersectionModeAntiAliasing {
           title = "Anti Aliasing"
           text = "Anti-alias the voxel by subsampling and weighting the voxel-value."
-          deprecatedName = ""
         }
       }
       persistent = Yes
@@ -112,7 +109,7 @@ ModuleHelp  {
     }
     Field volumeThreshold {
       type = Double
-      text = "Volume threshold for :field:`IntersectionModeVolume`"
+      text = "Volume threshold for `IntersectionModeVolume`"
       title = "Volume Threshold"
       visibleInGUI = Yes
       min = 0
