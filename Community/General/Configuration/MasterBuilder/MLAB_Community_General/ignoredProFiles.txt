@@ -11,11 +11,11 @@
 # windows_vc8
 # windows_vc8-64
 
+# this is a template .pro file, not a real one:
 Modules/ML/MLPDF/Wizard/Sources/PDFModuleTemplate.pro
 
 # Example of an ignored directory (including subdirs):
 # Sources/ML/MLExampleProject/*
-
 
 #Sources/ML/MLCSOCommunityModules/*
 #Sources/ML/MLLoadCAT08Data/*
@@ -23,6 +23,8 @@ Modules/ML/MLPDF/Wizard/Sources/PDFModuleTemplate.pro
 #Sources/ML/MLImageUtilities/*
 #Sources/ML/MLTestModules/*
 
+# this needs Matlab's SDK (e.g., contains #include <engine.h>)
+Sources/ML/MLMatlabScriptWrapper/MLMatlabScriptWrapper.pro
 
 # Mac OS X only projects
 Sources/ML/MLOsiriXImporter/*                               windows,linux
