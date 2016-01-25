@@ -44,7 +44,7 @@ HEADERS += \
     DICOMFileFormat/DCM_SurfaceIE.h \
     DicomSurfaceSegmentationLoad/DicomSurfaceSegmentationLoad.h \
     DicomSurfaceSegmentationSave/DicomSurfaceSegmentationSave.h \
-    tools/dicom/coordinates3D.h \
+    tools/dicom/coordinates3d.h \
     tools/dicom/dicomDatasetParser.h \
     tools/dicom/dicomSSODatasetParser.h \
     tools/dicom/element3D.h \

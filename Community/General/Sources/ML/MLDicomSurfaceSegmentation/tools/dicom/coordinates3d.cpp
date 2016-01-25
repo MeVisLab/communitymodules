@@ -9,7 +9,7 @@
 */
 //----------------------------------------------------------------------------------
 
-#include "coordinates3D.h"
+#include "coordinates3d.h"
 
 /**
  * \brief  Standard-constructor.

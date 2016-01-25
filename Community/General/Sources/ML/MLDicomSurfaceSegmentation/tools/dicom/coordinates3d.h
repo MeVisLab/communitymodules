@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 //! The ML module class DicomSurfaceSegmentationLoad.
 /*!
-// \file    coordinates3D.h
+// \file    coordinates3d.h
 // \author  Christian Hoffmann
 // \date    2013-11
 //

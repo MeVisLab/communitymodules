@@ -19,7 +19,7 @@
 #include <boost/algorithm/string/erase.hpp>
 #include "dicomDatasetParser.h"
 #include "element3D.h"
-#include "coordinates3D.h"
+#include "coordinates3d.h"
 
 #include <mlTypeDefs.h> //for macro ML_NAMESPACE
 #include <mlVector3.h>
