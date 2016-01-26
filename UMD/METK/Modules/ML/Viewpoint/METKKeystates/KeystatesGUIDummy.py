@@ -129,13 +129,13 @@ _dynFrameOrtho = "									       \
 def init():
    global _cls_iter
    global _cls_info
-   
+
    #button für 3d aktivieren
    ctx.field("METKViewer3D.viewAll").touch()
    #ctx.field("METKViewer3D.decoration").value = True
-   
+
    _cls_iter = ObjIterator(ctx.module("ObjConstrainedIterator"))
-   
+
    _cls_info = METKObjInfo(ctx.module("ObjInfo"))
    _cls_info.setEventReceiveMode(ERM_SELECTED, "METKViewer3D", LAY_VIEWER_CAMERA)
 
@@ -150,10 +150,10 @@ def initWindow(field = 0):
    _dynamicFrameControl = ctx.control("DynamicFrameControl")
    _dynamicFrameControl.setContentString(_dynFrame3D)
    pass
-      
+
 
 def changeTabView(field):
-   
+
    #Großansicht
    if field.value == 0:
       changeMainViewer(ctx.field("MainViewer"))
@@ -174,10 +174,10 @@ def changeTabView(field):
 
    return
 
-	
+
 def changeMainViewer(field):
    global _dynamicFrameControl
-   
+
    #große 3D Ansicht
    if field.value == 0:
       _dynamicFrameControl.setContentString(_dynFrame3D)
@@ -188,29 +188,29 @@ def changeMainViewer(field):
       ctx.field("coronalLiftChart.active").value = False
       ctx.field("sagittalLiftChart.active").value = False
       wfeNSPSendState("large_view", "3d_view")
-      
+
    #Axiale Ansicht mit Default-Einteilung
    if field.value == 1:
       _dynamicFrameControl.setContentString(_dynFrameAxial)
       ctx.field("AxialPreview.annotations").value = True
       ctx.field("CoronalPreview.annotations").value = False
-      ctx.field("SagittalPreview.annotations").value = False			
+      ctx.field("SagittalPreview.annotations").value = False
       ctx.field("axialLiftChart.active").value = True
       ctx.field("coronalLiftChart.active").value = False
       ctx.field("sagittalLiftChart.active").value = False
       wfeNSPSendState("large_view", "axial_view")
-      
+
    #Coronal Ansicht mit Default-Einteilung
    if field.value == 2:
       _dynamicFrameControl.setContentString(_dynFrameCoronal)
       ctx.field("AxialPreview.annotations").value = False
       ctx.field("CoronalPreview.annotations").value = True
-      ctx.field("SagittalPreview.annotations").value = False		
+      ctx.field("SagittalPreview.annotations").value = False
       ctx.field("axialLiftChart.active").value = False
       ctx.field("coronalLiftChart.active").value = True
       ctx.field("sagittalLiftChart.active").value = False
       wfeNSPSendState("large_view", "coronal_view")
-	   	
+
    #Sagittal Ansicht mit Default-Einteilung
    if field.value == 3:
       _dynamicFrameControl.setContentString(_dynFrameSagittal)
@@ -222,8 +222,8 @@ def changeMainViewer(field):
       ctx.field("sagittalLiftChart.active").value = True
       wfeNSPSendState("large_view", "sagittal_view")
    pass
-   
-   
+
+
 def showSliceIn3D(field):
    global _previousSlice3D
 
@@ -231,7 +231,7 @@ def showSliceIn3D(field):
       ctx.field("3DWithSlice.whichChild").value = -1
       field.value = -1
       wfeNSPSendState("slice_in_3d", "off")
-
+   
    else:
       ctx.field("3DWithSlice.whichChild").value = field.value
       _previousSlice3D = field.value
@@ -247,8 +247,8 @@ def showSliceIn3D(field):
 def showDecoration(field = 0):
    ctx.field("METKViewer3D.decoration").value = not ctx.field("METKViewer3D.decoration").value
    pass
-	
-	 
+
+
 def openCase(field = 0):
    caseFile = MLABFileDialog.getOpenFileName("","XML files (*.xml)", "Open Case File");
    if caseFile != "":
@@ -257,19 +257,19 @@ def openCase(field = 0):
       ctx.field("METKManager.load").touch()
       ctx.window().setTitle("METKExplorer | " + caseFile)
    return
-   
+
 def closeCase(field = 0):
    ctx.field("METKManager.cleanup").touch()
    return
-   	
+
 def saveCase(field = 0):
    ctx.field("METKManager.save").touch()
-   return   	
-   	
+   return
+
 def saveCaseAs(field = 0):
    ctx.field("METKManager.saveAs").touch()
    return
-   
+
 
 
 def handleObjectCreatedEvent():
@@ -291,10 +291,9 @@ def handleAttributeModifiedEvent():
 def handleLoadedEvent():
    pass
 
-   
+
 def handleSaveEvent():
    pass
 
 def handleCleanupEvent():
    pass
-

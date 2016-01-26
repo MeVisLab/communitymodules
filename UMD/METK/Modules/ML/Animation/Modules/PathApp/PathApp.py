@@ -14,9 +14,9 @@ _mainWin = None
 
 def init():
    global _cls_info
-     
+   
    _cls_info = METKObjInfo(ctx.module("ObjInfo"))
-   _cls_info.setEventReceiveMode(ERM_NONE)   
+   _cls_info.setEventReceiveMode(ERM_NONE)
    return
 
 
@@ -32,13 +32,13 @@ def initWindow(args=0):
    _button_pause = ctx.control("b_pause")
    
    global _mainWin
-   _mainWin = ctx.window()   
-    
+   _mainWin = ctx.window()
+   
    return
-   
-   
-   
-def openCase(field = 0):   
+
+
+
+def openCase(field = 0):
    ctx.field("METKScriptInit.scriptFile").value = ctx.field("baseScriptPath").value + "/" + ctx.field("caseType").value + "/init-script.txt"
    
    ctx.field("METKManager.cleanup").touch()
@@ -48,8 +48,8 @@ def openCase(field = 0):
       ctx.field("METKManager.load").touch()
       _mainWin.setTitle("PathApp | " + caseFile)
    return
-   
-   
+
+
 def openENT(field=0):
     ctx.field("caseType").setStringValue("ENT")
     openCase()
@@ -71,14 +71,14 @@ def exit(field = 0):
    
    if field:
       ctx.window().close()
-   return   	
-   
+   return
+
 def initScript(args=0):
    ctx.field("METKScriptInit.manualInit").touch()
    return
-   
-   
-   
+
+
+
 def startAnimation(args=0):
    print "startAnimation"
    _button_pause.setTitle("Pause")
@@ -108,7 +108,7 @@ def pauseAnimation(args=0):
 def generateScript(args=0):
    return
 
-  
+
 #--------------------------------------------
 # Event handling
 #--------------------------------------------
@@ -131,6 +131,6 @@ def handleAttributeModifiedEvent():
 
 def handleLoadedEvent():
    pass
-   
+
 def handleCleanupEvent():
    pass

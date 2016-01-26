@@ -14,10 +14,10 @@ def init():
    # Create an ObjInfo class instance to modify the database and to handle database events
    _cls_input  = ObjInfo(ctx.module("input"))
    _cls_output = ObjInfo(ctx.module("output"))
-
-   return
    
-def handleEvents(againstTypeError = 0):   
+   return
+
+def handleEvents(againstTypeError = 0):
    ctx.field("ready").value = False
    ctx.field("readableFormat").value = False
    version = _cls_input.get("PatientObject", "Description", "Description") #eindeutig ein hepa-fall?
@@ -61,7 +61,7 @@ def handleAttributeCreatedEvent():
          _cls_output.set(object,layer,info,"Segmentation")
       else:
          _cls_output.typedSet(object, layer, info, value, type)
-   elif layer == "Appearance":      
+   elif layer == "Appearance":
       if info == "Color": #Type conversion da Milo die Farbe als String speicherte ... grrrrr
          _cls_output.typedSet(object,layer,info,"",INFOTYPE_VEC3)
          _cls_output.set(object,layer,info,value)
@@ -70,17 +70,17 @@ def handleAttributeCreatedEvent():
          _cls_output.set(object,layer,info,value)
       else:
          _cls_output.typedSet(object, layer, info, value, type)
-         
+   
    elif layer == LAY_IMAGE:
       #herausfiltern der Parents, die eine Segmentation sein sollen aber Kinder haben
       childIDs = _cls_input.get(object,LAY_GLOBAL,"ChildIds")
       imageType = _cls_input.get(object,"Image","ImageType")      
-      if (childIDs == "" or (imageType!="CodedSegmentation" and imageType!="Segmentation")):   
-         if info == "Filename":            
+      if (childIDs == "" or (imageType!="CodedSegmentation" and imageType!="Segmentation")):
+         if info == "Filename":
             objValue = _cls_input.get(object,layer,INF_OBJVALUE)
             imageType = _cls_input.get(object,layer,INF_IMAGETYPE)
-            value = value.replace("./","")                        
-	    _cls_output.set(object,layer,info,value)
+            value = value.replace("./","")
+               _cls_output.set(object,layer,info,value)
             if objValue!="-1" and objValue!="0" and objValue!="" and not _cls_input.existInfo(object,LAY_FILES,INF_IVFILE):
             #if objValue!="-1" and objValue!="0" and objValue!="":
                _cls_output.set(object, LAY_FILES, INF_IVFILE, object + "_" + objValue + ".iv")
@@ -96,8 +96,8 @@ def handleAttributeCreatedEvent():
                   _cls_output.set(object, LAY_FILES, INF_IVFILE, object + "_" + str(objValueNew) + ".iv")
                   _cls_output.typedSet(object,layer,INF_OBJVALUE,objValueNew,INFOTYPE_INT32)
                else:
-                  _cls_output.set(object, LAY_FILES, INF_IVFILE, object + ".iv")	 
-               
+                  _cls_output.set(object, LAY_FILES, INF_IVFILE, object + ".iv")
+         
          elif info == "ImageType":
             if value == "CodedSegmentation":
                _cls_output.set(object,layer,info,"Segmentation")
@@ -112,7 +112,7 @@ def handleAttributeCreatedEvent():
       else:
          _cls_input.set(object,"Image","ImageType","Group")
          _cls_output.set(object,"Image","ImageType","Group")
-         
+   
    else:
       _cls_output.typedSet(object, layer, info, value, type)
    return

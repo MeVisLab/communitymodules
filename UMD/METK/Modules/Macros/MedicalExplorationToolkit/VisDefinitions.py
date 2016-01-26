@@ -26,26 +26,26 @@ INF_MESSAGE             = "Message"                  # Message
 INF_DATA                = "Data"                     # String
 INF_STATUS              = "Status"                   # Message
 
-LAY_GLOBALEVENTS	= "GlobalEvents"
-INF_CASELOADED		= "CaseLoaded"               # Message
-INF_GETALLVIEWER	= "GetAllViewer"
+LAY_GLOBALEVENTS   = "GlobalEvents"
+INF_CASELOADED      = "CaseLoaded"               # Message
+INF_GETALLVIEWER   = "GetAllViewer"
 
 LAY_STATUS              = "Status"
-INF_STATUSMSG		= "StatusMessage"            # Message
+INF_STATUSMSG      = "StatusMessage"            # Message
 INF_PROGRESS            = "Progress"                 # Double 0..1
 
 # global messages
 MSG_CONVERTED           = "converted"
-MSG_LOADED		= "Loaded"                   # is sent from METKManager
-MSG_TOTALLOADED		= "TotalLoaded"              # is sent from a METKScriptInit after inital animation is ready
+MSG_LOADED      = "Loaded"                   # is sent from METKManager
+MSG_TOTALLOADED      = "TotalLoaded"              # is sent from a METKScriptInit after inital animation is ready
 MSG_SAVE                = "Save"                     # Send when the temporary data should be saved
 MSG_CLEANUP             = "Cleanup"                  # sent for telling all modules to cleanup their stuff
-MSG_GET			= "Get"		             # triggers all viewer to write their inital data into the objMgr
+MSG_GET         = "Get"                   # triggers all viewer to write their inital data into the objMgr
 
 LAY_ROIS                = "ROIS"                   #to communicate selected ROIs
 
 # status messages
-LAY_STATUSEVENTS	= "StatusEvents"
+LAY_STATUSEVENTS   = "StatusEvents"
 
 # these messages are reserved for METKMsgSender and METKMsgReceiver
 MSG_INIT                = "initialize"
@@ -122,40 +122,40 @@ INF_CASEDIR             = "Directory"                # String  must be nonpersis
 INF_XMLFILE             = "XMLFile"                  # String  must be nonpersistent!!!
 
 
-OBJ_ANIMATION		= "Animation"
-LAY_ANIMATION_GLOBAL	= "Global"
-INF_ANIMATION_RESET	= "Reset"
-LAY_ANIMATION_SCRIPT	= "Script"
-INF_SCRIPT_FULLSCRIPT	= "FullScript"
-INF_SCRIPT_STATUS	= "Status"
-INF_SCRIPT_SCRIPTFILE	= "ScriptFile"
-INF_SCRIPT_OBJNAMESPATH	= "ObjNamesPath"
+OBJ_ANIMATION           = "Animation"
+LAY_ANIMATION_GLOBAL    = "Global"
+INF_ANIMATION_RESET     = "Reset"
+LAY_ANIMATION_SCRIPT    = "Script"
+INF_SCRIPT_FULLSCRIPT   = "FullScript"
+INF_SCRIPT_STATUS       = "Status"
+INF_SCRIPT_SCRIPTFILE   = "ScriptFile"
+INF_SCRIPT_OBJNAMESPATH = "ObjNamesPath"
 
 
-OBJ_BOOKMARKS		= "Bookmarks"
-INF_COUNT3D		= "Count3D"
-INF_CAMPOSITION		= "CamPosition"
-INF_CAMORIENTATION	= "CamOrientation"
-INF_CAMHEIGHT		= "CamHeight"
-INF_CAMFOCALDISTANCE	= "CamFocalDistance"
+OBJ_BOOKMARKS           = "Bookmarks"
+INF_COUNT3D             = "Count3D"
+INF_CAMPOSITION         = "CamPosition"
+INF_CAMORIENTATION      = "CamOrientation"
+INF_CAMHEIGHT           = "CamHeight"
+INF_CAMFOCALDISTANCE    = "CamFocalDistance"
 
 
 
-OBJ_CLIPPING		= "Clipping"
-INF_CLIPPING_SCALE	= "Scale"
-LAY_CLIPPING_LEFT	= "PlaneLeft"
-LAY_CLIPPING_RIGHT	= "PlaneRight"
-LAY_CLIPPING_TOP	= "PlaneTop"
-LAY_CLIPPING_BOTTOM	= "PlaneBottom"
-LAY_CLIPPING_REAR	= "PlaneRear"
-LAY_CLIPPING_FRONT	= "PlaneFront"
+OBJ_CLIPPING             = "Clipping"
+INF_CLIPPING_SCALE       = "Scale"
+LAY_CLIPPING_LEFT        = "PlaneLeft"
+LAY_CLIPPING_RIGHT       = "PlaneRight"
+LAY_CLIPPING_TOP         = "PlaneTop"
+LAY_CLIPPING_BOTTOM      = "PlaneBottom"
+LAY_CLIPPING_REAR        = "PlaneRear"
+LAY_CLIPPING_FRONT       = "PlaneFront"
 INF_CLIPPING_TRANSLATION = "Translation"
-INF_CLIPPING_ROTATION	= "Rotation"
-INF_CLIPPING_ON		= "ClippingOn"
+INF_CLIPPING_ROTATION    = "Rotation"
+INF_CLIPPING_ON          = "ClippingOn"
 
 
 OBJ_CODEDSEGMENTATION   = "CodedSegmentation"
-INF_VERSION		= "Version"
+INF_VERSION             = "Version"
 
 
 # everything for OBJ_COLLECTIONS
@@ -214,7 +214,7 @@ INF_STRUCTURE           = "Structure"                # String
 INF_STRUCTUREGROUP      = "StructureGroup"           # String
 INF_COMMENT             = "Comment"                  # String
 INF_SIDE                = "Side"                     # String  Left, Right
-INF_RESULTTYPE		= "ResultType"               # String
+INF_RESULTTYPE          = "ResultType"               # String
 INF_IMPORTANCE          = "Importance"               # Double  0..1
 
 # everything for LAY_MEASURES
@@ -245,18 +245,18 @@ INF_USEGROUPCOLOR       = "UseGroupColor"            # Bool
 INF_DRAWSTYLE           = "DrawStyle"                # String  FILLED, LINES, POINTS, INVISIBLE
 INF_PICKSTYLE           = "PickStyle"                # String  SHAPE, BOUNDING_BOX, UNPICKABLE
 INF_TRANSPARENCY        = "Transparency"             # Double  0..1
-INF_SILHOUETTE		= "Silhouette"               # Bool
-INF_SILHOUETTECOLOR	= "SilhouetteColor"          # Vec3f
-INF_SILHOUETTEWIDTH	= "SilhouetteWidth"          # Double
-INF_STIPPLING		= "Stippling"                # Bool
-INF_STIPPLINGGAMMA	= "StipplingGamma"           # Double  > 0
-INF_STIPPLINGCOLOR	= "StipplingColor"           # Vec3f
+INF_SILHOUETTE          = "Silhouette"               # Bool
+INF_SILHOUETTECOLOR     = "SilhouetteColor"          # Vec3f
+INF_SILHOUETTEWIDTH     = "SilhouetteWidth"          # Double
+INF_STIPPLING           = "Stippling"                # Bool
+INF_STIPPLINGGAMMA      = "StipplingGamma"           # Double  > 0
+INF_STIPPLINGCOLOR      = "StipplingColor"           # Vec3f
 INF_VISIBLE             = "Visible"                  # Bool
 INF_ISOSURFACE          = "IsoSurface"               # Bool, Visibility of IsoSurface, default=true
-INF_FLATISO		= "FlatIso"		     # Bool
-INF_BB		        = "BoundingBoxOn"
+INF_FLATISO             = "FlatIso"                  # Bool
+INF_BB                  = "BoundingBoxOn"
 INF_RENDERMODE          = "RenderMode"
-INF_CLIPPING		= "Clipping"
+INF_CLIPPING            = "Clipping"
 INF_SURFACEDIST         = "SurfaceDistance"          # Bool
 INF_TEXTURIZE           = "Texturize"                # Bool   Enable Texturing
 INF_TEXTURETYPE         = "TextureType"              # String HATCHING_TAM, HATCHING_OPACITY
@@ -315,41 +315,41 @@ LAY_GLOBAL              = "Global"
 
 
 # METKInfoWin communication
-OBJ_GUI			= "GUI"
-LAY_INFOWIN		= "InfoWin"
-INF_ISON		= "isOn"
-INF_INFOHEADER		= "InfoHeader"
-INF_INFOTEXT		= "InfoText"
+OBJ_GUI        = "GUI"
+LAY_INFOWIN    = "InfoWin"
+INF_ISON       = "isOn"
+INF_INFOHEADER = "InfoHeader"
+INF_INFOTEXT   = "InfoText"
 
 
 
 #Layer and Information for VolViz modules
-LAY_PROPERTIES		= "Properties"
-LAY_TRANSFERFUNCTION	= "Transferfunction"
-INF_COLORPOINTS		= "ColorPoints"
-INF_ALPHAPOINTS		= "AlphaPoints"
+LAY_PROPERTIES       = "Properties"
+LAY_TRANSFERFUNCTION = "Transferfunction"
+INF_COLORPOINTS      = "ColorPoints"
+INF_ALPHAPOINTS      = "AlphaPoints"
 
 
 
 # VIEWER XYZ layers
 
-INF_GLOBAL_REFRESH			= "Refresh"
-LAY_VIEWER_CAMERA			= "Camera"
-LAY_VIEWER_PROPERTIES			= "Properties"
-INF_VIEWER_CAMERA_POSITION		= "Position"
-INF_VIEWER_CAMERA_ORIENTATION		= "Orientation"
-INF_VIEWER_CAMERA_HEIGHT		= "Height"
-INF_VIEWER_CAMERA_FOCALDISTANCE		= "FocalDistance"
-INF_VIEWER_PROPERTIES_FRAMERATE		= "Framerate"
-INF_VIEWER_PROPERTIES_CAPTUREFRAME	= "CaptureFrame"
-INF_VIEWER_PROPERTIES_CREATEAVI		= "CreateAVI"
-INF_VIEWER_PROPERTIES_CANCELRECORDING 	= "CancelRecording"
-INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT 	= "UpdateMLOutput"
-INF_VIEWER_PROPERTIES_VIEWERSTATUS	= "ViewerStatus"
+INF_GLOBAL_REFRESH                         = "Refresh"
+LAY_VIEWER_CAMERA                          = "Camera"
+LAY_VIEWER_PROPERTIES                      = "Properties"
+INF_VIEWER_CAMERA_POSITION                 = "Position"
+INF_VIEWER_CAMERA_ORIENTATION              = "Orientation"
+INF_VIEWER_CAMERA_HEIGHT                   = "Height"
+INF_VIEWER_CAMERA_FOCALDISTANCE            = "FocalDistance"
+INF_VIEWER_PROPERTIES_FRAMERATE            = "Framerate"
+INF_VIEWER_PROPERTIES_CAPTUREFRAME         = "CaptureFrame"
+INF_VIEWER_PROPERTIES_CREATEAVI            = "CreateAVI"
+INF_VIEWER_PROPERTIES_CANCELRECORDING      = "CancelRecording"
+INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT       = "UpdateMLOutput"
+INF_VIEWER_PROPERTIES_VIEWERSTATUS         = "ViewerStatus"
 INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS = "ProtocolViewerStatus"
-INF_VIEWER_PROPERTIES_BGCOLOR		= "BGColor"
-INF_VIEWER_PROPERTIES_BGGREYCENTER	= "BGGreyCenter"
-INF_VIEWER_PROPERTIES_BGGREYWIDTH	= "BGGreyWidth"
+INF_VIEWER_PROPERTIES_BGCOLOR              = "BGColor"
+INF_VIEWER_PROPERTIES_BGGREYCENTER         = "BGGreyCenter"
+INF_VIEWER_PROPERTIES_BGGREYWIDTH          = "BGGreyWidth"
 
 LAY_VIEWER_SCREENSHOT                   = "Screenshot"
 INF_SCREENSHOTFILE                      = "ScreenshotFilename" # String
@@ -385,7 +385,7 @@ INF_MEASPOS3            = "MeasuredPosition_3"       # Vec3f   Selected Position
 
 
 class ObjInfoExt(ObjInfo):
-
+   
    def handleEventsOnce(self, *args):
       """Call event handling function handleEventsOnce"""
       self.fld_eventFirst.touch()
@@ -415,7 +415,7 @@ class ObjInfoExt(ObjInfo):
       #name = name.replace("ä", "ae").replace("ü", "ue").replace("ö", "oe").replace("ß", "ss")
       return name
 
-      
+
 class METKObjInfo(ObjInfoExt):
    
    # the following method is taken from the MevVis Safir project
@@ -423,12 +423,12 @@ class METKObjInfo(ObjInfoExt):
    def sendMessage(self, layer, msg, arg= None):
      """Send 'message' and 'argument' to module specified by 'layer'
         (e.g. sendMessage(LAY_GLOBAL,MSG_LOAD) or sendMessage(LAY_VIEWER,MSG_VIEWMODE,""))"""
-
+     
      self.typedSet(OBJ_COMMUNICATION,layer,INF_MESSAGE, msg, INFOTYPE_MESSAGE)
      if arg: self.set(INF_DATA, arg)
      self.notify()
      return
-
+   
    def getImageInfo(self, objectID, infoID, type = None):
       """To avoid redundant information in the ObjMgr database, informations for the image should be saved only one time.
          For this purpose, the image layer only saves information which differs from the parent entry. 
@@ -437,7 +437,7 @@ class METKObjInfo(ObjInfoExt):
       if self.existInfo(objectID, LAY_IMAGE, infoID):
          if type == None:
             type = self.getType(objectID, LAY_IMAGE, infoID)
-            
+         
          if type == INFOTYPE_STRING:
             info = self.get(objectID, LAY_IMAGE, infoID)
          elif type == INFOTYPE_BOOL:
@@ -453,26 +453,26 @@ class METKObjInfo(ObjInfoExt):
          else:
             MLAB.logError("getImageInfo: Info type " + type + " not supported!")
             info = None
-      else:         
+      else:
          info = None
       if info == None:
-         objectIDNew = self.get(objectID, LAY_GLOBAL, INF_PARENT)         
+         objectIDNew = self.get(objectID, LAY_GLOBAL, INF_PARENT)
          if objectIDNew != "" and objectID != objectIDNew:
             info = self.getImageInfo(objectIDNew, infoID)
          else:
             info = None
       return info
-      
+   
    def setStatusMsg(self, message):
       self.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, message, INFOTYPE_MESSAGE)
       self.notify()
       pass
-      
+   
    def setStatusProgress(self, progress):
       self.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_PROGRESS, progress, INFOTYPE_DOUBLE)
       self.notify()
       pass
-      
+   
    def setEventReceiveMode(self, mode, objIds= None, layerIds= "*"):
       """Set event receive mode"""
       if mode == ERM_NONE:
@@ -485,11 +485,11 @@ class METKObjInfo(ObjInfoExt):
          self.fld_acceptObjs  .value= OBJ_COMMUNICATION
          self.fld_acceptLayers.value= LAY_GLOBALEVENTS
       return
-
+   
    def handleEvents(self, *args):
       """Call event handling functions.
          The method is extended in a way that the global messages "Loaded", "Save" and "Cleanup" are send to extra methods."""
-
+      
       self.fld_eventFirst.touch();
       while self.fld_successful.value:
          if self.activeObject() == OBJ_COMMUNICATION:
@@ -514,46 +514,32 @@ class METKObjInfo(ObjInfoExt):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 _debug_Output = True
 
 def setDebugOutput(value):
    global _debug_Output
    _debug_Output = value
    return
-   
-   
+
+
 def Debug(_ctx,debugStr):
    global _debug_Output
    if (_debug_Output):
       _ctx.log("Debug:"+debugStr)
    return
-   
-   
+
+
 def statusMsg(_cls_info,value):
    _cls_info.set(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, value)
    _cls_info.notify()
    return
-   
-   
-   
+
+
+
 def cleanPathSlashes(path):
    path = path.replace("\\","/")
    return path
-   
+
 
 # print relpath("D:/jhfsd", "D:/a")
 # '../a'
@@ -589,14 +575,14 @@ def relpath(p1, p2):
        return os.path.join( *p )
     else:
        return ""
-       
-       
-       
+
+
+
 #math helper functions
 def crossProduct(a,b):
    result = (a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0])
    return result
-   
+
 def dotProduct(a,b):
    result = a[0]*b[0]+a[1]*b[1]+a[2]*b[2]
    return result

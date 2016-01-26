@@ -36,7 +36,7 @@ def handleAttributeModifiedEvent():
    layer  = _cls_info.activeLayer()
    info   = _cls_info.activeInfo()
    value  = _cls_info.get()
-               
+   
    if layer == LAY_APPEARANCE:
       if info == INF_TEXTURIZE:
          ctx.field("textureToggle.on").value = _cls_info.getBool()
@@ -46,18 +46,18 @@ def handleAttributeModifiedEvent():
             ctx.field("SoTexture2.model").value = "MODULATE"
       elif info == INF_TEXTURESCALE:
          ctx.field("SoTexture2Transform.scaleFactor").value = _cls_info.getDouble(), _cls_info.getDouble()
-            	
+   
    elif layer == LAY_DESCRIPTION:
       if info == INF_STRUCTURE:
          ctx.field("structure").value = value
-         
+   
    return
 
 
 def initialize(field = 0):
    global _cls_info
    objectID = ctx.field("objectID").value
-
+   
    ctx.field("UMDPointerToInventor.objectID").setStringValue(objectID)
    ctx.field("UMDPointerToInventor.layerID").setStringValue(LAY_FILES)
    ctx.field("UMDPointerToInventor.infoID").setStringValue(INF_IVPOINTER)
@@ -65,10 +65,10 @@ def initialize(field = 0):
    ctx.field("TexturePointer.objectID").setStringValue(objectID)
    ctx.field("TexturePointer.layerID").setStringValue(LAY_FILES)
    ctx.field("TexturePointer.infoID").setStringValue(INF_TEXPOINTER)
-
-
+   
+   
    ctx.field("textureToggle.on").value = _cls_info.getBool(objectID, LAY_APPEARANCE, INF_TEXTURIZE)
-
+   
    if _cls_info.get(objectID, LAY_APPEARANCE, INF_TEXTURETYPE) != "":
       if _cls_info.get(objectID, LAY_APPEARANCE, INF_TEXTURETYPE) == "HATCHING_TAM":
          ctx.field("SoTexture2.filename").value = ctx.localPath() + "/textures/TAM256x256.rgb"
@@ -79,11 +79,11 @@ def initialize(field = 0):
    else:
       ctx.field("SoTexture2.filename").value = ctx.localPath() + "/textures/TAM256x256.rgb"
       ctx.field("SoTexture2.model").value = "MODULATE"
-         
+   
    if _cls_info.get(objectID, LAY_APPEARANCE, INF_TEXTURESCALE) != "":
       ctx.field("SoTexture2Transform.scaleFactor").value = _cls_info.getDouble(objectID, LAY_APPEARANCE, INF_TEXTURESCALE),  _cls_info.getDouble(objectID, LAY_APPEARANCE, INF_TEXTURESCALE)
    pass
-   
+
 
 def visibleOnChanged(field = 0):
    object = _cls_info.activeObject()

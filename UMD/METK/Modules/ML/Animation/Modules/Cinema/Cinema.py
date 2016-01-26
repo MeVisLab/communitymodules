@@ -25,7 +25,7 @@ _tab_structuregroup = None
 
 def init():
    global _cls_info
-     
+   
    _cls_info = METKObjInfo(ctx.module("ObjInfo"))
    _cls_info.setEventReceiveMode(ERM_NONE)   
    
@@ -44,7 +44,7 @@ def initWindow(args=0):
    _button_pause = ctx.control("b_pause")
    
    global _mainWin
-   _mainWin = ctx.window()   
+   _mainWin = ctx.window()
    
    global _tw_listView, _tab_hierarchy, _tab_structuregroup
    _tw_listView = ctx.control("ObjectListView")
@@ -63,9 +63,9 @@ def initWindow(args=0):
    _downImg = ctx.field("local").value+"/down.png"
    
    return
-   
-   
-   
+
+
+
 def openCase(field = 0):   
    ctx.field("METKScriptInit.scriptFile").value = ctx.field("baseScriptPath").value + "/" + ctx.field("caseType").value + "/init-script.txt"
    
@@ -76,8 +76,8 @@ def openCase(field = 0):
       ctx.field("METKManager.load").touch()
       _mainWin.setTitle("Cinema | " + caseFile)
    return
-   
-   
+
+
 def openENT(field=0):
     ctx.field("caseType").setStringValue("ENT")
     openCase()
@@ -99,14 +99,14 @@ def exit(field = 0):
    
    if field:
       ctx.window().close()
-   return   	
-   
+   return
+
 def initScript(args=0):
    ctx.field("METKScriptInit.manualInit").touch()
    return
-   
-   
-   
+
+
+
 def loadScriptFile(field=0,scriptFile = ""):
    if (scriptFile == ""):
       if (ctx.field("UMDAnimation2.pathTypeScriptPath").value=="Use module path"):
@@ -117,17 +117,17 @@ def loadScriptFile(field=0,scriptFile = ""):
          scriptFile = ctx.field("UMDAnimation2.scriptFile").value
    
    ctx.log("load script file: "+scriptFile)
-
-   #load file to script area      
+   
+   #load file to script area
    ctx.field("UMDAnimation2.ScriptArea").setStringValue("")
    if (isfile(scriptFile)==1):
       f = file(scriptFile,'r')
-      for line in f:         
+      for line in f:
          ctx.field("UMDAnimation2.ScriptArea").setStringValue(ctx.field("UMDAnimation2.ScriptArea").value+line)
-      
+   
    return
-   
-   
+
+
 
 
 def startAnimation(args=0):
@@ -155,29 +155,29 @@ def pauseAnimation(args=0):
 
 
 
-  
-def entScriptSelected(item, column):   
-   ctx.field("UMDAnimation2.pathTypeScriptPath").value="Use module path"
-   ctx.field("UMDAnimation2.scriptFile").value = ctx.field("baseScriptPath").value + "/ENT/"+item.text(1)   
-   loadScriptFile()
-   return
- 
 
-def liverScriptSelected(item, column):   
+def entScriptSelected(item, column):
    ctx.field("UMDAnimation2.pathTypeScriptPath").value="Use module path"
-   ctx.field("UMDAnimation2.scriptFile").value = ctx.field("baseScriptPath").value + "/Liver/"+item.text(1)   
+   ctx.field("UMDAnimation2.scriptFile").value = ctx.field("baseScriptPath").value + "/ENT/"+item.text(1)
    loadScriptFile()
    return
-   
-   
+
+
+def liverScriptSelected(item, column):
+   ctx.field("UMDAnimation2.pathTypeScriptPath").value="Use module path"
+   ctx.field("UMDAnimation2.scriptFile").value = ctx.field("baseScriptPath").value + "/Liver/"+item.text(1)
+   loadScriptFile()
+   return
+
+
 def listViewTypeCahnged(field=0):
    if (ctx.field("listViewType").value == "Hierarchy"):
       _tw_listView.selectTab(_tab_hierarchy)
    else:
       _tw_listView.selectTab(_tab_structuregroup)
    return
- 
- 
+
+
 #--------------------------------------------
 # Event handling
 #--------------------------------------------
@@ -200,6 +200,6 @@ def handleAttributeModifiedEvent():
 
 def handleLoadedEvent():
    pass
-   
+
 def handleCleanupEvent():
    pass

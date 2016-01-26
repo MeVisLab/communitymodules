@@ -15,7 +15,7 @@ def init():
    _cls_output = ObjInfo(ctx.module("output"))
 
    return
-   
+
 def handleEvents(againstTypeError = 0):
    ctx.field("ready").value = False
    ctx.field("readableFormat").value = False
@@ -60,7 +60,7 @@ def handleAttributeCreatedEvent():
    if object == "Global":
       if layer == "Information":
          _cls_output.set(OBJ_CASE, LAY_CASE, info, value)
-         
+      
       elif layer == "Patient":
          _cls_output.set(OBJ_PATIENT, LAY_PATIENT, info, value)
    
@@ -73,7 +73,7 @@ def handleAttributeCreatedEvent():
    elif object == "Image":
       imageName = "Image_" + _cls_input.get("Image", "Data", "Basename")
       if layer == "Data":
-         if info == "Basename": 
+         if info == "Basename":
             _cls_output.set(imageName, LAY_IMAGE, INF_FILENAME,  value + ".dcm")
             _cls_output.set(imageName, LAY_IMAGE, INF_IMAGETYPE, "Original")
             _cls_output.set(imageName, LAY_IMAGE, INF_OBJVALUE,  "-1")
@@ -81,11 +81,11 @@ def handleAttributeCreatedEvent():
             _cls_output.set(imageName, LAY_GLOBAL, INF_CHILDS,   "")
             _cls_output.typedSet(imageName, LAY_GLOBAL, INF_VALID, True, INFOTYPE_BOOL)
       if layer == "Modality":
-         if info == "Equipment": 
+         if info == "Equipment":
             _cls_output.set(imageName, LAY_IMAGE, INF_MODALITY, value)
-         if info == "Date": 
+         if info == "Date":
             _cls_output.set(imageName, LAY_IMAGE, INF_STUDYDATE, value)
-         if info == "Institition": 
+         if info == "Institition":
             _cls_output.set(imageName, LAY_IMAGE, INF_INSTITUTION, value)
       if layer == "ROI":
          ROIName = "ROI_" + value
@@ -98,7 +98,7 @@ def handleAttributeCreatedEvent():
          _cls_output.set(imageName, LAY_GLOBAL, INF_CHILDS, _cls_output.get(imageName, LAY_GLOBAL, INF_CHILDS) + ROIName + ";")
          # ParentID setzen
          _cls_output.set(ROIName, LAY_GLOBAL, INF_PARENT,  imageName)
-
+   
    # Segmentationresults
    elif object[:3] == "ROI" and layer[:6] == "Result":
       if info == INF_STRUCTURE:
@@ -121,10 +121,9 @@ def handleAttributeCreatedEvent():
          
          # Seite angeben
          if infoInfo.find("right") != -1:
-	    _cls_output.set(structureName, LAY_DESCRIPTION, INF_SIDE, "Right")
+            _cls_output.set(structureName, LAY_DESCRIPTION, INF_SIDE, "Right")
          if infoInfo.find("left") != -1:
-	    _cls_output.set(structureName, LAY_DESCRIPTION, INF_SIDE, "Left")
-
+            _cls_output.set(structureName, LAY_DESCRIPTION, INF_SIDE, "Left")
          # bei Nerven keinen IMAGE-Eintrag setzen
          if structure.find("N. ") == -1:
             _cls_output.set(structureName, LAY_IMAGE, INF_FILENAME, _cls_input.get(object, layer, INF_FILENAME) + ".dcm")
@@ -132,7 +131,7 @@ def handleAttributeCreatedEvent():
          
          # all structures are unpickable, except lymph nodes and tumors
          _cls_output.set(structureName, LAY_APPEARANCE,  INF_PICKSTYLE, "UNPICKABLE")
-
+         
          # is Lymphnode
          if structure.find("Lymph") != -1:
             _cls_output.set(structureName, LAY_DESCRIPTION, INF_STRUCTURE, LYMPHNODE)
@@ -187,16 +186,16 @@ def handleAttributeCreatedEvent():
          elif structure.find("Lung") != -1:
             _cls_output.set(structureName, LAY_DESCRIPTION, INF_STRUCTURE, "Lung")
             _cls_output.set(structureName, LAY_DESCRIPTION, INF_STRUCTUREGROUP, "Respiratory Tract")
-
+         
          # is something else
          else:
             _cls_output.set(structureName, LAY_DESCRIPTION, INF_STRUCTURE, "UserDefined")
             _cls_output.set(structureName, LAY_DESCRIPTION, INF_STRUCTUREGROUP, "UserDefined")
             ctx.log(structureName + " was interpreted as UserDefined!")
-         _cls_output.typedSet(structureName, LAY_APPEARANCE, INF_COLOR,        getStandardColor(_cls_output.get(structureName, LAY_DESCRIPTION, INF_STRUCTURE)), INFOTYPE_VEC3) 
-	 _cls_output.typedSet(structureName, LAY_APPEARANCE, INF_TRANSPARENCY, getStandardTransparency(_cls_output.get(structureName, LAY_DESCRIPTION, INF_STRUCTURE)), INFOTYPE_DOUBLE) 
-	 _cls_output.typedSet(structureName, LAY_DESCRIPTION, INF_IMPORTANCE, getStandardImportance(_cls_output.get(structureName, LAY_DESCRIPTION, INF_STRUCTURE)), INFOTYPE_DOUBLE) 
-	 _cls_output.typedSet(structureName, LAY_APPEARANCE, INF_BB,           False, INFOTYPE_BOOL) 
+         _cls_output.typedSet(structureName, LAY_APPEARANCE, INF_COLOR, getStandardColor(_cls_output.get(structureName, LAY_DESCRIPTION, INF_STRUCTURE)), INFOTYPE_VEC3) 
+         _cls_output.typedSet(structureName, LAY_APPEARANCE, INF_TRANSPARENCY, getStandardTransparency(_cls_output.get(structureName, LAY_DESCRIPTION, INF_STRUCTURE)), INFOTYPE_DOUBLE)
+         _cls_output.typedSet(structureName, LAY_DESCRIPTION, INF_IMPORTANCE, getStandardImportance(_cls_output.get(structureName, LAY_DESCRIPTION, INF_STRUCTURE)), INFOTYPE_DOUBLE)
+         _cls_output.typedSet(structureName, LAY_APPEARANCE, INF_BB, False, INFOTYPE_BOOL)
 
    return
 

@@ -20,10 +20,10 @@ _vesselList = ""
 _fileManager   = None
 
 def init():
-   global _cls_info, _cls_iter, _fileManager     
+   global _cls_info, _cls_iter, _fileManager
    # Create an ObjInfo class instance to modify the database and to handle database events
-   _cls_info= ObjInfo(ctx.module("info"))      
-   ctx.field("objNamesEnum").value = _objNamesEnum_Liver   
+   _cls_info= ObjInfo(ctx.module("info"))
+   ctx.field("objNamesEnum").value = _objNamesEnum_Liver
    
    _cls_iter = ObjIterator(ctx.module("deleteObjIterator"))
    _cls_iter.setSearchCriteria(LAY_FILES, INF_IVFILE)
@@ -34,19 +34,19 @@ def init():
    _vesselList = ""
    
    _fileManager = MLABFileManager
-
+   
    return
 
-   
+
 def updateObject(fieldP=0):
    global _comboObjNames
    objId = ctx.field("objID").value
    
    _comboObjNames.setCurrentText(_cls_info.get(objId, LAY_DESCRIPTION, INF_NAME))
-   #ctx.field("objName").setStringValue(objName)   
+   #ctx.field("objName").setStringValue(objName)
    return
-   
-   
+
+
 def renameObject():
    global _comboObjNames
    objId = ctx.field("objID").value
@@ -59,7 +59,7 @@ def renameObject():
    _cls_info.notify()   
    
    # if result, then new objID
-   if (_cls_info.get(objId, LAY_GLOBAL, INF_OBJTYPE)=='Result'):      
+   if (_cls_info.get(objId, LAY_GLOBAL, INF_OBJTYPE)=='Result'):
       newId = "Structure_"+objName
       #newId = newId.replace(".","_")
       _cls_info.renameObject(objId,newId)
@@ -74,37 +74,37 @@ def renameObject():
          ivFileNew = ivFile.replace(objId, newId)
          _cls_info.set(newId, LAY_FILES, INF_IVFILE, ivFileNew)
          #print "copy file: "+_cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR)+ivFile+"  to: "+_cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR)+ivFileNew
-         #rename ersetzt copy # neu 2006-07-26         
+         #rename ersetzt copy # neu 2006-07-26
          rename(_cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR)+ivFile, _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR)+ivFileNew)
    
    ctx.field("METKHierarchyBrowser.updateView").touch()
-       
+   
    return
-   
-   
+
+
 def renameChildsAndParents(oldId, newId):
    currentId = _cls_info.firstObject()
-   while _cls_info.success():            
+   while _cls_info.success():
       if (_cls_info.get(currentId, LAY_GLOBAL, INF_PARENT)==oldId):
          #print "Parent = "+ newId +"  for " + currentId
          _cls_info.set(currentId, LAY_GLOBAL, INF_PARENT,newId)
       childs=_cls_info.get(currentId, LAY_GLOBAL, INF_CHILDS)
       #print childs + "aus "+currentId+" "+LAY_GLOBAL+" "+INF_CHILDS
       #childsChanged=False
-      if (childs.find(oldId)!=-1):         
+      if (childs.find(oldId)!=-1):
          singleChilds = childs.split(";")
-         #print "ChildsOld = "+ childs +"  for " + currentId   
-         childs = ""         
+         #print "ChildsOld = "+ childs +"  for " + currentId
+         childs = ""
          for child in singleChilds:
             if (child==oldId):
                childs = childs + newId+";"
             elif child!="":
                childs = childs + child+";"
-         #print "ChildsNew = "+ childs +"  for " + currentId                  
+         #print "ChildsNew = "+ childs +"  for " + currentId
          _cls_info.set(currentId, LAY_GLOBAL, INF_CHILDS,childs)
-      currentId = _cls_info.nextObject()            
+      currentId = _cls_info.nextObject()
    return
-   
+
 
 
 def generateVessel():
@@ -112,7 +112,7 @@ def generateVessel():
    ctx.field("GenerateVesselSender.data").value = objID
    ctx.field("GenerateVesselSender.send").touch()
    return
-   
+
 
 def generateVesselAll():
    global _waitForVessel, _vesselList
@@ -120,27 +120,27 @@ def generateVesselAll():
       #build list
       _vesselList = ""
       currentId = _cls_info.firstObject()
-      while _cls_info.success():            
+      while _cls_info.success():
          sg=_cls_info.get(currentId, LAY_DESCRIPTION, INF_STRUCTUREGROUP)
          if (sg=="Vessel"):
             _vesselList = _vesselList + "," + currentId
             _waitForVessel = currentId
-         currentId = _cls_info.nextObject()            
+         currentId = _cls_info.nextObject()
 
    #print _vesselList
-
+   
    if (_waitForVessel!=""):
       if (len(_vesselList)>1):
          object = _vesselList.split(",")
          #print "Structure:" + object[1]
-         #print "Vorher: " + _vesselList         
+         #print "Vorher: " + _vesselList
          _vesselList = _vesselList.replace(","+object[1],"",1)
          #print "Nachher: " + _vesselList
          ctx.field("GenerateVesselSender.data").value = object[1]
-	 ctx.field("GenerateVesselSender.send").touch()
+         ctx.field("GenerateVesselSender.send").touch()
       else:
          _waitForVessel = ""
-         #print "Ready ... All vessels created!"       
+         #print "Ready ... All vessels created!"
    
    return
 
@@ -153,8 +153,8 @@ def nextVessel(args):
    else:
       reloadObject()
    return
-   
-   
+
+
 def reloadObject(args=0):
    if (args==0):
       objID = ctx.field("objID").value
@@ -165,39 +165,39 @@ def reloadObject(args=0):
    _cls_info.notify()
    _cls_info.set(objID, LAY_FILES, INF_IVFILE, filename)
    _cls_info.notify()
-   return   
+   return
 
-   
-   
-   
+
+
+
 def caseTypeChanged(fieldP=0):
    if (ctx.field("selectedCaseType").value=="Liver"):
       ctx.field("objNamesEnum").setStringValue(_objNamesEnum_Liver)
    elif (ctx.field("selectedCaseType").value=="HNO"):
       ctx.field("objNamesEnum").setStringValue(_objNamesEnum_HNO)
    return
-   
+
 def objNamesCombo(fieldP=0):
-   global _comboObjNames   
-   if (_comboObjNames):      
-      if (_comboObjNames.currentText()=="OwnName"):         
+   global _comboObjNames
+   if (_comboObjNames):
+      if (_comboObjNames.currentText()=="OwnName"):
          #ctx.field("objName").value = ""
          _comboObjNames.setCurrentText("")
    return
-   
-   
-   
+
+
+
 def openWindow():
-   global _comboObjNames   
-   _comboObjNames = ctx.control("comboObjName")      
+   global _comboObjNames
+   _comboObjNames = ctx.control("comboObjName")
    return
-   
+
 def closeWindow():
    global _comboObjNames
    _comboObjNames = None
    return
 
-   
+
 def openCase(field = 0):
    caseFile = MLABFileDialog.getOpenFileName("","XML files (*.xml)", "Open Case File");
    if caseFile != "":
@@ -221,12 +221,12 @@ def saveCase(field = 0):
    #ctx.field("METKObjXMLWriter.run").touch()
    pass
 
-   
+
 def exit(fieldP=0):
    ctx.window().close()
-   return   
-   
-   
+   return
+
+
 def changeObjMgr(fieldP=0):
    ctx.field("internalObjMgr.outObjectContainer").disconnectOutputs()
    ctx.field("externalObjMgr.outObjectContainer").disconnectOutputs()
@@ -234,7 +234,7 @@ def changeObjMgr(fieldP=0):
       ctx.field("info.inObjectContainer").connectFrom(ctx.field("internalObjMgr.outObjectContainer"))
    else:
       ctx.field("info.inObjectContainer").connectFrom(ctx.field("externalObjMgr.outObjectContainer"))
-            
+   
    return
 
 
@@ -249,37 +249,37 @@ def resetNonP(objId):
       _cls_info.markInfoNonPersistent(objId, LAY_APPEARANCE, INF_VISIBLE)
    return
 
- 
-  
+
+
 def deleteObject(fieldP=0):   
    objId = ctx.field("objID").value
    #print "objId: " + objId
    removeAsChild(objId)
    #print "removeObject: "+objId
    _cls_info.removeObject(objId)
-   ctx.field("METKHierarchyBrowser.updateView").touch()   
+   ctx.field("METKHierarchyBrowser.updateView").touch()
    return
-   
-   
+
+
 def removeAsChild(oldId):
    #print "remove as Child"+oldId
    currentId = _cls_info.firstObject()
-   while _cls_info.success():            
+   while _cls_info.success():
       childs=_cls_info.get(currentId, LAY_GLOBAL, INF_CHILDS)
       if (childs!=""):
-         if (childs.find(oldId)!=-1):         
+         if (childs.find(oldId)!=-1):
             singleChilds = childs.split(";")
-            #print "ChildsOld = "+ childs +"  for " + currentId   
-            childs = ""         
+            #print "ChildsOld = "+ childs +"  for " + currentId
+            childs = ""
             for child in singleChilds:
                if (child!=oldId and child!=""):
                   childs = childs + child+";"
-            #print "ChildsNew = "+ childs +"  for " + currentId                  
+            #print "ChildsNew = "+ childs +"  for " + currentId
             _cls_info.set(currentId, LAY_GLOBAL, INF_CHILDS,childs)
-      currentId = _cls_info.nextObject()            
+      currentId = _cls_info.nextObject()
    return
-   
-   
+
+
 def changeParent(fieldP=0):
    global _globalReturnValue
    objId = ctx.field("objID").value
@@ -291,14 +291,14 @@ def changeParent(fieldP=0):
       
       # change childs for old parent
       childs=_cls_info.get(oldParent, LAY_GLOBAL, INF_CHILDS)
-      if (childs.find(objId)!=-1):         
+      if (childs.find(objId)!=-1):
          singleChilds = childs.split(";")
-         #print "ChildsOld = "+ childs +"  for " + objId   
-         childs = ""         
+         #print "ChildsOld = "+ childs +"  for " + objId
+         childs = ""
          for child in singleChilds:
             if (child!=objId and child!=""):
                childs = childs + child+";"
-         #print "ChildsNew = "+ childs +"  for " + objId                  
+         #print "ChildsNew = "+ childs +"  for " + objId
          _cls_info.set(oldParent, LAY_GLOBAL, INF_CHILDS,childs)
       # change childs for new parent
       childs=_cls_info.get(newParent, LAY_GLOBAL, INF_CHILDS)
@@ -312,38 +312,38 @@ def changeParent(fieldP=0):
       
       ctx.field("updateList").touch()
    #else:
-      #print "Cancel"   
+      #print "Cancel"
    
    return
-   
+
 def openWinChangeParent():
    #global _objectsList
-   #ctx.control("newValue").setText(_cls_info.get(ctx.field("objID").value,ctx.field("layerID").value,_objectsList.selectedItem().text(0)))   
+   #ctx.control("newValue").setText(_cls_info.get(ctx.field("objID").value,ctx.field("layerID").value,_objectsList.selectedItem().text(0)))
    parentEnum = ""
    currentId = _cls_info.firstObject()
-   while _cls_info.success():            
+   while _cls_info.success():
       parentEnum = parentEnum + currentId + ","
       currentId = _cls_info.nextObject()
-   ctx.field("parentsEnum").setStringValue(parentEnum)   
+   ctx.field("parentsEnum").setStringValue(parentEnum)
 
    return
-   
+
 def closeWinChangeParentCancel():
    global _globalReturnValue   
    _globalReturnValue = ""
    ctx.window().reject()
    return
-   
-   
+
+
 def closeWinChangeParentYes():
    global _globalReturnValue
-   _globalReturnValue = ctx.control("comboNewParent").currentText()   
+   _globalReturnValue = ctx.control("comboNewParent").currentText()
    ctx.window().accept()
    return
-   
-   
-   
-   
+
+
+
+
 def deleteNonIVObjects(args=0):
    global _cls_iter
    fileManager = MLABFileManager
@@ -358,10 +358,10 @@ def deleteNonIVObjects(args=0):
          toDelete = toDelete + _cls_iter.object() + ","
          #print _cls_iter.object()
          #_cls_info.removeObject(_cls_iter.object())
-      _cls_iter.searchNext()            
-      
+      _cls_iter.searchNext()
+   
    singles = toDelete.split(",")
-   for single in singles:      
+   for single in singles:
       _cls_info.removeObject(single)
    _cls_info.notify()
    
@@ -378,7 +378,7 @@ def deleteNonIVObjects(args=0):
             newchilds = newchilds + singlechild + ";"
          _cls_info.set(_cls_iter.object(), LAY_GLOBAL, INF_CHILDS, newchilds)
          #print "new childs: " + newchilds
-      _cls_iter.searchNext()            
-                  
+      _cls_iter.searchNext()
+   
    #print "deleteCounter: " + str(deleteCounter)
    return

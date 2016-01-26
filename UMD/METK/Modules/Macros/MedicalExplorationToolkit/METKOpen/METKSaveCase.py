@@ -53,8 +53,8 @@ def handleLoadedEvent():
 
 def handleSaveEvent():
    pass
-   
-   
+
+
 def handleCleanupEvent():
    ctx.field("fileName").value = ""
    ctx.field("caseLoaded").value = False
@@ -62,13 +62,13 @@ def handleCleanupEvent():
 
 
 def save(field):
-   _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)      	  
+   _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)
    _cls_info.notify()
    ctx.field("ObjDump.fileName").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + _cls_info.get(OBJ_CASE, LAY_CASE, INF_XMLFILE)
    ctx.field("ObjDump.save").touch()
    pass
-   
-   
+
+
 def saveAs(field):
    global _caseDir
    result = ctx.showModalDialog("SaveAs", "Save Case File")
@@ -77,7 +77,7 @@ def saveAs(field):
       if caseFile != "":
          if caseFile[-4:] != ".xml":
             caseFile = caseFile + ".xml"
-         _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)      	  
+         _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)
          _cls_info.set(OBJ_CASE, LAY_CASE, INF_XMLFILE, caseFile)
          _cls_info.notify()
          ctx.field("ObjDump.fileName").value = _caseDir + caseFile

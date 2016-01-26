@@ -10,9 +10,9 @@ def init():
    # Create an ObjInfo class instance to modify the database and to handle database events
    _cls_info= ObjInfo(ctx.module("info"))
    
-   ctx.field("info.eventReceiveMode").value = ERM_SELECTED      
+   ctx.field("info.eventReceiveMode").value = ERM_SELECTED
    ctx.field("info.acceptedObjects").value  = ""
-   ctx.field("info.acceptedLayers").value   = "*"           
+   ctx.field("info.acceptedLayers").value   = "*"
    
    global _ObjName
    _ObjName = ""
@@ -29,14 +29,14 @@ def handleObjectCreatedEvent():
       _cls_info.setString(_cls_info.activeObject(), LAY_GLOBAL, "ObjectType", "Viewer3D")
    return
 
-def handleObjectRemovedEvent():   
+def handleObjectRemovedEvent():
    return
 
 def handleAttributeCreatedEvent():
    handleAttributeModifiedEvent()
    return
 
-def handleAttributeRemovedEvent():   
+def handleAttributeRemovedEvent():
    return
 
 def handleAttributeModifiedEvent():
@@ -49,19 +49,19 @@ def handleAttributeModifiedEvent():
       if info == INF_VIEWER_CAMERA_POSITION:
          ctx.field("CamPosition").setStringValue(value)
       elif info == INF_VIEWER_CAMERA_ORIENTATION:
-      	ctx.field("CamOrientation").setStringValue(value)
+         ctx.field("CamOrientation").setStringValue(value)
       elif info == INF_VIEWER_CAMERA_HEIGHT:
-      	ctx.field("CamHeight").setStringValue(value)
+         ctx.field("CamHeight").setStringValue(value)
       elif info == INF_VIEWER_CAMERA_FOCALDISTANCE:
-      	ctx.field("CamFocalDistance").setStringValue(value)      	
+         ctx.field("CamFocalDistance").setStringValue(value)
       elif info == INF_VIEWER_CAMERA_NEWDATA:
-        ctx.field("CamPosition").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_POSITION))
-        ctx.field("CamOrientation").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_ORIENTATION))
-        ctx.field("CamHeight").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_HEIGHT))
-        ctx.field("CamFocalDistance").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_FOCALDISTANCE))
-        ctx.field("newData").touch()
-      
-   elif layer == LAY_VIEWER_PROPERTIES:      
+         ctx.field("CamPosition").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_POSITION))
+         ctx.field("CamOrientation").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_ORIENTATION))
+         ctx.field("CamHeight").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_HEIGHT))
+         ctx.field("CamFocalDistance").setStringValue(_cls_info.get(object, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_FOCALDISTANCE))
+         ctx.field("newData").touch()
+   
+   elif layer == LAY_VIEWER_PROPERTIES:
       if info == INF_VIEWER_PROPERTIES_FRAMERATE:
          ctx.field("ViewerFramerate").setStringValue(value)
       elif info == INF_VIEWER_PROPERTIES_CAPTUREFRAME:
@@ -74,9 +74,9 @@ def handleAttributeModifiedEvent():
          if value == "ping":
             ctx.field("ViewerCancelRecording").touch()
       elif info == INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT:
-         if value == "ping":            
-            ctx.field("ViewerUpdateMLOutput").touch()            
-      elif info == INF_VIEWER_PROPERTIES_VIEWERSTATUS:         
+         if value == "ping":
+            ctx.field("ViewerUpdateMLOutput").touch()
+      elif info == INF_VIEWER_PROPERTIES_VIEWERSTATUS:
          ctx.field("ViewerStatus").setStringValue(value)
       elif info == INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS:
          ctx.field("ProtocolViewerStatus").setStringValue(value)
@@ -89,16 +89,16 @@ def handleAttributeModifiedEvent():
    elif layer == LAY_GLOBAL:
       if info == INF_GLOBAL_REFRESH:
          refreshAll(0)
-         #_cls_info.setString(_ObjName, LAY_GLOBAL, INF_GLOBAL_REFRESH, "0")         
-   return   
-   
+         #_cls_info.setString(_ObjName, LAY_GLOBAL, INF_GLOBAL_REFRESH, "0")
+   return
+
 
 def refreshAll(args):
    CamPositionChanged(1)
    CamOrientationChanged(1)
    CamHeightChanged(1)
    CamFocalDistanceChanged(1)
-   ViewerFramerateChanged(1)         
+   ViewerFramerateChanged(1)
    ViewerCaptureFrameChanged(1)
    ViewerCreateAVIChanged(1)
    ViewerCancelRecordingChanged(1)
@@ -111,30 +111,30 @@ def refreshAll(args):
    # Hier wird der Schalter noch auf die altmodische Weise zurückgesetzt, da REFRESH von extern generiert wird und es im moment zuviel Umstände macht dort eine Typ gebundene Erstellung einzuführen
    _cls_info.setString(_ObjName, LAY_GLOBAL, INF_GLOBAL_REFRESH, "0")
    # macht diese Zeile hier Sinn?
-   _cls_info.setString(_ObjName, LAY_GLOBAL, "ObjectType", "Viewer3D") 
+   _cls_info.setString(_ObjName, LAY_GLOBAL, "ObjectType", "Viewer3D")
    
    # Zeitverzögerter Aufruf damit möglich notify()-Kollisionen vermieden werden können
    ctx.callLater(0, "_cls_info.notify")
-
+   
    return
 
 
-def ObjNameChanged(againstTError):   
+def ObjNameChanged(againstTError):
    ctx.field("info.acceptedObjects").value  = ctx.field("ObjName").value
-     
+   
    global _ObjName
    _ObjName = ctx.field("ObjName").value
    
    _cls_info.setString(_ObjName, LAY_GLOBAL, "ObjectType", "Viewer3D")
    ctx.field("ProtocolViewerStatus").setStringValue(_cls_info.get(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS))
    return
-   
-   
+
+
 def CamPositionChanged(againstTError):
    if (ctx.field("ProtocolViewerStatus").value==True) or (againstTError==1):
       if _cls_info.existInfo(_ObjName, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_POSITION) == False:
          _cls_info.typedSet(_ObjName, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_POSITION, "" , INFOTYPE_VEC3)
-      _cls_info.setVec3(_ObjName, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_POSITION, ctx.field("CamPosition").vectorValue())      
+      _cls_info.setVec3(_ObjName, LAY_VIEWER_CAMERA, INF_VIEWER_CAMERA_POSITION, ctx.field("CamPosition").vectorValue())
       if (againstTError!=1):
          _cls_info.notify()
    return
@@ -188,45 +188,45 @@ def ViewerCancelRecordingChanged(againstTError):
       _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_CANCELRECORDING, "", INFOTYPE_MESSAGE)
    #ctx.module("info").field("notify").touch()
    return
-      
+
 def ViewerUpdateMLOutputChanged(againstTError):
    if _cls_info.existInfo(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT) == False:
       _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_UPDATEMLOUTPUT, "", INFOTYPE_MESSAGE)
    #ctx.module("info").field("notify").touch()
    return
-   
-def ViewerStatusChanged(againstTError):   
-   if (ctx.field("ProtocolViewerStatus").stringValue()=="TRUE" and ctx.field("ViewerStatus").stringValue()!="x"):        
+
+def ViewerStatusChanged(againstTError):
+   if (ctx.field("ProtocolViewerStatus").stringValue()=="TRUE" and ctx.field("ViewerStatus").stringValue()!="x"):
       if _cls_info.existInfo(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_VIEWERSTATUS) == False:
          _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_VIEWERSTATUS, "", INFOTYPE_MESSAGE)
       _cls_info.setString(ctx.field("ObjName").stringValue(), LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_VIEWERSTATUS, ctx.field("ViewerStatus").stringValue())
       #ctx.module("info").field("notify").touch()
       #ctx.log("callLater von notify bei viewerStatus: " + ctx.field("ViewerStatus").stringValue())
-      ctx.callLater(0, "_cls_info.notify")      
-      ctx.field("ViewerStatus").value = "x"   
+      ctx.callLater(0, "_cls_info.notify")
+      ctx.field("ViewerStatus").value = "x"
    return
-   
-def ProtocolViewerStatusChanged(againstTError):   
+
+def ProtocolViewerStatusChanged(againstTError):
    if _cls_info.existInfo(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS) == False:
       _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS, "", INFOTYPE_BOOL)
    _cls_info.setBool(ctx.field("ObjName").stringValue(), LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_PROTOCOLVIEWERSTATUS, ctx.field("ProtocolViewerStatus").boolValue())
    #ctx.module("info").field("notify").touch()
    return
-      
+
 def ViewerBGColorChanged(againstTError):
    if _cls_info.existInfo(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGCOLOR) == False:
       _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGCOLOR, "", INFOTYPE_VEC3)
    _cls_info.setVec3(ctx.field("ObjName").stringValue(), LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGCOLOR, ctx.field("ViewerBGColor").vectorValue())
    #ctx.module("info").field("notify").touch()
    return
-   
+
 def ViewerBGGreyCenterChanged(againstTError):
    if _cls_info.existInfo(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGGREYCENTER) == False:
       _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGGREYCENTER, "", INFOTYPE_DOUBLE)
    _cls_info.setDouble(ctx.field("ObjName").stringValue(), LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGGREYCENTER, ctx.field("ViewerBGGreyCenter").doubleValue())
    #ctx.module("info").field("notify").touch()
    return
-   
+
 def ViewerBGGreyWidthChanged(againstTError):
    if _cls_info.existInfo(_ObjName, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGGREYWIDTH) == False:
       _cls_info.typedSet(ctx.field("ObjName").value, LAY_VIEWER_PROPERTIES, INF_VIEWER_PROPERTIES_BGGREYWIDTH, "", "omAttribute_double")

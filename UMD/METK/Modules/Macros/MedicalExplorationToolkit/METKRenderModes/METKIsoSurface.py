@@ -50,26 +50,26 @@ def handleAttributeModifiedEvent():
    object = _cls_info.activeObject()
    layer  = _cls_info.activeLayer()
    info   = _cls_info.activeInfo()
-   value  = _cls_info.get()     
+   value  = _cls_info.get()
    
-   if layer == LAY_APPEARANCE:      
+   if layer == LAY_APPEARANCE:
       if info == INF_CLIPPING:
          containerName = _cls_info.adjustObjectID(object)
          if (value=="ON"):
             ctx.module("clipNo").removeChild(ctx.field(containerName+".outInventor"))
             #remove first, so that not 2 of the same hangs on it
             ctx.module("clipYes").removeChild(ctx.field(containerName+".outInventor"))
-            ctx.module("clipYes").addChild(ctx.field(containerName+".outInventor"))            
+            ctx.module("clipYes").addChild(ctx.field(containerName+".outInventor"))
          else:
-            ctx.module("clipYes").removeChild(ctx.field(containerName+".outInventor"))         
+            ctx.module("clipYes").removeChild(ctx.field(containerName+".outInventor"))
             #remove first, so that not 2 of the same hangs on it
-	    ctx.module("clipNo").removeChild(ctx.field(containerName+".outInventor"))
+            ctx.module("clipNo").removeChild(ctx.field(containerName+".outInventor"))
             ctx.module("clipNo").addChild(ctx.field(containerName+".outInventor"))
       if info == INF_VISIBLE and _cls_info.getBool() == True and ctx.field("creationTime").stringValue() == "OnVisible":
          addContainer(object)
    pass
-   
-   
+
+
 def handleCleanupEvent():
    _cls_info.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, "Cleaning up METKIsoSurface...", INFOTYPE_MESSAGE)
    _cls_info.notify()
@@ -87,7 +87,7 @@ def deleteModules():
       _cls_info.notify()
       ctx.module(module).remove()
    ctx.log("METKIsoSurface is clean")
-
+   
    _containerList = []
    pass
 
@@ -103,14 +103,14 @@ def handleLoadedEvent(field = 0):
    useDepthPeeling()
    pass
 
-   
+
 def handleSaveEvent():
    pass
 
 
 def addContainer(object):
    global _containerList
-
+   
    if _containerList.count(_cls_info.adjustObjectID(object)) == 0:
       # Container erstellen und benennen
       container = ctx.addModule("IsoSurfaceContainer")
@@ -128,8 +128,8 @@ def addContainer(object):
       count = len(_containerList)
       container.setFrameTopLeft(200*(count%3),75*round((count/3.0)-0.5,0)+600)
    pass
-   
-   
+
+
 def useDepthPeeling(field = 0):
    ctx.field("SoSwitch.whichChild").value = ctx.field("useDepthPeeling").value
    pass

@@ -26,9 +26,9 @@ def getImage(parent):
 def imageSet(field = 0):
    if ctx.field("image").isValid():
       updateLUT(ctx.field("roiSelect").value)
-   pass   
-   
-   
+   pass
+
+
 def appearanceChanged(field = 0):
    _cls_app = ObjInfo(ctx.module("appearance"))
 
@@ -63,12 +63,12 @@ def updateLUT(parent):
       return
    _cls_info.activateLayer(OBJ_CODEDSEGMENTATION, ctx.field("roiSelect").value)
    _cls_info.firstInfo()
-      
+   
    while _cls_info.success():
       if _cls_info.activeLayer() != LAY_GLOBAL:
-         infoID = _cls_info.activeInfo()            
+         infoID = _cls_info.activeInfo()
          value = _cls_info.get()
-                  
+         
          totalColor = [0.0, 0.0, 0.0]
          totalOpacity = 0.0
          
@@ -103,7 +103,7 @@ def updateLUT(parent):
             alphaPoints += str(int(infoID)) + " " + str(transpToSet) + ", "
          else:
             colorPoints += str(int(infoID)) + " 0 0 0, "
-	    alphaPoints += str(int(infoID)) + " 0, "
+       alphaPoints += str(int(infoID)) + " 0, "
 
       
       _cls_info.activateInfo(OBJ_CODEDSEGMENTATION, ctx.field("roiSelect").value, infoID)
@@ -119,7 +119,7 @@ def updateLUT(parent):
    # touch something from the overlay, otherwise viewer is not being updated
    ctx.field("SoView2DOverlay.alphaFactor").touch()
    pass
-   
+
 
 
 def selectOverlay(field = 0):
@@ -131,9 +131,9 @@ def selectOverlay(field = 0):
    if (not ctx.field("roiSelect").value):
       ctx.log("No ROI selected for Overlay")
       return
-
+   
    objValueStr = str(int(objValue)).zfill(6)
-   objects = _cls_info.get(OBJ_CODEDSEGMENTATION, ctx.field("roiSelect").value, objValueStr).split(",")      
+   objects = _cls_info.get(OBJ_CODEDSEGMENTATION, ctx.field("roiSelect").value, objValueStr).split(",")
    
    selectedObj = ""
    minTransp = 1.0
@@ -142,7 +142,7 @@ def selectOverlay(field = 0):
       if str(_cls_info.get(objID, LAY_APPEARANCE, INF_VISIBLE)).upper()=="TRUE" and (float)(_cls_info.get(objID, LAY_APPEARANCE, INF_TRANSPARENCY))<minTransp:
          if _cls_info.getBool(OBJ_CSO, LAY_GLOBAL, INF_IGNOREPICK) or _cls_info.get(objID, LAY_APPEARANCE, INF_PICKSTYLE) != "UNPICKABLE":
             minTransp = ((float)(_cls_info.get(objID, LAY_APPEARANCE, INF_TRANSPARENCY)))
-            selectedObj = objID         
+            selectedObj = objID
    
    if (selectedObj!=""):
       _cls_info.typedSet(OBJ_CSO, LAY_SELECTEDOBJ, INF_SELECTION, ctx.field("SoView2DPosition.worldPosition").stringValue(), INFOTYPE_VEC3)
@@ -150,7 +150,7 @@ def selectOverlay(field = 0):
    _cls_info.set(OBJ_CSO, LAY_SELECTEDOBJ, INF_OBJID, selectedObj)
    _cls_info.notify()
    return
-   
+
 
 def toggleOverlay(field = 0):
    global _toggleOverlay

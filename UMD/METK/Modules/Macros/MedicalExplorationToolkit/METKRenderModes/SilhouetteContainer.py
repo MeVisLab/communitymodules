@@ -36,24 +36,24 @@ def handleAttributeModifiedEvent():
    layer  = _cls_info.activeLayer()
    info   = _cls_info.activeInfo()
    value  = _cls_info.get()
-               
+   
    if layer == LAY_APPEARANCE:
       if info == INF_SILHOUETTECOLOR:
          if (value != ""):
             ctx.field("SoSilhouette.outlineColor").setStringValue(_cls_info.getString())
       elif info == INF_SILHOUETTE or info == INF_VISIBLE:
          visibleOnChanged()
-         
+      
       elif info == INF_SILHOUETTEWIDTH:
          width = _cls_info.getDouble()
          if width <= 0:
             width = 1
          ctx.field("SoSilhouette.outlineWidth").value = width
-            	
+   
    elif layer == LAY_DESCRIPTION:
       if info == INF_STRUCTURE:
          ctx.field("structure").value = value
-         
+   
    return
 
 
@@ -68,10 +68,10 @@ def initialize(field = 0):
    ctx.field("SilhouettePointer.objectID").setStringValue(objectID)
    ctx.field("SilhouettePointer.layerID").setStringValue(LAY_FILES)
    ctx.field("SilhouettePointer.infoID").setStringValue(INF_SILHOUETTEPOINTER)
-      
+   
    if _cls_info.get(objectID, LAY_APPEARANCE, INF_SILHOUETTECOLOR) != "":
       ctx.field("SoSilhouette.outlineColor").setStringValue(_cls_info.getString(objectID, LAY_APPEARANCE, INF_SILHOUETTECOLOR))
-      
+   
    if _cls_info.get(objectID, LAY_APPEARANCE, INF_SILHOUETTEWIDTH) != "":
       width = _cls_info.getDouble(objectID, LAY_APPEARANCE, INF_SILHOUETTEWIDTH)
       if width <= 0:
@@ -79,13 +79,13 @@ def initialize(field = 0):
       ctx.field("SoSilhouette.outlineWidth").value = width
    else:
       ctx.field("SoSilhouette.outlineWidth").value = 1
-      
+   
    if _cls_info.get(objectID, LAY_APPEARANCE, INF_SILHOUETTE) == "TRUE":
       ctx.field("SoSilhouette.on").value = True
    else:
       ctx.field("SoSilhouette.on").value = False
    pass
-   
+
 
 def visibleOnChanged(field = 0):
    object = _cls_info.activeObject()
@@ -94,7 +94,7 @@ def visibleOnChanged(field = 0):
    else:
       ctx.field("SoSilhouette.on").value = _cls_info.getBool(object, LAY_APPEARANCE, INF_SILHOUETTE)
    pass
-   
+
 
 def modeChanged(field = 0):
    if field.value == "Silhouette":

@@ -23,8 +23,8 @@ class kButtonAnalyzer():
       self.buttonEventFilter = filter
       self.parent = parent
       return
-      
-      
+   
+   
    def analyzeButtonEvent(self,event):
       if (self.parent ==None):
          raise RuntimeError, "parent not set"
@@ -32,31 +32,31 @@ class kButtonAnalyzer():
       
       if (self.buttonEventFilter==None):
          raise RuntimeError, "buttonEventFilter not set"
-         return    
-
+         return
+      
       buttonName = self.buttonEventFilter.eventControl().getName()
       if (buttonName == ""):
          raise RuntimeError, "Button has no name"
          return
       
       #get state
-      btenabled = self.parent.call(buttonName+".getEnabled")  
+      btenabled = self.parent.call(buttonName+".getEnabled")
       if (not btenabled):
          return
-   
-      eventType = event["type"]   
-
+      
+      eventType = event["type"]
+      
       #get state
       btstate = self.parent.call(buttonName+".getState")
       #get type
-      bttype = self.parent.call(buttonName+".getType")   
+      bttype = self.parent.call(buttonName+".getType")
       
       if (eventType=="MouseButtonRelease" and self.mouseIsIn):
          if (event["button"]=="left"):
             self.leftButtonPressed = False
             if (btstate==STATE_UP and bttype==BT_BOOL):
-         	    self.parent.call(buttonName+".setState",[STATE_DOWN])
-            else:         
+               self.parent.call(buttonName+".setState",[STATE_DOWN])
+            else:
                self.parent.call(buttonName+".setState",[STATE_UP])
                if (self.mouseIsIn):
                   try: self.parent.call(buttonName+".setOver")
@@ -64,37 +64,37 @@ class kButtonAnalyzer():
                else:
                   try: self.parent.call(buttonName+".setNormal")
                   except: raise RuntimeError, "Can't call setNormal for "+buttonName
-	 
+            
             try: self.parent.call(buttonName+"Clicked")
             except: raise RuntimeError, "Can't call "+buttonName+"Clicked"
-	 
-	                   
+      
+      
       elif (eventType=="MouseButtonPress"):
          if (event["button"]=="left"):
             self.leftButtonPressed = True
             try: self.parent.call(buttonName+".setDown")
             except: raise RuntimeError, "Can't call "+buttonName+"setDown"
-	 	 
+      
       elif (eventType=="Enter"):
          self.mouseIsIn = True
          if (btstate==STATE_UP):
             try: self.parent.call(buttonName+".setOver")
             except: raise RuntimeError, "Can't call "+buttonName+"setOver"
-
+      
       elif (eventType=="Leave"):
          self.mouseIsIn = False
-         if (not self.leftButtonPressed and btstate==STATE_UP):         
+         if (not self.leftButtonPressed and btstate==STATE_UP):
             try: self.parent.call(buttonName+".setNormal")
-            except: raise RuntimeError, "Can't call "+buttonName+"setNormal"   	    
-
+            except: raise RuntimeError, "Can't call "+buttonName+"setNormal"
+      
       return
-   
 
 
-  
+
+
 class kButton():
    
-   def __init__(self,parent,imageControl,imageNormal,imageDown,imageOver,imageDisabled):      
+   def __init__(self,parent,imageControl,imageNormal,imageDown,imageOver,imageDisabled):
       self.imageNormal = imageNormal
       self.imageDown = imageDown
       self.imageOver = imageOver
@@ -108,40 +108,40 @@ class kButton():
       return
    
    
-   def setDown(self):   
+   def setDown(self):
       if (self.parent==None):
          raise RuntimeError, "parent not set"
-         return      
+         return
       self.control.setImageFile(self.parent.expandFilename(self.imageDown))
       return
-      
+   
    def setNormal(self):
       if (self.parent==None):
          raise RuntimeError, "parent not set"
-         return            
+         return
       self.control.setImageFile(self.parent.expandFilename(self.imageNormal))
-      return    
-      
-
+      return
+   
+   
    def setDisabled(self):
       if (self.parent==None):
          raise RuntimeError, "parent not set"
-         return            
+         return
       self.control.setImageFile(self.parent.expandFilename(self.imageDisabled))
       return
-      
-      
+   
+   
    def setOver(self):
       if (self.parent==None):
          raise RuntimeError, "parent not set"
          return
       self.control.setImageFile(self.parent.expandFilename(self.imageOver))
-      return    
-      
+      return
+   
    def getState(self):
       return self.state
-      
-
+   
+   
    def setState(self,value):
       self.state = value
       if (value==STATE_DOWN):
@@ -149,18 +149,18 @@ class kButton():
       else:
          self.setNormal()
       return
-     
-      
-      
+   
+   
+   
    def setType(self,value):
       self.type = value
       return
-      
-      
+   
+   
    def getType(self):
       return self.type
-      
-      
+   
+   
    def getEnabled(self):
       return self.isEnabled
    

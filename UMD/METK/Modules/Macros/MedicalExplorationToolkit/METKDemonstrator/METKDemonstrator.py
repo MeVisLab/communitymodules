@@ -25,15 +25,15 @@ def saveAs(fieldP =0):
 def save(field=0):
    ctx.field("METKManager.save").touch()
    pass
-   	
-   	
+
+
 def exit(field=0):
-   ctx.field("METKManager.cleanup").touch()   
+   ctx.field("METKManager.cleanup").touch()
    if field:
       ctx.window().close()
    return
-   
-   
+
+
 
 def loadDemo(fieldP=0):
    ctx.log("try to load demo case")
@@ -49,15 +49,15 @@ def loadDemo(fieldP=0):
       except EnvironmentError: # so it isn't NT/2000/XP
          InstallFolder = relPath(MLABFileManager.getExecutableDir()+"/","../../")
          ctx.log("No install folder found. Setting install folder to "+str(InstallFolder))
-      
+   
    caseFile = InstallFolder + "/DemoCases/Hals12/Hals12Demo.xml"
    ctx.log("case file = "+caseFile)
    ctx.field("METKManager.fileName").value = caseFile
    ctx.field("METKManager.load").touch()
-   ctx.window().setTitle("METKDemonstrator | " + caseFile)   
+   ctx.window().setTitle("METKDemonstrator | " + caseFile)
    return
-   
-   
+
+
 
 def viewCSO(field = 0):
    cso = ctx.field("METKCSO.cso").value
@@ -68,9 +68,9 @@ def viewCSO(field = 0):
       ctx.field("UMDAnimation2.ScriptArea").value=script
       ctx.field("UMDAnimation2.ScriptAreaExecute").touch()
    return
-   
-   
-   
+
+
+
 def initWindow(fieldP=0):
    global _buttonEventFilter1
    _buttonEventFilter1 = ctx.control("ButtonEventFilter")
@@ -116,24 +116,23 @@ def initWindow(fieldP=0):
    _tw_browser = ctx.control("browser")
    global _tw_bottom
    _tw_bottom = ctx.control("tabbottom")
-
    
    return
-   
+
 def analyzeButtonEventWindow(event):
    analyzer1.analyzeButtonEvent(event)
    return
-   
-   
+
+
 def bt_demoClicked(field=0):
    loadDemo()
    return
-   
-   
+
+
 def bt_browseClicked(field=0):
    openCase()
    return
-   
+
 def bt_exitClicked(field=0):
    exit()
    return
@@ -143,34 +142,34 @@ def bt_sgbClicked(fieldP=0):
    bt_sgb.setState(STATE_DOWN)
    bt_hierarchy.setState(STATE_UP)
    return
-     
+
 def bt_hierarchyClicked(fieldP=0):
    _tw_browser.selectTabAtIndex(0)
    bt_sgb.setState(STATE_UP)
    bt_hierarchy.setState(STATE_DOWN)
    return
-   
-   
+
+
 def bt_csoClicked(fieldP=0):
    _tw_bottom.selectTabAtIndex(0)
    bt_cso.setState(STATE_DOWN)
    bt_collections.setState(STATE_UP)
    return
-     
+
 def bt_collectionsClicked(fieldP=0):
    _tw_bottom.selectTabAtIndex(1)
    bt_cso.setState(STATE_UP)
    bt_collections.setState(STATE_DOWN)
    return
-   
-   
+
+
 def bt_addcolClicked(fieldP=0):
    ctx.field("METKCollections.create").touch()
    return
-   
-   
-# frag mich mal keiner was dieser mist hier mit der url soll ... 
+
+
+# frag mich mal keiner was dieser mist hier mit der url soll ...
 # aber das war die einzige möglichkeit, aus einem absoluten pfad (c:/aaa/bbb/ccc/) und einer relativen Angabe wie "../" etwas zu zaubern   
 def relPath(orgpath, relative):
    (scheme, netloc, path, query, fragment) = urlsplit(urljoin("http://netloc/"+orgpath, relative),"http://",0)   
-   return lstrip(path,"/")      
+   return lstrip(path,"/")

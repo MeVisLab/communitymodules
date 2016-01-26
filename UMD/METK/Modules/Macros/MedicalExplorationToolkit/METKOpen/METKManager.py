@@ -25,11 +25,11 @@ def init():
    _cls_converted = METKObjInfo(ctx.module("infoConverted"))
    _cls_info = METKObjInfo(ctx.module("info"))
    _cls_iter = ObjIterator(ctx.module("objCreateIterator"))
-   _cls_iter.setSearchCriteria(LAY_IMAGE, INF_IMAGETYPE, "Segmentation")   
+   _cls_iter.setSearchCriteria(LAY_IMAGE, INF_IMAGETYPE, "Segmentation")
    
    _fileManager = MLABFileManager
    _createModules = ","
-      
+   
    return
 
 
@@ -62,12 +62,12 @@ def new(field = 0):
       _cls_info.set(OBJ_APPLICATION, LAY_APPLICATION, INF_APPLICATIONNAME,    "MedicalExplorationToolkit")
       _cls_info.set(OBJ_APPLICATION, LAY_APPLICATION, INF_APPLICATIONVERSION, "1.0")
       _cls_info.set(OBJ_APPLICATION, LAY_APPLICATION, INF_MEVISLAB,           "1.5.1")
-
+      
       _cls_info.notify()
-
+      
       ctx.field("ObjMgr.eventLogging").value = True
       ctx.field("status").value = "New case openend :o)"
-      _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_LOADED,INFOTYPE_MESSAGE)      	  
+      _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_LOADED,INFOTYPE_MESSAGE)
       _cls_info.markObjectNonPersistent(OBJ_COMMUNICATION)
       _caseLoaded = True
       ctx.field("caseLoaded").value = True
@@ -97,8 +97,8 @@ def load(againstTError = 0):
       
       global _generateIV
       _generateIV = False
-
-      ctx.log("Converting XML data...")   
+      
+      ctx.log("Converting XML data...")
       _cls_info.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, "Loading case...", INFOTYPE_MESSAGE)
       
       _caseDir = ctx.field("fileInfo.dirname").value
@@ -121,16 +121,16 @@ def convertSuccessful(field):
    if ctx.field("ConvertXML.successful").value == True:
       ctx.field("status").value = "Checking file integrity..."
       ctx.field("ObjMgr.eventLogging").value = False
-      _cls_converted.handleEvents()      
+      _cls_converted.handleEvents()
    return
-   
+
 
 #--------------------------------------------
 # Event handling
 #--------------------------------------------
 
 def handleObjectCreatedEvent():
-   pass      
+   pass
 
 def handleObjectRemovedEvent():
    pass
@@ -158,7 +158,7 @@ def handleAttributeCreatedEvent():
                   MLAB.logWarning("Multiple defined ChildID removed: " + child)
                else:
                   uniqueChildIDs.add(child)
-               
+         
          checkedChildIDs = ""
          for uniqueChild in uniqueChildIDs:
             if not _cls_converted.existObject(uniqueChild):
@@ -171,7 +171,7 @@ def handleAttributeCreatedEvent():
       elif info == INF_PARENT:
          if not _cls_converted.existObject(value):
             MLAB.logWarning("ParentID references to non-existent object entry: " + value)
-            
+   
    elif layer == LAY_FILES:
       if info == INF_IVFILE:
          # IV Datei bereits vorhanden?
@@ -180,29 +180,29 @@ def handleAttributeCreatedEvent():
          
          if (not _fileManager.exists(_fileManager.normalizePath(fileNameIV)) and (ctx.field("computeSurfaces").value==True)):
             
-            # wenn nicht, Image überhaupt vorhanden? Sonst wars das...            
+            # wenn nicht, Image überhaupt vorhanden? Sonst wars das...
             #objValue = _cls_converted.getImageInfo(object, INF_OBJVALUE, INFOTYPE_INT32)
             #^^ bug objectvalue is of string type
             objValue = _cls_converted.getImageInfo(object, INF_OBJVALUE, INFOTYPE_STRING)
-                                    
+            
             # Es kann ein ObjValue von -1 zurückgegeben werden, weil getImageInfo zu den Parents aufsteigt
             # und dort vielleicht so einen Wert findet, der natürlich nichts mit dem eigentlichen Objekt mehr zu tun hat
             if (objValue):               
                if (int(objValue)<0): #das mit dem int-casten ist nicht ganz sauber, weil es ja auch sonstwas sein könnte
                   objValue = None
-                  
-            fileNameIMAGE = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + _cls_converted.getImageInfo(object, INF_FILENAME) #hier ist es besser, den filename aus converted zu holen, da er im info noch nicht zwingend da sein kann (bei HEPA-Fällen aufgetreten)            
+            
+            fileNameIMAGE = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + _cls_converted.getImageInfo(object, INF_FILENAME) #hier ist es besser, den filename aus converted zu holen, da er im info noch nicht zwingend da sein kann (bei HEPA-Fällen aufgetreten)
             
             if not _fileManager.exists(_fileManager.normalizePath(fileNameIMAGE)):
                MLAB.logWarning("Unable to create " + info + " for " + object + ", because Image " + fileNameIMAGE + " does not exist")
-            else:               
+            else:
                ctx.field("GenerateIVFile.filenameOutput").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + value
                _cls_info.set(object,layer,info,value)
                if (objValue):
                   Debug(ctx,"NO AUTO!  objValue="+str(objValue))
                   ctx.field("GenerateIVFile.imageValue").setStringValue(objValue)
                   ctx.field("GenerateIVFile.imageValueAuto").setBoolValue(False)
-               else:                  
+               else:
                   ctx.field("GenerateIVFile.imageValueAuto").setBoolValue(True)
                
                # der filename muss als letztes zugewiesen werden, weil dessen Änderung ein addFile in die Queue auslöst.
@@ -211,7 +211,7 @@ def handleAttributeCreatedEvent():
                global _generateIV
                _generateIV = True
                pipeThrough = False
-         
+   
    elif layer == LAY_APPEARANCE:
       if not _cls_converted.existInfo(object, LAY_APPEARANCE, INF_COLOR):
          _cls_info.typedSet(object, layer, INF_COLOR, "0.8 0.8 0.8", INFOTYPE_VEC3)
@@ -226,13 +226,13 @@ def handleAttributeCreatedEvent():
             _cls_info.typedSet(object, layer, INF_VISIBLE, True, INFOTYPE_BOOL)
          else:
             _cls_info.typedSet(object, layer, INF_VISIBLE, False, INFOTYPE_BOOL)
-      
+   
    elif layer == LAY_IMAGE and info == INF_FILENAME:
       imageType = _cls_converted.getImageInfo(object, INF_IMAGETYPE)
       if imageType == "Segmentation":
          if not _cls_converted.existInfo(object, LAY_IMAGE, INF_OBJVALUE):
-            ctx.field("ImgLoad.filename").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + value            
-            _cls_info.typedSet(object, LAY_IMAGE, INF_OBJVALUE, int(ctx.field("ImgInfo.maxValue").value), INFOTYPE_INT32)            
+            ctx.field("ImgLoad.filename").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + value
+            _cls_info.typedSet(object, LAY_IMAGE, INF_OBJVALUE, int(ctx.field("ImgInfo.maxValue").value), INFOTYPE_INT32)
       elif imageType == "Original":
          ctx.field("ImgLoad.filename").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + value
          _cls_info.typedSet(object, LAY_IMAGE, INF_OBJVALUE, -1, INFOTYPE_INT32)
@@ -254,7 +254,7 @@ def handleAttributeCreatedEvent():
          ctx.field("GenerateIVFile.start").touch()
       else:
          finalize()
-      
+   
    if pipeThrough:
       _cls_info.typedSet(object, layer, info, value, valueType)
    
@@ -265,45 +265,45 @@ def handleAttributeRemovedEvent():
 
 def handleAttributeModifiedEvent():
    pass
-   
 
-   
+
+
 def ivFilesGenerated(field = 0):
    global _generateIVOnRequest
    if ctx.field("GenerateIVFile.ready").value == True:
-      if _generateIVOnRequest:         
-         if (not _cls_info.existInfo(ctx.field("createIVFile.data").value, LAY_FILES, INF_IVFILE)):            
+      if _generateIVOnRequest:
+         if (not _cls_info.existInfo(ctx.field("createIVFile.data").value, LAY_FILES, INF_IVFILE)):
             _cls_info.set(ctx.field("createIVFile.data").value, LAY_FILES, INF_IVFILE, ctx.field("createIVFile.data").value + ".iv")
             _cls_info.notify()
-         ctx.field("createIVFile.done").touch()         
+         ctx.field("createIVFile.done").touch()
       else:
          Debug(ctx,"GenerateIVFile.ready")
          ctx.field("ObjMgr.eventLogging").value = False # War nur an um Fortschritt des GenerateIVFIle zu protokollieren über den ObjMgr
-         finalize()     
+         finalize()
    return
-   
-   
+
+
 def finalize():
    global _caseLoaded
-   createObjectsByVisible()            
+   createObjectsByVisible()
    _caseLoaded = True
    ctx.field("ObjMgr.eventLogging").value = True
-      
+   
    ctx.field("status").value = "Loaded :o)"
    ctx.log("loaded :o)")
    _cls_info.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, "XML file loaded.", INFOTYPE_MESSAGE)
    _cls_info.notify()
-         
+   
    ctx.field("LoadRequest.done").touch()
-   _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_LOADED,INFOTYPE_MESSAGE)      	  
+   _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_LOADED,INFOTYPE_MESSAGE)
    _cls_info.markObjectNonPersistent(OBJ_COMMUNICATION)
    _cls_info.notify()
-   MLAB.removeWaitCursor()      
+   MLAB.removeWaitCursor()
    ctx.field("caseLoaded").value = True
    _cls_info.notify()
    return
-   
-   
+
+
 def detectedFormat(args):
    if ctx.field("ConvertXML.detectedFormat").value == "could not convert":
       ctx.field("status").value = "Unknown file format."
@@ -311,9 +311,9 @@ def detectedFormat(args):
       _cls_info.notify()
       MLAB.removeWaitCursor()
    return
-   
-   
-   
+
+
+
 def cleanup(field):
    global _caseDir
    global _createModules
@@ -339,17 +339,17 @@ def cleanup(field):
          _caseHasBeenModified = False
          _caseLoaded = False
          ctx.field("changeDetected").value = False
-
+         
          #Clear the cache to get some space
          MLAB.clearMLCache()
-
+         
          # Telling the other modules to clean up
-         _cls_info.typedSet(OBJ_COMMUNICATION, LAY_GLOBALEVENTS, INF_CASELOADED, MSG_CLEANUP, INFOTYPE_MESSAGE)      	  
+         _cls_info.typedSet(OBJ_COMMUNICATION, LAY_GLOBALEVENTS, INF_CASELOADED, MSG_CLEANUP, INFOTYPE_MESSAGE)
          _cls_info.notify()
-
+         
          _cls_info.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, "Cleaning up METKManager...", INFOTYPE_MESSAGE)
          _cls_info.notify()
-         _caseDir = ""   
+         _caseDir = ""
          
          # hier müssen noch alle METKInventorObject-Module gelöscht werden
          ctx.log("Clearing METKManager himself...")
@@ -368,9 +368,9 @@ def cleanup(field):
          ctx.field("ObjMgr.clearObjectContainer").touch()
          ctx.field("source.clearObjectContainer").touch()
          ctx.field("converted.clearObjectContainer").touch()
-
+         
          ctx.log("METKManager is cleared.")
-               
+         
          ctx.field("status").value = "Case closed."
          _cls_info.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, "Case closed.", INFOTYPE_MESSAGE)
          _cls_info.notify()
@@ -381,27 +381,27 @@ def cleanup(field):
 
 
 
-def gotMeasureRequest(fieldP=0):         
-   objectID = ctx.field("MeasureRequest.data").value   
+def gotMeasureRequest(fieldP=0):
+   objectID = ctx.field("MeasureRequest.data").value
    if (not createObject(objectID)):
       ctx.field("MeasureRequest.done").touch()
       ctx.log("Object ("+objectID+") existiert nicht im ObjMgr oder wurde schon erstellt!")
    return
-   
-   
+
+
 def measuresValid(value):   
    if (value==ctx.field("MeasureRequest.data").value):
       ctx.field("MeasureRequest.done").touch()
    return
 
 
-def gotLoadRequest(fieldP=0):      
+def gotLoadRequest(fieldP=0):
    ctx.field("fileName").value = ctx.field("LoadRequest.data").value
    Debug(ctx,"gotLoadRequest  filename="+ctx.field("fileName").value)
    ctx.field("load").touch()   
    return
-        
-   
+
+
 def infoChanged(fieldP=0):
    global _caseHasBeenModified
    ctx.field("info.firstEvent").touch()
@@ -413,10 +413,10 @@ def infoChanged(fieldP=0):
       
       # look for events for creating new IV files
       if layer == LAY_APPEARANCE:
-         if info == INF_VISIBLE:            
+         if info == INF_VISIBLE:
             if value == "TRUE":
                createObject(object)
-               
+      
       # look for events which should suggest the user to save the XML file
       eventType = ctx.field("info.eventType").value
       if eventType == "ObjectCreated" or eventType == "ObjectRemoved":
@@ -428,34 +428,34 @@ def infoChanged(fieldP=0):
          level = 3
       else: #default level value added by konrad to prevent an error in the warnLevel>=level question
          level = 4
-         
+      
       if not _caseHasBeenModified and _caseLoaded and object != OBJ_COMMUNICATION:
          if ctx.field("warnLevel").value >= level:
             _caseHasBeenModified = True
             ctx.field("changeDetected").value = True
-                                          
+      
       ctx.field("info.nextEvent").touch()
    ctx.field("info.clearEventQueue").touch()
    return
-   
-   
+
+
 def createObject(objectID):
-   global _createModules      
-   if (_cls_info.existObject(objectID) and _createModules.find(","+objectID+",")==-1):      
-      inventorObject = ctx.addModule("METKInventorObject")   
+   global _createModules
+   if (_cls_info.existObject(objectID) and _createModules.find(","+objectID+",")==-1):
+      inventorObject = ctx.addModule("METKInventorObject")
       inventorObject.field("instanceName").setStringValue(_cls_info.adjustObjectID(objectID))
-      inventorObject.field("objectID").setStringValue(objectID)              
-      inventorObject.field("inObjectContainer").connectFrom(ctx.field("info.outObjectContainer"))            
+      inventorObject.field("objectID").setStringValue(objectID)
+      inventorObject.field("inObjectContainer").connectFrom(ctx.field("info.outObjectContainer"))
       inventorObject.field("initialize").touch();
       _createModules = _createModules+objectID+","
-           
+      
       count = len(_createModules.split(","))
-      inventorObject.setFrameTopLeft(200*(count%3)-300,75*round((count/3.0)-0.5,0)+100)      
+      inventorObject.setFrameTopLeft(200*(count%3)-300,75*round((count/3.0)-0.5,0)+100)
 
       return True
    return False
-   
-   
+
+
 def createObjectsByVisible():
    Debug(ctx,"load existing visible objects")
    _cls_info.typedSet(OBJ_COMMUNICATION, LAY_STATUS, INF_STATUSMSG, "Load existing visible objects...", INFOTYPE_MESSAGE)
@@ -467,8 +467,8 @@ def createObjectsByVisible():
          createObject(_cls_iter.object())
       _cls_iter.searchNext()
    return
-   
-   
+
+
 def createIVFile(field):
    #global _caseDir
    global _generateIVOnRequest
@@ -476,32 +476,32 @@ def createIVFile(field):
    if _cls_info.existObject(field.value):
       _generateIVOnRequest = True
       if _cls_info.existInfo(field.value, LAY_FILES, INF_IVFILE):
-         fileNameIV = _cls_info.get(field.value, LAY_FILES, INF_IVFILE)                  
+         fileNameIV = _cls_info.get(field.value, LAY_FILES, INF_IVFILE)
       else:
          fileNameIV = field.value + ".iv"
       
-      # wenn nicht, Image überhaupt vorhanden? Sonst wars das...                 
+      # wenn nicht, Image überhaupt vorhanden? Sonst wars das...
       #fileNameIMAGE = _caseDir + _cls_converted.getImageInfo(field.value, INF_FILENAME)
       fileNameIMAGE = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + "/" + _cls_info.getImageInfo(field.value, INF_FILENAME)      
       if not _fileManager.exists(_fileManager.normalizePath(fileNameIMAGE)):
          MLAB.logWarning("Unable to create " + INF_FILENAME + " for " + field.value + ", because Image " + fileNameIMAGE + " does not exist.")
-      else:         
+      else:
          ctx.field("GenerateIVFile.queueing").value = False
-
+         
          #objValue = _cls_converted.getImageInfo(field.value, INF_OBJVALUE, INFOTYPE_STRING)
          objValue = _cls_info.getImageInfo(field.value, INF_OBJVALUE, INFOTYPE_STRING)
-         # Es kann ein ObjValue von -1 zurückgegeben werden, weil getImageInfo zu den Parents aufsteigt
-	 # und dort vielleicht so einen Wert findet, der natürlich nichts mit dem eigentlichen Objekt mehr zu tun hat
-	 if (objValue):               
-	    if (int(objValue)<0): #das mit dem int-casten ist nicht ganz sauber, weil es ja auch sonstwas sein könnte
-	       objValue = None
+   # Es kann ein ObjValue von -1 zurückgegeben werden, weil getImageInfo zu den Parents aufsteigt
+   # und dort vielleicht so einen Wert findet, der natürlich nichts mit dem eigentlichen Objekt mehr zu tun hat
+   if (objValue):
+      if (int(objValue)<0): #das mit dem int-casten ist nicht ganz sauber, weil es ja auch sonstwas sein könnte
+         objValue = None
          
          if (objValue):
             ctx.field("GenerateIVFile.imageValue").setStringValue(objValue)
             ctx.field("GenerateIVFile.imageValueAuto").setBoolValue(False)
-         else:                  
+         else:
             ctx.field("GenerateIVFile.imageValueAuto").setBoolValue(True)
-
+         
          ctx.field("GenerateIVFile.filenameOutput").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + "/" + fileNameIV
          # der filename muss als letztes zugewiesen werden, weil dessen Änderung ein addFile in die Queue auslöst.
          ctx.field("GenerateIVFile.filename").value = fileNameIMAGE
@@ -512,19 +512,19 @@ def createIVFile(field):
       MLAB.logWarning("Unable to create IV File for " + field.value + ", because Object ID " + field.value + " does not exist.")
       ctx.field("createIVFile.done").touch()
    pass
-   
+
 
 
 def save(field = 0):
    global _caseHasBeenModified
    _caseHasBeenModified = False
-   _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)      	  
+   _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)
    _cls_info.notify()
    ctx.field("ObjDump.fileName").value = _cls_info.get(OBJ_CASE, LAY_CASE, INF_CASEDIR) + _cls_info.get(OBJ_CASE, LAY_CASE, INF_XMLFILE)
    ctx.field("ObjDump.save").touch()
    pass
-   
-   
+
+
 def saveAs(field = 0):
    global _caseHasBeenModified
    global _caseDir
@@ -535,7 +535,7 @@ def saveAs(field = 0):
       if caseFile != "":
          if caseFile[-4:] != ".xml":
             caseFile = caseFile + ".xml"
-         _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)      	  
+         _cls_info.typedSet(OBJ_COMMUNICATION,LAY_GLOBALEVENTS,INF_CASELOADED,MSG_SAVE,INFOTYPE_MESSAGE)
          _cls_info.set(OBJ_CASE, LAY_CASE, INF_XMLFILE, caseFile)
          _cls_info.notify()
          ctx.field("ObjDump.fileName").value = _caseDir + caseFile
