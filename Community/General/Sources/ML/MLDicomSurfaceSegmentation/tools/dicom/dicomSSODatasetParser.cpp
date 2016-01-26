@@ -19,7 +19,7 @@ ML_START_NAMESPACE
  * \brief  Standard-constructor.
  *
  * \param  [in] dataset The dataset to parse.
- * \throws std::exception If the dataset-pointer is empty, the dataset is empty or 
+ * \throws std::runtime_error If the dataset-pointer is empty, the dataset is empty or 
  *         the dataset does not hold a surface segmentation object.
  */
 DicomSSODatasetParser::DicomSSODatasetParser(SmartPtr_DCMDataSet dataset) : DicomDatasetParser(dataset)
@@ -28,7 +28,7 @@ DicomSSODatasetParser::DicomSSODatasetParser(SmartPtr_DCMDataSet dataset) : Dico
   if (parser.getMediaStorageSOPClassUID() != UID_SurfaceSegmentationStorage) 
   {
     std::cerr << "Creating DicomSSODatasetParser instance failed: MediaStorageSOPClassUID is not SurfaceSegmentationStorage.";
-    throw std::exception("MediaStorageSOPClassUID is not SurfaceSegmentationStorage.");
+    throw std::runtime_error("MediaStorageSOPClassUID is not SurfaceSegmentationStorage.");
   }
 }
 
@@ -345,12 +345,12 @@ void DicomSSODatasetParser::matchElementsWithCoordinates(std::vector<Element3D>&
  * \param  [in] list The list to examine.
  * \param  [in] numElements The number of elements contained in the list.
  * \return The lowest value contained in the list.
- * \throws std::exception If the list is NULL.
+ * \throws std::runtime_error If the list is NULL.
  */
 unsigned short DicomSSODatasetParser::getLowestValueInList(const unsigned short* list, const unsigned long numElements)
 {
   if(list == NULL)
-    throw std::exception("Parameter list is NULL.");
+    throw std::runtime_error("Parameter list is NULL.");
 
   unsigned short result = std::numeric_limits<unsigned short>::max();
 

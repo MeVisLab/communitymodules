@@ -18,17 +18,17 @@ ML_START_NAMESPACE
  * \brief  Standard-constructor.
  *
  * \param  [in] dataset The dataset to parse.
- * \throws std::exception If the dataset-pointer or the dataset is empty.
+ * \throws std::runtime_error If the dataset-pointer or the dataset is empty.
  */
 DicomDatasetParser::DicomDatasetParser(SmartPtr_DCMDataSet dataset)
 {
   if(!dataset) {
     std::cerr << "The dataset-pointer is empty; the dataset could not be parsed.";
-    throw std::exception("Dataset-pointer is empty.");
+    throw std::runtime_error("Dataset-pointer is empty.");
   }
   if(dataset->isEmpty()) {
     std::cerr << "The dataset is empty and could not be parsed.";
-    throw std::exception("Dataset is empty.");
+    throw std::runtime_error("Dataset is empty.");
   }
   
   _dataset = dataset;

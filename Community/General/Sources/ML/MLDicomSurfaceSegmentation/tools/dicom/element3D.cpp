@@ -14,13 +14,13 @@
 /**
  * \brief  Standard-constructor.
  *
- * \throws std::exception If the segmentSequence-parameter is NULL.
+ * \throws std::runtime_error If the segmentSequence-parameter is NULL.
  */
 Element3D::Element3D(DcmElement* segmentSequence)
 {
   if(segmentSequence == NULL) {
     std::cerr << "Segment sequence is NULL.";
-    throw std::exception("Segment sequence is NULL.");
+    throw std::runtime_error("Segment sequence is NULL.");
   }
 
   _segmentSequence = segmentSequence;
