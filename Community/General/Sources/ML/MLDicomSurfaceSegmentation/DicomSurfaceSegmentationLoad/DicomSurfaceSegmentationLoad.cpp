@@ -367,7 +367,7 @@ bool DicomSurfaceSegmentationLoad::_loadDataset()
   if(status.bad()) 
   {
     std::cerr << "Loading the dataset failed: " << status.text() << std::endl;
-    throw std::exception(status.text());
+    throw std::runtime_error(status.text());
   }
   else
   {
