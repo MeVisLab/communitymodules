@@ -256,7 +256,7 @@ bool DicomSSODatasetParser::addCoordinatesToCoordiantes3DInstanceUsingIndices(Dc
     std::stringstream errorMessageStream;
     errorMessageStream << "A mesh (surface #" << coordinates3d.getSurfaceNumber().get() << ") does not adhere to the DICOM standard! \n\nThe lowest index contained in the list pertaining to tag " << pointIndexListTag.getTagName() << " is " << lowestValueInList << " instead of 1. \nWorkaround is active.";
     std::string errorMessage = errorMessageStream.str();
-    MessageBoxA(NULL, errorMessage.c_str(), "DICOM standard violation", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
+    //MessageBoxA(NULL, errorMessage.c_str(), "DICOM standard violation", MB_OK | MB_ICONWARNING | MB_SYSTEMMODAL);
     boost::erase_all(errorMessage, "\r");
     boost::erase_all(errorMessage, "\n");
     std::cerr << errorMessage;
