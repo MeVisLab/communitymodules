@@ -38,7 +38,7 @@ private:
   std::vector<Element3D> parseSegmentSequenceItems(std::vector<DcmItem*> segmentSequenceItems) const;
   std::vector<Coordinates3D> parseSurfaceSequenceItems(std::vector<DcmItem*> surfaceSequenceItems, const bool isParsingNormalsEnabled) const;
 
-  const float* getCoordinates(DcmItem* surfaceSequence, unsigned long& numberOfCoordinates) const;
+  const float* getCoordinates(DcmItem* surfaceSequence, Uint32& numberOfCoordinates) const;
   static bool addCoordinatesToCoordinates3dInstance(DcmItem* surfaceMeshSequenceItem, const DcmTag pointIndexListTag, const float* coordinates, Coordinates3D& coordinates3d);
   static bool addCoordinatesToCoordiantes3DInstanceUsingIndices(DcmItem* surfaceMeshSequenceItem, DcmTag pointIndexListTag, const float* coordinates, Coordinates3D& coordinates3d, const unsigned long numOfCoordinates);
   static bool setNormalOfCoordinates3dInstance(DcmItem* surfacePointsNormalsSequenceItem, Coordinates3D& coordinates3d);

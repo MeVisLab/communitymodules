@@ -91,7 +91,7 @@ std::vector<Element3D> DicomSSODatasetParser::parseSegmentSequenceItems(std::vec
     //ReferencedSurfaceNumber
     DcmElement* referencedSurfaceSequence = searchFirstElement(element, DCM_ReferencedSurfaceSequence);
     if(referencedSurfaceSequence != NULL) {
-      boost::optional<unsigned long> referencedSurfaceNumber = searchFirstElementUnsignedLong(referencedSurfaceSequence, DCM_ReferencedSurfaceNumber);
+      boost::optional<Uint32> referencedSurfaceNumber = searchFirstElementUnsignedLong(referencedSurfaceSequence, DCM_ReferencedSurfaceNumber);
       if(referencedSurfaceNumber)
         element3D.setReferencedSurfaceNumber(*referencedSurfaceNumber);
     }
@@ -124,7 +124,7 @@ std::vector<Coordinates3D> DicomSSODatasetParser::parseSurfaceSequenceItems(std:
     DcmElement* surfaceSequenceE = reinterpret_cast<DcmElement*>(surfaceSequence);
 
     //SurfaceNumber
-    boost::optional<unsigned long> surfaceNumber = searchFirstElementUnsignedLong(surfaceSequenceE, DCM_SurfaceNumber);
+    boost::optional<Uint32> surfaceNumber = searchFirstElementUnsignedLong(surfaceSequenceE, DCM_SurfaceNumber);
     if(surfaceNumber)
       coordinates3d.setSurfaceNumber(*surfaceNumber);
 
@@ -138,7 +138,7 @@ std::vector<Coordinates3D> DicomSSODatasetParser::parseSurfaceSequenceItems(std:
       coordinates3d.setIsVolumeFinite(true); //false is default
 
     //Coordinates
-    unsigned long numberOfCoordinates;
+    Uint32 numberOfCoordinates;
     const float* coordinates = getCoordinates(surfaceSequence, numberOfCoordinates);
     if(coordinates == NULL) 
       continue;
@@ -188,7 +188,7 @@ std::vector<Coordinates3D> DicomSSODatasetParser::parseSurfaceSequenceItems(std:
  * \param  [out] numberOfCoordinates
  * \return
  */
-const float* DicomSSODatasetParser::getCoordinates(DcmItem* surfaceSequence, unsigned long& numberOfCoordinates) const
+const float* DicomSSODatasetParser::getCoordinates(DcmItem* surfaceSequence, Uint32& numberOfCoordinates) const
 {
   numberOfCoordinates = 0;
 
