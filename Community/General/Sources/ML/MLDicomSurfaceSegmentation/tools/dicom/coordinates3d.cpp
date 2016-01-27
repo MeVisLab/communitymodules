@@ -193,17 +193,12 @@ Coordinates3D::ElementType Coordinates3D::parseElementType(char* elementName)
 
   ElementType result = ElementType_Unknown;
 
-  char *str = _strdup(elementName);
-  for (unsigned int i=0; i<strlen(elementName); i++)
-    str[i] = static_cast<char>(tolower(elementName[i]));
-
-  if(!strcmp(str, "marker"))
+  if(!strcasecmp(elementName, "marker"))
     result = ElementType_Marker;
-  else if(!strcmp(str, "centerline"))
+  else if(!strcasecmp(elementName, "centerline"))
     result = ElementType_Centerline;
-  else if(!strcmp(str, "segmentation"))
+  else if(!strcasecmp(elementName, "segmentation"))
     result = ElementType_Segmentation;
 
-  free(str);
   return result;
 }
