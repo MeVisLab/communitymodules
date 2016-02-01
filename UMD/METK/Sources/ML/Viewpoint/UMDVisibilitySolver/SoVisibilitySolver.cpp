@@ -44,7 +44,7 @@
 #include <iostream>
 using namespace std;
 
-SoVisibilitySolver *data;
+SoVisibilitySolver *globalThisPtr; // for global _insideGlFuncWrap callback
 
 void _insideGlFuncWrap (void);
 
@@ -101,7 +101,7 @@ SoVisibilitySolver::SoVisibilitySolver()
 	m_soBboxAction = new SoGetBoundingBoxAction(SbViewportRegion(1,1));
 	m_strPathVis = NULL;
 	m_strPathIds = NULL;
-	data = this;
+	globalThisPtr = this;
 	m_flHasSphere = false;
 	m_fAllFrameBuffers = NULL;
 	m_fResultMatrix = NULL;
@@ -315,7 +315,7 @@ void SoVisibilitySolver::_insideGlFunc ()
 
 void _insideGlFuncWrap (void)
 {
-	data->_insideGlFunc();
+	globalThisPtr->_insideGlFunc();
 }
 
 void SoVisibilitySolver::_createSphere ( )
