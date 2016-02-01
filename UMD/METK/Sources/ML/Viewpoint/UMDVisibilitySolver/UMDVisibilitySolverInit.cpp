@@ -23,5 +23,3 @@ void UMDVisibilitySolverInit()
 
 // Macro implementing the platform independent dll initialization
 XV_INIT_LIBRARY(UMDVisibilitySolverInit)
-
-
