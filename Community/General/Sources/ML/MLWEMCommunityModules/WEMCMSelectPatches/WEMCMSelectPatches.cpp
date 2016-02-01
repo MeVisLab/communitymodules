@@ -74,10 +74,7 @@ WEMCMSelectPatches::WEMCMSelectPatches (std::string type)
   _onePatchFld->setBoolValue(false);
   
   // Set auto apply fields
-  _autoClearFld->setBoolValue(true);
   _autoApplyFld->setBoolValue(true);
-  _autoUpdateFld->setBoolValue(true);
-  _copyInputWEMsFld->setBoolValue(true);
 
   _notifyFld = fields->addNotify("notify");
  
