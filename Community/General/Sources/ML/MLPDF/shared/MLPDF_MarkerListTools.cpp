@@ -40,7 +40,7 @@ PositionsVector PDFMarkerListTools::getAllPositionsFromColoredMarkerList(const m
 
   size_t positionsListLength = positionsList.size();
 
-  for (int i = 0; i < positionsListLength; i++)
+  for (size_t i = 0; i < positionsListLength; i++)
   {
     ml::ColoredMarker thisPosition = positionsList[i];
 
@@ -77,7 +77,7 @@ PositionsVector PDFMarkerListTools::getAllPositionsFromXMarkerList(const ml::XMa
 
   size_t positionsListLength = positionsList.size();
 
-  for (int i = 0; i < positionsListLength; i++)
+  for (size_t i = 0; i < positionsListLength; i++)
   {
     ml::XMarker thisPosition = positionsList[i];
 
@@ -114,7 +114,7 @@ LinesVector PDFMarkerListTools::getAllLinesFromIndexPairList(const ml::IndexPair
 
   size_t connectionsListLength = connectionsList.size();
 
-  for (int i = 0; i < connectionsListLength; i++)
+  for (size_t i = 0; i < connectionsListLength; i++)
   {
     ml::IndexPair thisConnection = connectionsList[i];
 
@@ -159,7 +159,7 @@ LinesVector PDFMarkerListTools::getStandardLinesFromXMarkerList(const ml::XMarke
   int startPositionIndex = -2;
   int endPositionIndex = -1;
 
-  for (int i = 0; i < positionsListLength; i++)
+  for (size_t i = 0; i < positionsListLength; i++)
   {
     ml::XMarker thisPosition = positionsList[i];
 
@@ -202,7 +202,7 @@ LinesVector PDFMarkerListTools::getStandardLinesFromColoredMarkerList(const ml::
   int startPositionIndex = -2;
   int endPositionIndex = -1;
 
-  for (int i = 0; i < positionsListLength; i++)
+  for (size_t i = 0; i < positionsListLength; i++)
   {
     ml::ColoredMarker thisPosition = positionsList[i];
 
@@ -236,7 +236,7 @@ LinesVector PDFMarkerListTools::getNewLinesFromAllLines(LinesVector allLines, ML
 
   size_t numberOfLines = allLines.size();
 
-  for (int i = 0; i < numberOfLines; i++)
+  for (size_t i = 0; i < numberOfLines; i++)
   {
     if (allLines[i].endIndex == endPosition)
     {

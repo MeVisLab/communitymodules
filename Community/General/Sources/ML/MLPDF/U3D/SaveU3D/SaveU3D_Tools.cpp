@@ -118,7 +118,7 @@ void SaveU3D::makeInternalNameUnique(std::string& objectName)
 std::string SaveU3D::getFullGroupPathFromU3DGroupNodeStruct(GroupNodeStruct thisNode)
 {
   std::string fullPath = "/";
-  for (int n = 0; n < thisNode.parents.size(); n++)
+  for (size_t n = 0; n < thisNode.parents.size(); n++)
   {
     fullPath += thisNode.parents[n] + "/";
   }
@@ -134,7 +134,7 @@ void SaveU3D::makeGroupPathNamesUnique(GroupNodeVector& groupNodes, U3DObjectInf
 {
   size_t numGroupNodes = groupNodes.size();
 
-  for (int thisNodeIndex = 0; thisNodeIndex < numGroupNodes; thisNodeIndex++)
+  for (size_t thisNodeIndex = 0; thisNodeIndex < numGroupNodes; thisNodeIndex++)
   {
     GroupNodeStruct &thisNode = groupNodes[thisNodeIndex];
     StringVector changedNodeParents;
@@ -148,7 +148,7 @@ void SaveU3D::makeGroupPathNamesUnique(GroupNodeVector& groupNodes, U3DObjectInf
     {
       nodeNameIsUnique = true;
 
-      for (int prevNodeIndex = 0; prevNodeIndex < thisNodeIndex; prevNodeIndex++)
+      for (size_t prevNodeIndex = 0; prevNodeIndex < thisNodeIndex; prevNodeIndex++)
       {
         GroupNodeStruct prevNode = groupNodes[prevNodeIndex];
 
@@ -168,7 +168,7 @@ void SaveU3D::makeGroupPathNamesUnique(GroupNodeVector& groupNodes, U3DObjectInf
     if (numChangedParentNodes > 0)  // Node name has been changed
     {
       // Now scan all parent entries, search for the parents of the node that has been changed and change the name there as well...
-      for (int thisNodeIndex2 = 0; thisNodeIndex2 < numGroupNodes; thisNodeIndex2++)
+      for (size_t thisNodeIndex2 = 0; thisNodeIndex2 < numGroupNodes; thisNodeIndex2++)
       {
         GroupNodeStruct &thisSearchNode = groupNodes[thisNodeIndex2];
 
@@ -177,7 +177,7 @@ void SaveU3D::makeGroupPathNamesUnique(GroupNodeVector& groupNodes, U3DObjectInf
 
           bool parentNodesAreIdentical = true;
 
-          for (int s = 0; s < numChangedParentNodes; s++)
+          for (size_t s = 0; s < numChangedParentNodes; s++)
           {
             if (thisSearchNode.parents[s] != changedNodeParents[s])
             {
@@ -199,7 +199,7 @@ void SaveU3D::makeGroupPathNamesUnique(GroupNodeVector& groupNodes, U3DObjectInf
       // Now we also need to change the names in the original U3DObjectInfoVector to set the correct parent name for the U3D object.
       std::string newFullPath = getFullGroupPathFromU3DGroupNodeStruct(thisNode);
 
-      for (int thisObjectInfoIndex = 0; thisObjectInfoIndex < _u3dObjectInfoVector.size(); thisObjectInfoIndex++)
+      for (size_t thisObjectInfoIndex = 0; thisObjectInfoIndex < _u3dObjectInfoVector.size(); thisObjectInfoIndex++)
       {
         U3DObjectInfoStruct &thisObjectInfo = _u3dObjectInfoVector[thisObjectInfoIndex];
         std::string &thisObjectInfoGroupPath = thisObjectInfo.GroupPath;

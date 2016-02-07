@@ -171,12 +171,12 @@ void PDFTools::updateGroupNodesVector(GroupNodeVector &groupNodes, std::string t
     StringVector groupPathComponents = stringSplit(thisGroupPath,"/", false);
     size_t numGroupPathComponents = groupPathComponents.size();
 
-    for (int i = 0; i < numGroupPathComponents; i++)
+    for (size_t i = 0; i < numGroupPathComponents; i++)
     {
       std::string thisNodeName = groupPathComponents[i];
       StringVector thisNodeParents;
 
-      for (int p = 0; p < i; p++)
+      for (size_t p = 0; p < i; p++)
       {
         thisNodeParents.push_back(groupPathComponents[p]);
       }
@@ -184,13 +184,13 @@ void PDFTools::updateGroupNodesVector(GroupNodeVector &groupNodes, std::string t
       int existingGroupNodeIndex = -1;
 
       // Check if group node already exists
-      for (int g = 0; g < groupNodes.size(); g++)
+      for (size_t g = 0; g < groupNodes.size(); g++)
       {
         GroupNodeStruct thisGroupNode = groupNodes[g];
 
         if ( (thisGroupNode.name == thisNodeName) && (thisGroupNode.parents == thisNodeParents) )
         {
-          existingGroupNodeIndex = g;
+          existingGroupNodeIndex = static_cast<int>(g);
           break;
         }       
       }
@@ -519,7 +519,7 @@ ModelBoundingBoxStruct PDFTools::GetBoundingBoxFomPositions(PositionsVector posi
   MLdouble biggestY = ML_DOUBLE_MAX * -1;
   MLdouble biggestZ = ML_DOUBLE_MAX * -1;
 
-  for (int i = 0; i < positions.size(); i++)
+  for (PositionsVector::size_type i = 0; i < positions.size(); i++)
   {
     PositionStruct thisPosition = positions[i];
 

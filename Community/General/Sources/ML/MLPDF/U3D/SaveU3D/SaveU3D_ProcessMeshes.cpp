@@ -135,7 +135,7 @@ void SaveU3D::PreProcessMeshData(WEMPtr saveWEM,
           meshSpecificationsVector.push_back(meshSpecificationsString);
         }
 
-        for (int thisSpecificationIndex = 0; thisSpecificationIndex < meshSpecificationsVector.size(); thisSpecificationIndex++)
+        for (size_t thisSpecificationIndex = 0; thisSpecificationIndex < meshSpecificationsVector.size(); thisSpecificationIndex++)
         {
           thisSpecificationParameters = mlPDF::PDFTools::getAllSpecificationParametersFromString(meshSpecificationsVector[thisSpecificationIndex]);
           if (thisSpecificationParameters.WEMLabel == wemLabel)
