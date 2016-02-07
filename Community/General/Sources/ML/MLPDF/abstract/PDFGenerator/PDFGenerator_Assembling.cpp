@@ -68,7 +68,7 @@ void PDFGenerator::pdfDoc_SetYAxisReference(bool reference)
 
 //----------------------------------------------------------------------------------
 
-const bool PDFGenerator::pdfDoc_GetYAxisReference()
+bool PDFGenerator::pdfDoc_GetYAxisReference() const
 {
   return _currentYAxisReferenceIsFromTop;
 }
@@ -203,7 +203,7 @@ void PDFGenerator::pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float top
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageMinX(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageMinX(bool ignoreMargins) const
 {
   float result = 0;
 
@@ -224,7 +224,7 @@ const float PDFGenerator::pdfDoc_GetPageMinX(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageMinY(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageMinY(bool ignoreMargins) const
 {
   float result = 0;
 
@@ -246,7 +246,7 @@ const float PDFGenerator::pdfDoc_GetPageMinY(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageMaxX(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageMaxX(bool ignoreMargins) const
 {
   float result = 0;
 
@@ -267,7 +267,7 @@ const float PDFGenerator::pdfDoc_GetPageMaxX(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageMaxY(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageMaxY(bool ignoreMargins) const
 {
   float result = 0;
 
@@ -292,21 +292,21 @@ const float PDFGenerator::pdfDoc_GetPageMaxY(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageCenterX(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageCenterX(bool ignoreMargins) const
 {
   return pdfDoc_GetPageMaxX(ignoreMargins) / 2.0f;
 }
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageCenterY(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageCenterY(bool ignoreMargins) const
 {
   return pdfDoc_GetPageMaxY(ignoreMargins) / 2.0f;
 }
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageMaxWidth(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageMaxWidth(bool ignoreMargins) const
 {
   float result = 0;
 
@@ -328,7 +328,7 @@ const float PDFGenerator::pdfDoc_GetPageMaxWidth(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageMaxHeight(bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageMaxHeight(bool ignoreMargins) const
 {
   float result = 0;
 
@@ -350,7 +350,7 @@ const float PDFGenerator::pdfDoc_GetPageMaxHeight(bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins)
+float PDFGenerator::pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins) const
 {
   float result = 0;
 

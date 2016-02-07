@@ -55,7 +55,7 @@ void PDFGenerator::pdfDoc_SetCurrentFontSize(float fontSize)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::pdfDoc_GetCurrentFontHeight()
+float PDFGenerator::pdfDoc_GetCurrentFontHeight() const
 {
   return _currentFontHeight;
 }
