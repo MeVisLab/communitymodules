@@ -442,8 +442,8 @@ void LoadPointLineGeometry::_addToCache()
   for (IndexPairList::const_iterator it = _outConnectionsList.cbegin(); it != _outConnectionsList.cend(); ++it)
   {
     IndexPair inPair = *it;
-    int inPairType = inPair.type;
-    int newPairType = inPair.type;
+    MLint inPairType = inPair.type;
+    MLint newPairType = inPair.type;
 
     // Check if type ID must be modified
     if (inPairType <= highestTypeID)
