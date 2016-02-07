@@ -47,7 +47,7 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
 
   (viewSpecificationsFld = addString("viewSpecifications"))->setStringValue("");
 
-  assemblyErrorMessage == "";
+  assemblyErrorMessage = "";
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
