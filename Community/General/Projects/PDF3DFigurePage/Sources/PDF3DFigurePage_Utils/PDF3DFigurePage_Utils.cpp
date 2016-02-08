@@ -127,8 +127,6 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
 
 
   // Set WEM processor fields
-  _copyInputWEMsFld->setBoolValue(true);
-  _autoUpdateFld->setBoolValue(true);
   _autoApplyFld->setBoolValue(true);
   _overwriteLabelDescriptionFld->setBoolValue(false);
 
