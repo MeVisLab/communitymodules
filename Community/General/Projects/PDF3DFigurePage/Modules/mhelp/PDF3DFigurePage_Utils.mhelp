@@ -74,7 +74,7 @@ ModuleHelp  {
       type = MLBase
       text = ""
     }
-    Field outSeletedFibers {
+    Field outSelectedFibers {
       type = MLBase
       text = ""
     }

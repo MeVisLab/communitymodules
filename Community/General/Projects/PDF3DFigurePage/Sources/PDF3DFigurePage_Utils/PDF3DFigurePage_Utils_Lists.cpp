@@ -249,7 +249,7 @@ void PDF3DFigurePage_Utils::_createSelectedFibers()
 
   PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outSelectedFiberSetContainer, _outSelectedLinePositions, _outSelectedLineConnections);
 
-  _outSeletedFibersFld->touch();
+  _outSelectedFibersFld->touch();
 }
 
 //----------------------------------------------------------------------------------
@@ -622,7 +622,7 @@ void PDF3DFigurePage_Utils::_updateFiberColor(LineSetProperties lineSet)
     }
   }
 
-  _outSeletedFibersFld->touch();
+  _outSelectedFibersFld->touch();
 }
 
 //----------------------------------------------------------------------------------

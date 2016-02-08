@@ -3328,7 +3328,7 @@ connections  {
   SavePosterImage.input0 = OffscreenRenderer.output0
   OffscreenRenderer.sceneGraph = SoSeparator.self
   DefinePreviewColorModeForLines.boolValue = BoolInt.boolValue
-  LinesRendererSelected.inFiberSetFld = PDF3DFigurePage_Utils.outSeletedFibers
+  LinesRendererSelected.inFiberSetFld = PDF3DFigurePage_Utils.outSelectedFibers
   LinesRendererUnSelected.inFiberSetFld = PDF3DFigurePage_Utils.outFibers
   FilterPointsUnselected.inXMarkerList = PDF3DFigurePage_Utils.outPointPositions
   FilterPointsUnselected.markerTypes = FilterPointsSelected.markerTypes

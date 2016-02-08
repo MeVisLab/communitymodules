@@ -50,7 +50,7 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
   (_outLinePositionsFld   = addBase("outLinePositions"))->setBaseValueAndAddAllowedType(&_outLinePositions);
   (_outLineConnectionsFld = addBase("outLineConnections"))->setBaseValueAndAddAllowedType(&_outLineConnections);
   (_outFibersFld          = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
-  (_outSeletedFibersFld   = addBase("outSeletedFibers"))->setBaseValueAndAddAllowedType(&_outSelectedFiberSetContainer);
+  (_outSelectedFibersFld  = addBase("outSelectedFibers"))->setBaseValueAndAddAllowedType(&_outSelectedFiberSetContainer);
   //(_outOptimizedWEMFld    = addBase("outOptimizedWEM"))->setBaseValueAndAddAllowedType(&_outOptimizedWEM);
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
