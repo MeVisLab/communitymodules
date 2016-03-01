@@ -1,6 +1,3 @@
-UserGenres {
-  Genre BIGR { Genre BIGR-WEM    { title = WEM } }
-}
 
 //----------------------------------------------------------------------------------
 // MLModule WEMPlane
@@ -57,7 +54,7 @@ MLModule WEMPlane {
 MLModule WEMVolume {
   DLL            = "MLWEMCommunityModules"
 
-  genre          = "BIGR-WEM"
+  genre          = "WEM"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "work-in-progress"
@@ -117,7 +114,7 @@ MLModule WEMVolume {
 MLModule WEMCenterOfMass {
   DLL            = "MLWEMCommunityModules"
 
-  genre          = "BIGR-WEM"
+  genre          = "WEM"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"
@@ -174,7 +171,7 @@ the centroid is the average of the node positions"
 MLModule WEMCMSelectPatches {
   DLL            = "MLWEMCommunityModules"
 
-  genre          = "BIGR-WEM"
+  genre          = "WEM"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"
@@ -214,7 +211,7 @@ MLModule WEMNodesToFile {
   documentation = "$(LOCAL)/WEMNodesToFile/WEMNodesToFile.html"
   DLL            = "MLWEMCommunityModules"
 
-  genre          = "BIGR-WEM"
+  genre          = "WEM"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"
