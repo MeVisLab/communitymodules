@@ -5,6 +5,9 @@
 # Name of the product
 $PRODUCT MeVisLab Community PDF-AddOn
 
+# The default includes $(PRODUCT), but spaces are not allowed in identifiers:
+$INSTALLER_MACX_PKG_ID de.mevis.pkg.Community.PDFAddon
+
 # Version of the product
 $VERSION 1.0
 
