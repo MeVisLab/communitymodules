@@ -98,20 +98,16 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOIsSelected      = fieldC->addBool  ("CSOIsSelected");
   f_CSOClearSelection  = fieldC->addBool  ("CSOClearSelection");
   f_CSOLineWidth       = fieldC->addFloat ("CSOLineWidth");
-  f_CSOLineStyle       = fieldC->addEnum  ("CSOLineStyle", CSOList::sLineStyleModeStrings, 4);
+  f_CSOLineStyle       = fieldC->addEnum  ("CSOLineStyle", CSOList::getLineStyleModes(), PATH_POINTS_STYLE_SOLID);
   f_CSOColor           = fieldC->addColor ("CSOColor");
   f_CSOAlpha           = fieldC->addFloat ("CSOAlpha");
   f_CSOTimePointIndex  = fieldC->addInt  ("CSOTimePointIndex");
-  f_CSOVoxelWriteMode  = fieldC->addEnum ("CSOVoxelWriteMode", CSOList::sVoxelWriteModeStrings, 4);
+  f_CSOVoxelWriteMode  = fieldC->addEnum ("CSOVoxelWriteMode", CSOList::getVoxelWriteModes(), VOXEL_VALUE_MODULE);
   f_CSOVoxelWriteValue = fieldC->addFloat("CSOVoxelWriteValue");
   f_CSOShowState       = fieldC->addBool ("CSOShowState");
   f_CSOVoxelizeState   = fieldC->addBool ("CSOVoxelizeState");
   f_CSOEditableState   = fieldC->addBool ("CSOEditableState");
-#if defined(IS_MEVISLAB_2_2_OR_HIGHER)
-  f_CSOMarkerMode      = fieldC->addEnum ("CSOMarkerMode", CSOList::sSeedPointStyleStrings, 3);
-#else
-  f_CSOMarkerMode      = fieldC->addEnum ("CSOMarkerMode", CSOList::sMarkerModeStrings, 3);
-#endif
+  f_CSOMarkerMode      = fieldC->addEnum ("CSOMarkerMode", CSOList::getSeedPointStyles(), SEED_POINT_STYLE_RECTANGLE);
   f_CSOMarkerColor     = fieldC->addColor("CSOMarkerColor");
   f_CSOMarkerAlpha     = fieldC->addFloat("CSOMarkerAlpha");
   f_CSOMarkerSize      = fieldC->addFloat("CSOMarkerSize");
@@ -122,20 +118,16 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupIsSelected        = fieldC->addBool  ("GroupIsSelected");
   f_GroupClearSelection    = fieldC->addBool  ("GroupClearSelection");
   f_GroupLineWidth         = fieldC->addFloat ("GroupLineWidth");
-  f_GroupLineStyle         = fieldC->addEnum  ("GroupLineStyle", CSOList::sLineStyleModeStrings, 4);
+  f_GroupLineStyle         = fieldC->addEnum  ("GroupLineStyle", CSOList::getLineStyleModes(), PATH_POINTS_STYLE_SOLID);
   f_GroupColor             = fieldC->addColor ("GroupColor");
   f_GroupAlpha             = fieldC->addFloat ("GroupAlpha");
   f_GroupTimePointIndex    = fieldC->addInt   ("GroupTimePointIndex");
-  f_GroupVoxelWriteMode    = fieldC->addEnum  ("GroupVoxelWriteMode", CSOList::sVoxelWriteModeStrings, 4);
+  f_GroupVoxelWriteMode    = fieldC->addEnum  ("GroupVoxelWriteMode", CSOList::getVoxelWriteModes(), VOXEL_VALUE_MODULE);
   f_GroupVoxelWriteValue   = fieldC->addFloat ("GroupVoxelWriteValue");
   f_GroupShowState         = fieldC->addBool  ("GroupShowState");
   f_GroupVoxelizeState     = fieldC->addBool  ("GroupVoxelizeState");
   f_GroupEditableState     = fieldC->addBool  ("GroupEditableState");
-#if defined(IS_MEVISLAB_2_2_OR_HIGHER)
-  f_GroupMarkerMode        = fieldC->addEnum  ("GroupMarkerMode", CSOList::sSeedPointStyleStrings, 3);
-#else
-  f_GroupMarkerMode        = fieldC->addEnum  ("GroupMarkerMode", CSOList::sMarkerModeStrings, 3);
-#endif
+  f_GroupMarkerMode        = fieldC->addEnum  ("GroupMarkerMode", CSOList::getSeedPointStyles(), SEED_POINT_STYLE_RECTANGLE);
   f_GroupMarkerColor       = fieldC->addColor ("GroupMarkerColor");
   f_GroupMarkerAlpha       = fieldC->addFloat ("GroupMarkerAlpha");
   f_GroupMarkerSize        = fieldC->addFloat ("GroupMarkerSize");
@@ -159,18 +151,15 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOIsSelected->setBoolValue( false );
   f_CSOClearSelection->setBoolValue( false );
   f_CSOLineWidth->setFloatValue(1.0f);
-  f_CSOLineStyle->setEnumValue(LINE_STYLE_SOLID);
   f_CSOColor->setColorValue(1,1,1);
   f_CSOAlpha->setFloatValue(1);
   f_CSOAlpha->setFloatMinValue(0);
   f_CSOAlpha->setFloatMaxValue(1);
   f_CSOTimePointIndex->setIntValue(0);
-  f_CSOVoxelWriteMode->setEnumValue(VOXEL_VALUE_MODULE);
   f_CSOVoxelWriteValue->setFloatValue(1024);
   f_CSOShowState->setBoolValue(true);
   f_CSOVoxelizeState->setBoolValue(true);
   f_CSOEditableState->setBoolValue(true);
-  f_CSOMarkerMode->setEnumValue(MARKER_DISPLAY_MODE_RECT);
   f_CSOMarkerColor->setColorValue(0,1,0);
   f_CSOMarkerAlpha->setFloatValue(1);
   f_CSOMarkerSize->setFloatValue(3);
@@ -180,18 +169,15 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupIsSelected->setBoolValue( false );
   f_GroupClearSelection->setBoolValue( false );
   f_GroupLineWidth->setFloatValue(1.0f);
-  f_GroupLineStyle->setEnumValue(LINE_STYLE_SOLID);
   f_GroupColor->setColorValue(1,1,1);
   f_GroupAlpha->setFloatValue(1);
   f_GroupAlpha->setFloatMinValue(0);
   f_GroupAlpha->setFloatMaxValue(1);
   f_GroupTimePointIndex->setIntValue(0);
-  f_GroupVoxelWriteMode->setEnumValue(VOXEL_VALUE_MODULE);
   f_GroupVoxelWriteValue->setFloatValue(1024);
   f_GroupShowState->setBoolValue(true);
   f_GroupVoxelizeState->setBoolValue(true);
   f_GroupEditableState->setBoolValue(true);
-  f_GroupMarkerMode->setEnumValue(MARKER_DISPLAY_MODE_RECT);
   f_GroupMarkerColor->setColorValue(0,1,0);
   f_GroupMarkerAlpha->setFloatValue(1);
   f_GroupMarkerSize->setFloatValue(3);
