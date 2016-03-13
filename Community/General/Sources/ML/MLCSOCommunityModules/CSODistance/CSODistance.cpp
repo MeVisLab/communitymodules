@@ -27,7 +27,7 @@ CSODistance::CSODistance() : BaseOp(0, 0)
 
   //////////////////////////////////////////////////////////////////////////
 
-  char* distanceModes[LASTMODE];
+  const char* distanceModes[LASTMODE];
   distanceModes[ FIRST2 ] = "First 2 CSOs";
   distanceModes[ INPLANE ] = "Match in plane";
   distanceModes[ INDEX ] = "Match index";
@@ -65,7 +65,7 @@ CSODistance::CSODistance() : BaseOp(0, 0)
   (_listenToSelectionChangedNotificationsFld = fieldC->addBool("listenToSelectionChangedNotifications"))
     ->setBoolValue(false);
 
-  char* statisticsNames[LASTSTATISTIC];
+  const char* statisticsNames[LASTSTATISTIC];
   statisticsNames[ MIN ] = "Minimum";
   statisticsNames[ MAX ] = "Maximum";
   statisticsNames[ MEAN ] = "Mean";
