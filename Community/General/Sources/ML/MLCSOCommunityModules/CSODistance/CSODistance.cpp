@@ -72,11 +72,11 @@ CSODistance::CSODistance() : BaseOp(0, 0)
   statisticsNames[ STDEV ] = "StDev";
   _curveStatistic = addEnum("curveStatistic",statisticsNames,LASTSTATISTIC );
 
-  _isInNotificationCB = false; 	
-  
+  _isInNotificationCB = false;
+
   ML_CHECK_NEW(_outputXMarkerList,XMarkerList());
 
-	(_outputXMarkerListFld = getFieldContainer()->addBase("outputXMarkerList"))->setBaseValue(NULL);
+  (_outputXMarkerListFld = getFieldContainer()->addBase("outputXMarkerList"))->setBaseValue(NULL);
 
   _outputCurveList = new CurveList;
   (_outputCurveListFld = getFieldContainer()->addBase("outputCurveList"))->setBaseValue( _outputCurveList );
@@ -162,7 +162,7 @@ void CSODistance::handleNotification(Field* field)
 
     if (_autoApplyFld->getBoolValue()) { _process(); }
   } else
-  if ( field == _applyFld || ( _autoApplyFld->getBoolValue() && 
+  if ( field == _applyFld || ( _autoApplyFld->getBoolValue() &&
                              ( field == _tolleranceFld || field == _curveStatistic )) ){
     _process();
   }
@@ -174,7 +174,7 @@ void CSODistance::handleNotification(Field* field)
 //////////////////////////////////////////////////////////////////////////
 
 void CSODistance::_process()
-{   
+{
   ML_TRACE_IN("void CSODistance::_process()");
 
   _outputXMarkerList->clearList();
@@ -217,8 +217,8 @@ void CSODistance::_process()
            pointSetsMinDist->setNumEntries(200);
            pointSetsMinDist->computeDistance(minPoint1,minPoint2);
 
-           minDistance = sqrt((minPoint1[0]-minPoint2[0])*(minPoint1[0]-minPoint2[0]) + 
-                              (minPoint1[1]-minPoint2[1])*(minPoint1[1]-minPoint2[1]) + 
+           minDistance = sqrt((minPoint1[0]-minPoint2[0])*(minPoint1[0]-minPoint2[0]) +
+                              (minPoint1[1]-minPoint2[1])*(minPoint1[1]-minPoint2[1]) +
                               (minPoint1[2]-minPoint2[2])*(minPoint1[2]-minPoint2[2]));
                     
 
@@ -228,12 +228,12 @@ void CSODistance::_process()
           _outputXMarkerList->appendItem(XMarker( vec6(minPoint1[0],minPoint1[1],minPoint1[2],0.5f,0.0f,0.0f),
                                                   vec3(minPoint2[0]-minPoint1[0],minPoint2[1]-minPoint1[1],minPoint2[2]-minPoint1[2]),
                                                   0,""));
-          distances << _csoList0->getCSOAt(0)->getId() << "," 
-                    << _csoList0->getCSOAt(1)->getId() << "," 
-                    << minDistance << "," 
-                    << maxDistance << "," 
-                    << avgDistance << "," 
-                    << stdDevDistance 
+          distances << _csoList0->getCSOAt(0)->getId() << ","
+                    << _csoList0->getCSOAt(1)->getId() << ","
+                    << minDistance << ","
+                    << maxDistance << ","
+                    << avgDistance << ","
+                    << stdDevDistance
                     << std::endl;
         } else {
           _minimumDistancePoint1Fld->setVec3fValue(vec3(0.0,0.0,0.0));
@@ -275,12 +275,12 @@ void CSODistance::_process()
           averageMeanDistance += avgDistance;
           averageMaxDistance  += maxDistance;
 
-          distances << currentCSO->getId()  << "," 
-                    << matchingCSO->getId() << "," 
-                    << minDistance << "," 
-                    << maxDistance << "," 
-                    << avgDistance << "," 
-                    << stdDevDistance 
+          distances << currentCSO->getId()  << ","
+                    << matchingCSO->getId() << ","
+                    << minDistance << ","
+                    << maxDistance << ","
+                    << avgDistance << ","
+                    << stdDevDistance
                     << std::endl;
 
           if ( minDistance < minDist ){
@@ -308,7 +308,7 @@ void CSODistance::_process()
               break;
             default:
               break;
-          } 
+          }
         } // iCSO
         averageMinDistance  /= (nCSOs != 0 ? nCSOs : 1.0);
         averageMeanDistance /= (nCSOs != 0 ? nCSOs : 1.0);
@@ -348,11 +348,11 @@ void CSODistance::_process()
 
 //////////////////////////////////////////////////////////////////////////
 
-void CSODistance::_getDistances( std::vector<Vector3> &set1, 
+void CSODistance::_getDistances( std::vector<Vector3> &set1,
                                  std::vector<Vector3> &set2,
-                                 double               &minDistance, 
-                                 double               &maxDistance, 
-                                 double               &averageDistance, 
+                                 double               &minDistance,
+                                 double               &maxDistance,
+                                 double               &averageDistance,
                                  double               &stdDevDistance,
                                  Vector3              &minPoint1,
                                  Vector3              &minPoint2,
@@ -426,7 +426,7 @@ CSO* CSODistance::_findMatchingCSO(int findCSO)
       const vec3 matchingPoint = cso->getFirstSeedPoint()->worldPosition;
       const double angleError = 1- fabs( currentNormal.dot( normal ));
       const double distanceError = fabs(currentNormal.dot( matchingPoint - currentPoint ));
-      const double currentError =  angleError + distanceError; 
+      const double currentError =  angleError + distanceError;
       if (  currentError < minError && angleError < tollerance && distanceError < 10*tollerance ) {
         minError = currentError;
         matchingCSO = cso;
