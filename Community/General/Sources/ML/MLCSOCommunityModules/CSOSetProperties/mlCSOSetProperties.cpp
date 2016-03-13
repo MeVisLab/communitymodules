@@ -112,6 +112,17 @@ CSOSetProperties::CSOSetProperties (void)
   f_CSOMarkerAlpha     = fieldC->addFloat("CSOMarkerAlpha");
   f_CSOMarkerSize      = fieldC->addFloat("CSOMarkerSize");
 
+  EnumValues<CSOGroupOverflowHandling> overflowHandling;
+  overflowHandling.add("RemoveFirst", OVERFLOW_DELETE_FIRST);
+  overflowHandling.add("RemoveLast",  OVERFLOW_DELETE_LAST);
+  overflowHandling.add("RemoveAll",   OVERFLOW_DELETE_ALL);
+  overflowHandling.add("IgnoreNew",   OVERFLOW_IGNORE_NEW);
+
+  EnumValues<CSORemoveHandling> removeHandling;
+  removeHandling.add("RemoveAlways",      REMOVE_ALWAYS);
+  removeHandling.add("RemoveNever",       REMOVE_NEVER);
+  removeHandling.add("RemoveIfInNoGroup", REMOVE_IF_IN_NO_GROUP);
+
    // Group properties
   f_GroupLabel             = fieldC->addString("GroupLabel");
   f_GroupDescription       = fieldC->addString("GroupDescription");
@@ -139,9 +150,9 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupUseTimePointIndex = fieldC->addBool  ("GroupUseTimePointIndex");
   f_GroupUseMarkerSettings = fieldC->addBool  ("GroupUseMarkerSettings");
   f_GroupMaximumNumCSOs          = fieldC->addInt   ("GroupMaximumNumCSOs");
-  f_GroupOverflowHandling        = fieldC->addEnum  ("GroupOverflowHandling",        CSOGroupRules::sOverflowHandlingStrings, NUM_OVERFLOW_MODES );
-  f_GroupRemoveFromGroupHandling = fieldC->addEnum  ("GroupRemoveFromGroupHandling", CSOGroupRules::sRemoveHandlingStrings,   NUM_REMOVE_MODES   );
-  f_GroupDeleteGroupCSOHandling  = fieldC->addEnum  ("GroupDeleteGroupCSOHandling",  CSOGroupRules::sRemoveHandlingStrings,   NUM_REMOVE_MODES   );
+  f_GroupOverflowHandling        = fieldC->addEnum  ("GroupOverflowHandling",        overflowHandling, CSOGroupRules::getDefaultOverflowHandling());
+  f_GroupRemoveFromGroupHandling = fieldC->addEnum  ("GroupRemoveFromGroupHandling", removeHandling,   CSOGroupRules::getDefaultRemoveFromGroupHandling());
+  f_GroupDeleteGroupCSOHandling  = fieldC->addEnum  ("GroupDeleteGroupCSOHandling",  removeHandling,   CSOGroupRules::getDefaultDeleteGroupCSOHandling());
 
   // Set defaults
   f_CSOComputeNormal->setBoolValue( false );
@@ -189,9 +200,6 @@ CSOSetProperties::CSOSetProperties (void)
   f_GroupUseTimePointIndex ->setBoolValue(false);
   f_GroupUseMarkerSettings ->setBoolValue(false);
   f_GroupMaximumNumCSOs->setIntValue(0);
-  f_GroupOverflowHandling->setEnumValue( CSOGroupRules::getDefaultOverflowHandling() );
-  f_GroupRemoveFromGroupHandling->setEnumValue( CSOGroupRules::getDefaultRemoveFromGroupHandling() );
-  f_GroupDeleteGroupCSOHandling->setEnumValue( CSOGroupRules::getDefaultDeleteGroupCSOHandling() );
 
 
   //! Property selection
@@ -573,7 +581,7 @@ void CSOSetProperties::SetProperties(bool shouldSetupInternalCSOList, int notifi
 
           // PathPoints
           if ( f_SetGroupUseVisuals->getBoolValue() ) { currentGroup->setUseVisuals( f_GroupUseVisuals->getBoolValue()       ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
-          if ( f_SetGroupLineStyle->getBoolValue()  ) { currentGroup->setLineStyle(  static_cast<CSOLineStyle>(f_GroupLineStyle->getEnumValue())        ); notificationFlag |= CSOList::NOTIFICATION_GROUP_FINISHED; }
+          if ( f_SetGroupLineStyle->getBoolValue()  ) { currentGroup->setLineStyle(  static_cast<CSOPathPointsStyle>(f_GroupLineStyle->getEnumValue())        ); notificationFlag |= CSOList::NOTIFICATION_GROUP_FINISHED; }
           if ( f_SetGroupLineWidth->getBoolValue()  ) { currentGroup->setLineWidth(  f_GroupLineWidth->getFloatValue()       ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
           if ( f_SetGroupColor->getBoolValue()      ) { currentGroup->setColor(      f_GroupColor->getVec3fValue()           ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
           if ( f_SetGroupAlpha->getBoolValue()      ) { currentGroup->setAlpha(      f_GroupAlpha->getFloatValue()           ); notificationFlag |= CSOList::NOTIFICATION_REPAINT; }
