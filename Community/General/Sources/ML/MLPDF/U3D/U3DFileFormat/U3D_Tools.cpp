@@ -29,7 +29,7 @@ GroupNodeVector assembleU3DGroupNodeInfo(U3DObjectInfoVector &_u3dObjectInfoVect
 
   groupNodes.push_back(rootNode);
 
-  for (int i = 0; i < _u3dObjectInfoVector.size(); i++)
+  for (U3DObjectInfoVector::size_type i = 0; i < _u3dObjectInfoVector.size(); i++)
   {
     U3DObjectInfoStruct thisU3DObjectInfo = _u3dObjectInfoVector[i];
     std::string thisGroupPath = thisU3DObjectInfo.GroupPath;

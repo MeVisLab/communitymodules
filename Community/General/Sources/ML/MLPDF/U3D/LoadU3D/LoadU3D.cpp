@@ -153,7 +153,8 @@ void LoadU3D::_parseU3DFile(std::string filename)
       // Get Key/Value Pair Count (9.2.6.1)
       U3DDataBlockFundamental keyValuePairCount = _readU32(u3dFile);
 
-      for (int thisKeyValuePair = 0; thisKeyValuePair < keyValuePairCount; thisKeyValuePair++)
+      for (U3DDataBlockFundamental thisKeyValuePair = 0;
+           thisKeyValuePair < keyValuePairCount; thisKeyValuePair++)
       {
         // Get Key/Value Pair Attributes (9.2.6.2)
         /*U3DDataBlockFundamental keyValuePairAttributes = */_readU32(u3dFile);

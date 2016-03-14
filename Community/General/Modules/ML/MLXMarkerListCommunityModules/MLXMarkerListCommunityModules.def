@@ -7,9 +7,6 @@
 */
 //----------------------------------------------------------------------------------
 
-UserGenres {
-  Genre BIGR { Genre BIGR-XMarkerList    { title = "X-Marker List" } }
-}
 
 //----------------------------------------------------------------------------------
 // MLModule LinearInterpolateXMarkerList
@@ -17,7 +14,7 @@ UserGenres {
 MLModule LinearInterpolateXMarkerList {
   DLL            = "MLXMarkerListCommunityModules"
 
-  genre          = "BIGR-XMarkerList"
+  genre          = "Marker"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"
@@ -53,7 +50,7 @@ MLModule LinearInterpolateXMarkerList {
 MLModule XMarkerListFromFile {
   DLL            = "MLXMarkerListCommunityModules"
 
-  genre          = "BIGR-XMarkerList"
+  genre          = "Marker"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"
@@ -103,7 +100,7 @@ MLModule XMarkerListFromFile {
 MLModule XMarkerListToFile {
   DLL            = "MLXMarkerListCommunityModules"
 
-  genre          = "BIGR-XMarkerList"
+  genre          = "Marker"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"
@@ -145,7 +142,7 @@ MLModule XMarkerListToFile {
 MLModule TransformXMarkerList {
   DLL            = "MLXMarkerListCommunityModules"
 
-  genre          = "BIGR-XMarkerList"
+  genre          = "Marker"
   group          = "BIGR"
   author         = "Coert Metz"
   status         = "stable"

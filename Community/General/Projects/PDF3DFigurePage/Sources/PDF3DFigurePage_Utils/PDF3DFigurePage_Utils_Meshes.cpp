@@ -48,19 +48,6 @@ void PDF3DFigurePage_Utils::_process()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_Utils::_inWEMChanged()
-{
-  WEMProcessor::_inWEMChanged();
-
-  handleNotificationOff();
-
-  _updateAvailableWEMPatchesFld(_inWEM);
-
-  handleNotificationOn();
-}
-
-//----------------------------------------------------------------------------------
-
 void PDF3DFigurePage_Utils::_updateAvailableWEMPatchesFld(WEMPtr wem, std::string defaultEntry)
 {
   if (wem)

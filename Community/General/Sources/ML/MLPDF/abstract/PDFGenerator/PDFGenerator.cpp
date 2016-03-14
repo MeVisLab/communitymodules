@@ -47,7 +47,7 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
 
   (viewSpecificationsFld = addString("viewSpecifications"))->setStringValue("");
 
-  assemblyErrorMessage == "";
+  assemblyErrorMessage = "";
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -317,7 +317,7 @@ void PDFGenerator::_checkAngle(float& startAngle, float& endAngle)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::_getYPosFromTop(float y, bool ignoreMargins)
+float PDFGenerator::_getYPosFromTop(float y, bool ignoreMargins) const
 {
   float result = 0;
 
@@ -331,7 +331,7 @@ const float PDFGenerator::_getYPosFromTop(float y, bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const HPDF_Rect PDFGenerator::_getPageRect(float x, float y, float width, float height, bool ignoreMargins)
+HPDF_Rect PDFGenerator::_getPageRect(float x, float y, float width, float height, bool ignoreMargins) const
 {
   float startXPos = x;
   float startYPos = y;
@@ -363,7 +363,7 @@ const HPDF_Rect PDFGenerator::_getPageRect(float x, float y, float width, float 
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::_getPageX(float x, bool ignoreMargins)
+float PDFGenerator::_getPageX(float x, bool ignoreMargins) const
 {
   float result = x;
 
@@ -377,7 +377,7 @@ const float PDFGenerator::_getPageX(float x, bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const float PDFGenerator::_getPageY(float y, bool ignoreMargins)
+float PDFGenerator::_getPageY(float y, bool ignoreMargins) const
 {
   float result = y;
 
@@ -395,14 +395,14 @@ const float PDFGenerator::_getPageY(float y, bool ignoreMargins)
 
 //----------------------------------------------------------------------------------
 
-const HPDF_REAL PDFGenerator::_getFontHeight(HPDF_Font& font, HPDF_REAL size)
+HPDF_REAL PDFGenerator::_getFontHeight(HPDF_Font& font, HPDF_REAL size) const
 {
   return (HPDF_REAL)((HPDF_Font_GetCapHeight(font)/*+HPDF_Font_GetDescent(font)*/) * size / 1000.0);
 }
 
 //----------------------------------------------------------------------------------
 
-const std::string PDFGenerator::_getRandomPassword(const unsigned int passwordLength)
+std::string PDFGenerator::_getRandomPassword(const unsigned int passwordLength) const
 {
   char* chars = new char[passwordLength+1];
 

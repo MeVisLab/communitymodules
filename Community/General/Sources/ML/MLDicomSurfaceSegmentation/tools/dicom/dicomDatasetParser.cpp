@@ -128,10 +128,10 @@ boost::optional<unsigned short> DicomDatasetParser::searchFirstElementUnsignedSh
  *         supplied tag. If ancestor is NULL or no suitable element was found, boost::none 
  *         is returned.
  */
-boost::optional<unsigned long> DicomDatasetParser::searchFirstElementUnsignedLong(DcmElement* ancestor, const DcmTag tag) const
+boost::optional<Uint32> DicomDatasetParser::searchFirstElementUnsignedLong(DcmElement* ancestor, const DcmTag tag) const
 {
   DcmElement* resultE = searchFirstElement(ancestor, tag);
-  unsigned long result = 0;
+  Uint32 result = 0;
   if(resultE != NULL && resultE->getUint32(result).good())
     return result;
   return boost::none;

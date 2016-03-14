@@ -112,7 +112,7 @@ protected:
   void pdfDoc_SetYAxisReference(bool reference);
 
   //! Get the y-axis reference (i.e., where the y-axis zero coordinate is: at the top of the page or at the bottom).
-  const bool pdfDoc_GetYAxisReference();
+  bool pdfDoc_GetYAxisReference() const;
 
   //! Store the current y-axis reference to a stack buffer.
   void pdfDoc_StoreYAxisReference();
@@ -141,31 +141,31 @@ protected:
   void pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
 
   //! Get minimum value for x coordinate of current page.
-  const float pdfDoc_GetPageMinX(bool ignoreMargins = false);
+  float pdfDoc_GetPageMinX(bool ignoreMargins = false) const;
 
   //! Get minimum value for y coordinate of current page.
-  const float pdfDoc_GetPageMinY(bool ignoreMargins = false);
+  float pdfDoc_GetPageMinY(bool ignoreMargins = false) const;
 
   //! Get maximum value for x coordinate of current page.
-  const float pdfDoc_GetPageMaxX(bool ignoreMargins = false);
+  float pdfDoc_GetPageMaxX(bool ignoreMargins = false) const;
 
   //! Get maximum value for x coordinate of current page.
-  const float pdfDoc_GetPageMaxY(bool ignoreMargins = false);
+  float pdfDoc_GetPageMaxY(bool ignoreMargins = false) const;
 
   //! Get x coordinate of center of current page.
-  const float pdfDoc_GetPageCenterX(bool ignoreMargins = false);
+  float pdfDoc_GetPageCenterX(bool ignoreMargins = false) const;
 
   //! Get y coordinate of center of current page.
-  const float pdfDoc_GetPageCenterY(bool ignoreMargins = false);
+  float pdfDoc_GetPageCenterY(bool ignoreMargins = false) const;
 
   //! Get maximum width of current page.
-  const float pdfDoc_GetPageMaxWidth(bool ignoreMargins = false);
+  float pdfDoc_GetPageMaxWidth(bool ignoreMargins = false) const;
 
   //! Get maximum height of current page.
-  const float pdfDoc_GetPageMaxHeight(bool ignoreMargins = false);
+  float pdfDoc_GetPageMaxHeight(bool ignoreMargins = false) const;
 
   //! Get remaining page height from given y coordinate.
-  const float pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins = false);
+  float pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins = false) const;
 
   //-----------------------
   // Text and font handling
@@ -177,7 +177,7 @@ protected:
   void pdfDoc_SetCurrentFontSize(float fontSize);
 
   //! Get current font height.
-  const float pdfDoc_GetCurrentFontHeight();
+  float pdfDoc_GetCurrentFontHeight() const;
 
   //! Write a single line of text at the specified position.
   void pdfDoc_WriteTextAt(float x, float y, std::string text, bool ignoreMargins = false);
@@ -371,12 +371,12 @@ private:
   // Internal tool methods
   void              _checkCoordinate(float& smaller, float& larger);
   void              _checkAngle(float& startAngle, float& endAngle);
-  const float       _getYPosFromTop(float y, bool ignoreMargins = false);
-  const HPDF_Rect   _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false);
-  const float       _getPageX(float x, bool ignoreMargins = false);
-  const float       _getPageY(float y, bool ignoreMargins = false);
-  const HPDF_REAL   _getFontHeight(HPDF_Font& font, HPDF_REAL size);
-  const std::string _getRandomPassword(const unsigned int passwordLength);
+  float             _getYPosFromTop(float y, bool ignoreMargins = false) const;
+  HPDF_Rect         _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false) const;
+  float             _getPageX(float x, bool ignoreMargins = false) const;
+  float             _getPageY(float y, bool ignoreMargins = false) const;
+  HPDF_REAL         _getFontHeight(HPDF_Font& font, HPDF_REAL size) const;
+  std::string       _getRandomPassword(const unsigned int passwordLength) const;
 
   // Page margins
   float _globalPageMarginLeft;

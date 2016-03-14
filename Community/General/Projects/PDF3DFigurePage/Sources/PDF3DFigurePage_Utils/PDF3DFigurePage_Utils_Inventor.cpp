@@ -33,7 +33,7 @@ void PDF3DFigurePage_Utils::_calculateInventorVertexList()
 
   size_t positionsListLength = _inPointPositions.size();
 
-  for (int i = 0; i < positionsListLength; i++)
+  for (size_t i = 0; i < positionsListLength; i++)
   {
     ml::XMarker thisPosition = _inPointPositions[i];
 
@@ -43,7 +43,7 @@ void PDF3DFigurePage_Utils::_calculateInventorVertexList()
     vertexList += " ";
     vertexList += floatToString(thisPosition.z());
 
-    if (i < positionsListLength - 1)
+    if (i + 1 < positionsListLength)
     {
       vertexList += ", ";
     }
@@ -73,11 +73,11 @@ void PDF3DFigurePage_Utils::_calculateInventorCoordIndexList()
     else
     {
       // No connections are defined -> create default single line connection
-      for (int i = 0; i < positionsListLength; i++)
+      for (size_t i = 0; i < positionsListLength; i++)
       {
         coordIndexList += intToString(i);
 
-        if (i < positionsListLength - 1)
+        if (i + 1 < positionsListLength)
         {
           coordIndexList += ", ";
         }

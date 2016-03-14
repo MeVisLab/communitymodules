@@ -118,7 +118,8 @@ void NewImageFromExpression::calcOutImageProps (int outIndex)
       {
         getOutImg(outIndex)->setImgExt(_dimFld->getVectorValue());
         getOutImg(outIndex)->setPageExt(_pageFld->getVectorValue());
-        getOutImg(outIndex)->setDataType(MLfloatType);
+        getOutImg(outIndex)->setDataType(MLDataTypeFromName(_dataTypeFld->getStringValue().c_str()));
+        
       }
 
   // ... set image properties for output image outIndex

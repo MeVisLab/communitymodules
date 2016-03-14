@@ -26,7 +26,7 @@ void PDF3DFigurePage_Utils::_getMaxTypeIDFromList(ml::XMarkerList& list, int& ma
 {
   size_t listLength = list.size();
 
-  for (int i = 0; i < listLength; i++)
+  for (size_t i = 0; i < listLength; i++)
   {
     ml::XMarker thisListEntry = list[i];
 
@@ -43,7 +43,7 @@ void PDF3DFigurePage_Utils::_getMaxTypeIDFromList(ml::IndexPairList& list, int& 
 {
   size_t listLength = list.size();
 
-  for (int i = 0; i < listLength; i++)
+  for (size_t i = 0; i < listLength; i++)
   {
     ml::IndexPair thisListEntry = list[i];
 
@@ -249,7 +249,7 @@ void PDF3DFigurePage_Utils::_createSelectedFibers()
 
   PDFMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outSelectedFiberSetContainer, _outSelectedLinePositions, _outSelectedLineConnections);
 
-  _outSeletedFibersFld->touch();
+  _outSelectedFibersFld->touch();
 }
 
 //----------------------------------------------------------------------------------
@@ -622,7 +622,7 @@ void PDF3DFigurePage_Utils::_updateFiberColor(LineSetProperties lineSet)
     }
   }
 
-  _outSeletedFibersFld->touch();
+  _outSelectedFibersFld->touch();
 }
 
 //----------------------------------------------------------------------------------

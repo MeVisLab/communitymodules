@@ -38,7 +38,7 @@ protected:
   DcmElement* searchFirstElement(DcmElement* ancestor, const DcmTag tag) const;
   char* searchFirstElementChar(DcmElement* ancestor, const DcmTag tag) const;
   boost::optional<unsigned short> searchFirstElementUnsignedShort(DcmElement* ancestor, const DcmTag tag) const;
-  boost::optional<unsigned long> searchFirstElementUnsignedLong(DcmElement* ancestor, const DcmTag tag) const;
+  boost::optional<Uint32> searchFirstElementUnsignedLong(DcmElement* ancestor, const DcmTag tag) const;
   const char* getCharAttribute(const DcmTagKey tag) const;
   boost::shared_ptr<DcmStack> getElementsByTag(const DcmTag tag) const;
   std::vector<DcmItem*> getSequenceItems(const DcmTag tag) const;

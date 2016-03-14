@@ -192,7 +192,7 @@ void DicomSurfaceSegmentationLoad::_updateOutputFields()
   _outPointSetPositions.clear();
   _outLineSetPositions.clear();
   //_outLineSetConnections.clear();
-  _cleanup();
+  _outWEM->removeAll();
 
   for (std::size_t i=0; i<_dicomPointSetsVector.size(); i++)
   {

@@ -87,9 +87,6 @@ protected:
   //! _process()-routine for correct processing.
   virtual void _process();
 
-  //! Called when the inputWEM has changed
-  virtual void _inWEMChanged();
-
 private:
 
   /* FIELDS */
@@ -106,7 +103,7 @@ private:
   BaseField*   _outLinePositionsFld;
   BaseField*   _outLineConnectionsFld;
   BaseField*   _outFibersFld;
-  BaseField*   _outSeletedFibersFld;
+  BaseField*   _outSelectedFibersFld;
   //BaseField*   _outOptimizedWEMFld;
 
   //! Inventor camera fields (needed for calculation of PDF view camera from Inventor camera settings)
