@@ -5,6 +5,10 @@
 # Name of the product
 $PRODUCT MeVisLab Community PDF-AddOn
 
+# The default package ID for MacOS includes $(PRODUCT), but spaces are not allowed in identifiers.
+# Therefore it needs to be set manually here:
+$INSTALLER_MACX_PKG_ID de.mevis.pkg.Community.PDFAddon
+
 # Version of the product
 $VERSION 1.0
 
@@ -25,6 +29,9 @@ $INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/PD
 
 # Disable signing
 $DEBUG_NO_SIGNING 1
+
+# Copy .lib files
+$MODULEDATABASETOOL_COPYLIBS 1
 
 #---------------------------------------------------------------------
 INCLUDE $(MLAB_MeVisLab_IDE)/Configuration/Installers/Shared/AddOns/defaultMeVisLabAddOnSetup.mli
