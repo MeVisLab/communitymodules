@@ -5,7 +5,7 @@ ModuleHelp  {
     moduleType = MacroModule
     author = "Axel Newe, axel.newe at fau.de"
     dll = ""
-    genre = ""
+    genre = PDFApps
     keywords = "PDF U3D 3D"
     seeAlso = ""
     package = General
@@ -19,61 +19,63 @@ ModuleHelp  {
 "
   }
   Usage  {
-    text = "*The creation of PDF documents is done entirely on the "PDF Page" tab (see Details section below).
+    text = "*The entire creation of the PDF documents is done on the tab "PDF Page" (see "Details" section below).
 
-For creating U3D files, there are two approaches: 
+For creating U3D files, there are two possible approaches: 
 
-* connecting input data to the four input connectors or 
-* assembling the  data with the build in assistant (Tab "3D Model" -> Tab "Assemble Model"). 
+* connecting the input data to the four input connectors or 
+* assembling the  data with the built-in assistant (tab "3D Model" -> tab "Assemble Model"). 
 
-The input connectors work  as described for the  :module:`SaveU3D` module (see there). Assembling the module by means of the assistant is described in the "Details" section below. *"
+The input connectors work  as described for the :module:`SaveU3D` module (see there). Assembling the data with the help of the assistant is described in the "Details" section below. *"
   }
   Details  {
     text = "*Creating U3D Model Files
 ------------------------
 
-Universal 3D (U3D) is a compressed file format standard for 3D computer graphics data which is standardized by Ecma International as ECMA-363. This module internally uses the :module:`SaveU3D` module for creating the U3D files.
+Universal 3D (U3D) is a compressed file format for 3D model data which is standardized by Ecma International as ECMA-363. This module internally uses the :module:`SaveU3D` module for creating the U3D files.
 
-Select the "3D Model" tab to create a U3D file.
+Select the tab "3D Model" to create a U3D file.
 
-Input data can be collected in two ways: either by feeding it to the input connectors or by assembling it by means of the built-in assistant. The former way is for experienced MeVisLab users and allows for attaching this macro at the end of a processing chain. Enable the :field:`useInputConnectors` checkbox if you want to use this option. In order to assemble the model by means of the built-in assisstant, enable the :field:`loadDataManually` checkbox.
+Input data can be collected in two ways: either by passing it to the input connectors or by assembling it with the help of the built-in assistant. 
+The first option is intended to be used by experienced MeVisLab users and allows for the attachment of this macro to the end of a processing chain. Enable the checkbox :field:`useInputConnectors` if you want to use this option. 
+The second option allows for the assemblage of the model entirely within this module. If you want to chose this option, enable the checkbox :field:`loadDataManually`. 
 
 Assembling the Model
 --------------------
 
 **Using input connectors**
 
-If the :field:`useInputConnectors` checkbox is enabled, the model data is loaded from the input connectors and all controls on the *Assemble Model* tab are disabled. In this case, the *Assemble Model* tab can only be used to preview the model. 
+If the checkbox :field:`useInputConnectors` is enabled, the model data is loaded from the input connectors and all controls on the tab *Assemble Model* are disabled. In this case, the tab *Assemble Model* can only be used to preview the model. 
 
 .. screenshot:: 3DModel AssembleModel2
 
-**Manual assembly**
+**Manual assembling**
 
 .. screenshot:: 3DModel AssembleModel
 
-The model can also be assembled manually by importing each object step-by-step. Go to the *Assemble Model* tab to assemble the model manually.
+The model can also be assembled manually by importing each object step-by-step. Go to the tab *Assemble Model* to assemble the model manually.
 
-Three types of geometries can be imported: point clouds, line sets and meshes.
+Three types of geometric objects can be imported: point clouds, line sets and meshes.
 
-Each type of geometry has its own box of controls to import. The first step is always to load the object by means of the appropriate *Load {Points|Lines|Mesh} Object* button. After successfully loading the object, it is shown highlighted in the preview area, while all previously added objects are displayed faded. If you are happy with the object, click *Add Imported Model* in the *Add Object* box. It is then permanently added to the model. If you do not want to add a loaded object, click *Unload* in the appropriate box. All models of a kind can be removed at once by means of the appropriate button in the *Remove Objects* box. It is not possible to remove a specific object.
+Each type of geometry has its own box of controls to import. The first step is always the loading of the object by means of the appropriate button *Load {Points|Lines|Mesh} Object*. If the loading has been successful, the object will appear highlighted in the preview area, while all previously added objects will be faded. If you are pleased with the object, click *Add Imported Model* in the box *Add Object* in order to add it permanently to the model. If you do not like to add a loaded object, click *Unload* in the respective box. All models of a kind can be removed at the same time by clicking the appropriate button in the box *Remove Objects*. It is not possible to remove an individual object from the model.
 
 Each type of geometry has its specific import options:
 
-**Point Set import**
+**Importing a Point Set**
 
 .. screenshot:: 3DModel ImportPointSets
 
-Point Sets can be imported from text files, e.g., CSV files. A point set definition shall start with a header which consists of an identifier and a numerical value:
+Point Sets can be imported from text files, e.g., CSV files. The definition of a point set definition shall start with a header which consists of an identifier and a numerical value:
 
 ``Points 1``
 
-The identifier which is used for filtering point sets out of a larger file can be specified by means of the *ID* field. By default it is "Points".
+The identifier, which is used for filtering point sets from a larger file, can be specified by means of the *ID* field. The default value is "Points".
 
-The header can also have an optional name. Everything after the numerical value is interpreted as name:
+The header can also contain an optional name. Everything after the numerical value is interpreted as name:
 
 ``Points 1 Anchor Points``
 
-The point set definition shall then continue with the coordinates of each point. Each coordinate shall consist of three values (x, y, z) and be listed in a separate line. The values can be separated either by a semicolon (";") or by a space. The decimal delimiter shall be a decimal point ("."):
+The definition of the point set shall then continue with the coordinates of each point. Each coordinate shall consist of three values (x, y, z) and it shall be listed in a separate line. The values can be separated either by a semicolon (";") or by a space. The decimal delimiter shall be a decimal point ("."):
 
 ``78.873;-30.2173;-109.254`` or ``63.9515 -16.5974 -76.5908``
 
@@ -554,7 +556,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       title = ""
       visibleInGUI = No
       persistent = Yes
-      default = "0 0 1.8304877281189"
+      default = "0 0 1"
     }
     Field viewCameraRadiusOfOrbit {
       type = Float
@@ -878,7 +880,7 @@ The following image shows an example of a complete PDF page with an active 3D fi
       title = "Poster Text"
       visibleInGUI = Yes
       persistent = Yes
-      default = "Click here to enable interactive mode in Acrobat Reader."
+      default = "Click here to enable interactive mode in Adobe Reader."
     }
     Field saveU3D {
       type = Trigger

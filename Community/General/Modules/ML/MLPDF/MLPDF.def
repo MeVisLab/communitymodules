@@ -10,8 +10,10 @@
 // Genres ----------------------------------------------------------------------
 
 UserGenres {
-  Genre PDF { Genre PDFApps      { title = Apps      } }
-  Genre PDF { Genre PDFModules   { title = Modules   } }
+  Genre PDF { 
+    Genre PDFApps      { title = Apps      } 
+    Genre PDFModules   { title = Modules   } 
+  }
 }
 
 // Modules ---------------------------------------------------------------------
