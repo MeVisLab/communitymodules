@@ -31,7 +31,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -402,7 +401,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -495,7 +493,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -743,6 +740,7 @@ module So3DMarkerEditor {
     vectorArrow = VECTOR_NO_ARROWS
     lineStyle = Solid
     drawMode = DrawModePointSprites
+    geometryComplexity = LOW
     numMarkersThresholdForFastRendering = 5000
     listString = ""
     index = 0
@@ -849,6 +847,7 @@ module So3DMarkerEditor {
     vectorArrow = VECTOR_NO_ARROWS
     lineStyle = Solid
     drawMode = DrawModePointSprites
+    geometryComplexity = LOW
     numMarkersThresholdForFastRendering = 5000
     listString = ""
     index = 0
@@ -931,7 +930,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -1129,6 +1127,7 @@ module SoSceneLoader {
     splitLargeMeshes = FALSE
     improveCacheLocality = FALSE
     optimizeMeshes = FALSE
+    forceNormalGeneration = FALSE
     logDetail = Errors
     generateNormals = GenerateSmoothNormals
     normalSmoothingCreaseAngle = 175
@@ -1150,19 +1149,15 @@ module WEMReducePolygons {
     instanceName = WEMReducePolygons
     id = 0
     autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = FALSE
-    removePreviousWEMs = TRUE
+    updateMode = AutoUpdate
     overwriteLabelDescription = FALSE
     label = ""
     description = ""
     shouldComputeNormals = TRUE
-    copyInputWEMs = TRUE
+    workDirectlyOnInputWEMs = FALSE
     listenToFinishNotifications = TRUE
     listenToRepaintNotifications = TRUE
     listenToSelectionChangedNotifications = TRUE
-    forwardRepaintNotifications = TRUE
-    forwardSelectionNotifications = TRUE
     triangulationMode = Strip
     targetReduction = 75
     smooth = FALSE
@@ -1199,10 +1194,8 @@ module WEMInfo {
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = ""
-    hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
-    primitiveValueLists = ""
+    selectedPrimitiveValueList = ""
     curveScaleFactor = 1
     selectedTab = 1
   }
@@ -1295,7 +1288,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -1392,7 +1384,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -1490,7 +1481,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -1661,10 +1651,8 @@ module WEMInfo {
     listenToFinishingNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = TRUE
-    WEMs = "1@"
-    hasEdges = FALSE
     boundingBoxMode = "Axis Aligned"
-    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
     curveScaleFactor = 1
     selectedTab = 1
   }
@@ -1723,7 +1711,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -1889,6 +1876,7 @@ module So3DMarkerEditor {
     vectorArrow = VECTOR_NO_ARROWS
     lineStyle = Solid
     drawMode = DrawModePointSprites
+    geometryComplexity = LOW
     numMarkersThresholdForFastRendering = 5000
     listString = ""
     index = 0
@@ -1943,7 +1931,6 @@ module RunPythonScript {
     in7 = ""
     in8 = ""
     in9 = ""
-    editComments = FALSE
     inComment0 = in0
     inComment1 = in1
     inComment2 = in2
@@ -2030,6 +2017,8 @@ module SoWEMRenderer {
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
     useHighlightSelected = FALSE
     highlightColor = "1 0 0"
     highlightIntensity = 0.5
@@ -2079,16 +2068,13 @@ module WEMComposePatches {
     instanceName = WEMComposePatches
     id = 0
     autoApply = FALSE
-    autoUpdate = FALSE
-    autoClear = FALSE
-    removePreviousWEMs = TRUE
+    updateMode = Off
     overwriteLabelDescription = FALSE
     label = ""
     description = ""
     shouldComputeNormals = TRUE
     inWEMValid = TRUE
     triangulatePatches = TRUE
-    status = "Valid WEM connected"
   }
 }
 module SoExaminerViewer {
@@ -2570,6 +2556,8 @@ module SoWEMRenderer {
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
     useHighlightSelected = FALSE
     highlightColor = "1 0 0"
     highlightIntensity = 0.5
@@ -2616,6 +2604,8 @@ module SoWEMRenderer {
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
     useHighlightSelected = FALSE
     highlightColor = "1 0 0"
     highlightIntensity = 0.5
@@ -2660,25 +2650,20 @@ module WEMSelectPatches {
     instanceName = WEMSelectPatches
     id = 0
     autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = FALSE
-    removePreviousWEMs = TRUE
+    updateMode = AutoUpdate
     overwriteLabelDescription = TRUE
     label = ""
     description = ""
     shouldComputeNormals = TRUE
-    copyInputWEMs = FALSE
+    workDirectlyOnInputWEMs = FALSE
     listenToFinishNotifications = TRUE
     listenToRepaintNotifications = TRUE
     listenToSelectionChangedNotifications = TRUE
-    forwardRepaintNotifications = TRUE
-    forwardSelectionNotifications = TRUE
     triangulationMode = Strip
     selectMode = "Patch ID"
     selectValue = -32768
     singleOutputPatch = TRUE
     triangulatePatches = TRUE
-    status = "Merged nothing."
   }
 }
 module SoGroup {
@@ -2749,24 +2734,19 @@ module PDF3DFigurePage_Utils {
     instanceName = PDF3DFigurePage_Utils
     id = 0
     autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = TRUE
-    removePreviousWEMs = TRUE
+    updateMode = AutoUpdate
     overwriteLabelDescription = FALSE
     label = ""
     description = ""
     shouldComputeNormals = TRUE
-    copyInputWEMs = TRUE
+    workDirectlyOnInputWEMs = FALSE
     listenToFinishNotifications = TRUE
     listenToRepaintNotifications = FALSE
     listenToSelectionChangedNotifications = FALSE
-    forwardRepaintNotifications = TRUE
-    forwardSelectionNotifications = TRUE
-    useInputWEMToCreateOutputWEM = TRUE
     triangulationMode = Strip
     autoCalculateCameraFromInventorScene = TRUE
     cameraCenterOfOrbit = "0 0 0"
-    cameraCenterToCamera = "0 0 1.8304877281189"
+    cameraCenterToCamera = "0 0 1"
     cameraRadiusOfOrbit = 1.8304877
     cameraFOVAngle = 57.29578
     cameraRollAngle = 270
@@ -2892,6 +2872,7 @@ module So3DMarkerEditor {
     vectorArrow = VECTOR_NO_ARROWS
     lineStyle = Solid
     drawMode = DrawModePointSprites
+    geometryComplexity = LOW
     numMarkersThresholdForFastRendering = 5000
     listString = ""
     index = 0
@@ -3043,6 +3024,8 @@ module SoWEMRenderer {
     autoApply = TRUE
     autoUpdate = TRUE
     autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
     useHighlightSelected = FALSE
     highlightColor = "1 0 0"
     highlightIntensity = 0.5
@@ -3436,7 +3419,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 185
+        uniqueId = 186
         objectName = "Import Meshes"
         parentUniqueId = 0
         color  {
@@ -3447,7 +3430,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 186
+        uniqueId = 187
         objectName = "Load Points and Lines"
         parentUniqueId = 0
         color  {
@@ -3458,7 +3441,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 187
+        uniqueId = 188
         objectName = Visualization
         parentUniqueId = 0
         color  {

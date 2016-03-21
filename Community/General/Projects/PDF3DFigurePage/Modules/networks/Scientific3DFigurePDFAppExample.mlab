@@ -95,21 +95,19 @@ module WEMLoad {
     instanceName = Meshes
     id = 0
     autoApply = TRUE
-    autoUpdate = TRUE
-    autoClear = FALSE
-    removePreviousWEMs = TRUE
+    updateMode = AutoUpdate
     overwriteLabelDescription = FALSE
     label = ""
     description = ""
     shouldComputeNormals = FALSE
-    filename = ""
+    filename = "J:/MeVisLab/Packages Community/Community/General/Projects/PDF3DFigurePage/Modules/networks/PDF3DFigurePageMacroExample.wem"
     mirrorFaces = FALSE
     generateEdges = TRUE
     triangulateFaces = FALSE
     triangulationMode = Strip
   }
 }
-module LocalFileName {
+module LocalPath {
   internal  {
     frame = "-266 145 152 64"
     moduleGroupName = ""
@@ -125,6 +123,7 @@ module LocalFileName {
     instanceName = CreateMeshFilename
     localName = $(NETWORK)/PDF3DFigurePageMacroExample.wem
     checkIfFileExists = TRUE
+    browseType = file
   }
 }
 module Scientific3DFigurePDFApp {
@@ -158,19 +157,20 @@ module Scientific3DFigurePDFApp {
     viewDisplayName = ""
     viewBackgroundColor = "1 1 1"
     viewLightingScheme = HeadLamp
+    viewRenderMode = Solid
     viewCameraCenterOfOrbit = "92.9833350913541 -144.044285239463 1118.74887799223"
-    viewCameraCenterToCamera = "-374.664273812057 213.361820639853 50.4096913437097"
+    viewCameraCenterToCamera = "-0.863094522838595 0.491510484582536 0.116126173584848"
     viewCameraRadiusOfOrbit = 434.09412
     viewCameraRollAngle = 3.0844808
     viewCameraFOVAngle = 57.29578
     viewSpecifications = ""
     selectedWEMPatch = "Left Femur (Outer Surface) {ID=2}"
-    selectedWEMPatchNewLabel = "Left Femur (Outer Surface)"
+    selectedWEMPatchNewLabel = ""
     availableWEMPatches = "Left Femur (Outer Surface) {ID=2}|Left Femur (Spongiosa Surface) {ID=4}|Left Femur (Bone Marrow Surface) {ID=6}"
     selectedWEMPatchGroupPath = ""
-    selectedWEMPatchUseDefaultColor = FALSE
-    selectedWEMPatchColor = "1 0 0"
-    selectedWEMPatchColorAlpha = 0.60000002
+    selectedWEMPatchUseDefaultColor = TRUE
+    selectedWEMPatchColor = "0 0 0"
+    selectedWEMPatchColorAlpha = 0
     selectedLineSet = "Center X {ID=1}"
     selectedLineSetNewLabel = "Center X"
     availableLineSets = "Center X {ID=1}|Center Y {ID=2}|Center Z {ID=3}"
@@ -185,10 +185,12 @@ module Scientific3DFigurePDFApp {
     loadLinesFilter = Lines
     useReducedMesh = FALSE
     meshReductionRatio = 75
+    posterBackground = "1 1 1"
+    posterText = "Click here to enable interactive mode in Adobe Reader."
     saveU3DStatus = ""
     savePosterStatus = ""
     savePDFStatus = ""
-    headerCitationText = "*Newe (2015). "Fancy article title". Journal.*"
+    headerCitationText = "*Newe (2016). "Fancy article title". Journal.*"
     headerHeadlineText = "Additional File S1 - Interactive 3D PDF"
     caption = "Model of an anatomic structure."
     description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
@@ -208,7 +210,7 @@ Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci."
     cameraHeight = 1
     cameraPosition = "-281.680938720703 69.3175354003906 1169.15856933594"
-    cameraOrientation = "0.346324861049652 -0.63448041677475 -0.691009104251862 2.33450365066528"
+    cameraOrientation = "0.346324861049652 -0.634480357170105 -0.691009104251862 2.33450365066528"
     cameraNearDistance = 2
     cameraFarDistance = 4
     cameraFocalDistance = 434.09412
