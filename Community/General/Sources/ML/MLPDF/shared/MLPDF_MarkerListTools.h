@@ -27,8 +27,6 @@
 // Inventor includes
 #include <Inventor/nodes/SoNodes.h>  // for M_PI
 
-#include <sys/stat.h>
-
 
 ML_START_NAMESPACE
 

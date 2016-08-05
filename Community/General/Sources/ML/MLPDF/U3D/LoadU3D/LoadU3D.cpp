@@ -33,6 +33,8 @@ LoadU3D::LoadU3D (std::string type) : WEMGenerator(type)
   (_boundingBoxCenterFld = addVector3("boundingBoxCenter"))->setVector3Value(Vector3(0));
   (_boundingBoxRadiusFld = addFloat("boundingBoxRadius"))->setFloatValue(0.0f);
 
+  _finishedFld = addNotify("finishedTrigger");
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }

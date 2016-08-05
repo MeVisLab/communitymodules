@@ -53,7 +53,62 @@ namespace mlPDF
   static unsigned int PERMIT_PRINT_HIGH_QUALITY        = 0x0804;  // Bit 12: Print the document to a representation from which a faithful digital copy of the PDF content could be generated. When this bit is clear (and bit 3 is set), printing is limited to a low-level representation of the appearance, possibly of degraded quality.
   static unsigned int PERMIT_ALL                       = 0x0FFF;  // Enable all permissions (default)
 
+  enum DOCUMENT_PROPERTY_KEYS {
+    DOCUMENTPROPERTY_TITLE    = HPDF_INFO_TITLE,
+    DOCUMENTPROPERTY_AUTHOR   = HPDF_INFO_AUTHOR,
+    DOCUMENTPROPERTY_SUBJECT  = HPDF_INFO_SUBJECT,
+    DOCUMENTPROPERTY_KEYWORDS = HPDF_INFO_KEYWORDS,
+    DOCUMENTPROPERTY_CREATOR  = HPDF_INFO_CREATOR,
+
+    NUM_DOCUMENTPROPERTYKEYS = 5
+  };
+
+  const char* const DocumentPropertyKeyStrings[NUM_DOCUMENTPROPERTYKEYS] = {
+    "Title",
+    "Author",
+    "Subject",
+    "Keywords",
+    "Creator"
+  };
+
+  enum PAGE_LAYOUTS {
+    PAGELAYOUT_SINGLEPAGE              = HPDF_PAGE_LAYOUT_SINGLE,
+    PAGELAYOUT_SINGLEPAGE_SCROLLING    = HPDF_PAGE_LAYOUT_ONE_COLUMN,
+    PAGELAYOUT_TWOPAGE_LEFT            = HPDF_PAGE_LAYOUT_TWO_PAGE_LEFT,
+    PAGELAYOUT_TWOPAGE_RIGHT           = HPDF_PAGE_LAYOUT_TWO_PAGE_RIGHT,
+    PAGELAYOUT_TWOPAGE_LEFT_SCROLLING  = HPDF_PAGE_LAYOUT_TWO_COLUMN_LEFT,
+    PAGELAYOUT_TWOPAGE_RIGHT_SCROLLING = HPDF_PAGE_LAYOUT_TWO_COLUMN_RIGHT,
+
+    NUM_PAGELAYOUTS = 6
+  };
+
+  const char* const PageLayoutStrings[NUM_PAGELAYOUTS] = {
+    "Single Page",
+    "Single Page (Scrolling Enabled)",
+    "Two Pages (Left)",
+    "Two Pages (Right)",
+    "Two Pages (Left, Scrolling Enabled)",
+    "Two Pages (Right, Scrolling Enabled)"
+  };
+
+  enum DOCUMENT_OPEN_MODES {
+    DOCUMENTOPENMODE_NONE         = HPDF_PAGE_MODE_USE_NONE,
+    DOCUMENTOPENMODE_SHOW_OUTLINE = HPDF_PAGE_MODE_USE_OUTLINE,
+    DOCUMENTOPENMODE_SHOW_THUMBS  = HPDF_PAGE_MODE_USE_THUMBS,
+    DOCUMENTOPENMODE_FULLSCREEN   = HPDF_PAGE_MODE_FULL_SCREEN,
+
+    NUM_DOCUMENTOPENMODES = 4
+  };
+
+  const char* const DocumentOpenModeStrings[NUM_DOCUMENTOPENMODES] = {
+    "None (Default)",
+    "Show Outline",
+    "Show Thumbnails",
+    "Full Screen"
+  };
+
   enum PAGE_SIZES {
+    PAGESIZE_USER         = -1,                          // User defined
     PAGESIZE_LETTER       = HPDF_PAGE_SIZE_LETTER,       // 612     x 792       pixels
     PAGESIZE_LEGAL        = HPDF_PAGE_SIZE_LEGAL,        // 612     x 1008      pixels
     PAGESIZE_A3           = HPDF_PAGE_SIZE_A3,           // 841.89  x 1199.551  pixels
@@ -85,20 +140,22 @@ namespace mlPDF
     "PAGESIZE_COMM10"
   };
 
-  struct PageSizeInfoStruct
+  struct PagePropertiesStruct
   {
-    _HPDF_PageSizes PageSize;
-    HPDF_REAL       Width;
-    HPDF_REAL       Height;
-    HPDF_REAL       MarginX;
-    HPDF_REAL       MarginY;
+    PAGE_SIZES  PageSize;
+    float       Width;
+    float       Height;
+    float       MarginLeft;
+    float       MarginRight;
+    float       MarginTop;
+    float       MarginBottom;
   };
 
   enum PAGE_DIRECTIONS {
     PAGEDIRECTION_PORTRAIT  = HPDF_PAGE_PORTRAIT,
     PAGEDIRECTION_LANDSCAPE = HPDF_PAGE_LANDSCAPE,
 
-    NUM_PAGEDIRECTIONS      = 3
+    NUM_PAGEDIRECTIONS = 2
   };
 
   const char* const PageDirectionStrings[NUM_PAGEDIRECTIONS] = {
@@ -122,6 +179,21 @@ namespace mlPDF
     HPDF_Font HelveticaBoldOblique;
     HPDF_Font Symbol;
     HPDF_Font ZapfDingbats;
+  };
+
+  struct FontSettingsStruct
+  {
+    HPDF_Font font;
+    float     fontSize;
+    float     fontHeight;
+  };
+
+
+  struct ErrorTracingStruct
+  {
+    HPDF_STATUS errorCode;
+    HPDF_STATUS errorDetailCode;
+    std::string errorSource;
   };
 
 

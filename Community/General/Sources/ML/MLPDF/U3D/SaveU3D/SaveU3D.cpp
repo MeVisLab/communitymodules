@@ -86,10 +86,12 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
 
   (_mlFileNameFld = addString("filename"))->setStringValue("");
 
-  _mlSaveFld = addNotify("save");
+  _mlSaveFld   = addNotify("save");
+  _finishedFld = addNotify("finishedTrigger");
 
-  (_statusFld     = addString("status"))    ->setStringValue("Idle.");
-  (_progressFld   = addProgress("progress"))->setFloatValue(0.0f);
+  (_statusFld   = addString("status"))    ->setStringValue("Idle.");
+  (_progressFld = addProgress("progress"))->setFloatValue(0.0f);
+  (_successFld  = addBool("success"))     ->setBoolValue(false);
 
   //-------------------------------------------------------------------
   //! Strings for enum field: specification type 
@@ -295,6 +297,8 @@ void SaveU3D::_process()
 
 void SaveU3D::saveButtonClicked()
 {
+  bool success = false;
+
   std::string filename = _mlFileNameFld->getStringValue();
   if (filename == "") 
   {
@@ -343,9 +347,17 @@ void SaveU3D::saveButtonClicked()
 
   if (ofstream.is_open())
   {
-    saveU3DToFileStream(ofstream);
+    success = saveU3DToFileStream(ofstream);
     ofstream.close();
-    status = "U3D file saved.";
+
+    if (success)
+    {
+      status = "U3D file saved.";
+    }
+    else
+    {
+      status = "U3D file could not be saved.";
+    }
   } 
   else 
   {
@@ -353,15 +365,18 @@ void SaveU3D::saveButtonClicked()
   }
 
   _statusFld->setStringValue(status);
-
+  _successFld->setBoolValue(success);
+  _finishedFld->touch();
 }
 
 
 //***********************************************************************************
 
 
-void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
+bool SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
 {
+  bool success = false;
+
   _progressFld->setFloatValue(0.0f);
 
   WEMPtr saveWEM = NULL;
@@ -500,11 +515,10 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
 
     // Write data to disk & free mem ===========================================================
 
-    outU3DFile->writeToFileStream(ofstream, metaData);
+    success = outU3DFile->writeToFileStream(ofstream, metaData);
 
     ML_DELETE(outU3DFile);
     outU3DFile = NULL;
-
   }
   else
   {
@@ -512,6 +526,8 @@ void SaveU3D::saveU3DToFileStream(std::ofstream& ofstream)
   }
   
   _progressFld->setFloatValue(1.0f);
+
+  return success;
 
 }
 

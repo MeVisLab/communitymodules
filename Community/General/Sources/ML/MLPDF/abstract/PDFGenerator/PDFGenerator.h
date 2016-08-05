@@ -14,6 +14,11 @@
 #define _PDF_PDFGenerator_H 
 
 
+// ThirdParty includes
+#include <xercesc/dom/DOM.hpp>
+#include <xercesc/sax/HandlerBase.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
+
 // Local includes
 #include "MLPDFSystem.h"
 #include"../../shared/MLPDF_Defines.h"
@@ -54,6 +59,9 @@
 #include <hpdf_u3d.h>
 #include <hpdf_utils.h>
 #include <hpdf_version.h>
+
+
+using namespace xercesc;
 
 
 ML_START_NAMESPACE
@@ -108,6 +116,15 @@ protected:
   //! a random password of 64 characters (512 bit) length is set!
   void pdfDoc_SetPermissions(const unsigned int permissionFlags);
 
+  //! Set document property
+  void pdfDoc_SetDocumentProperty(mlPDF::DOCUMENT_PROPERTY_KEYS propertyKey, std::string value);
+
+  //! Set the initial page layout that is displayed when document is opened.
+  void pdfDoc_SetInitialPageDisplayLayout(mlPDF::PAGE_LAYOUTS layout);
+
+  //! Set the initial page layout that is displayed when document is opened.
+  void pdfDoc_SetDocumentOpenMode(mlPDF::DOCUMENT_OPEN_MODES mode);
+
   //! Set the y-axis reference (i.e., where the y-axis zero coordinate shall be: at the top of the page or at the bottom).
   void pdfDoc_SetYAxisReference(bool reference);
 
@@ -126,6 +143,15 @@ protected:
   //! Restore the y-axis reference to document-global default value.
   void pdfDoc_RestoreDefaultYAxisReference();
 
+  //! Set the document creation date/time.
+  //! This overrides the automatic internal setting.
+  void pdfDoc_SetDocumentCreationDateTime();
+  void pdfDoc_SetDocumentCreationDateTime(std::tm datetime);
+
+  //! Get the document creation date/time.
+  std::tm pdfDoc_GetDocumentCreationDateTime() const;
+
+
   //--------------
   // Page handling
   //--------------
@@ -139,6 +165,15 @@ protected:
   void pdfDoc_SetGlobalPageMarginsMM(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
   void pdfDoc_SetGlobalPageMarginsInch(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
   void pdfDoc_SetGlobalPageMarginsPixels(float leftMargin, float topMargin, float rightMargin, float bottomMargin);
+
+  //! Get all page properties
+  mlPDF::PagePropertiesStruct pdfDoc_GetPageProperties() const;
+
+  //! Get the page margins
+  float pdfDoc_GetMarginLeft() const;
+  float pdfDoc_GetMarginRight() const;
+  float pdfDoc_GetMarginTop() const;
+  float pdfDoc_GetMarginBottom() const;
 
   //! Get minimum value for x coordinate of current page.
   float pdfDoc_GetPageMinX(bool ignoreMargins = false) const;
@@ -164,6 +199,9 @@ protected:
   //! Get maximum height of current page.
   float pdfDoc_GetPageMaxHeight(bool ignoreMargins = false) const;
 
+  //! Get remaining page height from pdfDoc_CurrentYPos
+  float pdfDoc_GetPageRemainingHeight(bool ignoreMargins = false) const;
+
   //! Get remaining page height from given y coordinate.
   float pdfDoc_GetPageRemainingHeight(float yPos, bool ignoreMargins = false) const;
 
@@ -172,12 +210,37 @@ protected:
   //-----------------------
 
   //! Set current font.
-  void pdfDoc_SetCurrentFont(HPDF_Font font);
-  void pdfDoc_SetCurrentFont(HPDF_Font font, float fontSize);
+  void pdfDoc_SetCurrentFont(HPDF_Font& font);
+  void pdfDoc_SetCurrentFont(HPDF_Font& font, float fontSize);
   void pdfDoc_SetCurrentFontSize(float fontSize);
+
+  //! Get current font size.
+  float pdfDoc_GetCurrentFontSize() const;
 
   //! Get current font height.
   float pdfDoc_GetCurrentFontHeight() const;
+
+  //! Get text width.
+  float pdfDoc_GetCurrentFontTextWidth(std::string text) const;
+
+  //! Get text height.
+  float pdfDoc_GetCurrentFontTextHeight() const;
+  float pdfDoc_GetTextHeight(HPDF_Font& font, float size) const;
+
+  //! Set/get txt leading
+  void pdfDoc_SetCurrentTextLeading(float leading);
+  float pdfDoc_GetCurrentTextLeading() const;
+
+  //! Store the current font settings to a stack buffer.
+  void pdfDoc_StoreFontSettings();
+
+  //! Restore the current font settings from stack buffer. Does nothing if buffer is empty.
+  void pdfDoc_RestoreFontSettings();
+
+  //! Set the text rotation angle (counter-clockwise)
+  void pdfDoc_SetCurrentTextRotationDegrees(float degrees);
+  void pdfDoc_SetCurrentTextRotationRadians(double radians);
+  void pdfDoc_ResetCurrentTextRotation();
 
   //! Write a single line of text at the specified position.
   void pdfDoc_WriteTextAt(float x, float y, std::string text, bool ignoreMargins = false);
@@ -188,6 +251,16 @@ protected:
   void pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_ALIGNMENTS alignment, bool ignoreMargins = false);
   void pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins = false);
   void pdfDoc_WriteTextAreaAt(float x, float y, float width, float height, std::string text, mlPDF::TEXT_RENDERMODES renderMode, mlPDF::TEXT_ALIGNMENTS alignment, bool ignoreMargins = false);
+
+  //! Write HTML table at the specified position
+  float pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, bool ignoreMargins = false);
+  float pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, bool firstColumBold, bool firstRowBold, bool ignoreMargins = false);
+  float pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins = false);
+  float pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, mlPDF::TEXT_RENDERMODES renderMode, bool firstColumBold, bool firstRowBold, bool ignoreMargins = false);
+
+  // Write HTML list at the specified position
+  float pdfDoc_WriteHTMLUnorderedListAt(float x, float y, std::string html, bool ignoreMargins = false);
+  float pdfDoc_WriteHTMLUnorderedListAt(float x, float y, std::string html, mlPDF::TEXT_RENDERMODES renderMode, bool ignoreMargins = false);
 
   //-------------------
   // Resources handling
@@ -220,40 +293,41 @@ protected:
   mlPDF::VIEW3D pdfDoc_3DModel_CreateViewFromSpecificationString(std::string specificationString);
 
   //! Set lighting scheme property for 3D view.
-  void pdfDoc_3DView_SetLightingScheme(mlPDF::VIEW3D view, mlPDF::LIGHTING_SCHEMES lightingScheme);
+  void pdfDoc_3DView_SetLightingScheme(mlPDF::VIEW3D& view, mlPDF::LIGHTING_SCHEMES lightingScheme);
 
   //! Set background color property for 3D view.
-  void pdfDoc_3DView_SetBackgroundColor(mlPDF::VIEW3D view, float r, float g, float b);
-  void pdfDoc_3DView_SetBackgroundColor(mlPDF::VIEW3D view, Vector3 color);
+  void pdfDoc_3DView_SetBackgroundColor(mlPDF::VIEW3D& view, float r, float g, float b);
+  void pdfDoc_3DView_SetBackgroundColor(mlPDF::VIEW3D& view, Vector3 color);
 
   //! Set render mode for 3D view.
-  void pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D view, mlPDF::MODEL_RENDERMODES renderMode);
+  void pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D& view, mlPDF::MODEL_RENDERMODES renderMode);
 
   //! Set camera for 3D view.
-  void pdfDoc_3DView_SetPerspectiveCamera(mlPDF::VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float fieldOfView, float cameraRollDegrees = 0);
-  void pdfDoc_3DView_SetOrthogonalCamera(mlPDF::VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float scaleFactor, float cameraRollDegrees = 0);
+  void pdfDoc_3DView_SetPerspectiveCamera(mlPDF::VIEW3D& view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float fieldOfView, float cameraRollDegrees = 0);
+  void pdfDoc_3DView_SetOrthogonalCamera(mlPDF::VIEW3D& view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float scaleFactor, float cameraRollDegrees = 0);
 
   //! Add model node property to a 3D view.
-  void pdfDoc_3DView_AddVisibleNode(mlPDF::VIEW3D view, std::string nodeName, float transparency, bool visibility);
-  void pdfDoc_3DView_AddVisibleNodeFromSpecificationString(mlPDF::VIEW3D view, std::string specificationString);
-  void pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(mlPDF::VIEW3D view, std::string specificationString);
+  void pdfDoc_3DView_AddVisibleNode(mlPDF::VIEW3D& view, std::string nodeName, float transparency, bool visibility);
+  void pdfDoc_3DView_AddVisibleNodeFromSpecificationString(mlPDF::VIEW3D& view, std::string specificationString);
+  void pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(mlPDF::VIEW3D& view, std::string specificationString);
 
   //! Add a 3D views to 3D model.
-  void pdfDoc_3DModel_AddView(mlPDF::MODEL3D model, mlPDF::VIEW3D view);
-  void pdfDoc_3DModel_AddViewFromSpecificationString(mlPDF::MODEL3D model, std::string specificationString);
-  void pdfDoc_3DModel_AddAllViewsFromSpecificationString(mlPDF::MODEL3D model, std::string specificationString);
+  void pdfDoc_3DModel_AddView(mlPDF::MODEL3D& model, mlPDF::VIEW3D& view);
+  void pdfDoc_3DModel_AddViewFromSpecificationString(mlPDF::MODEL3D& model, std::string specificationString);
+  void pdfDoc_3DModel_AddAllViewsFromSpecificationString(mlPDF::MODEL3D& model, std::string specificationString);
 
   //! Set the default 3D view of a 3D model.
-  void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D model, std::string viewName);
-  void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D model, mlPDF::VIEW3D view);
+  void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D& model, std::string viewName);
+  void pdfDoc_3DModel_SetDefaultView(mlPDF::MODEL3D& model, mlPDF::VIEW3D view);
 
   //! Add a 3D scene to the document. If a poster image is specified, this image will be added to the image pool (pdfDocImages property).
-  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, mlPDF::IMAGE posterImage, bool ignoreMargins = false);
-  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D model, std::string posterFilename, bool ignoreMargins = false);
+  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D& model, bool ignoreMargins = false);
+  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D& model, mlPDF::IMAGE& posterImage, bool ignoreMargins = false);
+  mlPDF::SCENE3D pdfDoc_Add3DScene(float x, float y, float width, float height, mlPDF::MODEL3D& model, std::string posterFilename, bool ignoreMargins = false);
 
   //! Set the activation properties of a 3D scene.
-  void pdfDoc_3DScene_SetActivationProperties(mlPDF::SCENE3D scene, std::string activationCode, std::string deactivationCode, bool toolbarEnabled = false, bool navigationInterfaceOpened = false, bool animationAutoStart = false);
+  void pdfDoc_3DScene_SetActivationProperties(mlPDF::SCENE3D& scene, mlPDF::ACTIVATION_MODES activationMode, mlPDF::DEACTIVATION_MODES deactivationMode, bool toolbarEnabled = false, bool navigationInterfaceOpened = false, bool animationAutoStart = false);
+  void pdfDoc_3DScene_SetActivationProperties(mlPDF::SCENE3D& scene, std::string activationCode, std::string deactivationCode, bool toolbarEnabled = false, bool navigationInterfaceOpened = false, bool animationAutoStart = false);
 
   //------------------
   // Graphics handling
@@ -312,12 +386,11 @@ protected:
   //! Field - Save button notification
   NotifyField   *saveFld;
 
-  //! Status message
+  //! Status & progress fields
   StringField   *statusFld;
-  BoolField*     successFld;
-
-  //! Progress bar.
+  BoolField     *successFld;
   ProgressField *progressFld;
+  NotifyField   *finishedFld;
 
   //! PDF file property fields
   StringField   *pdfAttrTitleFld;
@@ -339,7 +412,6 @@ protected:
 
   //! General PDF properties
   mlPDF::BuiltInFontsStruct buildInFonts;
-  mlPDF::PageSizeInfoStruct pageSizeInfo;
 
   //! Assembly error message container
   std::string assemblyErrorMessage;
@@ -353,36 +425,63 @@ protected:
   float pdfDoc_CurrentYPos;
 
 private:
-  
+
   // Initialize internal PDF document container
   void _initPDFDocument();
   void _initFonts();
 
-  // Get current font and properties
-  HPDF_Font _currentFont;
-  HPDF_REAL _currrentFontSize;
-  HPDF_REAL _currentFontHeight;
+  // Current font and text properties
+  mlPDF::FontSettingsStruct _currentFontSettings;
+  std::vector<mlPDF::FontSettingsStruct> _fontSettingsBackupStack;
+
+  double _currentTextRotation;
 
   // Vertical reference direction
   bool _currentYAxisReferenceIsFromTop;
   bool _defaultYAxisReferenceIsFromTop;
-  std::vector<bool> _previousYAxisReferenceIsFromTop;
+  std::vector<bool> _yAxisReferenceIsFromTopBackupStack;
 
   // Internal tool methods
-  void              _checkCoordinate(float& smaller, float& larger);
-  void              _checkAngle(float& startAngle, float& endAngle);
-  float             _getYPosFromTop(float y, bool ignoreMargins = false) const;
-  HPDF_Rect         _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false) const;
-  float             _getPageX(float x, bool ignoreMargins = false) const;
-  float             _getPageY(float y, bool ignoreMargins = false) const;
-  HPDF_REAL         _getFontHeight(HPDF_Font& font, HPDF_REAL size) const;
-  std::string       _getRandomPassword(const unsigned int passwordLength) const;
+  void         _checkCoordinate(float& smaller, float& larger);
+  void         _checkAngle(float& startAngle, float& endAngle);
+  float        _getYPosFromTop(float y, bool ignoreMargins = false) const;
+  HPDF_Rect    _getPageRect(float x, float y, float width, float height, bool ignoreMargins = false) const;
+  float        _getPageX(float x, bool ignoreMargins = false) const;
+  float        _getPageY(float y, bool ignoreMargins = false) const;
+  float        _calcCurrentFontHeight() const;
+  std::string  _getRandomPassword(const unsigned int passwordLength) const;
+  unsigned int _getMaxNumberOfLinesInCell(std::vector<std::string>& rowStrings);
 
-  // Page margins
-  float _globalPageMarginLeft;
-  float _globalPageMarginRight;
-  float _globalPageMarginTop;
-  float _globalPageMarginBottom;
+  // Page properties
+  mlPDF::PAGE_SIZES _currentPageSize;
+  float             _globalPageMarginLeft;
+  float             _globalPageMarginRight;
+  float             _globalPageMarginTop;
+  float             _globalPageMarginBottom;
+
+  // Document creation date
+  HPDF_Date _documentCreationDate;
+
+  // XML Tool Variables & Methods 
+  XercesDOMParser*   _xmlParser;
+  ErrorHandler*      _xmlErrorHandler;
+
+  void                     _createDOMParser();
+  void                     _destroyDOMParser();
+  std::string              _getValidXMLString(std::string inputXMLString);
+  DOMElement*              _parseXMLString(std::string xmlString);
+  std::vector<DOMElement*> _getAllNodeElements(DOMElement* parentElement, const char* nodeName, const char* attributeName = NULL, const char* attributeValue = NULL);
+  std::vector<DOMElement*> _getAllNodeElements(DOMElement* parentElement, std::string nodeName, std::string attributeName = "", std::string attributeValue = "");
+  DOMElement*              _getNodeElement(DOMElement* parentElement, const char* nodeName, const char* attributeName = NULL, const char* attributeValue = NULL);
+  DOMElement*              _getNodeElement(DOMElement* parentElement, std::string nodeName, std::string attributeName = "", std::string attributeValue = "");
+  std::string              _getAttributeValue(DOMElement* element, const char* attributeName);
+  std::string              _getAttributeValue(DOMElement* element, std::string attributeName);
+  std::string              _getInnerText(DOMElement* element);
+
+  // Error tracing
+  std::vector<mlPDF::ErrorTracingStruct> _errorStack;
+  void _handleError(std::string errorSource);
+  static void _errorHandler(HPDF_STATUS errorNumber, HPDF_STATUS errorDetailNumber, void *errorData);
 
   // Implements interface for the runtime type system of the ML.
   ML_MODULE_CLASS_HEADER(PDFGenerator)

@@ -114,10 +114,12 @@ private:
   StringField   *_mlFileNameFld;
   //! Field - Save notification
   NotifyField   *_mlSaveFld;
-  //! A status field.
+
+  //! Status & progress fields
   StringField   *_statusFld;
-  //! Progress bar.
   ProgressField *_progressFld;
+  BoolField     *_successFld;
+  NotifyField   *_finishedFld;
 
   //! Field for Specification Generator
   StringField   *_newSpecificationFld;
@@ -169,7 +171,7 @@ private:
   //! Handler method for Save button.
   void saveButtonClicked();
   //! Save U3D (ECMA-363 Universal 3D Format) file into file stream.
-  void saveU3DToFileStream(std::ofstream& ofstream);
+  bool saveU3DToFileStream(std::ofstream& ofstream);
 
 
   // Standard U3D data methods =================================================

@@ -50,7 +50,7 @@ static HPDF_STATUS Get3DStreamType (HPDF_Stream  stream, const char **type)
     }
     else
     {
-      return HPDF_INVALID_U3D_DATA;
+      return HPDF_SetError(stream->error, HPDF_INVALID_U3D_DATA, 0);
     }
   }
 

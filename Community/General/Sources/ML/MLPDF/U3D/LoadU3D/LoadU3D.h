@@ -69,6 +69,7 @@ private:
   Vector3Field*  _boundingBoxCenterFld;
   FloatField*    _boundingBoxRadiusFld;
 
+  NotifyField   *_finishedFld;
 
 
   void _parseU3DFile(std::string filename);

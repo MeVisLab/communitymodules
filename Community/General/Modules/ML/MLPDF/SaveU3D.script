@@ -29,10 +29,12 @@ Description {
   
   Field newSpecificationColorAlpha { min = 0 max = 1 }
   
-  Field progress { persistent = NO }
   Field defaultLightIntensity { min = 0 max = 1 }
-  field defaultMaterialAlpha { min = 0 max = 1 }
+  field defaultMaterialAlpha  { min = 0 max = 1 }
   
+  Field finishedTrigger { comment = "Is triggered when save process has finished." editable = No }
+  Field status          { editable = No persistent = No }
+  Field progress        { editable = No persistent = No }
 }
 
 
@@ -46,6 +48,12 @@ Interface {
 Commands {
   initCommand = @@js: ctx.field("status").value = "Idle."; ctx.field("progress").value = 0; @@ 
   wakeupCommand = @@js: ctx.field("newSpecificationType").value = ctx.field("newSpecificationType").value; @@ // Make sure that Specification Generator panel shows correct tab.
+}
+
+
+NetworkPanel {
+  info = success
+  Button  save { symbol = @@ "start" @@ }
 }
 
 

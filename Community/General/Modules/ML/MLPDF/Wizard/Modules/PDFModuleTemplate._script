@@ -8,9 +8,10 @@
 //----------------------------------------------------------------------------------
 
 Description {
-  Field status   { editable = No }
-  Field progress { editable = No }
-  Field success  { editable = No }
+  Field status          { editable = No persistent = No }
+  Field progress        { editable = No persistent = No }
+  Field success         { editable = No persistent = No }
+  Field finishedTrigger { editable = No comment = "Is triggered when save process has finished." }
   
   // Put any own fields descriptions in here if required
 }

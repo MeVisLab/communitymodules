@@ -86,6 +86,11 @@ inline float radToDeg(float radians)
   return (radians / M_PI * 180.0);
 }
 
+inline float roundWithPrecision(float value, int decimals)
+{
+  return floor(value * pow(10, decimals)) / pow(10, decimals);
+}
+
 
 class MLPDF_EXPORT PDFTools
 {
@@ -112,6 +117,9 @@ public:
   // Return string with module's version number
   static std::string getModuleVersionNumberString();
 
+  // Get a file size
+  static long getFileSize(std::string filename);
+
   //***********************************************************************************
 
   // Parses a string and try to get color values from it.
@@ -127,6 +135,9 @@ public:
   // Converts float/double to string.
   static std::string FormatDouble(double value);
   static std::string FormatFloat(float value);
+
+  // Converts std::tm to string.
+  static std::string FormatDate(std::tm value);
 
   //***********************************************************************************
 

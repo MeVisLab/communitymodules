@@ -114,11 +114,17 @@ bool ${vars.moduleName}::assemblePDFDocument()
   // a random password of 64 characters (512 bit) length is set!
   pdfDoc_SetPermissions(mlPDF::PERMIT_PRINT_HIGH_QUALITY | mlPDF::PERMIT_EXTRACT_FOR_ACCESSIBILITY);
 
-  // Set default y axis reference to mlPDF::YAXIS_REFERENCE_TOP
+  // Open document with thumbnail preview.
+  pdfDoc_SetDocumentOpenMode(mlPDF::DOCUMENTOPENMODE_SHOW_THUMBS);
+  
+  // Display pages with "Single Page" layout.
+  pdfDoc_SetInitialPageDisplayLayout(mlPDF::PAGELAYOUT_SINGLEPAGE);
+
+  // Set y axis reference to mlPDF::YAXIS_REFERENCE_TOP
   // This will result in all y coordinates being interpreted with the upper page border as zero
   // This is also the default setting and actually does not need to be called here... 
   // However, the availability of this method shall be demonstrated. ;-)
-  pdfDoc_SetDefaultYAxisReference(mlPDF::YAXIS_REFERENCE_TOP);
+  pdfDoc_SetYAxisReference(mlPDF::YAXIS_REFERENCE_TOP);
 
   // Add a page and set size & direction
   pdfDoc_AddPage(mlPDF::PAGESIZE_A4, mlPDF::PAGEDIRECTION_PORTRAIT);

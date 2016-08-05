@@ -17,7 +17,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLWEM MLFiberUtils zlib png MLBaseListExtensions libhpdf inventor
+CONFIG += dll ML MLBase MLWEM MLFiberUtils zlib png MLBaseListExtensions libhpdf inventor xerces
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General Community_ThirdParty FMEstable_Release
 
@@ -76,11 +76,13 @@ SOURCES += \
   shared/MLPDF_SpecificationGenerator.cpp \
   abstract/abstract.cpp \
   abstract/PDFGenerator/PDFGenerator.cpp \
-  abstract/PDFGenerator/PDFGenerator_3DModels.cpp \
-  abstract/PDFGenerator/PDFGenerator_Assembling.cpp \
-  abstract/PDFGenerator/PDFGenerator_Graphics.cpp \
-  abstract/PDFGenerator/PDFGenerator_Images.cpp \
+  abstract/PDFGenerator/PDFGenerator_XML.cpp \
+  abstract/PDFGenerator/PDFGenerator_Page.cpp \
   abstract/PDFGenerator/PDFGenerator_Text.cpp \
+  abstract/PDFGenerator/PDFGenerator_Images.cpp \
+  abstract/PDFGenerator/PDFGenerator_Document.cpp \
+  abstract/PDFGenerator/PDFGenerator_Graphics.cpp \
+  abstract/PDFGenerator/PDFGenerator_3DModels.cpp \
   LoadPointLineGeometry/LoadPointLineGeometry.cpp \
   PDFUtils/PDFCalcCamera.cpp \
   PDFUtils/PDFCreateFibersFromLists.cpp \

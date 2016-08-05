@@ -12,6 +12,7 @@
 // Local includes
 #include "PDFGenerator.h"
 #include "../../shared/MLPDF_Tools.h"
+#include <sys/stat.h>
 
 
 ML_START_NAMESPACE
@@ -26,17 +27,21 @@ MODEL3D PDFGenerator::pdfDoc_Load3DModelDataFromFile(std::string fileName)
 
   if (pdfDocument)
   {
-    newScene = HPDF_LoadU3DFromFile(pdfDocument, fileName.c_str());
+    long u3DFileSize = PDFTools::getFileSize(fileName);
 
-    if (newScene)
+    if (u3DFileSize > 4)
     {
-      pdfDoc3DScenes.push_back(newScene);
-    }
-    else
-    {
-      HPDF_STATUS pdfResult = HPDF_GetError(pdfDocument);
-      pdfResult = HPDF_GetErrorDetail(pdfDocument);
-      HPDF_ResetError(pdfDocument);
+      newScene = HPDF_LoadU3DFromFile(pdfDocument, fileName.c_str());
+
+      if (newScene)
+      {
+        pdfDoc3DScenes.push_back(newScene);
+      }
+      else
+      {
+        _handleError("pdfDoc_Load3DModelDataFromFile(std::string fileName)");
+      }
+
     }
   }
 
@@ -59,6 +64,12 @@ VIEW3D PDFGenerator::pdfDoc_3DModel_CreateView(std::string viewName, std::string
     {
       newView = HPDF_Create3DView(pdfDocCurrentPage->mmgr, viewName.c_str());
     }
+
+    if (!newView)
+    {
+      _handleError("pdfDoc_3DModel_CreateView");
+    }
+
   }
 
   return newView;
@@ -173,7 +184,7 @@ VIEW3D PDFGenerator::pdfDoc_3DModel_CreateViewFromSpecificationString(std::strin
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_SetLightingScheme(VIEW3D view, LIGHTING_SCHEMES lightingScheme)
+void PDFGenerator::pdfDoc_3DView_SetLightingScheme(VIEW3D& view, LIGHTING_SCHEMES lightingScheme)
 {
   if (view)
   {
@@ -183,7 +194,7 @@ void PDFGenerator::pdfDoc_3DView_SetLightingScheme(VIEW3D view, LIGHTING_SCHEMES
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_SetBackgroundColor(VIEW3D view, float r, float g, float b)
+void PDFGenerator::pdfDoc_3DView_SetBackgroundColor(VIEW3D& view, float r, float g, float b)
 {
   if (view)
   {
@@ -193,7 +204,7 @@ void PDFGenerator::pdfDoc_3DView_SetBackgroundColor(VIEW3D view, float r, float 
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_SetBackgroundColor(VIEW3D view, Vector3 color)
+void PDFGenerator::pdfDoc_3DView_SetBackgroundColor(VIEW3D& view, Vector3 color)
 {
   if (view)
   {
@@ -203,7 +214,7 @@ void PDFGenerator::pdfDoc_3DView_SetBackgroundColor(VIEW3D view, Vector3 color)
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D view, mlPDF::MODEL_RENDERMODES renderMode)
+void PDFGenerator::pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D& view, mlPDF::MODEL_RENDERMODES renderMode)
 {
   if (view)
   {
@@ -213,7 +224,7 @@ void PDFGenerator::pdfDoc_3DView_SetRenderMode(mlPDF::VIEW3D view, mlPDF::MODEL_
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_SetPerspectiveCamera(VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float fieldOfView, float cameraRollDegrees)
+void PDFGenerator::pdfDoc_3DView_SetPerspectiveCamera(VIEW3D& view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float fieldOfView, float cameraRollDegrees)
 {
   if (view)
   {
@@ -234,7 +245,7 @@ void PDFGenerator::pdfDoc_3DView_SetPerspectiveCamera(VIEW3D view, Vector3 cente
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_SetOrthogonalCamera(VIEW3D view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float scaleFactor, float cameraRollDegrees)
+void PDFGenerator::pdfDoc_3DView_SetOrthogonalCamera(VIEW3D& view, Vector3 centerOfOrbit, float radiusOfOrbit, Vector3 centerToCamera, float scaleFactor, float cameraRollDegrees)
 {
   if (view)
   {
@@ -260,7 +271,7 @@ void PDFGenerator::pdfDoc_3DView_SetOrthogonalCamera(VIEW3D view, Vector3 center
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_AddVisibleNode(VIEW3D view, std::string nodeName, float opacity, bool visibility)
+void PDFGenerator::pdfDoc_3DView_AddVisibleNode(VIEW3D& view, std::string nodeName, float opacity, bool visibility)
 {
   if (view)
   {
@@ -270,7 +281,7 @@ void PDFGenerator::pdfDoc_3DView_AddVisibleNode(VIEW3D view, std::string nodeNam
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_AddVisibleNodeFromSpecificationString(VIEW3D view, std::string specificationString)
+void PDFGenerator::pdfDoc_3DView_AddVisibleNodeFromSpecificationString(VIEW3D& view, std::string specificationString)
 {
   if (view && specificationString != "")
   {
@@ -288,7 +299,7 @@ void PDFGenerator::pdfDoc_3DView_AddVisibleNodeFromSpecificationString(VIEW3D vi
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(VIEW3D view, std::string specificationString)
+void PDFGenerator::pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(VIEW3D& view, std::string specificationString)
 {
   if (view && specificationString != "")
   {
@@ -303,17 +314,23 @@ void PDFGenerator::pdfDoc_3DView_AddAllVisibleNodesFromSpecificationString(VIEW3
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DModel_AddView(MODEL3D model, VIEW3D view)
+void PDFGenerator::pdfDoc_3DModel_AddView(MODEL3D& model, VIEW3D& view)
 {
   if (model && view)
   {
-    HPDF_U3D_Add3DView(model, view);
+    HPDF_STATUS result = HPDF_U3D_Add3DView(model, view);
+    
+    if (result != HPDF_OK)
+    {
+      _handleError("pdfDoc_3DModel_AddView(MODEL3D& model, VIEW3D& view)");
+    }
+
   }
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DModel_AddViewFromSpecificationString(MODEL3D model, std::string specificationString)
+void PDFGenerator::pdfDoc_3DModel_AddViewFromSpecificationString(MODEL3D& model, std::string specificationString)
 {
   if (model && specificationString != "")
   {
@@ -327,7 +344,7 @@ void PDFGenerator::pdfDoc_3DModel_AddViewFromSpecificationString(MODEL3D model, 
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DModel_AddAllViewsFromSpecificationString(MODEL3D model, std::string specificationString)
+void PDFGenerator::pdfDoc_3DModel_AddAllViewsFromSpecificationString(MODEL3D& model, std::string specificationString)
 {
   if (model && specificationString != "")
   {
@@ -343,27 +360,39 @@ void PDFGenerator::pdfDoc_3DModel_AddAllViewsFromSpecificationString(MODEL3D mod
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DModel_SetDefaultView(MODEL3D model, std::string viewName)
+void PDFGenerator::pdfDoc_3DModel_SetDefaultView(MODEL3D& model, std::string viewName)
 {
   if ((model) && (viewName.size() > 0))
   {
-    HPDF_U3D_SetDefault3DView(model, viewName.c_str());
+    HPDF_STATUS result = HPDF_U3D_SetDefault3DView(model, viewName.c_str());
+
+    if (result != HPDF_OK)
+    {
+      _handleError("pdfDoc_3DModel_SetDefaultView(MODEL3D& model, std::string viewName)");
+    }
+
   }
 }
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DModel_SetDefaultView(MODEL3D model, VIEW3D view)
+void PDFGenerator::pdfDoc_3DModel_SetDefaultView(MODEL3D& model, VIEW3D view)
 {
   if (model && view)
   {
-    HPDF_U3D_SetDefault3DView2(model, view);
+    HPDF_STATUS result = HPDF_U3D_SetDefault3DView2(model, view);
+
+    if (result != HPDF_OK)
+    {
+      _handleError("pdfDoc_3DModel_SetDefaultView(MODEL3D& model, VIEW3D view)");
+    }
+
   }
 }
 
 //----------------------------------------------------------------------------------
 
-SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D model, bool ignoreMargins)
+SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, bool ignoreMargins)
 {
   HPDF_Annotation newScene = NULL;
 
@@ -373,12 +402,17 @@ SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float hei
     newScene = HPDF_Page_Create3DAnnot(pdfDocCurrentPage, annotationRect, model); 
   }
 
+  if (!newScene)
+  {
+    _handleError("pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, bool ignoreMargins)");
+  }
+
   return newScene;
 }
 
 //----------------------------------------------------------------------------------
 
-SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D model, IMAGE posterImage, bool ignoreMargins)
+SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, IMAGE& posterImage, bool ignoreMargins)
 {
   HPDF_Annotation newScene = NULL;
 
@@ -398,7 +432,17 @@ SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float hei
       annotationRect.bottom += 1;
       width  -= 2;
       height -= 2;
-      HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, annotationRect.left, annotationRect.bottom, width, height);
+      HPDF_STATUS result = HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, annotationRect.left, annotationRect.bottom, width, height);
+
+      if (result != HPDF_OK)
+      {
+        _handleError("pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, IMAGE& posterImage, bool ignoreMargins)");
+      }
+
+    }
+    else
+    {
+      _handleError("pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, IMAGE& posterImage, bool ignoreMargins)");
     }
 
   }
@@ -408,7 +452,7 @@ SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float hei
 
 //----------------------------------------------------------------------------------
 
-SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D model, std::string posterFilename, bool ignoreMargins)
+SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, std::string posterFilename, bool ignoreMargins)
 {
   HPDF_Annotation newScene = NULL;
 
@@ -432,8 +476,17 @@ SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float hei
         annotationRect.bottom += 1;
         width -= 2;
         height -= 2;
-        HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, annotationRect.left, annotationRect.bottom, width, height);
+        HPDF_STATUS result = HPDF_Page_DrawImage(pdfDocCurrentPage, posterImage, annotationRect.left, annotationRect.bottom, width, height);
+      
+        if (result != HPDF_OK)
+        {
+          _handleError("pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, std::string posterFilename, bool ignoreMargins)");
+        }
       }
+    }
+    else
+    {
+      _handleError("pdfDoc_Add3DScene(float x, float y, float width, float height, MODEL3D& model, std::string posterFilename, bool ignoreMargins)");
     }
 
   }
@@ -443,7 +496,14 @@ SCENE3D PDFGenerator::pdfDoc_Add3DScene(float x, float y, float width, float hei
 
 //----------------------------------------------------------------------------------
 
-void PDFGenerator::pdfDoc_3DScene_SetActivationProperties(SCENE3D scene, std::string activationCode, std::string deactivationCode, bool toolbarEnabled, bool navigationInterfaceOpened, bool animationAutoStart)
+void PDFGenerator::pdfDoc_3DScene_SetActivationProperties(mlPDF::SCENE3D& scene, mlPDF::ACTIVATION_MODES activationMode, mlPDF::DEACTIVATION_MODES deactivationMode, bool toolbarEnabled, bool navigationInterfaceOpened, bool animationAutoStart)
+{
+  pdfDoc_3DScene_SetActivationProperties(scene, ActivationModeStrings[activationMode], DeactivationModeStrings[deactivationMode], toolbarEnabled, navigationInterfaceOpened, animationAutoStart);
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFGenerator::pdfDoc_3DScene_SetActivationProperties(SCENE3D& scene, std::string activationCode, std::string deactivationCode, bool toolbarEnabled, bool navigationInterfaceOpened, bool animationAutoStart)
 {
   if (scene)
   {
@@ -457,12 +517,16 @@ void PDFGenerator::pdfDoc_3DScene_SetActivationProperties(SCENE3D scene, std::st
       HPDF_3DActivation_SetToolbarEnabled(activationDict, toolbarEnabled);
       HPDF_3DActivation_SetNavigationInterfaceOpened(activationDict, navigationInterfaceOpened);
 
-      HPDF_U3D_Set3DActivation(scene, activationDict);
+      HPDF_STATUS result = HPDF_U3D_Set3DActivation(scene, activationDict);
+
+      if (result != HPDF_OK)
+      {
+        _handleError("pdfDoc_3DScene_SetActivationProperties(SCENE3D& scene, std::string activationCode, std::string deactivationCode, bool toolbarEnabled, bool navigationInterfaceOpened, bool animationAutoStart)");
+      }
+
     }
   }
-
 }
-
 
 //----------------------------------------------------------------------------------
 

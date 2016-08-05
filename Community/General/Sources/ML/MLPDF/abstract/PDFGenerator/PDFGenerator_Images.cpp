@@ -49,9 +49,7 @@ mlPDF::IMAGE PDFGenerator::pdfDoc_LoadImageFromFile(std::string filename)
       }
       else
       {
-        HPDF_STATUS pdfResult = HPDF_GetError(pdfDocument);
-        pdfResult = HPDF_GetErrorDetail(pdfDocument);
-        HPDF_ResetError(pdfDocument);
+        _handleError("pdfDoc_LoadImageFromFile(std::string filename)");
       }
 
     }  // if ( (filenameLength > 4) && (fileExists(filename)) )
@@ -69,7 +67,12 @@ void PDFGenerator::pdfDoc_AddImage(float x, float y, float width, float height, 
   {
     HPDF_Rect imageRect = _getPageRect(x, y, width, height, ignoreMargins);
 
-    HPDF_Page_DrawImage(pdfDocCurrentPage, image, imageRect.left, imageRect.bottom, width, height);
+    HPDF_STATUS result = HPDF_Page_DrawImage(pdfDocCurrentPage, image, imageRect.left, imageRect.bottom, width, height);
+  
+    if (result != HPDF_OK)
+    {
+      _handleError("pdfDoc_AddImage(float x, float y, float width, float height, mlPDF::IMAGE image, bool ignoreMargins)");
+    }
   }
 }
 
@@ -85,7 +88,12 @@ void PDFGenerator::pdfDoc_AddImage(float x, float y, float width, float height, 
 
     if (image)
     {
-      HPDF_Page_DrawImage(pdfDocCurrentPage, image, imageRect.left, imageRect.bottom, width, height);
+      HPDF_STATUS result = HPDF_Page_DrawImage(pdfDocCurrentPage, image, imageRect.left, imageRect.bottom, width, height);
+
+      if (result != HPDF_OK)
+      {
+        _handleError("pdfDoc_AddImage(float x, float y, float width, float height, std::string imageFilename, bool ignoreMargins)");
+      }
     }
   }
 }

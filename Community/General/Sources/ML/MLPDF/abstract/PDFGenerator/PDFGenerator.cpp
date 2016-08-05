@@ -9,6 +9,7 @@
 */
 //----------------------------------------------------------------------------------
 
+
 // Local includes
 #include "PDFGenerator.h"
 #include "../../shared/MLPDF_Tools.h"
@@ -39,6 +40,7 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
   (statusFld     = addString("status"))     ->setStringValue("Idle.");
   (successFld    = addBool("success"))      ->setBoolValue(false);
   (progressFld   = addProgress("progress")) ->setFloatValue(0.0f);
+  finishedFld    = addNotify("finishedTrigger");
 
   (pdfAttrTitleFld     = addString("pdfAttrTitle"))    ->setStringValue("");
   (pdfAttrAuthorFld    = addString("pdfAttrAuthor"))   ->setStringValue("");
@@ -49,6 +51,11 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
 
   assemblyErrorMessage = "";
 
+  _xmlParser = NULL;
+  _xmlErrorHandler = NULL;
+
+  _currentTextRotation = 0;
+
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
 }
@@ -57,7 +64,7 @@ PDFGenerator::PDFGenerator() : Module(0, 0)
 
 PDFGenerator::~PDFGenerator()
 {
-  // Nothing to do here...
+  _destroyDOMParser();
 }
 
 //----------------------------------------------------------------------------------
@@ -84,15 +91,18 @@ void PDFGenerator::activateAttachments()
 
 void PDFGenerator::_initPDFDocument()
 {
+  _errorStack.clear();
   pdfDocPages.clear();
   pdfDocImages.clear();
   pdfDoc3DScenes.clear();
+  _fontSettingsBackupStack.clear();
+
   pdfDocCurrentPage = NULL;
   _currentYAxisReferenceIsFromTop  = mlPDF::YAXIS_REFERENCE_DEFAULT;
   _defaultYAxisReferenceIsFromTop  = mlPDF::YAXIS_REFERENCE_DEFAULT;
-  _previousYAxisReferenceIsFromTop.clear();
+  _yAxisReferenceIsFromTopBackupStack.clear();
 
-  pdfDocument = HPDF_New(NULL, NULL);
+  pdfDocument = HPDF_New(/*_errorHandler*/NULL, NULL);
 
   if (pdfDocument)
   {
@@ -100,6 +110,7 @@ void PDFGenerator::_initPDFDocument()
     pdfDocument->pdf_version = HPDF_VER_17;
 
     _initFonts();
+    pdfDoc_SetDocumentCreationDateTime();
     pdfDoc_SetGlobalPageMarginsPixels(0,0,0,0);
     pdfDoc_SetCompressionMode(mlPDF::COMPRESS_ALL);
     pdfDoc_CurrentXPos = 0;
@@ -130,16 +141,17 @@ void PDFGenerator::_initFonts()
   buildInFonts.Symbol               = HPDF_GetFont(pdfDocument, "Symbol", "WinAnsiEncoding");
   buildInFonts.ZapfDingbats         = HPDF_GetFont(pdfDocument, "ZapfDingbats", "WinAnsiEncoding");
 
-  _currentFont      = buildInFonts.Times;
-  _currrentFontSize = 10;
+  _currentFontSettings.font     = buildInFonts.Times;
+  _currentFontSettings.fontSize = 10;
 }
 
 //----------------------------------------------------------------------------------
 
 void PDFGenerator::saveButtonClicked()
 {
+  bool success = false;
+
   progressFld->setFloatValue(0.0f);
-  successFld->setBoolValue(false);
 
   _initPDFDocument();
 
@@ -184,22 +196,25 @@ void PDFGenerator::saveButtonClicked()
     }
 
     // Please do not remove or modify these credits
-    std::string VersionString = "MeVisLab " + mlPDF::PDFTools::getMeVisLabVersionNumberString() + " (" + moduleTypeName + " module)";
+    std::string CreatorString = "MeVisLab " + mlPDF::PDFTools::getMeVisLabVersionNumberString() + " (" + moduleTypeName + " module)";
     std::string ProducerString = "MeVisLab MLPDF library (v" + mlPDF::PDFTools::getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
 
     // Set PDF info attributes
-    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_TITLE, pdfAttrTitleFld->getStringValue().c_str());
-    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_AUTHOR, pdfAttrAuthorFld->getStringValue().c_str());
-    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_SUBJECT, pdfAttrSubjectFld->getStringValue().c_str());
-    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_KEYWORDS, pdfAttrKeywordsFld->getStringValue().c_str());
-    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_CREATOR, VersionString.c_str());
-    HPDF_SetInfoAttr (pdfDocument, HPDF_INFO_PRODUCER, ProducerString.c_str());
+    pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_TITLE, pdfAttrTitleFld->getStringValue());
+    pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_AUTHOR, pdfAttrAuthorFld->getStringValue());
+    pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_SUBJECT, pdfAttrSubjectFld->getStringValue());
+    pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_KEYWORDS, pdfAttrKeywordsFld->getStringValue());
+    pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_CREATOR, CreatorString);
+    HPDF_SetInfoAttr(pdfDocument, HPDF_INFO_PRODUCER, ProducerString.c_str());
 
     bool docAssembled = false;
 
     try
     {
       docAssembled = assemblePDFDocument();
+
+      HPDF_SetInfoDateAttr(pdfDocument, HPDF_INFO_CREATION_DATE, _documentCreationDate);
+      HPDF_SetInfoDateAttr(pdfDocument, HPDF_INFO_MOD_DATE, _documentCreationDate);
     }
     catch(...)
     {
@@ -228,12 +243,23 @@ void PDFGenerator::saveButtonClicked()
 
         statusFld->setStringValue("PDF file sucessfully written (" + pagesString + ").");
         progressFld->setFloatValue(1.0f);
-        successFld->setBoolValue(true);
+        success = true;
       }
-      else // Possible values: HPDF_INVALID_DOCUMENT, HPDF_FAILD_TO_ALLOC_MEM, HPDF_FILE_IO_ERROR
+      else if (saveStatus == HPDF_INVALID_DOCUMENT)
       {
-        //HPDF_FILE_IO_ERROR;
-        statusFld->setStringValue("Unable to write PDF document '" + filename + "'. (Target file might be write protected.)");
+        statusFld->setStringValue("Internal document creation failure.");
+      }
+      else if (saveStatus == HPDF_FAILD_TO_ALLOC_MEM)
+      {
+        statusFld->setStringValue("Internal memory allocation failure.");
+      }
+      else if ((saveStatus == HPDF_FILE_IO_ERROR) || (saveStatus == HPDF_FILE_OPEN_ERROR))
+      {
+        statusFld->setStringValue("Unable to open PDF document '" + filename + "' for writing.");
+      }
+      else
+      {
+        statusFld->setStringValue("Unknown failure. Error Code: " + mlPDF::intToString(saveStatus) + ".");
       }
     }
     else
@@ -254,6 +280,9 @@ void PDFGenerator::saveButtonClicked()
   {
     statusFld->setStringValue("Critical error: Internal PDF document could not be initialized!");
   }
+
+  successFld->setBoolValue(success);
+  finishedFld->touch();
 
   return;
 }
@@ -326,6 +355,11 @@ float PDFGenerator::_getYPosFromTop(float y, bool ignoreMargins) const
     result = pdfDoc_GetPageMaxY(ignoreMargins) - y;
   }
 
+  if (!ignoreMargins)
+  {
+    result += _globalPageMarginBottom;
+  }
+
   return result;
 }
 
@@ -395,9 +429,9 @@ float PDFGenerator::_getPageY(float y, bool ignoreMargins) const
 
 //----------------------------------------------------------------------------------
 
-HPDF_REAL PDFGenerator::_getFontHeight(HPDF_Font& font, HPDF_REAL size) const
+HPDF_REAL PDFGenerator::_calcCurrentFontHeight() const
 {
-  return (HPDF_REAL)((HPDF_Font_GetCapHeight(font)/*+HPDF_Font_GetDescent(font)*/) * size / 1000.0);
+  return (HPDF_REAL)((HPDF_Font_GetCapHeight(_currentFontSettings.font)/*+HPDF_Font_GetDescent(font)*/) * _currentFontSettings.fontSize / 1000.0);
 }
 
 //----------------------------------------------------------------------------------
@@ -424,5 +458,34 @@ std::string PDFGenerator::_getRandomPassword(const unsigned int passwordLength) 
 
 //----------------------------------------------------------------------------------
 
+void PDFGenerator::_handleError(std::string errorSource)
+{
+  if (pdfDocument)
+  {
+    mlPDF::ErrorTracingStruct newError;
+    newError.errorCode       = HPDF_GetError(pdfDocument);;
+    newError.errorDetailCode = HPDF_GetErrorDetail(pdfDocument);;
+    newError.errorSource     = errorSource;
+
+    if (newError.errorCode != HPDF_OK)
+    {
+      _errorStack.push_back(newError);
+      HPDF_ResetError(pdfDocument);
+    }
+
+  }
+}
+
+//----------------------------------------------------------------------------------
+
+/*static*/ void PDFGenerator::_errorHandler(HPDF_STATUS errorNumber, HPDF_STATUS errorDetailNumber, void *errorData)
+{
+  if (errorData) {} // Avoid warning C4100
+
+  printf("ERROR: errorNumber = %04X, errorDetailNumber = %d\n", (unsigned int)errorNumber, (int)errorDetailNumber);
+  throw std::exception();
+}
+
+//----------------------------------------------------------------------------------
 
 ML_END_NAMESPACE

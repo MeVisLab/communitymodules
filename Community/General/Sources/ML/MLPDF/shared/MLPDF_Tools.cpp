@@ -8,6 +8,9 @@
 //----------------------------------------------------------------------------------
 
 
+// Global includes
+#include <sys/stat.h>
+
 // Local includes
 #include "MLPDF_DataTypes.h"
 #include "MLPDF_Tools.h"
@@ -315,7 +318,17 @@ std::string PDFTools::getMeVisLabVersionNumberString()
 
 std::string PDFTools::getModuleVersionNumberString()
 {
-  return "1.2";
+  return "1.3";
+}
+
+//***********************************************************************************
+
+long PDFTools::getFileSize(std::string filename)
+{
+  struct stat fileCheckBuffer;
+  int rc = stat(filename.c_str(), &fileCheckBuffer);
+
+  return rc == 0 ? fileCheckBuffer.st_size : -1;
 }
 
 //***********************************************************************************
@@ -450,6 +463,18 @@ std::string PDFTools::FormatDouble(double value)
 std::string PDFTools::FormatFloat(float value)
 {
   return FormatDouble((double)value);
+}
+
+std::string PDFTools::FormatDate(std::tm value)
+{
+  const int bufferLength = 19;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%4u-%02u-%02u %02u:%02u:%02u", value.tm_year + 1900, value.tm_mon + 1, value.tm_mday, value.tm_hour, value.tm_min, value.tm_sec);
+
+  std::string result(buffer);
+
+  return result;
 }
 
 //***********************************************************************************
