@@ -40,7 +40,7 @@ void PDFGenerator::_createDOMParser()
     catch (const XMLException& e)
     {
       char* message = XMLString::transcode(e.getMessage());
-      std::cout << "Error during initialization of XML parser! :\n" << message << "\n";
+      std::cout << "Error during initialization of XML parser! :" << std::endl << message << std::endl;
       XMLString::release(&message);
     }
 

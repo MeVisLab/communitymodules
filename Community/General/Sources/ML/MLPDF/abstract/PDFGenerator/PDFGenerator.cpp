@@ -103,8 +103,9 @@ void PDFGenerator::_initPDFDocument()
   _yAxisReferenceIsFromTopBackupStack.clear();
 
   pdfDocument = HPDF_New(/*_errorHandler*/NULL, NULL);
+  //HPDF_STATUS result = HPDF_NewDoc(pdfDocument);
 
-  if (pdfDocument)
+  if ( /*(result == HPDF_OK) &&*/ (pdfDocument) )
   {
     // Set PDF version
     pdfDocument->pdf_version = HPDF_VER_17;
@@ -143,6 +144,25 @@ void PDFGenerator::_initFonts()
 
   _currentFontSettings.font     = buildInFonts.Times;
   _currentFontSettings.fontSize = 10;
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFGenerator::_setDateProperties()
+{
+  HPDF_STATUS result = HPDF_SetInfoDateAttr(pdfDocument, HPDF_INFO_CREATION_DATE, _documentCreationDate);
+
+  if (result != HPDF_OK)
+  {
+    _handleError("_setDateProperties()");
+  }
+
+  result = HPDF_SetInfoDateAttr(pdfDocument, HPDF_INFO_MOD_DATE, _documentCreationDate);
+
+  if (result != HPDF_OK)
+  {
+    _handleError("_setDateProperties()");
+  }
 }
 
 //----------------------------------------------------------------------------------
@@ -205,16 +225,18 @@ void PDFGenerator::saveButtonClicked()
     pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_SUBJECT, pdfAttrSubjectFld->getStringValue());
     pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_KEYWORDS, pdfAttrKeywordsFld->getStringValue());
     pdfDoc_SetDocumentProperty(mlPDF::DOCUMENTPROPERTY_CREATOR, CreatorString);
-    HPDF_SetInfoAttr(pdfDocument, HPDF_INFO_PRODUCER, ProducerString.c_str());
+    
+    if (HPDF_SetInfoAttr(pdfDocument, HPDF_INFO_PRODUCER, ProducerString.c_str()) != HPDF_OK)
+    {
+      _handleError("saveButtonClicked() - Setting of HPDF_INFO_PRODUCER");
+    }
 
     bool docAssembled = false;
 
     try
     {
       docAssembled = assemblePDFDocument();
-
-      HPDF_SetInfoDateAttr(pdfDocument, HPDF_INFO_CREATION_DATE, _documentCreationDate);
-      HPDF_SetInfoDateAttr(pdfDocument, HPDF_INFO_MOD_DATE, _documentCreationDate);
+      _setDateProperties();
     }
     catch(...)
     {
@@ -229,10 +251,14 @@ void PDFGenerator::saveButtonClicked()
         pdfDoc_AddPage();
       }
 
-      // Save the document to a file
-      HPDF_STATUS saveStatus = HPDF_SaveToFile(pdfDocument, filename.c_str());
+      // check if any unhandled errors exist
+      HPDF_STATUS lastError = HPDF_GetError(pdfDocument);
 
-      if (saveStatus == HPDF_OK)
+      if (lastError == HPDF_OK) {
+        lastError = HPDF_SaveToFile(pdfDocument, filename.c_str());
+      }
+
+      if (lastError == HPDF_OK)
       {
         int numPages = (int)pdfDocPages.size();
         std::string pagesString = mlPDF::intToString(numPages) + " page";
@@ -245,21 +271,21 @@ void PDFGenerator::saveButtonClicked()
         progressFld->setFloatValue(1.0f);
         success = true;
       }
-      else if (saveStatus == HPDF_INVALID_DOCUMENT)
+      else if (lastError == HPDF_INVALID_DOCUMENT)
       {
         statusFld->setStringValue("Internal document creation failure.");
       }
-      else if (saveStatus == HPDF_FAILD_TO_ALLOC_MEM)
+      else if (lastError == HPDF_FAILD_TO_ALLOC_MEM)
       {
         statusFld->setStringValue("Internal memory allocation failure.");
       }
-      else if ((saveStatus == HPDF_FILE_IO_ERROR) || (saveStatus == HPDF_FILE_OPEN_ERROR))
+      else if ((lastError == HPDF_FILE_IO_ERROR) || (lastError == HPDF_FILE_OPEN_ERROR))
       {
         statusFld->setStringValue("Unable to open PDF document '" + filename + "' for writing.");
       }
       else
       {
-        statusFld->setStringValue("Unknown failure. Error Code: " + mlPDF::intToString(saveStatus) + ".");
+        statusFld->setStringValue("Unknown failure. Error Code: " + mlPDF::intToString(lastError) + ".");
       }
     }
     else
@@ -272,6 +298,11 @@ void PDFGenerator::saveButtonClicked()
       {
         statusFld->setStringValue("PDF document could not be assembled: " + assemblyErrorMessage);
       }
+    }
+
+    if (_errorStack.size() > 0)
+    {
+      _printErrorStack();
     }
 
     HPDF_Free(pdfDocument);
@@ -474,6 +505,21 @@ void PDFGenerator::_handleError(std::string errorSource)
     }
 
   }
+}
+
+//----------------------------------------------------------------------------------
+
+void PDFGenerator::_printErrorStack()
+{
+  std::cerr << "MLPDF error stack:" << std::endl;
+
+  for (size_t e = 0; e < _errorStack.size(); e++)
+  {
+    mlPDF::ErrorTracingStruct thisError = _errorStack[e];
+    std::cerr << "Error " << thisError.errorCode << ", " << thisError.errorDetailCode << " from " << thisError.errorSource << std::endl;
+  }
+
+  std::cerr << "End of error stack." << std::endl;
 }
 
 //----------------------------------------------------------------------------------

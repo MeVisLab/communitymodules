@@ -193,13 +193,15 @@ void PDFGenerator::pdfDoc_SetDocumentCreationDateTime()
 
 void PDFGenerator::pdfDoc_SetDocumentCreationDateTime(std::tm datetime)
 {
-  _documentCreationDate.year    = datetime.tm_year + 1900;
-  _documentCreationDate.month   = datetime.tm_mon + 1;
-  _documentCreationDate.day     = datetime.tm_mday;
-  _documentCreationDate.hour    = datetime.tm_hour;
-  _documentCreationDate.minutes = datetime.tm_min;
-  _documentCreationDate.seconds = datetime.tm_sec;
-  _documentCreationDate.ind     = ' ';
+  _documentCreationDate.year        = datetime.tm_year + 1900;
+  _documentCreationDate.month       = datetime.tm_mon + 1;
+  _documentCreationDate.day         = datetime.tm_mday;
+  _documentCreationDate.hour        = datetime.tm_hour;
+  _documentCreationDate.minutes     = datetime.tm_min;
+  _documentCreationDate.seconds     = datetime.tm_sec;
+  _documentCreationDate.ind         = ' ';
+  _documentCreationDate.off_hour    = 0;
+  _documentCreationDate.off_minutes = 0;
 }
 
 //----------------------------------------------------------------------------------

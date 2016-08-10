@@ -429,6 +429,7 @@ private:
   // Initialize internal PDF document container
   void _initPDFDocument();
   void _initFonts();
+  void _setDateProperties();
 
   // Current font and text properties
   mlPDF::FontSettingsStruct _currentFontSettings;
@@ -481,6 +482,8 @@ private:
   // Error tracing
   std::vector<mlPDF::ErrorTracingStruct> _errorStack;
   void _handleError(std::string errorSource);
+  void _printErrorStack();
+
   static void _errorHandler(HPDF_STATUS errorNumber, HPDF_STATUS errorDetailNumber, void *errorData);
 
   // Implements interface for the runtime type system of the ML.
