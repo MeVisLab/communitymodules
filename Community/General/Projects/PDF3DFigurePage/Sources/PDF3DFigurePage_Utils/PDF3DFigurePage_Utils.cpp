@@ -89,7 +89,7 @@ PDF3DFigurePage_Utils::PDF3DFigurePage_Utils(std::string type) : WEMProcessor(ty
   (_selectedWEMPatchGroupPathFld         = addString("selectedWEMPatchGroupPath"))->setStringValue("");
   (_selectedWEMPatchUseDefaultColorFld   = addBool("selectedWEMPatchUseDefaultColor"))->setBoolValue(true);
   (_selectedWEMPatchColorFld             = addColor("selectedWEMPatchColor"))->setStringValue("0.651 0.651 0.651");
-  (_selectedWEMPatchColorAlphaFld        = addFloat("selectedWEMPatchColorAlpha"))->setFloatValue(0);
+  (_selectedWEMPatchColorAlphaFld        = addFloat("selectedWEMPatchColorAlpha"))->setFloatValue(1);
 
   //! Fields for line set editing
   (_selectedLineSetFld                   = addString("selectedLineSet"))->setStringValue("");
@@ -355,7 +355,7 @@ void PDF3DFigurePage_Utils::handleNotification (Field* field)
     _updateSelectedWEMPatchDescription();
   }
 
-  // call parent class and handle apply/autoApply and in/outputs
+  // Call parent class and handle apply/autoApply and in/outputs
   WEMProcessor::handleNotification(field);
 }
 

@@ -78,11 +78,12 @@ MLPDF {
   CONFIG += MLBase
   CONFIG += MLWEM
   CONFIG += MLFiberUtils
+  CONFIG += zlib
+  CONFIG += png
   CONFIG += MLBaseListExtensions
   CONFIG += libhpdf
   CONFIG += inventor
-  CONFIG += zlib
-  CONFIG += png
+  CONFIG += xerces
 }
 
 MLBaseListExtensions {

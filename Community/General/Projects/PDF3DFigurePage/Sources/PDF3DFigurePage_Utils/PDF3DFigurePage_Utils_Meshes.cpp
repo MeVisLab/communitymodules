@@ -36,7 +36,10 @@ void PDF3DFigurePage_Utils::_process()
     {
       _processPatch(i);
     }    
+
   }
+
+  _updateAvailableWEMPatchesFld(_outWEM);
 
   // Stop time measurement and mouse cursor resetting.
   // Use WEMModule version to avoid overwriting of label/description!!
@@ -97,11 +100,17 @@ void PDF3DFigurePage_Utils::_updateAvailableWEMPatchesFld(WEMPtr wem, std::strin
 
     _availableWEMPatchesFld->setStringValue(availableWEMs);
 
+    if (availableWEMs == "")
+    {
+      _selectedWEMPatchIdChanged(NULL);
+    }
+    
     if (defaultEntry != "")
     {
       _selectedWEMPatchFld->setStringValue(defaultEntry);
       _selectedWEMPatchChanged(wem);
     }
+
   }
   else
   {

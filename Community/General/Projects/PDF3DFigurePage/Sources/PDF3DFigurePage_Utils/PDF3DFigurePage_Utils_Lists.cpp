@@ -328,6 +328,11 @@ void PDF3DFigurePage_Utils::_selectedPointSetChanged()
     _selectedPointSetIdFld->setIntValue(pointSetId);
     _selectedPointSetIdChanged();
   }
+  else
+  {
+    _selectedPointSetNewLabelFld->setStringValue("");
+    _selectedPointSetGroupPathFld->setStringValue("");
+  }
 
 }
 
@@ -392,6 +397,11 @@ void PDF3DFigurePage_Utils::_updateAvailablePointSetsFld(std::string defaultEntr
 
   _availablePointSetsFld->setStringValue(availablePointSets);
 
+  if ("" == availablePointSets)
+  {
+    _selectedPointSetIdFld->setIntValue(ML_INT16_MIN);
+  }
+
   if (defaultEntry != "")
   {
     _selectedPointSetFld->setStringValue(defaultEntry);
@@ -449,6 +459,15 @@ void PDF3DFigurePage_Utils::_selectedLineSetChanged()
     _selectedLineSetIdFld->setIntValue(lineSetId);
     _createSelectedFibers();
     _selectedLineSetIdChanged();
+  }
+  else
+  {
+    _selectedLineSetIdFld->setIntValue(ML_INT16_MIN);
+    _outSelectedFiberSetContainer.deleteAllFiberSets();
+    _outSelectedFibersFld->touch();
+    _selectedLineSetNewLabelFld->setStringValue("");
+    _selectedLineSetGroupPathFld->setStringValue("");
+    _selectedLineSetUseDefaultColorFld->setBoolValue(true);
   }
 }
 
