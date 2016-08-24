@@ -403,7 +403,7 @@ void MatlabScriptWrapper::_process()
     _stdReportFld->setStringValue("Matlab script is executing....");
     // Insert at the end of the script variable to proof execution status
     // and run the script in Matlab
-    evaluateString += "\nmevmatscr=1;";	// Added ';' to prevent unnecessary output
+    evaluateString += "\nmevmatscr=1;"; // Added ';' to prevent unnecessary output
 
     // Buffer to capture Matlab output
     #define BUFSIZE 5120
