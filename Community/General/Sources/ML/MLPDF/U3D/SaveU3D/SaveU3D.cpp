@@ -115,10 +115,10 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
 
   //! Add fields for Specification Generator
   (_newSpecificationFld                        = addString("newSpecification"))->setStringValue("");
-  (_newSpecificationSelectedTabFld             = addInt("selectedTab"))->setIntValue(0);
   (_newSpecificationOutputValidFld             = addBool("newSpecificationOutputValid"))->setBoolValue(false);
   _newSpecificationAddFld                      = addNotify("newSpecificationAdd");
   (_newSpecificationTypeFld                    = addEnum("newSpecificationType", NEW_SPECIFICATION_OBJECTTYPE_STRINGS, mlPDF::NUM_OBJECTTYPES))->setEnumValue(mlPDF::OBJECTTYPE_MESH);
+  (_newSpecificationSelectedTabFld             = addInt("selectedTab"))->setIntValue((int)mlPDF::OBJECTTYPE_MESH);
   (_newSpecificationObjectNameFld              = addString("newSpecificationObjectName"))->setStringValue("");
   (_newSpecificationGroupPathFld               = addString("newSpecificationGroupPath"))->setStringValue("");
   (_newSpecificationUseDefaultColorFld         = addBool("newSpecificationUseDefaultColor"))->setBoolValue(true);
@@ -141,6 +141,10 @@ SaveU3D::SaveU3D (std::string type) : WEMInspector(type)
 
   _autoUpdateFld->setBoolValue(false);
   _autoApplyFld->setBoolValue(false);
+
+  // Init status fields
+  _progressFld->setFloatValue(0);
+  _statusFld->setStringValue("Idle.");
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -539,6 +543,9 @@ void SaveU3D::UpdateObjectTypeTabView()
 {
   int newSpecificationType = _newSpecificationTypeFld->getEnumValue();
 
+  _newSpecificationSelectedTabFld->setIntValue(newSpecificationType);
+
+  /*
   if (newSpecificationType == mlPDF::OBJECTTYPE_POINTCLOUD)
   {
     _newSpecificationSelectedTabFld->setIntValue(0);
@@ -555,6 +562,7 @@ void SaveU3D::UpdateObjectTypeTabView()
   {
     _newSpecificationSelectedTabFld->setIntValue(3);
   }
+  */
 }
 
 
