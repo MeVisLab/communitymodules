@@ -31,7 +31,8 @@ Description {
 }
 
 Commands {
-  wakeupCommand = @@js: if (!ctx.field("autoApply").value) { ctx.field("unload").touch(); } @@
+  source = $(LOCAL)/DicomSurfaceSegmentationLoad.py
+  wakeupCommand = WakeupModule
 }
 
 Window {
@@ -40,10 +41,10 @@ Window {
   
   Category Main {
     
-    FieldListener numPointSets { command = @@js: ctx.control("ObjectsTabView").setTabText(0, "Point Sets (" + ctx.field("numPointSets").value.toString() + ")"); @@ }
-    FieldListener numLineSets { command = @@js: ctx.control("ObjectsTabView").setTabText(1, "Line Sets (" + ctx.field("numLineSets").value.toString() + ")"); @@ }
-    FieldListener numMeshes { command = @@js: ctx.control("ObjectsTabView").setTabText(2, "Meshes (" + ctx.field("numMeshes").value.toString() + ")"); @@ }
-    FieldListener numUnknownObjects { command = @@js: ctx.control("ObjectsTabView").setTabText(3, "Unknown Objects (" + ctx.field("numUnknownObjects").value.toString() + ")"); @@ }
+    FieldListener numPointSets      { command = @@py: ctx.control("ObjectsTabView").setTabText(0, "Point Sets (" + str(ctx.field("numPointSets").value) + ")") @@ }
+    FieldListener numLineSets       { command = @@py: ctx.control("ObjectsTabView").setTabText(1, "Line Sets (" + str(ctx.field("numLineSets").value) + ")") @@ }
+    FieldListener numMeshes         { command = @@py: ctx.control("ObjectsTabView").setTabText(2, "Meshes (" + str(ctx.field("numMeshes").value) + ")") @@ }
+    FieldListener numUnknownObjects { command = @@py: ctx.control("ObjectsTabView").setTabText(3, "Unknown Objects (" + str(ctx.field("numUnknownObjects").value) + ")") @@ }
     
     Box {
       title = "Source"
@@ -233,7 +234,7 @@ Window {
     
   } //Category
 
-  Execute = @@js: ctx.field("numPointSets").touch(); ctx.field("numLineSets").touch(); ctx.field("numMeshes").touch(); @@
+  Execute = InitWindow
 
 }//Window
 

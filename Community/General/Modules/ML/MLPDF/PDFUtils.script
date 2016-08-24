@@ -20,6 +20,10 @@ Description {
     }
   }
   
+  Field inPointPositions  { visibleOn = showNetworkFields }
+  Field inLinePositions   { visibleOn = showNetworkFields }
+  Field inLineConnections { visibleOn = showNetworkFields }
+  Field outFibers         { visibleOn = showNetworkFields }  
 }
 
 
@@ -31,10 +35,6 @@ Interface {
 
 
 Commands {
-  FieldListener showNetworkFields {
-    init    = Yes
-    command = @@js: show = ctx.field("showNetworkFields").value; ctx.field("inPointPositions").setHidden(!show); ctx.field("inLinePositions").setHidden(!show); ctx.field("inLineConnections").setHidden(!show); ctx.field("outFibers").setHidden(!show); ctx.updateLayout(); @@
-  }  
 }
 
 

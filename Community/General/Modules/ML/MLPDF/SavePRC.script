@@ -38,7 +38,6 @@ Interface { }
 
 
 Commands {
-  initCommand = @@js: ctx.field("status").value = "Idle."; ctx.field("progress").value = 0; ctx.field("newSpecificationType").touch(); @@ 
 }
 
 

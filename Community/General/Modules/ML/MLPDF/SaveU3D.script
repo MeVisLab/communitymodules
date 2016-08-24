@@ -46,8 +46,6 @@ Interface {
 
 
 Commands {
-  initCommand = @@js: ctx.field("status").value = "Idle."; ctx.field("progress").value = 0; @@ 
-  wakeupCommand = @@js: ctx.field("newSpecificationType").value = ctx.field("newSpecificationType").value; @@ // Make sure that Specification Generator panel shows correct tab.
 }
 
 
