@@ -67,7 +67,7 @@ MLABOsiriXBridgeWindowDelegate::setMLABWindowWidget(QWidget *widget)
     _mlabWindowWidget->setAcceptDrops(true);
     _mlabWindowWidget->installEventFilter(this);
     
-    [_p->cocoaController setMLABWindowView:reinterpret_cast<NSView *> (_mlabWindowWidget->winId())];
+    [_p->cocoaController setMLABWindowView:reinterpret_cast<NSView *> (_mlabWindowWidget->effectiveWinId())];
   }
 }
 
