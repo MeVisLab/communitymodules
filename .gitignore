@@ -1,6 +1,10 @@
+Makefile
 Makefile.*
 *.xcodeproj
+*.xcworkspace
 *.py[cod]
+*.dylib
+*.o
 
 # Visual Studio files (generated projects, intellisense data, precompiled headers)
 *.vcxproj*
@@ -42,5 +46,7 @@ Modules.mlab.cache
 /Community/General/Sources/ML/MLDicomSurfaceSegmentation/Example Data
 /Community/General/Sources/ML/MLPDF/MLPDF.sh
 /Community/General/Sources/ML/MLPDF/_DevelopmentTools/Create separate WEMs.mlab
+
+/Community/General/Documentation/Publish/OsiriXMeVisLabBridge
 
 /Community/ThirdParty/Sources/libhpdf/Original Sources
