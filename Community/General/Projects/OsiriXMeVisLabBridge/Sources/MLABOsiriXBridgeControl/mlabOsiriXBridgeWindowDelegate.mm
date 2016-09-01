@@ -19,7 +19,7 @@
 #import "OsiriXPasteboardMime.h"
 #import <mlOsiriXServices.h>
 #import <macObjectiveAutoreleasePool.h>
-#import <QtGui/QtGui>
+#import <QtGui>
 
 
 class MLABOsiriXBridgeWindowDelegatePrivate
