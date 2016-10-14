@@ -120,11 +120,3 @@ add a loop over all values of the iterator."
   shouldCloseCommand = SaveWindowSize
   Execute = SetWindowSize
 }
-
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
-//# owner: EMC
-//# date: 2010-03-02T15:44:14
-//# hash: gBsc339guXrCCCq3h0RrOrZoUGFuc3Bw1G6Fs/CzP2jvX5Egl3fedwHrYoZBpwtuHYttOu3p5j0b6OUbZeYNxg==
-//# MeVis end

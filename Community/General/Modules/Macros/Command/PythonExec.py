@@ -106,11 +106,3 @@ def FieldDroped( object ) :
       command +=  "\n"+spaces*" "+"nw.field('" + object.fullName() + "').value"
   ctx.field("command").value = command
   return
-
-
-#//# MeVis signature v1
-#//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
-#//# owner: EMC
-#//# date: 2010-03-02T15:43:17
-#//# hash: NtsQwmIoHApwmvZwjf01gFGP/xf2e2MV4HIASngxqixLl7/lxZxlYnIYRFE/zrNHt4RTV4gTRbF0r+waZ58irw==
-#//# MeVis end
