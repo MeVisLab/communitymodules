@@ -40,7 +40,7 @@ MacroModule CallApplication {
   status = "work-in-progress"
   comment = "Calls an application using a command line call"
   keywords = "call, command line, executable"
-  seeAlso = "ISICallElastix"
+  seeAlso = "CallElastix"
   exampleNetwork = "$(LOCAL)/networks/CallApplicationExample.mlab"
    
   externalDefinition = "$(LOCAL)/CallApplication.script"

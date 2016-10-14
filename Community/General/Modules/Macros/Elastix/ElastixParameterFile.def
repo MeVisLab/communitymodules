@@ -36,7 +36,6 @@
 
 MacroModule ElastixParameterFile {
   genre = "Registration"
-  group = ISI
   author = "Marijn van Stralen"
   status = "work-in-progress"
   comment = "Create a parameter file for elastix"

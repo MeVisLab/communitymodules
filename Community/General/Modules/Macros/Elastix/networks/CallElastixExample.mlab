@@ -2,7 +2,7 @@
 network  {
   watchlist = ""
 }
-module ISICallElastix {
+module CallElastix {
   internal  {
     frame = "557 333 104 56"
     moduleGroupName = ""

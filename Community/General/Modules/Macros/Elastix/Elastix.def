@@ -36,7 +36,6 @@
 
 MacroModule Elastix {
   genre = "Registration"
-  group = ISI
   author = "Marijn van Stralen"
   status = "work-in-progress"
   comment = "calls elastix using command line controls"
