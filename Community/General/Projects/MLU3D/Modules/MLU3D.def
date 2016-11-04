@@ -1,0 +1,74 @@
+//----------------------------------------------------------------------------------
+// MLU3D module definitions.
+//
+// \file    MLU3D.def
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+// Genres ----------------------------------------------------------------------
+
+UserGenres {
+  Genre PDF { 
+    Genre U3DModules   { title = "U3D Modules" } 
+  }
+}
+
+// Modules ---------------------------------------------------------------------
+
+
+MLModule U3DInit {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Initializes an empty U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  //exampleNetwork     = "$(LOCAL)/networks/U3DInitExample.mlab"
+  externalDefinition = $(LOCAL)/U3DInit.script
+}
+
+MLModule U3DInfo {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Provides info about a U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  //exampleNetwork     = "$(LOCAL)/networks/U3DInfoExample.mlab"
+  externalDefinition = $(LOCAL)/U3DInfo.script
+}
+
+MLModule U3DLoad {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Loads a U3D from disk."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  //exampleNetwork     = "$(LOCAL)/networks/U3DLoadExample.mlab"
+  externalDefinition = $(LOCAL)/U3DLoad.script
+}
+
+MLModule U3DSave {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Saves a U3D to disk."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  //exampleNetwork     = "$(LOCAL)/networks/U3DSaveExample.mlab"
+  externalDefinition = $(LOCAL)/U3DSave.script
+}
+
+/*
+MLModule U3DManager {
+  DLL                = "MLU3D"
+}
+*/
+
+MLModule U3DAssemble {
+  DLL                = "MLU3D"
+  externalDefinition = $(LOCAL)/U3DAssemble.script
+}
+

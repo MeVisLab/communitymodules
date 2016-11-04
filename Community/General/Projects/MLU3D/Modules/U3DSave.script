@@ -1,0 +1,69 @@
+//----------------------------------------------------------------------------------
+//! ML module U3DSave definition
+/*!
+// \file    U3DSave.script
+// \author  Axel Newe
+// \date    2016-10-01
+*/
+//----------------------------------------------------------------------------------
+
+Description {
+  Field finishedTrigger { comment = "Is triggered when save process has finished." editable = No }
+  Field status          { editable = No persistent = No }
+  Field progress        { editable = No persistent = No }
+}
+
+
+Interface {
+  Parameters {
+    Field useDefaultSettings { type = Bool value = Yes }
+  }
+}
+
+
+Commands {
+}
+
+
+NetworkPanel {
+  info = success
+  Button  save { symbol = @@ "start" @@ }
+}
+
+
+Window "Main Panel" {  
+  
+  Category { expandY = Yes
+    
+    minimumWidth = 600
+  
+    Box { title = File layout = Vertical alignY = Bottom
+      
+      Box "" { layout = Vertical
+        Horizontal {
+          droppedFileCommand = "*py: ctx.field("filename").value = args[0] *"
+          Field filename {
+            browseButton = ON
+            browseMode   = Save
+            mw           = 450
+          }
+        }
+      }
+      Horizontal {
+        alignX = Right
+
+        CheckBox autoSave  { enabled = No }
+
+        Button save {
+          title = "Save"
+        }
+      }
+      Separator { direction = Horizontal }
+      Field status { edit = No }
+      Separator { direction = Horizontal }
+      ProgressBar progress {}
+      
+    }  // Box
+    
+  }  // Category
+}

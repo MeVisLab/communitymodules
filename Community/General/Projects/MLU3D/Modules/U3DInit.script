@@ -1,0 +1,37 @@
+//----------------------------------------------------------------------------------
+// ML module U3DInit definition
+//
+// \file    U3DInit.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+}
+
+
+Interface {
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DInit.py
+}
+
+
+NetworkPanel {
+}
+
+
+Window  {  
+
+  fixedHeight = 100
+  fixedWidth  = 300
+  
+  Category { expandY = Yes
+
+    Label { title = "Not yet implemented." alignX = Center alignY = Center }  
+    
+  }  // Category
+
+}

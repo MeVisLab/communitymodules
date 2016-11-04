@@ -1,0 +1,83 @@
+//----------------------------------------------------------------------------------
+// ML module U3DInfo definition
+//
+// \file    U3DInfo.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+  Field inputValid           { editable = No }
+  Field numMetaDataEntries   { editable = No }
+  Field numLightNodes        { editable = No }
+  Field numViewNodes         { editable = No }
+  Field numGroupNodes        { editable = No }
+  Field numModelNodes        { editable = No }
+  Field numLightNodes        { editable = No }
+  Field numPointSets         { editable = No }
+  Field numLineSets          { editable = No }
+  Field numMeshes            { editable = No }  
+  Field numLightResources    { editable = No }
+  Field numViewResources     { editable = No }
+  Field numShaders           { editable = No }
+  Field numMaterialResources { editable = No }
+  Field numTextureResources  { editable = No }
+  Field numMotionResources   { editable = No }
+}
+
+
+Interface {
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DInfo.py
+}
+
+
+NetworkPanel {
+}
+
+
+Window  {  
+
+  Category { expandY = Yes
+    
+    Field inputValid {}
+    
+    Separator {}
+    
+    Box "Meta Data" {
+      Field numMetaDataEntries { dependsOn = inputValid }
+    }
+    
+    Box "Nodes" {
+      Field numLightNodes { dependsOn = inputValid }
+      Field numViewNodes  { dependsOn = inputValid }
+      Field numGroupNodes { dependsOn = inputValid }
+      Field numModelNodes { dependsOn = inputValid }
+      Field numLightNodes { dependsOn = inputValid }
+    }
+
+    Box "Geometry Generators" {
+      Field numPointSets { dependsOn = inputValid }
+      Field numLineSets  { dependsOn = inputValid }
+      Field numMeshes    { dependsOn = inputValid }
+    }
+    
+    Box "Resources" {
+      Field numLightResources    { dependsOn = inputValid }
+      Field numViewResources     { dependsOn = inputValid }
+      Field numShaders           { dependsOn = inputValid }
+      Field numMaterialResources { dependsOn = inputValid }
+      Field numTextureResources  { dependsOn = inputValid }
+      Field numMotionResources   { enabled = No }
+    }
+    
+    //Separator {}
+    
+    //Button update {}
+    
+  }  // Category
+
+}
