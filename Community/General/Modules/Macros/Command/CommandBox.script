@@ -5,7 +5,7 @@
 // \author  Stefan Saur
 // \date    2007-11-28
 //
-// 
+//
 */
 //----------------------------------------------------------------------------------
 
@@ -29,79 +29,71 @@ Interface {
 
 
 Commands {
-  source = $(LOCAL)/CommandBox.js
+  source = $(LOCAL)/CommandBox.py
   FieldListener apply { command = apply }
 }
 
 Window "CommandBox" {
-	Category "Main" {
-	  Vertical { expandY = yes
-	    TextView commandList {
-		  autoApply = yes
-		  mw = 200
-		  mh = 300
-		}
-	  } // Vertical 
-	  Box "Parameters" {
-	    Table {
-	      Row {
-	        CheckBox isProcessEvents {
-	           title = "Process events"
-		   tooltip = "call MLAB.processEvents after each command"
-	         }
-	         CheckBox isProcessInventorQueue {
-	           title = "Process inventor queue"
-		   tooltip = "call MLAB.processInventorQueue after each command"
-	         }
-	      } // Row
-	      Row {
-	        CheckBox isVerbose { 
-		    title = "Log commands"
-		    tooltip = "Log commands to console"
-		  }
-		  Field sleep {
-		    title = "Sleep [ms]"
-		    tooltip = "Idle time in milli seconds after each command"
-		  }
-	      } // Row
-	    } // Table
-	  } // Box
-	  
-	  Box "Loop" {
-	    tooltip = "Process 'Command List' in a loop between start and stop value"
-	    Horizontal {
-	    
-	    CheckBox isLoop {
-	      title = "Do loop"
-	      tooltip = "Process 'Command List' in a loop between start and stop value"
-	    }
-	      Field startLoop { 
-	        title = "Start"
-		tooltip = "Start value for loop"
-	      }
-	      Field stopLoop { 
-	        title = "Stop" 
-		tooltip = "Stop value for loop"
-	      }
-	      Field val { 
-	        title = "Value"
-		edit = NO
-		tooltip = "Current iteration value of loop"
-	      }
-	    }
-	  }
-	  
-	  Horizontal {
-		  Button apply {}
-	  }
-		
-	} // Category "Main"
+  Category "Main" {
+    Vertical { expandY = yes
+      TextView commandList {
+      autoApply = yes
+      mw = 200
+      mh = 300
+    }
+    } // Vertical
+    Box "Parameters" {
+      Table {
+        Row {
+          CheckBox isProcessEvents {
+             title = "Process events"
+       tooltip = "call MLAB.processEvents after each command"
+           }
+           CheckBox isProcessInventorQueue {
+             title = "Process inventor queue"
+       tooltip = "call MLAB.processInventorQueue after each command"
+           }
+        } // Row
+        Row {
+          CheckBox isVerbose {
+        title = "Log commands"
+        tooltip = "Log commands to console"
+      }
+      Field sleep {
+        title = "Sleep [ms]"
+        tooltip = "Idle time in milli seconds after each command"
+      }
+        } // Row
+      } // Table
+    } // Box
+
+    Box "Loop" {
+      tooltip = "Process 'Command List' in a loop between start and stop value"
+      Horizontal {
+
+      CheckBox isLoop {
+        title = "Do loop"
+        tooltip = "Process 'Command List' in a loop between start and stop value"
+      }
+        Field startLoop {
+          title = "Start"
+    tooltip = "Start value for loop"
+        }
+        Field stopLoop {
+          title = "Stop"
+    tooltip = "Stop value for loop"
+        }
+        Field val {
+          title = "Value"
+    edit = NO
+    tooltip = "Current iteration value of loop"
+        }
+      }
+    }
+
+    Horizontal {
+      Button apply {}
+    }
+
+  } // Category "Main"
 } // Window "CommandBox"
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
-//# owner: MeVis Internal Developer
-//# date: 2007-07-05T03:39:16
-//# hash: NZnpFvlIWb2UTMKyWzOuJEZzoHM/s9TlAdYpIMv062KgFHHoXp8DNyyPGqjQINHxx+W07/BC6aUcPMYZinaBFw==
-//# MeVis end
-

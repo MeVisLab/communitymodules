@@ -87,7 +87,7 @@ module CommandBox {
     isProcessEvents = TRUE
     isProcessInventorQueue = TRUE
     commandList = "CounterOne.up
-# tihs is a comment
+# this is a comment
 CounterTwo.down"
     sleep = 1000
     startLoop = 0

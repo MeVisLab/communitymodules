@@ -19,7 +19,7 @@
 #import "OsiriXPasteboardMime.h"
 #import <mlOsiriXServices.h>
 #import <macObjectiveAutoreleasePool.h>
-#import <QtGui/QtGui>
+#import <QtGui>
 
 
 class MLABOsiriXBridgeWindowDelegatePrivate
@@ -67,7 +67,7 @@ MLABOsiriXBridgeWindowDelegate::setMLABWindowWidget(QWidget *widget)
     _mlabWindowWidget->setAcceptDrops(true);
     _mlabWindowWidget->installEventFilter(this);
     
-    [_p->cocoaController setMLABWindowView:reinterpret_cast<NSView *> (_mlabWindowWidget->winId())];
+    [_p->cocoaController setMLABWindowView:reinterpret_cast<NSView *> (_mlabWindowWidget->effectiveWinId())];
   }
 }
 

@@ -40,7 +40,6 @@ UserGenres {
 
 MacroModule PythonExec {
   documentation = "$(LOCAL)/html/PythonExec.html"
-  group = "BIGR"
   genre = "BIGR-Utils"
   author = "Reinhard Hameeteman"
   status = "work-in-progress"
@@ -54,10 +53,3 @@ MacroModule PythonExec {
 
 } // MacroModule PythonExec
 
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
-//# owner: EMC
-//# date: 2010-03-02T15:43:44
-//# hash: kDj7mPBYFe7FDQcsLu3Kfkk2qX8/mG5ly0NmkoeNRlhfsxnhjZPQtMUz85BaCIhG2recG9W2c0Bs5T6XWNdc7Q==
-//# MeVis end

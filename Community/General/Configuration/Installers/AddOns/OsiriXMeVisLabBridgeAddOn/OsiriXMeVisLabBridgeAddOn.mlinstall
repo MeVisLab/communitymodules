@@ -14,7 +14,7 @@ $MODULEDATABASETOOL 1
 $MODULEDATABASETOOL_USRARGS --ignorePackage MeVis/ThirdParty --ignorePackage MeVis/Foundation --ignorePackage MeVisLab/Standard
 
 # sign package (requires MeVisLab 2.8 or newer)
-$INSTALLER_MACX_SIGN_IDENTITY_NAME  Developer ID Installer:
+#$INSTALLER_MACX_SIGN_IDENTITY_NAME  Developer ID Installer:
 
 # change the default license text
 $INPUT_LICENSE_TEXT $(MLAB_Community_General)/Configuration/Installers/AddOns/MeVisLabCommunityAddOnLicense.txt

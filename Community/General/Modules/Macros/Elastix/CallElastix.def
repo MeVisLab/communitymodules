@@ -36,16 +36,15 @@
 
 MacroModule CallElastix {
   genre = "Registration"
-  group = ISI
   author = "Marijn van Stralen"
   status = "work-in-progress"
   comment = "Calls elastix using command line interface"
   keywords = "elastix, registration, command line"
-  seeAlso = ""
+  seeAlso = "Elastix ElastixParameterFile Transformix"
   exampleNetwork = "$(LOCAL)/networks/CallElastixExample.mlab"
    
   externalDefinition = "$(LOCAL)/CallElastix.script"
-    scriptOnly = no
+  scriptOnly = no
 
 } // MacroModule CallElastix
 

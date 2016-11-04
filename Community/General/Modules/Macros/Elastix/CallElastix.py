@@ -299,11 +299,3 @@ def fileStringReplace(fn, src, dst):
         f.write(l);
   else :
     print "Error: could not open file for replacement, " + fn;
-
-#//# MeVis signature v1
-#//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
-#//# owner: MeVis
-#//# date: 2009-06-10T03:33:37
-#//# hash: lks83XOD1rwLpts/0uROAT66Ocrko+7LhFbofqmeuxV1ZH30HY6fhGIHF+HZNbHAg04QggrC+0bSlk6r3GDj5Q==
-#//# MeVis end
-

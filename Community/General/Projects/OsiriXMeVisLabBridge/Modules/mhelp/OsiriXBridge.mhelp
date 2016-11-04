@@ -1,6 +1,6 @@
 ModuleHelp  {
   MetaInformation  {
-    definition = Modules/ML/MLOsiriXBridge/MLOsiriXBridge.def
+    definition = Projects/OsiriXMeVisLabBridge/Modules/MLOsiriXBridge.def
     moduleName = OsiriXBridge
     moduleType = MLModule
     author = "Felix Ritter"
@@ -8,8 +8,8 @@ ModuleHelp  {
     genre = DICOM
     keywords = "OsiriX DICOM files ImageLoad ImageSave"
     seeAlso = "ImageLoad ImageSave DicomTool DicomBrowser DicomImport DirectDicomImport"
-    package = ReleaseMeVis
-    packageGroup = FMEwork
+    package = General
+    packageGroup = Community
   }
   Purpose  {
     text = "**Note: The OsiriX MeVisLab bridge is discussed in detail in the* :cross-ref:`OsiriXMeVisLabBridge` *guide.*
@@ -43,10 +43,7 @@ Currently, the following limitations are known:
 - the dataset sent from OsiriX is always converted even if the dataset has already been sent to MeVisLab"
   }
   Windows  {
-    text  {
-      title = ""
-      text = ""
-    }
+    text = ""
     Window _default {
       title = ""
       text = ""
@@ -78,7 +75,6 @@ Currently, the following limitations are known:
       title = "OsiriX incoming folder"
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
     Field osirixIncomingDirUpdate {
       type = Trigger
@@ -102,7 +98,6 @@ Currently, the following limitations are known:
       title = "DICOM slices file list"
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
     Field useEatDicom {
       type = Bool
@@ -134,7 +129,6 @@ Currently, the following limitations are known:
       title = "Eat Dicom Output"
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
     Field filename {
       type = String
@@ -142,7 +136,6 @@ Currently, the following limitations are known:
       title = "Converted DICOM dataset filename"
       visibleInGUI = Yes
       persistent = No
-      default = ""
     }
     text = ""
   }

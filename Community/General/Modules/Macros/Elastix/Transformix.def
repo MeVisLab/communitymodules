@@ -34,8 +34,7 @@
 //----------------------------------------------------------------------------------
 
 MacroModule Transformix {
-  genre = ""
-  group = ISI
+  genre = SpatialTransformation
   author = "Marijn van Stralen"
   status = "work-in-progress"
   comment = ""
