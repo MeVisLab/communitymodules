@@ -1,5 +1,5 @@
 network = ""
-module SoThresholdToPointSet {
+module UMDSoThresholdToPointSet {
    internal  {
       frame = "311 -259 158 43"
       windows  {
@@ -22,7 +22,7 @@ module SoThresholdToPointSet {
       colorFlag<ILABBoolField> = FALSE
    }   //<mdl> fields 
 
-}   //<mdl> module SoThresholdToPointSet
+}   //<mdl> module UMDSoThresholdToPointSet
 module SoMaterial {
    internal  {
       frame = "149 -258 77 43"
@@ -137,10 +137,3 @@ connections  {
    SoThresholdToPointSet0.inImage = LocalImage0.output
    SoExaminerViewer0.children = "SoMaterial0.self SoThresholdToPointSet0.self"
 }
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
-//# owner: MeVis Internal Developer
-//# date: 2005-08-18T18:57:42
-//# hash: C1b7Snr29Vv8MnyggTO1QyaZbGmNpfekPZh3xqEU+9THoqUk4Ig7DEAzNNmIyFOcQwXJv+nmZCzHqluC00vShQ==
-//# MeVis end
