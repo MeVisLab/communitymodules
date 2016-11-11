@@ -12,7 +12,7 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
 #include "U3D_Object_Nodes.h"
 #include "U3D_Object_DataTypes.h"
 #include "U3D_Object_Resources.h"
@@ -57,20 +57,46 @@ namespace mlU3D {
 
     mlU3D::ModelBoundingBoxStruct modelBoundingBox;
 
+    mlU3D::DefaultValuesStruct defaultValues;
+
+    //! Clears all internal data
     void clear();
 
-    int getNumGeometryGenerators();
+    //! Clones the given U3D
+    void cloneFrom(const U3DObject& sourceU3D);
 
+    //! Returns the total count of all geometra generators
+    int getNumGeometryGenerators(std::string prefix = "");
+
+    //! Returns the number of model nodes
+    int getNumModels(std::string prefix = "");
+
+    //! Returns the default shader name;
+    std::string getDefaultShaderName();
+
+    //! Get stats info for network panel
+    std::string getNetworkPanelInfo();
+
+    //! Reset bounding box
     void resetBoundingBox();
+
+    //! Update all group nodes based on the model nodes
+    void updateGroupNodes();
+
 
   protected:
 
 
   private:
 
+    //! Group node tools
+    GroupNodeStructVector _assembleU3DGroupNodeInfo();
+    void                  _updateGroupNodesVector(GroupNodeStructVector &groupNodes, std::string thisGroupPath);
+    std::string           _getFullGroupPathFromU3DGroupNodeStruct(mlU3D::GroupNodeStruct thisNode);
+    void                  _makeGroupPathNamesUnique(mlU3D::GroupNodeStructVector& groupNodes);
+
     //! Implements interface for the runtime type system of the ML.
     ML_CLASS_HEADER(U3DObject);
-
 
   };
 

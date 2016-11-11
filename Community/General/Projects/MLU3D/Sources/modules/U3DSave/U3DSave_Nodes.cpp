@@ -11,7 +11,6 @@
 
 // Local includes
 #include "U3DSave.h"
-#include "shared/U3DInternalFormat/U3D_Object_Nodes.h"
 
 
 ML_START_NAMESPACE
@@ -68,6 +67,11 @@ void U3DSave::_addModelNodes()
   {
     mlU3D::ModelNode thisModelNode = allModelNodes[thisNodeListIndex];
     _statusFld->setStringValue("Adding Model Node: " + thisModelNode.displayName + ".");
+
+    if ("" == thisModelNode.shaderName)
+    {
+      thisModelNode.shaderName = _inU3DObject->getDefaultShaderName();
+    }
 
     // Add view node modifier chain
     _outU3DFile->addModifierChain_ModelNodeWithShadingModifier(thisModelNode);

@@ -7,16 +7,11 @@
 //----------------------------------------------------------------------------------
 
 
-// Global includes
-#include <sys/stat.h>
-
 // Local includes
 #include "MLU3D_Constants.h"
-#include "MLU3D_DataTypes.h"
 #include "MLU3D_Tools.h"
 
 // ML includes
-#include <mlModuleIncludes.h>
 #include <mlApplicationProperties.h>
 
 
@@ -42,10 +37,117 @@ namespace mlU3D {
     udZ = (MLuint32)(0.5f + mlU3D::Quant_Normal * fabs(pos.z));
   }
 
+  //***********************************************************************************
+
+  void U3DTools::makeInternalNameUnique(std::string& objectName, mlU3D::U3DObjectPtr u3dObject)
+  {
+    for (size_t m = 0; m < u3dObject->modelNodes.size(); m++)
+    {
+      std::string compareStr = u3dObject->modelNodes[m].internalName;
+
+      // Look if name already exists
+      if (objectName == compareStr)
+      {
+        objectName = objectName + " ";  // Just add a space... this is a hack that allows to use names that are internally unique but not as regards the displaying in Acrobat...
+        makeInternalNameUnique(objectName, u3dObject);
+        break;
+      }
+    }
+
+    return;
+  }
+
+  //***********************************************************************************
+
+  mlU3D::ModelNode U3DTools::createNewModelNode(SpecificationParametersStruct specification, mlU3D::U3DObjectPtr u3dObject)
+  {
+    //mlInfo(__FUNCTION__) << "Log message.";
+
+    mlU3D::ModelNode newModelNode;
+
+    //newModelNode.Type = modelType;
+    newModelNode.displayName  = specification.ObjectName;
+    newModelNode.internalName = specification.ObjectName;
+    makeInternalNameUnique(newModelNode.internalName, u3dObject);
+    newModelNode.groupPath    = specification.GroupPath;
+    newModelNode.visibility   = (MLuint32)mlU3D::stringToInt(specification.ModelVisibility);
+
+    if (specification.ObjectType != mlU3D::MODELTYPE_POINTSET)
+    {
+      newModelNode.shaderName = "Shader for " + newModelNode.internalName;
+    }
+    else
+    {
+      newModelNode.shaderName   = "";  // Use default shader for Point Sets
+    }
+
+    newModelNode.geometryGeneratorName = "Geometry for " + newModelNode.internalName;
+
+    return newModelNode;
+  }
+
+  //***********************************************************************************
+
+// Get model specs from WEM atributes
+StringVector U3DTools::getMeshSpecificationsStringFromWEM(ml::WEM* wem)
+{
+  StringVector result;
+
+  // Loop through all patches, search and parse label & description
+  const MLuint32 numberOfWEMPatches = wem->getNumWEMPatches();
+
+  for (MLuint32 i = 0; i < numberOfWEMPatches; i++)
+  {
+    WEMPatch* thisInWEMPatch = wem->getWEMPatchAt(i);
+
+    if (thisInWEMPatch)
+    {
+      std::string thisWEMPatchLabel = thisInWEMPatch->getLabel();
+      std::string thisWEMPatchDescription = thisInWEMPatch->getDescription();
+
+      // Parse WEM label & description...
+      std::string u3dModelName = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "ModelName");
+      std::string u3dGroupName = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "GroupName");
+      std::string u3dGroupPath = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "GroupPath");
+
+      if ("" != u3dGroupName)
+      {
+        if ("" == u3dGroupPath)
+        {
+          u3dGroupPath += "/";
+        }
+        u3dGroupPath += u3dGroupName + "/";
+      }
+
+      std::string displayName = thisWEMPatchLabel;
+      if (displayName == "") {
+        displayName = "Mesh " + mlU3D::intToString(i + 1);
+      }
+
+      // ...and write data into meshSpecification string
+      std::string meshSpecificationsString = "<Mesh>";
+      meshSpecificationsString += "<WEMLabel>" + thisWEMPatchLabel + "</WEMLabel>";
+      meshSpecificationsString += "<ObjectName>" + displayName + "</ObjectName>";
+      meshSpecificationsString += "<GroupPath>" + u3dGroupPath + "</GroupPath>";
+      meshSpecificationsString += "<Color>" + mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "Color") + "</Color>";
+      meshSpecificationsString += "<SpecularColor>" + mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "SpecularColor") + "</SpecularColor>";
+      meshSpecificationsString += "<Opacity>" + mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "Opacity") + "</Opacity>";
+      meshSpecificationsString += "<ModelVisibility>3</ModelVisibility>";
+      meshSpecificationsString += "</Mesh>";
+
+      // Add meshSpecification string to meshSpecificationVector
+      result.push_back(meshSpecificationsString);
+    }
+
+  } // for (MLuint32 i = 0; i < numberOfInWEMPatches; i++)
+
+  return result;
+}
+
 //***********************************************************************************
 
-// Get data from object (point cloud, line set, mesh) specification fields
-  StringVector U3DTools::getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter)
+// Get model specs from (point cloud, line set, mesh) specification fields
+StringVector U3DTools::getModelSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter)
 {
   StringVector result;
 
@@ -110,8 +212,6 @@ SpecificationParametersStruct U3DTools::getAllSpecificationParametersFromString(
   result.WEMLabel         = getSpecificParameterFromString(specificationString, "<WEMLabel>");
   result.PositionTypes    = getSpecificParameterFromString(specificationString, "<PositionTypes>", "all");
   result.ConnectionTypes  = getSpecificParameterFromString(specificationString, "<ConnectionTypes>", "simple");
-  result.PointSize        = stringToDouble(getSpecificParameterFromString(specificationString, "<PointSize>", "3"));
-  result.LineWidth        = stringToDouble(getSpecificParameterFromString(specificationString, "<LineWidth>", "1"));
 
  return result;
 }
@@ -183,55 +283,6 @@ std::string U3DTools::normalizeGroupPath(std::string groupPath)
   }
 
   return result;
-}
-
-//***********************************************************************************
-
-void U3DTools::updateGroupNodesVector(GroupNodeStructVector &groupNodes, std::string thisGroupPath)
-{
-  StringVector groupPathComponents = stringSplit(thisGroupPath, "/", false);
-    size_t numGroupPathComponents = groupPathComponents.size();
-
-    for (size_t i = 0; i < numGroupPathComponents; i++)
-    {
-      std::string thisNodeName = groupPathComponents[i];
-      StringVector thisNodeParents;
-
-      for (size_t p = 0; p < i; p++)
-      {
-        thisNodeParents.push_back(groupPathComponents[p]);
-      }
-
-      int existingGroupNodeIndex = -1;
-
-      // Check if group node already exists
-      for (size_t g = 0; g < groupNodes.size(); g++)
-      {
-        GroupNodeStruct thisGroupNode = groupNodes[g];
-
-        if ( (thisGroupNode.name == thisNodeName) && (thisGroupNode.parents == thisNodeParents) )
-        {
-          existingGroupNodeIndex = static_cast<int>(g);
-          break;
-        }       
-      }
-
-      if (-1 == existingGroupNodeIndex)    // Group node does not exist
-      {
-        // Create new group node
-        GroupNodeStruct newGroupNode;
-        newGroupNode.id = groupNodes.size();
-        newGroupNode.name = thisNodeName;
-        newGroupNode.parents = thisNodeParents;
-
-        groupNodes.push_back(newGroupNode);
-      }
-      else  // Group node already exists
-      {
-        // Do nothing
-      }
-
-    }
 }
 
 //***********************************************************************************
@@ -316,28 +367,12 @@ std::string U3DTools::stringTrimWhitespace(std::string sourceString)
 
 std::string U3DTools::getMeVisLabVersionNumberString()
 {
-  /*
-  std::string MeVisLabVersionString = intToString(MEVISLAB_VERSION); // Preprocessor define must be parsed
-
-  std::string MeVisLabMajorVersionString = MeVisLabVersionString.substr(0,MeVisLabVersionString.length()-2);
-  std::string MeVisLabMinorVersionString = MeVisLabVersionString.substr(MeVisLabVersionString.length()-2,2);
-
-  if (MeVisLabMinorVersionString[0] == '0')
-  {
-    MeVisLabMinorVersionString = MeVisLabMinorVersionString.substr(1,1);
-  }
-
-  MeVisLabVersionString = MeVisLabMajorVersionString + "." + MeVisLabMinorVersionString;
-
-  return MeVisLabVersionString;
-  */
-
   return ml::ApplicationProperties::getString("Version");
 }
 
 //***********************************************************************************
 
-std::string U3DTools::getModuleVersionNumberString()
+std::string U3DTools::getLibraryVersionNumberString()
 {
   return "1.0";
 }
@@ -496,6 +531,50 @@ std::string U3DTools::FormatDate(std::tm value)
   std::string result(buffer);
 
   return result;
+}
+
+std::string U3DTools::FormatUInt(unsigned int value, unsigned int length)
+{
+  const int bufferLength = 12;
+  char buffer[bufferLength];
+
+  snprintf(buffer, bufferLength, "%0*u", length, value);
+
+  std::string result(buffer);
+
+  return result;
+}
+
+
+//***********************************************************************************
+
+std::string U3DTools::updateGeometryGeneratorMap(mlU3D::GeometryGeneratorMap& geometryGeneratorMap, std::string specificationString, std::string namePrefix, int startIndex)
+{
+  // Remove all whitespaces from specification string
+  mlU3D::StringVector specificationComponentsVector = mlU3D::U3DTools::stringSplit(specificationString, ",", false);
+
+  std::string specificationStringWithoutWhitespace = "";
+  int nextGeneratorNumber = (int)geometryGeneratorMap.size() + 1 + startIndex;
+
+  for (size_t i = 0; i < specificationComponentsVector.size(); i++)
+  {
+    if (i != 0)
+    {
+      specificationStringWithoutWhitespace += ",";
+
+    }
+    specificationStringWithoutWhitespace += specificationComponentsVector[i];
+  }
+
+  if (geometryGeneratorMap.count(specificationStringWithoutWhitespace) == 0)
+  {
+    mlU3D::GeometryGeneratorInfoStruct newGeometryGeneratorInfo;
+    newGeometryGeneratorInfo.GeometryName = namePrefix + " " + mlU3D::U3DTools::FormatUInt(nextGeneratorNumber, 3);
+    newGeometryGeneratorInfo.UseVertexColors = false;
+    geometryGeneratorMap[specificationStringWithoutWhitespace] = newGeometryGeneratorInfo;
+  }
+
+  return specificationStringWithoutWhitespace;
 }
 
 //***********************************************************************************

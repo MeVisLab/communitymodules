@@ -136,6 +136,7 @@ namespace mlU3D {
     diffuseColor  = Vector4(0.65f, 0.65f, 0.65f, 1.0f);
     specularColor = Vector3(0.75f);
     emissiveColor = Vector3(0.0f);
+    reflectivity  = 0.5;
 
   }
 

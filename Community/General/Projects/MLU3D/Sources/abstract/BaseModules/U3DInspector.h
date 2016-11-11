@@ -11,9 +11,9 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
 #include "U3DModule.h"
-#include "../shared/U3DInternalFormat/U3D_Object.h"
+#include "../../shared/U3DInternalFormat/U3D_Object.h"
 
 // Global includes
 #include <mlModuleIncludes.h>
@@ -41,11 +41,16 @@ protected:
   //! U3D object input field.
   BaseField* _inU3DObjectFld;
 
+  NotifyField *_applyFld;
+  BoolField   *_autoApplyFld;
 
   /* VARIABLES */
 
   //! A pointer to the output U3D object.
   mlU3D::U3DObjectPtr _inU3DObject;
+
+  //! a flag which stores if the input U3D object is valid
+  bool _inU3DValid;
 
 
   /* METHODS */
@@ -56,11 +61,13 @@ protected:
   //! Initialize module after loading.
   virtual void activateAttachments();
 
+  //! Execute module functionaylity.
+  virtual void process() = 0;
+
 
 private:
 
   /* FIELDS */
-
 
 
   /* STATE VARIABLES */

@@ -15,7 +15,7 @@ ML_START_NAMESPACE
 //////////////////////////////////////////////////////////////////////////
 
 //! Implements code for the runtime type system of the ML.
-ML_CLASS_SOURCE(U3DInspector, U3DModule);
+ML_ABSTRACT_MODULE_CLASS_SOURCE(U3DInspector, U3DModule);
 
 U3DInspector::U3DInspector(int numInImages, int numOutImages) : U3DModule(numInImages, numOutImages), _inU3DObject(NULL)
 {
@@ -24,7 +24,11 @@ U3DInspector::U3DInspector(int numInImages, int numOutImages) : U3DModule(numInI
   // Add input fields and set allowed types.
   (_inU3DObjectFld = addBase("inU3DObject"))->setBaseValueAndAddAllowedType(_inU3DObject);
 
+  _applyFld      = addNotify("apply");
+  (_autoApplyFld = addBool("autoApply"))->setBoolValue(false);
 
+  // Init variables
+  _inU3DValid = false;
 
   handleNotificationOn();
 }
@@ -52,6 +56,8 @@ void U3DInspector::activateAttachments()
 
 void U3DInspector::handleNotification(Field* field)
 {
+  U3DModule::handleNotification(field);
+
   if (field == _inU3DObjectFld)
   {
     _inU3DObject = NULL;
@@ -66,9 +72,25 @@ void U3DInspector::handleNotification(Field* field)
         _inU3DObject = inU3DObject;
       }
     }
+
+    _inU3DValid = (_inU3DObject != NULL);
+
+    if (_autoApplyFld->getBoolValue())
+    {
+      process();
+    }
   }
 
-  U3DModule::handleNotification(field);
+  if (field == _applyFld)
+  {
+    process();
+  }
+
+  if ((field == _autoApplyFld) && (_autoApplyFld->getBoolValue()) )
+  {
+    process();
+  }
+
 }
 
 //////////////////////////////////////////////////////////////////////////

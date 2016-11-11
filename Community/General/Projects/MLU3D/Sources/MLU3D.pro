@@ -46,6 +46,8 @@ HEADERS += \
   modules/U3DSave/U3DSave.h \
   modules/U3DManager/U3DManager.h \
   modules/U3DAssemble/U3DAssemble.h \
+  modules/U3DAddModel/U3DAddModel.h \
+  modules/U3DAddModel/U3DAddModelFromMarkerList/U3DAddModelFromMarkerList.h \
   shared/MLU3D_Constants.h \
   shared/MLU3D_Tools.h \
   shared/MLU3D_DataTypes.h \
@@ -82,6 +84,8 @@ SOURCES += \
   modules/U3DAssemble/U3DAssemble.cpp \
   modules/U3DAssemble/U3DAssemble_Tools.cpp \
   modules/U3DAssemble/U3DAssemble_Preprocessing.cpp \
+  modules/U3DAddModel/U3DAddModel.cpp \
+  modules/U3DAddModel/U3DAddModelFromMarkerList/U3DAddModelFromMarkerList.cpp \
   shared/MLU3D_Tools.cpp \
   shared/MLU3D_MarkerListTools.cpp \
   shared/MLU3D_SpecificationGenerator.cpp \
@@ -103,9 +107,8 @@ RELATEDFILES += \
   ../Modules/U3DInfo.script \
   ../Modules/U3DLoad.script \
   ../Modules/U3DSave.script \
-#  ../Modules/U3DCalcCamera.script \
-#  ../Modules/U3DCreateFibersFromLists.script \
-#  ../Modules/U3DCreateViewSpecifications.script \
-#  ../Modules/LoadPointLineGeometry.script \
+  ../Modules/U3DAssemble.script \
+  ../Modules/U3DAddModelFromMarkerList.script \
+
 
 

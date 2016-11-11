@@ -13,9 +13,9 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "abstract/BaseModules/U3DInspector.h"
-#include "../shared/U3DFileFormat/U3D_FileWriter.h"
+#include "../../MLU3DSystem.h"
+#include "../../abstract/BaseModules/U3DInspector.h"
+#include "../../shared/U3DFileFormat/U3D_FileWriter.h"
 
 // WEM includes
 #include <WEMBase/WEM.h>
@@ -46,6 +46,9 @@ protected:
   //! Handle field changes of the field \c field.
   virtual void handleNotification(Field* field);
 
+  //! Execute module functionaylity.
+  virtual void process();
+
 private:
 
   /* FIELDS */
@@ -55,6 +58,7 @@ private:
 
   //! Field - Save notification
   NotifyField   *_saveFld;
+  BoolField     *_autoSaveFld;
 
   //! Status & progress fields
   StringField   *_statusFld;
@@ -99,7 +103,7 @@ private:
   // Create blocks
   U3DDataBlockWriter _createPointSetContinuationBlock(mlU3D::PointSetGenerator &pointSetGenerator) const;
   U3DDataBlockWriter _createLineSetContinuationBlock(mlU3D::LineSetGenerator &lineSetGenerator) const;
-  U3DDataBlockWriter _createCLODBaseMeshContinuationBlock(WEMPtr saveWEM, mlU3D::CLODMeshGenerator& meshGenerator) const;
+  U3DDataBlockWriter _createCLODBaseMeshContinuationBlock(WEMTrianglePatch* meshPatch, mlU3D::CLODMeshGenerator& meshGenerator) const;
   mlU3D::ColorMap _writeVertexColors(WEMPatch* patch, U3DDataBlockWriter& continuationBlock) const;
 
   //! Add all View Node Blocks
@@ -129,6 +133,13 @@ private:
 
   // Add motion resources
   void _addMotionResources();
+
+  // +++++++++++++++++++++++++++++++++++++++++++++++++
+  // Tools
+  // +++++++++++++++++++++++++++++++++++++++++++++++++
+
+  // Assemble meta data
+  mlU3D::MetaDataVector _assembleMetaData();
 
   //////////////////////////////////////////////
 

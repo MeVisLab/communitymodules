@@ -8,9 +8,10 @@
 //----------------------------------------------------------------------------------
 
 Description {
-  Field finishedTrigger { comment = "Is triggered when save process has finished." editable = No }
-  Field status          { editable = No persistent = No }
-  Field progress        { editable = No persistent = No }
+  Field finishedTrigger    { comment = "Is triggered when save process has finished." editable = No }
+  Field status             { editable = No persistent = No }
+  Field networkPanelStatus { editable = No persistent = No }
+  Field progress           { editable = No persistent = No }
 }
 
 
@@ -26,8 +27,8 @@ Commands {
 
 
 NetworkPanel {
-  info = success
-  Button  save { symbol = @@ "start" @@ }
+  info = networkPanelStatus
+  Button  apply { symbol = @@ "start" @@ }
 }
 
 
@@ -52,11 +53,9 @@ Window "Main Panel" {
       Horizontal {
         alignX = Right
 
-        CheckBox autoSave  { enabled = No }
+        CheckBox autoApply  { title = "Auto Save" }
 
-        Button save {
-          title = "Save"
-        }
+        Button apply { title = "Save" }
       }
       Separator { direction = Horizontal }
       Field status { edit = No }

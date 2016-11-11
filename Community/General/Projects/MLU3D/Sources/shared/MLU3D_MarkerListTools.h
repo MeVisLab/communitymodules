@@ -11,7 +11,7 @@
 #define _U3D_MarkerListTools_H 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../MLU3DSystem.h"
 #include "MLU3D_DataTypes.h"
 
 // Project includes
@@ -22,9 +22,6 @@
 #include <mlXMarkerList.h>
 #include <mlFiberSet.h>
 #include <mlModuleIncludes.h>
-
-// Inventor includes
-#include <Inventor/nodes/SoNodes.h>  // for M_PI
 
 
 ML_START_NAMESPACE
@@ -39,21 +36,21 @@ public:
   //////////////////////////////////////////////
 
   // Get all positions (vertices) from ColoredMarkerList
-  static PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
+  static PositionsVector getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes);
 
   // Get all positions (vertices) from XMarkerList
-  static PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize);
+  static PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes);
 
   //***********************************************************************************
 
   // Get all line connections from IndexPairList
-  static LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth);
+  static LinesVector getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes);
 
   // Automatically calculate simple line connections from XMarkerList
-  static LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
+  static LinesVector getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes);
 
   // Automatically calculate simple line connections from  ColoredMarkerList
-  static LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth);
+  static LinesVector getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes);
 
   // Get all lines that end at a given position
   static LinesVector getNewLinesFromAllLines(LinesVector allLines, MLuint endPosition);

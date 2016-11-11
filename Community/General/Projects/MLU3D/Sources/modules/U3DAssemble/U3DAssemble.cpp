@@ -11,7 +11,7 @@
 
 // Local includes
 #include "U3DAssemble.h"
-#include "shared/MLU3D_Tools.h"
+#include "../../shared/MLU3D_Tools.h"
 
 
 // ML includes
@@ -48,42 +48,44 @@ U3DAssemble::U3DAssemble (std::string type) : WEMInspector(type)
 
   // Add fields for selecting simple, straightforward mode
   (_simpleModePointSetFld = addBool("simpleModePointSet"))->setBoolValue(false);
-  (_simpleModeLineSetFld = addBool("simpleModeLineSet"))->setBoolValue(false);
-  (_simpleModeMeshFld = addBool("simpleModeMesh"))->setBoolValue(false);
+  (_simpleModeLineSetFld  = addBool("simpleModeLineSet"))->setBoolValue(false);
+  (_simpleModeMeshFld     = addBool("simpleModeMesh"))->setBoolValue(false);
 
   // Add fields to the module and set their values.
   (_modelPrefixPointCloudsFld = addString("modelPrefixPointClouds"))->setStringValue("PointSet");
   (_modelPrefixLineSetsFld    = addString("modelPrefixLineSets"))->setStringValue("LineSet");
   (_modelPrefixMeshesFld      = addString("modelPrefixMeshes"))->setStringValue("Mesh");
-  //(_modelPrefixGlyphsFld      = addString("modelPrefixGlyphs"))->setStringValue("Glyph");       // Not supported by Acrobat
 
   (_pointCloudSpecificationFld = addString("pointCloudSpecification"))->setStringValue("");
   (_lineSetSpecificationFld    = addString("lineSetSpecification"))->setStringValue("");
   (_meshSpecificationFld       = addString("meshSpecification"))->setStringValue("");
-  //(_glyphSpecificationFld      = addString("glyphSpecification"))->setStringValue("");          // Not supported by Acrobat
   (_viewsSpecificationFld      = addString("viewsSpecification"))->setStringValue("");
   (_lightsSpecificationFld     = addString("lightsSpecification"))->setStringValue("");
   (_metaDataSpecificationFld   = addString("metaDataSpecification"))->setStringValue("");
 
-  (_defaultViewNameFld     = addString("defaultViewName"))->setStringValue("DefaultView");
-  (_defaultLightNameFld    = addString("defaultLightName"))->setStringValue("DefaultAmbientLight");
+  (_defaultViewNameFld      = addString("defaultViewName"))->setStringValue("DefaultView");
+  (_defaultLightNameFld     = addString("defaultLightName"))->setStringValue("DefaultAmbientLight");
 
+  (_defaultMaterialNameFld          = addString("defaultMaterialName"))->setStringValue("DefaultMaterial");
   (_defaultMaterialDiffuseColorFld  = addColor("defaultMaterialDiffuseColor"))->setVector3Value(Vector3(0.65f,0.65f,0.65f));
   (_defaultMaterialSpecularColorFld = addColor("defaultMaterialSpecularColor"))->setVector3Value(Vector3(0.75f,0.75f,0.75f));
   (_defaultMaterialAmbientColorFld  = addColor("defaultMaterialAmbientColor"))->setVector3Value(Vector3(0.0f,0.0f,0.0f));
   (_defaultMaterialEmissiveColorFld = addColor("defaultMaterialEmissiveColor"))->setVector3Value(Vector3(0.0f,0.0f,0.0f));
-  (_defaultMaterialAlphaFld         = addFloat("defaultMaterialAlpha"))->setFloatValue(1.0f);
+  (_defaultMaterialAlphaFld         = addDouble("defaultMaterialAlpha"))->setDoubleValue(1.0f);
+  (_defaultMaterialReflectivityFld  = addDouble("defaultMaterialReflectivity"))->setDoubleValue(0.5f);
 
-  (_defaultLightColorFld = addColor("defaultLightColor"))->setVector3Value(Vector3(1.0f,1.0f,1.0f));
+  (_defaultLightColorFld     = addColor("defaultLightColor"))->setVector3Value(Vector3(1.0f,1.0f,1.0f));
   (_defaultLightIntensityFld = addDouble("defaultLightIntensity"))->setDoubleValue(1.0f);
 
-  (_defaultBoundingBoxMetaDataFld = addBool("defaultBoundingBoxMetaData"))->setBoolValue(true);
-  (_addDefaultViewNodeFld         = addBool("addDefaultViewNode"))->setBoolValue(true);
-  (_addDefaultLightNodeFld        = addBool("addDefaultLightNode"))->setBoolValue(true);
+  (_addDefaultBoundingBoxMetaDataFld = addBool("addDefaultBoundingBoxMetaData"))->setBoolValue(true);
+  (_addDefaultViewNodeFld            = addBool("addDefaultViewNode"))->setBoolValue(true);
+  (_addDefaultLightNodeFld           = addBool("addDefaultLightNode"))->setBoolValue(true);
 
   _finishedFld = addNotify("notifyFinished");
 
-  (_statusFld   = addString("status"))    ->setStringValue("Idle.");
+  (_statusFld             = addString("status"))            ->setStringValue("Idle.");
+  (_networkPanelStatusFld = addString("networkPanelStatus"))->setStringValue("Idle.");
+
   (_progressFld = addProgress("progress"))->setFloatValue(0.0f);
   (_successFld  = addBool("success"))     ->setBoolValue(false);
 
@@ -98,6 +100,10 @@ U3DAssemble::U3DAssemble (std::string type) : WEMInspector(type)
   // Init status fields
   _progressFld->setFloatValue(0);
   _statusFld->setStringValue("Idle.");
+
+  // Init values
+  _updateDefaultValues();
+  _outU3DObject->defaultValues.addDefaultBoundingBoxMetaData = false;
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -223,32 +229,27 @@ void U3DAssemble::_assembleU3DObject()
   bool success = false;
 
   _progressFld->setFloatValue(0.0f);
-
-  WEMPtr saveWEM = NULL;
-  ML_CHECK_NEW(saveWEM,WEM());
-
-  // Clear object info vector;
-  _allU3DObjects.clear();
+  _networkPanelStatusFld->setStringValue("Assembling...");
 
   // Reset out object
   _outU3DObject->clear();
 
-  // Get default parameters from field values
-  defaultValues = _getDefaultValuesFromFields(); 
+  _updateDefaultValues();
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   
   _statusFld->setStringValue("Analyzing input data.");
 
-  _preProcessPointSetData();
-  _preProcessLineSetData();
-  _preProcessMeshData(saveWEM);
+  _addPointSetModelData();
+  _addLineSetModelData();
+  _addMeshModelData();
+  _outU3DObject->updateGroupNodes();
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   _progressFld->setFloatValue(0.1f);
 
-  if (_allU3DObjects.size() > 0)  // If at least one valid object (WEM patch, XMarker or FiberSet) was added.
+  if (_outU3DObject->modelNodes.size() > 0)  // If at least one valid model (mesh, line set or point set) has been added.
   {
     // +++++++++++++++++++++++++++++++++++++++++++++++++
     //
@@ -259,8 +260,6 @@ void U3DAssemble::_assembleU3DObject()
     _statusFld->setStringValue("Adding main nodes.");
 
     _addDefaultViewNode();
-    _addAllGroupNodes();
-    _addAllModelNodes();
     _addDefaultLightNode();
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -284,17 +283,19 @@ void U3DAssemble::_assembleU3DObject()
     mlU3D::MetaDataStruct metaDataPair;
 
     metaDataPair.key = "AssembledBy";
-    metaDataPair.value = "U3DAssemble module from MeVisLab MLU3D library (v" + mlU3D::U3DTools::getModuleVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
+    metaDataPair.value = "U3DAssemble module from MeVisLab MLU3D library (v" + mlU3D::U3DTools::getLibraryVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
     _outU3DObject->metaData.push_back(metaDataPair);
 
     _addMetaData();
 
     _statusFld->setStringValue("Finished.");
+    _networkPanelStatusFld->setStringValue(_outU3DObject->getNetworkPanelInfo());
     success = true;
   }
   else
   {
     _statusFld->setStringValue("No objects to export found.");
+    _networkPanelStatusFld->setStringValue("Nothing to assemble.");
   }
   
   _progressFld->setFloatValue(1.0f);

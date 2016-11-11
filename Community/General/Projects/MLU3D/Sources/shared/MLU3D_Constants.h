@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
 // This header files contains some U3D constants as specified in 
-// Standard ECMA-363 (Universal 3D File Format), 4th edition (June 2007) (referred below as "the Standard")
-// plus some other struct and type definitions
+// Standard ECMA-363 (Universal 3D File Format), 4th edition (June 2007) 
+// (referred below as "the Standard") plus some other struct and type definitions
 //
 // \file    MLU3D_Constants.h
 // \author  Axel Newe (axel.newe@fau.de)
@@ -20,11 +20,16 @@ ML_START_NAMESPACE
 
 namespace mlU3D {
 
+  const std::string USEVERTEXCOLORS = "{VertexColors}";
+
+  const std::string GEOMETRYPREFIX_POINTSET = "PointSetGeometry";
+  const std::string GEOMETRYPREFIX_LINESET  = "LineSetGeometry";
+  const std::string GEOMETRYPREFIX_MESH     = "MeshGeometry";
+
   typedef MLuint32 DataBlockFundamental;
   typedef std::vector<DataBlockFundamental> DataVector;
 
   const MLint32 DATASIZEINCREMENT = 0x0000000F;
-
 
   //////////////////////////////////////////////////////////////////////////
   // 
@@ -228,14 +233,14 @@ namespace mlU3D {
 
   //! Enumeration of the palette types (section 8.2 of the Standard)
   enum PaletteType {
-    MODEL_RESOURCE_PALETTE = 0, // 
-    LIGHT_RESOURCE_PALETTE = 1, // 
-    VIEW_RESOURCE_PALETTE = 2, // 
-    TEXTURE_RESOURCE_PALETTE = 3, // 
-    SHADER_RESOURCE_PALETTE = 4, // 
+    MODEL_RESOURCE_PALETTE    = 0, // 
+    LIGHT_RESOURCE_PALETTE    = 1, // 
+    VIEW_RESOURCE_PALETTE     = 2, // 
+    TEXTURE_RESOURCE_PALETTE  = 3, // 
+    SHADER_RESOURCE_PALETTE   = 4, // 
     MATERIAL_RESOURCE_PALETTE = 5, // 
-    MOTION_RESOURCE_PALETTE = 6, // 
-    NODE_PALETTE = 7  // 
+    MOTION_RESOURCE_PALETTE   = 6, // 
+    NODE_PALETTE              = 7  // 
   };
 
   //////////////////////////////////////////////////////////////////////////
@@ -365,8 +370,6 @@ namespace mlU3D {
   /// Bit compression context for Diffuse Color Difference Signs (9.6.1.3.4.2.2)
   /// </summary>
   const MLuint32 Context_cDiffuseColorSign = 0x00000064;
-
-
 
 
   //

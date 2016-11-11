@@ -14,8 +14,8 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "abstract/BaseModules/U3DInspector.h"
+#include "../../MLU3DSystem.h"
+#include "../../abstract/BaseModules/U3DInspector.h"
 
 
 ML_START_NAMESPACE
@@ -43,6 +43,9 @@ protected:
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field* field);
 
+  //! Execute module functionaylity.
+  virtual void process();
+
 private:
 
   /* FIELDS */
@@ -51,6 +54,7 @@ private:
   BoolField  *_inputValidFld;
 
   IntField   *_numMetaDataEntriesFld;
+  BoolField  *_defaultBoundingBoxMetaDataFld;
 
   IntField   *_numViewNodesFld;
   IntField   *_numGroupNodesFld;
@@ -68,11 +72,8 @@ private:
   IntField   *_numTextureResourcesFld;
   IntField   *_numMotionResourcesFld;
 
-//  NotifyField *_updateFld;
-
-
   /* METHODS */
-  void update();
+
 
 
 //////////////////////////////////////////////

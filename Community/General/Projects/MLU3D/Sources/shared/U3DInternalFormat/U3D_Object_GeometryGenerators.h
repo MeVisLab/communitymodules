@@ -12,8 +12,8 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "shared/MLU3D_DataTypes.h"
+#include "../../MLU3DSystem.h"
+#include "../MLU3D_DataTypes.h"
 
 // WEM includes
 #include <WEMBase/WEM.h>
@@ -41,12 +41,7 @@ namespace mlU3D {
     //! Destructor, usually called automatically when the last RefCountedBase reference is removed.
     virtual ~GeometryGeneratorBase();
 
-    std::string displayName;
-    std::string internalName;
     std::string resourceName;
-    std::string materialName;
-    std::string shaderName;
-
 
     MLuint32 normalCount;
 
@@ -54,11 +49,6 @@ namespace mlU3D {
     MLuint32 diffuseColorCount;
     MLuint32 specularColorCount;
     MLuint32 textureCoordCount;
-
-    Vector4 defaultDiffuseColor;
-    Vector3 defaultSpecularColor;
-    Vector3 defaultAmbientColor;
-    Vector3 defaultEmissiveColor;
 
   protected:
 
@@ -71,7 +61,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from GeometryGeneratorBase.
+  //! Declares the smart pointer GeometryGeneratorBasePtr from GeometryGeneratorBase.
   ML_REFCOUNTED_PTR(GeometryGeneratorBase);
 
 
@@ -104,7 +94,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from PointSetGenerator.
+  //! Declares the smart pointer PointSetGeneratorPtr from PointSetGenerator.
   ML_REFCOUNTED_PTR(PointSetGenerator);
 
   typedef std::vector<PointSetGenerator> PointSetGeneratorVector;
@@ -142,7 +132,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from LineSetGenerator.
+  //! Declares the smart pointer LineSetGeneratorPtr from LineSetGenerator.
   ML_REFCOUNTED_PTR(LineSetGenerator);
 
   typedef std::vector<LineSetGenerator> LineSetGeneratorVector;
@@ -163,12 +153,14 @@ namespace mlU3D {
     //! Destructor, usually called automatically when the last RefCountedBase reference is removed.
     virtual ~CLODMeshGenerator();
 
+    void              setMeshData(WEMTrianglePatch* wemPatch);
+    WEMTrianglePatch* getMeshData();
+
     MLuint32 vertexCount;
     MLuint32 faceCount;
     MLuint32 patchID;
-    MLuint32 meshNumber; // Needed for progress calculation
+    MLuint32 meshNumber;     // Needed for progress calculation
     MLuint32 meshAttributes;
-    WEMPtr   wem;
 
   protected:
 
@@ -178,18 +170,14 @@ namespace mlU3D {
     //! Implements interface for the runtime type system of the ML.
     ML_CLASS_HEADER(CLODMeshGenerator);
 
+    WEMPtr _wem;
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from CLODMeshGenerator.
+  //! Declares the smart pointer CLODMeshGeneratorPtr from CLODMeshGenerator.
   ML_REFCOUNTED_PTR(CLODMeshGenerator);
 
   typedef std::vector<CLODMeshGenerator> CLODMeshGeneratorVector;
-
-
-
-
-
 
 } // end namespace mlU3D 
 

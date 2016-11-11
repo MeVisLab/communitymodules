@@ -5,7 +5,7 @@
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-10-01
 //
-// Inits U3D data structure.
+// Loads a U3D from disk.
 //----------------------------------------------------------------------------------
 
 
@@ -14,8 +14,8 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "abstract/BaseModules/U3DGenerator.h"
+#include "../../MLU3DSystem.h"
+#include "../../abstract/BaseModules/U3DGenerator.h"
 
 
 ML_START_NAMESPACE

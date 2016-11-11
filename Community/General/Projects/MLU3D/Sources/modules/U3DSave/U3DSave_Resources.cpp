@@ -11,7 +11,6 @@
 
 // Local includes
 #include "U3DSave.h"
-#include "shared/U3DInternalFormat/U3D_Object_Resources.h"
 
 
 ML_START_NAMESPACE
@@ -56,6 +55,16 @@ void U3DSave::_addViewResources()
 
 void U3DSave::_addShaders()
 {
+  // Add default shader
+  mlU3D::LitTextureShader defaultShader;
+  defaultShader.resourceName         = _inU3DObject->getDefaultShaderName();
+  defaultShader.materialResourceName = _inU3DObject->defaultValues.defaultMaterialName;
+
+  _statusFld->setStringValue("Adding Default Shader.");
+  _outU3DFile->addStandardBlock_LitTextureShader(defaultShader);
+
+
+  // Add all user defined shaders
   mlU3D::LitTextureShaderVector allShaders = _inU3DObject->litTextureShaders;
 
   for (size_t thisResourceListIndex = 0; thisResourceListIndex < allShaders.size(); thisResourceListIndex++)
@@ -73,6 +82,19 @@ void U3DSave::_addShaders()
 
 void U3DSave::_addMaterialResources()
 {
+  // Add default material 
+  mlU3D::MaterialResource defaultMaterialResource;
+  defaultMaterialResource.resourceName  = _inU3DObject->defaultValues.defaultMaterialName;
+  defaultMaterialResource.ambientColor  = _inU3DObject->defaultValues.defaultMaterialAmbientColor;
+  defaultMaterialResource.diffuseColor  = _inU3DObject->defaultValues.defaultMaterialDiffuseColorWithTransparency;
+  defaultMaterialResource.specularColor = _inU3DObject->defaultValues.defaultMaterialSpecularColor;
+  defaultMaterialResource.emissiveColor = _inU3DObject->defaultValues.defaultMaterialEmissiveColor;
+  defaultMaterialResource.reflectivity  = _inU3DObject->defaultValues.defaultMaterialReflectivity;
+
+  _statusFld->setStringValue("Adding Default Material Resource.");
+  _outU3DFile->addStandardBlock_MaterialResource(defaultMaterialResource);
+
+  // Add all user defined materials
   mlU3D::MaterialResourceVector allMaterialResources = _inU3DObject->materialResources;
 
   for (size_t thisResourceListIndex = 0; thisResourceListIndex < allMaterialResources.size(); thisResourceListIndex++)

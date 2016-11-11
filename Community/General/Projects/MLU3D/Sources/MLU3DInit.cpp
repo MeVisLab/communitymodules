@@ -31,7 +31,7 @@
 #include "modules/U3DSave/U3DSave.h"
 #include "modules/U3DManager/U3DManager.h"
 #include "modules/U3DAssemble/U3DAssemble.h"
-
+#include "modules/U3DAddModel/U3DAddModelFromMarkerList/U3DAddModelFromMarkerList.h"
 
 ML_START_NAMESPACE
 
@@ -81,7 +81,9 @@ int MLU3DInit()
 
   U3DManager::initClass();
   
-  U3DAssemble::initClass();  // Just for migration - remove after lib is complete!
+  U3DAssemble::initClass();  
+
+  U3DAddModelFromMarkerList::initClass();
 
   return 1;
 }

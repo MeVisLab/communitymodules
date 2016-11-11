@@ -8,8 +8,8 @@
 
 
 // Local includes
+#include "MLU3D_Constants.h"
 #include "MLU3D_SpecificationGenerator.h"
-//#include "MLU3D_Defines.h"
 #include "MLU3D_Tools.h"
 
 

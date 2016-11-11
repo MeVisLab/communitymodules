@@ -7,22 +7,25 @@
 //----------------------------------------------------------------------------------
 
 Description {
-  Field inputValid           { editable = No }
-  Field numMetaDataEntries   { editable = No }
-  Field numLightNodes        { editable = No }
-  Field numViewNodes         { editable = No }
-  Field numGroupNodes        { editable = No }
-  Field numModelNodes        { editable = No }
-  Field numLightNodes        { editable = No }
-  Field numPointSets         { editable = No }
-  Field numLineSets          { editable = No }
-  Field numMeshes            { editable = No }  
-  Field numLightResources    { editable = No }
-  Field numViewResources     { editable = No }
-  Field numShaders           { editable = No }
-  Field numMaterialResources { editable = No }
-  Field numTextureResources  { editable = No }
-  Field numMotionResources   { editable = No }
+  Field inputValid                 { editable = No persistent = No }
+  Field numMetaDataEntries         { editable = No persistent = No }
+  Field defaultBoundingBoxMetaData { editable = No persistent = No }
+  Field numLightNodes              { editable = No persistent = No }
+  Field numViewNodes               { editable = No persistent = No }
+  Field numGroupNodes              { editable = No persistent = No }
+  Field numModelNodes              { editable = No persistent = No }
+  Field numLightNodes              { editable = No persistent = No }
+  Field numPointSets               { editable = No persistent = No }
+  Field numLineSets                { editable = No persistent = No }
+  Field numMeshes                  { editable = No persistent = No }  
+  Field numLightResources          { editable = No persistent = No }
+  Field numViewResources           { editable = No persistent = No }
+  Field numShaders                 { editable = No persistent = No }
+  Field numMaterialResources       { editable = No persistent = No }
+  Field numTextureResources        { editable = No persistent = No }
+  Field numMotionResources         { editable = No persistent = No }
+  Field apply                      { editable = No persistent = No }
+  Field autoApply                  { editable = No persistent = No }
 }
 
 
@@ -41,37 +44,37 @@ NetworkPanel {
 
 Window  {  
 
-  Category { expandY = Yes
+  Category { expandY = No
     
     Field inputValid {}
     
     Separator {}
     
     Box "Meta Data" {
-      Field numMetaDataEntries { dependsOn = inputValid }
+      Field defaultBoundingBoxMetaData { dependsOn = inputValid title = "Bounding Box Meta Data Included:" }
+      Field numMetaDataEntries         { dependsOn = inputValid title = "Additional Meta Data Entries:" editAlign = Left }
     }
     
     Box "Nodes" {
-      Field numLightNodes { dependsOn = inputValid }
-      Field numViewNodes  { dependsOn = inputValid }
-      Field numGroupNodes { dependsOn = inputValid }
-      Field numModelNodes { dependsOn = inputValid }
-      Field numLightNodes { dependsOn = inputValid }
+      Field numLightNodes { dependsOn = inputValid editAlign = Left }
+      Field numViewNodes  { dependsOn = inputValid editAlign = Left }
+      Field numGroupNodes { dependsOn = inputValid editAlign = Left }
+      Field numModelNodes { dependsOn = inputValid editAlign = Left }
     }
 
     Box "Geometry Generators" {
-      Field numPointSets { dependsOn = inputValid }
-      Field numLineSets  { dependsOn = inputValid }
-      Field numMeshes    { dependsOn = inputValid }
+      Field numPointSets { dependsOn = inputValid editAlign = Left }
+      Field numLineSets  { dependsOn = inputValid editAlign = Left }
+      Field numMeshes    { dependsOn = inputValid editAlign = Left }
     }
     
     Box "Resources" {
-      Field numLightResources    { dependsOn = inputValid }
-      Field numViewResources     { dependsOn = inputValid }
-      Field numShaders           { dependsOn = inputValid }
-      Field numMaterialResources { dependsOn = inputValid }
-      Field numTextureResources  { dependsOn = inputValid }
-      Field numMotionResources   { enabled = No }
+      Field numLightResources    { dependsOn = inputValid editAlign = Left }
+      Field numViewResources     { dependsOn = inputValid editAlign = Left }
+      Field numShaders           { dependsOn = inputValid editAlign = Left }
+      Field numMaterialResources { dependsOn = inputValid editAlign = Left }
+      Field numTextureResources  { dependsOn = inputValid editAlign = Left }
+      Field numMotionResources   { enabled = No editAlign = Left }
     }
     
     //Separator {}

@@ -12,16 +12,43 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
+#include "../../shared/MLU3D_DataTypes.h"
 
 // Global includes
 #include "mlUtilsSystem.h"
 
 
-
 ML_START_NAMESPACE
 
 namespace mlU3D {
+
+  struct DefaultValuesStruct
+  {
+    std::string defaultPointSetPefix;
+    std::string defaultLineSetPefix;
+    std::string defaultMeshPefix;
+
+    std::string defaultMaterialName;
+    Vector3     defaultMaterialAmbientColor;
+    Vector3     defaultMaterialDiffuseColor;
+    Vector3     defaultMaterialSpecularColor;
+    Vector3     defaultMaterialEmissiveColor;
+    MLdouble    defaultMaterialAlpha;
+    MLdouble    defaultMaterialReflectivity;
+    Vector4     defaultMaterialDiffuseColorWithTransparency;
+
+    bool        addDefaultBoundingBoxMetaData;
+  };
+
+  struct GroupNodeStruct
+  {
+    MLint        id;
+    std::string  name;
+    StringVector parents;
+  };
+
+  typedef std::vector<GroupNodeStruct> GroupNodeStructVector;
 
   struct MetaDataStruct
   {

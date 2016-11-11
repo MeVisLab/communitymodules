@@ -5,7 +5,7 @@
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-10-01
 //
-// Provides info about a U3D.
+// Provides manaqgement tools for a U3D.
 //----------------------------------------------------------------------------------
 
 
@@ -77,6 +77,23 @@ void U3DManager::activateAttachments()
 
   // call parent class
   U3DProcessor::activateAttachments();
+}
+
+
+//***********************************************************************************
+
+
+void U3DManager::process()
+{
+  // Execute module functionaylity here.
+  if (_inU3DValid)
+  {
+
+  }
+  else
+  {
+
+  }
 }
 
 

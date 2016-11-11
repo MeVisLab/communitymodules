@@ -14,8 +14,8 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "abstract/BaseModules/U3DGenerator.h"
+#include "../../MLU3DSystem.h"
+#include "../../abstract/BaseModules/U3DGenerator.h"
 
 
 ML_START_NAMESPACE
@@ -46,12 +46,41 @@ protected:
 private:
 
   /* FIELDS */
+  NotifyField  *_initializeFld;
 
+  // Fields for default model names 
+  StringField  *_modelPrefixPointCloudsFld;
+  StringField  *_modelPrefixLineSetsFld;
+  StringField  *_modelPrefixMeshesFld;
 
+  // Fields for default block identifier names 
+  StringField  *_defaultViewNameFld;
+  StringField  *_defaultLightNameFld;
 
+  // Fields for default material values
+  StringField  *_defaultMaterialNameFld;
+  ColorField   *_defaultMaterialAmbientColorFld;
+  ColorField   *_defaultMaterialDiffuseColorFld;
+  ColorField   *_defaultMaterialSpecularColorFld;
+  ColorField   *_defaultMaterialEmissiveColorFld;
+  DoubleField  *_defaultMaterialAlphaFld;
+  DoubleField  *_defaultMaterialReflectivityFld;
+
+  // Fields for default light values
+  ColorField   *_defaultLightColorFld;
+  DoubleField  *_defaultLightIntensityFld;
+
+  // Other settings 
+  BoolField    *_addDefaultBoundingBoxMetaDataFld;
+  BoolField    *_addDefaultViewNodeFld;
+  BoolField    *_addDefaultLightNodeFld;
 
   /* METHODS */
-
+  void _initializeU3D();
+  void _addDefaultViewNode();
+  void _addDefaultViewResource();
+  void _addDefaultLightNode();
+  void _addDefaultLightResource();
 
 
 //////////////////////////////////////////////

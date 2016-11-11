@@ -11,7 +11,7 @@
 #define _U3D_SpecificationGenerator_H 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../MLU3DSystem.h"
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -20,8 +20,6 @@
 ML_START_NAMESPACE
 
 namespace mlU3D {
-
-  static std::string USEVERTEXCOLORS = "{VertexColors}";
 
   //-----------------------------------------------------------------------------------------------//
   //! Types of specifications.

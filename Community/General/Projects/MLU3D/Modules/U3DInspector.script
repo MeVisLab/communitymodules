@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+// Macro module U3DInspector definition
+//
+// \file    U3DInspector.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+}
+
+
+Interface {
+  Inputs {
+    Field inU3DObject { internalName = GateInU3D.baseIn0 }
+  }
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DInspector.py
+}
+
+
+Window  {  
+
+  Panel {
+    module = U3DInfo
+  }
+  
+}

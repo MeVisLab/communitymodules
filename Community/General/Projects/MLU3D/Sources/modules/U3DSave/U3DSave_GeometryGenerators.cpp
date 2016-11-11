@@ -28,14 +28,14 @@ U3DDataBlockWriter U3DSave::_createPointSetContinuationBlock(mlU3D::PointSetGene
   MLuint32 diffY;
   MLuint32 diffZ;
 
-  _statusFld->setStringValue("Assembling data for PointSet: " + pointSetGenerator.displayName + ".");
+  _statusFld->setStringValue("Assembling data for PointSet: " + pointSetGenerator.resourceName + ".");
 
   U3DDataBlockWriter thisPointSetContinuationBlock;
   thisPointSetContinuationBlock.blockType = mlU3D::BLOCKTYPE_POINTSETCONTINUATION;
 
   thisPointSetContinuationBlock.writeString(pointSetGenerator.resourceName);    // Write Point Set Name (9.6.2.2.1)
-  thisPointSetContinuationBlock.writeU32(mlU3D::ReservedZero);                // Write Chain Index (9.6.2.2.2) (shall be zero) 
-  thisPointSetContinuationBlock.writeU32(0x00000000);                      // Write Point Resolution Range - Start Resolution (9.6.2.2.3.1) 
+  thisPointSetContinuationBlock.writeU32(mlU3D::ReservedZero);                  // Write Chain Index (9.6.2.2.2) (shall be zero) 
+  thisPointSetContinuationBlock.writeU32(0x00000000);                           // Write Point Resolution Range - Start Resolution (9.6.2.2.3.1) 
   thisPointSetContinuationBlock.writeU32(pointSetGenerator.pointCount);         // Write Point Resolution Range - End Resolution (9.6.2.2.3.2) (# of points)
 
   for (MLuint32 currentPosition = 0; currentPosition < pointSetGenerator.pointCount; currentPosition++)
@@ -114,7 +114,7 @@ void U3DSave::_addPointSetGeometry()
   for (size_t thisListIndex = 0; thisListIndex < _inU3DObject->pointSets.size(); thisListIndex++)
   {
     mlU3D::PointSetGenerator thisPointSetGenerator = _inU3DObject->pointSets[thisListIndex];
-    _statusFld->setStringValue("Adding PointSet: " + thisPointSetGenerator.displayName + ".");
+    _statusFld->setStringValue("Adding PointSet: " + thisPointSetGenerator.resourceName + ".");
 
     U3DDataBlockWriter continuationBlock = _createPointSetContinuationBlock(thisPointSetGenerator);
     _outU3DFile->addModifierChain_PointSet(thisPointSetGenerator, continuationBlock);
@@ -132,14 +132,14 @@ U3DDataBlockWriter U3DSave::_createLineSetContinuationBlock(mlU3D::LineSetGenera
   MLuint32 diffY;
   MLuint32 diffZ;
 
-  _statusFld->setStringValue("Assembling data for LineSet: " + lineSetGenerator.displayName + ".");
+  _statusFld->setStringValue("Assembling data for LineSet: " + lineSetGenerator.resourceName + ".");
 
   U3DDataBlockWriter thisLineSetContinuationBlock;
   thisLineSetContinuationBlock.blockType = mlU3D::BLOCKTYPE_LINESETCONTINUATION;
 
   thisLineSetContinuationBlock.writeString(lineSetGenerator.resourceName);   // Write Line Set Name (9.6.3.2.1)
-  thisLineSetContinuationBlock.writeU32(mlU3D::ReservedZero);              // Write Chain Index (9.6.3.2.2) (shall be zero) 
-  thisLineSetContinuationBlock.writeU32(0x00000000);                    // Write Point Resolution Range - Start Resolution (9.6.3.2.3.1) 
+  thisLineSetContinuationBlock.writeU32(mlU3D::ReservedZero);                // Write Chain Index (9.6.3.2.2) (shall be zero) 
+  thisLineSetContinuationBlock.writeU32(0x00000000);                         // Write Point Resolution Range - Start Resolution (9.6.3.2.3.1) 
   thisLineSetContinuationBlock.writeU32(lineSetGenerator.pointCount);        // Write Point Resolution Range - End Resolution (9.6.3.2.3.2) (# of points)
 
   for (MLuint32 currentPosition = 0; currentPosition < lineSetGenerator.pointCount; currentPosition++)
@@ -151,7 +151,7 @@ U3DDataBlockWriter U3DSave::_createLineSetContinuationBlock(mlU3D::LineSetGenera
       mlU3D::PositionStruct startPosition = lineSetGenerator.positions[currentPosition];
       mlU3D::U3DTools::quantizePosition(startPosition.position, signsXYZ, diffX, diffY, diffZ);
 
-      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + 1, 0);     // Write Line Description - Split Position Index (9.6.3.2.4.1) - for first entry with special value 0 and special context "r1" instead of "r0"
+      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + 1, 0);      // Write Line Description - Split Position Index (9.6.3.2.4.1) - for first entry with special value 0 and special context "r1" instead of "r0"
       thisLineSetContinuationBlock.writeCompressedU8(mlU3D::Context_cPosDiffSign, signsXYZ);  // Write Line Description - New Position Info - Position Difference Signs (9.6.1.3.4.10.1)
       thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffX, diffX);       // Write Line Description - New Position Info - Position Difference X (9.6.1.3.4.10.2)
       thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffY, diffY);       // Write Line Description - New Position Info - Position Difference Y (9.6.1.3.4.10.3)
@@ -169,15 +169,15 @@ U3DDataBlockWriter U3DSave::_createLineSetContinuationBlock(mlU3D::LineSetGenera
       mlU3D::U3DTools::quantizePosition(positionDifferenceVec3, signsXYZ, diffX, diffY, diffZ);
 
       thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + currentPosition, splitPosition);  // Write Line Description - Split Position Index (9.6.3.2.4.1) 
-      thisLineSetContinuationBlock.writeCompressedU8(mlU3D::Context_cPosDiffSign, signsXYZ);                       // Write Line Description - New Position Info - Position Difference Signs (9.6.1.3.4.10.1)
-      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffX, diffX);                            // Write Line Description - New Position Info - Position Difference X (9.6.1.3.4.10.2)
-      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffY, diffY);                            // Write Line Description - New Position Info - Position Difference Y (9.6.1.3.4.10.3)
-      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffZ, diffZ);                            // Write Line Description - New Position Info - Position Difference Z (9.6.1.3.4.10.4)
+      thisLineSetContinuationBlock.writeCompressedU8(mlU3D::Context_cPosDiffSign, signsXYZ);                        // Write Line Description - New Position Info - Position Difference Signs (9.6.1.3.4.10.1)
+      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffX, diffX);                             // Write Line Description - New Position Info - Position Difference X (9.6.1.3.4.10.2)
+      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffY, diffY);                             // Write Line Description - New Position Info - Position Difference Y (9.6.1.3.4.10.3)
+      thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cPosDiffZ, diffZ);                             // Write Line Description - New Position Info - Position Difference Z (9.6.1.3.4.10.4)
 
       mlU3D::LinesVector newLines = mlU3D::U3DMarkerListTools::getNewLinesFromAllLines(lineSetGenerator.lines, currentPosition);
       MLuint32 newLineCount = (MLuint32)newLines.size();
 
-      MLuint32 newNormalCount = (MLuint32)((lineSetGenerator.normalCount > 0) ? newLineCount : 0);                // Should be zero -> no normals in this version
+      MLuint32 newNormalCount = (MLuint32)((lineSetGenerator.normalCount > 0) ? newLineCount : 0);                  // Should be zero -> no normals in this version
       thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cNormlCnt, newNormalCount * 2);                // Write Line Description - New Normal Count (9.6.2.2.4.3) - always 2 normals per line
 
       // Write New Normal Info (9.6.3.2.4.4) [UNUSED BY ACROBAT]
@@ -208,12 +208,12 @@ U3DDataBlockWriter U3DSave::_createLineSetContinuationBlock(mlU3D::LineSetGenera
       for (MLuint32 newLineInfoNumber = 0; newLineInfoNumber < newLineCount; newLineInfoNumber++)
       {
         MLuint32 startPosition = newLines[newLineInfoNumber].startIndex;
-        thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cShading, 0x00000000);                       // Write Shading ID (9.6.3.2.4.6.1)
+        thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cShading, 0x00000000);                         // Write Shading ID (9.6.3.2.4.6.1)
         thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + currentPosition, startPosition);  // Write First Position Index (9.6.3.2.4.6.2) 
 
         for (MLuint32 j = 0; j<2; j++)
         {
-          MLuint32 normalLocalIndex = ((newNormalCount > 0) ? 2 * newLineInfoNumber + j : 0);        // newLineNumber shall always be be 0, so normalLocalIndex is 0 or 1
+          MLuint32 normalLocalIndex = ((newNormalCount > 0) ? 2 * newLineInfoNumber + j : 0);           // newLineNumber shall always be be 0, so normalLocalIndex is 0 or 1
           thisLineSetContinuationBlock.writeCompressedU32(mlU3D::Context_cNormlIdx, normalLocalIndex);  // Write Normal Local Index (9.6.3.2.4.6.3) [UNUSED BY ACROBAT]
 
           // Write no New Line Diffuse Color Coords (9.6.3.2.4.6.4) since it is not supported by this version
@@ -238,7 +238,7 @@ void U3DSave::_addLineSetGeometry()
   for (size_t thisFiberSetIndex = 0; thisFiberSetIndex < _inU3DObject->lineSets.size(); thisFiberSetIndex++)
   {
     mlU3D::LineSetGenerator thisLineSetGenerator = _inU3DObject->lineSets[thisFiberSetIndex];
-    _statusFld->setStringValue("Adding LineSet: " + thisLineSetGenerator.displayName + ".");
+    _statusFld->setStringValue("Adding LineSet: " + thisLineSetGenerator.resourceName + ".");
 
     U3DDataBlockWriter continuationBlock = _createLineSetContinuationBlock(thisLineSetGenerator);
     _outU3DFile->addModifierChain_LineSet(thisLineSetGenerator, continuationBlock);
@@ -285,12 +285,9 @@ mlU3D::ColorMap U3DSave::_writeVertexColors(WEMPatch* patch, U3DDataBlockWriter&
 //***********************************************************************************
 
 
-U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMPtr saveWEM, mlU3D::CLODMeshGenerator& meshGenerator) const
+U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatch* meshPatch, mlU3D::CLODMeshGenerator& meshGenerator) const
 {
   mlU3D::ColorMap baseDiffuseColorsMap;
-
-  WEMPatch* wemPatch = NULL;
-  WEMFace*  wemFace = NULL;
 
   float progressStart = 0.2f;
   float progressEnd = 0.9f;
@@ -299,9 +296,7 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMPtr saveWEM,
   float progressIntervalForOneWEMPatch = progressRangeforAllMeshes / _inU3DObject->meshes.size();
   float progressStartForThisMesh = progressStart + progressIntervalForOneWEMPatch * meshGenerator.meshNumber;
   _progressFld->setFloatValue(progressStartForThisMesh);
-  _statusFld->setStringValue("Assembling data for Mesh: " + meshGenerator.displayName + ".");
-
-  wemPatch = saveWEM->getWEMPatchById(meshGenerator.patchID);
+  _statusFld->setStringValue("Assembling data for Mesh: " + meshGenerator.resourceName + ".");
 
   U3DDataBlockWriter thisCLODBaseMeshContinuationBlock;
   thisCLODBaseMeshContinuationBlock.blockType = mlU3D::BLOCKTYPE_CLODBASEMESHCONTINUATION;
@@ -318,7 +313,7 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMPtr saveWEM,
   // Write all vertex positions (in U3D, vertices are called "positions")        
   for (MLuint32 thisVertex = 0; thisVertex < meshGenerator.vertexCount; thisVertex++)
   {
-    Vector3 wemPosition = wemPatch->getNodeAt(thisVertex)->getPosition();
+    Vector3 wemPosition = meshPatch->getNodeAt(thisVertex)->getPosition();
 
     thisCLODBaseMeshContinuationBlock.writeF32(wemPosition[0]);             // Write Base Position - X (9.6.1.2.4.1.1)
     thisCLODBaseMeshContinuationBlock.writeF32(wemPosition[1]);             // Write Base Position - Y (9.6.1.2.4.1.2)
@@ -327,7 +322,7 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMPtr saveWEM,
 
   for (MLuint32 thisNormal = 0; thisNormal < meshGenerator.normalCount; thisNormal++)
   {
-    Vector3 nodeNormal = wemPatch->getNodeAt(thisNormal)->getNormal();
+    Vector3 nodeNormal = meshPatch->getNodeAt(thisNormal)->getNormal();
 
     thisCLODBaseMeshContinuationBlock.writeF32(nodeNormal[0]);              // Write Base Normal - X (9.6.1.2.4.2.1)
     thisCLODBaseMeshContinuationBlock.writeF32(nodeNormal[1]);              // Write Base Normal - Y (9.6.1.2.4.2.2)
@@ -336,12 +331,12 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMPtr saveWEM,
 
   if (meshGenerator.diffuseColorCount > 0)
   {
-    baseDiffuseColorsMap = _writeVertexColors(wemPatch, thisCLODBaseMeshContinuationBlock); // Write all Base Diffuse Colors (9.6.1.2.4.3)
+    baseDiffuseColorsMap = _writeVertexColors(meshPatch, thisCLODBaseMeshContinuationBlock); // Write all Base Diffuse Colors (9.6.1.2.4.3)
   }
 
   for (MLuint32 thisSpecularColor = 0; thisSpecularColor < meshGenerator.specularColorCount; thisSpecularColor++)
   {
-    thisCLODBaseMeshContinuationBlock.writeF32Color(meshGenerator.defaultSpecularColor, 1.0f);   // Write Base Specular Color (9.6.1.2.4.4)
+    thisCLODBaseMeshContinuationBlock.writeF32Color(_inU3DObject->defaultValues.defaultMaterialSpecularColor, 1.0f);   // Write Base Specular Color (9.6.1.2.4.4)
   }
 
   // Write Write Base Texture Coord (9.6.1.2.4.5)
@@ -354,7 +349,7 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMPtr saveWEM,
   {
     thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
 
-    wemFace = wemPatch->getFaceAt(thisFace);
+    WEMFace* wemFace = meshPatch->getFaceAt(thisFace);
 
     for (MLuint thisNode = 0; thisNode < 3; thisNode++)
     {
@@ -412,12 +407,12 @@ void U3DSave::_addCLODMeshGeometry()
   for (size_t thisMeshIndex = 0; thisMeshIndex < _inU3DObject->meshes.size(); thisMeshIndex++)
   {
     mlU3D::CLODMeshGenerator thisMeshGenerator = _inU3DObject->meshes[thisMeshIndex];
-    _statusFld->setStringValue("Adding Mesh: " + thisMeshGenerator.displayName + ".");
+    _statusFld->setStringValue("Adding Mesh: " + thisMeshGenerator.resourceName + ".");
 
     _outU3DFile->addModifierChain_CLODMeshDeclaration(thisMeshGenerator);
 
     // Continuation Block shall not be part of modifier chain!
-    U3DDataBlockWriter continuationBlock = _createCLODBaseMeshContinuationBlock(thisMeshGenerator.wem, thisMeshGenerator);
+    U3DDataBlockWriter continuationBlock = _createCLODBaseMeshContinuationBlock(thisMeshGenerator.getMeshData(), thisMeshGenerator);
     _outU3DFile->addDataBlock(continuationBlock);
   }
 }

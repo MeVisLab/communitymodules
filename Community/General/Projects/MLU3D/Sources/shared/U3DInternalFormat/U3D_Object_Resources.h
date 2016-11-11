@@ -12,7 +12,7 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
 
 // Global includes
 #include <mlModuleIncludes.h>
@@ -50,7 +50,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from ResourceBase.
+  //! Declares the smart pointer ResourceBasePtr from ResourceBase.
   ML_REFCOUNTED_PTR(ResourceBase);
 
 
@@ -87,7 +87,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from LightResource.
+  //! Declares the smart pointer LightResourcePtr from LightResource.
   ML_REFCOUNTED_PTR(LightResource);
 
   typedef std::vector<LightResource> LightResourceVector;
@@ -120,7 +120,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from ViewResource.
+  //! Declares the smart pointer ViewResourcePtr from ViewResource.
   ML_REFCOUNTED_PTR(ViewResource);
 
   typedef std::vector<ViewResource> ViewResourceVector;
@@ -154,7 +154,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from LitTextureShader.
+  //! Declares the smart pointer LitTextureShaderPtr from LitTextureShader.
   ML_REFCOUNTED_PTR(LitTextureShader);
 
   typedef std::vector<LitTextureShader> LitTextureShaderVector;
@@ -175,10 +175,11 @@ namespace mlU3D {
     //! Destructor, usually called automatically when the last RefCountedBase reference is removed.
     virtual ~MaterialResource();
 
-    Vector3 ambientColor;
-    Vector4 diffuseColor;
-    Vector3 specularColor;
-    Vector3 emissiveColor;
+    Vector3  ambientColor;
+    Vector4  diffuseColor;
+    Vector3  specularColor;
+    Vector3  emissiveColor;
+    MLdouble reflectivity;
 
   protected:
 
@@ -191,7 +192,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from MaterialResource.
+  //! Declares the smart pointer MaterialResourcePtr from MaterialResource.
   ML_REFCOUNTED_PTR(MaterialResource);
 
   typedef std::vector<MaterialResource> MaterialResourceVector;
@@ -224,7 +225,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from TextureResource.
+  //! Declares the smart pointer TextureResourcePtr from TextureResource.
   ML_REFCOUNTED_PTR(TextureResource);
 
   typedef std::vector<TextureResource> TextureResourceVector;
@@ -257,7 +258,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from MotionResource.
+  //! Declares the smart pointer MotionResourcePtr from MotionResource.
   ML_REFCOUNTED_PTR(MotionResource);
 
   typedef std::vector<MotionResource> MotionResourceVector;

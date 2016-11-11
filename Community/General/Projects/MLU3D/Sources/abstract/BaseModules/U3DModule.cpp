@@ -12,15 +12,17 @@
 
 ML_START_NAMESPACE
 
-ML_MODULE_CLASS_SOURCE(U3DModule, Module);
-
 //////////////////////////////////////////////////////////////////////////
+
+//! Implements code for the runtime type system of the ML.
+ML_MODULE_CLASS_SOURCE(U3DModule, Module);
 
 U3DModule::U3DModule(int numInImages, int numOutImages) : Module(numInImages, numOutImages)
 {
   handleNotificationOff();
 
   // Add fields here
+  (_networkPanelStatusFld = addString("networkPanelStatus"))->setStringValue("Idle.");
 
 
   // Init vars here

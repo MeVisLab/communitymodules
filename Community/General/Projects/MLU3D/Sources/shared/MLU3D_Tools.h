@@ -11,8 +11,9 @@
 #define _MLU3D_Tools_H 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../MLU3DSystem.h"
 #include "MLU3D_DataTypes.h"
+#include "U3DInternalFormat/U3D_Object.h"
 #include "U3DInternalFormat/U3D_Object_DataTypes.h"
 
 // ML includes
@@ -20,6 +21,9 @@
 
 // Inventor includes
 #include <Inventor/nodes/SoNodes.h>  // for M_PI
+
+// WEM includes
+#include <WEMBase/WEM.h>
 
 // Std includes
 #include <sys/stat.h>
@@ -91,6 +95,7 @@ namespace mlU3D {
     return floor(value * pow(10, decimals)) / pow(10, decimals);
   }
 
+  // U3DTools class ============================================================
 
   class MLU3D_EXPORT U3DTools
   {
@@ -120,8 +125,8 @@ namespace mlU3D {
     // Convert MeVisLab version number into string
     static std::string getMeVisLabVersionNumberString();
 
-    // Return string with module's version number
-    static std::string getModuleVersionNumberString();
+    // Return string with library's version number
+    static std::string getLibraryVersionNumberString();
 
     // Get a file size
     static long getFileSize(std::string filename);
@@ -141,14 +146,24 @@ namespace mlU3D {
     // Converts float/double to string.
     static std::string FormatDouble(double value);
     static std::string FormatFloat(float value);
+    static std::string FormatUInt(unsigned int value, unsigned int length);
 
     // Converts std::tm to string.
     static std::string FormatDate(std::tm value);
 
     //***********************************************************************************
 
-    // Get data from object (point cloud, line set, mesh) specification fields
-    static StringVector getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter);
+    // Makes sure that the internal name of each U3D object is unique
+    static void makeInternalNameUnique(std::string& objectName, mlU3D::U3DObjectPtr u3dObject);
+
+    // Creates a new ModelNode
+    static mlU3D::ModelNode createNewModelNode(SpecificationParametersStruct specification, mlU3D::U3DObjectPtr u3dObject);
+
+    // Get model specs from WEM attributes
+    static StringVector getMeshSpecificationsStringFromWEM(ml::WEM* wem);
+
+    // Get model specs from (point cloud, line set, mesh) specification fields
+    static StringVector getModelSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter);
 
     // Parses the specification string from the UI and extracts a specific U3D property
     static std::string getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult = "");
@@ -165,10 +180,10 @@ namespace mlU3D {
     // Make sure each group path has a leading and a trailing "/"
     static std::string normalizeGroupPath(std::string groupPath);
 
-    // Updates a GroupNodeVector with a new group path
-    static void updateGroupNodesVector(GroupNodeStructVector &groupNodes, std::string thisGroupPath);
-
     //***********************************************************************************
+
+    // Update geometry generator mapping
+    static std::string updateGeometryGeneratorMap(mlU3D::GeometryGeneratorMap& geometryGeneratorMap, std::string specificationString, std::string namePrefix, int startIndex = 0);
 
     // Updates the model bounding box
     static void UpdateBoundingBox(ModelBoundingBoxStruct& boundingBox, ModelBoundingBoxStruct newCorners);

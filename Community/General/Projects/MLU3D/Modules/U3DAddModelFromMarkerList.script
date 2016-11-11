@@ -1,0 +1,59 @@
+//----------------------------------------------------------------------------------
+// ML module U3DAddModelFromMarkerList definition
+//
+// \file    U3DAddModelFromMarkerList.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+  Field networkPanelStatus { editable = No persistent = No }  
+}
+
+
+Interface {
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DAddModelFromMarkerList.py
+}
+
+
+NetworkPanel {
+  info = networkPanelStatus
+  Button  apply { symbol = @@ "start" @@ }  
+}
+
+
+Window  {  
+  
+  Category { expandY = Yes
+
+          
+    CheckBox simpleModePointSet { title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
+ 
+    TextView pointCloudSpecification {
+      dependsOn       = !simpleModePointSet
+      expandY         = Yes
+      title           = "Point Cloud Specification:"
+      wrap            = off
+      autoApply       = yes
+      console         = yes
+      style           = monospacedTextView
+      showLineNumbers = No
+      textFormat      = Plain
+    }
+    
+    Horizontal { expandX = Yes
+      Field updateMode { alignX = Left }
+      Empty { expandX = Yes }
+      CheckBox autoApply { alignX = Right }
+      Button apply { alignX = Right }
+      Button reset { alignX = Right }
+      
+    }
+        
+  }  // Category
+
+}

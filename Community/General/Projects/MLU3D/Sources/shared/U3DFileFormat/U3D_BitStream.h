@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-// This header files contains definitions for a bit stream encoder for an U3D data block as specified in 
-// Standard ECMA-363 (Universal 3D File Format), 4th edition (June 2007) (referred below as "the Standard")
-// Chapter 10 and Annex A
+// This header files contains definitions for a bit stream encoder for an U3D data 
+// block as specified in Standard ECMA-363 (Universal 3D File Format), 4th edition 
+// (June 2007) (referred below as "the Standard")
 //
 // \file    U3D_Bitstream.h
 // \author  Axel Newe (axel.newe@fau.de)
@@ -16,7 +16,7 @@
 #include <vector>
 
 // Local includes
-#include "MLU3D_Constants.h"
+#include "../MLU3D_Constants.h"
 #include "U3D_ContextManager.h"
 
 
@@ -188,17 +188,17 @@ private:
     return (_dataPosition << 5) + _dataBitOffset; 
   }
 
-  ContextManager       _contextManager; // the context manager handles the updates to the histograms for the compression contexts.
+  ContextManager _contextManager;              // The context manager handles the updates to the histograms for the compression contexts.
   
-  MLuint32                    _high;           // the upper limit on the probability
-  MLuint32                    _low;            // the lower limit on the probability
-  MLuint32                    _underflow;      // stores the number of bits of underflow caused by the limited range of high and low
-  bool                        _compressed;     // this is true if a compressed value was written. when the datablock is retrieved, a 32 bit 0 is written to reset the values of high, low, and underflow.
-  mlU3D::DataVector               _data;           // the data section of the datablock to write.
-  MLint32                     _dataPosition;   // the position currently to write in the datablock specified in 32 bit increments.
-  mlU3D::DataBlockFundamental _dataLocal;      // the local value of the data corresponding to dataposition
-  mlU3D::DataBlockFundamental _dataLocalNext;  // the 32 bits in data after dataLocal
-  MLint32                     _dataBitOffset;  // the offset into dataLocal that the next write will occur
+  MLuint32                    _high;           // The upper limit on the probability
+  MLuint32                    _low;            // The lower limit on the probability
+  MLuint32                    _underflow;      // Stores the number of bits of underflow caused by the limited range of high and low
+  bool                        _compressed;     // This is true if a compressed value was written. when the datablock is retrieved, a 32 bit 0 is written to reset the values of high, low, and underflow.
+  mlU3D::DataVector           _data;           // The data section of the datablock to write.
+  MLint32                     _dataPosition;   // The position currently to write in the datablock specified in 32 bit increments.
+  mlU3D::DataBlockFundamental _dataLocal;      // The local value of the data corresponding to dataposition
+  mlU3D::DataBlockFundamental _dataLocalNext;  // The 32 bits in data after dataLocal
+  MLint32                     _dataBitOffset;  // The offset into dataLocal that the next write will occur
    
 };
 

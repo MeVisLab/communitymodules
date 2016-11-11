@@ -14,8 +14,26 @@ UserGenres {
   }
 }
 
+// Inspectors ---------------------------------------------------------------------
+
+OutputInspector {
+  type   = "MLBase.mlU3D::U3DObject"
+  module = "U3DInspector"
+  field  = "inU3DObject"
+}
+
 // Modules ---------------------------------------------------------------------
 
+MLModule U3DAddModelFromMarkerList {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Adds a model to a U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  //exampleNetwork     = "$(LOCAL)/networks/U3DAddModelFromMarkerList.mlab"
+  externalDefinition = $(LOCAL)/U3DAddModelFromMarkerList.script
+}
 
 MLModule U3DInit {
   DLL                = "MLU3D"
@@ -29,14 +47,23 @@ MLModule U3DInit {
 }
 
 MLModule U3DInfo {
-  DLL                = "MLU3D"
-  genre              = "U3DModules"
-  author             = "Axel Newe"
-  comment            = "Provides info about a U3D."
-  keywords           = "PDF U3D"
-  seeAlso            = ""
+  DLL      = "MLU3D"
+  genre    = "U3DModules"
+  author   = "Axel Newe"
+  comment  = "Provides info about a U3D."
+  keywords = "PDF U3D"
+  seeAlso  = ""
   //exampleNetwork     = "$(LOCAL)/networks/U3DInfoExample.mlab"
   externalDefinition = $(LOCAL)/U3DInfo.script
+}
+
+MacroModule U3DInspector {
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Provides inspector for U3D objects."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/U3DInspector.script
 }
 
 MLModule U3DLoad {

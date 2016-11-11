@@ -29,11 +29,7 @@ namespace mlU3D {
 
   GeometryGeneratorBase::GeometryGeneratorBase() : RefCountedBase()
   {
-    displayName  = "";
-    internalName = "";
     resourceName = "";
-    materialName = "";
-    shaderName   = "";
 
     normalCount = 0;
 
@@ -41,11 +37,6 @@ namespace mlU3D {
     diffuseColorCount  = 0;
     specularColorCount = 0;
     textureCoordCount  = 0;
-
-    defaultDiffuseColor  = Vector4(0);
-    defaultSpecularColor = Vector3(0);
-    defaultAmbientColor  = Vector3(0);
-    defaultEmissiveColor = Vector3(0);
   }
 
   //----------------------------------------------------------------------------------
@@ -126,13 +117,33 @@ namespace mlU3D {
     patchID        = 0;
     meshNumber     = 0; // Needed for progress calculation
     meshAttributes = mlU3D::MESH_ATTRIBUTES_DEFAULT;
-    wem            = NULL;
+
+    _wem = NULL;
+    ML_CHECK_NEW(_wem, WEM());
   }
 
   //----------------------------------------------------------------------------------
 
   CLODMeshGenerator::~CLODMeshGenerator()
   {
+    _wem = NULL;
+  }
+
+  //----------------------------------------------------------------------------------
+
+  void CLODMeshGenerator::setMeshData(WEMTrianglePatch* wemPatch)
+  {
+    _wem->removeAll();
+    WEMTrianglePatch* newTrianglePatch = _wem->addWEMPatchCopy(wemPatch);
+    newTrianglePatch->computeBoundingBox();
+    newTrianglePatch->setId(0);
+  }
+
+  //----------------------------------------------------------------------------------
+
+  WEMTrianglePatch* CLODMeshGenerator::getMeshData()
+  {
+    return reinterpret_cast<WEMTrianglePatch*>(_wem->getWEMPatchAt(0));
   }
 
   //----------------------------------------------------------------------------------

@@ -5,7 +5,7 @@
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-10-01
 //
-// Assembles a U3D object.
+// Assembles a U3D object from WEMs, Linesets and XMarkers.
 //----------------------------------------------------------------------------------
 
 
@@ -14,11 +14,11 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "../shared/MLU3D_Constants.h"
-#include "../shared/MLU3D_DataTypes.h"
-#include "../shared/U3DInternalFormat/U3D_Object.h"
-#include "../shared/U3DFileFormat/U3D_FileWriter.h"
+#include "../../MLU3DSystem.h"
+#include "../../shared/MLU3D_Constants.h"
+#include "../../shared/MLU3D_DataTypes.h"
+#include "../../shared/U3DInternalFormat/U3D_Object.h"
+#include "../../shared/U3DFileFormat/U3D_FileWriter.h"
 
 // Project includes
 #include <IndexPairList.h>
@@ -36,43 +36,8 @@
 ML_START_NAMESPACE
 
 
-struct DefaultValuesStruct
-{
-  std::string defaultModelName;
-  std::string defaultLightName;
-  std::string defaultViewName;
-  Vector3     defaultMaterialAmbientColor;
-  Vector3     defaultMaterialDiffuseColor;
-  Vector3     defaultMaterialSpecularColor;
-  Vector3     defaultMaterialEmissiveColor;
-  MLfloat     defaultMaterialAlpha;
-  Vector4     defaultMaterialDiffuseColorWithTransparency;
-};
-
-enum ModelType { MODELTYPE_POINTSET, MODELTYPE_LINESET, MODELTYPE_MESH /*, MODELTYPE_GLYPH*/ };
-
-struct ObjectInfoStruct
-{
-  ModelType     Type;
-  std::string          DisplayName;
-  std::string          InternalName;
-  std::string          GroupPath;
-  std::string          ShaderName;
-  std::string          MaterialName;
-  std::string          ResourceName;
-  Vector4              DiffuseColor;
-  Vector3              SpecularColor;
-  Vector3              AmbientColor;
-  Vector3              EmissiveColor;
-  bool                 UseVertexColors;
-  MLuint32             Visibility;
-};
-
-typedef std::vector<ObjectInfoStruct> U3DObjectsVector;
-
-
 //////////////////////////////////////////////////////////////////////////
-//! Creates U3D object from WEMs, Linesets and XMarkers
+//! Assembles a U3D object from WEMs, Linesets and XMarkers.
 class MLU3D_EXPORT U3DAssemble : public WEMInspector
 {
   //! Implements interface for the runtime type system of the ML.
@@ -120,13 +85,11 @@ private:
   StringField  *_modelPrefixPointCloudsFld;
   StringField  *_modelPrefixLineSetsFld;
   StringField  *_modelPrefixMeshesFld;
-  //StringField  *_modelPrefixGlyphsFld;         // Not supported by Acrobat.
 
   // Fields for geometry definition
   StringField  *_pointCloudSpecificationFld;
   StringField  *_lineSetSpecificationFld;
   StringField  *_meshSpecificationFld;
-  //StringField  *_glyphSpecificationFld;        // Not supported by Acrobat.
   StringField  *_lightsSpecificationFld;
   StringField  *_viewsSpecificationFld;
   StringField  *_metaDataSpecificationFld;
@@ -136,23 +99,27 @@ private:
   StringField  *_defaultLightNameFld;
 
   // Fields for default material values
+  StringField  *_defaultMaterialNameFld;
   ColorField   *_defaultMaterialAmbientColorFld;
   ColorField   *_defaultMaterialDiffuseColorFld;
   ColorField   *_defaultMaterialSpecularColorFld;
   ColorField   *_defaultMaterialEmissiveColorFld;
-  FloatField   *_defaultMaterialAlphaFld;
+  DoubleField  *_defaultMaterialAlphaFld;
+  DoubleField  *_defaultMaterialReflectivityFld;
 
   // Fields for default light values
   ColorField   *_defaultLightColorFld;
   DoubleField  *_defaultLightIntensityFld;
 
   // Other settings 
-  BoolField    *_defaultBoundingBoxMetaDataFld;
+  BoolField    *_addDefaultBoundingBoxMetaDataFld;
   BoolField    *_addDefaultViewNodeFld;
   BoolField    *_addDefaultLightNodeFld;  
   
   //! Status & progress fields
   StringField   *_statusFld;
+  StringField   *_networkPanelStatusFld;
+
   ProgressField *_progressFld;
   BoolField     *_successFld;
   NotifyField   *_finishedFld;
@@ -167,12 +134,6 @@ private:
   //! The StringList input for connections of line sets
   ml::IndexPairList _inLineConnections;
 
-  // This vector contains all object related data
-  U3DObjectsVector _allU3DObjects;
-
-  // This struct contains all default values
-  DefaultValuesStruct defaultValues;
-
   /* METHODS */
 
   //! Save U3D (ECMA-363 Universal 3D Format) file into file stream.
@@ -182,47 +143,32 @@ private:
   // Standard U3D data methods =================================================
 
   void _addDefaultViewNode();
-  void _addAllGroupNodes();
-  void _addAllModelNodes();
   void _addDefaultLightNode();
 
   void _addDefaultLightResource();
   void _addDefaultViewResource();
   void _addMetaData();
 
-  // Creates a new object info data struct
-  ObjectInfoStruct _createNewU3DObjectInfo(int objectIndex, ModelType objectType, std::string objectName, DefaultValuesStruct defaultValues);
+  // Tool methods =============================================================
 
-  // Makes sure that the internal name of each U3D object is unique
-  void _makeInternalNameUnique(std::string& objectName, U3DObjectsVector& u3dObjects);
-
-  // Re-create the full group path from components
-  std::string _getFullGroupPathFromU3DGroupNodeStruct(mlU3D::GroupNodeStruct thisNode);
-
-  // Makes sure that the names of the groups in the group paths are unique
-  void _makeGroupPathNamesUnique(mlU3D::GroupNodeStructVector& groupNodes, U3DObjectsVector& u3dObjects);
-
-  // Scans through all U3D object infos and assembles group nodes
-  mlU3D::GroupNodeStructVector _assembleU3DGroupNodeInfo(U3DObjectsVector& u3dObjects);
-
-  // Get default parameters
-  DefaultValuesStruct _getDefaultValuesFromFields();
+  // Default parameters
+  void _updateDefaultValues();
 
   // PointSet processing methods ================================================
 
   // Scan all data from input field and collect base info for point sets.
-  void _preProcessPointSetData();
+  void _addPointSetModelData();
 
   // FiberSet processing methods ==============================================
 
   // Scan all data from input field and collect base info for line sets.
-  void _preProcessLineSetData();
+  void _addLineSetModelData();
 
 
   // WEM processing methods ===================================================
 
   // Scan all WEM patches, triangulate them if necessary and collect base info.
-  void _preProcessMeshData(WEMPtr saveWEM);
+  void _addMeshModelData();
 
   // Scan all node colors of a WEM patch and return number of different colors.
   MLuint32 _getNumberOfDifferentColorsFromWEMPatch(WEMTrianglePatch* patch) const;

@@ -11,9 +11,9 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
 #include "U3DModule.h"
-#include "../shared/U3DInternalFormat/U3D_Object.h"
+#include "../../shared/U3DInternalFormat/U3D_Object.h"
 
 // Global includes
 #include <mlModuleIncludes.h>

@@ -21,21 +21,11 @@ namespace mlU3D {
   typedef std::vector<std::string> StringVector;
   typedef std::vector<MLint>       MLintVector;
 
-  struct GroupNodeStruct
-  {
-    MLint        id;
-    std::string  name;
-    StringVector parents;
-  };
-
-  typedef std::vector<GroupNodeStruct> GroupNodeStructVector;
-
   struct PositionStruct
   {
     Vector3 position;
     Vector3 color;
     double  alpha;
-    double  size;
   };
 
   typedef std::vector<PositionStruct> PositionsVector;
@@ -44,7 +34,6 @@ namespace mlU3D {
   {
     MLuint32 startIndex;
     MLuint32 endIndex;
-    double   width;
   };
 
   typedef std::vector<LineStruct> LinesVector;
@@ -66,9 +55,13 @@ namespace mlU3D {
 
   typedef std::vector<LineSetSpecificationStruct> LineSetsVector;
 
+  enum ModelType { MODELTYPE_POINTSET, MODELTYPE_LINESET, MODELTYPE_MESH /*, MODELTYPE_GLYPH*/ };
+
   struct SpecificationParametersStruct
   {
     // For U3D objects
+
+    ModelType   ObjectType;
     std::string ObjectName;
     std::string GroupPath;
     std::string Color;
@@ -81,9 +74,15 @@ namespace mlU3D {
     std::string WEMLabel;
     std::string PositionTypes;
     std::string ConnectionTypes;
-    double      PointSize;
-    double      LineWidth;
   };
+
+  struct GeometryGeneratorInfoStruct
+  {
+    std::string GeometryName;
+    bool        UseVertexColors;
+  };
+
+  typedef std::map<std::string, GeometryGeneratorInfoStruct> GeometryGeneratorMap;
 
 } // end namespace mlU3D
 

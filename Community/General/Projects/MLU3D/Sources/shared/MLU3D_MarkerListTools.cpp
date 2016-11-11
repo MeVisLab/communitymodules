@@ -8,18 +8,8 @@
 
 
 // Local includes
-#include "MLU3D_DataTypes.h"
 #include "MLU3D_Tools.h"
 #include "MLU3D_MarkerListTools.h"
-
-// Project includes
-#include <IndexPairList.h>
-#include <ColoredMarkerList.h>
-
-// ML includes
-#include <mlXMarkerList.h>
-#include <mlModuleIncludes.h>
-#include <mlApplicationProperties.h>
 
 
 ML_START_NAMESPACE
@@ -29,7 +19,7 @@ namespace mlU3D {
 //***********************************************************************************
 
 // Get all positions (vertices) from ColoredMarkerList
-PositionsVector U3DMarkerListTools::getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double pointSize)
+PositionsVector U3DMarkerListTools::getAllPositionsFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes)
 {
   PositionsVector result;
   
@@ -53,7 +43,6 @@ PositionsVector U3DMarkerListTools::getAllPositionsFromColoredMarkerList(const m
       newPosition.color.y    = thisPosition.g();
       newPosition.color.z    = thisPosition.b();
       newPosition.alpha      = thisPosition.alpha();
-      newPosition.size       = pointSize;
 
       result.push_back(newPosition);
     }
@@ -66,7 +55,7 @@ PositionsVector U3DMarkerListTools::getAllPositionsFromColoredMarkerList(const m
 //***********************************************************************************
 
 // Get all positions (vertices) from XMarkerList
-PositionsVector U3DMarkerListTools::getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double pointSize)
+PositionsVector U3DMarkerListTools::getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes)
 {
   PositionsVector result;
   
@@ -88,7 +77,6 @@ PositionsVector U3DMarkerListTools::getAllPositionsFromXMarkerList(const ml::XMa
       newPosition.position.z = thisPosition.z();
       newPosition.color      = Vector3(0);       // Not defined by XMarkerList
       newPosition.alpha      = 1;                // Not defined by XMarkerList
-      newPosition.size       = pointSize;
 
       result.push_back(newPosition);
     }
@@ -101,7 +89,7 @@ PositionsVector U3DMarkerListTools::getAllPositionsFromXMarkerList(const ml::XMa
 //***********************************************************************************
 
 // Get all line connections from IndexPairList
-mlU3D::LinesVector U3DMarkerListTools::getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes, double lineWidth)
+mlU3D::LinesVector U3DMarkerListTools::getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes)
 {
   mlU3D::LinesVector result;
   mlU3D::LineStruct thisLine;
@@ -122,7 +110,6 @@ mlU3D::LinesVector U3DMarkerListTools::getAllLinesFromIndexPairList(const ml::In
     {
       thisLine.startIndex = static_cast<MLuint32>(thisConnection.index1);
       thisLine.endIndex = static_cast<MLuint32>(thisConnection.index2);
-      thisLine.width = lineWidth;
 
       // Make sure start index is < endIndex
       if (thisLine.startIndex > thisLine.endIndex)
@@ -143,13 +130,12 @@ mlU3D::LinesVector U3DMarkerListTools::getAllLinesFromIndexPairList(const ml::In
 //***********************************************************************************
 
 // Automatically calculate simple line connections from XMarkerList
-mlU3D::LinesVector U3DMarkerListTools::getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth)
+mlU3D::LinesVector U3DMarkerListTools::getStandardLinesFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes)
 {
   mlU3D::LinesVector result;
   mlU3D::LineStruct thisLine;
   thisLine.startIndex = 0;  // Init to avoid warning
   thisLine.endIndex = 0;    // Init to avoid warning
-  thisLine.width = lineWidth;
 
   mlU3D::StringVector allowedPositionTypesVector = U3DTools::stringSplit(allowedPositionTypes, ",", false);
 
@@ -185,14 +171,12 @@ mlU3D::LinesVector U3DMarkerListTools::getStandardLinesFromXMarkerList(const ml:
 //***********************************************************************************
 
 // Automatically calculate simple line connections from ColoredMarkerList
-mlU3D::LinesVector U3DMarkerListTools::getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes, double lineWidth)
+mlU3D::LinesVector U3DMarkerListTools::getStandardLinesFromColoredMarkerList(const ml::ColoredMarkerList positionsList, const std::string allowedPositionTypes)
 {
   mlU3D::LinesVector result;
   mlU3D::LineStruct thisLine;
   thisLine.startIndex = 0;  // Init to avoid warning
   thisLine.endIndex = 0;    // Init to avoid warning
-  thisLine.width = lineWidth;
-
 
   mlU3D::StringVector allowedPositionTypesVector = U3DTools::stringSplit(allowedPositionTypes, ",", false);
 

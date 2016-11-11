@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-// This class provides a context manager for an U3D data block as specified in 
-// Standard ECMA-363 (Universal 3D File Format), 4th edition (June 2007) (referred below as "the Standard")
-// Chapter 10 and Annex A
+// This header files contains definitions for a bit stream encoder for an U3D data 
+// block as specified in Standard ECMA-363 (Universal 3D File Format), 4th edition 
+// (June 2007) (referred below as "the Standard")
 //
 // \file    U3D_ContextManager.cpp
 // \author  Axel Newe (axel.newe@fau.de)
@@ -10,7 +10,6 @@
 
 
 // Local includes
-#include "U3D_DataBlock.h"
 #include "U3D_ContextManager.h"
 
 

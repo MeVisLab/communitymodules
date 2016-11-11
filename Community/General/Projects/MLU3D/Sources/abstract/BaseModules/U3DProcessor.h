@@ -11,11 +11,11 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
 #include "U3DModule.h"
-#include "../shared/U3DInternalFormat/U3D_Object.h"
-#include "abstract/BaseModules/U3DGenerator.h"
-#include "abstract/BaseModules/U3DInspector.h"
+#include "U3DGenerator.h"
+#include "U3DInspector.h"
+#include "../../shared/U3DInternalFormat/U3D_Object.h"
 
 
 // Global includes
@@ -23,6 +23,21 @@
 
 
 ML_START_NAMESPACE
+
+enum UPDATE_MODES {
+  UPDATE_MODE_IGNORE = 0,
+  UPDATE_MODE_CLEAR,
+  UPDATE_MODE_UPDATE,
+
+  NUM_UPDATE_MODES
+};
+
+const char* const updateModeStrings[NUM_UPDATE_MODES] = {
+  "Ignore",
+  "Auto Clear",
+  "Auto Update",
+};
+
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -44,11 +59,24 @@ protected:
   //! U3D object input field.
   BaseField* _inU3DObjectFld;
 
+  //! Update mode field
+  EnumField   *_updateModeFld;
+
+  //! Apply fields
+  NotifyField *_applyFld;
+  BoolField   *_autoApplyFld;
+
+  // Reset output field
+  NotifyField *_resetFld;
+
 
   /* VARIABLES */
 
   //! A pointer to the output U3D object.
   mlU3D::U3DObjectPtr _inU3DObject;
+
+  //! a flag which stores if the input U3D object is valid
+  bool _inU3DValid;
 
 
   /* METHODS */
@@ -59,14 +87,18 @@ protected:
   //! Initialize module after loading.
   virtual void activateAttachments();
 
+  //! Execute module functionaylity.
+  virtual void process() = 0;
 
 private:
-
 
   /* VARIABLES */
 
 
   /* METHODS */
+
+  //! Copy all data from input U3D to output U3D.
+  void _initOutU3DFromInput();
 
 
   //! Implements interface for the runtime type system of the ML.

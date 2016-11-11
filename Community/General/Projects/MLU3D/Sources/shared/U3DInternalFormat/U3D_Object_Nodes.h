@@ -12,7 +12,7 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
 
 // Global includes
 #include <mlModuleIncludes.h>
@@ -50,7 +50,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from NodeBase.
+  //! Declares the smart pointer NodeBasePtr from NodeBase.
   ML_REFCOUNTED_PTR(NodeBase);
 
 
@@ -83,7 +83,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from ViewNode.
+  //! Declares the smart pointer ViewNodePtr from ViewNode.
   ML_REFCOUNTED_PTR(ViewNode);
 
   typedef std::vector<ViewNode> ViewNodeVector;
@@ -118,7 +118,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from GroupNode.
+  //! Declares the smart pointer GroupNodePtr from GroupNode.
   ML_REFCOUNTED_PTR(GroupNode);
 
   typedef std::vector<GroupNode> GroupNodeVector;
@@ -143,25 +143,8 @@ namespace mlU3D {
     std::string internalName;
     std::string groupPath;
     std::string shaderName;
-    std::string resourceName;
+    std::string geometryGeneratorName;
     MLuint32    visibility;
-
-    /*
-    U3DObjectType Type;
-    std::string   DisplayName;
-    std::string   InternalName;
-    std::string   GroupPath;
-    std::string   ShaderName;
-    std::string   MaterialName;
-    std::string   ResourceName;
-    Vector4       DiffuseColor;
-    Vector3       SpecularColor;
-    Vector3       AmbientColor;
-    Vector3       EmissiveColor;
-    bool          UseVertexColors;
-    MLuint32      Visibility;
-    */
-
 
   protected:
 
@@ -174,7 +157,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from ViewNode.
+  //! Declares the smart pointer ModelNodePtr from ViewNode.
   ML_REFCOUNTED_PTR(ModelNode);
 
   typedef std::vector<ModelNode> ModelNodeVector;
@@ -209,7 +192,7 @@ namespace mlU3D {
 
   };
 
-  //! Declares the smart pointer U3DObjectPtr from LightNode.
+  //! Declares the smart pointer LightNodePtr from LightNode.
   ML_REFCOUNTED_PTR(LightNode);
 
   typedef std::vector<LightNode> LightNodeVector;

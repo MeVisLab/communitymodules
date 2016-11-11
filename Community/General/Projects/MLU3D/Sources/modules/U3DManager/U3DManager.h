@@ -5,7 +5,7 @@
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-10-01
 //
-// Provides info about a U3D.
+// Provides manaqgement tools for a U3D.
 //----------------------------------------------------------------------------------
 
 
@@ -14,8 +14,8 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
-#include "abstract/BaseModules/U3DProcessor.h"
+#include "../../MLU3DSystem.h"
+#include "../../abstract/BaseModules/U3DProcessor.h"
 
 
 ML_START_NAMESPACE
@@ -42,6 +42,10 @@ protected:
 
   //! Handle field changes of the field \c field.
   virtual void handleNotification (Field* field);
+
+  //! Execute module functionaylity.
+  virtual void process();
+
 
 private:
 

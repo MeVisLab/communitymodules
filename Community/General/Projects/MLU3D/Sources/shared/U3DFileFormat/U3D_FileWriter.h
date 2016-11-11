@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-// This header file contains definitions for a class that writes a U3D file according to
-// Standard ECMA-363 (Universal 3D File Format), 4th edition (June 2007) (referred below as "the Standard")
-// 
+// This header files contains definitions for a bit stream encoder for an U3D data 
+// block as specified in Standard ECMA-363 (Universal 3D File Format), 4th edition 
+// (June 2007) (referred below as "the Standard")
 //
 // \file    U3D_FileWriter.h
 // \author  Axel Newe (axel.newe@fau.de)
@@ -13,12 +13,12 @@
 #define _U3D_FileWriter_H
 
 // Local includes  
-#include "MLU3D_Constants.h"
+#include "../MLU3D_Constants.h"
 #include "U3D_DataBlockWriter.h"
-#include "shared/U3DInternalFormat/U3D_Object_Nodes.h"
-#include "shared/U3DInternalFormat/U3D_Object_DataTypes.h"
-#include "shared/U3DInternalFormat/U3D_Object_Resources.h"
-#include "shared/U3DInternalFormat/U3D_Object_GeometryGenerators.h"
+#include "../U3DInternalFormat/U3D_Object_Nodes.h"
+#include "../U3DInternalFormat/U3D_Object_DataTypes.h"
+#include "../U3DInternalFormat/U3D_Object_Resources.h"
+#include "../U3DInternalFormat/U3D_Object_GeometryGenerators.h"
 
 
 ML_START_NAMESPACE
@@ -71,11 +71,9 @@ private:
   bool _writeBlockToFileStream(U3DDataBlockWriter& block, std::ofstream& ofstream);
   void _writeParentNodeData(U3DDataBlockWriter& dataBlock, const std::string& parentNodeName);
 
-  std::vector< U3DDataBlockWriter >   _dataBlocks;         // Contains all data blocks to be written into the file    
+  std::vector< U3DDataBlockWriter > _dataBlocks; // Contains all data blocks to be written into the file    
 
 };
-
-
 
 ML_END_NAMESPACE
 

@@ -11,7 +11,8 @@
 
 
 // Local includes
-#include "MLU3DSystem.h"
+#include "../../MLU3DSystem.h"
+
 
 // Global includes
 #include <mlModuleIncludes.h>
@@ -36,6 +37,8 @@ protected:
 
 
   /* FIELDS */
+
+  StringField* _networkPanelStatusFld;
 
   /* STATE VARIABLES */
 

@@ -7,6 +7,11 @@
 //----------------------------------------------------------------------------------
 
 Description {
+  Field defaultMaterialAlpha         { min = 0 max = 1 }
+  Field defaultMaterialReflectivity  { min = 0 max = 1 }
+  Field defaultLightIntensity        { min = 0 max = 1 }
+  
+  Field networkPanelStatus           { editable = No persistent = No }
 }
 
 
@@ -19,18 +24,75 @@ Commands {
 }
 
 
-NetworkPanel {
-}
-
-
 Window  {  
 
-  fixedHeight = 100
-  fixedWidth  = 300
-  
   Category { expandY = Yes
+    
+    Box "Default Meta Data" {
+      CheckBox addDefaultBoundingBoxMetaData {title = "Add default bounding box meta data when saving U3D to disk" }
+    }
 
-    Label { title = "Not yet implemented." alignX = Center alignY = Center }  
+    Box "Default Model Name Prefixes" { layout = Horizontal
+      Field modelPrefixPointClouds { title = "Default Prefix for Point Clouds:" validator = "[_a-zA-Z0-9]+" fixedWidth = 350 }
+      Separator { direction = Vertical }
+      Field modelPrefixLineSets    { title = "for Line Sets:" validator = "[_a-zA-Z0-9]+" fixedWidth = 250 }
+      Separator { direction = Vertical }
+      Field modelPrefixMeshes      { title = "for Meshes:" validator = "[_a-zA-Z0-9]+" fixedWidth = 250 }
+      Empty { expandX = Yes }
+    }
+    
+    Box "Default Material Settings" { layout = Vertical
+      expandY = No
+      alignY  = Top
+            
+      Grid {
+        Field defaultMaterialName          { x = 0 y = 0 x2 = 2 fixedWidth = 500 alignGroupX = 1 }
+        Field defaultMaterialDiffuseColor  { x = 0 y = 1        fixedWidth = 300 alignGroupX = 1 title = "Default Material Color:" }
+        Horizontal {                         x = 1 y = 1        fixedWidth = 200 
+          Field defaultMaterialAlpha { title = "Alpha:" slider = On }
+        }
+        Empty                              { x = 2 y = 1        fixedWidth = 20 }
+        Field defaultMaterialReflectivity  { x = 3 y = 1        fixedWidth = 250 alignX = Left   title = "Reflectivity:" slider = On }
+        Field defaultMaterialSpecularColor { x = 0 y = 2 }
+        Field defaultMaterialEmissiveColor { x = 0 y = 3 }
+        Field defaultMaterialAmbientColor  { x = 0 y = 4 }
+        Empty { x = 3 y = 0 expandX = Yes }
+      }
+
+    }  // Box 
+        
+    Box "Default Light Settings" { layout = Vertical
+      expandY = No
+      alignY  = Top
+            
+      CheckBox addDefaultLightNode { title = "Add default Light Node" }
+      
+      Grid { dependsOn = addDefaultLightNode
+        Field defaultLightName       { x = 0 y = 1 x2 = 2 fixedWidth = 500 alignGroupX = 1 validator = "[_a-zA-Z0-9]+" }
+        Field defaultLightColor      { x = 0 y = 2        fixedWidth = 300 title = "Default Light Color:" }
+        Horizontal {                   x = 1 y = 2        fixedWidth = 200 
+          Field defaultLightIntensity  { title = "Intensity:" slider = On } // For some weird reason, the Horizontal is needed to set the layout correctly... :-/
+        }
+        Empty                        { x = 2 y = 2 expandX = Yes }
+      }
+
+    }  // Box 
+
+    Box "Default View Settings" { layout = Vertical
+      expandY = No
+      alignY  = Top
+
+      CheckBox addDefaultViewNode { title = "Add default View Node" }
+      
+      Grid { dependsOn = addDefaultViewNode
+        Field defaultViewName       { x = 0 y = 1 fixedWidth = 500 alignGroupX = 1 validator = "[_a-zA-Z0-9]+" }
+        Empty                       { x = 1 y = 1 expandX = Yes }
+      }
+
+    }  // Box   
+    
+    Button initialize { expandX = Yes title = "(Re-)Initialize" }
+    
     
   }  // Category
 

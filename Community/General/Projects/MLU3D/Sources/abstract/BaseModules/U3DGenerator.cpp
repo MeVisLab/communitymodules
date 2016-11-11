@@ -27,7 +27,6 @@ U3DGenerator::U3DGenerator(int numInImages, int numOutImages) : U3DModule(numInI
   (_outU3DObjectFld = addBase("outU3DObject"))->setBaseValueAndAddAllowedType(_outU3DObject);
 
 
-
   handleNotificationOn();
 }
 

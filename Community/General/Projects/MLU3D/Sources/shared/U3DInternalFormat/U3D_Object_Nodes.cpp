@@ -105,12 +105,12 @@ namespace mlU3D {
 
   ModelNode::ModelNode() : NodeBase()
   {
-    displayName  = "";
-    internalName = "";
-    groupPath    = "";
-    shaderName   = "";
-    resourceName = "";
-    visibility   = 0;
+    displayName           = "";
+    internalName          = "";
+    groupPath             = "";
+    shaderName            = "";
+    geometryGeneratorName = "";
+    visibility            = 0;
   }
 
   //----------------------------------------------------------------------------------

@@ -1,0 +1,31 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module BaseBypass {
+  internal  {
+    frame = "513 493 128 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = GateInU3D
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module U3DInfo {
+  internal  {
+    frame = "537 309 80 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = U3DInfo
+    networkPanelStatus = Idle.
+  }
+}
+connections  {
+  U3DInfo.inU3DObject = GateInU3D.baseOut0
+}
+networkModel = ""
