@@ -167,7 +167,7 @@ Commands {
 
 Window Viewer {
   name = mainWindow
-  style nSyncViewerPrivate_default { derive = BIGRStyle }
+
   EventFilter {
     filter = KeyPress
     control = mainWindow
@@ -182,10 +182,11 @@ Window Viewer {
     name = viewerPanel
     //w = 800
     //h = 400
-    frameMargin = 0
+    //frameMargin = 0
+    expandY = True
     style {
-      Prototype Label { expandY = No    }
-      Prototype Viewer { border = No popup = No  }
+      Prototype Label  { expandY = No }
+      Prototype Viewer { popup = No }
       Prototype Table  { spacing = 0 margin = 0 }
     }
     DynamicFrame { name = ViewerFrame autoSize = Yes }
@@ -268,12 +269,4 @@ Window Settings {
     }*/
   }  
 }
-
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBAKyWeOZdMOT9Sj40ZS32A8i8GAjHkcHh3QT05EJBoHkqE3S0/FOcZM6SFkMLVcjiDmzBdoc9REZUIl5061137BkCARE=:mbUARszcrJxTM2e3H2YskVHojl15mYg4OBjlYsSeJfjTYEVwkgvJJ0eFJB4r7/u64QtiMUxLsor5/MgAGO4iCA==
-//# owner: MeVis Internal Developer
-//# date: 2007-07-05T03:39:16
-//# hash: NZnpFvlIWb2UTMKyWzOuJEZzoHM/s9TlAdYpIMv062KgFHHoXp8DNyyPGqjQINHxx+W07/BC6aUcPMYZinaBFw==
-//# MeVis end
 
