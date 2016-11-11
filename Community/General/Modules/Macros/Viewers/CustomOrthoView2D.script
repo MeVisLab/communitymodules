@@ -73,17 +73,17 @@ e.g. for diagram overlays"
     Field snapToCenter        { internalName = view.snapToCenter        }
     Field alternCubeLayout    { internalName = view.alternCubeLayout    }
     Field timePoint           { internalName = view.timePoint           }
-    
+
     Field borderOn            { internalName = ext.borderOn             }
     Field borderColor         { internalName = ext.borderColor          }
     Field greyWidth           { internalName = ext.lutGreyWidth         }
     Field greyCenter          { internalName = ext.lutGreyCenter        }
-    Field annotationOn        { internalName = ShowAnnotations.on         }
-    Field annotationSizeMode  { internalName = Annotations.showAnnotation       }
-    Field annotationFontSize  { internalName = Annotations.annotationFontSize        }
+    Field annotationOn        { internalName = ShowAnnotations.on       }
+    Field annotationSizeMode  { internalName = Annotations.showAnnotation }
+    Field annotationFontSize  { internalName = Annotations.annotationFontSize }
     Field valueHighPrecision  { internalName = ext.valueHighPrecision   }
     Field annoCoords          { internalName = ext.annoCoords           }
-    
+
     Field unzoom              { internalName = view.unzoom              }
     Field showCurrentPos      { internalName = pos.drawingOn            }
     Field worldPosition       { internalName = pos.worldPosition        }
@@ -92,7 +92,7 @@ e.g. for diagram overlays"
 } // Interface
 
 Commands {
-  source = $(LOCAL)/CustomOrthoView2D.js
+  source = $(LOCAL)/CustomOrthoView2D.py
 
   FieldListener inventorInputOn {
     init = yes
@@ -116,7 +116,6 @@ Window "Viewer" {
     expandX = yes
     expandY = yes
     Viewer self {
-      border = No
       type   = SoRenderArea
       clone  = no
     } // viewer
@@ -147,10 +146,9 @@ Window "Settings" {
       } // horizontal
     } // box synchronizing
     Box "Position" {
-      Field worldPosition     { title = "Pos.:"  }      
+      Field worldPosition     { title = "Pos.:" }
       CheckBox showCurrentPos { title = "Show"  }
       Field timePoint         { title = "Time Point:" step = 1 }
-      
     } // box position
   } // category main
 
@@ -179,13 +177,6 @@ Window "Settings" {
       CheckBox coloredMode         { title = "Colored Mode"           }
       CheckBox valueHighPrecision  { title = "Display value with high precision" }
     } // box misc
-       
+
   } // category misc
 } // window settings
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBANEfsmYse2e1dRhkQ9AQbreCq9uxwzWLoGom13MNYmyfwoJqQOEXljLFAgw2eEjaT12G4CdqKWhRxh9ANP6n7GMCARE=:VI/mB8bT4u+mRtf/ru8yUQi8BzpaS3UeL2x62YxsUYnVqCWuLrVNLiukIIjnJMKQXlc8ezmgOIcVAV7pgvgKpQ==
-//# owner: MeVis
-//# date: 2010-06-22T21:02:14
-//# hash: kWgS+arVfhVsbcvyKgWj3kQhJrkM7w2Mq4g1h23eNg0Q4n7GAu0GIZHS6btBpzO1SRWzY+fGRHfVNiSWaZv90A==
-//# MeVis end
