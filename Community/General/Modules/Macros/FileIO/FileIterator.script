@@ -114,7 +114,6 @@ Commands {
 }
 
 Window {
-  style FileIterator_General { derive = BIGRStyle }
   name = mainWindow
   tooltip = "By pressing Ctrl-D you get the full interface to all the underlaying modules"
   Vertical Iterate {
@@ -469,11 +468,3 @@ Window Debug {
   }
   
 }
-
-
-//# MeVis signature v1
-//# key: MFowDQYJKoZIhvcNAQEBBQADSQAwRgJBALMoAKeDufSkjPLfaCUd7Ij4IgEsndoDH9mP+jpEXKnAczgkSCgtNyNEMyiLur8xV1zEN7f71aeTOVWVntbzpucCARE=:lD+X/cPXp4xBkg/BH8EhyVWLOXzUCvL/ccrRKrYcyKMt2wR4QiXj1OCsqQukghRS1dwd5fRaB39vHgPZUYpdyA==
-//# owner: EMC
-//# date: 2010-03-02T15:45:26
-//# hash: AjNnlaLECriO9N+6KUWXSpSd3Zumzkz+0GuZrH5v9At2vtI3GMwGF4Fo21O0zzE7zIbQD0/hEIh+B17bHmUlbw==
-//# MeVis end
