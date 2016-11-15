@@ -331,6 +331,105 @@ void U3DMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(FiberS
 
 //***********************************************************************************
 
+// Fill ax XMarkerList from point set generators
+void U3DMarkerListTools::fillXMarkerListFromPointSetGenerators(XMarkerList& outXMarkerList, const PointSetGeneratorVector& pointSetGenerators)
+{
+  outXMarkerList.clearList();
+  outXMarkerList.selectItemAt(-1);
+
+  MLint numPointSetGenerators = (MLint)pointSetGenerators.size();
+
+
+  for (MLint g = 0; g < numPointSetGenerators; g++)
+  {
+    PointSetGenerator thisPointSetGenerator = pointSetGenerators[g];
+
+    const int numPoints = (int)thisPointSetGenerator.positions.size();
+
+    for (int p = 0; p < numPoints; p++)
+    {
+      ml::XMarker thisPoint(thisPointSetGenerator.positions[p].position);
+      thisPoint.setId(g);
+      thisPoint.setName(thisPointSetGenerator.resourceName.c_str());
+
+      outXMarkerList.appendItem(thisPoint);
+    }
+  }  
+}
+
+//***********************************************************************************
+
+void U3DMarkerListTools::fillFiberSetContainerFromLineSetGenerators(ml::FiberSetContainer& outFiberSetContainer, const LineSetGeneratorVector& lineSetGenerators)
+{
+  outFiberSetContainer.deleteAllFiberSets();
+  
+  MLint numLineSetGenerators = (MLint)lineSetGenerators.size();
+
+  for (MLint g = 0; g < numLineSetGenerators; g++)
+  {
+    LineSetGenerator thisLineSetGenerator = lineSetGenerators[g];
+
+    MLint positionsSize = (MLint)thisLineSetGenerator.positions.size();
+
+    FiberSetContainer::FiberSet* newFiberSet = outFiberSetContainer.createFiberSet();
+    newFiberSet->setColor(Vector3(0));
+    newFiberSet->setLabel(thisLineSetGenerator.resourceName);
+
+    for (LinesVector::const_iterator linesIterator = thisLineSetGenerator.lines.cbegin(); linesIterator != thisLineSetGenerator.lines.cend(); ++linesIterator)
+    {
+      LineStruct thisLine = *linesIterator;
+
+      MLint startIndex = thisLine.startIndex;
+      MLint endIndex = thisLine.endIndex;
+
+      if ((startIndex < positionsSize) && (endIndex < positionsSize))
+      {
+        XMarker startMarker(thisLineSetGenerator.positions[startIndex].position);
+        XMarker endMarker(thisLineSetGenerator.positions[endIndex].position);
+
+        FiberSetContainer::FiberSet::Fiber* newFiber = newFiberSet->createFiber();
+
+        FiberSetContainer::FiberSet::Fiber::FiberPoint startPoint;
+        startPoint.setCoordinates(startMarker.x(), startMarker.y(), startMarker.z());
+        FiberSetContainer::FiberSet::Fiber::FiberPoint endPoint;
+        endPoint.setCoordinates(endMarker.x(), endMarker.y(), endMarker.z());
+
+        newFiber->appendPoint(startPoint);
+        newFiber->appendPoint(endPoint);
+        newFiber->setLabel((float)g);
+      }
+
+    }
+
+  }
+
+}
+
+//***********************************************************************************
+
+// Fill ax XMarkerList from point set generators
+void U3DMarkerListTools::fillWEMFromMeshGenerators(WEM* outWEM, const CLODMeshGeneratorVector& meshGenerators)
+{
+  outWEM->clear();
+
+  MLint numMeshGenerators = (MLint)meshGenerators.size();
+
+
+  for (MLint g = 0; g < numMeshGenerators; g++)
+  {
+    CLODMeshGenerator thisMeshGenerator = meshGenerators[g];
+
+    WEMTrianglePatch*  thisMeshGeneratorWEMPatch = thisMeshGenerator.getMeshData();
+    WEMTrianglePatch* copiedPatch = outWEM->addWEMPatchCopy(thisMeshGeneratorWEMPatch);
+    copiedPatch->setLabel(thisMeshGenerator.resourceName);
+    copiedPatch->setId(g);
+    copiedPatch->computeBoundingBox();
+  }
+
+}
+
+//***********************************************************************************
+
 } // end namespace mlU3D
 
 ML_END_NAMESPACE

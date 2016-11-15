@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------
-// U3DInfo module.
+// U3DGeometryToWEM module.
 //
-// \file    U3DInfo.h
+// \file    U3DGeometryToWEM.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-10-01
 //
@@ -9,8 +9,8 @@
 //----------------------------------------------------------------------------------
 
 
-#ifndef _U3DInfo_H
-#define _U3DInfo_H
+#ifndef _U3DGeometryToWEM_H
+#define _U3DGeometryToWEM_H
 
 
 // Local includes
@@ -22,20 +22,20 @@ ML_START_NAMESPACE
 
 //////////////////////////////////////////////////////////////////////////
 //! Creates U3D file from WEMs, Linesets and XMarkers
-class MLU3D_EXPORT U3DInfo : public U3DInspector
+class MLU3D_EXPORT U3DGeometryToWEM : public U3DInspector
 {
   //! Implements interface for the runtime type system of the ML.
-  ML_MODULE_CLASS_HEADER(U3DInfo)
+  ML_MODULE_CLASS_HEADER(U3DGeometryToWEM)
 
 public:
 
   //! Constructor.
-  U3DInfo();
+  U3DGeometryToWEM();
 
 protected:
 
   //! Destructor.
-  virtual ~U3DInfo();
+  virtual ~U3DGeometryToWEM();
 
   //! Initialize module after loading.
   virtual void activateAttachments();
@@ -50,27 +50,15 @@ private:
 
   /* FIELDS */
 
-  IntField   *_numMetaDataEntriesFld;
-  BoolField  *_defaultBoundingBoxMetaDataFld;
+  BaseField  *_outMeshWEMFld;
 
-  IntField   *_numViewNodesFld;
-  IntField   *_numGroupNodesFld;
-  IntField   *_numModelNodesFld;
-  IntField   *_numLightNodesFld;
+  /* VARIABLES */
 
-  IntField   *_numPointSetsFld;
-  IntField   *_numLineSetsFld;
-  IntField   *_numMeshesFld;
+  //! The WEM used for visualizing the meshes
+  WEM*              _outWEM;
 
-  IntField   *_numLightResourcesFld;
-  IntField   *_numViewResourcesFld;
-  IntField   *_numShadersFld;
-  IntField   *_numMaterialResourcesFld;
-  IntField   *_numTextureResourcesFld;
-  IntField   *_numMotionResourcesFld;
 
   /* METHODS */
-
 
 
 //////////////////////////////////////////////
@@ -80,4 +68,4 @@ private:
 
 ML_END_NAMESPACE
 
-#endif // _U3DInfo_H
+#endif // _U3DGeometryToWEM_H

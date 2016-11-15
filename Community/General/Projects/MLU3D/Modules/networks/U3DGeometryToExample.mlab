@@ -1,0 +1,633 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module SoFiberVis {
+  internal  {
+    frame = "673 -351 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "967 409 383 488"
+        sizeHint = "383 488"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "818 152 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LinesRenderer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    generalColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    drawLines = TRUE
+    drawSpheres = FALSE
+    optimizePoints = FALSE
+    angleThreshold = 0.99900001
+    sphereRadius = 1
+    computeFiberSet = FALSE
+    alphaValue = 1
+    minFibernessValue = 0
+    colorMode = COLOR_GENERAL
+    enableLighting = FALSE
+    ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
+    diffuse = "1 1 1"
+    specular = "1 1 1"
+    shininess = 1
+    allowClip = TRUE
+  }
+}
+module SoGroup {
+  internal  {
+    frame = "673 -627 128 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoGroup
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "669 -739 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "904 284 400 400"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+      window _automatic {
+        geometry = "158 266 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = DELAYED_BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = TRUE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 15
+    frameRateAvi = 7
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_LOW_COMPLEXITY
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539801
+    position = "3.33471822738647 -8.16977405548096 4.89051580429077"
+    orientation = "0.900135397911072 0.0371415168046951 0.434023916721344 1.14661014080048"
+    nearDistance = 8.2388601
+    farDistance = 11.933349
+    focalDistance = 9.5371323
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    recordRotation = TRUE
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "389 -343 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "495 499 542 340"
+        sizeHint = "542 340"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = PointsRenderer
+    interactionProviderID = ""
+    scaleSize = 1
+    scaleLength = 1
+    color = "0.792156994342804 0.792156994342804 0.792156994342804"
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = FALSE
+    selectingOn = FALSE
+    deleteOnClick = FALSE
+    addOnClick = FALSE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = FALSE
+    textBackgroundColor = "1 1 1"
+    textBackgroundAlpha = 0
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModePoints
+    geometryComplexity = LOW
+    numMarkersThresholdForFastRendering = 5000
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = "PointSetGeometry 001"
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-2 -1 -1"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "673 -479 128 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "727 507 241 94"
+        sizeHint = "241 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleLines
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "385 -479 128 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "727 507 241 94"
+        sizeHint = "241 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TogglePoints
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoBypass {
+  internal  {
+    frame = "857 -479 144 64"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "727 507 241 94"
+        sizeHint = "241 94"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = ToggleMeshes
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "865 -351 128 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "778 442 443 500"
+        sizeHint = "443 500"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MeshRenderer
+    interactionProviderID = ""
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
+    useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = FALSE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = FALSE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = FALSE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    primitiveValueLists = LUT
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 1
+    sendAdjacency = FALSE
+    selectedTab = 0
+  }
+}
+module SoWEMRendererEdges {
+  internal  {
+    frame = "873 -235 160 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "610 481 252 205"
+        sizeHint = "237 205"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRendererEdges
+    enableRendering = TRUE
+    colorMode = WEM_COLOR_GENERAL
+    globalAlpha = 1
+    generalColor = "1 1 1"
+    generalAlpha = 1
+    availablePVLs = ""
+    selectedPVL = ""
+    lineWidth = 1
+    normalOffset = 0.001
+  }
+}
+module U3DGeometryToWEM {
+  internal  {
+    frame = "837 -147 152 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = U3DGeometryToWEM
+    networkPanelStatus = "Extracted 2 meshes."
+  }
+}
+module U3DGeometryToFiberSet {
+  internal  {
+    frame = "629 -147 168 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = U3DGeometryToFiberSet
+    networkPanelStatus = "Extracted 0 line sets."
+  }
+}
+module U3DGeometryToXMarkerList {
+  internal  {
+    frame = "393 -147 192 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "792 540 116 28"
+        sizeHint = "110 28"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DGeometryToXMarkerList
+    networkPanelStatus = "Extracted 2 point sets."
+  }
+}
+module WEMMerge {
+  internal  {
+    frame = "641 149 144 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = WEMMerge
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    workDirectlyOnInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    triangulationMode = Strip
+  }
+}
+module WEMInitialize {
+  internal  {
+    frame = "433 297 128 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "773 353 312 361"
+        sizeHint = "278 361"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMIcosahedron
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = TRUE
+    label = Icosahedron
+    description = ""
+    shouldComputeNormals = TRUE
+    initialPosition = "1 0 0"
+    initialDeformation = "1 1 1"
+    initModel = Icosahedron
+    sphereSubdivisionLevel = 4
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    generatePrimitiveValueLists = FALSE
+  }
+}
+module WEMInitialize {
+  internal  {
+    frame = "309 297 104 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "656 294 312 361"
+        sizeHint = "278 361"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMSphere
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = TRUE
+    label = Sphere
+    description = ""
+    shouldComputeNormals = TRUE
+    initialPosition = "-1 0 0"
+    initialDeformation = "1 1 1"
+    initModel = Icosphere
+    sphereSubdivisionLevel = 4
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    generatePrimitiveValueLists = FALSE
+  }
+}
+module U3DAddModelFromMarkerList {
+  internal  {
+    frame = "595 301 224 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "885 594 673 340"
+        sizeHint = "673 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddModelFromMarkerList
+    updateMode = "Auto Update"
+    autoApply = TRUE
+    simpleModePointSet = FALSE
+    pointCloudSpecification = "<PointSet>
+<PositionTypes>1</PositionTypes>
+<ObjectName>Sphere Corners</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>
+</PointSet>
+
+<PointSet>
+<PositionTypes>2</PositionTypes>
+<ObjectName>Icosahedron Corners</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>
+</PointSet>"
+  }
+}
+module U3DAddModelFromWEM {
+  internal  {
+    frame = "607 29 200 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "935 188 584 464"
+        sizeHint = "584 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddModelFromWEM
+    updateMode = "Auto Update"
+    autoApply = TRUE
+    simpleModeMesh = FALSE
+    meshSpecification = "<Mesh>
+<WEMLabel>Sphere</WEMLabel>
+<ObjectName>Sphere Mesh (red)</ObjectName>
+<GroupPath>/Test Model/Transparent Meshes/</GroupPath>
+<Color>1.000 0.000 0.000 0.2</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+<ModelVisibility>3</ModelVisibility>
+</Mesh>
+
+<Mesh>
+<WEMLabel>Sphere</WEMLabel>
+<ObjectName>Sphere Mesh green</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>0.000 1.000 0.000</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+<ModelVisibility>3</ModelVisibility>
+</Mesh>
+
+<Mesh>
+<WEMLabel>Icosahedron</WEMLabel>
+<ObjectName>Icosahedron Mesh</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>0.000 0.000 1.000</Color>
+<ModelVisibility>3</ModelVisibility>
+</Mesh>"
+  }
+}
+module U3DInit {
+  internal  {
+    frame = "661 525 72 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "401 281 892 546"
+        sizeHint = "892 546"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DInit
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    defaultViewName = DefaultView
+    defaultLightName = DefaultAmbientLight
+    defaultMaterialName = DefaultMaterial
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialAmbientColor = "0 0 0"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAlpha = 1
+    defaultMaterialReflectivity = 0.5
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    addDefaultBoundingBoxMetaData = TRUE
+    addDefaultViewNode = TRUE
+    addDefaultLightNode = TRUE
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "645 417 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 81 681 566"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CornerPositionsList
+    listString = "[(-2 -1 -1) 1 #1,(-2 -1 1) 1 #2,(-2 1 -1) 1 #3,(-2 1 1) 1 #4,(0 -1 -1) 1 #5,(0 -1 1) 1 #6,(0 1 -1) 1 #7,(0 1 1) 1 #8,(0.190983 -0.809017 -0.809017) 2 #9,(0.190983 -0.809017 0.809017) 2 #10,(0.190983 0.809017 -0.809017) 2 #11,(0.190983 0.809017 0.809017) 2 #12, (1.80902 -0.809017 -0.809017) 2 #13,(1.80902 -0.809017 0.809017) 2 #14,(1.80902 0.809017 -0.809017) 2 #15,(1.80902 0.809017 0.809017) 2 #15]"
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-2 -1 -1"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+connections  {
+  LinesRenderer.inFiberSetFld = U3DGeometryToFiberSet.outLineSetFibers
+  SoGroup.children = "TogglePoints.self ToggleLines.self ToggleMeshes.self"
+  SoExaminerViewer.children = SoGroup.self
+  PointsRenderer.inXMarkerList = U3DGeometryToXMarkerList.outPointSetXMarkers
+  ToggleLines.child = LinesRenderer.self
+  TogglePoints.child = PointsRenderer.self
+  ToggleMeshes.child = MeshRenderer.self
+  MeshRenderer.inWEM = U3DGeometryToWEM.outMeshWEM
+  MeshRenderer.inExtensions = SoWEMRendererEdges.self
+  U3DGeometryToWEM.inU3DObject = U3DAddModelFromWEM.outU3DObject
+  U3DGeometryToFiberSet.inU3DObject = U3DAddModelFromWEM.outU3DObject
+  U3DGeometryToXMarkerList.inU3DObject = U3DAddModelFromWEM.outU3DObject
+  WEMMerge.inWEM = WEMSphere.outWEM
+  WEMMerge.inWEM1 = WEMIcosahedron.outWEM
+  U3DAddModelFromMarkerList.inU3DObject = U3DInit.outU3DObject
+  U3DAddModelFromMarkerList.inPositions = CornerPositionsList.outXMarkerList
+  U3DAddModelFromWEM.inU3DObject = U3DAddModelFromMarkerList.outU3DObject
+  U3DAddModelFromWEM.inWEM = WEMMerge.outWEM
+}
+networkModel = ""

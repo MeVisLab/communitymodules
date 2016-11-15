@@ -1,0 +1,42 @@
+//----------------------------------------------------------------------------------
+// ML module U3DGeometryToFiberSet definition
+//
+// \file    U3DGeometryToFiberSet.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+  Field inputValid                 { editable = No persistent = No }
+  Field apply                      { editable = No persistent = No }
+  Field autoApply                  { editable = No persistent = No }
+}
+
+
+Interface {
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DGeometryToFiberSet.py
+}
+
+
+NetworkPanel {
+  info = networkPanelStatus  
+}
+
+
+Window  {  
+
+  Category { expandY = No
+    
+    Field inputValid {}
+    
+    //Separator {}
+    
+    //Button update {}
+    
+  }  // Category
+
+}

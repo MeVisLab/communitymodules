@@ -14,8 +14,8 @@
 
 
 // Local includes
-#include "../../../MLU3DSystem.h"
-#include "../../../abstract/BaseModules/U3DProcessor.h"
+#include "../../MLU3DSystem.h"
+#include "../../abstract/BaseModules/U3DProcessor.h"
 
 // Project includes
 #include <ColoredMarkerList.h>

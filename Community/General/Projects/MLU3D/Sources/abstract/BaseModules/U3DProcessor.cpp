@@ -22,7 +22,7 @@ U3DProcessor::U3DProcessor(int numInImages, int numOutImages) : U3DGenerator(num
   handleNotificationOff();
 
   // Add input fields and set allowed types.
-  (_inU3DObjectFld = addBase("_inU3DObject"))->setBaseValueAndAddAllowedType(_inU3DObject);
+  (_inU3DObjectFld = addBase("inU3DObject"))->setBaseValueAndAddAllowedType(_inU3DObject);
 
   (_updateModeFld = addEnum("updateMode", updateModeStrings, NUM_UPDATE_MODES))->setEnumValue(UPDATE_MODE_UPDATE);
 

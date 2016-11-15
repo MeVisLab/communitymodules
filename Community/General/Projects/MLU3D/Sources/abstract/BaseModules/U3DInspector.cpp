@@ -24,6 +24,9 @@ U3DInspector::U3DInspector(int numInImages, int numOutImages) : U3DModule(numInI
   // Add input fields and set allowed types.
   (_inU3DObjectFld = addBase("inU3DObject"))->setBaseValueAndAddAllowedType(_inU3DObject);
 
+  // Add and initialize parameter fields
+  (_inputValidFld = addBool("inputValid"))->setBoolValue(false);
+
   _applyFld      = addNotify("apply");
   (_autoApplyFld = addBool("autoApply"))->setBoolValue(false);
 
@@ -74,6 +77,7 @@ void U3DInspector::handleNotification(Field* field)
     }
 
     _inU3DValid = (_inU3DObject != NULL);
+    _inputValidFld->setBoolValue(_inU3DValid);
 
     if (_autoApplyFld->getBoolValue())
     {

@@ -41,6 +41,8 @@ protected:
   //! U3D object input field.
   BaseField* _inU3DObjectFld;
 
+  BoolField  *_inputValidFld;
+
   NotifyField *_applyFld;
   BoolField   *_autoApplyFld;
 

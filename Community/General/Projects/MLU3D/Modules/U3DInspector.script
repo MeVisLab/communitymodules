@@ -14,6 +14,9 @@ Interface {
   Inputs {
     Field inU3DObject { internalName = GateInU3D.baseIn0 }
   }
+  Parameters {
+    Field showDetail { type = Bool value = No }
+  }
 }
 
 
@@ -22,10 +25,45 @@ Commands {
 }
 
 
-Window  {  
-
-  Panel {
-    module = U3DInfo
-  }
+Window  {
   
+  Category { expandX = Yes expandY = yes
+    
+    Horizontal { expandX = Yes expandY = yes
+      
+      Viewer SoExaminerViewer.self {
+        viewing         = Yes
+        backgroundColor = black
+        clone           = Yes
+        expandX = Yes
+      }
+
+      Vertical { expandX = No alignY = top
+        ToolButton showDetail {
+          normalOnImage  = $(LOCAL)/Icons/detailOn.png
+          normalOffImage = $(LOCAL)/Icons/detailOff.png
+          tooltip        = "Show/hide details"
+          autoRaise      = yes
+        }
+      
+        Panel {
+          module     = U3DInfo
+          fixedWidth = 270
+          visibleOn = showDetail
+        }
+        
+      } // Vertical
+      
+    } // Horizontal
+    
+    Horizontal { 
+      Label { title = "Show:" alignX = Left }
+      Empty { fixedWidth = 5 alignX = Left }
+      CheckBox TogglePoints.bypass { title = "Point Sets" alignX = Left }
+      CheckBox ToggleLines.bypass  { title = "Line Sets" alignX = Left } // Need a SoBypass here because otherwise, the node points would be rendered!
+      CheckBox ToggleMeshes.bypass { title = "Meshes" alignX = Left }
+      Empty { expandX = Yes }
+    }
+    
+  } // Category
 }

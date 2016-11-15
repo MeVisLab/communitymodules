@@ -30,8 +30,6 @@ U3DInfo::U3DInfo() : U3DInspector()
   handleNotificationOff();
 
   // Add and initialize parameter fields
-  (_inputValidFld = addBool("inputValid"))->setBoolValue(false);
-
   (_numMetaDataEntriesFld         = addInt("numMetaDataEntries"))         ->setIntValue(0);
   (_defaultBoundingBoxMetaDataFld = addBool("defaultBoundingBoxMetaData"))->setBoolValue(false);
 
@@ -98,8 +96,6 @@ void U3DInfo::process()
 {
   if (_inU3DValid)
   {
-    _inputValidFld->setBoolValue(true);
-
     _numMetaDataEntriesFld         ->setIntValue(_inU3DObject->metaData.size());
     _defaultBoundingBoxMetaDataFld ->setBoolValue(_inU3DObject->defaultValues.addDefaultBoundingBoxMetaData);
 
@@ -121,8 +117,6 @@ void U3DInfo::process()
   }
   else
   {
-    _inputValidFld->setBoolValue(false);
-
     _numMetaDataEntriesFld         ->setIntValue(0);
     _defaultBoundingBoxMetaDataFld ->setBoolValue(false);
 

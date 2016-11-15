@@ -1,0 +1,394 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module U3DInfo {
+  internal  {
+    frame = "529 -246 80 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "1021 241 275 531"
+        sizeHint = "248 531"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DInfo
+    networkPanelStatus = Idle.
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "1185 209 208 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 81 681 566"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = BoundingBoxCornerPositionsList
+    listString = "[(-2 -1 -1) 1 #1,(-2 -1 1) 1 #2,(-2 1 -1) 1 #3,(-2 1 1) 1 #4,(0 -1 -1) 1 #5,(0 -1 1) 1 #6,(0 1 -1) 1 #7,(0 1 1) 1 #8,(0.190983 -0.809017 -0.809017) 2 #9,(0.190983 -0.809017 0.809017) 2 #10,(0.190983 0.809017 -0.809017) 2 #11,(0.190983 0.809017 0.809017) 2 #12, (1.80902 -0.809017 -0.809017) 2 #13,(1.80902 -0.809017 0.809017) 2 #14,(1.80902 0.809017 -0.809017) 2 #15,(1.80902 0.809017 0.809017) 2 #15]"
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-2 -1 -1"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module BaseBypass {
+  internal  {
+    frame = "643 -130 128 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = BaseBypass
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module WEMMerge {
+  internal  {
+    frame = "641 149 144 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = WEMMerge
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    workDirectlyOnInputWEMs = FALSE
+    listenToFinishNotifications = TRUE
+    listenToRepaintNotifications = TRUE
+    listenToSelectionChangedNotifications = TRUE
+    triangulationMode = Strip
+  }
+}
+module WEMInitialize {
+  internal  {
+    frame = "433 297 128 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "773 353 312 361"
+        sizeHint = "278 361"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMIcosahedron
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = TRUE
+    label = Icosahedron
+    description = ""
+    shouldComputeNormals = TRUE
+    initialPosition = "1 0 0"
+    initialDeformation = "1 1 1"
+    initModel = Icosahedron
+    sphereSubdivisionLevel = 4
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    generatePrimitiveValueLists = FALSE
+  }
+}
+module WEMInitialize {
+  internal  {
+    frame = "309 297 104 80"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "656 294 312 361"
+        sizeHint = "278 361"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMSphere
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = TRUE
+    label = Sphere
+    description = ""
+    shouldComputeNormals = TRUE
+    initialPosition = "-1 0 0"
+    initialDeformation = "1 1 1"
+    initModel = Icosphere
+    sphereSubdivisionLevel = 4
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    generatePrimitiveValueLists = FALSE
+  }
+}
+module U3DAddModelFromMarkerList {
+  internal  {
+    frame = "595 301 224 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "885 594 673 340"
+        sizeHint = "673 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddModelFromMarkerList
+    updateMode = "Auto Update"
+    autoApply = TRUE
+    simpleModePointSet = FALSE
+    pointCloudSpecification = "<PointSet>
+<PositionTypes>1</PositionTypes>
+<ObjectName>Sphere Corners</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>
+</PointSet>
+
+<PointSet>
+<PositionTypes>2</PositionTypes>
+<ObjectName>Icosahedron Corners</ObjectName>
+<GroupPath>/Test Model/Primitives/Point Sets/</GroupPath>
+<ModelVisibility>3</ModelVisibility>
+</PointSet>"
+  }
+}
+module U3DAddModelFromWEM {
+  internal  {
+    frame = "607 29 200 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "935 188 584 464"
+        sizeHint = "584 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddModelFromWEM
+    updateMode = "Auto Update"
+    autoApply = TRUE
+    simpleModeMesh = FALSE
+    meshSpecification = "<Mesh>
+<WEMLabel>Sphere</WEMLabel>
+<ObjectName>Sphere Mesh (red)</ObjectName>
+<GroupPath>/Test Model/Transparent Meshes/</GroupPath>
+<Color>1.000 0.000 0.000 0.2</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+<ModelVisibility>3</ModelVisibility>
+</Mesh>
+
+<Mesh>
+<WEMLabel>Sphere</WEMLabel>
+<ObjectName>Sphere Mesh green</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>0.000 1.000 0.000</Color>
+<SpecularColor>1.000 1.000 0.000</SpecularColor>
+<ModelVisibility>3</ModelVisibility>
+</Mesh>
+
+<Mesh>
+<WEMLabel>Icosahedron</WEMLabel>
+<ObjectName>Icosahedron Mesh</ObjectName>
+<GroupPath>/Test Model/Meshes/</GroupPath>
+<Color>0.000 0.000 1.000</Color>
+<ModelVisibility>3</ModelVisibility>
+</Mesh>"
+  }
+}
+module U3DInit {
+  internal  {
+    frame = "661 525 72 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "401 281 892 546"
+        sizeHint = "892 546"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DInit
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    defaultViewName = DefaultView
+    defaultLightName = DefaultAmbientLight
+    defaultMaterialName = DefaultMaterial
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialAmbientColor = "0 0 0"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAlpha = 1
+    defaultMaterialReflectivity = 0.5
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    addDefaultBoundingBoxMetaData = TRUE
+    addDefaultViewNode = TRUE
+    addDefaultLightNode = TRUE
+  }
+}
+module U3DSave {
+  internal  {
+    frame = "651 -254 112 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "966 380 600 171"
+        sizeHint = "600 171"
+        wasOpen = no
+      }
+      window "Specification Generator Panel" {
+        geometry = "638 324 419 461"
+        sizeHint = "419 461"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DSave
+    inputValid = TRUE
+    autoApply = FALSE
+    filename = C:/Users/z002zrcd/Desktop/U3DAssembleExample.u3d
+    autoSave = FALSE
+    success = TRUE
+    useDefaultSettings = TRUE
+  }
+}
+module IndexPairListContainer {
+  internal  {
+    frame = "1425 209 160 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "172 351 1011 557"
+        sizeHint = "424 557"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = EdgesList
+    listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8, (0 4) 1 #9, (1 5) 1 #10, (2 6) 1 #11, (3 7) 1 #12]"
+    index = 4
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    index1 = 4
+    index2 = 5
+    type = 1
+    newIndex1 = 0
+    newIndex2 = 0
+    newType = 0
+  }
+}
+module XMarkerListContainer {
+  internal  {
+    frame = "645 417 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "195 81 681 566"
+        sizeHint = "500 497"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = CornerPositionsList
+    listString = "[(-2 -1 -1) 1 #1,(-2 -1 1) 1 #2,(-2 1 -1) 1 #3,(-2 1 1) 1 #4,(0 -1 -1) 1 #5,(0 -1 1) 1 #6,(0 1 -1) 1 #7,(0 1 1) 1 #8,(0.190983 -0.809017 -0.809017) 2 #9,(0.190983 -0.809017 0.809017) 2 #10,(0.190983 0.809017 -0.809017) 2 #11,(0.190983 0.809017 0.809017) 2 #12, (1.80902 -0.809017 -0.809017) 2 #13,(1.80902 -0.809017 0.809017) 2 #14,(1.80902 0.809017 -0.809017) 2 #15,(1.80902 0.809017 0.809017) 2 #15]"
+    index = 0
+    persistent = TRUE
+    listStringEnable = TRUE
+    applySelect = FALSE
+    name = ""
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-2 -1 -1"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 1
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module U3DInspector {
+  internal  {
+    frame = "817 -246 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "565 240 426 458"
+        sizeHint = "342 237"
+        wasOpen = yes
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DInspector
+    showDetail = FALSE
+  }
+}
+connections  {
+  U3DInfo.inU3DObject = BaseBypass.baseOut0
+  BaseBypass.baseIn0 = U3DAddModelFromWEM.outU3DObject
+  WEMMerge.inWEM = WEMSphere.outWEM
+  WEMMerge.inWEM1 = WEMIcosahedron.outWEM
+  U3DAddModelFromMarkerList.inU3DObject = U3DInit.outU3DObject
+  U3DAddModelFromMarkerList.inPositions = CornerPositionsList.outXMarkerList
+  U3DAddModelFromWEM.inU3DObject = U3DAddModelFromMarkerList.outU3DObject
+  U3DAddModelFromWEM.inWEM = WEMMerge.outWEM
+  U3DSave.inU3DObject = BaseBypass.baseOut0
+  U3DInspector.inU3DObject = BaseBypass.baseOut0
+}
+networkModel = ""

@@ -170,12 +170,6 @@ private:
   // Scan all WEM patches, triangulate them if necessary and collect base info.
   void _addMeshModelData();
 
-  // Scan all node colors of a WEM patch and return number of different colors.
-  MLuint32 _getNumberOfDifferentColorsFromWEMPatch(WEMTrianglePatch* patch) const;
-
-  // Writes all vertex colors of a WEM patch to the continuation block
-  mlU3D::ColorMap _writeVertexColors(WEMPatch* patch, U3DDataBlockWriter& continuationBlock) const;
-
 
 //////////////////////////////////////////////
 

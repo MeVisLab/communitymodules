@@ -31,8 +31,52 @@ MLModule U3DAddModelFromMarkerList {
   comment            = "Adds a model to a U3D."
   keywords           = "PDF U3D"
   seeAlso            = ""
-  //exampleNetwork     = "$(LOCAL)/networks/U3DAddModelFromMarkerList.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
   externalDefinition = $(LOCAL)/U3DAddModelFromMarkerList.script
+}
+
+MLModule U3DAddModelFromWEM {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Adds a model to a U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
+  externalDefinition = $(LOCAL)/U3DAddModelFromWEM.script
+}
+
+MLModule U3DGeometryToFiberSet {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Extracts U3D line set geometry data to FiberSet."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DGeometryToExample.mlab"
+  externalDefinition = $(LOCAL)/U3DGeometryToFiberSet.script
+}
+
+MLModule U3DGeometryToWEM {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Extracts U3D mesh geometry data to WEM."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DGeometryToExample.mlab"
+  externalDefinition = $(LOCAL)/U3DGeometryToWEM.script
+}
+
+MLModule U3DGeometryToXMarkerList {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Extracts U3D point set geometry data to XMarkerList."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DGeometryToExample.mlab"
+  externalDefinition = $(LOCAL)/U3DGeometryToXMarkerList.script
 }
 
 MLModule U3DInit {
@@ -42,7 +86,7 @@ MLModule U3DInit {
   comment            = "Initializes an empty U3D."
   keywords           = "PDF U3D"
   seeAlso            = ""
-  //exampleNetwork     = "$(LOCAL)/networks/U3DInitExample.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
   externalDefinition = $(LOCAL)/U3DInit.script
 }
 
@@ -53,7 +97,7 @@ MLModule U3DInfo {
   comment  = "Provides info about a U3D."
   keywords = "PDF U3D"
   seeAlso  = ""
-  //exampleNetwork     = "$(LOCAL)/networks/U3DInfoExample.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
   externalDefinition = $(LOCAL)/U3DInfo.script
 }
 
@@ -63,6 +107,7 @@ MacroModule U3DInspector {
   comment            = "Provides inspector for U3D objects."
   keywords           = "PDF U3D"
   seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
   externalDefinition = $(LOCAL)/U3DInspector.script
 }
 
@@ -73,7 +118,7 @@ MLModule U3DLoad {
   comment            = "Loads a U3D from disk."
   keywords           = "PDF U3D"
   seeAlso            = ""
-  //exampleNetwork     = "$(LOCAL)/networks/U3DLoadExample.mlab"
+//exampleNetwork     = "$(LOCAL)/networks/U3DLoadExample.mlab"
   externalDefinition = $(LOCAL)/U3DLoad.script
 }
 
@@ -84,7 +129,7 @@ MLModule U3DSave {
   comment            = "Saves a U3D to disk."
   keywords           = "PDF U3D"
   seeAlso            = ""
-  //exampleNetwork     = "$(LOCAL)/networks/U3DSaveExample.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
   externalDefinition = $(LOCAL)/U3DSave.script
 }
 
@@ -96,6 +141,6 @@ MLModule U3DManager {
 
 MLModule U3DAssemble {
   DLL                = "MLU3D"
+//exampleNetwork     = "$(LOCAL)/networks/U3DAssembleExample.mlab"
   externalDefinition = $(LOCAL)/U3DAssemble.script
 }
-

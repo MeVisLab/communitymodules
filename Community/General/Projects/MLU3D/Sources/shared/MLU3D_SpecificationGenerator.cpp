@@ -155,7 +155,7 @@ std::string SpecificationGenerator::GetColor(Vector3 colorValue, float alphaValu
   else if (!useDefaultColor)
   {
     result = "<Color>"; 
-    result += U3DTools::FormatColorString(colorValue, alphaValue);
+    result += U3DTools::formatColorString(colorValue, alphaValue);
     result += "</Color>\n";
   }
 
@@ -172,7 +172,7 @@ std::string SpecificationGenerator::GetSpecularColor(Vector3 colorValue, bool us
   if (!useDefaultColor)
   {
     result = "<SpecularColor>";
-    result += U3DTools::FormatColorString(colorValue);
+    result += U3DTools::formatColorString(colorValue);
     result += "</SpecularColor>\n";
   }
 
@@ -187,7 +187,7 @@ std::string SpecificationGenerator::GetOpacity(float alphaValue)
   std::string result = "";
 
   result = "<Opacity>";
-  result += U3DTools::FormatFloat(alphaValue);
+  result += U3DTools::formatFloat(alphaValue);
   result += "</Opacity>\n";
 
   return result;

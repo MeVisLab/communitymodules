@@ -20,6 +20,7 @@
 
 ML_START_NAMESPACE
 
+using namespace mlU3D;
 
 //! Implements code for the runtime type system of the ML
 ML_MODULE_CLASS_SOURCE(U3DAssemble, WEMInspector);
@@ -34,7 +35,7 @@ U3DAssemble::U3DAssemble (std::string type) : WEMInspector(type)
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
-  ML_CHECK_NEW(_outU3DObject, mlU3D::U3DObject());
+  ML_CHECK_NEW(_outU3DObject, U3DObject());
 
   // Add output fields and set allowed types.
   (_outU3DObjectFld = addBase("outU3DObject"))->setBaseValueAndAddAllowedType(_outU3DObject);
@@ -280,10 +281,10 @@ void U3DAssemble::_assembleU3DObject()
     //
     // +++++++++++++++++++++++++++++++++++++++++++++++++
 
-    mlU3D::MetaDataStruct metaDataPair;
+    MetaDataStruct metaDataPair;
 
     metaDataPair.key = "AssembledBy";
-    metaDataPair.value = "U3DAssemble module from MeVisLab MLU3D library (v" + mlU3D::U3DTools::getLibraryVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
+    metaDataPair.value = "U3DAssemble module from MeVisLab MLU3D library (v" + U3DTools::getLibraryVersionNumberString() + ") by Axel Newe (axel.newe@fau.de)";
     _outU3DObject->metaData.push_back(metaDataPair);
 
     _addMetaData();
@@ -303,7 +304,6 @@ void U3DAssemble::_assembleU3DObject()
   _outU3DObjectFld->touch();
   _finishedFld->touch();
 }
-
 
 
 //***********************************************************************************

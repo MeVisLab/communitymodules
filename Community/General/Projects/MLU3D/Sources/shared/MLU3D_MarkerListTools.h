@@ -58,7 +58,16 @@ public:
   //***********************************************************************************
 
   // Fill a FiberSetContainer from line positions and line connections
-  static void fillFiberSetContainerFromPositionsAndConnections(ml::FiberSetContainer& outFiberSetContainer, const ml::XMarkerList& inLinePositions, const ml::IndexPairList& inLineConnections);
+  static void fillFiberSetContainerFromPositionsAndConnections(FiberSetContainer& outFiberSetContainer, const ml::XMarkerList& inLinePositions, const ml::IndexPairList& inLineConnections);
+
+  // Fill ax XMarkerList from point set generators
+  static void fillXMarkerListFromPointSetGenerators(XMarkerList& outXMarkerList, const PointSetGeneratorVector& pointSetGenerators);
+
+  // Fill a FiberSetContainer from line set generators
+  static void fillFiberSetContainerFromLineSetGenerators(FiberSetContainer& outFiberSetContainer, const LineSetGeneratorVector& lineSetGenerators);
+
+  // Fill a FiberSetContainer from line set generators
+  static void fillWEMFromMeshGenerators(WEM* outWEM, const CLODMeshGeneratorVector& meshGenerators);
 
   //////////////////////////////////////////////
 

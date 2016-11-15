@@ -16,8 +16,13 @@
 #include "U3DInternalFormat/U3D_Object.h"
 #include "U3DInternalFormat/U3D_Object_DataTypes.h"
 
+// Project includes
+#include <IndexPairList.h>
+
 // ML includes
 #include <mlModuleIncludes.h>
+#include <mlXMarkerList.h>
+#include <mlFiberSet.h>
 
 // Inventor includes
 #include <Inventor/nodes/SoNodes.h>  // for M_PI
@@ -139,17 +144,17 @@ namespace mlU3D {
     static Vector3 getVec3FromString(std::string vectorString, const Vector3 defaultValue = Vector3(0));
 
     // Converts a (color) Vector to a color string.
-    static std::string FormatColorString(Vector3 colorValue);
-    static std::string FormatColorString(Vector3 colorValue, float alphaValue);
-    static std::string FormatVec3String(Vector3 vectorValue);
+    static std::string formatColorString(Vector3 colorValue);
+    static std::string formatColorString(Vector3 colorValue, float alphaValue);
+    static std::string formatVec3String(Vector3 vectorValue);
 
     // Converts float/double to string.
-    static std::string FormatDouble(double value);
-    static std::string FormatFloat(float value);
-    static std::string FormatUInt(unsigned int value, unsigned int length);
+    static std::string formatDouble(double value);
+    static std::string formatFloat(float value);
+    static std::string formatUInt(unsigned int value, unsigned int length);
 
     // Converts std::tm to string.
-    static std::string FormatDate(std::tm value);
+    static std::string formatDate(std::tm value);
 
     //***********************************************************************************
 
@@ -185,11 +190,27 @@ namespace mlU3D {
     // Update geometry generator mapping
     static std::string updateGeometryGeneratorMap(mlU3D::GeometryGeneratorMap& geometryGeneratorMap, std::string specificationString, std::string namePrefix, int startIndex = 0);
 
+    // Add point set models and geometry generators according to specification vector
+    static void addPointSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const ml::XMarkerList& pointPositions);
+
+    // Add line set models and geometry generators according to specification vector
+    static void addLineSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const ml::XMarkerList& linePositions, ml::IndexPairList& lineConnections);
+
+    // Add mesh models and geometry generators according to specification vector
+    static void addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM);
+
+    // Scan all node colors of a WEM patch and return number of different colors
+    static MLuint32 getNumberOfDifferentColorsFromWEMPatch(WEMTrianglePatch* patch);
+
     // Updates the model bounding box
-    static void UpdateBoundingBox(ModelBoundingBoxStruct& boundingBox, ModelBoundingBoxStruct newCorners);
+    static void updateBoundingBox(ModelBoundingBoxStruct& boundingBox, ModelBoundingBoxStruct newCorners);
 
     // Get bounding box edges from positions
-    static ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions);
+    static ModelBoundingBoxStruct getBoundingBoxFomPositions(PositionsVector positions);
+
+    //***********************************************************************************
+
+
 
     //////////////////////////////////////////////
 
