@@ -159,10 +159,13 @@ namespace mlU3D {
     //***********************************************************************************
 
     // Makes sure that the internal name of each U3D object is unique
-    static void makeInternalNameUnique(std::string& objectName, mlU3D::U3DObjectPtr u3dObject);
+    static void makeInternalNameUnique(std::string& objectName, U3DObjectPtr u3dObject);
 
     // Creates a new ModelNode
-    static mlU3D::ModelNode createNewModelNode(SpecificationParametersStruct specification, mlU3D::U3DObjectPtr u3dObject);
+    static ModelNode createNewModelNode(const ObjectSpecificationMap& specification, U3DObjectPtr u3dObject);
+
+    // Get model specs from fiberset container
+    static StringVector getLineSetSpecificationsStringFromFiberSetContainer(FiberSetContainer& fiberSetContainer);
 
     // Get model specs from WEM attributes
     static StringVector getMeshSpecificationsStringFromWEM(ml::WEM* wem);
@@ -174,7 +177,7 @@ namespace mlU3D {
     static std::string getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult = "");
 
     // Parses input string from UI and extracts object specification parameters
-    static SpecificationParametersStruct getAllSpecificationParametersFromString(const std::string specificationString);
+    static ObjectSpecificationMap getAllSpecificationParametersFromString(const std::string specificationString);
 
     // Parses the description string of the WEM to set U3D properties.
     static std::string getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult = "");
@@ -195,6 +198,7 @@ namespace mlU3D {
 
     // Add line set models and geometry generators according to specification vector
     static void addLineSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const ml::XMarkerList& linePositions, ml::IndexPairList& lineConnections);
+    static void addLineSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const FiberSetContainer& fibers);
 
     // Add mesh models and geometry generators according to specification vector
     static void addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM);

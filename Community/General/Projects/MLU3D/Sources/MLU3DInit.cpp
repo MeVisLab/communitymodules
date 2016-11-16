@@ -32,8 +32,8 @@
 #include "modules/U3DManager/U3DManager.h"
 #include "modules/U3DAssemble/U3DAssemble.h"
 #include "modules/U3DAddModel/U3DAddModelFromWEM.h"
+#include "modules/U3DAddModel/U3DAddModelFromFiberSet.h"
 #include "modules/U3DAddModel/U3DAddModelFromMarkerList.h"
-#include "modules/U3DVisualize/U3DVisualize.h"
 #include "modules/U3DGeometryTo/U3DGeometryToXMarkerList.h"
 #include "modules/U3DGeometryTo/U3DGeometryToFiberSet.h"
 #include "modules/U3DGeometryTo/U3DGeometryToWEM.h"
@@ -87,13 +87,13 @@ int MLU3DInit()
   U3DManager::initClass();
   
   U3DAssemble ::initClass();  
-  U3DVisualize::initClass();
 
   U3DGeometryToXMarkerList::initClass();
   U3DGeometryToFiberSet   ::initClass();
   U3DGeometryToWEM        ::initClass();
 
   U3DAddModelFromWEM       ::initClass();
+  U3DAddModelFromFiberSet  ::initClass();
   U3DAddModelFromMarkerList::initClass();
 
   return 1;

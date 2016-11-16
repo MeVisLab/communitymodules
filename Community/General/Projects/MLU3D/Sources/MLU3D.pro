@@ -47,6 +47,7 @@ HEADERS += \
   modules/U3DManager/U3DManager.h \
   modules/U3DAssemble/U3DAssemble.h \
   modules/U3DAddModel/U3DAddModelFromWEM.h \
+  modules/U3DAddModel/U3DAddModelFromFiberSet.h \
   modules/U3DAddModel/U3DAddModelFromMarkerList.h \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.h \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.h \
@@ -87,6 +88,7 @@ SOURCES += \
   modules/U3DAssemble/U3DAssemble.cpp \
   modules/U3DAssemble/U3DAssemble_Tools.cpp \
   modules/U3DAddModel/U3DAddModelFromWEM.cpp \
+  modules/U3DAddModel/U3DAddModelFromFiberSet.cpp \
   modules/U3DAddModel/U3DAddModelFromMarkerList.cpp \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.cpp \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.cpp \

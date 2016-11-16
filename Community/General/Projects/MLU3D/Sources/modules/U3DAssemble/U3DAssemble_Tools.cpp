@@ -164,10 +164,10 @@ void U3DAssemble::_addMetaData()
 
     for (MLuint32 i = 0; i < numberOfMEtaDataPairs; i++)
     {
-      SpecificationParametersStruct thisSpecificationParameters = U3DTools::getAllSpecificationParametersFromString(metaDataSpecificationsVector[i]);
+      ObjectSpecificationMap thisSpecificationParameters = U3DTools::getAllSpecificationParametersFromString(metaDataSpecificationsVector[i]);
       MetaDataStruct metaDataPair;
-      metaDataPair.key = thisSpecificationParameters.MetaDataKey;
-      metaDataPair.value = thisSpecificationParameters.MetaDataValue;
+      metaDataPair.key = thisSpecificationParameters["MetaDataKey"];
+      metaDataPair.value = thisSpecificationParameters["MetaDataValue"];
 
       _outU3DObject->metaData.push_back(metaDataPair);
     }

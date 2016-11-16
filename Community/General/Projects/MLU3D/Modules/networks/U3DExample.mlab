@@ -2,16 +2,80 @@
 network  {
   watchlist = ""
 }
+module LocalPath {
+  internal  {
+    frame = "965 69 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "526 646 480 133"
+        sizeHint = "480 133"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalPath
+    localName = $(NETWORK)/ExampleFibers.fbr
+    checkIfFileExists = TRUE
+    browseType = file
+  }
+}
+module U3DAddModelFromFiberSet {
+  internal  {
+    frame = "605 -99 216 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "607 417 480 275"
+        sizeHint = "480 275"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddModelFromFiberSet
+    updateMode = "Auto Update"
+    autoApply = TRUE
+    simpleModeLineSet = TRUE
+    lineSetSpecification = ""
+  }
+}
+module LoadFibers {
+  internal  {
+    frame = "841 69 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "901 297 500 223"
+        sizeHint = "483 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadFibers
+    autoUpdate = AutoUpdate
+    status = "Object loaded into container."
+    nodeName = ""
+    filename = D:/MeVisLab/Packages/Siemens/MR/Unrestricted/MLCommunityModules/General/Projects/MLU3D/Modules/networks/ExampleFibers.fbr
+    useBaseDir = FALSE
+    baseDir = ""
+    upToDate = TRUE
+    prog = 1
+  }
+}
 module U3DInfo {
   internal  {
-    frame = "529 -246 80 56"
+    frame = "529 -323 80 56"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
       window _default {
         geometry = "1021 241 275 531"
         sizeHint = "248 531"
-        wasOpen = yes
+        wasOpen = no
       }
     }
   }
@@ -20,47 +84,9 @@ module U3DInfo {
     networkPanelStatus = Idle.
   }
 }
-module XMarkerListContainer {
-  internal  {
-    frame = "1185 209 208 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "195 81 681 566"
-        sizeHint = "500 497"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = BoundingBoxCornerPositionsList
-    listString = "[(-2 -1 -1) 1 #1,(-2 -1 1) 1 #2,(-2 1 -1) 1 #3,(-2 1 1) 1 #4,(0 -1 -1) 1 #5,(0 -1 1) 1 #6,(0 1 -1) 1 #7,(0 1 1) 1 #8,(0.190983 -0.809017 -0.809017) 2 #9,(0.190983 -0.809017 0.809017) 2 #10,(0.190983 0.809017 -0.809017) 2 #11,(0.190983 0.809017 0.809017) 2 #12, (1.80902 -0.809017 -0.809017) 2 #13,(1.80902 -0.809017 0.809017) 2 #14,(1.80902 0.809017 -0.809017) 2 #15,(1.80902 0.809017 0.809017) 2 #15]"
-    index = 0
-    persistent = TRUE
-    listStringEnable = TRUE
-    applySelect = FALSE
-    name = ""
-    newName = ""
-    overflowMode = None
-    maxSize = 0
-    useInsertTemplate = FALSE
-    posXYZ = "-2 -1 -1"
-    posC = 0
-    posT = 0
-    posU = 0
-    vecXYZ = "0 0 0"
-    type = 1
-    newPosXYZ = "0 0 0"
-    newPosC = 0
-    newPosT = 0
-    newPosU = 0
-    newVecXYZ = "0 0 0"
-    newType = 0
-  }
-}
 module BaseBypass {
   internal  {
-    frame = "643 -130 128 56"
+    frame = "641 -211 128 56"
     moduleGroupName = ""
     showNetworkPanel = true
   }
@@ -72,7 +98,7 @@ module BaseBypass {
 }
 module WEMMerge {
   internal  {
-    frame = "641 149 144 56"
+    frame = "641 181 144 56"
     moduleGroupName = ""
   }
   fields  {
@@ -93,7 +119,7 @@ module WEMMerge {
 }
 module WEMInitialize {
   internal  {
-    frame = "433 297 128 80"
+    frame = "433 329 128 80"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -124,7 +150,7 @@ module WEMInitialize {
 }
 module WEMInitialize {
   internal  {
-    frame = "309 297 104 80"
+    frame = "309 329 104 80"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -155,7 +181,7 @@ module WEMInitialize {
 }
 module U3DAddModelFromMarkerList {
   internal  {
-    frame = "595 301 224 72"
+    frame = "593 333 224 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -188,7 +214,7 @@ module U3DAddModelFromMarkerList {
 }
 module U3DAddModelFromWEM {
   internal  {
-    frame = "607 29 200 72"
+    frame = "605 61 200 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -233,7 +259,7 @@ module U3DAddModelFromWEM {
 }
 module U3DInit {
   internal  {
-    frame = "661 525 72 56"
+    frame = "661 557 72 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -266,7 +292,7 @@ module U3DInit {
 }
 module U3DSave {
   internal  {
-    frame = "651 -254 112 72"
+    frame = "649 -331 112 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -292,41 +318,9 @@ module U3DSave {
     useDefaultSettings = TRUE
   }
 }
-module IndexPairListContainer {
-  internal  {
-    frame = "1425 209 160 64"
-    moduleGroupName = ""
-    windows  {
-      window _default {
-        geometry = "172 351 1011 557"
-        sizeHint = "424 557"
-        wasOpen = no
-      }
-    }
-  }
-  fields  {
-    instanceName = EdgesList
-    listString = "[(0 1) 1 #1, (1 3) 1 #2, (2 3) 1 #3, (2 0) 1 #4, (4 5) 1 #5, (5 7) 1 #6, (6 7) 1 #7, (6 4) 1 #8, (0 4) 1 #9, (1 5) 1 #10, (2 6) 1 #11, (3 7) 1 #12]"
-    index = 4
-    persistent = TRUE
-    listStringEnable = TRUE
-    applySelect = FALSE
-    name = ""
-    newName = ""
-    overflowMode = None
-    maxSize = 0
-    useInsertTemplate = FALSE
-    index1 = 4
-    index2 = 5
-    type = 1
-    newIndex1 = 0
-    newIndex2 = 0
-    newType = 0
-  }
-}
 module XMarkerListContainer {
   internal  {
-    frame = "645 417 152 64"
+    frame = "645 449 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -364,11 +358,11 @@ module XMarkerListContainer {
 }
 module U3DInspector {
   internal  {
-    frame = "817 -246 112 56"
+    frame = "817 -323 112 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "565 240 426 458"
+        geometry = "866 175 426 458"
         sizeHint = "342 237"
         wasOpen = yes
       }
@@ -380,8 +374,11 @@ module U3DInspector {
   }
 }
 connections  {
+  U3DAddModelFromFiberSet.inU3DObject = U3DAddModelFromWEM.outU3DObject
+  U3DAddModelFromFiberSet.inFibers = LoadFibers.outFibers
+  LoadFibers.filename = LocalPath.trueName
   U3DInfo.inU3DObject = BaseBypass.baseOut0
-  BaseBypass.baseIn0 = U3DAddModelFromWEM.outU3DObject
+  BaseBypass.baseIn0 = U3DAddModelFromFiberSet.outU3DObject
   WEMMerge.inWEM = WEMSphere.outWEM
   WEMMerge.inWEM1 = WEMIcosahedron.outWEM
   U3DAddModelFromMarkerList.inU3DObject = U3DInit.outU3DObject

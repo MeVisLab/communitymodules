@@ -1,0 +1,59 @@
+//----------------------------------------------------------------------------------
+// ML module U3DAddModelFromFiberSet definition
+//
+// \file    U3DAddModelFromFiberSet.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+  Field networkPanelStatus { editable = No persistent = No }  
+}
+
+
+Interface {
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DAddModelFromFiberSet.py
+}
+
+
+NetworkPanel {
+  info = networkPanelStatus
+  Button  apply { symbol = @@ "start" @@ }  
+}
+
+
+Window  {  
+  
+  Category { expandY = Yes
+
+          
+    CheckBox simpleModeLineSet { title = "Enable Simple Mode (create one line set for each fiber set)."}
+ 
+    TextView lineSetSpecification {
+      dependsOn       = !simpleModeLineSet
+      expandY         = Yes
+      title           = "Line Set Specification:"
+      wrap            = off
+      autoApply       = yes
+      console         = yes
+      style           = monospacedTextView
+      showLineNumbers = No
+      textFormat      = Plain
+    }
+    
+    Horizontal { expandX = Yes
+      Field updateMode { alignX = Left }
+      Empty { expandX = Yes }
+      CheckBox autoApply { alignX = Right }
+      Button apply { alignX = Right }
+      Button reset { alignX = Right }
+      
+    }
+        
+  }  // Category
+
+}

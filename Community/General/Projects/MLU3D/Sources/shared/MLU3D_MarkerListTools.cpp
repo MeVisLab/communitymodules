@@ -88,6 +88,67 @@ PositionsVector U3DMarkerListTools::getAllPositionsFromXMarkerList(const ml::XMa
 
 //***********************************************************************************
 
+// Get all positions (vertices) and lines (edges) from FiberSetContainer
+void U3DMarkerListTools::getAllPositionsAndLinesFromFiberSetContainer(const FiberSetContainer& fiberSetContainer, std::string fiberSets, PositionsVector& positions, LinesVector& lines)
+{
+  positions.clear();
+
+  PositionStruct newPosition;
+  LineStruct     newLine;
+
+  int currentPositionIndex  = 0;
+  
+
+  mlU3D::StringVector fiberSetsVector = U3DTools::stringSplit(fiberSets, ",", false);
+
+  for (size_t s = 0; s < fiberSetContainer.getNumFiberSets(); s++)
+  {
+    FiberSetContainer::FiberSet thisFiberSet = fiberSetContainer.getFiberSet(s);
+
+    if (std::find(fiberSetsVector.begin(), fiberSetsVector.end(), intToString((int)s)) != fiberSetsVector.end())
+    {
+      for (size_t f = 0; f < thisFiberSet.getNumFibers(); f++)
+      {
+        int previousPositionIndex = -1;
+
+        FiberSetContainer::FiberSet::Fiber thisFiber = thisFiberSet.getFiber(f);
+
+        thisFiber.setToFirst();
+
+        do
+        {
+          FiberSetContainer::FiberSet::Fiber::FiberPoint thisFiberPoint = thisFiber.getCurrentPoint();
+
+          Vector3 thisFiberPointCoordinates = thisFiberPoint.getCoordinatesVec();
+
+          newPosition.position = thisFiberPointCoordinates;
+          newPosition.color    = Vector3(0);                // Not used
+          newPosition.alpha    = 1;                         // Not used
+
+          positions.push_back(newPosition);
+
+          if (previousPositionIndex != -1)
+          {
+            newLine.startIndex = previousPositionIndex;
+            newLine.endIndex = currentPositionIndex;
+            lines.push_back(newLine);            
+          }
+
+          previousPositionIndex = currentPositionIndex;
+          currentPositionIndex++;
+
+        } while (thisFiber.setToNext());
+
+      }
+
+    }
+
+  }
+
+}
+
+//***********************************************************************************
+
 // Get all line connections from IndexPairList
 mlU3D::LinesVector U3DMarkerListTools::getAllLinesFromIndexPairList(const ml::IndexPairList connectionsList, const std::string allowedConnectionTypes)
 {

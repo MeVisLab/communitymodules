@@ -55,26 +55,7 @@ namespace mlU3D {
 
   typedef std::vector<LineSetSpecificationStruct> LineSetsVector;
 
-  enum ModelType { MODELTYPE_POINTSET, MODELTYPE_LINESET, MODELTYPE_MESH /*, MODELTYPE_GLYPH*/ };
-
-  struct SpecificationParametersStruct
-  {
-    // For U3D objects
-
-    ModelType   ObjectType;
-    std::string ObjectName;
-    std::string GroupPath;
-    std::string Color;
-    std::string SpecularColor;
-    std::string Opacity;
-    std::string GlyphText;       // U3D Glyphs are not parsed by Acrobat
-    std::string ModelVisibility;
-    std::string MetaDataKey;
-    std::string MetaDataValue;
-    std::string WEMLabel;
-    std::string PositionTypes;
-    std::string ConnectionTypes;
-  };
+  typedef std::map<std::string, std::string> ObjectSpecificationMap;
 
   struct GeometryGeneratorInfoStruct
   {

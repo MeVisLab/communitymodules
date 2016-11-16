@@ -41,6 +41,9 @@ public:
   // Get all positions (vertices) from XMarkerList
   static PositionsVector getAllPositionsFromXMarkerList(const ml::XMarkerList positionsList, const std::string allowedPositionTypes);
 
+  // Get all positions (vertices) and lines (edges) from FiberSetContainer
+  static void getAllPositionsAndLinesFromFiberSetContainer(const FiberSetContainer& fiberSetContainer, std::string fiberSets, PositionsVector& positions, LinesVector& lines);
+
   //***********************************************************************************
 
   // Get all line connections from IndexPairList

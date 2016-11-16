@@ -24,6 +24,17 @@ OutputInspector {
 
 // Modules ---------------------------------------------------------------------
 
+MLModule U3DAddModelFromFiberSet {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Adds a model to a U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
+  externalDefinition = $(LOCAL)/U3DAddModelFromFiberSet.script
+}
+
 MLModule U3DAddModelFromMarkerList {
   DLL                = "MLU3D"
   genre              = "U3DModules"
@@ -44,6 +55,17 @@ MLModule U3DAddModelFromWEM {
   seeAlso            = ""
   exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
   externalDefinition = $(LOCAL)/U3DAddModelFromWEM.script
+}
+
+MLModule U3DAssemble {
+  DLL                = "MLU3D"
+  genre             = "U3DModules"
+  author            = "Axel Newe"
+  comment           = "Adds multiple models to a U3D."
+  keywords          = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DAssembleExample.mlab"
+  externalDefinition = $(LOCAL)/U3DAssemble.script
 }
 
 MLModule U3DGeometryToFiberSet {
@@ -138,9 +160,3 @@ MLModule U3DManager {
   DLL                = "MLU3D"
 }
 */
-
-MLModule U3DAssemble {
-  DLL                = "MLU3D"
-//exampleNetwork     = "$(LOCAL)/networks/U3DAssembleExample.mlab"
-  externalDefinition = $(LOCAL)/U3DAssemble.script
-}

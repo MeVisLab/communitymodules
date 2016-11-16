@@ -24,7 +24,7 @@ namespace mlU3D {
 
 //***********************************************************************************
 
-  void U3DTools::quantizePosition(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ)
+void U3DTools::quantizePosition(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ)
   {
     u8Signs = (pos.x < 0.0) | ((pos.y < 0.0) << 1) | ((pos.z < 0.0) << 2);
     udX = (MLuint32)(0.5f + mlU3D::Quant_Position * fabs(pos.x));
@@ -32,7 +32,7 @@ namespace mlU3D {
     udZ = (MLuint32)(0.5f + mlU3D::Quant_Position * fabs(pos.z));
   }
 
-  void U3DTools::quantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ)
+void U3DTools::quantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ)
   {
     u8Signs = (pos.x < 0.0) | ((pos.y < 0.0) << 1) | ((pos.z < 0.0) << 2);
     udX = (MLuint32)(0.5f + mlU3D::Quant_Normal * fabs(pos.x));
@@ -40,9 +40,9 @@ namespace mlU3D {
     udZ = (MLuint32)(0.5f + mlU3D::Quant_Normal * fabs(pos.z));
   }
 
-  //***********************************************************************************
+//***********************************************************************************
 
-  void U3DTools::makeInternalNameUnique(std::string& objectName, mlU3D::U3DObjectPtr u3dObject)
+void U3DTools::makeInternalNameUnique(std::string& objectName, mlU3D::U3DObjectPtr u3dObject)
   {
     for (size_t m = 0; m < u3dObject->modelNodes.size(); m++)
     {
@@ -60,22 +60,22 @@ namespace mlU3D {
     return;
   }
 
-  //***********************************************************************************
+//***********************************************************************************
 
-  mlU3D::ModelNode U3DTools::createNewModelNode(SpecificationParametersStruct specification, mlU3D::U3DObjectPtr u3dObject)
+mlU3D::ModelNode U3DTools::createNewModelNode(const ObjectSpecificationMap& specification, mlU3D::U3DObjectPtr u3dObject)
   {
     //mlInfo(__FUNCTION__) << "Log message.";
 
     mlU3D::ModelNode newModelNode;
 
     //newModelNode.Type = modelType;
-    newModelNode.displayName  = specification.ObjectName;
-    newModelNode.internalName = specification.ObjectName;
+    newModelNode.displayName  = specification.at("ObjectName");  // Can't use [] operator here since "specification" parameter is const!
+    newModelNode.internalName = specification.at("ObjectName");
     makeInternalNameUnique(newModelNode.internalName, u3dObject);
-    newModelNode.groupPath    = specification.GroupPath;
-    newModelNode.visibility   = (MLuint32)mlU3D::stringToInt(specification.ModelVisibility);
+    newModelNode.groupPath    = specification.at("GroupPath");
+    newModelNode.visibility   = (MLuint32)mlU3D::stringToInt(specification.at("ModelVisibility"));
 
-    if (specification.ObjectType != mlU3D::MODELTYPE_POINTSET)
+    if (specification.at("ObjectType") != mlU3D::MODELTYPE_POINTSET)
     {
       newModelNode.shaderName = "Shader for " + newModelNode.internalName;
     }
@@ -89,7 +89,45 @@ namespace mlU3D {
     return newModelNode;
   }
 
-  //***********************************************************************************
+//***********************************************************************************
+
+// Get model specs from fiberset container
+StringVector U3DTools::getLineSetSpecificationsStringFromFiberSetContainer(FiberSetContainer& fiberSetContainer)
+{
+  StringVector result;
+
+  // Loop through all patches, search and parse label & description
+  const MLuint32 numberOfFiberSets = (MLuint32)fiberSetContainer.getNumFiberSets();
+
+  for (MLuint32 i = 0; i < numberOfFiberSets; i++)
+  {
+    FiberSetContainer::FiberSet thisFiberSet = fiberSetContainer.getFiberSet(i);
+
+    Vector3 thisFiberSetColor     = thisFiberSet.getColor();
+    std::string thisFiberSetLabel = thisFiberSet.getLabel();
+
+    std::string objectName = thisFiberSetLabel;
+    if (objectName == "") {
+      objectName = "Object";  // This will be replaced later by the default name
+    }
+
+    // ...and write data into meshSpecification string
+    std::string lineSetSpecificationsString = "<LineSet>";
+    lineSetSpecificationsString += "<FiberSets>" + intToString(i) + "</FiberSets>";
+    lineSetSpecificationsString += "<ObjectName>" + objectName + "</ObjectName>";
+    lineSetSpecificationsString += "<Color>" + formatColorString(thisFiberSetColor) + "</Color>";
+    lineSetSpecificationsString += "<ModelVisibility>3</ModelVisibility>";
+    lineSetSpecificationsString += "</LineSet>";
+
+    // Add meshSpecification string to meshSpecificationVector
+    result.push_back(lineSetSpecificationsString);
+    
+  } // for (MLuint32 i = 0; i < numberOfInWEMPatches; i++)
+
+  return result;
+}
+
+//***********************************************************************************
 
 // Get model specs from WEM atributes
 StringVector U3DTools::getMeshSpecificationsStringFromWEM(ml::WEM* wem)
@@ -122,15 +160,15 @@ StringVector U3DTools::getMeshSpecificationsStringFromWEM(ml::WEM* wem)
         u3dGroupPath += u3dGroupName + "/";
       }
 
-      std::string displayName = thisWEMPatchLabel;
-      if (displayName == "") {
-        displayName = "Mesh " + mlU3D::intToString(i + 1);
+      std::string objectName = thisWEMPatchLabel;
+      if (objectName == "") {
+        objectName = "Object"; // This will be replaced later by the default name
       }
 
       // ...and write data into meshSpecification string
       std::string meshSpecificationsString = "<Mesh>";
       meshSpecificationsString += "<WEMLabel>" + thisWEMPatchLabel + "</WEMLabel>";
-      meshSpecificationsString += "<ObjectName>" + displayName + "</ObjectName>";
+      meshSpecificationsString += "<ObjectName>" + objectName + "</ObjectName>";
       meshSpecificationsString += "<GroupPath>" + u3dGroupPath + "</GroupPath>";
       meshSpecificationsString += "<Color>" + mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "Color") + "</Color>";
       meshSpecificationsString += "<SpecularColor>" + mlU3D::U3DTools::getSpecificParameterFromWEMDescription(thisWEMPatchDescription, "SpecularColor") + "</SpecularColor>";
@@ -199,26 +237,26 @@ std::string U3DTools::getSpecificParameterFromString(const std::string specifica
 //***********************************************************************************
 
 // Parses input string from UI and extracts object specification parameters
-SpecificationParametersStruct U3DTools::getAllSpecificationParametersFromString(const std::string specificationString)
+ObjectSpecificationMap U3DTools::getAllSpecificationParametersFromString(const std::string specificationString)
 {
- SpecificationParametersStruct result;
+  ObjectSpecificationMap result;
 
-  result.ObjectName       = getSpecificParameterFromString(specificationString, "<ObjectName>", "Object");
-  result.GroupPath        = normalizeGroupPath(getSpecificParameterFromString(specificationString, "<GroupPath>"));
-  result.Color            = getSpecificParameterFromString(specificationString, "<Color>");
-  result.SpecularColor    = getSpecificParameterFromString(specificationString, "<SpecularColor>");
-  result.Opacity          = getSpecificParameterFromString(specificationString, "<Opacity>");
-  result.GlyphText        = getSpecificParameterFromString(specificationString, "<GlyphText>");     // U3D Glyphs are not supported by Acrobat... :-(
-  result.MetaDataKey      = getSpecificParameterFromString(specificationString, "<MetaDataKey>");
-  result.MetaDataValue    = getSpecificParameterFromString(specificationString, "<MetaDataValue>");
-  result.ModelVisibility  = getSpecificParameterFromString(specificationString, "<ModelVisibility>", "3");            
-  result.WEMLabel         = getSpecificParameterFromString(specificationString, "<WEMLabel>");
-  result.PositionTypes    = getSpecificParameterFromString(specificationString, "<PositionTypes>", "all");
-  result.ConnectionTypes  = getSpecificParameterFromString(specificationString, "<ConnectionTypes>", "simple");
+  result["ObjectName"]      = getSpecificParameterFromString(specificationString, "<ObjectName>", "Object");
+  result["GroupPath"]       = normalizeGroupPath(getSpecificParameterFromString(specificationString, "<GroupPath>"));
+  result["Color"]           = getSpecificParameterFromString(specificationString, "<Color>");
+  result["SpecularColor"]   = getSpecificParameterFromString(specificationString, "<SpecularColor>");
+  result["Opacity"]         = getSpecificParameterFromString(specificationString, "<Opacity>");
+  result["GlyphText"]       = getSpecificParameterFromString(specificationString, "<GlyphText>");     // U3D Glyphs are not supported by Acrobat... :-(
+  result["MetaDataKey"]     = getSpecificParameterFromString(specificationString, "<MetaDataKey>");
+  result["MetaDataValue"]   = getSpecificParameterFromString(specificationString, "<MetaDataValue>");
+  result["ModelVisibility"] = getSpecificParameterFromString(specificationString, "<ModelVisibility>", "3");
+  result["WEMLabel"]        = getSpecificParameterFromString(specificationString, "<WEMLabel>");
+  result["FiberSets"]       = getSpecificParameterFromString(specificationString, "<FiberSets>");
+  result["PositionTypes"]   = getSpecificParameterFromString(specificationString, "<PositionTypes>", "all");
+  result["ConnectionTypes"] = getSpecificParameterFromString(specificationString, "<ConnectionTypes>", "simple");
 
  return result;
 }
-
 
 //***********************************************************************************
 
@@ -593,19 +631,19 @@ void U3DTools::addPointSetModelAndGeometry(const mlU3D::StringVector& specificat
 
   for (MLuint32 i = 0; i < numberOfPointSetSpecifications; i++)
   {
-    mlU3D::SpecificationParametersStruct thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
-    thisSpecificationParameters.ObjectType = mlU3D::MODELTYPE_POINTSET;
+    ObjectSpecificationMap thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
+    thisSpecificationParameters["ObjectType"] = mlU3D::MODELTYPE_POINTSET;
 
     // Override default object name
-    if (thisSpecificationParameters.ObjectName == "Object")
+    if (thisSpecificationParameters["ObjectName"] == "Object")
     {
-      thisSpecificationParameters.ObjectName = u3dObject->defaultValues.defaultPointSetPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultPointSetPefix)));
+      thisSpecificationParameters["ObjectName"] = u3dObject->defaultValues.defaultPointSetPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultPointSetPefix)));
     }
 
     // Create model node
     mlU3D::ModelNode newModelNode = mlU3D::U3DTools::createNewModelNode(thisSpecificationParameters, u3dObject);
 
-    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(pointSetGeometryGeneratorMap, thisSpecificationParameters.PositionTypes, mlU3D::GEOMETRYPREFIX_POINTSET, u3dObject->getNumGeometryGenerators(mlU3D::GEOMETRYPREFIX_POINTSET));
+    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(pointSetGeometryGeneratorMap, thisSpecificationParameters["PositionTypes"], mlU3D::GEOMETRYPREFIX_POINTSET, u3dObject->getNumGeometryGenerators(mlU3D::GEOMETRYPREFIX_POINTSET));
     newModelNode.geometryGeneratorName = pointSetGeometryGeneratorMap[generatorKey].GeometryName;
     u3dObject->modelNodes.push_back(newModelNode);
   }
@@ -657,34 +695,34 @@ void U3DTools::addLineSetModelAndGeometry(const mlU3D::StringVector& specificati
     Vector3 thisModelSpecularColor;
     Vector4 thisModelDiffuseColor;
 
-    mlU3D::SpecificationParametersStruct thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
-    thisSpecificationParameters.ObjectType = mlU3D::MODELTYPE_LINESET;
+    ObjectSpecificationMap thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
+    thisSpecificationParameters["ObjectType"] = mlU3D::MODELTYPE_LINESET;
 
     // Override default object name
-    if (thisSpecificationParameters.ObjectName == "Object")
+    if (thisSpecificationParameters["ObjectName"] == "Object")
     {
-      thisSpecificationParameters.ObjectName = u3dObject->defaultValues.defaultLineSetPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultLineSetPefix)));
+      thisSpecificationParameters["ObjectName"] = u3dObject->defaultValues.defaultLineSetPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultLineSetPefix)));
     }
 
     // Create model node
     mlU3D::ModelNode newModelNode = mlU3D::U3DTools::createNewModelNode(thisSpecificationParameters, u3dObject);
 
-    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(lineSetGeometryGeneratorMap, thisSpecificationParameters.PositionTypes + "|" + thisSpecificationParameters.ConnectionTypes, mlU3D::GEOMETRYPREFIX_LINESET);
+    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(lineSetGeometryGeneratorMap, thisSpecificationParameters["PositionTypes"] + " | " + thisSpecificationParameters["ConnectionTypes"], mlU3D::GEOMETRYPREFIX_LINESET);
     newModelNode.geometryGeneratorName = lineSetGeometryGeneratorMap[generatorKey].GeometryName;
     u3dObject->modelNodes.push_back(newModelNode);
 
     // Set colors
-    if (thisSpecificationParameters.Color == mlU3D::USEVERTEXCOLORS)
+    if (thisSpecificationParameters["Color"] == mlU3D::USEVERTEXCOLORS)
     {
       // Never use vertex colors for line sets
       thisModelDiffuseColor = u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency;
     }
     else
     {
-      thisModelDiffuseColor = mlU3D::U3DTools::getColorVec4FromString(thisSpecificationParameters.Color, u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency);
+      thisModelDiffuseColor = mlU3D::U3DTools::getColorVec4FromString(thisSpecificationParameters["Color"], u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency);
     }
 
-    thisModelSpecularColor = mlU3D::U3DTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, u3dObject->defaultValues.defaultMaterialSpecularColor);
+    thisModelSpecularColor = mlU3D::U3DTools::getColorVec3FromString(thisSpecificationParameters["SpecularColor"], u3dObject->defaultValues.defaultMaterialSpecularColor);
 
     thisModelDiffuseColor[3] = 1; // Make sure that opacity is set to opaque
 
@@ -753,6 +791,107 @@ void U3DTools::addLineSetModelAndGeometry(const mlU3D::StringVector& specificati
 
 //***********************************************************************************
 
+void U3DTools::addLineSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const FiberSetContainer& fiberSetContainer)
+{
+
+  const MLuint32 numberOfLineSetSpecifications = (MLuint32)specificationsVector.size();
+  mlU3D::GeometryGeneratorMap lineSetGeometryGeneratorMap;
+
+  // *****************************
+  // Generate model specifications
+  // *****************************
+
+  for (MLuint32 i = 0; i < numberOfLineSetSpecifications; i++)
+  {
+    Vector3 thisModelSpecularColor;
+    Vector4 thisModelDiffuseColor;
+
+    ObjectSpecificationMap thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
+    thisSpecificationParameters["ObjectType"] = mlU3D::MODELTYPE_LINESET;
+
+    // Override default object name
+    if (thisSpecificationParameters["ObjectName"] == "Object")
+    {
+      thisSpecificationParameters["ObjectName"] = u3dObject->defaultValues.defaultLineSetPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultLineSetPefix)));
+    }
+
+    // Create model node
+    mlU3D::ModelNode newModelNode = mlU3D::U3DTools::createNewModelNode(thisSpecificationParameters, u3dObject);
+
+    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(lineSetGeometryGeneratorMap, thisSpecificationParameters["FiberSets"], mlU3D::GEOMETRYPREFIX_LINESET);
+    newModelNode.geometryGeneratorName = lineSetGeometryGeneratorMap[generatorKey].GeometryName;
+    u3dObject->modelNodes.push_back(newModelNode);
+
+    // Set colors
+    if (thisSpecificationParameters["Color"] == mlU3D::USEVERTEXCOLORS)
+    {
+      // Never use vertex colors for line sets
+      thisModelDiffuseColor = u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency;
+    }
+    else
+    {
+      thisModelDiffuseColor = mlU3D::U3DTools::getColorVec4FromString(thisSpecificationParameters["Color"], u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency);
+    }
+
+    thisModelSpecularColor = mlU3D::U3DTools::getColorVec3FromString(thisSpecificationParameters["SpecularColor"], u3dObject->defaultValues.defaultMaterialSpecularColor);
+
+    thisModelDiffuseColor[3] = 1; // Make sure that opacity is set to opaque
+
+    // Add shader for line set
+    mlU3D::LitTextureShader thisLineSetShader;
+    thisLineSetShader.resourceName = newModelNode.shaderName;
+    thisLineSetShader.materialResourceName = "Material for " + newModelNode.internalName;
+    u3dObject->litTextureShaders.push_back(thisLineSetShader);
+
+    // Add material for line set
+    mlU3D::MaterialResource thisLineSetMaterialResource;
+    thisLineSetMaterialResource.resourceName = "Material for " + newModelNode.internalName;
+    thisLineSetMaterialResource.ambientColor = u3dObject->defaultValues.defaultMaterialAmbientColor;
+    thisLineSetMaterialResource.diffuseColor = thisModelDiffuseColor;
+    thisLineSetMaterialResource.specularColor = thisModelSpecularColor;
+    thisLineSetMaterialResource.emissiveColor = u3dObject->defaultValues.defaultMaterialEmissiveColor;
+    u3dObject->materialResources.push_back(thisLineSetMaterialResource);
+  }
+
+  // ****************************
+  // Generate geometry generators
+  // ****************************
+
+  for (mlU3D::GeometryGeneratorMap::const_iterator mapIterator = lineSetGeometryGeneratorMap.begin(); mapIterator != lineSetGeometryGeneratorMap.end(); mapIterator++)
+  {
+    std::string fiberSets = (*mapIterator).first;
+    std::string geometryName = ((*mapIterator).second).GeometryName;
+
+    // Collect all position coordinates
+    mlU3D::PositionsVector thisLineSetPositions;
+    mlU3D::LinesVector     thisLineSetLines;
+
+    mlU3D::U3DMarkerListTools::getAllPositionsAndLinesFromFiberSetContainer(fiberSetContainer, fiberSets, thisLineSetPositions, thisLineSetLines);
+    mlU3D::ModelBoundingBoxStruct newBoundingBox = mlU3D::U3DTools::getBoundingBoxFomPositions(thisLineSetPositions);
+    mlU3D::U3DTools::updateBoundingBox(u3dObject->modelBoundingBox, newBoundingBox);
+
+    // Add generator for line set
+    mlU3D::LineSetGenerator thisLineSetGenerator;
+    thisLineSetGenerator.resourceName       = geometryName;
+    thisLineSetGenerator.diffuseColorCount  = 0;     // This is not really needed in this version
+    thisLineSetGenerator.specularColorCount = 0;     // This is not really needed in this version
+    thisLineSetGenerator.textureCoordCount  = 0;     // This is not really needed in this version
+    thisLineSetGenerator.pointCount         = (MLuint32)thisLineSetPositions.size();
+    thisLineSetGenerator.lineCount          = (MLuint32)thisLineSetLines.size();
+    thisLineSetGenerator.normalCount        = 0;     // No normals in this version since normals are not used by Acrobat
+    thisLineSetGenerator.shadingAttributes  = mlU3D::SHADINGATTRIBUTES_NONE;
+    thisLineSetGenerator.shadingAttributes |= ((thisLineSetGenerator.diffuseColorCount > 0) ? mlU3D::SHADINGATTRIBUTES_DIFFUSECOLORS : 0);   // Should not happen in this version
+    thisLineSetGenerator.shadingAttributes |= ((thisLineSetGenerator.specularColorCount > 0) ? mlU3D::SHADINGATTRIBUTES_SPECULARCOLORS : 0); // Should not happen in this version
+    thisLineSetGenerator.positions          = thisLineSetPositions;
+    thisLineSetGenerator.lines              = thisLineSetLines;
+    u3dObject->lineSets.push_back(thisLineSetGenerator);
+
+  }
+
+}
+
+//***********************************************************************************
+
 void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM)
 {
   mlU3D::GeometryGeneratorMap meshGeometryGeneratorMap;
@@ -772,25 +911,25 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
     Vector4 thisModelDiffuseColor;
     bool    thisModelUseVertexColors;
 
-    mlU3D::SpecificationParametersStruct thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
-    thisSpecificationParameters.ObjectType = mlU3D::MODELTYPE_MESH;
+    ObjectSpecificationMap thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
+    thisSpecificationParameters["ObjectType"] = mlU3D::MODELTYPE_MESH;
 
     // Override default object name
-    if (thisSpecificationParameters.ObjectName == "Object")
+    if (thisSpecificationParameters["ObjectName"] == "Object")
     {
-      thisSpecificationParameters.ObjectName = u3dObject->defaultValues.defaultMeshPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultMeshPefix)));
+      thisSpecificationParameters["ObjectName"] = u3dObject->defaultValues.defaultMeshPefix + " " + mlU3D::intToString((int)(1 + u3dObject->getNumModels(u3dObject->defaultValues.defaultMeshPefix)));
 
     }
 
     // Create model node
     mlU3D::ModelNode newModelNode = mlU3D::U3DTools::createNewModelNode(thisSpecificationParameters, u3dObject);
 
-    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(meshGeometryGeneratorMap, thisSpecificationParameters.WEMLabel, mlU3D::GEOMETRYPREFIX_MESH);
+    std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(meshGeometryGeneratorMap, thisSpecificationParameters["WEMLabel"], mlU3D::GEOMETRYPREFIX_MESH);
     newModelNode.geometryGeneratorName = meshGeometryGeneratorMap[generatorKey].GeometryName;
     u3dObject->modelNodes.push_back(newModelNode);
 
     // Set colors
-    if (thisSpecificationParameters.Color == mlU3D::USEVERTEXCOLORS)
+    if (thisSpecificationParameters["Color"] == mlU3D::USEVERTEXCOLORS)
     {
       thisModelUseVertexColors = true;
       thisModelDiffuseColor = u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency;
@@ -798,14 +937,14 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
     else
     {
       thisModelUseVertexColors = false;
-      thisModelDiffuseColor = mlU3D::U3DTools::getColorVec4FromString(thisSpecificationParameters.Color, u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency);
+      thisModelDiffuseColor = mlU3D::U3DTools::getColorVec4FromString(thisSpecificationParameters["Color"], u3dObject->defaultValues.defaultMaterialDiffuseColorWithTransparency);
     }
 
-    thisModelSpecularColor = mlU3D::U3DTools::getColorVec3FromString(thisSpecificationParameters.SpecularColor, u3dObject->defaultValues.defaultMaterialSpecularColor);
+    thisModelSpecularColor = mlU3D::U3DTools::getColorVec3FromString(thisSpecificationParameters["SpecularColor"], u3dObject->defaultValues.defaultMaterialSpecularColor);
 
-    if (thisSpecificationParameters.Opacity != "")
+    if (thisSpecificationParameters["Opacity"] != "")
     {
-      thisModelDiffuseColor[3] = mlU3D::stringToMLDouble(thisSpecificationParameters.Opacity);
+      thisModelDiffuseColor[3] = mlU3D::stringToMLDouble(thisSpecificationParameters["Opacity"]);
     }
 
     // Add shader for mesh

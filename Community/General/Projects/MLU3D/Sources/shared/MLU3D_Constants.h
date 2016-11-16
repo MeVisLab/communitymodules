@@ -20,11 +20,18 @@ ML_START_NAMESPACE
 
 namespace mlU3D {
 
-  const std::string USEVERTEXCOLORS = "{VertexColors}";
+  const std::string MODELTYPE_POINTSET = "MODELTYPE_POINTSET";
+  const std::string MODELTYPE_LINESET  = "MODELTYPE_LINESET";
+  const std::string MODELTYPE_MESH     = "MODELTYPE_MESH";
+  const std::string MODELTYPE_GLYPH    = "MODELTYPE_GLYPH";
 
   const std::string GEOMETRYPREFIX_POINTSET = "PointSetGeometry";
   const std::string GEOMETRYPREFIX_LINESET  = "LineSetGeometry";
   const std::string GEOMETRYPREFIX_MESH     = "MeshGeometry";
+
+  const std::string USEVERTEXCOLORS = "{VertexColors}";
+
+  //////////////////////////////////////////////////////////////////////////
 
   typedef MLuint32 DataBlockFundamental;
   typedef std::vector<DataBlockFundamental> DataVector;
