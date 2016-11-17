@@ -14,7 +14,8 @@
 // Project includes
 #include <MLPDF_Tools.h>
 #include <MLPDF_PDFDocumentTools.h>
-#include <U3D_Constants.h>
+#include <MLU3D_Constants.h>
+#include <U3D_Object_DataTypes.h>
 
 // ThirdParty includes
 #include <hpdf.h>
@@ -230,15 +231,15 @@ bool PDF3DFigurePage_SavePDF::_getMetaDataFromU3DFile()
 
     if (u3dFile.is_open())
     {
-      U3DDataBlockFundamental blockType = _readU32(u3dFile);
+      mlU3D::DataBlockFundamental blockType = _readU32(u3dFile);
 
-      if (blockType == U3D_BLOCKTYPE_FILEHEADER)
+      if (blockType == mlU3D::BLOCKTYPE_FILEHEADER)
       {
         // Get data block size
-        U3DDataBlockFundamental blockDataSize = _readU32(u3dFile);
+        mlU3D::DataBlockFundamental blockDataSize = _readU32(u3dFile);
 
         // Get meta data block size
-        /*U3DDataBlockFundamental blockMetaDataSize = */_readU32(u3dFile);
+        /*mlU3D::DataBlockFundamental blockMetaDataSize = */_readU32(u3dFile);
 
         // Calc meta data start position
         MLuint32 dataStartPos = (MLuint32)u3dFile.tellg();
@@ -253,17 +254,17 @@ bool PDF3DFigurePage_SavePDF::_getMetaDataFromU3DFile()
         u3dFile.seekg(metaDataStartPos, std::ios::beg);
 
         // Get Key/Value Pair Count (9.2.6.1)
-        U3DDataBlockFundamental keyValuePairCount = _readU32(u3dFile);
+        mlU3D::DataBlockFundamental keyValuePairCount = _readU32(u3dFile);
 
         for (int thisKeyValuePair = 0; thisKeyValuePair < (int)keyValuePairCount; thisKeyValuePair++)
         {
           // Get Key/Value Pair Attributes (9.2.6.2)
-          /*U3DDataBlockFundamental keyValuePairAttributes = */_readU32(u3dFile);
+          /*mlU3D::DataBlockFundamental keyValuePairAttributes = */_readU32(u3dFile);
 
           std::string keyString = _readString(u3dFile);
           std::string valueString = _readString(u3dFile);
 
-          MetaDataStruct newMetaDataSet;
+          mlU3D::MetaDataStruct newMetaDataSet;
           newMetaDataSet.key = keyString;
           newMetaDataSet.value = valueString;
 
@@ -293,7 +294,7 @@ std::string PDF3DFigurePage_SavePDF::_getViewsSpecificationFromU3DMetaData()
 
   for (int thisKeyValuePairIndex = 0; thisKeyValuePairIndex < keyValuePairCount; thisKeyValuePairIndex++)
   {
-    MetaDataStruct thisKeyValuePair = _u3dMetaData[thisKeyValuePairIndex];
+    mlU3D::MetaDataStruct thisKeyValuePair = _u3dMetaData[thisKeyValuePairIndex];
 
     if (thisKeyValuePair.key == "ViewSpecifications")
     {
@@ -318,7 +319,7 @@ std::string PDF3DFigurePage_SavePDF::_getDefaultViewSpecificationFromU3DMetaData
 
   for (int thisKeyValuePairIndex = 0; thisKeyValuePairIndex < keyValuePairCount; thisKeyValuePairIndex++)
   {
-    MetaDataStruct thisKeyValuePair = _u3dMetaData[thisKeyValuePairIndex];
+    mlU3D::MetaDataStruct thisKeyValuePair = _u3dMetaData[thisKeyValuePairIndex];
 
     if (thisKeyValuePair.key == "BoundingBoxCenter")
     {

@@ -1,12 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The ML module class PDFCalcCamera.
-/*!
+// The ML module class PDFCalcCamera.
+//
 // \file    PDFCalcCamera.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-01-11
 //
 // Calculates PDF camera properties.
-*/
 //----------------------------------------------------------------------------------
 
 

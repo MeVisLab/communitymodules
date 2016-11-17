@@ -14,7 +14,9 @@
 
 // Project includes
 #include <MLPDF_Defines.h>
-#include <MLPDF_SpecificationGenerator.h>
+#include <MLU3D_Tools.h>
+#include <MLU3D_SpecificationGenerator.h>
+
 
 
 ML_START_NAMESPACE
@@ -155,8 +157,8 @@ void PDF3DFigurePage_Utils::_selectedWEMPatchIdChanged(WEMPtr wem)
 
         std::string description = patch->getDescription();
 
-        groupPath = PDFTools::getSpecificParameterFromWEMDescription(description, "GroupPath"); 
-        modelColor = PDFTools::getSpecificParameterFromWEMDescription(description, "Color");
+        groupPath = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(description, "GroupPath"); 
+        modelColor = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(description, "Color");
       }
 
     }
@@ -296,8 +298,8 @@ void PDF3DFigurePage_Utils::_processPatch(unsigned int patchIndex)
     std::string description = inWEMPatch->getDescription();
 
     std::string modelName = "ModelName=" + label +";";
-    std::string groupPath = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(description, "GroupPath"); 
-    std::string modelColor = mlPDF::PDFTools::getSpecificParameterFromWEMDescription(description, "Color");
+    std::string groupPath = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(description, "GroupPath");
+    std::string modelColor = mlU3D::U3DTools::getSpecificParameterFromWEMDescription(description, "Color");
 
     if (groupPath != "")
     {

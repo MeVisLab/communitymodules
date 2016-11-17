@@ -2808,7 +2808,6 @@ module PDF3DFigurePage_SavePDF {
     instanceName = PDF3DFigurePage_SavePDF
     pdfFilename = ""
     resourcesPath = ""
-    status = Idle.
     success = TRUE
     progress = 0
     pdfAttrTitle = ""
@@ -3242,61 +3241,29 @@ module SaveU3D {
   }
   fields  {
     instanceName = SaveU3D
-    autoApply = FALSE
-    autoUpdate = FALSE
-    autoClear = TRUE
-    listenToFinishingNotifications = FALSE
-    listenToRepaintNotifications = FALSE
-    listenToSelectionChangedNotifications = FALSE
     simpleModePointSet = FALSE
     simpleModeLineSet = FALSE
     simpleModeMesh = TRUE
-    modelPrefixPointClouds = PointSet
-    modelPrefixLineSets = LineSet
-    modelPrefixMeshes = Mesh
     pointCloudSpecification = ""
     lineSetSpecification = ""
     meshSpecification = ""
-    viewsSpecification = ""
-    lightsSpecification = ""
     metaDataSpecification = ""
-    defaultViewName = DefaultView
-    defaultLightName = DefaultAmbientLight
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    defaultBoundingBoxMetaData = TRUE
     defaultMaterialDiffuseColor = "0 0 0"
-    defaultMaterialSpecularColor = "0.75 0.75 0.75"
-    defaultMaterialAmbientColor = "0 0 0"
-    defaultMaterialEmissiveColor = "0 0 0"
     defaultMaterialAlpha = 1
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAmbientColor = "0 0 0"
+    addDefaultLightNode = TRUE
+    defaultLightName = DefaultAmbientLight
     defaultLightColor = "1 1 1"
     defaultLightIntensity = 1
-    defaultBoundingBoxMetaData = TRUE
     addDefaultViewNode = TRUE
-    addDefaultLightNode = TRUE
+    defaultViewName = DefaultView
     filename = ""
-    status = Idle.
-    newSpecification = "<MetaData>
-<MetaDataKey>[No key specified]</MetaDataKey>
-<MetaDataValue>[No value specified]</MetaDataValue>
-</MetaData>
-
-"
-    selectedTab = 3
-    newSpecificationOutputValid = TRUE
-    newSpecificationType = OBJECTTYPE_METADATA
-    newSpecificationObjectName = "Main Branch Vessel Centerline"
-    newSpecificationGroupPath = "Point Clouds"
-    newSpecificationUseDefaultColor = FALSE
-    newSpecificationUseVertexColors = FALSE
-    newSpecificationUseDefaultSpecularColor = TRUE
-    newSpecificationColor = "0.651 0.651 0.651"
-    newSpecificationColorAlpha = 1
-    newSpecificationSpecularColor = "0.75 0.75 0.75"
-    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
-    newSpecificationMetaDataKey = ""
-    newSpecificationMetaDataValue = ""
-    newSpecificationWEMLabel = ""
-    newSpecificationPositionTypes = 1
-    newSpecificationConnectionTypes = 1
     useDefaultSettings = FALSE
   }
 }

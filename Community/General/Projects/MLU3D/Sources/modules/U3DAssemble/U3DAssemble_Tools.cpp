@@ -178,6 +178,11 @@ void U3DAssemble::_addMetaData()
 
 void U3DAssemble::_addPointSetModelData()
 {
+  if (_inPointPositions.size() == 0)
+  {
+    return;
+  }
+
   StringVector pointSetSpecificationsVector;
 
   if (_simpleModePointSetFld->getBoolValue())
@@ -203,6 +208,11 @@ void U3DAssemble::_addPointSetModelData()
 
 void U3DAssemble::_addLineSetModelData()
 {
+  if (_inLinePositions.size() == 0)
+  {
+    return;
+  }
+
   StringVector lineSetSpecificationsVector;
 
   if (_simpleModeLineSetFld->getBoolValue())

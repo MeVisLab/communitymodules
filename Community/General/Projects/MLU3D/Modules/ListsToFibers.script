@@ -1,0 +1,24 @@
+//----------------------------------------------------------------------------------
+// ML module ListsToFibers definition
+//
+// \file    ListsToFibers.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {}
+
+Commands {}  
+
+Window { 
+  
+  Vertical {
+  
+    margin = 10
+    expandY = Yes
+    
+    Label { title = "This module requires no settings." alignX = Center alignY = Center }
+    
+  }
+  
+}

@@ -1,19 +1,17 @@
 //----------------------------------------------------------------------------------
-//! The ML module class PDFCreateViewSpecifications.
-/*!
+// The ML module class PDFCreateViewSpecifications.
+//
 // \file    PDFCreateViewSpecifications.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-01-11
 //
 // Create PDF view specification string.
-*/
 //----------------------------------------------------------------------------------
 
 
 // Local includes
 #include "PDFCreateViewSpecifications.h"
 #include "../shared/MLPDF_Defines.h"
-#include "../shared/MLPDF_SpecificationGenerator.h"
 
 
 ML_START_NAMESPACE

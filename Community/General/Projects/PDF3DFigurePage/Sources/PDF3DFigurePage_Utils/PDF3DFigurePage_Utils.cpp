@@ -15,7 +15,7 @@
 // Project includes
 #include <MLPDF_Defines.h>
 #include <MLPDF_PDFDocumentTools.h>
-#include <MLPDF_SpecificationGenerator.h>
+#include <MLU3D_SpecificationGenerator.h>
 #include <ColoredMarkerList.h>
 
 // ML includes

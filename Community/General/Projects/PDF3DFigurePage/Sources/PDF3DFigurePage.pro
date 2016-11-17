@@ -18,7 +18,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLWEM MLPDF MLFiberUtils
+CONFIG += dll ML MLBase MLWEM MLU3D MLPDF MLFiberUtils
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty FMEstable_Release Community_General Community_ThirdParty 
 
@@ -51,7 +51,7 @@ SOURCES += \
 # Additional files that are NOT compiled
 RELATEDFILES += \
     ../Modules/PDF3DFigurePage.def \
-    ../Modules/PDF3DFigureModule.script \
+    ../Modules/PDF3DFigurePageMacro.script \
     ../Modules/PDF3DFigurePage_Utils.script \
     ../Modules/PDF3DFigurePage_SavePDF.script \
     ../Modules/PDF3DFigurePage_LoadPointLineGeometry.script \

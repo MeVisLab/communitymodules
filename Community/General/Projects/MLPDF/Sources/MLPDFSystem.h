@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! Project global and OS specific declarations.
-/*!
+// Project global and OS specific declarations.
+//
 // \file    MLPDFSystem.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-02-06
-*/
 //----------------------------------------------------------------------------------
 
 

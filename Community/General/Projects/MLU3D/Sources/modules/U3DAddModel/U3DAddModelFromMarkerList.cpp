@@ -125,6 +125,11 @@ void U3DAddModelFromMarkerList::process()
 
 void U3DAddModelFromMarkerList::_addPointSetModelData()
 {
+  if (_inPositions.size() == 0)
+  {
+    return;
+  }
+
   StringVector pointSetSpecificationsVector;
 
   if (_simpleModePointSetFld->getBoolValue())

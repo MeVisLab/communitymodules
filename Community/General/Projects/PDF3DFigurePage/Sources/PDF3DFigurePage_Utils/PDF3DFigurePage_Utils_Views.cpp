@@ -13,7 +13,7 @@
 #include "PDF3DFigurePage_Utils.h"
 
 // Project includes
-#include <MLPDF_SpecificationGenerator.h>
+#include <MLU3D_SpecificationGenerator.h>
 
 
 ML_START_NAMESPACE

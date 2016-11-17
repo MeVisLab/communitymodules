@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! ML module PDFCreateViewSpecifications definition
-/*!
+// ML module PDFCreateViewSpecifications definition
+//
 // \file    PDFCreateViewSpecifications.script
 // \author  Axel Newe
 // \date    2016-01-11
-*/
 //----------------------------------------------------------------------------------
 
 Description {

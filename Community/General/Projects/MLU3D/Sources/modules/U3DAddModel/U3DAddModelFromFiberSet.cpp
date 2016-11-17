@@ -126,6 +126,11 @@ void U3DAddModelFromFiberSet::process()
 
 void U3DAddModelFromFiberSet::_addLineSetModelData()
 {
+  if (_inFiberSetContainer.getNumFiberSets() == 0)
+  {
+    return;
+  }
+
   StringVector lineSetSpecificationsVector;
 
   if (_simpleModeLineSetFld->getBoolValue())

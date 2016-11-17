@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! Tools for PDF file creation.
-/*!
+// Tools for PDF file creation.
+//
 // \file    MLPDF_Tools.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
-*/
 //----------------------------------------------------------------------------------
 
 
@@ -13,7 +12,6 @@
 
 // Local includes
 #include "MLPDFSystem.h"
-#include "MLPDF_DataTypes.h"
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -28,6 +26,8 @@
 ML_START_NAMESPACE
 
 namespace mlPDF {
+
+typedef std::vector<std::string> StringVector;
 
 // Inlines ================================================================
 
@@ -141,34 +141,8 @@ public:
 
   //***********************************************************************************
 
-  // Get data from object (point cloud, line set, mesh) specification fields
-  static StringVector getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter);
-
-  // Parses the specification string from the UI and extracts a specific U3D property
+  // Parses the specification string from the UI and extracts a specific property
   static std::string getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult = "");
-
-  // Parses input string from UI and extracts object specification parameters
-  static SpecificationParametersStruct getAllSpecificationParametersFromString(const std::string specificationString);
-
-  // Parses the description string of the WEM to set U3D properties.
-  static std::string getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult = "");
-
-  // Get parent node name from the group name path
-  static std::string getParentNameFromGroupPath(std::string groupPath);
-
-  // Make sure each group path has a leading and a trailing "/"
-  static std::string normalizeGroupPath(std::string groupPath);
-
-  // Updates a GroupNodeVector with a new group path
-  static void updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath);
-
-  //***********************************************************************************
-
-  // Updates the model bounding box
-  static void UpdateBoundingBox(ModelBoundingBoxStruct& boundingBox, ModelBoundingBoxStruct newCorners);
-
-  // Get bounding box edges from positions
-  static ModelBoundingBoxStruct GetBoundingBoxFomPositions(PositionsVector positions);
 
   //////////////////////////////////////////////
 

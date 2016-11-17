@@ -1,12 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The ML module class SavePDF.
-/*!
+// The ML module class SavePDF.
+//
 // \file    PDFGenerator_Document.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2016-08-01
 //
 // Base class for PDF creators.
-*/
 //----------------------------------------------------------------------------------
 
 // Local includes

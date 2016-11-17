@@ -1,0 +1,227 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module U3DInfo {
+  internal  {
+    frame = "441 205 80 56"
+    moduleGroupName = ""
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = U3DInfo
+    networkPanelStatus = Idle.
+  }
+}
+module Calculator {
+  internal  {
+    frame = "477 29 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "907 158 700 650"
+        sizeHint = "700 650"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Calculator
+    exp1 = d1/2+d2/2
+    exp2 = ""
+    exp3 = ""
+    exp4 = ""
+    exp5 = ""
+    exp6 = ""
+    exp7 = ""
+    exp8 = ""
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
+    d1 = 0
+    d2 = 0
+    d3 = 0
+    d4 = 0
+    d5 = 0
+    d6 = 0
+    d7 = 0
+    d8 = 0
+    d9 = 0
+    d10 = 0
+    d11 = 0
+    d12 = 0
+    v1 = "0 0 0"
+    v2 = "0 0 0"
+    v3 = "0 0 0"
+    v4 = "0 0 0"
+    v5 = "0 0 0"
+    v6 = "0 0 0"
+    domainErrorHandling = Nothing
+    applyMode = AutoApply
+    exp1Comment = ""
+    exp2Comment = ""
+    exp3Comment = ""
+    exp4Comment = ""
+    exp5Comment = ""
+    exp6Comment = ""
+    exp7Comment = ""
+    exp8Comment = ""
+    scalarVariablesComment = ""
+    vectorVariablesComment = ""
+    resultVector1_x = 0
+    resultVector1_y = 0
+    resultVector1_z = 0
+    resultVector2_x = 0
+    resultVector2_y = 0
+    resultVector2_z = 0
+    resultVector3_x = 0
+    resultVector3_y = 0
+    resultVector3_z = 0
+    resultVector4_x = 0
+    resultVector4_y = 0
+    resultVector4_z = 0
+    resultVector5_x = 0
+    resultVector5_y = 0
+    resultVector5_z = 0
+    resultVector6_x = 0
+    resultVector6_y = 0
+    resultVector6_z = 0
+    resultVector7_x = 0
+    resultVector7_y = 0
+    resultVector7_z = 0
+    resultVector8_x = 0
+    resultVector8_y = 0
+    resultVector8_z = 0
+  }
+}
+module U3DSpecificationGenerator {
+  internal  {
+    frame = "429 -51 184 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = U3DSpecificationGenerator
+    newSpecification = ""
+    newSpecificationOutputValid = FALSE
+    newSpecificationType = OBJECTTYPE_MESH
+    selectedTab = 3
+    newSpecificationObjectName = ""
+    newSpecificationGroupPath = ""
+    newSpecificationUseDefaultColor = TRUE
+    newSpecificationUseVertexColors = FALSE
+    newSpecificationUseDefaultSpecularColor = TRUE
+    newSpecificationColor = "0.651000022888184 0.651000022888184 0.651000022888184"
+    newSpecificationColorAlpha = 1
+    newSpecificationSpecularColor = "0.75 0.75 0.75"
+    newSpecificationModelVisibility = MODELVISIBILITY_FRONTANDBACKVISIBLE
+    newSpecificationMetaDataKey = ""
+    newSpecificationMetaDataValue = ""
+    newSpecificationWEMLabel = ""
+    newSpecificationFibers = ""
+    newSpecificationPositionTypes = ""
+    newSpecificationConnectionTypes = ""
+  }
+}
+module U3DSave {
+  internal  {
+    frame = "465 109 112 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "966 380 600 171"
+        sizeHint = "600 171"
+        wasOpen = no
+      }
+      window "Specification Generator Panel" {
+        geometry = "638 324 419 461"
+        sizeHint = "419 461"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "271 301 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DSave
+    inputValid = TRUE
+    autoApply = FALSE
+    filename = C:/Users/z002zrcd/Desktop/U3DAssembleExample.u3d
+    autoSave = FALSE
+    success = FALSE
+    useDefaultSettings = TRUE
+  }
+}
+module U3DAssemble {
+  internal  {
+    frame = "442 325 160 72"
+    moduleGroupName = ""
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "212 252 850 706"
+        sizeHint = "850 651"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "1806 175 849 549"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+      window "Specification Generator Panel" {
+        geometry = "604 476 705 536"
+        sizeHint = "617 521"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAssemble
+    autoApply = FALSE
+    autoUpdate = FALSE
+    autoClear = FALSE
+    listenToFinishingNotifications = FALSE
+    listenToRepaintNotifications = FALSE
+    listenToSelectionChangedNotifications = FALSE
+    simpleModePointSet = FALSE
+    simpleModeLineSet = FALSE
+    simpleModeMesh = FALSE
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    pointCloudSpecification = ""
+    lineSetSpecification = ""
+    meshSpecification = ""
+    viewsSpecification = ""
+    lightsSpecification = ""
+    metaDataSpecification = ""
+    defaultViewName = DefaultView
+    defaultLightName = DefaultAmbientLight
+    defaultMaterialName = DefaultMaterial
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialAmbientColor = "0 0 0"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAlpha = 1
+    defaultMaterialReflectivity = 0.5
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    addDefaultBoundingBoxMetaData = TRUE
+    addDefaultViewNode = TRUE
+    addDefaultLightNode = TRUE
+    success = FALSE
+  }
+}
+connections  {
+  U3DInfo.inU3DObject = U3DAssemble.outU3DObject
+  Calculator.d1 = U3DAssemble.progress
+  Calculator.d2 = U3DSave.progress
+  U3DSave.inU3DObject = U3DAssemble.outU3DObject
+}
+networkModel = ""

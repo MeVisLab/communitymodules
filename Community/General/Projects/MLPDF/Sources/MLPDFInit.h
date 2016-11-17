@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! Dynamic library and runtime type system initialization.
-/*!
+// Dynamic library and runtime type system initialization.
+//
 // \file    MLPDFInit.h 
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-02-06
-*/
 //----------------------------------------------------------------------------------
 
 // Add to library path:

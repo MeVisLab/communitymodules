@@ -12,6 +12,7 @@ Description {
   Field status             { editable = No persistent = No }
   Field networkPanelStatus { editable = No persistent = No }
   Field progress           { editable = No persistent = No }
+  Field success            { editable = No persistent = No }
 }
 
 
@@ -23,6 +24,8 @@ Interface {
 
 
 Commands {
+  source = $(LOCAL)/U3DSave.py
+  initCommand = InitModule
 }
 
 

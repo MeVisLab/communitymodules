@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! Defines for PDF file creation.
-/*!
+// Defines for PDF file creation.
+//
 // \file    MLPDF_Defines.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
-*/
 //----------------------------------------------------------------------------------
 
 

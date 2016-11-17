@@ -24,26 +24,35 @@ namespace mlU3D {
   //-----------------------------------------------------------------------------------------------//
   //! Types of specifications.
   //-----------------------------------------------------------------------------------------------//
-  enum NEW_SPECIFICATION_OBJECTTYPES {
-    OBJECTTYPE_POINTCLOUD = 0,
-    OBJECTTYPE_LINESET = 1,
-    OBJECTTYPE_MESH = 2,
-    OBJECTTYPE_METADATA = 3,
-    NUM_OBJECTTYPES = 4
+  enum SPECIFICATION_OBJECTTYPES {
+    SPECIFICATION_OBJECTTYPE_POINTCLOUD           = 0,
+    SPECIFICATION_OBJECTTYPE_LINESET_FROM_MARKERS = 1,
+    SPECIFICATION_OBJECTTYPE_LINESET_FROM_FIBERS  = 2,
+    SPECIFICATION_OBJECTTYPE_MESH                 = 3,
+    SPECIFICATION_OBJECTTYPE_METADATA             = 4,
+    NUM_SPECIFICATION_OBJECTTYPES                 = 5
+  };
+
+  const char* const SpecificationObjectTypeStrings[mlU3D::NUM_SPECIFICATION_OBJECTTYPES] = {
+    "OBJECTTYPE_POINTCLOUD",
+    "OBJECTTYPE_LINESET_FROM_MARKERS",
+    "OBJECTTYPE_LINESET_FROM_FIBERS",
+    "OBJECTTYPE_MESH",
+    "OBJECTTYPE_METADATA"
   };
 
   //-----------------------------------------------------------------------------------------------//
   //! Model visibility codes.
   //-----------------------------------------------------------------------------------------------//
-  enum NEW_SPECIFICATION_MODELVISIBILITY {
-    NEW_SPECIFICATION_MODELVISIBILITY_NOTVISIBLE = 0,
-    NEW_SPECIFICATION_MODELVISIBILITY_FRONTVISIBLE = 1,
-    NEW_SPECIFICATION_MODELVISIBILITY_BACKVISIBLE = 2,
-    NEW_SPECIFICATION_MODELVISIBILITY_FRONTANDBACKVISIBLE = 3,
-    NUM_NEW_SPECIFICATION_MODELVISIBILITY = 4
+  enum SPECIFICATION_MODELVISIBILITY {
+    SPECIFICATION_MODELVISIBILITY_NOTVISIBLE          = 0,
+    SPECIFICATION_MODELVISIBILITY_FRONTVISIBLE        = 1,
+    SPECIFICATION_MODELVISIBILITY_BACKVISIBLE         = 2,
+    SPECIFICATION_MODELVISIBILITY_FRONTANDBACKVISIBLE = 3,
+    NUM_SPECIFICATION_MODELVISIBILITY                 = 4
   };
 
-  const char* const NewSpecificationModelVisibilityStrings[NUM_NEW_SPECIFICATION_MODELVISIBILITY] = {
+  const char* const SpecificationModelVisibilityStrings[NUM_SPECIFICATION_MODELVISIBILITY] = {
     "MODELVISIBILITY_NOTVISIBLE",
     "MODELVISIBILITY_FRONTVISIBLE",
     "MODELVISIBILITY_BACKVISIBLE",
@@ -56,17 +65,18 @@ class MLU3D_EXPORT SpecificationGenerator
 
 public:
 
-  static std::string GetMetaDataKey(std::string fieldValue);
-  static std::string GetMetaDataValue(std::string fieldValue);
-  static std::string GetWEMLabel(std::string fieldValue);
-  static std::string GetPositionTypes(std::string fieldValue);
-  static std::string GetConnectionTypes(std::string fieldValue);
-  static std::string GetObjectName(std::string fieldValue);
-  static std::string GetGroupPath(std::string fieldValue);
-  static std::string GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor, bool useVertexColor);
-  static std::string GetSpecularColor(Vector3 colorValue, bool useDefaultColor);
-  static std::string GetOpacity(float alphaValue);
-  static std::string GetModelVisibility(int fieldValue);
+  static std::string getMetaDataKey(std::string fieldValue);
+  static std::string getMetaDataValue(std::string fieldValue);
+  static std::string getWEMLabel(std::string fieldValue);
+  static std::string getFiberSetIndices(std::string fieldValue);
+  static std::string getPositionTypes(std::string fieldValue);
+  static std::string getConnectionTypes(std::string fieldValue);
+  static std::string getObjectName(std::string fieldValue);
+  static std::string getGroupPath(std::string fieldValue);
+  static std::string getColor(Vector3 colorValue, float alphaValue, bool useDefaultColor, bool useVertexColor);
+  static std::string getSpecularColor(Vector3 colorValue, bool useDefaultColor);
+  static std::string getOpacity(float alphaValue);
+  static std::string getModelVisibility(int fieldValue);
 };
 
 } // end namespace mlU3D

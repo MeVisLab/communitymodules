@@ -39,19 +39,6 @@ HEADERS += \
   abstract/BaseModules/U3DGenerator.h \
   abstract/BaseModules/U3DProcessor.h \
   abstract/BaseModules/U3DInspector.h \
-  modules/modules.h \
-  modules/U3DInit/U3DInit.h \
-  modules/U3DInfo/U3DInfo.h \
-  modules/U3DLoad/U3DLoad.h \
-  modules/U3DSave/U3DSave.h \
-  modules/U3DManager/U3DManager.h \
-  modules/U3DAssemble/U3DAssemble.h \
-  modules/U3DAddModel/U3DAddModelFromWEM.h \
-  modules/U3DAddModel/U3DAddModelFromFiberSet.h \
-  modules/U3DAddModel/U3DAddModelFromMarkerList.h \
-  modules/U3DGeometryTo/U3DGeometryToXMarkerList.h \
-  modules/U3DGeometryTo/U3DGeometryToFiberSet.h \
-  modules/U3DGeometryTo/U3DGeometryToWEM.h \
   shared/MLU3D_Constants.h \
   shared/MLU3D_Tools.h \
   shared/MLU3D_DataTypes.h \
@@ -68,6 +55,22 @@ HEADERS += \
   shared/U3DInternalFormat/U3D_Object_Modifiers.h \
   shared/U3DInternalFormat/U3D_Object_Resources.h \
   shared/U3DInternalFormat/U3D_Object_GeometryGenerators.h \
+  modules/modules.h \
+  modules/U3DInit/U3DInit.h \
+  modules/U3DInfo/U3DInfo.h \
+  modules/U3DLoad/U3DLoad.h \
+  modules/U3DSave/U3DSave.h \
+  modules/U3DManager/U3DManager.h \
+  modules/U3DAssemble/U3DAssemble.h \
+  modules/U3DAddModel/U3DAddModelFromWEM.h \
+  modules/U3DAddModel/U3DAddModelFromFiberSet.h \
+  modules/U3DAddModel/U3DAddModelFromMarkerList.h \
+  modules/U3DGeometryTo/U3DGeometryToXMarkerList.h \
+  modules/U3DGeometryTo/U3DGeometryToFiberSet.h \
+  modules/U3DGeometryTo/U3DGeometryToWEM.h \
+  modules/U3DSpecificationGenerator/U3DSpecificationGenerator.h \
+  modules/auxiliary/ListsToFibers.h \
+  modules/auxiliary/LoadPointLineGeometry.h \
 
 SOURCES += \
   MLU3DInit.cpp \ 
@@ -76,6 +79,19 @@ SOURCES += \
   abstract/BaseModules/U3DGenerator.cpp \
   abstract/BaseModules/U3DProcessor.cpp \
   abstract/BaseModules/U3DInspector.cpp \
+  shared/MLU3D_Tools.cpp \
+  shared/MLU3D_MarkerListTools.cpp \
+  shared/MLU3D_SpecificationGenerator.cpp \
+  shared/U3DFileFormat/U3D_BitStream.cpp \
+  shared/U3DFileFormat/U3D_DataBlock.cpp \
+  shared/U3DFileFormat/U3D_FileWriter.cpp \
+  shared/U3DFileFormat/U3D_ContextManager.cpp \
+  shared/U3DFileFormat/U3D_DataBlockWriter.cpp \
+  shared/U3DInternalFormat/U3D_Object.cpp \
+  shared/U3DInternalFormat/U3D_Object_Nodes.cpp \
+  shared/U3DInternalFormat/U3D_Object_Modifiers.cpp \
+  shared/U3DInternalFormat/U3D_Object_Resources.cpp \
+  shared/U3DInternalFormat/U3D_Object_GeometryGenerators.cpp \
   modules/modules.cpp \
   modules/U3DInit/U3DInit.cpp \
   modules/U3DInfo/U3DInfo.cpp \
@@ -93,19 +109,9 @@ SOURCES += \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.cpp \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.cpp \
   modules/U3DGeometryTo/U3DGeometryToWEM.cpp \
-  shared/MLU3D_Tools.cpp \
-  shared/MLU3D_MarkerListTools.cpp \
-  shared/MLU3D_SpecificationGenerator.cpp \
-  shared/U3DFileFormat/U3D_BitStream.cpp \
-  shared/U3DFileFormat/U3D_DataBlock.cpp \
-  shared/U3DFileFormat/U3D_FileWriter.cpp \
-  shared/U3DFileFormat/U3D_ContextManager.cpp \
-  shared/U3DFileFormat/U3D_DataBlockWriter.cpp \
-  shared/U3DInternalFormat/U3D_Object.cpp \
-  shared/U3DInternalFormat/U3D_Object_Nodes.cpp \
-  shared/U3DInternalFormat/U3D_Object_Modifiers.cpp \
-  shared/U3DInternalFormat/U3D_Object_Resources.cpp \
-  shared/U3DInternalFormat/U3D_Object_GeometryGenerators.cpp \
+  modules/U3DSpecificationGenerator/U3DSpecificationGenerator.cpp \
+  modules/auxiliary/ListsToFibers.cpp \
+  modules/auxiliary/LoadPointLineGeometry.cpp \
 
 # Additional files that are NOT compiled
 RELATEDFILES += \
@@ -121,6 +127,8 @@ RELATEDFILES += \
   ../Modules/U3DGeometryToXMarkerList.script \
   ../Modules/U3DGeometryToFiberSet.script \
   ../Modules/U3DGeometryToWEM.script \
+  ../Modules/ListsToFibers.script \
+  ../Modules/LoadPointLineGeometry.script \
 
 
 

@@ -8,8 +8,8 @@
 
 
 // Local includes
-#include "MLU3D_Constants.h"
 #include "MLU3D_SpecificationGenerator.h"
+#include "MLU3D_Constants.h"
 #include "MLU3D_Tools.h"
 
 
@@ -19,7 +19,7 @@ namespace mlU3D {
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetMetaDataKey(std::string fieldValue)
+std::string SpecificationGenerator::getMetaDataKey(std::string fieldValue)
 {
   if (fieldValue == "")
   {
@@ -36,7 +36,7 @@ std::string SpecificationGenerator::GetMetaDataKey(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetMetaDataValue(std::string fieldValue)
+std::string SpecificationGenerator::getMetaDataValue(std::string fieldValue)
 {
   if (fieldValue == "")
   {
@@ -52,7 +52,7 @@ std::string SpecificationGenerator::GetMetaDataValue(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetWEMLabel(std::string fieldValue)
+std::string SpecificationGenerator::getWEMLabel(std::string fieldValue)
 {
   std::string result = "";
 
@@ -68,7 +68,23 @@ std::string SpecificationGenerator::GetWEMLabel(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetPositionTypes(std::string fieldValue)
+std::string SpecificationGenerator::getFiberSetIndices(std::string fieldValue)
+{
+  std::string result = "";
+
+  if (fieldValue != "")
+  {
+    result = "<FiberSets>";
+    result += fieldValue;
+    result += "</FiberSets>\n";
+  }
+
+  return result;
+}
+
+//----------------------------------------------------------------------------------
+
+std::string SpecificationGenerator::getPositionTypes(std::string fieldValue)
 {
   std::string result = "";
 
@@ -84,7 +100,7 @@ std::string SpecificationGenerator::GetPositionTypes(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetConnectionTypes(std::string fieldValue)
+std::string SpecificationGenerator::getConnectionTypes(std::string fieldValue)
 {
   std::string result = "";
 
@@ -100,7 +116,7 @@ std::string SpecificationGenerator::GetConnectionTypes(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetObjectName(std::string fieldValue)
+std::string SpecificationGenerator::getObjectName(std::string fieldValue)
 {
   std::string result = "";
 
@@ -116,7 +132,7 @@ std::string SpecificationGenerator::GetObjectName(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetGroupPath(std::string fieldValue)
+std::string SpecificationGenerator::getGroupPath(std::string fieldValue)
 {
   std::string result = "" ;
 
@@ -144,7 +160,7 @@ std::string SpecificationGenerator::GetGroupPath(std::string fieldValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetColor(Vector3 colorValue, float alphaValue, bool useDefaultColor, bool useVertexColor)
+std::string SpecificationGenerator::getColor(Vector3 colorValue, float alphaValue, bool useDefaultColor, bool useVertexColor)
 {
   std::string result = "";
 
@@ -165,7 +181,7 @@ std::string SpecificationGenerator::GetColor(Vector3 colorValue, float alphaValu
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetSpecularColor(Vector3 colorValue, bool useDefaultColor)
+std::string SpecificationGenerator::getSpecularColor(Vector3 colorValue, bool useDefaultColor)
 {
   std::string result = "";
 
@@ -182,7 +198,7 @@ std::string SpecificationGenerator::GetSpecularColor(Vector3 colorValue, bool us
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetOpacity(float alphaValue)
+std::string SpecificationGenerator::getOpacity(float alphaValue)
 {
   std::string result = "";
 
@@ -195,24 +211,24 @@ std::string SpecificationGenerator::GetOpacity(float alphaValue)
 
 //----------------------------------------------------------------------------------
 
-std::string SpecificationGenerator::GetModelVisibility(int fieldValue)
+std::string SpecificationGenerator::getModelVisibility(int fieldValue)
 {
   std::string result = "";
   std::string modelVisibility = "";
 
-  if (fieldValue == NEW_SPECIFICATION_MODELVISIBILITY_NOTVISIBLE)
+  if (fieldValue == SPECIFICATION_MODELVISIBILITY_NOTVISIBLE)
   {
     modelVisibility = "0";
   }
-  else if (fieldValue == NEW_SPECIFICATION_MODELVISIBILITY_FRONTVISIBLE)
+  else if (fieldValue == SPECIFICATION_MODELVISIBILITY_FRONTVISIBLE)
   {
       modelVisibility = "1";
   }
-  else if (fieldValue == NEW_SPECIFICATION_MODELVISIBILITY_BACKVISIBLE)
+  else if (fieldValue == SPECIFICATION_MODELVISIBILITY_BACKVISIBLE)
   {
       modelVisibility = "2";
   }
-  else if (fieldValue == NEW_SPECIFICATION_MODELVISIBILITY_FRONTANDBACKVISIBLE)
+  else if (fieldValue == SPECIFICATION_MODELVISIBILITY_FRONTANDBACKVISIBLE)
   {
       modelVisibility = "3";
   }

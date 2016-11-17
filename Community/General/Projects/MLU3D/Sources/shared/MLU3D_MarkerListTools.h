@@ -12,7 +12,8 @@
 
 // Local includes
 #include "../MLU3DSystem.h"
-#include "MLU3D_DataTypes.h"
+#include <MLU3D_DataTypes.h>
+#include <U3D_Object_GeometryGenerators.h>
 
 // Project includes
 #include <IndexPairList.h>
@@ -22,6 +23,9 @@
 #include <mlXMarkerList.h>
 #include <mlFiberSet.h>
 #include <mlModuleIncludes.h>
+
+// WEM includes
+#include <WEMBase/WEM.h>
 
 
 ML_START_NAMESPACE

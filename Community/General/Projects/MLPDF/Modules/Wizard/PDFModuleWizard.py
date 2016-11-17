@@ -1,10 +1,9 @@
 #----------------------------------------------------------------------------------
-#! Wizard for creating PDF modules
-#!
+# Wizard for creating PDF modules
+#
 # \file    PDFModuleWizard.py
 # \author  Axel Newe
 # \date    2015-12-01
-#
 #----------------------------------------------------------------------------------
 
 _titles = ["Module Properties","Demo Code","Module Field Interface"]

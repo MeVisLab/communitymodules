@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! Tools for MLPDF specification generation.
-/*!
+// Tools for MLPDF specification generation.
+//
 // \file    MLPDF_PDFDocumentTools.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-15
-*/
 //----------------------------------------------------------------------------------
 
 

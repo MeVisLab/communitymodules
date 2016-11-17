@@ -1,18 +1,17 @@
 //----------------------------------------------------------------------------------
-//! The ML module class PDF3DFigurePage_LoadPointLineGeometry.
+//! The ML module class LoadPointLineGeometry.
 /*!
-// \file    PDF3DFigurePage_LoadPointLineGeometry.cpp
+// \file    LoadPointLineGeometry.cpp
 // \author  Axel Newe (axel.newe@fau.de)
-// \date    2015-10-01
+// \date    2015-10-29
 //
+// 
 */
 //----------------------------------------------------------------------------------
 
 // Local includes
-#include "PDF3DFigurePage_LoadPointLineGeometry.h"
-
-// Project includes
-#include <MLU3D_MarkerListTools.h>
+#include "LoadPointLineGeometry.h"
+#include "../../shared/MLU3D_MarkerListTools.h"
 
 // ML includes
 #include <mlUnicode.h>
@@ -24,26 +23,23 @@
 
 ML_START_NAMESPACE
 
-using namespace mlPDF;
-
 //! Implements code for the runtime type system of the ML
-ML_MODULE_CLASS_SOURCE(PDF3DFigurePage_LoadPointLineGeometry, Module);
+ML_MODULE_CLASS_SOURCE(LoadPointLineGeometry, Module);
 
 //----------------------------------------------------------------------------------
 
-PDF3DFigurePage_LoadPointLineGeometry::PDF3DFigurePage_LoadPointLineGeometry() : Module(0, 0)
+LoadPointLineGeometry::LoadPointLineGeometry() : Module(0, 0)
 {
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
   handleNotificationOff();
 
   // Add output field
-  (_outCachedPointPositionsListFld  = addBase("outCachedPointPositionsList"))->setBaseValueAndAddAllowedType(&_outCachedPointPositionsList);
-  (_outCachedLinePositionsListFld   = addBase("outCachedLinePositionsList"))->setBaseValueAndAddAllowedType(&_outCachedLinePositionsList);
-  (_outCachedLineConnectionsListFld = addBase("outCachedLineConnectionsList"))->setBaseValueAndAddAllowedType(&_outCachedLineConnectionsList);
-  (_outPositionsListFld = addBase("outPositionsList"))->setBaseValueAndAddAllowedType(&_outPositionsList);
-  //(_outConnectionsListFld           = addBase("outConnectionsList"))->setBaseValueAndAddAllowedType(&_outConnectionsList);
-  (_outFibersFld = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+  (_outPositionsListFld         = addBase("outPositionsList"))->setBaseValueAndAddAllowedType(&_outPositionsList);
+  (_outConnectionsListFld       = addBase("outConnectionsList"))->setBaseValueAndAddAllowedType(&_outConnectionsList);
+  (_outFibersFld                = addBase("outFibers"))->setBaseValueAndAddAllowedType(&_outFiberSetContainer);
+  (_outCachedPositionsListFld   = addBase("outCachedPositionsList"))->setBaseValueAndAddAllowedType(&_outCachedPositionsList);
+  (_outCachedConnectionsListFld = addBase("outCachedConnectionsList"))->setBaseValueAndAddAllowedType(&_outCachedConnectionsList);
 
   // Add parameter fields
    _filenameFld = addString("filename","");
@@ -60,10 +56,9 @@ PDF3DFigurePage_LoadPointLineGeometry::PDF3DFigurePage_LoadPointLineGeometry() :
    _positionsLoadedFld   = addBool("positionsLoaded", false);
    _connectionsLoadedFld = addBool("connectionsLoaded", false);
 
-   _addToPointCacheFld = addNotify("addToPointCache");
-   _addToLineCacheFld  = addNotify("addToLineCache");
-   _clearPointCacheFld = addNotify("clearPointCache");
-   _clearLineCacheFld  = addNotify("clearLineCache");
+   _addToCacheFld     = addNotify("addToCache");
+   _clearCacheFld     = addNotify("clearCache");
+   _autoAddToCacheFld = addBool("autoAddToCache", false);
 
   // Reactivate calls of handleNotification on field changes.
   handleNotificationOn();
@@ -71,45 +66,32 @@ PDF3DFigurePage_LoadPointLineGeometry::PDF3DFigurePage_LoadPointLineGeometry() :
 
 //----------------------------------------------------------------------------------
 
-PDF3DFigurePage_LoadPointLineGeometry::~PDF3DFigurePage_LoadPointLineGeometry()
+LoadPointLineGeometry::~LoadPointLineGeometry()
 {
   _outPositionsList.clearList();
   _outConnectionsList.clearList();
   _outFiberSetContainer.deleteAllFiberSets();
-  _outCachedPointPositionsList.clearList();
-  _outCachedLinePositionsList.clearList();
-  _outCachedLineConnectionsList.clearList();
+  _outCachedPositionsList.clearList();
+  _outCachedConnectionsList.clearList();
 }
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::handleNotification(Field* field)
+void LoadPointLineGeometry::handleNotification(Field* field)
 {
-  if (field == _clearPointCacheFld)
+  if (field == _clearCacheFld)
   {
-    _clearPointCache();
+    _clearCache();
     return;
   }
 
-  if (field == _clearLineCacheFld)
+  if (field == _addToCacheFld)
   {
-    _clearLineCache();
+    _addToCache();
     return;
   }
 
-  if (field == _addToPointCacheFld)
-  {
-    _addToPointCache();
-    return;
-  }
-
-  if (field == _addToLineCacheFld)
-  {
-    _addToLineCache();
-    return;
-  }
-
-  if (field == _numberDelimiterFld)
+  if  (field == _numberDelimiterFld) 
   {
     _cropNumberDelimiter();
   }
@@ -139,7 +121,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::handleNotification(Field* field)
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_cropNumberDelimiter()
+void LoadPointLineGeometry::_cropNumberDelimiter()
 {
   std::string delimiter = _numberDelimiterFld->getStringValue();
 
@@ -162,7 +144,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_cropNumberDelimiter()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_cropDecimalSeparator()
+void LoadPointLineGeometry::_cropDecimalSeparator()
 {
   std::string separator = _decimalSeparatorFld->getStringValue();
 
@@ -180,7 +162,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_cropDecimalSeparator()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_loadData()
+void LoadPointLineGeometry::_loadData()
 {
   std::string filename = _filenameFld->getStringValue();
 
@@ -240,12 +222,21 @@ void PDF3DFigurePage_LoadPointLineGeometry::_loadData()
     std::cerr << "Unable to open file.\n"; 
   }
 
+  _analyzeInputData();
   _updateOutputData();
+
 }
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_updateOutputData()
+void LoadPointLineGeometry::_analyzeInputData()
+{
+  // Add any code that is needed to analyze input data here.
+}
+ 
+//----------------------------------------------------------------------------------
+
+void LoadPointLineGeometry::_updateOutputData()
 {
   _outPositionsList.clearList();
   _outConnectionsList.clearList();
@@ -265,11 +256,11 @@ void PDF3DFigurePage_LoadPointLineGeometry::_updateOutputData()
 
   std::string decimalSeparator = _decimalSeparatorFld->getStringValue();
 
-  for(StringVector::iterator it = _inputFileLinesVector.begin(); it != _inputFileLinesVector.end(); ++it) 
+  for(mlU3D::StringVector::iterator it = _inputFileLinesVector.begin(); it != _inputFileLinesVector.end(); ++it) 
   {
     std::string thisLine = *it;
 
-    StringVector thisDataLineComponents = PDFTools::stringSplit(thisLine, " ", false);
+    mlU3D::StringVector thisDataLineComponents = mlU3D::U3DTools::stringSplit(thisLine, " ", false);
     size_t thisDataLineNumComponents = thisDataLineComponents.size();
 
     if (thisDataLineNumComponents > 0)
@@ -282,7 +273,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_updateOutputData()
         if (isalpha(firstComponent[0]))
         {
           newSetFilter = firstComponent;
-          newSetType = stringToInt(thisDataLineComponents[1]);
+          newSetType = mlU3D::stringToInt(thisDataLineComponents[1]);
 
           if (thisDataLineNumComponents > 2)
           {
@@ -314,8 +305,8 @@ void PDF3DFigurePage_LoadPointLineGeometry::_updateOutputData()
         if (thisDataLineNumComponents == 2)
         {
           // Add point (only the first 3 components)         
-          int start = stringToInt(thisDataLineComponents[0]);
-          int end = stringToInt(thisDataLineComponents[1]);
+          int start = mlU3D::stringToInt(thisDataLineComponents[0]);
+          int end = mlU3D::stringToInt(thisDataLineComponents[1]);
 
           IndexPair newConnection(start, end, newSetType, newSetName.c_str());
           _outConnectionsList.appendItem(newConnection);
@@ -324,9 +315,9 @@ void PDF3DFigurePage_LoadPointLineGeometry::_updateOutputData()
         else if (thisDataLineNumComponents > 2)
         {
           // Add point (only the first 3 components)         
-          double x = stringToDouble(thisDataLineComponents[0]);
-          double y = stringToDouble(thisDataLineComponents[1]);
-          double z = stringToDouble(thisDataLineComponents[2]);
+          double x = mlU3D::stringToDouble(thisDataLineComponents[0]);
+          double y = mlU3D::stringToDouble(thisDataLineComponents[1]);
+          double z = mlU3D::stringToDouble(thisDataLineComponents[2]);
 
           XMarker newPosition(Vector6(x, y, z, 0, 0, 0), newSetType, newSetName.c_str());
           _outPositionsList.appendItem(newPosition);
@@ -344,27 +335,33 @@ void PDF3DFigurePage_LoadPointLineGeometry::_updateOutputData()
 
   _createFibers();
 
+  if (_autoAddToCacheFld->getBoolValue())
+  {
+    _addToCache();
+  }
+
   // Set validation fields
   _positionsLoadedFld->setBoolValue(_outPositionsList.size() > 0);
   _connectionsLoadedFld->setBoolValue(_outConnectionsList.size() > 0);
 
   // Update output
   _outPositionsListFld->touch();
-  //_outConnectionsListFld->touch();
+  _outConnectionsListFld->touch();
   _outFibersFld->touch();
 }
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_unloadData()
+void LoadPointLineGeometry::_unloadData()
 {
   _inputFileLinesVector.clear();
+  _analyzeInputData();
   _updateOutputData();
 }
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_createFibers()
+void LoadPointLineGeometry::_createFibers()
 {
   mlU3D::U3DMarkerListTools::fillFiberSetContainerFromPositionsAndConnections(_outFiberSetContainer, _outPositionsList, _outConnectionsList);
 
@@ -373,34 +370,25 @@ void PDF3DFigurePage_LoadPointLineGeometry::_createFibers()
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_clearPointCache()
+void LoadPointLineGeometry::_clearCache()
 {
-  _outCachedPointPositionsList.clearList();
+  _outCachedPositionsList.clearList();
+  _outCachedConnectionsList.clearList();
 
-  _outCachedPointPositionsListFld->touch();
+  _outCachedPositionsListFld->touch();
+  _outCachedConnectionsListFld->touch();
 }
 
 //----------------------------------------------------------------------------------
 
-void PDF3DFigurePage_LoadPointLineGeometry::_clearLineCache()
+void LoadPointLineGeometry::_addToCache()
 {
-  _outCachedLinePositionsList.clearList();
-  _outCachedLineConnectionsList.clearList();
-
-  _outCachedLinePositionsListFld->touch();
-  _outCachedLineConnectionsListFld->touch();
-}
-
-//----------------------------------------------------------------------------------
-
-void PDF3DFigurePage_LoadPointLineGeometry::_addToPointCache()
-{
-  // Get highest type ID from positions
+  // Get highest type ID from posittions and connections
   int highestTypeID = 0;
   std::map<int, int> typeIDMap;
 
-  // Scan all positions and get all type ID from them
-  for (XMarkerList::const_iterator it = _outCachedPointPositionsList.cbegin(); it != _outCachedPointPositionsList.cend(); ++it)
+  // Step 1: Scan all positions and get all type ID from them
+  for (XMarkerList::const_iterator it = _outCachedPositionsList.cbegin(); it != _outCachedPositionsList.cend(); ++it)
   {
     XMarker thisMarker = *it;
 
@@ -410,64 +398,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_addToPointCache()
     }
   }
 
-  // Add positions 
-  for (XMarkerList::const_iterator it = _outPositionsList.cbegin(); it != _outPositionsList.cend(); ++it)
-  {
-    XMarker inMarker = *it;
-    int inMarkerType = inMarker.type;
-    int newMarkerType = inMarker.type;
-
-    // Check if type ID must be modified
-    if (inMarkerType <= highestTypeID)
-    {
-      std::map<int, int>::iterator findIt = typeIDMap.find(inMarkerType);
-
-      if (findIt == typeIDMap.end())
-      {
-        // inMarkerType has not yet been added to map, so add it now
-        newMarkerType = highestTypeID + 1;
-        typeIDMap[inMarkerType] = newMarkerType;
-        highestTypeID++;
-      }
-      else
-      {
-        newMarkerType = typeIDMap[inMarkerType];
-      }
-    }
-
-    XMarker newCachedMarker(Vector6(inMarker.x(), inMarker.y(), inMarker.z(), inMarker.c(), inMarker.t(), inMarker.u()), newMarkerType, inMarker.name());
-
-    _outCachedPointPositionsList.appendItem(newCachedMarker);
-  }
-
-  // Deselect items
-  _outCachedPointPositionsList.selectItemAt(-1);
-
-  // Notify observers
-  _outCachedPointPositionsListFld->touch();
-}
-
-//----------------------------------------------------------------------------------
-
-void PDF3DFigurePage_LoadPointLineGeometry::_addToLineCache()
-{
-  // Get highest type ID from positions and connections
-  int highestTypeID = 0;
-  std::map<int, int> typeIDMap;
-
-  // Scan all positions and get all type ID from them
-  for (XMarkerList::const_iterator it = _outCachedLinePositionsList.cbegin(); it != _outCachedLinePositionsList.cend(); ++it)
-  {
-    XMarker thisMarker = *it;
-
-    if (thisMarker.type > highestTypeID)
-    {
-      highestTypeID = thisMarker.type;
-    }
-  }
-
-  // Scan all connections and get all type ID from them
-  for (IndexPairList::const_iterator it = _outCachedLineConnectionsList.cbegin(); it != _outCachedLineConnectionsList.cend(); ++it)
+  for (IndexPairList::const_iterator it = _outCachedConnectionsList.cbegin(); it != _outCachedConnectionsList.cend(); ++it)
   {
     IndexPair thisPair = *it;
 
@@ -504,15 +435,15 @@ void PDF3DFigurePage_LoadPointLineGeometry::_addToLineCache()
     
     XMarker newCachedMarker(Vector6(inMarker.x(), inMarker.y(), inMarker.z(), inMarker.c(), inMarker.t(), inMarker.u()), newMarkerType, inMarker.name());
 
-    _outCachedLinePositionsList.appendItem(newCachedMarker);
+    _outCachedPositionsList.appendItem(newCachedMarker);
   }
 
   // Add connections
   for (IndexPairList::const_iterator it = _outConnectionsList.cbegin(); it != _outConnectionsList.cend(); ++it)
   {
     IndexPair inPair = *it;
-    int inPairType = inPair.type;
-    int newPairType = inPair.type;
+    MLint inPairType = inPair.type;
+    MLint newPairType = inPair.type;
 
     // Check if type ID must be modified
     if (inPairType <= highestTypeID)
@@ -522,7 +453,7 @@ void PDF3DFigurePage_LoadPointLineGeometry::_addToLineCache()
       if (findIt == typeIDMap.end())
       {
         // newPairType has not yet been added to map -> skip this connection!
-        inPairType = ML_INT16_MIN;
+        inPairType = ML_INT_MIN;
       }
       else
       {
@@ -530,21 +461,23 @@ void PDF3DFigurePage_LoadPointLineGeometry::_addToLineCache()
       }
     }
 
-    if (inPairType > ML_INT16_MIN)
+    if (inPairType > ML_INT_MIN)
     {
       IndexPair newCachedPair(inPair.index1, inPair.index2, newPairType, inPair.name());
 
-      _outCachedLineConnectionsList.appendItem(newCachedPair);
+      _outCachedConnectionsList.appendItem(newCachedPair);
     }
   }
 
+
+
   // Deselect items
-  _outCachedLinePositionsList.selectItemAt(-1);
-  _outCachedLineConnectionsList.selectItemAt(-1);
+  _outCachedPositionsList.selectItemAt(-1);
+  _outCachedConnectionsList.selectItemAt(-1);
 
   // Notify observers
-  _outCachedLinePositionsListFld->touch();
-  _outCachedLineConnectionsListFld->touch();
+  _outCachedPositionsListFld->touch();
+  _outCachedConnectionsListFld->touch();
 }
 
 //----------------------------------------------------------------------------------

@@ -4,7 +4,26 @@ network  {
 }
 module LocalPath {
   internal  {
-    frame = "965 69 88 56"
+    frame = "813 -223 152 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "558 746 928 133"
+        sizeHint = "480 133"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LocalOutputFileName
+    localName = $(HOME)/U3DExample.u3d
+    checkIfFileExists = FALSE
+    browseType = file
+  }
+}
+module LocalPath {
+  internal  {
+    frame = "965 13 88 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -44,7 +63,7 @@ module U3DAddModelFromFiberSet {
 }
 module LoadFibers {
   internal  {
-    frame = "841 69 96 56"
+    frame = "841 13 96 56"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -98,7 +117,7 @@ module BaseBypass {
 }
 module WEMMerge {
   internal  {
-    frame = "641 181 144 56"
+    frame = "921 229 144 56"
     moduleGroupName = ""
   }
   fields  {
@@ -119,7 +138,7 @@ module WEMMerge {
 }
 module WEMInitialize {
   internal  {
-    frame = "433 329 128 80"
+    frame = "961 329 128 80"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -150,7 +169,7 @@ module WEMInitialize {
 }
 module WEMInitialize {
   internal  {
-    frame = "309 329 104 80"
+    frame = "837 329 104 80"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -214,7 +233,7 @@ module U3DAddModelFromMarkerList {
 }
 module U3DAddModelFromWEM {
   internal  {
-    frame = "605 61 200 72"
+    frame = "605 101 200 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -312,9 +331,7 @@ module U3DSave {
     instanceName = U3DSave
     inputValid = TRUE
     autoApply = FALSE
-    filename = C:/Users/z002zrcd/Desktop/U3DAssembleExample.u3d
     autoSave = FALSE
-    success = TRUE
     useDefaultSettings = TRUE
   }
 }
@@ -362,7 +379,7 @@ module U3DInspector {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "866 175 426 458"
+        geometry = "993 156 426 458"
         sizeHint = "342 237"
         wasOpen = yes
       }
@@ -386,6 +403,36 @@ connections  {
   U3DAddModelFromWEM.inU3DObject = U3DAddModelFromMarkerList.outU3DObject
   U3DAddModelFromWEM.inWEM = WEMMerge.outWEM
   U3DSave.inU3DObject = BaseBypass.baseOut0
+  U3DSave.filename = LocalOutputFileName.trueName
   U3DInspector.inU3DObject = BaseBypass.baseOut0
 }
-networkModel = ""
+networkModel  {
+  parentItems  {
+    0  {
+      MLABNetworkModelItem MLABNoteItem {
+        uniqueId = 29
+        objectName = ""
+        parentUniqueId = 0
+        frame = "289 -98 300 282"
+        backgroundColor  {
+          r = 252
+          g = 242
+          b = 2
+          a = 255
+        }
+        text = "*This network shows how to use different modules of the MLU3D library.
+
+It creates a U3D object consisting of a sphere (in two colors), an icosahedron, some corner points and a line set which forms a bounding box.
+
+The result can be observed on the panel of the U3DInspector module.
+
+In order to save the U3D, click the "Save" button of the U3DSave modulel. This should create a U3D file in your user home directory.
+
+For details regarding the parameters take a look at the documentation.*"
+        titleText = Description
+        isCollapsed = False
+        titleFrame = "294 -93 290 22"
+      }
+    }
+  }
+}

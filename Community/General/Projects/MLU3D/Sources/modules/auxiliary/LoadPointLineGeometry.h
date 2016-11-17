@@ -1,9 +1,9 @@
 //----------------------------------------------------------------------------------
-//! The ML module class PDF3DFigurePage_LoadPointLineGeometry.
+//! The ML module class LoadPointLineGeometry.
 /*!
-// \file    PDF3DFigurePage_LoadPointLineGeometry.h
+// \file    LoadPointLineGeometry.h
 // \author  Axel Newe (axel.newe@fau.de)
-// \date    2015-10-01
+// \date    2015-10-29
 // 
 */
 //----------------------------------------------------------------------------------
@@ -14,11 +14,10 @@
 
 
 // Local includes
-#include "PDF3DFigurePageSystem.h"
+#include "MLU3DSystem.h"
+#include "../../shared/MLU3D_Tools.h"
 
 // Project includes
-#include <MLPDF_Tools.h>
-#include <MLU3D_DataTypes.h>
 #include <IndexPairList.h>
 
 // ML includes
@@ -30,23 +29,22 @@
 ML_START_NAMESPACE
 
 //! 
-class PDF3DFIGUREPAGE_EXPORT PDF3DFigurePage_LoadPointLineGeometry : public Module
+class MLU3D_EXPORT LoadPointLineGeometry : public Module
 {
 public:
 
   //! Constructor.
-  PDF3DFigurePage_LoadPointLineGeometry();
+  LoadPointLineGeometry();
 
   //! Destructor.
-  ~PDF3DFigurePage_LoadPointLineGeometry();
+  ~LoadPointLineGeometry();
 
   // Output fields
   BaseField*   _outPositionsListFld;
-  //BaseField*   _outConnectionsListFld;
+  BaseField*   _outConnectionsListFld;
   BaseField*   _outFibersFld;
-  BaseField*   _outCachedPointPositionsListFld;
-  BaseField*   _outCachedLinePositionsListFld;
-  BaseField*   _outCachedLineConnectionsListFld;
+  BaseField*   _outCachedPositionsListFld;
+  BaseField*   _outCachedConnectionsListFld;
 
   // UI fields
   StringField* _filenameFld;
@@ -63,10 +61,9 @@ public:
   BoolField*   _positionsLoadedFld;
   BoolField*   _connectionsLoadedFld;
 
-  NotifyField* _addToPointCacheFld;
-  NotifyField* _addToLineCacheFld;
-  NotifyField* _clearPointCacheFld;
-  NotifyField* _clearLineCacheFld;
+  NotifyField* _addToCacheFld;
+  NotifyField* _clearCacheFld;
+  BoolField*   _autoAddToCacheFld;
 
   //! Handles field changes of the field \p field.
   virtual void handleNotification (Field* field);
@@ -77,9 +74,8 @@ private:
   XMarkerList           _outPositionsList;
   IndexPairList         _outConnectionsList;
   FiberSetContainer     _outFiberSetContainer;
-  XMarkerList           _outCachedPointPositionsList;
-  XMarkerList           _outCachedLinePositionsList;
-  IndexPairList         _outCachedLineConnectionsList;
+  XMarkerList           _outCachedPositionsList;
+  IndexPairList         _outCachedConnectionsList;
 
   mlU3D::StringVector   _inputFileLinesVector;
   int                   _dataStartIndex;
@@ -92,12 +88,13 @@ private:
   void _unloadData();
 
   // Clear cached data
-  void _clearPointCache();
-  void _clearLineCache();
+  void _clearCache();
 
   // Add loaded data to cache
-  void _addToPointCache();
-  void _addToLineCache();
+  void _addToCache();
+
+  // Analyze input data
+  void _analyzeInputData();
 
   // Update output data
   void _updateOutputData();
@@ -112,7 +109,7 @@ private:
   void _createFibers();
 
   // Implements interface for the runtime type system of the ML.
-  ML_MODULE_CLASS_HEADER(PDF3DFigurePage_LoadPointLineGeometry)
+  ML_MODULE_CLASS_HEADER(LoadPointLineGeometry)
 };
 
 

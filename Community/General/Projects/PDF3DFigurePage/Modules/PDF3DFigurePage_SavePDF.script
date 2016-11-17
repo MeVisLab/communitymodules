@@ -9,12 +9,15 @@
 
 
 Description {
+  Field status { persistent = No editable = No }
+  
 /*  
   Field inventorCameraPosition      { editable = No }
   Field inventorCameraOrientation   { editable = No }
   Field inventorCameraFocalDistance { editable = No }
   Field inventorCameraHeight        { editable = No }
 */  
+  
   Field figureActivationMode {
     items {
       item ExplicitActivate { title = "User activate (recommended)" }
@@ -36,6 +39,12 @@ Description {
 
 Commands {
 //  initCommand = InitModule
+}
+
+
+NetworkPanel {
+  info = success
+  Button  save { symbol = @@ "start" @@ }
 }
 
 

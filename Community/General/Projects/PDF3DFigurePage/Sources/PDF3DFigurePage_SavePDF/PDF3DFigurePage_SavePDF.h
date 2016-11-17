@@ -18,7 +18,7 @@
 
 // Project includes
 #include <PDFGenerator.h>
-#include <MLPDF_DataTypes.h>
+#include <U3D_Object_DataTypes.h>
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -80,7 +80,7 @@ private:
   StringField*  _descriptionFld;
 
   // Private vars
-  std::vector<MetaDataStruct> _u3dMetaData;
+  std::vector<mlU3D::MetaDataStruct> _u3dMetaData;
 
 
   /* Methods */

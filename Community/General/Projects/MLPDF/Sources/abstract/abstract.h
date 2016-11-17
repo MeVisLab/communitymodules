@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! MLPDF subproject for abstract PDF document modules.
-/*!
+// MLPDF subproject for abstract PDF document modules.
+//
 // \file    abstract.h
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-12-01
-*/
 //----------------------------------------------------------------------------------
 
 #ifndef _PDFAbstract_H

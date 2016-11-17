@@ -1,0 +1,281 @@
+//----------------------------------------------------------------------------------
+// ML module SaveU3D definition
+//
+// \file    DEPRECATED_SaveU3D.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Interface {
+  
+  Inputs {
+    Field inWEM             { internalName = U3DAssemble.inWEM }
+    Field inPointPositions  { internalName = U3DAssemble.inPointPositions }
+    Field inLinePositions   { internalName = U3DAssemble.inLinePositions }
+    Field inLineConnections { internalName = U3DAssemble.inLineConnections }
+  }
+  
+  Parameters {
+  
+    Field simpleModePointSet           { internalName = U3DAssemble.simpleModePointSet }
+    Field simpleModeLineSet            { internalName = U3DAssemble.simpleModeLineSet }
+    Field simpleModeMesh               { internalName = U3DAssemble.simpleModeMesh }
+    Field pointCloudSpecification      { internalName = U3DAssemble.pointCloudSpecification }
+    Field lineSetSpecification         { internalName = U3DAssemble.lineSetSpecification }
+    Field meshSpecification            { internalName = U3DAssemble.meshSpecification }
+    Field metaDataSpecification        { internalName = U3DAssemble.metaDataSpecification }
+    Field modelPrefixPointClouds       { internalName = U3DAssemble.modelPrefixPointClouds }
+    Field modelPrefixLineSets          { internalName = U3DAssemble.modelPrefixLineSets }
+    Field modelPrefixMeshes            { internalName = U3DAssemble.modelPrefixMeshes }
+    Field defaultBoundingBoxMetaData   { internalName = U3DAssemble.addDefaultBoundingBoxMetaData }
+    Field defaultMaterialDiffuseColor  { internalName = U3DAssemble.defaultMaterialDiffuseColor }
+    Field defaultMaterialAlpha         { internalName = U3DAssemble.defaultMaterialAlpha }                    
+    Field defaultMaterialSpecularColor { internalName = U3DAssemble.defaultMaterialSpecularColor }
+    Field defaultMaterialEmissiveColor { internalName = U3DAssemble.defaultMaterialEmissiveColor }
+    Field defaultMaterialAmbientColor  { internalName = U3DAssemble.defaultMaterialAmbientColor }
+    Field addDefaultLightNode          { internalName = U3DAssemble.addDefaultLightNode }
+    Field defaultLightName             { internalName = U3DAssemble.defaultLightName }
+    Field defaultLightColor            { internalName = U3DAssemble.defaultLightColor }
+    Field defaultLightIntensity        { internalName = U3DAssemble.defaultLightIntensity }
+    
+    Field addDefaultViewNode           { internalName = U3DAssemble.addDefaultViewNode }
+    Field defaultViewName              { internalName = U3DAssemble.defaultViewName }
+    
+    Field filename        { internalName = U3DSave.filename }
+    Field finishedTrigger { internalName = U3DSave.finishedTrigger comment = "Is triggered when save process has finished." editable = No }
+    
+    Field useDefaultSettings  { type = Bool value = Yes }
+    Field addNewSpecification { type = Trigger }
+    
+    Field status              { type = String editable = No persistent = No }
+    Field progress            { internalName = Calculator.resultScalar1 editable = No persistent = No }
+    
+    Field save                { type = Trigger }
+  }
+}
+
+
+Commands {
+  source = $(LOCAL)/DEPRECATED_SaveU3D.py
+  initCommand = InitModule
+  FieldListener addNewSpecification { command = AddNewSpecification }
+  FieldListener save                { command = Save }
+}
+
+
+NetworkPanel {
+  info = @@ if(U3DSave.success, "U3D saved.", "U3D not saved.") @@
+  Button  save { symbol = @@ "start" @@ }
+}
+
+
+Window "Main Panel" {  
+  
+  Category { expandY = Yes
+    
+    minimumWidth = 850
+    
+    Box { title = Specification layout = Vertical expandY = Yes
+    
+      TabView ObjectTypes {
+      
+        minimumHeight = 400
+        expandY       = Yes
+        
+    
+        TabViewItem "Point Clouds" {
+      
+          expandY = Yes
+          
+          CheckBox simpleModePointSet { title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."}
+ 
+          Field modelPrefixPointClouds { title = "Prefix for Point Clouds Without Name:" }
+
+          //Field useXMarkerInput {}
+        
+          TextView pointCloudSpecification {
+            dependsOn       = !simpleModePointSet
+            expandY         = Yes
+            title           = "Point Cloud Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        
+        }
+
+        TabViewItem "Line Sets" {
+      
+          expandY = Yes
+
+          CheckBox simpleModeLineSet { title = "Enable Simple Mode (collect all positions from input field and assemble one line set with default settings)."}
+          
+          Field modelPrefixLineSets { title = "Prefix for Line Sets Without Name:" }
+
+          //Field useFiberInput {}
+        
+          TextView lineSetSpecification { 
+            dependsOn       = !simpleModeLineSet
+            expandY         = Yes
+            title           = "Line Set Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+
+        }
+
+        TabViewItem Meshes {
+      
+          expandY = Yes
+
+          CheckBox simpleModeMesh { title = "Enable Simple Mode (add all patches from input wem and parse WEM description for details)."}
+
+          Field modelPrefixMeshes { title = "Prefix for Meshes Without Name:" }
+
+          //CheckBox overrideWEMDescription {title = "Override WEM description" }
+
+          TextView meshSpecification { 
+            dependsOn       = !simpleModeMesh
+            expandY         = Yes
+            title           = "Mesh Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        
+        }
+     
+        TabViewItem "Meta Data" {
+        
+          expandY = Yes
+
+          CheckBox defaultBoundingBoxMetaData { title = "Add default bounding box meta data" }
+        
+          TextView metaDataSpecification {
+            expandY         = Yes
+            title           = "Meta Data Specification:"
+            wrap            = off
+            autoApply       = yes
+            console         = yes
+            style           = monospacedTextView
+            showLineNumbers = No
+            textFormat      = Plain
+          }
+        }
+      
+        TabViewItem "Default Settings" {
+      
+          expandY = Yes
+          alignY = Top
+
+          Checkbox useDefaultSettings {}
+          
+          Separator {}
+          
+          Box "Default Material Settings" { layout = Vertical
+            expandY   = No
+            alignY    = Top
+            dependsOn = !useDefaultSettings
+            
+            Grid {
+              Field defaultMaterialDiffuseColor  { title = "Default Material Color:" fixedWidth = 300 x = 0 y = 0 alignGroupX = 1 }
+              Field defaultMaterialAlpha         { slider = On alignX = Left x = 1 y = 0 }                    
+              Field defaultMaterialSpecularColor { x = 0 y = 1 }
+              Field defaultMaterialEmissiveColor { x = 0 y = 2 }
+              Field defaultMaterialAmbientColor  { x = 0 y = 3 }
+              Empty { x = 3 y = 0 expandX = Yes }
+            }
+
+          }  // Box 
+        
+          Box "Default Light Settings" { layout = Vertical
+            expandY   = No
+            alignY    = Top
+            dependsOn = !useDefaultSettings
+            
+            Grid { 
+              CheckBox addDefaultLightNode { x = 0 y = 0 x2 = 1 title = "Add default Light Node" }
+              Field defaultLightName { x = 0 y = 1 x2 = 1 }
+              Field defaultLightColor { title = "Default Light Color:" fixedWidth = 300 x = 0 y = 2 alignGroupX = 1 }
+              Field defaultLightIntensity { slider = On alignX = Left x = 1 y = 2 }                                  
+              Empty { x = 3 y = 2 expandX = Yes }
+            }
+
+          }  // Box 
+
+          Box "Default View Settings" { layout = Vertical
+            expandY   = No
+            alignY    = Top
+            dependsOn = !useDefaultSettings    
+            
+            Grid { 
+              CheckBox addDefaultViewNode { x = 0 y = 0 x2 = 1 title = "Add default View Node" }
+              Field defaultViewName { x = 0 y = 1 x2 = 1 }
+            }
+
+          }  // Box 
+          
+          
+          
+        }
+
+      }  // TabView ObjectTypes
+    
+    }
+    
+    Box { title = File layout = Vertical alignY = Bottom
+      
+      Box "" { layout = Vertical
+        Horizontal {
+          droppedFileCommand = "*py: ctx.field("filename").value = args[0] *"
+          Field filename {
+            browseButton = ON
+            browseMode   = Save
+            mw           = 450
+          }
+        }
+      }
+      Horizontal {
+        alignX = Right
+
+        Button save {
+          title = "Save"
+        }
+      }
+      Separator { direction = Horizontal }
+      Field status { edit = No }
+      Separator { direction = Horizontal }
+      ProgressBar progress {}
+      
+    }  // Box
+    
+  }  // Category
+}
+
+
+Window "Specification Generator Panel"
+{ 
+  Category  {
+    
+    expandY = Yes 
+   
+    Panel {
+      module = U3DSpecificationGenerator
+    }
+    
+    Button addNewSpecification { title = "Add" dependsOn = U3DSpecificationGenerator.newSpecificationOutputValid }
+    
+    
+  }
+
+}

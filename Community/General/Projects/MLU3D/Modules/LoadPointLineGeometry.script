@@ -1,0 +1,54 @@
+//----------------------------------------------------------------------------------
+// LoadPointLineGeometry module definitions.
+//
+// \file    LoadPointLineGeometry.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+  Field positionsLoaded   { editable = No }
+  Field connectionsLoaded { editable = No }
+}
+
+Window {
+  
+  minimumWidth = 400
+  
+  Vertical {
+    
+    Field filename { browseButton = Yes browseMode = open }
+
+    Separator {}
+    
+    Grid { 
+      Field    numberDelimiter  { x=0 y=0 dependsOn = !numberDelimiterSpace }
+      CheckBox numberDelimiterSpace  { x=1 y=0 title = "Use space character as delimiter" }
+      Field    decimalSeparator { x=0 y=1 }
+      Field    filter { x=0 y=2 x2=1 }
+    }
+    
+    Separator {}
+    
+    Horizontal {
+      
+      CheckBox autoLoad {  }
+      ButtonBox { 
+        Button load { role = AcceptRole }
+        Button unload { role = RejectRole }
+      }        
+
+      Empty { expandX = Yes }
+      Separator { direction = Vertical }
+        
+      CheckBox autoAddToCache {  }
+      ButtonBox { 
+        Button addToCache { role = AcceptRole }
+        Button clearCache { role = RejectRole }
+      }        
+        
+    }  // Horizontal
+    
+  }  // Vertical
+  
+}  // Window

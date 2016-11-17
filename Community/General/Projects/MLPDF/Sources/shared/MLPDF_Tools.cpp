@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! Tools for PDF file creation.
-/*!
+// Tools for PDF file creation.
+//
 // \file    MLPDF_Tools.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2014-09-01
-*/
 //----------------------------------------------------------------------------------
 
 
@@ -12,7 +11,6 @@
 #include <sys/stat.h>
 
 // Local includes
-#include "MLPDF_DataTypes.h"
 #include "MLPDF_Tools.h"
 
 // ML includes
@@ -26,21 +24,7 @@ namespace mlPDF {
 
 //***********************************************************************************
 
-// Get data from object (point cloud, line set, mesh) specification fields
-StringVector PDFTools::getObjectSpecificationsStringFromUI(ml::StringField *inputField, std::string delimiter)
-{
-  StringVector result;
-
-  std::string specificationString = inputField->getStringValue();
-
-  result = stringSplit(specificationString, delimiter, false);  // TODO Make stringSplit robust against lower/upper case
-
-  return result;
-}
-
-//***********************************************************************************
-
-// Parses the specification string from the UI and extracts a specific U3D property
+// Parses the specification string from the UI and extracts a specific property
 std::string PDFTools::getSpecificParameterFromString(const std::string specificationString, const std::string parameterKeyword, const std::string failResult)
 {
   std::string result = failResult; 
@@ -71,149 +55,6 @@ std::string PDFTools::getSpecificParameterFromString(const std::string specifica
   }
   
   return result;
-}
-
-//***********************************************************************************
-
-// Parses input string from UI and extracts object specification parameters
-SpecificationParametersStruct PDFTools::getAllSpecificationParametersFromString(const std::string specificationString)
-{
-  SpecificationParametersStruct result;
-
-  result.ObjectName       = getSpecificParameterFromString(specificationString, "<ObjectName>", "Object");
-  result.GroupPath        = normalizeGroupPath(getSpecificParameterFromString(specificationString, "<GroupPath>"));
-  result.Color            = getSpecificParameterFromString(specificationString, "<Color>");
-  result.SpecularColor    = getSpecificParameterFromString(specificationString, "<SpecularColor>");
-  result.Opacity          = getSpecificParameterFromString(specificationString, "<Opacity>");
-  result.GlyphText        = getSpecificParameterFromString(specificationString, "<GlyphText>");     // U3D Glyphs are not supported by Acrobat... :-(
-  result.MetaDataKey      = getSpecificParameterFromString(specificationString, "<MetaDataKey>");
-  result.MetaDataValue    = getSpecificParameterFromString(specificationString, "<MetaDataValue>");
-  result.ModelVisibility  = getSpecificParameterFromString(specificationString, "<ModelVisibility>", "3");            
-  result.WEMLabel         = getSpecificParameterFromString(specificationString, "<WEMLabel>");
-  result.PositionTypes    = getSpecificParameterFromString(specificationString, "<PositionTypes>", "all");
-  result.ConnectionTypes  = getSpecificParameterFromString(specificationString, "<ConnectionTypes>", "simple");
-  result.PointSize        = stringToDouble(getSpecificParameterFromString(specificationString, "<PointSize>", "3"));
-  result.LineWidth        = stringToDouble(getSpecificParameterFromString(specificationString, "<LineWidth>", "1"));
-
- return result;
-}
-
-
-//***********************************************************************************
-
-std::string PDFTools::getSpecificParameterFromWEMDescription(const std::string wemDescription, const std::string parameter, const std::string failResult)
-{
-  std::string result = failResult; 
-  std::string keyword (parameter+"=");
-  size_t keywordPosition = wemDescription.find(keyword);
-
-  if (keywordPosition != std::string::npos)
-  {
-    std::string keywordSectionPlusRest = wemDescription.substr(keywordPosition);
-    size_t delimiterPosition = keywordSectionPlusRest.find(";");
-
-    std::string keywordSection = keywordSectionPlusRest.substr(0, delimiterPosition);
-
-    if (keywordSection != "") 
-    {
-      std::string resultCandidate = keywordSection.substr(keyword.length());
-      result = resultCandidate;
-    }     
-  }
-
-  return result;
-}
-
-//***********************************************************************************
-
-std::string PDFTools::getParentNameFromGroupPath(std::string groupPath)  
-{
-  std::string result = "";  // Default = root node
-    
-  StringVector groupPathComponents = stringSplit(groupPath,"/", false);
-
-  if (groupPathComponents.size() > 0)
-  {
-    result = groupPathComponents.back();
-  }
-
-  return result;
-}
-
-//***********************************************************************************
-
-// Make sure each group path has a leading and a trailing "/"
-std::string PDFTools::normalizeGroupPath(std::string groupPath)
-{
-  std::string result = groupPath;
-
-  if (result == "")
-  {
-    result = "/";
-  }
-  else
-  {
-    if (groupPath[0] != '/')
-    {
-      result = "/" + result;
-    }
-
-    if (groupPath[groupPath.size()-1] != '/')
-    {
-      result += "/";
-    }
-  }
-
-  return result;
-}
-
-//***********************************************************************************
-
-void PDFTools::updateGroupNodesVector(GroupNodeVector &groupNodes, std::string thisGroupPath)
-{
-    StringVector groupPathComponents = stringSplit(thisGroupPath,"/", false);
-    size_t numGroupPathComponents = groupPathComponents.size();
-
-    for (size_t i = 0; i < numGroupPathComponents; i++)
-    {
-      std::string thisNodeName = groupPathComponents[i];
-      StringVector thisNodeParents;
-
-      for (size_t p = 0; p < i; p++)
-      {
-        thisNodeParents.push_back(groupPathComponents[p]);
-      }
-
-      int existingGroupNodeIndex = -1;
-
-      // Check if group node already exists
-      for (size_t g = 0; g < groupNodes.size(); g++)
-      {
-        GroupNodeStruct thisGroupNode = groupNodes[g];
-
-        if ( (thisGroupNode.name == thisNodeName) && (thisGroupNode.parents == thisNodeParents) )
-        {
-          existingGroupNodeIndex = static_cast<int>(g);
-          break;
-        }       
-      }
-
-      if (-1 == existingGroupNodeIndex)    // Group node does not exist
-      {
-        // Create new group node
-        GroupNodeStruct newGroupNode;  
-        newGroupNode.id = groupNodes.size();
-        newGroupNode.name = thisNodeName;
-        newGroupNode.parents = thisNodeParents;
-
-        groupNodes.push_back(newGroupNode);
-      }
-      else  // Group node already exists
-      {
-        // Do nothing
-      }
-
-    }
 }
 
 //***********************************************************************************
@@ -318,7 +159,7 @@ std::string PDFTools::getMeVisLabVersionNumberString()
 
 std::string PDFTools::getModuleVersionNumberString()
 {
-  return "1.3";
+  return "1.4";
 }
 
 //***********************************************************************************
@@ -473,98 +314,6 @@ std::string PDFTools::FormatDate(std::tm value)
   snprintf(buffer, bufferLength, "%4u-%02u-%02u %02u:%02u:%02u", value.tm_year + 1900, value.tm_mon + 1, value.tm_mday, value.tm_hour, value.tm_min, value.tm_sec);
 
   std::string result(buffer);
-
-  return result;
-}
-
-//***********************************************************************************
-
-// Updates the model bounding box
-void PDFTools::UpdateBoundingBox(ModelBoundingBoxStruct& existingBoundingBox, ModelBoundingBoxStruct newCorners)
-{
-  MLdouble smallestX = ML_DOUBLE_MAX;
-  MLdouble smallestY = ML_DOUBLE_MAX;
-  MLdouble smallestZ = ML_DOUBLE_MAX;
-   
-  MLdouble biggestX = ML_DOUBLE_MAX * -1;
-  MLdouble biggestY = ML_DOUBLE_MAX * -1;
-  MLdouble biggestZ = ML_DOUBLE_MAX * -1;
-
-  if (newCorners.start.x < smallestX) { smallestX = newCorners.start.x; }
-  if (newCorners.start.x > biggestX)  { biggestX = newCorners.start.x; }
-  if (newCorners.end.x < smallestX)   { smallestX = newCorners.end.x; }
-  if (newCorners.end.x > biggestX)    { biggestX = newCorners.end.x; }
-
-  if (newCorners.start.y < smallestY) { smallestY = newCorners.start.y; }
-  if (newCorners.start.y > biggestY)  { biggestY = newCorners.start.y; }
-  if (newCorners.end.y < smallestY)   { smallestY = newCorners.end.y; }
-  if (newCorners.end.y > biggestY)    { biggestY = newCorners.end.y; }
-
-  if (newCorners.start.z < smallestZ) { smallestZ = newCorners.start.z; }
-  if (newCorners.start.z > biggestZ)  { biggestZ = newCorners.start.z; }
-  if (newCorners.end.z < smallestZ)   { smallestZ = newCorners.end.z; }
-  if (newCorners.end.z > biggestZ)    { biggestZ = newCorners.end.z; }
-
-  if (existingBoundingBox.start.x > smallestX) { existingBoundingBox.start.x = smallestX; }
-  if (existingBoundingBox.start.y > smallestY) { existingBoundingBox.start.y = smallestY; }
-  if (existingBoundingBox.start.z > smallestZ) { existingBoundingBox.start.z = smallestZ; }
-
-  if (existingBoundingBox.end.x < biggestX) { existingBoundingBox.end.x = biggestX; }
-  if (existingBoundingBox.end.y < biggestY) { existingBoundingBox.end.y = biggestY; }
-  if (existingBoundingBox.end.z < biggestZ) { existingBoundingBox.end.z = biggestZ; }
-
-  MLdouble centerX = (existingBoundingBox.start.x + existingBoundingBox.end.x) / 2.f;
-  MLdouble centerY = (existingBoundingBox.start.y + existingBoundingBox.end.y) / 2.f;
-  MLdouble centerZ = (existingBoundingBox.start.z + existingBoundingBox.end.z) / 2.f;
-
-  existingBoundingBox.center.x = centerX;
-  existingBoundingBox.center.y = centerY;
-  existingBoundingBox.center.z = centerZ;
-
-  MLdouble newRadius = sqrt(pow(existingBoundingBox.end.x-existingBoundingBox.center.x,2) + pow(existingBoundingBox.end.y-existingBoundingBox.center.y,2) + pow(existingBoundingBox.end.z-existingBoundingBox.center.z,2));
-
-  if (newRadius > existingBoundingBox.radius)
-  {
-    existingBoundingBox.radius = newRadius;
-  }
-}
-
-//***********************************************************************************
-
-// Get bounding box edges from positions
-ModelBoundingBoxStruct PDFTools::GetBoundingBoxFomPositions(PositionsVector positions)
-{
-  ModelBoundingBoxStruct result;
-
-  MLdouble smallestX = ML_DOUBLE_MAX;
-  MLdouble smallestY = ML_DOUBLE_MAX;
-  MLdouble smallestZ = ML_DOUBLE_MAX;
-
-  MLdouble biggestX = ML_DOUBLE_MAX * -1;
-  MLdouble biggestY = ML_DOUBLE_MAX * -1;
-  MLdouble biggestZ = ML_DOUBLE_MAX * -1;
-
-  for (PositionsVector::size_type i = 0; i < positions.size(); i++)
-  {
-    PositionStruct thisPosition = positions[i];
-
-    if (thisPosition.position.x < smallestX) { smallestX = thisPosition.position.x; }
-    if (thisPosition.position.x > biggestX)  { biggestX = thisPosition.position.x; }
-
-    if (thisPosition.position.y < smallestY) { smallestY = thisPosition.position.y; }
-    if (thisPosition.position.y > biggestY)  { biggestY = thisPosition.position.y; }
-
-    if (thisPosition.position.z < smallestZ) { smallestZ = thisPosition.position.z; }
-    if (thisPosition.position.z > biggestZ)  { biggestZ = thisPosition.position.z; }
-  }
-
-  result.start.x = smallestX;
-  result.start.y = smallestY;
-  result.start.z = smallestZ;
-
-  result.end.x = biggestX;
-  result.end.y = biggestY;
-  result.end.z = biggestZ;
 
   return result;
 }

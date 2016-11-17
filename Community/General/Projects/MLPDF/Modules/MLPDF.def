@@ -1,10 +1,9 @@
 //----------------------------------------------------------------------------------
-//! MLPDF module definitions.
-/*!
+// MLPDF module definitions.
+//
 // \file    MLPDF.def
 // \author  Axel Newe
 // \date    2014-02-06
-*/
 //----------------------------------------------------------------------------------
 
 // Genres ----------------------------------------------------------------------
@@ -17,39 +16,6 @@ UserGenres {
 }
 
 // Modules ---------------------------------------------------------------------
-
-MLModule SaveU3D {
-  DLL                = "MLPDF"
-  genre              = "PDFModules"
-  author             = "Axel Newe"
-  comment            = "Creates U3D file from WEMs and XMarkerLists."
-  keywords           = "PDF U3D WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D LoadU3D PDF3DFigurePageMacro"
-  exampleNetwork     = "$(LOCAL)/networks/SaveU3DExample.mlab"
-  externalDefinition = $(LOCAL)/SaveU3D.script
-}
-
-MLModule LoadU3D {
-  DLL                = "MLPDF"
-  genre              = "PDFModules"
-  author             = "Axel Newe"
-  comment            = "Loads U3D file and creates WEMs and XMarkerLists from it."
-  keywords           = "PDF U3D WEM XMarker Fiber"
-  seeAlso            = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D PDF3DFigurePageMacro"
-  exampleNetwork     = "$(LOCAL)/networks/LoadU3DExample.mlab"
-  externalDefinition = $(LOCAL)/LoadU3D.script
-}
-
-MLModule LoadPointLineGeometry {
-  DLL                = "MLPDF"  
-  genre              = "PDFModules"
-  author             = "Axel Newe"
-  comment            = "Imports a marker list from txt/csv file."
-  keywords           = "ListBase XMarker ColoredMarker IndexPairList"
-  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer MarkerListImport"
-  exampleNetwork     = "$(LOCAL)/networks/PDFFibersExample.mlab"
-  externalDefinition = $(LOCAL)/LoadPointLineGeometry.script
-}  
 
 MLModule PDFCalcCamera {
   DLL                = "MLPDF"
@@ -71,17 +37,6 @@ MLModule PDFCreateViewSpecifications {
   seeAlso            = ""
   exampleNetwork     = "$(LOCAL)/networks/PDFUtilsExample.mlab"
   externalDefinition = $(LOCAL)/PDFCreateViewSpecifications.script
-}  
-
-MLModule PDFCreateFibersFromLists {
-  DLL                = "MLPDF"
-  genre              = "PDFModules"
-  author             = "Axel Newe"
-  comment            = "Create fibers from positions list and connections list."
-  keywords           = "PDF"
-  seeAlso            = ""
-  exampleNetwork     = "$(LOCAL)/networks/PDFFibersExample.mlab"
-  externalDefinition = $(LOCAL)/PDFCreateFibersFromLists.script
 }  
 
 // Wizard ----------------------------------------------------------------------

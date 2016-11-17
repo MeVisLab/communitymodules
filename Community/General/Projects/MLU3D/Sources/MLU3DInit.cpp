@@ -37,6 +37,9 @@
 #include "modules/U3DGeometryTo/U3DGeometryToXMarkerList.h"
 #include "modules/U3DGeometryTo/U3DGeometryToFiberSet.h"
 #include "modules/U3DGeometryTo/U3DGeometryToWEM.h"
+#include "modules/U3DSpecificationGenerator/U3DSpecificationGenerator.h"
+#include "modules/auxiliary/ListsToFibers.h"
+#include "modules/auxiliary/LoadPointLineGeometry.h"
 
 ML_START_NAMESPACE
 
@@ -95,6 +98,11 @@ int MLU3DInit()
   U3DAddModelFromWEM       ::initClass();
   U3DAddModelFromFiberSet  ::initClass();
   U3DAddModelFromMarkerList::initClass();
+
+  U3DSpecificationGenerator::initClass();
+
+  ListsToFibers        ::initClass();
+  LoadPointLineGeometry::initClass();
 
   return 1;
 }

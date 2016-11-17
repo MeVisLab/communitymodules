@@ -22,7 +22,7 @@ OutputInspector {
   field  = "inU3DObject"
 }
 
-// Modules ---------------------------------------------------------------------
+// U3D Modules ---------------------------------------------------------------------
 
 MLModule U3DAddModelFromFiberSet {
   DLL                = "MLU3D"
@@ -144,6 +144,12 @@ MLModule U3DLoad {
   externalDefinition = $(LOCAL)/U3DLoad.script
 }
 
+/*
+MLModule U3DManager {
+DLL                = "MLU3D"
+}
+*/
+
 MLModule U3DSave {
   DLL                = "MLU3D"
   genre              = "U3DModules"
@@ -155,8 +161,54 @@ MLModule U3DSave {
   externalDefinition = $(LOCAL)/U3DSave.script
 }
 
-/*
-MLModule U3DManager {
+MLModule U3DSpecificationGenerator {
   DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Creates specifications for models."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+//  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
+  externalDefinition = $(LOCAL)/U3DSpecificationGenerator.script
 }
-*/
+
+// Legacy Modules --------------------------------------------------------------
+
+MacroModule SaveU3D {
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  status             = deprecated
+  comment            = "This module is deprecated. Use U3DAssemble + U3DSave instead!"
+  keywords           = "deprecated"
+  seeAlso            = "U3DAssemble U3DSave"
+  exampleNetwork     = "$(LOCAL)/networks/DEPRECATED_SaveU3DExample.mlab"
+  externalDefinition = $(LOCAL)/DEPRECATED_SaveU3D.script
+}
+
+// Auxiliary Tool Modules ------------------------------------------------------
+
+MLModule ListsToFibers {
+  DLL                = "MLU3D"
+  deprecatedName     = "PDFCreateFibersFromLists"
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = "Create fibers from positions list and connections list."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+//  exampleNetwork     = "$(LOCAL)/networks/ListsToFibersExample.mlab"
+  externalDefinition = $(LOCAL)/ListsToFibers.script
+}
+
+MLModule LoadPointLineGeometry {
+  DLL                = "MLU3D"  
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = "Imports a marker list from txt/csv file."
+  keywords           = "ListBase XMarker ColoredMarker IndexPairList"
+  seeAlso            = "XMarkerListContainer ColoredMarkerListContainer MarkerListImport"
+//  exampleNetwork     = "$(LOCAL)/networks/PDFFibersExample.mlab"
+  externalDefinition = $(LOCAL)/LoadPointLineGeometry.script
+}  
+
+
+

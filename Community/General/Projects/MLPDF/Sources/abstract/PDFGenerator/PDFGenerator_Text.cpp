@@ -1,12 +1,11 @@
 //----------------------------------------------------------------------------------
-//! The ML module class SavePDF.
-/*!
+// The ML module class SavePDF.
+//
 // \file    PDFGenerator_Text.cpp
 // \author  Axel Newe (axel.newe@fau.de)
 // \date    2015-10-16
 //
 // Base class for PDF creators.
-*/
 //----------------------------------------------------------------------------------
 
 // Global includes
@@ -311,10 +310,10 @@ float PDFGenerator::pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, 
       //
       // 1. Step: Write all cell text strings into vector and calc column widths
       //
-      std::vector<std::vector<std::string> > cellContentStrings;
-      std::vector<float>                     columnWidths;
-      std::vector<int>                       rowSpans;
-      std::vector<std::vector<int> >         columnSpans;
+      std::vector<std::vector<std::string>> cellContentStrings;
+      std::vector<float>                    columnWidths;
+      std::vector<int>                      rowSpans;
+      std::vector<std::vector<int>>         columnSpans;
 
       std::vector<DOMElement*> rowNodes = _getAllNodeElements(tableElement, "tr");
 
