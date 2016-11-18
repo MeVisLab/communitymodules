@@ -215,7 +215,7 @@ Window {
     Box "File Set Selection" { 
       layout = Vertical
       expandY = No
-      droppedFileCommand = "*js: ctx.field("rootPath").value = arguments[0]; *"
+      droppedFileCommand = "*py: ctx.field("rootPath").value = args[0] *"
       Field rootPath {
         title = "Root Path:"
         trim = center
