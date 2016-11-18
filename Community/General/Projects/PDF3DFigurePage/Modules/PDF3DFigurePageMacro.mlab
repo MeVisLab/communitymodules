@@ -2,6 +2,51 @@
 network  {
   watchlist = ""
 }
+module BaseBypass {
+  internal  {
+    frame = "-603 1241 168 64"
+    moduleGroupName = "Import Meshes"
+    showNetworkPanel = true
+  }
+  fields  {
+    instanceName = BypassLoadedMesh
+    bypass = TRUE
+    noBypass = FALSE
+  }
+}
+module WEMSceneLoader {
+  internal  {
+    frame = "-586 1457 136 64"
+    moduleGroupName = "Import Meshes"
+    windows  {
+      window _default {
+        geometry = "710 332 437 445"
+        sizeHint = "275 445"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = MeshSceneLoader
+    id = 0
+    autoApply = TRUE
+    updateMode = AutoUpdate
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = TRUE
+    filename = ""
+    logDetail = Errors
+    generateNormals = SmoothNormals
+    generateEdges = TRUE
+    normalSmoothingCreaseAngle = 175
+    joinIdenticalVertices = TRUE
+    findDegenerates = TRUE
+    findInvalidData = TRUE
+    optimizeMeshes = TRUE
+    forceNormalGeneration = FALSE
+  }
+}
 module RunPythonScript {
   internal  {
     frame = "1849 -2051 128 56"
@@ -1004,7 +1049,7 @@ networkCTX.field("selectedWEMPatchNewLabel").value = ""
 networkCTX.field("selectedWEMPatchGroupPath").value = ""
 networkCTX.field("selectedWEMPatchUseDefaultColor").value = True
 networkCTX.field("selectedWEMPatchColor").setStringValue("0 0 0")
-networkCTX.field("selectedWEMPatchColorAlpha").value = 0
+networkCTX.field("selectedWEMPatchColorAlpha").value = 1
 networkCTX.field("selectedLineSetNewLabel").value = ""
 networkCTX.field("selectedLineSetGroupPath").value = ""
 networkCTX.field("selectedLineSetUseDefaultColor").value = True
@@ -1067,7 +1112,7 @@ module BaseSwitch {
 }
 module SoWEMConvertInventor {
   internal  {
-    frame = "-603 1253 168 56"
+    frame = "-331 1213 168 56"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
@@ -1096,7 +1141,7 @@ module SoWEMConvertInventor {
 }
 module SoSceneLoader {
   internal  {
-    frame = "-587 1353 136 64"
+    frame = "-331 1313 168 64"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
@@ -1112,7 +1157,7 @@ module SoSceneLoader {
     }
   }
   fields  {
-    instanceName = MeshSceneLoader
+    instanceName = OLD_MeshSceneLoader
     renderCaching = AUTO
     boundingBoxCaching = AUTO
     renderCulling = AUTO
@@ -1904,11 +1949,11 @@ module So3DMarkerEditor {
 }
 module RunPythonScript {
   internal  {
-    frame = "-267 1353 152 64"
+    frame = "-306 1457 152 64"
     moduleGroupName = "Import Meshes"
     windows  {
       window _default {
-        geometry = "1190 94 1370 882"
+        geometry = "1728 46 1370 882"
         sizeHint = "648 734"
         wasOpen = no
       }
@@ -2035,14 +2080,14 @@ module SoWEMRenderer {
     faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
     faceAlphaValue = 1
     faceShininessValue = 1
-    primitiveValueLists = LUT
+    primitiveValueLists = ""
     selectedPrimitiveValueList = LUT
     selectedPrimitiveValueAlphaList = LUT
     primitiveValueListValid = TRUE
     primitiveValueListAlphaValid = TRUE
     overwriteAlphaWithPVL = FALSE
     wemPatchToRender = -1
-    maxWEMPatchIndex = 0
+    maxWEMPatchIndex = -1
     sendAdjacency = FALSE
     selectedTab = 0
   }
@@ -3268,6 +3313,7 @@ module SaveU3D {
   }
 }
 connections  {
+  BypassLoadedMesh.baseIn0 = MeshSceneLoader.outWEM
   SoView2D.image = ConstantImage.output0
   SoSeparator1.children = "SoView2DLabel.self SoView2D.self"
   SoPerspectiveCamera.position = PreviewViewer.position
@@ -3286,11 +3332,11 @@ connections  {
   FilterPointsSelected.inXMarkerList = PDF3DFigurePage_Utils.outPointPositions
   FilterPointsSelected.markerTypes = PDF3DFigurePage_Utils.selectedPointSetId
   PointsRendererSelected.inXMarkerList = FilterPointsSelected.outXMarkerList
-  SwitchReducedMesh.inputBaseObject0 = SoWEMConvertInventor.outWEM
+  SwitchReducedMesh.inputBaseObject0 = BypassLoadedMesh.baseOut0
   SwitchReducedMesh.inputBaseObject1 = WEMReducePolygons.outWEM
   SwitchReducedMesh.currentInput = ToggleReducedMesh.intValue
-  SoWEMConvertInventor.inScene = MeshSceneLoader.self
-  WEMReducePolygons.inWEM = SoWEMConvertInventor.outWEM
+  SoWEMConvertInventor.inScene = OLD_MeshSceneLoader.self
+  WEMReducePolygons.inWEM = BypassLoadedMesh.baseOut0
   WEMInfo.inWEM = PDF3DFigurePage_Utils.outWEM
   DefinePreviewColorModeForMeshes.boolValue = BoolInt.boolValue
   ListInfo.inList1 = PDF3DFigurePage_Utils.outPointPositions
@@ -3298,7 +3344,7 @@ connections  {
   LinesRendererImport.inFiberSetFld = LoadPointLineGeometry.outFibers
   BoolInt.intValue = SwitchPreview.whichChild
   DefinePreviewColor.boolValue = BoolInt.boolValue
-  WEMImportInfo.inWEM = SoWEMConvertInventor.outWEM
+  WEMImportInfo.inWEM = BypassLoadedMesh.baseOut0
   WEMRenderEdgesAll.colorMode = DefinePreviewColorModeForMeshes.stringValue
   WEMRenderEdgesAll.generalColor = DefinePreviewColor.stringValue
   SoDepthPeelRendererImport.children = WEMRendererImport.self
@@ -3386,7 +3432,7 @@ networkModel  {
   parentItems  {
     0  {
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 186
+        uniqueId = 189
         objectName = "Import Meshes"
         parentUniqueId = 0
         color  {
@@ -3397,7 +3443,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 187
+        uniqueId = 190
         objectName = "Load Points and Lines"
         parentUniqueId = 0
         color  {
@@ -3408,7 +3454,7 @@ networkModel  {
         }
       }
       MLABNetworkModelItem MLABNetworkModelItemGroup {
-        uniqueId = 188
+        uniqueId = 191
         objectName = Visualization
         parentUniqueId = 0
         color  {
