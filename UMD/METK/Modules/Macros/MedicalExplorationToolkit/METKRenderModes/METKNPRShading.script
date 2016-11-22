@@ -82,60 +82,58 @@ Commands  {
 }
 
 Window METKNPRShading {
-   Vertical {
-      expandY = yes
+  Horizontal {
+    expandY = yes
+    Vertical {
+      expandY = Yes
       Horizontal {
-         expandY = yes
-   Vertical {
-      Horizontal {
-         Label "Structure Browser:" { }
-         Button {
-            title = "hide <<"
-            command = "js: ctx.control('structureBrowser').setVisible(false); ctx.window().updateFrame(false,false);"
-         }
-          Button {
-            title = "show >>"
-            command = "js: ctx.control('structureBrowser').setVisible(true); ctx.window().updateFrame(false,false);"
-         }
+        Label "Structure Browser:" { }
+        Button {
+          title   = "hide <<"
+          command = "*py: ctx.control('structureBrowser').setVisible(False); ctx.window().updateFrame(False,False) *"
+        }
+        Button {
+          title   = "show >>"
+          command = "*py: ctx.control('structureBrowser').setVisible(True); ctx.window().updateFrame(False,False) *"
+        }
       }
       Separator { }
       Panel {
-               module = SoShadingMap
-            }
-   }
-         Vertical {
-      name = structureBrowser
-            expandY = yes
-            Horizontal {
-               expandY = yes
-               Panel {
-                  mw = 200
-                  module  = METKStructureGroupBrowser
-                  window  = singleListView
-                  expandY = yes
-               }
-               DynamicFrame {
-                  mw = 350
-                  name = DynamicFrameControl
-                  expandY = yes
-                  expandX = yes
-               }
-            }
+        module = SoShadingMap
+      }
+    }
+    Vertical {
+      name    = structureBrowser
+      expandY = yes
+      Horizontal {
+        expandY = yes
+        Panel {
+          mw      = 200
+          module  = METKStructureGroupBrowser
+          window  = singleListView
+          expandY = yes
+        }
+        DynamicFrame {
+          mw      = 350
+          name    = DynamicFrameControl
+          expandY = yes
+          expandX = yes
+        }
+      }
       Horizontal {
         expandX = no
-              Button = opacification { expandY = no }
-              Button = allShading { expandY = no }
-              Button = allStippling { expandY = no }
-            }
+        Button  = opacification { expandY = no }
+        Button  = allShading { expandY = no }
+        Button  = allStippling { expandY = no }
+      }
       Horizontal {
         expandX = no
-        Button = overrideStipplingGamma { expandY = no }
-        Field = stipplingGamma { title ="Gamma:" expandY = no }
+        Button  = overrideStipplingGamma { expandY = no }
+        Field   = stipplingGamma { title ="Gamma:" expandY = no }
       }
-            Field  = METKCSO.cso { title = "CSO" edit = No }
-            Field  = renderCSO
-         }
-      }
-   }
-   initCommand = initWindow
+      Field = METKCSO.cso { title = "CSO" edit = No }
+      Field = renderCSO
+    }
+  }
+  initCommand = initWindow
 }
