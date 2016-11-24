@@ -1,7 +1,0 @@
-      
-      Horizontal {
-        alignX   = Right
-        CheckBox = autoUpdate
-        CheckBox = autoApply
-        Button   = apply
-      }

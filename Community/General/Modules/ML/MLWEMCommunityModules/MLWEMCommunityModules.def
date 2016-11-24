@@ -15,38 +15,9 @@ MLModule WEMPlane {
   exampleNetwork = "$(LOCAL)/WEMPlane/WEMPlaneExample.mlab"
   documentation  = "$(LOCAL)/WEMPlane/WEMPlane.html"
 
-  #include $(LOCAL)/includes/WEMProcessorInterface.txt
-
-  Window {
-
-    Category {
-
-      #include $(LOCAL)/includes/WEMGeneratorButtonBar.txt
-
-      Box "" {
-
-        TabView {
-          mode = Invisible
-          name = "parametersTab"
-
-          TabViewItem "Output" {
-
-            Field = plane
-            
-            Separator { direction = Horizontal }
-            
-            Checkbox = generateEdges
-
-            #include $(LOCAL)/includes/WEMGeneratorOutputItems.txt
-          }
-          #include $(LOCAL)/includes/WEMGeneratorTabViewItems.txt
-        }
-      }
-      #include $(LOCAL)/includes/WEMGeneratorFooter.txt
-    }
-    Execute = updateTabs
-  }
+  externalDefinition = $(LOCAL)/WEMPlane/WEMPlane.script
 } // MLModule WEMPlane
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMVolume
@@ -63,13 +34,16 @@ MLModule WEMVolume {
   documentation = "$(LOCAL)/WEMVolume/WEMVolume.html"
   seeAlso        = ""
   exampleNetwork = "$(LOCAL)/WEMVolume/WEMVolumeExample.mlab"
-    
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
-  
+
   Description {
   
     // put the fields' description in here if required
@@ -80,33 +54,33 @@ MLModule WEMVolume {
     minimumWidth = 250
 
     Category "Main" {
-
-      Field minVolume { 
+      Field minVolume {
         expandX = True
         edit = False
       }
       Field minVolumePatchIndex {
         expandX = True
-        edit = False        
+        edit = False
       }
       Field maxVolume {
         expandX = True
-        edit = False        
+        edit = False
       }
       Field maxVolumePatchIndex {
         expandX = True
-        edit = False        
+        edit = False
       }
-      
+
       //Separator { direction = horizontal }
 
       //Horizontal {
       //CheckBox autoApply { title = "Auto Apply" }
-      //Field apply        { title = "Apply"      }        
+      //Field apply        { title = "Apply"      }
       //}
-    }    
+    }
   }
 } // MLModule WEMVolume
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMCenterOfMass
@@ -123,9 +97,12 @@ MLModule WEMCenterOfMass {
   seeAlso        = ""
   documentation  = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMass.html"
   exampleNetwork = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMassExample.mlab" 
-  
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
@@ -137,33 +114,31 @@ MLModule WEMCenterOfMass {
   }
 
   Window {
-
     Category "Main" {
 
-      Field centerOfMass { 
+      Field centerOfMass {
         expandX = True
       }
-      
-      Field inverseCenterOfMass { 
+      Field inverseCenterOfMass {
         expandX = True
       }
-      
       Field useSurface {
         tooltip = 
 "If checked the centroid is calculated through a 
 weighted average of the centroids of all faces. Otherwise 
 the centroid is the average of the node positions"
       }
-      
+
       //Separator { direction = horizontal }
 
       //Horizontal {
         //CheckBox autoApply { title = "Auto Apply" }
-        //Field apply        { title = "Apply"      }        
+        //Field apply        { title = "Apply"      }
       //}
-    }    
+    }
   }
 } // MLModule WEMCenterOfMass
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMCMSelectPatches
@@ -181,9 +156,12 @@ MLModule WEMCMSelectPatches {
   documentation  = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatches.html"
   exampleNetwork = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatchesExample.mlab"
   deprecatedName = "WEMSelectPatch"
-  
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
@@ -195,14 +173,14 @@ MLModule WEMCMSelectPatches {
   }
 
   Window {
-
     Category "Main" {
       Field patchStartIndex {}
       Field patchEndIndex {}
       CheckBox onePatch {}
-    }    
+    }
   }
 } // MLModule WEMCMSelectPatches
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMNodesToFile
@@ -218,9 +196,12 @@ MLModule WEMNodesToFile {
   comment        = "Output WEM node coordinates to a text filed"
   keywords       = "WEM,nodes,output,save,file"
   seeAlso        = ""
-  
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
@@ -236,15 +217,14 @@ MLModule WEMNodesToFile {
 
     Vertical {
       margin = 3
-      Field filename { 
-        expandX = True 
+      Field filename {
+        expandX = True
         browseButton = True
         browseMode = save
       }
       Field transformixCompatible {}
       Separator {}
       Button save {}
-    }    
+    }
   }
 } // MLModule WEMCenterOfMass
-
