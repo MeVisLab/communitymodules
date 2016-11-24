@@ -15,34 +15,152 @@ MLModule WEMPlane {
   exampleNetwork = "$(LOCAL)/WEMPlane/WEMPlaneExample.mlab"
   documentation  = "$(LOCAL)/WEMPlane/WEMPlane.html"
 
-  #include $(LOCAL)/includes/WEMProcessorInterface.txt
+  Interface {
+    Parameters {
+      Field selectedTab       { type = int  value = 0    }
+      Field outputTabSelected { type = bool value = true }
+    }
+  }
+
+  Description {
+//  Field faceAlphaValue     { min = 0 max = 1 }
+//  Field faceShininessValue { min = 0 max = 1 }
+//  Field lineWidth          { min = 1         }
+//  Field pointSize          { min = 1         }
+    Field progress           { persistent = NO }
+//  Field useInputWEMToCreateOutputWEM { persistent = NO }
+  }
+
+  Commands {
+    source = $(LOCAL)/includes/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
+    source = $(LOCAL)/includes/updateTabs.py
+
+    // put more commands in here if required
+  
+  }
 
   Window {
-
     Category {
-
-      #include $(LOCAL)/includes/WEMGeneratorButtonBar.txt
+      Horizontal {
+        alignX = Left
+        expandX = YES
+        expandY = NO
+        
+        ButtonBar selectedTab {
+          show = toolbuttons
+          items {
+            item 0 {
+              title = "Output"
+            }
+            item 1 {
+              title = "Visuals"
+            }
+            item 2 {
+              title = "Advanced"
+            }
+          }
+        }
+        FieldListener selectedTab { command = updateTabs }
+      }
 
       Box "" {
-
         TabView {
           mode = Invisible
           name = "parametersTab"
 
           TabViewItem "Output" {
-
             Field = plane
-            
             Separator { direction = Horizontal }
-            
             Checkbox = generateEdges
 
-            #include $(LOCAL)/includes/WEMGeneratorOutputItems.txt
+            Separator { direction = Horizontal }
+            Field = label
+            Field = description
           }
-          #include $(LOCAL)/includes/WEMGeneratorTabViewItems.txt
+
+          TabViewItem "Visuals" {
+            Field colorMode { title = "Color Mode:" }
+
+            Separator { direction = horizontal }
+
+            Horizontal {
+              CheckBox drawFaces       { title = "Draw Faces" }
+              Field faceDiffuseColor   { title = "Diffuse Color:" }
+            }
+            Horizontal {
+              CheckBox useFaceAmbientColor { title = "Use "  }
+              Field faceAmbientColor       { title = "Ambient Color:" }
+            }
+            Horizontal {
+              CheckBox useFaceSpecularColor { title = "Use" }
+              Field faceSpecularColor       { title = "Specular Color:" }
+            }
+
+            Separator { direction = horizontal }
+
+            Horizontal {
+              CheckBox drawEdges { title = "Draw edges" }
+              Field    edgeColor { title = "Edge Color:" }
+            }
+            Horizontal {
+              CheckBox drawNodes { title = "Draw nodes" }
+              Field    nodeColor { title = "Node Color:" }
+            }
+
+            Separator { direction = horizontal }
+
+            Horizontal {
+              CheckBox drawBoundingBoxes { title = "Draw bounding boxes" }
+              Field boundingBoxColor     { title = " Color:" }
+            }
+
+            Separator { direction = horizontal }
+
+            Horizontal {
+              CheckBox drawFaceNormals { title = "Draw face normals" }
+              Field faceNormalsColor   { title = "Color:" }
+            }
+          
+            Horizontal {
+              CheckBox drawNodeNormals { title = "Draw node normals" }
+              Field nodeNormalsColor   { title = "Color:" }
+            }
+          }
+
+          TabViewItem "More ..." {
+            Field faceNormalsScale { title = "Face Normal Scale:" step = 0.1 }
+            Field nodeNormalsScale { title = "Node Normal Scale:" step = 0.1 }
+
+            Separator { direction = horizontal }
+
+            Field faceAlphaValue     { title = "Face Alpha: "    step = 0.1 }
+            Field faceShininessValue { title = "Face Shininess:" step = 0.1 }
+          
+            Separator { direction = horizontal }
+
+            Field lineWidth { title = "Line Width: " step = 1 }
+            Field pointSize { title = "Point Size: " step = 1 }
+
+            Separator { direction = horizontal }
+
+            CheckBox useEdgeColoringMode { title = "Use coloring mode for edges" }
+
+            Separator { direction = horizontal }
+
+            Field nodeRenderingMode { title = "Node Rendering Mode:" }
+            Field boundingBoxMode   { title = "Bounding Box Mode:"   }
+          }
         }
       }
-      #include $(LOCAL)/includes/WEMGeneratorFooter.txt
+       Horizontal {
+         alignX   = Right
+         CheckBox = autoUpdate
+         CheckBox = autoApply
+         Button   = apply
+      }
     }
     Execute = updateTabs
   }
@@ -63,13 +181,16 @@ MLModule WEMVolume {
   documentation = "$(LOCAL)/WEMVolume/WEMVolume.html"
   seeAlso        = ""
   exampleNetwork = "$(LOCAL)/WEMVolume/WEMVolumeExample.mlab"
-    
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/includes/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
-  
+
   Description {
   
     // put the fields' description in here if required
@@ -81,30 +202,30 @@ MLModule WEMVolume {
 
     Category "Main" {
 
-      Field minVolume { 
+      Field minVolume {
         expandX = True
         edit = False
       }
       Field minVolumePatchIndex {
         expandX = True
-        edit = False        
+        edit = False
       }
       Field maxVolume {
         expandX = True
-        edit = False        
+        edit = False
       }
       Field maxVolumePatchIndex {
         expandX = True
-        edit = False        
+        edit = False
       }
       
       //Separator { direction = horizontal }
 
       //Horizontal {
       //CheckBox autoApply { title = "Auto Apply" }
-      //Field apply        { title = "Apply"      }        
+      //Field apply        { title = "Apply"      }
       //}
-    }    
+    }
   }
 } // MLModule WEMVolume
 
@@ -123,9 +244,12 @@ MLModule WEMCenterOfMass {
   seeAlso        = ""
   documentation  = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMass.html"
   exampleNetwork = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMassExample.mlab" 
-  
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/includes/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
@@ -137,17 +261,14 @@ MLModule WEMCenterOfMass {
   }
 
   Window {
-
     Category "Main" {
 
-      Field centerOfMass { 
+      Field centerOfMass {
         expandX = True
       }
-      
-      Field inverseCenterOfMass { 
+      Field inverseCenterOfMass {
         expandX = True
       }
-      
       Field useSurface {
         tooltip = 
 "If checked the centroid is calculated through a 
@@ -159,9 +280,9 @@ the centroid is the average of the node positions"
 
       //Horizontal {
         //CheckBox autoApply { title = "Auto Apply" }
-        //Field apply        { title = "Apply"      }        
+        //Field apply        { title = "Apply"      }
       //}
-    }    
+    }
   }
 } // MLModule WEMCenterOfMass
 
@@ -181,9 +302,12 @@ MLModule WEMCMSelectPatches {
   documentation  = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatches.html"
   exampleNetwork = "$(LOCAL)/WEMCMSelectPatches/WEMCMSelectPatchesExample.mlab"
   deprecatedName = "WEMSelectPatch"
-  
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/includes/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
@@ -218,9 +342,12 @@ MLModule WEMNodesToFile {
   comment        = "Output WEM node coordinates to a text filed"
   keywords       = "WEM,nodes,output,save,file"
   seeAlso        = ""
-  
-  Commands { FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" } 
-  
+
+  Commands {
+    source = $(LOCAL)/includes/MLWEMModules.py
+    FieldListener isProcessing {
+      command = setMouseCursor
+    }
     // put more commands in here if required
   
   }
@@ -236,15 +363,15 @@ MLModule WEMNodesToFile {
 
     Vertical {
       margin = 3
-      Field filename { 
-        expandX = True 
+      Field filename {
+        expandX = True
         browseButton = True
         browseMode = save
       }
       Field transformixCompatible {}
       Separator {}
       Button save {}
-    }    
+    }
   }
 } // MLModule WEMCenterOfMass
 
