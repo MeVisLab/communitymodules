@@ -15,156 +15,9 @@ MLModule WEMPlane {
   exampleNetwork = "$(LOCAL)/WEMPlane/WEMPlaneExample.mlab"
   documentation  = "$(LOCAL)/WEMPlane/WEMPlane.html"
 
-  Interface {
-    Parameters {
-      Field selectedTab       { type = int  value = 0    }
-      Field outputTabSelected { type = bool value = true }
-    }
-  }
-
-  Description {
-//  Field faceAlphaValue     { min = 0 max = 1 }
-//  Field faceShininessValue { min = 0 max = 1 }
-//  Field lineWidth          { min = 1         }
-//  Field pointSize          { min = 1         }
-    Field progress           { persistent = NO }
-//  Field useInputWEMToCreateOutputWEM { persistent = NO }
-  }
-
-  Commands {
-    source = $(LOCAL)/includes/MLWEMModules.py
-    FieldListener isProcessing {
-      command = setMouseCursor
-    }
-    source = $(LOCAL)/includes/updateTabs.py
-
-    // put more commands in here if required
-  
-  }
-
-  Window {
-    Category {
-      Horizontal {
-        alignX = Left
-        expandX = YES
-        expandY = NO
-        
-        ButtonBar selectedTab {
-          show = toolbuttons
-          items {
-            item 0 {
-              title = "Output"
-            }
-            item 1 {
-              title = "Visuals"
-            }
-            item 2 {
-              title = "Advanced"
-            }
-          }
-        }
-        FieldListener selectedTab { command = updateTabs }
-      }
-
-      Box "" {
-        TabView {
-          mode = Invisible
-          name = "parametersTab"
-
-          TabViewItem "Output" {
-            Field = plane
-            Separator { direction = Horizontal }
-            Checkbox = generateEdges
-
-            Separator { direction = Horizontal }
-            Field = label
-            Field = description
-          }
-
-          TabViewItem "Visuals" {
-            Field colorMode { title = "Color Mode:" }
-
-            Separator { direction = horizontal }
-
-            Horizontal {
-              CheckBox drawFaces       { title = "Draw Faces" }
-              Field faceDiffuseColor   { title = "Diffuse Color:" }
-            }
-            Horizontal {
-              CheckBox useFaceAmbientColor { title = "Use "  }
-              Field faceAmbientColor       { title = "Ambient Color:" }
-            }
-            Horizontal {
-              CheckBox useFaceSpecularColor { title = "Use" }
-              Field faceSpecularColor       { title = "Specular Color:" }
-            }
-
-            Separator { direction = horizontal }
-
-            Horizontal {
-              CheckBox drawEdges { title = "Draw edges" }
-              Field    edgeColor { title = "Edge Color:" }
-            }
-            Horizontal {
-              CheckBox drawNodes { title = "Draw nodes" }
-              Field    nodeColor { title = "Node Color:" }
-            }
-
-            Separator { direction = horizontal }
-
-            Horizontal {
-              CheckBox drawBoundingBoxes { title = "Draw bounding boxes" }
-              Field boundingBoxColor     { title = " Color:" }
-            }
-
-            Separator { direction = horizontal }
-
-            Horizontal {
-              CheckBox drawFaceNormals { title = "Draw face normals" }
-              Field faceNormalsColor   { title = "Color:" }
-            }
-          
-            Horizontal {
-              CheckBox drawNodeNormals { title = "Draw node normals" }
-              Field nodeNormalsColor   { title = "Color:" }
-            }
-          }
-
-          TabViewItem "More ..." {
-            Field faceNormalsScale { title = "Face Normal Scale:" step = 0.1 }
-            Field nodeNormalsScale { title = "Node Normal Scale:" step = 0.1 }
-
-            Separator { direction = horizontal }
-
-            Field faceAlphaValue     { title = "Face Alpha: "    step = 0.1 }
-            Field faceShininessValue { title = "Face Shininess:" step = 0.1 }
-          
-            Separator { direction = horizontal }
-
-            Field lineWidth { title = "Line Width: " step = 1 }
-            Field pointSize { title = "Point Size: " step = 1 }
-
-            Separator { direction = horizontal }
-
-            CheckBox useEdgeColoringMode { title = "Use coloring mode for edges" }
-
-            Separator { direction = horizontal }
-
-            Field nodeRenderingMode { title = "Node Rendering Mode:" }
-            Field boundingBoxMode   { title = "Bounding Box Mode:"   }
-          }
-        }
-      }
-       Horizontal {
-         alignX   = Right
-         CheckBox = autoUpdate
-         CheckBox = autoApply
-         Button   = apply
-      }
-    }
-    Execute = updateTabs
-  }
+  externalDefinition = $(LOCAL)/WEMPlane/WEMPlane.script
 } // MLModule WEMPlane
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMVolume
@@ -183,7 +36,7 @@ MLModule WEMVolume {
   exampleNetwork = "$(LOCAL)/WEMVolume/WEMVolumeExample.mlab"
 
   Commands {
-    source = $(LOCAL)/includes/MLWEMModules.py
+    source = $(LOCAL)/MLWEMModules.py
     FieldListener isProcessing {
       command = setMouseCursor
     }
@@ -201,7 +54,6 @@ MLModule WEMVolume {
     minimumWidth = 250
 
     Category "Main" {
-
       Field minVolume {
         expandX = True
         edit = False
@@ -218,7 +70,7 @@ MLModule WEMVolume {
         expandX = True
         edit = False
       }
-      
+
       //Separator { direction = horizontal }
 
       //Horizontal {
@@ -228,6 +80,7 @@ MLModule WEMVolume {
     }
   }
 } // MLModule WEMVolume
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMCenterOfMass
@@ -246,7 +99,7 @@ MLModule WEMCenterOfMass {
   exampleNetwork = "$(LOCAL)/WEMCenterOfMass/WEMCenterOfMassExample.mlab" 
 
   Commands {
-    source = $(LOCAL)/includes/MLWEMModules.py
+    source = $(LOCAL)/MLWEMModules.py
     FieldListener isProcessing {
       command = setMouseCursor
     }
@@ -275,7 +128,7 @@ MLModule WEMCenterOfMass {
 weighted average of the centroids of all faces. Otherwise 
 the centroid is the average of the node positions"
       }
-      
+
       //Separator { direction = horizontal }
 
       //Horizontal {
@@ -285,6 +138,7 @@ the centroid is the average of the node positions"
     }
   }
 } // MLModule WEMCenterOfMass
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMCMSelectPatches
@@ -304,7 +158,7 @@ MLModule WEMCMSelectPatches {
   deprecatedName = "WEMSelectPatch"
 
   Commands {
-    source = $(LOCAL)/includes/MLWEMModules.py
+    source = $(LOCAL)/MLWEMModules.py
     FieldListener isProcessing {
       command = setMouseCursor
     }
@@ -319,14 +173,14 @@ MLModule WEMCMSelectPatches {
   }
 
   Window {
-
     Category "Main" {
       Field patchStartIndex {}
       Field patchEndIndex {}
       CheckBox onePatch {}
-    }    
+    }
   }
 } // MLModule WEMCMSelectPatches
+
 
 //----------------------------------------------------------------------------------
 // MLModule WEMNodesToFile
@@ -344,7 +198,7 @@ MLModule WEMNodesToFile {
   seeAlso        = ""
 
   Commands {
-    source = $(LOCAL)/includes/MLWEMModules.py
+    source = $(LOCAL)/MLWEMModules.py
     FieldListener isProcessing {
       command = setMouseCursor
     }
@@ -374,4 +228,3 @@ MLModule WEMNodesToFile {
     }
   }
 } // MLModule WEMCenterOfMass
-
