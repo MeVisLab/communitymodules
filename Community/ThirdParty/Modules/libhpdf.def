@@ -1,0 +1,17 @@
+//----------------------------------------------------------------------------------
+// libhpdf library definitions.
+//
+// \file    libhpdf.def
+// \author  Axel Newe
+// \date    2016-11-24
+//----------------------------------------------------------------------------------
+
+
+// About Extension -------------------------------------------------------------
+
+MeVisAboutExtension = @@
+<h3>Haru Free PDF Library (libhpdf) v2.3.0</h3>
+<p>libHaru is a free, cross platform, open source library for generating PDF files.</p>
+<p>License: <a href="https://opensource.org/licenses/Zlib">ZLIB/LIBPNG</a><br/>
+Homepage: <a href="http://libharu.org/">libharu.org</a></p>
+@@

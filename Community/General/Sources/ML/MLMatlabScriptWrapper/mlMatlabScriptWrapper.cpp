@@ -403,7 +403,7 @@ void MatlabScriptWrapper::_process()
     _stdReportFld->setStringValue("Matlab script is executing....");
     // Insert at the end of the script variable to proof execution status
     // and run the script in Matlab
-    evaluateString += "\nmevmatscr=1;"; // Added ';' to prevent unnecessary output
+    evaluateString += "\nmevmatscr=1;";	// Added ';' to prevent unnecessary output
 
     // Buffer to capture Matlab output
     #define BUFSIZE 5120
@@ -918,8 +918,6 @@ void MatlabScriptWrapper::_getOutputImageDataBackFromMatlab()
         case mxUINT16_CLASS: outputClass = MLuint16Type; break;
         case mxINT32_CLASS:  outputClass = MLint32Type;  break;
         case mxUINT32_CLASS: outputClass = MLuint32Type; break;
-        case mxINT64_CLASS:  outputClass = MLint64Type;  break;
-        case mxUINT64_CLASS: outputClass = MLuint64Type; break;
         default:
           outputClass = ML_BAD_DATA_TYPE;
           std::cerr << "_getOutputImageDataBackFromMatlab(): Output type from Matlab not supported" << std::endl << std::flush;
@@ -1227,7 +1225,7 @@ void MatlabScriptWrapper::_copyInputWEMToMatlab()
     return;
   }
 
-  if(!_isInWEMNotificationCB){
+    if(!_isInWEMNotificationCB){
     WEM::removeNotificationObserverFromAllWEMs(_wemNeedsNotificationCB, this);
   }
   // Get input WEM.
@@ -1334,7 +1332,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
 {
   // Clear _outWEM.
   _outWEM->removeAll();
-
+  
   // Check if Matlab is started.
   if (!_checkMatlabIsStarted())
   {
@@ -1354,7 +1352,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       std::ostringstream executeStr;
 
       // Get nodes
-      executeStr << "tmpOutWEMNodes=" << outWEMStr << "{" << j << "}.Vertices;";
+      executeStr << "tmpOutWEMNodes=" << outWEMStr << "{" << j << "}" << ".Vertices";
       engEvalString(m_pEngine, executeStr.str().c_str());
       // Get array from Matlab.
       mxArray *m_nodes = engGetVariable(m_pEngine, "tmpOutWEMNodes");
@@ -1364,7 +1362,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       executeStr.str("");
 
       // Get faces
-      executeStr << "tmpOutWEMFaces=" << outWEMStr << "{" << j << "}.Faces-1;";
+      executeStr << "tmpOutWEMFaces=" << outWEMStr << "{" << j << "}" << ".Faces-1";
       engEvalString(m_pEngine, executeStr.str().c_str());
       // Get faces from Matlab.
       mxArray *m_faces = engGetVariable(m_pEngine, "tmpOutWEMFaces");
@@ -1383,7 +1381,7 @@ void MatlabScriptWrapper::_getWEMBackFromMatlab()
       if (m_nodes && !mxIsEmpty(m_nodes) && mxGetClassID(m_nodes) == mxDOUBLE_CLASS)
       {
         double *dataNodes = static_cast<double*>(mxGetPr(m_nodes));
-
+        
         if (dataNodes != NULL) {
           const size_t node_rows = mxGetM(m_nodes);
 
