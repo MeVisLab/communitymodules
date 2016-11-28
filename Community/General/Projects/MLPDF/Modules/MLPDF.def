@@ -48,15 +48,3 @@ ModuleWizard PDFModuleWizard {
   externalDefinition = $(LOCAL)/Wizard/PDFModuleWizard.script
   templateList       = $(LOCAL)/Wizard/PDFModuleWizard.lst
 }
-
-// About Extension -------------------------------------------------------------
-
-MeVisAboutExtension = @@
-<h3>MLPDF Library  & PDF Module Wizard</h3>
-<p>Library for creating Portable Document Format (PDF) files.</p>
-<p><b>Author:</b> Axel Newe, <a href="mailto:axel.newe@fau.de">axel.newe@fau.de</a><br/>
-<b>License:</b> <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
-<p>If you are using this library for scientific purposes, please cite the following work:</p>
-<p>&#8226; Newe A (2016). Enriching scientific publications with interactive 3D PDF: An integrated toolbox for creating ready-to-publish figures. PeerJ Computer Science 2: e64; DOI: <a href="http://dx.doi.org/10.7717/peerj-cs.64">10.7717/peerj-cs.64</a>.</p>
-@@
-
