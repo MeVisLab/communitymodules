@@ -1,0 +1,20 @@
+//----------------------------------------------------------------------------------
+//! MLWEMColorizeNodes module definitions.
+/*!
+// \file    MLWEMColorizeNodes.def
+// \author  Axel Newe
+// \date    2015-12-03
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule WEMColorizeNodes {
+  DLL                = "MLWEMColorizeNodes"
+
+  genre              = ""
+  author             = "Axel Newe"
+  comment            = ""
+  keywords           = ""
+  seeAlso            = ""
+  externalDefinition = $(LOCAL)/WEMColorizeNodes.script
+}

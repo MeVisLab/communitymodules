@@ -1,0 +1,31 @@
+//----------------------------------------------------------------------------------
+//! MLWEMColorizeNodes module definitions.
+/*!
+// \file    WEMColorizeNodes.script
+// \author  Axel Newe
+// \date    2015-12-03
+*/
+//----------------------------------------------------------------------------------
+
+
+Commands { 
+  FieldListener isProcessing { command = "*js: if (ctx.field("isProcessing").boolValue()){ MLAB.setWaitCursor(); } else { MLAB.removeWaitCursor(); } *" }
+  // put more commands in here if required
+}
+
+
+Description {
+  // put the fields' description in here if required
+}
+
+
+Window {
+  Category "Main" {
+    Separator { direction = horizontal }
+
+    Horizontal {
+      CheckBox autoApply { title = "Auto Apply" }
+      Field apply        { title = "Apply"      }
+    }
+  }
+}
