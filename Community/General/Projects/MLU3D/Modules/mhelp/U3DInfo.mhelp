@@ -1,0 +1,190 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DInfo
+    moduleType = MLModule
+    automaticPrototype = U3DInspector
+    author = "Axel Newe"
+    DLL = MLU3D
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module provides informations about a Universal 3D (U3D) object."
+  }
+  Usage  {
+    text = "This module requires no interaction. Simply connect a U3D object to the :field:`inU3DObject` input."
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = U3DInfo
+    }
+    Field networkPanelStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = Idle.
+    }
+    Field inputValid {
+      type = Bool
+      text = ""
+      title = "Input Valid"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field numMetaDataEntries {
+      type = Integer
+      text = ""
+      title = "Additional Meta Data Entries"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field defaultBoundingBoxMetaData {
+      type = Bool
+      text = ""
+      title = "Bounding Box Meta Data Included"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numViewNodes {
+      type = Integer
+      text = ""
+      title = "Num View Nodes"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numGroupNodes {
+      type = Integer
+      text = ""
+      title = "Num Group Nodes"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numModelNodes {
+      type = Integer
+      text = ""
+      title = "Num Model Nodes"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numLightNodes {
+      type = Integer
+      text = ""
+      title = "Num Light Nodes"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numPointSets {
+      type = Integer
+      text = ""
+      title = "Num Point Sets"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numLineSets {
+      type = Integer
+      text = ""
+      title = "Num Line Sets"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numMeshes {
+      type = Integer
+      text = ""
+      title = "Num Meshes"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numLightResources {
+      type = Integer
+      text = ""
+      title = "Num Light Resources"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numViewResources {
+      type = Integer
+      text = ""
+      title = "Num View Resources"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numShaders {
+      type = Integer
+      text = ""
+      title = "Num Shaders"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numMaterialResources {
+      type = Integer
+      text = ""
+      title = "Num Material Resources"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numTextureResources {
+      type = Integer
+      text = ""
+      title = "Num Texture Resources"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field numMotionResources {
+      type = Integer
+      text = ""
+      title = "Num Motion Resources"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    text = ""
+  }
+}

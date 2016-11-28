@@ -1,21 +1,21 @@
 ModuleHelp  {
   MetaInformation  {
-    definition = Modules/ML/MLPDF/MLPDF.def
-    moduleName = PDFCreateFibersFromLists
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = ListsToFibers
     moduleType = MLModule
     author = "Axel Newe"
-    DLL = MLPDF
-    genre = PDFModules
-    keywords = PDF
+    DLL = MLU3D
+    genre = ""
+    keywords = "PDF U3D"
     seeAlso = ""
     package = General
     packageGroup = Community
   }
   Purpose  {
-    text = ""
+    text = "This module creates Fibers from XMarkerLists and IndexedPairLists."
   }
   Usage  {
-    text = ""
+    text = "Connect an XMarkerList which contains the node coordinates to the :field:`inLinePositions` field. Connect an IndexPairList which contains the edges to the :field:`inLineConnections` field. The output fibers are generated automatically."
   }
   Details  {
     text = ""
@@ -30,7 +30,7 @@ ModuleHelp  {
     text = ""
     Window _default {
       title = ""
-      text = ".. screenshot:: _default"
+      text = ""
     }
   }
   Inputs  {
@@ -59,7 +59,7 @@ ModuleHelp  {
       needsDocumentation = No
       visibleInGUI = No
       persistent = Yes
-      default = PDFCreateFibersFromLists
+      default = ListsToFibers
     }
     text = ""
   }

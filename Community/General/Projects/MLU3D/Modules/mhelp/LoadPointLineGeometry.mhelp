@@ -1,0 +1,178 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = LoadPointLineGeometry
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLU3D
+    genre = ""
+    keywords = "ListBase XMarker ColoredMarker IndexPairList"
+    seeAlso = "XMarkerListContainer ColoredMarkerListContainer MarkerListImport"
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module enables the user to load plain text files like Character-Separated Values (CSV) files that contain tabular point cloud data or line set data. Imported data is provided as marker lists or fibers. Multiple files can be loaded and cached."
+  }
+  Usage  {
+    text = "For basic usage, specify a :field:`filename` and click :field:`load`. Enabling the :field:`autoLoad` option enables the automatic loading if a valid filename has been specified.
+
+For advances usage, the import procedure can be specified in detail. The field :field:`numberDelimiter` allows for selecting the delimiter which divides separate numbers. The decimal separator can be specified by means of the :field:`decimalSeparator` field. Finally, the results can be filtered by setting the :field:`filter` field to the name(s) of the labels that shall be considered for import.
+
+The import result is provided at the fields :field:`outPositionsList`, :field:`outConnectionsList` and :field:`outFibers` (if lines were imported). There results can also be added to the internal cache, which allows for importing multiple file sequentially. Click :field:`addToCache` to add an import to the cache and :field:`clearCache` to clear the entire cache. Enabling :field:`autoAddToCache` automatically adds every new import to the cache.
+"
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outPositionsList {
+      type = MLBase
+      text = ""
+    }
+    Field outConnectionsList {
+      type = MLBase
+      text = ""
+    }
+    Field outFibers {
+      type = MLBase
+      text = ""
+    }
+    Field outCachedPositionsList {
+      type = MLBase
+      text = ""
+    }
+    Field outCachedConnectionsList {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = LoadPointLineGeometry
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field filter {
+      type = String
+      text = ""
+      title = Filter
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field numberDelimiter {
+      type = String
+      text = ""
+      title = "Number Delimiter"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ;
+    }
+    Field numberDelimiterSpace {
+      type = Bool
+      text = ""
+      title = "Use space character as delimiter"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field decimalSeparator {
+      type = String
+      text = ""
+      title = "Decimal Separator"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = .
+    }
+    Field load {
+      type = Trigger
+      text = ""
+      title = Load
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field unload {
+      type = Trigger
+      text = ""
+      title = Unload
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoLoad {
+      type = Bool
+      text = ""
+      title = "Auto Load"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field positionsLoaded {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field connectionsLoaded {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field addToCache {
+      type = Trigger
+      text = ""
+      title = "Add To Cache"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field clearCache {
+      type = Trigger
+      text = ""
+      title = "Clear Cache"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoAddToCache {
+      type = Bool
+      text = ""
+      title = "Auto Add To Cache"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}

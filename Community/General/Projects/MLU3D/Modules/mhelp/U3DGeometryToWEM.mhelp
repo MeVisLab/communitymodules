@@ -1,0 +1,92 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DGeometryToWEM
+    moduleType = MLModule
+    automaticPrototype = U3DInspector
+    author = "Axel Newe"
+    DLL = MLU3D
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module extracts the geometry data of all meshes of a U3D object and provides them as WEM."
+  }
+  Usage  {
+    text = "This module requires no interaction. Simply connect a U3D object to the :field:`inU3DObject` input and take the result from the :field:`outMeshWEM` output."
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outMeshWEM {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = U3DGeometryToWEM
+    }
+    Field networkPanelStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = Idle.
+    }
+    Field inputValid {
+      type = Bool
+      text = ""
+      title = "Input Valid"
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    text = ""
+  }
+}

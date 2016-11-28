@@ -1,0 +1,147 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DAddModelFromMarkerList
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLU3D
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module adds a new point cloud model and the necessary geometry data to an existing U3D specification."
+  }
+  Usage  {
+    text = "Connect a valid U3D object specification (e.g., from :module:`U3DInit`) to the :field:`inU3DObject` input. Connect an XMarkerList with the coordinates of the points to the :field:`inPositions` input. Then specify the model in the :field:`pointCloudSpecification` field as described below.
+"
+  }
+  Details  {
+    text = "The general specification follows an XML-like principle. A new point cloud is started by the *<PointSet>* tag. A closing tag (*</PointSet>*) can be provided, but it is not necessary. The specification parameters are embraced with opening and closing tags:
+
+* *<ObjectName></ObjectName>*: This specifies the name under which the object is identified in the 3D model tree. Names do *not* need to be unique.
+* *<GroupPath><GroupPath>*: This specifies the path where the object is placed in the 3D model tree. All necessary sub-branches are created automatically.
+* *<ModelVisibility><ModelVisibility>*: This specifies the model visibility (front visible, back visible, both sides visible or not visible).
+
+The geometry data is taken from the :field:`inPositions` input field, which accepts XMarkerLists or ColoredMarkerLists. Use the *<PositionTypes>* tag to filter which positions (Type ID numbers) of the input list shall be used. If no *<PositionTypes>* tag is specified, all positions are used. Multiple position types may be separated by commas.
+
+If the :field:`simpleModePointSet` checkbox is enabled, all specifications made in the :field:`pointCloudSpecification` field are ignored and all coordinates from the input lists are assembled into one big point cloud using the default name prefix for point clouds.
+
+Click :field:`apply` to add the specified models to the U3D object. Clicking :field:`reset` removes the models added by this module from the U3D object (i.e., the state as provided at the :field:`inU3DObject` input is restored). If the :field:`autoApply` checkbox is enabled, each update in the specification fields automatically updates the U3D object.
+"
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = "You can use the :module:`U3DSpecificationGenerator` module to create valid specifications."
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inU3DObject {
+      type = MLBase
+      text = ""
+    }
+    Field inPositions {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = U3DAddModelFromMarkerList
+    }
+    Field networkPanelStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field updateMode {
+      type = Enum
+      text = ""
+      title = "Update Mode"
+      visibleInGUI = Yes
+      items  {
+        item Ignore {
+          title = Ignore
+          text = ""
+        }
+        item "Auto Clear" {
+          title = "Auto Clear"
+          text = ""
+        }
+        item "Auto Update" {
+          title = "Auto Update"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = "Auto Update"
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = Apply
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = "Auto Apply"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field reset {
+      type = Trigger
+      text = ""
+      title = Reset
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field simpleModePointSet {
+      type = Bool
+      text = ""
+      title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field pointCloudSpecification {
+      type = String
+      text = ""
+      title = "Point Cloud Specification"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

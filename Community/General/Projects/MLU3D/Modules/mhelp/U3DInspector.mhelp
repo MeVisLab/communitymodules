@@ -1,0 +1,63 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DInspector
+    moduleType = MacroModule
+    author = "Axel Newe"
+    dll = ""
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module provides informations about a Universal 3D (U3D) object and renders a simple preview of the geometry data."
+  }
+  Usage  {
+    text = "Connect a U3D object to the :field:`inU3DObject` input. Use the preview window to explore the geometry and click the extend button (triangle icon) to toggle additional info."
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = U3DInspector
+    }
+    Field showDetail {
+      type = Bool
+      text = "Show/hide details"
+      title = "Show Detail"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    text = ""
+  }
+}

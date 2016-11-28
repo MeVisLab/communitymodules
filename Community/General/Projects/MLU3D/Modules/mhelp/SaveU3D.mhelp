@@ -1,0 +1,383 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = SaveU3D
+    moduleType = MacroModule
+    author = "Axel Newe"
+    dll = ""
+    genre = U3DModules
+    keywords = deprecated
+    seeAlso = "U3DAssemble U3DSave"
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ".. attention:: This module is deprecated. A combination of :module:`U3DAssemble` and :module:`U3DSave` should be used instead (see internal network of SaveU3D for details)!
+
+However, this module still works and creates Universal 3D (U3D) files that can be imported into Portable Document Format (PDF) files for creating 3D annotations.
+"
+  }
+  Usage  {
+    text = "*Connect the inputs with the point set data (XMarkerList or ColoredMarkerList), the line set data (XMarkerList or ColoredMarkerList plus IndexPairList) and the mesh data (WEMs), specify the output (see "Details") and the file name and click the :field:`save` button.*"
+  }
+  Details  {
+    text = "*The module creates U3D files as defined in Standard ECMA-363 (Universal 3D File Format), 4th edition (June 2007).
+
+The following U3D elements can be added:
+
+* PointSets
+* LineSets
+* Triangle meshes
+* Meta data
+
+The geometry data is fed in via the input connectors. However, since input data can be reused for multiple output models, the output models must be specified. This happens in the three tabs "Point Clouds", "Line Sets" and "Meshes". The general output geometry specification is the same for all three model types, but some details vary.
+
+**Common Specification**
+
+The general specification follows an XML-like principle. A new object specification is started with a single tag and the specification parameters are embraced with opening and closing tags.
+
+The common tags are:
+
+* *<ObjectName></ObjectName>*: This specifies the name under which the object is identified in the 3D model tree. Names do *not* need to be unique.
+* *<GroupPath><GroupPath>*: This specifies the path where the object is placed in the 3D model tree. All necessary sub-branches are created automatically.
+* *<Color></Color>*: This specifies the (diffuse) color of the object.
+* *<Opacity></Opacity>*: This specifies the opacity of the object. It ranges from 0 (invisible) to 1 (totally opaque).
+* *<SpecularColor><SpecularColor>*: This specifies the specular (reflective) color of the object.
+* *<ModelVisibility><ModelVisibility>*: This specifies the model visibility (front visible, back visible, both sides visible or not visible).
+
+These common tags are available for all object types. However, some object types do not evaluate all tags (e.g., a Point Cloud does not evaluate the <Color> tag). This is because the same specifications can also be used for other (non-U3D) export formats. In addition, future versions of the U3D standard *might* support the respective settings.
+
+Colors are specified using triples (RGB) or quadrupels (RGBA) of floating point numbers between 0 and 1. 
+
+**Point Cloud Specification**
+
+A new point cloud is started by the *<PointSet>* tag. A closing tag (*</PointSet>*) can be provided, but it is not necessary.
+
+The geometry data is taken from the :field:`inPointPositions` input field, which accepts XMarkerLists or ColoredMarkerLists. Use the <PositionTypes> tag to filter which positions (Type ID numbers) of the input list shall be used. If no <PositionTypes> tag is specified, all positions are used. Multiple position types may be separated by commas.
+
+**Line Set Specification**
+
+A new line set is started by the *<LineSet>* tag. A closing tag can (*</LineSet>*) be provided, but it is not necessary.
+
+The geometry data is taken from the :field:`inLinePositions` input field (XMarkerList or ColoredMarkerList) and the :field:`inLineConnections` input field (IndexPairList). Use the <PositionTypes> tag to filter which positions (Type ID numbers) of the input positions list shall be used. If no <PositionTypes> tag is specified, all positions are used. Use the <ConnectionTypes> tag to filter which connections/edges (Type ID numbers) of the input connections list shall be used. If no <ConnectionTypes> tag is specified, all connections are used. Instead of specifying Type ID numbers, the <ConnectionTypes> tag may also contain the *simple* keyword. In this case, the connections are generated automatically by simply connecting each position with the next in the list. Multiple position types and connection types may be separated by commas.
+
+**Mesh Specification**
+
+A new mesh is started by the *<Mesh>* tag. A closing tag (*</Mesh>*) can be provided, but it is not necessary.
+
+The geometry data is taken from the :field:`inWEM` input field, which accepts a WEM. Use the <WEMLabel> tag to filter which WEM (selected by its Label) of the input WEM shall be used.
+
+Meshes can have a per-vertex color. To enable this feature, enter *<Color>{VertexColors}</Color>* as color specification. In this case, the node colors of the WEMs are used to generate the colors of the mesh.
+
+**Meta Data**
+
+U3D allows for inclusion of meta data. Since meta data is no geometry data, it is specified purely via the UI.
+
+A new meta data entry is started by the *<MetaData>* tag. A closing tag is not necessary.
+
+Each meta data entry needs a key and a value. These are specified using the 
+
+* *<MetaDataKey></MetaDataKey>* and
+* *<MetaDataValue></MetaDataValue>*
+
+tags.
+*"
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = "*There is a simple mode available, which creates default 3D models from the input data. If you only connect input geometry data (e.g. a WEM or a positions list) and activate the respective "Enable Simple Mode" checkbox, all geometry data is automatically converted into 3D objects using default settings. In case of WEMs, the WEM description is also parsed. You can use the :module:`ComposeWEMDescriptionForU3D` module to create suitable WEM descriptions.
+
+You can use a :module:`FiberSetToXMarker` module to connect a fiber set to the :field:`inLinePositions` input.
+
+Have a look at the example network which demonstrates all features.
+
+This module requires the MLBaseListExtensions. 
+*"
+  }
+  Windows  {
+    text = ""
+    Window "Main Panel" {
+      title = ""
+      text = "*The main panel contains a "Default Settings" tab. This tab contains the default object specifications that pitch in if they are not explicitly specified in the respective object type tabs.
+
+.. screenshot:: Main Panel
+*"
+    }
+    Window "Specification Generator Panel" {
+      title = ""
+      text = "*For your convenience, the module has a built-in specification generator. You can use it to specify 3D object settings using standard MeVisLab fields. Use the "Add" button to add the currently displayed specification to the respective specifications in the main module.
+
+.. screenshot:: Specification Generator Panel*"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field inWEM {
+      type = MLBase
+      text = "Contains the mesh geometry data.
+Allowed: WEMs."
+    }
+    Field inPointPositions {
+      type = MLBase
+      text = "Contains the point cloud positions geometry data.
+Allowed: XMarkerList and ColoredMarkerList."
+    }
+    Field inLinePositions {
+      type = MLBase
+      text = "Contains the line set positions (nodes) geometry data.
+Allowed: XMarkerList and ColoredMarkerList."
+    }
+    Field inLineConnections {
+      type = MLBase
+      text = "Contains the line set connections (edges) geometry data.
+Allowed: IndexPairList."
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = SaveU3D
+    }
+    Field simpleModePointSet {
+      type = Bool
+      text = ""
+      title = "Enable Simple Mode (collect all positions from input field and assemble one point cloud with default settings)."
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field simpleModeLineSet {
+      type = Bool
+      text = ""
+      title = "Enable Simple Mode (collect all positions from input field and assemble one line set with default settings)."
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field simpleModeMesh {
+      type = Bool
+      text = ""
+      title = "Enable Simple Mode (add all patches from input wem and parse WEM description for details)."
+      visibleInGUI = Yes
+      persistent = Yes
+      default = FALSE
+    }
+    Field pointCloudSpecification {
+      type = String
+      text = ""
+      title = "Point Cloud Specification"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field lineSetSpecification {
+      type = String
+      text = ""
+      title = "Line Set Specification"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field meshSpecification {
+      type = String
+      text = ""
+      title = "Mesh Specification"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field metaDataSpecification {
+      type = String
+      text = ""
+      title = "Meta Data Specification"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field modelPrefixPointClouds {
+      type = String
+      text = ""
+      title = "Prefix for Point Clouds Without Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = PointSet
+    }
+    Field modelPrefixLineSets {
+      type = String
+      text = ""
+      title = "Prefix for Line Sets Without Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = LineSet
+    }
+    Field modelPrefixMeshes {
+      type = String
+      text = ""
+      title = "Prefix for Meshes Without Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Mesh
+    }
+    Field defaultBoundingBoxMetaData {
+      type = Bool
+      text = ""
+      title = "Add default bounding box meta data"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field defaultMaterialDiffuseColor {
+      type = Color
+      text = ""
+      title = "Default Material Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.649999976158142 0.649999976158142 0.649999976158142"
+    }
+    Field defaultMaterialAlpha {
+      type = Double
+      text = ""
+      title = "Default Material Alpha"
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 1
+    }
+    Field defaultMaterialSpecularColor {
+      type = Color
+      text = ""
+      title = "Default Material Specular Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.75 0.75 0.75"
+    }
+    Field defaultMaterialEmissiveColor {
+      type = Color
+      text = ""
+      title = "Default Material Emissive Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field defaultMaterialAmbientColor {
+      type = Color
+      text = ""
+      title = "Default Material Ambient Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field addDefaultLightNode {
+      type = Bool
+      text = ""
+      title = "Add default Light Node"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field defaultLightName {
+      type = String
+      text = ""
+      title = "Default Light Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = DefaultAmbientLight
+    }
+    Field defaultLightColor {
+      type = Color
+      text = ""
+      title = "Default Light Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 1 1"
+    }
+    Field defaultLightIntensity {
+      type = Double
+      text = ""
+      title = "Default Light Intensity"
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 1
+    }
+    Field addDefaultViewNode {
+      type = Bool
+      text = ""
+      title = "Add default View Node"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field defaultViewName {
+      type = String
+      text = ""
+      title = "Default View Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = DefaultView
+    }
+    Field filename {
+      type = String
+      text = ""
+      title = Filename
+      visibleInGUI = Yes
+      persistent = Yes
+      default = C:/Users/z002zrcd/Desktop/U3DAssembleExample.u3d
+    }
+    Field finishedTrigger {
+      type = Trigger
+      text = "Is triggered when save process has finished."
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field useDefaultSettings {
+      type = Bool
+      text = ""
+      title = "Use Default Settings"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field addNewSpecification {
+      type = Trigger
+      text = ""
+      title = Add
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field status {
+      type = String
+      text = ""
+      title = Status
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field progress {
+      type = Double
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field save {
+      type = Trigger
+      text = ""
+      title = Save
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

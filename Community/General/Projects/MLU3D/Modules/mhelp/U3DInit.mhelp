@@ -1,0 +1,212 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DInit
+    moduleType = MLModule
+    author = "Axel Newe"
+    DLL = MLU3D
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = "This module initializes a Universal 3D (U3D) object that can be exported by the :module:`U3DSave` module."
+  }
+  Usage  {
+    text = "This module needs to be the first module in a U3D creation chain. Unless you do not want to change the default settings, no interaction is required."
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = U3DInit
+    }
+    Field networkPanelStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field initialize {
+      type = Trigger
+      text = ""
+      title = (Re-)Initialize
+      visibleInGUI = Yes
+      persistent = Yes
+      default = ""
+    }
+    Field modelPrefixPointClouds {
+      type = String
+      text = ""
+      title = "Default Prefix for Point Clouds"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = PointSet
+    }
+    Field modelPrefixLineSets {
+      type = String
+      text = ""
+      title = "for Line Sets"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = LineSet
+    }
+    Field modelPrefixMeshes {
+      type = String
+      text = ""
+      title = "for Meshes"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = Mesh
+    }
+    Field defaultViewName {
+      type = String
+      text = ""
+      title = "Default View Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = DefaultView
+    }
+    Field defaultLightName {
+      type = String
+      text = ""
+      title = "Default Light Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = DefaultAmbientLight
+    }
+    Field defaultMaterialName {
+      type = String
+      text = ""
+      title = "Default Material Name"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = DefaultMaterial
+    }
+    Field defaultMaterialDiffuseColor {
+      type = Color
+      text = ""
+      title = "Default Material Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.649999976158142 0.649999976158142 0.649999976158142"
+    }
+    Field defaultMaterialSpecularColor {
+      type = Color
+      text = ""
+      title = "Default Material Specular Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0.75 0.75 0.75"
+    }
+    Field defaultMaterialAmbientColor {
+      type = Color
+      text = ""
+      title = "Default Material Ambient Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field defaultMaterialEmissiveColor {
+      type = Color
+      text = ""
+      title = "Default Material Emissive Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "0 0 0"
+    }
+    Field defaultMaterialAlpha {
+      type = Double
+      text = ""
+      title = Alpha
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 1
+    }
+    Field defaultMaterialReflectivity {
+      type = Double
+      text = ""
+      title = Reflectivity
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 0.5
+    }
+    Field defaultLightColor {
+      type = Color
+      text = ""
+      title = "Default Light Color"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = "1 1 1"
+    }
+    Field defaultLightIntensity {
+      type = Double
+      text = ""
+      title = Intensity
+      visibleInGUI = Yes
+      min = 0
+      max = 1
+      persistent = Yes
+      default = 1
+    }
+    Field addDefaultBoundingBoxMetaData {
+      type = Bool
+      text = ""
+      title = "Add default bounding box meta data when saving U3D to disk"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field addDefaultViewNode {
+      type = Bool
+      text = ""
+      title = "Add default View Node"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    Field addDefaultLightNode {
+      type = Bool
+      text = ""
+      title = "Add default Light Node"
+      visibleInGUI = Yes
+      persistent = Yes
+      default = TRUE
+    }
+    text = ""
+  }
+}

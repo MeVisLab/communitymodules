@@ -1,21 +1,22 @@
 ModuleHelp  {
   MetaInformation  {
-    definition = Modules/ML/MLPDF/MLPDF.def
-    moduleName = LoadU3D
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DSave
     moduleType = MLModule
+    automaticPrototype = U3DInspector
     author = "Axel Newe"
-    DLL = MLPDF
-    genre = PDFModules
-    keywords = "PDF U3D WEM XMarker Fiber"
-    seeAlso = "WEMSaveAsU3D ComposeWEMDescriptionForU3D SaveU3D PDF3DFigurePageMacro"
+    DLL = MLU3D
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
     package = General
     packageGroup = Community
   }
   Purpose  {
-    text = ""
+    text = "This module saves a Universal 3D (U3D) object to disk."
   }
   Usage  {
-    text = ""
+    text = "Connect a U3D object to the :field:`inU3DObject` input, select a file name and click :field:`apply`. If the checkbox :field:`autoApply` is enabled, the U3D object is automatically saved each time it is changed."
   }
   Details  {
     text = ""
@@ -33,9 +34,9 @@ ModuleHelp  {
       text = ".. screenshot:: Main Panel"
     }
   }
-  Outputs  {
+  Inputs  {
     text = ""
-    Field outWEM {
+    Field inU3DObject {
       type = MLBase
       text = ""
     }
@@ -48,47 +49,16 @@ ModuleHelp  {
       needsDocumentation = No
       visibleInGUI = No
       persistent = Yes
-      default = LoadU3D
+      default = U3DSave
     }
-    Field isProcessing {
-      type = Bool
+    Field networkPanelStatus {
+      type = String
       text = ""
       title = ""
       visibleInGUI = No
       persistent = No
     }
-    Field elapsedTime {
-      type = Float
-      text = ""
-      title = ""
-      visibleInGUI = No
-      persistent = No
-    }
-    Field id {
-      type = Integer
-      text = ""
-      title = ""
-      visibleInGUI = No
-      persistent = Yes
-      default = 0
-    }
-    Field autoApply {
-      type = Bool
-      text = ""
-      title = ""
-      visibleInGUI = No
-      persistent = Yes
-      default = TRUE
-    }
-    Field autoUpdate {
-      type = Bool
-      text = ""
-      title = ""
-      visibleInGUI = No
-      persistent = Yes
-      default = TRUE
-    }
-    Field autoClear {
+    Field inputValid {
       type = Bool
       text = ""
       title = ""
@@ -99,66 +69,78 @@ ModuleHelp  {
     Field apply {
       type = Trigger
       text = ""
-      title = ""
-      visibleInGUI = No
+      title = Save
+      visibleInGUI = Yes
       persistent = Yes
       default = ""
     }
-    Field removePreviousWEMs {
+    Field autoApply {
       type = Bool
       text = ""
-      title = ""
-      visibleInGUI = No
+      title = "Auto Save"
+      visibleInGUI = Yes
       persistent = Yes
-      default = TRUE
+      default = FALSE
     }
-    Field overwriteLabelDescription {
-      type = Bool
-      text = ""
-      title = ""
-      visibleInGUI = No
-      persistent = Yes
-      default = TRUE
-    }
-    Field label {
+    Field filename {
       type = String
       text = ""
-      title = ""
-      visibleInGUI = No
+      title = Filename
+      visibleInGUI = Yes
       persistent = Yes
       default = ""
     }
-    Field description {
-      type = String
+    Field save {
+      type = Trigger
       text = ""
       title = ""
       visibleInGUI = No
       persistent = Yes
       default = ""
     }
-    Field shouldComputeNormals {
+    Field autoSave {
       type = Bool
       text = ""
       title = ""
       visibleInGUI = No
       persistent = Yes
-      default = TRUE
+      default = FALSE
     }
-    Field boundingBoxCenter {
-      type = Vector3
-      text = ""
+    Field finishedTrigger {
+      type = Trigger
+      text = "Is triggered when save process has finished."
       title = ""
       visibleInGUI = No
-      persistent = Yes
-      default = "0 0 0"
+      persistent = No
     }
-    Field boundingBoxRadius {
+    Field status {
+      type = String
+      text = ""
+      title = Status
+      visibleInGUI = Yes
+      persistent = No
+    }
+    Field progress {
       type = Float
       text = ""
       title = ""
       visibleInGUI = No
+      persistent = No
+    }
+    Field success {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field useDefaultSettings {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
       persistent = Yes
-      default = 0
+      default = TRUE
     }
     text = ""
   }
