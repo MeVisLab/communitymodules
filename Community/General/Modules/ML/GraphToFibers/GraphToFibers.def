@@ -1,0 +1,16 @@
+//----------------------------------------------------------------------------------
+//! GraphToFibers module definitions.
+/*!
+// \file    GraphToFibers.def
+// \author  Axel Newe
+// \date    2016-03-31
+*/
+//----------------------------------------------------------------------------------
+
+
+MLModule GraphToFibers {
+  DLL                = "GraphToFibers"
+  author             = "Axel Newe"  
+  externalDefinition = $(LOCAL)/GraphToFibers.script
+  exampleNetwork     = $(LOCAL)/networks/GraphToFibersExample.mlab
+}  

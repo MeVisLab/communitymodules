@@ -1,0 +1,766 @@
+// MDL v1 utf8
+network  {
+  watchlist = ""
+}
+module LocalPath {
+  internal  {
+    frame = "833 677 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "524 958 480 133"
+        sizeHint = "480 133"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMFileName
+    localName = $(NETWORK)/GraphToFibersExample.wem
+    checkIfFileExists = TRUE
+    browseType = file
+  }
+}
+module Scientific3DFigurePDFApp {
+  internal  {
+    frame = "-191 37 176 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "574 270 1000 761"
+        sizeHint = "1000 761"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = Scientific3DFigurePDFApp
+    useInputConnectors = TRUE
+    loadDataManually = FALSE
+    filenameWEM = ""
+    filenamePointPositions = ""
+    filenameLineDefinitions = ""
+    showPointsPreview = FALSE
+    showPointsPrevieSize = 2
+    showLinesPreview = TRUE
+    showMeshPreview = TRUE
+    viewDisplayName = ""
+    viewBackgroundColor = "1 1 1"
+    viewLightingScheme = HeadLamp
+    viewRenderMode = Solid
+    viewCameraCenterOfOrbit = "7.18605974725506e-09 1.44599397344791e-07 1.04441340909034e-07"
+    viewCameraCenterToCamera = "-0.318313533891959 -0.59441309208186 0.738477873807263"
+    viewCameraRadiusOfOrbit = 1.8304877
+    viewCameraRollAngle = 339.63348
+    viewCameraFOVAngle = 57.29578
+    viewSpecifications = ""
+    selectedWEMPatch = "Trunk {ID=2}"
+    selectedWEMPatchNewLabel = Trunk
+    availableWEMPatches = "Trunk {ID=2}|Branch 1a {ID=4}|Branch 1b {ID=6}|Branch 1c {ID=8}|Branch 1d {ID=10}|Branch 2 {ID=12}|Branch 3 {ID=14}|Branch 4 {ID=16}|Branch 5 {ID=18}|Branch 6a {ID=20}|Branch 6b {ID=22}|Branch 7a {ID=24}|Branch 7b {ID=26}|Branch 7c {ID=28}|Branch 8 {ID=30}|Branch 9 {ID=32}|Branch 11 {ID=34}|Branch 12 {ID=36}|Branch 13 {ID=38}|Branch 14 {ID=40}"
+    selectedWEMPatchGroupPath = ""
+    selectedWEMPatchUseDefaultColor = TRUE
+    selectedWEMPatchColor = "0 0 0"
+    selectedWEMPatchColorAlpha = 1
+    selectedLineSet = "Centerlines {ID=0}"
+    selectedLineSetNewLabel = Centerlines
+    availableLineSets = "Centerlines {ID=0}"
+    selectedLineSetGroupPath = ""
+    selectedLineSetUseDefaultColor = TRUE
+    selectedLineSetColor = "0 0 0"
+    selectedPointSet = "Node #0 {ID=0}"
+    selectedPointSetNewLabel = "Node #0"
+    availablePointSets = "Node #0 {ID=0}"
+    selectedPointSetGroupPath = ""
+    loadPointsFilter = Points
+    loadLinesFilter = Lines
+    useReducedMesh = FALSE
+    meshReductionRatio = 75
+    posterBackground = "1 1 1"
+    posterText = "Click here to enable interactive mode in Adobe Reader."
+    saveU3DStatus = ""
+    savePosterStatus = ""
+    savePDFStatus = ""
+    headerCitationText = "*Newe, A (2016). "Enriching scientific publications with interactive 3D PDF figures: A complete toolbox".
+PeerJ Computer Science.*"
+    headerHeadlineText = "Supplemental File S1 - Interactive 3D PDF (Example)"
+    caption = "Model of a vessel system with centerline and branching points."
+    description = "*This is an example which has been created with the described software. Activate the interactive mode by clicking the figure (depending on the version of Adobe Reader, you might need to confirm a security query). You can then manipulate the view (see instructions above the figure). You can also select one out of two predefined views ("Overview" or "Detail View") from the toolbar above the figure or you can use the model tree (left) to switch on/off components of the model.
+The description below is filler text only. Its purpose is to demonstrate the capacity...
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed
+pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy
+pede. Mauris et orci.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed
+pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy
+pede. Mauris et orci.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed
+pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy
+pede. Mauris et orci.*"
+    cameraHeight = 1
+    cameraPosition = "-0.582669019699097 -1.08806574344635 1.35177481174469"
+    cameraOrientation = "0.684737205505371 -0.0466982945799828 -0.727292418479919 1.10983943939209"
+    cameraNearDistance = 2
+    cameraFarDistance = 4
+    cameraFocalDistance = 1.8304877
+  }
+}
+module SaveU3D {
+  internal  {
+    frame = "749 -227 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "613 378 850 642"
+        sizeHint = "850 642"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SaveU3D
+    simpleModePointSet = TRUE
+    simpleModeLineSet = TRUE
+    simpleModeMesh = TRUE
+    pointCloudSpecification = ""
+    lineSetSpecification = ""
+    meshSpecification = ""
+    metaDataSpecification = ""
+    modelPrefixPointClouds = PointSet
+    modelPrefixLineSets = LineSet
+    modelPrefixMeshes = Mesh
+    defaultBoundingBoxMetaData = TRUE
+    defaultMaterialDiffuseColor = "0.649999976158142 0.649999976158142 0.649999976158142"
+    defaultMaterialAlpha = 1
+    defaultMaterialSpecularColor = "0.75 0.75 0.75"
+    defaultMaterialEmissiveColor = "0 0 0"
+    defaultMaterialAmbientColor = "0 0 0"
+    addDefaultLightNode = TRUE
+    defaultLightName = DefaultAmbientLight
+    defaultLightColor = "1 1 1"
+    defaultLightIntensity = 1
+    addDefaultViewNode = TRUE
+    defaultViewName = DefaultView
+    filename = d:/VascularSystem.u3d
+    useDefaultSettings = TRUE
+  }
+}
+module SoVascularSystem {
+  internal  {
+    frame = "797 205 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "389 170 369 595"
+        sizeHint = "369 595"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoVascularSystem
+    interactionProviderID = ""
+    autoApply = TRUE
+    complexity = 0.5999999
+    pointSize = 1
+    lineWidth = 1
+    textureScaleX = 0.5
+    textureScaleY = 0.5
+    recursionDepth = -1
+    showLines = FALSE
+    labelMode = GENERAL_LABEL
+    textureMode = SIZE_ALMOST_EQUAL
+    textureCoordinateMode = FOR_ALL_ELEMENTS
+    radiusMode = MIN_DIST
+    displayMode = DISPLAY_SKELETON
+    radiusScale = 1
+    radiusFixedSize = 1
+    visible = FALSE
+    texture = FALSE
+    numSmoothingPasses = 3
+    overallSmoothness = 0.69999999
+    smoothIndependently = FALSE
+    radiusSmoothness = 0.69999999
+    skeletonSmoothness = 0.69999999
+    endCapScaling = 1
+    useGeneralColor = TRUE
+    generalColor = "1 1 0"
+    useAlternativeTransparency = TRUE
+    alternativeTransparencyColor = "0 0 0"
+    selectedCoordinate = "0 0 0"
+    snapMode = SNAP_TO_SKELETON
+    enableSelection = FALSE
+    continuousHitCheck = FALSE
+    cursorShape = CROSS_CURSOR
+    enableInteractivePreviewMode = FALSE
+    enableRecursiveHighlighting = TRUE
+    highlightWholeEdge = FALSE
+    interactivePreviewColor = "1 1 0"
+    interactivePreviewAlpha = 0.5
+    selectionTolerance = 2
+    useMinRadiusCutOff = FALSE
+    minRadiusCutOffValue = 1
+    cutOffColor = "1 1 1"
+    cutOffAlpha = 1
+    useSkeletonColors = FALSE
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "629 205 136 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "978 477 486 470"
+        sizeHint = "443 470"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer1
+    interactionProviderID = ""
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
+    useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
+    colorMode = WEM_COLOR_GENERAL
+    drawFaces = TRUE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 0.133
+    faceShininessValue = 1
+    primitiveValueLists = LUT,MinDistance,MaxDistance,Label,EdgeID,WEMSingleColoredFaces
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 19
+    sendAdjacency = FALSE
+    selectedTab = 0
+  }
+}
+module SoFiberVis {
+  internal  {
+    frame = "361 205 96 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "1136 120 383 488"
+        sizeHint = "383 488"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoFiberVis
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    autoApply = TRUE
+    autoUpdate = TRUE
+    generalColor = "1 1 1"
+    drawLines = TRUE
+    drawSpheres = FALSE
+    optimizePoints = FALSE
+    angleThreshold = 0.99900001
+    sphereRadius = 1
+    computeFiberSet = FALSE
+    alphaValue = 1
+    minFibernessValue = 0
+    colorMode = COLOR_GENERAL
+    enableLighting = FALSE
+    ambient = "0.100000001490116 0.100000001490116 0.100000001490116"
+    diffuse = "1 1 1"
+    specular = "1 1 1"
+    shininess = 1
+    allowClip = TRUE
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "57 205 144 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "805 212 436 835"
+        sizeHint = "325 835"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "197 204 400 617"
+        sizeHint = "257 440"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = So3DMarkerEditor1
+    interactionProviderID = ""
+    scaleSize = 4.5
+    scaleLength = 1
+    color = "1 0 0"
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = FALSE
+    selectingOn = TRUE
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textBackgroundColor = "0.5 0.5 0.5"
+    textBackgroundAlpha = 0.30000001
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModePoints
+    geometryComplexity = LOW
+    numMarkersThresholdForFastRendering = 3000
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = Centerlines
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-85.2051 -176.776 -25"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "489 673 112 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "196 230 372 330"
+        sizeHint = "372 330"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoadThin
+    id = 0
+    autoApply = FALSE
+    updateMode = Off
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = FALSE
+    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/GraphToFibers/networks/GraphToFibersExampleThin.wem
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+  }
+}
+module WEMLoad {
+  internal  {
+    frame = "661 673 120 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "92 589 372 330"
+        sizeHint = "372 330"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = WEMLoadThick
+    id = 0
+    autoApply = FALSE
+    updateMode = Off
+    overwriteLabelDescription = FALSE
+    label = ""
+    description = ""
+    shouldComputeNormals = FALSE
+    filename = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/GraphToFibers/networks/GraphToFibersExample.wem"
+    mirrorFaces = FALSE
+    generateEdges = TRUE
+    triangulateFaces = FALSE
+    triangulationMode = Strip
+  }
+}
+module LocalPath {
+  internal  {
+    frame = "193 677 112 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "610 734 480 103"
+        sizeHint = "480 103"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TreeFileName
+    localName = $(NETWORK)/GraphToFibersExample.xml
+    checkIfFileExists = TRUE
+    browseType = file
+  }
+}
+module So3DMarkerEditor {
+  internal  {
+    frame = "213 201 136 64"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "805 212 436 835"
+        sizeHint = "325 835"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "197 204 400 617"
+        sizeHint = "257 440"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = So3DXMarker
+    interactionProviderID = ""
+    scaleSize = 0.5
+    scaleLength = 1
+    color = "0.721569001674652 0.776471018791199 0.349020004272461"
+    ambientColor = "0 0 0"
+    specularColor = "0.300000011920929 0.300000011920929 0.300000011920929"
+    enableVector = FALSE
+    drawingOn = TRUE
+    editingOn = FALSE
+    selectingOn = TRUE
+    deleteOnClick = FALSE
+    addOnClick = TRUE
+    edit3DOn = FALSE
+    edit3DVector = FALSE
+    useManagedInteraction = FALSE
+    cursorShape = UNDEFINED_CURSOR
+    colorMode = COLOR_BY_TYPE
+    markerType = 0
+    textColorMode = COLOR_TEXT
+    textMode = TEXT_OFF
+    textColor = "1 1 1"
+    textShadow = TRUE
+    textBackgroundColor = "0.5 0.5 0.5"
+    textBackgroundAlpha = 0.30000001
+    textFontType = SoExtText2::HELVETICA_10
+    vectorArrow = VECTOR_NO_ARROWS
+    lineStyle = Solid
+    drawMode = DrawModePointSprites
+    geometryComplexity = LOW
+    numMarkersThresholdForFastRendering = 3000
+    listString = ""
+    index = 0
+    persistent = FALSE
+    listStringEnable = FALSE
+    applySelect = FALSE
+    name = "Node #0"
+    newName = ""
+    overflowMode = None
+    maxSize = 0
+    useInsertTemplate = FALSE
+    posXYZ = "-85.2051 -166.698 -28"
+    posC = 0
+    posT = 0
+    posU = 0
+    vecXYZ = "0 0 0"
+    type = 0
+    newPosXYZ = "0 0 0"
+    newPosC = 0
+    newPosT = 0
+    newPosU = 0
+    newVecXYZ = "0 0 0"
+    newType = 0
+  }
+}
+module SoWEMRenderer {
+  internal  {
+    frame = "481 205 128 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "450 344 486 470"
+        sizeHint = "443 470"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoWEMRenderer
+    interactionProviderID = ""
+    autoApply = TRUE
+    autoUpdate = TRUE
+    autoClear = TRUE
+    enableCreaseAngle = FALSE
+    creaseAngle = 75
+    useHighlightSelected = FALSE
+    highlightColor = "1 0 0"
+    highlightIntensity = 0.5
+    faceRenderingMode = WEM_FACE_RENDERING_MODE_AUTO
+    allowHits = TRUE
+    performPreHitTest = FALSE
+    cursorShape = CROSS_CURSOR
+    colorMode = WEM_COLOR_LUT_VALUES_INTEGER
+    drawFaces = FALSE
+    faceDiffuseColor = "0.792156994342804 0.792156994342804 0.792156994342804"
+    useFaceAmbientColor = TRUE
+    faceAmbientColor = "0.266667008399963 0.266667008399963 0.266667008399963"
+    useFaceSpecularColor = TRUE
+    faceSpecularColor = "0.0666669979691505 0.0666669979691505 0.0666669979691505"
+    faceAlphaValue = 1
+    faceShininessValue = 1
+    primitiveValueLists = LUT,MinDistance,MaxDistance,Label,EdgeID,WEMSingleColoredFaces
+    selectedPrimitiveValueList = LUT
+    selectedPrimitiveValueAlphaList = LUT
+    primitiveValueListValid = TRUE
+    primitiveValueListAlphaValid = TRUE
+    overwriteAlphaWithPVL = FALSE
+    wemPatchToRender = -1
+    maxWEMPatchIndex = 19
+    sendAdjacency = FALSE
+    selectedTab = 0
+  }
+}
+module SoExaminerViewer {
+  internal  {
+    frame = "409 -67 208 56"
+    moduleGroupName = ""
+    windows  {
+      window _viewer {
+        geometry = "816 225 595 529"
+        sizeHint = "400 400"
+        wasOpen = yes
+      }
+      window _default {
+        geometry = "397 562 537 364"
+        sizeHint = "537 364"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = SoExaminerViewer
+    renderCaching = AUTO
+    boundingBoxCaching = AUTO
+    renderCulling = AUTO
+    pickCulling = AUTO
+    border = FALSE
+    background = "0 0 0"
+    transparency = BLEND
+    antialiasing = FALSE
+    antialiasingNumPasses = 1
+    hiResRendering = TRUE
+    useSampleBuffers = FALSE
+    numSamples = 8
+    grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
+    snapshotFormat = SNAPSHOT_RGB
+    outputAviFile = ""
+    autoRedrawWhenRecording = TRUE
+    frameRate = 7
+    frameRateAvi = 15
+    outputSnapshotFile = none
+    outputSnapshotFileWritten = none
+    autoIncreaseFile = TRUE
+    showSnapshotWithShell = FALSE
+    snapCount = 0
+    inputDevicesList = ""
+    headlight = TRUE
+    decoration = TRUE
+    popupMenuEnabled = FALSE
+    viewing = TRUE
+    autoClipping = TRUE
+    drawStyle = VIEW_AS_IS
+    interactiveDrawStyle = VIEW_AS_IS
+    viewAllFlag = FALSE
+    initialCameraOrientation = CAMERA_KEEP_AS_IS
+    applyCameraOrientation = CAMERA_KEEP_AS_IS
+    cameraType = CAMERA_PERSPECTIVE
+    autoApplyUserSettingOrientation = FALSE
+    userSettingOrientation = "0 0 1 0"
+    automaticViewAll = FALSE
+    storeCurrentState = TRUE
+    saveCamera = TRUE
+    cursor = TRUE
+    isCameraStored = TRUE
+    perspective = TRUE
+    stereoViewing = FALSE
+    stereoOffset = 3
+    height = 0.78539819
+    position = "325.952911376953 -89.0559997558594 -76.1175537109375"
+    orientation = "0.384200811386108 0.723628461360931 0.573368728160858 1.92211580276489"
+    nearDistance = 257.16434
+    farDistance = 505.21106
+    focalDistance = 381.06406
+    forceRedrawOnInteraction = FALSE
+    button1events = TO_VIEWER
+    button2events = TO_VIEWER
+    button3events = TO_VIEWER
+    keyEvents = TO_VIEWER
+    animationEnabled = FALSE
+    feedback = FALSE
+    feedbackSize = 32
+    mouseInteraction = ""
+    rotationAxis = "0 1 0"
+    rotationAngle = 360
+    rotationSteps = 80
+    recordRotation = TRUE
+  }
+}
+module SoBackground {
+  internal  {
+    frame = "97 53 112 56"
+    moduleGroupName = ""
+  }
+  fields  {
+    instanceName = SoBackground
+    rotate = TRUE
+    flip = FALSE
+    on = TRUE
+    depthBuffer = TRUE
+  }
+}
+module LoadBase {
+  internal  {
+    frame = "349 677 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "147 772 483 195"
+        sizeHint = "483 195"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = LoadBase
+    autoUpdate = AutoClear
+    nodeName = ""
+    filename = "J:/MeVisLab/Packages Community/Community/General/Modules/ML/GraphToFibers/networks/GraphToFibersExample.xml"
+    useBaseDir = FALSE
+    baseDir = ""
+    format = Auto
+  }
+}
+module TableLUT {
+  internal  {
+    frame = "573 309 88 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "581 230 346 647"
+        sizeHint = "346 451"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = TableLUT
+    indexRangeReference = Absolute
+    samplingPoints = " 0 255 255  255 255
+ 1 219    0    43 255
+ 2 255  204 153 255
+ 3    0  209   40 255
+ 4 142 255  112 255
+ 5   63   63   63 255
+ 6   45   63  237 255
+ 7  124 137 255 255
+ 8  255 247   94 255
+ 9  216 153   48 255
+10    0     0    0    0
+11 127 255  249 255
+12    0 173  193 255
+13  226  68 255 255
+14    0 255      0 255"
+    colorInterpolation = Constant
+    minValue = 0
+    maxValue = 255
+  }
+}
+module GraphToFibers {
+  internal  {
+    frame = "-51 453 120 56"
+    moduleGroupName = ""
+    windows  {
+      window _default {
+        geometry = "844 551 612 287"
+        sizeHint = "6 6"
+        wasOpen = no
+      }
+      window _automatic {
+        geometry = "717 330 500 600"
+        sizeHint = "260 223"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = GraphToFibers
+  }
+}
+connections  {
+  Scientific3DFigurePDFApp.inWEM = WEMLoadThick.outWEM
+  Scientific3DFigurePDFApp.inPointPositions = GraphToFibers.outNodePositions
+  Scientific3DFigurePDFApp.inLinePositions = GraphToFibers.outEdgePositions
+  Scientific3DFigurePDFApp.inLineConnections = GraphToFibers.outEdgeConnections
+  SaveU3D.inWEM = WEMLoadThick.outWEM
+  SaveU3D.inPointPositions = GraphToFibers.outNodePositions
+  SaveU3D.inLinePositions = GraphToFibers.outEdgePositions
+  SaveU3D.inLineConnections = GraphToFibers.outEdgeConnections
+  SoVascularSystem.inputGraph = LoadBase.outObject
+  SoWEMRenderer1.inWEM = WEMLoadThick.outWEM
+  SoWEMRenderer1.inLUT = TableLUT.outLUT
+  SoFiberVis.inFiberSetFld = GraphToFibers.outFibers
+  So3DMarkerEditor1.inXMarkerList = GraphToFibers.outEdgePositions
+  WEMLoadThick.filename = WEMFileName.trueName
+  So3DXMarker.inXMarkerList = GraphToFibers.outNodePositions
+  SoWEMRenderer.inWEM = WEMLoadThick.outWEM
+  SoWEMRenderer.inLUT = TableLUT.outLUT
+  SoExaminerViewer.children = "SoBackground.self So3DMarkerEditor1.self So3DXMarker.self SoFiberVis.self SoVascularSystem.self SoWEMRenderer1.self SoWEMRenderer.self"
+  LoadBase.filename = TreeFileName.trueName
+  GraphToFibers.inGraph = LoadBase.outObject
+}
+networkModel = ""
