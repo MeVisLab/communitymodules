@@ -16,7 +16,7 @@
 
 // Project includes
 #include <PDFGenerator.h>
-#include <MLPDF_DataTypes.h>
+#include <shared/U3DInternalFormat/U3D_Object_DataTypes.h>
 
 // ML includes
 #include <mlModuleIncludes.h>
@@ -46,7 +46,7 @@ protected:
 private:
 
   // Private vars
-  std::vector<MetaDataStruct> _u3dMetaData;
+  mlU3D::MetaDataVector _u3dMetaData;
 
 
   MLuint8 _readU8(std::ifstream& file);

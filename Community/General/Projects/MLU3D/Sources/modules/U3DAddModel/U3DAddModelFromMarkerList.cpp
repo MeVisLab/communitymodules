@@ -33,7 +33,6 @@ U3DAddModelFromMarkerList::U3DAddModelFromMarkerList() : U3DProcessor()
   handleNotificationOff();
 
   // Add input fields to the module and set allowed types.
-  // Add input fields to the module and set allowed types.
   (_inPositionsFld = addBase("inPositions"))->setBaseValueAndAddAllowedType(&_inPositions);
   _inPositionsFld->addAllowedType<ml::ColoredMarkerList>();
 

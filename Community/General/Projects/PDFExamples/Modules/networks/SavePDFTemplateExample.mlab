@@ -2,22 +2,23 @@
 network  {
   watchlist = ""
 }
-module LocalFileName {
+module LocalPath {
   internal  {
     frame = "-495 25 128 64"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "388 736 771 103"
-        sizeHint = "480 103"
+        geometry = "311 170 859 133"
+        sizeHint = "568 133"
         wasOpen = no
       }
     }
   }
   fields  {
     instanceName = GetResourcesPath
-    localName = $(MLAB_Community_General)/Modules/ML/MLPDF/demodata
+    localName = $(MLAB_Community_General)/Projects/MLPDF/Modules/demodata
     checkIfFileExists = TRUE
+    browseType = file
   }
 }
 module SavePDFTemplate {
@@ -27,9 +28,9 @@ module SavePDFTemplate {
     showNetworkPanel = true
     windows  {
       window _default {
-        geometry = "258 679 939 135"
+        geometry = "270 711 939 135"
         sizeHint = "242 135"
-        wasOpen = yes
+        wasOpen = no
       }
       window _automatic {
         geometry = "314 209 1273 600"
@@ -52,7 +53,7 @@ module SavePDFTemplate {
     posterFilename = PDFDemoData_ModelPoster.png
   }
 }
-module LocalFileName {
+module LocalPath {
   internal  {
     frame = "-503 -55 144 64"
     moduleGroupName = ""
@@ -68,6 +69,7 @@ module LocalFileName {
     instanceName = CreatePDFFilename
     localName = $(NETWORK)/SavePDFTemplateExample.pdf
     checkIfFileExists = FALSE
+    browseType = file
   }
 }
 connections  {

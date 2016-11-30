@@ -1,0 +1,42 @@
+//----------------------------------------------------------------------------------
+// ML module U3DAddTextureFromImage definition
+//
+// \file    U3DAddTextureFromImage.script
+// \author  Axel Newe
+// \date    2016-10-01
+//----------------------------------------------------------------------------------
+
+Description {
+  Field networkPanelStatus { editable = No persistent = No }  
+}
+
+
+Interface {
+}
+
+
+Commands {
+  //source = $(LOCAL)/U3DAddTextureFromImage.py
+}
+
+
+NetworkPanel {
+  info = networkPanelStatus
+  Button  apply { symbol = @@ "start" @@ }  
+}
+
+
+Window  {  
+  
+  minimumHeight = 100
+  minimumWidth  = 400  
+  
+  Category { expandY = Yes
+    
+    Horizontal { expandX = Yes
+      Label { title = "Module is not yet implemented." alignX = Center }
+    }
+        
+  }  // Category
+
+}

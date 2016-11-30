@@ -59,7 +59,7 @@ module FiberInfo {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "546 607 330 270"
+        geometry = "985 644 330 270"
         sizeHint = "330 270"
         wasOpen = yes
       }
@@ -83,7 +83,7 @@ module LoadPointLineGeometry {
   }
   fields  {
     instanceName = LoadPointLineGeometry
-    filename = D:/MeVisLab/Packages/Community/General/Modules/ML/MLPDF/demodata/PDFDemoData_PositionsAndConnections.txt
+    filename = ""
     filter = Lines
     numberDelimiter = ;
     numberDelimiterSpace = FALSE
@@ -92,7 +92,7 @@ module LoadPointLineGeometry {
     autoAddToCache = FALSE
   }
 }
-module PDFCreateFibersFromLists {
+module ListsToFibers {
   internal  {
     frame = "277 69 184 56"
     moduleGroupName = ""
@@ -108,7 +108,7 @@ module PDFCreateFibersFromLists {
     instanceName = PDFCreateFibersFromLists
   }
 }
-module LocalFileName {
+module LocalPath {
   internal  {
     frame = "-134 213 112 64"
     moduleGroupName = ""
@@ -122,8 +122,9 @@ module LocalFileName {
   }
   fields  {
     instanceName = DataFilename
-    localName = $(MLAB_Community_General)/Modules/ML/MLPDF/demodata/PDFDemoData_PositionsAndConnections.txt
-    checkIfFileExists = FALSE
+    localName = $(MLAB_Community_General)/Projects/MLPDF/Modules/demodata/PDFDemoData_PositionsAndConnections.txt
+    checkIfFileExists = TRUE
+    browseType = file
   }
 }
 module SoCustomExaminerViewer {
@@ -132,7 +133,7 @@ module SoCustomExaminerViewer {
     moduleGroupName = ""
     windows  {
       window _viewer {
-        geometry = "541 130 453 419"
+        geometry = "894 153 453 419"
         sizeHint = "400 400"
         wasOpen = yes
       }
@@ -187,7 +188,7 @@ module SoCustomExaminerViewer {
     applyCameraOrientation = CAMERA_KEEP_AS_IS
     cameraType = CAMERA_PERSPECTIVE
     autoApplyUserSettingOrientation = FALSE
-    userSettingOrientation = "0.736591100692749 -0.356398105621338 -0.574816405773163 3.27108001708984"
+    userSettingOrientation = "0.736591041088104 -0.356398105621338 -0.574816405773163 3.27108001708984"
     automaticViewAll = FALSE
     storeCurrentState = TRUE
     saveCamera = TRUE
@@ -198,7 +199,7 @@ module SoCustomExaminerViewer {
     stereoOffset = 3
     height = 0.7467863
     position = "38.5584831237793 -527.781311035156 278.041229248047"
-    orientation = "-0.807073295116425 -0.346240222454071 0.478278577327728 5.02415418624878"
+    orientation = "-0.807073295116425 -0.346240222454071 0.478278547525406 5.02415418624878"
     nearDistance = 438.3721
     farDistance = 729.30988
     focalDistance = 583.69611

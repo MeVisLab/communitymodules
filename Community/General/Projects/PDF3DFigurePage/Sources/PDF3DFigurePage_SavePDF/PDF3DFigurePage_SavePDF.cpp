@@ -193,7 +193,8 @@ void PDF3DFigurePage_SavePDF::_add3DFigure(float x, float y, float width, float 
 
       if (!posterExists)
       {
-        pdfDoc_WriteTextAreaAt(x, y + height / 2.0, width, 50, "Click here to display interactive 3D figure.", mlPDF::TEXTALIGNMENT_CENTER);
+        pdfDoc_WriteTextAreaAt(x, y + height / 2.0 - 10, width, 15, "Click here to display interactive 3D figure.", mlPDF::TEXTALIGNMENT_CENTER);
+        pdfDoc_WriteTextAreaAt(x, y + height / 2.0 + 10, width, 15, "(Depending on your reader, you might need to confirm a security warning.)", mlPDF::TEXTALIGNMENT_CENTER);
       }
 
       mlPDF::SCENE3D u3dScene = pdfDoc_Add3DScene(x + 1, y + 1, width - 2, height - 2, u3dModel, posterImage);

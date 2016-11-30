@@ -12,10 +12,12 @@ ModuleHelp  {
     packageGroup = Community
   }
   Purpose  {
-    text = ""
+    text = "This module provides the functionality to calculate the properties of a PDF camera from the properties of an inventor camera. The properties can then be used for example in the :module:`PDFCreateViewSpecifications` module.
+"
   }
   Usage  {
-    text = ""
+    text = "Connect the property fields of an inventor camera (e.g., from a :module:`SoExaminerViewer` or :module:`SoCustomExaminerViewer` module) to the respective fields of this module. Click :field:`calculateCameraFromInventorScene` to calculate the PDF camera properties or set the :field:`autoCalculateCameraFromInventorScene` field enabled in order to continuously update the PDF camera when the inventor camera changes.
+"
   }
   Details  {
     text = ""

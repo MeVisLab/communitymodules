@@ -18,7 +18,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLPDF
+CONFIG += dll ML MLPDF MLU3D
 
 MLAB_PACKAGES += MeVisLab_Standard Community_General
 

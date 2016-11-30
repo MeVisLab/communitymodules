@@ -57,6 +57,30 @@ MLModule U3DAddModelFromWEM {
   externalDefinition = $(LOCAL)/U3DAddModelFromWEM.script
 }
 
+
+MLModule U3DAddTextureFromFile {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Adds a texture to a U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
+  externalDefinition = $(LOCAL)/U3DAddTextureFromFile.script
+}
+
+MLModule U3DAddTextureFromImage {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Axel Newe"
+  comment            = "Adds a texture to a U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
+  externalDefinition = $(LOCAL)/U3DAddTextureFromImage.script
+}
+
+
 MLModule U3DAssemble {
   DLL                = "MLU3D"
   genre             = "U3DModules"
@@ -195,7 +219,7 @@ MLModule ListsToFibers {
   comment            = "Create fibers from positions list and connections list."
   keywords           = "PDF U3D"
   seeAlso            = ""
-//  exampleNetwork     = "$(LOCAL)/networks/ListsToFibersExample.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/ListsToFibersExample.mlab"
   externalDefinition = $(LOCAL)/ListsToFibers.script
 }
 
@@ -206,9 +230,19 @@ MLModule LoadPointLineGeometry {
   comment            = "Imports a marker list from txt/csv file."
   keywords           = "ListBase XMarker ColoredMarker IndexPairList"
   seeAlso            = "XMarkerListContainer ColoredMarkerListContainer MarkerListImport"
-//  exampleNetwork     = "$(LOCAL)/networks/PDFFibersExample.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/ListsToFibersExample.mlab"
   externalDefinition = $(LOCAL)/LoadPointLineGeometry.script
 }  
 
+// About Extension -------------------------------------------------------------
 
-
+MeVisAboutExtension = @@
+<h3>MLU3D Library</h3>
+<p>Library for creating Universal 3D (U3D) files according to the Standard ECMA-363.</p>
+<p><b>Author:</b> Axel Newe, <a href="mailto:axel.newe@fau.de">axel.newe@fau.de</a><br/>
+<b>License:</b> <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<p>If you are using this library for scientific purposes, please cite the following work:</p>
+<p>&#8226; Newe A (2015). Towards an easier creation of three-dimensional data for embedding into scholarly 3D PDF (Portable Document Format) files. PeerJ 3: e794; DOI: <a href="http://dx.doi.org/10.7717/peerj.794">10.7717/peerj.794</a>. PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/25780759">25780759</a>.<br/>
+&#8226; Newe A (2016). Enriching scientific publications with interactive 3D PDF: An integrated toolbox for creating ready-to-publish figures. PeerJ Computer Science 2: e64; DOI: <a href="http://dx.doi.org/10.7717/peerj-cs.64">10.7717/peerj-cs.64</a>.
+</p>
+@@

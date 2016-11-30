@@ -12,10 +12,11 @@ ModuleHelp  {
     packageGroup = Community
   }
   Purpose  {
-    text = ""
+    text = "This module provides the functionality to create specifications for a PDF view definition."
   }
   Usage  {
-    text = ""
+    text = "Specify :field:`newViewDisplayName`, :field:`newViewBackgroundColor`, :field:`newViewLightingScheme` and :field:`newViewRenderMode` and enter the properties of the PDF camera (these can be calculated for example by the :module:`PDFCalcCamera` module). Then click :field:`addNewView` to add the view specification to the list of all view specifications on the right. This list can be cleared by clicking the :field:`clearViews` button.
+"
   }
   Details  {
     text = ""

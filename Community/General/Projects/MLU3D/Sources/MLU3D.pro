@@ -65,6 +65,8 @@ HEADERS += \
   modules/U3DAddModel/U3DAddModelFromWEM.h \
   modules/U3DAddModel/U3DAddModelFromFiberSet.h \
   modules/U3DAddModel/U3DAddModelFromMarkerList.h \
+  modules/U3DAddTexture/U3DAddTextureFromFile.h \
+  modules/U3DAddTexture/U3DAddTextureFromImage.h \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.h \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.h \
   modules/U3DGeometryTo/U3DGeometryToWEM.h \
@@ -106,6 +108,8 @@ SOURCES += \
   modules/U3DAddModel/U3DAddModelFromWEM.cpp \
   modules/U3DAddModel/U3DAddModelFromFiberSet.cpp \
   modules/U3DAddModel/U3DAddModelFromMarkerList.cpp \
+  modules/U3DAddTexture/U3DAddTextureFromFile.cpp \
+  modules/U3DAddTexture/U3DAddTextureFromImage.cpp \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.cpp \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.cpp \
   modules/U3DGeometryTo/U3DGeometryToWEM.cpp \

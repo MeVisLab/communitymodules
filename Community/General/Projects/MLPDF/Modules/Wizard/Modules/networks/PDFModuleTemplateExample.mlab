@@ -40,8 +40,8 @@ module LocalFileName {
   }
   fields  {
     instanceName = GetPDFDemoDataPath
-    localName = $(MLAB_Community_General)/Modules/ML/MLPDF/demodata
-    checkIfFileExists = FALSE
+    localName = $(MLAB_Community_General)/Projects/MLPDF/Modules/demodata
+    checkIfFileExists = TRUE
   }
 }
 module LocalFileName {

@@ -2,9 +2,47 @@
 network  {
   watchlist = ""
 }
+module U3DAddTextureFromImage {
+  internal  {
+    frame = "342 -240 208 72"
+    moduleGroupName = "Not yet implemented."
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "433 562 400 100"
+        sizeHint = "400 100"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddTextureFromImage
+    updateMode = "Auto Update"
+    autoApply = FALSE
+  }
+}
+module U3DAddTextureFromFile {
+  internal  {
+    frame = "350 -344 192 72"
+    moduleGroupName = "Not yet implemented."
+    showNetworkPanel = true
+    windows  {
+      window _default {
+        geometry = "763 299 400 100"
+        sizeHint = "400 100"
+        wasOpen = no
+      }
+    }
+  }
+  fields  {
+    instanceName = U3DAddTextureFromFile
+    updateMode = "Auto Update"
+    autoApply = FALSE
+  }
+}
 module LocalPath {
   internal  {
-    frame = "813 -223 152 64"
+    frame = "821 -511 152 64"
     moduleGroupName = ""
     windows  {
       window _default {
@@ -87,7 +125,7 @@ module LoadFibers {
 }
 module U3DInfo {
   internal  {
-    frame = "529 -323 80 56"
+    frame = "537 -611 80 56"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -105,7 +143,7 @@ module U3DInfo {
 }
 module BaseBypass {
   internal  {
-    frame = "641 -211 128 56"
+    frame = "649 -499 128 56"
     moduleGroupName = ""
     showNetworkPanel = true
   }
@@ -311,7 +349,7 @@ module U3DInit {
 }
 module U3DSave {
   internal  {
-    frame = "649 -331 112 72"
+    frame = "657 -619 112 72"
     moduleGroupName = ""
     showNetworkPanel = true
     windows  {
@@ -331,6 +369,7 @@ module U3DSave {
     instanceName = U3DSave
     inputValid = TRUE
     autoApply = FALSE
+    filename = C:/Users/z002zrcd/U3DExample.u3d
     autoSave = FALSE
     useDefaultSettings = TRUE
   }
@@ -375,11 +414,11 @@ module XMarkerListContainer {
 }
 module U3DInspector {
   internal  {
-    frame = "817 -323 112 56"
+    frame = "825 -611 112 56"
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "993 156 426 458"
+        geometry = "770 211 426 458"
         sizeHint = "342 237"
         wasOpen = yes
       }
@@ -432,6 +471,17 @@ For details regarding the parameters take a look at the documentation.*"
         titleText = Description
         isCollapsed = False
         titleFrame = "294 -93 290 22"
+      }
+      MLABNetworkModelItem MLABNetworkModelItemGroup {
+        uniqueId = 34
+        objectName = "Not yet implemented."
+        parentUniqueId = 0
+        color  {
+          r = 45
+          g = 226
+          b = 226
+          a = 40
+        }
       }
     }
   }
