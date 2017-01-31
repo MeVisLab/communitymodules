@@ -6,11 +6,11 @@ TEMPLATE = lib
 ML_INFO_PLIST_TEMPLATE = $$PWD/Info-template.plist
 include ( $$(MLAB_MeVis_Foundation)/Configuration/CreateInfoPListFromTemplate.pri )
 system(mv -f \"$$QMAKE_INFO_PLIST\" \"$$PWD/Info.plist\")
-
-# detect compiler
-include ($(MLAB_MeVis_BuildSystem)/Configuration/System.pri)
   
 macx:release:!debug {
+
+  # detect compiler
+  include ($(MLAB_MeVis_BuildSystem)/Configuration/System.pri)
   
   # build the plugin using xcodebuild
   clang {

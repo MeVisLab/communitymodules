@@ -19,7 +19,6 @@ CONFIG += MLOsiriXServices
 include ($(MLAB_Community_General)/Configuration/DefaultProjectSetup.pri)
 
 CONFIG += qt
-QT += widgets macextras
 DEFINES += UNICODE _UNICODE
 
 DEFINES += MEVISLAB_CORE ML_DISABLE_DEPRECATED
