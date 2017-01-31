@@ -5,7 +5,7 @@
 
 <?Fm Validation Off?>
 
-<!ENTITY MeVisLabVer "2.7">
+<!ENTITY MeVisLabVer "3.0">
 
 <!-- End Document Specific Declarations -->
 
@@ -18,11 +18,15 @@
     depth = "0.425in" align = "center" condition = "0"
     role = "1.230in 0.425in"/></orgname></affiliation></author></bookinfo>
 <preface><title>Introduction</title>
-<para>To facilitate the integration of the MeVisLab OS X edition
+<para>To facilitate the integration of the MeVisLab macOS edition
 into the clinical workflow, you may use the <ulink
     url = "http://www.osirix-viewer.com/"><?FM MARKER [Hypertext] message URL http://www.osirix-viewer.com/?>OsiriX</ulink> Advanced
-DICOM PACS workstation to retrieve and store medical image datasets.
-The solution introduced in this document enables a bidirectional
+DICOM PACS workstation or its descendant <ulink
+    url = "https://www.horosproject.org/"><?FM MARKER [Hypertext] message URL https://www.horosproject.org/?>Horos</ulink><footnote><para>In
+the following only OsiriX is described. Currently, there are no
+significant differences between Horos and OsiriX regarding this
+data exchange bridge.</para></footnote> to retrieve and store medical image
+datasets. The solution introduced in this document enables a bidirectional
 communication between MeVisLab and OsiriX version 3.3 or later.
 Images may not only be sent from OsiriX to MeVisLab for processing,
 but furthermore, images can be sent back to OsiriX for PACS storage
@@ -225,7 +229,9 @@ protocol mismatch, -4: unknown target name</entry>
 </tgroup></informaltable></sect1>
 <sect1><title>Obtaining the source code</title>
 <para>The source codes of both the OsiriX plugin and the MeVisLab
-module are included in the MeVisLab SDK <filename>FMEwork&sol;ReleaseMeVis</filename> package.</para></sect1></chapter>
+module are available as part of the <ulink
+    url = "https://github.com/MeVisLab"><?FM MARKER [Hypertext] message URL https://github.com/MeVisLab?>GitHub MeVisLab Community
+project</ulink>.</para></sect1></chapter>
 <appendix><title>Document Revision History</title>
 <informaltable frame = "all" colsep = "0" rowsep = "1">
 <tgroup cols = "2" tgroupstyle = "RevisionTable" colsep = "0"
@@ -239,6 +245,11 @@ module are included in the MeVisLab SDK <filename>FMEwork&sol;ReleaseMeVis</file
 </row>
 </thead>
 <tbody>
+<row rowsep = "1">
+<entry colname = "1">2017-01-23</entry>
+<entry colname = "2"><simplelist><member>Obtaining the source code
+updated</member></simplelist></entry>
+</row>
 <row rowsep = "1">
 <entry colname = "1">2012-07-24</entry>
 <entry colname = "2"><simplelist><member>Sending image series from

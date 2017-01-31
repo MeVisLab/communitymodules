@@ -1,4 +1,3 @@
-# **InsertLicense** code
 #! /usr/bin/env python
 
 # adapt FrameMaker DocBook XML export
