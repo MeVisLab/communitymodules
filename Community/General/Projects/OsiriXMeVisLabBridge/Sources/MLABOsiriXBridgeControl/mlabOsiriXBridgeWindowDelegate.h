@@ -1,28 +1,21 @@
-// **InsertLicense** code
-
-/*
- _______________________________________________________________________
- __________________  F R A U N H O F E R   M E V I S  __________________
- |
- |   $Rev: 100478 $
- |
- |   Author(s)      : Felix Ritter
- |   Creation date  : 02/2010
- |
- __________________  F R A U N H O F E R   M E V I S  __________________
- _______________________________________________________________________
- */
+//
+//  mlabOsiriXBridgeWindowDelegate.h
+//  MLABOsiriXBridgeControl
+//
+//  Created by Felix Ritter on 01.02.10.
+//  This code is in the public domain.
+//
 
 #ifndef MLABOSIRIXBRIDGEWINDOWDELEGATE_H_
 #define MLABOSIRIXBRIDGEWINDOWDELEGATE_H_
 
-#include <QtCore/QObject>
-#include <QtCore/QEvent>
-#include <QtGui/QWidget>
-#include <QtGui/QDragEnterEvent>
-#include <QtGui/QDragLeaveEvent>
-#include <QtGui/QDropEvent>
-#include <QtGui/QPaintEvent>
+#include <QObject>
+#include <QEvent>
+#include <QWidget>
+#include <QDragEnterEvent>
+#include <QDragLeaveEvent>
+#include <QDropEvent>
+#include <QPaintEvent>
 
 class MLABOsiriXBridgeControl;
 class MLABOsiriXBridgeWindowDelegatePrivate;

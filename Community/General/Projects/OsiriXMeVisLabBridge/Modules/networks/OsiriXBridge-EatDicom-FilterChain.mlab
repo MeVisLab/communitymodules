@@ -46,17 +46,6 @@ module Convolution {
     intervalMaxOfFilteredVoxels = 1024
     useIntervalOfFilteredVoxels = FALSE
     externalKernel = ""
-    kernelInfo = "Invalid input, 9 elems, 3x3x1x1x1x1"
-    kernelOutput = "(0,0,0,0,0,0):0.111111
-(1,0,0,0,0,0):0.111111
-(2,0,0,0,0,0):0.111111
-(0,1,0,0,0,0):0.111111
-(1,1,0,0,0,0):0.111111
-(2,1,0,0,0,0):0.111111
-(0,2,0,0,0,0):0.111111
-(1,2,0,0,0,0):0.111111
-(2,2,0,0,0,0):0.111111
-"
     predefKernel = "3x3 Average Kernel"
   }
 }
@@ -93,9 +82,6 @@ module Morphology {
     useIntervalOfVoxelsForFiltering = FALSE
     externalKernel = ""
     useExternalKernel = FALSE
-    kernelInfo = "12 elems, 4x3x1x1x1x1"
-    numKernelElements = 12
-    kernelElementsSum = 0
   }
 }
 module Arithmetic2 {
@@ -113,6 +99,7 @@ module Arithmetic2 {
   fields  {
     instanceName = Arithmetic2
     function = Subtract
+    outputImageSize = AdaptOutputImageSize
     constant = 0
     autoReplicate = FALSE
   }
@@ -136,8 +123,8 @@ module DicomTool {
   }
   fields  {
     instanceName = ImageSave
-    exportDir = ""
-    exportBaseDir = ""
+    exportDir = "/Users/fritter/Documents/OsiriX Data/INCOMING.noindex"
+    exportBaseDir = "/Users/fritter/Documents/OsiriX Data/INCOMING.noindex"
     exportNameTemplate = $S/export$T.dcm
     addPatNameDir = FALSE
     addStudyUIDDIR = FALSE
@@ -156,23 +143,15 @@ module DicomTool {
     displayMode2 = All
     newStudyUID = FALSE
     newSeriesUID = TRUE
-    hasStudyUID = FALSE
-    hasSeriesUID = FALSE
     restoreFrameSpecific = FALSE
-    saveEnabled = TRUE
     storeTimeInfo = None
     dicomComment = MeVisLab
-    canCancel = FALSE
-    progress = 0
-    status = "Saved 0 DICOM images to /Users/ritter/Documents/OsiriX Data/INCOMING.noindex"
-    dicomConsole = ""
     consoleAutoClear = TRUE
     dicomOutput = ""
     echoVerbose = TRUE
     echoDebug = FALSE
     storeVerbose = TRUE
     storeDebug = FALSE
-    dicomConfigList = OsiriX
     currentConfigSet = OsiriX
     dicomName = OsiriX
     dicomType = PACS
@@ -234,6 +213,7 @@ module ImageLoad {
     pageSizeHint = "0 0 0 0 0 0"
     suppressErrorLog = FALSE
     dicomIgnoreHalfVoxelShift = FALSE
+    enableCheckSumTests = TRUE
   }
 }
 module OsiriXBridge {
@@ -250,7 +230,7 @@ module OsiriXBridge {
   }
   fields  {
     instanceName = OsiriXBridge
-    osirixIncomingDirAutoUpdate = TRUE
+    alternativeTargetName = ""
     useEatDicom = TRUE
     dataStoreDir = ""
     eatDicomOptions = "-r -v1"
@@ -284,6 +264,7 @@ networkModel  {
         text = "Install the OsiriXMeVisLabBridge plugin for OsiriX, select a serie in the database window of OsiriX, and send the data via the Send to MeVisLab toolbar icon to the OsiriXBridge target. The processed dataset will be sent back to OsiriX and can be displayed there."
         titleText = ReadMe
         isCollapsed = False
+        titleFrame = "1 -317 251 22"
       }
     }
   }

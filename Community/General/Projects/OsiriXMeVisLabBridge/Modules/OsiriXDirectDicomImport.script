@@ -1,6 +1,11 @@
 // **InsertLicense** code
 
 
+Description {
+  Field osirixIncomingDir { editable = no }
+  Field clientAppBundleId { editable = no }
+}
+
 Interface {
   Inputs {
     Field inputFilterPlugin     { internalName = DirectDicomImport.inputFilterPlugin }
@@ -11,6 +16,8 @@ Interface {
   }
   Parameters {
     Field targetName            { internalName = OsiriXBridge.alternativeTargetName }
+    Field osirixIncomingDir     { internalName = OsiriXBridge.osirixIncomingDir }
+    Field clientAppBundleId     { internalName = OsiriXBridge.clientAppBundleId }
   }
 }
 
@@ -23,15 +30,30 @@ Commands {
 
 
 Window {
+  DefineStyle HelpText {
+    derive = _default
+    
+    colors {
+      fg          = #808080
+      link        = #808080
+      linkVisited = #808080
+    }
+  }
+
   Vertical { 
     margin = 5
-    Box "Module Identifier in OsiriX" { 
-      layout=Vertical
-      HyperLabel {
-        title = "Configure the name of this module in the target pop-up menu of the <em>Send to MeVisLab</em> toolbar icon in OsiriX. The name will initially be set to the instance name of this module."
+    Box "Module Identifier in OsiriX or Horos" { layout=Vertical
+      HyperLabel { scale = -1 style = HelpText
+        title = "The name for this module in the target pop-up menu of the <em>Send to MeVisLab</em> toolbar icon in <a href='http://www.osirix-viewer.com/'>OsiriX</a> or <a href='https://www.horosproject.org/'>Horos</a>. The name will take precedence over the instance name of the embedded OsiriXBridge module if set."
       }
-      Field targetName {
-        title = "Target Name:"
+      Horizontal {
+        Field targetName {
+          title = "Target Name:"
+        }
+        Button {
+          title   = "Help"
+          command = "showGuide"
+        }
       }
     }
     Box "DirectDicomImport Settings" {

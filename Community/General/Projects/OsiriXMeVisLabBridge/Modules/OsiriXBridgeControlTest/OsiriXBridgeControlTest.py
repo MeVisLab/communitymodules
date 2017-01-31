@@ -24,7 +24,7 @@ def seriesDropped(info):
   ctx.field('import.inputFileList').value = '\n'.join(info['series'])
   MLAB.processInventorQueue()
   ctx.field('view2d.startSlice').value = info['curImage']
-  ctx.control('bridge').setWindowFilePath(info['series'][0]);
-  ctx.field('lut.greyCenter').value = info['curImageWL'];
-  ctx.field('lut.greyWidth').value = info['curImageWW'];
+  ctx.control('bridge').setWindowFilePath(info['series'][0])
+  ctx.field('lut.greyCenter').value = info['curImageWL']
+  ctx.field('lut.greyWidth').value = info['curImageWW']
   return

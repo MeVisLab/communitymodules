@@ -1,22 +1,15 @@
-// **InsertLicense** code
-
-/*
- _______________________________________________________________________
- __________________  F R A U N H O F E R   M E V I S  __________________
- |
- |   $Rev: 100478 $
- |
- |   Author(s)      : Felix Ritter
- |   Creation date  : 02/2010
- |
- __________________  F R A U N H O F E R   M E V I S  __________________
- _______________________________________________________________________
- */
+//
+//  OsiriXPasteboardMime.h
+//  MLABOsiriXBridgeControl
+//
+//  Created by Felix Ritter on 01.02.10.
+//  This code is in the public domain.
+//
 
 #ifndef OSIRIXPASTEBOARDMIME_H_
 #define OSIRIXPASTEBOARDMIME_H_
 
-#include <QtGui/QMacPasteboardMime>
+#include <QMacPasteboardMime>
 
 class OsiriXPasteboardMime : public QMacPasteboardMime
 {

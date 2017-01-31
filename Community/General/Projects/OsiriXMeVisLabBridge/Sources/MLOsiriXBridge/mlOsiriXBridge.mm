@@ -25,17 +25,18 @@ OsiriXBridge::OsiriXBridge() : Module(0,0), priv(NULL)
 {
   ML_TRACE_IN("OsiriXBridge::OsiriXBridge()")
 
-#if !defined(MACOS)
-  ML_PRINT_INFO("OsiriXBridge::OsiriXBridge()", "This module is only fully supported when compiled and run on Mac OS X!")
+#if !defined(MACOS) && defined(DEBUG)
+  ML_PRINT_INFO("OsiriXBridge::OsiriXBridge()", "This module is only fully supported when compiled and run on macOS!")
 #endif
   
   handleNotificationOff();
   
   AlternativeTargetNameFld    = getFieldContainer()->addString("alternativeTargetName");
+
+  UpdateClientInfoFld         = getFieldContainer()->addNotify("updateClientInfo");
   
   OsiriXIncomingFolderFld     = getFieldContainer()->addString("osirixIncomingDir");
-  OsiriXIncomingUpdateFld     = getFieldContainer()->addNotify("osirixIncomingDirUpdate");
-  OsiriXIncomingAutoUpdateFld = getFieldContainer()->addBool("osirixIncomingDirAutoUpdate");
+  ClientAppBundleIdFld        = getFieldContainer()->addString("clientAppBundleId");
   
   SlicesFileListFld           = static_cast<StringLineMultiField *> (getFieldContainer()->addField(new StringLineMultiField("slicesFileList")));
   
@@ -73,7 +74,7 @@ OsiriXBridge::activateAttachments()
 #endif
   
   handleNotification(AlternativeTargetNameFld);
-  handleNotification(OsiriXIncomingUpdateFld);
+  handleNotification(UpdateClientInfoFld);
   
   // Activate notification handling
   inherited::activateAttachments();
@@ -90,8 +91,9 @@ OsiriXBridge::handleNotification(Field *field)
 #if defined(MACOS)
   if (!priv) return;
 
-  if (field == OsiriXIncomingUpdateFld) {
+  if (field == UpdateClientInfoFld) {
     OsiriXIncomingFolderFld->setStringValue(priv->osirixIncomingFolder());
+    ClientAppBundleIdFld->setStringValue(priv->clientAppBundleId());
   }
   else if (field == AlternativeTargetNameFld || field == getFieldContainer()->getField("instanceName")) {
     priv->registerWithClient();

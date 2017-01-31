@@ -31,6 +31,7 @@ public:
   
   void handleDICOMDataset();
   std::string osirixIncomingFolder();
+  std::string clientAppBundleId();
   
   ml::Module *module() const { return obj; }
   const std::string &targetName() const { return _targetName; }

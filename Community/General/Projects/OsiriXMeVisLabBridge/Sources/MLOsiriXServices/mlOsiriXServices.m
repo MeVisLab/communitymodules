@@ -73,13 +73,24 @@
   [proxy setProtocolForProxy:@protocol(MLOsiriXServices)];
   
   if ([proxy respondsToSelector:@selector(protocolVersion)]) {
-    if ([proxy protocolVersion] != MLOsiriXServices_ProtocolVersion) {
+    int protocolVersion = [proxy protocolVersion];
+    if (protocolVersion != MLOsiriXServices_ProtocolVersion) {
       [self cleanup];
       
       [NSException raise:NSInternalInconsistencyException
-                  format:@"Communication protocol version mismatch. Expected MLOsiriXServices protocol version %d, but got version %d", MLOsiriXServices_ProtocolVersion, [proxy protocolVersion]];
+                  format:@"Communication protocol version mismatch. Expected MLOsiriXServices protocol version %d, but got version %d", MLOsiriXServices_ProtocolVersion, protocolVersion];
       
       return NO;
+    }
+  }
+
+  if ([proxy respondsToSelector:@selector(servicesProviderAppName)]) {
+    NSString *servicesProviderAppName = [proxy servicesProviderAppName];
+    if ([proxy respondsToSelector:@selector(servicesProviderAppVersion)]) {
+      NSString *servicesProviderAppVersion = [proxy servicesProviderAppVersion];
+      NSLog(@"Connected to %@ %@", servicesProviderAppName, servicesProviderAppVersion);
+    } else {
+      NSLog(@"Connected to %@", servicesProviderAppName);
     }
   }
   

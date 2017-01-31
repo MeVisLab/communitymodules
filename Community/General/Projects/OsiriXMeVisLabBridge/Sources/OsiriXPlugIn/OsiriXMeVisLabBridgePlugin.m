@@ -3,12 +3,20 @@
  *  OsiriXMeVisLabBridgePlugin
  *
  *  Created by Felix Ritter on 18.01.08.
- *  Copyright 2008 Felix Ritter. All rights reserved.
+ *  This code is in the public domain.
  */
 
 #import "OsiriXMeVisLabBridgePlugin.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wmissing-selector-name"
+#pragma GCC diagnostic ignored "-Wduplicate-method-match"
 #import <OsiriXAPI/browserController.h>
 #import <OsiriXAPI/Notifications.h>
+#import <OsiriXAPI/DicomDatabase.h>
+#pragma GCC diagnostic pop
+
 #import "mlMeVisLabServicesProtocol.h"
 #import "ToolPopUpButton.h"
 #import "IndeterminatedProgressController.h"
@@ -18,6 +26,11 @@
 #ifdef OFFER_MEVISLAB_EXAMPLE
 # define TITLE_PREPARE_MEVISLAB  @"Prepare a MeVisLab target"
 #endif
+
+@interface DicomDatabase (OSIRIX_PRIVATE)
++(DicomDatabase*)activeLocalDatabase;
+-(NSString*)incomingDirPath;
+@end
 
 @implementation OsiriXMeVisLabBridgePlugin
 
@@ -114,6 +127,46 @@
 - (NSUInteger) servicesProviderVersion
 {
   return [[[NSBundle bundleForClass:[self class]] objectForInfoDictionaryKey:@"CFBundleVersion"] unsignedIntegerValue];
+}
+
+- (NSString *) servicesProviderAppName
+{
+  return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+}
+
+- (NSString *) servicesProviderAppVersion
+{
+  return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
+- (NSString *) servicesProviderAppId
+{
+  return [[NSBundle mainBundle] bundleIdentifier];
+}
+
+- (BOOL) removeLocalDatabaseFolder:(NSString *)folderPath
+{
+  NSMutableArray *dbArray = [[[[NSUserDefaults standardUserDefaults] arrayForKey:@"localDatabasePaths"] mutableCopy] autorelease];
+  if (dbArray == nil)
+    return NO;
+
+  NSMutableArray *discardedDicts = [NSMutableArray array];
+
+  for (NSDictionary *dict in dbArray) {
+    if ([[dict valueForKey:@"Path"] isEqualToString:folderPath]) {
+      [discardedDicts addObject:dict];
+    }
+  }
+
+  [dbArray removeObjectsInArray:discardedDicts];
+
+  BOOL modified = [discardedDicts count] > 0;
+  if (modified) {
+    [[NSUserDefaults standardUserDefaults] setObject:dbArray forKey:@"localDatabasePaths"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+
+  return modified;
 }
 
 - (OBTargetIdentifier) registerTargetWithName:(NSString *)name status:(MLOSStatus *)status
@@ -240,17 +293,17 @@
                                                object:outgoingConnection];
     
     // Set protocol for the remote object
-    [proxy setProtocolForProxy:@protocol(MeVisLabLoadDICOM)];
+    [proxy setProtocolForProxy:@protocol(MLMeVisLabLoadDICOMServices)];
     
     if ([proxy respondsToSelector:@selector(protocolVersion)]) {
-      if ([proxy protocolVersion] != MeVisLabLoadDICOM_ProtocolVersion) {
-        NSLog (@"Communication protocol version mismatch. Expected MeVisLabLoadDICOM protocol version %d, but got version %d", MeVisLabLoadDICOM_ProtocolVersion, [proxy protocolVersion]);
+      if ([proxy protocolVersion] != MLMeVisLabLoadDICOMServices_ProtocolVersion) {
+        NSLog (@"Communication protocol version mismatch. Expected MeVisLabLoadDICOM protocol version %d, but got version %d", MLMeVisLabLoadDICOMServices_ProtocolVersion, [proxy protocolVersion]);
       
         if (error != NULL) {
           *error = [NSError errorWithDomain:NSCocoaErrorDomain
                                        code:-3
                                    userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             [NSString stringWithFormat:@"Communication protocol version mismatch. Expected MeVisLabLoadDICOM protocol version %d, but got version %d.", MeVisLabLoadDICOM_ProtocolVersion, [proxy protocolVersion]], NSLocalizedDescriptionKey,
+                                             [NSString stringWithFormat:@"Communication protocol version mismatch. Expected MeVisLabLoadDICOM protocol version %d, but got version %d.", MLMeVisLabLoadDICOMServices_ProtocolVersion, [proxy protocolVersion]], NSLocalizedDescriptionKey,
                                              @"Please ensure you've installed the OsiriXMeVisLabBridge plugin that shipped with your current MeVisLab version.", NSLocalizedRecoverySuggestionErrorKey,
                                              nil]];
         }
@@ -274,6 +327,13 @@
 {
   // The images put into this folder will be imported to the database automatically.
   // OsiriX will check that folder every few seconds.
+
+  if ([DicomDatabase respondsToSelector:@selector(activeLocalDatabase)]) {
+    DicomDatabase *dataBase = [DicomDatabase activeLocalDatabase];
+    if ([dataBase respondsToSelector:@selector(incomingDirPath)]) {
+      return [dataBase incomingDirPath];
+    }
+  }
 
   NSString *documentsDirectory = [[BrowserController currentBrowser] documentsDirectory];
   return [documentsDirectory stringByAppendingPathComponent:@"/INCOMING.noindex/"];
@@ -577,17 +637,20 @@
                  additionalEventParamDescriptor:nil
                               launchIdentifiers:NULL] == NO) {
 
-      NSInteger response = [[NSAlert alertWithMessageText:@"The MeVisLab example network could not be loaded with MeVisLab."
-                                            defaultButton:@"Close"
-                                          alternateButton:@"Help"
-                                              otherButton:@"Show network file"
-                                informativeTextWithFormat:@"The plugin contains an example network that can be used with MeVisLab to setup a target for OsiriX."] runModal];
-    
-      if (response == NSAlertAlternateReturn) {
-        [self showHelp];
-      }
-      else if (response == NSAlertOtherReturn) {
+      NSAlert *alert = [[NSAlert new] autorelease];
+      [alert setMessageText:@"The MeVisLab example network could not be loaded with MeVisLab."];
+      [alert setInformativeText:@"The plugin contains an example network that can be used with MeVisLab to setup a target for OsiriX."];
+      [alert addButtonWithTitle:@"Close"];
+      [alert addButtonWithTitle:@"Show network file"];
+      [alert addButtonWithTitle:@"Help"];
+
+      NSModalResponse response = [alert runModal];
+
+      if (response == NSAlertSecondButtonReturn) {
         [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:[NSArray arrayWithObject:networkFileURL]];
+      }
+      else if (response == NSAlertThirdButtonReturn) {
+        [self showHelp];
       }
     }
   }
@@ -599,22 +662,25 @@
   if (! [self isOsiriXVersionSupported])
     return 0;
   
-  NSInteger response = [[NSAlert alertWithMessageText:@"The OsiriXMeVisLabBridge uses its toolbar icon for control. Control via the Plugins menu is not supported."
-                                        defaultButton:@"Close"
-                                      alternateButton:@"Help"
-                                          otherButton:@"Customize Toolbar..."
-                            informativeTextWithFormat:@"The toolbar icon can be added by selecting Customize Toolbar... from this dialog or the Format menu."] runModal];
-  
-  if (response == NSAlertAlternateReturn) {
-    [self showHelp];
-  }
-  else if (response == NSAlertOtherReturn) {
+  NSAlert *alert = [[NSAlert new] autorelease];
+  [alert setMessageText:@"The OsiriXMeVisLabBridge uses its toolbar icon for control. Control via the Plugins menu is not supported."];
+  [alert setInformativeText:@"The toolbar icon can be added by selecting Customize Toolbar... from this dialog or the Format menu."];
+  [alert addButtonWithTitle:@"Close"];
+  [alert addButtonWithTitle:@"Customize Toolbar..."];
+  [alert addButtonWithTitle:@"Help"];
+
+  NSModalResponse response = [alert runModal];
+
+  if (response == NSAlertSecondButtonReturn) {
     NSToolbar *toolbar = [[[BrowserController currentBrowser] window] toolbar];
     if ([toolbar customizationPaletteIsRunning] == NO) {
       [toolbar runCustomizationPalette:nil];
     }
   }
-  
+  else if (response == NSAlertThirdButtonReturn) {
+    [self showHelp];
+  }
+
   // Return 0 in all cases since the user has already been informed about errors
   return 0;
 }
@@ -666,6 +732,47 @@
         NSLog(@"SendSelectedSeriesToMeVisLab requires exactly one target name as argument.");
       }
     }
+    else if ([[httpServerMessage valueForKey:@"MethodName"] isEqualToString:@"CloseDB"]) {
+      NSError *error = nil;
+
+      NSXMLDocument *doc = [httpServerMessage valueForKey:@"NSXMLDocument"];
+      NSString *encoding = [doc characterEncoding];
+      NSArray *keys = [doc nodesForXPath:@"methodCall/params//member/name" error:&error];
+      NSArray *values = [doc nodesForXPath:@"methodCall/params//member/value" error:&error];
+      if (1 == [keys count] || 1 == [values count]) {
+        NSMutableDictionary *paramDict = [NSMutableDictionary dictionary];
+        int i = 0;
+        for (i = 0; i < [keys count]; ++i) {
+          id value;
+          if([encoding isEqualToString:@"UTF-8"] == NO && [[[values objectAtIndex:i] objectValue] isKindOfClass:[NSString class]]) {
+            value = [(NSString*)CFXMLCreateStringByUnescapingEntities(NULL, (CFStringRef)[[values objectAtIndex:i] objectValue], NULL) autorelease];
+          } else {
+            value = [[values objectAtIndex:i] objectValue];
+          }
+          [paramDict setValue:value forKey:[[keys objectAtIndex:i] objectValue]];
+        }
+
+        NSInteger errorValue = 0;
+        if (! [self removeLocalDatabaseFolder:[paramDict valueForKey:@"path"]]) {
+          errorValue = -1;
+        }
+
+#if __LP64__ || NS_BUILD_32_LIKE_64
+# define PrintfFormatString_NSInteger "%ld"
+#else
+# define PrintfFormatString_NSInteger "%d"
+#endif
+
+        // Done, send response to sender
+        NSString *xml = [NSString stringWithFormat:@"<?xml version=\"1.0\"?><methodResponse><params><param><value><struct><member><name>error</name><value>" PrintfFormatString_NSInteger "</value></member></struct></value></param></params></methodResponse>", errorValue];
+        NSXMLDocument *doc = [[[NSXMLDocument alloc] initWithXMLString:xml options:NSXMLNodeOptionsNone error:&error] autorelease];
+        [httpServerMessage setValue:doc forKey:@"NSXMLDocumentResponse"];
+        [httpServerMessage setValue:[NSNumber numberWithBool:YES] forKey:@"Processed"];
+      }
+      else {
+        NSLog(@"CloseDB requires exactly one folder path as argument.");
+      }
+    }
     
     NSLog(@"%@", [httpServerMessage description]);
   }
@@ -677,13 +784,15 @@
 - (BOOL) isOsiriXVersionSupported
 {
   if ([[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] intValue] < 4649) {
-    NSInteger response = [[NSAlert alertWithMessageText:@"The OsiriX application you are running is out of date."
-                                          defaultButton:@"Close"
-                                        alternateButton:@"Help"
-                                            otherButton:nil
-                              informativeTextWithFormat:@"OsiriX 3.3 is necessary for this plugin to execute."] runModal];
-    
-    if (response == NSAlertAlternateReturn) {
+    NSAlert *alert = [[NSAlert new] autorelease];
+    [alert setMessageText:@"The OsiriX application you are running is out of date."];
+    [alert setInformativeText:@"OsiriX 3.3 is necessary for this plugin to execute."];
+    [alert addButtonWithTitle:@"Close"];
+    [alert addButtonWithTitle:@"Help"];
+
+    NSModalResponse response = [alert runModal];
+
+    if (response == NSAlertSecondButtonReturn) {
       [self showHelp];
     }
     

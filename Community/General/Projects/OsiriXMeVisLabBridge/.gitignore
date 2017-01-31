@@ -1,3 +1,4 @@
+SyncToCommunity.command
 OsiriXBridgeAddOn.pkg
 Sources/OsiriXPlugIn/Info.plist
 Sources/OsiriXPlugIn/*.dylib

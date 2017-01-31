@@ -1,15 +1,15 @@
 ModuleHelp  {
   MetaInformation  {
-    definition = Modules/Macros/FileHandling/OsiriXDirectDicomImport.def
+    definition = Projects/OsiriXMeVisLabBridge/Modules/OsiriXDirectDicomImport.def
     moduleName = OsiriXDirectDicomImport
     moduleType = MacroModule
     author = "Felix Ritter"
     dll = ""
     genre = DICOM
-    keywords = OsiriX
+    keywords = "OsiriX Horos"
     seeAlso = OsiriXBridge
-    package = ReleaseMeVis
-    packageGroup = FMEwork
+    package = General
+    packageGroup = Community
   }
   Purpose  {
     text = "The OsiriXDirectDicomImport module uses an :module:`OsiriXBridge` module to feed DICOM images sent from OsiriX to the :module:`DirectDicomImport` module. The images are imported automatically from the OsiriX database and provided at the :field:`output0` image output connector."
@@ -27,14 +27,17 @@ ModuleHelp  {
     text = ""
   }
   Windows  {
-    text  {
-      title = ""
-      text = ""
-    }
+    text = ""
     Window _default {
       title = ""
       text = ""
       needsDocumentation = No
+    }
+  }
+  Inputs  {
+    Field inputFilterPlugin {
+      type = MLBase
+      text = ""
     }
   }
   Outputs  {
@@ -60,11 +63,18 @@ ModuleHelp  {
     }
     Field targetName {
       type = String
-      text = ""
+      text = "The name for this module in the target pop-up menu of the *Send to MeVisLab* toolbar icon in OsiriX. The name will take precedence over the :field:`OsiriXBridge.instanceName` field of the embedded OsirXBridge module if set (non-empty). The target name must be unique."
       title = "Target Name"
       visibleInGUI = Yes
       persistent = Yes
       default = ""
+    }
+    Field osirixIncomingDir {
+      type = String
+      text = "The standard DICOM images put into the Incoming folder of the OsiriX database will be imported into the OsiriX database automatically. OsiriX will check that folder every few seconds. At module creation, the embedded OsiriXBridge module tries to connect to OsiriX to retrieve the location of this Incoming folder"
+      title = ""
+      visibleInGUI = No
+      persistent = No
     }
   }
 }

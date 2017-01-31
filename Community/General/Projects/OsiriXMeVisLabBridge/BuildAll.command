@@ -49,7 +49,7 @@ if [ -f "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/DocTools/Sc
   { read -p "Press any key to close window"; exit; }
 
   # build add-on installer
-  if [ -f "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" ]; then
+  if [[ -f "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" && -f "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" ]]; then
     cd "$INSTALLDESCDIR" && \
     "$MEVISLABAPP/Contents/Packages/MeVis/ThirdParty/bin/MeVisPython" -u "$MEVISLABAPP/Contents/Packages/MeVis/BuildSystem/BuildTools/Scripts/buildInstaller.py" "$INSTALLDESCDIR/OsiriXMeVisLabBridgeAddOn.mlinstall" "$RUNDIR" || \
     { read -p "Press any key to close window"; exit; }

@@ -3,10 +3,10 @@
 //  OsiriXMeVisLabBridge
 //
 //  Created by Felix Ritter on 15.05.11.
-//  Copyright 2011 Felix Ritter. All rights reserved.
+//  This code is in the public domain.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
 
 @interface IndeterminatedProgressPanel : NSPanel
 {

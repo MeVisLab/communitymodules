@@ -1,17 +1,10 @@
-// **InsertLicense** code
-
-/*
- _______________________________________________________________________
- __________________  F R A U N H O F E R   M E V I S  __________________
- |
- |   $Rev: 100478 $
- |
- |   Author(s)      : Felix Ritter
- |   Creation date  : 02/2010
- |
- __________________  F R A U N H O F E R   M E V I S  __________________
- _______________________________________________________________________
- */
+//
+//  mlabOsiriXBridgeWindowDelegate.mm
+//  MLABOsiriXBridgeControl
+//
+//  Created by Felix Ritter on 01.02.10.
+//  This code is in the public domain.
+//
 
 #import "mlabOsiriXBridgeWindowDelegate.h"
 #import "mlabOsiriXBridgeCocoaWindowDelegate.h"
@@ -19,7 +12,7 @@
 #import "OsiriXPasteboardMime.h"
 #import <mlOsiriXServices.h>
 #import <macObjectiveAutoreleasePool.h>
-#import <QtGui/QtGui>
+#import <QtGui>
 
 
 class MLABOsiriXBridgeWindowDelegatePrivate
@@ -67,7 +60,7 @@ MLABOsiriXBridgeWindowDelegate::setMLABWindowWidget(QWidget *widget)
     _mlabWindowWidget->setAcceptDrops(true);
     _mlabWindowWidget->installEventFilter(this);
     
-    [_p->cocoaController setMLABWindowView:reinterpret_cast<NSView *> (_mlabWindowWidget->winId())];
+    [_p->cocoaController setMLABWindowView:reinterpret_cast<NSView *> (_mlabWindowWidget->effectiveWinId())];
   }
 }
 
@@ -172,7 +165,7 @@ MLABOsiriXBridgeWindowDelegate::dropEvent(QDropEvent *event)
     QList<QUrl> urlList = event->mimeData()->urls();
     
     if (! urlList.isEmpty() && QFileInfo(urlList.first().toLocalFile()).exists()) {
-      macx::ObjectiveAutoreleasePool pool;
+      macos::ObjectiveAutoreleasePool pool;
       
       NSDictionary *info;
       @try {

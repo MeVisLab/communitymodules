@@ -3,7 +3,7 @@
 //  OsiriXMeVisLabBridge
 //
 //  Created by Felix Ritter on 15.05.11.
-//  Copyright 2011 Felix Ritter. All rights reserved.
+//  This code is in the public domain.
 //
 
 #import "ToolPopUpButton.h"
@@ -63,7 +63,7 @@
 
 - (void)drawRect:(NSRect)rect
 {
-  NSRect canvasRect = rect;
+  NSRect canvasRect = [self bounds];
   // canvasRect.size = (controlSize == NSSmallControlSize) ? NSMakeSize(24,24) : NSMakeSize(32,32);
   
   NSRect arrowRect = NSZeroRect;
@@ -75,7 +75,7 @@
   iconRect.size = NSMakeSize(MIN(canvasRect.size.width, iconImgSize.width), MIN(canvasRect.size.height, iconImgSize.height));
   iconRect.origin = NSMakePoint(MAX(0, canvasRect.size.width - iconRect.size.width - arrowRect.size.width)/2, (canvasRect.size.height - iconRect.size.height)/2);
   
-  NSCompositingOperation compositing = ([[self cell] isHighlighted]) ? NSCompositePlusDarker : NSCompositeSourceOver;
+  NSCompositingOperation compositing = ([self isHighlighted]) ? NSCompositePlusDarker : NSCompositeSourceOver;
   [arrowImage drawInRect:arrowRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:NULL];
   [iconImage  drawInRect:iconRect  fromRect:NSZeroRect operation:compositing           fraction:1.0 respectFlipped:YES hints:NULL];
 }

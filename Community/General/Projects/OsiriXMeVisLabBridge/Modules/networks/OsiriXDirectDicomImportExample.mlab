@@ -8,18 +8,22 @@ module View3D {
     moduleGroupName = ""
     windows  {
       window _default {
-        geometry = "173 106 1047 676"
-        sizeHint = "1047 676"
+        geometry = "169 225 1044 664"
+        sizeHint = "1044 664"
         wasOpen = yes
       }
     }
   }
   fields  {
     instanceName = View3D
+    autoViewAll = TRUE
     inventorInputOn = FALSE
     inventorOutputOn = FALSE
     lutType = Ramp
     currentTimePoint = 0
+    staticSamplingRate = 1
+    quality = 1
+    filterVolumeData = FilterLinear
     lutEditorColorPoints = "[ 0 0 0 0, 4095 1 1 1 ]"
     lutEditorAlphaPoints = "[ 0 0, 4095 1 ]"
     lutEditorRelativeLut = FALSE
@@ -29,27 +33,24 @@ module View3D {
     orientationLocation = LOWER_RIGHT
     orientationOn = TRUE
     orientationModel = CUBE
-    greyCenter = 0.46000001
-    greyWidth = 0.66500002
+    greyCenter = 0.46000000834465
+    greyWidth = 0.665000021457672
+    alphaFactor = 1
+    colorFactor = "1 1 1"
     camType = TRUE
-    camPosition = "2.41562032699585 0.309473603963852 1.21139800548553"
+    camPosition = "2.32069396972656 0.297312259674072 1.16379392147064"
     camOrientation = "0.43151518702507 0.448193788528442 0.78289008140564 2.01845812797546"
     initialCameraOrientation = CAMERA_KEEP_AS_IS
-    camFar = 3.7200146
-    camNear = 1.7200146
-    camFocal = 2.7200146
+    camFar = 3.6131265
+    camNear = 1.6131265
+    camFocal = 2.6131265
     camHeight = 0.78539801
-    autoViewAll = TRUE
+    decoration = FALSE
+    hiResRendering = TRUE
     annotations = TRUE
     background = TRUE
     mode = VolumeRendering
     interactiveQuality = Medium
-    quality = 1
-    useTraceColors = FALSE
-    decoration = FALSE
-    staticSamplingRate = 1
-    alphaFactor = 1
-    colorFactor = "1 1 1"
   }
   internalFields  {
     renderer.gradientQuality = GradientQualityAutomatic
@@ -127,6 +128,7 @@ module OsiriXDirectDicomImport {
   }
   fields  {
     instanceName = OsiriXDirectDicomImport
+    targetName = OsiriXDirectDicomImport
   }
 }
 connections  {

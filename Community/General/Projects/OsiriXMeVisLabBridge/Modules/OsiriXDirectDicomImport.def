@@ -4,7 +4,7 @@ MacroModule OsiriXDirectDicomImport {
   genre              = "DICOM"
   author             = "Felix Ritter"
   comment            = "OsiriX file import"
-  keywords           = "OsiriX"
+  keywords           = "OsiriX Horos"
   seeAlso            = "OsiriXBridge"
   exampleNetwork     = "$(LOCAL)/networks/OsiriXDirectDicomImportExample.mlab"   
   externalDefinition = "$(LOCAL)/OsiriXDirectDicomImport.script"

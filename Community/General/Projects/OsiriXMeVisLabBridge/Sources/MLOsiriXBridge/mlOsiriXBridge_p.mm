@@ -65,7 +65,7 @@ ML_START_NAMESPACE
 
 OsiriXBridgePrivate::OsiriXBridgePrivate(Module *o) : obj(o), notifyHandler(nil), eatDicom(nil), _targetIdentifier(0)
 {
-  macx::ObjectiveAutoreleasePool pool;
+  macos::ObjectiveAutoreleasePool pool;
   
   notifyHandler = [[BridgeNotificationHandler alloc] initWithObject:this];
   
@@ -77,7 +77,7 @@ OsiriXBridgePrivate::OsiriXBridgePrivate(Module *o) : obj(o), notifyHandler(nil)
 
 OsiriXBridgePrivate::~OsiriXBridgePrivate()
 {
-  macx::ObjectiveAutoreleasePool pool;
+  macos::ObjectiveAutoreleasePool pool;
   
   unRegisterFromClient();
   [osirixServices release];
@@ -146,18 +146,19 @@ OsiriXBridgePrivate::registerWithClient()
 void
 OsiriXBridgePrivate::handleDICOMDataset()
 {
-  macx::ObjectiveAutoreleasePool pool;
+  macos::ObjectiveAutoreleasePool pool;
   
-  Field *field = obj->getField("osirixIncomingDirAutoUpdate");
-  if (field && ((BoolField *)field)->getBoolValue()) {
-    field = obj->getField("osirixIncomingDir");
-    if (field) {
-      field->setStringValue(osirixIncomingFolder());
-    }
+  Field *field = obj->getField("osirixIncomingDir");
+  if (field) {
+    field->setStringValue(osirixIncomingFolder());
+  }
+  field = obj->getField("clientAppBundleId");
+  if (field) {
+    field->setStringValue(clientAppBundleId());
   }
   
   field = obj->getField("useEatDicom");
-  if (field && ((BoolField *)field)->getBoolValue()) {
+  if (field && static_cast<BoolField *>(field)->getBoolValue()) {
     if (eatDicom == nil) {
       eatDicom = [EatDicom new];
     }
@@ -216,9 +217,9 @@ OsiriXBridgePrivate::handleDICOMDataset()
 std::string
 OsiriXBridgePrivate::osirixIncomingFolder()
 {
-  macx::ObjectiveAutoreleasePool pool;
+  macos::ObjectiveAutoreleasePool pool;
   
-  NSString *path;
+  NSString *path = nil;
   @try {
     path = [osirixServices osirixIncomingFolderPath];
   }
@@ -234,6 +235,29 @@ OsiriXBridgePrivate::osirixIncomingFolder()
   }
   
   return ((path) ? std::string([path UTF8String]) : std::string());
+}
+
+std::string
+OsiriXBridgePrivate::clientAppBundleId()
+{
+  macos::ObjectiveAutoreleasePool pool;
+
+  NSString *appId = nil;
+  @try {
+    appId = [osirixServices servicesProviderAppId];
+  }
+  @catch (NSException *e) {
+    NSLog (@"Exception in OsiriXBridgePrivate::clientAppBundleId():\nname: %@\nreason: %@", [e name], [e reason]);
+
+    appId = nil;
+  }
+  @catch (id e) {
+    NSLog (@"Unknown exception in OsiriXBridgePrivate::clientAppBundleId()");
+
+    appId = nil;
+  }
+
+  return ((appId) ? std::string([appId UTF8String]) : std::string());
 }
 
 ML_END_NAMESPACE

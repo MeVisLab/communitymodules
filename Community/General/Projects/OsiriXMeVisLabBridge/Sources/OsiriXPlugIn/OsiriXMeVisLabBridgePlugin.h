@@ -3,10 +3,16 @@
  *  OsiriXMeVisLabBridgePlugin
  *
  *  Created by Felix Ritter on 18.01.08.
- *  Copyright 2008 Felix Ritter. All rights reserved.
+ *  This code is in the public domain.
  */
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wmissing-selector-name"
+#pragma GCC diagnostic ignored "-Wduplicate-method-match"
 #import <OsiriXAPI/PluginFilter.h>
+#pragma GCC diagnostic pop
+
 #import <Foundation/Foundation.h>
 #import <mlOsiriXServicesProtocol.h>
 

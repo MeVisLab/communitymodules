@@ -9,11 +9,30 @@ from threading import Thread
 import subprocess, time, os, sys, tempfile
 import xmlrpclib, socket
 
+
+kOsiriXBundleId = 'com.rossetantoine.osirix'
+kOsiriXDBDirName = 'OsiriX Data'
+kOsiriXSupportDirName = 'OsiriX'
+
+kHorosBundleId = 'com.horosproject.horos'
+kHorosDBDirName = 'Horos Data'
+kHorosSupportDirName = 'Horos'
+
+if True:
+  kAppBundleId = kOsiriXBundleId
+  kAppDBDirName = kOsiriXDBDirName
+  kAppSupportDirName = kOsiriXSupportDirName
+else:
+  kAppBundleId = kHorosBundleId
+  kAppDBDirName = kHorosDBDirName
+  kAppSupportDirName = kHorosSupportDirName
+
+
 myctx = None
 myTestDirPath = None
 
 def mayRunTest ():
-  return (sys.platform == 'darwin') and MLAB.hasVariable('TESTCENTER_EXTERNAL_DATA_FME') and MLABFileManager.macGetApplicationForId('com.rossetantoine.osirix')
+  return (sys.platform == 'darwin') and MLAB.hasVariable('TESTCENTER_EXTERNAL_DATA_FME') and MLABFileManager.macGetApplicationForId(kAppBundleId)
 
 def execute (command, wait=True):
   returnCode = None
@@ -47,7 +66,7 @@ def setUpTestCase ():
   
   if not socket.gethostname().startswith(('fritter-pc.', 'fritter-nb.')):
     Logging.info('Installing OsiriX plugin...')
-    result = execute('/usr/bin/rsync -av --delete \'%s/Applications/MeVisLab.app/Contents/Packages/FMEwork/ReleaseMeVis/bin/PlugIns/OsiriXMeVisLabBridge.osirixplugin\' \'%s/Library/Application Support/OsiriX/Plugins/\'' % (os.path.expanduser('~'), os.path.expanduser('~')))
+    result = execute('/usr/bin/rsync -av --delete \'%s/Applications/MeVisLab.app/Contents/Packages/FMEwork/ReleaseMeVis/bin/PlugIns/OsiriXMeVisLabBridge.osirixplugin\' \'%s/Library/Application Support/%s/Plugins/\'' % (os.path.expanduser('~'), os.path.expanduser('~'), kAppSupportDirName))
     Logging.info('done.')
     
     ASSERT_EQ(result, 0, 'Return code of rsync')
@@ -56,12 +75,12 @@ def setUpTestCase ():
     
   Logging.info('Creating OsiriX database parent folder...')
   # make sure we have exotic characters and spaces in the path
-  myTestDirPath = tempfile.mkdtemp(prefix=u'Üä éẅ ')
+  myTestDirPath = tempfile.mkdtemp(prefix=u'\u4500 ')
   Logging.info(myTestDirPath)
   Logging.info('done.')
   
   Logging.info('Starting OsiriX...')
-  result = execute('/usr/bin/osascript -e \'tell application id "com.rossetantoine.osirix" to activate\'')
+  result = execute('/usr/bin/osascript -e \'tell application id "' + kAppBundleId + '" to activate\'')
   Logging.info('done.')
   
   ASSERT_EQ(result, 0, 'Return code of osascript')
@@ -86,8 +105,16 @@ def tearDownTestCase ():
   if not mayRunTest():
     return
   
+  Logging.info('Closing OsiriX database: OsiriX.CloseDB( {"path": "%s"} )' % myTestDirPath)
+  t = OsiriXXMLRPCThread('''self.OsiriX.CloseDB( {"path": "''' + myTestDirPath + '''"} )''')
+  t.start()
+  t.waitForFinished()
+  Logging.info('Result: ' + str(t.result))
+
+  ASSERT_EQ(int(t.result['error']), 0, 'Result of CloseDB')
+  
   Logging.info('Quitting OsiriX...')
-  execute('/usr/bin/osascript -e \'tell application id "com.rossetantoine.osirix" to quit\'')
+  execute('/usr/bin/osascript -e \'tell application id "' + kAppBundleId + '" to quit\'')
   Logging.info('done.')
   
   if myTestDirPath:
@@ -103,14 +130,22 @@ def TEST001_FilterChain ():
   
   try:
 
+    # Check client id
+    Logging.info('Checking reported client application bundle id...')
+    appId = myctx.field('OsiriXBridge.clientAppBundleId').value
+    Logging.info('Connected to %s' % (appId))
+    Logging.info('done.')
+    
+    ASSERT_EQ(appId, kAppBundleId, 'Check for reported client id')
+    
     # Import test series
     localTestSeriesPath = os.path.join(MLAB.variable('TESTCENTER_EXTERNAL_DATA_FME'), 'MeVisLabModules/Release/OsiriXBridge/Test_Patient/')
-    result = execute('/usr/bin/ditto \'%s\' \'%s/OsiriX Data/INCOMING.noindex/\'' % (localTestSeriesPath, myTestDirPath))
+    result = execute('/usr/bin/ditto \'%s\' \'%s/%s/INCOMING.noindex/\'' % (localTestSeriesPath, myTestDirPath, kAppDBDirName))
 
     ASSERT_EQ(result, 0, 'Return code of ditto')
 
     # Grant some time for receiving images
-    for n in range(300):
+    for _ in range(300):
       MLAB.processEvents()
       time.sleep(0.050)
     
@@ -134,10 +169,20 @@ def TEST001_FilterChain ():
     ASSERT_EQ(int(t.result['error']), 0, 'Result of SendSelectedSeriesToMeVisLab')
     
     # Grant some time for receiving images
-    for n in range(300):
+    for _ in range(300):
       MLAB.processEvents()
       time.sleep(0.050)
       
+    # Select complete series
+    Logging.info('OsiriX.DBWindowFind( {"request": "(name LIKE \'*Test*\')", "table": "Study", "execute": "Select"} )')
+    t = OsiriXXMLRPCThread('''self.OsiriX.DBWindowFind( {"request": "(name LIKE '*Test*')", "table": "Study", "execute": "Select"} )''')
+    t.start()
+    t.waitForFinished()
+    Logging.info('Result: ' + str(t.result))
+    
+    ASSERT_EQ(int(t.result['error']), 0, 'Result of DBWindowFind')
+    ASSERT_EQ(int(t.result['elements'][0]['numberOfImages']), 128, 'Number of images in study')
+
     # Delete test series
     Logging.info('OsiriX.DBWindowFind( {"request": "(name LIKE \'*Test*\')", "table": "Study", "execute": "Delete"} )')
     t = OsiriXXMLRPCThread('''self.OsiriX.DBWindowFind( {"request": "(name LIKE '*Test*')", "table": "Study", "execute": "Delete"} )''')
@@ -146,7 +191,6 @@ def TEST001_FilterChain ():
     Logging.info('Result: ' + str(t.result))
     
     ASSERT_EQ(int(t.result['error']), 0, 'Result of DBWindowFind')
-    ASSERT_EQ(int(t.result['elements'][0]['numberOfImages']), 128, 'Number of images in study')
 
   except (xmlrpclib.Error, socket.error), err:
     print "ERROR", err

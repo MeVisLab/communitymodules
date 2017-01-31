@@ -5,9 +5,10 @@ MLModule OsiriXBridge {
   genre              = "DICOM"
   author             = "Felix Ritter"
   comment            = "Exchange DICOM images with the OsiriX PACS Viewer"
-  keywords           = "OsiriX DICOM files ImageLoad ImageSave"
+  keywords           = "OsiriX Horos DICOM files ImageLoad ImageSave"
   seeAlso            = "ImageLoad ImageSave DicomTool DicomBrowser DicomImport DirectDicomImport"
-  exampleNetwork     = "$(LOCAL)/networks/OsiriXBridge-EatDicom-FilterChain.mlab"
+  exampleNetwork     = "$(LOCAL)/networks/OsiriXBridge-DirectDicomImport-FilterChain.mlab"
+  associatedTests    = OsiriXBridgeTest
   externalDefinition = $(LOCAL)/MLOsiriXBridge.script
 }
 

@@ -32,16 +32,18 @@ public:
    */
   StringField *AlternativeTargetNameFld;
   
+  //! Retrieve the path to OsiriX's Incoming folder & the client bundle id
+  NotifyField *UpdateClientInfoFld;
+
   //! Outputs the path to OsiriX's Incoming folder (Read-only)
+  //! Automatically updated when a new dataset is received
   StringField *OsiriXIncomingFolderFld;
   
-  //! Retrieve the path to OsiriX's Incoming folder
-  NotifyField *OsiriXIncomingUpdateFld;
+  //! Outputs the bundle id of the connected client (Read-only)
+  //! Automatically updated when a new dataset is received
+  StringField *ClientAppBundleIdFld;
   
-  //! Automatically update the path to OsiriX's Incoming folder when the filename field gets an update 
-  BoolField *OsiriXIncomingAutoUpdateFld;
-  
-  
+
   //! List of filenames of which the series consists
   StringLineMultiField *SlicesFileListFld;
 

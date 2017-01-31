@@ -24,6 +24,7 @@ typedef enum {
 #define MLOsiriXServices_ProtocolVersion 14
 
 @protocol MLOsiriXServices
+@required
 - (int) protocolVersion;
 
 - (NSString *) servicesProviderName;
@@ -34,4 +35,12 @@ typedef enum {
 
 - (NSString *) osirixIncomingFolderPath;
 - (NSDictionary *) seriesInfoOfViewerDisplayingImageSeriesWithFilename:(NSString *)filename;
+
+@optional
+// CFBundleName
+- (NSString *) servicesProviderAppName;
+// CFBundleShortVersionString
+- (NSString *) servicesProviderAppVersion;
+// CFBundleIdentifier
+- (NSString *) servicesProviderAppId;
 @end

@@ -22,7 +22,7 @@
 		B75093C115BC4ADB001B4E5F /* IndeterminatedProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75093BF15BC4ADB001B4E5F /* IndeterminatedProgressController.m */; };
 		B75093C315BC4AE2001B4E5F /* IndeterminatedProgressWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B75093C215BC4AE2001B4E5F /* IndeterminatedProgressWindow.xib */; };
 		B75FB632112BD0D100D58216 /* mlMeVisLabServicesProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B75FB631112BD0D100D58216 /* mlMeVisLabServicesProtocol.h */; };
-		B78734EA1453FE6500D2C794 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */; };
+		B78734EA1453FE6500D2C794 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin for OsiriX */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */; };
 		B7AB82C5137FF5E600A79F31 /* SendToMeVisLab-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AB82C3137FF5E600A79F31 /* SendToMeVisLab-gray.png */; };
 		B7AB82C6137FF5E600A79F31 /* SendToMeVisLab-red.png in Resources */ = {isa = PBXBuildFile; fileRef = B7AB82C4137FF5E600A79F31 /* SendToMeVisLab-red.png */; };
 		B7BE9B34137FE61100325DF6 /* ToolPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = B7BE9B32137FE61100325DF6 /* ToolPopUpButton.h */; };
@@ -31,6 +31,7 @@
 		B7F66C4811B97EF1008E890B /* OsiriXMeVisLabBridgePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F66C4611B97EF1008E890B /* OsiriXMeVisLabBridgePlugin.h */; };
 		B7F66C4911B97EF1008E890B /* OsiriXMeVisLabBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F66C4711B97EF1008E890B /* OsiriXMeVisLabBridgePlugin.m */; };
 		B7F8E647137D5488003BCE7B /* OsiriXAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F8E646137D5488003BCE7B /* OsiriXAPI.framework */; };
+		F3EC5DCC1E3B9D6400BBCD75 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin for Horos */ = {isa = PBXBuildFile; fileRef = AB5D36050680E57E00F4007A /* OsiriXMeVisLabBridge.osirixplugin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,15 +46,26 @@
 			name = "Copy PlugIn to bin";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B78734E81453FE1D00D2C794 /* Install Plugin */ = {
+		B78734E81453FE1D00D2C794 /* Install Plugin for OsiriX */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "$(USER_LIBRARY_DIR)/Application Support/OsiriX/Plugins";
 			dstSubfolderSpec = 0;
 			files = (
-				B78734EA1453FE6500D2C794 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin */,
+				B78734EA1453FE6500D2C794 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin for OsiriX */,
 			);
-			name = "Install Plugin";
+			name = "Install Plugin for OsiriX";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EC5DCB1E3B9D4300BBCD75 /* Install Plugin for Horos */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(USER_LIBRARY_DIR)/Application Support/Horos/Plugins";
+			dstSubfolderSpec = 0;
+			files = (
+				F3EC5DCC1E3B9D6400BBCD75 /* OsiriXMeVisLabBridge.osirixplugin in Install Plugin for Horos */,
+			);
+			name = "Install Plugin for Horos";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -202,7 +214,8 @@
 				8D5B49B3048680CD000E48DA /* Frameworks */,
 				8D5B49B5048680CD000E48DA /* Rez */,
 				B7089B7F0F9F3EC9002412A6 /* Copy PlugIn to bin */,
-				B78734E81453FE1D00D2C794 /* Install Plugin */,
+				B78734E81453FE1D00D2C794 /* Install Plugin for OsiriX */,
+				F3EC5DCB1E3B9D4300BBCD75 /* Install Plugin for Horos */,
 			);
 			buildRules = (
 			);
@@ -220,9 +233,9 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0820;
 			};
-			buildConfigurationList = CE6A9A9408AC841300D0C1EE /* Build configuration list for PBXProject "OsiriXMeVisLabBridge" */;
+			buildConfigurationList = CE6A9A9408AC841300D0C1EE /* Build configuration list for PBXProject "OsiriXPlugIn" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -290,17 +303,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		B7A0D0431454398F0063448A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -331,7 +362,6 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = OsiriXMeVisLabBridge;
-				SDKROOT = "";
 				SECTORDER_FLAGS = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 				STRIP_STYLE = all;
@@ -349,16 +379,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		B7A0D045145439AD0063448A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUGGING_SYMBOLS = YES;
@@ -389,7 +435,6 @@
 				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = OsiriXMeVisLabBridge;
-				SDKROOT = "";
 				SECTORDER_FLAGS = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 				STRIP_STYLE = all;
@@ -415,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CE6A9A9408AC841300D0C1EE /* Build configuration list for PBXProject "OsiriXMeVisLabBridge" */ = {
+		CE6A9A9408AC841300D0C1EE /* Build configuration list for PBXProject "OsiriXPlugIn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B7A0D0421454398F0063448A /* Debug */,

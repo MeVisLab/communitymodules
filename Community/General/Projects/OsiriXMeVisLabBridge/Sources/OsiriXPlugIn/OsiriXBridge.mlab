@@ -23,17 +23,6 @@ module Convolution {
     intervalMaxOfFilteredVoxels = 1024
     useIntervalOfFilteredVoxels = FALSE
     externalKernel = ""
-    kernelInfo = "Invalid input, 9 elems, 3x3x1x1x1x1"
-    kernelOutput = "(0,0,0,0,0,0):0.000000
-(1,0,0,0,0,0):1.000000
-(2,0,0,0,0,0):0.000000
-(0,1,0,0,0,0):1.000000
-(1,1,0,0,0,0):-4.000000
-(2,1,0,0,0,0):1.000000
-(0,2,0,0,0,0):0.000000
-(1,2,0,0,0,0):1.000000
-(2,2,0,0,0,0):0.000000
-"
     predefKernel = "Laplace Kernel"
   }
 }
@@ -59,7 +48,7 @@ module View2D {
     inventorInputOn = FALSE
     inventorOutputOn = FALSE
     view2DExtensionsOn = TRUE
-    startSlice = -1
+    startSlice = 0
     numSlices = 1
     numXSlices = 1
     sliceStep = 1
@@ -73,6 +62,7 @@ module View2D {
     cineDirection = CINE_PINGPONG
     cineRepeat = CINE_ONCE
     cineSpeed = 0.1
+    cineAlwaysReset = TRUE
     snapToCenter = FALSE
     zoomMode = VIEW2D_AUTO_ZOOM
     unzoomOnImageChange = FALSE
@@ -81,10 +71,10 @@ module View2D {
     baseColor = "1 1 1"
     margin = "2 2"
     sliceOrigin = "0 0"
-    plane = "0 0 1 -341.5"
+    useShaders = TRUE
+    useManagedInteraction = FALSE
     lutCenter = 1
     lutWidth = 1
-    lutUseTraceColors = FALSE
     annotationOn = TRUE
     annotationMode = ANNO_MODE_AUTO
     annotationSizeMode = ANNO_SHOW_DETAILED
@@ -95,8 +85,11 @@ module View2D {
     borderOn = FALSE
     borderColor = "0.899999976158142 0.899999976158142 0.899999976158142"
     valueHighPrecision = TRUE
+    showColorChannelValues = FALSE
+    colorChannelSeparator = " / "
     maxPrecision = 4
     enableSlicing = TRUE
+    useRelativeLUTIfNoInputImage = TRUE
     hiResRendering = TRUE
   }
 }
@@ -119,31 +112,26 @@ module DirectDicomImport {
   }
   fields  {
     instanceName = ImportFromOsiriX
-    fullPath = ""
+    tagDumpSize = 10000
+    dumpPrivateTagValues = FALSE
+    numShownBinaryEntries = 8
+    annotate = FALSE
+    regExLineFilter = ""
     fullUserSrcPaths = ""
     fullTargetPath = ""
+    useRelativeCachePaths = FALSE
+    writeSingleVolumeCacheFiles = FALSE
     autoCreateCachePath = TRUE
     cacheFileName = DDICacheFile
+    consoleSizeInKiloBytes = 64
     outVolume = 0
+    preferCacheBeforeImport = FALSE
     clearAfterImport = TRUE
-    progress = 0
-    progressInfo = ""
-    maxCachedMBs = 250
+    clearSingleFrameCacheAfterImport = TRUE
+    maxTreeCachedMBs = 250
+    maxTagCachedMBs = 80
+    editDicomCacheSize = TRUE
     useResultCaching = TRUE
-    numVolumes = 0
-    totalSlices = 0
-    totalTimePoints = 0
-    totalSlicesMultTimePoints = 0
-    totalVoxels = 0
-    extX = 0
-    extY = 0
-    extZ = 0
-    extC = 0
-    extT = 0
-    extU = 0
-    numVolVoxels = 0
-    tagDumpSize = 10000
-    volumeInfoDump = ""
     suppressedFilesAndSuffixes = ".txt .mlab .db .log .lst .xml .rar .zip .exe .inf .raw .svn-base entries all-wcprops"
     explicitFileTypes = ".png .pnm .pgm .jpg .jpeg .bmp .lsm .nhdr .ppm .tif .tiff .mlimage"
     inputFileList = ""
@@ -156,90 +144,23 @@ module DirectDicomImport {
     userColumnTag1 = ""
     userColumnTag2 = ""
     iconBuildMode = UseMiddleSlice
-    index = TRUE
     icon = FALSE
-    studyID = TRUE
-    patientID = TRUE
-    patientsName = TRUE
-    patientSex = TRUE
-    modality = TRUE
     userTag0 = FALSE
     userTag1 = FALSE
     userTag2 = FALSE
-    validImage = TRUE
-    hasIssues = TRUE
-    importTime = FALSE
-    fileType = TRUE
-    voxelType = TRUE
-    imgExt = TRUE
-    voxelExtent = FALSE
-    numVoxels = TRUE
-    numSlices = TRUE
-    colorImage = FALSE
-    numTimePoints = TRUE
-    numSrcFiles = TRUE
-    firstOrigFile = FALSE
-    outFileName = FALSE
-    inputFilterLabel = FALSE
-    lossy = FALSE
-    compressionType = FALSE
-    acquisitionDate = FALSE
-    acquisitionMatrix = FALSE
-    acquisitionNumber = FALSE
-    acquisitionTime = FALSE
-    aCR_NEMA_AcquisitionsInSeries = FALSE
-    aCR_NEMA_ImageOrientation = FALSE
-    bitsAllocated = FALSE
-    bitsStored = FALSE
-    columns = FALSE
-    contentDate = FALSE
-    contentTime = FALSE
-    convolutionKernel = FALSE
-    echoTime = FALSE
-    echoTrainLength = FALSE
-    flipAngle = FALSE
-    frameOfReferenceUID = FALSE
-    gantryAngle = FALSE
-    gantryAngleTolerance = FALSE
-    gantryDetectorSlew = FALSE
-    gantryDetectorTilt = FALSE
-    gantryRotationDirection = FALSE
-    mRAcquisitionType = FALSE
-    highBit = FALSE
-    imageOrientationPatient = FALSE
-    imageType = FALSE
-    imagingFrequency = FALSE
-    instanceNumber = FALSE
-    inversionTime = FALSE
-    largestImagePixelValue = FALSE
-    numberOfAverages = FALSE
-    numberOfFrames = FALSE
-    numberOfPhaseEncodingSteps = FALSE
-    patientsAge = FALSE
-    patientOrientation = FALSE
-    percentSampling = FALSE
-    photometricInterpretation = FALSE
-    pixelSpacing = FALSE
-    repetitionTime = FALSE
-    rows = FALSE
-    sAR = FALSE
-    scanningSequence = FALSE
-    scanOptions = FALSE
-    sequenceName = FALSE
-    seriesDate = FALSE
-    seriesDescription = FALSE
-    seriesNumber = FALSE
-    seriesTime = FALSE
-    sliceThickness = FALSE
-    smallestImagePixelValue = FALSE
-    spacingBetweenSlices = FALSE
-    studyDate = FALSE
-    studyDescription = FALSE
-    studyInstanceUID = FALSE
-    studyTime = FALSE
+    columnConfig = "# Note: Comments must always be prefixed at line start with a '#'.
+
+# Default setting:
+validImage hasIssues fileType voxelType imgExt numVoxels numSlices numTimePoints numSrcFiles modality patientID patientSex patientsName studyID
+
+#modality studyDate acquisitionTime numSlices spacingBetweenSlices studyDescription seriesDescription acquisitionDate imageComments patientsName patientSex patientsBirthDate patientID referringPhysiciansName admittingDiagnosesDescription
+
+# Available values are:
+#userTag0 userTag1 userTag2 validImage hasIssues importTime fileType voxelType imgExt voxelExtent numVoxels numSlices colorImage numTimePoints numSrcFiles firstOrigFile outFileName inputFilterLabel lossy compressionType humanReadableOrientation accessionNumber acquisitionDate acquisitionMatrix acquisitionNumber acquisitionTime aCR_NEMA_AcquisitionsInSeries aCR_NEMA_ImageOrientation aCR_NEMA_ImagePosition admittingDiagnosesDescription angioFlag bitsAllocated bitsStored bodyPartExamined codeMeaning codeValue columns contentDate contentTime contrastBolusAgent contrastBolusStartTime convolutionKernel currentPatientLocation derivationDescription echoTime echoTrainLength exposure exposureTime flipAngle frameOfReferenceUID gantryAngle gantryAngleTolerance gantryDetectorSlew gantryDetectorTilt gantryRotationDirection highBit imageComments imagedNucleus imageOrientationPatient imagePositionPatient imageType imagingFrequency instanceCreationDate instanceCreationTime instanceNumber institutionAddress institutionName inversionTime kVP largestImagePixelValue magneticFieldStrength manufacturer manufacturersModelName mediaStorageSOPInstanceUID modality mRAcquisitionType nameOfPhysiciansReadingStudy numberOfAverages numberOfFrames numberOfPhaseEncodingSteps numberOfTemporalPositions otherPatientNames patientComments patientID patientOrientation patientsAge percentSampling patientSex patientPosition patientsAddress patientsMothersBirthName patientsName patientsTelephoneNumbers patientsWeight patientsBirthDate performedProcedureStepDescription performedProcedureStepStartDate performedProcedureStepStartTime photometricInterpretation physiciansOfRecord pixelRepresentation pixelSpacing protocolName receiveCoilName reconstructionDiameter referringPhysiciansName repetitionTime requestedProcedureDescription requestingPhysician requestingService rescaleIntercept rescaleSlope rescaleType rows samplesPerPixel sAR scanningSequence scanOptions scheduledProcedureStepDescription sequenceName sequenceVariant seriesDate seriesDescription seriesInstanceUID seriesNumber seriesTime sliceLocation sliceThickness smallestImagePixelValue softwareVersions sOPClassUID sOPInstanceUID spacingBetweenSlices stationName studyDate studyDescription studyID studyInstanceUID studyTime windowCenter windowWidth xRayTubeCurrent "
     dplCalcMinMax = Automatic
     dplAnon = FALSE
     dplVerbose = 0
+    specialProcessors = Off
     minimumNumFramesInVolume = 9
     dplConfigString0 = "*(
   {Element = (0008,0060); Name = Modality; Sort = 1; Part = 1; },
@@ -417,6 +338,13 @@ module DirectDicomImport {
     force2DPlusTCondition = "Modality == XA | Modality == US | Modality == RF"
     logPartingAndSortingInformation = FALSE
     dplScanRecursively = TRUE
+    decomposeMultiFrameFiles = TRUE
+    copyFullFunctionalGroupSequences = FALSE
+    removePrivateMFSQTag = FALSE
+    forceOrthogonalWorldMatrix = FALSE
+    decomposeTo3DVolumes = FALSE
+    allowMixedPixelTypes = FALSE
+    copyPrivateTopLevelSourceTags = TRUE
     dplHardOverwriteTagOn0 = FALSE
     dplHardOverwriteTagId0 = ""
     dplHardOverwriteTagStr0 = ""
@@ -429,7 +357,10 @@ module DirectDicomImport {
     dplHardOverwriteTagOn3 = FALSE
     dplHardOverwriteTagId3 = ""
     dplHardOverwriteTagStr3 = ""
+    dplAllowSortingAccordingToDimensionIndexValues = Auto
+    dplWorkaroundValueForImageOrientationPatientTag = ""
     composeOtherFilesMode = Single
+    silentTrialFileTypes = ".dat .raw .txt"
     source = ""
     guiCachePath = $(UserAppCacheDirPath)
   }
@@ -476,8 +407,8 @@ module DicomTool {
   }
   fields  {
     instanceName = SendToOsiriX
-    exportDir = ""
-    exportBaseDir = ""
+    exportDir = "/Users/fritter/Documents/OsiriX Data/INCOMING.noindex"
+    exportBaseDir = "/Users/fritter/Documents/OsiriX Data/INCOMING.noindex"
     exportNameTemplate = $S/export$T.dcm
     addPatNameDir = FALSE
     addStudyUIDDIR = FALSE
@@ -496,23 +427,15 @@ module DicomTool {
     displayMode2 = All
     newStudyUID = FALSE
     newSeriesUID = TRUE
-    hasStudyUID = FALSE
-    hasSeriesUID = FALSE
     restoreFrameSpecific = FALSE
-    saveEnabled = TRUE
     storeTimeInfo = None
     dicomComment = MeVisLab
-    canCancel = FALSE
-    progress = 0
-    status = "Saved 0 DICOM images to /Users/ritter/Documents/OsiriX Data/INCOMING.noindex"
-    dicomConsole = ""
     consoleAutoClear = TRUE
     dicomOutput = ""
     echoVerbose = TRUE
     echoDebug = FALSE
     storeVerbose = TRUE
     storeDebug = FALSE
-    dicomConfigList = OsiriX
     currentConfigSet = OsiriX
     dicomName = OsiriX
     dicomType = PACS
@@ -564,7 +487,6 @@ module OsiriXBridge {
   fields  {
     instanceName = OsiriXBridge
     alternativeTargetName = ""
-    osirixIncomingDirAutoUpdate = TRUE
     useEatDicom = FALSE
     dataStoreDir = ""
     eatDicomOptions = "-r -v1"
@@ -586,7 +508,7 @@ networkModel  {
         uniqueId = 17
         objectName = ""
         parentUniqueId = 0
-        frame = "-25 -187 261 138"
+        frame = "-59 -216 281 168"
         backgroundColor  {
           r = 252
           g = 240
@@ -596,6 +518,7 @@ networkModel  {
         text = "Select a serie in the database window of OsiriX, and send the data via the Send to MeVisLab toolbar icon to the OsiriXBridge target. The processed dataset can be sent back to OsiriX and displayed there (connect the Convolution and Scale modules)."
         titleText = ReadMe
         isCollapsed = False
+        titleFrame = "-54 -211 271 22"
       }
     }
   }

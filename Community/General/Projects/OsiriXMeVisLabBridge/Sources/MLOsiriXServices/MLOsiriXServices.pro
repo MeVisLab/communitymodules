@@ -6,6 +6,8 @@
 #  This code is in the public domain.
 #
 
+MEVIS_MAINTAINER = fritter
+
 TEMPLATE = lib
 
 TARGET = MLOsiriXServices
@@ -15,7 +17,7 @@ TARGET = MLOsiriXServices
 CONFIG += dll
 
 # make sure to set CONFIG and non-default MLAB_PACKAGES before the following line
-include ($(MLAB_Community_General)/Configuration/DefaultProjectSetup.pri)
+include( $(MLAB_CURRENT_PACKAGE_DIR)/Configuration/DefaultProjectSetup.pri )
 
 INCLUDEPATH += ..
 

@@ -1,10 +1,12 @@
 // **InsertLicense** code
 
 Description {
-  Field slicesFileList    { persistent = no }
-  Field filename          { persistent = no }
-  Field osirixIncomingDir { persistent = no }
-  Field eatDicomOutput    { persistent = no }
+  Field updateClientInfo  { deprecatedName = osirixIncomingDirUpdate }
+  Field slicesFileList    { editable = no }
+  Field filename          { editable = no }
+  Field osirixIncomingDir { editable = no }
+  Field clientAppBundleId { editable = no }
+  Field eatDicomOutput    { editable = no }
   
   Field eatDicomOptions {
     value = "$(EatDicomOptions)"
@@ -28,25 +30,40 @@ Window {
 
   TabView {
     TabViewItem "OsiriX Setup" {
-      Box "Module Identifier in OsiriX" { layout=Vertical
+      Box "Module Identifier in OsiriX or Horos" { layout=Vertical
         HyperLabel { scale = -1 style = HelpText
-          title = "An alternative name for this module in the target pop-up menu of the <em>Send to MeVisLab</em> toolbar icon in <a href='http://www.osirix-viewer.com/'>OsiriX</a>. The name will take precedence over the instance name of the module if set."
+          title = "An alternative name for this module in the target pop-up menu of the <em>Send to MeVisLab</em> toolbar icon in <a href='http://www.osirix-viewer.com/'>OsiriX</a> or <a href='https://www.horosproject.org/'>Horos</a>. The name will take precedence over the instance name of the module if set."
         }
         Field alternativeTargetName {
           title = "Alternative target name:"
         }
       }
+      Box "User's Guide" { layout=Vertical
+        HyperLabel { scale = -1 style = HelpText
+          title = "Please read the User's Guide for a more in detail description about the OsiriX MeVisLab Bridge and the setup."
+        }
+        Button {
+          title   = "Show User's Guide"
+          command = "showGuide"
+        }
+      }
       Box "OsiriX PlugIn" { layout=Vertical
         HyperLabel { scale = -1 style = HelpText
-          title = "To send DICOM data from OsiriX to MeVisLab you need to install the OsiriXMeVisLabBridge plugin for OsiriX."
+          title = "To send DICOM data from OsiriX or Horos to MeVisLab you need to install the OsiriXMeVisLabBridge plugin for OsiriX or Horos."
         }
         Horizontal {
-          Button {
-            title   = "Install OsiriX PlugIn"
-            command = "installPlugin"
+          Vertical {
+            Button {
+              title   = "Install PlugIn for OsiriX"
+              command = "installOsiriXPlugin"
+            }
+            Button {
+              title   = "Install PlugIn for Horos"
+              command = "installHorosPlugin"
+            }
           }
           Button {
-            title   = "Show OsiriX PlugIn"
+            title   = "Show PlugIn Location"
             command = "showPlugin"
           }
         }
@@ -60,7 +77,6 @@ Window {
           }
           Field slicesFileList {
             title = "DICOM slices file list:"
-            edit  = no
             trim  = left
           }
         }
@@ -87,7 +103,6 @@ Window {
             }
             Field filename {
               title = "Converted DICOM dataset filename:"
-              edit  = no
               trim  = left
             }
           }
@@ -100,15 +115,24 @@ Window {
         Horizontal {
           Field osirixIncomingDir {
             title = "OsiriX incoming folder:"
-            edit  = no
             trim  = left
           }
-          Button osirixIncomingDirUpdate {
+          Button updateClientInfo {
             title = "Update"
           }
         }
-        CheckBox osirixIncomingDirAutoUpdate {
-          title = "Automatically update the incoming folder field if a new dataset arrives"
+      }
+      Box "Client Identification" { layout=Vertical
+        HyperLabel { scale = -1 style = HelpText
+          title = "The client information can be used to distinguish different client applications (e.g. OsiriX and Horos)."
+        }
+        Horizontal {
+          Field clientAppBundleId {
+            title = "Client Id:"
+          }
+          Button updateClientInfo {
+            title = "Update"
+          }
         }
       }
     }
@@ -139,7 +163,6 @@ Window {
         Box "DICOM processing output" { layout=Vertical expandY=Yes
           TextView eatDicomOutput {
             title      = ""
-            edit       = no
             style      = monospacedTextView
             textFormat = Plain
             w          = 400

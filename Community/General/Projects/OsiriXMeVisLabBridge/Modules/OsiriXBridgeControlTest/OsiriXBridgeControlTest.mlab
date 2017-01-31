@@ -41,7 +41,6 @@ module SoView2DSlicePan {
     interactionProviderID = ""
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -125,7 +124,6 @@ module SoView2DAnnotation {
     interactionProviderID = ""
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = TRUE
     fixZOn = TRUE
     color = "0.899999976158142 0.899999976158142 0.899999976158142"
     selectionTolerance = 4
@@ -253,6 +251,12 @@ LUT C/W: $(input03) / $(input04)"
     orientationModelRelativeSize = 0.125
     orientationModelMinSize = 24
     orientationModelMaxSize = 128
+    orientationModelRelativeVerticalOffset = 0
+    orientationModelMinVerticalOffset = 0
+    orientationModelMaxVerticalOffset = 128
+    orientationModelRelativeHorizontalOffset = 0
+    orientationModelMinHorizontalOffset = 0
+    orientationModelMaxHorizontalOffset = 128
     orientationModelColor = "1 1 1"
     orientationAndScaleFromCamera = FALSE
     drawBackgroundBox = FALSE
@@ -282,26 +286,14 @@ module SoMouseGrabber {
     button1 = PRESSED
     button2 = IGNORED
     button3 = IGNORED
-    button1Pressed = FALSE
-    button2Pressed = FALSE
-    button3Pressed = FALSE
     shift = RELEASED
     ctrl = RELEASED
     alt = RELEASED
-    shiftPressed = FALSE
-    ctrlPressed = FALSE
-    altPressed = FALSE
     cursorShape = LUT_CURSOR
-    absX = 351
-    absY = 273
-    x = 0
-    y = 0
     xmin = 0
     xmax = 0
     ymin = 0
     ymax = 0
-    cursorPresent = FALSE
-    maskValid = FALSE
     setEventHandled = FALSE
     setWheelEventHandled = FALSE
     flipX = FALSE
@@ -332,7 +324,6 @@ module SoView2DSlicer {
     interactionProviderID = ""
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -378,7 +369,6 @@ module SoView2DSliceZoom {
     interactionProviderID = ""
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -424,7 +414,6 @@ module SoView2DSlicePan {
     interactionProviderID = ""
     drawingOn = TRUE
     editingOn = TRUE
-    maskValid = FALSE
     fixZOn = TRUE
     color = "1 1 1"
     selectionTolerance = 4
@@ -464,7 +453,6 @@ module OsiriXBridge {
   fields  {
     instanceName = OsiriXBridge
     alternativeTargetName = ""
-    osirixIncomingDirAutoUpdate = FALSE
     useEatDicom = FALSE
     dataStoreDir = ""
     eatDicomOptions = "-r -v1"
@@ -494,7 +482,6 @@ module DirectDicomImport {
     numShownBinaryEntries = 8
     annotate = FALSE
     regExLineFilter = ""
-    fullPath = ""
     fullUserSrcPaths = ""
     fullTargetPath = ""
     useRelativeCachePaths = FALSE
@@ -506,8 +493,6 @@ module DirectDicomImport {
     preferCacheBeforeImport = FALSE
     clearAfterImport = TRUE
     clearSingleFrameCacheAfterImport = TRUE
-    progress = 0
-    progressInfo = ""
     maxTreeCachedMBs = 250
     maxTagCachedMBs = 80
     editDicomCacheSize = TRUE
@@ -719,10 +704,12 @@ validImage hasIssues fileType voxelType imgExt numVoxels numSlices numTimePoints
     logPartingAndSortingInformation = FALSE
     dplScanRecursively = TRUE
     decomposeMultiFrameFiles = TRUE
+    copyFullFunctionalGroupSequences = FALSE
     removePrivateMFSQTag = FALSE
     forceOrthogonalWorldMatrix = FALSE
     decomposeTo3DVolumes = FALSE
     allowMixedPixelTypes = FALSE
+    copyPrivateTopLevelSourceTags = TRUE
     dplHardOverwriteTagOn0 = FALSE
     dplHardOverwriteTagId0 = ""
     dplHardOverwriteTagStr0 = ""
@@ -735,7 +722,10 @@ validImage hasIssues fileType voxelType imgExt numVoxels numSlices numTimePoints
     dplHardOverwriteTagOn3 = FALSE
     dplHardOverwriteTagId3 = ""
     dplHardOverwriteTagStr3 = ""
+    dplAllowSortingAccordingToDimensionIndexValues = Auto
+    dplWorkaroundValueForImageOrientationPatientTag = ""
     composeOtherFilesMode = Single
+    silentTrialFileTypes = ".dat .raw .txt"
     source = ""
     guiCachePath = ""
   }
@@ -767,7 +757,6 @@ module SoView2D {
     upperRight = "1 1"
     margin = "2 2"
     spacing = "4 4"
-    plane = "0 0 1 -406"
     sliceZoom = 0.8399992
     sliceZoomSynchronized = 0.8399992
     zoomCenter = "0.5 0.5"
@@ -814,7 +803,6 @@ module SoView2D {
     cineFullRangeZ = TRUE
     cineFullRangeT = TRUE
     cineAlwaysReset = TRUE
-    status = "Nothing active"
     deletingEnabled = TRUE
     handle2DEvents = TRUE
     handle3DEvents = TRUE
@@ -851,12 +839,12 @@ module SoRenderArea {
     useSampleBuffers = FALSE
     numSamples = 8
     grabKeyFocus = TRUE
+    enableKeyCommands = TRUE
     snapshotFormat = SNAPSHOT_RGB
     outputAviFile = ""
     autoRedrawWhenRecording = TRUE
     frameRate = 7
     frameRateAvi = 15
-    status = ready
     outputSnapshotFile = none
     outputSnapshotFileWritten = none
     autoIncreaseFile = TRUE

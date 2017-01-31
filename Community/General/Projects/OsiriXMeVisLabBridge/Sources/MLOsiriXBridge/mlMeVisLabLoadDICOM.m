@@ -8,7 +8,6 @@
 
 #import "mlMeVisLabLoadDICOM.h"
 #import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
 
 static MeVisLabLoadDICOM *__mlabLoadDicom = nil;
 
@@ -114,7 +113,7 @@ static MeVisLabLoadDICOM *__mlabLoadDicom = nil;
 
 - (int) protocolVersion
 {
-  return MeVisLabLoadDICOM_ProtocolVersion;
+  return MLMeVisLabLoadDICOMServices_ProtocolVersion;
 }
 
 - (NSString *) servicesProviderName
@@ -125,6 +124,21 @@ static MeVisLabLoadDICOM *__mlabLoadDicom = nil;
 - (NSUInteger) servicesProviderVersion
 {
   return 1;
+}
+
+- (NSString *) servicesProviderAppName
+{
+  return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+}
+
+- (NSString *) servicesProviderAppVersion
+{
+  return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
+- (NSString *) servicesProviderAppId
+{
+  return [[NSBundle mainBundle] bundleIdentifier];
 }
 
 - (void) clientIsInitialized

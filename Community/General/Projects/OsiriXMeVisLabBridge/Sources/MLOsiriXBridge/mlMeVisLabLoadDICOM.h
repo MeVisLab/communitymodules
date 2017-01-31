@@ -13,7 +13,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSConnection.h>
 
-@interface MeVisLabLoadDICOM : NSObject <MeVisLabLoadDICOM> {
+@interface MeVisLabLoadDICOM : NSObject <MLMeVisLabLoadDICOMServices> {
 @private
   NSUInteger managerRetainCount;
   NSConnection *incomingConnection;  

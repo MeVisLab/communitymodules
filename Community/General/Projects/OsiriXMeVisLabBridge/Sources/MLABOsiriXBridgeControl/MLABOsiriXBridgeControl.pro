@@ -2,9 +2,11 @@
 #  MLABOsiriXBridgeControl.pro
 #  MLABOsiriXBridgeControl
 #
-#  Created by Felix Ritter on 18.01.08.
+#  Created by Felix Ritter on 01.02.10.
 #  This code is in the public domain.
 #
+
+MEVIS_MAINTAINER = fritter
 
 TEMPLATE = lib
 
@@ -16,14 +18,19 @@ CONFIG += dll MLABBase MLABGUICore MLABFields MLABNetwork MLUtilitiesHeader MLOS
 CONFIG += MLOsiriXServices
 
 # make sure to set CONFIG and non-default MLAB_PACKAGES before the following line
-include ($(MLAB_Community_General)/Configuration/DefaultProjectSetup.pri)
+include( $(MLAB_CURRENT_PACKAGE_DIR)/Configuration/DefaultProjectSetup.pri )
 
 CONFIG += qt
+QT += widgets
 DEFINES += UNICODE _UNICODE
 
 DEFINES += MEVISLAB_CORE ML_DISABLE_DEPRECATED
 
-macx {
+macos {
+
+include( $(MLAB_MeVis_BuildSystem)/Configuration/features/OSXAddSilentQtHeaderSearchPaths.pri )
+
+QT += macextras
 
 HEADERS += \
         mlabOsiriXBridgeCocoaWindowDelegate.h \
@@ -38,7 +45,8 @@ SOURCES += \
         OsiriXPasteboardMime.cpp
 
 LIBS += \
-        -framework Cocoa
+        -framework AppKit \
+        -framework Foundation
 
 }
 
