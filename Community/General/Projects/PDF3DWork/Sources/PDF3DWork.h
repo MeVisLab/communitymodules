@@ -16,7 +16,7 @@
 
 // Project includes
 #include <PDFGenerator.h>
-#include <shared/U3DInternalFormat/U3D_Object_DataTypes.h>
+#include <U3D_Object_DataTypes.h>
 
 // ML includes
 #include <mlModuleIncludes.h>

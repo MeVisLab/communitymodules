@@ -12,8 +12,8 @@
 
 // Local includes
 #include "../MLU3DSystem.h"
-#include "MLU3D_DataTypes.h"
-#include "U3DInternalFormat/U3D_Object_GeometryGenerators.h"
+#include <MLU3D_DataTypes.h>
+#include <U3D_Object_GeometryGenerators.h>
 
 // Project includes
 #include <IndexPairList.h>

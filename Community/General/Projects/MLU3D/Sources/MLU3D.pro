@@ -21,7 +21,13 @@ CONFIG += dll ML MLBase MLWEM MLFiberUtils MLBaseListExtensions inventor
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General FMEstable_Release
 
-INCLUDEPATH += ./shared/
+INCLUDEPATH += ./abstract
+INCLUDEPATH += ./abstract/BaseModules
+INCLUDEPATH += ./modules
+INCLUDEPATH += ./modules/auxiliary
+INCLUDEPATH += ./shared
+INCLUDEPATH += ./shared/U3DFileFormat
+INCLUDEPATH += ./shared/U3DInternalFormat
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
 include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)
@@ -125,7 +131,8 @@ RELATEDFILES += \
   ../Modules/U3DLoad.script \
   ../Modules/U3DSave.script \
   ../Modules/U3DAssemble.script \
-  ../Modules/U3DVisualize.script \
+  ../Modules/U3DInspector.script \
+  ../Modules/U3DAddModelFromFiberSet.script \
   ../Modules/U3DAddModelFromMarkerList.script \
   ../Modules/U3DAddModelFromWEM.script \
   ../Modules/U3DGeometryToXMarkerList.script \
@@ -133,6 +140,6 @@ RELATEDFILES += \
   ../Modules/U3DGeometryToWEM.script \
   ../Modules/ListsToFibers.script \
   ../Modules/LoadPointLineGeometry.script \
-
+  ../Modules/U3DSpecificationGenerator.script \
 
 
