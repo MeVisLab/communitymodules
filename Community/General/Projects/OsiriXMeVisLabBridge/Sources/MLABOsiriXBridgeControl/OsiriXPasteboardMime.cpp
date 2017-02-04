@@ -14,7 +14,7 @@
  */
 
 #include "OsiriXPasteboardMime.h"
-#include <QtGui>
+#include <QtGui/QtGui>
 
 static const char *kPasteBoardOsiriXType = "OsiriX pasteboard";
 

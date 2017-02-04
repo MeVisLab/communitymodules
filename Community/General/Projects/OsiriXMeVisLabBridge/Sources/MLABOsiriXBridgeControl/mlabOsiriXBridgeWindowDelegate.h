@@ -16,13 +16,13 @@
 #ifndef MLABOSIRIXBRIDGEWINDOWDELEGATE_H_
 #define MLABOSIRIXBRIDGEWINDOWDELEGATE_H_
 
-#include <QObject>
-#include <QEvent>
-#include <QWidget>
-#include <QDragEnterEvent>
-#include <QDragLeaveEvent>
-#include <QDropEvent>
-#include <QPaintEvent>
+#include <QtCore/QObject>
+#include <QtCore/QEvent>
+#include <QtGui/QWidget>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QDragLeaveEvent>
+#include <QtGui/QDropEvent>
+#include <QtGui/QPaintEvent>
 
 class MLABOsiriXBridgeControl;
 class MLABOsiriXBridgeWindowDelegatePrivate;

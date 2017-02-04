@@ -16,7 +16,7 @@
 #ifndef OSIRIXPASTEBOARDMIME_H_
 #define OSIRIXPASTEBOARDMIME_H_
 
-#include <QMacPasteboardMime>
+#include <QtGui/QMacPasteboardMime>
 
 class OsiriXPasteboardMime : public QMacPasteboardMime
 {
