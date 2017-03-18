@@ -179,7 +179,6 @@ SWITCH_PACKAGE Community/ThirdParty
 + lib/$(SDK_LIBDLLPREFIX)libhpdf$(SDK_LIBDLLSUFFIX)
 + lib/libhpdf.mldepends
 + Configuration/Community_ThirdParty.pri
-+ Modules/libhpdf.def
 + Sources/libhpdf/include
 + Sources/libhpdf/include/modified
 + Sources/libhpdf/src

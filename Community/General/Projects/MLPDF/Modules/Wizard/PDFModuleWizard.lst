@@ -8,9 +8,9 @@ $(LOCAL)/Sources/PDFModuleTemplate.cpp -> ${vars.cppProject.projectSourceDir}/${
 $(LOCAL)/Sources/PDFModuleTemplateSystem.h -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}System.h
 $(LOCAL)/Sources/PDFModuleTemplateInit.h -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}Init.h
 $(LOCAL)/Sources/PDFModuleTemplateInit.cpp -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}Init.cpp
-$(LOCAL)/Sources/PDFModuleTemplate.pro -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.pro
-$(LOCAL)/Sources/PDFModuleTemplate.bat -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.bat
-$(LOCAL)/Sources/PDFModuleTemplate.sh -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.sh
+$(LOCAL)/Sources/PDFModuleTemplate._pro -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.pro
+$(LOCAL)/Sources/PDFModuleTemplate._bat -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.bat
+$(LOCAL)/Sources/PDFModuleTemplate._sh -> ${vars.cppProject.projectSourceDir}/${vars.cppProject.fullProject}.sh
 %endif
 
 # Module runtime files
