@@ -455,7 +455,7 @@ float PDFGenerator::pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, 
       float cellSpacing = 10;
       float cellLineLeadingFactor = 0.6;
 
-      for (int thisRow = 0; thisRow < cellContentStrings.size(); thisRow++)
+      for (unsigned int thisRow = 0; thisRow < cellContentStrings.size(); thisRow++)
       {
         float cellHeightPerLine = (pdfDoc_GetCurrentFontTextHeight() + currentPageLeading*(1 - cellLineLeadingFactor));
 
@@ -472,7 +472,7 @@ float PDFGenerator::pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, 
           pdfDoc_SetCurrentFont(buildInFonts.TimesBold, currentfontSize);
         }
 
-        for (int thisCell = 0; thisCell < thisRowStrings.size(); thisCell++)
+        for (unsigned int thisCell = 0; thisCell < thisRowStrings.size(); thisCell++)
         {
           std::string thisCellString = thisRowStrings[thisCell];
 
@@ -489,7 +489,7 @@ float PDFGenerator::pdfDoc_WriteHTMLTableAt(float x, float y, std::string html, 
           {
             if (thisRowColumnSpans[thisCell] > 1)
             {
-              for (int cc = thisCell + 1; cc < columnWidths.size(); cc++)
+              for (unsigned int cc = thisCell + 1; cc < columnWidths.size(); cc++)
               {
                 cellWidth += columnWidths[cc];
               }

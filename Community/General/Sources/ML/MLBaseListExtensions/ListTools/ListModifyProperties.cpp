@@ -88,7 +88,7 @@ void ListModifyProperties::handleNotification (Field *field)
 
     if (updateRelatedFieldTouched) 
     {
-      int autoUpdateMode = _autoUpdateModeFld->getEnumValue();
+      autoUpdateMode = _autoUpdateModeFld->getEnumValue();
 
       if (autoUpdateMode == AutoUpdateModeAutoClear)
       {
@@ -184,7 +184,7 @@ void ListModifyProperties::_updateOutputListSpecialized()
         {
           if ( changeTypeValue != 0 )
           {
-            newItem.type += (int)changeTypeValue;
+            newItem.type += static_cast<int>(changeTypeValue);
           }
 
           newOutList->insertItemAt(insertPos, &newItem);

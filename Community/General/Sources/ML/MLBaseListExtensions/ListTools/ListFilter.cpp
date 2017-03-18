@@ -89,7 +89,7 @@ void ListFilter::handleNotification (Field *field)
 
     if (updateRelatedFieldTouched) 
     {
-      int autoUpdateMode = _autoUpdateModeFld->getEnumValue();
+      autoUpdateMode = _autoUpdateModeFld->getEnumValue();
 
       if (autoUpdateMode == AutoUpdateModeAutoClear)
       {
@@ -184,7 +184,7 @@ void ListFilter::_updateOutputListSpecialized()
         if (inListItem)
         {
           std::string itemName(inListItem->name());
-          std::string itemType = intToString((int)inListItem->type);
+          std::string itemType = intToString(static_cast<int>(inListItem->type));
 
           if ( (_itemPropertyAllowed(itemName, allowedNames)) && (_itemPropertyAllowed(itemType, allowedTypes)) )
           {

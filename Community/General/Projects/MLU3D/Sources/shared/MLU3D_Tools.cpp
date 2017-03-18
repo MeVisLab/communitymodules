@@ -909,7 +909,7 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
   {
     Vector3 thisModelSpecularColor;
     Vector4 thisModelDiffuseColor;
-    bool    thisModelUseVertexColors;
+    bool    thisModelUseVertexColors = false;
 
     ObjectSpecificationMap thisSpecificationParameters = mlU3D::U3DTools::getAllSpecificationParametersFromString(specificationsVector[i]);
     thisSpecificationParameters["ObjectType"] = mlU3D::MODELTYPE_MESH;

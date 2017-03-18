@@ -105,7 +105,7 @@ void ListInfo::_updateInfo() {
   
   if (inListBase)
   {
-    inListLength     = (int)inListBase->getSize();
+    inListLength     = static_cast<int>(inListBase->getSize());
     inListTypeIdName = inListBase->getTypeIdName();
 
     if ("XMarkerList" == inListTypeIdName) 
@@ -217,7 +217,7 @@ void ListInfo::_getTypeProperties(ListBase* inList, int& listTypeMin, int& listT
   {
     ElementType* inListItem = static_cast<ElementType*>(inList->getItemAt(i));
 
-    int inListType = (int)inListItem->type;
+    int inListType = static_cast<int>(inListItem->type);
 
     if (inListType < typeMin)
     {
@@ -234,7 +234,7 @@ void ListInfo::_getTypeProperties(ListBase* inList, int& listTypeMin, int& listT
 
   listTypeMin = typeMin;
   listTypeMax = typeMax;
-  listNumDifferentTypes = (int)differentTypesSet.size();
+  listNumDifferentTypes = static_cast<int>(differentTypesSet.size());
 }
 
 //------------------------------------------------------------------------------------------

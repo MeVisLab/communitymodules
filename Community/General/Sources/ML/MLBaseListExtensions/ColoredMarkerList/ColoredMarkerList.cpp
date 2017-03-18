@@ -152,7 +152,7 @@ ml::XMarkerList ColoredMarkerList::toXMarkerList()
 
   for(ml::ColoredMarkerList::iterator thisElement = this->begin();  thisElement != this->end();  ++thisElement)
   {
-    ml::XMarker newMarker(Vector6(thisElement->x(),thisElement->y(),thisElement->z(),thisElement->c(),thisElement->t(),thisElement->u()), (int)thisElement->type);    
+    ml::XMarker newMarker(Vector6(thisElement->x(),thisElement->y(),thisElement->z(),thisElement->c(),thisElement->t(),thisElement->u()), static_cast<int>(thisElement->type));    
     newMarker.setName(thisElement->name());
 
     result.push_back(newMarker);
@@ -303,15 +303,15 @@ void ColoredMarkerListContainer::updatePropertyFields()
         }
 
         if(_fldPosC->getFloatValue() != marker->c()) {
-          _fldPosC->setFloatValue((float)marker->c());
+          _fldPosC->setFloatValue(static_cast<float>(marker->c()));
         }
 
         if(_fldPosT->getFloatValue() != marker->t()) {
-          _fldPosT->setFloatValue((float)marker->t());
+          _fldPosT->setFloatValue(static_cast<float>(marker->t()));
         }
 
         if(_fldPosU->getFloatValue() != marker->u()) {
-          _fldPosU->setFloatValue((float)marker->u());
+          _fldPosU->setFloatValue(static_cast<float>(marker->u()));
         }
 
         if(_fldColor->getVector3Value() != Vector3(marker->rgba(), false)) {
@@ -319,7 +319,7 @@ void ColoredMarkerListContainer::updatePropertyFields()
         }
 
         if(_fldAlpha->getFloatValue() != marker->alpha()) {
-          _fldAlpha->setFloatValue((float)marker->alpha());
+          _fldAlpha->setFloatValue(static_cast<float>(marker->alpha()));
         }
 
         if(_fldType->getIntValue() != marker->type) {
@@ -410,11 +410,10 @@ void ColoredMarkerListContainer::copyItemToTemplate(MLssize_t index)
 
     // ColoredMarker-specific fields
     _fldNewPos3D  ->setVector3Value( Vector3(marker->pos[0], marker->pos[1], marker->pos[2]) );
-    _fldNewPosC   ->setFloatValue( (float)marker->pos[3] );
-    _fldNewPosT   ->setFloatValue( (float)marker->pos[4] );
-    _fldNewPosU   ->setFloatValue( (float)marker->pos[5] );
-    _fldNewColor  ->setVector3Value( Vector3(marker->color, false) );
-    _fldNewAlpha  ->setFloatValue( (float)marker->color[3] );
+    _fldNewPosC   ->setFloatValue(   static_cast<float>(marker->pos[3])   );
+    _fldNewPosT   ->setFloatValue(   static_cast<float>(marker->pos[5])   );
+    _fldNewColor  ->setVector3Value( Vector3(marker->color, false)        );
+    _fldNewAlpha  ->setFloatValue(   static_cast<float>(marker->color[3]) );
 
     _fldNewType   ->setIntValue( marker->type );
 

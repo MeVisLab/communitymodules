@@ -159,7 +159,7 @@ std::vector<DOMElement*> PDFGenerator::_getAllNodeElements(DOMElement* parentEle
 
     size_t nodeListLength = nodeList->getLength();
 
-    for (int i = 0; i < nodeListLength; i++)
+    for (XMLSize_t i = 0; i < nodeListLength; i++)
     {
       DOMElement* thisNodeElement = dynamic_cast<DOMElement*>(nodeList->item(i));
       std::string thisNodeAttributeValue = _getAttributeValue(thisNodeElement, attributeName);
@@ -229,7 +229,7 @@ DOMElement* PDFGenerator::_getNodeElement(DOMElement* parentElement, const char*
     {
       if (attributeName)
       {
-        for (int i = 0; i < nodeListLength; i++)
+        for (XMLSize_t i = 0; i < nodeListLength; i++)
         {
           DOMElement* thisNodeElement = dynamic_cast<DOMElement*>(nodeList->item(i));
           std::string thisNodeAttributeValue = _getAttributeValue(thisNodeElement, attributeName);
