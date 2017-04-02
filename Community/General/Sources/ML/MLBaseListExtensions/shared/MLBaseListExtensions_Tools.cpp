@@ -58,7 +58,7 @@ void stringToLower(std::string &sourceString)
 {
   for(unsigned short loop=0;loop < sourceString.size();loop++)
   {
-    sourceString[loop] = (char)std::tolower(sourceString[loop]);
+    sourceString[loop] = static_cast<char>(std::tolower(sourceString[loop]));
   }
 }
 

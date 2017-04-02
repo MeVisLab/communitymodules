@@ -87,7 +87,7 @@ namespace mlU3D {
   const MLuint32  BLOCKTYPE_LITTEXTURESHADER    = 0xFFFFFF53;  // 9.8.3
   const MLuint32  BLOCKTYPE_MATERIALRESOURCE    = 0xFFFFFF54;  // 9.8.4
   const MLuint32  BLOCKTYPE_TEXTUREDECLARATION  = 0xFFFFFF55;  // 9.8.5.1
-  const MLuint32  BLOCKTYPE_TEXTURECONTINUATIOM = 0xFFFFFF5C;  // 9.8.5.2
+  const MLuint32  BLOCKTYPE_TEXTURECONTINUATION = 0xFFFFFF5C;  // 9.8.5.2
   const MLuint32  BLOCKTYPE_MOTIONRESOURCE      = 0xFFFFFF56;  // 9.8.6
 
   //////////////////////////////////////////////////////////////////////////

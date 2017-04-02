@@ -356,8 +356,8 @@ int IndexPairParser::getIndices(MLint &index1, MLint &index2)
     
     int result = getIntArray(2, 2, values);
     
-    index1 = (MLint)values[0];
-    index2   = (MLint)values[1];
+    index1 = static_cast<MLint>(values[0]);
+    index2 = static_cast<MLint>(values[1]);
 
     return result;
 }
@@ -423,7 +423,7 @@ int IndexPairParser::getIntArray(int nMin, int nMax, MLint *values)
                       } else {
                           // Proceed behind number and store number array
                           _pNext = endPtr;
-                          values[n] = (MLint)x;
+                          values[n] = static_cast<MLint>(x);
                       }
                   }
                   // Skip whitespace and test for closing parenthesis

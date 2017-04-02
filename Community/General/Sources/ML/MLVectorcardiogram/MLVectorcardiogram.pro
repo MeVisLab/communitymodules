@@ -20,7 +20,7 @@ WARN = HIGH
 # Add used projects here (see included pri files below for available projects)
 CONFIG += dll ML MLFiberUtils MLBase MLBaseListExtensions MLWEM
 
-MLAB_PACKAGES += MeVisLab_Standard FMEStable_Release Community_General
+MLAB_PACKAGES += MeVisLab_Standard FMEstable_Release Community_General
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
 include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)

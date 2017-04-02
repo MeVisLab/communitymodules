@@ -69,7 +69,7 @@ inline double stringToDouble(std::string sourceString)
 
 inline MLdouble stringToMLDouble(std::string sourceString)
 {
-  return (MLdouble)stringToDouble(sourceString);
+  return static_cast<MLdouble>(stringToDouble(sourceString));
 }
 
 inline int stringToInt(std::string sourceString)
