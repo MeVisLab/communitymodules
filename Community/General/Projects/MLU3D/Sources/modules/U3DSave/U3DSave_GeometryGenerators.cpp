@@ -344,8 +344,8 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
   {
     thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord U (9.6.1.2.4.5.1)
     thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord V (9.6.1.2.4.5.2)
-    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord S (9.6.1.2.4.5.3)  // Limited to 2 dimensions in this version
-    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord T (9.6.1.2.4.5.4)  // Limited to 2 dimensions in this version
+    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord S (9.6.1.2.4.5.3)  // Only 2 dimensions supported by Acrobat
+    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord T (9.6.1.2.4.5.4)  // Only 2 dimensions supported by Acrobat
   }
 
 
