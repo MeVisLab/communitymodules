@@ -1024,6 +1024,7 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
           thisMeshGenerator.faceCount          = trianglePatch->getNumFaces();
           thisMeshGenerator.normalCount        = trianglePatch->getNumNodes();
           thisMeshGenerator.vertexCount        = trianglePatch->getNumNodes();
+          thisMeshGenerator.textureCoordCount  = 0;
           thisMeshGenerator.patchID            = trianglePatch->getId();
           thisMeshGenerator.meshAttributes     = mlU3D::MESH_ATTRIBUTES_DEFAULT;
           thisMeshGenerator.meshAttributes    |= ((thisMeshGenerator.normalCount == 0) ? mlU3D::MESH_ATTRIBUTES_EXCLUDENORMALS : 0);

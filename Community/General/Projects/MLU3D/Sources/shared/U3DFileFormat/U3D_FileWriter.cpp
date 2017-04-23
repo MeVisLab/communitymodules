@@ -319,7 +319,7 @@ size_t U3DFileWriter::addStandardBlock_CLODMeshDeclaration(const mlU3D::CLODMesh
   CLODMeshDeclarationBlock.writeU32(meshGenerator.normalCount);         // Write Max Mesh Description - Normal Count (9.6.1.1.3.4) (# of normals)
   CLODMeshDeclarationBlock.writeU32(meshGenerator.diffuseColorCount);   // Write Max Mesh Description - Diffuse Color Count (9.6.1.1.3.5)
   CLODMeshDeclarationBlock.writeU32(meshGenerator.specularColorCount);  // Write Max Mesh Description - Specular Color Count (9.6.1.1.3.6)
-  CLODMeshDeclarationBlock.writeU32(0x00000001);                        // Write Max Mesh Description - Texture Coord Count (9.6.1.1.3.7)
+  CLODMeshDeclarationBlock.writeU32(meshGenerator.textureCoordCount);   // Write Max Mesh Description - Texture Coord Count (9.6.1.1.3.7)
   CLODMeshDeclarationBlock.writeU32(0x00000001);                        // Write Max Mesh Description - Shading Count (9.6.1.1.3.8) (shall be 1 since only one shader is supported by this version)
   CLODMeshDeclarationBlock.writeU32(meshGenerator.shadingAttributes);   // Write Max Mesh Description - Shading Description - Shading Attributes (9.6.1.1.3.9.1)
     CLODMeshDeclarationBlock.writeU32(0x00000000);                      // Write Max Mesh Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2) (shall be zero since textures are not supported by this version)

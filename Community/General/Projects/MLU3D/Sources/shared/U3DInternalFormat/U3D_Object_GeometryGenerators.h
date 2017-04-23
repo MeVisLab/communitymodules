@@ -158,6 +158,7 @@ namespace mlU3D {
 
     MLuint32 vertexCount;
     MLuint32 faceCount;
+    MLuint32 textureCoordCount;
     MLuint32 patchID;
     MLuint32 meshNumber;     // Needed for progress calculation
     MLuint32 meshAttributes;
