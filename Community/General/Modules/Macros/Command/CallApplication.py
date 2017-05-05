@@ -36,63 +36,57 @@
 #*/
 #----------------------------------------------------------------------------------
 
-from mevis import *
-
-import os.path
-import os
-import glob
-import string
+from mevis import MLAB
 
 def processOut(p):
-   m = p.readStdOut();
-   ctx.field("logWindow").value += m;
-   return
+   m = p.readStdOut()
+   ctx.field("logWindow").value += m
+
 
 def processExit(p):
-   MLAB.log("The following process has finished: " + p.userInfo() );
-   return;
+   MLAB.log("The following process has finished: " + p.userInfo() )
+
 
 def clear():
-  ctx.field("logWindow").value = "";
-  return
+  ctx.field("logWindow").value = ""
+
 
 def call():
-  success = False;
-  ctx.field("callSucceeded").value = success;
-  prog = ctx.field("executable").value;
-  args = str(ctx.field("arguments").value).split(" ");
-  workingdir = ctx.field("workingDirectory").value;
-  g_Process = MLAB.newProcess();
-  #global g_Process;
-  MLAB.processEvents(False);
-  MLAB.log( prog + " is started with the following options:");
-  MLAB.log(args);
+  success = False
+  ctx.field("callSucceeded").value = success
+  prog = ctx.field("executable").value
+  args = str(ctx.field("arguments").value).split()
+  workingdir = ctx.field("workingDirectory").value
+  g_Process = MLAB.newProcess()
+  #global g_Process
+  MLAB.processEvents(False)
+  MLAB.log( prog + " is started with the following options:")
+  MLAB.log(args)
   if g_Process:
-    g_Process.kill();
+    g_Process.kill()
   if g_Process:
-    MLAB.deleteProcess( g_Process );
-  g_Process = MLAB.newProcess();
-  g_Process.clearArguments();
-  g_Process.addArgument(prog);
-  g_Process.addArguments(args);
-  g_Process.setWorkDir(workingdir);
+    MLAB.deleteProcess( g_Process )
+  g_Process = MLAB.newProcess()
+  g_Process.clearArguments()
+  g_Process.addArgument(prog)
+  g_Process.addArguments(args)
+  g_Process.setWorkDir(workingdir)
   if ctx.field("outputToLogWindow").value:
-    g_Process.setStdOutHandler(ctx,"processOut");
-    g_Process.setStdErrHandler(ctx,"processOut");
-    g_Process.setExitedHandler(ctx,"processExit");
-  g_Process.setUserInfo( prog );
-  g_Process.run();
-  g_Process.waitForLaunch();
+    g_Process.setStdOutHandler(ctx,"processOut")
+    g_Process.setStdErrHandler(ctx,"processOut")
+    g_Process.setExitedHandler(ctx,"processExit")
+  g_Process.setUserInfo( prog )
+  g_Process.run()
+  g_Process.waitForLaunch()
   if g_Process.isRunning():
-    MLAB.log(prog + " is running");
-    success = True;
+    MLAB.log(prog + " is running")
+    success = True
   else:
-    MLAB.log(prog + " failed to start");
-    success = False;
-  MLAB.processEvents(True);
+    MLAB.log(prog + " failed to start")
+    success = False
+  MLAB.processEvents(True)
   if g_Process:
-    g_Process.waitForExit();
+    g_Process.waitForExit()
   if g_Process:
-    MLAB.deleteProcess( g_Process );
-  ctx.field("callSucceeded").value = success;
-  return ;
+    MLAB.deleteProcess( g_Process )
+  ctx.field("callSucceeded").value = success
