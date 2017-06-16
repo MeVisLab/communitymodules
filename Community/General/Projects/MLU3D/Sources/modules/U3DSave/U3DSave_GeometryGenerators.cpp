@@ -301,14 +301,14 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
   U3DDataBlockWriter thisCLODBaseMeshContinuationBlock;
   thisCLODBaseMeshContinuationBlock.blockType = mlU3D::BLOCKTYPE_CLODBASEMESHCONTINUATION;
 
-  thisCLODBaseMeshContinuationBlock.writeString(meshGenerator.resourceName);       // Write Mesh Name (9.6.1.2.1)
-  thisCLODBaseMeshContinuationBlock.writeU32(mlU3D::ReservedZero);               // Write Chain Index (9.6.1.2.2) (shall be zero) 
+  thisCLODBaseMeshContinuationBlock.writeString(meshGenerator.resourceName);      // Write Mesh Name (9.6.1.2.1)
+  thisCLODBaseMeshContinuationBlock.writeU32(mlU3D::ReservedZero);                // Write Chain Index (9.6.1.2.2) (shall be zero) 
   thisCLODBaseMeshContinuationBlock.writeU32(meshGenerator.faceCount);            // Write Base Mesh Description - Face Count (9.6.1.2.3.1) (# of faces)
   thisCLODBaseMeshContinuationBlock.writeU32(meshGenerator.vertexCount);          // Write Base Mesh Description - Position Count (9.6.1.2.3.2) (# of vertices)
   thisCLODBaseMeshContinuationBlock.writeU32(meshGenerator.normalCount);          // Write Base Mesh Description - Normal Count (9.6.1.2.3.3) (# of normals)
   thisCLODBaseMeshContinuationBlock.writeU32(meshGenerator.diffuseColorCount);    // Write Base Mesh Description - Diffuse Color Count (9.6.1.2.3.4)
   thisCLODBaseMeshContinuationBlock.writeU32(meshGenerator.specularColorCount);   // Write Base Mesh Description - Specular Color Count (9.6.1.2.3.5)
-  thisCLODBaseMeshContinuationBlock.writeU32(0x00000001);                    // Write Base Mesh Description - Texture Coord Count (9.6.1.2.3.6)
+  thisCLODBaseMeshContinuationBlock.writeU32(meshGenerator.textureCoordCount);    // Write Base Mesh Description - Texture Coord Count (9.6.1.2.3.6)
 
   // Write all vertex positions (in U3D, vertices are called "positions")        
   for (MLuint32 thisVertex = 0; thisVertex < meshGenerator.vertexCount; thisVertex++)
@@ -340,10 +340,14 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
   }
 
   // Write Write Base Texture Coord (9.6.1.2.4.5)
-  thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord U (9.6.1.2.4.5.1)
-  thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord V (9.6.1.2.4.5.2)
-  thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord S (9.6.1.2.4.5.3)
-  thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord T (9.6.1.2.4.5.4)
+  for (MLuint32 thisTextureCoordGroup = 0; thisTextureCoordGroup < meshGenerator.textureCoordCount; thisTextureCoordGroup++)
+  {
+    thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord U (9.6.1.2.4.5.1)
+    thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord V (9.6.1.2.4.5.2)
+    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord S (9.6.1.2.4.5.3)  // Only 2 dimensions supported by Acrobat
+    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord T (9.6.1.2.4.5.4)  // Only 2 dimensions supported by Acrobat
+  }
+
 
   for (MLuint32 thisFace = 0; thisFace < meshGenerator.faceCount; thisFace++)
   {
@@ -380,8 +384,12 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
         thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + meshGenerator.specularColorCount, 0);
       }
 
-      // Write Base Corner Info - Base Texture Coord Index (9.6.1.2.4.6.2.5)
-      //thisCLODBaseMeshContinuationBlock.writeCompressedU32(U3D_StaticFull+1, 0);  // No texture layers
+      // Write Base Corner Info - Base Texture Coord Index (9.6.1.2.4.6.2.5) 
+      if (meshGenerator.textureCoordCount > 0)
+      {
+        MLuint32 baseTextureCoordIndex = VertexIndex; // baseTextureCoordsMap[VertexIndex];
+        thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + meshGenerator.textureCoordCount, baseTextureCoordIndex);
+      }
     }
 
     if (0 == (thisFace % 100))   // Set progress field every 100 faces to save GUI update cost

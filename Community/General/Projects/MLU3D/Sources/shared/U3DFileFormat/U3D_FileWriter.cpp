@@ -319,15 +319,21 @@ size_t U3DFileWriter::addStandardBlock_CLODMeshDeclaration(const mlU3D::CLODMesh
   CLODMeshDeclarationBlock.writeU32(meshGenerator.normalCount);         // Write Max Mesh Description - Normal Count (9.6.1.1.3.4) (# of normals)
   CLODMeshDeclarationBlock.writeU32(meshGenerator.diffuseColorCount);   // Write Max Mesh Description - Diffuse Color Count (9.6.1.1.3.5)
   CLODMeshDeclarationBlock.writeU32(meshGenerator.specularColorCount);  // Write Max Mesh Description - Specular Color Count (9.6.1.1.3.6)
-  CLODMeshDeclarationBlock.writeU32(0x00000001);                        // Write Max Mesh Description - Texture Coord Count (9.6.1.1.3.7)
+  CLODMeshDeclarationBlock.writeU32(meshGenerator.textureCoordCount);   // Write Max Mesh Description - Texture Coord Count (9.6.1.1.3.7)
   CLODMeshDeclarationBlock.writeU32(0x00000001);                        // Write Max Mesh Description - Shading Count (9.6.1.1.3.8) (shall be 1 since only one shader is supported by this version)
   CLODMeshDeclarationBlock.writeU32(meshGenerator.shadingAttributes);   // Write Max Mesh Description - Shading Description - Shading Attributes (9.6.1.1.3.9.1)
-    CLODMeshDeclarationBlock.writeU32(0x00000000);                      // Write Max Mesh Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2) (shall be zero since textures are not supported by this version)
-      //CLODMeshDeclarationBlock.writeU32(0x00000002);                    // Write Max Mesh Description - Shading Description - Texture Coord Dimensions (9.6.1.1.3.9.3)
+
+    CLODMeshDeclarationBlock.writeU32(meshGenerator.textureLayerCount); // Write Max Mesh Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2) (only one texture layer supported by this version)
+
+    for (size_t i = 0; i < meshGenerator.textureLayerCount; i++)        // For each texture layer
+    {
+      CLODMeshDeclarationBlock.writeU32(0x00000002);                    // Write Max Mesh Description - Shading Description - Texture Coord Dimensions (9.6.1.1.3.9.3) (only 2 dimensions supported by Acrobat)
+    }
+
     CLODMeshDeclarationBlock.writeU32(0x00000000);                      // Write Max Mesh Description - Shading Description - Original Shading ID (9.6.1.1.3.9.4)
 
+    //CLODMeshDeclarationBlock.writeU32(0);                               // Write CLOD Description - Minimum Resolution (9.6.1.1.4.1) 
     CLODMeshDeclarationBlock.writeU32(meshGenerator.vertexCount);       // Write CLOD Description - Minimum Resolution (9.6.1.1.4.1)  // Min resolution = max resolution -> base mesh only!
-  //CLODMeshDeclarationBlock.writeU32(0);                                 // Write CLOD Description - Minimum Resolution (9.6.1.1.4.1) 
     CLODMeshDeclarationBlock.writeU32(meshGenerator.vertexCount);       // Write CLOD Description - Final Maximum Resolution (9.6.1.1.4.2)
 
   CLODMeshDeclarationBlock.writeU32(0x000003E8);                        // Write Resource Description - Quality Factors - Position Quality Factor (9.6.1.1.5.1.1)
@@ -355,36 +361,39 @@ size_t U3DFileWriter::addStandardBlock_PointSetDeclaration(const mlU3D::PointSet
   U3DDataBlockWriter PointSetDeclarationBlock;
   PointSetDeclarationBlock.blockType = mlU3D::BLOCKTYPE_POINTSETDECLARATION;
 
-  PointSetDeclarationBlock.writeString(pointSetGenerator.resourceName);    // Write Point Set Name (9.6.2.1.1)
-  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                  // Write Chain Index (9.6.2.1.1) (shall be zero) 
+  PointSetDeclarationBlock.writeString(pointSetGenerator.resourceName);      // Write Point Set Name (9.6.2.1.1)
+  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                    // Write Chain Index (9.6.2.1.1) (shall be zero) 
 
-  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                  // Write Point Set Description - Point Set Reserved (9.6.2.1.3.1) (shall be zero)
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.pointCount);         // Write Point Set Description - Point Count (9.6.2.1.3.2) (# of points)
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.pointCount);         // Write Point Set Description - Position Count (9.6.2.1.3.3) (# of positions - equals # of points)
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.normalCount);        // Write Point Set Description - Normal Count (9.6.2.1.3.4) (# of normals)
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.diffuseColorCount);  // Write Point Set Description - Diffuse Color Count (9.6.2.1.3.5)
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.specularColorCount); // Write Point Set Description - Specular Color Count (9.6.2.1.3.6)
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.textureCoordCount);  // Write Point Set Description - Texture Coord Count (9.6.2.1.3.7)
-  PointSetDeclarationBlock.writeU32(0x00000001);                           // Write Point Set Description - Shading Count (9.6.2.1.3.8)
+  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                    // Write Point Set Description - Point Set Reserved (9.6.2.1.3.1) (shall be zero)
+  PointSetDeclarationBlock.writeU32(pointSetGenerator.pointCount);           // Write Point Set Description - Point Count (9.6.2.1.3.2) (# of points)
+  PointSetDeclarationBlock.writeU32(pointSetGenerator.pointCount);           // Write Point Set Description - Position Count (9.6.2.1.3.3) (# of positions - equals # of points)
+  PointSetDeclarationBlock.writeU32(pointSetGenerator.normalCount);          // Write Point Set Description - Normal Count (9.6.2.1.3.4) (# of normals)
+  //PointSetDeclarationBlock.writeU32(pointSetGenerator.diffuseColorCount);    // Write Point Set Description - Diffuse Color Count (9.6.2.1.3.5)   - Not supported by Acrobat for point sets
+  PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Point Set Description - Diffuse Color Count (9.6.2.1.3.5)   
+  //PointSetDeclarationBlock.writeU32(pointSetGenerator.specularColorCount);   // Write Point Set Description - Specular Color Count (9.6.2.1.3.6)  - Not supported by Acrobat for point sets
+  PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Point Set Description - Specular Color Count (9.6.2.1.3.6)  
+  //PointSetDeclarationBlock.writeU32(pointSetGenerator.textureCoordCount);  // Write Point Set Description - Texture Coord Count (9.6.2.1.3.7)     - Not supported by Acrobat for point sets
+  PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Point Set Description - Texture Coord Count (9.6.2.1.3.7) 
+  PointSetDeclarationBlock.writeU32(0x00000001);                             // Write Point Set Description - Shading Count (9.6.2.1.3.8) (shall be 1 since only one shader is supported by this version)
 
-  PointSetDeclarationBlock.writeU32(pointSetGenerator.shadingAttributes);  // Write Point Set Description - Shading Description - Shading Attributes (9.6.1.1.3.9.1) 
-  PointSetDeclarationBlock.writeU32(0x00000000);                           // Write Point Set Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2)
-  //PointSetDeclarationBlock.writeU32(0x00000000);                           // Write Point Set Description - Shading Description - Texture Coord Dimensions (9.6.1.1.3.9.3) - only if Texture Layer Count > 0
-  PointSetDeclarationBlock.writeU32(0x00000000);                           // Write Point Set Description - Shading Description - Original Shading ID (9.6.1.1.3.9.4)
+  PointSetDeclarationBlock.writeU32(pointSetGenerator.shadingAttributes);    // Write Point Set Description - Shading Description - Shading Attributes (9.6.1.1.3.9.1) 
+  PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Point Set Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2)        - Not supported by Acrobat for point sets
+  //PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Point Set Description - Shading Description - Texture Coord Dimensions (9.6.1.1.3.9.3) - only if Texture Layer Count > 0
+  PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Point Set Description - Shading Description - Original Shading ID (9.6.1.1.3.9.4)
 
-  PointSetDeclarationBlock.writeU32(0x000003E8);                           // Write Resource Description - Quality Factors - Position Quality Factor (9.6.1.1.5.1.1)       [UNUSED BY ACROBAT]
-  PointSetDeclarationBlock.writeU32(0x000003E8);                           // Write Resource Description - Quality Factors - Normal Quality Factor (9.6.1.1.5.1.2)         [UNUSED BY ACROBAT]
-  PointSetDeclarationBlock.writeU32(0x000003E8);                           // Write Resource Description - Quality Factors - Texture Coord Quality Factor (9.6.1.1.5.1.3)  [UNUSED BY ACROBAT]
-  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_Position);          // Write Resource Description - Inverse Quantization - Position Inverse Quant (9.6.1.1.5.2.1)
-  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_Normal);            // Write Resource Description - Inverse Quantization - Normal Inverse Quant (9.6.1.1.5.2.2)
-  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_TextureCoord);      // Write Resource Description - Inverse Quantization - Texture Coord Inverse Quant (9.6.1.1.5.2.3)
-  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_DiffuseColor);      // Write Resource Description - Inverse Quantization - Diffuse Color Inverse Quant (9.6.1.1.5.2.4)
-  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_SpecularColor);     // Write Resource Description - Inverse Quantization - Specular Color Inverse Quant (9.6.1.1.5.2.5)
-  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                  // Write Resource Description - Resource Parameters - Reserved Point Set Parameter 1 (9.6.2.1.4.3.1) (shall be zero)
-  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                  // Write Resource Description - Resource Parameters - Reserved Point Set Parameter 2 (9.6.2.1.4.3.2) (shall be zero)
-  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                  // Write Resource Description - Resource Parameters - Reserved Point Set Parameter 3 (9.6.2.1.4.3.3) (shall be zero)
+  PointSetDeclarationBlock.writeU32(0x000003E8);                             // Write Resource Description - Quality Factors - Position Quality Factor (9.6.1.1.5.1.1)       [UNUSED BY ACROBAT]
+  PointSetDeclarationBlock.writeU32(0x000003E8);                             // Write Resource Description - Quality Factors - Normal Quality Factor (9.6.1.1.5.1.2)         [UNUSED BY ACROBAT]
+  PointSetDeclarationBlock.writeU32(0x000003E8);                             // Write Resource Description - Quality Factors - Texture Coord Quality Factor (9.6.1.1.5.1.3)  [UNUSED BY ACROBAT]
+  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_Position);            // Write Resource Description - Inverse Quantization - Position Inverse Quant (9.6.1.1.5.2.1)
+  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_Normal);              // Write Resource Description - Inverse Quantization - Normal Inverse Quant (9.6.1.1.5.2.2)
+  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_TextureCoord);        // Write Resource Description - Inverse Quantization - Texture Coord Inverse Quant (9.6.1.1.5.2.3)
+  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_DiffuseColor);        // Write Resource Description - Inverse Quantization - Diffuse Color Inverse Quant (9.6.1.1.5.2.4)
+  PointSetDeclarationBlock.writeF32(1.f / mlU3D::Quant_SpecularColor);       // Write Resource Description - Inverse Quantization - Specular Color Inverse Quant (9.6.1.1.5.2.5)
+  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                    // Write Resource Description - Resource Parameters - Reserved Point Set Parameter 1 (9.6.2.1.4.3.1) (shall be zero)
+  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                    // Write Resource Description - Resource Parameters - Reserved Point Set Parameter 2 (9.6.2.1.4.3.2) (shall be zero)
+  PointSetDeclarationBlock.writeU32(mlU3D::ReservedZero);                    // Write Resource Description - Resource Parameters - Reserved Point Set Parameter 3 (9.6.2.1.4.3.3) (shall be zero)
 
-  PointSetDeclarationBlock.writeU32(0x00000000);                           // Write Skeleton Description - Bone Count (9.6.2.1.5) (shall be zero since skeltons are not supported by this version) [UNUSED BY ACROBAT]
+  PointSetDeclarationBlock.writeU32(0x00000000);                             // Write Skeleton Description - Bone Count (9.6.2.1.5) (shall be zero since skeltons are not supported by this version) [UNUSED BY ACROBAT]
 
   return addDataBlock(PointSetDeclarationBlock);
 }
@@ -404,16 +413,16 @@ size_t U3DFileWriter::addStandardBlock_LineSetDeclaration(const mlU3D::LineSetGe
   LineSetDeclarationBlock.writeU32(lineSetGenerator.lineCount);           // Write Line Set Description - Line Count (9.6.3.1.3.2) (# of lines)
   LineSetDeclarationBlock.writeU32(lineSetGenerator.pointCount);          // Write Line Set Description - Position Count (9.6.3.1.3.3) (# of positions - one point more than lines)
   LineSetDeclarationBlock.writeU32(lineSetGenerator.normalCount);         // Write Line Set Description - Normal Count (9.6.3.1.3.4) (# of normals)
-  //LineSetDeclarationBlock.writeU32(lineSetGenerator.DiffuseColorCount);   // Write Line Set Description - Diffuse Color Count (9.6.3.1.3.5)
+  //LineSetDeclarationBlock.writeU32(lineSetGenerator.DiffuseColorCount);   // Write Line Set Description - Diffuse Color Count (9.6.3.1.3.5)  - Not supported by Acrobat for line sets
   LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Diffuse Color Count (9.6.3.1.3.5)
-  //LineSetDeclarationBlock.writeU32(lineSetGenerator.specularColorCount);  // Write Line Set Description - Specular Color Count (9.6.3.1.3.6)
+  //LineSetDeclarationBlock.writeU32(lineSetGenerator.specularColorCount);  // Write Line Set Description - Specular Color Count (9.6.3.1.3.6) - Not supported by Acrobat for line sets
   LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Specular Color Count (9.6.3.1.3.6)
-  //LineSetDeclarationBlock.writeU32(lineSetGenerator.textureCoordCount);   // Write Line Set Description - Texture Coord Count (9.6.3.1.3.7)
+  //LineSetDeclarationBlock.writeU32(lineSetGenerator.textureCoordCount);   // Write Line Set Description - Texture Coord Count (9.6.3.1.3.7)  - Not supported by Acrobat for line sets
   LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Texture Coord Count (9.6.3.1.3.7)
-  LineSetDeclarationBlock.writeU32(0x00000001);                           // Write Line Set Description - Shading Count (9.6.3.1.3.8)
+  LineSetDeclarationBlock.writeU32(0x00000001);                           // Write Line Set Description - Shading Count (9.6.3.1.3.8) (shall be 1 since only one shader is supported by this version)
 
   LineSetDeclarationBlock.writeU32(lineSetGenerator.shadingAttributes);   // Write Line Set Description - Shading Description - Shading Attributes (9.6.1.1.3.9.1)
-  LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2)
+  LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Shading Description - Texture Layer Count (9.6.1.1.3.9.2)        - Not supported by Acrobat for line sets
   //LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Shading Description - Texture Coord Dimensions (9.6.1.1.3.9.3) - only if Texture Layer Count > 0
   LineSetDeclarationBlock.writeU32(0x00000000);                           // Write Line Set Description - Shading Description - Original Shading ID (9.6.1.1.3.9.4)
 

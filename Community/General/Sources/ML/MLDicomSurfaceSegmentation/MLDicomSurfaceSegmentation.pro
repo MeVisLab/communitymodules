@@ -22,7 +22,6 @@ CONFIG += dll ML MLBase MLWEM dcmtk boost MLBaseListExtensions MLDicomTree MLMul
 #CONFIG += MLDicomTagInterfaces
 
 MLAB_PACKAGES += MeVis_Foundation MeVisLab_Standard Community_General
-#MLAB_PACKAGES += FMEWork_ReleaseMevis
 
 # make sure that this file is included after CONFIG and MLAB_PACKAGES
 include ($(MLAB_MeVis_Foundation)/Configuration/IncludePackages.pri)

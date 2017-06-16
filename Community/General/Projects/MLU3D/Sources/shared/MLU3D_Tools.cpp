@@ -667,8 +667,9 @@ void U3DTools::addPointSetModelAndGeometry(const mlU3D::StringVector& specificat
     thisPointSetGenerator.resourceName       = geometryName;
     thisPointSetGenerator.diffuseColorCount  = 0;    // This is not really needed in this version
     thisPointSetGenerator.specularColorCount = 0;    // This is not really needed in this version
-    thisPointSetGenerator.textureCoordCount  = 0;    // This is not really needed in this version
-    thisPointSetGenerator.pointCount         = (MLuint32)thisPointSetPositions.size();
+    thisPointSetGenerator.textureCoordCount  = 0;    // Not supported by Acrobat for point sets
+    thisPointSetGenerator.textureLayerCount  = 0;    // Not supported by Acrobat for point sets
+    thisPointSetGenerator.pointCount = (MLuint32)thisPointSetPositions.size();
     thisPointSetGenerator.normalCount        = 0;    // No normals in this version since normals are not used by Acrobat
     thisPointSetGenerator.shadingAttributes  = mlU3D::SHADINGATTRIBUTES_NONE;
     thisPointSetGenerator.shadingAttributes |= ((thisPointSetGenerator.diffuseColorCount > 0) ? mlU3D::SHADINGATTRIBUTES_DIFFUSECOLORS : 0);   // Should not happen in this version
@@ -775,9 +776,10 @@ void U3DTools::addLineSetModelAndGeometry(const mlU3D::StringVector& specificati
     mlU3D::LineSetGenerator thisLineSetGenerator;
     thisLineSetGenerator.resourceName       = geometryName;
     thisLineSetGenerator.diffuseColorCount  = 0;     // This is not really needed in this version
-    thisLineSetGenerator.specularColorCount = 0;    // This is not really needed in this version
-    thisLineSetGenerator.textureCoordCount  = 0;     // This is not really needed in this version
-    thisLineSetGenerator.pointCount         = (MLuint32)thisLineSetPositions.size();
+    thisLineSetGenerator.specularColorCount = 0;     // This is not really needed in this version
+    thisLineSetGenerator.textureCoordCount  = 0;     // Not supported by Acrobat for line sets
+    thisLineSetGenerator.textureLayerCount  = 0;     // Not supported by Acrobat for line sets
+    thisLineSetGenerator.pointCount = (MLuint32)thisLineSetPositions.size();
     thisLineSetGenerator.lineCount          = (MLuint32)thisLineSetLines.size();
     thisLineSetGenerator.normalCount        = 0;           // No normals in this version since normals are not used by Acrobat
     thisLineSetGenerator.shadingAttributes  = mlU3D::SHADINGATTRIBUTES_NONE;
@@ -875,7 +877,8 @@ void U3DTools::addLineSetModelAndGeometry(const mlU3D::StringVector& specificati
     thisLineSetGenerator.resourceName       = geometryName;
     thisLineSetGenerator.diffuseColorCount  = 0;     // This is not really needed in this version
     thisLineSetGenerator.specularColorCount = 0;     // This is not really needed in this version
-    thisLineSetGenerator.textureCoordCount  = 0;     // This is not really needed in this version
+    thisLineSetGenerator.textureCoordCount  = 0;     // Not supported by Acrobat for line sets
+    thisLineSetGenerator.textureLayerCount  = 0;     // Not supported by Acrobat for line sets
     thisLineSetGenerator.pointCount         = (MLuint32)thisLineSetPositions.size();
     thisLineSetGenerator.lineCount          = (MLuint32)thisLineSetLines.size();
     thisLineSetGenerator.normalCount        = 0;     // No normals in this version since normals are not used by Acrobat
@@ -1020,7 +1023,8 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
           thisMeshGenerator.resourceName       = geometryName;
           thisMeshGenerator.diffuseColorCount  = (useVertexColors ? getNumberOfDifferentColorsFromWEMPatch(trianglePatch) : 0);
           thisMeshGenerator.specularColorCount = (useVertexColors ? 1 : 0);
-          thisMeshGenerator.textureCoordCount  = 0;    // This is not really needed in this version
+          thisMeshGenerator.textureCoordCount  = 0;
+          thisMeshGenerator.textureLayerCount  = 0;
           thisMeshGenerator.faceCount          = trianglePatch->getNumFaces();
           thisMeshGenerator.normalCount        = trianglePatch->getNumNodes();
           thisMeshGenerator.vertexCount        = trianglePatch->getNumNodes();

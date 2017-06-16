@@ -49,6 +49,7 @@ namespace mlU3D {
     MLuint32 diffuseColorCount;
     MLuint32 specularColorCount;
     MLuint32 textureCoordCount;
+    MLuint32 textureLayerCount;
 
   protected:
 

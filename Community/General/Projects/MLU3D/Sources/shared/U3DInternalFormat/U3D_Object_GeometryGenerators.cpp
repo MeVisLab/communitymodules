@@ -37,6 +37,7 @@ namespace mlU3D {
     diffuseColorCount  = 0;
     specularColorCount = 0;
     textureCoordCount  = 0;
+    textureLayerCount  = 0;
   }
 
   //----------------------------------------------------------------------------------
@@ -112,11 +113,11 @@ namespace mlU3D {
 
   CLODMeshGenerator::CLODMeshGenerator() : GeometryGeneratorBase()
   {
-    vertexCount    = 0;
-    faceCount      = 0;
-    patchID        = 0;
-    meshNumber     = 0; // Needed for progress calculation
-    meshAttributes = mlU3D::MESH_ATTRIBUTES_DEFAULT;
+    vertexCount       = 0;
+    faceCount         = 0;
+    patchID           = 0;
+    meshNumber        = 0; // Needed for progress calculation
+    meshAttributes    = mlU3D::MESH_ATTRIBUTES_DEFAULT;
 
     _wem = NULL;
     ML_CHECK_NEW(_wem, WEM());
