@@ -22,9 +22,9 @@ macx:release:!debug {
   
   # build the plugin using xcodebuild
   clang {
-    !system(xcodebuild -configuration Release GCC_VERSION=com.apple.compilers.llvm.clang.1_0 MACOSX_DEPLOYMENT_TARGET=$$QMAKE_MACOSX_DEPLOYMENT_TARGET clean build):error(Build error.)
+    !system(xcodebuild -scheme \"Build Plugin\" -configuration Release GCC_VERSION=com.apple.compilers.llvm.clang.1_0 MACOSX_DEPLOYMENT_TARGET=$$QMAKE_MACOSX_DEPLOYMENT_TARGET clean build):error(Build error.)
   } else {
-    !system(xcodebuild -configuration Release GCC_VERSION=com.apple.compilers.llvmgcc42 clean build):error(Build error.)
+    !system(xcodebuild -scheme \"Build Plugin\" -configuration Release GCC_VERSION=com.apple.compilers.llvmgcc42 clean build):error(Build error.)
   }
 
 }
