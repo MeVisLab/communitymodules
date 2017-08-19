@@ -55,7 +55,7 @@ U3DGeometryToWEM::~U3DGeometryToWEM()
   // Destroy own dynamic data structures here
   if (_outWEM)
   {
-    _outWEM->clear();
+    _outWEM->removeAll();
   }
 
   _outWEM = NULL;
@@ -97,7 +97,7 @@ void U3DGeometryToWEM::process()
   }
   else
   {
-    _outWEM->clear();
+    _outWEM->removeAll();
     _networkPanelStatusFld->setStringValue("No valid U3D connected.");
   }
 
