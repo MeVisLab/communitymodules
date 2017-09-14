@@ -11,7 +11,11 @@ ModuleHelp  {
     package = mlMatlab
   }
   Purpose  {
-    text = "The **MatlabScriptWrapper** module offers the possibility to execute `Matlab <http://www.mathworks.com/products/matlab/>`_ scripts within `MeVisLab <http://www.mevislab.de>`_ and establish a link to a Matlab console, for example to transfer data between MeVisLab and Matlab. Note that Matlab must be installed for this module to function."
+    text = "The **MatlabScriptWrapper** module offers the possibility to execute
+    `Matlab <http://www.mathworks.com/products/matlab/>`_ scripts within
+    `MeVisLab <http://www.mevislab.de>`_ and establish a link to a
+    `Matlab engine <http://mathworks.com/help/matlab/matlab_external/introducing-matlab-engine.html>`_,
+    for example to transfer data between MeVisLab and Matlab. Note that Matlab must be installed for this module to function."
   }
   Usage  {
     text = "Currently, three types of data structures can be transferred between MeVisLab and Matlab:
@@ -21,14 +25,14 @@ ModuleHelp  {
   Note that MeVisLab and Matlab use different coordinate systems, see below for further information.
 
 - **CurveData (input only) and CurveLists:**
-  A `CurveData <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html>`_
+  A `CurveData <http://www.mevislab.de/docs/2.7/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html>`_
   is an object consisting of zero or one X- and any number of Y-data series. A CurveList is an array
   of CurveData objects. In Matlab, a CurveList is represented as a cell array with in each cell a matrix
   with the points of each series of a curve. The first column in the matrix contains the X-values, the
   second column contains the first serie of Y-values, the third column the second serie of Y-values etc..
 
 - **XMarkerLists:**
-  An `XMarker <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html>`_
+  An `XMarker <http://www.mevislab.de/docs/2.7/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLBasePage.html>`_
   is an object that contains a point (up to 6-D), a vector (3-D), a type variable (integer) and a name
   (string). An XMarkerList is an array of XMarker objects. In Matlab, an XMarkerList is represented as
   a struct with the following members (where *N* is the number of XMarkers):
@@ -49,11 +53,11 @@ ModuleHelp  {
       network for an example.
 
 - **WEMs:**
-  A Winged Edge Mesh (`WEM <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/WEMPage.html>`_)
+  A Winged Edge Mesh (`WEM <http://www.mevislab.de/docs/2.7/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/WEMPage.html>`_)
   is an object that contains a representation of a surface. In Matlab, a WEM is represented as a cell array
   of structures with nodes (markers of vertices), faces, and edges.
-  Optionally, if a WEM contains a Look Up Table (`LUT <http://www.mevislab.de/docs/2.0/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLLUTPage.html>`_),
-  this data will be put into the `FaceVertexCData <http://www.mathworks.com/help/techdoc/ref/patch_props.html#FaceVertexCData>`_
+  Optionally, if a WEM contains a Look Up Table (`LUT <http://www.mevislab.de/docs/2.7/MeVisLab/Resources/Documentation/Publish/SDK/ToolBoxReference/MLLUTPage.html>`_),
+  this data will be put into the `FaceVertexCData <https://www.mathworks.com/help/matlab/ref/patch-properties.html#propname_FaceVertexCData>`_
   field. These structures can be exchanged directly with the `Matlab Patch Properties <http://www.mathworks.com/help/techdoc/ref/patch_props.html>`_.
   See the example network for an example.
 
@@ -82,7 +86,7 @@ possibility to edit a Matlab script file from MeVisLab.
 Push the :field:`update` button to execute the Matlab script, set :field:`autoUpdate` to update on input
 value change, or set :field:`autoApply` to update on parameter value change.
 
-Use the :field:`showSession` check-box to show or hide the session window.
+Use the :field:`showSession` checkbox to show or hide the session window.
 
 The :field:`restartMatlab` button can be used to restart a Matlab session once it is terminated externally."
   }
