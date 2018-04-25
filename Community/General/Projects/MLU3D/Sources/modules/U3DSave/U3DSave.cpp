@@ -282,6 +282,8 @@ bool U3DSave::saveU3DToFileStream(std::ofstream& ofstream)
     _addCLODMeshGeometry();
     _progressFld->setFloatValue(0.9f);
 
+	_addTextureDeclarations();
+
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++
     //
@@ -291,9 +293,10 @@ bool U3DSave::saveU3DToFileStream(std::ofstream& ofstream)
 
     _progressFld->setFloatValue(0.9f);
 
-    // Add shaders & material resources ========================================================
+    // Add textures, shaders & material resources ========================================================
     _addShaders();
     _addMaterialResources();
+	_addTextureResources();
 
     // Add light resources =====================================================================
     _addLightResources();

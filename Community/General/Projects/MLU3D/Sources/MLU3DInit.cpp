@@ -36,6 +36,7 @@
 #include "modules/U3DAddModel/U3DAddModelFromMarkerList.h"
 #include "modules/U3DAddTexture/U3DAddTextureFromImage.h"
 #include "modules/U3DAddTexture/U3DAddTextureFromFile.h"
+#include "modules/U3DAddTexture/U3DAddVolumeFromView.h"
 #include "modules/U3DGeometryTo/U3DGeometryToXMarkerList.h"
 #include "modules/U3DGeometryTo/U3DGeometryToFiberSet.h"
 #include "modules/U3DGeometryTo/U3DGeometryToWEM.h"
@@ -103,6 +104,7 @@ int MLU3DInit()
 
   U3DAddTextureFromImage::initClass();
   U3DAddTextureFromFile ::initClass();
+  U3DAddVolumeFromView  ::initClass();
 
   U3DSpecificationGenerator::initClass();
 

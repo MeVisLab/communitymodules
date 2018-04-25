@@ -18,6 +18,14 @@ ML_START_NAMESPACE
 
 //***********************************************************************************
 
+void U3DSave::_addTextureDeclarations(){
+	for (size_t it = 0; it < _inU3DObject->textureResources.size(); it++){
+		mlU3D::TextureResource currentTexture = _inU3DObject->textureResources[it];
+		_statusFld->setStringValue("Adding Texture Resource: " + currentTexture.resourceName + ".");
+
+		_outU3DFile->addModifierChain_TextureDeclaration(currentTexture);
+	}
+}
 
 void U3DSave::_addLightResources()
 {
@@ -104,6 +112,16 @@ void U3DSave::_addMaterialResources()
 
     _outU3DFile->addStandardBlock_MaterialResource(thisMaterialResource);
   }
+}
+
+void U3DSave::_addTextureResources()
+{
+	for (size_t it = 0; it < _inU3DObject->textureResources.size(); it++){
+		mlU3D::TextureResource currentTexture = _inU3DObject->textureResources[it];
+		_statusFld->setStringValue("Adding Texture Resource: " + currentTexture.resourceName + ".");
+
+		_outU3DFile->addStandardBlock_TextureResource(currentTexture);
+	}
 }
 
 

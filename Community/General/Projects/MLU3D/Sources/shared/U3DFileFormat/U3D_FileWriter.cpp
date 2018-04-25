@@ -14,6 +14,8 @@
 #include "../MLU3D_Tools.h"
 
 
+
+
 ML_START_NAMESPACE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -157,6 +159,7 @@ size_t U3DFileWriter::addStandardBlock_LightNode(const std::string& lightNodeNam
 //! Returns the total # of data blocks in the data block chain.
 size_t U3DFileWriter::addStandardBlock_LitTextureShader(const mlU3D::LitTextureShader& shader)
 {
+  bool textured = shader.textureResourceName != "";
   U3DDataBlockWriter LitTextureShaderBlock;
   LitTextureShaderBlock.blockType = mlU3D::BLOCKTYPE_LITTEXTURESHADER;
   LitTextureShaderBlock.writeString(shader.resourceName);                         // Write Lit Texture Shader Name (9.8.3.1)
@@ -165,10 +168,67 @@ size_t U3DFileWriter::addStandardBlock_LitTextureShader(const mlU3D::LitTextureS
   LitTextureShaderBlock.writeU32(mlU3D::ALPHATESTFUCTION_ALWAYS);                 // Write Alpha Test Function (9.8.3.4)            [UNUSED BY ACROBAT]
   LitTextureShaderBlock.writeU32(mlU3D::COLORBLEND_ALPHABLEND);                   // Write Color Blend Function (9.8.3.5)           [UNUSED BY ACROBAT]
   LitTextureShaderBlock.writeU32(0x00000001);                                     // Write Render Pass Flags (9.8.3.6)              [UNUSED BY ACROBAT]
-  LitTextureShaderBlock.writeU32(0x00000000);                                     // Write Shader Channels (9.8.3.7)
-  LitTextureShaderBlock.writeU32(0x00000000);                                     // Write Alpha Texture Channels (9.8.3.8)         [UNUSED BY ACROBAT]
+  if (!textured)
+	LitTextureShaderBlock.writeU32(0x00000000);                                   // Write Shader Channels (9.8.3.7)
+  else
+	LitTextureShaderBlock.writeU32(0x00000001);
+  LitTextureShaderBlock.writeU32(0x00000001);                                     // Write Alpha Texture Channels (9.8.3.8)         [UNUSED BY ACROBAT]
   LitTextureShaderBlock.writeString(shader.materialResourceName);                 // Write Material Name (9.8.3.9)
-  // No texture information written since no Shader Channels are activated
+  // textures:
+  if (textured){
+	  LitTextureShaderBlock.writeString(shader.textureResourceName);	          //Texture Name
+	  LitTextureShaderBlock.writeF32(1.0f);			 					          //Texture Intensity
+	  LitTextureShaderBlock.writeU8(2);									          //Blend Func
+	  LitTextureShaderBlock.writeU8(1);									          //Blend Source
+	  LitTextureShaderBlock.writeF32(0.0f);								          //Blend Constant
+	  LitTextureShaderBlock.writeU8(0);											  //Texture Mode
+
+	  //Texture Transform Matrix Elements:
+	  LitTextureShaderBlock.writeF32(1.0f);	
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(1.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(1.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(1.0f);
+
+
+	  //Texture Wrap Transform Matrix Elements
+	  LitTextureShaderBlock.writeF32(1.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(1.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(1.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(0.0f);
+	  LitTextureShaderBlock.writeF32(1.0f);
+
+
+	  LitTextureShaderBlock.writeU8(3);									          //Texture Repeat
+  }
 
   return addDataBlock(LitTextureShaderBlock);
 }
@@ -227,6 +287,21 @@ size_t U3DFileWriter::addStandardBlock_MaterialResource(const mlU3D::MaterialRes
   MaterialResourceBlock.writeF32(materialResource.diffuseColor[3]);                 // Write Opacity (9.8.4.8)
 
   return addDataBlock(MaterialResourceBlock);
+}
+
+//! Adds a standard data block (type: texture resource) to the chain of all data blocks.
+//! Returns the total # of data blocks in the data block chain.
+size_t U3DFileWriter::addStandardBlock_TextureResource(const mlU3D::TextureResource& textureResource){
+	U3DDataBlockWriter textureResourceBlock;
+	textureResourceBlock.writeString(textureResource.resourceName);
+	textureResourceBlock.writeU32(0);
+
+	
+	for (unsigned int i = 0; i < textureResource.pictureData.size(); i++){
+		textureResourceBlock.writeU8(textureResource.pictureData[i]);
+	}
+	
+	return addDataBlock(textureResourceBlock,0xffffff5c);
 }
 
 
@@ -351,6 +426,30 @@ size_t U3DFileWriter::addStandardBlock_CLODMeshDeclaration(const mlU3D::CLODMesh
   CLODMeshDeclarationBlock.writeU32(0x00000000);                        // Write Skeleton Description - Bone Count (9.6.1.1.6.1) (shall be zero since skeltons are not supported by this version) [UNUSED BY ACROBAT]
 
   return addDataBlock(CLODMeshDeclarationBlock);
+}
+
+
+size_t U3DFileWriter::addStandardBlock_TextureDeclaration(const mlU3D::TextureResource& textureResource){
+	U3DDataBlockWriter TextureDeclarationBlock;
+	TextureDeclarationBlock.writeString(textureResource.resourceName);	//Texture Name
+
+	//Texture Image Format
+	TextureDeclarationBlock.writeU32(textureResource.height);			//Height
+	TextureDeclarationBlock.writeU32(textureResource.width);			//Width
+	TextureDeclarationBlock.writeU8(0x0F);								//Texture Image Type (RGBA)
+
+	TextureDeclarationBlock.writeU32(1);								//Continuation Image Count 
+
+	//Continuation Image Format
+	TextureDeclarationBlock.writeU8(0x02);								//Compression Type (PNG)
+	TextureDeclarationBlock.writeU8(0x01 | 0x02 | 0x04 | 0x08);			//Texture Image Channels (a+b+g+r)
+	TextureDeclarationBlock.writeU16(0);								//Continuation Image Attributes (default)
+	TextureDeclarationBlock.writeU32((const MLuint32)textureResource.pictureData.size());		//Image Data Byte Count
+
+	return addDataBlock(TextureDeclarationBlock, 0xFFFFFF55);
+
+
+
 }
 
 
@@ -585,6 +684,16 @@ void U3DFileWriter::addModifierChain_CLODMeshDeclaration(const mlU3D::CLODMeshGe
   _dataBlocks[CLODMeshDeclarationBlockIndex].close();
   
   _dataBlocks[ModifierChainBlockIndex].addChildDataBytes(_dataBlocks[CLODMeshDeclarationBlockIndex].getNumDataBytes());
+}
+
+void U3DFileWriter::addModifierChain_TextureDeclaration(const mlU3D::TextureResource& textureResource)
+{
+	size_t ModifierChainBlockIndex = addStandardBlock_ModifierChain(textureResource.resourceName, 2, 0x00000000, 1);
+
+	size_t textureDeclarationBlockIndex = addStandardBlock_TextureDeclaration(textureResource);
+	_dataBlocks[textureDeclarationBlockIndex].close();
+
+	_dataBlocks[ModifierChainBlockIndex].addChildDataBytes(_dataBlocks[textureDeclarationBlockIndex].getNumDataBytes());
 }
 
 

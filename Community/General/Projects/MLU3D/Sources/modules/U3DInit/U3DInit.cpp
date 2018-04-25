@@ -29,7 +29,6 @@ U3DInit::U3DInit() : U3DGenerator()
   // Suppress calls of handleNotification on field changes to
   // avoid side effects during initialization phase.
   handleNotificationOff();
-
   // Add and initialize parameter fields
   _initializeFld = addNotify("initialize");
 

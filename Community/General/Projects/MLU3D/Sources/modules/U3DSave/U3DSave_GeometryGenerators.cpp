@@ -342,13 +342,13 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
   // Write Write Base Texture Coord (9.6.1.2.4.5)
   for (MLuint32 thisTextureCoordGroup = 0; thisTextureCoordGroup < meshGenerator.textureCoordCount; thisTextureCoordGroup++)
   {
-    thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord U (9.6.1.2.4.5.1)
-    thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord V (9.6.1.2.4.5.2)
-    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord S (9.6.1.2.4.5.3)  // Only 2 dimensions supported by Acrobat
-    //thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord T (9.6.1.2.4.5.4)  // Only 2 dimensions supported by Acrobat
+    thisCLODBaseMeshContinuationBlock.writeF32(meshGenerator.textureCoordinates[thisTextureCoordGroup].first);           // Write Base Texture Coord U (9.6.1.2.4.5.1)
+	thisCLODBaseMeshContinuationBlock.writeF32(meshGenerator.textureCoordinates[thisTextureCoordGroup].second);          // Write Base Texture Coord V (9.6.1.2.4.5.2)
+    thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord S (9.6.1.2.4.5.3)  // Only 2 dimensions supported by Acrobat
+    thisCLODBaseMeshContinuationBlock.writeF32(0.0f);       // Write Base Texture Coord T (9.6.1.2.4.5.4)  // Only 2 dimensions supported by Acrobat
   }
 
-
+  MLuint32 corner_counter = 0;
   for (MLuint32 thisFace = 0; thisFace < meshGenerator.faceCount; thisFace++)
   {
     thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
@@ -387,9 +387,10 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
       // Write Base Corner Info - Base Texture Coord Index (9.6.1.2.4.6.2.5) 
       if (meshGenerator.textureCoordCount > 0)
       {
-        MLuint32 baseTextureCoordIndex = VertexIndex; // baseTextureCoordsMap[VertexIndex];
+        MLuint32 baseTextureCoordIndex = corner_counter; // baseTextureCoordsMap[VertexIndex];
         thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + meshGenerator.textureCoordCount, baseTextureCoordIndex);
       }
+	  corner_counter++;
     }
 
     if (0 == (thisFace % 100))   // Set progress field every 100 faces to save GUI update cost

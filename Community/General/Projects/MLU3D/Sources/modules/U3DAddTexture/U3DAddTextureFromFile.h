@@ -51,8 +51,9 @@ private:
 
   /* FIELDS */
 
-
-
+	StringField   *_fileNameFld;
+	StringField   *_statusFld;
+	StringField   *_textureSpecifikationFld;
 
   /* VARIABLES */
 

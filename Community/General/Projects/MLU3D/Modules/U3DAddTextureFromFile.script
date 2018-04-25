@@ -8,6 +8,7 @@
 
 Description {
   Field networkPanelStatus { editable = No persistent = No }  
+  Field status { editable = No persistent = No }  
 }
 
 
@@ -21,21 +22,46 @@ Commands {
 
 
 NetworkPanel {
-  info = networkPanelStatus
+  info = status
   Button  apply { symbol = @@ "start" @@ }  
 }
 
 
 Window  {  
   
-  minimumHeight = 100
-  minimumWidth  = 400  
+  minimumHeight = 500
+  minimumWidth  = 200  
+  
   
   Category { expandY = Yes
-    
-    Horizontal { expandX = Yes
-      Label { title = "Module is not yet implemented." alignX = Center }
+
+      
+      Box "" { layout = Vertical
+        Horizontal {
+          droppedFileCommand = "*py: ctx.field("filename").value = args[0] *"
+          Field filename {
+            browseButton = ON
+            browseMode   = open
+            mw           = 450
+          }
+        }
+      }
+    TextView spec { 
+      //dependsOn       = !simpleModeMesh
+      expandY         = Yes
+      title           = "Texture Specification:"
+      wrap            = off
+      autoApply       = yes
+      console         = yes
+      style           = monospacedTextView
+      showLineNumbers = No
+      textFormat      = Plain
     }
+      Horizontal {
+        alignX = Right
+        Button apply { title = "Attach" }
+      }
+    Field status { edit = No }
         
   }  // Category
 

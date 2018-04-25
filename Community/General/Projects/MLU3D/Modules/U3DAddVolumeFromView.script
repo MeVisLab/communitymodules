@@ -1,0 +1,46 @@
+//----------------------------------------------------------------------------------
+// ML module U3DAddVolumeFromView definition
+//
+// \file    U3DAddVolumeFromView.script
+// \author  Julian Brandner
+// \date    2017-09-16
+//----------------------------------------------------------------------------------
+
+Description {
+  Field status { editable = No persistent = No }  
+  Field progress{ editable = No persistent = No }
+}
+
+
+Interface {
+}
+
+
+Commands {
+}
+
+
+NetworkPanel {
+  info = status
+  Button  apply { symbol = @@ "start" @@ }  
+}
+
+
+Window  {  
+  
+  minimumHeight = 100
+  minimumWidth  = 400  
+  
+  Category { expandY = Yes
+   
+    
+    Field volumeName {title = "Volume Name"}
+    Button apply { title = "Add" }
+    Field status { edit = No }
+    Separator { direction = Horizontal }
+    ProgressBar progress {}
+    CheckBox autoApply { alignX = Right }
+        
+  }  // Category
+
+}

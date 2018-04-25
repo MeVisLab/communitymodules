@@ -108,6 +108,7 @@ namespace mlU3D {
   LitTextureShader::LitTextureShader() : ResourceBase()
   {
     materialResourceName = "";
+	textureResourceName = "";
   }
 
   //----------------------------------------------------------------------------------
@@ -162,6 +163,8 @@ namespace mlU3D {
 
   TextureResource::TextureResource() : ResourceBase()
   {
+	  height = 0;
+	  width = 0;
   }
 
   //----------------------------------------------------------------------------------

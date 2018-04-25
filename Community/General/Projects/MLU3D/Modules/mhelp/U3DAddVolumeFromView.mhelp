@@ -1,0 +1,119 @@
+ModuleHelp  {
+  MetaInformation  {
+    definition = Projects/MLU3D/Modules/MLU3D.def
+    moduleName = U3DAddVolumeFromView
+    moduleType = MLModule
+    author = "Julian Brandner"
+    DLL = MLU3D
+    genre = U3DModules
+    keywords = "PDF U3D"
+    seeAlso = ""
+    package = General
+    packageGroup = Community
+  }
+  Purpose  {
+    text = ""
+  }
+  Usage  {
+    text = ""
+  }
+  Details  {
+    text = ""
+  }
+  Interaction  {
+    text = ""
+  }
+  Tips  {
+    text = ""
+  }
+  Windows  {
+    text = ""
+    Window _default {
+      title = ""
+      text = ".. screenshot:: _default"
+    }
+  }
+  Inputs  {
+    text = ""
+    Field input0 {
+      type = Image
+      text = ""
+    }
+    Field inU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Outputs  {
+    text = ""
+    Field outU3DObject {
+      type = MLBase
+      text = ""
+    }
+  }
+  Parameters  {
+    Field instanceName {
+      type = String
+      text = ""
+      title = ""
+      needsDocumentation = No
+      visibleInGUI = No
+      persistent = Yes
+      default = U3DAddVolumeFromView
+    }
+    Field networkPanelStatus {
+      type = String
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = No
+    }
+    Field updateMode {
+      type = Enum
+      text = ""
+      title = ""
+      visibleInGUI = No
+      items  {
+        item Ignore {
+          title = Ignore
+          text = ""
+        }
+        item "Auto Clear" {
+          title = "Auto Clear"
+          text = ""
+        }
+        item "Auto Update" {
+          title = "Auto Update"
+          text = ""
+        }
+      }
+      persistent = Yes
+      default = "Auto Update"
+    }
+    Field apply {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    Field autoApply {
+      type = Bool
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = FALSE
+    }
+    Field reset {
+      type = Trigger
+      text = ""
+      title = ""
+      visibleInGUI = No
+      persistent = Yes
+      default = ""
+    }
+    text = ""
+  }
+}

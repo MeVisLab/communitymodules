@@ -96,6 +96,9 @@ private:
   //! Add all Light Node Blocks
   void _addLightNodes();
 
+
+
+
   // +++++++++++++++++++++++++++++++++++++++++++++++++
   // Geometry generator blocks
   // +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -115,6 +118,9 @@ private:
   //! Add all Model Node Blocks
   void _addCLODMeshGeometry();
 
+  // Add Texture-Declarations
+  void _addTextureDeclarations();
+
   // +++++++++++++++++++++++++++++++++++++++++++++++++
   // Resource blocks
   // +++++++++++++++++++++++++++++++++++++++++++++++++
@@ -130,6 +136,9 @@ private:
 
   // Add material resources
   void _addMaterialResources();
+
+  // Add texture resources
+  void _addTextureResources();
 
   // Add motion resources
   void _addMotionResources();

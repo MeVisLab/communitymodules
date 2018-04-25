@@ -893,9 +893,38 @@ void U3DTools::addLineSetModelAndGeometry(const mlU3D::StringVector& specificati
 
 }
 
+
 //***********************************************************************************
 
-void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM)
+WEM* U3DTools::constructQuadWem(Vector3 point_a, Vector3 point_b, Vector3 point_c, Vector3 point_d){
+	WEM* return_value = new WEM();
+	WEMTrianglePatch* patch = new WEMTrianglePatch();
+
+	WEMNode* node_a = patch->addNode();
+	node_a->setPosition(point_a);
+	WEMNode* node_b = patch->addNode();
+	node_b->setPosition(point_b);
+	WEMNode* node_c = patch->addNode();
+	node_c->setPosition(point_c);
+	WEMNode* node_d = patch->addNode();
+	node_d->setPosition(point_d);
+
+	WEMFace* face_a = patch->addFace();
+	face_a->setNode(0, node_a);
+	face_a->setNode(1, node_b);
+	face_a->setNode(2, node_c);
+	WEMFace* face_b = patch->addFace();
+	face_b->setNode(0, node_c);
+	face_b->setNode(1, node_d);
+	face_b->setNode(2, node_a);
+
+	return_value->addWEMPatch(patch);
+	return return_value;
+}
+
+//***********************************************************************************
+
+void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM, std::string geometryGeneratorPrefix)
 {
   mlU3D::GeometryGeneratorMap meshGeometryGeneratorMap;
   const MLuint32 numberOfMeshSpecifications = (MLuint32)specificationsVector.size();
@@ -928,7 +957,7 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
     mlU3D::ModelNode newModelNode = mlU3D::U3DTools::createNewModelNode(thisSpecificationParameters, u3dObject);
 
     std::string generatorKey = mlU3D::U3DTools::updateGeometryGeneratorMap(meshGeometryGeneratorMap, thisSpecificationParameters["WEMLabel"], mlU3D::GEOMETRYPREFIX_MESH);
-    newModelNode.geometryGeneratorName = meshGeometryGeneratorMap[generatorKey].GeometryName;
+    newModelNode.geometryGeneratorName = geometryGeneratorPrefix + meshGeometryGeneratorMap[generatorKey].GeometryName;
     u3dObject->modelNodes.push_back(newModelNode);
 
     // Set colors
@@ -973,7 +1002,7 @@ void U3DTools::addMeshModelAndGeometry(const mlU3D::StringVector& specifications
   for (mlU3D::GeometryGeneratorMap::const_iterator mapIterator = meshGeometryGeneratorMap.begin(); mapIterator != meshGeometryGeneratorMap.end(); mapIterator++)
   {
     std::string wemLabel = (*mapIterator).first;
-    std::string geometryName = ((*mapIterator).second).GeometryName;
+    std::string geometryName = geometryGeneratorPrefix + ((*mapIterator).second).GeometryName;
     bool useVertexColors = ((*mapIterator).second).UseVertexColors;
 
 
@@ -1169,6 +1198,96 @@ ModelBoundingBoxStruct U3DTools::getBoundingBoxFomPositions(PositionsVector posi
 
 //***********************************************************************************
 
+static std::vector<std::pair<MLfloat, MLfloat>> generateDefaultTextureMapping(MLint numberOfCoordinates){
+	std::vector<std::pair<MLfloat, MLfloat>> returnValue;
+	std::pair<MLfloat, MLfloat> corners[6];
+	corners[0] = std::pair<MLfloat, MLfloat>(0, 0);
+	corners[1] = std::pair<MLfloat, MLfloat>(1, 0);
+	corners[2] = std::pair<MLfloat, MLfloat>(0, 1);
+	corners[3] = std::pair<MLfloat, MLfloat>(0, 1);
+	corners[4] = std::pair<MLfloat, MLfloat>(1, 0);
+	corners[5] = std::pair<MLfloat, MLfloat>(1, 1);
+	for (MLint iter = 0; iter < numberOfCoordinates; iter++){
+		returnValue.push_back(corners[iter%6]);
+	}
+	return returnValue;
+}
+
+void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeName, std::string textureName, std::vector<std::pair<MLfloat,MLfloat>> &textureMap){
+	
+	/* get iterator to model */
+	auto node_iterator = u3DObject->modelNodes.begin();
+	bool node_found = false;
+	for (MLint i = 0; i < u3DObject->modelNodes.size() && !node_found; i++){
+		if (u3DObject->modelNodes[i].internalName == nodeName){
+			node_found = true;
+			node_iterator += i;
+		}
+	}
+	if (!node_found){
+		return;
+	}
+	
+	/* get iterator to shader */
+	std::string shader_name = node_iterator->shaderName;
+	auto shader_iterator = u3DObject->litTextureShaders.begin();
+	bool shader_found = false;
+	for (MLint i = 0; i < u3DObject->litTextureShaders.size() && !shader_found; i++){
+		if (u3DObject->litTextureShaders[i].resourceName == shader_name){
+			shader_found = true;
+			shader_iterator += i;
+		}
+	}
+	if (!shader_found){
+		return;
+	}
+
+	/* get iterator to material */
+	std::string material_name = shader_iterator->materialResourceName;
+	auto material_iterator = u3DObject->materialResources.begin();
+	bool material_found = false;
+	for (MLint i = 0; i < u3DObject->materialResources.size() && !material_found; i++){
+		if (u3DObject->materialResources[i].resourceName == material_name){
+			material_found = true;
+			material_iterator += i;
+		}
+	}
+	if (!material_found){
+		return;
+	}
+
+	/* get iterator to geometry generator */
+	std::string geometry_name = node_iterator->geometryGeneratorName;
+	auto geometry_iterator = u3DObject->meshes.begin();
+	bool geometry_found = false;
+	for (MLint i = 0; i < u3DObject->meshes.size() && !geometry_found; i++){
+		if (u3DObject->meshes[i].resourceName == geometry_name){
+			geometry_found = true;
+			geometry_iterator += i;
+		}
+	}
+	if (!geometry_found){
+		return;
+	}
+
+	/* wrong amount of UV coordinates leads to an error in Adobe Reader -> abort */
+	if (textureMap.size() > 0 && geometry_iterator->faceCount * 3 != textureMap.size()){
+		return;
+	}
+
+	/* apply changes */
+	geometry_iterator->textureLayerCount = 1;
+	geometry_iterator->textureCoordinates = textureMap.size() > 0 ? textureMap : generateDefaultTextureMapping(geometry_iterator->faceCount*3);
+	geometry_iterator->textureCoordCount = geometry_iterator->textureCoordinates.size();
+	shader_iterator->textureResourceName = textureName;
+	material_iterator->ambientColor = Vector3(1, 1, 1);
+	material_iterator->diffuseColor = Vector4(0, 0, 0, 1);
+	material_iterator->specularColor = Vector3(0, 0, 0);
+	material_iterator->reflectivity = 0;
+
+}
+
+//***********************************************************************************
 
 } // end namespace mlU3D
 

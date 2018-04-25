@@ -200,8 +200,11 @@ namespace mlU3D {
     static void addLineSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const ml::XMarkerList& linePositions, ml::IndexPairList& lineConnections);
     static void addLineSetModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, const FiberSetContainer& fibers);
 
+	// Construct a WEM representing a single quad mesh with given coordinates
+	static WEM* constructQuadWem(Vector3 point_a, Vector3 point_b, Vector3 point_c, Vector3 point_d);
+
     // Add mesh models and geometry generators according to specification vector
-    static void addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM);
+    static void addMeshModelAndGeometry(const mlU3D::StringVector& specificationsVector, U3DObjectPtr u3dObject, WEM* inWEM, std::string geometryGeneratorPrefix = "");
 
     // Scan all node colors of a WEM patch and return number of different colors
     static MLuint32 getNumberOfDifferentColorsFromWEMPatch(WEMTrianglePatch* patch);
@@ -211,6 +214,9 @@ namespace mlU3D {
 
     // Get bounding box edges from positions
     static ModelBoundingBoxStruct getBoundingBoxFomPositions(PositionsVector positions);
+
+	// Set the shader of a node to render the given material and texture
+	static void setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeName, std::string textureName, std::vector<std::pair<MLfloat, MLfloat>> &textureMap);
 
     //***********************************************************************************
 

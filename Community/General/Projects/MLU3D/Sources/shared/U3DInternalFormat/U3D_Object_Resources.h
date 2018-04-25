@@ -17,6 +17,8 @@
 // Global includes
 #include <mlModuleIncludes.h>
 
+#include <boost/gil/gil_all.hpp>
+
 
 ML_START_NAMESPACE
 
@@ -141,7 +143,8 @@ namespace mlU3D {
     //! Destructor, usually called automatically when the last RefCountedBase reference is removed.
     virtual ~LitTextureShader();
 
-    std::string materialResourceName;
+	std::string materialResourceName;
+	std::string textureResourceName;
 
   protected:
 
@@ -213,11 +216,16 @@ namespace mlU3D {
     //! Destructor, usually called automatically when the last RefCountedBase reference is removed.
     virtual ~TextureResource();
 
+	std::vector<uint8_t> pictureData;
+	uint32_t height, width;
+
+
 
   protected:
 
 
   private:
+
 
     //! Implements interface for the runtime type system of the ML.
     ML_CLASS_HEADER(TextureResource);

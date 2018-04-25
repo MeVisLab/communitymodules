@@ -45,6 +45,7 @@ public:
   size_t addStandardBlock_LightNode(const std::string& lightNodeName, const std::string& lightResourceName);
   size_t addStandardBlock_LitTextureShader(const mlU3D::LitTextureShader& shader);
   size_t addStandardBlock_MaterialResource(const mlU3D::MaterialResource& materialResource);
+  size_t addStandardBlock_TextureResource(const mlU3D::TextureResource& textureResource);
   size_t addStandardBlock_MaterialResourceWithDefaultLight(const std::string& materialResourceName);
   size_t addStandardBlock_ViewResource(const mlU3D::ViewResource& viewResource);
   size_t addStandardBlock_LightResource(const mlU3D::LightResource& lightResource);
@@ -53,6 +54,7 @@ public:
   size_t addStandardBlock_PointSetDeclaration(const mlU3D::PointSetGenerator& pointSetGenerator);
   size_t addStandardBlock_LineSetDeclaration(const mlU3D::LineSetGenerator& lineSetGenerator);
   size_t addStandardBlock_CLODMeshDeclaration(const mlU3D::CLODMeshGenerator& meshGenerator);
+  size_t addStandardBlock_TextureDeclaration(const mlU3D::TextureResource& textureResource);
   
   void addModifierChain_GroupNode(const std::string& groupNodeName, const std::string& parentNodeName = "");
   void addModifierChain_ViewNode(const std::string& viewNodeName, const std::string& viewResourceName);
@@ -62,6 +64,7 @@ public:
   void addModifierChain_PointSet(const mlU3D::PointSetGenerator& pointSetGenerator, U3DDataBlockWriter continuationBlock);
   void addModifierChain_LineSet(const mlU3D::LineSetGenerator& lineSetGenerator, U3DDataBlockWriter continuationBlock);
   void addModifierChain_CLODMeshDeclaration(const mlU3D::CLODMeshGenerator& meshGenerator);
+  void addModifierChain_TextureDeclaration(const mlU3D::TextureResource& textureResource);
 
   bool writeToFileStream(std::ofstream& ofstream);
   bool writeToFileStream(std::ofstream& ofstream, mlU3D::MetaDataVector metaData);

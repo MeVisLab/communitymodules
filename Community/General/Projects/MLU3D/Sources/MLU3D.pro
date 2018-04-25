@@ -17,7 +17,7 @@ DLLDESTDIR = ../../../lib
 WARN = HIGH
 
 # Add used projects here (see included pri files below for available projects)
-CONFIG += dll ML MLBase MLWEM MLFiberUtils MLBaseListExtensions inventor
+CONFIG += dll ML MLBase MLWEM MLFiberUtils MLBaseListExtensions MLTools inventor png
 
 MLAB_PACKAGES += MeVisLab_Standard MeVis_ThirdParty Community_General FMEstable_Release
 
@@ -73,6 +73,7 @@ HEADERS += \
   modules/U3DAddModel/U3DAddModelFromMarkerList.h \
   modules/U3DAddTexture/U3DAddTextureFromFile.h \
   modules/U3DAddTexture/U3DAddTextureFromImage.h \
+  modules/U3DAddTexture/U3DAddVolumeFromView.h \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.h \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.h \
   modules/U3DGeometryTo/U3DGeometryToWEM.h \
@@ -116,6 +117,7 @@ SOURCES += \
   modules/U3DAddModel/U3DAddModelFromMarkerList.cpp \
   modules/U3DAddTexture/U3DAddTextureFromFile.cpp \
   modules/U3DAddTexture/U3DAddTextureFromImage.cpp \
+  modules/U3DAddTexture/U3DAddVolumeFromView.cpp \
   modules/U3DGeometryTo/U3DGeometryToXMarkerList.cpp \
   modules/U3DGeometryTo/U3DGeometryToFiberSet.cpp \
   modules/U3DGeometryTo/U3DGeometryToWEM.cpp \

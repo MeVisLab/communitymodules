@@ -80,6 +80,17 @@ MLModule U3DAddTextureFromImage {
   externalDefinition = $(LOCAL)/U3DAddTextureFromImage.script
 }
 
+MLModule U3DAddVolumeFromView {
+  DLL                = "MLU3D"
+  genre              = "U3DModules"
+  author             = "Julian Brandner"
+  comment            = "Adds a virtual volume to an U3D."
+  keywords           = "PDF U3D"
+  seeAlso            = ""
+  exampleNetwork     = "$(LOCAL)/networks/U3DExample.mlab"
+  externalDefinition = $(LOCAL)/U3DAddVolumeFromView.script
+}
+
 
 MLModule U3DAssemble {
   DLL                = "MLU3D"

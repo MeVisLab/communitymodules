@@ -162,6 +162,7 @@ namespace mlU3D {
     MLuint32 patchID;
     MLuint32 meshNumber;     // Needed for progress calculation
     MLuint32 meshAttributes;
+	std::vector<std::pair<MLfloat,MLfloat>> textureCoordinates;
 
   protected:
 
