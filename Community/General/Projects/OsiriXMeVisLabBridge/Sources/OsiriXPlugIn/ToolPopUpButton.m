@@ -8,6 +8,16 @@
 
 #import "ToolPopUpButton.h"
 
+#if !defined(MAC_OS_X_VERSION_10_12) || MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_12
+
+static const NSCompositingOperation NSCompositingOperationSourceOver = NSCompositeSourceOver;
+static const NSCompositingOperation NSCompositingOperationPlusDarker = NSCompositePlusDarker;
+
+static const NSControlSize NSControlSizeRegular = NSRegularControlSize;
+static const NSControlSize NSControlSizeSmall = NSSmallControlSize;
+
+#endif
+
 @implementation ToolPopUpButton
 
 @synthesize controlSize;
@@ -20,7 +30,7 @@
   if (self) {
     [self setPullsDown:YES];
     [[self cell] setBordered:NO];
-    controlSize = NSRegularControlSize;
+    controlSize = NSControlSizeRegular;
   }
   return self;
 }
@@ -31,16 +41,24 @@
   if (self) {
     [self setPullsDown:YES];
     [[self cell] setBordered:NO];
-    controlSize = NSRegularControlSize;
+    controlSize = NSControlSizeRegular;
   }
   return self;
+}
+
+- (void) dealloc
+{
+  [iconImage release];
+  [arrowImage release];
+
+  [super dealloc];
 }
 
 - (void)setControlSize:(NSControlSize)newSize
 {
   controlSize = newSize;
   
-  [self setFrameSize:(controlSize == NSSmallControlSize) ? NSMakeSize(24,24) : NSMakeSize(32,32)];
+  [self setFrameSize:(controlSize == NSControlSizeSmall) ? NSMakeSize(24,24) : NSMakeSize(32,32)];
   
   [self setNeedsDisplay];
 }
@@ -64,7 +82,7 @@
 - (void)drawRect:(NSRect)rect
 {
   NSRect canvasRect = [self bounds];
-  // canvasRect.size = (controlSize == NSSmallControlSize) ? NSMakeSize(24,24) : NSMakeSize(32,32);
+  // canvasRect.size = (controlSize == NSControlSizeSmall) ? NSMakeSize(24,24) : NSMakeSize(32,32);
   
   NSRect arrowRect = NSZeroRect;
   arrowRect.size = [arrowImage size];
@@ -75,9 +93,9 @@
   iconRect.size = NSMakeSize(MIN(canvasRect.size.width, iconImgSize.width), MIN(canvasRect.size.height, iconImgSize.height));
   iconRect.origin = NSMakePoint(MAX(0, canvasRect.size.width - iconRect.size.width - arrowRect.size.width)/2, (canvasRect.size.height - iconRect.size.height)/2);
   
-  NSCompositingOperation compositing = ([self isHighlighted]) ? NSCompositePlusDarker : NSCompositeSourceOver;
-  [arrowImage drawInRect:arrowRect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:NULL];
-  [iconImage  drawInRect:iconRect  fromRect:NSZeroRect operation:compositing           fraction:1.0 respectFlipped:YES hints:NULL];
+  NSCompositingOperation compositing = ([self isHighlighted]) ? NSCompositingOperationPlusDarker : NSCompositingOperationSourceOver;
+  [arrowImage drawInRect:arrowRect fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0 respectFlipped:YES hints:NULL];
+  [iconImage  drawInRect:iconRect  fromRect:NSZeroRect operation:compositing                      fraction:1.0 respectFlipped:YES hints:NULL];
 }
 
 @end

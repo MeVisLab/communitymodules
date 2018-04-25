@@ -192,7 +192,8 @@
   [targets setObject:name forKey:targetIdentifierObject];
   [[targetPopUp cell] addItemWithTitle:name];
   [[[targetPopUp cell] itemWithTitle:name] setRepresentedObject:targetIdentifierObject];
-  
+  [targetIdentifierObject release];
+
   if ([targets count] == 1) {
 #ifdef OFFER_MEVISLAB_EXAMPLE
     [[targetPopUp cell] removeItemWithTitle:TITLE_PREPARE_MEVISLAB];
@@ -221,7 +222,6 @@
   else {
     NSString *name = [targets objectForKey:targetIdentifierObject];
     
-    [[[[targetPopUp cell] itemWithTitle:name] representedObject] release];
     [[targetPopUp cell] removeItemWithTitle:name];
     [targets removeObjectForKey:targetIdentifierObject];
     

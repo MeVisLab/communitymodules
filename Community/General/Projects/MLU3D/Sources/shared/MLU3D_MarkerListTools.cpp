@@ -471,7 +471,7 @@ void U3DMarkerListTools::fillFiberSetContainerFromLineSetGenerators(ml::FiberSet
 // Fill ax XMarkerList from point set generators
 void U3DMarkerListTools::fillWEMFromMeshGenerators(WEM* outWEM, const CLODMeshGeneratorVector& meshGenerators)
 {
-  outWEM->clear();
+  outWEM->removeAll();
 
   MLint numMeshGenerators = (MLint)meshGenerators.size();
 

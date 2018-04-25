@@ -50,3 +50,8 @@ Modules.mlab.cache
 /Community/General/Documentation/Publish/OsiriXMeVisLabBridge
 
 /Community/ThirdParty/Sources/libhpdf/Original Sources
+/Community/General/Projects/MLU3D/Sources/_References/Sourceforge U3D Project
+/Community/General/Projects/MLU3D/Sources/.vs/MLU3D/v14/*.suo
+/Community/General/Projects/MLU3D/Sources/MLU3D.VC.db
+*.suo
+/Community/General/Projects/MLU3D/Sources/MLU3D.VC.VC.opendb

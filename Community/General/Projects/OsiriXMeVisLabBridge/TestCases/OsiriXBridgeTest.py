@@ -66,6 +66,8 @@ def setUpTestCase ():
   
   if not socket.gethostname().startswith(('fritter-pc.', 'fritter-nb.')):
     Logging.info('Installing OsiriX plugin...')
+    # create destination folder
+    execute('/bin/mkdir -p \'%s/Library/Application Support/%s/Plugins\'' % (os.path.expanduser('~'), kAppSupportDirName))
     result = execute('/usr/bin/rsync -av --delete \'%s/Applications/MeVisLab.app/Contents/Packages/FMEwork/ReleaseMeVis/bin/PlugIns/OsiriXMeVisLabBridge.osirixplugin\' \'%s/Library/Application Support/%s/Plugins/\'' % (os.path.expanduser('~'), os.path.expanduser('~'), kAppSupportDirName))
     Logging.info('done.')
     
@@ -192,6 +194,6 @@ def TEST001_FilterChain ():
     
     ASSERT_EQ(int(t.result['error']), 0, 'Result of DBWindowFind')
 
-  except (xmlrpclib.Error, socket.error), err:
-    print "ERROR", err
+  except (xmlrpclib.Error, socket.error) as err:
+    print ("ERROR", err)
   return
