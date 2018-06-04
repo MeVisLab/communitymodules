@@ -49,7 +49,7 @@ ML_MODULE_CLASS_SOURCE(CurveToString, Module);
 //----------------------------------------------------------------------------------
 //! Constructor
 //----------------------------------------------------------------------------------
-CurveToString::CurveToString () : Module(0, 0)
+CurveToString::CurveToString() : Module(0, 0), m_InCurveList(NULL)
 {
   ML_TRACE_IN("CurveToString::CurveToString ()")
 
