@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "mlOsiriXServicesProtocol.h"
 
+ML_LIBRARY_EXPORT_ATTRIBUTE
 @interface MLOsiriXServices : NSObject <MLOsiriXServices> {
 @private
   id proxy;

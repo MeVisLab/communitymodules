@@ -18,8 +18,8 @@ def installHorosPlugin():
   # Make sure Horos is running beforehand. Due to the modified environment of
   # MeVisLab Horos may behave differently than usual when started from this
   # environment...
-  if MLAB.macIsApplicationRunning('com.horosproject.horos'):
-    MLAB.macOpenFileInApplication(os.path.join(ctx.package().binPath(),'PlugIns','OsiriXMeVisLabBridge.osirixplugin'), 'com.horosproject.horos')
+  if MLAB.macIsApplicationRunning('org.horosproject.horos'):
+    MLAB.macOpenFileInApplication(os.path.join(ctx.package().binPath(),'PlugIns','OsiriXMeVisLabBridge.osirixplugin'), 'org.horosproject.horos')
   else:
     MLAB.showInformation('Horos must be running to install the plugin. Please start Horos.', 'The plugin will be handed to Horos for installation. Click on the Install button again after launching Horos.', 'OsiriXBridge', ctx.window())
 

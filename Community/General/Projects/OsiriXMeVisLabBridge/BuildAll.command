@@ -1,6 +1,11 @@
 #! /bin/bash
 
-RUNDIR=`dirname $0`
+function canonicaldirname() {
+  DIR=$(echo "${1%/*}")
+  (cd "$DIR" && echo "$(pwd -P)")
+}
+
+RUNDIR=`canonicaldirname "$0"`
 
 SOURCESDIR="$RUNDIR/Sources"
 DOCSDIR="$RUNDIR/../../Documentation"
