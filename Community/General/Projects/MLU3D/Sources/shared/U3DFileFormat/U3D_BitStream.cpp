@@ -333,4 +333,318 @@ void U3DBitStreamWriter::allocateDataBuffer(MLint32 size)
 }
 
 
+static const MLuint32 FastNotMask[] = { 0x0000FFFF, 0x00007FFF, 0x00003FFF, 0x00001FFF, 0x00000FFF };
+static const MLuint32 ReadCount[] = { 4, 3, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+
+U3DBitStreamReader::U3DBitStreamReader(){
+	resetState();
+}
+
+void U3DBitStreamReader::resetState(){
+	contextManager = ContextManager();
+	high = 0x0000FFFF;
+	low = 0;
+	underflow = 0;
+	code = 0;
+	dataBitOffset = 0;
+	dataLocal = 0;
+	dataLocalNext = 0;
+	dataPosition = 0;
+	counter = 0;
+	data.clear();
+}
+
+
+std::string U3DBitStreamReader::printState(){
+	std::string ret;
+	ret += "h: ";
+	ret += std::to_string(high);
+	ret += " l: ";
+	ret += std::to_string(low);
+	ret += " u: ";
+	ret += std::to_string(underflow);
+	ret += " c: ";
+	ret += std::to_string(contextManager.hash());
+	return ret;
+}
+
+MLuint8 U3DBitStreamReader::readU8(){
+	MLuint32 uValue = readSymbol(mlU3D::Context_Uncompressed8);
+	uValue--;
+	swapBits8(uValue);
+	counter++;
+	return uValue;
+}
+
+MLuint16 U3DBitStreamReader::readU16(){
+	MLuint8 low = readU8();
+	MLuint8 high = readU8();
+	return ((MLuint16)low) | (((MLuint16)high) << 8);
+}
+
+MLuint32 U3DBitStreamReader::readU32(){
+	MLuint16 low = readU16();
+	MLuint16 high = readU16();
+	return ((MLuint32)low) | (((MLuint32)high) << 16);
+}
+
+MLuint64 U3DBitStreamReader::readU64(){
+	MLuint32 low = readU32();
+	MLuint32 high = readU32();
+	return ((MLuint64)low) | (((MLuint64)high) << 32);
+}
+
+MLint16 U3DBitStreamReader::readI16(){
+	return (MLint16)readU16();
+}
+
+MLint32 U3DBitStreamReader::readI32(){
+	return (MLint32)readU32();
+}
+
+MLfloat U3DBitStreamReader::readF32(){
+	MLuint32 buffer = readU32();
+	MLfloat* bufferPtr = (MLfloat*)&buffer;
+	return *bufferPtr;
+}
+
+MLuint32 U3DBitStreamReader::readCompressedU32(MLuint32 context) {
+	MLuint32 rValue;
+	MLuint32 symbol = 0;
+	if (context != mlU3D::Context_Uncompressed8 && context < mlU3D::MaxRange) { // the
+		symbol = readSymbol(context);
+		if (symbol != 0) { // the symbol is compressed
+			rValue = symbol - 1;
+		}
+		else { // escape character, the symbol was not compressed
+			rValue = readU32();
+			this->contextManager.addSymbol(context, rValue + 1);
+		}
+	}
+	else { // The context specified is uncompressed.
+		rValue = readU32();
+	}
+	return rValue;
+}
+
+
+MLuint16 U3DBitStreamReader::readCompressedU16(MLuint32 context){
+	MLuint32 symbol = 0;
+	if (context != mlU3D::Context_Uncompressed8 && context < mlU3D::MaxRange){
+		symbol = readSymbol(context);
+		if (symbol != 0){
+			return (MLuint16)(symbol - 1);
+		}
+		else {
+			MLuint16 ret = readU16();
+			contextManager.addSymbol(context, ret + 1U);
+			return ret;
+		}
+	}
+	else {
+		return readU16();
+	}
+}
+
+MLuint8 U3DBitStreamReader::readCompressedU8(MLuint32 context){
+	MLuint32 symbol = 0;
+	if (context != mlU3D::Context_Uncompressed8 && context < mlU3D::MaxRange){
+		symbol = readSymbol(context);
+		if (symbol != 0){
+			return (MLuint8)(symbol - 1);
+		}
+		else {
+			MLuint8 ret = readU8();
+			contextManager.addSymbol(context, ret + 1U);
+			return ret;
+		}
+	}
+	else {
+		return readU8();
+	}
+}
+
+void U3DBitStreamReader::setDataBlock(std::ifstream &fileStream, MLuint32 size){
+	resetState();
+	MLuint32 length = size / sizeof(MLuint32);
+	if (size % sizeof(MLuint32) != 0){
+		length++;
+	}
+	data.reserve(length);
+	for (MLuint32 i = 0; i < length; i++){
+		MLuint32 r = 0;
+		fileStream.read((char*)(&r), sizeof(MLuint32));
+		data.push_back(r);
+	}
+	getLocal();
+}
+
+void U3DBitStreamReader::swapBits8(MLuint32 &rValue){
+	rValue = (mlU3D::Swap8[(MLuint32)((rValue)& 0xf)] << 4) |
+		(mlU3D::Swap8[(MLuint32)((rValue) >> 4)]);
+}
+
+
+MLuint32 U3DBitStreamReader::readSymbol(MLuint32 context) {
+	MLuint32 rSymbol;
+	MLuint32 uValue = 0;
+
+	const MLuint32 position = getBitCount();
+	this->code = readBit();
+	this->dataBitOffset += (MLuint32) this->underflow;
+	while (this->dataBitOffset >= 32) {
+		this->dataBitOffset -= 32;
+		incrementPosition();
+	}
+	const MLuint32 temp = read15Bits();
+	this->code <<= 15;
+	this->code |= temp;
+	seekToBit(position);
+
+	const MLuint32 totalCumFreq =
+		this->contextManager.getTotalSymbolFrequency(context);
+
+	const MLuint32 range = this->high + 1 - this->low;
+
+	const MLuint32 codeCumFreq =
+		((totalCumFreq)* (1 + this->code - this->low) - 1) / (range);
+
+	uValue = this->contextManager.getSymbolFromFrequency(context, codeCumFreq);
+
+	MLuint32 valueCumFreq =
+		this->contextManager.getCumulativeSymbolFrequency(context, uValue);
+	MLuint32 valueFreq =
+		this->contextManager.getSymbolFrequency(context, uValue);
+	MLuint32 low = this->low;
+	MLuint32 high = this->high;
+	high = low - 1 + range * (valueCumFreq + valueFreq) / totalCumFreq;
+	low = low + range * (valueCumFreq) / totalCumFreq;
+	this->contextManager.addSymbol(context, uValue);
+	MLuint32 bitCount;
+	MLuint32 maskedLow;
+	MLuint32 maskedHigh;
+
+	bitCount =
+		(MLuint32)ReadCount[(MLuint32)(((low >> 12) ^ (high >> 12)) & 0x0000000F)];
+	low &= FastNotMask[bitCount];
+	high &= FastNotMask[bitCount];
+	high <<= bitCount;
+	low <<= bitCount;
+	high |= (1 << bitCount) - 1;
+
+	maskedLow = mlU3D::HalfMask & low;
+	maskedHigh = mlU3D::HalfMask & high;
+	while (((maskedLow | maskedHigh) == 0) ||
+		((maskedLow == mlU3D::HalfMask) && maskedHigh == mlU3D::HalfMask))
+	{
+		low = (mlU3D::NotHalfMask & low) << 1;
+		high = ((mlU3D::NotHalfMask & high) << 1) | 1;
+		maskedLow = mlU3D::HalfMask & low;
+		maskedHigh = mlU3D::HalfMask & high;
+		bitCount++;
+	}
+	const MLuint32 savedBitsLow = maskedLow;
+	const MLuint32 savedBitsHigh = maskedHigh;
+	if (bitCount > 0) {
+		bitCount += (int) this->underflow;
+		this->underflow = 0;
+	}
+
+	maskedLow = mlU3D::QuarterMask & low;
+	maskedHigh = mlU3D::QuarterMask & high;
+	MLuint64 underflow = 0;
+	while ((maskedLow == 0x4000) && (maskedHigh == 0)) {
+		low &= mlU3D::NotThreeQuarterMask;
+		high &= mlU3D::NotThreeQuarterMask;
+		low += low;
+		high += high;
+		high |= 1;
+		maskedLow = mlU3D::QuarterMask & low;
+		maskedHigh = mlU3D::QuarterMask & high;
+		underflow++;
+	}
+
+	this->underflow += underflow;
+	low |= savedBitsLow;
+	high |= savedBitsHigh;
+	this->low = low;
+	this->high = high;
+
+	this->dataBitOffset += bitCount;
+	while (this->dataBitOffset >= 32) {
+		this->dataBitOffset -= 32;
+		incrementPosition();
+	}
+
+	rSymbol = uValue;
+	return rSymbol;
+}
+
+MLuint32 U3DBitStreamReader::getBitCount(){
+	return (MLuint32)((this->dataPosition << 5) + this->dataBitOffset);
+}
+
+MLuint32 U3DBitStreamReader::readBit(){
+	MLuint32 uValue = 0;
+	uValue = this->dataLocal >> this->dataBitOffset;
+	uValue &= 1;
+	this->dataBitOffset++;
+	if (this->dataBitOffset >= 32){
+		this->dataBitOffset -= 32;
+		incrementPosition();
+	}
+	return uValue;
+}
+
+MLuint32 U3DBitStreamReader::read15Bits(){
+	MLuint32 uValue = this->dataLocal >> this->dataBitOffset;
+	if (this->dataBitOffset > 17){
+		uValue |= (this->dataLocalNext << (32 - this->dataBitOffset));
+	}
+	uValue += uValue;
+
+	uValue = (mlU3D::Swap8[(uValue >> 12) & 0xf])
+		| ((mlU3D::Swap8[(uValue >> 8) & 0xf]) << 4)
+		| ((mlU3D::Swap8[(uValue >> 4) & 0xf]) << 8)
+		| ((mlU3D::Swap8[uValue & 0xf]) << 12);
+
+	this->dataBitOffset += 15;
+	if (dataBitOffset >= 32){
+		this->dataBitOffset -= 32;
+		incrementPosition();
+	}
+	return uValue;
+}
+
+void U3DBitStreamReader::incrementPosition(){
+	this->dataPosition++;
+	if (this->dataPosition < this->data.size()){
+		this->dataLocal = this->data[dataPosition];
+	} else {
+		std::cerr << "Invalid BitSream read!" << std::endl;
+		abort();
+	}
+	if (this->data.size() > this->dataPosition + 1){
+		this->dataLocalNext = this->data[this->dataPosition + 1];
+	}
+	else {
+		this->dataLocalNext = 0;
+	}
+}
+
+void U3DBitStreamReader::seekToBit(MLuint32 position){
+	this->dataPosition = position >> 5;
+	this->dataBitOffset = (MLint32)(position & 0x1F);
+	getLocal();
+}
+
+void U3DBitStreamReader::getLocal(){
+	this->dataLocal = this->data[this->dataPosition];
+	if (this->data.size() > this->dataPosition + 1){
+		this->dataLocalNext = this->data[this->dataPosition + 1];
+	}
+}
+
+
 ML_END_NAMESPACE

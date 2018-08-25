@@ -16,6 +16,9 @@
 // Local includes
 #include "../../MLU3DSystem.h"
 #include "../../abstract/BaseModules/U3DGenerator.h"
+#include "../../shared/MLU3D_Constants.h"
+#include "../../shared/MLU3D_Tools.h"
+#include "../../shared/U3DFileFormat/U3D_BitStream.h"
 
 
 ML_START_NAMESPACE
@@ -46,11 +49,65 @@ protected:
 private:
 
   /* FIELDS */
+	ml::StringField* _fileNameFld;
+	ml::Field* _applyFld;
 
+	MLuint64 fileSize;
 
+	std::map<std::string, mlU3D::ViewNode>  viewNodeMap;
+	std::map<std::string, mlU3D::GroupNode> groupNodeMap;
+	std::map<std::string, mlU3D::ModelNode> modelNodeMap;
+	std::map<std::string, mlU3D::LightNode> lightNodeMap;
+	std::map<std::string, mlU3D::PointSetGenerator> pointSetMap;
+	std::map<std::string, mlU3D::LineSetGenerator>  lineSetMap;
+	std::map<std::string, mlU3D::CLODMeshGenerator> meshMap;
+	std::map<std::string, mlU3D::LightResource>    lightResourceMap;
+	std::map<std::string, mlU3D::ViewResource>     viewResourceMap;
+	std::map<std::string, mlU3D::LitTextureShader> litTextureShaderMap;
+	std::map<std::string, mlU3D::MaterialResource> materialResourceMap;
+	std::map<std::string, mlU3D::TextureResource>  textureResourceMap;
 
+	std::string currentChainNode;
+
+	U3DBitStreamReader bitStreamReader;
 
   /* METHODS */
+	void clearMaps();
+	void loadU3DFile(std::string path);
+	void parseBlock(std::ifstream& fileStream);
+	void writeDataToOutput();
+
+	void parseFileHeader(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parsePriorityUpdate(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseModifierChain(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseLitTextureShader(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseModelNode(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseShadingModifier(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseLightNode(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseLightResource(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseViewNode(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseViewResource(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseGroupNode(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseMaterialResource(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseCLODMeshDeclaration(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseCLODMeshBaseContinuation(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseTextureDeclaration(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parseTextureContinuation(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parsePointSetDeclaration(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+	void parsePointSetContinuation(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+
+	MLuint8 readU8();
+	MLuint16 readU16();
+	MLuint32 readU32();
+	MLuint64 readU64();
+	MLint16 readI16();
+	MLint32 readI32();
+	MLfloat readF32();
+	MLdouble readF64();
+	MLuint8 readCompressedU8(MLuint32 context);
+	MLuint16 readCompressedU16(MLuint32 context);
+	MLuint32 readCompressedU32(MLuint32 context);
+	std::string readString();
 
 
 

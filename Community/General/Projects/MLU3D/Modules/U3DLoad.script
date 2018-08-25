@@ -20,17 +20,33 @@ Commands {
 
 
 NetworkPanel {
+Button  apply { symbol = @@ "start" @@ } 
 }
 
 
 Window  {  
   
-  fixedHeight = 100
-  fixedWidth  = 300
+  fixedHeight = 200
+  fixedWidth  = 500
  
   Category { expandY = Yes
 
-    Label { title = "Not yet implemented." alignX = Center alignY = Center }  
+     	Box "" { layout = Vertical
+        Horizontal {
+          droppedFileCommand = "*py: ctx.field("filename").value = args[0] *"
+          Field filename {
+            browseButton = ON
+            browseMode   = open
+            mw           = 450
+          }
+        }
+	}
+     Horizontal {
+        alignX = Right
+        Button apply { title = "Load" }
+      }
+
+
     
   }  // Category
 

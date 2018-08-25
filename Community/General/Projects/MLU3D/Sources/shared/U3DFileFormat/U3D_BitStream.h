@@ -202,6 +202,50 @@ private:
    
 };
 
+class U3DBitStreamReader{
+
+public:
+	U3DBitStreamReader();
+	MLuint8 readU8();
+	MLuint16 readU16();
+	MLuint32 readU32();
+	MLuint64 readU64();
+	MLint8 readI8();
+	MLint16 readI16();
+	MLint32 readI32();
+	MLfloat readF32();
+	MLuint32 readCompressedU32(MLuint32 context);
+	MLuint16 readCompressedU16(MLuint32 context);
+	MLuint8 readCompressedU8(MLuint32 context);
+	void setDataBlock(std::ifstream &fileStream, MLuint32 size);
+
+	MLuint32 counter;
+	std::string printState();
+
+private:
+
+	void swapBits8(MLuint32 &rValue);
+	MLuint32 readSymbol(MLuint32 context);
+	MLuint32 getBitCount();
+	MLuint32 readBit();
+	MLuint32 read15Bits();
+	void incrementPosition();
+	void seekToBit(MLuint32 position);
+	void getLocal();
+	void resetState();
+
+	ContextManager contextManager;
+	MLuint32 high;
+	MLuint32 low;
+	MLuint32 underflow;
+	MLuint32 code;
+	std::vector<MLuint32> data;
+	MLuint32 dataPosition;
+	MLuint32 dataLocal;
+	MLuint32 dataLocalNext;
+	MLint32 dataBitOffset;
+
+};
 
 ML_END_NAMESPACE
 

@@ -726,8 +726,21 @@ bool U3DFileWriter::writeToFileStream(std::ofstream& ofstream, const mlU3D::Meta
     ByteSizeOfAllBlocks += _dataBlocks[i].getNumTotalBytes();
   }
 
+  // Write header block meta data
+  MLuint32 metaDataPairCount = MLuint32(metaData.size());
+
+  if (metaDataPairCount > 0)
+  {
+	  _dataBlocks[0].writeMetaU32(metaDataPairCount);                     // Write meta data Key/Value Pair Count  
+
+	  for (size_t i = 0; i < metaData.size(); i++)
+	  {
+		  _dataBlocks[0].writeMetaKeyValuePair(0x00000000, metaData[i].key, metaData[i].value);  // Write meta data Key/Value Pairs 
+	  }
+  }
+
   // Write header block data
-  MLuint32 ByteSizeOfHeaderMetaData = 0;
+  MLuint32 ByteSizeOfHeaderMetaData = _dataBlocks[0].getNumMetaDataBytes(); 
   MLuint32 PadBytes = U3DDataBlockWriter::getNumPaddingBytes(ByteSizeOfHeaderMetaData);  
   
   ByteSizeOfHeaderMetaData += PadBytes; 
@@ -741,19 +754,6 @@ bool U3DFileWriter::writeToFileStream(std::ofstream& ofstream, const mlU3D::Meta
   _dataBlocks[0].writeU32(ByteSizeOfHeader);                          // Write declaration size (9.4.1.3)
   _dataBlocks[0].writeU64(ByteSizeOfHeader + ByteSizeOfAllBlocks);    // Write file size (9.4.1.4)
   _dataBlocks[0].writeU32(0x0000006A);                                // Write character encoding (9.4.1.5)
-
-  // Write header block meta data
-  MLuint32 metaDataPairCount = MLuint32(metaData.size()); 
-
-  if (metaDataPairCount > 0)
-  {
-    _dataBlocks[0].writeMetaU32(metaDataPairCount);                     // Write meta data Key/Value Pair Count  
-  
-    for (size_t i = 0; i < metaData.size(); i++)
-    {
-      _dataBlocks[0].writeMetaKeyValuePair(0x00000000, metaData[i].key, metaData[i].value);  // Write meta data Key/Value Pairs 
-    }
-  }
 
   // Close header block
   _dataBlocks[0].close();

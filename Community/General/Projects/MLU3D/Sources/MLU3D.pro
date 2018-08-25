@@ -105,6 +105,8 @@ SOURCES += \
   modules/U3DInit/U3DInit.cpp \
   modules/U3DInfo/U3DInfo.cpp \
   modules/U3DLoad/U3DLoad.cpp \
+  modules/U3DLoad/U3DLoadNodes.cpp \
+  modules/U3DLoad/U3DLoadResources.cpp \
   modules/U3DSave/U3DSave.cpp \
   modules/U3DSave/U3DSave_Nodes.cpp \
   modules/U3DSave/U3DSave_Resources.cpp \

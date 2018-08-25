@@ -47,6 +47,7 @@ public:
   MLuint32 getCumulativeSymbolFrequency(const MLuint32 context, const MLuint32 symbol);
   MLuint32 getTotalSymbolFrequency(const MLuint32 context);
   MLuint32 getSymbolFromFrequency(const MLuint32 context, const MLuint32 symbolFrequency);
+  MLuint32 hash();
 
 private:
 

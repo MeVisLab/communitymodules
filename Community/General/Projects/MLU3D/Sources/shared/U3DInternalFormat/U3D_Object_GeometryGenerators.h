@@ -164,6 +164,10 @@ namespace mlU3D {
     MLuint32 meshAttributes;
 	std::vector<std::pair<MLfloat,MLfloat>> textureCoordinates;
 
+	//additional variables needed for reading external files
+	MLuint32 shadingAttributes;
+	MLuint32 textureLayerCount;
+
   protected:
 
 

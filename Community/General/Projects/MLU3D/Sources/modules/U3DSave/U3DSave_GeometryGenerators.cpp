@@ -352,7 +352,6 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
   for (MLuint32 thisFace = 0; thisFace < meshGenerator.faceCount; thisFace++)
   {
     thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_cShading, 0);       // Write Shading ID (9.6.1.2.4.6.1)
-
     WEMFace* wemFace = meshPatch->getFaceAt(thisFace);
 
     for (MLuint thisNode = 0; thisNode < 3; thisNode++)
@@ -364,7 +363,6 @@ U3DDataBlockWriter U3DSave::_createCLODBaseMeshContinuationBlock(WEMTrianglePatc
 
       // Write Base Corner Info - Base Position Index (9.6.1.2.4.6.2.1)
       thisCLODBaseMeshContinuationBlock.writeCompressedU32(mlU3D::Context_StaticFull + meshGenerator.vertexCount, VertexIndex);
-
       // Write Base Corner Info - Base Normal Index (9.6.1.2.4.6.2.2)
       if (meshGenerator.normalCount > 0)
       {

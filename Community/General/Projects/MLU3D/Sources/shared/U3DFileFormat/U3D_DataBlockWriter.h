@@ -33,7 +33,7 @@ public:
   virtual ~U3DDataBlockWriter();
 
   MLuint32 getDataSize()                       { return (_closed ? _dataWriter.getDataPosition() : 0); }
-  MLuint32 getMetaDataSize()                   { return (_closed ? _metaDataWriter.getDataPosition() : 0); }
+  MLuint32 getMetaDataSize()                   { return (/*_closed ? _metaDataWriter.getDataPosition() : 0)*/_metaDataWriter.getDataPosition()); }
   MLuint32 getDataSizeWithoutPadding()         { return (_closed ? _dataWriter.getDataPositionWithoutPadding() : 0); }
   MLuint32 getMetaDataSizeWithoutPadding()     { return (_closed ? _metaDataWriter.getDataPositionWithoutPadding() : 0); }
 

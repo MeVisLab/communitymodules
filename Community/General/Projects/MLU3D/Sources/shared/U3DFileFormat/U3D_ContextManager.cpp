@@ -63,6 +63,20 @@ void ContextManager::addSymbol(MLuint32 context, MLuint32 symbol)
   }
 }
 
+MLuint32 ContextManager::hash(){
+	MLuint32 ret = 0;
+	for (int i = 0; i < mlU3D::Context_StaticFull; i++){
+		for (auto j : this->_cumulativeCount[i]){
+			ret += j;
+		}
+		for (auto j : this->_symbolCount[i]){
+			ret += j;
+		}
+	}
+	return ret;
+
+}
+
 MLuint32 ContextManager::getSymbolFrequency(MLuint32 context, MLuint32 symbol)
 {
   // The static case is 1.

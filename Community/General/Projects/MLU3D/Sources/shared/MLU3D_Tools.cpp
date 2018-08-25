@@ -42,6 +42,35 @@ void U3DTools::quantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLu
 
 //***********************************************************************************
 
+void U3DTools::dequantizePosition(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ)
+{
+	MLuint8 signX = u8Signs & 1;
+	MLuint8 signY = u8Signs & (1<<1);
+	MLuint8 signZ = u8Signs & (1<<2);
+	pos.x = (((MLdouble)udX) - 0.5f) / mlU3D::Quant_Position;
+	if (signX) pos.x *= -1;
+	pos.y = (((MLdouble)udY) - 0.5f) / mlU3D::Quant_Position;
+	if (signY) pos.y *= -1;
+	pos.z = (((MLdouble)udZ) - 0.5f) / mlU3D::Quant_Position;
+	if (signZ) pos.z *= -1;
+
+}
+
+void U3DTools::dequantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ)
+{
+	MLuint8 signX = u8Signs & 1;
+	MLuint8 signY = u8Signs & (1 << 1);
+	MLuint8 signZ = u8Signs & (1 << 2);
+	pos.x = (((MLdouble)udX) - 0.5f) / mlU3D::Quant_Normal;
+	if (signX) pos.x *= -1;
+	pos.y = (((MLdouble)udY) - 0.5f) / mlU3D::Quant_Normal;
+	if (signY) pos.y *= -1;
+	pos.z = (((MLdouble)udZ) - 0.5f) / mlU3D::Quant_Normal;
+	if (signZ) pos.z *= -1;
+}
+
+//***********************************************************************************
+
 void U3DTools::makeInternalNameUnique(std::string& objectName, mlU3D::U3DObjectPtr u3dObject)
   {
     for (size_t m = 0; m < u3dObject->modelNodes.size(); m++)

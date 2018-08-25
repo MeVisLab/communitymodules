@@ -115,6 +115,12 @@ namespace mlU3D {
     // Quantize normal
     static void quantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ);
 
+	// Reverse position Quantization
+	static void dequantizePosition(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ);
+
+	// Reverse normal Quantization
+	static void dequantizeNormal(Vector3& pos, MLuint8& u8Signs, MLuint32& udX, MLuint32& udY, MLuint32& udZ);
+
     // Split a string
     static StringVector stringSplit(const std::string& stringToSplit, const std::string& delimiter, const bool keepEmpty, const bool trimWhitespace = true);
 

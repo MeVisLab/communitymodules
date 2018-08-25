@@ -119,6 +119,9 @@ namespace mlU3D {
     meshNumber        = 0; // Needed for progress calculation
     meshAttributes    = mlU3D::MESH_ATTRIBUTES_DEFAULT;
 
+	shadingAttributes = 0;
+	textureLayerCount = 0;
+
     _wem = NULL;
     ML_CHECK_NEW(_wem, WEM());
   }
