@@ -213,7 +213,7 @@ void U3DLoad::parseCLODMeshBaseContinuation(std::ifstream& fileStream, MLuint32 
 			//std::cout << basePositionIndex << " ";
 			if (meshMap[name].meshAttributes != 0x1){
 				MLuint32 baseNormalIndex = readCompressedU32(mlU3D::Context_StaticFull + baseNormalCount);
-				currentFace->setNormal(normalVector[baseNormalIndex]);
+				baseGeometry->getNodeAt(basePositionIndex)->setNormal(normalVector[baseNormalIndex]);
 			}
 			if (meshMap[name].shadingAttributes & 0x1){
 				MLuint32 baseDiffuseColorIndex = readCompressedU32(mlU3D::Context_StaticFull + baseDiffuseColorCount);
