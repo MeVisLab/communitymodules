@@ -7,18 +7,18 @@ from TestSupport import Base, Fields, Logging, ScreenShot
 from TestSupport.Macros import *
 from threading import Thread
 import subprocess, time, os, sys, tempfile
-import xmlrpclib, socket
+import xmlrpc.client, socket
 
 
 kOsiriXBundleId = 'com.rossetantoine.osirix'
 kOsiriXDBDirName = 'OsiriX Data'
 kOsiriXSupportDirName = 'OsiriX'
 
-kHorosBundleId = 'com.horosproject.horos'
+kHorosBundleId = 'org.horosproject.horos'
 kHorosDBDirName = 'Horos Data'
 kHorosSupportDirName = 'Horos'
 
-if True:
+if False:
   kAppBundleId = kOsiriXBundleId
   kAppDBDirName = kOsiriXDBDirName
   kAppSupportDirName = kOsiriXSupportDirName
@@ -46,7 +46,7 @@ def execute (command, wait=True):
 class OsiriXXMLRPCThread (Thread):
   def __init__ (self, func):
     Thread.__init__(self)
-    self.OsiriX = xmlrpclib.ServerProxy('http://localhost:8080/')
+    self.OsiriX = xmlrpc.client.ServerProxy('http://localhost:8080/')
     self.func = func
     self.result = None
   def run (self):
@@ -194,6 +194,6 @@ def TEST001_FilterChain ():
     
     ASSERT_EQ(int(t.result['error']), 0, 'Result of DBWindowFind')
 
-  except (xmlrpclib.Error, socket.error) as err:
+  except (xmlrpc.client.Error, socket.error) as err:
     print ("ERROR", err)
   return

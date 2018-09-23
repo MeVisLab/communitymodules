@@ -7,6 +7,9 @@ name = OsiriXMeVisLabBridge
 [docbook]
 files = OsiriXMeVisLabBridge.xml
 buildType = html,qthelp
+useLocalXLS = true
+useIndexType = 1
+olinkDatabase = $${MLAB_MeVisLab_Resources}/Documentation/Sources/olinkdb.xml
 
 [docbook-variables]
 mevis.footer.copyright = MeVisLab Community

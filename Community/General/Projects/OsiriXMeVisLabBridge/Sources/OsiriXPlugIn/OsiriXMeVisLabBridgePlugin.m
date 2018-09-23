@@ -153,7 +153,12 @@
   NSMutableArray *discardedDicts = [NSMutableArray array];
 
   for (NSDictionary *dict in dbArray) {
-    if ([[dict valueForKey:@"Path"] isEqualToString:folderPath]) {
+    NSString *path = [dict valueForKey:@"Path"];
+    if ([path hasPrefix:@"/private/"] && ![folderPath hasPrefix:@"/private/"]) {
+      path = [path substringFromIndex:[@"/private" length]];
+    }
+
+    if ([path isEqualToString:folderPath]) {
       [discardedDicts addObject:dict];
     }
   }

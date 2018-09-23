@@ -8,16 +8,18 @@ Description {
 
 Interface {
   Inputs {
-    Field inputFilterPlugin     { internalName = DirectDicomImport.inputFilterPlugin }
+    Field inputFilterPlugin         { internalName = DirectDicomImport.inputFilterPlugin }
+    Field inputMessageFilterPlugin  { internalName = DirectDicomImport.inputMessageFilterPlugin }
   }
   Outputs {
-    Field output0               { internalName = DirectDicomImport.output0 }
-    Field outputAccessConnector { internalName = DirectDicomImport.outputAccessConnector }
+    Field output0                   { internalName = DirectDicomImport.output0 }
+    Field output1                   { internalName = DirectDicomImport.output1 }
+    Field outputAccessConnector     { internalName = DirectDicomImport.outputAccessConnector }
   }
   Parameters {
-    Field targetName            { internalName = OsiriXBridge.alternativeTargetName }
-    Field osirixIncomingDir     { internalName = OsiriXBridge.osirixIncomingDir }
-    Field clientAppBundleId     { internalName = OsiriXBridge.clientAppBundleId }
+    Field targetName                { internalName = OsiriXBridge.alternativeTargetName }
+    Field osirixIncomingDir         { internalName = OsiriXBridge.osirixIncomingDir }
+    Field clientAppBundleId         { internalName = OsiriXBridge.clientAppBundleId }
   }
 }
 
