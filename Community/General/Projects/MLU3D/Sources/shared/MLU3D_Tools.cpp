@@ -1247,7 +1247,7 @@ void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeNa
 	/* get iterator to model */
 	auto node_iterator = u3DObject->modelNodes.begin();
 	bool node_found = false;
-	for (MLint i = 0; i < u3DObject->modelNodes.size() && !node_found; i++){
+	for (MLint i = 0; i < (MLint)u3DObject->modelNodes.size() && !node_found; i++){
 		if (u3DObject->modelNodes[i].internalName == nodeName){
 			node_found = true;
 			node_iterator += i;
@@ -1261,7 +1261,7 @@ void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeNa
 	std::string shader_name = node_iterator->shaderName;
 	auto shader_iterator = u3DObject->litTextureShaders.begin();
 	bool shader_found = false;
-	for (MLint i = 0; i < u3DObject->litTextureShaders.size() && !shader_found; i++){
+	for (MLint i = 0; i < (MLint)u3DObject->litTextureShaders.size() && !shader_found; i++){
 		if (u3DObject->litTextureShaders[i].resourceName == shader_name){
 			shader_found = true;
 			shader_iterator += i;
@@ -1275,7 +1275,7 @@ void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeNa
 	std::string material_name = shader_iterator->materialResourceName;
 	auto material_iterator = u3DObject->materialResources.begin();
 	bool material_found = false;
-	for (MLint i = 0; i < u3DObject->materialResources.size() && !material_found; i++){
+	for (MLint i = 0; i < (MLint)u3DObject->materialResources.size() && !material_found; i++){
 		if (u3DObject->materialResources[i].resourceName == material_name){
 			material_found = true;
 			material_iterator += i;
@@ -1289,7 +1289,7 @@ void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeNa
 	std::string geometry_name = node_iterator->geometryGeneratorName;
 	auto geometry_iterator = u3DObject->meshes.begin();
 	bool geometry_found = false;
-	for (MLint i = 0; i < u3DObject->meshes.size() && !geometry_found; i++){
+	for (MLint i = 0; i < (MLint)u3DObject->meshes.size() && !geometry_found; i++){
 		if (u3DObject->meshes[i].resourceName == geometry_name){
 			geometry_found = true;
 			geometry_iterator += i;
@@ -1307,7 +1307,7 @@ void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeNa
 	/* apply changes */
 	geometry_iterator->textureLayerCount = 1;
 	geometry_iterator->textureCoordinates = textureMap.size() > 0 ? textureMap : generateDefaultTextureMapping(geometry_iterator->faceCount*3);
-	geometry_iterator->textureCoordCount = geometry_iterator->textureCoordinates.size();
+	geometry_iterator->textureCoordCount = (MLuint32)geometry_iterator->textureCoordinates.size();
 	shader_iterator->textureResourceName = textureName;
 	material_iterator->ambientColor = Vector3(1, 1, 1);
 	material_iterator->diffuseColor = Vector4(0, 0, 0, 1);
