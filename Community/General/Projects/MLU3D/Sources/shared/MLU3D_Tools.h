@@ -33,7 +33,6 @@
 // Std includes
 #include <sys/stat.h>
 
-
 ML_START_NAMESPACE
 
 namespace mlU3D {

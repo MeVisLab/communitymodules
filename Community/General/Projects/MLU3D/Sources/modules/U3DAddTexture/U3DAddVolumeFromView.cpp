@@ -128,6 +128,8 @@ std::string U3DAddVolumeFromView::write_slice_buffer_to_png(png_bytep* buffer, s
 	png_set_write_fn(png_ptr, target, png_write_to_vector_callback, NULL);
 
 	/* write header */
+	#pragma warning(push)
+	#pragma warning(disable:4611)
 	if (setjmp(png_jmpbuf(png_ptr))){
 		return "unable to write PNG header";
 	}
@@ -151,6 +153,7 @@ std::string U3DAddVolumeFromView::write_slice_buffer_to_png(png_bytep* buffer, s
 	if (setjmp(png_jmpbuf(png_ptr))){
 		return "error during PNG creation";
 	}
+	#pragma warning(pop)
 
 	png_write_end(png_ptr, NULL);
 

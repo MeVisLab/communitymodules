@@ -336,7 +336,6 @@ void U3DBitStreamWriter::allocateDataBuffer(MLint32 size)
 static const MLuint32 FastNotMask[] = { 0x0000FFFF, 0x00007FFF, 0x00003FFF, 0x00001FFF, 0x00000FFF };
 static const MLuint32 ReadCount[] = { 4, 3, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-
 U3DBitStreamReader::U3DBitStreamReader(){
 	resetState();
 }
@@ -374,25 +373,25 @@ MLuint8 U3DBitStreamReader::readU8(){
 	uValue--;
 	swapBits8(uValue);
 	counter++;
-	return uValue;
+	return (MLuint8)uValue;
 }
 
 MLuint16 U3DBitStreamReader::readU16(){
-	MLuint8 low = readU8();
-	MLuint8 high = readU8();
-	return ((MLuint16)low) | (((MLuint16)high) << 8);
+	MLuint8 lowH = readU8();
+	MLuint8 highH = readU8();
+	return ((MLuint16)lowH) | (((MLuint16)highH) << 8);
 }
 
 MLuint32 U3DBitStreamReader::readU32(){
-	MLuint16 low = readU16();
-	MLuint16 high = readU16();
-	return ((MLuint32)low) | (((MLuint32)high) << 16);
+	MLuint16 lowH = readU16();
+	MLuint16 highH = readU16();
+	return ((MLuint32)lowH) | (((MLuint32)highH) << 16);
 }
 
 MLuint64 U3DBitStreamReader::readU64(){
-	MLuint32 low = readU32();
-	MLuint32 high = readU32();
-	return ((MLuint64)low) | (((MLuint64)high) << 32);
+	MLuint32 lowH = readU32();
+	MLuint32 highH = readU32();
+	return ((MLuint64)lowH) | (((MLuint64)highH) << 32);
 }
 
 MLint16 U3DBitStreamReader::readI16(){
@@ -516,32 +515,32 @@ MLuint32 U3DBitStreamReader::readSymbol(MLuint32 context) {
 		this->contextManager.getCumulativeSymbolFrequency(context, uValue);
 	MLuint32 valueFreq =
 		this->contextManager.getSymbolFrequency(context, uValue);
-	MLuint32 low = this->low;
-	MLuint32 high = this->high;
-	high = low - 1 + range * (valueCumFreq + valueFreq) / totalCumFreq;
-	low = low + range * (valueCumFreq) / totalCumFreq;
+	MLuint32 currentLow = this->low;
+	MLuint32 currentHigh = this->high;
+	currentHigh = currentLow - 1 + range * (valueCumFreq + valueFreq) / totalCumFreq;
+	currentLow = currentLow + range * (valueCumFreq) / totalCumFreq;
 	this->contextManager.addSymbol(context, uValue);
 	MLuint32 bitCount;
 	MLuint32 maskedLow;
 	MLuint32 maskedHigh;
 
 	bitCount =
-		(MLuint32)ReadCount[(MLuint32)(((low >> 12) ^ (high >> 12)) & 0x0000000F)];
-	low &= FastNotMask[bitCount];
-	high &= FastNotMask[bitCount];
-	high <<= bitCount;
-	low <<= bitCount;
-	high |= (1 << bitCount) - 1;
+		(MLuint32)ReadCount[(MLuint32)(((currentLow >> 12) ^ (currentHigh >> 12)) & 0x0000000F)];
+	currentLow &= FastNotMask[bitCount];
+	currentHigh &= FastNotMask[bitCount];
+	currentHigh <<= bitCount;
+	currentLow <<= bitCount;
+	currentHigh |= (1 << bitCount) - 1;
 
-	maskedLow = mlU3D::HalfMask & low;
-	maskedHigh = mlU3D::HalfMask & high;
+	maskedLow = mlU3D::HalfMask & currentLow;
+	maskedHigh = mlU3D::HalfMask & currentHigh;
 	while (((maskedLow | maskedHigh) == 0) ||
 		((maskedLow == mlU3D::HalfMask) && maskedHigh == mlU3D::HalfMask))
 	{
-		low = (mlU3D::NotHalfMask & low) << 1;
-		high = ((mlU3D::NotHalfMask & high) << 1) | 1;
-		maskedLow = mlU3D::HalfMask & low;
-		maskedHigh = mlU3D::HalfMask & high;
+		currentLow = (mlU3D::NotHalfMask & currentLow) << 1;
+		currentHigh = ((mlU3D::NotHalfMask & currentHigh) << 1) | 1;
+		maskedLow = mlU3D::HalfMask & currentLow;
+		maskedHigh = mlU3D::HalfMask & currentHigh;
 		bitCount++;
 	}
 	const MLuint32 savedBitsLow = maskedLow;
@@ -551,25 +550,25 @@ MLuint32 U3DBitStreamReader::readSymbol(MLuint32 context) {
 		this->underflow = 0;
 	}
 
-	maskedLow = mlU3D::QuarterMask & low;
-	maskedHigh = mlU3D::QuarterMask & high;
-	MLuint64 underflow = 0;
+	maskedLow = mlU3D::QuarterMask & currentLow;
+	maskedHigh = mlU3D::QuarterMask & currentHigh;
+	MLuint64 currentUnderflow = 0;
 	while ((maskedLow == 0x4000) && (maskedHigh == 0)) {
-		low &= mlU3D::NotThreeQuarterMask;
-		high &= mlU3D::NotThreeQuarterMask;
-		low += low;
-		high += high;
-		high |= 1;
-		maskedLow = mlU3D::QuarterMask & low;
-		maskedHigh = mlU3D::QuarterMask & high;
-		underflow++;
+		currentLow &= mlU3D::NotThreeQuarterMask;
+		currentHigh &= mlU3D::NotThreeQuarterMask;
+		currentLow += currentLow;
+		currentHigh += currentHigh;
+		currentHigh |= 1;
+		maskedLow = mlU3D::QuarterMask & currentLow;
+		maskedHigh = mlU3D::QuarterMask & currentHigh;
+		currentUnderflow++;
 	}
 
-	this->underflow += underflow;
-	low |= savedBitsLow;
-	high |= savedBitsHigh;
-	this->low = low;
-	this->high = high;
+	this->underflow += (MLuint32)currentUnderflow;
+	currentLow |= savedBitsLow;
+	currentHigh |= savedBitsHigh;
+	this->low = currentLow;
+	this->high = currentHigh;
 
 	this->dataBitOffset += bitCount;
 	while (this->dataBitOffset >= 32) {

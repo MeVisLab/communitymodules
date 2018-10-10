@@ -1307,7 +1307,7 @@ void U3DTools::setNodeShaderToTexture(U3DObjectPtr u3DObject, std::string nodeNa
 	/* apply changes */
 	geometry_iterator->textureLayerCount = 1;
 	geometry_iterator->textureCoordinates = textureMap.size() > 0 ? textureMap : generateDefaultTextureMapping(geometry_iterator->faceCount*3);
-	geometry_iterator->textureCoordCount = geometry_iterator->textureCoordinates.size();
+	geometry_iterator->textureCoordCount = (MLuint32)geometry_iterator->textureCoordinates.size();
 	shader_iterator->textureResourceName = textureName;
 	material_iterator->ambientColor = Vector3(1, 1, 1);
 	material_iterator->diffuseColor = Vector4(0, 0, 0, 1);

@@ -57,6 +57,9 @@ static std::string read_png_file(const char* file_name)
 		return "internal error";
 	}
 
+	#pragma warning(push)
+	#pragma warning(disable:4611)
+	//the local code is basically C
 	if (setjmp(png_jmpbuf(png_ptr))){
 		return "internal error";
 	}
@@ -86,6 +89,7 @@ static std::string read_png_file(const char* file_name)
 	if (setjmp(png_jmpbuf(png_ptr))){
 		return "unable to read Image";
 	}
+	#pragma warning(pop)
 	row_pointers = new png_bytep[height];
 	for (y = 0; y<height; y++)
 		row_pointers[y] = new png_byte[png_get_rowbytes(png_ptr,info_ptr)];
@@ -122,6 +126,8 @@ static std::string write_png_file(std::vector<uint8_t>* out)
 	png_set_write_fn(png_ptr,out,png_write_to_vector,NULL);
 	
 
+	#pragma warning(push)
+	#pragma warning(disable:4611)
 
 	/* write header */
 	if (setjmp(png_jmpbuf(png_ptr))){
@@ -147,6 +153,7 @@ static std::string write_png_file(std::vector<uint8_t>* out)
 	if (setjmp(png_jmpbuf(png_ptr))){
 		return "error during PNG creation";
 	}
+	#pragma warning(pop)
 
 	png_write_end(png_ptr, NULL);
 

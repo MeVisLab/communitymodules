@@ -2,6 +2,10 @@
 
 ML_START_NAMESPACE
 
+#pragma warning(push)
+#pragma warning(disable:4189)
+//Disabled due to yet incomplete internal format
+
 void U3DLoad::parseModelNode(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize){
 	std::string nodeName = readString();
 	MLuint32 parentNodeCount = readU32();
@@ -104,5 +108,6 @@ void U3DLoad::parseShadingModifier(std::ifstream& fileStream, MLuint32 dataSize,
 	modelNodeMap[currentChainNode].shaderName = shaderName;
 }
 
+#pragma warning(pop)
 
 ML_END_NAMESPACE

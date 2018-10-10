@@ -48,12 +48,13 @@ protected:
 
 private:
 
-  /* FIELDS */
+    /* FIELDS */
 	ml::StringField* _fileNameFld;
 	ml::Field* _applyFld;
 
 	MLuint64 fileSize;
 
+	// internal format, maps are accessed by blockname 
 	std::map<std::string, mlU3D::ViewNode>  viewNodeMap;
 	std::map<std::string, mlU3D::GroupNode> groupNodeMap;
 	std::map<std::string, mlU3D::ModelNode> modelNodeMap;
@@ -67,15 +68,27 @@ private:
 	std::map<std::string, mlU3D::MaterialResource> materialResourceMap;
 	std::map<std::string, mlU3D::TextureResource>  textureResourceMap;
 
+	// current modifier chain
 	std::string currentChainNode;
 
+	// local reader
 	U3DBitStreamReader bitStreamReader;
 
-  /* METHODS */
+    /* METHODS */
+
+	// resets the internal format of the module 
 	void clearMaps();
+
+	//loads the given path and parses the file
 	void loadU3DFile(std::string path);
+
+	//identifies the next blocktype and parses the next block
 	void parseBlock(std::ifstream& fileStream);
+
+	//writes the internatl format data to the output
 	void writeDataToOutput();
+
+	/*helper methods, one for each supported blocktype, called by by parseBlock*/
 
 	void parseFileHeader(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
 	void parsePriorityUpdate(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
@@ -95,6 +108,8 @@ private:
 	void parseTextureContinuation(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
 	void parsePointSetDeclaration(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
 	void parsePointSetContinuation(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize);
+
+	/* helper methods for reading the various data-types */
 
 	MLuint8 readU8();
 	MLuint16 readU16();

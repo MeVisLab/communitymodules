@@ -2,6 +2,10 @@
 
 ML_START_NAMESPACE
 
+#pragma warning(push)
+#pragma warning(disable:4189)
+//Disabled due to yet incomplete internal format
+
 void U3DLoad::parseLitTextureShader(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize){
 	std::string name = readString();
 	MLuint32 attributes = readU32();
@@ -108,7 +112,7 @@ void U3DLoad::parseCLODMeshDeclaration(std::ifstream& fileStream, MLuint32 dataS
 	meshMap[name].vertexCount = finalMaximumResolution;
 	meshMap[name].faceCount = faceCount;
 	meshMap[name].patchID = 0;
-	meshMap[name].meshNumber = meshMap.size();
+	meshMap[name].meshNumber = (MLuint32) meshMap.size();
 	meshMap[name].normalCount = normalCount;
 	meshMap[name].specularColorCount = specularColorCount;
 	meshMap[name].diffuseColorCount = diffuseColorCount;
@@ -210,7 +214,6 @@ void U3DLoad::parseCLODMeshBaseContinuation(std::ifstream& fileStream, MLuint32 
 		WEMFace* currentFace = baseGeometry->addFace();
 		for (MLuint32 j = 0; j < 3; j++){
 			MLuint32 basePositionIndex = readCompressedU32(mlU3D::Context_StaticFull + basePositionCount);
-			//std::cout << basePositionIndex << " ";
 			if (meshMap[name].meshAttributes != 0x1){
 				MLuint32 baseNormalIndex = readCompressedU32(mlU3D::Context_StaticFull + baseNormalCount);
 				baseGeometry->getNodeAt(basePositionIndex)->setNormal(normalVector[baseNormalIndex]);
@@ -228,19 +231,8 @@ void U3DLoad::parseCLODMeshBaseContinuation(std::ifstream& fileStream, MLuint32 
 			}
 			currentFace->setNode(j, nodeVector[basePositionIndex]);
 		}
-		//std::cout << std::endl;
 	}
 	meshMap[name].setMeshData(baseGeometry);
-
-	/*std::cout << bitStreamReader.printState() << std::endl;
-
-	if (dataSize % 4){
-		for (MLint32 i = 0; i < 4 - dataSize % 4; i++){
-			MLuint8 padding = readU8();
-		}
-	}*/
-	//bitStreamReader.resetCompression();
-
 	
 }
 
@@ -354,5 +346,7 @@ void U3DLoad::parsePointSetContinuation(std::ifstream& fileStream, MLuint32 data
 	}
 	
 }
+
+#pragma warning(pop)
 
 ML_END_NAMESPACE

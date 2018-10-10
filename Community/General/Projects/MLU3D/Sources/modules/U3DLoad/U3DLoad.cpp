@@ -14,7 +14,9 @@
 
 
 ML_START_NAMESPACE
-
+#pragma warning(push)
+#pragma warning(disable:4189)
+//Disabled due to yet incomplete internal format
 
 //! Implements code for the runtime type system of the ML
 ML_MODULE_CLASS_SOURCE(U3DLoad, U3DGenerator);
@@ -228,10 +230,10 @@ void U3DLoad::parseFileHeader(std::ifstream& fileStream, MLuint32 dataSize, MLui
 	MLint16 minorVersion = readI16();
 	MLuint32 profileIdentifier = readU32();
 	MLuint32 declarationSize = readU32();
-	MLuint64 fileSize = readU64();
+	MLuint64 newFileSize = readU64();
 	MLuint32 characterEncoding = readU32();
 	MLdouble unitsScalingFactor = readF64();
-	this->fileSize = fileSize;
+	this->fileSize = newFileSize;
 }
 
 void U3DLoad::parsePriorityUpdate(std::ifstream& fileStream, MLuint32 dataSize, MLuint32 MetaDataSize){
@@ -339,5 +341,6 @@ std::string U3DLoad::readString(){
 	}
 	return ret;
 }
+#pragma warning(pop)
 
 ML_END_NAMESPACE
