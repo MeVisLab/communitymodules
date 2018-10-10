@@ -101,8 +101,9 @@ static std::string read_png_file(const char* file_name)
 }
 
 // callback function for png_set_write_fn 
-static void png_write_to_vector(png_structp png_ptr, png_bytep data, png_size_t length){
-	std::vector<uint8_t> *p = (std::vector<uint8_t>*)png_get_io_ptr(png_ptr);
+static void png_write_to_vector(png_structp png_pointer, png_bytep data, png_size_t length
+){
+	std::vector<uint8_t> *p = (std::vector<uint8_t>*)png_get_io_ptr(png_pointer);
 	p->insert(p->end(), data, data + length);
 }
 

@@ -93,9 +93,12 @@ png_bytep** U3DAddVolumeFromView::prepare_png_buffer(ml::TVirtualVolume<MLuint8>
 }
 
 //free buffer structure created by prepare_png_buffer
-void U3DAddVolumeFromView::free_png_buffer(png_bytep** &buffer, MLint num_slices, MLint slice_resolution_x, MLint slice_resolution_y){
-	for (MLint i = 0; i < num_slices; i++){
-		for (MLint j = 0; j < slice_resolution_y; j++){
+void U3DAddVolumeFromView::free_png_buffer(png_bytep** &buffer, MLint num_slices, MLint /*slice_resolution_x*/, MLint slice_resolution_y)
+{
+	for (MLint i = 0; i < num_slices; i++)
+	{
+		for (MLint j = 0; j < slice_resolution_y; j++)
+		{
 			delete[] buffer[i][j];
 		}
 		delete[] buffer[i];
@@ -111,19 +114,21 @@ static void png_write_to_vector_callback(png_structp png_ptr, png_bytep data, pn
 }
 
 // writes current png to a vector
-std::string U3DAddVolumeFromView::write_slice_buffer_to_png(png_bytep* buffer, std::vector<uint8_t>* target, MLint slice_resolution_x, MLint slice_resolution_y){
+std::string U3DAddVolumeFromView::write_slice_buffer_to_png(png_bytep* buffer, std::vector<uint8_t>* target, MLint slice_resolution_x, MLint slice_resolution_y)
+{
 	
 	/* create structs */
 	png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-	if (!png_ptr){
+	if (!png_ptr)
+	{
 		return "internal error";
 	}
 
 	png_infop info_ptr = png_create_info_struct(png_ptr);
-	if (!info_ptr){
+	if (!info_ptr)
+	{
 		return "internal error";
 	}
-
 
 	png_set_write_fn(png_ptr, target, png_write_to_vector_callback, NULL);
 
@@ -140,7 +145,6 @@ std::string U3DAddVolumeFromView::write_slice_buffer_to_png(png_bytep* buffer, s
 
 	png_write_info(png_ptr, info_ptr);
 
-
 	/* write bytes */
 	if (setjmp(png_jmpbuf(png_ptr))){
 		return "error during PNG creation";
@@ -150,7 +154,8 @@ std::string U3DAddVolumeFromView::write_slice_buffer_to_png(png_bytep* buffer, s
 
 
 	/* end write */
-	if (setjmp(png_jmpbuf(png_ptr))){
+	if (setjmp(png_jmpbuf(png_ptr)))
+	{
 		return "error during PNG creation";
 	}
 	#pragma warning(pop)
