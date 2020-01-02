@@ -565,7 +565,7 @@ void MatlabScriptWrapper::calcOutImageProps (int outIndex)
 
   // If we can find the variable and calculate its size, go on.
   if((_outDataArray[outIndex] != NULL)) {
-    Vector outExt = _outDataArray[outIndex]->GetExtend();
+    Vector outExt = _outDataArray[outIndex]->GetExtent();
 
     // Set page size.
     getOutImg(outIndex)->setPageExt(outExt);
@@ -625,7 +625,7 @@ void MatlabScriptWrapper::calcOutSubImage (SubImg *outSubImg, int outIndex, SubI
   }
 
   if ( (_outDataArray[outIndex] != NULL) ) {
-    SubImg subImgBuf(SubImgBox(_outDataArray[outIndex]->GetExtend()), _outDataArray[outIndex]->GetDataType(), _outDataArray[outIndex]->GetData());
+    SubImg subImgBuf(SubImgBox(_outDataArray[outIndex]->GetExtent()), _outDataArray[outIndex]->GetDataType(), _outDataArray[outIndex]->GetData());
     outSubImg->copySubImage(subImgBuf);
   } else {
     // Throw error if the variable could not be found in the Matlab workspace.
@@ -938,7 +938,7 @@ void MatlabScriptWrapper::_getOutputImageDataBackFromMatlab()
       mxArray *minVal = engGetVariable(m_pEngine, "mevtmpminval");
       mxArray *maxVal = engGetVariable(m_pEngine, "mevtmpmaxval");
       // if min and max are not defined, set default values
-      if ((minVal==NULL) || (minVal==NULL)) {
+      if( (minVal==NULL) || (maxVal==NULL) ) {
         _outDataArray[outIndex]->SetMinMaxValue(0,127);
       } else {
         _outDataArray[outIndex]->SetMinMaxValue(mxGetScalar(minVal), mxGetScalar(maxVal));

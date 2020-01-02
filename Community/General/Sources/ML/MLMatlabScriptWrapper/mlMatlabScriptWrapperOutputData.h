@@ -45,16 +45,16 @@ public:
 	};
 
 	//! Copy new data to class (and deallocate old data if existent)
-	void SetData(const Vector& extend, const MLPhysicalDataType datatype, const double* data)
+	void SetData(const Vector& extent, const MLPhysicalDataType datatype, const double* data)
 	{
 		if(_data != NULL) {
 			delete []_data;
 			_data = NULL;
 		}
-		_ext = extend;
+		_ext = extent;
 		_dataClass = datatype;
 
-		SubImgBox temp = SubImgBox(extend);
+		SubImgBox temp = SubImgBox(extent);
 		int elementSize = 0;
 		try {
 			switch (_dataClass) {
@@ -87,7 +87,7 @@ public:
 
 	inline void* GetData() { return(_data); };
 	inline MLPhysicalDataType GetDataType() { return(_dataClass); };
-	inline Vector GetExtend() { return(_ext); };
+	inline Vector GetExtent() { return(_ext); };
 	inline MLldouble GetMinValue() { return(_minval); };
 	inline MLldouble GetMaxValue() { return(_maxval); };
 
